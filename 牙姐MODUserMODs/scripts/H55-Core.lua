@@ -5754,7 +5754,7 @@ function H55_ContinuesEvent(player)
 								break;
 							end;
 						else
-							if type[idArmy] >= 958 and type[idArmy] <= 971 and type[idArmy] < 958 + idLevel - 1 then
+							if type[idArmy] >= 958 and type[idArmy] <= 971 and type[idArmy] ~= 958 + idLevel - 1 then
 								if count[6] == 0 then
 								-- print("match7");
 									AddHeroCreatures(strHero, 958 + idLevel - 1, count[idArmy]);
@@ -5770,7 +5770,7 @@ function H55_ContinuesEvent(player)
 									sleep(1);
 									break;
 								end;
-							elseif type[idArmy] >= 972 and type[idArmy] <= 985 and type[idArmy] < 972 + idLevel - 1 then
+							elseif type[idArmy] >= 972 and type[idArmy] <= 985 and type[idArmy] ~= 972 + idLevel - 1 then
 								if count[6] == 0 then
 								-- print("match9");
 									AddHeroCreatures(strHero, 972 + idLevel - 1, count[idArmy]);
@@ -5786,7 +5786,7 @@ function H55_ContinuesEvent(player)
 									sleep(1);
 									break;
 								end;
-							elseif type[idArmy] >= 986 and type[idArmy] <= 999 and type[idArmy] < 986 + idLevel - 1 then
+							elseif type[idArmy] >= 986 and type[idArmy] <= 999 and type[idArmy] ~= 986 + idLevel - 1 then
 								if count[6] == 0 then
 								-- print("match11");
 									AddHeroCreatures(strHero, 986 + idLevel - 1, count[idArmy]);

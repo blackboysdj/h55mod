@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Particle>
+	<SrcName href="/Effects/Characters/Necromanser/buff2.mb"/>
+	<ExportPrefix>Smoke</ExportPrefix>
+	<WrapSize>
+		<x>0</x>
+		<y>0</y>
+	</WrapSize>
+	<Bound>d038183e004e903bd61511402b520d414e5dac40bf67b54076698340</Bound>
+	<PerParticleFog>false</PerParticleFog>
+	<uid>95B94F46-BCA3-4CEC-9284-1DE544015C7A</uid>
+</Particle>

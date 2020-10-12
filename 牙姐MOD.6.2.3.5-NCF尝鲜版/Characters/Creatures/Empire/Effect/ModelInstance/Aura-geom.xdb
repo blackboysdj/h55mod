@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Geometry>
+	<SrcName href="/Aura.mb"/>
+	<uid>E217F951-086D-4EED-A8CA-B385FB3C7112</uid>
+	<RootMesh/>
+	<RootJoint>Aura</RootJoint>
+	<Size>
+		<x>0.758597</x>
+		<y>0.170286</y>
+		<z>0.757568</z>
+	</Size>
+	<Center>
+		<x>-0.0090965</x>
+		<y>-0.004011</y>
+		<z>0.14316</z>
+	</Center>
+	<BestFitPoint>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+	</BestFitPoint>
+	<Dir>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+		<w>0</w>
+	</Dir>
+	<AIGeometry/>
+	<NumMeshes>1</NumMeshes>
+	<MaterialQuantities>
+		<Item>1</Item>
+	</MaterialQuantities>
+	<MeshNames>
+		<Item>AuraShape</Item>
+	</MeshNames>
+	<MeshAnimated/>
+	<MeshWindAffected/>
+</Geometry>

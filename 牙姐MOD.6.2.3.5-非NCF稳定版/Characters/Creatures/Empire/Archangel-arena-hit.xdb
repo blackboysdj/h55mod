@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BasicSkelAnim>
+	<SrcName href="/H5A1/Models/Creatures/Renegates/Arhangel.mb"/>
+	<uid>AED7DC45-6026-4A87-98F0-E9D40362899C</uid>
+	<ExpSrcClip href="/H5A1/Animations/Creatures/Renegades/Archangel/Clip/ArchAngel.hit.ma"/>
+	<ExpRootTransform>Global</ExpRootTransform>
+	<ExpFrameFirst>0</ExpFrameFirst>
+	<ExpFrameLast>0</ExpFrameLast>
+	<ExpSettingsFile href=""/>
+	<MovementSpeed>0</MovementSpeed>
+	<SpeedFactor>1</SpeedFactor>
+	<Sound href="/Sounds/_(Sound)/Creatures/Imperium/Cherubim/hit.xdb#xpointer(/Sound)"/>
+	<Effect href="Effect/Global.(Effect).xdb#xpointer(/Effect)"/>
+	<SpeedLineFallTime>250</SpeedLineFallTime>
+	<SpeedLineMaterial/>
+</BasicSkelAnim>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Character ObjectRecordID="1000026">
+	<Model href="/_(Model)/Creatures/Dungeon/BlackDragon.(Model).xdb#xpointer(/Model)"/>
+	<ArenaAnimSet href="BlackDragon.(AnimSet).xdb#xpointer(/AnimSet)"/>
+	<AdvMapAnimSet/>
+	<ColourModels/>
+</Character>

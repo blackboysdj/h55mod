@@ -1,46 +1,46 @@
 1.技能相关
  	后勤
- 		侦察术 		→ 	传送突袭
- 						↘ 	死亡行军
- 		探路术 		→ 	战争之路
- 		攫取 			→ 	杉提瑞之触
- 						↘ 	战争掠劫
+ 		侦察术 	→ 	传送突袭
+ 				→ 	死亡行军
+ 		探路术 	→ 	战争之路
+ 		攫取 	→ 	杉提瑞之触
+ 				→ 	战争掠劫
  	启蒙
  		神秘直觉 	→ 	闪电思维
- 		智慧学 		→ 	毕业生
- 						↘ 	魔法师奖励
- 						↘ 	黑暗启示
- 		学士 			→ 	法力提升 	→ 	良师益友
+ 		智慧学 	→ 	毕业生
+ 				→ 	魔法师奖励
+ 				→ 	黑暗启示
+ 		学士 	→ 	法力提升 	→ 	良师益友
  	进攻
  		战术部署 	→ 	怒火中烧
- 		箭术 			→ 	寒铁之刃
+ 		箭术 	→ 	寒铁之刃
  		战争狂人 	→ 	报偿
- 						↘ 	速度能量
+ 				→ 	速度能量
  	防御
  		抗魔保护 	→ 	骸骨保护
- 						↘ 	魔力衰竭
- 		闪避 			→ 	屹立不倒
- 						↗
+ 				→ 	魔力衰竭
+ 		闪避 	→ 	屹立不倒
+ 				↗
  		活力无限 	→ 	坚守阵地 	→ 	准备
- 						↘ 	耐力持久
+ 				→ 	耐力持久
  	领导
- 		募兵术 		→ 	理财术
+ 		募兵术 	→ 	理财术
  		神圣指引 	→ 	敏捷光环
- 						↘ 	入神
- 						↘ 	人造荣耀
+ 				→ 	入神
+ 				→ 	人造荣耀
  		佑福仪式 	→ 	外交术
  	幸运
  		士兵之幸 	→ 	幸运一击
- 						↘ 	资源富饶
+ 				→ 	资源富饶
  		抗魔大法 	→ 	勇士之幸
- 						↘ 	亡者诅咒
+ 				→ 	亡者诅咒
  		古怪魔力 	→ 	术士之幸
  	机械
  		急救帐篷 	→ 	瘟疫帐篷
- 		弹道学 		→ 	硫磺烟雨
- 		弹射学 		→ 	三箭连射
- 						↘ 	符文机械
- 						↘ 	燃烧箭
+ 		弹道学 	→ 	硫磺烟雨
+ 		弹射学 	→ 	三箭连射
+ 				→ 	符文机械
+ 				→ 	燃烧箭
  	光明
  		愤怒大师 	→ 	暴风来袭
  		佑福大师 	→ 	不灭之光
@@ -59,51 +59,53 @@
  		风暴大师 	→ 	毁灭之道
  	巫术
  		洞察魔力 	→ 	神秘光芒 	→ 	法师印记（除学院3职业）
- 						↘ 	法师印记（学院3职业）
- 		神秘训练 	→ 	干扰 			→ 	魔法抑制
- 						↘ 	精炼魔力
+ 				→ 	法师印记（学院3职业）
+ 		神秘训练 	→ 	干扰 	→ 	魔法抑制
+ 				→ 	精炼魔力
  		黑暗仪式 	→ 	魔力再生
- 						↘ 	神秘精髓
+ 				→ 	神秘精髓
  	反击
  		复仇打击 	→ 	虚弱打击 	→ 	无敌冲锋（除圣堂3职业）
- 						↘ 	无敌冲锋（圣堂3职业）
+ 				→ 	无敌冲锋（圣堂3职业）
+ 				→ 	无敌冲锋（酋长）
+ 				↗
  		极度痛击 	→ 	咒骂印记
  		强力打击 	→ 	眩晕打击
  	穿透
  		法术强效 	→ 	元素视觉（地牢术士）
- 						↘ 	驱魔咒语（其它）
- 		食尸者 		→ 	邪教大师
+ 				→ 	驱魔咒语（其它）
+ 		食尸者 	→ 	邪教大师
  	符文
  		防御编队 	→ 	攻击编队
  		精炼符文 	→ 	轮转符文
- 						↘ 	高等符文
+ 				→ 	高等符文
  		分流符文 	→ 	符文平衡
  	制宝
  		熔毁宝物 	→ 	宝物学者
  		魔像行进 	→ 	远程控制
- 						↘ 	大地战栗
+ 				→ 	大地战栗
  		魔镜
  	复仇
  		自然之怒 	→ 	战地指挥官
  		注魔之箭 	→ 	注魔弩车
  		精准射击 	→ 	箭如雨下
- 						↘ 	知己知彼
+ 				→ 	知己知彼
  	地门
  		地狱烈火 	→ 	灼热之火
- 						↘ 	地狱愤怒
+ 				→ 	地狱愤怒
  		门禁大师 	→ 	敏捷异界门
  	亡巫
  		女妖尖叫 	→ 	幽魂矿井
  		永恒奴役 	→ 	灵魂链接
  		丧尸之王 	→ 	邪恶远征
  	血怒
- 		热血沸腾 	→ 	黑暗启示
+ 		热血沸腾
  		血统记忆 	→ 	战斗喜悦
  		地精支援 	→ 	全体保卫
  	学习
- 		抑魔之力
- 		战斗学 		→ 	良师益友
- 						↘ 	智慧学
+ 		抑魔之力 	→ 	萨满信仰
+ 		战斗学 	→ 	良师益友
+ 				→ 	智慧学
  		耐力
 	战嚎
  		战嚎训练 	→ 	强力战嚎 	→ 	干扰
@@ -117,7 +119,7 @@
  		弱化黑暗 	→ 	消耗黑暗
  		腐败大地 	→ 	虚弱攻击
  		延迟黑暗 	→ 	无视黑暗
- 						↘ 	黑暗封印
+ 				→ 	黑暗封印
 	反破
  		弱化破坏 	→ 	消耗破坏
  		魔力爆发 	→ 	恶魔血统
@@ -126,7 +128,7 @@
  		弱化召唤 	→ 	消耗召唤
  		迷雾之墙 	→ 	寂灭
  		延迟召唤 	→ 	元素平衡
- 						↘ 	驱逐
+ 				→ 	驱逐
 
 2.终极技能（占用所属主技能一个技能格，友情提醒记得留一个技能格）
  	圣堂
@@ -161,7 +163,7 @@
  		前置:
  			亡灵巫师: 	女妖尖叫(亡巫) 	+ 	黑暗启示(启蒙)
  			掠夺者: 		女妖尖叫(亡巫) 	+ 	洞察魔力(巫术) 	+ 	心智大师(黑暗)
- 			死亡骑士: 	堕落骑士(黑暗) 	+ 	女妖尖叫(亡巫)
+ 			死亡骑士: 	女妖尖叫(亡巫) 	+ 	堕落骑士(黑暗)
  	地狱（地狱三职业终极路线相同，并且有两套终极路线，只有门禁守卫可以在佩戴技能吊坠的情况下，拥有地门的4个技能格，并同时学到两个终极）
  		名称: 鄂加斯的呼唤
  		所属: 地门
@@ -189,990 +191,1766 @@
  	洞察魔力 	→ 	黑暗 	→ 	悲痛欲绝
  	洞察魔力 	→ 	召唤 	→ 	剑刃障壁
  	洞察魔力 	→ 	破坏 	→ 	流星火雨
- 	洞察魔力 	+ 		力量之书 	→ 	光明 	→ 	神圣复仇
- 	洞察魔力 	+ 		力量之书 	→ 	黑暗 	→ 	失明诅咒
- 	洞察魔力 	+ 		力量之书 	→ 	召唤 	→ 	幻象军团
- 	洞察魔力 	+ 		力量之书 	→ 	破坏 	→ 	内向爆裂
+ 	洞察魔力 	+ 	力量之书 	→ 	光明 	→ 	神圣复仇
+ 	洞察魔力 	+ 	力量之书 	→ 	黑暗 	→ 	失明诅咒
+ 	洞察魔力 	+ 	力量之书 	→ 	召唤 	→ 	幻象军团
+ 	洞察魔力 	+ 	力量之书 	→ 	破坏 	→ 	内向爆裂
 
 4.魔法技能 与 魔法学习相关
- 	初级光明 	+ 	愤怒大师 	= 	疾速行动
- 	初级光明 	+ 	佑福大师 	= 	非凡神力
- 	初级光明 	+ 	防护大师 	= 	坚韧不屈
+ 	初级光明 + 愤怒大师 = 疾速行动
+ 	初级光明 + 佑福大师 = 非凡神力
+ 	初级光明 + 防护大师 = 坚韧不屈
 
- 	初级黑暗 	+ 	心智大师 	= 	延迟大法
- 	初级黑暗 	+ 	诅咒大师 	= 	虚弱诅咒
- 	初级黑暗 	+ 	折磨大师 	= 	破甲弱化
+ 	初级黑暗 + 心智大师 = 延迟大法
+ 	初级黑暗 + 诅咒大师 = 虚弱诅咒
+ 	初级黑暗 + 折磨大师 = 破甲弱化
 
- 	初级召唤 	+ 	地血大师 	= 	神秘水晶
- 	高级召唤 	+ 	符咒大师 	= 	召唤元素
- 	初级召唤 	+ 	生命大师 	= 	亡灵复生
- 	高级召唤 	+ 	神秘盔甲 	= 	神秘护甲
+ 	初级召唤 + 地血大师 = 神秘水晶
+ 	高级召唤 + 符咒大师 = 召唤元素
+ 	初级召唤 + 生命大师 = 亡灵复生
+ 	高级召唤 + 神秘盔甲 = 神秘护甲
 
- 	初级破坏 	+ 	寒冰大师 	= 	寒冰激射
- 	高级破坏 	+ 	烈火大师 	= 	连珠火球
- 	初级破坏 	+ 	风暴大师 	= 	霹雳闪电
- 	高级破坏 	+ 	致命深寒 	= 	严冬冰环
+ 	初级破坏 + 寒冰大师 = 寒冰激射
+ 	高级破坏 + 烈火大师 = 连珠火球
+ 	初级破坏 + 风暴大师 = 霹雳闪电
+ 	高级破坏 + 致命深寒 = 严冬冰环
 
- 	生命大师 	+ 	初级光明 	= 	活力再生
- 	心智大师 	+ 	迷雾之墙 	= 	迷惑心智
- 	烈火勇士 	+ 	高级破坏 	+ 	烈火大师 	= 	火墙阻隔
- 	暴风来袭 	+ 	高级破坏 	+ 	风暴大师 	= 	连锁闪电
+ 	生命大师 + 初级光明 = 活力再生
+ 	心智大师 + 迷雾之墙 = 迷惑心智
+ 	烈火勇士 + 高级破坏 + 烈火大师 = 火墙阻隔
+ 	暴风来袭 + 高级破坏 + 风暴大师 = 连锁闪电
 
- 	传送突袭 	→ 	移形换位
- 	大地战栗 	→ 	地动山摇
- 	虚弱打击 	→ 	虚弱诅咒
+ 	传送突袭 → 移形换位
+ 	大地战栗 → 地动山摇
+ 	虚弱打击 → 虚弱诅咒
 
 5.魔法技能 与 魔法值回复相关
- 	光明 	→ 	不灭之光 	+ 	2
- 	黑暗 	→ 	黑暗再生 	+ 	2
- 	破坏 	→ 	毁灭之道 	+ 	2
- 	巫术 	→ 	黑暗仪式 	+ 	4
- 	巫术 	→ 	魔力再生 	* 	2
+ 	光明 → 不灭之光 + 2
+ 	黑暗 → 黑暗再生 + 2
+ 	破坏 → 毁灭之道 + 2
+ 	巫术 → 黑暗仪式 + 4
+ 	巫术 → 魔力再生 * 2
 
 6.装备 与 魔法值回复相关
- 	先知布帽 					+1
- 	先知长袍 					+2
- 	默罕默德的软剑 		+3
- 	亚莎之八重杖 			+10
+ 	先知布帽 +4
+ 	先知长袍 +2
+ 	先知软剑 +3
 
 7.魔法相关
  	破坏魔法 2 2 3 2 2
  		1 		魔法神箭 		MAGIC_ARROW 			223 		强效魔法神箭 		EMPOWERED_MAGIC_ARROW
- 			Level 		  1
- 			Cost 		  5
- 			Base  		48    56    64    72
- 			Power 		  6      8    10    12
- 		237 	乱石利刺 		STONESPIKES 				233 		强效乱石利刺 		EMPOWEREDSTONE_SPIKES
- 			Level 		  1
- 			Cost 		  5
- 			Base 		24    32    40    48
- 			Power 		  8      8      8      8
- 		4 		寒冰激射 		ICE_BOLT 					226 		强效寒冰激射 		EMPOWERED_ICE_BOLT
- 			Level 		  2
- 			Cost 		  6
- 			Base 		60    72    84    96
- 			Power 		12    12    12    12
- 		3 		霹雳闪电 		LIGHTNING_BOLT 		225 		强效霹雳闪电 		EMPOWERED_LIGHTNING_BOLT
- 			Level 		  2
- 			Cost 		  6
- 			Base 		12    28    48    72
- 			Power 		12    14    16    18
- 		5 		连珠火球 		FIREBALL 						227 		强效连珠火球 		EMPOWERED_FIREBALL
- 			Level 		  3
- 			Cost 		  9
- 			Base 		12    16    20    24
- 			Power 		12    16    20    24
+ 			Level 		1
+ 			Cost 		4
+ 			Base 		48 	56 	64 	72
+ 			Power 		 6 	 8 	10 	12
+ 		237 	乱石利刺 		STONESPIKES 			233 		强效乱石利刺 		EMPOWEREDSTONE_SPIKES
+ 			Level 		1
+ 			Cost 		5
+ 			Base 		24 	32 	40 	48
+ 			Power 		 6 	 8 	10 	12
+ 		4 		寒冰激射 		ICE_BOLT 				226 		强效寒冰激射 		EMPOWERED_ICE_BOLT
+ 			Level 		2
+ 			Cost 		5
+ 			Base 		60 	72 	84 	96
+ 			Power 		12 	13 	14 	15
+ 		3 		霹雳闪电 		LIGHTNING_BOLT 			225 		强效霹雳闪电 		EMPOWERED_LIGHTNING_BOLT
+ 			Level 		2
+ 			Cost 		5
+ 			Base 		14 	16 	18 	20
+ 			Power 		14 	16 	18 	20
+ 		5 		连珠火球 		FIREBALL 				227 		强效连珠火球 		EMPOWERED_FIREBALL
+ 			Level 		3
+ 			Cost 		9
+ 			Base 		14 	16 	18 	20
+ 			Power 		14 	16 	18 	20
  		6 		严冬冰环 		FROST_RING 				228 		强效严冬冰环 		EMPOWERED_FROST_RING
- 			Level 		  3
- 			Cost 		  8
- 			Base 		60    72    84    96
- 			Power 		12    12    12    12
- 		7 		连锁闪电 		CHAIN_LIGHTNING 	229 		强效连锁闪电 		EMPOWERED_CHAIN_LIGHTNING
- 			Level 		  4
- 			Cost 		16
- 			Base 		18    42    72  108
- 			Power 		18    21    24    27
- 		8 		流星火雨 		METEOR_SHOWER 		230 		强效流星火雨 		EMPOWERED_METEOR_SHOWER
- 			Level 		  3
- 			Cost 		15
- 			Base 		18    18    18    18
- 			Power 		18    18    18    18
+ 			Level 		3
+ 			Cost 		8
+ 			Base 		60 	72 	84 	96
+ 			Power 		12 	13 	14 	15
+ 		7 		连锁闪电 		CHAIN_LIGHTNING 		229 		强效连锁闪电 		EMPOWERED_CHAIN_LIGHTNING
+ 			Level 		4
+ 			Cost 		13
+ 			Base 		16 	19 	22 	25
+ 			Power 		16 	19 	22 	25
+ 		8 		流星火雨 		METEOR_SHOWER 			230 		强效流星火雨 		EMPOWERED_METEOR_SHOWER
+ 			Level 		3
+ 			Cost 		13
+ 			Base 		18 	18 	18 	18
+ 			Power 		18 	18 	18 	18
  		9 		内向爆裂 		IMPLOSION 				231 		强效内向爆裂 		EMPOWERED_IMPLOSION
- 			Level 		  4
+ 			Level 		4
  			Cost 		12
- 			Base 		30    32    34    36
- 			Power 		30    32    34    36
- 		10 	末日审判 		ARMAGEDDON 			232 		强效末日审判 		EMPOWERED_ARMAGEDDON
- 			Level 		  5
+ 			Base 		30 	32 	34 	36
+ 			Power 		30 	32 	34 	36
+ 		10 		末日审判 		ARMAGEDDON 				232 		强效末日审判 		EMPOWERED_ARMAGEDDON
+ 			Level 		5
  			Cost 		25
- 			Base 		18    24    30    36
- 			Power 		18    24    30    36
- 		279 	深度冻结 		DEEP_FREEZE 				xxx 		强效深度冻结 		EMPOWERED_DEEP_FREEZE
- 			Level 		  5
+ 			Base 		21 	24 	27 	30
+ 			Power 		21 	24 	27 	30
+ 		279 	深度冻结 		DEEP_FREEZE 			xxx 		强效深度冻结 		EMPOWERED_DEEP_FREEZE
+ 			Level 		5
  			Cost 		16
- 			Base 	  120  144  168  192
- 			Power 		24    24    24    24
+ 			Base 		120 144 168 192
+ 			Power 		 24  26  28  30
 
  	召唤魔法 2 3 3 3 2
  		2 		怒火铁拳 		MAGIC_FIST 				224 		强效怒火铁拳 		EMPOWERED_MAGIC_FIST
- 			Level 		  1
- 			Cost 		  5
- 			Base 		30    40    50    60
- 			Power 		  4      6      8    10
- 		38 	火焰陷阱 		LAND_MINE
- 			Level 		  1
- 			Cost 		  8
- 			DamageBase 		30    40    50    60
- 			DamagePower 	  6      8    10    12
- 			CountBase 			  2      4      6      8
- 			CountPower 		  0      0      0      0
- 		39 	蜂群滋扰 		WASP_SWARM
- 			Level 		  3
- 			Cost 		  5
- 			DamageBase 		10    20    30    40
- 			DamagePower 	  2      4      6      8
- 			HitATBBase 			  0     .2     .4     .6
- 			HitATBPower 		  0      0      0      0
- 		42 	亡灵复生 		ANIMATE_DEAD
- 			Level 		  2
- 			Cost 		  9
- 			DamageBase 		90    120    150    180
- 			DamagePower  	25      30      35      40
- 			HpLimitBase 		25     .24     .23     .22
- 			HpLimitPower -.005  -.005 -.005  -.005
- 		40 	幻象军团 		PHANTOM
- 			Level 		  4
+ 			Level 		1
+ 			Cost 		4
+ 			Base 		30 	40 	50 	60
+ 			Power 		 4 	 6 	 8 	10
+ 		38 		火焰陷阱 		LAND_MINE
+ 			Level 		1
+ 			Cost 		8
+ 			DamageBase 	30 	40 	50 	60
+ 			DamagePower  6 	 8 	10 	12
+ 			CountBase 	 2 	 4 	 6 	 8
+ 			CountPower 	 0 	 0 	 0 	 0
+ 		39 		蜂群滋扰 		WASP_SWARM
+ 			Level 		3
+ 			Cost 		5
+ 			DamageBase 	10 	20 	30 	40
+ 			DamagePower  2 	 4 	 6 	 8
+ 			HitATBBase 	 0 	.2 	.4 	.6
+ 			HitATBPower  0 	 0 	 0 	 0
+ 		42 		亡灵复生 		ANIMATE_DEAD
+ 			Level 		2
+ 			Cost 		9
+ 			DamageBase 		90 	120 150 180
+ 			DamagePower 	25 	 30  35  40
+ 			HpLimitBase 	20 	 20  20  20
+ 			HpLimitPower 	 0 	  0   0   0
+ 		40 		幻象军团 		PHANTOM
+ 			Level 		4
  			Cost 		18
- 			PhantomLevel 		  4      5      6      7
- 		41 	地动山摇 		EARTHQUAKE
- 			Level 		  4
+ 			PhantomLevel 	4 	5 	6 	7
+ 		41 		地动山摇 		EARTHQUAKE
+ 			Level 		4
  			Cost 		12
- 			MaxDamageBase 		100  200  300  400
- 			MaxDamagePower 		    0      0      0      0
- 			MinDamageBase 		  50  100  150  200
- 			MinDamagePower 		    0      0      0      0
+ 			MaxDamageBase 	100 200 300 400
+ 			MaxDamagePower 	  4   6   8  10
+ 			MinDamageBase 	 50 100 150 200
+ 			MinDamagePower 	  2   3   4   5
  		236 	火墙阻隔 		FIREWALL
- 			Level 		  4
+ 			Level 		4
  			Cost 		16
- 			DamageBase 		14    16    18    20
- 			DamagePower 	14    16    18    20
- 			DurationBase 		  3      3      3      3
- 			DurationPower 	  0      0      0      0
- 		43 	召唤元素 		SUMMON_ELEMENTALS
- 			Level 		  3
+ 			DamageBase 		14 	16 	18 	20
+ 			DamagePower 	14 	16 	18 	20
+ 			DurationBase 	 3 	 3 	 3 	 3
+ 			DurationPower 	 0 	 0 	 0 	 0
+ 		43 		召唤元素 		SUMMON_ELEMENTALS
+ 			Level 		3
  			Cost 		12
- 			CountBase 			  0      0      0      0
- 			CountPower 		  5      1   1.5      2
- 		34 	神秘护甲 		CELESTIAL_SHIELD
- 			Level 		  2
+ 			CountBase 		 0 		0 		  0 	0
+ 			CountPower 		.5 		1 		1.5 	2
+ 		34 		神秘护甲 		CELESTIAL_SHIELD
+ 			Level 		2
  			Cost 		10
- 			ReduceBase 		.5      .6      .7      .8
- 			ReducePower 		 0       0       0       0
- 			ShieldBase 		 125   150   175   200
- 			ShieldPower 	   25     30     35     40
+ 			ReduceBase 		 .3 	 .5 	 .7 	 .8
+ 			ReducePower 	  0 	  0 	  0 	  0
+ 			ShieldBase 		125 	150 	175 	200
+ 			ShieldPower 	 25 	 30 	 35 	 40
  		235 	召唤凤凰 		CONJUREPHOENIX
- 			Level 		  5
+ 			Level 		5
  			Cost 		32
  		282 	神秘水晶 		ARCANE_CRYSTAL
- 			Level 		  2
- 			Cost 		  8
- 			DamageBase 		40    60    80  100
- 			DamagePower 	  8    12    16    20
+ 			Level 		2
+ 			Cost 		8
+ 			DamageBase 		40 	60 	80 100
+ 			DamagePower 	 8 	12 	16 	20
  		284 	剑刃障壁 		BLADE_BARRIER
- 			Level 		  3
+ 			Level 		3
  			Cost 		12
- 			DurationBase 		  3      3      3      3
- 			DurationPower 	  0      0      0      0
+ 			DurationBase 	3 	3 	3 	3
+ 			DurationPower 	0 	0 	0 	0
  		283 	召唤蜂窝 		SUMMON_HIVE
- 			Level 		  5
+ 			Level 		5
  			Cost 		20
 
  	光明魔法 2 3 3 2 2
- 		23 	非凡神力 	BLESS 							216 	群体非凡神力 	MASS_BLESS
- 			Level 			1
- 			Cost 			4
- 			BuffBase 					 .5    .65     .8      1
- 			BuffPower 				  0      0      0      0
- 			DurationBase 			  1      2      2      3
- 			DurationPower 	   .05    .05     .1     .2
- 		24 	疾速行动 	HASTE 							221 	群体疾速行动 	MASS_HASTE
- 			Level 			1
- 			Cost 			4
- 			BuffBase 					.2       .3     .3     .4
- 			BuffPower 		  .0005 .0005  .001  .002
- 			DurationBase 		     1        2       2      3
- 			DurationPower 	  .05     .05      .1     .2
- 		25 	坚韧不屈 	STONESKIN 				218 	群体坚韧不屈 	MASS_STONESKIN
- 			Level 			2
- 			Cost 			6
- 			BuffBase 				   4   8  8 12
- 			BuffPower 			.05 .05 .1 .2
- 			DurationBase 		   1   2  2  3
- 			DurationPower 	.05 .05 .1 .2
- 		26 	魔法净化 	DISPEL 						217 	群体魔法净化 	MASS_DISPEL
- 			Level 			3
- 			Cost 			8
- 			BuffBase 				.4  .6  .8   1
- 			BuffPower 			 0   0   0  0
- 		28 	正当之力 	BLOODLUST 				220 	群体正当之力 	MASS_BLOODLUST
- 			Level 			2
- 			Cost 			6
- 			BuffBase 				   4   8  8 12
- 			BuffPower 			.05 .05 .1 .2
- 			DurationBase 		   1   2  2  3
- 			DurationPower 	.05 .05 .1 .2
- 		29 	偏转飞弹 	DEFLECT_ARROWS 		219 	群体偏转飞弹 	MASS_DEFLECT_ARROWS
- 			Level 			2
- 			Cost 			6
- 			BuffBase 		       .6   .7   .8   .9
- 			BuffPower 	        0 	  0    0    0
- 			DurationBase      1    2    2    3
- 			DurationPower .05 .05   .1   .2
- 		31 	魔法免疫 	ANTI-MAGIC
- 			Level 			3
- 			Cost 			8
- 			AntiLevelBase 		2    3    4    5
- 			AntiLevelPower 	0    0    0    0
- 			DurationBase 		3    3    3    3
- 			DurationPower 	0    0    0    0
- 		32 	移形换位 	TELEPORT
- 			Level 			4
- 			Cost 			8
- 		35 	光明圣言 	HOLY_WORD
- 			Level 			5
- 			Cost 		  15
- 			Base 			9    12    15    18
- 			Power 			9    12    15    18
- 		48 	转世重生 	RESURRECT
- 			Level 			5
- 			Cost 		  18
- 			DamageBase 			90    120    150    180
- 			DamagePower 		25      30      35      40
- 			HpLimitBase 			 .1   .098    .096   .094
- 			HpLimitPower   	-.002 -.002   -.002 -.002
- 		281 	神圣复仇 	DIVINE_VENGEANCE
- 			Level 			4
- 			Cost 		  18
- 			DamageBase 			45      50      55      60
- 			DamagePower 	   4.5        5     5.5        6
- 		280 	活力再生 	REGENERATION
- 			Level 			3
- 			Cost 			9
- 			DamageBase 			50    100    100    150
- 			DamagePower 	 1.25   1.25     2.5        5
- 			DurationBase 			  1       2         2       3
- 			DurationPower 		05     .05       .1      .2
+ 		23 		非凡神力		BLESS 					216 		群体非凡神力 		MASS_BLESS
+ 			Level 		1
+ 			Cost 		4
+ 			BuffBase 		 .5 	.65 	.8 	 1
+ 			BuffPower 		  0 	  0 	 0 	 0
+ 			DurationBase 	  1 	  2      2 	 3
+ 			DurationPower 	.05 	.05 	.1 	.2
+ 		24 		疾速行动 		HASTE 					221 		群体疾速行动 		MASS_HASTE
+ 			Level 		1
+ 			Cost 		4
+ 			BuffBase 		   .2 	   .3 	  .3 	  .4
+ 			BuffPower 		.0005 	.0005 	.001 	.002
+ 			DurationBase 	    1 	    2 	   2 	   3
+ 			DurationPower 	  .05 	  .05 	  .1 	  .2
+ 		25 		坚韧不屈 		STONESKIN 				218 		群体坚韧不屈 		MASS_STONESKIN
+ 			Level 		2
+ 			Cost 		6
+ 			BuffBase 		  4 	  8 	 8 	12
+ 			BuffPower 		.05 	.05 	.1 	.2
+ 			DurationBase 	  1 	  2 	 2 	 3
+ 			DurationPower 	.05 	.05 	.1 	.2
+ 		26 		魔法净化 		DISPEL 					217 		群体魔法净化 		MASS_DISPEL
+ 			Level 		3
+ 			Cost 		8
+ 			BuffBase 	.4 	.6 	.8 	1
+ 			BuffPower 	 0 	 0 	 0 	0
+ 		28 		正当之力 		BLOODLUST 				220 		群体正当之力 		MASS_BLOODLUST
+ 			Level 		2
+ 			Cost 		6
+ 			BuffBase 		  4 	  8 	 8 	12
+ 			BuffPower 		.05 	.05 	.1 	.2
+ 			DurationBase 	  1 	  2 	 2 	 3
+ 			DurationPower 	.05 	.05 	.1 	.2
+ 		29 		偏转飞弹 		DEFLECT_ARROWS 			219 		群体偏转飞弹 		MASS_DEFLECT_ARROWS
+ 			Level 		2
+ 			Cost 		6
+ 			BuffBase 		 .5 	.65 	.70 	.75
+ 			BuffPower 		  0 	  0 	  0 	  0
+ 			DurationBase 	  1 	  2 	  2 	  3
+ 			DurationPower 	.05 	.05 	 .1 	 .2
+ 		31 		魔法免疫 		ANTI-MAGIC
+ 			Level 		3
+ 			Cost 		8
+ 			AntiLevelBase 	2 	3 	4 	5
+ 			AntiLevelPower 	0 	0 	0 	0
+ 			DurationBase 	3 	3 	3 	3
+ 			DurationPower 	0 	0 	0 	0
+ 		32 		移形换位 		TELEPORT
+ 			Level 		4
+ 			Cost 		8
+ 		35 		光明圣言 		HOLY_WORD
+ 			Level 		5
+ 			Cost 		15
+ 			Base 		9 	12 	15 	18
+ 			Power 		9 	12 	15 	18
+ 		48 		转世重生 		RESURRECT
+ 			Level 		5
+ 			Cost 		18
+ 			DamageBase 		   90 		  120 	  150 	  180
+ 			DamagePower 	   25 		   30 	   35 	   40
+ 			HpLimitBase 	   .1 		 .098 	 .096 	 .094
+ 			HpLimitPower 	-.002 		-.002 	-.002 	-.002
+ 		281 	神圣复仇 		DIVINE_VENGEANCE
+ 			Level 		4
+ 			Cost 		16
+ 			DamageBase 		10 	20 	30 	40
+ 			DamagePower 	 1 	 2 	 3 	 4
+ 		280 	活力再生 		REGENERATION
+ 			Level 		3
+ 			Cost 		9
+ 			DamageBase 		 500 	 100 	100 	150
+ 			DamagePower 	1.25 	1.25 	2.5 	  5
+ 			DurationBase 	   1 	   2 	  2 	  3
+ 			DurationPower 	 .05 	 .05 	 .1 	 .2
 
  	黑暗魔法 2 3 2 3 2
- 		11 	虚弱诅咒 	CURSE 						210 	群体虚弱诅咒 	MASS_CURSE
- 			Level 			1
- 			Cost 			4
- 			DeBuffBase 				.5  .35  .2  0
- 			DeBuffPower 			 0    0   0   0
- 			DurationBase 			 1    2   2   3
- 			DurationPower 	  .05  .05  .1  .2
- 		12 	延迟大法 	SLOW 						212 	群体延迟大法 	MASS_SLOW
- 			Level 			1
- 			Cost 			4
- 			DeBuffBase 				.2       .3      .3     .4
- 			DeBuffPower 	  .0005 .0005  .001 .002
- 			DurationBase 			 1        2      2      3
- 			DurationPower 	  .05     .05      .1     .2
- 		13 	破甲弱化 	DISRUPTING_RAY 	211 	群体破甲弱化 	MASS_DISRUPTING_RAY
- 			Level 			2
- 			Cost 			5
- 			DeBuffBase 				 2       4       4       6
- 			DeBuffPower 	  .0125 .0125  .025    .05
- 		14 	腐烂诅咒 	PLAGUE 					214 	群体腐烂诅咒 	MASS_PLAGUE
- 			Level 			3
- 			Cost 			8
- 			DamageBase 			20    40    40    60
- 			DamagePower 		  5      5    10    20
- 			DurationBase 			  1      2      2      3
- 			DurationPower 	   .05    .05     .1     .2
- 		15 	痛苦折磨 	WEAKNESS 				215 	群体痛苦折磨 	MASS_WEAKNESS
- 			Level 			2
- 			Cost 			6
- 			DeBuffBase 				  4     8     8    12
- 			DeBuffPower 		   .05   .05    .1     .2
- 			DurationBase 			  1     2     2      3
- 			DurationPower 	   .05   .05    .1     .2
- 		17 	迷惑心智 	FORGETFULNESS 	213 	群体迷惑心智 	MASS_FORGETFULNESS
- 			Level 			2
- 			Cost 			6
- 			DeBuffBase 				.6    .7    .8    .9
- 			DeBuffPower 			 0     0     0     0
- 			DurationBase 			 1     2     2     3
- 			DurationPower 	  .05   .05   .1     .2
- 		18 	癫狂诅咒 	BERSERK
- 			Level 			4
- 			Cost 		  30
- 			DamageBase 			0      0      0      0
- 			DamagePower 	 .01   .02   .03    .03
- 			DurationBase 			1      1      1      2
- 			DurationPower 		0      0      0      0
- 		19 	失明诅咒 	BLIND
- 			Level 			4
- 			Cost 		  10
- 			DurationBase 		   2      2      2     2
- 			DurationPower 	   0     .1    .15    .2
- 		20 	傀儡大师 	HYPNOTIZE
- 			Level 			5
- 			Cost 		  30
- 			ATBBase 				      .3       .5       .5       .7
- 			ATBPower 		    .0025 .0025   .005     .01
- 			DurationBase 		      .5       .8       .8        1
- 			DurationPower 	.0025 .0025   .005     .01
- 		21 	冥府诅咒 	UNHOLY_WORD
- 			Level 			4
- 			Cost 		  12
- 			DamageBase 			6      9     12     15
- 			DamagePower 		6      9     12     15
- 		277 	悲痛欲绝 	SORROW
- 			Level 			3
- 			Cost 			8
- 			DebuffBase 				4      5      6      7
- 			DebuffPower 			0      0      0      0
- 			DurationBase 			3      3      3      3
- 			DurationPower 		0      0      0      0
- 		278 	吸血鬼化 	VAMPIRISM
- 			Level 			5
- 			Cost 		  20
- 			BuffBase 				 20     40     40     60
- 			BuffPower 			  .1      .1      .2      .4
- 			DurationBase 		   1       2      2        3
- 			DurationPower 	.05     .05     .1       .2
+ 		11 		虚弱诅咒 		CURSE 					210 		群体虚弱诅咒 		MASS_CURSE
+ 			Level 		1
+ 			Cost 		4
+ 			DeBuffBase 		 .5 	.35 	.2 	 0
+ 			DeBuffPower 	  0 	  0 	 0 	 0
+ 			DurationBase 	  1 	  2 	 2 	 3
+ 			DurationPower 	.05 	.05 	.1 	.2
+ 		12 		延迟大法 		SLOW 					212 		群体延迟大法 		MASS_SLOW
+ 			Level 		1
+ 			Cost 		4
+ 			DeBuffBase 		    .25 	     .3 	    .3 	  .35
+ 			DeBuffPower 	.000375 	.000375 	.00075 	.0015
+ 			DurationBase 	      1 	      2 	     2 	    3
+ 			DurationPower 	    .05 	    .05 	    .1 	   .2
+ 		13 		破甲弱化 		DISRUPTING_RAY 			211 		群体破甲弱化 		MASS_DISRUPTING_RAY
+ 			Level 		2
+ 			Cost 		5
+ 			DeBuffBase 		    2 	    4 	   4 	  6
+ 			DeBuffPower 	.0125 	.0125 	.025 	.05
+ 		14 		腐烂诅咒 		PLAGUE 					214 		群体腐烂诅咒 		MASS_PLAGUE
+ 			Level 		3
+ 			Cost 		7
+ 			DamageBase 		20 	40 	40 	60
+ 			DamagePower 	 5 	 5 	10 	20
+ 			DurationBase 	 3 	 3 	 3 	 3
+ 			DurationPower 	 0 	 0 	 0 	 0
+ 		15 		痛苦折磨 		WEAKNESS 				215 		群体痛苦折磨 		MASS_WEAKNESS
+ 			Level 		2
+ 			Cost 		6
+ 			DeBuffBase 		  4 	  8 	 8 	12
+ 			DeBuffPower 	.05 	.05 	.1 	.2
+ 			DurationBase 	  1 	  2 	 2 	 3
+ 			DurationPower 	.05 	.05 	.1 	.2
+ 		17 		迷惑心智 		FORGETFULNESS 			213 		群体迷惑心智 		MASS_FORGETFULNESS
+ 			Level 		2
+ 			Cost 		6
+ 			DeBuffBase 		 .5 	.65 	.70 	.75
+ 			DeBuffPower 	  0 	  0 	  0 	  0
+ 			DurationBase 	  1 	  2 	  2 	  3
+ 			DurationPower 	.05 	.05 	 .1 	 .2
+ 		18 		癫狂诅咒 		BERSERK
+ 			Level 		4
+ 			Cost 		30
+ 			DamageBase 		  0 	  0 	  0 	  0
+ 			DamagePower 	.01 	.02 	.03 	.03
+ 			DurationBase 	  1 	  1 	  1 	  2
+ 			DurationPower 	  0 	  0 	  0 	  0
+ 		19 		失明诅咒 		BLIND
+ 			Level 		4
+ 			Cost 		10
+ 			DurationBase 	2 	 2 	  2 	 2
+ 			DurationPower 	0 	.1 	.15 	.2
+ 		20 		傀儡大师 		HYPNOTIZE
+ 			Level 		5
+ 			Cost 		30
+ 			ATBBase 		   .3 	   .5 	  .5 	 .7
+ 			ATBPower 		.0025 	.0025 	.005 	.01
+ 			DurationBase 	   .5 	   .8 	  .8 	  1
+ 			DurationPower 	.0025 	.0025 	.005 	.01
+ 		21 		冥府诅咒 		UNHOLY_WORD
+ 			Level 		4
+ 			Cost 		12
+ 			DamageBase 		6 	9 	12 	15
+ 			DamagePower 	6 	9 	12 	15
+ 		277 	悲痛欲绝 		SORROW
+ 			Level 		3
+ 			Cost 		8
+ 			DebuffBase 		4 	5 	6 	7
+ 			DebuffPower 	0 	0 	0 	0
+ 			DurationBase 	3 	3 	3 	3
+ 			DurationPower 	0 	0 	0 	0
+ 		278 	吸血鬼化 		VAMPIRISM
+ 			Level 		5
+ 			Cost 		20
+ 			BuffBase 		 20 	 40 	40 	60
+ 			BuffPower 		 .1 	 .1 	.2 	.4
+ 			DurationBase 	  1 	  2 	 2 	 3
+ 			DurationPower 	.05 	.05 	.1 	.2
 
  	符文魔法 2 2 2 2 2
- 		249 	冲锋符文 	RUNE_OF_CHARGE
- 			Level 			1
- 			Wood 		Ore 		Mercury 		Crystal 		Sulfur 		Gem 		Gold
- 				1 				0 				0 				0 				0 				0 				0
- 		250 	狂暴符文 	RUNE_OF_BERSERKING
- 			Level 			1
- 			Wood 		Ore 		Mercury 		Crystal 		Sulfur 		Gem 		Gold
- 				0 				1 				0 				0 				0 				0 				0
- 		251 	魔控符文 	RUNE_OF_MAGIC_CONTROL
- 			Level 			2
- 			Wood 		Ore 		Mercury 		Crystal 		Sulfur 		Gem 		Gold
- 				0 				0 				0 				0 				0 				1 				0
- 		252 	驱魔符文 	RUNE_OF_EXORCISM
- 			Level 			2
- 			Wood 		Ore 		Mercury 		Crystal 		Sulfur 		Gem 		Gold
- 				0 				0 				0 				0 				1 				0 				0
- 		256 	空灵符文 	RUNE_OF_ETHEREALNESS
- 			Level 			3
- 			Wood 		Ore 		Mercury 		Crystal 		Sulfur 		Gem 		Gold
- 				0 				0 				0 				1 				0 				0 				0
+ 		249 	冲锋符文 		RUNE_OF_CHARGE
+ 			Level 		1
+ 			Wood 	Ore 	Mercury 	Crystal 	Sulfur 	Gem 	Gold
+ 			1 		0 		0 			0 			0 		0 		0
+ 		250 	狂暴符文 		RUNE_OF_BERSERKING
+ 			Level 		1
+ 			Wood 	Ore 	Mercury 	Crystal 	Sulfur 	Gem 	Gold
+ 			0 		1 		0 			0 			0 		0 		0
+ 		251 	魔控符文 		RUNE_OF_MAGIC_CONTROL
+ 			Level 		2
+ 			Wood 	Ore 	Mercury 	Crystal 	Sulfur 	Gem 	Gold
+ 			0 		0 		0 			0 			0 		1 		0
+ 		252 	驱魔符文 		RUNE_OF_EXORCISM
+ 			Level 		2
+ 			Wood 	Ore 	Mercury 	Crystal 	Sulfur 	Gem 	Gold
+ 			0 		0 		0 			0 			1 		0 		0
+ 		256 	空灵符文 		RUNE_OF_ETHEREALNESS
+ 			Level 		3
+ 			Wood 	Ore 	Mercury 	Crystal 	Sulfur 	Gem 	Gold
+ 			0 		0 		0 			1 			0 		0 		0
  		253 	元素免疫符文 	RUNE_OF_ELEMENTAL_IMMUNITY
- 			Level 			3
- 			Wood 		Ore 		Mercury 		Crystal 		Sulfur 		Gem 		Gold
- 				0 				0 				1 				0 				0 				0 				0
- 		257 	复活符文 	RUNE_OF_REVIVE
- 			Level 			4
- 			Wood 		Ore 		Mercury 		Crystal 		Sulfur 		Gem 		Gold
- 				0 				1 				0 				0 				0 				1 				0
- 		254 	雷鸣符文 	RUNE_OF_STUNNING
- 			Level 			4
- 			Wood 		Ore 		Mercury 		Crystal 		Sulfur 		Gem 		Gold
- 				1 				0 				1 				0 				0 				0 				0
- 		255 	暴怒符文 	RUNE_OF_BATTLERAGE
- 			Level 			5
- 			Wood 		Ore 		Mercury 		Crystal 		Sulfur 		Gem 		Gold
- 				0 				1 				0 				1 				0 				0 				0
- 		258 	龙形符文 	RUNE_OF_DRAGONFORM
- 			Level 			5
- 			Wood 		Ore 		Mercury 		Crystal 		Sulfur 		Gem 		Gold
- 				1 				0 				0 				0 				1 				0 				0
+ 			Level 		3
+ 			Wood 	Ore 	Mercury 	Crystal 	Sulfur 	Gem 	Gold
+ 			0 		0 		1 			0 			0 		0 		0
+ 		257 	复活符文 		RUNE_OF_REVIVE
+ 			Level 		4
+ 			Wood 	Ore 	Mercury 	Crystal 	Sulfur 	Gem 	Gold
+ 			0 		1 		0 			0 			0 		1 		0
+ 		254 	雷鸣符文 		RUNE_OF_STUNNING
+ 			Level 		4
+ 			Wood 	Ore 	Mercury 	Crystal 	Sulfur 	Gem 	Gold
+ 			1 		0 		1 			0 			0 		0 		0
+ 		255 	暴怒符文 		RUNE_OF_BATTLERAGE
+ 			Level 		5
+ 			Wood 	Ore 	Mercury 	Crystal 	Sulfur 	Gem 	Gold
+ 			0 		1 		0 			1 			0 		0 		0
+ 		258 	龙形符文 		RUNE_OF_DRAGONFORM
+ 			Level 		5
+ 			Wood 	Ore 	Mercury 	Crystal 	Sulfur 	Gem 	Gold
+ 			1 		0 		0 			0 			1 		0 		0
 
  	战嚎
  		290 全力嚎叫 WARCRY_RALLING_CRY
  			MagicLevel 		1
  			HeroLevel 		2
- 			Cost 				8
+ 			Cost 			8
  		291 血之召唤 WARCRY_CALL_OF_BLOOD
  			MagicLevel 		1
  			HeroLevel 		2
- 			Cost 				5
+ 			Cost 			5
  		292 酋长之令 WARCRY_WORD_OF_THE_CHIEF
  			MagicLevel 		2
  			HeroLevel 		6
- 			Cost 				2
+ 			Cost 			2
  		293 恐惧怒嚎 WARCRY_FEAR_MY_ROAR
  			MagicLevel 		2
  			HeroLevel 		6
- 			Cost 				7
+ 			Cost 			7
  		294 战斗呼啸 WARCRY_BATTLECRY
  			MagicLevel 		3
- 			HeroLevel 	  11
- 			Cost 			  10
+ 			HeroLevel 		11
+ 			Cost 			10
  		295 万军之怒 WARCRY_SHOUT_OF_MANY
  			MagicLevel 		3
- 			HeroLevel 	  11
- 			Cost 			  10
+ 			HeroLevel 		11
+ 			Cost 			10
 
 8.英雄技能树
  	1.魔法系不能学反击
  	2.力量系不能学穿透
  	3.各族英雄初始自带种族技能（除圣堂异教徒和地牢领主）
  	4.反击和穿透为公用技能
- 		职业\技能								  后勤 启蒙 进攻 防御 领导 幸运 机械 光明 黑暗 召唤 破坏  巫术  反击 穿透 ||| 符文 血怒 制宝  复仇  地门 亡巫
+ 		职业\技能 					后勤 启蒙 进攻 防御 领导 幸运 机械 光明 黑暗 召唤 破坏 巫术 反击 穿透 ||| 符文 血怒 制宝 复仇 地门 亡巫
  		圣堂:
- 			骑士KNIGHT: 						10     4    10   12     12     8     10      8      8      2      2      2    12      -  |||      -      -       -       -       -      -
- 			圣骑士PALADIN: 					10   12      6   10     10     8       6    12      2      8      2      8      6      -  |||      -      -       -       -       -      -
- 			堕落骑士HERETIC: 				  8   12      6     4       4     8       4      4    12      4    12    12      4      6  |||      -      -       -       -       -      -
+ 			骑士-Knight: 			10    4  10   12  12   8   10   8   8   2   2    2   12   -  |||  -   -   -    -   -    -
+ 			圣骑士-Paladin: 			10   12   6   10  10   8    6  12   2   8   2    8    6   -  |||  -   -   -    -   -    -
+ 			堕落骑士-Heretic: 		 8   12   6    6   6   8    4   8  12   4   4   12    4   6  |||  -   -   -    -   -    -
  		森林:
- 			游侠RANGER: 						12     4    12     8       8   12       8      8      2      4      2      2      6      -   |||    -       -      -     12       -      -
- 			守望者WARDEN: 					10   10      4   12     10   10       6    10      2      4      2      2      8      -   |||    -       -      -     10       -      -
- 			德鲁伊ENCHANTER: 			  8   12      4     8       2     8       4      8      2      4    12    12      -      8   |||    -       -      -       8       -      -
+ 			游侠-Ranger: 			12    4  12    8   8  12    8   8   2   4   2    2    6   -  |||  -   -   -   12   -    -
+ 			守望者-Warden: 			10   10   4   12  10  10    6  10   2   4   2    2    8   -  |||  -   -   -   10   -    -
+ 			德鲁伊-Enchanter: 		 8   12   4    8   2   8    4   8   2   4  12   12    -   8  |||  -   -   -    8   -    -
  		学院:
- 			先知GUILDMASTER: 			  8   10    10     8       4   12     10    10      4      8      2      2      2      -   |||    -       -     10      -       -      -
- 			魔法师WIZARD: 					  8   12      4     4       2     8       4      8      4    12      8    10      -      4   |||    -       -     12      -       -      -
- 			元素法师ELEMENTALIST: 		  8   10      2     2       2     8       2      8      8    10    10    12      -    10   |||    -       -       8      -       -      -
+ 			先知-Guildmaster: 		 8   10  10    8   4  12   10  10   4   8   2    2    2   -  |||  -   -  10    -   -    -
+ 			魔法师-Wizard: 			 8   12   4    4   2   8    4   8   4  12   8   10    -   4  |||  -   -  12    -   -    -
+ 			元素法师-Elementalist: 	 8   10   2    2   2   8    2   8   8  10  10   12    -  10  |||  -   -   8    -   -    -
  		地狱:
- 			恶魔领主DEMON_LORD: 		12     4    12     6       8     8     10      2      2      4      8      2    12      -   |||    -       -       -       -      10    -
- 			门禁守卫GATE_KEEPER: 		10     8      8     8       8     8       4      2      6      8      8      4      6      -   |||    -       -       -       -      12    -
- 			恶魔巫师SORCERER: 			  8     8      4     4       2   12       2      8      4      8    12    12      -      8   |||    -       -       -       -        8    -
+ 			恶魔领主-DEMON_LORD: 		12    4  12    6   8   8   10   2   2   4   8    2   12   -  |||  -   -   -    -  10    -
+ 			门禁守卫-GATE_KEEPER: 	10    8   8    8   8   8    4   2   6   8   8    4    6   -  |||  -   -   -    -  12    -
+ 			恶魔巫师-SORCERER: 		 8    8   4    4   2  12    2   8   4   8  12   12    -   8  |||  -   -   -    -   8    -
  		墓园:
- 			死亡骑士DEATHKNIGHT: 		10     6    10   12       0     8     10      2      8      6      2      4    12      -   |||    -       -       -       -       -   10
- 			掠夺者REAVER: 					12   10    12     8       0     6       6      4    10      8      4      6      6      -   |||    -       -       -       -       -     8
- 			亡灵巫师NECROMANCER: 	  8   12      4     4       0     8       2      4    12    12      6    10      -      6   |||    -       -       -       -       -   12
+ 			死亡骑士-Deathknight: 	10    6  10   12   0   8   10   2   8   6   2    4   12   -  |||  -   -   -    -   -   10
+ 			掠夺者-Reaver: 			12   10  12    8   0   6    6   4  10   8   4    6    6   -  |||  -   -   -    -   -    8
+ 			亡灵巫师-Necromancer: 	 8   12   4    4   0   8    2   4  12  12   6   10    -   6  |||  -   -   -    -   -   12
  		堡垒:
- 			工程师ENGINEER: 				  8     4    10   10     10     8     12      8      2      2      2      2    12      -   |||   10      -       -       -       -      -
- 			符文法师RUNEMAGE: 			  8   10      4   12       2     8       8    10      2      2    10      8      -      4   |||   12      -       -       -       -      -
- 			守卫者FLAMEKEEPERA: 		  8   10      4     4       2     8       2      8      4    10    12    12      -      8   |||     8      -       -       -       -      -
+ 			工程师-Engineer: 			 8    4  10   10  10   8   12   8   2   2   2    2   12   -  ||| 10   -   -    -   -    -
+ 			符文法师-Runemage: 		 8   10   4   12   2   8    8  10   2   2  10    8    -   4  ||| 12   -   -    -   -    -
+ 			守卫者-Flamekeepera: 		 8   10   4    4   2   8    2   8   4  10  12   12    -   8  |||  8   -   -    -   -    -
  		地牢:
- 			地牢领主BEASTMASTER: 		12     4    12     8     12   10       8      2      4      6      8      2      8      4  |||    -       -       -       -        -      -
- 			刺客SEER: 							12     8    10     8       6   12       8      2      6      8      8      6      -      6   |||    -       -       -       -        -      -
- 			术士WARLOCK: 					10   10      4     4       2     8       2      4    10    10    12    12      -    12   |||    -       -       -       -        -      -
+ 			地牢领主-Beastmaster: 	12    4  12    8  12  10    8   2   4   6   8    2    8   4  |||  -   -   -    -   -    -
+ 			刺客-Seer: 				12    8  10    8   6  12    8   2   6   8   8    6    -   6  |||  -   -   -    -   -    -
+ 			术士-Warlock: 			10   10   4    4   2   8    2   4  10  10  12   12    -  12  |||  -   -   -    -   -    -
  		据点:
- 			酋长BARBARIAN: 				10     2    12     6     12     6     12     -4    -4     -4    -4      4      8      -   |||    -     12       -       -        -      -
+ 			酋长-Barbarian: 			10    2  12    6  12   6   12  -4  -4  -4  -4    4    8   -  |||  -  12   -    -   -    -
 
 9.英雄初始优化
  	圣堂
  		骑士KNIGHT
- 			埃兰妮 				Nathaniel 					初级反击, 初级领导, 募兵术 				帐篷
- 				民心所向 				英雄所带领的农民及升级形态增加【英雄等级/2 (向上取整)】点攻防
- 											并且每天额外上缴1黄金
- 			杜戈尔 				Orrin 							初级反击, 初级进攻, 箭术 					弹药车
- 				射手司令 				英雄所带领的弓箭手及升级形态增加【英雄等级/2 (向上取整)】点攻防
- 			拉兹罗 				Mardigo 						初级反击, 初级防御, 活力 					帐篷
- 				步兵指挥官 			英雄所带领的步兵及升级形态增加【英雄等级/2 (向上取整)】点攻防
- 			艾莲娜 				Ving 							初级反击, 高级防御 							帐篷
- 				狮鹫训练师 			英雄所带领的狮鹫及升级形态增加【英雄等级/2 (向上取整)】点攻防且首次行动时会俯冲敌方部队一次
- 											狮鹫获得【战斗俯冲】，战斗狮鹫【爆发俯冲】立即生效
- 			克劳斯 				Sarge 							初级反击, 初级领导, 复仇打击 			帐篷
- 				骑兵统帅 				英雄所带领的骑士及升级形态额外提高【枪术】【10%+英雄等级*1%】效果
- 											英雄额外提高【复仇打击】【英雄等级*1%】效果
- 											战斗开始前英雄部队中的步兵及升级形态可被训练成相应形态且数量为【兵种数量*(4%+英雄等级*0.2%) (向上取整)】的骑士
- 			伊莎贝尔 			Isabell 							初级反击, 初级领导, 训练专家 			帐篷
- 				君王风范 				每天上缴250黄金
- 											训练额外减少【英雄等级/3*2%】费用
- 											英雄初始获得技能【训练专家】
- 			维托利奥 			Christian 					高级战争机械, 弹射学 							弩车
- 				攻城技师 				弩车额外提高【英雄等级*1】点攻击
- 											投石车额外提高【英雄等级*2%】命中率
- 			安德里斯 			RedHeavenHero02 		初级反击, 进攻, 战争狂人 					弹药车
- 				迅捷光环 				英雄部队额外提高【英雄等级*1%】主动性
- 			伯权德 				RedHeavenHero05 		高级反击, 极度痛击 							弩车
- 				搏击冠军 				英雄额外提高【英雄等级*5%】直接攻击伤害
- 											战斗开始可选择直接攻击【合理目标】一次
- 			拉特各 				Brem 							初级反击, 初级后勤, 探路术
- 				探路者 					英雄额外增加【英雄等级/2 (向下取整)】移动力
+ 			埃兰妮
+ 				Nathaniel
+ 				初级反击, 初级领导, 募兵术
+ 				帐篷
+ 				民心所向
+ 					英雄所带领的农民及升级形态增加【英雄等级/2 (向上取整)】点攻防
+ 					并且每天额外上缴1黄金
+ 					英雄每天可消耗农民额外建造一次建筑
+ 			杜戈尔
+ 				Orrin
+ 				初级反击, 初级进攻, 箭术
+ 				弹药车
+ 				掩护射击
+ 					英雄所带领的弓箭手及升级形态增加【英雄等级/2 (向上取整)】点攻防
+ 					英雄主动攻击对敌方生物造成减员后所有弓箭手及升级形态会对目标生物所在区域施放【散射】
+ 			拉兹罗
+ 				Mardigo
+ 				初级反击, 初级防御, 活力
+ 				帐篷
+ 				复仇突袭
+ 					英雄所带领的步兵及升级形态增加【英雄等级/2 (向上取整)】点攻防
+ 					英雄所带领的步兵及升级形态在我方单位（直箭范围内）被击杀时立刻进行复仇攻击并再次行动
+ 			艾莲娜
+ 				Ving
+ 				初级反击, 高级防御
+ 				帐篷
+ 				狮鹫训练师
+ 					英雄所带领的狮鹫及升级形态增加【英雄等级/2 (向上取整)】点攻防且首次行动时会俯冲敌方部队一次
+ 					狮鹫获得【战斗俯冲】，战斗狮鹫【爆发俯冲】立即生效
+ 			克劳斯
+ 				Sarge
+ 				初级反击, 初级领导, 复仇打击
+ 				帐篷
+ 				骑兵统帅
+ 					英雄所带领的骑士及升级形态额外提高【枪术】【10%+英雄等级*1%】效果
+ 					英雄额外提高【复仇打击】【英雄等级*1%】效果
+ 					战斗开始前英雄部队中的步兵及升级形态可被训练成相应形态且数量为【兵种数量*(4%+英雄等级*0.2%) (向上取整)】的骑士
+ 			伊莎贝尔
+ 				Isabell
+ 				初级反击, 初级领导, 训练专家
+ 				帐篷
+ 				君王风范
+ 					每天上缴250黄金
+ 					训练额外减少【英雄等级/3*2%】费用
+ 					英雄初始获得技能【训练专家】
+ 			维托利奥
+ 				Christian
+ 				高级战争机械, 弹射学
+ 				弩车
+ 				攻城技师
+ 					弩车额外提高【英雄等级*1】点攻击
+ 					投石车额外提高【英雄等级*2%】命中率
+ 			安德里斯
+ 				RedHeavenHero02
+ 				初级反击, 进攻, 战争狂人
+ 				弹药车
+ 				迅捷光环
+ 					英雄部队额外提高【英雄等级*1%】主动性
+ 			伯权德
+ 				RedHeavenHero05
+ 				高级反击, 极度痛击
+ 				弩车
+ 				搏击冠军
+ 					英雄额外提高【英雄等级*5%】直接攻击伤害
+ 					战斗开始可选择直接攻击【合理目标】一次
+ 			拉特格
+ 				Brem
+ 				初级反击, 初级后勤, 探路术
+ 				探路者
+ 					英雄额外增加【英雄等级/2 (向下取整)】移动力
  		圣骑士PALADIN
- 			尼克莱 				Nicolai							初级光明, 初级防御, 闪避 													偏转飞弹
- 				哨兵 						英雄部队额外降低【英雄等级*2%】受到的远程伤害
- 			哥德里克 			GodricMP 					初级光明, 初级领导, 佑福仪式 											佑福仪式, 非凡神力
- 				模范骑士 				【佑福仪式】效果加倍
- 											【光明魔法】魔法值消耗-1
- 											开场自动施放一次【佑福仪式】且英雄ATB置为【0.7+英雄等级*0.01】
- 			埃拉里克 			Alaric 							高级光明, 佑福大师 															非凡神力
- 				艾尔拉斯之锤 		每当英雄对我方单位施放【光明魔法】时有【20%+英雄等级*2%】几率附加【正当之力】
- 			法蕾妲 				Axel 								高级光明, 防护大师 															神圣复仇
- 				艾尔拉斯的选民 	每当英雄施放【光明魔法】时会对一个【合理目标】施放【神圣复仇】
- 			拜亚拉 				Saint Isabell 				高级光明, 佑福大师 															非凡神力
- 				龙神祝福 				英雄部队获得同英雄【光明魔法】等级的【非凡神力】被动效果
- 			玫芙 					Maeve 							高级光明, 愤怒大师 															疾速行动
- 				御风者 					【疾速行动】额外增加【英雄等级*1%】效果
- 											开场自动施放一次【疾速行动】且英雄ATB置为【0.7+英雄等级*0.01】
- 			加布里埃尔 		RedHeavenHero06 		初级光明, 初级领导, 募兵术 												坚韧不屈
- 				点石成晶 				每天上缴250黄金
- 											每周上缴【英雄等级*1】份稀有资源
- 			杰迪特 				Jeddite 						初级光明, 初级战争机械, 急救学 		帐篷 							活力再生
- 				急救大师 				急救/瘟疫帐篷增加【英雄等级*5】点治疗/伤害效果
+ 			尼克莱
+ 				Nicolai
+ 				初级光明, 初级防御, 闪避
+ 				偏转飞弹
+ 				哨兵
+ 					英雄部队额外降低【英雄等级*2%】受到的远程伤害
+ 					战斗开始前我方生物获得【偏转飞弹】
+ 			哥德里克
+ 				GodricMP
+ 				初级光明, 初级领导, 佑福仪式
+ 				佑福仪式, 非凡神力
+ 				模范骑士
+ 					【佑福仪式】效果加倍
+ 					【光明魔法】魔法值消耗-1
+ 					开场自动施放一次【佑福仪式】且英雄ATB置为【0.7+英雄等级*0.01】
+ 			埃拉里克
+ 				Alaric
+ 				高级光明, 佑福大师
+ 				非凡神力
+ 				艾尔拉斯之锤
+ 					每当英雄对我方单位施放【光明魔法】时有【20%+英雄等级*2%】几率附加【正当之力】
+ 			法蕾妲
+ 				Axel
+ 				高级光明, 防护大师
+ 				神圣复仇
+ 				艾尔拉斯的选民
+ 					每当英雄施放【光明魔法】时会对一个【合理目标】施放【神圣复仇】
+ 			拜亚拉
+ 				Saint Isabell
+ 				高级光明, 佑福大师
+ 				非凡神力
+ 				龙神祝福
+ 					英雄部队获得同英雄【光明魔法】等级的【非凡神力】被动效果
+ 			玫芙
+ 				Maeve
+ 				高级光明, 愤怒大师
+ 				疾速行动
+ 				御风者
+ 					【疾速行动】额外增加【英雄等级*1%】效果
+ 					开场自动施放一次【疾速行动】且英雄ATB置为【0.7+英雄等级*0.01】
+ 			加布里埃尔
+ 				RedHeavenHero06
+ 				初级光明, 初级领导, 募兵术
+ 				坚韧不屈
+ 				点石成晶
+ 					每天上缴250黄金
+ 					每周上缴【英雄等级*1】份稀有资源
+ 			杰迪特--非NCF稳定版
+ 				Jeddite
+ 				初级光明, 初级战争机械, 急救学
+ 				帐篷
+ 				活力再生
+ 				信仰圣光
+ 					英雄魔法值消耗时回复英雄所带领的牧师及升级形态2点魔法值
+ 					英雄所带领的牧师及升级形态魔法值消耗时回复英雄2点魔法值
+ 			杰迪特--NCF尝鲜版
+ 				Jeddite
+ 				初级光明, 初级战争机械, 急救学
+ 				帐篷
+ 				活力再生
+ 				构装牧师
+ 					英雄自带构装牧师上场（机械生物/无法移动/每回合自动对周围友方生物施放圣疗）
  		堕落骑士HERETIC
- 			维拉利亚 			RedHeavenHero03 		高级黑暗, 痛苦大师 															破甲弱化, 腐烂诅咒
- 				破坏者 					英雄施放的【破甲弱化】会额外造成【(英雄等级+1)*20】点伤害
- 											英雄行动时会对战场上敌方最密集区域施放群体【破甲弱化】
- 												1.我方英雄【释放魔法】时充能
- 												2.开场自带一次充能
- 			奥兰多 				Orlando 						高级黑暗, 诅咒大师 															虚弱诅咒, 破甲弱化
- 				摄魂者 					英雄施放的【虚弱诅咒】会额外降低【英雄等级/3 (向上取整)】点防御
- 											英雄魔法值消耗时会对敌方施放群体【虚弱诅咒】
- 			马卡尔 				Markal 						初级黑暗, 初级领导术, 外交 												虚弱诅咒
- 				煽动家 					英雄部队额外提高【英雄等级*10%】战力
- 											野外生物有更高倾向加入英雄部队
- 											击败野外生物时会获得额外资源
+ 			维拉利亚
+ 				RedHeavenHero03
+ 				高级黑暗, 痛苦大师
+ 				破甲弱化, 腐烂诅咒
+ 				破坏者
+ 					英雄施放的【破甲弱化】会额外造成【(英雄等级+1)*20】点伤害
+ 					英雄行动时会对战场上敌方最密集区域施放群体【破甲弱化】
+ 						1.我方英雄【释放魔法】时充能
+ 						2.开场自带一次充能
+ 			奥兰多
+ 				Orlando
+ 				高级黑暗, 诅咒大师
+ 				虚弱诅咒, 破甲弱化
+ 				摄魂者
+ 					英雄施放的【虚弱诅咒】会额外降低【英雄等级/3 (向上取整)】点防御
+ 					英雄魔法值消耗时会对敌方施放群体【虚弱诅咒】
+ 			马卡尔
+ 				Markal
+ 				初级黑暗, 初级领导术, 外交
+ 				虚弱诅咒
+ 				煽动家
+ 					英雄部队额外提高【英雄等级*5%】战力
+ 					战斗前【英雄等级*0.25%】的敌方生物加入英雄部队
+ 					野外生物有更高倾向加入英雄部队
+ 					击败野外生物时会获得额外资源
  	森林
  		游侠RANGER
- 			安文 					Metlirn 						初级复仇, 初级防御, 精准射击 			弹药车
- 				西莱纳之剑 			英雄所带领的森林部队可对宿敌造成额外【英雄等级*2%】伤害
- 			奥瑟 					Ossir 							初级复仇, 初级幸运, 士兵之幸 			弹药车
- 				狩猎大师 				英雄所带领的精灵猎手及升级形态增加【英雄等级/2 (向上取整)】点攻防
- 			塔兰纳 				Nadaur 						初级复仇, 初级领导, 募兵术 				弹药车
- 				精灵之怒 				英雄所带领的森林2/3/4级生物获得激怒技能
- 											英雄额外提高【英雄等级/5 (向下取整)】点攻击
- 			韦恩加尔 			Linaas 							初级复仇, 初级进攻, 战术部署 			弹药车
- 				敏捷打击者 			英雄部队开场时额外提高【英雄等级*1%】ATB
- 			芬丹 					Heam 							初级复仇, 初级进攻, 战争狂人 			弹药车
- 				箭矢风暴 				英雄所带领的森林远程部队开场时射击敌方最低级的生物一次，造成【20%+英雄等级×2%】伤害
- 			格鲁 					Gelu 							初级复仇, 初级领导, 神圣指引 			弹药车
- 				丛林勇士 				英雄可以训练正义阵营的的射手为幻影射手
- 											幻影射手首次行动时会射击敌方部队一次
- 			伊沃 					Arniel 							初级复仇, 初级反击, 极度痛击 			弹药车
- 				百步穿杨 				英雄额外提高【英雄等级*5%】直接攻击伤害
- 											战斗开始可选择直接射击【合理目标】一次
- 			凯琳 					Kyrre 							初级复仇, 初级后勤, 探路术 				弹药车
- 				追猎者 					英雄额外增加【英雄等级/3*1%】移动力
- 											英雄在非本族额外减少【英雄等级/3*2%】移动力损耗
- 											战斗后回复【英雄等级*10】点移动力
+ 			安文
+ 				Metlirn
+ 				初级复仇, 初级防御, 精准射击
+ 				弹药车
+ 				西莱纳之剑
+ 					英雄所带领的森林部队可对宿敌造成额外【英雄等级*2%】伤害
+ 			奥瑟
+ 				Ossir
+ 				初级复仇, 初级幸运, 士兵之幸
+ 				弹药车
+ 				狩猎大师
+ 					英雄所带领的精灵猎手及升级形态增加【英雄等级/2 (向上取整)】点攻防
+ 			塔兰纳
+ 				Nadaur
+ 				初级复仇, 初级领导, 募兵术
+ 				弹药车
+ 				精灵之怒
+ 					英雄所带领的森林2/3/4级生物获得激怒技能
+ 					英雄额外提高【英雄等级/5 (向下取整)】点攻击
+ 			韦恩加尔
+ 				Linaas
+ 				初级复仇, 初级进攻, 战术部署
+ 				弹药车
+ 				敏捷打击者
+ 					英雄部队开场时额外提高【英雄等级*1%】ATB
+ 			芬丹
+ 				Heam
+ 				初级复仇, 初级进攻, 战争狂人
+ 				弹药车
+ 				箭矢风暴
+ 					英雄所带领的森林远程部队开场时射击敌方最低级的生物一次，造成【20%+英雄等级×2%】伤害
+ 			格鲁
+ 				Gelu
+ 				初级复仇, 初级领导, 神圣指引
+ 				弹药车
+ 				丛林勇士
+ 					英雄可以训练正义阵营的的射手为幻影射手
+ 					幻影射手首次行动时会射击敌方部队一次
+ 			伊沃
+ 				Arniel
+ 				初级复仇, 初级反击, 极度痛击
+ 				弹药车
+ 				百步穿杨
+ 					英雄额外提高【英雄等级*5%】直接攻击伤害
+ 					战斗开始可选择直接射击【合理目标】一次
+ 			凯琳
+ 				Kyrre
+ 				初级复仇, 初级后勤, 探路术
+ 				弹药车
+ 				追猎者
+ 					英雄额外增加【英雄等级/3*1%】移动力
+ 					英雄在非本族额外减少【英雄等级/3*2%】移动力损耗
+ 					战斗后回复【英雄等级*10】点移动力
  		守望者WARDEN
- 			吉尔里恩 			Gillion 							初级防御, 初级复仇, 自然的愤怒 		帐篷
- 				刀剑大师 				英雄所带领的剑舞及升级形态增加【英雄等级/2 (向上取整)】点攻防
- 			于尔辛 				Itil 								初级防御, 初级光明, 佑福大师 			帐篷
- 				独角兽少女 			英雄所带领的独角兽及升级形态增加【英雄等级/2 (向上取整)】点攻防
- 			马洛迪亚 			Melodia 						初级防御, 初级幸运, 资源富饶 			帐篷
- 				幸运之神 				英雄部队额外+1幸运
- 											敌方英雄在战场上无法使用战术
- 											战斗后有【英雄等级*10%】几率获得一件阶级为【英雄等级/7 (向上取整)】的宝物
- 			杰诺娃 				Jenova 						初级防御, 初级领导, 理财术 				帐篷
- 				赏金猎人 				每天上缴250黄金
- 											每周上缴【1500+英雄等级*150】黄金
- 			孟斐拉 				Mephala 						高级防御, 活力 									帐篷
- 				森林守护者 			英雄额外提高【英雄等级/3 (向下取整)】点防御，生物行动后会原地防御
- 			珍尼 					Gem 							初级防御, 初级战争机械, 急救学 		帐篷
- 				自然之愈 				急救/瘟疫帐篷增加【英雄等级*5】点治疗/伤害效果
+ 			吉尔里恩
+ 				Gillion
+ 				初级防御, 初级复仇, 自然的愤怒
+ 				帐篷
+ 				刀剑大师
+ 					英雄所带领的剑舞及升级形态增加【英雄等级/2 (向上取整)】点攻防
+ 			于尔辛--非NCF稳定版
+ 				Itil
+ 				初级防御, 初级光明, 佑福大师
+ 				帐篷
+ 				独角兽少女
+ 					英雄所带领的独角兽及升级形态增加【英雄等级/2 (向上取整)】点攻防
+ 					英雄所带领的独角兽及升级形态每被复活5次，英雄可连动1次
+ 			于尔辛--NCF尝鲜版
+ 				Itil
+ 				初级防御, 初级光明, 佑福大师
+ 				帐篷
+ 				独角兽少女
+ 					英雄所带领的独角兽及升级形态增加【英雄等级/2 (向上取整)】点攻防
+ 					英雄可升级独角兽为圣翼独角兽（在复活时净化周围生物）
+ 			马洛迪亚
+ 				Melodia
+ 				初级防御, 初级幸运, 资源富饶
+ 				帐篷
+ 				幸运之神
+ 					英雄部队额外+1幸运
+ 					敌方英雄在战场上无法使用战术
+ 					战斗后有【英雄幸运*10%】几率获得一件阶级为【英雄等级/7 (向上取整)】的宝物
+ 			杰诺娃
+ 				Jenova
+ 				初级防御, 初级领导, 理财术
+ 				帐篷
+ 				赏金猎人
+ 					每天上缴250黄金
+ 					每周上缴【1500+英雄等级*150】黄金
+ 			孟斐拉
+ 				Mephala
+ 				高级防御, 活力
+ 				帐篷
+ 				森林守护者
+ 					英雄额外提高【英雄等级/3 (向下取整)】点防御，生物行动后会原地防御
+ 			珍尼
+				Gem
+				初级战争机械, 急救学
+				帐篷
+				活力再生, 腐烂诅咒
+				自然平衡
+					急救/瘟疫帐篷增加【英雄等级*5】点治疗/伤害效果
+					英雄控制的帐篷对我方生物进行治疗/对敌方生物造成伤害时，英雄会对其施放【活力再生】/【腐烂诅咒】并立刻行动
  		德鲁伊ENCHANTER
- 			温利尔 				Elleshar 						初级启蒙, 初级破坏, 学术 													连珠火球
- 				身经百战 				英雄额外提高【英雄等级*2%】战斗所获得经验
- 											英雄额外提高【英雄等级/3 (向下取整)】点知识
- 			阿拉伦 				Ildar 							初级启蒙, 初级巫术, 神秘光芒 											乱石利刺
- 				圣者 						英雄额外提高【英雄等级/4 (向下取整)】点咒力
- 			蒂耶鲁 				Vaniel 							初级启蒙, 初级破坏, 鹰眼 					弩车 							魔法神箭
- 				魔力感知 				英雄在非行动回合魔法值变化后立刻行动
- 												1.增加大于等于10点
- 												2.减少大于5点
- 			艾丽莎 				Vinrael 						初级启蒙, 初级破坏, 智慧术 												霹雳闪电
- 				自然馈赠 				英雄每次升级回满魔法值
- 											英雄额外提高【英雄等级/3 (向下取整)】点知识
- 			黛蕾尔 				Diraya 							初级启蒙, 初级召唤, 符咒大师 											召唤元素, 蜂群滋扰
- 				蜂群女王 				蜂群滋扰额外提高【英雄等级*5%】杀伤力
- 											蜂群滋扰额外提高【英雄等级/3*2%】击退效果
+ 			温利尔
+ 				Elleshar
+ 				初级启蒙, 初级破坏, 学术
+ 				连珠火球
+ 				身经百战
+ 					英雄额外提高【英雄等级*2%】战斗所获得经验
+ 					英雄额外提高【英雄等级/3 (向下取整)】点知识
+ 			娜瑞莎----寒卿赞助并设计
+ 				Ildar
+ 				初级巫术, 初级光明, 初级黑暗
+ 				疾速行动, 延迟大法
+ 				光与暗的交织
+ 					开场召唤一队光/暗天使加入战斗并立即行动
+ 			蒂耶鲁
+ 				Vaniel
+ 				初级启蒙, 初级破坏, 鹰眼
+ 				弩车
+ 				魔法神箭
+ 				魔力感知
+ 					英雄在非行动回合魔法值变化后立刻行动
+ 						1.增加大于等于10点
+ 						2.减少大于5点
+ 			艾丽莎
+ 				Vinrael
+ 				初级启蒙, 初级破坏, 智慧术
+ 				霹雳闪电
+ 				自然馈赠
+ 					英雄每次升级回满魔法值
+ 					英雄额外提高【英雄等级/3 (向下取整)】点知识
+ 			黛蕾尔
+ 				Diraya
+ 				初级启蒙, 初级召唤, 符咒大师
+ 				召唤元素, 蜂群滋扰
+ 				蜂群女王
+ 					蜂群滋扰额外提高【英雄等级*5%】杀伤力
+ 					蜂群滋扰额外提高【英雄等级/3*2%】击退效果
  	学院
  		先知GUILDMASTER
- 			哈韦兹 				Havez 							初级进攻, 初级战争机械, 战争狂人 		弹药车 						非凡神力
- 				精怪大师				英雄所带领的小精怪及升级形态增加【英雄等级/2 (向上取整)】点攻防
- 			米纳斯丽 			Minasli 						初级破坏, 初级战争机械, 弹射学 		弩车 							连珠火球
- 				钢铁少女 				弩车额外附加【(英雄等级-1)/3 (向下取整) *24】(至少为1)点火系伤害
- 			拉扎克 				Isher 							高级防御, 活力 									帐篷 							偏转飞弹
- 				魔像工匠 				英雄所带领的铁魔像及升级形态增加【英雄等级/2 (向上取整)】点攻防
- 			戴维斯 				Davius 							高级进攻, 战术部署 							帐篷 							疾速行动
- 				罗刹指挥官 			英雄所带领的罗刹妃及升级形态在首次行动及击杀敌方部队后额外激活【冲撞】一次
- 			德肯 					Gurvilin 						初级光明, 初级领导, 神圣指引 			弹药车 						坚韧不屈
- 				魔幻法师 				开场对我方/敌方施放随机增益/减益魔法(魔法由数量为【英雄等级*1】灯神苏丹施放)
+ 			哈韦兹
+ 				Havez
+ 				初级进攻, 初级战争机械, 战争狂人
+ 				弹药车
+ 				非凡神力
+ 				精怪大师
+ 					英雄所带领的小精怪及升级形态增加【英雄等级/2 (向上取整)】点攻防
+ 			米纳斯丽
+ 				Minasli
+ 				初级破坏, 初级战争机械, 弹射学
+ 				弩车
+ 				连珠火球
+ 				钢铁少女
+ 					弩车额外附加【(英雄等级-1)/3 (向下取整) *24】(至少为1)点火系伤害
+ 			拉扎克
+ 				Isher
+ 				高级防御, 活力
+ 				帐篷
+ 				偏转飞弹
+ 				魔像工匠
+ 					英雄所带领的铁魔像及升级形态增加【英雄等级/2 (向上取整)】点攻防
+					英雄所带领的铁魔像及升级形态被攻击减员后会恢复一定的数量
+ 			戴维斯
+ 				Davius
+ 				高级进攻, 战术部署
+ 				帐篷
+ 				疾速行动
+ 				罗刹指挥官
+ 					英雄所带领的罗刹妃及升级形态在首次行动及击杀敌方部队后额外激活【冲撞】一次
+ 			德肯
+ 				Gurvilin
+ 				初级光明, 初级领导, 神圣指引
+ 				弹药车
+ 				坚韧不屈
+ 				魔幻法师
+ 					开场对我方/敌方施放随机增益/减益魔法(魔法由数量为【英雄等级*1】灯神苏丹施放)
  		魔法师WIZARD
- 			瑞萨 					Rissa 							初级制宝, 初级幸运, 资源富饶 			弹药车 						霹雳闪电
- 				炼金术士 				每天上缴250黄金
- 											每天上缴1份【英雄等级/5 (向上取整)】种稀有资源
- 			纳克西斯 			Razzak 						初级制宝, 初级巫术, 神秘训练 			弹药车 						怒火铁拳
- 				魔导师 					英雄所带领的法师及升级形态增加【英雄等级/2 (向上取整)】点攻防
- 			霍拉 					Sufi 								初级制宝, 高级巫术 							弹药车 						寒冰激射
- 				风语者 					英雄额外提高【0.5+英雄等级*0.05】主动性
- 			赛勒斯 				Cyrus 							高级制宝, 魔像行进 							弹药车 						乱石利刺
- 				魔像大师 				英雄部队每天制造一定战力的生物(生物同英雄第一格生物，战力累积，生物限定为石像怪/铁魔像/巨人及升级形态)
- 			马希尔 				Maahir 						初级制宝, 初级启蒙, 学士 					弹药车 						魔法神箭
- 				搜寻 						英雄额外提高【英雄等级*2%】战斗所获得经验
- 											英雄额外提高【英雄等级/3 (向下取整)】点知识
- 			泰莫克汉 			Timerkhan 					初级制宝, 初级巫术, 洞察魔力 			弹药车 						疾速行动, 延迟大法
- 				沙漏大师 				英雄开场可施放光线对我方/敌方生物增加/减少ATB
- 											光线只能在敌我双方生物间交替弹射，最后回到我方英雄手上(会影响泰莫克汗本身的ATB)
- 											第1队数值为【英雄等级*0.05*10/兵种主动性】，第N队受影响数值为第1队的1/N
- 			加利布 				Tan 								初级制宝, 魔镜, 初级光明 					弹药车 						魔法净化
- 				魔法扭转 				【魔镜】扭转时目标为敌方几率额外增加【40%+英雄等级*2%】
+ 			瑞萨
+ 				Rissa
+ 				初级制宝, 初级幸运, 资源富饶
+ 				弹药车
+ 				霹雳闪电
+ 				炼金术士
+ 					每天上缴250黄金
+ 					每天上缴1份【英雄等级/5 (向上取整)】种稀有资源
+ 			纳克西斯
+ 				Razzak
+ 				初级制宝, 初级巫术, 神秘训练
+ 				弹药车
+ 				怒火铁拳
+ 				魔导师
+ 					英雄所带领的法师及升级形态增加【英雄等级/2 (向上取整)】点攻防
+ 			霍拉
+ 				Sufi
+ 				初级制宝, 高级巫术
+ 				弹药车
+ 				寒冰激射
+ 				风语者
+ 					英雄额外提高【0.5+英雄等级*0.05】主动性
+ 					英雄初始自带【终极巫术】
+ 			赛勒斯
+ 				Cyrus
+ 				高级制宝, 魔像行进
+ 				弹药车
+ 				乱石利刺
+ 				魔像大师
+ 					英雄部队每天制造一定战力的生物(生物同英雄第一格生物，战力累积，生物限定为石像怪/铁魔像/巨人及升级形态)
+ 			马希尔
+ 				Maahir
+ 				初级制宝, 初级启蒙, 学士
+ 				弹药车
+ 				魔法神箭
+ 				时空传送
+ 					英雄可将友方英雄召唤到身边（每天一次）
+ 					英雄额外提高【英雄等级*2%】战斗所获得经验
+ 					英雄额外提高【英雄等级/3 (向下取整)】点知识
+ 			泰莫克汉
+ 				Timerkhan
+ 				初级制宝, 初级巫术, 洞察魔力
+ 				弹药车
+ 				疾速行动, 延迟大法
+ 				沙漏大师
+ 					英雄开场可施放光线对我方/敌方生物增加/减少ATB
+ 					光线只能在敌我双方生物间交替弹射，最后回到我方英雄手上(会影响泰莫克汗本身的ATB)
+ 					第1队数值为【英雄等级*0.05*10/兵种主动性】，第N队受影响数值为第1队的1/N
+ 			加利布
+ 				Tan
+ 				初级制宝, 魔镜, 初级光明
+ 				弹药车
+ 				魔法净化
+ 				魔法扭转
+ 					【魔镜】扭转时目标为敌方几率额外增加【40%+英雄等级*2%】
+ 					英雄行动时在特定生物{友方|倒序}身边召唤一支数量为【生物数量*(20%+英雄等级*2%)(向上取整)】的魔镜生物（战场上只能存在一支魔镜生物）
  		元素法师ELEMENTALIST
- 			艾米莉亚 			Emilia 							高级召唤, 地血大师 															火焰陷阱, 神秘水晶
- 				陷阱大师 				英雄施放的【神秘水晶】【剑刃障壁】【召唤蜂窝】被摧毁时回复英雄2点魔法值
- 			纳西尔 				Nur 								高级破坏, 烈火大师 															连珠火球
- 				火舞者 					英雄施放的【连珠火球】额外增加【英雄等级/3 (向上取整)】的咒力
- 											英雄行动时会对战场上敌方最密集区域施放群体【连珠火球】
- 												1.我方英雄【释放魔法】时充能
- 												2.开场自带一次充能
- 			努尔 					Astral 							初级破坏, 初级巫术, 魔力再生 											魔法神箭
- 				神秘术 					英雄每次行动前回复【英雄等级/4 (四舍五入)】点魔法值
- 			泽希尔 				Zehir 							高级召唤, 符咒大师 															召唤元素
- 				元素大师 				每当我方生物全队阵亡时英雄会在该部队尸体上召唤一队数量为【英雄等级/3+阵亡HP/(元素HP×4) (向上取整)】且ATB为【0.4+英雄等级*0.02】的元素生物
- 											英雄施放的【召唤元素】【召唤凤凰】额外增加【英雄等级/3 (向上取整)】的咒力
- 			法伊兹 				Faiz 								高级黑暗, 痛苦大师 															破甲弱化, 腐烂诅咒
- 				破坏王 					英雄施放的【破甲弱化】会额外造成【(英雄等级+1)*20】点伤害
- 											英雄行动时会对战场上敌方最密集区域施放群体【破甲弱化】
- 												1.我方英雄【释放魔法】时充能
- 												2.开场自带一次充能
- 			索姆拉 				Josephine 					高级破坏, 风暴大师 															霹雳闪电, 连锁闪电
- 				雷霆之怒 				英雄施法的闪电法术无法被敌方生物完全抵抗
- 											开场在敌方底线召唤伤害为【英雄等级*10】的【闪电风暴】(无法移动且持续3个标准回合)
+ 			艾米莉亚
+ 				Emilia
+ 				高级召唤, 地血大师
+ 				火焰陷阱, 神秘水晶
+ 				陷阱大师
+ 					英雄施放的【神秘水晶】【剑刃障壁】【召唤蜂窝】被摧毁时回复英雄2点魔法值
+ 			纳西尔
+ 				Nur
+ 				高级破坏, 烈火大师
+ 				连珠火球
+ 				火舞者
+ 					英雄施放的【连珠火球】额外增加【英雄等级/3 (向上取整)】的咒力
+ 					英雄行动时会对战场上敌方最密集区域施放群体【连珠火球】
+ 						1.我方英雄【释放魔法】时充能
+ 						2.开场自带一次充能
+ 			努尔
+ 				Astral
+ 				初级破坏, 初级巫术, 魔力再生
+ 				魔法神箭
+ 				神秘术
+ 					英雄每次行动前回复【英雄等级/4 (四舍五入)】点魔法值
+ 			泽希尔
+ 				Zehir
+ 				高级召唤, 符咒大师
+ 				召唤元素
+ 				元素大师
+ 					每当我方生物全队阵亡时英雄会在该部队尸体上召唤一队数量为【英雄等级/3+阵亡HP/(元素HP×4) (向上取整)】且ATB为【0.4+英雄等级*0.02】的元素生物
+ 					英雄施放的【召唤元素】【召唤凤凰】额外增加【英雄等级/3 (向上取整)】的咒力
+ 			法伊兹
+ 				Faiz
+ 				高级黑暗, 痛苦大师
+ 				破甲弱化, 腐烂诅咒
+ 				破坏王
+ 					英雄施放的【破甲弱化】会额外造成【(英雄等级+1)*20】点伤害
+ 					英雄行动时会对战场上敌方最密集区域施放群体【破甲弱化】
+ 						1.我方英雄【释放魔法】时充能
+ 						2.开场自带一次充能
+ 			索姆拉
+ 				Josephine
+ 				高级破坏, 风暴大师
+ 				霹雳闪电, 连锁闪电
+ 				雷霆之怒
+ 					英雄施法的闪电法术无法被敌方生物完全抵抗
+ 					开场在敌方底线召唤伤害为【英雄等级*10】的【闪电风暴】(无法移动且持续3个标准回合)
  	地狱
- 		恶魔领主DEMON_LORD
- 			艾丹 					Calh 							初级进攻, 战术部署, 初级启蒙 			帐篷
- 				领主召唤 				每当战场上有生物阵亡英雄会消耗【英雄等级*30】点魔法值召唤【英雄等级*1】数量的深渊领主
- 												1.战后保留
- 												2.尸体消失
- 												3.导致战斗结束的阵亡不生效
- 												4.每场战斗生效一次
- 			格劳尔 				Calid 							初级进攻, 战争狂人, 初级领导 			帐篷
- 				猎犬驯师 				英雄所带领的地狱犬及升级形态增加【英雄等级/2 (向上取整)】点攻防
- 			迪里布 				Deleb 							初级进攻, 初级机械, 弹射学 				弩车
- 				钢铁少女 				弩车额外附加【(英雄等级-1)/3 (向下取整) *24】(至少为1)点火系伤害
- 			内比罗斯 			Jazaz 							高级进攻, 战术部署, 初级后勤 			帐篷
- 				混乱抉择 				英雄部队额外+1幸运
- 											敌方英雄在战场上无法使用战术
- 			马巴斯 				Marder 						初级进攻, 初级幸运, 魔法抵抗 			帐篷
- 				魔法破坏 				英雄生物额外获得【5%+英雄等级*1%】魔法抵抗几率
- 			奥兰多 				Orlando2 					初级进攻, 初级反击, 极度痛击 			帐篷
- 				粉碎者 					英雄额外提高【英雄等级*5%】直接攻击伤害
- 											战斗开始可选择直接攻击【合理目标】一次
- 		门禁守卫GATE_KEEPER
- 			阿莱斯特 			Efion 							初级异界门, 初级黑暗, 心智大师 		弹药车 						迷惑心智
- 				夺魂魔 					英雄初始知识+1
- 											英雄施放的【迷惑心智】魔法额外减少目标【英雄等级*1】点魔法值
- 											英雄行动时会对战场上敌方最密集区域施放群体【迷惑心智】
- 												1.我方英雄【释放魔法】时充能
- 												2.开场自带一次充能
- 			格洛克 				Grok 							初级异界门, 初级后勤, 传送突袭 		弹药车 						传送突袭
- 				猛攻者 					英雄移动力增加5%
- 											英雄额外增加【英雄等级/4 (向下取整)】移动力
- 											【传送突袭】减少一半魔法值消耗
- 			马鲁斯塔 			Malustar 						初级异界门, 初级召唤, 符咒大师 		弹药车 						召唤元素
- 				召唤大师 				每当我方生物全队阵亡时英雄会在该部队尸体上召唤一队数量为【英雄等级/3+阵亡HP/(元素HP×4) (向上取整)】的元素生物
- 											英雄施放的【召唤元素】【召唤凤凰】额外增加【英雄等级/3 (向上取整)】的咒力
- 											英雄部队通过【异界召唤】出地狱部队时额外召唤一队数量为1的火元素
- 			耐莫斯 				Nymus 						高级异界门, 门禁大师 						弹药车
- 				异界门大师 			英雄部队的【异界召唤】额外增加【英雄等级*1%】数量
- 			耶泽蓓丝 			Oddrema 					初级异界门, 初级黑暗, 痛苦大师 		弹药车 						破甲弱化
- 				妖妇 						英雄所带领的妖姬及升级形态增加【英雄等级/2 (向上取整)】点攻防
- 			卡-贝勒斯 			Sovereign2 					初级异界门, 初级进攻, 战争狂人 		弹药车 						冥府诅咒
- 				魔王降临 				英雄永久获得额外【1+(英雄等级-1)/4 (向下取整)】种增益
- 												1级-幸运泉
- 												5级-寺庙
- 												9级-幸运避难所
- 												13级-青春之泉
- 												17级-仙女环
- 												21级-地母神祠
- 												25级-褴褛的旗帜
- 												29级-幸运石像
- 												33级-活力魔井
- 												37级-沙漠绿洲
- 			阿格雷尔 			Agrael 							初级异界门, 初级光明, 愤怒大师 										疾速行动
- 				迅捷光环 				英雄部队额外提高【英雄等级*1%】主动性
- 			泽达 					Zydar 							初级异界门, 地狱烈火, 初级破坏 		弹药车 						连珠火球
- 				地狱烈火 				英雄在非行动回合魔法值变化后立刻行动
- 												1.增加大于等于10点
- 												2.减少大于5点
+ 		恶魔领主GATE_KEEPER
+ 			艾丹
+ 				Calh
+ 				初级进攻, 战术部署, 初级启蒙
+ 				帐篷
+ 				领主召唤
+ 					每当战场上有生物阵亡英雄会消耗【英雄等级*30】点魔法值召唤【英雄等级*1】数量的深渊领主
+ 						1.战后保留
+ 						2.尸体消失
+ 						3.导致战斗结束的阵亡不生效
+ 						4.每场战斗生效一次
+ 			格劳尔
+ 				Calid
+ 				初级进攻, 战争狂人, 初级领导
+ 				帐篷
+ 				猎犬驯师
+ 					英雄所带领的地狱犬及升级形态增加【英雄等级/2 (向上取整)】点攻防
+ 					英雄主动攻击对敌方生物造成减员后英雄所带领的地狱犬及升级形态（主力）会立即对目标生物进行攻击并再次行动
+ 			迪里布
+ 				Deleb
+ 				初级进攻, 初级机械, 弹射学
+ 				弩车
+ 				钢铁少女
+ 					弩车额外附加【(英雄等级-1)/3 (向下取整) *24】(至少为1)点火系伤害
+ 			内比罗斯
+ 				Jazaz
+ 				高级进攻, 战术部署, 初级后勤
+ 				帐篷
+ 				混乱抉择
+ 					英雄部队额外+1幸运
+ 					敌方英雄在战场上无法使用战术
+ 			马巴斯
+ 				Marder
+ 				初级进攻, 初级幸运, 魔法抵抗
+ 				帐篷
+ 				魔法破坏
+ 					英雄生物额外获得【5%+英雄等级*1%】魔法抵抗几率
+ 			奥兰多--非NCF稳定版
+ 				Orlando2
+ 				初级进攻, 初级反击, 极度痛击
+ 				帐篷
+ 				粉碎者
+ 					英雄额外提高【英雄等级*5%】直接攻击伤害
+ 						战斗开始可选择直接攻击【合理目标】一次
+ 			奥兰多--NCF尝鲜版
+ 				Orlando2
+ 				初级进攻, 初级反击, 极度痛击
+ 				帐篷
+ 				粉碎者
+ 					英雄额外提高【英雄等级*5%】直接攻击伤害
+ 						战斗开始可选择直接攻击【合理目标】一次
+ 						英雄主动攻击额外触发【斩首剑】及【屠杀者之刃】（每队生物只触发一次）
+ 		门禁守卫DEMON_LORD
+ 			阿莱斯特
+ 				Efion
+ 				初级异界门, 初级黑暗, 心智大师
+ 				弹药车
+ 				迷惑心智
+ 				夺魂魔
+ 					英雄初始知识+1
+ 					英雄施放的【迷惑心智】魔法额外减少目标【英雄等级*1】点魔法值
+ 					英雄行动时会对战场上敌方最密集区域施放群体【迷惑心智】
+ 						1.我方英雄【释放魔法】时充能
+ 						2.开场自带一次充能
+ 			格洛克
+ 				Grok
+ 				初级异界门, 初级后勤, 传送突袭
+ 				弹药车
+ 				传送突袭
+ 				猛攻者
+ 					英雄移动力增加5%
+ 					英雄额外增加【英雄等级/4 (向下取整)】移动力
+ 					【传送突袭】减少一半魔法值消耗
+ 			马鲁斯塔
+ 				Malustar
+ 				初级异界门, 初级召唤, 符咒大师
+ 				弹药车
+ 				召唤元素
+ 				召唤大师
+ 					每当我方生物全队阵亡时英雄会在该部队尸体上召唤一队数量为【英雄等级/3+阵亡HP/(元素HP×4) (向上取整)】的元素生物
+ 					英雄施放的【召唤元素】【召唤凤凰】额外增加【英雄等级/3 (向上取整)】的咒力
+ 					英雄部队通过【异界召唤】出地狱部队时额外召唤一队数量为1的火元素
+ 			耐莫斯
+ 				Nymus
+ 				高级异界门, 门禁大师
+ 				弹药车
+ 				异界门大师
+ 					英雄部队的【异界召唤】额外增加【英雄等级*1%】数量
+ 			耶泽蓓丝
+ 				Oddrema
+ 				初级异界门, 初级黑暗, 痛苦大师
+ 				弹药车
+ 				破甲弱化
+ 				妖妇
+ 					英雄所带领的妖姬及升级形态增加【英雄等级/2 (向上取整)】点攻防
+ 			卡-贝勒斯
+ 				Sovereign2
+ 				初级异界门, 初级进攻, 战争狂人
+ 				弹药车
+ 				冥府诅咒
+ 				魔王降临
+ 					英雄永久获得额外【1+(英雄等级-1)/4 (向下取整)】种增益
+ 						1级-幸运泉
+ 						5级-寺庙
+ 						9级-幸运避难所
+ 						13级-青春之泉
+ 						17级-仙女环
+ 						21级-地母神祠
+ 						25级-褴褛的旗帜
+ 						29级-幸运石像
+ 						33级-活力魔井
+ 						37级-沙漠绿洲
+ 			阿格雷尔
+ 				Agrael
+ 				初级异界门, 初级光明, 愤怒大师
+ 				疾速行动
+ 				迅捷光环
+ 					英雄部队额外提高【10%+英雄等级*0.75%】主动性
+ 			泽达
+ 				Zydar
+ 				初级异界门, 地狱烈火, 初级破坏
+ 				弹药车
+ 				连珠火球
+ 				地狱烈火
+ 					英雄在非行动回合魔法值变化后立刻行动
+ 						1.增加大于等于10点
+ 						2.减少大于5点
  		恶魔巫师SORCERER
- 			艾许 					Ash 								初级巫术, 初级破坏, 烈火大师 											连珠火球
- 				复仇烈焰 				英雄施放的【连珠火球】额外增加【英雄等级/3 (向上取整)】的咒力
- 											英雄行动时会对上回合击杀过我方单位的敌方单位施放【连珠火球】
- 			拜娅拉 				Biara 							初级巫术, 初级领导, 外交术 												霹雳闪电
- 				恶魔统领 				英雄部队每天额外招募一定战力的生物(生物同英雄第一格生物，战力累积，生物限定为地狱生物)
- 			卡利德 				Calid2 							初级巫术, 初级启蒙, 学士 													乱石利刺
- 				恶魔导师 				玩家所有英雄每天获得【75*卡利德知识*(1+鄂加斯的意志套装数量/2)】点经验值
- 			谢尔坦 				Sheltem 						初级穿透, 强效魔法, 初级破坏 											魔法神箭
- 				黑暗玄者 				英雄施放【强效魔法】时额外减少【5%+英雄等级*1%】魔法值消耗
+ 			艾许
+ 				Ash
+ 				初级巫术, 初级破坏, 烈火大师
+ 				连珠火球
+ 				复仇烈焰
+ 					英雄施放的【连珠火球】额外增加【英雄等级/3 (向上取整)】的咒力
+ 					英雄行动时会对上回合击杀过我方单位的敌方单位施放【连珠火球】
+ 			拜娅拉
+ 				Biara
+ 				初级巫术, 初级领导, 外交术
+ 				霹雳闪电
+ 				恶魔统领
+ 					英雄部队每天额外招募一定战力的生物(生物同英雄第一格生物，战力累积，生物限定为地狱生物)
+ 			卡利德
+ 				Calid2
+ 				初级巫术, 初级启蒙, 学士
+ 				乱石利刺
+ 				恶魔导师
+ 					玩家所有英雄每天获得【75*卡利德知识*(1+鄂加斯的意志套装数量/2)】点经验值
+ 			谢尔坦
+ 				Sheltem
+ 				初级穿透, 强效魔法, 初级破坏
+ 				魔法神箭
+ 				黑暗玄者
+ 					英雄施放【强效魔法】时额外减少【5%+英雄等级*1%】魔法值消耗
+ 					英雄每天可以主动将咒力或知识的一半互相转化
  	墓园
  		死亡骑士DEATHKNIGHT
- 			罗德哈特 			Archilus 						初级亡巫, 初级反击, 强力打击 				帐篷 						亡者复生 								1个死骑
- 				死骑统帅 				每周会有死骑加入英雄部队(根据英雄等级，英雄攻击，亡灵城镇数)
- 											每天英雄所带领的部队中第一格为死灵及升级形态时，转换为相应数量的死亡骑士
- 											英雄所带领的死亡骑士行动后ATB置为【0.5+英雄等级*0.005】
- 			马卡尔 				Berein 							初级亡巫, 初级领导, 外交术 												亡者复生
- 				死亡领主 				英雄可招降【50%+英雄等级*2%】野外的亡灵生物
- 			卡斯帕 				Gles 								初级亡巫, 初级战争机械, 急救学 			帐篷 						亡者复生
- 				尸体防腐者 			急救/瘟疫帐篷增加【英雄等级*5】点治疗/伤害效果
- 											英雄部队首次全队阵亡后【英雄等级*1】个巫妖大师会对该部队施放【亡者复生】
- 			尼科莱 				Nikolay 						初级亡巫, 邪恶远征, 初级防御 				帐篷 						亡者复生
- 				君临亡域 				英雄回合魔法值消耗时会对敌方施放群体【弱化打击】
- 			奥森 					Straker 						初级亡巫, 初级防御, 活力 						帐篷 						亡者复生
- 				僵尸领主 				英雄所带领的僵尸及升级形态增加【英雄等级/2 (向上取整)】点攻防
- 											每次战斗后我方【40%+英雄等级*2%】阵亡亡灵生物可在城建墓园主城中再次被招募
- 			卢克雷蒂娅 		Tamika 						初级亡巫, 初级反击, 强力打击 				帐篷 						亡者复生
- 				吸血公主 				英雄所带领的吸血鬼及升级形态增加【英雄等级/2 (向上取整)】点攻防
- 			塞尔克松 			Xerxon 						初级亡巫, 初级防御, 闪避 													亡者复生, 偏转飞弹
- 				哨兵 						英雄部队额外降低【英雄等级*2%】受到的远程伤害
- 			卡里萨 				Karissa 						初级亡巫, 初级防御, 永恒奴役 				帐篷 						亡者复生
- 				亡骸侍女 				英雄所带领的骷髅兵及升级形态增加【(英雄等级-1)/3 (向下取整)】点攻防
- 												1级时全属性额外+1
- 												16级时骷髅兵及升级形态获得额外25%魔法抗性
- 												31级时骷髅兵及骷髅勇士获得【清道夫】技能
- 												31级时骷髅射手获得【守卫之箭】技能
+ 			罗德哈特
+ 				Archilus
+ 				初级亡巫, 初级反击, 强力打击
+ 				帐篷
+ 				亡者复生
+ 				1个死骑
+ 				死骑统帅
+ 					每周会有死骑加入英雄部队(根据英雄等级，英雄攻击，亡灵城镇数)
+ 					每天英雄所带领的部队中第一格为死灵及升级形态时，转换为相应数量的死亡骑士
+ 					英雄所带领的死亡骑士行动后有25%几率再次行动
+ 			马卡尔
+ 				Berein
+ 				初级亡巫, 初级领导, 外交术
+ 				亡者复生
+ 				死亡领主
+ 					英雄部队额外提高【英雄等级*5%】战力
+ 					战斗前【英雄等级*0.25%】的敌方生物加入英雄部队并转化为相应等级及形态墓园生物
+ 					野外生物有更高倾向加入英雄部队
+ 					击败野外生物时会获得额外资源
+ 			卡斯帕
+ 				Gles
+ 				初级亡巫, 初级战争机械, 急救学
+ 				帐篷
+ 				亡者复生
+ 				尸体防腐者
+ 					急救/瘟疫帐篷增加【英雄等级*5】点治疗/伤害效果
+ 					英雄部队首次全队阵亡后【英雄等级*1】个巫妖大师会对该部队施放【亡者复生】
+ 			尼科莱
+ 				Nikolay
+ 				初级亡巫, 邪恶远征, 初级防御
+ 				帐篷
+ 				亡者复生
+ 				君临亡域
+ 					英雄回合魔法值消耗时会对敌方施放群体【弱化打击】
+ 			奥森
+ 				Straker
+ 				初级亡巫, 初级防御, 活力
+ 				帐篷
+ 				亡者复生
+ 				丧尸围城
+ 					英雄所带领的僵尸及升级形态增加【英雄等级/2 (向上取整)】点攻防
+ 					每次战斗后我方【40%+英雄等级*2%】阵亡亡灵生物可在指定墓园城镇中再次被招募
+ 			卢克雷蒂娅
+ 				Tamika
+ 				初级亡巫, 初级反击, 强力打击
+ 				帐篷
+ 				亡者复生
+ 				吸血公主
+ 					英雄所带领的吸血鬼及升级形态增加【英雄等级/2 (向上取整)】点攻防
+ 			塞尔克松
+ 				Xerxon
+ 				初级亡巫, 初级防御, 闪避
+ 				亡者复生, 偏转飞弹
+ 				哨兵
+ 					英雄部队额外降低【英雄等级*2%】受到的远程伤害
+ 			卡里萨--非NCF稳定版
+ 				Karissa
+ 				初级亡巫, 初级防御, 永恒奴役
+ 				帐篷
+ 				亡者复生
+ 				亡骸侍女
+ 					英雄部队每场战斗后击杀生物的【2%+英雄等级*0.2%】可变为骷髅并在指定墓园城镇中再次被招募
+ 			卡里萨--NCF尝鲜版
+ 				Karissa
+ 				初级亡巫, 初级防御, 永恒奴役
+ 				帐篷
+ 				亡者复生
+ 				亡骸侍女
+ 					英雄所带领的骷髅兵及升级形态增加【(英雄等级-1)/3 (向下取整)】点攻防
+ 						1级时全属性额外+1
+ 						16级时骷髅兵及升级形态获得额外25%魔法抗性
+ 						31级时骷髅兵及骷髅勇士获得【清道夫】技能
+ 						31级时骷髅射手获得【守卫之箭】技能
  		掠夺者REAVER
- 			艾斯瑞 				Aislinn 							初级亡巫, 初级召唤, 生命大师 			弹药车 						亡者复生
- 				墓土活力 				英雄施放的【亡者复生】额外增加【英雄等级/3 (向上取整)】的咒力且令目标生物立刻行动
- 			拉雯 					Effig 							初级亡巫, 初级黑暗, 诅咒大师 			弹药车 						亡者复生, 虚弱诅咒
- 				摄魂者 					英雄施放的【虚弱诅咒】会额外降低【英雄等级/3 (向上取整)】点防御
- 											英雄魔法值消耗时会对敌方施放群体【虚弱诅咒】
- 			乔瓦尼 				Giovanni 						初级亡巫, 初级黑暗 							弹药车 						亡者复生, 吸血鬼化
- 				鲜血传承 				英雄行动时会对上回合击杀过敌方单位的我方单位施放【吸血鬼化】
- 			欧尼拉 				OrnellaNecro 				初级亡巫, 初级幸运, 魔法抵抗 			帐篷, 弹药车 				亡者复生
- 				抗魔寒骨 				英雄生物额外获得【5%+英雄等级*1%】魔法抵抗几率
- 			佐尔坦 				Aberrar 						初级亡巫, 初级启蒙, 鹰眼 													亡者复生
- 				魔法克星 				当敌人英雄使用某种法术之后，有一定【100/[(魔法等级+1)+(佐尔坦的等级－敌英雄等级)]】几率会被阻塞，阻塞成功后敌人英雄将不能在本场战斗中再次使用此法术
- 			尼姆巴斯 			Nimbus 						初级亡巫, 初级启蒙, 鹰眼 													亡者复生
- 				魔法析构 				双方生物或者敌方英雄施法后英雄立即行动
+ 			艾斯瑞
+ 				Aislinn
+ 				初级亡巫, 初级召唤, 生命大师
+ 				弹药车
+ 				亡者复生
+ 				墓土活力
+ 					英雄施放的【亡者复生】额外增加【英雄等级/3 (向上取整)】的咒力且令目标生物立刻行动
+ 			拉雯
+ 				Effig
+ 				初级亡巫, 初级黑暗, 诅咒大师
+ 				弹药车
+ 				亡者复生, 虚弱诅咒
+ 				摄魂者
+ 					英雄施放的【虚弱诅咒】会额外降低【英雄等级/3 (向上取整)】点防御
+ 					英雄魔法值消耗时会对敌方施放群体【虚弱诅咒】
+ 			乔瓦尼
+ 				Giovanni
+ 				初级亡巫, 初级黑暗
+ 				弹药车
+ 				亡者复生, 吸血鬼化
+ 				鲜血传承
+ 					英雄行动时会对上回合击杀过敌方单位的我方单位施放【吸血鬼化】
+ 			欧尼拉
+ 				OrnellaNecro
+ 				初级亡巫, 初级幸运, 魔法抵抗
+ 				帐篷, 弹药车
+ 				亡者复生
+ 				抗魔寒骨
+ 					英雄生物额外获得【5%+英雄等级*1%】魔法抵抗几率
+ 			佐尔坦
+ 				Aberrar
+ 				初级亡巫, 初级启蒙, 鹰眼
+ 				亡者复生
+ 				魔法克星
+ 					当敌人英雄使用某种法术之后，有一定【100/[(魔法等级+1)+(佐尔坦的等级－敌英雄等级)]】几率会被阻塞，阻塞成功后敌人英雄将不能在本场战斗中再次使用此法术
+ 			尼姆巴斯
+ 				Nimbus
+ 				初级亡巫, 初级启蒙, 鹰眼
+ 				亡者复生
+ 				魔法析构
+ 					双方生物或者敌方英雄施法后英雄立即行动
  		亡灵巫师NECROMANCER
- 			纳蒂尔 				Muscip 						初级亡巫, 初级召唤, 幽魂矿井 											亡者复生
- 				灵魂猎手 				敌方某支部队全灭时，召唤【英雄等级*1】个幽灵(受到原始部队数量限制)
- 											幽灵及升级形态首次行动或只有一队时转移敌方英雄及施法生物各2点魔法值给我方英雄
- 			阿兰蒂尔 			Arantir 						初级亡巫, 初级召唤, 初级黑暗 											亡者复生
- 				死亡化身 				英雄可以消耗【英雄等级*2】点魔法值召唤8级生物死亡化身
- 												生命-【100+英雄知识*20+英雄等级*20+英雄咒力*10】
- 												伤害-【英雄咒力*(7~10)+英雄等级*(5~7)】
- 												攻防-【8+英雄等级*2】
- 												速度-【6】
- 												主动-【10+英雄等级*0.2】
- 												1级- 【亡灵生物】
- 												8级- 【诅咒攻击】
- 												11级-【无实体】
- 												13级-【死亡恐惧】
- 												16级-【悲痛攻击】
- 			迪尔德丽 			Nemor 						高级亡巫, 女妖尖叫 															亡者复生, 女妖尖叫
- 				女妖 						英雄施放的【女妖尖叫】额外使士气-1幸运-1
- 											英雄所带领的尸妖通过【死亡悲鸣】对两支及以上敌方部队造成减员时额外附加一次【腐烂诅咒】
- 			弗拉基米尔 		Pelt 								初级亡巫, 初级召唤, 生命大师 											亡者复生
- 				死而复生 				英雄施放的【亡者复生】额外增加【英雄等级/3 (向上取整)】的咒力
- 											英雄部队每场战斗后招募一定战力的生物
- 												1.战力累积
- 												2.生物限定为亡灵生物
- 												3.生物种类同英雄第一格生物
- 												4.生物等级<=1+死亡拥抱套装数量
- 			山德鲁 				Sandro 						初级亡巫, 初级巫术, 初级启蒙 											亡者复生
- 				巫王 						英雄额外提高【掌握魔法数/5 (向上取整)】点咒力和知识(单/群体只计一次)
- 			山特 					Thant 							高级亡巫, 初级召唤 															亡者复生 									1个木乃伊
- 				亡灵法老 				每周会有木乃伊加入英雄部队(根据英雄等级，英雄攻击，亡灵城镇数)
- 											每天英雄所带领的部队中第一格为尸巫及升级形态时，转换为相应数量的木乃伊
- 											英雄魔法值消耗时回复英雄所带领的木乃伊2点魔法值
- 											英雄所带领的木乃伊魔法值消耗时回复英雄2点魔法值
- 			维德尼娜 			Vidomina 					高级亡巫, 永恒奴役 															亡者复生
- 				聚灵奇术 				敌方某支部队全灭时英雄消耗魔法值复活数量为1的相应形态亡灵生物
- 												1.1-7级对应魔法值-2,3,5,8,13,21,34
- 												2.战后保留
- 												3.尸体消失
- 												4.导致战斗结束的阵亡不生效
+ 			纳蒂尔
+ 				Muscip
+ 				初级亡巫, 初级召唤, 幽魂矿井
+ 				亡者复生
+ 				灵魂猎手
+ 					敌方某支部队全灭时，召唤【英雄等级*1】个幽灵(受到原始部队数量限制)
+ 					幽灵及升级形态首次行动或只有一队时转移敌方英雄及施法生物各2点魔法值给我方英雄
+ 			阿兰蒂尔
+ 				Arantir
+ 				初级亡巫, 初级召唤, 初级黑暗
+ 				亡者复生
+ 				死亡化身
+	 				英雄可以消耗【英雄等级*2】点魔法值召唤8级生物死亡化身
+	 					生命-【100+英雄知识*20+英雄等级*20+英雄咒力*10】
+	 					伤害-【英雄咒力*(7~10)+英雄等级*(5~7)】
+	 					攻防-【8+英雄等级*2】
+	 					速度-【6】
+	 					主动-【10+英雄等级*0.2】
+	 					1级- 【亡灵生物】
+	 					8级- 【诅咒攻击】
+	 					11级-【无实体】
+	 					13级-【死亡恐惧】
+	 					16级-【悲痛攻击】
+ 			迪尔德丽--非NCF稳定版
+ 				Nemor
+ 				高级亡巫, 女妖尖叫
+ 				亡者复生, 女妖尖叫, 悲痛欲绝
+ 				女妖
+ 					英雄施放的【女妖尖叫】额外使士气-1幸运-1
+ 					英雄行动时会对上回合被我方尸妖通过【死亡悲鸣】造成减员过的敌方部队施放一次【悲痛欲绝】
+ 			迪尔德丽--NCF尝鲜版
+ 				Nemor
+ 				高级亡巫, 女妖尖叫
+ 				亡者复生, 女妖尖叫
+ 				女妖
+ 					英雄施放的【女妖尖叫】额外使士气-1幸运-1
+ 					英雄所带领的尸妖通过【死亡悲鸣】对敌方部队造成减员时额外附加一次原始级【悲痛欲绝】
+ 			弗拉基米尔
+ 				Pelt
+ 				初级亡巫, 初级召唤, 生命大师
+ 				亡者复生
+ 				死而复生
+ 					英雄施放的【亡者复生】额外增加【英雄等级/3 (向上取整)】的咒力
+ 					英雄部队每场战斗后招募一定战力的生物
+ 						1.战力累积
+ 						2.生物限定为亡灵生物
+ 						3.生物种类同英雄第一格生物
+ 						4.生物等级<=1+死亡拥抱套装数量
+ 			山德鲁
+ 				Sandro
+ 				初级亡巫, 初级巫术, 初级启蒙
+ 				亡者复生
+ 				巫王
+ 					英雄额外提高【掌握魔法数/5 (向上取整)】点咒力和知识(单/群体只计一次)
+ 			山特
+ 				Thant
+ 				高级亡巫, 初级召唤
+ 				亡者复生
+ 				1个木乃伊
+ 				亡灵法老
+ 					每周会有木乃伊加入英雄部队(根据英雄等级，英雄攻击，亡灵城镇数)
+ 					每天英雄所带领的部队中第一格为尸巫及升级形态时，转换为相应数量的木乃伊
+ 					英雄魔法值消耗时回复英雄所带领的木乃伊2点魔法值
+ 					英雄所带领的木乃伊魔法值消耗时回复英雄2点魔法值
+ 			维德尼娜
+ 				Vidomina
+ 				高级亡巫, 永恒奴役
+ 				亡者复生
+ 				聚灵奇术
+ 					敌方某支部队全灭时英雄消耗魔法值复活数量为1的相应形态亡灵生物
+ 						1.1-7级对应魔法值-2,3,5,8,13,21,34
+ 						2.战后保留
+ 						3.尸体消失
+ 						4.导致战斗结束的阵亡不生效
+ 			艾德里德----寒卿赞助并设计
+				Adelaide
+				初级亡巫, 初级破坏, 寒冰大师
+				严冬冰环, 亡者复生
+				弹药车
+				寒冰领域
+					每周会有女妖加入英雄部队(根据英雄等级，英雄咒力，亡灵城镇数)
+					英雄可将幽灵及升级形态升级为女妖
+					英雄带领的女妖在对敌方生物造成战损时对其施放【寒冰激射】
+					名称：女妖
+					模型：花妖
+					属性：
+						攻击: 5
+						防御: 5
+						伤害: 4-6
+						生命: 15
+						速度: 6
+						主动性: 10
+						魔法值: 1
+						体型: 1*1
+						产量: 9
+						特殊能力:
+							亡灵生物 ABILITY_UNDEAD
+							死亡阴云 ABILITY_DEATH_CLOUD
  	堡垒
  		工程师ENGINEER
- 			艾巴 					Bersy 							初级机械, 初级进攻, 战术部署 			帐篷, 弹药车
- 				骑手 						英雄所带领的熊骑兵及升级形态增加【英雄等级/2 (向上取整)】点攻防
- 			马克西姆斯 		Maximus 						高级机械, 弹射学 								弩车
- 				熔岩爆裂 				弩车额外附加【(英雄等级-1)/3 (向下取整) *24】(至少为1)点火系伤害
- 			卡里 					Skeggy 						初级机械, 初级幸运, 士兵之幸 			弹药车
- 				利刃 						英雄所带领的标枪手及升级形态增加【英雄等级/2 (向上取整)】点攻防
- 			泰泽 					Tazar 							初级机械, 初级防御, 活力 					帐篷
- 				战争壁垒 				英雄额外提高【英雄等级/3 (向下取整)】点防御
- 			威尔玛 				Vilma 							初级机械, 初级防御, 闪避 					帐篷 							偏转飞弹
- 				布阵大师 				英雄部队额外降低【英雄等级*2%】受到的远程伤害
+ 			艾巴
+ 				Bersy
+ 				初级机械, 初级进攻, 战术部署
+ 				帐篷, 弹药车
+ 				骑手
+ 					英雄所带领的熊骑兵及升级形态增加【英雄等级/2 (向上取整)】点攻防
+					英雄所带领的熊骑兵及升级形态对敌方造成位移或击杀时会对自身施放【再生】
+ 			马克西姆斯
+ 				Maximus
+ 				高级机械, 弹射学
+ 				弩车
+ 				熔岩爆裂
+ 					弩车额外附加【(英雄等级-1)/3 (向下取整) *24】(至少为1)点火系伤害
+ 			卡里----幸福宝贝赞助并设计
+ 				Skeggy
+ 				初级机械, 初级幸运, 士兵之幸
+ 				弹药车
+ 				利刃
+ 					英雄所带领的标枪手及升级形态增加【英雄等级/2 (向上取整)】点攻防
+ 					并可以花费半回合进行准备，且在下回合额外投出3发投掷武器
+ 			泰泽
+ 				Tazar
+ 				初级机械, 初级防御, 活力
+ 				帐篷
+ 				战争壁垒
+ 					英雄额外提高【英雄等级/3 (向下取整)】点防御
+ 					战斗开始前我方生物获得【神秘护甲】
+ 			威尔玛
+ 				Vilma
+ 				初级机械, 初级防御, 闪避
+ 				帐篷
+ 				偏转飞弹
+ 				布阵大师
+ 					英雄部队额外降低【英雄等级*2%】受到的远程伤害
  		符文法师RUNEMAGE
- 			巴特 					Bart 								初级符文, 初级巫术, 神秘训练 			弹药车 						魔法神箭 							魔控符文
- 				地火之力 				英雄每次行动前回复【英雄等级/4 (四舍五入)】点魔法值
- 			布兰德 				Brand 							高级符文, 精练符文 							弹药车 																狂暴符文
- 				符文术师 				精炼符文额外增加【20%+英雄等级*1%】几率
- 			俄林 					Egil 								初级符文, 分流符文, 初级巫术 			弹药车 																空灵符文
- 				烈焰大师 				英雄所带领的神符祭司及升级形态增加【英雄等级/2 (向上取整)】点攻防
- 			托尔戈哈王 		KingTolghar 				初级符文, 分流符文, 初级幸运 			弹药车 																雷鸣符文
- 				岩石殿堂之王 		英雄所带部队永久拥有【雷鸣符文】效果
- 			海尔玛 				Ottar 							初级符文, 初级光明, 佑福大师 			弹药车 						非凡神力, 正当之力 			驱魔符文
- 				神圣战锤 				每当英雄对我方单位施放【光明魔法】时有【20%+英雄等级*2%】几率附加【正当之力】
- 			尤兰德 				Hangvul2 					初级符文, 初级破坏, 烈火大师 			弹药车 						连珠火球 							狂暴符文
- 				熔火之境 				英雄施放的【连珠火球】额外增加【英雄等级/3 (向上取整)】的咒力
- 											英雄伤害魔法对敌方生物造成战损时对其施放【烈火印记】
- 			英伽 					Una 								初级符文, 初级启蒙, 学士 					弹药车 																冲锋符文
- 				符文大师 				英雄额外提高【英雄等级/3 (向下取整)】点知识
- 											英雄升级时有25%几率学会未掌握的符文魔法
- 												1.从低级开始学习
- 												2.只能学会1-4环
- 			斯威 					Vegeyr 						初级符文, 初级破坏, 风暴大师 			弹药车 						霹雳闪电 							雷鸣符文
- 				风暴召唤者 			英雄施法的闪电法术无法被敌方生物完全抵抗
- 											开场对敌方所有生物施放【风暴箭】伤害等同于【英雄等级/2 (向上取整)】的雷霆领主
+ 			巴特
+ 				Bart
+ 				初级符文, 初级巫术, 神秘训练
+ 				弹药车
+ 				魔法神箭
+ 				魔控符文
+ 				地火之力
+ 					英雄每次行动前回复【英雄等级/4 (四舍五入)】点魔法值
+ 			布兰德
+ 				Brand
+ 				高级符文, 精练符文
+ 				弹药车
+ 				狂暴符文
+ 				符文术师
+ 					精炼符文额外增加【20%+英雄等级*1%】几率
+ 			俄林
+ 				Egil
+ 				初级符文, 分流符文, 初级巫术
+ 				弹药车
+ 				空灵符文
+ 				烈焰大师
+ 					英雄所带领的神符祭司及升级形态增加【英雄等级/2 (向上取整)】点攻防
+ 			托尔戈哈王
+ 				KingTolghar
+ 				初级符文, 分流符文, 初级幸运
+ 				弹药车
+ 				雷鸣符文
+ 				岩石殿堂之王
+ 					英雄所带部队永久拥有【雷鸣符文】效果
+ 			海尔玛
+ 				Ottar
+ 				初级符文, 初级光明, 佑福大师
+ 				弹药车
+ 				非凡神力, 正当之力
+ 				驱魔符文
+ 				神圣战锤
+ 					每当英雄对我方单位施放【光明魔法】时有【20%+英雄等级*2%】几率附加【正当之力】
+ 			尤兰德
+ 				Hangvul2
+ 				初级符文, 初级破坏, 烈火大师
+ 				弹药车
+ 				连珠火球
+ 				狂暴符文
+ 				熔火之境
+ 					英雄施放的【连珠火球】额外增加【英雄等级/3 (向上取整)】的咒力
+ 					英雄伤害魔法对敌方生物造成战损时对其施放【烈火印记】
+ 			英伽
+ 				Una
+ 				初级符文, 初级启蒙, 学士
+ 				弹药车
+ 				冲锋符文
+ 				符文大师
+ 				英雄额外提高【英雄等级/3 (向下取整)】点知识
+ 				英雄升级时有25%几率学会未掌握的符文魔法
+ 					1.从低级开始学习
+ 					2.只能学会1-4环
+ 			斯威
+ 				Vegeyr
+ 				初级符文, 初级破坏, 风暴大师
+ 				弹药车
+ 				霹雳闪电
+ 				雷鸣符文
+ 				风暴召唤者
+ 					英雄施法的闪电法术无法被敌方生物完全抵抗
+ 					开场对敌方所有生物施放【风暴箭】伤害等同于【英雄等级/2 (向上取整)】的雷霆领主
  		守卫者FLAMEKEEPERA
- 			汉格瓦尔 			Hangvul 						初级反击, 初级领导术, 募兵术 			弹药车
- 				抗争领袖 				英雄部队每天额外招募一定战力的生物(生物同英雄第一格生物，战力累积，生物限定为堡垒生物)
- 			英格瓦 				Ingvar 							初级反击, 复仇打击, 初级防御 			帐篷
- 				保护者 					英雄所带领的守卫者及升级形态增加【英雄等级/2 (向上取整)】点攻防，【英雄等级/5 (向上取整)】点生命值
- 			洛尔夫 				Rolf 								初级反击, 初级领导术, 外交 				弩车, 弹药车
- 				金舌 						英雄部队额外提高【英雄等级*10%】战力
- 											野外生物有更高倾向加入英雄部队
- 											击败野外生物时会获得额外资源
- 			尤佛瑞汀 			Ufretin 						初级反击, 初级领导, 理财术 				帐篷, 弹药车
- 				建筑师 					每天上缴250黄金
- 											每周上缴【500+当前黄金数*(1+英雄等级*1%)】黄金
- 			乌尔夫斯坦 		Wulfstan 						初级反击, 初级后勤, 初级防御 			帐篷
- 				边境守卫 				英雄在我方城镇两天路程内
- 												1.额外提高【英雄等级/2 (向下取整)】点防御
- 												2.获得双倍移动力
- 	地牢:
+ 			汉格瓦尔
+ 				Hangvul
+ 				初级反击, 初级领导术, 募兵术
+ 				弹药车
+ 				抗争领袖
+ 					英雄部队每天额外招募一定战力的生物(生物同英雄第一格生物，战力累积，生物限定为堡垒生物)
+ 			英格瓦
+ 				Ingvar
+ 				初级反击, 复仇打击, 初级防御
+ 				帐篷
+ 				保护者
+ 					英雄所带领的守卫者及升级形态增加【英雄等级/2 (向上取整)】点攻防，【英雄等级/5 (向上取整)】点生命值
+ 			洛尔夫
+ 				Rolf
+ 				初级反击, 初级领导术, 外交
+ 				弩车, 弹药车
+ 				金舌
+ 					英雄部队额外提高【英雄等级*5%】战力
+ 					战斗前减少敌方【英雄等级*0.5%】数量
+ 					野外生物有更高倾向加入英雄部队
+ 					击败野外生物时会获得额外资源
+ 			尤佛瑞汀
+ 				Ufretin
+ 				初级反击, 初级领导, 理财术
+ 				帐篷, 弹药车
+ 				建筑师
+ 					每天上缴250黄金
+ 					每周上缴【500+当前黄金数*(英雄等级*1%)】黄金
+ 			乌尔夫斯坦
+ 				Wulfstan
+ 				初级反击, 初级后勤, 初级防御
+ 				帐篷
+ 				边境守卫
+ 					英雄在我方城镇两天路程内
+ 						1.额外提高【英雄等级/2 (向下取整)】点防御
+ 						2.获得额外50%移动力
+ 	地牢
  		地牢领主BEASTMASTER
- 			宇尔沃娜 			Urunir 							高级领导, 神圣指引, 初级进攻 			帐篷
- 				血腥少女 				英雄所带领的血腥少女及升级形态增加【英雄等级/2 (向上取整)】点攻防
- 			基特拉 				Menel 							高级领导, 初级防御, 敏捷光环 			帐篷
- 				奴隶监工 				英雄所带领的牛头怪及升级形态增加【英雄等级/2 (向上取整)】点攻防
- 			索戈尔 				Ferigl 							高级领导, 初级进攻, 战术部署 			帐篷
- 				蜥蜴主人 				英雄所带领的黑暗骑兵及升级形态的【蜥蜴撕咬】效果提高到【60%+英雄等级*0.5%】
- 			希尔塞 				Sylsai 							高级领导, 募兵术, 外交术 					帐篷
- 				地牢领主 				英雄部队每天额外招募一定战力的生物(生物同英雄第一格生物，战力累积，生物限定为地牢生物)
- 			威欧里格 			Welygg 						高级领导, 初级防御, 外交术 				帐篷
- 				蝎狮统帅 				每周会有蝎狮加入英雄部队(根据英雄等级，英雄攻击，地牢城镇数)
- 											英雄部队额外提高【英雄等级*10%】战力
- 											野外生物有更高倾向加入英雄部队
- 											击败野外生物时会获得额外资源
+ 			宇尔沃娜
+ 				Urunir
+ 				高级领导, 神圣指引, 初级进攻
+ 				帐篷
+ 				血腥少女
+ 					英雄所带领的血腥少女及升级形态增加【英雄等级/2 (向上取整)】点攻防
+ 			基特拉
+ 				Menel
+ 				高级领导, 初级防御, 敏捷光环
+ 				帐篷
+ 				奴隶监工
+ 					英雄所带领的牛头怪及升级形态增加【英雄等级/2 (向上取整)】点攻防
+					英雄所带领的牛头怪及升级形态【移动】到我方生物（非牛头怪及升级形态）周围时可再次行动
+ 			索戈尔
+ 				Ferigl
+ 				高级领导, 初级进攻, 战术部署
+ 				帐篷
+ 				血腥突袭
+ 					英雄所带领的黑暗骑兵及升级形态的【蜥蜴撕咬】效果提高到【60%+英雄等级*0.5%】
+ 					英雄施放魔法时若消耗大于10点则召唤阴影中的刺客突袭所有敌人
+ 			希尔塞
+ 				Sylsai
+ 				高级领导, 募兵术, 外交术
+ 				帐篷
+ 				地牢领主
+ 					英雄部队每天额外招募一定战力的生物(生物同英雄第一格生物，战力累积，生物限定为地牢生物)
+ 			威欧里格
+ 				Welygg
+ 				高级领导, 初级防御, 外交术
+ 				帐篷
+ 				蝎狮统帅
+ 					每周会有蝎狮加入英雄部队(根据英雄等级，英雄攻击，地牢城镇数)
+ 					英雄部队额外提高【英雄等级*5%】战力
+ 					野外生物有更高倾向加入英雄部队
+ 					击败野外生物时会获得额外资源
  		刺客SEER
- 			维尚 					Ohtarig 						初级后勤, 高级黑暗, 侦察术 				弹药车 						腐烂诅咒
- 				黑手 						英雄所带领的密探及升级形态增加【英雄等级/2 (向上取整)】点攻防
- 			埃莉娜 				Eruina 							高级后勤, 初级进攻, 箭术 					弹药车 						魔法神箭
- 				女巫会长 				英雄所带领的暗影巫女及暗影女族长，在英雄使用单体杀伤魔法命中目标时有【10%+英雄等级*2%】几率对其射击一次
- 			莱托兹 				Dalom 							初级后勤, 高级黑暗, 痛苦大师 			帐篷 							腐烂诅咒, 破甲弱化
- 				毒药专家 				开场时英雄对每支敌方部队有【10%+英雄等级*2%】几率施放【腐烂诅咒】
- 			莎蒂娅 				Kelodin 						初级后勤, 高级防御, 闪避 					帐篷 							偏转飞弹
- 				影舞者 					英雄部队额外降低【英雄等级*2%】受到的远程伤害
- 			伊拉娅 				Shadwyn 						初级后勤, 高级召唤 							弹药车 						幻象军团
- 				幻象大师 				开场在敌方数量最少的部队周围召唤一队数量不大于【英雄等级*1】和【部队数量】的相同形态兵种
- 			斯拉塞 				Thralsai 						高级后勤, 初级进攻, 传送突袭 			帐篷 							传送突袭
- 				猛攻者 					英雄移动力增加5%
- 											英雄额外增加【英雄等级/4 (向下取整)】移动力
- 											【传送突袭】减少一半魔法值消耗
+ 			维尚
+ 				Ohtarig
+ 				初级后勤, 高级黑暗, 侦察术
+ 				弹药车
+ 				腐烂诅咒
+ 				黑手
+ 					英雄所带领的密探及升级形态增加【英雄等级/2 (向上取整)】点攻防
+ 			埃莉娜
+ 				Eruina
+ 				高级后勤, 初级进攻, 箭术
+ 				弹药车
+ 				魔法神箭
+ 				女巫会长
+ 					英雄所带领的暗影巫女及暗影女族长，在英雄使用单体杀伤魔法命中目标时有【10%+英雄等级*2%】几率对其射击一次
+ 					英雄魔法只对单一敌方生物造成战损时，会对其额外施放一次【寒冰激射】
+ 			莱托兹
+ 				Dalom
+ 				初级后勤, 高级黑暗, 痛苦大师
+ 				帐篷
+ 				腐烂诅咒, 破甲弱化
+ 				毒药专家
+ 					开场时英雄对每支敌方部队有【10%+英雄等级*2%】几率施放【腐烂诅咒】
+ 			莎蒂娅
+ 				Kelodin
+ 				初级后勤, 高级防御, 闪避
+ 				帐篷
+ 				偏转飞弹
+ 				影舞者
+ 					英雄部队额外降低【英雄等级*2%】受到的远程伤害
+ 			伊拉娅
+ 				Shadwyn
+ 				初级后勤, 高级召唤
+ 				弹药车
+ 				幻象军团
+ 				幻象大师
+ 					开场在敌方数量最少的部队周围召唤一队数量不大于【英雄等级*1】和【部队数量】的相同形态兵种
+ 			斯拉塞
+ 				Thralsai
+ 				高级后勤, 初级进攻, 传送突袭
+ 				帐篷
+ 				传送突袭
+ 				猛攻者
+ 					英雄移动力增加5%
+ 					英雄额外增加【英雄等级/4 (向下取整)】移动力
+ 					【传送突袭】减少一半魔法值消耗
  		术士WARLOCK
- 			阿格贝斯 			Agbeth 						初级穿透, 初级破坏, 风暴大师 											霹雳闪电
- 				风暴领域 				英雄魔法对3支以上敌方部队造成战损时，会对其各施放一次【霹雳闪电】
- 			伊蓓丝 				Almegir 						初级穿透, 初级巫术, 黑暗仪式 											霹雳闪电
- 				黑暗神秘术 			英雄额外提高【英雄等级/3 (向下取整)】点知识
- 											英雄魔法值消耗后回复【1+英雄等级/6 (向下取整)】点魔法值
- 			塞纳特 				Inagost 						初级穿透, 初级破坏, 法术强效 											魔法神箭
- 				催化剂 					英雄施放【强效魔法】时额外减少【5%+英雄等级*1%】魔法值消耗
- 			卡斯托雷 			Kastore 						初级穿透, 初级召唤, 符咒大师 											召唤元素
- 				元素平衡 				每当我方生物全队阵亡时英雄会在该部队尸体上召唤一队数量为【英雄等级/3+阵亡HP/(元素HP×4) (向上取整)】的元素生物
- 											英雄施放的【召唤元素】【召唤凤凰】额外增加【英雄等级/3 (向上取整)】的咒力
- 											英雄召唤出元素生物时，根据英雄破坏系子技能额外召唤出数量为【英雄等级/3 (向上取整)】的元素生物(本场战斗只生效一次)
- 												1.寒冰大师-水元素
- 												2.烈火大师-火元素
- 												3.风暴大师-风元素
- 			雷拉格 				Raelag 							初级穿透, 初级黑暗, 心智大师 											延迟大法
- 				威吓 						敌方部队额外降低【英雄等级*1%】主动性
- 			兰勒斯 				Ranleth 						初级穿透, 初级破坏, 烈火大师 											连珠火球, 寒冰激射
- 				冰火双修 				英雄施放的【连珠火球】额外增加【英雄等级/3 (向上取整)】的咒力
- 											英雄魔法只对单一敌方生物造成战损时，会对其额外施放一次【寒冰激射】
- 			萨费罗斯 			Sephinroth 					初级穿透, 初级破坏, 寒冰大师 											寒冰激射, 神秘水晶
- 				水晶室女 				英雄魔法只对单一敌方生物造成战损时，会在其周围可用空位上召唤【神秘水晶】
+ 			阿格贝斯
+ 				Agbeth
+ 				初级穿透, 初级破坏, 风暴大师
+ 				霹雳闪电
+ 				风暴领域
+ 					英雄魔法只对单一敌方生物造成战损时，会对与其相连的所有敌方生物各施放一次【霹雳闪电】
+ 			伊蓓丝
+ 				Almegir
+ 				初级穿透, 初级巫术, 黑暗仪式
+ 				霹雳闪电
+ 				黑暗神秘术
+ 					英雄额外提高【英雄等级/3 (向下取整)】点知识
+ 					英雄魔法值消耗后回复【1+英雄等级/6 (向下取整)】点魔法值
+ 			塞纳特
+ 				Inagost
+ 				初级穿透, 初级破坏, 法术强效
+ 				魔法神箭
+ 				催化剂
+ 					英雄施放【强效魔法】时额外减少【5%+英雄等级*1%】魔法值消耗
+ 			卡斯托雷
+ 				Kastore
+ 				初级穿透, 初级召唤, 符咒大师
+ 				召唤元素
+ 				元素平衡
+ 					每当我方生物全队阵亡时英雄会在该部队尸体上召唤一队数量为【英雄等级/3+阵亡HP/(元素HP×4) (向上取整)】的元素生物
+ 					英雄施放的【召唤元素】【召唤凤凰】额外增加【英雄等级/3 (向上取整)】的咒力
+ 					英雄召唤出元素生物时，根据英雄破坏系子技能额外召唤出数量为【英雄等级/3 (向上取整)】的元素生物(本场战斗只生效一次)
+ 						1.寒冰大师-水元素
+ 						2.烈火大师-火元素
+ 						3.风暴大师-风元素
+ 			雷拉格
+ 				Raelag
+ 				初级穿透, 初级黑暗, 心智大师
+ 				延迟大法
+ 				威吓
+ 					敌方部队额外降低【15%+英雄等级*0.5%】主动性
+ 			兰勒斯
+ 				Ranleth
+ 				终极破坏
+ 				连珠火球
+ 				终极破坏
+ 					英雄施放的【连珠火球】额外增加【英雄等级/3 (向上取整)】的咒力
+ 					英雄初始自带【终极破坏】
+ 			萨费罗斯
+ 				Sephinroth
+ 				初级穿透, 初级破坏, 寒冰大师
+ 				寒冰激射, 神秘水晶
+ 				水晶室女
+ 					英雄魔法只对单一敌方生物造成战损时，会在其周围可用空位上召唤【神秘水晶】
  	据点
  		酋长BARBARIAN
- 			科尔汉 				Hero9 							高级血怒, 地精支援 							弹药车
- 				地精王 					英雄所带领的地精额外减少【英雄等级*1%】叛逃阀值
- 											每周一英雄部队中额外增加【英雄等级*1】个地精
- 			哈戈什 				Hero7 							初级血怒, 初级进攻, 箭术 					弹药车
- 				半人马指挥官 		英雄所带领的半人马及升级形态增加【英雄等级/2 (向上取整)】点攻防
- 											英雄所带领的半人马开场时额外提高【英雄等级*1%】ATB
- 			坦尔塞克 			Hero8 							初级血怒, 初级反击, 复仇打击 			帐篷
- 				可汗之拳 				英雄所带领的斗士及升级形态增加【英雄等级/2 (向上取整)】点攻防
- 			艾扎-埃克 			Azar 							初级血怒, 初级启蒙, 战斗学 				帐篷
- 				狼王 						每周会有狼加入英雄部队(根据英雄等级，英雄攻击，据点城镇数)
- 											每天英雄所带领的部队中第一格为地精及升级形态时，转换为(相应数量/5)的狼
- 											开场时狼会【召唤同伴】且立即行动
- 			哥沙克 				Hero4 							初级血怒, 初级领导, 血统记忆 			帐篷
- 				可汗利刃 				英雄所带领的屠杀者及升级形态增加【英雄等级/2 (向上取整)】点攻防
- 			沙-库如汉特 		Hero6 							初级进攻, 初级防御, 活力 					帐篷
- 				飞龙训练师 			英雄所带领的双足飞龙及升级形态增加【英雄等级*2】点生命值
- 			肯洛-哈格 			Crag 							初级血怒, 高级进攻 							帐篷
- 				军阀 						英雄额外提高【英雄等级/3 (向下取整)】点攻击
- 			高泰 					Gottai 							初级血怒, 初级战嚎, 战嚎训练 			弹药车
- 				战争酋长 				英雄魔法值消耗降低【1+英雄等级/4 (向下取整)】且战嚎额外增加【英雄等级*1】点血怒值
- 			克拉格 				Hero1 							初级血怒, 初级反击, 强力打击 			弹药车
- 				粉碎者 					英雄额外提高【英雄等级*5%】直接攻击伤害
- 											战斗开始可选择直接攻击【合理目标】一次
- 			厄格特 				Hero2 							初级血怒, 初级后勤, 探路术 				弹药车
- 				追猎者 					英雄额外增加【英雄等级/3*1%】移动力
- 											英雄在非本族额外减少【英雄等级/3*2%】移动力损耗
- 											战斗后回复【英雄等级*10】点移动力
- 			伽如娜 				Hero3 							初级血怒, 初级进攻, 战争狂人 			弹药车
- 				血饮者 					英雄部队全灭敌方部队时，该生物立即行动
- 											英雄部队全灭敌方部队时，我方生物增加【英雄等级/6 (向上取整)】点攻击
- 			克拉尔 				Kraal 							初级血怒, 初级机械, 弹射学 				弩车
- 				攻城技师 				弩车额外提高【英雄等级*1】点攻击
- 											投石车额外提高【英雄等级*2%】命中率
- 			库金 					KujinMP 						高级血怒, 热血沸腾 							帐篷
- 				恶魔猎手 				英雄所带的兽人军队的血怒值变化时额外多增加【8+英雄等级×2】点血怒
- 			库恩亚克 			Kunyak 						初级血怒, 初级领导, 募兵术 				帐篷
- 				兽人领袖 				英雄部队每天额外招募一定战力的生物(生物同英雄第一格生物，战力累积，生物限定为据点生物)
- 			马特瓦 				Matewa 						初级血怒, 初级进攻, 战术部署 			帐篷
- 				战术压制 				英雄部队额外+1幸运
- 											敌方英雄在战场上无法使用战术
- 											开场自动施放一次【战斗呼啸】且英雄ATB置为【0.7+英雄等级*0.01】
- 			魁洛克 				Quroq 							初级血怒, 初级领导, 地精支援 			帐篷
- 				奴隶主 					英雄部队每次行动自动消耗一次地精
- 			希娃 					Shiva 							初级血怒, 初级启蒙, 热血沸腾 			弹药车
- 				战斗狂怒 				英雄部队在满足条件后立即行动
- 												1.血怒等级提升
- 												2.获得大量血怒值
- 			祖莱卡 				Zouleika 						初级血怒, 初级战嚎, 热血沸腾 			弹药车
- 				血怒链接 				英雄在部队满足条件后立即行动
- 												1.血怒等级提升
- 												2.获得大量血怒值
- 			艾莉卡 				Erika 							初级血怒, 初级启蒙, 抑魔之力 			弹药车
- 				抑魔之力 				敌方英雄巫术技能失效
- 											敌方英雄施法时额外消耗一倍魔法值
- 			摩卡 					Mokka 							初级血怒, 初级战嚎, 狂暴战嚎 			弹药车
- 				战争恐惧 				英雄行动时敌方最后排中数量最少的一支部队在满足条件后ATB置为0
- 			 									1.支数-我方部队大于敌方部队
- 												2.数量-我方部队大于敌方部队
+ 			科尔汉
+ 				Hero9
+ 				高级血怒, 地精支援
+ 				弹药车
+ 				地精王
+ 					英雄所带领的地精额外减少【英雄等级*1%】叛逃阀值
+ 					每周一英雄部队中额外增加【英雄等级*1】个地精
+ 			哈戈什
+ 				Hero7
+ 				初级血怒, 初级进攻, 箭术
+ 				弹药车
+ 				半人马指挥官
+ 					英雄所带领的半人马及升级形态增加【英雄等级/2 (向上取整)】点攻防
+ 					英雄所带领的半人马开场时额外提高【英雄等级*1%】ATB
+ 			坦尔塞克
+ 				Hero8
+ 				初级血怒, 初级反击, 复仇打击
+ 				帐篷
+ 				可汗之拳
+ 					英雄所带领的斗士及升级形态增加【英雄等级/2 (向上取整)】点攻防
+ 					敌方生物在其行动时被击杀后，我方英雄在所带领的斗士及升级形态（主力）行动后立刻行动
+ 			艾扎-埃克
+ 				Azar
+ 				初级血怒, 初级启蒙, 战斗学
+ 				帐篷
+ 				狼王
+ 					每周会有狼加入英雄部队(根据英雄等级，英雄攻击，据点城镇数)
+ 					每天英雄所带领的部队中第一格为地精及升级形态时，转换为(相应数量/5)的狼
+ 					开场时狼会【召唤同伴】且立即行动
+ 			哥沙克
+ 				Hero4
+ 				初级血怒, 初级领导, 血统记忆
+ 				帐篷
+ 				可汗利刃
+ 					英雄所带领的屠杀者及升级形态增加【英雄等级/2 (向上取整)】点攻防
+ 			沙-库如汉特
+ 				Hero6
+ 				初级进攻, 初级防御, 活力
+ 				帐篷
+ 				飞龙训练师
+ 					英雄所带领的双足飞龙及升级形态增加【英雄等级*2】点生命值
+ 			肯洛-哈格
+ 				Crag
+ 				初级血怒, 高级进攻
+ 				帐篷
+ 				军阀
+					英雄可拆毁城镇建筑或焚毁城镇并获取资源/攻击/等级
+					每次拆毁英雄等级/5（向上取整）的城镇建筑，或者城镇建筑等级为0，则城镇被焚毁
+					收益以英雄等级/12为基准
+					拆毁城镇建筑时
+						普通资源=4基准（向下取整）
+						稀有资源=2基准（向下取整）
+						黄金资源=2000基准（向下取整）
+					焚毁城镇时
+						普通资源=4基准（向下取整）
+						稀有资源=2基准（向下取整）
+						黄金资源=2000基准（向下取整）
+						攻击增长=1基准（向上取整）
+						英雄升1级
+ 			高泰
+ 				Gottai
+ 				初级血怒, 初级战嚎, 战嚎训练
+ 				弹药车
+ 				战争酋长
+ 					英雄魔法值消耗降低【1+英雄等级/4 (向下取整)】且战嚎额外增加【英雄等级*1】点血怒值
+ 					英雄魔法值消耗后立即施放【战斗呼啸】
+ 			克拉格
+ 				Hero1
+ 				初级血怒, 初级反击, 强力打击
+ 				弹药车
+ 				粉碎者
+ 					英雄额外提高【英雄等级*5%】直接攻击伤害
+ 					战斗开始可选择直接攻击【合理目标】一次
+ 			厄格特
+ 				Hero2
+ 				初级血怒, 初级后勤, 探路术
+ 				弹药车
+ 				追猎者
+ 					英雄额外增加【英雄等级/3*1%】移动力
+ 					英雄在非本族额外减少【英雄等级/3*2%】移动力损耗
+ 					战斗后回复【英雄等级*10】点移动力
+ 			伽如娜
+ 				Hero3
+ 				初级血怒, 初级进攻, 战争狂人
+ 				弹药车
+ 				血饮者
+ 					英雄部队全灭敌方部队时，该生物立即行动
+ 					英雄部队全灭敌方部队时，我方生物增加【英雄等级/6 (向上取整)】点攻击
+ 			克拉尔
+ 				Kraal
+ 				初级血怒, 初级机械, 弹射学
+ 				弩车
+ 				攻城技师
+ 					弩车额外提高【英雄等级*1】点攻击
+ 					投石车额外提高【英雄等级*2%】命中率
+ 			库金
+ 				KujinMP
+ 				高级血怒, 热血沸腾
+ 				帐篷
+ 				恶魔猎手
+ 					英雄所带的兽人军队的血怒值变化时额外多增加【8+英雄等级×2】点血怒
+ 			库恩亚克
+ 				Kunyak
+ 				初级血怒, 初级领导, 募兵术
+ 				帐篷
+ 				兽人领袖
+ 					英雄部队每天额外招募一定战力的生物(生物同英雄第一格生物，战力累积，生物限定为据点生物)
+ 			马特瓦
+ 				Matewa
+ 				初级血怒, 初级进攻, 战术部署
+ 				帐篷
+ 				战术压制
+ 					英雄部队额外+1幸运
+ 					敌方英雄在战场上无法使用战术
+ 					开场自动施放一次【战斗呼啸】且英雄ATB置为【0.7+英雄等级*0.01】
+ 			魁洛克
+ 				Quroq
+ 				初级血怒, 初级领导, 地精支援
+ 				帐篷
+ 				奴隶主
+ 					英雄部队每次行动自动消耗一次地精
+ 			希娃
+ 				Shiva
+ 				初级血怒, 初级启蒙, 热血沸腾
+ 				弹药车
+ 				战斗狂怒
+ 					英雄部队在血怒等级提升或瞬间获得500点血怒值后立即行动
+ 			祖莱卡
+ 				Zouleika
+ 				初级血怒, 初级战嚎, 热血沸腾
+ 				弹药车
+ 				血怒链接
+ 					英雄在部队血怒等级提升或瞬间获得500点血怒值后立即行动
+ 			艾莉卡
+ 				Erika
+ 				初级血怒, 初级启蒙, 抑魔之力
+ 				弹药车
+ 				抑魔之力
+ 					敌方英雄巫术技能失效
+ 					敌方英雄施法时额外消耗一倍魔法值
+ 			摩卡
+ 				Mokka
+ 				初级血怒, 初级战嚎, 狂暴战嚎
+ 				弹药车
+ 				战争恐惧
+ 					英雄行动时敌方最后排中数量最少的一支部队在满足条件后ATB置为0
+ 						1.支数-我方部队大于敌方部队
+ 						2.数量-我方部队大于敌方部队
 
 10.H55setting.h5u文件配置说明
-		H55_TownGateEnabled = 1; 是否启用回城，1是启用 0是禁用
-		H55_TownConvEnabled = 1; 是否启用城镇转换，1是启用 0是禁用
-		H55_AmountExtraTownsDwellings = 23; 城镇转换数量限制
-		H55_GovernanceEnabled = 1; 是否启用内政官，1是启用 0是禁用
-		H55_GovernorExpCoef = 1; 内政官经验获取系数，推荐不要动
-		H55_IgnoreExpAdjustment = 0; 根据地图大小经验调节，推荐不要动
-		H55_NoMentoring = 0; 是否启用记忆导师，0是启用 1是禁用
-		H55_BuildNeutralTowns = 1; 新开地图无主城镇的建筑等级，0~5 0就是1级城建，1就是6级城建（有1级魔法塔、铁匠铺、市场、酒馆），每高一级，多5级左右城建
-		H55_AIHandicap = 0; AI难度减弱，0是正常，1是减弱
-		H55_AICheatMode = 4; AI难度，0是AI不作弊，1是40%，2是60%，3是80%，4是100%，5是
-		H55_BanksDifficulty = 1; 银行难度系数，推荐不要动
-		H55_NeutralStackSize = 1; 野怪初始数量系数，推荐不要动
-		H55_StartCreatureBonusTier = 3; 初始选择生物奖励，奖励的生物等级，1~4
-		☆☆☆☆☆☆☆☆☆☆☆☆
-		H55_AllAgainstOne = 0; 0是乱战，1是AI结盟
-		H55_AIArmyCoef = 1; 1是正常兵力，3是3倍兵力
-		H55_AISetBonus_Tear = 0; 0是不送，1是送眼泪
-		H55_AISetBonus_Set = 0; 0是不送，1是送神器
-		H55_AISetBonus_Travel = 0; 0是不送，1是送旅行者长靴
-		H55_AISetBonus_Shield = 0; 0是不送，1是送哨兵之盾
-		H55_AISetBonus_Phoenix = 0; 0是不送，1是送大法师之书
-		H55_AISetBonus_Draconic = 0; 0是不送，1是送龙神胸甲
-		H55_AISkillBonusBasic = 0; 0是不送，1是送初始技能
-		H55_AISkillBonusAbsolute = 0; 0是不送，1是送终极技能
-		H55_PlayerCheats = 0; 上面5个设置生效目标，0是对AI，1是对玩家
-		☆☆☆☆☆☆☆☆☆☆☆☆
-		H55_ChooseHero_Name = 'Ving'; 选择英雄的控制台名
-		H55_ChooseHero_Switch  = 1; 0是不启用，1是启用选择英雄功能
-		☆☆☆☆☆☆☆☆☆☆☆☆
-	AI初始技能赠送
-		1)骑士KNIGHT:                领导  反黑
-		2)圣骑士PALADIN:             领导  反黑
-		3)堕落骑士HERETIC:           巫术  反光
-		----------------------------------------
-		4)游侠RANGER:                幸运  反破
-		5)守望者WARDEN:              幸运  反黑
-		6)德鲁伊ENCHANTER:           巫术  反召
-		----------------------------------------
-		7)先知GUILDMASTER:           领导  反破
-		8)魔法师WIZARD:              巫术  启蒙
-		9)元素法师ELEMENTALIST:      巫术  穿透
-		----------------------------------------
-		10)恶魔领主DEMON_LORD:        领导  反光
-		11)门禁守卫GATE_KEEPER:       幸运  反召
-		12)恶魔巫师SORCERER:          巫术  穿透
-		----------------------------------------
-		13)死亡骑士DEATHKNIGHT:       黑暗  反光
-		14)掠夺者REAVER:              后勤  反召
-		15)亡灵巫师NECROMANCER:       巫术  启蒙
-		----------------------------------------
-		16)工程师ENGINEER:            领导  反破
-		17)符文法师RUNEMAGE:          巫术  启蒙
-		18)守卫者FLAMEKEEPERA:        机械  反召
-		----------------------------------------
-		19)地牢领主BEASTMASTER:       进攻  反破
-		20)刺客SEER:                  进攻  反光
-		21)术士WARLOCK:               巫术  启蒙
-		----------------------------------------
-		22)酋长BARBARIAN:             进攻  反黑
-		23)萨满SHAMAN:                巫术  启蒙
-		24)女巫WARLOCKB:              巫术  穿透
+	H55_TownGateEnabled = 1; 是否启用回城，1是启用 0是禁用
+	H55_TownConvEnabled = 1; 是否启用城镇转换，1是启用 0是禁用
+	H55_AmountExtraTownsDwellings = 23; 城镇转换数量限制
+	H55_GovernanceEnabled = 1; 是否启用内政官，1是启用 0是禁用
+	H55_GovernorExpCoef = 1; 内政官经验获取系数，推荐不要动
+	H55_IgnoreExpAdjustment = 0; 根据地图大小经验调节，推荐不要动
+	H55_NoMentoring = 0; 是否启用记忆导师，0是启用 1是禁用
+	H55_BuildNeutralTowns = 1; 新开地图无主城镇的建筑等级，0~5 0就是1级城建，1就是6级城建（有1级魔法塔、铁匠铺、市场、酒馆），每高一级，多5级左右城建
+	H55_AIHandicap = 0; AI难度减弱，0是正常，1是减弱
+	H55_AICheatMode = 4; AI难度，0是AI不作弊，1是40%，2是60%，3是80%，4是100%，5是120%
+	H55_BanksDifficulty = 1; 银行难度系数，推荐不要动
+	H55_NeutralStackSize = 1; 野怪初始数量系数，推荐不要动
+	☆☆☆☆☆☆☆☆☆☆☆☆ 以上的好都别去修改，以下的都是可以修改的选项
+	H55_AllAgainstOne = 0; 0是乱战，1是AI结盟
+	H55_AIArmyCoef = 1; 1是正常兵力，3是3倍兵力
+	☆☆☆☆☆☆☆☆☆☆☆☆
+	H55_AISetBonus_Tear = 0; 0是不送，1是送眼泪
+	H55_AISetBonus_Travel = 0; 0是不送，1是送旅行者长靴
+	H55_AISetBonus_Shield = 0; 0是不送，1是送哨兵之盾
+	H55_AISetBonus_Angelic_Alliance= 0; 0是不送，1是送天使联盟
+	H55_AISetBonus_Curse_Shoulder = 0; 0是不送，1是送诅咒斗篷
+	H55_AISetBonus_Phoenix = 0; 0是不送，1是送大法师之书
+	H55_AISetBonus_Draconic = 0; 0是不送，1是送龙神胸甲
+	H55_AISkillBonusBasic = 0; 0是不送，1是送初始技能
+	H55_AISkillBonusAbsolute = 0; 0是不送，1是送终极技能
+	H55_AITownLevel = 1; AI城镇的建筑等级：选择范围0~5 默认为1 0就是1级城建 1就是6级城建（有1级魔法塔、铁匠铺、市场、酒馆） 每高一级，多5级左右城建
+	H55_AICheats = 0; 0是不生效，1是生效（就是会给所有AI送这些装备和技能）
+	☆☆☆☆☆☆☆☆☆☆☆☆
+	H55_PlayerSetBonus_Tear = 0; 0是不送，1是送眼泪
+	H55_PlayerSetBonus_Travel = 0; 0是不送，1是送旅行者长靴
+	H55_PlayerSetBonus_Shield = 0; 0是不送，1是送哨兵之盾
+	H55_PlayerSetBonus_Angelic_Alliance= 0; 0是不送，1是送天使联盟
+	H55_PlayerSetBonus_Curse_Shoulder = 0; 0是不送，1是送诅咒斗篷
+	H55_PlayerSetBonus_Phoenix = 0; 0是不送，1是送大法师之书
+	H55_PlayerSetBonus_Draconic = 0; 0是不送，1是送龙神胸甲
+	H55_PlayerSkillBonusBasic = 0; 0是不送，1是送初始技能
+	H55_PlayerSkillBonusAbsolute = 0; 0是不送，1是送终极技能
+	H55_PlayerTownLevel = 0; 玩家城镇的建筑等级：选择范围0~5 默认为0 0就是1级城建 1就是6级城建（有1级魔法塔、铁匠铺、市场、酒馆） 每高一级，多5级左右城建
+	H55_PlayerCheats = 0; 0是不生效，1是生效（就是会给您送这些装备和技能）
+	☆☆☆☆☆☆☆☆☆☆☆☆
+	H55_ChooseHero_Name = 'Ving'; 选择英雄的控制台名
+	H55_ChooseHero_Switch  = 1; 0是不启用，1是启用选择英雄功能（第一天酒馆中的两个英雄至少被招走一个，第二天您选择的英雄才会出现在酒馆中）
+	☆☆☆☆☆☆☆☆☆☆☆☆
+	H55_ChooseArtifact_ID = 0; 选择宝物的控制台ID，比如22是速度指环
+	H55_ChooseArtifact_Switch = 0; 0是不启用，1是启用选择初始宝物功能（该选项只有在开局奖励选择宝物时生效）
+	☆☆☆☆☆☆☆☆☆☆☆☆
+	H55_StartCreatureBonusTier = 3; 初始选择生物奖励，奖励的生物等级，可选1~7级，6级初始金钱减少2000，7级初始金钱减少5000（该选项只有在开局奖励选择兵力时生效）
+	☆☆☆☆☆☆☆☆☆☆☆☆
 
-11.战场脚本整理
+11.AI初始技能赠送
+	1)骑士KNIGHT: 			领导  反黑
+	2)圣骑士PALADIN: 			领导  反黑
+	3)堕落骑士HERETIC: 		巫术  反光
+	----------------------------------------
+	4)游侠RANGER: 			幸运  反破
+	5)守望者WARDEN: 			幸运  反黑
+	6)德鲁伊ENCHANTER: 		巫术  反召
+	----------------------------------------
+	7)先知GUILDMASTER: 		领导  反破
+	8)魔法师WIZARD: 			巫术  启蒙
+	9)元素法师ELEMENTALIST: 	巫术  穿透
+	----------------------------------------
+	10)恶魔领主DEMON_LORD: 	领导  反光
+	11)门禁守卫GATE_KEEPER: 	幸运  反召
+	12)恶魔巫师SORCERER: 		巫术  穿透
+	----------------------------------------
+	13)死亡骑士DEATHKNIGHT: 	黑暗  反光
+	14)掠夺者REAVER: 			后勤  反召
+	15)亡灵巫师NECROMANCER: 	巫术  启蒙
+	----------------------------------------
+	16)工程师ENGINEER: 		领导  反破
+	17)符文法师RUNEMAGE: 		巫术  启蒙
+	18)守卫者FLAMEKEEPERA: 	机械  反召
+	----------------------------------------
+	19)地牢领主BEASTMASTER: 	进攻  反破
+	20)刺客SEER: 			进攻  反光
+	21)术士WARLOCK: 			巫术  启蒙
+	----------------------------------------
+	22)酋长BARBARIAN: 		进攻  反黑
+	23)萨满SHAMAN: 			巫术  启蒙
+	24)女巫WARLOCKB: 		巫术  穿透
+
+12.战场脚本整理
  	基础接口
  		1.英雄
  			1.1.行动
@@ -1210,7 +1988,7 @@
 		3.血怒值提升
 		4.生物连续行动
 
-12.先知小屋
+13.先知小屋
  	1.可用宝物换技能，不过技能要优满足前置条件，否则宝物没了技能也没学到
  	2.有4种先知，每次先知的要求被达到后，先知会离去，新的先知会入驻
  	3.技能要优满足前置条件，否则宝物没了技能也没学到
@@ -1259,5 +2037,461 @@
  		元素腕带→符咒大师
  		------------------------------
 
+14.宝物分档
+	-- 1.资源宝物
+		ARTIFACT_RES_WOOD = 97 							--神圣种子→木材产量+100%（在木材矿中使用）
+		ARTIFACT_RES_ORE = 98 							--矮人十字镐→石料产量+100%（在石料矿中使用）
+		ARTIFACT_RES_SULPHUR = 99 						--育龙者的魔法盒→硫磺产量+100%（在硫磺矿中使用）
+		ARTIFACT_RES_CRYSTAL = 100 						--水晶眼球→水晶产量+100%（在水晶矿中使用）
+		ARTIFACT_RES_GEM = 101 							--无尽宝石戒指→宝石产量+100%（在宝石矿中使用）
+		ARTIFACT_RES_MERCURY = 102 						--无尽水银瓶→水银产量+100%（在水银矿中使用）
 
+	-- 2.散件-低
+		ARTIFACT_SWORD_OF_RUINS = 1 					--力量宝剑→英雄攻击+2
+		ARTIFACT_BREASTPLATE_OF_PETRIFIED_WOOD = 14 	--神力胸甲→英雄咒力+2
+		ARTIFACT_SKULL_HELMET = 55 						--亡灵巫师头盔→英雄知识+2
+		ARTIFACT_WISPERING_RING = 65 					--谨慎指环→英雄攻击+2防御+2，我方生物移动速度-1
+		ARTIFACT_BEGINNER_MAGIC_STICK = 80 				--学徒魔杖→英雄咒力+2
+		ARTIFACT_EDGE_OF_BALANCE = 90 					--平衡利刃→正义阵营英雄攻击+3防御-1，邪恶阵营英雄攻击-1防御+3
+		ARTIFACT_STEADFAST = 110 						--坚定之盾→英雄攻击-1防御+4
+		ARTIFACT_BUCKLER = 111 							--矮人之盾→英雄防御+2
+		ARTIFACT_FOUR_LEAF_CLOVER = 8 					--四叶苜蓿→英雄幸运+1
+		ARTIFACT_GOLDEN_SEXTANT = 10 					--海精灵的六分仪→英雄知识+1，英雄海上移动力+25%
+		ARTIFACT_CROWN_OF_MANY_EYES = 12 				--全视王冠→英雄咒力+1，英雄视野+4
+		ARTIFACT_RING_OF_LIGHTING_PROTECTION = 20 		--防电指环→我方生物受到的电属性魔法杀伤-50%
+		ARTIFACT_BOOTS_OF_INTERFERENCE = 27 			--魔防战靴→我方生物魔法抵抗几率+10%
+		ARTIFACT_RIGID_MANTLE = 62 						--西莱纳斗篷→我方生物受到的土属性魔法杀伤-50%
+		ARTIFACT_BEARHIDE_WRAPS = 84 					--熊皮大衣→英雄防御+1，我方生物受到的冰属性魔法杀伤-25%
+		ARTIFACT_RING_OF_UNSUMMONING = 93 				--驱逐之戒→英雄可以使用【驱逐】，降低敌方【召唤魔法】效果（【召唤元素】数量-50%，【召唤凤凰】【剑刃障壁】【召唤蜂窝】生命-50%）
 
+	-- 3.散件-中
+		ARTIFACT_TITANS_TRIDENT = 5 					--泰坦的三叉戟→英雄电属性魔法杀伤+50%
+		ARTIFACT_RING_OF_LIFE = 21 						--活力指环→我方生物生命值上限+2
+		ARTIFACT_EVERCOLD_ICICLE = 18 					--永冻冰柱→英雄冰属性魔法杀伤+50%
+		ARTIFACT_ENDLESS_SACK_OF_GOLD = 28 				--无尽黄金麻袋→在金矿中使用使该矿产量翻倍
+		ARTIFACT_PHOENIX_FEATHER_CAPE = 32 				--凤羽披风→英雄火属性魔法杀伤+50%
+		ARTIFACT_VALORIOUS_ARMOR = 56 					--勇猛战甲→英雄防御+1士气+1
+		ARTIFACT_EARTHSLIDERS = 61 						--翡翠便鞋→英雄土属性魔法杀伤+50%
+		ARTIFACT_TAROT_DECK = 87 						--占卜纸牌→英雄知识+1幸运+1
+		ARTIFACT_REINCARNATION = 112 					--轮回之戒→释放充能转化英雄第一格升级形态部队为另一种形态（英雄战斗胜利后充能）
+		ARTIFACT_WEREWOLF_CLAW_NECKLACE = 17 			--血爪项链→我方生物伤害+1
+		ARTIFACT_CROWN_OF_LEADER = 88 					--领袖王冠→英雄士气+1，【外交术】【理财术】【募兵术】效果+100%
+
+	-- 4.兵种增产-低
+		ARTIFACT_LEGION_T1 = 103 						--军团之令→1级兵种产量+10%（在城镇中使用）
+		ARTIFACT_LEGION_T2 = 104 						--军团之证→2级兵种产量+10%（在城镇中使用）
+		ARTIFACT_LEGION_T3 = 105 						--军团之冠→3级兵种产量+10%（在城镇中使用）
+		ARTIFACT_LEGION_T4 = 106 						--军团之鼓→4级兵种产量+10%（在城镇中使用）
+
+	-- 5.套装组件-低
+		ARTIFACT_NECKLACE_OF_BRAVERY = 16 				--雄狮项链→英雄士气+1
+		ARTIFACT_LION_HIDE_CAPE = 31 					--狮鬃披风→英雄士气+2
+		ARTIFACT_HELM_OF_ENLIGHTMENT = 34 				--启迪头巾→英雄知识+3经验获取+10%
+		ARTIFACT_CHAIN_MAIL_OF_ENLIGHTMENT = 35 		--启迪鳞甲→英雄咒力+3经验获取+20%
+		ARTIFACT_RING_OF_DEATH = 70 					--无悔指环→我方生物免疫【光明圣言】
+		ARTIFACT_RUNIC_WAR_AXE = 81 					--符文战斧→英雄攻击+2咒力+2
+		ARTIFACT_RUNIC_WAR_HARNESS = 82 				--符文战甲→英雄防御+2知识+2
+		ARTIFACT_TREEBORN_QUIVER = 95 					--林生箭袋→我方远程生物攻击+4且无限弹药
+		ARTIFACT_MONK_01 = 116 							--先知布帽→英雄战斗胜利后魔法值+4
+		ARTIFACT_MONK_02 = 117 							--先知长袍→英雄咒力+1知识+1，战斗胜利后魔法值+2
+		ARTIFACT_MONK_03 = 118 							--先知凉鞋→英雄战斗胜利后移动力+250
+		ARTIFACT_MONK_04 = 119 							--先知软剑→英雄攻击+2，战斗胜利后魔法值+3（副手）
+
+	-- 6.功能性宝物-低
+		ARTIFACT_WAYFARER_BOOTS = 26 					--引路长靴→英雄在非本族地形不受移动力惩罚
+		ARTIFACT_MOONBLADE = 58 						--月光利刃→英雄战斗中每次使用魔法后回复2点魔法值（副手）
+		ARTIFACT_BOOTS_OF_SWIFTNESS = 57 				--疾风靴→我方生物移动速度+1
+		ARTIFACT_BOOTS_OF_SPEED = 24 					--快速旅行长靴→英雄陆地移动力+25%
+		ARTIFACT_INHERITANCE = 115 						--幸运护符→英雄战斗胜利后获得幸运避难所效果
+
+	-- 7.散件-高
+		ARTIFACT_GREAT_AXE_OF_GIANT_SLAYING = 2 		--山王战斧→英雄攻击+5
+		ARTIFACT_ICEBERG_SHIELD = 9 					--冰晶护盾→英雄防御+3，我方生物受到的火属性魔法杀伤-50%
+		ARTIFACT_NECKLACE_OF_POWER = 19 				--胜利项链→英雄攻击+2咒力+2
+		ARTIFACT_NIGHTMARISH_RING = 23 					--意志磨灭戒指→敌方生物士气-2
+		ARTIFACT_GOLDEN_HORSESHOE = 25 					--黄金马蹄铁→英雄幸运+2
+		ARTIFACT_ENDLESS_BAG_OF_GOLD = 29 				--军团金像→金币产量+50%（在城镇中使用）
+		ARTIFACT_RING_OF_CELERITY = 59 					--迅捷指环→我方生物主动性+10%
+		ARTIFACT_BAND_OF_CONJURER = 60 					--元素腕带→英雄可以使用【召唤元素】（咒力+4）
+		ARTIFACT_JINXING_BAND = 63 						--诅咒指环→敌方生物幸运-2
+		ARTIFACT_BONESTUDDED_LEATHER = 64 				--皮纹战袍→英雄咒力+5士气-1
+		ARTIFACT_HELM_OF_CHAOS = 66 					--混沌头盔→英雄知识+5防御-1
+		ARTIFACT_RING_OF_THE_SHADOWBRAND = 73 			--阴影烙印指环→英雄咒力+4
+		ARTIFACT_DWARVEN_SMITHY_HUMMER = 85 			--矮人精制战锤→英雄攻击+3，我方生物受到的冰属性魔法杀伤-25%
+		ARTIFACT_BOOK_OF_POWER = 94 					--力量之书→英雄【无启蒙】或【初级启蒙】则知识+1咒力+1，【高级启蒙】则知识+2咒力+2，【专家启蒙】则知识+3咒力+3，将【洞察魔法】效果提升到4级
+
+	-- 8.套装组件-高
+		ARTIFACT_CROWN_OF_COURAGE = 11 					--狮冠→英雄士气+2幸运+2
+		ARTIFACT_DRAGON_SCALE_ARMOR = 36 				--龙鳞铠甲→英雄攻击+2防御+2，我方大型生物主动性+5%
+		ARTIFACT_DRAGON_SCALE_SHIELD = 37 				--龙鳞护盾→英雄防御+4，我方小型生物主动性+5%
+		ARTIFACT_DRAGON_BONE_GRAVES = 38 				--龙骨护胫→英雄咒力+4，我方近战地面生物主动性+10%
+		ARTIFACT_DRAGON_WING_MANTLE = 39 				--龙翼披风→英雄咒力+2知识+2，我方近战飞行生物主动性+10%
+		ARTIFACT_DRAGON_TEETH_NECKLACE = 40 			--龙牙项链→英雄咒力+4，我方施法生物主动性+10%
+		ARTIFACT_DRAGON_TALON_CROWN = 41 				--龙爪王冠→英雄知识+4，我方战争机械主动性+10%
+		ARTIFACT_DRAGON_EYE_RING = 42 					--龙眼指环→英雄攻击+1防御+1咒力+1知识+1，我方远程生物主动性+10%
+		ARTIFACT_DRAGON_FLAME_TONGUE = 43 				--炎龙火舌→英雄攻击+4，我方生物受到的冰属性魔法杀伤-50%
+		ARTIFACT_ROBE_OF_MAGI = 44 						--萨-伊苏斯的长袍→英雄咒力+6
+		ARTIFACT_CROWN_OF_MAGI = 46 					--萨-伊苏斯的王冠→英雄知识+6
+		ARTIFACT_DWARVEN_MITHRAL_CUIRASS = 48 			--矮人王胸甲→英雄防御+3咒力+2，我方生物免疫【内向爆裂】
+		ARTIFACT_DWARVEN_MITHRAL_GREAVES = 49 			--矮人王护胫→英雄防御+2咒力+3，我方生物免疫【延迟大法】
+		ARTIFACT_DWARVEN_MITHRAL_HELMET = 50 			--矮人王头盔→英雄防御+2知识+3，我方生物免疫【失明诅咒】
+		ARTIFACT_DWARVEN_MITHRAL_SHIELD = 51 			--矮人王护盾→英雄防御+5,我方生物免疫【癫狂诅咒】
+		ARTIFACT_OGRE_CLUB = 74 						--食人魔棒→英雄攻击+6，我方生物主动性-5%
+		ARTIFACT_OGRE_SHIELD = 75 						--食人魔盾牌→英雄防御+6，我方生物主动性-5%
+		ARTIFACT_SKULL_OF_MARKAL = 83 					--冥界头骨→英雄咒力+4知识+4士气-2
+		ARTIFACT_GUARDIAN_01 = 120 						--无名英雄之盔→英雄咒力+3知识+3
+		ARTIFACT_GUARDIAN_02 = 121 						--无名英雄之靴→英雄全属性+1
+		ARTIFACT_GUARDIAN_03 = 122 						--无名英雄之盾→英雄攻击+3防御+3
+
+	-- 9.兵种增产-高
+		ARTIFACT_LEGION_T5 = 107 						--军团号角→5级兵种产量+10%（在城镇中使用增加）
+		ARTIFACT_LEGION_T6 = 108 						--军团斗篷→6级兵种产量+10%（在城镇中使用增加）
+		ARTIFACT_LEGION_T7 = 109 						--军团之帜→7级兵种产量+10%（在城镇中使用增加）
+
+	-- 10.功能性宝物-高
+		ARTIFACT_UNICORN_HORN_BOW = 4 					--独角兽角弓→我方远程兵种无射程惩罚
+		ARTIFACT_STAFF_OF_VEXINGS = 6 					--冥界手杖→英雄士气-2，敌方生物主动性-20%
+		ARTIFACT_SHACKLES_OF_WAR = 7 					--末日勇士桎梏→敌我双方无法退出战斗
+		ARTIFACT_PLATE_MAIL_OF_STABILITY = 13 			--无名英雄之甲→英雄攻击+2防御+2咒力+2知识+2，我方生物魔法抵抗几率+20%
+		ARTIFACT_PEDANT_OF_MASTERY = 15 				--技能坠饰→英雄种族技能提升1级
+		ARTIFACT_RING_OF_HASTE = 22 					--速度指环→我方生物主动性+20%
+		ARTIFACT_CLOAK_OF_MOURNING = 33 				--死亡阴影斗篷→敌方生物的士气-2幸运-2
+		ARTIFACT_STAFF_OF_MAGI = 45 					--萨-伊苏斯的手杖→忽略敌我双方的魔法抵抗几率
+		ARTIFACT_RING_OF_MAGI = 47 						--萨-伊苏斯的指环→英雄魔法值消耗-50%
+		ARTIFACT_TWISTING_NEITHER = 67 					--聚合饰物→敌方英雄每消耗2点魔法值，我方英雄就获得1点魔法值
+		ARTIFACT_SHAWL_OF_GREAT_LICH = 69 				--桑德罗的斗篷→忽略敌方生物【免疫心智控制】
+		ARTIFACT_NECROMANCER_PENDANT = 71 				--招魂护身符→英雄招魂比例+10%，DE消耗-10%
+		ARTIFACT_TOME_OF_DESTRUCTION = 76 				--破坏魔法书→英雄可以使用全部破坏魔法
+		ARTIFACT_TOME_OF_LIGHT_MAGIC = 77 				--光明魔法书→英雄可以使用全部光明魔法
+		ARTIFACT_TOME_OF_DARK_MAGIC = 78 				--黑暗魔法书→英雄可以使用全部黑暗魔法
+		ARTIFACT_TOME_OF_SUMMONING_MAGIC = 79 			--召唤魔法书→英雄可以使用召唤黑暗魔法
+		ARTIFACT_RING_OF_MACHINE_AFFINITY = 91 			--机械引力戒指→弩车发射次数+1，投石车发射次数+1，医疗帐篷治疗效果+100%，弹药车提供的远程攻击+4
+		ARTIFACT_PENDANT_OF_STARDUST = 113 				--星尘坠饰→套装加成效果所需数量-1
+
+	-- 11.神器
+		ARTIFACT_ANGELIC_ALLIANCE = 68 					--天使联盟→英雄攻击+8士气+4，战斗开始时自动施放【群体疾速行动】【群体非凡神力】
+		ARTIFACT_ANGEL_WINGS = 30 						--天使之翼→英雄士气+2幸运+2，获得飞行能力
+		ARTIFACT_GRAAL = 53 							--亚莎之泪→建造奇迹（在城镇中使用）
+		ARTIFACT_MASK_OF_DOPPELGANGER = 89 				--皇家遗物→获得2,000,000经验值（在城镇中使用）
+		ARTIFACT_HORN_OF_PLENTY = 92 					--丰收之角→资源仓库每天获得木石+8稀矿+4（在城镇中使用）
+		ARTIFACT_CURSE_SHOULDER = 114 					--诅咒斗篷→英雄咒力+6知识+6士气-3，战斗开始时自动施放【群体延迟大法】【群体痛苦折磨】
+		ARTIFACT_DRACONIC = 123 						--龙神胸甲→英雄攻击+5防御+5咒力+5知识+5，每天获得1个7级生物
+		ARTIFACT_SENTINEL = 124 						--哨兵之盾→英雄防御+12，战斗开始时自动施放【群体坚韧不屈】【群体正当之力】
+		ARTIFACT_EIGHTFOLD = 125 						--亚莎之八重杖→英雄咒力+12，英雄施法后有25%几率再次行动
+		ARTIFACT_CODEX = 126 							--大法师之典→英雄知识+12，每天获得1只【凤凰】
+
+	-- 初高神-分档
+		ARTF_CLASS_MINOR 初级 1~5
+		ARTF_CLASS_MAJOR 高级 6~9
+		ARTF_CLASS_RELIC 神器 10~11
+		不售卖及地图生成 11
+
+	-- 价格
+		1~2 → 9000
+		3~5 → 15000
+		6~7 → 21000
+		8~10 → 30000
+		11 → 150000
+
+	-- 套装汇总
+		雄狮之灵
+			组件
+				雄狮项链
+				狮鬃披风
+				狮冠
+			特效
+				2件：
+					英雄攻击+4
+					骑士英雄普攻时目标生物士气-2
+				3件：
+					英雄获得【入神】效果
+		箭手梦幻
+			组件
+				林生箭袋
+				独角兽角弓
+			特效
+				2件：
+					我方远程生物攻击后ATB置为0.3
+					游侠英雄攻击或【精准射击】【箭如雨下】后ATB置为0.3
+		萨-伊苏斯的徽章
+			组件
+				萨-伊苏斯的长袍
+				萨-伊苏斯的王冠
+				萨-伊苏斯的手杖
+				萨-伊苏斯的指环
+			特效
+				2件：
+					我方施法生物魔法值+100%咒力+100%
+					魔法师英雄施法后ATB消耗额外-10%
+				3件：
+					英雄咒力+6
+				4件：
+					英雄施法后ATB消耗额外-10%
+		鄂加斯的意志
+			组件
+				意志磨灭戒指
+				混沌头盔
+			特效
+				2件：
+					英雄攻击+5
+					门禁守卫英雄【门禁大师】【烈狱幻境】【门禁卫士】效果+25%
+		死亡拥抱
+			组件
+				无悔指环
+				冥界手杖
+				死亡阴影斗篷
+				招魂护身符
+			特效
+				2件：
+					敌方生物移动速度-1
+					亡灵巫师英雄【女妖尖叫】额外令敌方生物士气-1幸运-1
+				3件：
+					英雄咒力+3知识+3
+				4件：
+					敌方生物士气低落后攻击-20%防御-20%（持续1回合）
+					亡灵巫师英雄DE消耗-25%
+		矮人王的盔甲
+			组件
+				矮人王胸甲
+				矮人王头盔
+				矮人王护胫
+				矮人王护盾
+			特效
+				2件：
+					我方生物所受魔法伤害-40%
+					符文法师英雄咒力+10%
+				3件：
+					英雄咒力+2知识+2
+				4件：
+					英雄防御+8
+		符文之力
+			组件
+				符文战斧
+				符文战甲
+			特效
+				2件：
+					英雄攻击+1防御+1咒力+1知识+1
+					术士英雄【元素锁链】效果+100%
+		力量武器
+			组件
+				食人魔棒
+				食人魔盾牌
+			特效
+				2件：
+					我方生物攻击+3生命+2
+					野蛮人英雄攻击后ATB置为0.3
+		启迪法衣
+			组件
+				启迪头巾
+				启迪鳞甲
+			特效
+				2件：
+					英雄经验获取+15%
+		龙之力
+			组件
+				龙鳞铠甲
+				龙鳞护盾
+				龙骨护胫
+				龙翼披风
+				龙牙项链
+				龙爪王冠
+				龙眼指环
+				炎龙火舌
+			特效
+				2件：
+					英雄攻击+1防御+1咒力+1知识+1
+				4件：
+					我方7级生物攻击+5防御+5生命+20
+				6件：
+					英雄攻击+3防御+3咒力+3知识+3
+				8件：
+					每天获得1个7级生物
+		先知法衣
+			组件
+				先知布帽
+				先知长袍
+				先知凉鞋
+				先知软剑
+			特效
+				2件：
+					战斗后魔法回复+50%
+				3件：
+					英雄咒力+3知识+3
+				4件：
+					战斗后移动力回复+50%
+		无名英雄的遗志
+			组件
+				无名英雄之盔
+				无名英雄之靴
+				无名英雄之盾
+				无名英雄之甲
+			特效
+				2件：
+					英雄全属性+1
+				3件：
+					英雄全属性+1
+				4件：
+					英雄全属性+1
+		学徒套装
+			组件
+				力量宝剑
+				神力胸甲
+				亡灵巫师头盔
+				矮人之盾
+				魔防战靴
+			特效
+				2件：
+					英雄防御+1
+				3件：
+					英雄知识+1
+				4件：
+					英雄攻击+1
+				5件：
+					英雄咒力+1
+		元素之力
+			组件
+				泰坦的三叉戟
+				永冻冰柱
+				凤羽披风
+				翡翠便鞋
+			特效
+				2件：
+					英雄咒力+2
+				4件：
+					英雄知识+2
+
+	-- 宝物合成
+			1. 英雄满足合成条件后，在城镇中会被询问是否合成宝物，选择否-永远不再询问该英雄是否合成该宝物
+			2. 列表如下
+				天使联盟
+					组件
+						无名英雄之盔
+						无名英雄之靴
+						无名英雄之盾
+						无名英雄之甲
+				亚莎之泪
+					组件
+						军团之令
+						军团之证
+						军团之冠
+						军团之鼓
+						军团号角
+						军团斗篷
+						军团之帜
+						军团金像
+				丰收之角
+					组件
+						神圣种子
+						矮人十字镐
+						育龙者的魔法盒
+						水晶眼球
+						无尽宝石戒指
+						无尽水银瓶
+						无尽黄金麻袋
+				诅咒斗篷
+					组件
+						无悔指环
+						冥界手杖
+						死亡阴影斗篷
+						招魂护身符
+				龙神胸甲
+					组件
+						龙鳞铠甲
+						龙鳞护盾
+						龙骨护胫
+						龙翼披风
+						龙牙项链
+						龙爪王冠
+						龙眼指环
+						炎龙火舌
+				哨兵之盾
+					组件
+						矮人王胸甲
+						矮人王头盔
+						矮人王护胫
+						矮人王护盾
+				亚莎之八重杖
+					组件
+						萨-伊苏斯的长袍
+						萨-伊苏斯的王冠
+						萨-伊苏斯的手杖
+						萨-伊苏斯的指环
+				大法师之典
+					组件
+						破坏魔法书
+						光明魔法书
+						黑暗魔法书
+						召唤魔法书
+				无名英雄之甲
+					组件
+						力量宝剑
+						神力胸甲
+						亡灵巫师头盔
+						矮人之盾
+						魔防战靴
+				破坏魔法书
+					组件
+						泰坦的三叉戟
+						永冻冰柱
+						凤羽披风
+						翡翠便鞋
+
+15.银行相关
+	对应关系
+		固定兵力+固定奖励
+			BUILDING_WAGON 					手推车→每队30的农民3形态，奖励5石矿
+			BUILDING_SKELETON 				勇士之墓→每队20的僵尸3形态，奖励一件等级1的宝物
+		8种族
+			BUILDING_UNKEMPT 				逃兵哨塔（圣堂）
+			BUILDING_LEAN_TO 				树塔（森林）
+			BUILDING_NAGA_BANK 				象牙塔（学院）
+			BUILDING_BLOOD_TEMPLE 			血之神庙（地牢）
+			BUILDING_CRYPT 					地穴（墓园）
+			BUILDING_GARGOYLE_STONEVAULT 	石像鬼穹顶（地狱）
+			BUILDING_DWARVEN_TREASURE 		矮人宝藏（堡垒）
+			BUILDING_NAGA_TEMPLE 			兽人坑洞（据点）
+			BUILDING_ABANDONED_MINE 		废弃的矿洞（8种族随机）
+		非8种族
+			BUILDING_CYCLOPS_STOCKPILE 		元素反应堆（中立元素）
+			BUILDING_DRAGON_UTOPIA 			龙国
+			BUILDING_PYRAMID 				金字塔
+			BUILDING_BUOY 					鄂加斯邪庙
+			BUILDING_SUNKEN_TEMPLE 			沉沦的神庙
+			BUILDING_DEMOLISH 				被掘毁的王陵
+			BUILDING_TREANT_THICKET 		德鲁伊岩洞
+	奖励
+		高级银行计算时当前周数会按额外增加6周计算
+		固定奖励：金币2000+500*当前周数
+		随机奖励：5随2→2选1，选择前只能知道大分类，但是不知道具体数值
+			生物：必为英雄所带领兵种（非同族亦可）；数量=生物周产/2+random(当前月数*生物周产/2)
+			魔法：
+				1.英雄未学习
+				2.满足前置魔法等级
+				3.数量为一
+				4.普通银行从低到高，高级银行从高到低
+				5.无法学习群体法术
+				6.若可学习魔法已满，转换为经验值奖励 英雄等级*20000
+				7.顺序为 光→暗→召→破→符
+				8.额外获得 经验值奖励 英雄等级*1000
+			属性点：
+				1.力量型英雄 		A/D→50%/50%
+				2.平衡型英雄-非墓园 	A/D/P/K/M/L→23%/23%/23%/23%/4%/4%
+				4.平衡型英雄-墓园 	A/D/P/K/L→23%/23%/23%/23%/8%
+				3.魔法型英雄 		P/K→50%/50%
+				5.野蛮人英雄 		A/D/M/L→45%/45%5%/5%
+			资源：
+				石木:(2+当前月数*2)+(0~4)
+				稀矿:(1+当前月数)+(0~2)
+			宝物：参见宝物分等1~10级，第1周1~5（同开局随机），之后双数周+1等级上限，单数周+1等级下限，第11周以后为6~10
+
+16.资源宝物相关
+	资源宝物可在资源矿上重复使用，使用与当前矿产资源匹配的宝物后，矿产资源产量增加
+			累计使用1个宝物，产量增加到初始2倍
+			累计使用3个宝物，产量增加到初始3倍
+			累计使用6个宝物，产量增加到初始4倍
+			累计使用10个宝物，产量增加到初始5倍
+
+17.军团宝物相关
+	军团宝物可在城镇中使用
+	同一级别只能使用一次
+	效果为每周增加未招募的相应等级兵种10%的可招募

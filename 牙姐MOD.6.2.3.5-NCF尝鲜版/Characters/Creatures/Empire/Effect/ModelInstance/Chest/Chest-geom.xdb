@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Geometry>
+	<SrcName href="/Chest.mb"/>
+	<uid>F5BA8902-EE18-43DD-B584-BE2EC7B91946</uid>
+	<RootMesh/>
+	<RootJoint>Chest</RootJoint>
+	<Size>
+		<x>0.526134</x>
+		<y>0.606948</y>
+		<z>0.997238</z>
+	</Size>
+	<Center>
+		<x>-0.00747199</x>
+		<y>0.001176</y>
+		<z>-0.134553</z>
+	</Center>
+	<BestFitPoint>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+	</BestFitPoint>
+	<Dir>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+		<w>0</w>
+	</Dir>
+	<AIGeometry/>
+	<NumMeshes>1</NumMeshes>
+	<MaterialQuantities>
+		<Item>1</Item>
+	</MaterialQuantities>
+	<MeshNames>
+		<Item>ChestShape</Item>
+	</MeshNames>
+	<MeshAnimated/>
+	<MeshWindAffected/>
+</Geometry>

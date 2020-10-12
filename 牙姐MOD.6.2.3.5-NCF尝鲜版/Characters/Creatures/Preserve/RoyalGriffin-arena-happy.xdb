@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BasicSkelAnim>
+	<SrcName href="/H5A1/Models/Creatures/Renegates/RoyalGriffin.mb"/>
+	<uid>FB53737A-DBBC-421D-94E0-A792566F1917</uid>
+	<ExpSrcClip href="/H5A1/Animations/Creatures/Renegades/Griffin/Clip/RoyalGriffin.happy.ma"/>
+	<ExpRootTransform>Global</ExpRootTransform>
+	<ExpFrameFirst>0</ExpFrameFirst>
+	<ExpFrameLast>0</ExpFrameLast>
+	<ExpSettingsFile href=""/>
+	<MovementSpeed>0</MovementSpeed>
+	<SpeedFactor>2</SpeedFactor>
+	<Sound href="/Sounds/_(Sound)/Creatures/Haven/RoyalGriffin/happy.xdb#xpointer(/Sound)"/>
+	<Effect href="/Effects/_(Effect)/Characters/Creatures/Renegades/RoyalGriffin/glow01.(Effect).xdb#xpointer(/Effect)"/>
+	<SpeedLineFallTime>250</SpeedLineFallTime>
+	<SpeedLineMaterial/>
+</BasicSkelAnim>

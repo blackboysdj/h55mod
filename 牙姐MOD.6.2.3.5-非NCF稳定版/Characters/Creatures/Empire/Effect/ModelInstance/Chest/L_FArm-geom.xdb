@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Geometry>
+	<SrcName href="/Larm.mb"/>
+	<uid>D55EEA12-C2AC-44A7-AF37-3554D9FDAACE</uid>
+	<RootMesh/>
+	<RootJoint>Larm</RootJoint>
+	<Size>
+		<x>0.779818</x>
+		<y>0.283176</y>
+		<z>0.405542</z>
+	</Size>
+	<Center>
+		<x>-0.009819</x>
+		<y>0.002377</y>
+		<z>-0.043777</z>
+	</Center>
+	<BestFitPoint>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+	</BestFitPoint>
+	<Dir>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+		<w>0</w>
+	</Dir>
+	<AIGeometry/>
+	<NumMeshes>1</NumMeshes>
+	<MaterialQuantities>
+		<Item>1</Item>
+	</MaterialQuantities>
+	<MeshNames>
+		<Item>LarmShape</Item>
+	</MeshNames>
+	<MeshAnimated/>
+	<MeshWindAffected/>
+</Geometry>

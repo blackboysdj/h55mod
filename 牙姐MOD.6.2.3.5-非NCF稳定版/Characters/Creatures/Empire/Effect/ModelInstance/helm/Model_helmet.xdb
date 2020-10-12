@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModelInstance>
+	<Model href="helmet.xdb#xpointer(/Model)"/>
+	<SkelAnim/>
+	<Position>
+		<x>-0.01</x>
+		<y>-0.035</y>
+		<z>0.04</z>
+	</Position>
+	<Rotation>
+		<x></x>
+		<y>0</y>
+		<z>-0.12</z>
+		<w>1</w>
+	</Rotation>
+	<Scale>0.9</Scale>
+	<Offset>0</Offset>
+	<CycleLength>0</CycleLength>
+	<CycleCount>0</CycleCount>
+	<GlueToNamedBone>Head</GlueToNamedBone>
+	<GlueToBone>0</GlueToBone>
+</ModelInstance>

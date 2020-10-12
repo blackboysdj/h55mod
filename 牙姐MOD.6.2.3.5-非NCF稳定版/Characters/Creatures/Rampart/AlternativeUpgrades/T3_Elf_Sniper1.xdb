@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Model>
+	<Materials>
+		<Item href="T3_Elf_Sniper-body_Rav3_Rav3_Default1.(Material).xdb#xpointer(/Material)"/>
+		<Item href="T3_Elf_Sniper-body_Rav3_Rav3_Main1.(Material).xdb#xpointer(/Material)"/>
+		<Item href="T3_Elf_Sniper-body_Rav3_Rav3_Main1.(Material).xdb#xpointer(/Material)"/>
+	</Materials>
+	<Skeleton href="T3_Elf_Sniper-skel.xdb#xpointer(/Skeleton)"/>
+	<Geometry href="T3_Elf_Sniper-geom.xdb#xpointer(/Geometry)"/>
+	<Animations/>
+	<WindPower>1</WindPower>
+</Model>

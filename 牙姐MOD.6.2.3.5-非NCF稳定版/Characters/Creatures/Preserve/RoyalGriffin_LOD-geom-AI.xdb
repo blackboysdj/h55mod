@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AIGeometry>
+	<SrcName href="/H5A1/Models/Creatures/Renegates/RoyalGriffin_LOD.mb"/>
+	<RootMesh>AI</RootMesh>
+	<RootJoint/>
+	<Volume>0</Volume>
+	<SolidPart>0</SolidPart>
+	<AABBCenter>
+		<x>0</x>
+		<y>-0.164359</y>
+		<z>0.900441</z>
+	</AABBCenter>
+	<AABBHalfSize>
+		<x>0.801411</x>
+		<y>1.26436</y>
+		<z>0.900441</z>
+	</AABBHalfSize>
+	<uid>4C7C9E14-39FB-4962-9B1A-75A4B8289607</uid>
+</AIGeometry>

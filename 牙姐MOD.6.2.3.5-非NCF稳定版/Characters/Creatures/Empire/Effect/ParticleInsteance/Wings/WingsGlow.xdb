@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Particle>
+	<SrcName href="/H5A1/Effects/Artefacts/TarotDeck.mb"/>
+	<ExportPrefix>FX</ExportPrefix>
+	<WrapSize>
+		<x>0</x>
+		<y>0</y>
+	</WrapSize>
+	<Bound>005ef43de0f7fb3d7048743f16122041dfc5c540a0e3ad40790ab640</Bound>
+	<PerParticleFog>false</PerParticleFog>
+	<uid>F9A3DCF2-8F11-4452-B00D-112166935FA9</uid>
+</Particle>

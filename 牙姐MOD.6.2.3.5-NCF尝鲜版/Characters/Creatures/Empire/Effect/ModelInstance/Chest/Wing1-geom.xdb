@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Geometry>
+	<SrcName href="/Wing1.mb"/>
+	<uid>AAD37556-218E-4DA8-9740-1484218A88F7</uid>
+	<RootMesh/>
+	<RootJoint>Wing1</RootJoint>
+	<Size>
+		<x>0.464841</x>
+		<y>0.410209</y>
+		<z>0.411461</z>
+	</Size>
+	<Center>
+		<x>-0.0117605</x>
+		<y>-0.0093635</y>
+		<z>0.0077985</z>
+	</Center>
+	<BestFitPoint>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+	</BestFitPoint>
+	<Dir>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+		<w>0</w>
+	</Dir>
+	<AIGeometry/>
+	<NumMeshes>1</NumMeshes>
+	<MaterialQuantities>
+		<Item>1</Item>
+	</MaterialQuantities>
+	<MeshNames>
+		<Item>Wing1Shape</Item>
+	</MeshNames>
+	<MeshAnimated/>
+	<MeshWindAffected/>
+</Geometry>

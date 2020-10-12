@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Geometry>
+	<SrcName href="/L_Arm.mb"/>
+	<uid>F15A2756-9185-4973-A3D6-58B6A85BB5E5</uid>
+	<RootMesh/>
+	<RootJoint>L_Arm</RootJoint>
+	<Size>
+		<x>0.463085</x>
+		<y>0.2062</y>
+		<z>0.211127</z>
+	</Size>
+	<Center>
+		<x>0.0136785</x>
+		<y>0.00455</y>
+		<z>0.0240475</z>
+	</Center>
+	<BestFitPoint>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+	</BestFitPoint>
+	<Dir>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+		<w>0</w>
+	</Dir>
+	<AIGeometry/>
+	<NumMeshes>1</NumMeshes>
+	<MaterialQuantities>
+		<Item>1</Item>
+	</MaterialQuantities>
+	<MeshNames>
+		<Item>L_ArmShape</Item>
+	</MeshNames>
+	<MeshAnimated/>
+	<MeshWindAffected/>
+</Geometry>

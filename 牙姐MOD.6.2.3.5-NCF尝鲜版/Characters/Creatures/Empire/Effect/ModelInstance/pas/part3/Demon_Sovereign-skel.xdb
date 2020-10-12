@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Skeleton ObjectRecordID="1000652">
+	<SrcName href="/models/Heroes/DemonSovereign/Demon_Sovereign.mb"/>
+	<RootJoint>Global</RootJoint>
+	<MSRFormat>true</MSRFormat>
+	<Animations/>
+	<uid>480F26FC-C5D3-47DB-885F-DAD0CF8C1BC4</uid>
+</Skeleton>

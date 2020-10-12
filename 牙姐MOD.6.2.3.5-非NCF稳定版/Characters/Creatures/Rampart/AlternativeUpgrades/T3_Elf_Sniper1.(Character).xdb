@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Character>
+	<Model href="T3_Elf_Sniper1.xdb#xpointer(/Model)"/>
+	<ArenaAnimSet href="T3_Elf_Sniper-arena.xdb#xpointer(/AnimSet)"/>
+	<AdvMapAnimSet/>
+	<ColourModels/>
+</Character>

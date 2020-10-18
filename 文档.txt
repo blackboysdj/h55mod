@@ -1,0 +1,7 @@
+YaHei Consolas Hybrid
+DejaVu Sans Mono
+
+
+<body_bright>
+<color=yellow>
+<color=ff0033>

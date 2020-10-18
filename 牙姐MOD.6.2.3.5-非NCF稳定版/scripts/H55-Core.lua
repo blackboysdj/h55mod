@@ -10041,7 +10041,7 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 			}
 		}
 		, ["AFTER"] = 114
-		, ["HEROLEVEL_SCALE"] = 1
+		, ["HEROLEVEL_SCALE"] = 6
 		, ["CREATURE_SCALE"] = 1
 	};
 	TTH_TABLE_CastCreature["Thant"] = {
@@ -10075,7 +10075,7 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 			}
 		}
 		, ["AFTER"] = 116
-		, ["HEROLEVEL_SCALE"] = 1
+		, ["HEROLEVEL_SCALE"] = 5
 		, ["CREATURE_SCALE"] = 1
 	};
 	TTH_TABLE_CastCreature["Archilus"] = {
@@ -10109,7 +10109,7 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 			}
 		}
 		, ["AFTER"] = 90
-		, ["HEROLEVEL_SCALE"] = 1
+		, ["HEROLEVEL_SCALE"] = 6
 		, ["CREATURE_SCALE"] = 1
 	};
 	TTH_TABLE_CastCreature["Azar"] = {
@@ -10143,7 +10143,7 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 			}
 		}
 		, ["AFTER"] = 113
-		, ["HEROLEVEL_SCALE"] = 1
+		, ["HEROLEVEL_SCALE"] = 4
 		, ["CREATURE_SCALE"] = 5
 	};
 	TTH_TABLE_CastCreature["Itil"] = {
@@ -10177,7 +10177,7 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 			}
 		}
 		, ["AFTER"] = 952
-		, ["HEROLEVEL_SCALE"] = 1
+		, ["HEROLEVEL_SCALE"] = 5
 		, ["CREATURE_SCALE"] = 1
 	};
 	function TTH_HeroCustomAbility_CastCreature(strHero)
@@ -10186,6 +10186,14 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 		local iPlayer = GetObjectOwner(strHero);
 		local iType, iCount = H55_ArmyInfo(strHero);
 		local iLevel = GetHeroLevel(strHero);
+
+		if iLevel < TTH_TABLE_CastCreature[strHero]["HEROLEVEL_SCALE"] then
+			MessageBoxForPlayers(GetPlayerFilter(iPlayer), "/Text/Game/Scripts/HeroCustomAbility/CastCreatureWithoutLevel.txt", "" ,"");
+			print(strHero.." custom ability3 not as expected hero level");
+			print("TTH "..strHero.." Event end");
+			print("---------------------------------------------------------------------");
+			return nil;
+		end;
 
 		local arrResPlayer = {};
 		arrResPlayer[WOOD] = GetPlayerResource(iPlayer, WOOD);
@@ -10225,7 +10233,7 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 				end;
 				RemoveHeroCreatures(strHero, iType[0], iCountMin * TTH_TABLE_CastCreature[strHero]["CREATURE_SCALE"]);
 				AddHeroCreatures(strHero, TTH_TABLE_CastCreature[strHero]["AFTER"], iCountMin);
-				QuestionBoxForPlayers(GetPlayerFilter(iPlayer), {
+				MessageBoxForPlayers(GetPlayerFilter(iPlayer), {
 					"/Text/Game/Scripts/HeroCustomAbility/CastCreatureSuccess.txt"
 					;strCreatureBefore=TTH_TABLE_NCF_CREATURES[iType[0]]["NAME"]
 					,strCreatureAfter=TTH_TABLE_NCF_CREATURES[TTH_TABLE_CastCreature[strHero]["AFTER"]]["NAME"]
@@ -10255,7 +10263,7 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 					arrCreatureBefore[i] = 0;
 				end;
 			end
-			QuestionBoxForPlayers(GetPlayerFilter(iPlayer), {
+			MessageBoxForPlayers(GetPlayerFilter(iPlayer), {
 				"/Text/Game/Scripts/HeroCustomAbility/CastCreatureFailure.txt"
 				;strCreature0=TTH_TABLE_NCF_CREATURES[arrCreatureBefore[0]]["NAME"]
 				,strCreature1=TTH_TABLE_NCF_CREATURES[arrCreatureBefore[1]]["NAME"]

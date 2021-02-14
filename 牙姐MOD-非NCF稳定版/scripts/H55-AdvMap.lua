@@ -3722,7 +3722,7 @@ function TTH_BankReward(strHero, iLevel)
 	local iPlayer = GetObjectOwner(strHero);
 	local iRandomEnter = random(5);
 	local iRandomCancel = random(4);
-	if iRandomCancel = iRandomEnter then
+	if iRandomCancel == iRandomEnter then
 		iRandomCancel = iRandomCancel + 1;
 	end;
 	local strClass = H55_GetHeroClass(strHero);
@@ -4032,17 +4032,17 @@ function TTH_Reward_Spell(strHero, iRewardParam)
 		-- 群体魔法5%几率+强效魔法5%几率
 		strType = "MASSandEMPOWERED";
 	end;
-	for iIndex, objJndix in TTH_TABLE_SPELL_TYPE[strType]["ID"] do
-		if KnowHeroSpell(strHero, TTH_TABLE_SPELL_TYPE[strType]["ID"]) == nil then
-			TeachHeroSpell(strHero, TTH_TABLE_SPELL_TYPE[strType]["ID"][iIndex]);
-			if H55_IsThisAIPlayer(iPlayer) ~= 1 then
-				ShowFlyingSign({"/Text/Game/Scripts/BankReward/RewardSpell/TemplateSpell.txt";name=TTH_TABLE_SPELL_TYPE[strType]["NAME"][iIndex]}, strHero, iPlayer, 5);
-				local iPositionX, iPositionY, iPositionZ = GetObjectPosition(strHero);
-				Play3DSoundForPlayers(GetPlayerFilter(iPlayer), H55_SndSpell, iPositionX, iPositionY, iPositionZ);
-			end;
-		else
-			ShowFlyingSign({"/Text/Game/Scripts/BankReward/RewardSpell/TemplateNoMore.txt";name=TTH_TABLE_SPELL_TYPE[strType]["NAME"][iIndex]}, strHero, iPlayer, 5);
+	local iIndex = random(length(TTH_TABLE_SPELL_TYPE[strType]["ID"])) + 1;
+	if KnowHeroSpell(strHero, TTH_TABLE_SPELL_TYPE[strType]["ID"][iIndex]) == nil then
+		TeachHeroSpell(strHero, TTH_TABLE_SPELL_TYPE[strType]["ID"][iIndex]);
+		if H55_IsThisAIPlayer(iPlayer) ~= 1 then
+			ShowFlyingSign({"/Text/Game/Scripts/BankReward/RewardSpell/TemplateSpell.txt";name=TTH_TABLE_SPELL_TYPE[strType]["NAME"][iIndex]}, strHero, iPlayer, 5);
+			local iPositionX, iPositionY, iPositionZ = GetObjectPosition(strHero);
+			Play3DSoundForPlayers(GetPlayerFilter(iPlayer), H55_SndSpell, iPositionX, iPositionY, iPositionZ);
 		end;
+	else
+		ShowFlyingSign({"/Text/Game/Scripts/BankReward/RewardSpell/TemplateNoMore.txt";name=TTH_TABLE_SPELL_TYPE[strType]["NAME"][iIndex]}, strHero, iPlayer, 5);
+		TTH_Reward_Exp(strHero, iRewardParam);
 	end;
 end;
 -- iRewardParam: H55_AbsoluteWeek

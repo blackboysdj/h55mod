@@ -4042,6 +4042,11 @@ function TTH_Reward_Spell(strHero, iRewardParam)
 		end;
 	else
 		ShowFlyingSign({"/Text/Game/Scripts/BankReward/RewardSpell/TemplateNoMore.txt";name=TTH_TABLE_SPELL_TYPE[strType]["NAME"][iIndex]}, strHero, iPlayer, 5);
+		if iRewardParam == 0 then
+			iRewardParam = H55_AbsoluteWeek;
+		else
+			iRewardParam = H55_AbsoluteWeek + 6;
+		end;
 		TTH_Reward_Exp(strHero, iRewardParam);
 	end;
 end;

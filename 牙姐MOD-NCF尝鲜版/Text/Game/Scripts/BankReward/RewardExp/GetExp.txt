@@ -1,0 +1,1 @@
+<body_bright>无法习得魔法，转为获得经验<color=yellow><value=iExp>

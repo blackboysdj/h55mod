@@ -6,8 +6,6 @@ DejaVu Sans Mono
 <color=yellow>
 <color=ff0033>
 
-2.转化类英雄功能修改
-	2.1.转化功能增加CD，CD为（转化后生物等级+1）天
-	2.2.每次战斗后CD-1，每次过夜CD-1
-	2.3.英雄1级时便可进行转化（只要CD到了）
-	2.4.英雄可转化生物可随英雄等级提高而改变
+
+		1.4.英雄可转化生物可随英雄等级提高而改变（1转多）
+TTH_HeroCustomAbility_CastCreature_GCD[hero] = TTH_TABLE_CastCreature[hero]["HEROLEVEL_SCALE"];

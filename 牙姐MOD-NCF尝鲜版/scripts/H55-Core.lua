@@ -496,6 +496,12 @@ TTH_HeroCustomAbilityOwner3 = {};
 -- end 英雄手动特技3
 
 -- by 牙姐
+-- begin 英雄手动特技3
+TTH_HeroCustomAbility_CastCreature_GCD = {};
+TTH_HeroCustomAbility_CI = {};
+-- end 英雄手动特技3
+
+-- by 牙姐
 -- begin 士气<-5转化为亡灵巫师
 TTH_Necromancer = {};
 -- end
@@ -3081,7 +3087,7 @@ function H55_WeeklyReinforce(s_hero, i_player, i_tlevel, i_stat_id, i_spec_creat
 	local i_growth = H55_Ceil(H55_COEF_LIST[i_tlevel] * i_value / 2);
 	-- by 牙姐 2020-04-15 22:34:56
 	-- begin AI的兵种特在每周增兵时按玩家设置的增兵倍数翻倍
-		if H55_IsThisAIPlayer(iPlayer) == 1 then
+		if H55_IsThisAIPlayer(i_player) == 1 then
 			i_growth = H55_Ceil(i_growth * H55_AIArmyCoef);
 		end;
 	--end
@@ -6074,6 +6080,8 @@ function H55_ContinuesEvent(player)
 			if TTH_HeroCustomAbilityOwner3[hero] ~= 1 then
 				if contains(TTH_TABLE_HeroCustomAbilityOwner3, hero) ~= nil then
 					ControlHeroCustomAbility(hero, CUSTOM_ABILITY_3, CUSTOM_ABILITY_ENABLED);
+					TTH_HeroCustomAbility_CastCreature_GCD[hero] = TTH_TABLE_CastCreature[hero]["HEROLEVEL_SCALE"];
+					print('Gcd-init:'..TTH_HeroCustomAbility_CastCreature_GCD[hero]);
 					print(hero.." custom ability has been given");
 					TTH_HeroCustomAbilityOwner3[hero] = 1;
 				end;
@@ -7262,6 +7270,14 @@ function H55_ContinuesEvent(player)
 				if GetSavedCombatArmyHero(ci, 1) == hero and HasHeroSkill(hero, KNIGHT_FEAT_GRAIL_VISION) ~= nil then
 					if H55_CI_Grail_Last[hero] == nil or H55_CI_Grail_Last[hero] ~= ci then
 						H55_CI_Grail_Last[hero] = ci;
+					end;
+				end;
+
+				if contains(TTH_TABLE_HeroCustomAbility_CastCreature, hero) ~= nil and GetSavedCombatArmyHero(ci, 1) == hero then
+					if TTH_HeroCustomAbility_CI[hero] ~= ci then
+						TTH_HeroCustomAbility_CastCreature_GCD[hero] = TTH_HeroCustomAbility_CastCreature_GCD[hero] - 1;
+						print('Gcd-combatIndex:'..TTH_HeroCustomAbility_CastCreature_GCD[hero]);
+						TTH_HeroCustomAbility_CI[hero] = ci;
 					end;
 				end;
 
@@ -8677,6 +8693,17 @@ function H55_ResetDailyEvents(iPlayer)
 	for iIndex, objItem in TTH_TABLE_HeroCustomAbility_Recovery do
 		ControlHeroCustomAbility(objItem, CUSTOM_ABILITY_3, CUSTOM_ABILITY_ENABLED);
 		print(objItem.." custom ability3 has been recovery");
+	end;
+	-- end
+
+	-- begin by 牙姐 2021-02-16 00:51:09
+	-- 每天减少1CD 转化生物
+	for iIndex, objItem in TTH_TABLE_HeroCustomAbility_CastCreature do
+		if TTH_HeroCustomAbility_CastCreature_GCD[objItem] ~= nil and player == GetObjectOwner(objItem) then
+			TTH_HeroCustomAbility_CastCreature_GCD[objItem] = TTH_HeroCustomAbility_CastCreature_GCD[objItem] - 1;
+			print('Gcd-daily:'..TTH_HeroCustomAbility_CastCreature_GCD[objItem]);
+			print(objItem.." custom ability3 for cast-creature has been reduced");
+		end;
 	end;
 	-- end
 
@@ -10240,9 +10267,9 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 		local iType, iCount = H55_ArmyInfo(strHero);
 		local iLevel = GetHeroLevel(strHero);
 
-		if iLevel < TTH_TABLE_CastCreature[strHero]["HEROLEVEL_SCALE"] then
-			MessageBoxForPlayers(GetPlayerFilter(iPlayer), "/Text/Game/Scripts/HeroCustomAbility/CastCreatureWithoutLevel.txt", "" ,"");
-			print(strHero.." custom ability3 not as expected hero level");
+		if TTH_HeroCustomAbility_CastCreature_GCD[strHero] > 0 then
+			MessageBoxForPlayers(GetPlayerFilter(iPlayer), {"/Text/Game/Scripts/HeroCustomAbility/CastCreatureWithoutGCD.txt";iGcd=TTH_HeroCustomAbility_CastCreature_GCD[strHero]}, "" ,"");
+			print(strHero.." custom ability3 not as expected GCD");
 			print("TTH "..strHero.." Event end");
 			print("---------------------------------------------------------------------");
 			return nil;
@@ -10282,7 +10309,9 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 							SetPlayerResource(iPlayer, i, arrResPlayer[i] - objItem[i] * iCountMin, strHero);
 						end;
 					end;
-					ControlHeroCustomAbility(strHero, CUSTOM_ABILITY_3, CUSTOM_ABILITY_DISABLED);
+					-- ControlHeroCustomAbility(strHero, CUSTOM_ABILITY_3, CUSTOM_ABILITY_DISABLED);
+					TTH_HeroCustomAbility_CastCreature_GCD[strHero] = TTH_TABLE_CastCreature[strHero]["HEROLEVEL_SCALE"];
+					print('Gcd-used:'..TTH_HeroCustomAbility_CastCreature_GCD[strHero]);
 				end;
 				RemoveHeroCreatures(strHero, iType[0], iCountMin * TTH_TABLE_CastCreature[strHero]["CREATURE_SCALE"]);
 				AddHeroCreatures(strHero, TTH_TABLE_CastCreature[strHero]["AFTER"], iCountMin);

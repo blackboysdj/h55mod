@@ -6113,7 +6113,7 @@ function H55_ContinuesEvent(player)
 			if TTH_HeroCustomAbilityOwner3[hero] ~= 1 then
 				if contains(TTH_TABLE_HeroCustomAbilityOwner3, hero) ~= nil then
 					ControlHeroCustomAbility(hero, CUSTOM_ABILITY_3, CUSTOM_ABILITY_ENABLED);
-					TTH_HeroCustomAbility_CastCreature_GCD[hero] = TTH_TABLE_CastCreature[hero]["HEROLEVEL_SCALE"];
+					TTH_HeroCustomAbility_CastCreature_GCD[hero] = TTH_TABLE_CastCreature[hero]["GCD"];
 					print('Gcd-init:'..TTH_HeroCustomAbility_CastCreature_GCD[hero]);
 					print(hero.." custom ability has been given");
 					TTH_HeroCustomAbilityOwner3[hero] = 1;

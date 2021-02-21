@@ -9400,6 +9400,472 @@ TTH_TABLE_HeroCustomAbility_Recovery = {
 };
 -- end
 
+-- by 牙姐 2021-02-21 11:59:44
+-- begin 转化生物类技能配置表
+TTH_TABLE_CastCreature = {};
+TTH_TABLE_CastCreature["Gelu"] = {
+	["GCD"] = 6
+	,	["CAST_MAP"] = {
+		{
+			["BEFORE_CREATURE_ID"] = 3
+			, ["AFTER_CREATURE_ID"] = 114
+			, ["LINK_CREATURE_ID"] = nil
+			, ["CAST_SCALE_CREATURE"] = 1
+			, ["CAST_SCALE_HERO"] = 6
+			, ["NECESSARY_HERO_LEVEL_MIN"] = 1
+			, ["NECESSARY_HERO_LEVEL_MAX"] = 40
+			, ["RESOURCE"] = {
+				[WOOD] = 1
+				, [ORE] = 0
+				, [MERCURY] = 0
+				, [CRYSTAL] = 0
+				, [SULFUR] = 0
+				, [GEM] = 0
+				, [GOLD] = 2250
+			}
+		}
+		, {
+			["BEFORE_CREATURE_ID"] = 4
+			, ["AFTER_CREATURE_ID"] = 114
+			, ["LINK_CREATURE_ID"] = nil
+			, ["CAST_SCALE_CREATURE"] = 1
+			, ["CAST_SCALE_HERO"] = 6
+			, ["NECESSARY_HERO_LEVEL_MIN"] = 1
+			, ["NECESSARY_HERO_LEVEL_MAX"] = 40
+			, ["RESOURCE"] = {
+				[WOOD] = 1
+				, [ORE] = 0
+				, [MERCURY] = 0
+				, [CRYSTAL] = 0
+				, [SULFUR] = 0
+				, [GEM] = 0
+				, [GOLD] = 2250
+			}
+		}
+		, {
+			["BEFORE_CREATURE_ID"] = 107
+			, ["AFTER_CREATURE_ID"] = 114
+			, ["LINK_CREATURE_ID"] = nil
+			, ["CAST_SCALE_CREATURE"] = 1
+			, ["CAST_SCALE_HERO"] = 6
+			, ["NECESSARY_HERO_LEVEL_MIN"] = 1
+			, ["NECESSARY_HERO_LEVEL_MAX"] = 40
+			, ["RESOURCE"] = {
+				[WOOD] = 1
+				, [ORE] = 0
+				, [MERCURY] = 0
+				, [CRYSTAL] = 0
+				, [SULFUR] = 0
+				, [GEM] = 0
+				, [GOLD] = 2250
+			}
+		}
+		, {
+			["BEFORE_CREATURE_ID"] = 94
+			, ["AFTER_CREATURE_ID"] = 114
+			, ["LINK_CREATURE_ID"] = nil
+			, ["CAST_SCALE_CREATURE"] = 1
+			, ["CAST_SCALE_HERO"] = 6
+			, ["NECESSARY_HERO_LEVEL_MIN"] = 1
+			, ["NECESSARY_HERO_LEVEL_MAX"] = 40
+			, ["RESOURCE"] = {
+				[WOOD] = 1
+				, [ORE] = 0
+				, [MERCURY] = 0
+				, [CRYSTAL] = 0
+				, [SULFUR] = 0
+				, [GEM] = 0
+				, [GOLD] = 2250
+			}
+		}
+		, {
+			["BEFORE_CREATURE_ID"] = 95
+			, ["AFTER_CREATURE_ID"] = 114
+			, ["LINK_CREATURE_ID"] = nil
+			, ["CAST_SCALE_CREATURE"] = 1
+			, ["CAST_SCALE_HERO"] = 6
+			, ["NECESSARY_HERO_LEVEL_MIN"] = 1
+			, ["NECESSARY_HERO_LEVEL_MAX"] = 40
+			, ["RESOURCE"] = {
+				[WOOD] = 1
+				, [ORE] = 0
+				, [MERCURY] = 0
+				, [CRYSTAL] = 0
+				, [SULFUR] = 0
+				, [GEM] = 0
+				, [GOLD] = 2250
+			}
+		}
+		, {
+			["BEFORE_CREATURE_ID"] = 167
+			, ["AFTER_CREATURE_ID"] = 114
+			, ["LINK_CREATURE_ID"] = nil
+			, ["CAST_SCALE_CREATURE"] = 1
+			, ["CAST_SCALE_HERO"] = 6
+			, ["NECESSARY_HERO_LEVEL_MIN"] = 1
+			, ["NECESSARY_HERO_LEVEL_MAX"] = 40
+			, ["RESOURCE"] = {
+				[WOOD] = 1
+				, [ORE] = 0
+				, [MERCURY] = 0
+				, [CRYSTAL] = 0
+				, [SULFUR] = 0
+				, [GEM] = 0
+				, [GOLD] = 2250
+			}
+		}
+		, {
+			["BEFORE_CREATURE_ID"] = 47
+			, ["AFTER_CREATURE_ID"] = 114
+			, ["LINK_CREATURE_ID"] = nil
+			, ["CAST_SCALE_CREATURE"] = 1
+			, ["CAST_SCALE_HERO"] = 6
+			, ["NECESSARY_HERO_LEVEL_MIN"] = 1
+			, ["NECESSARY_HERO_LEVEL_MAX"] = 40
+			, ["RESOURCE"] = {
+				[WOOD] = 1
+				, [ORE] = 0
+				, [MERCURY] = 0
+				, [CRYSTAL] = 0
+				, [SULFUR] = 0
+				, [GEM] = 0
+				, [GOLD] = 1500
+			}
+		}
+		, {
+			["BEFORE_CREATURE_ID"] = 48
+			, ["AFTER_CREATURE_ID"] = 114
+			, ["LINK_CREATURE_ID"] = nil
+			, ["CAST_SCALE_CREATURE"] = 1
+			, ["CAST_SCALE_HERO"] = 6
+			, ["NECESSARY_HERO_LEVEL_MIN"] = 1
+			, ["NECESSARY_HERO_LEVEL_MAX"] = 40
+			, ["RESOURCE"] = {
+				[WOOD] = 1
+				, [ORE] = 0
+				, [MERCURY] = 0
+				, [CRYSTAL] = 0
+				, [SULFUR] = 0
+				, [GEM] = 0
+				, [GOLD] = 1500
+			}
+		}
+		, {
+			["BEFORE_CREATURE_ID"] = 147
+			, ["AFTER_CREATURE_ID"] = 114
+			, ["LINK_CREATURE_ID"] = nil
+			, ["CAST_SCALE_CREATURE"] = 1
+			, ["CAST_SCALE_HERO"] = 6
+			, ["NECESSARY_HERO_LEVEL_MIN"] = 1
+			, ["NECESSARY_HERO_LEVEL_MAX"] = 40
+			, ["RESOURCE"] = {
+				[WOOD] = 1
+				, [ORE] = 0
+				, [MERCURY] = 0
+				, [CRYSTAL] = 0
+				, [SULFUR] = 0
+				, [GEM] = 0
+				, [GOLD] = 1500
+			}
+		}
+	}
+};
+TTH_TABLE_CastCreature["Thant"] = {
+	["GCD"] = 5
+	,	["CAST_MAP"] = {
+		{
+			["BEFORE_CREATURE_ID"] = 37
+			, ["AFTER_CREATURE_ID"] = 116
+			, ["LINK_CREATURE_ID"] = nil
+			, ["CAST_SCALE_CREATURE"] = 1
+			, ["CAST_SCALE_HERO"] = 5
+			, ["NECESSARY_HERO_LEVEL_MIN"] = 1
+			, ["NECESSARY_HERO_LEVEL_MAX"] = 40
+			, ["RESOURCE"] = {
+				[WOOD] = 0
+				, [ORE] = 0
+				, [MERCURY] = 0
+				, [CRYSTAL] = 0
+				, [SULFUR] = 0
+				, [GEM] = 0
+				, [GOLD] = 800
+			}
+		}
+		, {
+			["BEFORE_CREATURE_ID"] = 38
+			, ["AFTER_CREATURE_ID"] = 116
+			, ["LINK_CREATURE_ID"] = nil
+			, ["CAST_SCALE_CREATURE"] = 1
+			, ["CAST_SCALE_HERO"] = 5
+			, ["NECESSARY_HERO_LEVEL_MIN"] = 1
+			, ["NECESSARY_HERO_LEVEL_MAX"] = 40
+			, ["RESOURCE"] = {
+				[WOOD] = 0
+				, [ORE] = 0
+				, [MERCURY] = 0
+				, [CRYSTAL] = 0
+				, [SULFUR] = 0
+				, [GEM] = 0
+				, [GOLD] = 800
+			}
+		}
+		, {
+			["BEFORE_CREATURE_ID"] = 156
+			, ["AFTER_CREATURE_ID"] = 116
+			, ["LINK_CREATURE_ID"] = nil
+			, ["CAST_SCALE_CREATURE"] = 1
+			, ["CAST_SCALE_HERO"] = 5
+			, ["NECESSARY_HERO_LEVEL_MIN"] = 1
+			, ["NECESSARY_HERO_LEVEL_MAX"] = 40
+			, ["RESOURCE"] = {
+				[WOOD] = 0
+				, [ORE] = 0
+				, [MERCURY] = 0
+				, [CRYSTAL] = 0
+				, [SULFUR] = 0
+				, [GEM] = 0
+				, [GOLD] = 800
+			}
+		}
+	}
+};
+TTH_TABLE_CastCreature["Adelaide"] = {
+	["GCD"] = 5
+	,	["CAST_MAP"] = {
+		{
+			["BEFORE_CREATURE_ID"] = 33
+			, ["AFTER_CREATURE_ID"] = 935
+			, ["LINK_CREATURE_ID"] = nil
+			, ["CAST_SCALE_CREATURE"] = 1
+			, ["CAST_SCALE_HERO"] = 5
+			, ["NECESSARY_HERO_LEVEL_MIN"] = 1
+			, ["NECESSARY_HERO_LEVEL_MAX"] = 40
+			, ["RESOURCE"] = {
+				[WOOD] = 0
+				, [ORE] = 0
+				, [MERCURY] = 0
+				, [CRYSTAL] = 0
+				, [SULFUR] = 0
+				, [GEM] = 0
+				, [GOLD] = 300
+			}
+		}
+		, {
+			["BEFORE_CREATURE_ID"] = 34
+			, ["AFTER_CREATURE_ID"] = 935
+			, ["LINK_CREATURE_ID"] = nil
+			, ["CAST_SCALE_CREATURE"] = 1
+			, ["CAST_SCALE_HERO"] = 5
+			, ["NECESSARY_HERO_LEVEL_MIN"] = 1
+			, ["NECESSARY_HERO_LEVEL_MAX"] = 40
+			, ["RESOURCE"] = {
+				[WOOD] = 0
+				, [ORE] = 0
+				, [MERCURY] = 0
+				, [CRYSTAL] = 0
+				, [SULFUR] = 0
+				, [GEM] = 0
+				, [GOLD] = 300
+			}
+		}
+		, {
+			["BEFORE_CREATURE_ID"] = 154
+			, ["AFTER_CREATURE_ID"] = 935
+			, ["LINK_CREATURE_ID"] = nil
+			, ["CAST_SCALE_CREATURE"] = 1
+			, ["CAST_SCALE_HERO"] = 5
+			, ["NECESSARY_HERO_LEVEL_MIN"] = 1
+			, ["NECESSARY_HERO_LEVEL_MAX"] = 40
+			, ["RESOURCE"] = {
+				[WOOD] = 0
+				, [ORE] = 0
+				, [MERCURY] = 0
+				, [CRYSTAL] = 0
+				, [SULFUR] = 0
+				, [GEM] = 0
+				, [GOLD] = 300
+			}
+		}
+	}
+};
+TTH_TABLE_CastCreature["Archilus"] = {
+	["GCD"] = 6
+	,	["CAST_MAP"] = {
+		{
+			["BEFORE_CREATURE_ID"] = 39
+			, ["AFTER_CREATURE_ID"] = 90
+			, ["LINK_CREATURE_ID"] = nil
+			, ["CAST_SCALE_CREATURE"] = 1
+			, ["CAST_SCALE_HERO"] = 6
+			, ["NECESSARY_HERO_LEVEL_MIN"] = 1
+			, ["NECESSARY_HERO_LEVEL_MAX"] = 40
+			, ["RESOURCE"] = {
+				[WOOD] = 0
+				, [ORE] = 0
+				, [MERCURY] = 0
+				, [CRYSTAL] = 0
+				, [SULFUR] = 0
+				, [GEM] = 0
+				, [GOLD] = 1200
+			}
+		}
+		, {
+			["BEFORE_CREATURE_ID"] = 40
+			, ["AFTER_CREATURE_ID"] = 90
+			, ["LINK_CREATURE_ID"] = nil
+			, ["CAST_SCALE_CREATURE"] = 1
+			, ["CAST_SCALE_HERO"] = 6
+			, ["NECESSARY_HERO_LEVEL_MIN"] = 1
+			, ["NECESSARY_HERO_LEVEL_MAX"] = 40
+			, ["RESOURCE"] = {
+				[WOOD] = 0
+				, [ORE] = 0
+				, [MERCURY] = 0
+				, [CRYSTAL] = 0
+				, [SULFUR] = 0
+				, [GEM] = 0
+				, [GOLD] = 1200
+			}
+		}
+		, {
+			["BEFORE_CREATURE_ID"] = 157
+			, ["AFTER_CREATURE_ID"] = 90
+			, ["LINK_CREATURE_ID"] = nil
+			, ["CAST_SCALE_CREATURE"] = 1
+			, ["CAST_SCALE_HERO"] = 6
+			, ["NECESSARY_HERO_LEVEL_MIN"] = 1
+			, ["NECESSARY_HERO_LEVEL_MAX"] = 40
+			, ["RESOURCE"] = {
+				[WOOD] = 0
+				, [ORE] = 0
+				, [MERCURY] = 0
+				, [CRYSTAL] = 0
+				, [SULFUR] = 0
+				, [GEM] = 0
+				, [GOLD] = 1200
+			}
+		}
+	}
+};
+TTH_TABLE_CastCreature["Azar"] = {
+	["GCD"] = 4
+	,	["CAST_MAP"] = {
+		{
+			["BEFORE_CREATURE_ID"] = 117
+			, ["AFTER_CREATURE_ID"] = 113
+			, ["LINK_CREATURE_ID"] = nil
+			, ["CAST_SCALE_CREATURE"] = 5
+			, ["CAST_SCALE_HERO"] = 4
+			, ["NECESSARY_HERO_LEVEL_MIN"] = 1
+			, ["NECESSARY_HERO_LEVEL_MAX"] = 40
+			, ["RESOURCE"] = {
+				[WOOD] = 0
+				, [ORE] = 0
+				, [MERCURY] = 0
+				, [CRYSTAL] = 0
+				, [SULFUR] = 0
+				, [GEM] = 0
+				, [GOLD] = 600
+			}
+		}
+		, {
+			["BEFORE_CREATURE_ID"] = 118
+			, ["AFTER_CREATURE_ID"] = 113
+			, ["LINK_CREATURE_ID"] = nil
+			, ["CAST_SCALE_CREATURE"] = 5
+			, ["CAST_SCALE_HERO"] = 4
+			, ["NECESSARY_HERO_LEVEL_MIN"] = 1
+			, ["NECESSARY_HERO_LEVEL_MAX"] = 40
+			, ["RESOURCE"] = {
+				[WOOD] = 0
+				, [ORE] = 0
+				, [MERCURY] = 0
+				, [CRYSTAL] = 0
+				, [SULFUR] = 0
+				, [GEM] = 0
+				, [GOLD] = 600
+			}
+		}
+		, {
+			["BEFORE_CREATURE_ID"] = 173
+			, ["AFTER_CREATURE_ID"] = 113
+			, ["LINK_CREATURE_ID"] = nil
+			, ["CAST_SCALE_CREATURE"] = 5
+			, ["CAST_SCALE_HERO"] = 4
+			, ["NECESSARY_HERO_LEVEL_MIN"] = 1
+			, ["NECESSARY_HERO_LEVEL_MAX"] = 40
+			, ["RESOURCE"] = {
+				[WOOD] = 0
+				, [ORE] = 0
+				, [MERCURY] = 0
+				, [CRYSTAL] = 0
+				, [SULFUR] = 0
+				, [GEM] = 0
+				, [GOLD] = 600
+			}
+		}
+	}
+};
+TTH_TABLE_CastCreature["Itil"] = {
+	["GCD"] = 6
+	,	["CAST_MAP"] = {
+		{
+			["BEFORE_CREATURE_ID"] = 51
+			, ["AFTER_CREATURE_ID"] = 952
+			, ["LINK_CREATURE_ID"] = nil
+			, ["CAST_SCALE_CREATURE"] = 1
+			, ["CAST_SCALE_HERO"] = 6
+			, ["NECESSARY_HERO_LEVEL_MIN"] = 1
+			, ["NECESSARY_HERO_LEVEL_MAX"] = 40
+			, ["RESOURCE"] = {
+				[WOOD] = 0
+				, [ORE] = 0
+				, [MERCURY] = 0
+				, [CRYSTAL] = 0
+				, [SULFUR] = 0
+				, [GEM] = 0
+				, [GOLD] = 1000
+			}
+		}
+		, {
+			["BEFORE_CREATURE_ID"] = 52
+			, ["AFTER_CREATURE_ID"] = 952
+			, ["LINK_CREATURE_ID"] = nil
+			, ["CAST_SCALE_CREATURE"] = 1
+			, ["CAST_SCALE_HERO"] = 6
+			, ["NECESSARY_HERO_LEVEL_MIN"] = 1
+			, ["NECESSARY_HERO_LEVEL_MAX"] = 40
+			, ["RESOURCE"] = {
+				[WOOD] = 0
+				, [ORE] = 0
+				, [MERCURY] = 0
+				, [CRYSTAL] = 0
+				, [SULFUR] = 0
+				, [GEM] = 0
+				, [GOLD] = 1000
+			}
+		}
+		, {
+			["BEFORE_CREATURE_ID"] = 149
+			, ["AFTER_CREATURE_ID"] = 952
+			, ["LINK_CREATURE_ID"] = nil
+			, ["CAST_SCALE_CREATURE"] = 1
+			, ["CAST_SCALE_HERO"] = 6
+			, ["NECESSARY_HERO_LEVEL_MIN"] = 1
+			, ["NECESSARY_HERO_LEVEL_MAX"] = 40
+			, ["RESOURCE"] = {
+				[WOOD] = 0
+				, [ORE] = 0
+				, [MERCURY] = 0
+				, [CRYSTAL] = 0
+				, [SULFUR] = 0
+				, [GEM] = 0
+				, [GOLD] = 1000
+			}
+		}
+	}
+};
+-- end
 
 -- by 牙姐 2019-11-29 00:14:05
 -- begin 非墓园生物-转化为对应墓园生物

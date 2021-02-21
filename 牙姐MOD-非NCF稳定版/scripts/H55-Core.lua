@@ -525,7 +525,7 @@ H55SMOD_ListKarissaLevel = {1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34, 37, 40}
 -- by 牙姐 2018-10-16 19:03:31
 -- begin 通用函数
 -- 数组中最小值
-function TTH_COMMON_Min(arr)
+function TTH_COMMON_MIN(arr)
 	local iCompare = nil;
 	if arr ~= nil and length(arr) > 0 then
 		for iIndex, objItem in arr do
@@ -9983,341 +9983,167 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 
 -- by 牙姐 2018-10-16 19:04:34
 -- begin 转化生物技能
-	TTH_TABLE_CastCreature = {};
-	TTH_TABLE_CastCreature["Gelu"] = {
-		["BEFORE"] = {
-			[3] = {
-				[WOOD] = 1
-				, [ORE] = 0
-				, [MERCURY] = 0
-				, [CRYSTAL] = 0
-				, [SULFUR] = 0
-				, [GEM] = 0
-				, [GOLD] = 2250
-			}
-			, [4] = {
-				[WOOD] = 1
-				, [ORE] = 0
-				, [MERCURY] = 0
-				, [CRYSTAL] = 0
-				, [SULFUR] = 0
-				, [GEM] = 0
-				, [GOLD] = 2250
-			}
-			, [107] = {
-				[WOOD] = 1
-				, [ORE] = 0
-				, [MERCURY] = 0
-				, [CRYSTAL] = 0
-				, [SULFUR] = 0
-				, [GEM] = 0
-				, [GOLD] = 2250
-			}
-			, [94] = {
-				[WOOD] = 1
-				, [ORE] = 0
-				, [MERCURY] = 0
-				, [CRYSTAL] = 0
-				, [SULFUR] = 0
-				, [GEM] = 0
-				, [GOLD] = 2250
-			}
-			, [95] = {
-				[WOOD] = 1
-				, [ORE] = 0
-				, [MERCURY] = 0
-				, [CRYSTAL] = 0
-				, [SULFUR] = 0
-				, [GEM] = 0
-				, [GOLD] = 2250
-			}
-			, [167] = {
-				[WOOD] = 1
-				, [ORE] = 0
-				, [MERCURY] = 0
-				, [CRYSTAL] = 0
-				, [SULFUR] = 0
-				, [GEM] = 0
-				, [GOLD] = 2250
-			}
-			, [47] = {
-				[WOOD] = 1
-				, [ORE] = 0
-				, [MERCURY] = 0
-				, [CRYSTAL] = 0
-				, [SULFUR] = 0
-				, [GEM] = 0
-				, [GOLD] = 1500
-			}
-			, [48] = {
-				[WOOD] = 1
-				, [ORE] = 0
-				, [MERCURY] = 0
-				, [CRYSTAL] = 0
-				, [SULFUR] = 0
-				, [GEM] = 0
-				, [GOLD] = 1500
-			}
-			, [147] = {
-				[WOOD] = 1
-				, [ORE] = 0
-				, [MERCURY] = 0
-				, [CRYSTAL] = 0
-				, [SULFUR] = 0
-				, [GEM] = 0
-				, [GOLD] = 1500
-			}
-		}
-		, ["AFTER"] = 114
-		, ["HEROLEVEL_SCALE"] = 6
-		, ["CREATURE_SCALE"] = 1
-	};
-	TTH_TABLE_CastCreature["Thant"] = {
-		["BEFORE"] = {
-			[37] = {
-				[WOOD] = 0
-				, [ORE] = 0
-				, [MERCURY] = 0
-				, [CRYSTAL] = 0
-				, [SULFUR] = 0
-				, [GEM] = 0
-				, [GOLD] = 800
-			}
-			, [38] = {
-				[WOOD] = 0
-				, [ORE] = 0
-				, [MERCURY] = 0
-				, [CRYSTAL] = 0
-				, [SULFUR] = 0
-				, [GEM] = 0
-				, [GOLD] = 800
-			}
-			, [156] = {
-				[WOOD] = 0
-				, [ORE] = 0
-				, [MERCURY] = 0
-				, [CRYSTAL] = 0
-				, [SULFUR] = 0
-				, [GEM] = 0
-				, [GOLD] = 800
-			}
-		}
-		, ["AFTER"] = 116
-		, ["HEROLEVEL_SCALE"] = 5
-		, ["CREATURE_SCALE"] = 1
-	};
-	TTH_TABLE_CastCreature["Archilus"] = {
-		["BEFORE"] = {
-			[39] = {
-				[WOOD] = 0
-				, [ORE] = 0
-				, [MERCURY] = 0
-				, [CRYSTAL] = 0
-				, [SULFUR] = 0
-				, [GEM] = 0
-				, [GOLD] = 1200
-			}
-			, [40] = {
-				[WOOD] = 0
-				, [ORE] = 0
-				, [MERCURY] = 0
-				, [CRYSTAL] = 0
-				, [SULFUR] = 0
-				, [GEM] = 0
-				, [GOLD] = 1200
-			}
-			, [157] = {
-				[WOOD] = 0
-				, [ORE] = 0
-				, [MERCURY] = 0
-				, [CRYSTAL] = 0
-				, [SULFUR] = 0
-				, [GEM] = 0
-				, [GOLD] = 1200
-			}
-		}
-		, ["AFTER"] = 90
-		, ["HEROLEVEL_SCALE"] = 6
-		, ["CREATURE_SCALE"] = 1
-	};
-	TTH_TABLE_CastCreature["Azar"] = {
-		["BEFORE"] = {
-			[117] = {
-				[WOOD] = 0
-				, [ORE] = 0
-				, [MERCURY] = 0
-				, [CRYSTAL] = 0
-				, [SULFUR] = 0
-				, [GEM] = 0
-				, [GOLD] = 600
-			}
-			, [118] = {
-				[WOOD] = 0
-				, [ORE] = 0
-				, [MERCURY] = 0
-				, [CRYSTAL] = 0
-				, [SULFUR] = 0
-				, [GEM] = 0
-				, [GOLD] = 600
-			}
-			, [173] = {
-				[WOOD] = 0
-				, [ORE] = 0
-				, [MERCURY] = 0
-				, [CRYSTAL] = 0
-				, [SULFUR] = 0
-				, [GEM] = 0
-				, [GOLD] = 600
-			}
-		}
-		, ["AFTER"] = 113
-		, ["HEROLEVEL_SCALE"] = 4
-		, ["CREATURE_SCALE"] = 5
-	};
-	TTH_TABLE_CastCreature["Itil"] = {
-		["BEFORE"] = {
-			[51] = {
-				[WOOD] = 0
-				, [ORE] = 0
-				, [MERCURY] = 0
-				, [CRYSTAL] = 0
-				, [SULFUR] = 0
-				, [GEM] = 0
-				, [GOLD] = 800
-			}
-			, [52] = {
-				[WOOD] = 0
-				, [ORE] = 0
-				, [MERCURY] = 0
-				, [CRYSTAL] = 0
-				, [SULFUR] = 0
-				, [GEM] = 0
-				, [GOLD] = 800
-			}
-			, [149] = {
-				[WOOD] = 0
-				, [ORE] = 0
-				, [MERCURY] = 0
-				, [CRYSTAL] = 0
-				, [SULFUR] = 0
-				, [GEM] = 0
-				, [GOLD] = 800
-			}
-		}
-		, ["AFTER"] = 952
-		, ["HEROLEVEL_SCALE"] = 5
-		, ["CREATURE_SCALE"] = 1
-	};
+	function TTH_COMMIN_CAST_CREATURE(strHero, iTypeBefore, iCountBefore, iTypeAfter, iCountAfter)
+		local type, count = H55_ArmyInfo(strHero);
+		if count[6] == 0 then
+			AddHeroCreatures(strHero, iTypeAfter, iCountAfter);
+			sleep(1);
+			RemoveHeroCreatures(strHero, iTypeBefore, iCountBefore);
+			sleep(1);
+		else
+			RemoveHeroCreatures(strHero, iTypeBefore, iCountBefore);
+			sleep(1);
+			AddHeroCreatures(strHero, iTypeAfter, iCountAfter);
+			sleep(1);
+		end;
+	end;
+
 	function TTH_HeroCustomAbility_CastCreature(strHero)
 		print("---------------------------------------------------------------------");
 		print("TTH "..strHero.." Event begin");
+
 		local iPlayer = GetObjectOwner(strHero);
 		local iType, iCount = H55_ArmyInfo(strHero);
-		local iLevel = GetHeroLevel(strHero);
+		local iHeroLevel = GetHeroLevel(strHero);
 
+		-- 英雄主动技能是否在CD中
 		if TTH_HeroCustomAbility_CastCreature_GCD[strHero] > 0 then
 			MessageBoxForPlayers(GetPlayerFilter(iPlayer), {"/Text/Game/Scripts/HeroCustomAbility/CastCreatureWithoutGCD.txt";iGcd=TTH_HeroCustomAbility_CastCreature_GCD[strHero]}, "" ,"");
 			print(strHero.." custom ability3 not as expected GCD");
-			print("TTH "..strHero.." Event end");
-			print("---------------------------------------------------------------------");
-			return nil;
-		end;
+		-- 若可使用，则进入转化流程
+		else
+			-- 获取玩家资源
+			local arrResPlayer = {};
+			arrResPlayer[WOOD] = GetPlayerResource(iPlayer, WOOD);
+			arrResPlayer[ORE] = GetPlayerResource(iPlayer, ORE);
+			arrResPlayer[MERCURY] = GetPlayerResource(iPlayer, MERCURY);
+			arrResPlayer[CRYSTAL] = GetPlayerResource(iPlayer, CRYSTAL);
+			arrResPlayer[SULFUR] = GetPlayerResource(iPlayer, SULFUR);
+			arrResPlayer[GEM] = GetPlayerResource(iPlayer, GEM);
+			arrResPlayer[GOLD] = GetPlayerResource(iPlayer, GOLD);
 
-		local arrResPlayer = {};
-		arrResPlayer[WOOD] = GetPlayerResource(iPlayer, WOOD);
-		arrResPlayer[ORE] = GetPlayerResource(iPlayer, ORE);
-		arrResPlayer[MERCURY] = GetPlayerResource(iPlayer, MERCURY);
-		arrResPlayer[CRYSTAL] = GetPlayerResource(iPlayer, CRYSTAL);
-		arrResPlayer[SULFUR] = GetPlayerResource(iPlayer, SULFUR);
-		arrResPlayer[GEM] = GetPlayerResource(iPlayer, GEM);
-		arrResPlayer[GOLD] = GetPlayerResource(iPlayer, GOLD);
-
-		local iMatch = 0;
-		for iIndex, objItem in TTH_TABLE_CastCreature[strHero]["BEFORE"] do
-			if iType[0] == iIndex then
-				iMatch = 1;
-				local iCountBeforeCreature = H55_Floor(iCount[0] / TTH_TABLE_CastCreature[strHero]["CREATURE_SCALE"]);
-				local iCountHeroLevel = H55_Floor(iLevel / TTH_TABLE_CastCreature[strHero]["HEROLEVEL_SCALE"]);
-				if iCountHeroLevel < 1 then
-					iCountHeroLevel = 1;
-				end;
-				local arrRes = {};
-				for i = 0, 6 do
-					if objItem[i] == 0 then
-						arrRes[i] = nil;
-					else
-						arrRes[i] = H55_Floor(arrResPlayer[i] / objItem[i]);
-					end;
-				end;
-				local iCountRec = TTH_COMMON_Min(arrRes);
-				local iCountMin = TTH_COMMON_Min({iCountBeforeCreature, iCountHeroLevel, iCountRec});
-				if iCountMin > 0 then
-					for i = 0, 6 do
-						if objItem[i] * iCountMin > 0 then
-							SetPlayerResource(iPlayer, i, arrResPlayer[i] - objItem[i] * iCountMin, strHero);
+			local iMatch = 0;
+			local arrCreatureNecessary = {};
+			-- 遍历转化表
+			for iIndex, objItem in TTH_TABLE_CastCreature[strHero]["CAST_MAP"] do
+				-- 若英雄等级满足要求
+				if iHeroLevel >= objItem["NECESSARY_HERO_LEVEL_MIN"] and iHeroLevel <= objItem["NECESSARY_HERO_LEVEL_MAX"] then
+					-- 若兵力槽1中的生物ID存在于转化表中
+					if iType[0] == objItem["BEFORE_CREATURE_ID"] then
+						iMatch = 1;
+						-- 根据 转化前后生物比例 计算 可转化生物数量
+						local iCountCreature8CastScaleCreature = H55_Floor(iCount[0] / objItem["CAST_SCALE_CREATURE"]);
+						-- 根据 英雄等级 计算 可转化生物数量（至少为1）
+						local iCountCreature8CastScaleHero = H55_Floor(iHeroLevel / objItem["CAST_SCALE_HERO"]);
+						if iCountCreature8CastScaleHero < 1 then
+							iCountCreature8CastScaleHero = 1;
 						end;
+						-- 根据 玩家资源及转化单个生物消耗 计算 可转化生物数量
+						local arrRes = {};
+						for i = 0, 6 do
+							if objItem["RESOURCE"][i] == 0 then
+								arrRes[i] = nil;
+							else
+								arrRes[i] = H55_Floor(arrResPlayer[i] / objItem["RESOURCE"][i]);
+							end;
+						end;
+						local iCountCreature8Resource = TTH_COMMON_MIN(arrRes);
+						-- 取3个转化生物数量的最小值，若>0，则进行转化，并扣除资源，包含关联转化
+						local iCountMinCreature = TTH_COMMON_MIN({iCountCreature8CastScaleCreature, iCountCreature8CastScaleHero, iCountCreature8Resource});
+						if iCountMinCreature > 0 then
+							-- 扣除资源
+							for i = 0, 6 do
+								if objItem["RESOURCE"][i] * iCountMinCreature > 0 then
+									SetPlayerResource(iPlayer, i, arrResPlayer[i] - objItem["RESOURCE"][i] * iCountMinCreature, strHero);
+								end;
+							end;
+
+							-- 重置转化CD
+							TTH_HeroCustomAbility_CastCreature_GCD[strHero] = TTH_TABLE_CastCreature[strHero]["GCD"];
+							print('Gcd-used:'..TTH_HeroCustomAbility_CastCreature_GCD[strHero]);
+
+							-- 执行转化并提示成功
+							TTH_COMMIN_CAST_CREATURE(strHero, iType[0], iCountMinCreature * objItem["CAST_SCALE_CREATURE"], objItem["AFTER_CREATURE_ID"], iCountMinCreature);
+							MessageBoxForPlayers(GetPlayerFilter(iPlayer), {
+								"/Text/Game/Scripts/HeroCustomAbility/CastCreatureSuccess.txt"
+								;strCreatureBefore=TTH_TABLE_NCF_CREATURES[iType[0]]["NAME"]
+								,strCreatureAfter=TTH_TABLE_NCF_CREATURES[objItem["AFTER_CREATURE_ID"]]["NAME"]
+								,wood=objItem["RESOURCE"][0]*iCountMinCreature
+								,ore=objItem["RESOURCE"][1]*iCountMinCreature
+								,mercury=objItem["RESOURCE"][2]*iCountMinCreature
+								,crystal=objItem["RESOURCE"][3]*iCountMinCreature
+								,sulfur=objItem["RESOURCE"][4]*iCountMinCreature
+								,gem=objItem["RESOURCE"][5]*iCountMinCreature
+								,gold=objItem["RESOURCE"][6]*iCountMinCreature
+								,iCountBeforeCreature=iCountCreature8CastScaleCreature
+								,iCountHeroLevel=iCountCreature8CastScaleHero
+								,iCountRec=iCountCreature8Resource
+								,iCountMin=iCountMinCreature
+							}, "" ,"");
+
+							-- 若存在关联转化，则免费转化
+							if objItem["LINK_CREATURE_ID"] ~= nil then
+								for i = 0, 6 do
+									for jIndex, jObjItem in objItem["LINK_CREATURE_ID"] do
+										if iType[i] == jObjItem then
+											TTH_COMMIN_CAST_CREATURE(strHero, iType[i], iCount[i], objItem["AFTER_CREATURE_ID"], iCount[i]);
+										end;
+									end;
+								end;
+							end;
+
+							print(strHero.." custom ability3 has been used");
+						-- 提示失败原因
+						else
+							if iCountCreature8Resource == 0 then
+								MessageBoxForPlayers(GetPlayerFilter(iPlayer), "/Text/Game/Scripts/HeroCustomAbility/CastCreatureFailure8Resource.txt", "" ,"");
+								print(strHero.." custom ability3 is failure by not enough resource");
+							elseif iCountCreature8CastScaleCreature == 0 then
+								MessageBoxForPlayers(GetPlayerFilter(iPlayer), "/Text/Game/Scripts/HeroCustomAbility/CastCreatureFailure8CastScaleCreature.txt", "" ,"");
+								print(strHero.." custom ability3 is failure by not enough creature");
+							end;
+						end;
+					-- 若不存在，则将转化表中的生物ID记录
+					else
+						arrCreatureNecessary[length(arrCreatureNecessary)] = objItem["BEFORE_CREATURE_ID"];
 					end;
-					-- ControlHeroCustomAbility(strHero, CUSTOM_ABILITY_3, CUSTOM_ABILITY_DISABLED);
-					TTH_HeroCustomAbility_CastCreature_GCD[strHero] = TTH_TABLE_CastCreature[strHero]["HEROLEVEL_SCALE"];
-					print('Gcd-used:'..TTH_HeroCustomAbility_CastCreature_GCD[strHero]);
 				end;
-				RemoveHeroCreatures(strHero, iType[0], iCountMin * TTH_TABLE_CastCreature[strHero]["CREATURE_SCALE"]);
-				AddHeroCreatures(strHero, TTH_TABLE_CastCreature[strHero]["AFTER"], iCountMin);
+			end;
+
+			-- 若兵力槽1中的生物ID不在所有满足要求的转化表中，则提示
+			if iMatch == 0 then
+				for i = 0, 19 do
+					if arrCreatureNecessary[i] == nil then
+						arrCreatureNecessary[i] = 0;
+					end;
+				end
 				MessageBoxForPlayers(GetPlayerFilter(iPlayer), {
-					"/Text/Game/Scripts/HeroCustomAbility/CastCreatureSuccess.txt"
-					;strCreatureBefore=TTH_TABLE_NCF_CREATURES[iType[0]]["NAME"]
-					,strCreatureAfter=TTH_TABLE_NCF_CREATURES[TTH_TABLE_CastCreature[strHero]["AFTER"]]["NAME"]
-					,wood=objItem[0]
-					,ore=objItem[1]
-					,mercury=objItem[2]
-					,crystal=objItem[3]
-					,sulfur=objItem[4]
-					,gem=objItem[5]
-					,gold=objItem[6]
-					,iCountBeforeCreature=iCountBeforeCreature
-					,iCountHeroLevel=iCountHeroLevel
-					,iCountRec=iCountRec
-					,iCountMin=iCountMin
+					"/Text/Game/Scripts/HeroCustomAbility/CastCreatureFailure8NotSuitableCreature.txt"
+					;strCreature0=TTH_TABLE_NCF_CREATURES[arrCreatureNecessary[0]]["NAME"]
+					,strCreature1=TTH_TABLE_NCF_CREATURES[arrCreatureNecessary[1]]["NAME"]
+					,strCreature2=TTH_TABLE_NCF_CREATURES[arrCreatureNecessary[2]]["NAME"]
+					,strCreature3=TTH_TABLE_NCF_CREATURES[arrCreatureNecessary[3]]["NAME"]
+					,strCreature4=TTH_TABLE_NCF_CREATURES[arrCreatureNecessary[4]]["NAME"]
+					,strCreature5=TTH_TABLE_NCF_CREATURES[arrCreatureNecessary[5]]["NAME"]
+					,strCreature6=TTH_TABLE_NCF_CREATURES[arrCreatureNecessary[6]]["NAME"]
+					,strCreature7=TTH_TABLE_NCF_CREATURES[arrCreatureNecessary[7]]["NAME"]
+					,strCreature8=TTH_TABLE_NCF_CREATURES[arrCreatureNecessary[8]]["NAME"]
+					,strCreature9=TTH_TABLE_NCF_CREATURES[arrCreatureNecessary[9]]["NAME"]
+					,strCreature10=TTH_TABLE_NCF_CREATURES[arrCreatureNecessary[10]]["NAME"]
+					,strCreature11=TTH_TABLE_NCF_CREATURES[arrCreatureNecessary[11]]["NAME"]
+					,strCreature12=TTH_TABLE_NCF_CREATURES[arrCreatureNecessary[12]]["NAME"]
+					,strCreature13=TTH_TABLE_NCF_CREATURES[arrCreatureNecessary[13]]["NAME"]
+					,strCreature14=TTH_TABLE_NCF_CREATURES[arrCreatureNecessary[14]]["NAME"]
+					,strCreature15=TTH_TABLE_NCF_CREATURES[arrCreatureNecessary[15]]["NAME"]
+					,strCreature16=TTH_TABLE_NCF_CREATURES[arrCreatureNecessary[16]]["NAME"]
+					,strCreature17=TTH_TABLE_NCF_CREATURES[arrCreatureNecessary[17]]["NAME"]
+					,strCreature18=TTH_TABLE_NCF_CREATURES[arrCreatureNecessary[18]]["NAME"]
+					,strCreature19=TTH_TABLE_NCF_CREATURES[arrCreatureNecessary[19]]["NAME"]
 				}, "" ,"");
+				print(strHero.." custom ability3 is failure by not suitable creature");
 			end;
 		end;
-		if iMatch == 0 then
-			local i = 0;
-			local arrCreatureBefore = {};
-			for iIndex, objItem in TTH_TABLE_CastCreature[strHero]["BEFORE"] do
-				arrCreatureBefore[i] = iIndex;
-				i = i + 1;
-			end;
-			for i = 0, 19 do
-				if arrCreatureBefore[i] == nil then
-					arrCreatureBefore[i] = 0;
-				end;
-			end
-			MessageBoxForPlayers(GetPlayerFilter(iPlayer), {
-				"/Text/Game/Scripts/HeroCustomAbility/CastCreatureFailure.txt"
-				;strCreature0=TTH_TABLE_NCF_CREATURES[arrCreatureBefore[0]]["NAME"]
-				,strCreature1=TTH_TABLE_NCF_CREATURES[arrCreatureBefore[1]]["NAME"]
-				,strCreature2=TTH_TABLE_NCF_CREATURES[arrCreatureBefore[2]]["NAME"]
-				,strCreature3=TTH_TABLE_NCF_CREATURES[arrCreatureBefore[3]]["NAME"]
-				,strCreature4=TTH_TABLE_NCF_CREATURES[arrCreatureBefore[4]]["NAME"]
-				,strCreature5=TTH_TABLE_NCF_CREATURES[arrCreatureBefore[5]]["NAME"]
-				,strCreature6=TTH_TABLE_NCF_CREATURES[arrCreatureBefore[6]]["NAME"]
-				,strCreature7=TTH_TABLE_NCF_CREATURES[arrCreatureBefore[7]]["NAME"]
-				,strCreature8=TTH_TABLE_NCF_CREATURES[arrCreatureBefore[8]]["NAME"]
-				,strCreature9=TTH_TABLE_NCF_CREATURES[arrCreatureBefore[9]]["NAME"]
-				,strCreature10=TTH_TABLE_NCF_CREATURES[arrCreatureBefore[10]]["NAME"]
-				,strCreature11=TTH_TABLE_NCF_CREATURES[arrCreatureBefore[11]]["NAME"]
-				,strCreature12=TTH_TABLE_NCF_CREATURES[arrCreatureBefore[12]]["NAME"]
-				,strCreature13=TTH_TABLE_NCF_CREATURES[arrCreatureBefore[13]]["NAME"]
-				,strCreature14=TTH_TABLE_NCF_CREATURES[arrCreatureBefore[14]]["NAME"]
-				,strCreature15=TTH_TABLE_NCF_CREATURES[arrCreatureBefore[15]]["NAME"]
-				,strCreature16=TTH_TABLE_NCF_CREATURES[arrCreatureBefore[16]]["NAME"]
-				,strCreature17=TTH_TABLE_NCF_CREATURES[arrCreatureBefore[17]]["NAME"]
-				,strCreature18=TTH_TABLE_NCF_CREATURES[arrCreatureBefore[18]]["NAME"]
-				,strCreature19=TTH_TABLE_NCF_CREATURES[arrCreatureBefore[19]]["NAME"]
-			}, "" ,"");
-		end;
-		print(strHero.." custom ability3 has been used");
+
 		print("TTH "..strHero.." Event end");
 		print("---------------------------------------------------------------------");
 	end;

@@ -5207,119 +5207,119 @@ function H55_WeeklyEvents(player)
 
 			--heaven
 			if contains(heroes, "Nathaniel") ~= nil then
-				H55_WeeklyReinforce("Nathaniel", player, 1, STAT_ATTACK, -1, -1);
+				H55_WeeklyReinforce("Nathaniel", player, 1, STAT_KNOWLEDGE, -1, -1);
 			end;
 			if contains(heroes, "Orrin") ~= nil then
-				H55_WeeklyReinforce("Orrin", player, 2, STAT_ATTACK, -1, -1);
+				H55_WeeklyReinforce("Orrin", player, 2, STAT_KNOWLEDGE, -1, -1);
 			end;
 			if contains(heroes, "Mardigo") ~= nil then
-				H55_WeeklyReinforce("Mardigo", player, 3, STAT_ATTACK, -1, -1);
+				H55_WeeklyReinforce("Mardigo", player, 3, STAT_KNOWLEDGE, -1, -1);
 			end;
 			if contains(heroes, "Ving") ~= nil then
-				H55_WeeklyReinforce("Ving", player, 4, STAT_ATTACK, -1, -1);
+				H55_WeeklyReinforce("Ving", player, 4, STAT_KNOWLEDGE, -1, -1);
 			end;
 			if contains(heroes, "Sarge") ~= nil then
-				H55_WeeklyReinforce("Sarge", player, 6, STAT_ATTACK, -1, -1);
+				H55_WeeklyReinforce("Sarge", player, 6, STAT_KNOWLEDGE, -1, -1);
 			end;
 			--preserve
 			if contains(heroes, "Gillion") ~= nil then
-				H55_WeeklyReinforce("Gillion", player, 2, STAT_DEFENCE, -1, -1);
+				H55_WeeklyReinforce("Gillion", player, 2, STAT_KNOWLEDGE, -1, -1);
 			end;
 			if contains(heroes, "Ossir") ~= nil then
-				H55_WeeklyReinforce("Ossir", player, 3, STAT_ATTACK, -1, -1);
+				H55_WeeklyReinforce("Ossir", player, 3, STAT_KNOWLEDGE, -1, -1);
 			end;
 			if contains(heroes, "Itil") ~= nil then
-				H55_WeeklyReinforce("Itil", player, 5, STAT_DEFENCE, -1, -1);
+				H55_WeeklyReinforce("Itil", player, 5, STAT_KNOWLEDGE, -1, -1);
 			end;
 			if contains(heroes, "Gelu") ~= nil then
-				H55_WeeklyReinforce("Gelu", player, 6, STAT_ATTACK, 114, -1);
+				H55_WeeklyReinforce("Gelu", player, 6, STAT_KNOWLEDGE, 114, -1);
 			end;
 			--necropolis
 			if contains(heroes, "Straker") ~= nil then
-				H55_WeeklyReinforce("Straker", player, 2, STAT_DEFENCE, -1, -1);
+				H55_WeeklyReinforce("Straker", player, 2, STAT_KNOWLEDGE, -1, -1);
 			end;
 			if contains(heroes, "Muscip") ~= nil then
-				H55_WeeklyReinforce("Muscip", player, 3, STAT_ATTACK, -1, -1);
+				H55_WeeklyReinforce("Muscip", player, 3, STAT_KNOWLEDGE, -1, -1);
 			end;
 			if contains(heroes, "Tamika") ~= nil then
-				H55_WeeklyReinforce("Tamika", player, 4, STAT_DEFENCE, -1, -1);
+				H55_WeeklyReinforce("Tamika", player, 4, STAT_KNOWLEDGE, -1, -1);
 			end;
 			if contains(heroes, "Thant") ~= nil then
-				H55_WeeklyReinforce("Thant", player, 5, STAT_SPELL_POWER, 116, DEMON_FEAT_EXPLODING_CORPSES);
+				H55_WeeklyReinforce("Thant", player, 5, STAT_KNOWLEDGE, 116, DEMON_FEAT_EXPLODING_CORPSES);
 			end;
 			if contains(heroes, "Adelaide") ~= nil then
-				H55_WeeklyReinforce("Adelaide", player, 5, STAT_SPELL_POWER, 935, DEMON_FEAT_EXPLODING_CORPSES);
+				H55_WeeklyReinforce("Adelaide", player, 5, STAT_KNOWLEDGE, 935, DEMON_FEAT_EXPLODING_CORPSES);
 			end;
 			if contains(heroes, "Archilus") ~= nil then
-				H55_WeeklyReinforce("Archilus", player, 6, STAT_DEFENCE, 90, -1);
+				H55_WeeklyReinforce("Archilus", player, 6, STAT_KNOWLEDGE, 90, -1);
 			end;
 			--fortress
 			if contains(heroes, "Ingvar") ~= nil then
-				H55_WeeklyReinforce("Ingvar", player, 1, STAT_DEFENCE, -1, -1);
+				H55_WeeklyReinforce("Ingvar", player, 1, STAT_KNOWLEDGE, -1, -1);
 			end;
 			if contains(heroes, "Skeggy") ~= nil then
-				H55_WeeklyReinforce("Skeggy", player, 2, STAT_DEFENCE, -1, -1);
+				H55_WeeklyReinforce("Skeggy", player, 2, STAT_KNOWLEDGE, -1, -1);
 			end;
 			if contains(heroes, "Bersy") ~= nil then
-				H55_WeeklyReinforce("Bersy", player, 3, STAT_DEFENCE, -1, -1);
+				H55_WeeklyReinforce("Bersy", player, 3, STAT_KNOWLEDGE, -1, -1);
 			end;
 			if contains(heroes, "Egil") ~= nil then
-				H55_WeeklyReinforce("Egil", player, 5, STAT_SPELL_POWER, -1, -1);
+				H55_WeeklyReinforce("Egil", player, 5, STAT_KNOWLEDGE, -1, -1);
 			end;
 			--stronghold
 			if contains(heroes, "Hero9") ~= nil then
-				H55_WeeklyReinforce("Hero9", player, 1, STAT_ATTACK, -1, -1);
+				H55_WeeklyReinforce("Hero9", player, 1, STAT_KNOWLEDGE, -1, -1);
 			end;
 			if contains(heroes, "Hero7") ~= nil then
-				H55_WeeklyReinforce("Hero7", player, 2, STAT_ATTACK, -1, -1);
+				H55_WeeklyReinforce("Hero7", player, 2, STAT_KNOWLEDGE, -1, -1);
 			end;
 			if contains(heroes, "Hero8") ~= nil then
-				H55_WeeklyReinforce("Hero8", player, 3, STAT_ATTACK, -1, -1);
+				H55_WeeklyReinforce("Hero8", player, 3, STAT_KNOWLEDGE, -1, -1);
 			end;
 			if contains(heroes, "Azar") ~= nil then
-				H55_WeeklyReinforce("Azar", player, 4, STAT_ATTACK, 113, HERO_SKILL_DEFEND_US_ALL);
+				H55_WeeklyReinforce("Azar", player, 4, STAT_KNOWLEDGE, 113, HERO_SKILL_DEFEND_US_ALL);
 			end;
 			if contains(heroes, "Hero6") ~= nil then
-				H55_WeeklyReinforce("Hero6", player, 6, STAT_ATTACK, -1, -1);
+				H55_WeeklyReinforce("Hero6", player, 6, STAT_KNOWLEDGE, -1, -1);
 			end;
 			--inferno
 			if contains(heroes, "Calid") ~= nil then
-				H55_WeeklyReinforce("Calid", player, 3, STAT_ATTACK, -1, -1);
+				H55_WeeklyReinforce("Calid", player, 3, STAT_KNOWLEDGE, -1, -1);
 			end;
 			if contains(heroes, "Oddrema") ~= nil then
-				H55_WeeklyReinforce("Oddrema", player, 4, STAT_ATTACK, -1, -1);
+				H55_WeeklyReinforce("Oddrema", player, 4, STAT_KNOWLEDGE, -1, -1);
 			end;
 			--academy
 			if contains(heroes, "Havez") ~= nil then
-				H55_WeeklyReinforce("Havez", player, 1, STAT_ATTACK, -1, -1);
+				H55_WeeklyReinforce("Havez", player, 1, STAT_KNOWLEDGE, -1, -1);
 			end;
 			if contains(heroes, "Isher") ~= nil then
-				H55_WeeklyReinforce("Isher", player, 3, STAT_DEFENCE, -1, -1);
+				H55_WeeklyReinforce("Isher", player, 3, STAT_KNOWLEDGE, -1, -1);
 			end;
 			if contains(heroes, "Razzak") ~= nil then
 				H55_WeeklyReinforce("Razzak", player, 4, STAT_KNOWLEDGE, -1, -1);
 			end;
 			if contains(heroes, "Davius") ~= nil then
-				H55_WeeklyReinforce("Davius", player, 6, STAT_ATTACK, -1, -1);
+				H55_WeeklyReinforce("Davius", player, 6, STAT_KNOWLEDGE, -1, -1);
 			end;
 			--dungeon
 			if contains(heroes, "Ohtarig") ~= nil then
-				H55_WeeklyReinforce("Ohtarig", player, 1, STAT_ATTACK, -1, -1);
+				H55_WeeklyReinforce("Ohtarig", player, 1, STAT_KNOWLEDGE, -1, -1);
 			end;
 			if contains(heroes, "Urunir") ~= nil then
-				H55_WeeklyReinforce("Urunir", player, 2, STAT_ATTACK, -1, -1);
+				H55_WeeklyReinforce("Urunir", player, 2, STAT_KNOWLEDGE, -1, -1);
 			end;
 			if contains(heroes, "Menel") ~= nil then
-				H55_WeeklyReinforce("Menel", player, 3, STAT_ATTACK, -1, -1);
+				H55_WeeklyReinforce("Menel", player, 3, STAT_KNOWLEDGE, -1, -1);
 			end;
 			if contains(heroes, "Ferigl") ~= nil then
-				H55_WeeklyReinforce("Ferigl", player, 4, STAT_ATTACK, -1, -1);
+				H55_WeeklyReinforce("Ferigl", player, 4, STAT_KNOWLEDGE, -1, -1);
 			end;
 			if contains(heroes, "Eruina") ~= nil then
-				H55_WeeklyReinforce("Eruina", player, 6, STAT_ATTACK, -1, -1);
+				H55_WeeklyReinforce("Eruina", player, 6, STAT_KNOWLEDGE, -1, -1);
 			end;
 			if contains(heroes, "Welygg") ~= nil then
-				H55_WeeklyReinforce("Welygg", player, 6, STAT_ATTACK, 115, PERK_DIPLOMACY);
+				H55_WeeklyReinforce("Welygg", player, 6, STAT_KNOWLEDGE, 115, PERK_DIPLOMACY);
 			end;
 
 		---- end
@@ -6379,7 +6379,6 @@ function H55_ContinuesEvent(player)
 
 			if H55_IsHeroInAnyTown(hero) == 0 then
 				TTH_Artifact_Bonus_Check(hero);
-				TTH_Artifact_Effect_Combat_Check(hero);
 			end;
 
 			if (HasHeroSkill(hero,PERK_PRAYER) ~= nil) and (H55_GetHeroRaceNum(hero) == 4) then
@@ -7960,7 +7959,7 @@ function H55_DailyEvents(player)
 		------------------------------------------------------------------------------------------------------------------------------------------------
 		H55_DEBUG = {20161123," by 牙姐 Draconic",player,hero};-------------------------------------------------------------------------------------------
 		------------------------------------------------------------------------------------------------------------------------------------------------
-		if (HasArtefact(hero,ARTIFACT_DRACONIC,1) ~= nil) and H55_AbsoluteWeek >= 2 then
+		if (HasArtefact(hero,ARTIFACT_DRACONIC,1) ~= nil) then
 			local type = H55_ArmyInfoSimple(hero);
 			local growth = 1;
 			local race = H55_GetHeroRaceNum(hero);
@@ -8001,7 +8000,7 @@ function H55_DailyEvents(player)
 		------------------------------------------------------------------------------------------------------------------------------------------------
 		H55_DEBUG = {20170405," by 牙姐 ARTIFACT_CODEX",player,hero};-------------------------------------------------------------------------------------------
 		------------------------------------------------------------------------------------------------------------------------------------------------
-		if (HasArtefact(hero,ARTIFACT_CODEX,1) ~= nil) and H55_AbsoluteWeek >= 2 then
+		if (HasArtefact(hero,ARTIFACT_CODEX,1) ~= nil) then
 			local type = H55_ArmyInfoSimple(hero);
 			local growth = 1;
 			if H55_PhoenixReceived[hero] ~= 1 then
@@ -8883,6 +8882,7 @@ function H55_ContinuesActivator()
 		end;
 
 		TTH_SetHeroLevelToGameVar();
+		TTH_SetHeroArtifactToGameVar();
 	end;
 end;
 
@@ -9828,38 +9828,6 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 		-- 	TTH_RES_BONUS_HERO_DISABLE[objMine] = {};
 		-- end;
 		-- TTH_RES_BONUS_HERO_DISABLE[objMine][strHero] = 1;
-	end;
--- end
-
--- by 牙姐 2018-8-22 13:42:58
--- begin 宝物战场效果 全局参数
-	TTH_ARTIFACT_EFFECT_COMBAT = {
-		[0] = ARTIFACT_ANGELIC_ALLIANCE
-		, [1] = ARTIFACT_CURSE_SHOULDER
-		, [2] = ARTIFACT_SENTINEL
-		, [3] = ARTIFACT_EIGHTFOLD
-		, [4] = ARTIFACT_MOONBLADE
-	};
-	TTH_ARTIFACT_EFFECT_COMBAT_OWNER = {};
-	function TTH_Artifact_Effect_Combat_Check(strHero)
-		for indexArtifact, objArtifact in TTH_ARTIFACT_EFFECT_COMBAT do
-			if HasArtefact(strHero, objArtifact, 1) ~= nil then
-				if TTH_ARTIFACT_EFFECT_COMBAT_OWNER[strHero] == nil then
-					TTH_ARTIFACT_EFFECT_COMBAT_OWNER[strHero] = {};
-				end;
-				if TTH_ARTIFACT_EFFECT_COMBAT_OWNER[strHero][objArtifact] == nil then
-					local strKey = 'TTH_Artifact_Effect_Combat_'..strHero..'_'..objArtifact;
-					SetGameVar(strKey, 1);
-					TTH_ARTIFACT_EFFECT_COMBAT_OWNER[strHero][objArtifact] = 1;
-				end;
-			else
-				if TTH_ARTIFACT_EFFECT_COMBAT_OWNER[strHero] ~= nil and TTH_ARTIFACT_EFFECT_COMBAT_OWNER[strHero][objArtifact] ~= nil then
-					local strKey = 'TTH_Artifact_Effect_Combat_'..strHero..'_'..objArtifact;
-					SetGameVar(strKey, 0);
-					TTH_ARTIFACT_EFFECT_COMBAT_OWNER[strHero][objArtifact] = nil;
-				end;
-			end;
-		end;
 	end;
 -- end
 
@@ -11289,6 +11257,45 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 				end;
 			else
 				SetGameVar('H55SMOD_Var_Level_'..strHero, '');
+			end;
+		end;
+	end;
+-- end
+
+-- by 牙姐 2021-02-23 03:47:40
+-- begin 宝物战场效果 全局参数
+	TTH_ARTIFACT_EFFECT_COMBAT = {
+		[0] = ARTIFACT_ANGELIC_ALLIANCE
+		, [1] = ARTIFACT_CURSE_SHOULDER
+		, [2] = ARTIFACT_SENTINEL
+		, [3] = ARTIFACT_EIGHTFOLD
+		, [4] = ARTIFACT_MOONBLADE
+	};
+	function TTH_SetHeroArtifactToGameVar()
+		local arrHero = {};
+		for i = 1, 8 do
+			local arrTempHero = GetPlayerHeroes(i);
+			if arrTempHero ~= nil then
+				for j, strHero in arrTempHero do
+					H55_Insert(arrHero, strHero);
+				end;
+			end;
+		end;
+		for iIndexHero, strHero in H55SMOD_Heroes do
+			if contains(arrHero, strHero) ~= nil then
+				for iIndexArtifact, objArtifact in TTH_ARTIFACT_EFFECT_COMBAT do
+					local strKey = 'TTH_Artifact_Effect_Combat_'..strHero..'_'..objArtifact;
+					if HasArtefact(strHero, objArtifact, 1) ~= nil then
+						SetGameVar(strKey, 1);
+					else
+						SetGameVar(strKey, 0);
+					end;
+				end;
+			else
+				for iIndexArtifact, objArtifact in TTH_ARTIFACT_EFFECT_COMBAT do
+					local strKey = 'TTH_Artifact_Effect_Combat_'..strHero..'_'..objArtifact;
+					SetGameVar(strKey, 0);
+				end;
 			end;
 		end;
 	end;

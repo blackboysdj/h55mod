@@ -1090,6 +1090,10 @@ doFile('/scripts/combat-startup.lua')
 							-- Inferno
 							-- Necropolis
 							-- Fortress
+								if ObjSnapshotLastTurn['Hero'][iSide]['iMana'] - ObjSnapshotBeforeLastTurn['Hero'][iSide]['iMana'] > 0 then
+									local iIncreaseManaPoints = ObjSnapshotLastTurn['Hero'][iSide]['iMana'] - ObjSnapshotBeforeLastTurn['Hero'][iSide]['iMana'];
+									H55SMOD_MiddlewareListener['Egil']['function']['hero']('Egil', iSide, itemUnitLast, iIncreaseManaPoints);
+								end;
 							-- Dungeon
 							-- Stronghold
 						end;
@@ -1212,6 +1216,7 @@ doFile('/scripts/combat-startup.lua')
 							-- Necropolis
 								H55SMOD_MiddlewareListener['Nemor']['function']['creature']('Nemor', iSide, itemUnitLast, listCreaturesBeEffected);
 							-- Fortress
+								H55SMOD_MiddlewareListener['Egil']['function']['creature']('Egil', iSide, itemUnitLast, listCreaturesBeEffected);
 							-- Dungeon
 							-- Stronghold
 						end;
@@ -3135,6 +3140,56 @@ doFile('/scripts/combat-startup.lua')
 				end;
 			end;
 			H55SMOD_MiddlewareListener['Bersy']['function'] = Events_MiddlewareListener_Implement_Bersy_Creature;
+
+		-- Egil
+			H55SMOD_MiddlewareListener['Egil'] = {};
+			H55SMOD_MiddlewareListener['Egil']['function'] = {};
+			function Events_MiddlewareListener_Implement_Egil_Hero(strHero, iSide, itemUnitLast, iIncreaseManaPoints)
+				if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero then
+					local listCreaturesTarget = ObjSnapshotLastTurn['Creatures'][iSide];
+					local iLenCreaturesTarget = length(listCreaturesTarget);
+					for iIndexCreaturesTarget = 0, iLenCreaturesTarget - 1 do
+						local itemCreatureTarget = listCreaturesTarget[iIndexCreaturesTarget];
+						if IsCombatUnit(itemCreatureTarget['strUnitName']) ~= nil and itemCreatureTarget['iUnitNumber'] > 0
+							and (
+								itemCreatureTarget['iUnitType'] == CREATURE_RUNE_MAGE
+								or itemCreatureTarget['iUnitType'] == CREATURE_FLAME_MAGE
+								or itemCreatureTarget['iUnitType'] == CREATURE_FLAME_KEEPER
+							) then
+							local iBeforeMana = GetUnitManaPoints(itemCreatureTarget['strUnitName']);
+							local iCurrentMana = iBeforeMana + iIncreaseManaPoints;
+					    SetUnitManaPoints(itemCreatureTarget['strUnitName'], iCurrentMana);
+							print(itemCreatureTarget['strUnitName'].." remain "..iIncreaseManaPoints.." mana");
+						end;
+					end;
+				end;
+			end;
+			H55SMOD_MiddlewareListener['Egil']['function']['hero'] = Events_MiddlewareListener_Implement_Egil_Hero;
+			function Events_MiddlewareListener_Implement_Egil_Creature(strHero, iSide, itemUnitLast, listCreaturesBeEffected)
+				if GetHero(getSide(iSide, 1)) ~= nil and GetHeroName(GetHero(getSide(iSide, 1))) == strHero and itemUnitLast['iSide'] == getSide(iSide, 1)
+					and (
+						itemUnitLast['iUnitType'] == CREATURE_RUNE_MAGE
+						or itemUnitLast['iUnitType'] == CREATURE_FLAME_MAGE
+						or itemUnitLast['iUnitType'] == CREATURE_FLAME_KEEPER
+					)
+					and GetUnitManaPoints(itemUnitLast['strUnitName']) >= 10 then
+					combatSetPause(1);
+					local iLenCreaturesBeEffected = length(listCreaturesBeEffected);
+					if iLenCreaturesBeEffected > 0 then
+						for iIndexCreaturesBeEffected = 0, iLenCreaturesBeEffected - 1 do
+							local itemCreatureBeEffected = listCreaturesBeEffected[iIndexCreaturesBeEffected];
+							if IsCombatUnit(itemCreatureBeEffected['strUnitName']) ~= nil and itemCreatureBeEffected['iUnitNumber'] > 0 then
+								startThread(Thread_Command_UnitShotAimed, itemUnitLast['strUnitName'], itemCreatureBeEffected['strUnitName']);
+								SetUnitManaPoints(itemUnitLast['strUnitName'], 0);
+								sleep(20);
+								break;
+							end;
+						end;
+					end;
+					combatSetPause(nil);
+				end;
+			end;
+			H55SMOD_MiddlewareListener['Egil']['function']['creature'] = Events_MiddlewareListener_Implement_Egil_Creature;
 
 	-- Dungeon
 		-- Almegir

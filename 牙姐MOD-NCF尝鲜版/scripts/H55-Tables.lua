@@ -1097,8 +1097,8 @@ H55_Reavers = {"Aislinn","Effig","Giovanni","OrnellaNecro","Aberrar","Muscip"};
 H55_Necromancers = {"Arantir","Nemor","Nimbus","Pelt","Sandro","Thant", "Adelaide","Vidomina"};
 
 H55_Engineers = {"Bersy","Maximus","Skeggy","Tazar","Vilma"};
-H55_Runemages = {"Bart","Brand","Egil","KingTolghar","Ottar","Hangvul2","Una","Vegeyr"};
-H55_Flamekeepers = {"Hangvul","Ingvar","Rolf","Ufretin","Wulfstan"};
+H55_Runemages = {"Bart","Brand","KingTolghar","Ottar","Hangvul2","Una","Vegeyr"};
+H55_Flamekeepers = {"Egil","Hangvul","Ingvar","Rolf","Ufretin","Wulfstan"};
 
 H55_Overlords = {"Urunir","Menel","Ferigl","Sylsai","Welygg"};
 H55_Assassins = {"Ohtarig","Eruina","Dalom","Kelodin","Shadwyn","Thralsai"};

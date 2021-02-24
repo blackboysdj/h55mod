@@ -3779,6 +3779,16 @@ function TTH_ArtifactManagement(iPlayer, iPlayerRace, strHero, iHeroRace)
 		end;
 	end;
 
+	-- by 牙姐 2021-2-24 22:26:42
+	-- begin 军团宝物 领袖特
+	if strTown == nil then
+		local iLeaderHero = TTH_TM_LeaderHero_or_Close(strHero);
+		-- end
+		if iLeaderHero == 1 then
+			return
+		end;
+	end;
+
 	-- by 牙姐 2018-8-22 18:24:07
 	-- begin 资源宝物 矿产加成
 	if 1 == 1 then
@@ -8021,14 +8031,22 @@ function H55_DailyEvents(player)
 			local type = H55_ArmyInfoSimple(hero);
 			local i_race = H55_GetHeroRaceNum(hero);
 			local i_level = GetHeroLevel(hero);
-			local i_defence = GetHeroStat(hero,STAT_DEFENCE);
+			local i_defence = GetHeroStat(hero,STAT_KNOWLEDGE);
 			local i_city = length(H55_GetPlayerTowns(player));
 			local i_set = H55_GetDwarvenSetCount(hero);
 			if HasArtefact(hero, 2, 1) ~= nil then
 				i_set = i_set + 1;
 			end
 
-			H55_Power_Hangvul = H55_Power_Hangvul + H55_Round((20 * i_level + 30 * i_defence + 50 * i_city) * (1 + (i_set * 0.2)));
+			local iLeaderHeroBonus = 1;
+			if TTH_LeaderHero_Bonus[hero] ~= nil then
+				for i = 1, TTH_LeaderHero_Bonus[hero] do
+					iLeaderHeroBonus = iLeaderHeroBonus * 1.1;
+				end;
+			end;
+			print("LeaderHero level is "..iLeaderHeroBonus);
+
+			H55_Power_Hangvul = H55_Power_Hangvul + H55_Round((20 * i_level + 30 * i_defence + 50 * i_city) * (1 + (i_set * 0.2)) * iLeaderHeroBonus);
 			print("H55 Hangvul Event H55_Power_Hangvul:"..H55_Power_Hangvul);
 
 			if H55_Reset_Hangvul == 0 then
@@ -8066,14 +8084,22 @@ function H55_DailyEvents(player)
 			local type = H55_ArmyInfoSimple(hero);
 			local i_race = H55_GetHeroRaceNum(hero);
 			local i_level = GetHeroLevel(hero);
-			local i_attack = GetHeroStat(hero, STAT_ATTACK);
+			local i_attack = GetHeroStat(hero, STAT_KNOWLEDGE);
 			local i_city = length(H55_GetPlayerTowns(player));
 			local i_set = H55_GetRunicSetCount(hero);
 			if HasArtefact(hero, 2, 1) ~= nil then
 				i_set = i_set + 1;
 			end
 
-			H55_Power_Sylsai = H55_Power_Sylsai + H55_Round((20 * i_level + 30 * i_attack + 50 * i_city) * (1 + (i_set * 0.2)));
+			local iLeaderHeroBonus = 1;
+			if TTH_LeaderHero_Bonus[hero] ~= nil then
+				for i = 1, TTH_LeaderHero_Bonus[hero] do
+					iLeaderHeroBonus = iLeaderHeroBonus * 1.1;
+				end;
+			end;
+			print("LeaderHero level is "..iLeaderHeroBonus);
+
+			H55_Power_Sylsai = H55_Power_Sylsai + H55_Round((20 * i_level + 30 * i_attack + 50 * i_city) * (1 + (i_set * 0.2)) * iLeaderHeroBonus);
 			print("H55 Sylsai Event H55_Power_Sylsai:"..H55_Power_Sylsai);
 
 			if H55_Reset_Sylsai == 0 then
@@ -8111,7 +8137,7 @@ function H55_DailyEvents(player)
 			local type = H55_ArmyInfoSimple(hero);
 			local i_race = H55_GetHeroRaceNum(hero);
 			local i_level = GetHeroLevel(hero);
-			local i_attack = GetHeroStat(hero, STAT_ATTACK);
+			local i_attack = GetHeroStat(hero, STAT_KNOWLEDGE);
 			local i_city = length(H55_GetPlayerTowns(player));
 			local i_set = H55_GetOgreSetCount(hero);
 			local b_defend_us_all = 1;
@@ -8119,7 +8145,15 @@ function H55_DailyEvents(player)
 				b_defend_us_all = 1.5;
 			end;
 
-			H55_Power_Kunyak = H55_Power_Kunyak + H55_Round((20 * i_level + 30 * i_attack + 50 * i_city) * (1 + (i_set * 0.2)) * b_defend_us_all);
+			local iLeaderHeroBonus = 1;
+			if TTH_LeaderHero_Bonus[hero] ~= nil then
+				for i = 1, TTH_LeaderHero_Bonus[hero] do
+					iLeaderHeroBonus = iLeaderHeroBonus * 1.1;
+				end;
+			end;
+			print("LeaderHero level is "..iLeaderHeroBonus);
+
+			H55_Power_Kunyak = H55_Power_Kunyak + H55_Round((20 * i_level + 30 * i_attack + 50 * i_city) * (1 + (i_set * 0.2)) * b_defend_us_all * iLeaderHeroBonus);
 			print("H55 Kunyak Event H55_Power_Kunyak:"..H55_Power_Kunyak);
 
 			if H55_Reset_Kunyak == 0 then
@@ -8161,7 +8195,15 @@ function H55_DailyEvents(player)
 			local i_city = length(H55_GetPlayerTowns(player));
 			local i_set = H55_GetInfernoSetCount(hero);
 
-			H55_Power_Biara = H55_Power_Biara + H55_Round((20 * i_level + 30 * i_knowledge + 50 * i_city) * (1 + i_set * 0.5));
+			local iLeaderHeroBonus = 1;
+			if TTH_LeaderHero_Bonus[hero] ~= nil then
+				for i = 1, TTH_LeaderHero_Bonus[hero] do
+					iLeaderHeroBonus = iLeaderHeroBonus * 1.1;
+				end;
+			end;
+			print("LeaderHero level is "..iLeaderHeroBonus);
+
+			H55_Power_Biara = H55_Power_Biara + H55_Round((20 * i_level + 30 * i_knowledge + 50 * i_city) * (1 + i_set * 0.5) * iLeaderHeroBonus);
 			print("H55 Biara Event H55_Power_Biara:"..H55_Power_Biara);
 
 			if H55_Reset_Biara == 0 then
@@ -9640,6 +9682,72 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 			TTH_TOWN_BONUS_HERO_DISABLE[strTown][strHero] = {};
 		end;
 		TTH_TOWN_BONUS_HERO_DISABLE[strTown][strHero][i * 1] = 1;
+	end;
+-- end
+
+-- by 牙姐 2021-2-24 22:27:53
+-- begin 军团宝物 领袖特
+	TTH_TOWN_BONUS_SET = {
+		["ID"] = {
+			[0] = ARTIFACT_LEGION_T1
+			, [1] = ARTIFACT_LEGION_T2
+			, [2] = ARTIFACT_LEGION_T3
+			, [3] = ARTIFACT_LEGION_T4
+			, [4] = ARTIFACT_LEGION_T5
+			, [5] = ARTIFACT_LEGION_T6
+			, [6] = ARTIFACT_LEGION_T7
+		}
+		, ["NAME"] = {
+			[0] = "/Text/Game/Artifacts/Legion_T1/Name.txt"
+			, [1] = "/Text/Game/Artifacts/Legion_T2/Name.txt"
+			, [2] = "/Text/Game/Artifacts/Legion_T3/Name.txt"
+			, [3] = "/Text/Game/Artifacts/Legion_T4/Name.txt"
+			, [4] = "/Text/Game/Artifacts/Legion_T5/Name.txt"
+			, [5] = "/Text/Game/Artifacts/Legion_T6/Name.txt"
+			, [6] = "/Text/Game/Artifacts/Legion_T7/Name.txt"
+		}
+		, ["DESC"] = {
+			[0] = "/Text/Game/Scripts/TownPortal/Legion_T1.txt"
+			, [1] = "/Text/Game/Scripts/TownPortal/Legion_T2.txt"
+			, [2] = "/Text/Game/Scripts/TownPortal/Legion_T3.txt"
+			, [3] = "/Text/Game/Scripts/TownPortal/Legion_T4.txt"
+			, [4] = "/Text/Game/Scripts/TownPortal/Legion_T5.txt"
+			, [5] = "/Text/Game/Scripts/TownPortal/Legion_T6.txt"
+			, [6] = "/Text/Game/Scripts/TownPortal/Legion_T7.txt"
+		}
+	};
+	TTH_TABLE_LeaderHero = {
+		"Biara"
+		, "Hangvul"
+		, "Sylsai"
+		, "Kunyak"
+	};
+	TTH_LeaderHero_Bonus = {};
+	function TTH_TM_LeaderHero_or_Close(strHero)
+		if contains(TTH_TABLE_LeaderHero, strHero) then
+			local iPlayer = GetObjectOwner(strHero);
+			for iIndexLegion, objLegion in TTH_TOWN_BONUS_SET["ID"] do
+				if (HasArtefact(strHero, objLegion, 0) ~= nil) then
+					QuestionBoxForPlayers(GetPlayerFilter(iPlayer),{"/Text/Game/Scripts/TownPortal/TTH_TM_LeaderHero_or_Close.txt";
+					name=TTH_TOWN_BONUS_SET["NAME"][iIndexLegion],desc=TTH_TOWN_BONUS_SET["DESC"][iIndexLegion]},
+					"TTH_TM_CB_LeaderHero_Request('"..strHero.."','"..iIndexLegion.."')","TTH_TM_CB_LeaderHero_Abort('"..strHero.."','"..iIndexLegion.."')");
+					return 1;
+				end;
+			end;
+			return 0;
+		else
+			return 0;
+		end;
+	end;
+	function TTH_TM_CB_LeaderHero_Request(strHero, iIndexLegion)
+		RemoveArtefact(strHero, TTH_TOWN_BONUS_SET["ID"][iIndexLegion + 0]);
+		if TTH_LeaderHero_Bonus[strHero] == nil then
+			TTH_LeaderHero_Bonus[strHero] = 1;
+		else
+			TTH_LeaderHero_Bonus[strHero] = TTH_LeaderHero_Bonus[strHero] + 1;
+		end;
+	end;
+	function TTH_TM_CB_LeaderHero_Abort(strHero, iIndexLegion)
 	end;
 -- end
 

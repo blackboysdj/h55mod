@@ -29,11 +29,11 @@
 	<RazedStatic/>
 	<Icon128/>
 	<InternalName>Egil</InternalName>
-	<Class>HERO_CLASS_FLAMEKEEPERA</Class>
+	<Class>HERO_CLASS_RUNEMAGE</Class>
 	<Specialization>HERO_SPEC_MAGISTER</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_TRAINING</SkillID>
+		<SkillID>HERO_SKILL_RUNELORE</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Fortress55/Magister/Name.txt"/>
 	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Fortress55/Magister/Description.txt"/>
@@ -49,14 +49,14 @@
 	<Editable>
 		<NameFileRef href="/Text/Game/Heroes/Persons/Dwarves/Egil/Name.txt"/>
 		<BiographyFileRef href="/Text/Game/Heroes/Persons/Dwarves/Egil/Bio.txt"/>
-		<Offence>1</Offence>
+		<Offence>0</Offence>
 		<Defence>1</Defence>
-		<Spellpower>1</Spellpower>
+		<Spellpower>2</Spellpower>
 		<Knowledge>2</Knowledge>
 		<skills>
 			<Item>
 				<Mastery>MASTERY_BASIC</Mastery>
-				<SkillID>HERO_SKILL_RUNELORE</SkillID>
+				<SkillID>HERO_SKILL_SORCERY</SkillID>
 			</Item>
 		</skills>
 		<perkIDs>

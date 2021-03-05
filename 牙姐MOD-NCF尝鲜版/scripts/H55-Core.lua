@@ -6397,82 +6397,10 @@ function H55_ContinuesEvent(player)
 				TeachHeroSpell(hero,SPELL_MASS_BLESS);
 			end;
 
-			H55_DEBUG = {13,"Spells",player,hero};
-				if (HasHeroSkill(hero,PERK_MASTER_OF_ICE) ~= nil) and KnowHeroSpell(hero,H55_SpellsL2[3]) == nil then
-					TeachHeroSpell(hero,H55_SpellsL2[3]);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign({"/Text/Game/Scripts/Learnspell.txt";name=H55_SpellsTextL2[3]},hero,player,7) sleep(4) end;
-				end;
-				if (HasHeroSkill(hero,PERK_MASTER_OF_FIRE) ~= nil) and GetHeroSkillMastery(hero, SKILL_DESTRUCTIVE_MAGIC) >= 2 and KnowHeroSpell(hero,H55_SpellsL3[5]) == nil then
-					TeachHeroSpell(hero,H55_SpellsL3[5]);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign({"/Text/Game/Scripts/Learnspell.txt";name=H55_SpellsTextL3[5]},hero,player,7) sleep(4) end;
-				end;
-				if (HasHeroSkill(hero,PERK_MASTER_OF_LIGHTNINGS) ~= nil) and KnowHeroSpell(hero,H55_SpellsL2[4]) == nil then
-					TeachHeroSpell(hero,H55_SpellsL2[4]);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign({"/Text/Game/Scripts/Learnspell.txt";name=H55_SpellsTextL2[4]},hero,player,7) sleep(4) end;
-				end;
-				if (HasHeroSkill(hero,PERK_MASTER_OF_BLESSING) ~= nil) and KnowHeroSpell(hero,H55_SpellsL1[6]) == nil then
-					TeachHeroSpell(hero,H55_SpellsL1[6]);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign({"/Text/Game/Scripts/Learnspell.txt";name=H55_SpellsTextL1[6]},hero,player,7) sleep(4) end;
-				end;
-				if (HasHeroSkill(hero,PERK_MASTER_OF_ABJURATION) ~= nil) and KnowHeroSpell(hero,H55_SpellsL2[6]) == nil then
-					TeachHeroSpell(hero,H55_SpellsL2[6]);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign({"/Text/Game/Scripts/Learnspell.txt";name=H55_SpellsTextL2[6]},hero,player,7) sleep(4) end;
-				end;
-				if (HasHeroSkill(hero,PERK_MASTER_OF_WRATH) ~= nil) and KnowHeroSpell(hero,H55_SpellsL1[7]) == nil then
-					TeachHeroSpell(hero,H55_SpellsL1[7]);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign({"/Text/Game/Scripts/Learnspell.txt";name=H55_SpellsTextL1[7]},hero,player,7) sleep(4) end;
-				end;
-				if (HasHeroSkill(hero,PERK_MASTER_OF_CURSES) ~= nil) and KnowHeroSpell(hero,H55_SpellsL1[3]) == nil then
-					TeachHeroSpell(hero,H55_SpellsL1[3]);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign({"/Text/Game/Scripts/Learnspell.txt";name=H55_SpellsTextL1[3]},hero,player,7) sleep(4) end;
-				end;
-				if (HasHeroSkill(hero,PERK_MASTER_OF_SICKNESS) ~= nil) and KnowHeroSpell(hero,H55_SpellsL2[2]) == nil then
-					TeachHeroSpell(hero,H55_SpellsL2[2]);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign({"/Text/Game/Scripts/Learnspell.txt";name=H55_SpellsTextL2[2]},hero,player,7) sleep(4) end;
-				end;
-				if (HasHeroSkill(hero,PERK_MASTER_OF_MIND) ~= nil) and KnowHeroSpell(hero,H55_SpellsL1[1]) == nil then
-					TeachHeroSpell(hero,H55_SpellsL1[1]);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign({"/Text/Game/Scripts/Learnspell.txt";name=H55_SpellsTextL1[1]},hero,player,7) sleep(4) end;
-				end;
-				if (HasHeroSkill(hero,PERK_MASTER_OF_QUAKES) ~= nil) and KnowHeroSpell(hero,H55_SpellsL2[7]) == nil then
-					TeachHeroSpell(hero,H55_SpellsL2[7]);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign({"/Text/Game/Scripts/Learnspell.txt";name=H55_SpellsTextL2[7]},hero,player,7) sleep(4) end;
-				end;
-				if (HasHeroSkill(hero,PERK_MASTER_OF_ANIMATION) ~= nil) and (KnowHeroSpell(hero,H55_SpellsL2[9]) == nil)then
-					TeachHeroSpell(hero,H55_SpellsL2[9]);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign({"/Text/Game/Scripts/Learnspell.txt";name=H55_SpellsTextL2[9]},hero,player,7) sleep(4) end;
-				end;
-				if (HasHeroSkill(hero,PERK_MASTER_OF_CREATURES) ~= nil) and GetHeroSkillMastery(hero, SKILL_SUMMONING_MAGIC) >= 2 and KnowHeroSpell(hero,H55_SpellsL3[11]) == nil then
-					TeachHeroSpell(hero,H55_SpellsL3[11]);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign({"/Text/Game/Scripts/Learnspell.txt";name=H55_SpellsTextL3[11]},hero,player,7) sleep(4) end;
-				end;
-
-				if (HasHeroSkill(hero,DEMON_FEAT_WEAKENING_STRIKE) ~= nil) and KnowHeroSpell(hero,H55_SpellsL3[1]) == nil then
-					TeachHeroSpell(hero,H55_SpellsL3[1]);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign({"/Text/Game/Scripts/Learnspell.txt";name=H55_SpellsTextL3[1]},hero,player,7) sleep(4) end;
-				end;
-				if (HasHeroSkill(hero,NECROMANCER_FEAT_DEADLY_COLD) ~= nil) and KnowHeroSpell(hero,H55_SpellsL3[4]) == nil then
-					TeachHeroSpell(hero,H55_SpellsL3[4]);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign({"/Text/Game/Scripts/Learnspell.txt";name=H55_SpellsTextL3[4]},hero,player,7) sleep(4) end;
-				end;
-
-
-				if (HasHeroSkill(hero,PERK_MASTER_OF_ANIMATION) ~= nil) and (HasHeroSkill(hero,SKILL_LIGHT_MAGIC) ~= nil) and (KnowHeroSpell(hero,H55_SpellsL3[8]) == nil) then
-					TeachHeroSpell(hero,H55_SpellsL3[8]);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign({"/Text/Game/Scripts/Learnspell.txt";name=H55_SpellsTextL3[8]},hero,player,7) sleep(4) end;
-				end;
-				if (HasHeroSkill(hero,PERK_MASTER_OF_MIND) ~= nil) and (HasHeroSkill(hero,RANGER_FEAT_FOG_VEIL) ~= nil) and (KnowHeroSpell(hero,H55_SpellsL3[2]) == nil) then
-					TeachHeroSpell(hero,H55_SpellsL3[2]);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign({"/Text/Game/Scripts/Learnspell.txt";name=H55_SpellsTextL3[2]},hero,player,7) sleep(4) end;
-				end;
-				if (HasHeroSkill(hero,DEMON_FEAT_FIRE_AFFINITY) ~= nil) and (HasHeroSkill(hero,PERK_MASTER_OF_FIRE) ~= nil) and GetHeroSkillMastery(hero, SKILL_DESTRUCTIVE_MAGIC) >= 2 and KnowHeroSpell(hero,H55_SpellsL4[8]) == nil then
-					TeachHeroSpell(hero,H55_SpellsL4[8]);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign({"/Text/Game/Scripts/Learnspell.txt";name=H55_SpellsTextL4[8]},hero,player,7) sleep(4) end;
-				end;
-				if (HasHeroSkill(hero,RANGER_FEAT_STORM_WIND) ~= nil) and (HasHeroSkill(hero,PERK_MASTER_OF_LIGHTNINGS) ~= nil) and GetHeroSkillMastery(hero, SKILL_DESTRUCTIVE_MAGIC) >= 2 and KnowHeroSpell(hero,H55_SpellsL4[3]) == nil then
-					TeachHeroSpell(hero,H55_SpellsL4[3]);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign({"/Text/Game/Scripts/Learnspell.txt";name=H55_SpellsTextL4[3]},hero,player,7) sleep(4) end;
-				end;
+			-- 根据英雄技能赠送魔法相关
+			for iIndexGmbs, objGmbs in TTH_TABLE_GIVE_MAGIC_BY_SKILL do
+				TTH_GiveMagic8Skill(hero, player, objGmbs);
+			end;
 
 			if (HasHeroSkill(hero,PERK_WISDOM) ~= nil) then
 				if H55_TeachSpell_L3[hero] == nil then
@@ -11405,6 +11333,38 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 				for iIndexArtifact, objArtifact in TTH_ARTIFACT_EFFECT_COMBAT do
 					local strKey = 'TTH_Artifact_Effect_Combat_'..strHero..'_'..objArtifact;
 					SetGameVar(strKey, 0);
+				end;
+			end;
+		end;
+	end;
+-- end
+
+-- by 牙姐 2021-03-06 02:41:16
+-- begin 根据英雄技能赠送魔法相关
+	function TTH_GiveMagic8Skill(strHero, iPlayer, objItem)
+		if KnowHeroSpell(strHero, objItem["MAGIC"]["ID"]) == nil then
+			local bCheck = 1;
+			if length(objItem["SKILL_MASTERY"]) > 0 then
+				for iIndexMastery, objMastery in objItem["SKILL_MASTERY"] do
+					if GetHeroSkillMastery(strHero, objMastery["MASTERY"]) < objMastery["LEVEL"] then
+						bCheck = 0;
+						break;
+					end;
+				end;
+			end;
+			if length(objItem["SKILL_PERK"]) > 0 then
+				for iIndexPerk, objPerk in objItem["SKILL_PERK"] do
+					if HasHeroSkill(strHero, objPerk) == nil then
+						bCheck = 0;
+						break;
+					end;
+				end;
+			end;
+			if bCheck == 1 then
+				TeachHeroSpell(strHero, objItem["MAGIC"]["ID"]);
+				if H55_IsThisAIPlayer(iPlayer) ~= 1 and H55_IsHeroInAnyTown(strHero) == 0 then
+					ShowFlyingSign({"/Text/Game/Scripts/Learnspell.txt";name=objItem["MAGIC"]["NAME"]},strHero,iPlayer,7);
+					sleep(4);
 				end;
 			end;
 		end;

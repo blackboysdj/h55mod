@@ -2709,300 +2709,634 @@ H55_Melodia_Artifacts = {
 -- by 牙姐 2018-10-2 0:47:34
 -- begin 所有法术列表
 TTH_TABLE_SPELL = {
-	["LIGHT"] = {
-		[1] = {
-			["ID"] = {
-				SPELL_BLESS
-				, SPELL_HASTE
-			}
-			, ["NAME"] = {
-				"/Text/Game/Scripts/Spells/spell_name_SPELL_BLESS.txt"
-				, "/Text/Game/Scripts/Spells/spell_name_SPELL_HASTE.txt"
+	["SPELL_BLESS"] = {
+		["ID"] = SPELL_BLESS
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_BLESS.txt"
+		, ["LEVEL"] = 1
+		, ["ELEMENT"] = "LIGHT"
+	}
+	, ["SPELL_HASTE"] = {
+		["ID"] = SPELL_HASTE
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_HASTE.txt"
+		, ["LEVEL"] = 1
+		, ["ELEMENT"] = "LIGHT"
+	}
+	, ["SPELL_STONESKIN"] = {
+		["ID"] = SPELL_STONESKIN
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_STONESKIN.txt"
+		, ["LEVEL"] = 2
+		, ["ELEMENT"] = "LIGHT"
+	}
+	, ["SPELL_BLOODLUST"] = {
+		["ID"] = SPELL_BLOODLUST
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_BLOODLUST.txt"
+		, ["LEVEL"] = 2
+		, ["ELEMENT"] = "LIGHT"
+	}
+	, ["SPELL_DEFLECT_ARROWS"] = {
+		["ID"] = SPELL_DEFLECT_ARROWS
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_DEFLECT_ARROWS.txt"
+		, ["LEVEL"] = 2
+		, ["ELEMENT"] = "LIGHT"
+	}
+	, ["SPELL_DISPEL"] = {
+		["ID"] = SPELL_DISPEL
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_DISPEL.txt"
+		, ["LEVEL"] = 3
+		, ["ELEMENT"] = "LIGHT"
+	}
+	, ["SPELL_ANTI_MAGIC"] = {
+		["ID"] = SPELL_ANTI_MAGIC
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_ANTI_MAGIC.txt"
+		, ["LEVEL"] = 3
+		, ["ELEMENT"] = "LIGHT"
+	}
+	, ["SPELL_REGENERATION"] = {
+		["ID"] = SPELL_REGENERATION
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_REGENERATION.txt"
+		, ["LEVEL"] = 3
+		, ["ELEMENT"] = "LIGHT"
+	}
+	, ["SPELL_TELEPORT"] = {
+		["ID"] = SPELL_TELEPORT
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_TELEPORT.txt"
+		, ["LEVEL"] = 4
+		, ["ELEMENT"] = "LIGHT"
+	}
+	, ["SPELL_DIVINE_VENGEANCE"] = {
+		["ID"] = SPELL_DIVINE_VENGEANCE
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_DIVINE_VENGEANCE.txt"
+		, ["LEVEL"] = 4
+		, ["ELEMENT"] = "LIGHT"
+	}
+	, ["SPELL_HOLY_WORD"] = {
+		["ID"] = SPELL_HOLY_WORD
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_HOLY_WORD.txt"
+		, ["LEVEL"] = 5
+		, ["ELEMENT"] = "LIGHT"
+	}
+	, ["SPELL_RESURRECT"] = {
+		["ID"] = SPELL_RESURRECT
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_RESURRECT.txt"
+		, ["LEVEL"] = 5
+		, ["ELEMENT"] = "LIGHT"
+	}
+	, ["SPELL_CURSE"] = {
+		["ID"] = SPELL_CURSE
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_CURSE.txt"
+		, ["LEVEL"] = 1
+		, ["ELEMENT"] = "DARK"
+	}
+	, ["SPELL_SLOW"] = {
+		["ID"] = SPELL_SLOW
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_SLOW.txt"
+		, ["LEVEL"] = 1
+		, ["ELEMENT"] = "DARK"
+	}
+	, ["SPELL_DISRUPTING_RAY"] = {
+		["ID"] = SPELL_DISRUPTING_RAY
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_DISRUPTING_RAY.txt"
+		, ["LEVEL"] = 2
+		, ["ELEMENT"] = "DARK"
+	}
+	, ["SPELL_WEAKNESS"] = {
+		["ID"] = SPELL_WEAKNESS
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_WEAKNESS.txt"
+		, ["LEVEL"] = 2
+		, ["ELEMENT"] = "DARK"
+	}
+	, ["SPELL_FORGETFULNESS"] = {
+		["ID"] = SPELL_FORGETFULNESS
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_FORGETFULNESS.txt"
+		, ["LEVEL"] = 2
+		, ["ELEMENT"] = "DARK"
+	}
+	, ["SPELL_PLAGUE"] = {
+		["ID"] = SPELL_PLAGUE
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_PLAGUE.txt"
+		, ["LEVEL"] = 3
+		, ["ELEMENT"] = "DARK"
+	}
+	, ["SPELL_SORROW"] = {
+		["ID"] = SPELL_SORROW
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_SORROW.txt"
+		, ["LEVEL"] = 3
+		, ["ELEMENT"] = "DARK"
+	}
+	, ["SPELL_BERSERK"] = {
+		["ID"] = SPELL_BERSERK
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_BERSERK.txt"
+		, ["LEVEL"] = 4
+		, ["ELEMENT"] = "DARK"
+	}
+	, ["SPELL_BLIND"] = {
+		["ID"] = SPELL_BLIND
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_BLIND.txt"
+		, ["LEVEL"] = 4
+		, ["ELEMENT"] = "DARK"
+	}
+	, ["SPELL_UNHOLY_WORD"] = {
+		["ID"] = SPELL_UNHOLY_WORD
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_UNHOLY_WORD.txt"
+		, ["LEVEL"] = 4
+		, ["ELEMENT"] = "DARK"
+	}
+	, ["SPELL_HYPNOTIZE"] = {
+		["ID"] = SPELL_HYPNOTIZE
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_HYPNOTIZE.txt"
+		, ["LEVEL"] = 5
+		, ["ELEMENT"] = "DARK"
+	}
+	, ["SPELL_VAMPIRISM"] = {
+		["ID"] = SPELL_VAMPIRISM
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_VAMPIRISM.txt"
+		, ["LEVEL"] = 5
+		, ["ELEMENT"] = "DARK"
+	}
+	, ["SPELL_MAGIC_FIST"] = {
+		["ID"] = SPELL_MAGIC_FIST
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_MAGIC_FIST.txt"
+		, ["LEVEL"] = 1
+		, ["ELEMENT"] = "SUMMONING"
+	}
+	, ["SPELL_LAND_MINE"] = {
+		["ID"] = SPELL_LAND_MINE
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_LAND_MINE.txt"
+		, ["LEVEL"] = 1
+		, ["ELEMENT"] = "SUMMONING"
+	}
+	, ["SPELL_ANIMATE_DEAD"] = {
+		["ID"] = SPELL_ANIMATE_DEAD
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_ANIMATE_DEAD.txt"
+		, ["LEVEL"] = 2
+		, ["ELEMENT"] = "SUMMONING"
+	}
+	, ["SPELL_CELESTIAL_SHIELD"] = {
+		["ID"] = SPELL_CELESTIAL_SHIELD
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_CELESTIAL_SHIELD.txt"
+		, ["LEVEL"] = 2
+		, ["ELEMENT"] = "SUMMONING"
+	}
+	, ["SPELL_ARCANE_CRYSTAL"] = {
+		["ID"] = SPELL_ARCANE_CRYSTAL
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_ARCANE_CRYSTAL.txt"
+		, ["LEVEL"] = 2
+		, ["ELEMENT"] = "SUMMONING"
+	}
+	, ["SPELL_WASP_SWARM"] = {
+		["ID"] = SPELL_WASP_SWARM
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_WASP_SWARM.txt"
+		, ["LEVEL"] = 3
+		, ["ELEMENT"] = "SUMMONING"
+	}
+	, ["SPELL_SUMMON_ELEMENTALS"] = {
+		["ID"] = SPELL_SUMMON_ELEMENTALS
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_SUMMON_ELEMENTALS.txt"
+		, ["LEVEL"] = 3
+		, ["ELEMENT"] = "SUMMONING"
+	}
+	, ["SPELL_BLADE_BARRIER"] = {
+		["ID"] = SPELL_BLADE_BARRIER
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_BLADE_BARRIER.txt"
+		, ["LEVEL"] = 3
+		, ["ELEMENT"] = "SUMMONING"
+	}
+	, ["SPELL_PHANTOM"] = {
+		["ID"] = SPELL_PHANTOM
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_PHANTOM.txt"
+		, ["LEVEL"] = 4
+		, ["ELEMENT"] = "SUMMONING"
+	}
+	, ["SPELL_EARTHQUAKE"] = {
+		["ID"] = SPELL_EARTHQUAKE
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_EARTHQUAKE.txt"
+		, ["LEVEL"] = 4
+		, ["ELEMENT"] = "SUMMONING"
+	}
+	, ["SPELL_FIREWALL"] = {
+		["ID"] = SPELL_FIREWALL
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_FIREWALL.txt"
+		, ["LEVEL"] = 4
+		, ["ELEMENT"] = "SUMMONING"
+	}
+	, ["SPELL_CONJURE_PHOENIX"] = {
+		["ID"] = SPELL_CONJURE_PHOENIX
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_CONJURE_PHOENIX.txt"
+		, ["LEVEL"] = 5
+		, ["ELEMENT"] = "SUMMONING"
+	}
+	, ["SPELL_SUMMON_HIVE"] = {
+		["ID"] = SPELL_SUMMON_HIVE
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_SUMMON_HIVE.txt"
+		, ["LEVEL"] = 5
+		, ["ELEMENT"] = "SUMMONING"
+	}
+	, ["SPELL_MAGIC_ARROW"] = {
+		["ID"] = SPELL_MAGIC_ARROW
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_MAGIC_ARROW.txt"
+		, ["LEVEL"] = 1
+		, ["ELEMENT"] = "DESTRUCTIVE"
+	}
+	, ["SPELL_STONE_SPIKES"] = {
+		["ID"] = SPELL_STONE_SPIKES
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_STONE_SPIKES.txt"
+		, ["LEVEL"] = 1
+		, ["ELEMENT"] = "DESTRUCTIVE"
+	}
+	, ["SPELL_ICE_BOLT"] = {
+		["ID"] = SPELL_ICE_BOLT
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_ICE_BOLT.txt"
+		, ["LEVEL"] = 2
+		, ["ELEMENT"] = "DESTRUCTIVE"
+	}
+	, ["SPELL_LIGHTNING_BOLT"] = {
+		["ID"] = SPELL_LIGHTNING_BOLT
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_LIGHTNING_BOLT.txt"
+		, ["LEVEL"] = 2
+		, ["ELEMENT"] = "DESTRUCTIVE"
+	}
+	, ["SPELL_FIREBALL"] = {
+		["ID"] = SPELL_FIREBALL
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_FIREBALL.txt"
+		, ["LEVEL"] = 3
+		, ["ELEMENT"] = "DESTRUCTIVE"
+	}
+	, ["SPELL_FROST_RING"] = {
+		["ID"] = SPELL_FROST_RING
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_FROST_RING.txt"
+		, ["LEVEL"] = 3
+		, ["ELEMENT"] = "DESTRUCTIVE"
+	}
+	, ["SPELL_METEOR_SHOWER"] = {
+		["ID"] = SPELL_METEOR_SHOWER
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_METEOR_SHOWER.txt"
+		, ["LEVEL"] = 3
+		, ["ELEMENT"] = "DESTRUCTIVE"
+	}
+	, ["SPELL_CHAIN_LIGHTNING"] = {
+		["ID"] = SPELL_CHAIN_LIGHTNING
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_CHAIN_LIGHTNING.txt"
+		, ["LEVEL"] = 4
+		, ["ELEMENT"] = "DESTRUCTIVE"
+	}
+	, ["SPELL_IMPLOSION"] = {
+		["ID"] = SPELL_IMPLOSION
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_IMPLOSION.txt"
+		, ["LEVEL"] = 4
+		, ["ELEMENT"] = "DESTRUCTIVE"
+	}
+	, ["SPELL_ARMAGEDDON"] = {
+		["ID"] = SPELL_ARMAGEDDON
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_ARMAGEDDON.txt"
+		, ["LEVEL"] = 5
+		, ["ELEMENT"] = "DESTRUCTIVE"
+	}
+	, ["SPELL_DEEP_FREEZE"] = {
+		["ID"] = SPELL_DEEP_FREEZE
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_DEEP_FREEZE.txt"
+		, ["LEVEL"] = 5
+		, ["ELEMENT"] = "DESTRUCTIVE"
+	}
+	, ["SPELL_RUNE_OF_CHARGE"] = {
+		["ID"] = SPELL_RUNE_OF_CHARGE
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_RUNE_OF_CHARGE.txt"
+		, ["LEVEL"] = 1
+		, ["ELEMENT"] = "RUNE"
+	}
+	, ["SPELL_RUNE_OF_BERSERKING"] = {
+		["ID"] = SPELL_RUNE_OF_BERSERKING
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_RUNE_OF_BERSERKING.txt"
+		, ["LEVEL"] = 1
+		, ["ELEMENT"] = "RUNE"
+	}
+	, ["SPELL_RUNE_OF_MAGIC_CONTROL"] = {
+		["ID"] = SPELL_RUNE_OF_MAGIC_CONTROL
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_RUNE_OF_MAGIC_CONTROL.txt"
+		, ["LEVEL"] = 1
+		, ["ELEMENT"] = "RUNE"
+	}
+	, ["SPELL_RUNE_OF_EXORCISM"] = {
+		["ID"] = SPELL_RUNE_OF_EXORCISM
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_RUNE_OF_EXORCISM.txt"
+		, ["LEVEL"] = 1
+		, ["ELEMENT"] = "RUNE"
+	}
+	, ["SPELL_RUNE_OF_ETHEREALNESS"] = {
+		["ID"] = SPELL_RUNE_OF_ETHEREALNESS
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_RUNE_OF_ETHEREALNESS.txt"
+		, ["LEVEL"] = 2
+		, ["ELEMENT"] = "RUNE"
+	}
+	, ["SPELL_RUNE_OF_ELEMENTAL_IMMUNITY"] = {
+		["ID"] = SPELL_RUNE_OF_ELEMENTAL_IMMUNITY
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_RUNE_OF_ELEMENTAL_IMMUNITY.txt"
+		, ["LEVEL"] = 2
+		, ["ELEMENT"] = "RUNE"
+	}
+	, ["SPELL_RUNE_OF_REVIVE"] = {
+		["ID"] = SPELL_RUNE_OF_REVIVE
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_RUNE_OF_REVIVE.txt"
+		, ["LEVEL"] = 2
+		, ["ELEMENT"] = "RUNE"
+	}
+	, ["SPELL_RUNE_OF_STUNNING"] = {
+		["ID"] = SPELL_RUNE_OF_STUNNING
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_RUNE_OF_STUNNING.txt"
+		, ["LEVEL"] = 2
+		, ["ELEMENT"] = "RUNE"
+	}
+	, ["SPELL_RUNE_OF_BATTLERAGE"] = {
+		["ID"] = SPELL_RUNE_OF_BATTLERAGE
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_RUNE_OF_BATTLERAGE.txt"
+		, ["LEVEL"] = 3
+		, ["ELEMENT"] = "RUNE"
+	}
+	, ["SPELL_RUNE_OF_DRAGONFORM"] = {
+		["ID"] = SPELL_RUNE_OF_DRAGONFORM
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_RUNE_OF_DRAGONFORM.txt"
+		, ["LEVEL"] = 3
+		, ["ELEMENT"] = "RUNE"
+	}
+	, ["SPELL_WARCRY_RALLING_CRY"] = {
+		["ID"] = SPELL_WARCRY_RALLING_CRY
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_WARCRY_RALLING_CRY.txt"
+		, ["LEVEL"] = 1
+		, ["ELEMENT"] = "WARCRY"
+	}
+	, ["SPELL_WARCRY_CALL_OF_BLOOD"] = {
+		["ID"] = SPELL_WARCRY_CALL_OF_BLOOD
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_WARCRY_CALL_OF_BLOOD.txt"
+		, ["LEVEL"] = 1
+		, ["ELEMENT"] = "WARCRY"
+	}
+	, ["SPELL_WARCRY_WORD_OF_THE_CHIEF"] = {
+		["ID"] = SPELL_WARCRY_WORD_OF_THE_CHIEF
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_WARCRY_WORD_OF_THE_CHIEF.txt"
+		, ["LEVEL"] = 2
+		, ["ELEMENT"] = "WARCRY"
+	}
+	, ["SPELL_WARCRY_FEAR_MY_ROAR"] = {
+		["ID"] = SPELL_WARCRY_FEAR_MY_ROAR
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_WARCRY_FEAR_MY_ROAR.txt"
+		, ["LEVEL"] = 2
+		, ["ELEMENT"] = "WARCRY"
+	}
+	, ["SPELL_WARCRY_BATTLECRY"] = {
+		["ID"] = SPELL_WARCRY_BATTLECRY
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_WARCRY_BATTLECRY.txt"
+		, ["LEVEL"] = 3
+		, ["ELEMENT"] = "WARCRY"
+	}
+	, ["SPELL_WARCRY_SHOUT_OF_MANY"] = {
+		["ID"] = SPELL_WARCRY_SHOUT_OF_MANY
+		, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_WARCRY_SHOUT_OF_MANY.txt"
+		, ["LEVEL"] = 3
+		, ["ELEMENT"] = "WARCRY"
+	}
+};
+--end
+
+-- by 牙姐 2021-03-06 02:41:16
+-- begin 根据英雄技能赠送魔法相关
+TTH_TABLE_GIVE_MAGIC_BY_SKILL = {
+	-- 高级光明 + 愤怒大师 = 疾速行动
+	{
+		["MAGIC"] = TTH_TABLE_SPELL["SPELL_HASTE"]
+		, ["SKILL_MASTERY"] = {
+			{
+				["MASTERY"] = SKILL_LIGHT_MAGIC
+				, ["LEVEL"] = 2
 			}
 		}
-		, [2] = {
-			["ID"] = {
-				SPELL_STONESKIN
-				, SPELL_BLOODLUST
-				, SPELL_DEFLECT_ARROWS
-			}
-			, ["NAME"] = {
-				"/Text/Game/Scripts/Spells/spell_name_SPELL_STONESKIN.txt"
-				, "/Text/Game/Scripts/Spells/spell_name_SPELL_BLOODLUST.txt"
-				, "/Text/Game/Scripts/Spells/spell_name_SPELL_DEFLECT_ARROWS.txt"
-			}
-		}
-		, [3] = {
-			["ID"] = {
-				SPELL_DISPEL
-				, SPELL_ANTI_MAGIC
-				, SPELL_REGENERATION
-			}
-			, ["NAME"] = {
-				"/Text/Game/Scripts/Spells/spell_name_SPELL_DISPEL.txt"
-				, "/Text/Game/Scripts/Spells/spell_name_SPELL_ANTI_MAGIC.txt"
-				, "/Text/Game/Scripts/Spells/spell_name_SPELL_REGENERATION.txt"
-			}
-		}
-		, [4] = {
-			["ID"] = {
-				SPELL_TELEPORT
-				, SPELL_DIVINE_VENGEANCE
-			}
-			, ["NAME"] = {
-				"/Text/Game/Scripts/Spells/spell_name_SPELL_TELEPORT.txt"
-				, "/Text/Game/Scripts/Spells/spell_name_SPELL_DIVINE_VENGEANCE.txt"
-			}
-		}
-		, [5] = {
-			["ID"] = {
-				SPELL_HOLY_WORD
-				, SPELL_RESURRECT
-			}
-			, ["NAME"] = {
-				"/Text/Game/Scripts/Spells/spell_name_SPELL_HOLY_WORD.txt"
-				, "/Text/Game/Scripts/Spells/spell_name_SPELL_RESURRECT.txt"
-			}
+		, ["SKILL_PERK"] = {
+			PERK_MASTER_OF_WRATH
 		}
 	}
-	, ["DARK"] = {
-		[1] = {
-			["ID"] = {
-				SPELL_CURSE
-				, SPELL_SLOW
-			}
-			, ["NAME"] = {
-				"/Text/Game/Scripts/Spells/spell_name_SPELL_CURSE.txt"
-				, "/Text/Game/Scripts/Spells/spell_name_SPELL_SLOW.txt"
+	-- 高级光明 + 佑福大师 = 非凡神力
+	, {
+		["MAGIC"] = TTH_TABLE_SPELL["SPELL_BLESS"]
+		, ["SKILL_MASTERY"] = {
+			{
+				["MASTERY"] = SKILL_LIGHT_MAGIC
+				, ["LEVEL"] = 2
 			}
 		}
-		, [2] = {
-			["ID"] = {
-				SPELL_DISRUPTING_RAY
-				, SPELL_WEAKNESS
-				, SPELL_FORGETFULNESS
-			}
-			, ["NAME"] = {
-				"/Text/Game/Scripts/Spells/spell_name_SPELL_DISRUPTING_RAY.txt"
-				, "/Text/Game/Scripts/Spells/spell_name_SPELL_WEAKNESS.txt"
-				, "/Text/Game/Scripts/Spells/spell_name_SPELL_FORGETFULNESS.txt"
-			}
-		}
-		, [3] = {
-			["ID"] = {
-				SPELL_PLAGUE
-				, SPELL_SORROW
-			}
-			, ["NAME"] = {
-				"/Text/Game/Scripts/Spells/spell_name_SPELL_PLAGUE.txt"
-				, "/Text/Game/Scripts/Spells/spell_name_SPELL_SORROW.txt"
-			}
-		}
-		, [4] = {
-			["ID"] = {
-				SPELL_BERSERK
-				, SPELL_BLIND
-				, SPELL_UNHOLY_WORD
-			}
-			, ["NAME"] = {
-				"/Text/Game/Scripts/Spells/spell_name_SPELL_BERSERK.txt"
-				, "/Text/Game/Scripts/Spells/spell_name_SPELL_BLIND.txt"
-				, "/Text/Game/Scripts/Spells/spell_name_SPELL_UNHOLY_WORD.txt"
-			}
-		}
-		, [5] = {
-			["ID"] = {
-				SPELL_HYPNOTIZE
-				, SPELL_VAMPIRISM
-			}
-			, ["NAME"] = {
-				"/Text/Game/Scripts/Spells/spell_name_SPELL_HYPNOTIZE.txt"
-				, "/Text/Game/Scripts/Spells/spell_name_SPELL_VAMPIRISM.txt"
-			}
+		, ["SKILL_PERK"] = {
+			PERK_MASTER_OF_BLESSING
 		}
 	}
-	, ["SUMMONING"] = {
-		[1] = {
-			["ID"] = {
-				SPELL_MAGIC_FIST
-				, SPELL_LAND_MINE
-			}
-			, ["NAME"] = {
-				"/Text/Game/Scripts/Spells/spell_name_SPELL_MAGIC_FIST.txt"
-				, "/Text/Game/Scripts/Spells/spell_name_SPELL_LAND_MINE.txt"
+	-- 高级光明 + 防护大师 = 坚韧不屈
+	, {
+		["MAGIC"] = TTH_TABLE_SPELL["SPELL_STONESKIN"]
+		, ["SKILL_MASTERY"] = {
+			{
+				["MASTERY"] = SKILL_LIGHT_MAGIC
+				, ["LEVEL"] = 2
 			}
 		}
-		, [2] = {
-			["ID"] = {
-				SPELL_ANIMATE_DEAD
-				, SPELL_CELESTIAL_SHIELD
-				, SPELL_ARCANE_CRYSTAL
-			}
-			, ["NAME"] = {
-				"/Text/Game/Scripts/Spells/spell_name_SPELL_ANIMATE_DEAD.txt"
-				, "/Text/Game/Scripts/Spells/spell_name_SPELL_CELESTIAL_SHIELD.txt"
-				, "/Text/Game/Scripts/Spells/spell_name_SPELL_ARCANE_CRYSTAL.txt"
-			}
-		}
-		, [3] = {
-			["ID"] = {
-				SPELL_WASP_SWARM
-				, SPELL_SUMMON_ELEMENTALS
-				, SPELL_BLADE_BARRIER
-			}
-			, ["NAME"] = {
-				"/Text/Game/Scripts/Spells/spell_name_SPELL_WASP_SWARM.txt"
-				, "/Text/Game/Scripts/Spells/spell_name_SPELL_SUMMON_ELEMENTALS.txt"
-				, "/Text/Game/Scripts/Spells/spell_name_SPELL_BLADE_BARRIER.txt"
-			}
-		}
-		, [4] = {
-			["ID"] = {
-				SPELL_PHANTOM
-				, SPELL_EARTHQUAKE
-				, SPELL_FIREWALL
-			}
-			, ["NAME"] = {
-				"/Text/Game/Scripts/Spells/spell_name_SPELL_PHANTOM.txt"
-				, "/Text/Game/Scripts/Spells/spell_name_SPELL_EARTHQUAKE.txt"
-				, "/Text/Game/Scripts/Spells/spell_name_SPELL_FIREWALL.txt"
-			}
-		}
-		, [5] = {
-			["ID"] = {
-				SPELL_CONJURE_PHOENIX
-				, SPELL_SUMMON_HIVE
-			}
-			, ["NAME"] = {
-				"/Text/Game/Scripts/Spells/spell_name_SPELL_CONJURE_PHOENIX.txt"
-				, "/Text/Game/Scripts/Spells/spell_name_SPELL_SUMMON_HIVE.txt"
-			}
+		, ["SKILL_PERK"] = {
+			PERK_MASTER_OF_ABJURATION
 		}
 	}
-	, ["DESTRUCTIVE"] = {
-		[1] = {
-			["ID"] = {
-				SPELL_MAGIC_ARROW
-				, SPELL_STONE_SPIKES
-			}
-			, ["NAME"] = {
-				"/Text/Game/Scripts/Spells/spell_name_SPELL_MAGIC_ARROW.txt"
-				, "/Text/Game/Scripts/Spells/spell_name_SPELL_STONE_SPIKES.txt"
+	-- 高级黑暗 + 心智大师 = 延迟大法
+	, {
+		["MAGIC"] = TTH_TABLE_SPELL["SPELL_SLOW"]
+		, ["SKILL_MASTERY"] = {
+			{
+				["MASTERY"] = SKILL_DARK_MAGIC
+				, ["LEVEL"] = 2
 			}
 		}
-		, [2] = {
-			["ID"] = {
-				SPELL_ICE_BOLT
-				, SPELL_LIGHTNING_BOLT
-			}
-			, ["NAME"] = {
-				"/Text/Game/Scripts/Spells/spell_name_SPELL_ICE_BOLT.txt"
-				, "/Text/Game/Scripts/Spells/spell_name_SPELL_LIGHTNING_BOLT.txt"
-			}
-		}
-		, [3] = {
-			["ID"] = {
-				SPELL_FIREBALL
-				, SPELL_FROST_RING
-				, SPELL_METEOR_SHOWER
-			}
-			, ["NAME"] = {
-				"/Text/Game/Scripts/Spells/spell_name_SPELL_FIREBALL.txt"
-				, "/Text/Game/Scripts/Spells/spell_name_SPELL_FROST_RING.txt"
-				, "/Text/Game/Scripts/Spells/spell_name_SPELL_METEOR_SHOWER.txt"
-			}
-		}
-		, [4] = {
-			["ID"] = {
-				SPELL_CHAIN_LIGHTNING
-				, SPELL_IMPLOSION
-			}
-			, ["NAME"] = {
-				"/Text/Game/Scripts/Spells/spell_name_SPELL_CHAIN_LIGHTNING.txt"
-				, "/Text/Game/Scripts/Spells/spell_name_SPELL_IMPLOSION.txt"
-			}
-		}
-		, [5] = {
-			["ID"] = {
-				SPELL_ARMAGEDDON
-				, SPELL_DEEP_FREEZE
-			}
-			, ["NAME"] = {
-				"/Text/Game/Scripts/Spells/spell_name_SPELL_ARMAGEDDON.txt"
-				, "/Text/Game/Scripts/Spells/spell_name_SPELL_DEEP_FREEZE.txt"
-			}
+		, ["SKILL_PERK"] = {
+			PERK_MASTER_OF_MIND
 		}
 	}
-	, ["RUNE"] = {
-		[1] = {
-			["ID"] = {
-				SPELL_RUNE_OF_CHARGE
-				, SPELL_RUNE_OF_BERSERKING
-				, SPELL_RUNE_OF_MAGIC_CONTROL
-				, SPELL_RUNE_OF_EXORCISM
-			}
-			, ["NAME"] = {
-				"/Text/Game/Scripts/Spells/spell_name_SPELL_RUNE_OF_CHARGE.txt"
-				, "/Text/Game/Scripts/Spells/spell_name_SPELL_RUNE_OF_BERSERKING.txt"
-				, "/Text/Game/Scripts/Spells/spell_name_SPELL_RUNE_OF_MAGIC_CONTROL.txt"
-				, "/Text/Game/Scripts/Spells/spell_name_SPELL_RUNE_OF_EXORCISM.txt"
+	-- 高级黑暗 + 诅咒大师 = 虚弱诅咒
+	, {
+		["MAGIC"] = TTH_TABLE_SPELL["SPELL_CURSE"]
+		, ["SKILL_MASTERY"] = {
+			{
+				["MASTERY"] = SKILL_DARK_MAGIC
+				, ["LEVEL"] = 2
 			}
 		}
-		, [2] = {
-			["ID"] = {
-				SPELL_RUNE_OF_ETHEREALNESS
-				, SPELL_RUNE_OF_ELEMENTAL_IMMUNITY
-				, SPELL_RUNE_OF_REVIVE
-				, SPELL_RUNE_OF_STUNNING
-			}
-			, ["NAME"] = {
-				"/Text/Game/Scripts/Spells/spell_name_SPELL_RUNE_OF_ETHEREALNESS.txt"
-				, "/Text/Game/Scripts/Spells/spell_name_SPELL_RUNE_OF_ELEMENTAL_IMMUNITY.txt"
-				, "/Text/Game/Scripts/Spells/spell_name_SPELL_RUNE_OF_REVIVE.txt"
-				, "/Text/Game/Scripts/Spells/spell_name_SPELL_RUNE_OF_STUNNING.txt"
-			}
-		}
-		, [3] = {
-			["ID"] = {
-				SPELL_RUNE_OF_BATTLERAGE
-				, SPELL_RUNE_OF_DRAGONFORM
-			}
-			, ["NAME"] = {
-				"/Text/Game/Scripts/Spells/spell_name_SPELL_RUNE_OF_BATTLERAGE.txt"
-				, "/Text/Game/Scripts/Spells/spell_name_SPELL_RUNE_OF_DRAGONFORM.txt"
-			}
+		, ["SKILL_PERK"] = {
+			PERK_MASTER_OF_CURSES
 		}
 	}
-	, ["WARCRY"] = {
-		[1] = {
-			["ID"] = {
-				SPELL_WARCRY_RALLING_CRY
-				, SPELL_WARCRY_CALL_OF_BLOOD
-			}
-			, ["NAME"] = {
-				"/Text/Game/Scripts/Spells/spell_name_SPELL_WARCRY_RALLING_CRY.txt"
-				, "/Text/Game/Scripts/Spells/spell_name_SPELL_WARCRY_CALL_OF_BLOOD.txt"
+	-- 高级黑暗 + 折磨大师 = 破甲弱化
+	, {
+		["MAGIC"] = TTH_TABLE_SPELL["SPELL_DISRUPTING_RAY"]
+		, ["SKILL_MASTERY"] = {
+			{
+				["MASTERY"] = SKILL_DARK_MAGIC
+				, ["LEVEL"] = 2
 			}
 		}
-		, [2] = {
-			["ID"] = {
-				SPELL_WARCRY_WORD_OF_THE_CHIEF
-				, SPELL_WARCRY_FEAR_MY_ROAR
-			}
-			, ["NAME"] = {
-				"/Text/Game/Scripts/Spells/spell_name_SPELL_WARCRY_WORD_OF_THE_CHIEF.txt"
-				, "/Text/Game/Scripts/Spells/spell_name_SPELL_WARCRY_FEAR_MY_ROAR.txt"
+		, ["SKILL_PERK"] = {
+			PERK_MASTER_OF_SICKNESS
+		}
+	}
+	-- 高级召唤 + 地血大师 = 火焰陷阱
+	, {
+		["MAGIC"] = TTH_TABLE_SPELL["SPELL_LAND_MINE"]
+		, ["SKILL_MASTERY"] = {
+			{
+				["MASTERY"] = SKILL_SUMMONING_MAGIC
+				, ["LEVEL"] = 2
 			}
 		}
-		, [3] = {
-			["ID"] = {
-				SPELL_WARCRY_BATTLECRY
-				, SPELL_WARCRY_SHOUT_OF_MANY
+		, ["SKILL_PERK"] = {
+			PERK_MASTER_OF_QUAKES
+		}
+	}
+	-- 专家召唤 + 符咒大师 = 召唤元素
+	, {
+		["MAGIC"] = TTH_TABLE_SPELL["SPELL_SUMMON_ELEMENTALS"]
+		, ["SKILL_MASTERY"] = {
+			{
+				["MASTERY"] = SKILL_SUMMONING_MAGIC
+				, ["LEVEL"] = 3
 			}
-			, ["NAME"] = {
-				"/Text/Game/Scripts/Spells/spell_name_SPELL_WARCRY_BATTLECRY.txt"
-				, "/Text/Game/Scripts/Spells/spell_name_SPELL_WARCRY_SHOUT_OF_MANY.txt"
+		}
+		, ["SKILL_PERK"] = {
+			PERK_MASTER_OF_CREATURES
+		}
+	}
+	-- 高级召唤 + 生命大师 = 亡灵复生
+	, {
+		["MAGIC"] = TTH_TABLE_SPELL["SPELL_ANIMATE_DEAD"]
+		, ["SKILL_MASTERY"] = {
+			{
+				["MASTERY"] = SKILL_SUMMONING_MAGIC
+				, ["LEVEL"] = 2
 			}
+		}
+		, ["SKILL_PERK"] = {
+			PERK_MASTER_OF_ANIMATION
+		}
+	}
+	-- 高级破坏 + 寒冰大师 = 寒冰激射
+	, {
+		["MAGIC"] = TTH_TABLE_SPELL["SPELL_ICE_BOLT"]
+		, ["SKILL_MASTERY"] = {
+			{
+				["MASTERY"] = SKILL_DESTRUCTIVE_MAGIC
+				, ["LEVEL"] = 2
+			}
+		}
+		, ["SKILL_PERK"] = {
+			PERK_MASTER_OF_ICE
+		}
+	}
+	-- 高级破坏 + 烈火大师 = 连珠火球
+	, {
+		["MAGIC"] = TTH_TABLE_SPELL["SPELL_FIREBALL"]
+		, ["SKILL_MASTERY"] = {
+			{
+				["MASTERY"] = SKILL_DESTRUCTIVE_MAGIC
+				, ["LEVEL"] = 2
+			}
+		}
+		, ["SKILL_PERK"] = {
+			PERK_MASTER_OF_FIRE
+		}
+	}
+	-- 高级破坏 + 风暴大师 = 霹雳闪电
+	, {
+		["MAGIC"] = TTH_TABLE_SPELL["SPELL_LIGHTNING_BOLT"]
+		, ["SKILL_MASTERY"] = {
+			{
+				["MASTERY"] = SKILL_DESTRUCTIVE_MAGIC
+				, ["LEVEL"] = 2
+			}
+		}
+		, ["SKILL_PERK"] = {
+			PERK_MASTER_OF_LIGHTNINGS
+		}
+	}
+	-- 专家破坏 + 致命深寒 = 严冬冰环
+	, {
+		["MAGIC"] = TTH_TABLE_SPELL["SPELL_FROST_RING"]
+		, ["SKILL_MASTERY"] = {
+			{
+				["MASTERY"] = SKILL_DESTRUCTIVE_MAGIC
+				, ["LEVEL"] = 3
+			}
+		}
+		, ["SKILL_PERK"] = {
+			NECROMANCER_FEAT_DEADLY_COLD
+		}
+	}
+	-- 专家光明 + 高级召唤 + 生命大师 = 活力再生
+	, {
+		["MAGIC"] = TTH_TABLE_SPELL["SPELL_REGENERATION"]
+		, ["SKILL_MASTERY"] = {
+			{
+				["MASTERY"] = SKILL_LIGHT_MAGIC
+				, ["LEVEL"] = 3
+			}
+			, {
+				["MASTERY"] = SKILL_SUMMONING_MAGIC
+				, ["LEVEL"] = 2
+			}
+		}
+		, ["SKILL_PERK"] = {
+			PERK_MASTER_OF_ANIMATION
+		}
+	}
+	-- 初级黑暗 + 心智大师 + 高级召唤 + 迷雾之墙 = 迷惑心智
+	, {
+		["MAGIC"] = TTH_TABLE_SPELL["SPELL_FORGETFULNESS"]
+		, ["SKILL_MASTERY"] = {
+			{
+				["MASTERY"] = SKILL_DARK_MAGIC
+				, ["LEVEL"] = 1
+			}
+			, {
+				["MASTERY"] = SKILL_SUMMONING_MAGIC
+				, ["LEVEL"] = 2
+			}
+		}
+		, ["SKILL_PERK"] = {
+			PERK_MASTER_OF_MIND
+			, RANGER_FEAT_FOG_VEIL
+		}
+	}
+	-- 高级召唤 + 烈火勇士 + 高级破坏 + 烈火大师 = 火墙阻隔
+	, {
+		["MAGIC"] = TTH_TABLE_SPELL["SPELL_FIREWALL"]
+		, ["SKILL_MASTERY"] = {
+			{
+				["MASTERY"] = SKILL_SUMMONING_MAGIC
+				, ["LEVEL"] = 2
+			}
+			, {
+				["MASTERY"] = SKILL_DESTRUCTIVE_MAGIC
+				, ["LEVEL"] = 2
+			}
+		}
+		, ["SKILL_PERK"] = {
+			DEMON_FEAT_FIRE_AFFINITY
+			, PERK_MASTER_OF_FIRE
+		}
+	}
+	-- 高级破坏 + 风暴大师 + 高级光明 + 暴风来袭 = 连锁闪电
+	, {
+		["MAGIC"] = TTH_TABLE_SPELL["SPELL_CHAIN_LIGHTNING"]
+		, ["SKILL_MASTERY"] = {
+			{
+				["MASTERY"] = SKILL_DESTRUCTIVE_MAGIC
+				, ["LEVEL"] = 2
+			}
+			, {
+				["MASTERY"] = SKILL_LIGHT_MAGIC
+				, ["LEVEL"] = 2
+			}
+		}
+		, ["SKILL_PERK"] = {
+			PERK_MASTER_OF_LIGHTNINGS
+			, RANGER_FEAT_STORM_WIND
 		}
 	}
 };

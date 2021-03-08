@@ -190,6 +190,13 @@ H55_MercuryMineClaims = {};
 H55_GoldMines = GetObjectNamesByType("BUILDING_GOLD_MINE");
 H55_GoldMineClaims = {};
 
+-- by 牙姐 2021-03-07 05:36:50
+-- begin 杉提瑞
+	TTH_Arr_Shantiri = GetObjectNamesByType("BUILDING_EYE_OF_MAGI");
+	TTH_Map_ShantiriVisited8Player = {};
+	TTH_Map_PlayerVisitedShantiriNum = {};
+--end
+
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 --TRIGGERS
 ------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -585,27 +592,21 @@ function H55_PrepareAdvMap()
 			Trigger(OBJECT_TOUCH_TRIGGER,Obelisk,"H55_ObeliskVisit");
 		end;
 	end;
-	if length(H55_MagiHuts) == 0 and H55_ShantirisQty > 0 then
-		for i,Shantiri in H55_Shantiris do
-			H55_ShantiriArmies[Shantiri] = {};
-			for i = 1,14 do
-				H55_ShantiriArmies[Shantiri][i] = random(3)+1;
+
+	-- by 牙姐 2021-03-07 05:36:50
+	-- begin 杉提瑞 访问
+		if length(TTH_Arr_Shantiri) > 0 then
+			for iIndexShantiri, objItemShantiri in TTH_Arr_Shantiri do
+				SetObjectEnabled(objItemShantiri, nil);
+				TTH_Map_ShantiriVisited8Player[objItemShantiri] = {};
+				for iPlayer = 1, 8 do
+					TTH_Map_PlayerVisitedShantiriNum[iPlayer] = 0;
+				end;
+				Trigger(OBJECT_TOUCH_TRIGGER, objItemShantiri, "TTH_Trigger_VisitShantiri");
 			end;
-			for i = 15,20 do
-				H55_ShantiriArmies[Shantiri][i] = random(2)+1+(i-15);
-			end;
-			for i = 21,26 do
-				H55_ShantiriArmies[Shantiri][i] = random(2)+1+(i-21);
-			end;
-			H55_ShantiriArmies[Shantiri][27] = random(7)+1;
-			H55_ShantiriArmies[Shantiri][28] = random(8)+1;
-			H55_ShantiriArmies[Shantiri][29] = random(9)+1;
-			H55_ShantiriArmies[Shantiri][30] = random(8)+1;
-			SetObjectEnabled(Shantiri,nil);
-			H55_ShantiriVisited[Shantiri] = {};
-			Trigger(OBJECT_TOUCH_TRIGGER,Shantiri,"H55_ShantiriVisit");
 		end;
-	end;
+	-- end
+
 	if H55_MermaidsQty ~= 0 then
 		for i, mermaid in H55_Mermaids do
 			H55_MermaidChoices[mermaid] = random(4)+1;
@@ -5660,6 +5661,332 @@ function H55_SeerAward(hero,level,skill)
 		ShowFlyingSign({H55_BankStatText[skill];param=level},hero,player,7);
 	end;
 end;
+
+-- by 牙姐 2021-03-07 05:36:50
+-- begin 英雄转生相关
+	function TTH_Trigger_VisitShantiri(strHero, objShantiri)
+		local iPlayer = GetObjectOwner(strHero);
+		-- 杉提瑞之触
+		H55_GrailTouch(strHero, objShantiri);
+
+		-- 标记【杉提瑞圆盘】已被该英雄访问
+		MarkObjectAsVisited(objShantiri, strHero);
+		local iPlayer = GetObjectOwner(strHero);
+		-- AI分支
+		if H55_IsThisAIPlayer(iPlayer) == 1 then
+			TTH_Trigger_VisitShantiri_AI(strHero, objShantiri);
+		-- 玩家分支
+		else
+			-- 若玩家未访问该【杉提瑞圆盘】，则标记为已访问，并将玩家访问【杉提瑞圆盘】的数量+1
+			if TTH_Map_ShantiriVisited8Player[objShantiri][iPlayer] == nil then
+				TTH_Map_ShantiriVisited8Player[objShantiri][iPlayer] = 1;
+				TTH_Map_PlayerVisitedShantiriNum[iPlayer] = TTH_Map_PlayerVisitedShantiriNum[iPlayer] + 1;
+			end;
+			-- 若玩家等于大于等于30
+			if GetHeroLevel(strHero) >= 30 then
+				-- 若英雄已习得技能<杉提瑞之触>则可减少2个需访问数量，需访问数量为地图上【杉提瑞圆盘】数量除以2并向上取整
+				local iNecessaryShantiriNum = H55_Ceil(length(TTH_Arr_Shantiri) / 2);
+				if HasHeroSkill(strHero, KNIGHT_FEAT_GRAIL_VISION) ~= nil then
+					iNecessaryShantiriNum = iNecessaryShantiriNum - 2;
+				end;
+				-- 若玩家已访问了超过需访问数量的【杉提瑞圆盘】
+				if TTH_Map_PlayerVisitedShantiriNum[iPlayer] >= iNecessaryShantiriNum then
+					QuestionBoxForPlayers(GetPlayerFilter(iPlayer), "/Text/Game/Scripts/Shantiri/QuestionChallenge4Reincarnation.txt", "TTH_Func_Shantiri_Challenge4Reincarnation8PowerCheck('"..strHero.."')","TTH_Func_Shantiri_RefuseChallenge('"..strHero.."')");
+				-- 若玩家访问的【杉提瑞圆盘】未超过需访问数量，则提示
+				else
+					ShowFlyingSign("/Text/Game/Scripts/Shantiri/Failure4VisitCount.txt", strHero, iPlayer, 5);
+				end;
+			-- 若玩家等级小于30，则提示
+			else
+				ShowFlyingSign("/Text/Game/Scripts/Shantiri/Failure4HeroLevel.txt", strHero, iPlayer, 5);
+			end;
+		end;
+	end;
+	function TTH_Func_Shantiri_RefuseChallenge(strHero)
+		print(strHero.." refuse the challenge of shantiri");
+	end;
+	function TTH_Trigger_VisitShantiri_AI(strHero, objShantiri)
+		Trigger(OBJECT_TOUCH_TRIGGER, objShantiri, nil);
+		SetObjectEnabled(objShantiri, not nil);
+		MakeHeroInteractWithObject(strHero, objShantiri);
+		Trigger(OBJECT_TOUCH_TRIGGER, objShantiri, "TTH_Trigger_VisitShantiri");
+		SetObjectEnabled(objShantiri, nil);
+	end;
+	-- 战力检测
+	function TTH_Func_Shantiri_Challenge4Reincarnation8PowerCheck(strHero, objShantiri)
+		local iMonthScale = H55_Month + 1;
+		local iWeekScale = H55_AbsoluteWeek;
+		local iRandom = H55_AbsoluteWeek;
+		local iMultiplier = H55_GetBankDifMultiplier();
+		local strCallbackWin = "TTH_Func_Shantiri_Challenge4Reincarnation8MirrorFight";
+
+		local listIdCreature = {};
+		local listCountCreature = {};
+		local iRandomBankMonster = random(length(TTH_BankMonsterByNoRace)) + 1;
+		local iStep = 0;
+		print("iRandomBankMonster: "..iRandomBankMonster);
+		local objRandomBankMonster = nil;
+		local strCombatLink = nil;
+		for iIndexBankMonster, objBankMonster in TTH_BankMonsterByNoRace do
+			iStep = iStep + 1;
+			print("iStep: "..iStep);
+			if iStep == iRandomBankMonster then
+				objRandomBankMonster = objBankMonster;
+				strCombatLink = objBankMonster["LINK"];
+				print("strCombatLink: "..strCombatLink);
+			end;
+		end;
+		local iLen = length(objRandomBankMonster["ID"]);
+		print("iLen: "..iLen);
+		for i = 0, iLen - 1 do
+			listIdCreature[i] = objRandomBankMonster["ID"][i];
+			local iGrowth = objRandomBankMonster["GROWTH"][i];
+			print("iGrowth: "..iGrowth);
+			listCountCreature[i] = random(iRandom * iGrowth) + H55_Round(iMultiplier * iWeekScale * 2 * iMonthScale * iGrowth);
+			print("listCountCreature[i]: "..listCountCreature[i]);
+		end
+
+		if iLen == 3 then
+			StartCombat(strHero, nil, 3
+				, listIdCreature[0], listCountCreature[0]
+				, listIdCreature[1], listCountCreature[1]
+				, listIdCreature[2], listCountCreature[2]
+				, nil, strCallbackWin, strCombatLink, 1);
+		elseif iLen == 4 then
+			StartCombat(strHero, nil, 4
+				, listIdCreature[0], listCountCreature[0]
+				, listIdCreature[1], listCountCreature[1]
+				, listIdCreature[2], listCountCreature[2]
+				, listIdCreature[3], listCountCreature[3]
+				, nil, strCallbackWin, strCombatLink, 1);
+		elseif iLen == 5 then
+			StartCombat(strHero, nil, 5
+				, listIdCreature[0], listCountCreature[0]
+				, listIdCreature[1], listCountCreature[1]
+				, listIdCreature[2], listCountCreature[2]
+				, listIdCreature[3], listCountCreature[3]
+				, listIdCreature[4], listCountCreature[4]
+				, nil, strCallbackWin, strCombatLink, 1);
+		elseif iLen == 6 then
+			StartCombat(strHero, nil, 6
+				, listIdCreature[0], listCountCreature[0]
+				, listIdCreature[1], listCountCreature[1]
+				, listIdCreature[2], listCountCreature[2]
+				, listIdCreature[3], listCountCreature[3]
+				, listIdCreature[4], listCountCreature[4]
+				, listIdCreature[5], listCountCreature[5]
+				, nil, strCallbackWin, strCombatLink, 1);
+		elseif iLen == 7 then
+			StartCombat(strHero, nil, 7
+				, listIdCreature[0], listCountCreature[0]
+				, listIdCreature[1], listCountCreature[1]
+				, listIdCreature[2], listCountCreature[2]
+				, listIdCreature[3], listCountCreature[3]
+				, listIdCreature[4], listCountCreature[4]
+				, listIdCreature[5], listCountCreature[5]
+				, listIdCreature[6], listCountCreature[6]
+				, nil, strCallbackWin, strCombatLink, 1);
+		end;
+	end;
+	-- 镜像之战
+	function TTH_Func_Shantiri_Challenge4Reincarnation8MirrorFight(strHero, objResult)
+		if objResult ~= nil then
+			local arrCreatureType, arrCreatureCount = H55_ArmyInfo(strHero);
+			local iLenArrCreatureType = 0;
+			for i = 0, length(arrCreatureType) - 1 do
+				print('arrCreatureType[i]: '..arrCreatureType[i]);
+				print('arrCreatureCount[i]: '..arrCreatureCount[i]);
+				if arrCreatureType[i] == 0 then
+					iLenArrCreatureType = i;
+					break;
+				end;
+			end;
+			print("iLenArrCreatureType: "..iLenArrCreatureType);
+			local strEnemyHero = nil;
+			-- local arrCurrentPlayerHeroes = GetPlayerHeroes(GetCurrentPlayer());
+			-- for iIndexHero, objHero in arrCurrentPlayerHeroes do
+			-- 	if objHero ~= strHero then
+			-- 		strEnemyHero = objHero;
+			-- 		break;
+			-- 	end;
+			-- end;
+			if iLenArrCreatureType == 1 then
+				StartCombat(strHero, strEnemyHero, 1
+					, arrCreatureType[0], arrCreatureCount[0] * 20
+					, nil
+					, "TTH_Func_Shantiri_Challenge4Reincarnation_Win"
+					, "/Arenas/CombatArena/FinalCombat/Bank_Shantiri.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)"
+					, 1);
+			elseif iLenArrCreatureType == 2 then
+				StartCombat(strHero, strEnemyHero, 2
+					, arrCreatureType[0], arrCreatureCount[0] * 20
+					, arrCreatureType[1], arrCreatureCount[1] * 20
+					, nil
+					, "TTH_Func_Shantiri_Challenge4Reincarnation_Win"
+					, "/Arenas/CombatArena/FinalCombat/Bank_Shantiri.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)"
+					, 1);
+			elseif iLenArrCreatureType == 3 then
+				StartCombat(strHero, strEnemyHero, 3
+					, arrCreatureType[0], arrCreatureCount[0] * 20
+					, arrCreatureType[1], arrCreatureCount[1] * 20
+					, arrCreatureType[2], arrCreatureCount[2] * 20
+					, nil
+					, "TTH_Func_Shantiri_Challenge4Reincarnation_Win"
+					, "/Arenas/CombatArena/FinalCombat/Bank_Shantiri.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)"
+					, 1);
+			elseif iLenArrCreatureType == 4 then
+				StartCombat(strHero, strEnemyHero, 4
+					, arrCreatureType[0], arrCreatureCount[0] * 20
+					, arrCreatureType[1], arrCreatureCount[1] * 20
+					, arrCreatureType[2], arrCreatureCount[2] * 20
+					, arrCreatureType[3], arrCreatureCount[3] * 20
+					, nil
+					, "TTH_Func_Shantiri_Challenge4Reincarnation_Win"
+					, "/Arenas/CombatArena/FinalCombat/Bank_Shantiri.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)"
+					, 1);
+			elseif iLenArrCreatureType == 5 then
+				StartCombat(strHero, strEnemyHero, 5
+					, arrCreatureType[0], arrCreatureCount[0] * 20
+					, arrCreatureType[1], arrCreatureCount[1] * 20
+					, arrCreatureType[2], arrCreatureCount[2] * 20
+					, arrCreatureType[3], arrCreatureCount[3] * 20
+					, arrCreatureType[4], arrCreatureCount[4] * 20
+					, nil
+					, "TTH_Func_Shantiri_Challenge4Reincarnation_Win"
+					, "/Arenas/CombatArena/FinalCombat/Bank_Shantiri.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)"
+					, 1);
+			elseif iLenArrCreatureType == 6 then
+				StartCombat(strHero, strEnemyHero, 6
+					, arrCreatureType[0], arrCreatureCount[0] * 20
+					, arrCreatureType[1], arrCreatureCount[1] * 20
+					, arrCreatureType[2], arrCreatureCount[2] * 20
+					, arrCreatureType[3], arrCreatureCount[3] * 20
+					, arrCreatureType[4], arrCreatureCount[4] * 20
+					, arrCreatureType[5], arrCreatureCount[5] * 20
+					, nil
+					, "TTH_Func_Shantiri_Challenge4Reincarnation_Win"
+					, "/Arenas/CombatArena/FinalCombat/Bank_Shantiri.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)"
+					, 1);
+			else
+				StartCombat(strHero, strEnemyHero, 7
+					, arrCreatureType[0], arrCreatureCount[0] * 20
+					, arrCreatureType[1], arrCreatureCount[1] * 20
+					, arrCreatureType[2], arrCreatureCount[2] * 20
+					, arrCreatureType[3], arrCreatureCount[3] * 20
+					, arrCreatureType[4], arrCreatureCount[4] * 20
+					, arrCreatureType[5], arrCreatureCount[5] * 20
+					, arrCreatureType[6], arrCreatureCount[6] * 20
+					, nil
+					, "TTH_Func_Shantiri_Challenge4Reincarnation_Win"
+					, "/Arenas/CombatArena/FinalCombat/Bank_Shantiri.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)"
+					, 1);
+			end;
+		end;
+	end;
+	function TTH_Func_Shantiri_Challenge4Reincarnation_Win(strHero, objResult)
+		local iPlayer = GetObjectOwner(strHero);
+		if objResult ~= nil then
+			-- 获取英雄等级
+			local iHeroLevel = GetHeroLevel(strHero);
+			-- 计算英雄保留属性和技能的最低等级=英雄当前等级/5（向上取整）
+			local iHeroLevel4Reincarnation = H55_Ceil(iHeroLevel / 5);
+			-- 英雄需保留的经验
+			local iLeftExp = 0;
+			for i = 1, iHeroLevel4Reincarnation do
+				iLeftExp = iLeftExp + TTH_TABLE_HeroLevelUpRequireExp[i];
+			end;
+			-- 获取当前英雄经验
+			local iHeroCurrentExp = GetHeroStat(strHero, STAT_EXPERIENCE);
+			-- 移除英雄经验到最低保留等级
+			TakeAwayHeroExp(strHero, iHeroCurrentExp - iLeftExp);
+			-- 暂停下游戏
+			sleep(10);
+			-- 在保留等级下，记录英雄属性
+			local arrHeroStat5Necessary = {};
+			arrHeroStat5Necessary[STAT_ATTACK] = GetHeroStat(strHero, STAT_ATTACK);
+			print("arrHeroStat5Necessary["..STAT_ATTACK.."]: "..arrHeroStat5Necessary[STAT_ATTACK]);
+			arrHeroStat5Necessary[STAT_DEFENCE] = GetHeroStat(strHero, STAT_DEFENCE);
+			print("arrHeroStat5Necessary["..STAT_DEFENCE.."]: "..arrHeroStat5Necessary[STAT_DEFENCE]);
+			arrHeroStat5Necessary[STAT_SPELL_POWER] = GetHeroStat(strHero, STAT_SPELL_POWER);
+			print("arrHeroStat5Necessary["..STAT_SPELL_POWER.."]: "..arrHeroStat5Necessary[STAT_SPELL_POWER]);
+			arrHeroStat5Necessary[STAT_KNOWLEDGE] = GetHeroStat(strHero, STAT_KNOWLEDGE);
+			print("arrHeroStat5Necessary["..STAT_KNOWLEDGE.."]: "..arrHeroStat5Necessary[STAT_KNOWLEDGE]);
+			-- 在保留等级下，记录英雄技能
+			local arrHeroSkill5NecessaryMastery = {};
+			local arrHeroSkill5NecessaryPerk = {};
+			for iIndexMastery, objMastery in TTH_TABLE_HeroSkill[0] do
+				if GetHeroSkillMastery(strHero, objMastery) > 0 then
+					arrHeroSkill5NecessaryMastery[objMastery] = GetHeroSkillMastery(strHero, objMastery);
+					print("arrHeroSkill5NecessaryMastery["..objMastery.."]: "..arrHeroSkill5NecessaryMastery[objMastery]);
+				end;
+				for iIndexPerk, objPerk in TTH_TABLE_HeroSkill[objMastery] do
+					if HasHeroSkill(strHero, objPerk) ~= nil then
+						arrHeroSkill5NecessaryPerk[objPerk] = 1;
+						print("arrHeroSkill5NecessaryPerk["..objPerk.."]: "..arrHeroSkill5NecessaryPerk[objPerk]);
+					end;
+				end;
+			end;
+			-- 暂停下游戏
+			sleep(10);
+			-- 移除英雄经验到1级
+			TakeAwayHeroExp(strHero, iLeftExp);
+			-- 暂停下游戏
+			sleep(10);
+			-- 记录1级的英雄属性
+			local arrHeroStat5Reincarnation = {};
+			arrHeroStat5Reincarnation[STAT_ATTACK] = GetHeroStat(strHero, STAT_ATTACK);
+			print("arrHeroStat5Reincarnation["..STAT_ATTACK.."]: "..arrHeroStat5Reincarnation[STAT_ATTACK]);
+			arrHeroStat5Reincarnation[STAT_DEFENCE] = GetHeroStat(strHero, STAT_DEFENCE);
+			print("arrHeroStat5Reincarnation["..STAT_DEFENCE.."]: "..arrHeroStat5Reincarnation[STAT_DEFENCE]);
+			arrHeroStat5Reincarnation[STAT_SPELL_POWER] = GetHeroStat(strHero, STAT_SPELL_POWER);
+			print("arrHeroStat5Reincarnation["..STAT_SPELL_POWER.."]: "..arrHeroStat5Reincarnation[STAT_SPELL_POWER]);
+			arrHeroStat5Reincarnation[STAT_KNOWLEDGE] = GetHeroStat(strHero, STAT_KNOWLEDGE);
+			print("arrHeroStat5Reincarnation["..STAT_KNOWLEDGE.."]: "..arrHeroStat5Reincarnation[STAT_KNOWLEDGE]);
+			-- 记录1级的英雄技能
+			local arrHeroSkill5ReincarnationMastery = {};
+			local arrHeroSkill5ReincarnationPerk = {};
+			for iIndexMastery, objMastery in TTH_TABLE_HeroSkill[0] do
+				if GetHeroSkillMastery(strHero, objMastery) > 0 then
+					arrHeroSkill5ReincarnationMastery[objMastery] = GetHeroSkillMastery(strHero, objMastery);
+					print("arrHeroSkill5ReincarnationMastery["..objMastery.."]: "..arrHeroSkill5ReincarnationMastery[objMastery]);
+				end;
+				for iIndexPerk, objPerk in TTH_TABLE_HeroSkill[objMastery] do
+					if HasHeroSkill(strHero, objPerk) ~= nil then
+						arrHeroSkill5ReincarnationPerk[objPerk] = 1;
+						print("arrHeroSkill5ReincarnationPerk["..objPerk.."]: "..arrHeroSkill5ReincarnationPerk[objPerk]);
+					end;
+				end;
+			end;
+			-- 补满英雄属性差值
+			ChangeHeroStat(strHero, STAT_ATTACK, arrHeroStat5Necessary[STAT_ATTACK] - arrHeroStat5Reincarnation[STAT_ATTACK]);
+			ChangeHeroStat(strHero, STAT_DEFENCE, arrHeroStat5Necessary[STAT_DEFENCE] - arrHeroStat5Reincarnation[STAT_DEFENCE]);
+			ChangeHeroStat(strHero, STAT_SPELL_POWER, arrHeroStat5Necessary[STAT_SPELL_POWER] - arrHeroStat5Reincarnation[STAT_SPELL_POWER]);
+			ChangeHeroStat(strHero, STAT_KNOWLEDGE, arrHeroStat5Necessary[STAT_KNOWLEDGE] - arrHeroStat5Reincarnation[STAT_KNOWLEDGE]);
+			-- 补满英雄技能差异
+			for iIndexMastery, objMastery in TTH_TABLE_HeroSkill[0] do
+				if arrHeroSkill5NecessaryMastery[objMastery] ~= nil then
+					if arrHeroSkill5NecessaryMastery[objMastery] > GetHeroSkillMastery(strHero, objMastery) then
+						for i = 1, arrHeroSkill5NecessaryMastery[objMastery] - GetHeroSkillMastery(strHero, objMastery) do
+							GiveHeroSkill(strHero, objMastery);
+							print("GiveHeroSkill: "..objMastery);
+							sleep(1);
+						end;
+					end;
+				end;
+				for iIndexPerk, objPerk in TTH_TABLE_HeroSkill[objMastery] do
+					if arrHeroSkill5NecessaryPerk[objPerk] == 1 then
+						GiveHeroSkill(strHero, objPerk);
+						print("GiveHeroSkill: "..objPerk);
+						sleep(1);
+					end;
+				end;
+			end;
+			-- 转生成功提示
+			ShowFlyingSign("/Text/Game/Scripts/Shantiri/ReincarnationSuccess.txt", strHero, iPlayer, 5);
+		end;
+	end;
+-- end
+
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 --ACTIVATOR

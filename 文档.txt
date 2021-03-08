@@ -6,6 +6,4 @@ DejaVu Sans Mono
 <color=yellow>
 <color=ff0033>
 
-
-		1.4.英雄可转化生物可随英雄等级提高而改变（1转多）
-TTH_HeroCustomAbility_CastCreature_GCD[hero] = TTH_TABLE_CastCreature[hero]["HEROLEVEL_SCALE"];
+Shantiri

@@ -195,6 +195,7 @@ H55_GoldMineClaims = {};
 	TTH_Arr_Shantiri = GetObjectNamesByType("BUILDING_EYE_OF_MAGI");
 	TTH_Map_ShantiriVisited8Player = {};
 	TTH_Map_PlayerVisitedShantiriNum = {};
+	TTH_Map_PlayerHasVisitedShantiri = {};
 --end
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -5668,6 +5669,15 @@ end;
 		local iPlayer = GetObjectOwner(strHero);
 		-- 杉提瑞之触
 		H55_GrailTouch(strHero, objShantiri);
+
+		-- 第一次访问显示地图上所有【杉提瑞圆盘】
+		if TTH_Map_PlayerHasVisitedShantiri[iPlayer] == nil then
+			TTH_Map_PlayerHasVisitedShantiri[iPlayer] = 1;
+			for iIndexShantiri, objShantiri in TTH_Arr_Shantiri do
+				local iX, iY, iZ = GetObjectPosition(objShantiri);
+				OpenCircleFog(iX, iY, iZ, 5, iPlayer);
+			end;
+		end;
 
 		-- 标记【杉提瑞圆盘】已被该英雄访问
 		MarkObjectAsVisited(objShantiri, strHero);

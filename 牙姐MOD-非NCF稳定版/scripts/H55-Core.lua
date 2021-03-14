@@ -500,6 +500,7 @@ TTH_HeroCustomAbilityOwner3 = {};
 -- by 牙姐
 -- begin 英雄手动特技3
 TTH_HeroCustomAbility_CastCreature_GCD = {};
+TTH_HeroCustomAbility_CastCreature_GCD_Reduce8Daily = {};
 TTH_HeroCustomAbility_CI = {};
 -- end 英雄手动特技3
 
@@ -8668,7 +8669,8 @@ function H55_ResetDailyEvents(player)
 	-- begin by 牙姐 2021-02-16 00:51:09
 	-- 每天减少1CD 转化生物
 	for iIndex, objItem in TTH_TABLE_HeroCustomAbility_CastCreature do
-		if TTH_HeroCustomAbility_CastCreature_GCD[objItem] ~= nil and player == GetObjectOwner(objItem) then
+		if TTH_HeroCustomAbility_CastCreature_GCD[objItem] ~= nil and TTH_HeroCustomAbility_CastCreature_GCD_Reduce8Daily[objItem] ~= H55_Day then
+			TTH_HeroCustomAbility_CastCreature_GCD_Reduce8Daily[objItem] = H55_Day;
 			TTH_HeroCustomAbility_CastCreature_GCD[objItem] = TTH_HeroCustomAbility_CastCreature_GCD[objItem] - 1;
 			print('Gcd-daily:'..TTH_HeroCustomAbility_CastCreature_GCD[objItem]);
 			print(objItem.." custom ability3 for cast-creature has been reduced");

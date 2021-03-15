@@ -5171,7 +5171,8 @@ function H55_WeeklyEvents(player)
 		if contains(heroes,"Ufretin") ~= nil then
 			if H55_UfretinReceived == 0 then
 				local i_level = GetHeroLevel("Ufretin");
-				local i_gold = 500 + H55_Floor(GetPlayerResource(player, 6) * 0.01 * i_level);
+				local i_city = length(H55_GetPlayerTowns(player));
+				local i_gold = 500 + H55_Floor(GetPlayerResource(player, 6) * (0.01 * i_level + 0.1 * i_city));
 				H55_GlobalWeeklyGoldPayout[player] = H55_GlobalWeeklyGoldPayout[player] + i_gold;
 				H55_UfretinReceived = 1;
 			end;

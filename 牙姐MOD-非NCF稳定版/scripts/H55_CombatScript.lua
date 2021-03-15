@@ -969,6 +969,22 @@ doFile('/scripts/combat-startup.lua')
 					push(ObjSnapshotLastTurn['SpellSpawns'][ENUM_SIDE.DEFENDER], geneUnitStatus(listDefenderSpellSpawns[iIndexDefenderSpellSpawns], -1));
 				end;
 
+			-- 通用前置
+				if itemUnitLast ~= nil then
+					for iSide = ENUM_SIDE.ATTACKER, ENUM_SIDE.DEFENDER do
+						-- Haven
+							H55SMOD_MiddlewareListener['RedHeavenHero05']['function']['before']('RedHeavenHero05', iSide, itemUnitLast);
+						-- Sylvan
+						-- Academy
+						-- Inferno
+						-- Necropolis
+							-- H55SMOD_MiddlewareListener['Nur']['function']('Nur', iSide, itemUnit);
+						-- Fortress
+						-- Dungeon
+						-- Stronghold
+					end;
+				end;
+
 			-- 英雄失去魔法值
 				if itemUnitLast ~= nil then
 					for iSide = ENUM_SIDE.ATTACKER, ENUM_SIDE.DEFENDER do
@@ -1227,6 +1243,7 @@ doFile('/scripts/combat-startup.lua')
 							if GetHero(getSide(iSide, 1)) ~= nil and ObjSnapshotBeforeLastTurn['Hero'][getSide(iSide, 1)]['iMana'] == ObjSnapshotLastTurn['Hero'][getSide(iSide, 1)]['iMana'] then
 								-- Haven
 									H55SMOD_MiddlewareListener['Orrin']['function']('Orrin', getSide(iSide, 1), itemUnitLast, listCreaturesBeEffected);
+									H55SMOD_MiddlewareListener['RedHeavenHero05']['function']['deal']('RedHeavenHero05', getSide(iSide, 1), itemUnitLast, listCreaturesBeEffected);
 								-- Sylvan
 								-- Academy
 								-- Inferno
@@ -1599,25 +1616,11 @@ doFile('/scripts/combat-startup.lua')
 					end;
 				end;
 
-			-- 通用前置
-				if itemUnit ~= nil then
-					for iSide = ENUM_SIDE.ATTACKER, ENUM_SIDE.DEFENDER do
-						-- Haven
-						-- Sylvan
-						-- Academy
-						-- Inferno
-						-- Necropolis
-							-- H55SMOD_MiddlewareListener['Nur']['function']('Nur', iSide, itemUnit);
-						-- Fortress
-						-- Dungeon
-						-- Stronghold
-					end;
-				end;
-
 			-- 通用后置
 				if itemUnitLast ~= nil then
 					for iSide = ENUM_SIDE.ATTACKER, ENUM_SIDE.DEFENDER do
 						-- Haven
+							H55SMOD_MiddlewareListener['RedHeavenHero05']['function']['after']('RedHeavenHero05', iSide, itemUnitLast);
 						-- Sylvan
 							H55SMOD_MiddlewareListener['Mephala']['function']('Mephala', iSide, itemUnitLast);
 						-- Academy
@@ -1944,6 +1947,47 @@ doFile('/scripts/combat-startup.lua')
 				end;
 			end;
 			H55SMOD_MiddlewareListener['Mardigo']['function'] = Events_MiddlewareListener_Implement_Mardigo;
+
+		-- RedHeavenHero05
+			H55SMOD_MiddlewareListener['RedHeavenHero05'] = {};
+			H55SMOD_MiddlewareListener['RedHeavenHero05']['function'] = {};
+			H55SMOD_MiddlewareListener['RedHeavenHero05']['flag1'] = 0;
+			H55SMOD_MiddlewareListener['RedHeavenHero05']['flag2'] = 0;
+			function Events_MiddlewareListener_Implement_RedHeavenHero05_Deal(strHero, iSide, itemUnitLast, listCreaturesBeEffected)
+				if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero	and itemUnitLast['strUnitName'] == GetHero(iSide) then
+					if H55SMOD_MiddlewareListener['RedHeavenHero05']['flag1'] == 0 then
+						local itemCreatureEffected = listCreaturesBeEffected[0];
+						local itemHero = geneUnitStatus(GetHero(iSide));
+						if IsCombatUnit(itemCreatureEffected['strUnitName']) ~= nil and itemCreatureEffected['iUnitNumber'] > 0 then
+							combatSetPause(1);
+							sleep(20);
+							itemHero['iAtb'] = 1.25;
+							push(ListUnitSetATB, itemHero);
+							print(itemHero['strUnitName'].." move again");
+							H55SMOD_MiddlewareListener['RedHeavenHero05']['flag1'] = 1;
+							combatSetPause(nil);
+						end;
+					end;
+				end;
+			end;
+			H55SMOD_MiddlewareListener['RedHeavenHero05']['function']['deal'] = Events_MiddlewareListener_Implement_RedHeavenHero05_Deal;
+			function Events_MiddlewareListener_Implement_RedHeavenHero05_Before(strHero, iSide, itemUnitLast)
+				if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero	and itemUnitLast['strUnitName'] == GetHero(iSide) then
+					if H55SMOD_MiddlewareListener['RedHeavenHero05']['flag1'] == 1 then
+						H55SMOD_MiddlewareListener['RedHeavenHero05']['flag2'] = 1;
+					end;
+				end;
+			end;
+			H55SMOD_MiddlewareListener['RedHeavenHero05']['function']['before'] = Events_MiddlewareListener_Implement_RedHeavenHero05_Before;
+			function Events_MiddlewareListener_Implement_RedHeavenHero05_After(strHero, iSide, itemUnitLast)
+				if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero	and itemUnitLast['strUnitName'] == GetHero(iSide) then
+					if H55SMOD_MiddlewareListener['RedHeavenHero05']['flag2'] == 1 then
+						H55SMOD_MiddlewareListener['RedHeavenHero05']['flag1'] = 0;
+						H55SMOD_MiddlewareListener['RedHeavenHero05']['flag2'] = 0;
+					end;
+				end;
+			end;
+			H55SMOD_MiddlewareListener['RedHeavenHero05']['function']['after'] = Events_MiddlewareListener_Implement_RedHeavenHero05_After;
 
 	-- Sylvan
 		-- Gelu

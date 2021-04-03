@@ -190,14 +190,6 @@ H55_MercuryMineClaims = {};
 H55_GoldMines = GetObjectNamesByType("BUILDING_GOLD_MINE");
 H55_GoldMineClaims = {};
 
--- by 牙姐 2021-03-07 05:36:50
--- begin 杉提瑞
-	TTH_Arr_Shantiri = GetObjectNamesByType("BUILDING_EYE_OF_MAGI");
-	TTH_Map_ShantiriVisited8Player = {};
-	TTH_Map_PlayerVisitedShantiriNum = {};
-	TTH_Map_PlayerHasVisitedShantiri = {};
---end
-
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 --TRIGGERS
 ------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -599,10 +591,6 @@ function H55_PrepareAdvMap()
 		if length(TTH_Arr_Shantiri) > 0 then
 			for iIndexShantiri, objItemShantiri in TTH_Arr_Shantiri do
 				SetObjectEnabled(objItemShantiri, nil);
-				TTH_Map_ShantiriVisited8Player[objItemShantiri] = {};
-				for iPlayer = 1, 8 do
-					TTH_Map_PlayerVisitedShantiriNum[iPlayer] = 0;
-				end;
 				Trigger(OBJECT_TOUCH_TRIGGER, objItemShantiri, "TTH_Trigger_VisitShantiri");
 			end;
 		end;
@@ -5664,15 +5652,32 @@ function H55_SeerAward(hero,level,skill)
 end;
 
 -- by 牙姐 2021-03-07 05:36:50
--- begin 英雄转生相关
+-- begin 【杉提瑞圆盘】试炼相关
+	TTH_Arr_Shantiri = GetObjectNamesByType("BUILDING_EYE_OF_MAGI");
+	-- 玩家是否访问过 【杉提瑞圆盘】
+	TTH_Map_HasPlayerVisitedShantiri = {};
+	-- 英雄是否已完成 【杉提瑞圆盘】 的试炼
+	TTH_Map_ShantiriTrial4HeroIsComplete = {};
+	-- 英雄试炼的主技能，子技能，难度选择
+	TTH_Map_ShantiriTrial4HeroRecord = {};
+
+	-- 【杉提瑞圆盘】AI
+	function TTH_Trigger_VisitShantiri_AI(strHero, objShantiri)
+		Trigger(OBJECT_TOUCH_TRIGGER, objShantiri, nil);
+		SetObjectEnabled(objShantiri, not nil);
+		MakeHeroInteractWithObject(strHero, objShantiri);
+		Trigger(OBJECT_TOUCH_TRIGGER, objShantiri, "TTH_Trigger_VisitShantiri");
+		SetObjectEnabled(objShantiri, nil);
+	end;
+	-- 【杉提瑞圆盘】玩家
 	function TTH_Trigger_VisitShantiri(strHero, objShantiri)
 		local iPlayer = GetObjectOwner(strHero);
 		-- 杉提瑞之触
 		H55_GrailTouch(strHero, objShantiri);
 
 		-- 第一次访问显示地图上所有【杉提瑞圆盘】
-		if TTH_Map_PlayerHasVisitedShantiri[iPlayer] == nil then
-			TTH_Map_PlayerHasVisitedShantiri[iPlayer] = 1;
+		if TTH_Map_HasPlayerVisitedShantiri[iPlayer] == nil then
+			TTH_Map_HasPlayerVisitedShantiri[iPlayer] = 1;
 			for iIndexShantiri, objShantiri in TTH_Arr_Shantiri do
 				local iX, iY, iZ = GetObjectPosition(objShantiri);
 				OpenCircleFog(iX, iY, iZ, 5, iPlayer);
@@ -5681,54 +5686,138 @@ end;
 
 		-- 标记【杉提瑞圆盘】已被该英雄访问
 		MarkObjectAsVisited(objShantiri, strHero);
-		local iPlayer = GetObjectOwner(strHero);
 		-- AI分支
 		if H55_IsThisAIPlayer(iPlayer) == 1 then
 			TTH_Trigger_VisitShantiri_AI(strHero, objShantiri);
 		-- 玩家分支
 		else
-			-- 若玩家未访问该【杉提瑞圆盘】，则标记为已访问，并将玩家访问【杉提瑞圆盘】的数量+1
-			if TTH_Map_ShantiriVisited8Player[objShantiri][iPlayer] == nil then
-				TTH_Map_ShantiriVisited8Player[objShantiri][iPlayer] = 1;
-				TTH_Map_PlayerVisitedShantiriNum[iPlayer] = TTH_Map_PlayerVisitedShantiriNum[iPlayer] + 1;
-			end;
-			-- 若玩家等于大于等于30
-			if GetHeroLevel(strHero) >= 30 then
-				-- 若英雄已习得技能<杉提瑞之触>则可减少2个需访问数量，需访问数量为地图上【杉提瑞圆盘】数量除以2并向上取整
-				local iNecessaryShantiriNum = H55_Ceil(length(TTH_Arr_Shantiri) / 2);
-				if HasHeroSkill(strHero, KNIGHT_FEAT_GRAIL_VISION) ~= nil then
-					iNecessaryShantiriNum = iNecessaryShantiriNum - 2;
-				end;
-				-- 若玩家已访问了超过需访问数量的【杉提瑞圆盘】
-				if TTH_Map_PlayerVisitedShantiriNum[iPlayer] >= iNecessaryShantiriNum then
-					QuestionBoxForPlayers(GetPlayerFilter(iPlayer), "/Text/Game/Scripts/Shantiri/QuestionChallenge4Reincarnation.txt", "TTH_Func_Shantiri_Challenge4Reincarnation8PowerCheck('"..strHero.."')","TTH_Func_Shantiri_RefuseChallenge('"..strHero.."')");
-				-- 若玩家访问的【杉提瑞圆盘】未超过需访问数量，则提示
-				else
-					ShowFlyingSign("/Text/Game/Scripts/Shantiri/Failure4VisitCount.txt", strHero, iPlayer, 5);
-				end;
-			-- 若玩家等级小于30，则提示
+			-- 若英雄未完成试炼，则询问是否进行试炼
+			if TTH_Map_ShantiriTrial4HeroIsComplete[strHero] == nil then
+				QuestionBoxForPlayers(GetPlayerFilter(iPlayer), "/Text/Game/Scripts/Shantiri/QuestionChallengeInfo4Trial.txt", "TTH_Func_Shantiri_ReceiveChallenge('"..strHero.."')", "TTH_Func_Shantiri_RefuseChallenge('"..strHero.."')");
+			-- 否则提示，英雄已完成试炼
 			else
-				ShowFlyingSign("/Text/Game/Scripts/Shantiri/Failure4HeroLevel.txt", strHero, iPlayer, 5);
+				MessageBoxForPlayers(GetPlayerFilter(iPlayer), "/Text/Game/Scripts/Shantiri/MessageTrialHasCompleted.txt");
 			end;
 		end;
 	end;
+	-- 英雄拒绝参加试炼
 	function TTH_Func_Shantiri_RefuseChallenge(strHero)
 		print(strHero.." refuse the challenge of shantiri");
 	end;
-	function TTH_Trigger_VisitShantiri_AI(strHero, objShantiri)
-		Trigger(OBJECT_TOUCH_TRIGGER, objShantiri, nil);
-		SetObjectEnabled(objShantiri, not nil);
-		MakeHeroInteractWithObject(strHero, objShantiri);
-		Trigger(OBJECT_TOUCH_TRIGGER, objShantiri, "TTH_Trigger_VisitShantiri");
-		SetObjectEnabled(objShantiri, nil);
+	-- 英雄接受试炼挑战
+	function TTH_Func_Shantiri_ReceiveChallenge(strHero)
+		print(strHero.." receive the challenge of shantiri");
+		-- 接受试炼挑战，清除记录数据，并记录英雄等级
+		TTH_Map_ShantiriTrial4HeroRecord[strHero] = {};
+		TTH_Map_ShantiriTrial4HeroRecord[strHero]["HeroLevel"] = GetHeroLevel(strHero);
+		-- 选择主技能进行试炼
+		TTH_Func_Shantiri_ChooseMastery(strHero, 1);
+	end;
+	-- 选择试炼主技能
+	function TTH_Func_Shantiri_ChooseMastery(strHero, iMastery)
+		local iPlayer = GetObjectOwner(strHero);
+		local strHeroTrialType = TTH_GetHeroTrialType(strHero);
+		local TTH_TABLE_HeroTrialSkill_Hero = nil;
+		if strHeroTrialType == "Might" then
+			TTH_TABLE_HeroTrialSkill_Hero = TTH_TABLE_HeroTrialSkill_HeroMight;
+		elseif strHeroTrialType == "Magic" then
+			TTH_TABLE_HeroTrialSkill_Hero = TTH_TABLE_HeroTrialSkill_HeroMagic;
+		elseif strHeroTrialType == "Barbarian" then
+			TTH_TABLE_HeroTrialSkill_Hero = TTH_TABLE_HeroTrialSkill_HeroBarbarian;
+		end;
+		local strMastery1 = TTH_TABLE_HeroTrialSkill_Hero[1]["MasteryText"];
+		local strMastery2 = TTH_TABLE_HeroTrialSkill_Hero[2]["MasteryText"];
+		local strMastery3 = TTH_TABLE_HeroTrialSkill_Hero[3]["MasteryText"];
+		local strMastery4 = TTH_TABLE_HeroTrialSkill_Hero[4]["MasteryText"];
+		local strMastery5 = TTH_TABLE_HeroTrialSkill_Hero[5]["MasteryText"];
+		local strMastery6 = TTH_TABLE_HeroTrialSkill_Hero[6]["MasteryText"];
+		local strMastery7 = TTH_TABLE_HeroTrialSkill_Hero[7]["MasteryText"];
+		local strMastery8 = TTH_TABLE_HeroTrialSkill_Hero[8]["MasteryText"];
+		local strMastery9 = TTH_TABLE_HeroTrialSkill_Hero[9]["MasteryText"];
+		local strMastery10 = TTH_TABLE_HeroTrialSkill_Hero[10]["MasteryText"];
+		local strMastery11 = TTH_TABLE_HeroTrialSkill_Hero[11]["MasteryText"];
+		local strMastery12 = TTH_TABLE_HeroTrialSkill_Hero[12]["MasteryText"];
+		local strMastery13 = TTH_TABLE_HeroTrialSkill_Hero[13]["MasteryText"];
+		if iMastery + 0 <= 12 then
+			local iMasteryNext = iMastery + 1;
+			QuestionBoxForPlayers(GetPlayerFilter(iPlayer), {"/Text/Game/Scripts/Shantiri/QuestionChooseMastery"..iMastery..".txt";strMastery1=strMastery1,strMastery2=strMastery2,strMastery3=strMastery3,strMastery4=strMastery4,strMastery5=strMastery5,strMastery6=strMastery6,strMastery7=strMastery7,strMastery8=strMastery8,strMastery9=strMastery9,strMastery10=strMastery10,strMastery11=strMastery11,strMastery12=strMastery12,strMastery13=strMastery13}, "TTH_Func_Shantiri_ChoosePerk('"..strHero.."','"..iMastery.."','1')", "TTH_Func_Shantiri_ChooseMastery('"..strHero.."','"..iMasteryNext.."')");
+		else
+			QuestionBoxForPlayers(GetPlayerFilter(iPlayer), {"/Text/Game/Scripts/Shantiri/QuestionChooseMastery"..iMastery..".txt";strMastery1=strMastery1,strMastery2=strMastery2,strMastery3=strMastery3,strMastery4=strMastery4,strMastery5=strMastery5,strMastery6=strMastery6,strMastery7=strMastery7,strMastery8=strMastery8,strMastery9=strMastery9,strMastery10=strMastery10,strMastery11=strMastery11,strMastery12=strMastery12,strMastery13=strMastery13}, "TTH_Func_Shantiri_ChoosePerk('"..strHero.."','"..iMastery.."','1')", "TTH_Func_Shantiri_Giveup('"..strHero.."')");
+		end;
+	end;
+	-- 选择试炼子技能
+	function TTH_Func_Shantiri_ChoosePerk(strHero, iMastery, iPerk)
+		local iPlayer = GetObjectOwner(strHero);
+		local strHeroTrialType = TTH_GetHeroTrialType(strHero);
+		local TTH_TABLE_HeroTrialSkill_Hero = nil;
+		if strHeroTrialType == "Might" then
+			TTH_TABLE_HeroTrialSkill_Hero = TTH_TABLE_HeroTrialSkill_HeroMight;
+		elseif strHeroTrialType == "Magic" then
+			TTH_TABLE_HeroTrialSkill_Hero = TTH_TABLE_HeroTrialSkill_HeroMagic;
+		elseif strHeroTrialType == "Barbarian" then
+			TTH_TABLE_HeroTrialSkill_Hero = TTH_TABLE_HeroTrialSkill_HeroBarbarian;
+		end;
+		local strPerk1 = TTH_TABLE_HeroTrialSkill_Hero[iMastery + 0]["Perk"][1]["PerkText"];
+		local strPerk2 = TTH_TABLE_HeroTrialSkill_Hero[iMastery + 0]["Perk"][2]["PerkText"];
+		local strPerk3 = TTH_TABLE_HeroTrialSkill_Hero[iMastery + 0]["Perk"][3]["PerkText"];
+		if iPerk + 0 <= 2 then
+			local iPerkNext = iPerk + 1;
+			QuestionBoxForPlayers(GetPlayerFilter(iPlayer), {"/Text/Game/Scripts/Shantiri/QuestionChoosePerk"..iPerk..".txt";strPerk1=strPerk1,strPerk2=strPerk2,strPerk3=strPerk3}, "TTH_Func_Shantiri_ChooseDifficult('"..strHero.."','"..iMastery.."','"..iPerk.."',1)", "TTH_Func_Shantiri_ChoosePerk('"..strHero.."','"..iMastery.."','"..iPerkNext.."')");
+		else
+			QuestionBoxForPlayers(GetPlayerFilter(iPlayer), {"/Text/Game/Scripts/Shantiri/QuestionChoosePerk"..iPerk..".txt";strPerk1=strPerk1,strPerk2=strPerk2,strPerk3=strPerk3}, "TTH_Func_Shantiri_ChooseDifficult('"..strHero.."','"..iMastery.."','"..iPerk.."',1)", "TTH_Func_Shantiri_Giveup('"..strHero.."')");
+		end;
+	end;
+	-- 选择试炼难度
+	function TTH_Func_Shantiri_ChooseDifficult(strHero, iMastery, iPerk, iDifficult)
+		local iPlayer = GetObjectOwner(strHero);
+		if iDifficult + 0 <= 2 then
+			local iDifficultNext = iDifficult + 1;
+			QuestionBoxForPlayers(GetPlayerFilter(iPlayer), "/Text/Game/Scripts/Shantiri/QuestionChooseDifficult"..iDifficult..".txt", "TTH_Func_Shantiri_CheckChallenge('"..strHero.."','"..iMastery.."','"..iPerk.."','"..iDifficult.."')", "TTH_Func_Shantiri_ChooseDifficult('"..strHero.."','"..iMastery.."','"..iPerk.."','"..iDifficultNext.."')");
+		else
+			QuestionBoxForPlayers(GetPlayerFilter(iPlayer), "/Text/Game/Scripts/Shantiri/QuestionChooseDifficult"..iDifficult..".txt", "TTH_Func_Shantiri_CheckChallenge('"..strHero.."','"..iMastery.."','"..iPerk.."','"..iDifficult.."')", "TTH_Func_Shantiri_Giveup('"..strHero.."')");
+		end;
+	end;
+	-- 英雄放弃试炼
+	function TTH_Func_Shantiri_Giveup(strHero)
+		local iPlayer = GetObjectOwner(strHero);
+		TTH_Map_ShantiriTrial4HeroRecord[strHero] = nil;
+		print(strHero.." giveup trial");
+		MessageBoxForPlayers(GetPlayerFilter(iPlayer), "/Text/Game/Scripts/Shantiri/MessageTrialGiveup.txt");
+	end;
+	-- 试炼前确认试炼主技能，子技能，难度选择
+	function TTH_Func_Shantiri_CheckChallenge(strHero, iMastery, iPerk, iDifficult)
+		local iPlayer = GetObjectOwner(strHero);
+		print(strHero.." choose mastery: "..iMastery);
+		print(strHero.." choose perk: "..iPerk);
+		print(strHero.." choose difficult: "..iDifficult);
+
+		-- 开始试炼战斗前，记录试炼数据
+		TTH_Map_ShantiriTrial4HeroRecord[strHero]["Mastery"] = iMastery + 0;
+		TTH_Map_ShantiriTrial4HeroRecord[strHero]["Perk"] = iPerk + 0;
+		TTH_Map_ShantiriTrial4HeroRecord[strHero]["Difficult"] = iDifficult + 0;
+
+		local strHeroTrialType = TTH_GetHeroTrialType(strHero);
+		local TTH_TABLE_HeroTrialSkill_Hero = nil;
+		if strHeroTrialType == "Might" then
+			TTH_TABLE_HeroTrialSkill_Hero = TTH_TABLE_HeroTrialSkill_HeroMight;
+		elseif strHeroTrialType == "Magic" then
+			TTH_TABLE_HeroTrialSkill_Hero = TTH_TABLE_HeroTrialSkill_HeroMagic;
+		elseif strHeroTrialType == "Barbarian" then
+			TTH_TABLE_HeroTrialSkill_Hero = TTH_TABLE_HeroTrialSkill_HeroBarbarian;
+		end;
+		local strMastery = TTH_TABLE_HeroTrialSkill_Hero[iMastery + 0]["MasteryText"];
+		local strPerk = TTH_TABLE_HeroTrialSkill_Hero[iMastery + 0]["Perk"][iPerk + 0]["PerkText"];
+		local strDifficult = "/Text/Game/Scripts/Shantiri/EnumDifficult"..iDifficult..".txt";
+
+		QuestionBoxForPlayers(GetPlayerFilter(iPlayer), {"/Text/Game/Scripts/Shantiri/QuestionCheckChallenge.txt";strMastery=strMastery,strPerk=strPerk,strDifficult=strDifficult}, "TTH_Func_Shantiri_Challenge4Trial8PowerCheck('"..strHero.."','"..iMastery.."','"..iPerk.."','"..iDifficult.."')", "TTH_Func_Shantiri_Giveup('"..strHero.."')");
 	end;
 	-- 战力检测
-	function TTH_Func_Shantiri_Challenge4Reincarnation8PowerCheck(strHero, objShantiri)
+	function TTH_Func_Shantiri_Challenge4Trial8PowerCheck(strHero, iMastery, iPerk, iDifficult)
 		local iMonthScale = H55_Month + 1;
 		local iWeekScale = H55_AbsoluteWeek;
 		local iRandom = H55_AbsoluteWeek;
 		local iMultiplier = H55_GetBankDifMultiplier();
-		local strCallbackWin = "TTH_Func_Shantiri_Challenge4Reincarnation8MirrorFight";
+		local strCallbackWin = "TTH_Func_Shantiri_Challenge4Trial8MirrorFight";
 
 		local listIdCreature = {};
 		local listCountCreature = {};
@@ -5799,7 +5888,7 @@ end;
 		end;
 	end;
 	-- 镜像之战
-	function TTH_Func_Shantiri_Challenge4Reincarnation8MirrorFight(strHero, objResult)
+	function TTH_Func_Shantiri_Challenge4Trial8MirrorFight(strHero, objResult)
 		if objResult ~= nil then
 			local arrCreatureType, arrCreatureCount = H55_ArmyInfo(strHero);
 			local iLenArrCreatureType = 0;
@@ -5820,11 +5909,12 @@ end;
 			-- 		break;
 			-- 	end;
 			-- end;
+			local strCallbackWin = "TTH_Func_Shantiri_Challenge4Trial_Win";
 			if iLenArrCreatureType == 1 then
 				StartCombat(strHero, strEnemyHero, 1
 					, arrCreatureType[0], arrCreatureCount[0] * 20
 					, nil
-					, "TTH_Func_Shantiri_Challenge4Reincarnation_Win"
+					, strCallbackWin
 					, "/Arenas/CombatArena/FinalCombat/Bank_Shantiri.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)"
 					, 1);
 			elseif iLenArrCreatureType == 2 then
@@ -5832,7 +5922,7 @@ end;
 					, arrCreatureType[0], arrCreatureCount[0] * 20
 					, arrCreatureType[1], arrCreatureCount[1] * 20
 					, nil
-					, "TTH_Func_Shantiri_Challenge4Reincarnation_Win"
+					, strCallbackWin
 					, "/Arenas/CombatArena/FinalCombat/Bank_Shantiri.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)"
 					, 1);
 			elseif iLenArrCreatureType == 3 then
@@ -5841,7 +5931,7 @@ end;
 					, arrCreatureType[1], arrCreatureCount[1] * 20
 					, arrCreatureType[2], arrCreatureCount[2] * 20
 					, nil
-					, "TTH_Func_Shantiri_Challenge4Reincarnation_Win"
+					, strCallbackWin
 					, "/Arenas/CombatArena/FinalCombat/Bank_Shantiri.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)"
 					, 1);
 			elseif iLenArrCreatureType == 4 then
@@ -5851,7 +5941,7 @@ end;
 					, arrCreatureType[2], arrCreatureCount[2] * 20
 					, arrCreatureType[3], arrCreatureCount[3] * 20
 					, nil
-					, "TTH_Func_Shantiri_Challenge4Reincarnation_Win"
+					, strCallbackWin
 					, "/Arenas/CombatArena/FinalCombat/Bank_Shantiri.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)"
 					, 1);
 			elseif iLenArrCreatureType == 5 then
@@ -5862,7 +5952,7 @@ end;
 					, arrCreatureType[3], arrCreatureCount[3] * 20
 					, arrCreatureType[4], arrCreatureCount[4] * 20
 					, nil
-					, "TTH_Func_Shantiri_Challenge4Reincarnation_Win"
+					, strCallbackWin
 					, "/Arenas/CombatArena/FinalCombat/Bank_Shantiri.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)"
 					, 1);
 			elseif iLenArrCreatureType == 6 then
@@ -5874,7 +5964,7 @@ end;
 					, arrCreatureType[4], arrCreatureCount[4] * 20
 					, arrCreatureType[5], arrCreatureCount[5] * 20
 					, nil
-					, "TTH_Func_Shantiri_Challenge4Reincarnation_Win"
+					, strCallbackWin
 					, "/Arenas/CombatArena/FinalCombat/Bank_Shantiri.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)"
 					, 1);
 			else
@@ -5887,113 +5977,106 @@ end;
 					, arrCreatureType[5], arrCreatureCount[5] * 20
 					, arrCreatureType[6], arrCreatureCount[6] * 20
 					, nil
-					, "TTH_Func_Shantiri_Challenge4Reincarnation_Win"
+					, strCallbackWin
 					, "/Arenas/CombatArena/FinalCombat/Bank_Shantiri.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)"
 					, 1);
 			end;
 		end;
 	end;
-	function TTH_Func_Shantiri_Challenge4Reincarnation_Win(strHero, objResult)
+	-- 试炼成功 并 结算
+	function TTH_Func_Shantiri_Challenge4Trial_Win(strHero, objResult)
 		local iPlayer = GetObjectOwner(strHero);
 		if objResult ~= nil then
-			-- 获取英雄等级
-			local iHeroLevel = GetHeroLevel(strHero);
-			-- 计算英雄保留属性和技能的最低等级=英雄当前等级/5（向上取整）
-			local iHeroLevel4Reincarnation = H55_Ceil(iHeroLevel / 5);
-			-- 英雄需保留的经验
-			local iLeftExp = 0;
-			for i = 1, iHeroLevel4Reincarnation do
-				iLeftExp = iLeftExp + TTH_TABLE_HeroLevelUpRequireExp[i];
+			-- 标记英雄已完成试炼
+			TTH_Map_ShantiriTrial4HeroIsComplete[strHero] = 1;
+
+			local strHeroTrialType = TTH_GetHeroTrialType(strHero);
+			local TTH_TABLE_HeroTrialSkill_Hero = nil;
+			if strHeroTrialType == "Might" then
+				TTH_TABLE_HeroTrialSkill_Hero = TTH_TABLE_HeroTrialSkill_HeroMight;
+			elseif strHeroTrialType == "Magic" then
+				TTH_TABLE_HeroTrialSkill_Hero = TTH_TABLE_HeroTrialSkill_HeroMagic;
+			elseif strHeroTrialType == "Barbarian" then
+				TTH_TABLE_HeroTrialSkill_Hero = TTH_TABLE_HeroTrialSkill_HeroBarbarian;
 			end;
-			-- 获取当前英雄经验
-			local iHeroCurrentExp = GetHeroStat(strHero, STAT_EXPERIENCE);
-			-- 移除英雄经验到最低保留等级
-			TakeAwayHeroExp(strHero, iHeroCurrentExp - iLeftExp);
-			-- 暂停下游戏
-			sleep(10);
-			-- 在保留等级下，记录英雄属性
-			local arrHeroStat5Necessary = {};
-			arrHeroStat5Necessary[STAT_ATTACK] = GetHeroStat(strHero, STAT_ATTACK);
-			print("arrHeroStat5Necessary["..STAT_ATTACK.."]: "..arrHeroStat5Necessary[STAT_ATTACK]);
-			arrHeroStat5Necessary[STAT_DEFENCE] = GetHeroStat(strHero, STAT_DEFENCE);
-			print("arrHeroStat5Necessary["..STAT_DEFENCE.."]: "..arrHeroStat5Necessary[STAT_DEFENCE]);
-			arrHeroStat5Necessary[STAT_SPELL_POWER] = GetHeroStat(strHero, STAT_SPELL_POWER);
-			print("arrHeroStat5Necessary["..STAT_SPELL_POWER.."]: "..arrHeroStat5Necessary[STAT_SPELL_POWER]);
-			arrHeroStat5Necessary[STAT_KNOWLEDGE] = GetHeroStat(strHero, STAT_KNOWLEDGE);
-			print("arrHeroStat5Necessary["..STAT_KNOWLEDGE.."]: "..arrHeroStat5Necessary[STAT_KNOWLEDGE]);
-			-- 在保留等级下，记录英雄技能
-			local arrHeroSkill5NecessaryMastery = {};
-			local arrHeroSkill5NecessaryPerk = {};
-			for iIndexMastery, objMastery in TTH_TABLE_HeroSkill[0] do
-				if GetHeroSkillMastery(strHero, objMastery) > 0 then
-					arrHeroSkill5NecessaryMastery[objMastery] = GetHeroSkillMastery(strHero, objMastery);
-					print("arrHeroSkill5NecessaryMastery["..objMastery.."]: "..arrHeroSkill5NecessaryMastery[objMastery]);
+
+			-- 若英雄等级<=10级
+			if TTH_Map_ShantiriTrial4HeroRecord[strHero]["HeroLevel"] <= 10 then
+				-- 获取当前英雄经验
+				local iHeroCurrentExp = GetHeroStat(strHero, STAT_EXPERIENCE);
+				-- 英雄等级降为1
+				TakeAwayHeroExp(strHero, iHeroCurrentExp);
+				-- 根据试炼难度奖励 2/4/6点全属性
+				local iStat = 0;
+				if TTH_Map_ShantiriTrial4HeroRecord[strHero]["Difficult"] == 1 then
+					iStat = 2;
+				elseif TTH_Map_ShantiriTrial4HeroRecord[strHero]["Difficult"] == 2 then
+					iStat = 4;
+				elseif TTH_Map_ShantiriTrial4HeroRecord[strHero]["Difficult"] == 3 then
+					iStat = 6;
 				end;
-				for iIndexPerk, objPerk in TTH_TABLE_HeroSkill[objMastery] do
-					if HasHeroSkill(strHero, objPerk) ~= nil then
-						arrHeroSkill5NecessaryPerk[objPerk] = 1;
-						print("arrHeroSkill5NecessaryPerk["..objPerk.."]: "..arrHeroSkill5NecessaryPerk[objPerk]);
-					end;
+				ChangeHeroStat(strHero, STAT_ATTACK, iStat);
+				ChangeHeroStat(strHero, STAT_DEFENCE, iStat);
+				ChangeHeroStat(strHero, STAT_SPELL_POWER, iStat);
+				ChangeHeroStat(strHero, STAT_KNOWLEDGE, iStat);
+				-- 奖励 1点士气1点幸运
+				ChangeHeroStat(strHero, STAT_MORALE, 1);
+				ChangeHeroStat(strHero, STAT_LUCK, 1);
+				-- 按难度奖励 所选主技能等级
+				local iDifficult = TTH_Map_ShantiriTrial4HeroRecord[strHero]["Difficult"];
+				local iMastery = TTH_Map_ShantiriTrial4HeroRecord[strHero]["Mastery"];
+				local objMasteryId = TTH_TABLE_HeroTrialSkill_Hero[iMastery]["MasteryId"];
+				for i = 1, iDifficult do
+					GiveHeroSkill(strHero, objMasteryId);
+					print("GiveHeroMastery: "..objMasteryId);
+					sleep(1);
 				end;
-			end;
-			-- 暂停下游戏
-			sleep(10);
-			-- 移除英雄经验到1级
-			TakeAwayHeroExp(strHero, iLeftExp);
-			-- 暂停下游戏
-			sleep(10);
-			-- 记录1级的英雄属性
-			local arrHeroStat5Reincarnation = {};
-			arrHeroStat5Reincarnation[STAT_ATTACK] = GetHeroStat(strHero, STAT_ATTACK);
-			print("arrHeroStat5Reincarnation["..STAT_ATTACK.."]: "..arrHeroStat5Reincarnation[STAT_ATTACK]);
-			arrHeroStat5Reincarnation[STAT_DEFENCE] = GetHeroStat(strHero, STAT_DEFENCE);
-			print("arrHeroStat5Reincarnation["..STAT_DEFENCE.."]: "..arrHeroStat5Reincarnation[STAT_DEFENCE]);
-			arrHeroStat5Reincarnation[STAT_SPELL_POWER] = GetHeroStat(strHero, STAT_SPELL_POWER);
-			print("arrHeroStat5Reincarnation["..STAT_SPELL_POWER.."]: "..arrHeroStat5Reincarnation[STAT_SPELL_POWER]);
-			arrHeroStat5Reincarnation[STAT_KNOWLEDGE] = GetHeroStat(strHero, STAT_KNOWLEDGE);
-			print("arrHeroStat5Reincarnation["..STAT_KNOWLEDGE.."]: "..arrHeroStat5Reincarnation[STAT_KNOWLEDGE]);
-			-- 记录1级的英雄技能
-			local arrHeroSkill5ReincarnationMastery = {};
-			local arrHeroSkill5ReincarnationPerk = {};
-			for iIndexMastery, objMastery in TTH_TABLE_HeroSkill[0] do
-				if GetHeroSkillMastery(strHero, objMastery) > 0 then
-					arrHeroSkill5ReincarnationMastery[objMastery] = GetHeroSkillMastery(strHero, objMastery);
-					print("arrHeroSkill5ReincarnationMastery["..objMastery.."]: "..arrHeroSkill5ReincarnationMastery[objMastery]);
+				-- 按难度奖励 所选子技能
+				local iPerk = TTH_Map_ShantiriTrial4HeroRecord[strHero]["Perk"];
+				local objPerkId = TTH_TABLE_HeroTrialSkill_Hero[iMastery]["Perk"][iPerk]["PerkId"];
+				GiveHeroSkill(strHero, objPerkId);
+				print("GiveHeroPerk: "..objPerkId);
+				sleep(1);
+				-- 提升英雄等级到10级
+				ChangeHeroStat(strHero, STAT_EXPERIENCE, 14700);
+			-- 若英雄等级>10级
+			else
+				-- 根据试炼难度奖励 1/2/3点全属性
+				local iStat = 0;
+				if TTH_Map_ShantiriTrial4HeroRecord[strHero]["Difficult"] == 1 then
+					iStat = 1;
+				elseif TTH_Map_ShantiriTrial4HeroRecord[strHero]["Difficult"] == 2 then
+					iStat = 2;
+				elseif TTH_Map_ShantiriTrial4HeroRecord[strHero]["Difficult"] == 3 then
+					iStat = 3;
 				end;
-				for iIndexPerk, objPerk in TTH_TABLE_HeroSkill[objMastery] do
-					if HasHeroSkill(strHero, objPerk) ~= nil then
-						arrHeroSkill5ReincarnationPerk[objPerk] = 1;
-						print("arrHeroSkill5ReincarnationPerk["..objPerk.."]: "..arrHeroSkill5ReincarnationPerk[objPerk]);
-					end;
-				end;
-			end;
-			-- 补满英雄属性差值
-			ChangeHeroStat(strHero, STAT_ATTACK, arrHeroStat5Necessary[STAT_ATTACK] - arrHeroStat5Reincarnation[STAT_ATTACK]);
-			ChangeHeroStat(strHero, STAT_DEFENCE, arrHeroStat5Necessary[STAT_DEFENCE] - arrHeroStat5Reincarnation[STAT_DEFENCE]);
-			ChangeHeroStat(strHero, STAT_SPELL_POWER, arrHeroStat5Necessary[STAT_SPELL_POWER] - arrHeroStat5Reincarnation[STAT_SPELL_POWER]);
-			ChangeHeroStat(strHero, STAT_KNOWLEDGE, arrHeroStat5Necessary[STAT_KNOWLEDGE] - arrHeroStat5Reincarnation[STAT_KNOWLEDGE]);
-			-- 补满英雄技能差异
-			for iIndexMastery, objMastery in TTH_TABLE_HeroSkill[0] do
-				if arrHeroSkill5NecessaryMastery[objMastery] ~= nil then
-					if arrHeroSkill5NecessaryMastery[objMastery] > GetHeroSkillMastery(strHero, objMastery) then
-						for i = 1, arrHeroSkill5NecessaryMastery[objMastery] - GetHeroSkillMastery(strHero, objMastery) do
-							GiveHeroSkill(strHero, objMastery);
-							print("GiveHeroSkill: "..objMastery);
-							sleep(1);
-						end;
-					end;
-				end;
-				for iIndexPerk, objPerk in TTH_TABLE_HeroSkill[objMastery] do
-					if arrHeroSkill5NecessaryPerk[objPerk] == 1 then
-						GiveHeroSkill(strHero, objPerk);
-						print("GiveHeroSkill: "..objPerk);
-						sleep(1);
-					end;
+				ChangeHeroStat(strHero, STAT_ATTACK, iStat);
+				ChangeHeroStat(strHero, STAT_DEFENCE, iStat);
+				ChangeHeroStat(strHero, STAT_SPELL_POWER, iStat);
+				ChangeHeroStat(strHero, STAT_KNOWLEDGE, iStat);
+				-- 奖励 所选主技能
+				local iMastery = TTH_Map_ShantiriTrial4HeroRecord[strHero]["Mastery"];
+				local objMasteryId = TTH_TABLE_HeroTrialSkill_Hero[iMastery]["MasteryId"];
+				GiveHeroSkill(strHero, objMasteryId);
+				print("GiveHeroMastery: "..objMasteryId);
+				sleep(1);
+				-- 奖励 所选子技能
+				local iPerk = TTH_Map_ShantiriTrial4HeroRecord[strHero]["Perk"];
+				local objPerkId = TTH_TABLE_HeroTrialSkill_Hero[iMastery]["Perk"][iPerk]["PerkId"];
+				GiveHeroSkill(strHero, objPerkId);
+				print("GiveHeroPerk: "..objPerkId);
+				sleep(1);
+				-- 按难度奖励 英雄等级
+				local iDifficult = TTH_Map_ShantiriTrial4HeroRecord[strHero]["Difficult"];
+				for i = 1, iDifficult do
+					LevelUpHero(strHero);
+					print("LevelUpHero: "..strHero);
+					sleep(1);
 				end;
 			end;
-			-- 转生成功提示
-			ShowFlyingSign("/Text/Game/Scripts/Shantiri/ReincarnationSuccess.txt", strHero, iPlayer, 5);
 		end;
+		-- 试炼挑战结束，清除记录数据
+		TTH_Map_ShantiriTrial4HeroRecord[strHero] = {};
 	end;
 -- end
 

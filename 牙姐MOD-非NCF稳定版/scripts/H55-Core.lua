@@ -2359,6 +2359,40 @@ function H55_GetHeroWitchType(hero)
 	return type
 end;
 
+-- by 牙姐 2021-04-02 04:34:05
+-- begin 英雄类型
+function TTH_GetHeroTrialType(strHero)
+	local strType = "";
+	if contains(H55_Knights, strHero) ~= nil
+		or contains(H55_Paladins, strHero) ~= nil
+		or contains(H55_Rangers, strHero) ~= nil
+		or contains(H55_Wardens, strHero) ~= nil
+		or contains(H55_Seers, strHero) ~= nil
+		or contains(H55_Demonlords, strHero) ~= nil
+		or contains(H55_Gatekeepers, strHero) ~= nil
+		or contains(H55_DeathKnights, strHero) ~= nil
+		or contains(H55_Reavers, strHero) ~= nil
+		or contains(H55_Engineers, strHero) ~= nil
+		or contains(H55_Overlords, strHero) ~= nil then
+		strType = "Might"
+	elseif contains(H55_Heretics, strHero) ~= nil
+		or contains(H55_Druids, strHero) ~= nil
+		or contains(H55_Wizards, strHero) ~= nil
+		or contains(H55_Elementalists, strHero) ~= nil
+		or contains(H55_Sorcerers, strHero) ~= nil
+		or contains(H55_Necromancers, strHero) ~= nil
+		or contains(H55_Runemages, strHero) ~= nil
+		or contains(H55_Flamekeepers, strHero) ~= nil
+		or contains(H55_Assassins, strHero) ~= nil
+		or contains(H55_Warlocks, strHero) ~= nil then
+		strType = "Magic"
+	elseif contains(H55_Barbarians, strHero) ~= nil then
+		strType = "Barbarian"
+	end;
+	return strType
+end;
+-- end
+
 function H55_GetTownRace(town)
 	local towntype = 0;
 	if contains(GetObjectNamesByType("TOWN_HEAVEN"),town) ~= nil then towntype = 1 end;

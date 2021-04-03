@@ -10301,7 +10301,7 @@ TTH_TABLE_HeroLevelUpRequireExp = {
 -- end
 
 -- by 牙姐 2019-11-29 00:14:05
--- begin 英雄升級所需经验
+-- begin 英雄技能
 TTH_TABLE_HeroSkill = {
 	[0] = {
 		HERO_SKILL_LOGISTICS
@@ -10559,4 +10559,436 @@ TTH_TABLE_HeroSkill = {
 		, HERO_SKILL_UNSUMMON
 	}
 }
+-- end
+
+-- by 牙姐 2021-04-02 02:31:02
+-- begin 英雄试炼技能选择
+	-- 后勤
+	TTH_TABLE_HeroTrialSkill_Logistics = {
+		["MasteryId"] = HERO_SKILL_LOGISTICS
+		, ["MasteryText"] = "/Text/Game/Skills/Mastery/Logistics.txt"
+		, ["Perk"] = {
+			[1] = {
+				["PerkId"] = HERO_SKILL_SCOUTING
+				, ["PerkText"] = "/Text/Game/Skills/Perk/Logistics/Standard/Scouting.txt"
+			}
+			, [2] = {
+				["PerkId"] = HERO_SKILL_PATHFINDING
+				, ["PerkText"] = "/Text/Game/Skills/Perk/Logistics/Standard/Pathfinding.txt"
+			}
+			, [3] = {
+				["PerkId"] = HERO_SKILL_SNATCH
+				, ["PerkText"] = "/Text/Game/Skills/Perk/Logistics/Standard/Snatch.txt"
+			}
+		}
+	}
+	-- 机械
+	TTH_TABLE_HeroTrialSkill_WarMachines = {
+		["MasteryId"] = HERO_SKILL_WAR_MACHINES
+		, ["MasteryText"] = "/Text/Game/Skills/Mastery/WarMachines.txt"
+		, ["Perk"] = {
+			[1] = {
+				["PerkId"] = HERO_SKILL_FIRST_AID
+				, ["PerkText"] = "/Text/Game/Skills/Perk/WarMachines/Standard/FirstAid.txt"
+			}
+			, [2] = {
+				["PerkId"] = HERO_SKILL_CATAPULT
+				, ["PerkText"] = "/Text/Game/Skills/Perk/WarMachines/Standard/Catapult.txt"
+			}
+			, [3] = {
+				["PerkId"] = HERO_SKILL_BALLISTA
+				, ["PerkText"] = "/Text/Game/Skills/Perk/WarMachines/Standard/Ballista.txt"
+			}
+		}
+	}
+	-- 领导
+	TTH_TABLE_HeroTrialSkill_Leadership = {
+		["MasteryId"] = HERO_SKILL_LEADERSHIP
+		, ["MasteryText"] = "/Text/Game/Skills/Mastery/Leadership.txt"
+		, ["Perk"] = {
+			[1] = {
+				["PerkId"] = HERO_SKILL_RECRUITMENT
+				, ["PerkText"] = "/Text/Game/Skills/Perk/Leadership/Standard/Recruitment.txt"
+			}
+			, [2] = {
+				["PerkId"] = HERO_SKILL_ENCOURAGE
+				, ["PerkText"] = "/Text/Game/Skills/Perk/Leadership/Standard/Encourage.txt"
+			}
+			, [3] = {
+				["PerkId"] = HERO_SKILL_PRAYER
+				, ["PerkText"] = "/Text/Game/Skills/Perk/Leadership/Standard/Prayer.txt"
+			}
+		}
+	}
+	-- 幸运
+	TTH_TABLE_HeroTrialSkill_Luck = {
+		["MasteryId"] = HERO_SKILL_LUCK
+		, ["MasteryText"] = "/Text/Game/Skills/Mastery/Luck.txt"
+		, ["Perk"] = {
+			[1] = {
+				["PerkId"] = HERO_SKILL_LUCKY_STRIKE
+				, ["PerkText"] = "/Text/Game/Skills/Perk/Luck/Standard/LuckyStrike.txt"
+			}
+			, [2] = {
+				["PerkId"] = HERO_SKILL_RESISTANCE
+				, ["PerkText"] = "/Text/Game/Skills/Perk/Luck/Standard/Resistance.txt"
+			}
+			, [3] = {
+				["PerkId"] = HERO_SKILL_CHAOTIC_SPELLS
+				, ["PerkText"] = "/Text/Game/Skills/Perk/Luck/Standard/ChaoticSpells.txt"
+			}
+		}
+	}
+	-- 进攻
+	TTH_TABLE_HeroTrialSkill_Offence = {
+		["MasteryId"] = HERO_SKILL_OFFENCE
+		, ["MasteryText"] = "/Text/Game/Skills/Mastery/Offence.txt"
+		, ["Perk"] = {
+			[1] = {
+				["PerkId"] = HERO_SKILL_TACTICS
+				, ["PerkText"] = "/Text/Game/Skills/Perk/Offence/Standard/Tactics.txt"
+			}
+			, [2] = {
+				["PerkId"] = HERO_SKILL_ARCHERY
+				, ["PerkText"] = "/Text/Game/Skills/Perk/Offence/Standard/Archery.txt"
+			}
+			, [3] = {
+				["PerkId"] = HERO_SKILL_FRENZY
+				, ["PerkText"] = "/Text/Game/Skills/Perk/Offence/Standard/Frenzy.txt"
+			}
+		}
+	}
+	-- 防御
+	TTH_TABLE_HeroTrialSkill_Defence = {
+		["MasteryId"] = HERO_SKILL_DEFENCE
+		, ["MasteryText"] = "/Text/Game/Skills/Mastery/Defence.txt"
+		, ["Perk"] = {
+			[1] = {
+				["PerkId"] = HERO_SKILL_PROTECTION
+				, ["PerkText"] = "/Text/Game/Skills/Perk/Defence/Standard/Protection.txt"
+			}
+			, [2] = {
+				["PerkId"] = HERO_SKILL_EVASION
+				, ["PerkText"] = "/Text/Game/Skills/Perk/Defence/Standard/Evasion.txt"
+			}
+			, [3] = {
+				["PerkId"] = HERO_SKILL_TOUGHNESS
+				, ["PerkText"] = "/Text/Game/Skills/Perk/Defence/Standard/Toughness.txt"
+			}
+		}
+	}
+	-- 启蒙
+	TTH_TABLE_HeroTrialSkill_Learning = {
+		["MasteryId"] = HERO_SKILL_LEARNING
+		, ["MasteryText"] = "/Text/Game/Skills/Mastery/Learning.txt"
+		, ["Perk"] = {
+			[1] = {
+				["PerkId"] = HERO_SKILL_EAGLE_EYE
+				, ["PerkText"] = "/Text/Game/Skills/Perk/Learning/Standard/EagleEye.txt"
+			}
+			, [2] = {
+				["PerkId"] = HERO_SKILL_INTELLIGENCE
+				, ["PerkText"] = "/Text/Game/Skills/Perk/Learning/Standard/Intelligence.txt"
+			}
+			, [3] = {
+				["PerkId"] = HERO_SKILL_SCHOLAR
+				, ["PerkText"] = "/Text/Game/Skills/Perk/Learning/Standard/Scholar.txt"
+			}
+		}
+	}
+	-- 学习
+	TTH_TABLE_HeroTrialSkill_BarbarianLearning = {
+		["MasteryId"] = HERO_SKILL_BARBARIAN_LEARNING
+		, ["MasteryText"] = "/Text/Game/Skills/Mastery/BarbarianLearning.txt"
+		, ["Perk"] = {
+			[1] = {
+				["PerkId"] = HERO_SKILL_MIGHT_OVER_MAGIC
+				, ["PerkText"] = "/Text/Game/Skills/Perk/BarbarianLearning/Standard/MightOverMagic.txt"
+			}
+			, [2] = {
+				["PerkId"] = HERO_SKILL_WARCRY_LEARNING
+				, ["PerkText"] = "/Text/Game/Skills/Perk/BarbarianLearning/Standard/WarcryLearning.txt"
+			}
+			, [3] = {
+				["PerkId"] = HERO_SKILL_BODYBUILDING
+				, ["PerkText"] = "/Text/Game/Skills/Perk/BarbarianLearning/Standard/Bodybuilding.txt"
+			}
+		}
+	}
+	-- 巫术
+	TTH_TABLE_HeroTrialSkill_Sorcery = {
+		["MasteryId"] = HERO_SKILL_SORCERY
+		, ["MasteryText"] = "/Text/Game/Skills/Mastery/Sorcery.txt"
+		, ["Perk"] = {
+			[1] = {
+				["PerkId"] = HERO_SKILL_WISDOM
+				, ["PerkText"] = "/Text/Game/Skills/Perk/Sorcery/Standard/Wisdom.txt"
+			}
+			, [2] = {
+				["PerkId"] = HERO_SKILL_ARCANE_TRAINING
+				, ["PerkText"] = "/Text/Game/Skills/Perk/Sorcery/Standard/ArcaneTraining.txt"
+			}
+			, [3] = {
+				["PerkId"] = HERO_SKILL_DARK_RITUAL
+				, ["PerkText"] = "/Text/Game/Skills/Perk/Sorcery/Standard/DarkRitual.txt"
+			}
+		}
+	}
+	-- 战嚎
+	TTH_TABLE_HeroTrialSkill_Voice = {
+		["MasteryId"] = HERO_SKILL_VOICE
+		, ["MasteryText"] = "/Text/Game/Skills/Mastery/Voice.txt"
+		, ["Perk"] = {
+			[1] = {
+				["PerkId"] = HERO_SKILL_VOICE_TRAINING
+				, ["PerkText"] = "/Text/Game/Skills/Perk/Voice/Standard/VoiceTraining.txt"
+			}
+			, [2] = {
+				["PerkId"] = HERO_SKILL_VOICE_OF_RAGE
+				, ["PerkText"] = "/Text/Game/Skills/Perk/Voice/Standard/VoiceOfRage.txt"
+			}
+			, [3] = {
+				["PerkId"] = HERO_SKILL_BARBARIAN_MYSTICISM
+				, ["PerkText"] = "/Text/Game/Skills/Perk/Voice/Standard/BarbarianMysticism.txt"
+			}
+		}
+	}
+	-- 反击
+	TTH_TABLE_HeroTrialSkill_Training = {
+		["MasteryId"] = HERO_SKILL_TRAINING
+		, ["MasteryText"] = "/Text/Game/Skills/Mastery/Training.txt"
+		, ["Perk"] = {
+			[1] = {
+				["PerkId"] = HERO_SKILL_HOLY_CHARGE
+				, ["PerkText"] = "/Text/Game/Skills/Perk/Training/Standard/HolyCharge.txt"
+			}
+			, [2] = {
+				["PerkId"] = HERO_SKILL_CRITICAL_STRIKE
+				, ["PerkText"] = "/Text/Game/Skills/Perk/Training/Standard/CriticalStrike.txt"
+			}
+			, [3] = {
+				["PerkId"] = HERO_SKILL_POWERFULL_BLOW
+				, ["PerkText"] = "/Text/Game/Skills/Perk/Training/Standard/PowerfullBlow.txt"
+			}
+		}
+	}
+	-- 穿透
+	TTH_TABLE_HeroTrialSkill_Invocation = {
+		["MasteryId"] = HERO_SKILL_INVOCATION
+		, ["MasteryText"] = "/Text/Game/Skills/Mastery/Invocation.txt"
+		, ["Perk"] = {
+			[1] = {
+				["PerkId"] = HERO_SKILL_EMPOWERED_SPELLS
+				, ["PerkText"] = "/Text/Game/Skills/Perk/Invocation/Standard/EmpoweredSpells.txt"
+			}
+			, [2] = {
+				["PerkId"] = HERO_SKILL_CONSUME_CORPSE
+				, ["PerkText"] = "/Text/Game/Skills/Perk/Invocation/Standard/ConsumeCorpse.txt"
+			}
+			, [3] = {
+				["PerkId"] = HERO_SKILL_CONSUME_CORPSE
+				, ["PerkText"] = "/Text/Game/Skills/Perk/Invocation/Standard/ConsumeCorpse.txt"
+			}
+		}
+	}
+	-- 破坏
+	TTH_TABLE_HeroTrialSkill_DestructiveMagic = {
+		["MasteryId"] = HERO_SKILL_DESTRUCTIVE_MAGIC
+		, ["MasteryText"] = "/Text/Game/Skills/Mastery/DestructiveMagic.txt"
+		, ["Perk"] = {
+			[1] = {
+				["PerkId"] = HERO_SKILL_MASTER_OF_ICE
+				, ["PerkText"] = "/Text/Game/Skills/Perk/DestructiveMagic/Standard/MasterOfIce.txt"
+			}
+			, [2] = {
+				["PerkId"] = HERO_SKILL_MASTER_OF_FIRE
+				, ["PerkText"] = "/Text/Game/Skills/Perk/DestructiveMagic/Standard/MasterOfFire.txt"
+			}
+			, [3] = {
+				["PerkId"] = HERO_SKILL_MASTER_OF_LIGHTNINGS
+				, ["PerkText"] = "/Text/Game/Skills/Perk/DestructiveMagic/Standard/MasterOfLightnings.txt"
+			}
+		}
+	}
+	-- 黑暗
+	TTH_TABLE_HeroTrialSkill_DarkMagic = {
+		["MasteryId"] = HERO_SKILL_DARK_MAGIC
+		, ["MasteryText"] = "/Text/Game/Skills/Mastery/DarkMagic.txt"
+		, ["Perk"] = {
+			[1] = {
+				["PerkId"] = HERO_SKILL_MASTER_OF_MIND
+				, ["PerkText"] = "/Text/Game/Skills/Perk/DarkMagic/Standard/MasterOfMind.txt"
+			}
+			, [2] = {
+				["PerkId"] = HERO_SKILL_MASTER_OF_CURSES
+				, ["PerkText"] = "/Text/Game/Skills/Perk/DarkMagic/Standard/MasterOfCurses.txt"
+			}
+			, [3] = {
+				["PerkId"] = HERO_SKILL_MASTER_OF_SICKNESS
+				, ["PerkText"] = "/Text/Game/Skills/Perk/DarkMagic/Standard/MasterOfSickness.txt"
+			}
+		}
+	}
+	-- 光明
+	TTH_TABLE_HeroTrialSkill_LightMagic = {
+		["MasteryId"] = HERO_SKILL_LIGHT_MAGIC
+		, ["MasteryText"] = "/Text/Game/Skills/Mastery/LightMagic.txt"
+		, ["Perk"] = {
+			[1] = {
+				["PerkId"] = HERO_SKILL_MASTER_OF_WRATH
+				, ["PerkText"] = "/Text/Game/Skills/Perk/LightMagic/Standard/MasterOfWrath.txt"
+			}
+			, [2] = {
+				["PerkId"] = HERO_SKILL_MASTER_OF_BLESSING
+				, ["PerkText"] = "/Text/Game/Skills/Perk/LightMagic/Standard/MasterOfBlessing.txt"
+			}
+			, [3] = {
+				["PerkId"] = HERO_SKILL_MASTER_OF_ABJURATION
+				, ["PerkText"] = "/Text/Game/Skills/Perk/LightMagic/Standard/MasterOfAbjuration.txt"
+			}
+		}
+	}
+	-- 召唤
+	TTH_TABLE_HeroTrialSkill_SummoningMagic = {
+		["MasteryId"] = HERO_SKILL_SUMMONING_MAGIC
+		, ["MasteryText"] = "/Text/Game/Skills/Mastery/SummoningMagic.txt"
+		, ["Perk"] = {
+			[1] = {
+				["PerkId"] = HERO_SKILL_MASTER_OF_QUAKES
+				, ["PerkText"] = "/Text/Game/Skills/Perk/SummoningMagic/Standard/MasterOfQuakes.txt"
+			}
+			, [2] = {
+				["PerkId"] = HERO_SKILL_MASTER_OF_CREATURES
+				, ["PerkText"] = "/Text/Game/Skills/Perk/SummoningMagic/Standard/MasterOfCreatures.txt"
+			}
+			, [3] = {
+				["PerkId"] = HERO_SKILL_MASTER_OF_ANIMATION
+				, ["PerkText"] = "/Text/Game/Skills/Perk/SummoningMagic/Standard/MasterOfAnimation.txt"
+			}
+		}
+	}
+	-- 反破
+	TTH_TABLE_HeroTrialSkill_ShatterDestructiveMagic = {
+		["MasteryId"] = HERO_SKILL_SHATTER_DESTRUCTIVE_MAGIC
+		, ["MasteryText"] = "/Text/Game/Skills/Mastery/ShatterDestructiveMagic.txt"
+		, ["Perk"] = {
+			[1] = {
+				["PerkId"] = HERO_SKILL_WEAKEN_DESTRUCTIVE
+				, ["PerkText"] = "/Text/Game/Skills/Perk/ShatterDestructiveMagic/Standard/WeakenDestructive.txt"
+			}
+			, [2] = {
+				["PerkId"] = HERO_SKILL_BARBARIAN_SUN_FIRE
+				, ["PerkText"] = "/Text/Game/Skills/Perk/ShatterDestructiveMagic/Standard/BarbarianSunFire.txt"
+			}
+			, [3] = {
+				["PerkId"] = HERO_SKILL_DETAIN_DESTRUCTIVE
+				, ["PerkText"] = "/Text/Game/Skills/Perk/ShatterDestructiveMagic/Standard/DetainDestructive.txt"
+			}
+		}
+	}
+	-- 反黑
+	TTH_TABLE_HeroTrialSkill_ShatterDarkMagic = {
+		["MasteryId"] = HERO_SKILL_SHATTER_DARK_MAGIC
+		, ["MasteryText"] = "/Text/Game/Skills/Mastery/ShatterDarkMagic.txt"
+		, ["Perk"] = {
+			[1] = {
+				["PerkId"] = HERO_SKILL_WEAKEN_DARK
+				, ["PerkText"] = "/Text/Game/Skills/Perk/ShatterDarkMagic/Standard/WeakenDark.txt"
+			}
+			, [2] = {
+				["PerkId"] = HERO_SKILL_BARBARIAN_SOIL_BURN
+				, ["PerkText"] = "/Text/Game/Skills/Perk/ShatterDarkMagic/Standard/BarbarianSoilBurn.txt"
+			}
+			, [3] = {
+				["PerkId"] = HERO_SKILL_DETAIN_DARK
+				, ["PerkText"] = "/Text/Game/Skills/Perk/ShatterDarkMagic/Standard/DetainDark.txt"
+			}
+		}
+	}
+	-- 反光
+	TTH_TABLE_HeroTrialSkill_ShatterLightMagic = {
+		["MasteryId"] = HERO_SKILL_SHATTER_LIGHT_MAGIC
+		, ["MasteryText"] = "/Text/Game/Skills/Mastery/ShatterLightMagic.txt"
+		, ["Perk"] = {
+			[1] = {
+				["PerkId"] = HERO_SKILL_WEAKEN_LIGHT
+				, ["PerkText"] = "/Text/Game/Skills/Perk/ShatterLightMagic/Standard/WeakenLight.txt"
+			}
+			, [2] = {
+				["PerkId"] = HERO_SKILL_BARBARIAN_STORM_WIND
+				, ["PerkText"] = "/Text/Game/Skills/Perk/ShatterLightMagic/Standard/BarbarianStormWind.txt"
+			}
+			, [3] = {
+				["PerkId"] = HERO_SKILL_DETAIN_LIGHT
+				, ["PerkText"] = "/Text/Game/Skills/Perk/ShatterLightMagic/Standard/DetainLight.txt"
+			}
+		}
+	}
+	-- 反召
+	TTH_TABLE_HeroTrialSkill_ShatterSummoningMagic = {
+		["MasteryId"] = HERO_SKILL_SHATTER_SUMMONING_MAGIC
+		, ["MasteryText"] = "/Text/Game/Skills/Mastery/ShatterSummoningMagic.txt"
+		, ["Perk"] = {
+			[1] = {
+				["PerkId"] = HERO_SKILL_WEAKEN_SUMMONING
+				, ["PerkText"] = "/Text/Game/Skills/Perk/ShatterSummoningMagic/Standard/WeakenSummoning.txt"
+			}
+			, [2] = {
+				["PerkId"] = HERO_SKILL_BARBARIAN_FOG_VEIL
+				, ["PerkText"] = "/Text/Game/Skills/Perk/ShatterSummoningMagic/Standard/BarbarianFogVeil.txt"
+			}
+			, [3] = {
+				["PerkId"] = HERO_SKILL_DETAIN_SUMMONING
+				, ["PerkText"] = "/Text/Game/Skills/Perk/ShatterSummoningMagic/Standard/DetainSummoning.txt"
+			}
+		}
+	}
+	-- 力量英雄
+	TTH_TABLE_HeroTrialSkill_HeroMight = {
+		[1] = TTH_TABLE_HeroTrialSkill_Logistics
+		, [2] = TTH_TABLE_HeroTrialSkill_WarMachines
+		, [3] = TTH_TABLE_HeroTrialSkill_Leadership
+		, [4] = TTH_TABLE_HeroTrialSkill_Luck
+		, [5] = TTH_TABLE_HeroTrialSkill_Offence
+		, [6] = TTH_TABLE_HeroTrialSkill_Defence
+		, [7] = TTH_TABLE_HeroTrialSkill_Learning
+		, [8] = TTH_TABLE_HeroTrialSkill_Sorcery
+		, [9] = TTH_TABLE_HeroTrialSkill_Training
+		, [10] = TTH_TABLE_HeroTrialSkill_DestructiveMagic
+		, [11] = TTH_TABLE_HeroTrialSkill_DarkMagic
+		, [12] = TTH_TABLE_HeroTrialSkill_LightMagic
+		, [13] = TTH_TABLE_HeroTrialSkill_SummoningMagic
+	}
+	-- 魔法英雄
+	TTH_TABLE_HeroTrialSkill_HeroMagic = {
+		[1] = TTH_TABLE_HeroTrialSkill_Logistics
+		, [2] = TTH_TABLE_HeroTrialSkill_WarMachines
+		, [3] = TTH_TABLE_HeroTrialSkill_Leadership
+		, [4] = TTH_TABLE_HeroTrialSkill_Luck
+		, [5] = TTH_TABLE_HeroTrialSkill_Offence
+		, [6] = TTH_TABLE_HeroTrialSkill_Defence
+		, [7] = TTH_TABLE_HeroTrialSkill_Learning
+		, [8] = TTH_TABLE_HeroTrialSkill_Sorcery
+		, [9] = TTH_TABLE_HeroTrialSkill_Invocation
+		, [10] = TTH_TABLE_HeroTrialSkill_DestructiveMagic
+		, [11] = TTH_TABLE_HeroTrialSkill_DarkMagic
+		, [12] = TTH_TABLE_HeroTrialSkill_LightMagic
+		, [13] = TTH_TABLE_HeroTrialSkill_SummoningMagic
+	}
+	-- 野蛮人英雄
+	TTH_TABLE_HeroTrialSkill_HeroBarbarian = {
+		[1] = TTH_TABLE_HeroTrialSkill_Logistics
+		, [2] = TTH_TABLE_HeroTrialSkill_WarMachines
+		, [3] = TTH_TABLE_HeroTrialSkill_Leadership
+		, [4] = TTH_TABLE_HeroTrialSkill_Luck
+		, [5] = TTH_TABLE_HeroTrialSkill_Offence
+		, [6] = TTH_TABLE_HeroTrialSkill_Defence
+		, [7] = TTH_TABLE_HeroTrialSkill_BarbarianLearning
+		, [8] = TTH_TABLE_HeroTrialSkill_Voice
+		, [9] = TTH_TABLE_HeroTrialSkill_Training
+		, [10] = TTH_TABLE_HeroTrialSkill_ShatterDestructiveMagic
+		, [11] = TTH_TABLE_HeroTrialSkill_ShatterDarkMagic
+		, [12] = TTH_TABLE_HeroTrialSkill_ShatterLightMagic
+		, [13] = TTH_TABLE_HeroTrialSkill_ShatterSummoningMagic
+	}
 -- end

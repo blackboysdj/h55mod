@@ -5716,15 +5716,7 @@ end;
 	-- 选择试炼主技能
 	function TTH_Func_Shantiri_ChooseMastery(strHero, iMastery)
 		local iPlayer = GetObjectOwner(strHero);
-		local strHeroTrialType = TTH_GetHeroTrialType(strHero);
-		local TTH_TABLE_HeroTrialSkill_Hero = nil;
-		if strHeroTrialType == "Might" then
-			TTH_TABLE_HeroTrialSkill_Hero = TTH_TABLE_HeroTrialSkill_HeroMight;
-		elseif strHeroTrialType == "Magic" then
-			TTH_TABLE_HeroTrialSkill_Hero = TTH_TABLE_HeroTrialSkill_HeroMagic;
-		elseif strHeroTrialType == "Barbarian" then
-			TTH_TABLE_HeroTrialSkill_Hero = TTH_TABLE_HeroTrialSkill_HeroBarbarian;
-		end;
+		local TTH_TABLE_HeroTrialSkill_Hero = TTH_Func_Shantiri_GetHeroTrialSkill(strHero);
 		local strMastery1 = TTH_TABLE_HeroTrialSkill_Hero[1]["MasteryText"];
 		local strMastery2 = TTH_TABLE_HeroTrialSkill_Hero[2]["MasteryText"];
 		local strMastery3 = TTH_TABLE_HeroTrialSkill_Hero[3]["MasteryText"];
@@ -5748,15 +5740,7 @@ end;
 	-- 选择试炼子技能
 	function TTH_Func_Shantiri_ChoosePerk(strHero, iMastery, iPerk)
 		local iPlayer = GetObjectOwner(strHero);
-		local strHeroTrialType = TTH_GetHeroTrialType(strHero);
-		local TTH_TABLE_HeroTrialSkill_Hero = nil;
-		if strHeroTrialType == "Might" then
-			TTH_TABLE_HeroTrialSkill_Hero = TTH_TABLE_HeroTrialSkill_HeroMight;
-		elseif strHeroTrialType == "Magic" then
-			TTH_TABLE_HeroTrialSkill_Hero = TTH_TABLE_HeroTrialSkill_HeroMagic;
-		elseif strHeroTrialType == "Barbarian" then
-			TTH_TABLE_HeroTrialSkill_Hero = TTH_TABLE_HeroTrialSkill_HeroBarbarian;
-		end;
+		local TTH_TABLE_HeroTrialSkill_Hero = TTH_Func_Shantiri_GetHeroTrialSkill(strHero);
 		local strPerk1 = TTH_TABLE_HeroTrialSkill_Hero[iMastery + 0]["Perk"][1]["PerkText"];
 		local strPerk2 = TTH_TABLE_HeroTrialSkill_Hero[iMastery + 0]["Perk"][2]["PerkText"];
 		local strPerk3 = TTH_TABLE_HeroTrialSkill_Hero[iMastery + 0]["Perk"][3]["PerkText"];
@@ -5796,96 +5780,58 @@ end;
 		TTH_Map_ShantiriTrial4HeroRecord[strHero]["Perk"] = iPerk + 0;
 		TTH_Map_ShantiriTrial4HeroRecord[strHero]["Difficult"] = iDifficult + 0;
 
-		local strHeroTrialType = TTH_GetHeroTrialType(strHero);
-		local TTH_TABLE_HeroTrialSkill_Hero = nil;
-		if strHeroTrialType == "Might" then
-			TTH_TABLE_HeroTrialSkill_Hero = TTH_TABLE_HeroTrialSkill_HeroMight;
-		elseif strHeroTrialType == "Magic" then
-			TTH_TABLE_HeroTrialSkill_Hero = TTH_TABLE_HeroTrialSkill_HeroMagic;
-		elseif strHeroTrialType == "Barbarian" then
-			TTH_TABLE_HeroTrialSkill_Hero = TTH_TABLE_HeroTrialSkill_HeroBarbarian;
-		end;
+		local TTH_TABLE_HeroTrialSkill_Hero = TTH_Func_Shantiri_GetHeroTrialSkill(strHero);
 		local strMastery = TTH_TABLE_HeroTrialSkill_Hero[iMastery + 0]["MasteryText"];
 		local strPerk = TTH_TABLE_HeroTrialSkill_Hero[iMastery + 0]["Perk"][iPerk + 0]["PerkText"];
 		local strDifficult = "/Text/Game/Scripts/Shantiri/EnumDifficult"..iDifficult..".txt";
 
-		QuestionBoxForPlayers(GetPlayerFilter(iPlayer), {"/Text/Game/Scripts/Shantiri/QuestionCheckChallenge.txt";strMastery=strMastery,strPerk=strPerk,strDifficult=strDifficult}, "TTH_Func_Shantiri_Challenge4Trial8PowerCheck('"..strHero.."','"..iMastery.."','"..iPerk.."','"..iDifficult.."')", "TTH_Func_Shantiri_Giveup('"..strHero.."')");
+		QuestionBoxForPlayers(GetPlayerFilter(iPlayer), {"/Text/Game/Scripts/Shantiri/QuestionCheckChallenge.txt";strMastery=strMastery,strPerk=strPerk,strDifficult=strDifficult}, "TTH_Func_Shantiri_Challenge4Trial8PowerCheck('"..strHero.."')", "TTH_Func_Shantiri_Giveup('"..strHero.."')");
 	end;
-	-- 战力检测
-	function TTH_Func_Shantiri_Challenge4Trial8PowerCheck(strHero, iMastery, iPerk, iDifficult)
-		local iMonthScale = H55_Month + 1;
-		local iWeekScale = H55_AbsoluteWeek;
-		local iRandom = H55_AbsoluteWeek;
-		local iMultiplier = H55_GetBankDifMultiplier();
-		local strCallbackWin = "TTH_Func_Shantiri_Challenge4Trial8MirrorFight";
-
-		local listIdCreature = {};
-		local listCountCreature = {};
-		local iRandomBankMonster = random(length(TTH_BankMonsterByNoRace)) + 1;
-		local iStep = 0;
-		print("iRandomBankMonster: "..iRandomBankMonster);
-		local objRandomBankMonster = nil;
-		local strCombatLink = nil;
-		for iIndexBankMonster, objBankMonster in TTH_BankMonsterByNoRace do
-			iStep = iStep + 1;
-			print("iStep: "..iStep);
-			if iStep == iRandomBankMonster then
-				objRandomBankMonster = objBankMonster;
-				strCombatLink = objBankMonster["LINK"];
-				print("strCombatLink: "..strCombatLink);
+	-- 英雄战力计算
+	function TTH_Func_CalcPower(strHero)
+		local arrType, arrCount = H55_ArmyInfo(strHero)
+		local iPower = 0;
+		for i = 0, 6 do
+			if arrType[i] ~= 0 then
+				iPower = iPower + TTH_TABLE_NCF_CREATURES[arrType[i]]["POWER"] * arrCount[i];
 			end;
 		end;
-		local iLen = length(objRandomBankMonster["ID"]);
-		print("iLen: "..iLen);
-		for i = 0, iLen - 1 do
-			listIdCreature[i] = objRandomBankMonster["ID"][i];
-			local iGrowth = objRandomBankMonster["GROWTH"][i];
-			print("iGrowth: "..iGrowth);
-			listCountCreature[i] = random(iRandom * iGrowth) + H55_Round(iMultiplier * iWeekScale * 2 * iMonthScale * iGrowth);
-			print("listCountCreature[i]: "..listCountCreature[i]);
-		end
+		return iPower;
+	end;
+	-- 战力检测
+	function TTH_Func_Shantiri_Challenge4Trial8PowerCheck(strHero)
+		local iPower = TTH_Func_CalcPower(strHero);
+		local iPowerPerSlot = iPower * 2 * TTH_Map_ShantiriTrial4HeroRecord[strHero]["Difficult"] * TTH_Map_ShantiriTrial4HeroRecord[strHero]["Difficult"] * sqrt(TTH_Map_ShantiriTrial4HeroRecord[strHero]["HeroLevel"]) / 7;
 
-		if iLen == 3 then
-			StartCombat(strHero, nil, 3
-				, listIdCreature[0], listCountCreature[0]
-				, listIdCreature[1], listCountCreature[1]
-				, listIdCreature[2], listCountCreature[2]
-				, nil, strCallbackWin, strCombatLink, 1);
-		elseif iLen == 4 then
-			StartCombat(strHero, nil, 4
-				, listIdCreature[0], listCountCreature[0]
-				, listIdCreature[1], listCountCreature[1]
-				, listIdCreature[2], listCountCreature[2]
-				, listIdCreature[3], listCountCreature[3]
-				, nil, strCallbackWin, strCombatLink, 1);
-		elseif iLen == 5 then
-			StartCombat(strHero, nil, 5
-				, listIdCreature[0], listCountCreature[0]
-				, listIdCreature[1], listCountCreature[1]
-				, listIdCreature[2], listCountCreature[2]
-				, listIdCreature[3], listCountCreature[3]
-				, listIdCreature[4], listCountCreature[4]
-				, nil, strCallbackWin, strCombatLink, 1);
-		elseif iLen == 6 then
-			StartCombat(strHero, nil, 6
-				, listIdCreature[0], listCountCreature[0]
-				, listIdCreature[1], listCountCreature[1]
-				, listIdCreature[2], listCountCreature[2]
-				, listIdCreature[3], listCountCreature[3]
-				, listIdCreature[4], listCountCreature[4]
-				, listIdCreature[5], listCountCreature[5]
-				, nil, strCallbackWin, strCombatLink, 1);
-		elseif iLen == 7 then
-			StartCombat(strHero, nil, 7
-				, listIdCreature[0], listCountCreature[0]
-				, listIdCreature[1], listCountCreature[1]
-				, listIdCreature[2], listCountCreature[2]
-				, listIdCreature[3], listCountCreature[3]
-				, listIdCreature[4], listCountCreature[4]
-				, listIdCreature[5], listCountCreature[5]
-				, listIdCreature[6], listCountCreature[6]
-				, nil, strCallbackWin, strCombatLink, 1);
+		local strCallbackWin = "TTH_Func_Shantiri_Challenge4Trial8MirrorFight";
+		local strCombatLink = "/Arenas/CombatArena/FinalCombat/Bank_Shantiri.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)";
+
+		local listCreatureId = {};
+		local listCreatureCount = {};
+
+		local TTH_TABLE_HeroTrialSkill_Hero = TTH_Func_Shantiri_GetHeroTrialSkill(strHero);
+		local arrMonster = TTH_TABLE_HeroTrialSkill_Hero[TTH_Map_ShantiriTrial4HeroRecord[strHero]["Mastery"]]["Perk"][TTH_Map_ShantiriTrial4HeroRecord[strHero]["Perk"]]["Monster"];
+
+		for i = 1, 7 do
+			if arrMonster[i] ~= 0 then
+				listCreatureId[i] = arrMonster[i];
+				listCreatureCount[i] = H55_Ceil(iPowerPerSlot / TTH_TABLE_NCF_CREATURES[arrMonster[i]]["POWER"]);
+			else
+				local iRandomCreatureId = TTH_TABLE_HeroTrial_Monster[random(130) + 1];
+				listCreatureId[i] = iRandomCreatureId;
+				listCreatureCount[i] = H55_Ceil(iPowerPerSlot / TTH_TABLE_NCF_CREATURES[iRandomCreatureId]["POWER"]);
+			end;
 		end;
+
+		StartCombat(strHero, nil, 7
+			, listCreatureId[1], listCreatureCount[1]
+			, listCreatureId[2], listCreatureCount[2]
+			, listCreatureId[3], listCreatureCount[3]
+			, listCreatureId[4], listCreatureCount[4]
+			, listCreatureId[5], listCreatureCount[5]
+			, listCreatureId[6], listCreatureCount[6]
+			, listCreatureId[7], listCreatureCount[7]
+			, nil, strCallbackWin, strCombatLink, 1);
 	end;
 	-- 镜像之战
 	function TTH_Func_Shantiri_Challenge4Trial8MirrorFight(strHero, objResult)
@@ -5909,73 +5855,74 @@ end;
 			-- 		break;
 			-- 	end;
 			-- end;
+			local iMultiplier = 2 * TTH_Map_ShantiriTrial4HeroRecord[strHero]["Difficult"] * TTH_Map_ShantiriTrial4HeroRecord[strHero]["Difficult"];
 			local strCallbackWin = "TTH_Func_Shantiri_Challenge4Trial_Win";
 			if iLenArrCreatureType == 1 then
 				StartCombat(strHero, strEnemyHero, 1
-					, arrCreatureType[0], arrCreatureCount[0] * 20
+					, arrCreatureType[0], arrCreatureCount[0] * iMultiplier
 					, nil
 					, strCallbackWin
 					, "/Arenas/CombatArena/FinalCombat/Bank_Shantiri.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)"
 					, 1);
 			elseif iLenArrCreatureType == 2 then
 				StartCombat(strHero, strEnemyHero, 2
-					, arrCreatureType[0], arrCreatureCount[0] * 20
-					, arrCreatureType[1], arrCreatureCount[1] * 20
+					, arrCreatureType[0], arrCreatureCount[0] * iMultiplier
+					, arrCreatureType[1], arrCreatureCount[1] * iMultiplier
 					, nil
 					, strCallbackWin
 					, "/Arenas/CombatArena/FinalCombat/Bank_Shantiri.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)"
 					, 1);
 			elseif iLenArrCreatureType == 3 then
 				StartCombat(strHero, strEnemyHero, 3
-					, arrCreatureType[0], arrCreatureCount[0] * 20
-					, arrCreatureType[1], arrCreatureCount[1] * 20
-					, arrCreatureType[2], arrCreatureCount[2] * 20
+					, arrCreatureType[0], arrCreatureCount[0] * iMultiplier
+					, arrCreatureType[1], arrCreatureCount[1] * iMultiplier
+					, arrCreatureType[2], arrCreatureCount[2] * iMultiplier
 					, nil
 					, strCallbackWin
 					, "/Arenas/CombatArena/FinalCombat/Bank_Shantiri.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)"
 					, 1);
 			elseif iLenArrCreatureType == 4 then
 				StartCombat(strHero, strEnemyHero, 4
-					, arrCreatureType[0], arrCreatureCount[0] * 20
-					, arrCreatureType[1], arrCreatureCount[1] * 20
-					, arrCreatureType[2], arrCreatureCount[2] * 20
-					, arrCreatureType[3], arrCreatureCount[3] * 20
+					, arrCreatureType[0], arrCreatureCount[0] * iMultiplier
+					, arrCreatureType[1], arrCreatureCount[1] * iMultiplier
+					, arrCreatureType[2], arrCreatureCount[2] * iMultiplier
+					, arrCreatureType[3], arrCreatureCount[3] * iMultiplier
 					, nil
 					, strCallbackWin
 					, "/Arenas/CombatArena/FinalCombat/Bank_Shantiri.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)"
 					, 1);
 			elseif iLenArrCreatureType == 5 then
 				StartCombat(strHero, strEnemyHero, 5
-					, arrCreatureType[0], arrCreatureCount[0] * 20
-					, arrCreatureType[1], arrCreatureCount[1] * 20
-					, arrCreatureType[2], arrCreatureCount[2] * 20
-					, arrCreatureType[3], arrCreatureCount[3] * 20
-					, arrCreatureType[4], arrCreatureCount[4] * 20
+					, arrCreatureType[0], arrCreatureCount[0] * iMultiplier
+					, arrCreatureType[1], arrCreatureCount[1] * iMultiplier
+					, arrCreatureType[2], arrCreatureCount[2] * iMultiplier
+					, arrCreatureType[3], arrCreatureCount[3] * iMultiplier
+					, arrCreatureType[4], arrCreatureCount[4] * iMultiplier
 					, nil
 					, strCallbackWin
 					, "/Arenas/CombatArena/FinalCombat/Bank_Shantiri.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)"
 					, 1);
 			elseif iLenArrCreatureType == 6 then
 				StartCombat(strHero, strEnemyHero, 6
-					, arrCreatureType[0], arrCreatureCount[0] * 20
-					, arrCreatureType[1], arrCreatureCount[1] * 20
-					, arrCreatureType[2], arrCreatureCount[2] * 20
-					, arrCreatureType[3], arrCreatureCount[3] * 20
-					, arrCreatureType[4], arrCreatureCount[4] * 20
-					, arrCreatureType[5], arrCreatureCount[5] * 20
+					, arrCreatureType[0], arrCreatureCount[0] * iMultiplier
+					, arrCreatureType[1], arrCreatureCount[1] * iMultiplier
+					, arrCreatureType[2], arrCreatureCount[2] * iMultiplier
+					, arrCreatureType[3], arrCreatureCount[3] * iMultiplier
+					, arrCreatureType[4], arrCreatureCount[4] * iMultiplier
+					, arrCreatureType[5], arrCreatureCount[5] * iMultiplier
 					, nil
 					, strCallbackWin
 					, "/Arenas/CombatArena/FinalCombat/Bank_Shantiri.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)"
 					, 1);
 			else
 				StartCombat(strHero, strEnemyHero, 7
-					, arrCreatureType[0], arrCreatureCount[0] * 20
-					, arrCreatureType[1], arrCreatureCount[1] * 20
-					, arrCreatureType[2], arrCreatureCount[2] * 20
-					, arrCreatureType[3], arrCreatureCount[3] * 20
-					, arrCreatureType[4], arrCreatureCount[4] * 20
-					, arrCreatureType[5], arrCreatureCount[5] * 20
-					, arrCreatureType[6], arrCreatureCount[6] * 20
+					, arrCreatureType[0], arrCreatureCount[0] * iMultiplier
+					, arrCreatureType[1], arrCreatureCount[1] * iMultiplier
+					, arrCreatureType[2], arrCreatureCount[2] * iMultiplier
+					, arrCreatureType[3], arrCreatureCount[3] * iMultiplier
+					, arrCreatureType[4], arrCreatureCount[4] * iMultiplier
+					, arrCreatureType[5], arrCreatureCount[5] * iMultiplier
+					, arrCreatureType[6], arrCreatureCount[6] * iMultiplier
 					, nil
 					, strCallbackWin
 					, "/Arenas/CombatArena/FinalCombat/Bank_Shantiri.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)"
@@ -6077,6 +6024,19 @@ end;
 		end;
 		-- 试炼挑战结束，清除记录数据
 		TTH_Map_ShantiriTrial4HeroRecord[strHero] = {};
+	end;
+	-- 获取英雄对应的试炼集合
+	function TTH_Func_Shantiri_GetHeroTrialSkill(strHero)
+		local strHeroTrialType = TTH_GetHeroTrialType(strHero);
+		local TTH_TABLE_HeroTrialSkill_Hero = nil;
+		if strHeroTrialType == "Might" then
+			TTH_TABLE_HeroTrialSkill_Hero = TTH_TABLE_HeroTrialSkill_HeroMight;
+		elseif strHeroTrialType == "Magic" then
+			TTH_TABLE_HeroTrialSkill_Hero = TTH_TABLE_HeroTrialSkill_HeroMagic;
+		elseif strHeroTrialType == "Barbarian" then
+			TTH_TABLE_HeroTrialSkill_Hero = TTH_TABLE_HeroTrialSkill_HeroBarbarian;
+		end;
+		return TTH_TABLE_HeroTrialSkill_Hero;
 	end;
 -- end
 

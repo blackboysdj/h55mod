@@ -26,17 +26,18 @@ http://live.bilibili.com/3234260
 选择不同试炼
 	1.主技能 14选1
 	2.标准技能 3选1
-	3.选择难度 生物数量倍数1/4/9 奖励主技能等级1/2/3
+	3.选择难度 困难/史诗/冠军 生物数量倍数1/4/9
 	4.根据所选 主技能+子技能 确定试炼阵容
 	5.根据英雄等级 确定试炼生物的数量
 试炼奖励
 	1.若试炼前英雄等级小于等于10
 		1.1.英雄等级降为1，然后给予升到10级的经验
 		1.2.奖励2/4/6点全属性，1点士气1点幸运
-		1.3.按难度奖励所选 主技能+子技能
+		1.3.按难度奖励所选 主技能+子技能 奖励主技能等级1/2/3
 	2.若试炼前英雄等级大于10
-		2.1.奖励2/4/6点全属性，1点士气1点幸运
-		2.2.按难度奖励所选 主技能
+		2.1.奖励1/2/3点全属性
+		2.2.奖励所选 主技能+子技能
+		2.2.按难度奖励 英雄等级1/2/3
 重要提示
 	1.可能为多场战斗
 	2.选择4系魔法试炼时，可选择学习反魔法
@@ -44,3 +45,26 @@ http://live.bilibili.com/3234260
 	4.访问一个【杉提瑞圆盘】就可以参加试炼
 	5.英雄等级是否超过10级对奖励有影响
 	6.若所选主技能或子技能的奖励无法发放，不予补偿
+
+战力总数*2 *8 *18
+TTH_TABLE_NCF_CREATURES 战力
+sqrt
+
+for iIndexCreatureId = 1, 999 do
+	if iRandomCreatureId == TTH_TABLE_NCF_CREATURES[iIndexCreatureId]["ID"] then
+		print(iRandomCreatureId)
+		local iGrowth = TTH_TABLE_NCF_CREATURES[iIndexCreatureId]["GROWTH"];
+		print(iGrowth)
+		local strName = TTH_TABLE_NCF_CREATURES[iIndexCreatureId]["NAME"];
+		print(strName)
+		local iNumber = iGrowth + H55_Round(random(iRewardParam * iGrowth) / 4);
+		print(iNumber)
+		AddHeroCreatures(strHero, iRandomCreatureId, iNumber);
+		if H55_IsThisAIPlayer(iPlayer) ~= 1 then
+			ShowFlyingSign({"/Text/Game/Scripts/BankReward/RewardCreature/TemplateCreature.txt";num=iNumber,name=strName}, strHero, iPlayer, 5);
+			local iPositionX, iPositionY, iPositionZ = GetObjectPosition(strHero);
+			Play3DSoundForPlayers(GetPlayerFilter(iPlayer), H55_SndArmy, iPositionX, iPositionY, iPositionZ);
+			return nil;
+		end;
+	end;
+end;

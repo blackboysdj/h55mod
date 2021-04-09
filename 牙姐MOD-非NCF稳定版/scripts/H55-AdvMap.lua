@@ -5801,7 +5801,7 @@ end;
 	-- 战力检测
 	function TTH_Func_Shantiri_Challenge4Trial8PowerCheck(strHero)
 		local iPower = TTH_Func_CalcPower(strHero);
-		local iPowerPerSlot = iPower * TTH_Map_ShantiriTrial4HeroRecord[strHero]["Difficult"] * TTH_Map_ShantiriTrial4HeroRecord[strHero]["Difficult"] * sqrt(TTH_Map_ShantiriTrial4HeroRecord[strHero]["HeroLevel"]) / 7;
+		local iPowerPerSlot = iPower / 2 * TTH_Map_ShantiriTrial4HeroRecord[strHero]["Difficult"] * TTH_Map_ShantiriTrial4HeroRecord[strHero]["Difficult"] * sqrt(TTH_Map_ShantiriTrial4HeroRecord[strHero]["HeroLevel"]) / 7;
 
 		local strCallbackWin = "TTH_Func_Shantiri_Challenge4Trial8MirrorFight";
 		local strCombatLink = "/Arenas/CombatArena/FinalCombat/Bank_Shantiri.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)";

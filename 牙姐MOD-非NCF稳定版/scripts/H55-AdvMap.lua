@@ -5656,6 +5656,10 @@ end;
 	TTH_Arr_Shantiri = GetObjectNamesByType("BUILDING_EYE_OF_MAGI");
 	-- 玩家是否访问过 【杉提瑞圆盘】
 	TTH_Map_HasPlayerVisitedShantiri = {};
+	-- 玩家访问 【杉提瑞圆盘】 的数量
+	TTH_Map_CountPlayerVisitedShantiri = {};
+	-- 玩家访问 【杉提瑞圆盘】 的标记
+	TTH_Map_FlagPlayerVisitedShantiri = {};
 	-- 英雄是否已完成 【杉提瑞圆盘】 的试炼
 	TTH_Map_ShantiriTrial4HeroIsComplete = {};
 	-- 英雄试炼的主技能，子技能，难度选择
@@ -5681,6 +5685,18 @@ end;
 			for iIndexShantiri, objShantiri in TTH_Arr_Shantiri do
 				local iX, iY, iZ = GetObjectPosition(objShantiri);
 				OpenCircleFog(iX, iY, iZ, 5, iPlayer);
+			end;
+		end;
+
+		-- 标记【杉提瑞圆盘】已被玩家访问的数量
+		if TTH_Map_FlagPlayerVisitedShantiri[iPlayer] == nil then
+			TTH_Map_FlagPlayerVisitedShantiri[iPlayer] = {};
+			TTH_Map_FlagPlayerVisitedShantiri[iPlayer][objShantiri] = 1;
+			TTH_Map_CountPlayerVisitedShantiri[iPlayer] = 1;
+		else
+			if TTH_Map_FlagPlayerVisitedShantiri[iPlayer][objShantiri] == nil then
+				TTH_Map_FlagPlayerVisitedShantiri[iPlayer][objShantiri] = 1;
+				TTH_Map_CountPlayerVisitedShantiri[iPlayer] = TTH_Map_CountPlayerVisitedShantiri[iPlayer] + 1;
 			end;
 		end;
 
@@ -5801,7 +5817,7 @@ end;
 	-- 战力检测
 	function TTH_Func_Shantiri_Challenge4Trial8PowerCheck(strHero)
 		local iPower = TTH_Func_CalcPower(strHero);
-		local iPowerPerSlot = iPower / 2 * TTH_Map_ShantiriTrial4HeroRecord[strHero]["Difficult"] * TTH_Map_ShantiriTrial4HeroRecord[strHero]["Difficult"] * sqrt(TTH_Map_ShantiriTrial4HeroRecord[strHero]["HeroLevel"]) / 7;
+		local iPowerPerSlot = iPower / 2 * TTH_Map_ShantiriTrial4HeroRecord[strHero]["Difficult"] * TTH_Map_ShantiriTrial4HeroRecord[strHero]["Difficult"] * sqrt(TTH_Map_ShantiriTrial4HeroRecord[strHero]["HeroLevel"]) / sqrt(TTH_Map_CountPlayerVisitedShantiri[iPlayer]) / 7;
 
 		local strCallbackWin = "TTH_Func_Shantiri_Challenge4Trial8MirrorFight";
 		local strCombatLink = "/Arenas/CombatArena/FinalCombat/Bank_Shantiri.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)";
@@ -5951,8 +5967,6 @@ end;
 			if TTH_Map_ShantiriTrial4HeroRecord[strHero]["HeroLevel"] <= 10 then
 				-- 获取当前英雄经验
 				local iHeroCurrentExp = GetHeroStat(strHero, STAT_EXPERIENCE);
-				-- 英雄等级降为1
-				TakeAwayHeroExp(strHero, iHeroCurrentExp);
 				-- 根据试炼难度奖励 2/4/6点全属性
 				local iStat = 0;
 				if TTH_Map_ShantiriTrial4HeroRecord[strHero]["Difficult"] == 1 then
@@ -5984,8 +5998,6 @@ end;
 				GiveHeroSkill(strHero, objPerkId);
 				print("GiveHeroPerk: "..objPerkId);
 				sleep(1);
-				-- 提升英雄等级到10级
-				ChangeHeroStat(strHero, STAT_EXPERIENCE, 14700);
 			-- 若英雄等级>10级
 			else
 				-- 根据试炼难度奖励 1/2/3点全属性

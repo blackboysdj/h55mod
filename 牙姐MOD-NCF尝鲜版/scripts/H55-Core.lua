@@ -6127,7 +6127,7 @@ function H55_ContinuesEvent(player)
 				if contains(TTH_TABLE_HeroCustomAbilityOwner3, hero) ~= nil then
 					ControlHeroCustomAbility(hero, CUSTOM_ABILITY_3, CUSTOM_ABILITY_ENABLED);
 					if contains(TTH_TABLE_HeroCustomAbility_CastCreature, hero) ~= nil then
-						TTH_HeroCustomAbility_CastCreature_GCD[hero] = TTH_TABLE_CastCreature[hero]["GCD"];
+						TTH_HeroCustomAbility_CastCreature_GCD[hero] = 0;
 						print('Gcd-init:'..TTH_HeroCustomAbility_CastCreature_GCD[hero]);
 					end;
 					print(hero.." custom ability has been given");
@@ -10095,7 +10095,7 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 						-- 根据 转化前后生物比例 计算 可转化生物数量
 						local iCountCreature8CastScaleCreature = H55_Floor(iCount[0] / objItem["CAST_SCALE_CREATURE"]);
 						-- 根据 英雄等级 计算 可转化生物数量（至少为1）
-						local iCountCreature8CastScaleHero = H55_Floor(iHeroLevel / objItem["CAST_SCALE_HERO"]);
+						local iCountCreature8CastScaleHero = H55_Ceil(iHeroLevel / objItem["CAST_SCALE_HERO"]);
 						if iCountCreature8CastScaleHero < 1 then
 							iCountCreature8CastScaleHero = 1;
 						end;

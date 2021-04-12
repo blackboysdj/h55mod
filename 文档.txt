@@ -29,3 +29,11 @@ http://live.bilibili.com/3234260
     CREATURE_PHOENIX_MECHANICAL = 934
 
     ABILITY_MECHANICAL
+
+    Wood = 木材
+    Ore = 石材
+    Mercury = 水银 - 水
+    Crystal = 水晶 - 气
+    Sulphur = 硫磺 - 火
+    Gem = 宝石 - 地
+    Gold = 金币

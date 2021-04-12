@@ -32,7 +32,7 @@
 	<Class>HERO_CLASS_WIZARD</Class>
 	<Specialization/>
 	<PrimarySkill>
-		<Mastery>MASTERY_ADVANCED</Mastery>
+		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_ARTIFICIER</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Academy55/GolemMaster/Name.txt"/>
@@ -53,16 +53,21 @@
 		<Defence>0</Defence>
 		<Spellpower>2</Spellpower>
 		<Knowledge>3</Knowledge>
-		<skills/>
+		<skills>
+			<Item>
+				<Mastery>MASTERY_BASIC</Mastery>
+				<SkillID>HERO_SKILL_WAR_MACHINES</SkillID>
+			</Item>
+		</skills>
 		<perkIDs>
-			<Item>HERO_SKILL_MARCH_OF_THE_MACHINES</Item>
+			<Item>HERO_SKILL_REMOTE_CONTROL</Item>
 		</perkIDs>
 		<spellIDs>
 			<Item>SPELL_STONE_SPIKES</Item>
 		</spellIDs>
 		<Ballista>false</Ballista>
 		<FirstAidTent>false</FirstAidTent>
-		<AmmoCart>true</AmmoCart>
+		<AmmoCart>false</AmmoCart>
 		<FavoriteEnemies/>
 	</Editable>
 	<ArrowButtonState>0</ArrowButtonState>

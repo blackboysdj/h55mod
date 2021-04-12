@@ -10733,6 +10733,7 @@ TTH_TABLE_HeroCustomAbilityOwner3 = {
 	, "Straker"
 	, "Ildar"
 	, "Crag"
+	, "Cyrus"
 };
 -- 转化生物类技能
 TTH_TABLE_HeroCustomAbility_CastCreature = {
@@ -10756,6 +10757,7 @@ TTH_TABLE_HeroCustomAbility_Recovery = {
 	, "Maahir"
 	, "Straker"
 	, "Crag"
+	, "Cyrus"
 };
 -- end
 

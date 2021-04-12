@@ -10027,6 +10027,9 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 		if strHero == "Crag" then
 			TTH_HeroCustomAbility_Crag(strHero);
 		end;
+		if strHero == "Cyrus" then
+			TTH_HeroCustomAbility_Cyrus(strHero);
+		end;
 	end;
 
 	function TTH_HeroCustomAbility(strHero, CUSTOM_ABILITY_ID)
@@ -11129,6 +11132,249 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 		-- 英雄提升等级
 		LevelUpHero(strHero);
 		print(strHero..'level up');
+	end;
+-- end
+
+-- by 牙姐 2018-10-17 11:14:47
+-- begin 赛勒斯机械转化技能
+	TTH_TABLE_Cyrus_CastMechanicalCreature = {
+		[1] = {
+			["ID"] = CREATURE_FIRE_MECHANICAL
+			, ["RESOURCE"] = {
+				[WOOD] = 2
+				, [ORE] = 2
+				, [MERCURY] = 0
+				, [CRYSTAL] = 0
+				, [SULFUR] = 1
+				, [GEM] = 0
+				, [GOLD] = 0
+			}
+		}
+		, [2] = {
+			["ID"] = CREATURE_WATER_MECHANICAL
+			, ["RESOURCE"] = {
+				[WOOD] = 2
+				, [ORE] = 2
+				, [MERCURY] = 1
+				, [CRYSTAL] = 0
+				, [SULFUR] = 0
+				, [GEM] = 0
+				, [GOLD] = 0
+			}
+		}
+		, [3] = {
+			["ID"] = CREATURE_EARTH_MECHANICAL
+			, ["RESOURCE"] = {
+				[WOOD] = 2
+				, [ORE] = 2
+				, [MERCURY] = 0
+				, [CRYSTAL] = 0
+				, [SULFUR] = 0
+				, [GEM] = 1
+				, [GOLD] = 0
+			}
+		}
+		, [4] = {
+			["ID"] = CREATURE_AIR_MECHANICAL
+			, ["RESOURCE"] = {
+				[WOOD] = 2
+				, [ORE] = 2
+				, [MERCURY] = 0
+				, [CRYSTAL] = 1
+				, [SULFUR] = 0
+				, [GEM] = 0
+				, [GOLD] = 0
+			}
+		}
+		, [5] = {
+			["ID"] = CREATURE_PHOENIX_MECHANICAL
+			, ["RESOURCE"] = {
+				[WOOD] = 0
+				, [ORE] = 0
+				, [MERCURY] = 1
+				, [CRYSTAL] = 1
+				, [SULFUR] = 1
+				, [GEM] = 1
+				, [GOLD] = 0
+			}
+		}
+	}
+	function TTH_HeroCustomAbility_Cyrus(strHero)
+		TTH_HeroCustomAbility_Cyrus_ChooseElement(strHero, 1);
+	end;
+	function TTH_HeroCustomAbility_Cyrus_ChooseElement(strHero, iElement)
+		local iPlayer = GetObjectOwner(strHero);
+		if iElement <= 3 then
+			local iElementNext = iElement + 1;
+			QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
+				, "/Text/Game/Scripts/HeroCustomAbility/Cyrus/ChooseElement" + iElement + ".txt"
+				, "TTH_HeroCustomAbility_Cyrus_CastElement("..strHero..","..iElement..")"
+				, "TTH_HeroCustomAbility_Cyrus_ChooseElement("..strHero..","..iElementNext..")");
+		else
+			QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
+				, "/Text/Game/Scripts/HeroCustomAbility/Cyrus/ChooseElement" + iElement + ".txt"
+				, "TTH_HeroCustomAbility_Cyrus_CastElement("..strHero..","..iElement..")"
+				, "TTH_HeroCustomAbility_Cyrus_ChoosePhoenix("..strHero..")");
+		end;
+	end;
+	function TTH_HeroCustomAbility_Cyrus_ChoosePhoenix(strHero)
+		local iPlayer = GetObjectOwner(strHero);
+		QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
+			, "/Text/Game/Scripts/HeroCustomAbility/Cyrus/ChoosePhoenix.txt"
+			, "TTH_HeroCustomAbility_Cyrus_CastPhoenix("..strHero..")" ,"TTH_HeroCustomAbility_Cyrus_CastGiveup");
+	end;
+	function TTH_HeroCustomAbility_Cyrus_CastElement(strHero, iElement)
+		local iPlayer = GetObjectOwner(strHero);
+		local iHeroLevel = GetHeroLevel(strHero);
+		-- 获取玩家资源
+		local arrResPlayer = {};
+		arrResPlayer[WOOD] = GetPlayerResource(iPlayer, WOOD);
+		arrResPlayer[ORE] = GetPlayerResource(iPlayer, ORE);
+		arrResPlayer[MERCURY] = GetPlayerResource(iPlayer, MERCURY);
+		arrResPlayer[CRYSTAL] = GetPlayerResource(iPlayer, CRYSTAL);
+		arrResPlayer[SULFUR] = GetPlayerResource(iPlayer, SULFUR);
+		arrResPlayer[GEM] = GetPlayerResource(iPlayer, GEM);
+		arrResPlayer[GOLD] = GetPlayerResource(iPlayer, GOLD);
+
+		local objItem = TTH_TABLE_Cyrus_CastMechanicalCreature[iElement];
+		-- 根据 玩家资源及转化单个生物消耗 计算 可转化生物数量
+		local arrRes = {};
+		for i = 0, 6 do
+			if objItem["RESOURCE"][i] == 0 then
+				arrRes[i] = nil;
+			else
+				arrRes[i] = H55_Floor(arrResPlayer[i] / objItem["RESOURCE"][i]);
+			end;
+		end;
+		local iCountCreature8Resource = TTH_COMMON_MIN(arrRes);
+		-- 根据 英雄等级 计算 可转化生物数量（至少为1）
+		local iCountCreature8CastScaleHero = H55_Ceil(iHeroLevel / 4);
+		if iCountCreature8CastScaleHero < 1 then
+			iCountCreature8CastScaleHero = 1;
+		end;
+		-- 取2个转化生物数量的最小值，若>0，则询问是否进行转化
+		local iCountMinCreature = TTH_COMMON_MIN({iCountCreature8CastScaleHero, iCountCreature8Resource});
+		if iCountMinCreature > 0 then
+			QuestionBoxForPlayers(GetPlayerFilter(iPlayer), {
+				"/Text/Game/Scripts/HeroCustomAbility/Cyrus/CastElement.txt"
+				;strCreatureAfter=iCountMinCreature
+				,wood=objItem["RESOURCE"][WOOD]*iCountMinCreature
+				,ore=objItem["RESOURCE"][ORE]*iCountMinCreature
+				,mercury=objItem["RESOURCE"][MERCURY]*iCountMinCreature
+				,crystal=objItem["RESOURCE"][CRYSTAL]*iCountMinCreature
+				,sulfur=objItem["RESOURCE"][SULFUR]*iCountMinCreature
+				,gem=objItem["RESOURCE"][GEM]*iCountMinCreature
+				,gold=objItem["RESOURCE"][GOLD]*iCountMinCreature
+				,iCountResource=iCountCreature8Resource
+				,iCountHeroLevel=iCountCreature8CastScaleHero
+				,iCountMin=iCountMinCreature
+			}, "TTH_HeroCustomAbility_Cyrus_CastSuccess" ,"TTH_HeroCustomAbility_Cyrus_CastGiveup");
+		end;
+	end;
+	function TTH_HeroCustomAbility_Cyrus_CastPhoenix(strHero)
+		local iPlayer = GetObjectOwner(strHero);
+		local iType, iCount = H55_ArmyInfo(strHero);
+		local iHeroLevel = GetHeroLevel(strHero);
+		local iElement = 5;
+		-- 获取玩家资源
+		local arrResPlayer = {};
+		arrResPlayer[WOOD] = GetPlayerResource(iPlayer, WOOD);
+		arrResPlayer[ORE] = GetPlayerResource(iPlayer, ORE);
+		arrResPlayer[MERCURY] = GetPlayerResource(iPlayer, MERCURY);
+		arrResPlayer[CRYSTAL] = GetPlayerResource(iPlayer, CRYSTAL);
+		arrResPlayer[SULFUR] = GetPlayerResource(iPlayer, SULFUR);
+		arrResPlayer[GEM] = GetPlayerResource(iPlayer, GEM);
+		arrResPlayer[GOLD] = GetPlayerResource(iPlayer, GOLD);
+
+		local objItem = TTH_TABLE_Cyrus_CastMechanicalCreature[iElement];
+		-- 根据 转化前后生物比例 计算 可转化生物数量
+		local arrCreature = {};
+		for i = 0, 6 do
+			for j = 1, 4 do
+				if TTH_TABLE_Cyrus_CastMechanicalCreature[j]["ID"] == iType[i] then
+					arrCreature[j] = iCount[i];
+			end;
+		end;
+		local iCountCreature8CastScaleCreature = TTH_COMMON_MIN(arrCreature);
+
+		-- 根据 玩家资源及转化单个生物消耗 计算 可转化生物数量
+		local arrRes = {};
+		for i = 0, 6 do
+			if objItem["RESOURCE"][i] == 0 then
+				arrRes[i] = nil;
+			else
+				arrRes[i] = H55_Floor(arrResPlayer[i] / objItem["RESOURCE"][i]);
+			end;
+		end;
+		local iCountCreature8Resource = TTH_COMMON_MIN(arrRes);
+		-- 根据 英雄等级 计算 可转化生物数量（至少为1）
+		local iCountCreature8CastScaleHero = H55_Ceil(iHeroLevel / 7);
+		if iCountCreature8CastScaleHero < 1 then
+			iCountCreature8CastScaleHero = 1;
+		end;
+		-- 取3个转化生物数量的最小值，若>0，则询问是否进行转化
+		local iCountMinCreature = TTH_COMMON_MIN({iCountCreature8CastScaleCreature, iCountCreature8CastScaleHero, iCountCreature8Resource});
+		if iCountMinCreature > 0 then
+			QuestionBoxForPlayers(GetPlayerFilter(iPlayer), {
+				"/Text/Game/Scripts/HeroCustomAbility/Cyrus/CastPhoenix.txt"
+				;strCreatureAfter=iCountMinCreature
+				,wood=objItem["RESOURCE"][WOOD]*iCountMinCreature
+				,ore=objItem["RESOURCE"][ORE]*iCountMinCreature
+				,mercury=objItem["RESOURCE"][MERCURY]*iCountMinCreature
+				,crystal=objItem["RESOURCE"][CRYSTAL]*iCountMinCreature
+				,sulfur=objItem["RESOURCE"][SULFUR]*iCountMinCreature
+				,gem=objItem["RESOURCE"][GEM]*iCountMinCreature
+				,gold=objItem["RESOURCE"][GOLD]*iCountMinCreature
+				,iCountBeforeCreature=iCountCreature8CastScaleCreature
+				,iCountResource=iCountCreature8Resource
+				,iCountHeroLevel=iCountCreature8CastScaleHero
+				,iCountMin=iCountMinCreature
+			}, "TTH_HeroCustomAbility_Cyrus_CastSuccess" ,"TTH_HeroCustomAbility_Cyrus_CastGiveup");
+		end;
+	end;
+	function TTH_HeroCustomAbility_Cyrus_CastSuccess(strHero, iElement, iCastCount)
+		local iPlayer = GetObjectOwner(strHero);
+		local iHeroLevel = GetHeroLevel(strHero);
+		local objItem = TTH_TABLE_Cyrus_CastMechanicalCreature[iElement + 0];
+		-- 获取玩家资源
+		local arrResPlayer = {};
+		arrResPlayer[WOOD] = GetPlayerResource(iPlayer, WOOD);
+		arrResPlayer[ORE] = GetPlayerResource(iPlayer, ORE);
+		arrResPlayer[MERCURY] = GetPlayerResource(iPlayer, MERCURY);
+		arrResPlayer[CRYSTAL] = GetPlayerResource(iPlayer, CRYSTAL);
+		arrResPlayer[SULFUR] = GetPlayerResource(iPlayer, SULFUR);
+		arrResPlayer[GEM] = GetPlayerResource(iPlayer, GEM);
+		arrResPlayer[GOLD] = GetPlayerResource(iPlayer, GOLD);
+
+		local iCountMinCreature = iCastCount + 0;
+
+		-- 扣除资源
+		for i = 0, 6 do
+			if objItem["RESOURCE"][i] * iCountMinCreature > 0 then
+				SetPlayerResource(iPlayer, i, arrResPlayer[i] - objItem["RESOURCE"][i] * iCountMinCreature, strHero);
+			end;
+		end;
+
+		if iElement <= 4 then
+			RemoveHeroCreatures(strHero, TTH_TABLE_Cyrus_CastMechanicalCreature[1]["ID"], iCountAfter);
+			RemoveHeroCreatures(strHero, TTH_TABLE_Cyrus_CastMechanicalCreature[2]["ID"], iCountAfter);
+			RemoveHeroCreatures(strHero, TTH_TABLE_Cyrus_CastMechanicalCreature[3]["ID"], iCountAfter);
+			RemoveHeroCreatures(strHero, TTH_TABLE_Cyrus_CastMechanicalCreature[4]["ID"], iCountAfter);
+		end;
+		-- 给予生物
+		AddHeroCreatures(strHero, objItem["ID"], iCountAfter);
+
+		local strCastCreatureAfter = TTH_TABLE_NCF_CREATURES[objItem["ID"]]["NAME"];
+		-- 英雄主动技能标记为已使用
+		ControlHeroCustomAbility(strHero, CUSTOM_ABILITY_3, CUSTOM_ABILITY_DISABLED);
+		MessageBoxForPlayers(GetPlayerFilter(iPlayer), {
+			"/Text/Game/Scripts/HeroCustomAbility/Cyrus/CastSuccess.txt"
+			;iCastCount=iCountMinCreature
+			,strCastCreatureAfter=strCastCreatureAfter
+		});
+	end;
+	function TTH_HeroCustomAbility_Cyrus_CastGiveup(strHero)
+		MessageBoxForPlayers(GetPlayerFilter(iPlayer), "/Text/Game/Scripts/HeroCustomAbility/Cyrus/CastGiveup.txt");
 	end;
 -- end
 

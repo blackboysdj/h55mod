@@ -9,8 +9,17 @@
 	<Initiative>17</Initiative>
 	<Flying>true</Flying>
 	<Health>30</Health>
-	<KnownSpells/>
-	<SpellPoints>0</SpellPoints>
+	<KnownSpells>
+		<Item>
+			<Spell>SPELL_HASTE</Spell>
+			<Mastery>MASTERY_ADVANCED</Mastery>
+		</Item>
+		<Item>
+			<Spell>SPELL_DEFLECT_ARROWS</Spell>
+			<Mastery>MASTERY_ADVANCED</Mastery>
+		</Item>
+	</KnownSpells>
+	<SpellPoints>2</SpellPoints>
 	<SpellPoints1>0</SpellPoints1>
 	<SpellPoints2>0</SpellPoints2>
 	<Exp>59</Exp>

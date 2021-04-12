@@ -10069,35 +10069,35 @@ TTH_TABLE_NCF_CREATURES = {
 		, ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_930/Name.txt"
 		, ["GROWTH"] = 1
 		, ["TIER"] = 1
-		, ["POWER"] = 0
+		, ["POWER"] = 829
 	}
 	, [931] = {
 		["ID"] = CREATURE_931
 		, ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_931/Name.txt"
 		, ["GROWTH"] = 1
 		, ["TIER"] = 1
-		, ["POWER"] = 0
+		, ["POWER"] = 795
 	}
 	, [932] = {
 		["ID"] = CREATURE_932
 		, ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_932/Name.txt"
 		, ["GROWTH"] = 1
 		, ["TIER"] = 1
-		, ["POWER"] = 0
+		, ["POWER"] = 856
 	}
 	, [933] = {
 		["ID"] = CREATURE_933
 		, ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_933/Name.txt"
 		, ["GROWTH"] = 1
 		, ["TIER"] = 1
-		, ["POWER"] = 0
+		, ["POWER"] = 813
 	}
 	, [934] = {
 		["ID"] = CREATURE_934
 		, ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_934/Name.txt"
 		, ["GROWTH"] = 1
 		, ["TIER"] = 1
-		, ["POWER"] = 0
+		, ["POWER"] = 8576
 	}
 	, [935] = {
 		["ID"] = CREATURE_935

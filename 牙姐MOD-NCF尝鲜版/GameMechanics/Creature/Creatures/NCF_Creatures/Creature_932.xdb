@@ -9,8 +9,13 @@
 	<Initiative>5</Initiative>
 	<Flying>false</Flying>
 	<Health>75</Health>
-	<KnownSpells/>
-	<SpellPoints>0</SpellPoints>
+	<KnownSpells>
+		<Item>
+			<Spell>SPELL_FIREBALL</Spell>
+			<Mastery>MASTERY_BASIC</Mastery>
+		</Item>
+	</KnownSpells>
+	<SpellPoints>7</SpellPoints>
 	<SpellPoints1>0</SpellPoints1>
 	<SpellPoints2>0</SpellPoints2>
 	<Exp>63</Exp>

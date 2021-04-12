@@ -1068,6 +1068,7 @@ doFile('/scripts/combat-startup.lua')
 							-- Academy
 								H55SMOD_MiddlewareListener['Faiz']['function']['product']('Faiz', iSide, itemUnitLast, iLossManaPoints);
 								H55SMOD_MiddlewareListener['Nur']['function']['product']('Nur', iSide, itemUnitLast, iLossManaPoints);
+								H55SMOD_MiddlewareListener['Cyrus']['function']('Cyrus', iSide, itemUnitLast, iLossManaPoints);
 							-- Inferno
 								H55SMOD_MiddlewareListener['Efion']['function']['product']('Efion', iSide, itemUnitLast, iLossManaPoints);
 							-- Necropolis
@@ -2476,6 +2477,54 @@ doFile('/scripts/combat-startup.lua')
 				end;
 			end;
 			H55SMOD_MiddlewareListener['Isher']['function'] = Events_MiddlewareListener_Implement_Isher;
+
+		-- Cyrus
+			H55SMOD_MiddlewareListener['Cyrus'] = {};
+			function Events_MiddlewareListener_Implement_Cyrus(strHero, iSide, itemUnitLast, iLossManaPoints)
+				if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero then
+					local listCreaturesTarget = ObjSnapshotLastTurn['Creatures'][iSide];
+					local iLenCreaturesTarget = length(listCreaturesTarget);
+					for iIndexCreaturesTarget = 0, iLenCreaturesTarget - 1 do
+						local itemCreatureTarget = listCreaturesTarget[iIndexCreaturesTarget];
+						if IsCombatUnit(itemCreatureTarget['strUnitName']) ~= nil and itemCreatureTarget['iUnitNumber'] > 0 then
+							if itemCreatureTarget['iUnitType'] == CREATURE_FIRE_MECHANICAL
+									or itemCreatureTarget['iUnitType'] == CREATURE_WATER_MECHANICAL
+									or itemCreatureTarget['iUnitType'] == CREATURE_EARTH_MECHANICAL
+									or itemCreatureTarget['iUnitType'] == CREATURE_AIR_MECHANICAL then
+								local iDiffMana = 2;
+								local iBeforeMana = GetUnitManaPoints(itemCreatureTarget['strUnitName']);
+								local iCurrentMana = iBeforeMana + iDiffMana;
+						    SetUnitManaPoints(itemCreatureTarget['strUnitName'], iCurrentMana);
+								print(itemCreatureTarget['strUnitName'].." remain "..iDiffMana.." mana");
+							end;
+							if itemCreatureTarget['iUnitType'] == CREATURE_PHOENIX_MECHANICAL then
+								local iBattleSize = getBattleSize();
+								local iPositionX = 0;
+								local iPositionY = 1;
+								if iSide == ENUM_SIDE.ATTACKER then
+									iPositionX = 2;
+								else
+									if iBattleSize == 0 then
+									    iPositionX = 13;
+									else
+									    iPositionX = 15;
+									end;
+								end;
+								combatSetPause(1);
+								local itemCreatureCaster = Thread_Command_AddCreature(iSide, CREATURE_MASTER_GREMLIN, H55SMOD_HeroLevel[strHero] * 1, iPositionX, iPositionY);
+								repeat sleep(1); until (itemCreatureCaster ~= nil and IsCombatUnit(itemCreatureCaster) ~= nil);
+								startThread(Thread_Command_UnitCastAimedSpell_WithoutMana, itemCreatureCaster, SPELL_ABILITY_REPAIR, itemCreatureTarget['strUnitName']);
+								sleep(20);
+								print(itemCreatureCaster.." casted SPELL_ABILITY_REPAIR to "..itemCreatureTarget['strUnitName']);
+								startThread(Thread_Command_RemoveCombatUnit, iSide, itemCreatureCaster);
+								sleep(20);
+								combatSetPause(nil);
+							end;
+						end;
+					end;
+				end;
+			end;
+			H55SMOD_MiddlewareListener['Cyrus']['function'] = Events_MiddlewareListener_Implement_Cyrus;
 
 	-- Inferno
 		-- Malustar

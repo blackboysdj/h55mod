@@ -8272,48 +8272,6 @@ function H55_DailyEvents(player)
 		end;
 
 		------------------------------------------------------------------------------------------------------------------------------------------------
-		H55_DEBUG = {20170226," by 牙姐 Cyrus",player,hero};--------------------------------------------------------------------------------------------
-		------------------------------------------------------------------------------------------------------------------------------------------------
-		if (hero == "Cyrus") then
-			print("---------------------------------------------------------------------");
-			print("H55 Cyrus Event begin");
-			local type = H55_ArmyInfoSimple(hero);
-			local i_race = H55_GetHeroRaceNum(hero);
-			local i_level = GetHeroLevel(hero);
-			local i_knowledge = GetHeroStat(hero, STAT_KNOWLEDGE);
-			local i_city = length(H55_GetPlayerTowns(player));
-			local i_set = H55_GetSarIssusSetCount(hero);
-
-			H55_Power_Cyrus = H55_Power_Cyrus + H55_Round((20 * i_level + 30 * i_knowledge + 50 * i_city) * (1 + i_set * 0.5));
-			print("H55 Cyrus Event H55_Power_Cyrus:"..H55_Power_Cyrus);
-
-			if H55_Reset_Cyrus == 0 then
-				for i = 1, 7 do
-					for j = 1, 3 do
-						if H55_Reset_Cyrus == 0 and type[0] == H55_Creatures[i_race][i][j] and (i == 2 or i == 3 or i == 7) then
-							local i_growth = H55_Floor(H55_Power_Cyrus / H55_Creatures_Power[i_race][i][j]);
-							H55_Power_Cyrus = H55_Power_Cyrus - i_growth * H55_Creatures_Power[i_race][i][j];
-							print("H55 Cyrus Event i_growth:"..i_growth);
-							if i_growth > 0 then
-								AddHeroCreatures(hero, H55_Creatures[i_race][i][j], i_growth);
-								if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-									ShowFlyingSign({"/Text/Game/Scripts/Join.txt"; num = i_growth}, hero, player, 5)
-									sleep(8);
-								elseif H55_IsThisAIPlayer(player) ~= 1 then
-									sleep(2);
-								end;
-							end;
-							H55_Reset_Cyrus = 1;
-						end
-					end
-				end
-			end
-			print("H55 Cyrus Event H55_Power_Cyrus:"..H55_Power_Cyrus);
-			print("H55 Cyrus Event end");
-			print("---------------------------------------------------------------------");
-		end;
-
-		------------------------------------------------------------------------------------------------------------------------------------------------
 		H55_DEBUG = {21,"SkillsDaily",player,hero};-----------------------------------------------------------------------------------------------------
 		------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -11300,6 +11258,10 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 		local objItem = TTH_TABLE_Cyrus_CastMechanicalCreature[iElement];
 		-- 根据 转化前后生物比例 计算 可转化生物数量
 		local arrCreature = {};
+		arrCreature[1] = 0;
+		arrCreature[2] = 0;
+		arrCreature[3] = 0;
+		arrCreature[4] = 0;
 		for i = 0, 6 do
 			for j = 1, 4 do
 				if TTH_TABLE_Cyrus_CastMechanicalCreature[j]["ID"] == iType[i] then
@@ -11308,7 +11270,7 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 			end;
 		end;
 		local iCountCreature8CastScaleCreature = TTH_COMMON_MIN(arrCreature);
-		if iCountCreature8CastScaleCreature == nil then
+		if iCountCreature8CastScaleCreature == nil or iCountCreature8CastScaleCreature == 0 then
 			MessageBoxForPlayers(GetPlayerFilter(iPlayer), "/Text/Game/Scripts/HeroCustomAbility/CastCreatureFailure8CastScaleCreature.txt", "" ,"");
 			return nil;
 		end;

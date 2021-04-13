@@ -3274,7 +3274,8 @@ function TTH_WagonWin(strHero, result)
 	local objBank = H55_BankCurrentPlayerVisit[iPlayer];
 	local iDay = GetDate(DAY);
 	if result ~= nil then
-		H55_GiveResources(iPlayer, 1, 5, strHero);
+		H55_GiveResources(iPlayer, 0, 3, strHero);
+		H55_GiveResources(iPlayer, 1, 3, strHero);
 		H55_BankLastVisit[objBank] = iDay;
 		H55_BankPlayerLastVisit[iPlayer][objBank] = iDay;
 		MarkObjectAsVisited(objBank, strHero);

@@ -39,7 +39,7 @@
 	<CombatSize>2</CombatSize>
 	<PatternAttack/>
 	<flybySequence/>
-	<Visual href="/GameMechanics/CreatureVisual/Creatures/Neutrals/Phoenix.xdb#xpointer(/CreatureVisual)"/>
+	<Visual href="/GameMechanics/CreatureVisual/Creatures/NCF_Creatures/Creature_934.xdb#xpointer(/CreatureVisual)"/>
 	<Range>0</Range>
 	<BaseCreature>CREATURE_UNKNOWN</BaseCreature>
 	<Upgrades/>

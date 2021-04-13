@@ -48,7 +48,7 @@
 	<CombatSize>1</CombatSize>
 	<PatternAttack/>
 	<flybySequence/>
-	<Visual href="/GameMechanics/CreatureVisual/Creatures/Neutrals/Air_Elemental.xdb#xpointer(/CreatureVisual)"/>
+	<Visual href="/GameMechanics/CreatureVisual/Creatures/NCF_Creatures/Creature_933.xdb#xpointer(/CreatureVisual)"/>
 	<Range>0</Range>
 	<BaseCreature>CREATURE_UNKNOWN</BaseCreature>
 	<Upgrades/>

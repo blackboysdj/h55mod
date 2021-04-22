@@ -6,20 +6,16 @@
 	<MinDamage>11</MinDamage>
 	<MaxDamage>20</MaxDamage>
 	<Speed>6</Speed>
-	<Initiative>8</Initiative>
+	<Initiative>10</Initiative>
 	<Flying>false</Flying>
 	<Health>43</Health>
 	<KnownSpells>
 		<Item>
-			<Spell>SPELL_STONESKIN</Spell>
-			<Mastery>MASTERY_ADVANCED</Mastery>
-		</Item>
-		<Item>
-			<Spell>SPELL_CELESTIAL_SHIELD</Spell>
-			<Mastery>MASTERY_ADVANCED</Mastery>
+			<Spell>SPELL_FIREBALL</Spell>
+			<Mastery>MASTERY_BASIC</Mastery>
 		</Item>
 	</KnownSpells>
-	<SpellPoints>4</SpellPoints>
+	<SpellPoints>7</SpellPoints>
 	<SpellPoints1>0</SpellPoints1>
 	<SpellPoints2>0</SpellPoints2>
 	<Exp>60</Exp>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AnimSet ObjectRecordID="308">
+	<animations>
+		<Item>
+			<Kind>attack00</Kind>
+			<Anim href="EarthElemental-arena-attack00.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>cast</Kind>
+			<Anim href="EarthElemental-arena-attack00.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>hit</Kind>
+			<Anim href="EarthElemental-arena-hit.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>move</Kind>
+			<Anim href="EarthElemental-arena-move.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>idle00</Kind>
+			<Anim href="EarthElemental-arena-idle00.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+	</animations>
+	<ExpSrcScene href="/models/Creatures/Neutral/EarthElemental.mb"/>
+	<ExpSrcClipFolder href="/Animations/Creatures/NEUTRAL/EarthElemental/Clip/"/>
+	<ExpRootTransform>Global</ExpRootTransform>
+</AnimSet>

@@ -5883,7 +5883,7 @@ function H55_func_special_creature_return(i_player, s_special_hero, i_creature_i
 	end;
 end;
 
-function TTH_FixedCreatureToHero(iPlayer, strSpecialHero, iCreatureId)
+function TTH_FixedCreatureToHero(iPlayer, strSpecialHero, iCreatureId, bMinCount)
 	if H55_IsThisAIPlayer(iPlayer) ~= 1 then
 		local arrHero = GetPlayerHeroes(iPlayer);
 		local bExist = 0;
@@ -5907,13 +5907,15 @@ function TTH_FixedCreatureToHero(iPlayer, strSpecialHero, iCreatureId)
 							break;
 						end;
 					end
-					local iHeroLevel = GetHeroLevel(strSpecialHero);
-					local iNumber = H55_Ceil(iHeroLevel / 2);
-					if bExistSpecial == 0 then
-						AddHeroCreatures(strSpecialHero, iCreatureId, iNumber);
-					end;
-					if bExistSpecial == 1 and iCountSpecial < iNumber then
-						AddHeroCreatures(strSpecialHero, iCreatureId, iNumber - iCountSpecial);
+					if bMinCount == 1 then
+						local iHeroLevel = GetHeroLevel(strSpecialHero);
+						local iNumber = H55_Ceil(iHeroLevel / 2);
+						if bExistSpecial == 0 then
+							AddHeroCreatures(strSpecialHero, iCreatureId, iNumber);
+						end;
+						if bExistSpecial == 1 and iCountSpecial < iNumber then
+							AddHeroCreatures(strSpecialHero, iCreatureId, iNumber - iCountSpecial);
+						end;
 					end;
 				end;
 				break;
@@ -5926,17 +5928,9 @@ function TTH_FixedCreatureToHero(iPlayer, strSpecialHero, iCreatureId)
 					for i = 0, 6 do
 						if type[i] == iCreatureId then
 							RemoveHeroCreatures(strHero, type[i], count[i]);
-						end;
-					end
-				end;
-			end;
-			local arrTown = GetObjectNamesByType("TOWN");
-			for iTown, strTown in arrTown do
-				if GetObjectOwner(strTown) == iPlayer then
-					local type, count = H55_MonsterInfo(strTown);
-					for i = 0, 6 do
-						if type[i] == iCreatureId then
-							RemoveObjectCreatures(strTown, type[i], count[i]);
+							if bMinCount == 0 then
+								AddHeroCreatures(strSpecialHero, type[i], count[i]);
+							end;
 						end;
 					end
 				end;
@@ -6085,7 +6079,8 @@ function H55_ContinuesEvent(player)
 	-- 初始生物奖励
 	if heroes ~= nil and H55_IsThisAIPlayer(player) ~= 1 then
 		--heaven
-			TTH_FixedCreatureToHero(player, "Jeddite", 953);
+			TTH_FixedCreatureToHero(player, "Jeddite", 953, 1);
+			TTH_FixedCreatureToHero(player, "Cyrus", 934, 0);
 	end;
 
 	if heroes~=nil then
@@ -11104,7 +11099,7 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 			["ID"] = CREATURE_FIRE_MECHANICAL
 			, ["RESOURCE"] = {
 				[WOOD] = 2
-				, [ORE] = 2
+				, [ORE] = 0
 				, [MERCURY] = 0
 				, [CRYSTAL] = 0
 				, [SULFUR] = 1
@@ -11115,8 +11110,8 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 		, [2] = {
 			["ID"] = CREATURE_WATER_MECHANICAL
 			, ["RESOURCE"] = {
-				[WOOD] = 2
-				, [ORE] = 2
+				[WOOD] = 1
+				, [ORE] = 1
 				, [MERCURY] = 1
 				, [CRYSTAL] = 0
 				, [SULFUR] = 0
@@ -11127,7 +11122,7 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 		, [3] = {
 			["ID"] = CREATURE_EARTH_MECHANICAL
 			, ["RESOURCE"] = {
-				[WOOD] = 2
+				[WOOD] = 0
 				, [ORE] = 2
 				, [MERCURY] = 0
 				, [CRYSTAL] = 0
@@ -11139,8 +11134,8 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 		, [4] = {
 			["ID"] = CREATURE_AIR_MECHANICAL
 			, ["RESOURCE"] = {
-				[WOOD] = 2
-				, [ORE] = 2
+				[WOOD] = 1
+				, [ORE] = 1
 				, [MERCURY] = 0
 				, [CRYSTAL] = 1
 				, [SULFUR] = 0

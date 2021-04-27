@@ -49,7 +49,7 @@ http://live.bilibili.com/3234260
 军团金像不生效
 PS换皮
 
-建新图
+建新地图
 上传视频
 剪辑视频
 
@@ -80,4 +80,20 @@ ffmpeg -ss 00:00:01 -t 12 -i 赛勒斯-10级技能-剪辑前2.mp4 -codec copy �
 ffmpeg -ss 00:08:18 -to 00:14:58 -i 赛勒斯-破口-剪辑前.mp4 -codec copy 赛勒斯-破口-剪辑后.mp4
 ffmpeg -f concat -safe 0 -i filelist.txt -c copy 赛勒斯-矮子决战-剪辑后.mp4
 
+
+MASTERY_NONE
+MASTERY_BASIC
+MASTERY_ADVANCED
+MASTERY_EXPERT
+MASTERY_EXTRA_EXPERT
+
+
+【英雄无敌5.5牙姐MOD】英雄前瞻--维托利奥
+https://mp.weixin.qq.com/s/8_0XorVTycmQA6QtgiDQtQ
+
+麻烦大家动动手指，支持一下牙姐，关注下公众号【无策略不单机】，以后英雄前瞻、攻略、机器人，都会放到微信公众号上，谢谢大家的支持~~
+后续公众号上会有如下福利（公众号关注满500人，群里一人点一下就有了）：
+1.每天更新一篇推文（版本前瞻，英雄攻略）
+2.机器人放到公众号上实现
+3.新的大版本更新（包含3~4个相关英雄）
 

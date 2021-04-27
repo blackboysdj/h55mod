@@ -140,18 +140,21 @@
 					<Item href="/Textures/HeroScreen/Skills/WarMachines_1.xdb#xpointer(/Texture)"/>
 					<Item href="/Textures/HeroScreen/Skills/WarMachines_2.xdb#xpointer(/Texture)"/>
 					<Item href="/Textures/HeroScreen/Skills/WarMachines_3.xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/HeroScreen/Skills/WarMachines_3.xdb#xpointer(/Texture)"/>
 				</Texture>
 				<CommonTexture href="/Textures/HeroScreen/Skills/WarMachines_1.xdb#xpointer(/Texture)"/>
 				<NameFileRef>
 					<Item href="/Text/Game/Skills/Common/WarMachines/1/Name.txt"/>
 					<Item href="/Text/Game/Skills/Common/WarMachines/2/Name.txt"/>
 					<Item href="/Text/Game/Skills/Common/WarMachines/3/Name.txt"/>
+					<Item href="/Text/Game/Skills/Common/WarMachines/4/Name.txt"/>
 				</NameFileRef>
 				<CommonNameFileRef href=""/>
 				<DescriptionFileRef>
 					<Item href="/Text/Game/Skills/Common/WarMachines/1/Description.txt"/>
 					<Item href="/Text/Game/Skills/Common/WarMachines/2/Description.txt"/>
 					<Item href="/Text/Game/Skills/Common/WarMachines/3/Description.txt"/>
+					<Item href="/Text/Game/Skills/Common/WarMachines/4/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
 				<SkillType>SKILLTYPE_SKILL</SkillType>

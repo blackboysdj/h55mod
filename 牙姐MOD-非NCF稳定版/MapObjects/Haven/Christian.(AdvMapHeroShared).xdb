@@ -49,13 +49,13 @@
 	<Editable>
 		<NameFileRef href="/Text/Game/Heroes/Persons/Haven/Christian/Name.txt"/>
 		<BiographyFileRef href="/Text/Game/Heroes/Persons/Haven/Christian/Bio.txt"/>
-		<Offence>3</Offence>
+		<Offence>0</Offence>
 		<Defence>0</Defence>
 		<Spellpower>1</Spellpower>
 		<Knowledge>1</Knowledge>
 		<skills>
 			<Item>
-				<Mastery>MASTERY_BASIC</Mastery>
+				<Mastery>MASTERY_EXTRA_EXPERT</Mastery>
 				<SkillID>HERO_SKILL_WAR_MACHINES</SkillID>
 			</Item>
 		</skills>

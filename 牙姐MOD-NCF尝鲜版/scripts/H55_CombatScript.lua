@@ -1581,7 +1581,7 @@ doFile('/scripts/combat-startup.lua')
 				end;
 
 			-- 英雄行动
-				if itemUnitLast ~= nil then
+				if itemUnit ~= nil then
 					for iSide = ENUM_SIDE.ATTACKER, ENUM_SIDE.DEFENDER do
 						-- Skill
 							H55SMOD_MiddlewareListener['Skill'][ENUM_SKILL.ABSOLUTEMORALE]['function']['consume'](itemUnit, iSide);
@@ -1593,6 +1593,7 @@ doFile('/scripts/combat-startup.lua')
 							H55SMOD_MiddlewareListener['Faiz']['function']['consume']('Faiz', iSide, itemUnit);
 							H55SMOD_MiddlewareListener['Nur']['function']['consume']('Nur', iSide, itemUnit);
 							H55SMOD_Start['Tan']['function']('Tan', iSide, 0);
+							H55SMOD_MiddlewareListener['Minasli']['function']['consume']('Minasli', iSide, itemUnit);
 						-- Inferno
 							H55SMOD_MiddlewareListener['Ash']['function']['hero']('Ash', iSide, itemUnit);
 							H55SMOD_MiddlewareListener['Efion']['function']['consume']('Efion', iSide, itemUnit);
@@ -1626,6 +1627,22 @@ doFile('/scripts/combat-startup.lua')
 							H55SMOD_MiddlewareListener['Hero8']['function']['active']('Hero8', iSide, itemUnit);
 						-- Creature
 							H55SMOD_MiddlewareListener['LightAngel']['function']('LightAngel', iSide, itemUnit);
+					end;
+				end;
+
+			-- 战争机械行动
+				if itemUnit ~= nil and itemUnit['iUnitCategory'] == ENUM_CATEGORY.WARMACHINE then
+					for iSide = ENUM_SIDE.ATTACKER, ENUM_SIDE.DEFENDER do
+						-- Haven
+						-- Sylvan
+						-- Academy
+							H55SMOD_MiddlewareListener['Minasli']['function']['product']('Minasli', iSide, itemUnit);
+						-- Inferno
+						-- Necropolis
+						-- Fortress
+						-- Dungeon
+						-- Stronghold
+						-- Creature
 					end;
 				end;
 
@@ -2525,6 +2542,66 @@ doFile('/scripts/combat-startup.lua')
 				end;
 			end;
 			H55SMOD_MiddlewareListener['Cyrus']['function'] = Events_MiddlewareListener_Implement_Cyrus;
+
+		-- Minasli
+			H55SMOD_MiddlewareListener['Minasli'] = {};
+			H55SMOD_MiddlewareListener['Minasli']['function'] = {};
+			H55SMOD_MiddlewareListener['Minasli']['data'] = {
+				[WAR_MACHINE_BALLISTA] = {
+					['ID'] = SPELL_DISPEL
+					, ['Name'] = 'SPELL_DISPEL'
+				}
+				, [WAR_MACHINE_CATAPULT] = {
+					['ID'] = SPELL_PHANTOM
+					, ['Name'] = 'SPELL_PHANTOM'
+				}
+				, [WAR_MACHINE_FIRST_AID_TENT] = {
+					['ID'] = SPELL_CELESTIAL_SHIELD
+					, ['Name'] = 'SPELL_CELESTIAL_SHIELD'
+				}
+				, [WAR_MACHINE_AMMO_CART] = {
+					['ID'] = SPELL_BLOODLUST
+					, ['Name'] = 'SPELL_BLOODLUST'
+				}
+			};
+			H55SMOD_MiddlewareListener['Minasli']['flag'] = 10;
+			function Events_MiddlewareListener_Implement_Minasli_Product(strHero, iSide, itemUnit)
+				if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero then
+					H55SMOD_MiddlewareListener[strHero]['flag'] = H55SMOD_MiddlewareListener[strHero]['flag'] + 1;
+					print(strHero..'\'s point increase to '..H55SMOD_MiddlewareListener[strHero]['flag']);
+				end;
+			end;
+			H55SMOD_MiddlewareListener['Minasli']['function']['product'] = Events_MiddlewareListener_Implement_Minasli_Product;
+			function Events_MiddlewareListener_Implement_Minasli_Consume(strHero, iSide, itemUnit)
+				if H55SMOD_MiddlewareListener[strHero]['flag'] >= 10 then
+					if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero and itemUnit['strUnitName'] == GetHero(iSide) then
+						local itemHero = itemUnit;
+						local listCreaturesTarget = GetCreatures(getSide(iSide));
+						local iLenCreaturesTarget = length(listCreaturesTarget);
+						local listWarMachinesTarget = GetWarMachines(getSide(iSide));
+						local iLenWarMachinesTarget = length(listWarMachinesTarget);
+						if iLenCreaturesTarget > 0 then
+							combatSetPause(1);
+							for iIndexCreaturesTarget = 0, iLenCreaturesTarget - 1 do
+								local itemCreature = geneUnitStatus(listCreaturesTarget[iIndexCreaturesTarget]);
+								for iIndexWarMachinesTarget = 0, iLenWarMachinesTarget - 1 do
+									local itemWarMachine = geneUnitStatus(listWarMachinesTarget[iIndexWarMachinesTarget]);
+									if itemCreature ~= nil and matchAreaWarMachine(itemWarMachine, itemCreature, 2) == 1 then
+										startThread(Thread_Command_UnitCastAimedSpell, itemHero['strUnitName'], H55SMOD_MiddlewareListener[strHero]['data'][itemWarMachine['iUnitType']]['ID'], itemCreature['strUnitName'], 1);
+										print(itemHero['strUnitName'].." casted "..H55SMOD_MiddlewareListener[strHero]['data'][itemWarMachine['iUnitType']]['Name'].." on "..itemCreature['strUnitName']);
+									end;
+								end;
+							end;
+							itemHero['iAtb'] = 1.25;
+							push(ListUnitSetATB, itemHero);
+							H55SMOD_MiddlewareListener[strHero]['flag'] = 0;
+							sleep(20);
+							combatSetPause(nil);
+						end;
+					end;
+				end;
+			end;
+			H55SMOD_MiddlewareListener['Minasli']['function']['consume'] = Events_MiddlewareListener_Implement_Minasli_Consume;
 
 	-- Inferno
 		-- Malustar

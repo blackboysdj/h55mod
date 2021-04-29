@@ -30,7 +30,7 @@
 	<Icon128/>
 	<InternalName>Minasli</InternalName>
 	<Class>HERO_CLASS_GUILDMASTER</Class>
-	<Specialization>HERO_SPEC_BOMBARDIER</Specialization>
+	<Specialization/>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_WAR_MACHINES</SkillID>
@@ -56,14 +56,14 @@
 		<skills>
 			<Item>
 				<Mastery>MASTERY_BASIC</Mastery>
-				<SkillID>HERO_SKILL_DESTRUCTIVE_MAGIC</SkillID>
+				<SkillID>HERO_SKILL_SORCERY</SkillID>
 			</Item>
 		</skills>
 		<perkIDs>
-			<Item>HERO_SKILL_BALLISTA</Item>
+			<Item>HERO_SKILL_INSIGHTS</Item>
 		</perkIDs>
 		<spellIDs>
-			<Item>SPELL_FIREBALL</Item>
+			<Item>SPELL_BLOODLUST</Item>
 		</spellIDs>
 		<Ballista>true</Ballista>
 		<FirstAidTent>false</FirstAidTent>

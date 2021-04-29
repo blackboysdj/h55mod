@@ -741,6 +741,41 @@ function matchArea4(itemCreatureCast, itemCreatureTarget, iDistance)
     return 0;
 end;
 
+function matchAreaWarMachine(itemCreatureWarMachine, itemCreatureTarget, iDistance)
+    local iDistanceX = itemCreatureWarMachine['iPositionX'] - itemCreatureTarget['iPositionX'];
+    local iDistanceY = itemCreatureWarMachine['iPositionY'] - itemCreatureTarget['iPositionY'];
+    if contains(List_Large_WarMachines, itemCreatureWarMachine['iUnitType']) ~= nil and contains(List_Large_Creatures, itemCreatureTarget['iUnitType']) ~= nil then
+        if iDistanceX > 0 then
+            iDistanceX = iDistanceX - 1;
+        else
+            iDistanceX = iDistanceX + 1;
+        end;
+        if iDistanceY > 0 then
+            iDistanceY = iDistanceY - 1;
+        else
+            iDistanceY = iDistanceY + 1;
+        end;
+    elseif contains(List_Large_WarMachines, itemCreatureWarMachine['iUnitType']) ~= nil and contains(List_Large_Creatures, itemCreatureTarget['iUnitType']) == nil then
+        if iDistanceX > 0 then
+            iDistanceX = iDistanceX - 1;
+        end;
+        if iDistanceY > 0 then
+            iDistanceY = iDistanceY - 1;
+        end;
+    elseif contains(List_Large_WarMachines, itemCreatureWarMachine['iUnitType']) == nil and contains(List_Large_Creatures, itemCreatureTarget['iUnitType']) ~= nil then
+        if iDistanceX < 0 then
+            iDistanceX = iDistanceX + 1;
+        end;
+        if iDistanceY < 0 then
+            iDistanceY = iDistanceY + 1;
+        end;
+    end;
+    if iDistanceX * iDistanceX + iDistanceY * iDistanceY < iDistance * iDistance then
+        return 1;
+    end;
+    return 0;
+end;
+
 List_Pos_Center = {
         {{8, 6}, {8, 5}, {7, 5}, {7, 6}}
     ,   {{9, 8}, {9, 7}, {8, 7}, {8, 8}}
@@ -1884,6 +1919,12 @@ end;
         , CREATURE_CYCLOP, CREATURE_CYCLOP_UNTAMED, CREATURE_CYCLOP_BLOODEYED
 
         , CREATURE_DEATH_KNIGHT, CREATURE_PHOENIX, CREATURE_MANTICORE
+    };
+
+    List_Large_WarMachines = {
+        WAR_MACHINE_BALLISTA
+        , WAR_MACHINE_CATAPULT
+        , WAR_MACHINE_FIRST_AID_TENT
     };
 
     List_DemonRage_Creatures = {CREATURE_GOBLIN, CREATURE_GOBLIN_TRAPPER, CREATURE_CENTAUR, CREATURE_CENTAUR_NOMAD, CREATURE_ORC_WARRIOR, CREATURE_ORC_SLAYER, CREATURE_SHAMAN, CREATURE_SHAMAN_WITCH, CREATURE_ORCCHIEF_BUTCHER, CREATURE_ORCCHIEF_EXECUTIONER, CREATURE_CYCLOP, CREATURE_CYCLOP_UNTAMED, CREATURE_GOBLIN_DEFILER, CREATURE_CENTAUR_MARADEUR, CREATURE_ORC_WARMONGER, CREATURE_SHAMAN_HAG, CREATURE_ORCCHIEF_CHIEFTAIN, CREATURE_CYCLOP_BLOODEYED, CREATURE_WOLF};

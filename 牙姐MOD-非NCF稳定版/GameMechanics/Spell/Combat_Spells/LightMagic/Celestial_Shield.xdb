@@ -33,19 +33,19 @@
 	<duration>
 		<Item>
 			<Base>125</Base>
-			<PerPower>25</PerPower>
+			<PerPower>12</PerPower>
 		</Item>
 		<Item>
 			<Base>150</Base>
-			<PerPower>30</PerPower>
+			<PerPower>15</PerPower>
 		</Item>
 		<Item>
 			<Base>175</Base>
-			<PerPower>35</PerPower>
+			<PerPower>17</PerPower>
 		</Item>
 		<Item>
 			<Base>200</Base>
-			<PerPower>40</PerPower>
+			<PerPower>20</PerPower>
 		</Item>
 	</duration>
 	<sSpellCost>

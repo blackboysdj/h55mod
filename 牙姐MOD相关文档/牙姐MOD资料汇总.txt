@@ -349,7 +349,7 @@
       ReduceBase     .3    .5    .7    .8
       ReducePower     0     0     0     0
       ShieldBase    125   150   175   200
-      ShieldPower    25    30    35    40
+      ShieldPower    12    15    17    20
     235   召唤凤凰    CONJUREPHOENIX
       Level     5
       Cost    32

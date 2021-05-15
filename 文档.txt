@@ -54,8 +54,8 @@ PS换皮
 剪辑视频
 
 https://www.douyu.com/h55
-凤凰特碾压局
-6AI结盟+3倍增兵+眼泪+天使联盟+诅咒斗篷+龙神胸甲+终极技能
+机械与巫术的完美结合~~
+5AI结盟+3倍增兵+眼泪+天使联盟+诅咒斗篷+龙神胸甲+终极技能
 
 
 视频素材
@@ -78,7 +78,7 @@ https://www.douyu.com/h55
 
 ffmpeg -ss 00:00:01 -t 12 -i 赛勒斯-10级技能-剪辑前2.mp4 -codec copy 赛勒斯-决战技能-剪辑后2.mp4
 ffmpeg -ss 00:08:18 -to 00:14:58 -i 赛勒斯-破口-剪辑前.mp4 -codec copy 赛勒斯-破口-剪辑后.mp4
-ffmpeg -f concat -safe 0 -i filelist.txt -c copy 赛勒斯-矮子决战-剪辑后.mp4
+ffmpeg -f concat -safe 0 -i filelist.txt -c copy 篷车的反杀.mp4
 
 
 MASTERY_NONE
@@ -131,3 +131,21 @@ https://mp.weixin.qq.com/s/8_0XorVTycmQA6QtgiDQtQ
 投石车--幻象军团
 急救帐篷--神秘护甲
 弹药车--正当之力
+
+
+攻防
+	启蒙
+	等级
+	宝物
+		3种
+	英雄特技
+伤害
+	箭术     → 寒铁之刃
+	战争狂人 → 报偿
+	幸运
+主动
+	宝物
+	人造荣耀
+	弹射学   → 三箭连射
+             → 符文机械
+             → 燃烧箭

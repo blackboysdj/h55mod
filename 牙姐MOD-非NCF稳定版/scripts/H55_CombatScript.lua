@@ -899,6 +899,9 @@ doFile('/scripts/combat-startup.lua')
 			end;
 			-- 上上回合的游戏快照
 			ObjSnapshotBeforeLastTurn = ObjSnapshotLastTurn;
+			if length(ListUnitTriggerMiddlewareListener) == 1 then
+				ObjSnapshotBeforeLastTurn = ObjSnapshotInit;
+			end;
 			-- 上回合的游戏快照
 			ObjSnapshotLastTurn = {};
 
@@ -1570,6 +1573,90 @@ doFile('/scripts/combat-startup.lua')
 						-- Dungeon
 						-- Stronghold
 						-- Creature
+					end;
+				end;
+
+			-- 上回合英雄行动
+				if itemUnitLast ~= nil and itemUnitLast['iUnitCategory'] == ENUM_CATEGORY.HERO then
+					for iSide = ENUM_SIDE.ATTACKER, ENUM_SIDE.DEFENDER do
+						if GetHero(iSide) ~= nil then
+							-- 上回合生物状态对比记录
+								local iLenCreaturesBeforeLastNotReverse = length(ObjSnapshotBeforeLastTurn['Creatures'][iSide]);
+								local iLenCreaturesLastNotReverse = length(ObjSnapshotLastTurn['Creatures'][iSide]);
+								local iLenCreaturesBeforeLastReverse = length(ObjSnapshotBeforeLastTurn['Creatures'][getSide(iSide, 1)]);
+								local iLenCreaturesLastReverse = length(ObjSnapshotLastTurn['Creatures'][getSide(iSide, 1)]);
+								-- 生物减员
+									local listCreaturesBeEffected = {};
+									for iIndexCreaturesBeforeLast = 0, iLenCreaturesBeforeLastReverse - 1 do
+										for iIndexCreaturesLast = 0, iLenCreaturesLastReverse - 1 do
+											if ObjSnapshotBeforeLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesBeforeLast]['strUnitName'] == ObjSnapshotLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesLast]['strUnitName']
+												and ObjSnapshotBeforeLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesBeforeLast]['iUnitNumber'] > ObjSnapshotLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesLast]['iUnitNumber'] then
+												push(listCreaturesBeEffected, ObjSnapshotLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesLast]);
+											end;
+										end;
+									end;
+								-- 生物增员
+									local listCreaturesBeAnimated = {};
+									for iIndexCreaturesBeforeLast = 0, iLenCreaturesBeforeLastNotReverse - 1 do
+										for iIndexCreaturesLast = 0, iLenCreaturesLastNotReverse - 1 do
+											if ObjSnapshotBeforeLastTurn['Creatures'][iSide][iIndexCreaturesBeforeLast]['strUnitName'] == ObjSnapshotLastTurn['Creatures'][iSide][iIndexCreaturesLast]['strUnitName']
+												and ObjSnapshotBeforeLastTurn['Creatures'][iSide][iIndexCreaturesBeforeLast]['iUnitNumber'] < ObjSnapshotLastTurn['Creatures'][iSide][iIndexCreaturesLast]['iUnitNumber'] then
+												push(listCreaturesBeAnimated, ObjSnapshotLastTurn['Creatures'][iSide][iIndexCreaturesLast]);
+											end;
+										end;
+									end;
+								-- 生物被击杀
+									local listCreaturesDeath = {};
+									for iIndexCreaturesBeforeLast = 0, iLenCreaturesBeforeLastReverse - 1 do
+										local bIsExist = 0;
+										for iIndexCreaturesLast = 0, iLenCreaturesLastReverse - 1 do
+											if ObjSnapshotLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesLast]['strUnitName'] == ObjSnapshotBeforeLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesBeforeLast]['strUnitName'] then
+												bIsExist = 1;
+												break;
+											end;
+										end;
+										if bIsExist == 0 then
+											push(listCreaturesDeath, ObjSnapshotBeforeLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesBeforeLast]);
+										end;
+									end;
+								-- 生物被复活
+									local listCreaturesRevive = {};
+									for iIndexCreaturesLast = 0, iLenCreaturesLastNotReverse - 1 do
+										local bIsExist = 0;
+										for iIndexCreaturesBeforeLast = 0, iLenCreaturesBeforeLastNotReverse - 1 do
+											if ObjSnapshotBeforeLastTurn['Creatures'][iSide][iIndexCreaturesBeforeLast]['strUnitName'] == ObjSnapshotLastTurn['Creatures'][iSide][iIndexCreaturesLast]['strUnitName'] then
+												bIsExist = 1;
+												break;
+											end;
+										end;
+										if bIsExist == 0 then
+											local iLenCreaturesInit = length(ObjSnapshotInit['Creatures'][iSide]);
+											for iIndexCreaturesInit = 0, iLenCreaturesInit - 1 do
+												if ObjSnapshotInit['Creatures'][iSide][iIndexCreaturesInit]['strUnitName'] == ObjSnapshotLastTurn['Creatures'][iSide][iIndexCreaturesLast]['strUnitName'] then
+													push(listCreaturesRevive, ObjSnapshotLastTurn['Creatures'][iSide][iIndexCreaturesLast]);
+												end;
+											end
+										end;
+									end;
+
+							-- 英雄跳过行动
+							if length(listCreaturesBeEffected) == 0
+								and length(listCreaturesBeAnimated) == 0
+								and length(listCreaturesDeath) == 0
+								and length(listCreaturesRevive) == 0
+								and ObjSnapshotBeforeLastTurn['Hero'][iSide]['iMana'] == ObjSnapshotLastTurn['Hero'][iSide]['iMana'] then
+
+								-- Haven
+								-- Sylvan
+								-- Academy
+								-- Inferno
+								-- Necropolis
+								-- Fortress
+								-- Dungeon
+								-- Stronghold
+									H55SMOD_MiddlewareListener['Kraal']['function']('Kraal', iSide, itemUnitLast);
+							end;
+						end;
 					end;
 				end;
 
@@ -3755,6 +3842,27 @@ doFile('/scripts/combat-startup.lua')
 				end;
 			end;
 			H55SMOD_MiddlewareListener['Hero8']['function']['active'] = Events_MiddlewareListener_Implement_Hero8_Active;
+
+		-- Kraal
+			H55SMOD_MiddlewareListener['Kraal'] = {};
+			function Events_MiddlewareListener_Implement_Kraal(strHero, iSide, itemUnitLast)
+				if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero then
+					local listWarMachines = GetWarMachines(getSide(iSide));
+					local iLenWarMachines = length(listWarMachines);
+					if iLenWarMachines > 0 then
+						combatSetPause(1);
+						for iIndexWarMachines = 0, iLenWarMachines - 1 do
+							local itemWarMachine = geneUnitStatus(listWarMachines[iIndexWarMachines]);
+							itemWarMachine['iAtb'] = 1.25;
+							push(ListUnitSetATB, itemWarMachine);
+							print(itemWarMachine['strUnitName'].." can move now");
+							sleep(20);
+						end;
+						combatSetPause(nil);
+					end;
+				end;
+			end;
+			H55SMOD_MiddlewareListener['Kraal']['function'] = Events_MiddlewareListener_Implement_Kraal;
 
 -- 系统接口
 	function AttackerHeroMove(heroName)

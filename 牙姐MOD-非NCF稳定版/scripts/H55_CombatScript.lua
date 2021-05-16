@@ -1661,7 +1661,7 @@ doFile('/scripts/combat-startup.lua')
 				end;
 
 			-- 上回合生物行动
-				if itemUnitLast ~= nil then
+				if itemUnitLast ~= nil and itemUnitLast['iUnitCategory'] == ENUM_CATEGORY.CREATURE then
 					for iSide = ENUM_SIDE.ATTACKER, ENUM_SIDE.DEFENDER do
 						-- 造成生物减员
 						local listCreaturesBeEffected = {};
@@ -1716,6 +1716,30 @@ doFile('/scripts/combat-startup.lua')
 							-- Dungeon
 							-- Stronghold
 								H55SMOD_MiddlewareListener['Hero8']['function']['trigger']('Hero8', iSide, itemUnitLastCurrent);
+						end;
+
+						if length(listCreaturesBeEffected) >= 1 then
+							-- Haven
+							-- Sylvan
+							-- Academy
+							-- Inferno
+							-- Necropolis
+							-- Fortress
+							H55SMOD_MiddlewareListener['Maximus']['function']['consume']('Maximus', iSide, itemUnitLast, listCreaturesBeEffected);
+							-- Dungeon
+							-- Stronghold
+						end;
+
+						if length(listCreaturesBeEffected) + length(listCreaturesDeath) >= 1 then
+							-- Haven
+							-- Sylvan
+							-- Academy
+							-- Inferno
+							-- Necropolis
+							-- Fortress
+								H55SMOD_MiddlewareListener['Maximus']['function']['charge']('Maximus', iSide, itemUnitLast);
+							-- Dungeon
+							-- Stronghold
 						end;
 					end;
 				end;
@@ -3327,6 +3351,47 @@ doFile('/scripts/combat-startup.lua')
 				end;
 			end;
 			H55SMOD_MiddlewareListener['Skeggy']['function']['consume'] = Events_MiddlewareListener_Implement_Skeggy_Consume;
+
+		-- Maximus
+			H55SMOD_MiddlewareListener['Maximus'] = {};
+			H55SMOD_MiddlewareListener['Maximus']['flag'] = nil;
+			H55SMOD_MiddlewareListener['Maximus']['function'] = {};
+			function Events_MiddlewareListener_Implement_Maximus_Charge(strHero, iSide, itemUnitLast)
+				if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero and iSide == itemUnitLast['iSide'] then
+					if itemUnitLast['iUnitCategory'] == ENUM_CATEGORY.CREATURE then
+						if H55SMOD_MiddlewareListener[strHero]['flag'] == nil then
+							H55SMOD_MiddlewareListener[strHero]['flag'] = itemUnitLast['iUnitType'];
+							print(itemUnitLast['iUnitType'].." connect to BALLISTA");
+						end;
+					end;
+				end;
+			end;
+			H55SMOD_MiddlewareListener['Maximus']['function']['charge'] = Events_MiddlewareListener_Implement_Maximus_Charge;
+			function Events_MiddlewareListener_Implement_Maximus_Consume(strHero, iSide, itemUnitLast, listCreaturesBeEffected)
+				if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero and iSide == itemUnitLast['iSide'] then
+					if itemUnitLast['iUnitType'] == H55SMOD_MiddlewareListener[strHero]['flag'] then
+						local strBallista = GetWarMachine(getSide(iSide), WAR_MACHINE_BALLISTA);
+						if strBallista ~= nil then
+							local itemBallista = geneUnitStatus(strBallista);
+							combatSetPause(1);
+							local iLenCreaturesBeEffected = length(listCreaturesBeEffected);
+							if iLenCreaturesBeEffected > 0 then
+								for iIndexCreaturesBeEffected = 0, iLenCreaturesBeEffected - 1 do
+									local itemCreatureBeEffected = listCreaturesBeEffected[iIndexCreaturesBeEffected];
+									if IsCombatUnit(itemCreatureBeEffected['strUnitName']) ~= nil and itemCreatureBeEffected['iUnitNumber'] > 0 then
+										startThread(Thread_Command_UnitShotAimed, itemBallista['strUnitName'], itemCreatureBeEffected['strUnitName']);
+										sleep(20);
+										print(itemBallista['strUnitName'].." connent shoot to "..itemCreatureBeEffected['strUnitName'])
+										break;
+									end;
+								end;
+							end;
+							combatSetPause(nil);
+						end;
+					end;
+				end;
+			end;
+			H55SMOD_MiddlewareListener['Maximus']['function']['consume'] = Events_MiddlewareListener_Implement_Maximus_Consume;
 
 		-- Bersy
 			H55SMOD_MiddlewareListener['Bersy'] = {};

@@ -5,6 +5,7 @@ DejaVu Sans Mono
 <body_bright>
 <color=yellow>
 <color=ff0033>
+<color_default>
 
 Shantiri
 

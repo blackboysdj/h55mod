@@ -1578,101 +1578,120 @@ doFile('/scripts/combat-startup.lua')
 				end;
 
 			-- 上回合英雄行动
-				if itemUnitLast ~= nil and itemUnitLast['iUnitCategory'] == ENUM_CATEGORY.HERO then
-					for iSide = ENUM_SIDE.ATTACKER, ENUM_SIDE.DEFENDER do
-						if GetHero(iSide) ~= nil then
-							-- 上回合生物状态对比记录
-								local iLenCreaturesBeforeLastNotReverse = length(ObjSnapshotBeforeLastTurn['Creatures'][iSide]);
-								local iLenCreaturesLastNotReverse = length(ObjSnapshotLastTurn['Creatures'][iSide]);
-								local iLenCreaturesBeforeLastReverse = length(ObjSnapshotBeforeLastTurn['Creatures'][getSide(iSide, 1)]);
-								local iLenCreaturesLastReverse = length(ObjSnapshotLastTurn['Creatures'][getSide(iSide, 1)]);
-								-- 生物减员
-									local listCreaturesBeEffected = {};
-									for iIndexCreaturesBeforeLast = 0, iLenCreaturesBeforeLastReverse - 1 do
-										for iIndexCreaturesLast = 0, iLenCreaturesLastReverse - 1 do
-											if ObjSnapshotBeforeLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesBeforeLast]['strUnitName'] == ObjSnapshotLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesLast]['strUnitName']
-												and ObjSnapshotBeforeLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesBeforeLast]['iUnitNumber'] > ObjSnapshotLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesLast]['iUnitNumber'] then
-												push(listCreaturesBeEffected, ObjSnapshotLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesLast]);
-											end;
-										end;
-									end;
-								-- 生物增员
-									local listCreaturesBeAnimated = {};
-									for iIndexCreaturesBeforeLast = 0, iLenCreaturesBeforeLastNotReverse - 1 do
-										for iIndexCreaturesLast = 0, iLenCreaturesLastNotReverse - 1 do
-											if ObjSnapshotBeforeLastTurn['Creatures'][iSide][iIndexCreaturesBeforeLast]['strUnitName'] == ObjSnapshotLastTurn['Creatures'][iSide][iIndexCreaturesLast]['strUnitName']
-												and ObjSnapshotBeforeLastTurn['Creatures'][iSide][iIndexCreaturesBeforeLast]['iUnitNumber'] < ObjSnapshotLastTurn['Creatures'][iSide][iIndexCreaturesLast]['iUnitNumber'] then
-												push(listCreaturesBeAnimated, ObjSnapshotLastTurn['Creatures'][iSide][iIndexCreaturesLast]);
-											end;
-										end;
-									end;
-								-- 生物被击杀
-									local listCreaturesDeath = {};
-									for iIndexCreaturesBeforeLast = 0, iLenCreaturesBeforeLastReverse - 1 do
-										local bIsExist = 0;
-										for iIndexCreaturesLast = 0, iLenCreaturesLastReverse - 1 do
-											if ObjSnapshotLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesLast]['strUnitName'] == ObjSnapshotBeforeLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesBeforeLast]['strUnitName'] then
-												bIsExist = 1;
-												break;
-											end;
-										end;
-										if bIsExist == 0 then
-											push(listCreaturesDeath, ObjSnapshotBeforeLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesBeforeLast]);
-										end;
-									end;
-								-- 生物被复活
-									local listCreaturesRevive = {};
-									for iIndexCreaturesLast = 0, iLenCreaturesLastNotReverse - 1 do
-										local bIsExist = 0;
-										for iIndexCreaturesBeforeLast = 0, iLenCreaturesBeforeLastNotReverse - 1 do
-											if ObjSnapshotBeforeLastTurn['Creatures'][iSide][iIndexCreaturesBeforeLast]['strUnitName'] == ObjSnapshotLastTurn['Creatures'][iSide][iIndexCreaturesLast]['strUnitName'] then
-												bIsExist = 1;
-												break;
-											end;
-										end;
-										if bIsExist == 0 then
-											local iLenCreaturesInit = length(ObjSnapshotInit['Creatures'][iSide]);
-											for iIndexCreaturesInit = 0, iLenCreaturesInit - 1 do
-												if ObjSnapshotInit['Creatures'][iSide][iIndexCreaturesInit]['strUnitName'] == ObjSnapshotLastTurn['Creatures'][iSide][iIndexCreaturesLast]['strUnitName'] then
-													push(listCreaturesRevive, ObjSnapshotLastTurn['Creatures'][iSide][iIndexCreaturesLast]);
-												end;
-											end
-										end;
-									end;
+				-- if itemUnitLast ~= nil and itemUnitLast['iUnitCategory'] == ENUM_CATEGORY.HERO then
+				-- 	for iSide = ENUM_SIDE.ATTACKER, ENUM_SIDE.DEFENDER do
+				-- 		if GetHero(iSide) ~= nil then
+				-- 			-- 上回合生物状态对比记录
+				-- 				local iLenCreaturesBeforeLastNotReverse = length(ObjSnapshotBeforeLastTurn['Creatures'][iSide]);
+				-- 				local iLenCreaturesLastNotReverse = length(ObjSnapshotLastTurn['Creatures'][iSide]);
+				-- 				local iLenCreaturesBeforeLastReverse = length(ObjSnapshotBeforeLastTurn['Creatures'][getSide(iSide, 1)]);
+				-- 				local iLenCreaturesLastReverse = length(ObjSnapshotLastTurn['Creatures'][getSide(iSide, 1)]);
+				-- 				-- 生物减员
+				-- 					local listCreaturesBeEffected = {};
+				-- 					for iIndexCreaturesBeforeLast = 0, iLenCreaturesBeforeLastReverse - 1 do
+				-- 						for iIndexCreaturesLast = 0, iLenCreaturesLastReverse - 1 do
+				-- 							if ObjSnapshotBeforeLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesBeforeLast]['strUnitName'] == ObjSnapshotLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesLast]['strUnitName']
+				-- 								and ObjSnapshotBeforeLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesBeforeLast]['iUnitNumber'] > ObjSnapshotLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesLast]['iUnitNumber'] then
+				-- 								push(listCreaturesBeEffected, ObjSnapshotLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesLast]);
+				-- 							end;
+				-- 						end;
+				-- 					end;
+				-- 				-- 生物增员
+				-- 					local listCreaturesBeAnimated = {};
+				-- 					for iIndexCreaturesBeforeLast = 0, iLenCreaturesBeforeLastNotReverse - 1 do
+				-- 						for iIndexCreaturesLast = 0, iLenCreaturesLastNotReverse - 1 do
+				-- 							if ObjSnapshotBeforeLastTurn['Creatures'][iSide][iIndexCreaturesBeforeLast]['strUnitName'] == ObjSnapshotLastTurn['Creatures'][iSide][iIndexCreaturesLast]['strUnitName']
+				-- 								and ObjSnapshotBeforeLastTurn['Creatures'][iSide][iIndexCreaturesBeforeLast]['iUnitNumber'] < ObjSnapshotLastTurn['Creatures'][iSide][iIndexCreaturesLast]['iUnitNumber'] then
+				-- 								push(listCreaturesBeAnimated, ObjSnapshotLastTurn['Creatures'][iSide][iIndexCreaturesLast]);
+				-- 							end;
+				-- 						end;
+				-- 					end;
+				-- 				-- 生物被击杀
+				-- 					local listCreaturesDeath = {};
+				-- 					for iIndexCreaturesBeforeLast = 0, iLenCreaturesBeforeLastReverse - 1 do
+				-- 						local bIsExist = 0;
+				-- 						for iIndexCreaturesLast = 0, iLenCreaturesLastReverse - 1 do
+				-- 							if ObjSnapshotLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesLast]['strUnitName'] == ObjSnapshotBeforeLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesBeforeLast]['strUnitName'] then
+				-- 								bIsExist = 1;
+				-- 								break;
+				-- 							end;
+				-- 						end;
+				-- 						if bIsExist == 0 then
+				-- 							push(listCreaturesDeath, ObjSnapshotBeforeLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesBeforeLast]);
+				-- 						end;
+				-- 					end;
+				-- 				-- 生物被复活
+				-- 					local listCreaturesRevive = {};
+				-- 					for iIndexCreaturesLast = 0, iLenCreaturesLastNotReverse - 1 do
+				-- 						local bIsExist = 0;
+				-- 						for iIndexCreaturesBeforeLast = 0, iLenCreaturesBeforeLastNotReverse - 1 do
+				-- 							if ObjSnapshotBeforeLastTurn['Creatures'][iSide][iIndexCreaturesBeforeLast]['strUnitName'] == ObjSnapshotLastTurn['Creatures'][iSide][iIndexCreaturesLast]['strUnitName'] then
+				-- 								bIsExist = 1;
+				-- 								break;
+				-- 							end;
+				-- 						end;
+				-- 						if bIsExist == 0 then
+				-- 							local iLenCreaturesInit = length(ObjSnapshotInit['Creatures'][iSide]);
+				-- 							for iIndexCreaturesInit = 0, iLenCreaturesInit - 1 do
+				-- 								if ObjSnapshotInit['Creatures'][iSide][iIndexCreaturesInit]['strUnitName'] == ObjSnapshotLastTurn['Creatures'][iSide][iIndexCreaturesLast]['strUnitName'] then
+				-- 									push(listCreaturesRevive, ObjSnapshotLastTurn['Creatures'][iSide][iIndexCreaturesLast]);
+				-- 								end;
+				-- 							end
+				-- 						end;
+				-- 					end;
 
-							-- 英雄跳过行动
-							if length(listCreaturesBeEffected) == 0
-								and length(listCreaturesBeAnimated) == 0
-								and length(listCreaturesDeath) == 0
-								and length(listCreaturesRevive) == 0
-								and ObjSnapshotBeforeLastTurn['Hero'][iSide]['iMana'] == ObjSnapshotLastTurn['Hero'][iSide]['iMana'] then
+				-- 			-- 英雄跳过行动
+				-- 			if length(listCreaturesBeEffected) == 0
+				-- 				and length(listCreaturesBeAnimated) == 0
+				-- 				and length(listCreaturesDeath) == 0
+				-- 				and length(listCreaturesRevive) == 0
+				-- 				and ObjSnapshotBeforeLastTurn['Hero'][iSide]['iMana'] == ObjSnapshotLastTurn['Hero'][iSide]['iMana'] then
 
-								-- Haven
-								-- Sylvan
-								-- Academy
-								-- Inferno
-								-- Necropolis
-								-- Fortress
-								-- Dungeon
-								-- Stronghold
-									H55SMOD_MiddlewareListener['Kraal']['function']('Kraal', iSide, itemUnitLast);
-							end;
-						end;
-					end;
-				end;
+				-- 				-- Haven
+				-- 				-- Sylvan
+				-- 				-- Academy
+				-- 				-- Inferno
+				-- 				-- Necropolis
+				-- 				-- Fortress
+				-- 				-- Dungeon
+				-- 				-- Stronghold
+				-- 					H55SMOD_MiddlewareListener['Kraal']['function']('Kraal', iSide, itemUnitLast);
+				-- 			end;
+				-- 		end;
+				-- 	end;
+				-- end;
 
 			-- 上回合生物行动
 				if itemUnitLast ~= nil and itemUnitLast['iUnitCategory'] == ENUM_CATEGORY.CREATURE then
 					for iSide = ENUM_SIDE.ATTACKER, ENUM_SIDE.DEFENDER do
-						-- 造成生物减员
-						local listCreaturesBeEffected = {};
+						-- 造成生物战损（至少为1）
+						local listCreaturesBeEffectedLimit = {};
 						local iLenCreaturesBeforeLast = length(ObjSnapshotBeforeLastTurn['Creatures'][getSide(iSide, 1)]);
 						local iLenCreaturesLast = length(ObjSnapshotLastTurn['Creatures'][getSide(iSide, 1)]);
 						for iIndexCreaturesBeforeLast = 0, iLenCreaturesBeforeLast - 1 do
 							for iIndexCreaturesLast = 0, iLenCreaturesLast - 1 do
 								if ObjSnapshotBeforeLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesBeforeLast]['strUnitName'] == ObjSnapshotLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesLast]['strUnitName']
 									and ObjSnapshotBeforeLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesBeforeLast]['iUnitNumber'] > ObjSnapshotLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesLast]['iUnitNumber'] then
-									push(listCreaturesBeEffected, ObjSnapshotLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesLast]);
+									push(listCreaturesBeEffectedLimit, ObjSnapshotLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesLast]);
+								end;
+							end;
+						end;
+						-- 造成生物有效战损（英雄等级/8（向下取整&至少为1））
+						local listCreaturesBeEffected8HeroLevel = {};
+						local iLenCreaturesBeforeLast = length(ObjSnapshotBeforeLastTurn['Creatures'][getSide(iSide, 1)]);
+						local iLenCreaturesLast = length(ObjSnapshotLastTurn['Creatures'][getSide(iSide, 1)]);
+						local iKillCreature8HeroLevel = 1;
+						if GetHero(iSide) ~= nil then
+							iKillCreature8HeroLevel = h55_floor(H55SMOD_HeroLevel[GetHeroName(GetHero(iSide))] / 8);
+							if iKillCreature8HeroLevel < 1 then
+								iKillCreature8HeroLevel = 1;
+							end;
+						end;
+						for iIndexCreaturesBeforeLast = 0, iLenCreaturesBeforeLast - 1 do
+							for iIndexCreaturesLast = 0, iLenCreaturesLast - 1 do
+								if ObjSnapshotBeforeLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesBeforeLast]['strUnitName'] == ObjSnapshotLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesLast]['strUnitName']
+									and ObjSnapshotBeforeLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesBeforeLast]['iUnitNumber'] - ObjSnapshotLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesLast]['iUnitNumber'] >= iKillCreature8HeroLevel then
+									push(listCreaturesBeEffected8HeroLevel, ObjSnapshotLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesLast]);
 								end;
 							end;
 						end;
@@ -1692,7 +1711,7 @@ doFile('/scripts/combat-startup.lua')
 						end;
 
 						-- 造成生物减员 && 造成生物击杀
-						if length(listCreaturesBeEffected) == 0 and length(listCreaturesDeath) == 0 then
+						if length(listCreaturesBeEffectedLimit) == 0 and length(listCreaturesDeath) == 0 then
 							-- Haven
 							-- Sylvan
 							-- Academy
@@ -1719,19 +1738,19 @@ doFile('/scripts/combat-startup.lua')
 								H55SMOD_MiddlewareListener['Hero8']['function']['trigger']('Hero8', iSide, itemUnitLastCurrent);
 						end;
 
-						if length(listCreaturesBeEffected) >= 1 then
+						if length(listCreaturesBeEffected8HeroLevel) >= 1 then
 							-- Haven
 							-- Sylvan
 							-- Academy
 							-- Inferno
 							-- Necropolis
 							-- Fortress
-							H55SMOD_MiddlewareListener['Maximus']['function']['consume']('Maximus', iSide, itemUnitLast, listCreaturesBeEffected);
+								H55SMOD_MiddlewareListener['Maximus']['function']['consume']('Maximus', iSide, itemUnitLast, listCreaturesBeEffected8HeroLevel);
 							-- Dungeon
 							-- Stronghold
 						end;
 
-						if length(listCreaturesBeEffected) + length(listCreaturesDeath) >= 1 then
+						if length(listCreaturesBeEffected8HeroLevel) + length(listCreaturesDeath) >= 1 then
 							-- Haven
 							-- Sylvan
 							-- Academy
@@ -1785,6 +1804,18 @@ doFile('/scripts/combat-startup.lua')
 							-- Fortress
 							-- Dungeon
 							-- Stronghold
+						end;
+
+						if length(listCreaturesBeEffected) + length(listCreaturesDeath) >= 1 then
+							-- Haven
+							-- Sylvan
+							-- Academy
+							-- Inferno
+							-- Necropolis
+							-- Fortress
+							-- Dungeon
+							-- Stronghold
+								H55SMOD_MiddlewareListener['Kraal']['function']('Kraal', iSide, itemUnitLast, listCreaturesBeEffected, listCreaturesDeath);
 						end;
 					end;
 				end;
@@ -3462,22 +3493,21 @@ doFile('/scripts/combat-startup.lua')
 				end;
 			end;
 			H55SMOD_MiddlewareListener['Maximus']['function']['charge'] = Events_MiddlewareListener_Implement_Maximus_Charge;
-			function Events_MiddlewareListener_Implement_Maximus_Consume(strHero, iSide, itemUnitLast, listCreaturesBeEffected)
+			function Events_MiddlewareListener_Implement_Maximus_Consume(strHero, iSide, itemUnitLast, listCreaturesBeEffected8HeroLevel)
 				if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero and iSide == itemUnitLast['iSide'] then
 					if itemUnitLast['iUnitType'] == H55SMOD_MiddlewareListener[strHero]['flag'] then
 						local strBallista = GetWarMachine(getSide(iSide), WAR_MACHINE_BALLISTA);
 						if strBallista ~= nil then
 							local itemBallista = geneUnitStatus(strBallista);
 							combatSetPause(1);
-							local iLenCreaturesBeEffected = length(listCreaturesBeEffected);
-							if iLenCreaturesBeEffected > 0 then
-								for iIndexCreaturesBeEffected = 0, iLenCreaturesBeEffected - 1 do
-									local itemCreatureBeEffected = listCreaturesBeEffected[iIndexCreaturesBeEffected];
-									if IsCombatUnit(itemCreatureBeEffected['strUnitName']) ~= nil and itemCreatureBeEffected['iUnitNumber'] > 0 then
-										startThread(Thread_Command_UnitShotAimed, itemBallista['strUnitName'], itemCreatureBeEffected['strUnitName']);
+							local iLenCreaturesBeEffected8HeroLevel = length(listCreaturesBeEffected8HeroLevel);
+							if iLenCreaturesBeEffected8HeroLevel > 0 then
+								for iIndexCreaturesBeEffected8HeroLevel = 0, iLenCreaturesBeEffected8HeroLevel - 1 do
+									local itemCreatureBeEffected8HeroLevel = listCreaturesBeEffected8HeroLevel[iIndexCreaturesBeEffected8HeroLevel];
+									if IsCombatUnit(itemCreatureBeEffected8HeroLevel['strUnitName']) ~= nil and itemCreatureBeEffected8HeroLevel['iUnitNumber'] > 0 then
+										startThread(Thread_Command_UnitShotAimed, itemBallista['strUnitName'], itemCreatureBeEffected8HeroLevel['strUnitName']);
+										print(itemBallista['strUnitName'].." connent shoot to "..itemCreatureBeEffected8HeroLevel['strUnitName'])
 										sleep(20);
-										print(itemBallista['strUnitName'].." connent shoot to "..itemCreatureBeEffected['strUnitName'])
-										break;
 									end;
 								end;
 							end;
@@ -4005,20 +4035,60 @@ doFile('/scripts/combat-startup.lua')
 
 		-- Kraal
 			H55SMOD_MiddlewareListener['Kraal'] = {};
-			function Events_MiddlewareListener_Implement_Kraal(strHero, iSide, itemUnitLast)
+			function Events_MiddlewareListener_Implement_Kraal(strHero, iSide, itemUnitLast, listCreaturesBeEffected, listCreaturesDeath)
 				if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero then
-					local listWarMachines = GetWarMachines(getSide(iSide));
-					local iLenWarMachines = length(listWarMachines);
-					if iLenWarMachines > 0 then
-						combatSetPause(1);
-						for iIndexWarMachines = 0, iLenWarMachines - 1 do
-							local itemWarMachine = geneUnitStatus(listWarMachines[iIndexWarMachines]);
-							itemWarMachine['iAtb'] = 1.25;
-							push(ListUnitSetATB, itemWarMachine);
-							print(itemWarMachine['strUnitName'].." can move now");
-							sleep(20);
+					local strBallista = GetWarMachine(iSide, WAR_MACHINE_BALLISTA);
+					if strBallista ~= nil then
+						local itemBallista = geneUnitStatus(strBallista);
+						local itemCreatureEffected = nil;
+						if length(listCreaturesBeEffected) ~= 0 then
+							itemCreatureEffected = listCreaturesBeEffected[0];
 						end;
-						combatSetPause(nil);
+						if length(listCreaturesDeath) ~= 0 then
+							itemCreatureEffected = listCreaturesDeath[0];
+						end;
+						if itemCreatureEffected ~= nil then
+							local listPositionMatch = {};
+							local iSideX = 0;
+							if iSide == ENUM_SIDE.ATTACKER then
+								iSideX = 1;
+							else
+								iSideX = -1;
+							end;
+							for iY = 1, 4 do
+								for iX1 = -1 * iY, 1 * iY do
+									push(listPositionMatch, {
+										['iPositionX'] = itemCreatureEffected['iPositionX'] + iY * iSideX
+										, ['iPositionY'] = itemCreatureEffected['iPositionY'] + iX1
+									});
+								end;
+							end;
+
+							local listCreaturesTarget = GetCreatures(getSide(iSide, 1));
+							local iLenCreaturesTarget = length(listCreaturesTarget);
+							local iLenPositionMatch = length(listPositionMatch);
+							local bMatch = 0;
+							for iIndexCreaturesTarget = 0, iLenCreaturesTarget - 1 do
+								local itemCreatureTarget = geneUnitStatus(listCreaturesTarget[iIndexCreaturesTarget]);
+								if IsCombatUnit(itemCreatureTarget['strUnitName']) ~= nil and itemCreatureTarget['iUnitNumber'] > 0 then
+									for iIndexPositionMatch = 0, iLenPositionMatch - 1 do
+										local itemPositionMatch = listPositionMatch[iIndexPositionMatch];
+										if matchArea(itemCreatureTarget, itemPositionMatch['iPositionX'], itemPositionMatch['iPositionY'], 0) == 1 then
+											combatSetPause(1);
+											startThread(Thread_Command_UnitShotAimed, itemBallista['strUnitName'], itemCreatureTarget['strUnitName']);
+											print(itemBallista['strUnitName'].." flamewave to "..itemCreatureTarget['strUnitName'])
+											sleep(20);
+											combatSetPause(nil);
+											bMatch = 1;
+											break;
+										end;
+									end;
+									if bMatch == 1 then
+										break;
+									end;
+								end;
+							end;
+						end;
 					end;
 				end;
 			end;

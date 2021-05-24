@@ -5820,7 +5820,11 @@ end;
 		local iPlayer = GetObjectOwner(strHero);
 
 		local iPower = TTH_Func_CalcPower(strHero);
-		local iPowerPerSlot = iPower / 2 * TTH_Map_ShantiriTrial4HeroRecord[strHero]["Difficult"] * TTH_Map_ShantiriTrial4HeroRecord[strHero]["Difficult"] * sqrt(TTH_Map_ShantiriTrial4HeroRecord[strHero]["HeroLevel"]) / sqrt(TTH_Map_CountPlayerVisitedShantiri[iPlayer]) / 7;
+		local iPower8Scale = iPower / 2 * TTH_Map_ShantiriTrial4HeroRecord[strHero]["Difficult"] * TTH_Map_ShantiriTrial4HeroRecord[strHero]["Difficult"] * sqrt(TTH_Map_ShantiriTrial4HeroRecord[strHero]["HeroLevel"]) / sqrt(TTH_Map_CountPlayerVisitedShantiri[iPlayer]);
+		if iPower8Scale < 20000 then
+			iPower8Scale = 20000;
+		end;
+		local iPowerPerSlot =  iPower8Scale / 7;
 
 		local strCallbackWin = "TTH_Func_Shantiri_Challenge4Trial8MirrorFight";
 		local strCombatLink = "/Arenas/CombatArena/FinalCombat/Bank_Shantiri.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)";

@@ -62,7 +62,9 @@
 		<perkIDs>
 			<Item>HERO_SKILL_BALLISTA</Item>
 		</perkIDs>
-		<spellIDs/>
+		<spellIDs>
+			<Item>SPELL_FROST_RING</Item>
+		</spellIDs>
 		<Ballista>true</Ballista>
 		<FirstAidTent>false</FirstAidTent>
 		<AmmoCart>false</AmmoCart>

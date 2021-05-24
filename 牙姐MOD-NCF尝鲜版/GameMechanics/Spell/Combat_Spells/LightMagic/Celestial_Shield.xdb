@@ -14,7 +14,7 @@
 	<TrainedCost>10</TrainedCost>
 	<damage>
 		<Item>
-			<Base>0.3</Base>
+			<Base>0.4</Base>
 			<PerPower>0</PerPower>
 		</Item>
 		<Item>
@@ -22,11 +22,11 @@
 			<PerPower>0</PerPower>
 		</Item>
 		<Item>
-			<Base>0.7</Base>
+			<Base>0.6</Base>
 			<PerPower>0</PerPower>
 		</Item>
 		<Item>
-			<Base>0.8</Base>
+			<Base>0.7</Base>
 			<PerPower>0</PerPower>
 		</Item>
 	</damage>

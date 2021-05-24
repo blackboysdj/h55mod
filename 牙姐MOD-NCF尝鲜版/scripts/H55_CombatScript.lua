@@ -1584,7 +1584,7 @@ doFile('/scripts/combat-startup.lua')
 				end;
 
 			-- 英雄行动
-				if itemUnit ~= nil then
+				if itemUnit ~= nil and itemUnit['iUnitCategory'] == ENUM_CATEGORY.HERO then
 					for iSide = ENUM_SIDE.ATTACKER, ENUM_SIDE.DEFENDER do
 						-- Skill
 							H55SMOD_MiddlewareListener['Skill'][ENUM_SKILL.ABSOLUTEMORALE]['function']['consume'](itemUnit, iSide);
@@ -1600,6 +1600,7 @@ doFile('/scripts/combat-startup.lua')
 						-- Inferno
 							H55SMOD_MiddlewareListener['Ash']['function']['hero']('Ash', iSide, itemUnit);
 							H55SMOD_MiddlewareListener['Efion']['function']['consume']('Efion', iSide, itemUnit);
+							H55SMOD_MiddlewareListener['Deleb']['function']['consume']('Deleb', iSide, itemUnit);
 						-- Necropolis
 							H55SMOD_MiddlewareListener['Giovanni']['function']['hero']('Giovanni', iSide, itemUnit);
 						-- Fortress
@@ -1811,6 +1812,50 @@ doFile('/scripts/combat-startup.lua')
 							-- Necropolis
 							-- Fortress
 								H55SMOD_MiddlewareListener['Maximus']['function']['charge']('Maximus', iSide, itemUnitLast);
+							-- Dungeon
+							-- Stronghold
+						end;
+					end;
+				end;
+
+			-- 上回合战争机械行动
+				if itemUnitLast ~= nil and itemUnitLast['iUnitCategory'] == ENUM_CATEGORY.WARMACHINE then
+					for iSide = ENUM_SIDE.ATTACKER, ENUM_SIDE.DEFENDER do
+						-- 造成生物减员
+						local listCreaturesBeEffected = {};
+						local iLenCreaturesBeforeLast = length(ObjSnapshotBeforeLastTurn['Creatures'][getSide(iSide, 1)]);
+						local iLenCreaturesLast = length(ObjSnapshotLastTurn['Creatures'][getSide(iSide, 1)]);
+						for iIndexCreaturesBeforeLast = 0, iLenCreaturesBeforeLast - 1 do
+							for iIndexCreaturesLast = 0, iLenCreaturesLast - 1 do
+								if ObjSnapshotBeforeLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesBeforeLast]['strUnitName'] == ObjSnapshotLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesLast]['strUnitName']
+									and ObjSnapshotBeforeLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesBeforeLast]['iUnitNumber'] > ObjSnapshotLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesLast]['iUnitNumber'] then
+									push(listCreaturesBeEffected, ObjSnapshotLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesLast]);
+								end;
+							end;
+						end;
+						-- 造成生物击杀
+						local listCreaturesDeath = {};
+						for iIndexCreaturesBeforeLast = 0, iLenCreaturesBeforeLast - 1 do
+							local bIsExist = 0;
+							for iIndexCreaturesLast = 0, iLenCreaturesLast - 1 do
+								if ObjSnapshotLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesLast]['strUnitName'] == ObjSnapshotBeforeLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesBeforeLast]['strUnitName'] then
+									bIsExist = 1;
+									break;
+								end;
+							end;
+							if bIsExist == 0 then
+								push(listCreaturesDeath, ObjSnapshotBeforeLastTurn['Creatures'][getSide(iSide, 1)][iIndexCreaturesBeforeLast]);
+							end;
+						end;
+
+						if length(listCreaturesBeEffected) + length(listCreaturesDeath) >= 2 then
+							-- Haven
+							-- Sylvan
+							-- Academy
+							-- Inferno
+								H55SMOD_MiddlewareListener['Deleb']['function']['charge']('Deleb', iSide, itemUnitLast, listCreaturesBeEffected, listCreaturesDeath);
+							-- Necropolis
+							-- Fortress
 							-- Dungeon
 							-- Stronghold
 						end;
@@ -2952,6 +2997,56 @@ doFile('/scripts/combat-startup.lua')
 				end;
 			end;
 			H55SMOD_MiddlewareListener['Calid']['function'] = Events_MiddlewareListener_Implement_Calid;
+
+		-- Deleb
+			H55SMOD_MiddlewareListener['Deleb'] = {};
+			H55SMOD_MiddlewareListener['Deleb']['list'] = {};
+			H55SMOD_MiddlewareListener['Deleb']['function'] = {};
+			function Events_MiddlewareListener_Implement_Deleb_Charge(strHero, iSide, itemUnitLast, listCreaturesBeEffected, listCreaturesDeath)
+				if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero	and itemUnitLast['strUnitName'] == GetWarMachine(iSide, WAR_MACHINE_BALLISTA) then
+					local iLenCreaturesBeEffected = length(listCreaturesBeEffected);
+					if iLenCreaturesBeEffected > 0 then
+						for iIndexCreaturesBeEffected = 0, iLenCreaturesBeEffected - 1 do
+							if contains(H55SMOD_MiddlewareListener[strHero]['list'], listCreaturesBeEffected[iIndexCreaturesBeEffected]['strUnitName']) == nil then
+								push(H55SMOD_MiddlewareListener[strHero]['list'], listCreaturesBeEffected[iIndexCreaturesBeEffected]['strUnitName']);
+							end;
+						end;
+					end;
+					local iLenCreaturesDeath = length(listCreaturesDeath);
+					if iLenCreaturesDeath > 0 then
+						for iIndexCreaturesDeath = 0, iLenCreaturesDeath - 1 do
+							if contains(H55SMOD_MiddlewareListener[strHero]['list'], listCreaturesDeath[iIndexCreaturesDeath]['strUnitName']) == nil then
+								push(H55SMOD_MiddlewareListener[strHero]['list'], listCreaturesDeath[iIndexCreaturesDeath]['strUnitName']);
+							end;
+						end;
+					end;
+				end;
+			end;
+			H55SMOD_MiddlewareListener['Deleb']['function']['charge'] = Events_MiddlewareListener_Implement_Deleb_Charge;
+			function Events_MiddlewareListener_Implement_Deleb_Consume(strHero, iSide, itemUnit)
+				if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero and itemUnit['strUnitName'] == GetHero(iSide) then
+					if H55SMOD_MiddlewareListener[strHero]['list'] ~= nil and length(H55SMOD_MiddlewareListener[strHero]['list']) > 0 then
+						local listCreaturesTarget = H55SMOD_MiddlewareListener[strHero]['list'];
+						local iLenCreaturesTarget = length(listCreaturesTarget);
+						if iLenCreaturesTarget > 0 then
+							combatSetPause(1);
+							for iIndexCreaturesTarget = 0, iLenCreaturesTarget - 1 do
+								local itemCreatureTarget = geneUnitStatus(listCreaturesTarget[iIndexCreaturesTarget]);
+								if itemCreatureTarget ~= nil and IsCombatUnit(itemCreatureTarget['strUnitName']) ~= nil and itemCreatureTarget['iUnitNumber'] > 0 and itemCreatureTarget['iSide'] == getSide(iSide, 1) then
+									startThread(Thread_Command_UnitCastAreaSpell, GetHero(iSide), SPELL_FROST_RING, itemCreatureTarget['iPositionX'], itemCreatureTarget['iPositionY'], 1);
+									print(itemUnit['strUnitName'].." cast SPELL_FROST_RING on "..itemCreatureTarget['strUnitName']);
+									sleep(20);
+								end;
+							end;
+							itemUnit['iAtb'] = 1.25;
+							push(ListUnitSetATB, itemUnit);
+							H55SMOD_MiddlewareListener[strHero]['list'] = {};
+							combatSetPause(nil);
+						end;
+					end;
+				end;
+			end;
+			H55SMOD_MiddlewareListener['Deleb']['function']['consume'] = Events_MiddlewareListener_Implement_Deleb_Consume;
 
 	-- Necropolis
 		-- Archilus

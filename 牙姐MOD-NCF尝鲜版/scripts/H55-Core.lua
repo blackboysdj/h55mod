@@ -9625,7 +9625,7 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 
 -- by 牙姐 2021-2-24 22:27:53
 -- begin 军团宝物 领袖特
-	TTH_TOWN_BONUS_SET = {
+	TTH_LEADER_BONUS_SET = {
 		["ID"] = {
 			[0] = ARTIFACT_LEGION_T1
 			, [1] = ARTIFACT_LEGION_T2
@@ -9664,10 +9664,10 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 	function TTH_TM_LeaderHero_or_Close(strHero)
 		if contains(TTH_TABLE_LeaderHero, strHero) then
 			local iPlayer = GetObjectOwner(strHero);
-			for iIndexLegion, objLegion in TTH_TOWN_BONUS_SET["ID"] do
+			for iIndexLegion, objLegion in TTH_LEADER_BONUS_SET["ID"] do
 				if (HasArtefact(strHero, objLegion, 0) ~= nil) then
 					QuestionBoxForPlayers(GetPlayerFilter(iPlayer),{"/Text/Game/Scripts/TownPortal/TTH_TM_LeaderHero_or_Close.txt";
-					name=TTH_TOWN_BONUS_SET["NAME"][iIndexLegion],desc=TTH_TOWN_BONUS_SET["DESC"][iIndexLegion]},
+					name=TTH_LEADER_BONUS_SET["NAME"][iIndexLegion],desc=TTH_LEADER_BONUS_SET["DESC"][iIndexLegion]},
 					"TTH_TM_CB_LeaderHero_Request('"..strHero.."','"..iIndexLegion.."')","TTH_TM_CB_LeaderHero_Abort('"..strHero.."','"..iIndexLegion.."')");
 					return 1;
 				end;
@@ -9678,7 +9678,7 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 		end;
 	end;
 	function TTH_TM_CB_LeaderHero_Request(strHero, iIndexLegion)
-		RemoveArtefact(strHero, TTH_TOWN_BONUS_SET["ID"][iIndexLegion + 0]);
+		RemoveArtefact(strHero, TTH_LEADER_BONUS_SET["ID"][iIndexLegion + 0]);
 		if TTH_LeaderHero_Bonus[strHero] == nil then
 			TTH_LeaderHero_Bonus[strHero] = 1;
 		else

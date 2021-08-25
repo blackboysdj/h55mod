@@ -25,6 +25,7 @@ ARTIFACT_CURSE_SHOULDER = 114;
 ARTIFACT_SENTINEL = 124;
 ARTIFACT_EIGHTFOLD = 125;
 ARTIFACT_MOONBLADE = 58;
+ARTIFACT_BAND_OF_CONJURER = 60;
 
 MAX_MANA = 1000;
 
@@ -98,6 +99,12 @@ TTH_ARTIFACT_EFFECT_COMBAT = {
     , [2] = ARTIFACT_CURSE_SHOULDER
     , [3] = ARTIFACT_EIGHTFOLD
     , [4] = ARTIFACT_MOONBLADE
+    , [5] = ARTIFACT_BAND_OF_CONJURER
+};
+TTH_ARTIFACT_EFFECT_COMBAT_ONCE = {
+    [0] = ARTIFACT_ANGELIC_ALLIANCE
+    , [1] = ARTIFACT_SENTINEL
+    , [2] = ARTIFACT_CURSE_SHOULDER
 };
 TTH_ARTIFACT_EFFECT_COMBAT_HERO = {
     [0] = {}
@@ -155,7 +162,9 @@ function h55_ceil(n)
     return i;
 end;
 function tth_mod(n, m)
-    repeat n = n - m; until n < m;
+    if n >= m then
+        repeat n = n - m; until n < m;
+    end;
     return n;
 end;
 

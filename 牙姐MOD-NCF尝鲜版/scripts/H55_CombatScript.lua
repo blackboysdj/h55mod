@@ -601,7 +601,7 @@ doFile('/scripts/combat-startup.lua')
 		end;
 	end;
 
-	H55SMOD_Start_Artifact = {};
+	H55SMOD_Start['Artifact'] = {};
 
 	-- ARTIFACT_ANGELIC_ALLIANCE
 	function Events_Start_Artifact_Implement_Angelic_Alliance(iSide)
@@ -621,7 +621,7 @@ doFile('/scripts/combat-startup.lua')
 		print("CREATURE_EMPIRE has left");
 		sleep(100);
 	end;
-	H55SMOD_Start_Artifact[ARTIFACT_ANGELIC_ALLIANCE] = {
+	H55SMOD_Start['Artifact'][ARTIFACT_ANGELIC_ALLIANCE] = {
 		[ENUM_SIDE.ATTACKER] = {
 			['flag'] = ENUM_STAGE.ONCE.UNEXECUTE
 		}
@@ -645,7 +645,7 @@ doFile('/scripts/combat-startup.lua')
 		print("CREATURE_EMPIRE has left");
 		sleep(100);
 	end;
-	H55SMOD_Start_Artifact[ARTIFACT_SENTINEL] = {
+	H55SMOD_Start['Artifact'][ARTIFACT_SENTINEL] = {
 		[ENUM_SIDE.ATTACKER] = {
 			['flag'] = ENUM_STAGE.ONCE.UNEXECUTE
 		}
@@ -672,7 +672,7 @@ doFile('/scripts/combat-startup.lua')
 		print("CREATURE_DARK_CHAMPION has left");
 		sleep(100);
 	end;
-	H55SMOD_Start_Artifact[ARTIFACT_CURSE_SHOULDER] = {
+	H55SMOD_Start['Artifact'][ARTIFACT_CURSE_SHOULDER] = {
 		[ENUM_SIDE.ATTACKER] = {
 			['flag'] = ENUM_STAGE.ONCE.UNEXECUTE
 		}
@@ -683,17 +683,56 @@ doFile('/scripts/combat-startup.lua')
 	};
 
 	function Events_Start_Artifact_Interface()
-		for indexArtifact, objArtifact in TTH_ARTIFACT_EFFECT_COMBAT do
-			if objArtifact ~= ARTIFACT_EIGHTFOLD and objArtifact ~= ARTIFACT_MOONBLADE then
-				for iSide = ENUM_SIDE.ATTACKER, ENUM_SIDE.DEFENDER do
-					if H55SMOD_Start_Artifact[objArtifact][iSide]['flag'] == ENUM_STAGE.ONCE.UNEXECUTE and TTH_ARTIFACT_EFFECT_COMBAT_HERO[iSide][objArtifact] == 1 then
-						H55SMOD_Start_Artifact[objArtifact]['function'](iSide);
-						H55SMOD_Start_Artifact[objArtifact][iSide]['flag'] = ENUM_STAGE.ONCE.EXECUTED;
-					end;
+		for indexArtifact, objArtifact in TTH_ARTIFACT_EFFECT_COMBAT_ONCE do
+			for iSide = ENUM_SIDE.ATTACKER, ENUM_SIDE.DEFENDER do
+				if H55SMOD_Start['Artifact'][objArtifact][iSide]['flag'] == ENUM_STAGE.ONCE.UNEXECUTE and TTH_ARTIFACT_EFFECT_COMBAT_HERO[iSide][objArtifact] == 1 then
+					H55SMOD_Start['Artifact'][objArtifact]['function'](iSide);
+					H55SMOD_Start['Artifact'][objArtifact][iSide]['flag'] = ENUM_STAGE.ONCE.EXECUTED;
 				end;
 			end;
 		end;
 	end;
+
+	-- 元素腕带
+		H55SMOD_Start['Artifact'][ARTIFACT_BAND_OF_CONJURER] = {};
+		H55SMOD_Start['Artifact'][ARTIFACT_BAND_OF_CONJURER]['list'] = {
+			[0] = CREATURE_FIRE_ELEMENTAL
+			, [1] = CREATURE_WATER_ELEMENTAL
+			, [2] = CREATURE_EARTH_ELEMENTAL
+			, [3] = CREATURE_AIR_ELEMENTAL
+		};
+		function Events_Start_Implement_ARTIFACT_BAND_OF_CONJURER()
+			for iSide = ENUM_SIDE.ATTACKER, ENUM_SIDE.DEFENDER do
+				if TTH_ARTIFACT_EFFECT_COMBAT_HERO[iSide] ~= nil and TTH_ARTIFACT_EFFECT_COMBAT_HERO[iSide][ARTIFACT_BAND_OF_CONJURER] == 1 then
+					combatSetPause(1);
+					local iBattleSize = getBattleSize();
+					local iPositionX = 0;
+					local iPositionY = 1;
+					if iSide == ENUM_SIDE.ATTACKER then
+						iPositionX = 2;
+					else
+						if iBattleSize == 0 then
+						    iPositionX = 13;
+						else
+						    iPositionX = 15;
+						end;
+					end;
+					if iBattleSize == 0 then
+					    iPositionY = 6;
+					else
+					    iPositionY = 7;
+					end;
+
+					local iOver = tth_mod(I_TIMER, 4);
+					local idSummonElemental = H55SMOD_Start['Artifact'][ARTIFACT_BAND_OF_CONJURER]['list'][iOver];
+					local iHeroLevel = H55SMOD_HeroLevel[GetHeroName(GetHero(iSide))];
+					Thread_Command_SummonCreature(iSide, idSummonElemental, iHeroLevel * 1, iPositionX, iPositionY);
+					combatSetPause(nil);
+				end;			
+			end;			
+		end;
+		H55SMOD_Start['Artifact'][ARTIFACT_BAND_OF_CONJURER]['function'] = Events_Start_Implement_ARTIFACT_BAND_OF_CONJURER;
+
 	function Events_Start()
 		combatSetPause(1);
 		Events_Init();
@@ -900,6 +939,9 @@ doFile('/scripts/combat-startup.lua')
 		Events_Start_Interface('Nicolai', 0);
 
 		Events_Start_Interface('Matewa', 0);
+
+		-- 后置宝物特效
+		H55SMOD_Start['Artifact'][ARTIFACT_BAND_OF_CONJURER]['function']();
 	end;
 
 -- 监听: 单位触发接口

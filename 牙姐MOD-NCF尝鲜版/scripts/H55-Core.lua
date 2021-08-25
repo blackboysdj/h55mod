@@ -11572,6 +11572,7 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 		, [2] = ARTIFACT_SENTINEL
 		, [3] = ARTIFACT_EIGHTFOLD
 		, [4] = ARTIFACT_MOONBLADE
+		, [5] = ARTIFACT_BAND_OF_CONJURER
 	};
 	function TTH_SetHeroArtifactToGameVar()
 		local arrHero = {};

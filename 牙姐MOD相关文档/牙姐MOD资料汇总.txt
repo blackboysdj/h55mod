@@ -2070,16 +2070,16 @@
     ARTIFACT_BREASTPLATE_OF_PETRIFIED_WOOD = 14   --神力胸甲→英雄咒力+2
     ARTIFACT_SKULL_HELMET = 55            --亡灵巫师头盔→英雄知识+2
     ARTIFACT_WISPERING_RING = 65          --谨慎指环→英雄攻击+2防御+2，我方生物移动速度-1
-    ARTIFACT_BEGINNER_MAGIC_STICK = 80        --学徒魔杖→英雄咒力+2
+    ARTIFACT_BEGINNER_MAGIC_STICK = 80        --学徒魔杖→英雄咒力+1知识+1
     ARTIFACT_EDGE_OF_BALANCE = 90           --平衡利刃→正义阵营英雄攻击+3防御-1，邪恶阵营英雄攻击-1防御+3
     ARTIFACT_STEADFAST = 110            --坚定之盾→英雄攻击-1防御+4
     ARTIFACT_BUCKLER = 111              --矮人之盾→英雄防御+2
     ARTIFACT_FOUR_LEAF_CLOVER = 8           --四叶苜蓿→英雄幸运+1
     ARTIFACT_GOLDEN_SEXTANT = 10          --海精灵的六分仪→英雄知识+1，英雄海上移动力+25%
     ARTIFACT_CROWN_OF_MANY_EYES = 12        --全视王冠→英雄咒力+1，英雄视野+4
-    ARTIFACT_RING_OF_LIGHTING_PROTECTION = 20     --防电指环→我方生物受到的电属性魔法杀伤-50%
+    ARTIFACT_RING_OF_LIGHTING_PROTECTION = 20     --防电指环→我方生物受到的电属性魔法杀伤-50%，英雄知识+1
     ARTIFACT_BOOTS_OF_INTERFERENCE = 27       --魔防战靴→我方生物魔法抵抗几率+10%
-    ARTIFACT_RIGID_MANTLE = 62            --西莱纳斗篷→我方生物受到的土属性魔法杀伤-50%
+    ARTIFACT_RIGID_MANTLE = 62            --西莱纳斗篷→我方生物受到的土属性魔法杀伤-50%，英雄防御+1
     ARTIFACT_BEARHIDE_WRAPS = 84          --熊皮大衣→英雄防御+1，我方生物受到的冰属性魔法杀伤-25%
     ARTIFACT_RING_OF_UNSUMMONING = 93         --驱逐之戒→英雄可以使用【驱逐】，降低敌方【召唤魔法】效果（【召唤元素】数量-50%，【召唤凤凰】【剑刃障壁】【召唤蜂窝】生命-50%）
 
@@ -2107,7 +2107,7 @@
     ARTIFACT_LION_HIDE_CAPE = 31          --狮鬃披风→英雄士气+2
     ARTIFACT_HELM_OF_ENLIGHTMENT = 34         --启迪头巾→英雄知识+3经验获取+10%
     ARTIFACT_CHAIN_MAIL_OF_ENLIGHTMENT = 35     --启迪鳞甲→英雄咒力+3经验获取+20%
-    ARTIFACT_RING_OF_DEATH = 70           --无悔指环→我方生物免疫【光明圣言】
+    ARTIFACT_RING_OF_DEATH = 70           --无悔指环→我方生物免疫【光明圣言】，英雄攻击+1防御+1士气-1
     ARTIFACT_RUNIC_WAR_AXE = 81           --符文战斧→英雄攻击+2咒力+2
     ARTIFACT_RUNIC_WAR_HARNESS = 82         --符文战甲→英雄防御+2知识+2
     ARTIFACT_TREEBORN_QUIVER = 95           --林生箭袋→我方远程生物攻击+4且无限弹药
@@ -2131,7 +2131,7 @@
     ARTIFACT_GOLDEN_HORSESHOE = 25          --黄金马蹄铁→英雄幸运+2
     ARTIFACT_ENDLESS_BAG_OF_GOLD = 29         --军团金像→金币产量+50%（在城镇中使用）
     ARTIFACT_RING_OF_CELERITY = 59          --迅捷指环→我方生物主动性+10%
-    ARTIFACT_BAND_OF_CONJURER = 60          --元素腕带→英雄可以使用【召唤元素】（咒力+4）
+    ARTIFACT_BAND_OF_CONJURER = 60          --元素腕带→英雄可以使用【召唤元素】（且召唤元素生效咒力+4），战斗开始时随机召唤一队数量为【英雄等级*1】的元素生物
     ARTIFACT_JINXING_BAND = 63            --诅咒指环→敌方生物幸运-2
     ARTIFACT_BONESTUDDED_LEATHER = 64         --皮纹战袍→英雄咒力+5士气-1
     ARTIFACT_HELM_OF_CHAOS = 66           --混沌头盔→英雄知识+5防御-1

@@ -11313,6 +11313,11 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 		, [4] = ARTIFACT_MOONBLADE
 		, [5] = ARTIFACT_BAND_OF_CONJURER
 	};
+	TTH_SKILL_EFFECT_COMBAT = {
+		[0] = HERO_SKILL_WEAKENING_STRIKE
+		, [1] = HERO_SKILL_ELITE_CASTERS
+		, [2] = HERO_SKILL_MYSTICISM
+	};
 	function TTH_SetHeroArtifactToGameVar()
 		local arrHero = {};
 		for i = 1, 8 do
@@ -11333,9 +11338,21 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 						SetGameVar(strKey, 0);
 					end;
 				end;
+				for iIndexSkill, objSkill in TTH_SKILL_EFFECT_COMBAT do
+					local strKey = 'TTH_Skill_Effect_Combat_'..strHero..'_'..objSkill;
+					if HasHeroSkill(strHero, objSkill) ~= nil then
+						SetGameVar(strKey, 1);
+					else
+						SetGameVar(strKey, 0);
+					end;
+				end;
 			else
 				for iIndexArtifact, objArtifact in TTH_ARTIFACT_EFFECT_COMBAT do
 					local strKey = 'TTH_Artifact_Effect_Combat_'..strHero..'_'..objArtifact;
+					SetGameVar(strKey, 0);
+				end;
+				for iIndexSkill, objSkill in TTH_SKILL_EFFECT_COMBAT do
+					local strKey = 'TTH_Skill_Effect_Combat_'..strHero..'_'..objSkill;
 					SetGameVar(strKey, 0);
 				end;
 			end;

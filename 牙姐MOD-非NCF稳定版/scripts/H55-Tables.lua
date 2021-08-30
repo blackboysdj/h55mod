@@ -11979,8 +11979,8 @@ TTH_TABLE_HeroSkill = {
 				}
 			}
 			, [3] = {
-				["PerkId"] = HERO_SKILL_DARK_RITUAL
-				, ["PerkText"] = "/Text/Game/Skills/Perk/Sorcery/Standard/DarkRitual.txt"
+				["PerkId"] = HERO_SKILL_DISTRACT
+				, ["PerkText"] = "/Text/Game/Skills/Perk/Sorcery/Standard/Distract.txt"
 				, ["Monster"] = {
 					[1] = 143
 					, [2] = 143
@@ -12117,16 +12117,16 @@ TTH_TABLE_HeroSkill = {
 				}
 			}
 			, [3] = {
-				["PerkId"] = HERO_SKILL_CONSUME_CORPSE
-				, ["PerkText"] = "/Text/Game/Skills/Perk/Invocation/Standard/ConsumeCorpse.txt"
+				["PerkId"] = HERO_SKILL_DARK_RITUAL
+				, ["PerkText"] = "/Text/Game/Skills/Perk/Sorcery/Standard/DarkRitual.txt"
 				, ["Monster"] = {
-					[1] = 118
-					, [2] = 124
-					, [3] = 173
-					, [4] = 179
-					, [5] = 173
-					, [6] = 176
-					, [7] = 118
+					[1] = 143
+					, [2] = 143
+					, [3] = 0
+					, [4] = 0
+					, [5] = 0
+					, [6] = 0
+					, [7] = 0
 				}
 			}
 		}

@@ -350,7 +350,7 @@
 		<Item href="/UI/Doc/SkillWheel/Skills/Leadership/PerkButton9.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="/UI/Doc/SkillWheel/Skills/Leadership/PerkButtonX.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="/UI/Doc/SkillWheel/Skills/Leadership/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Leadership/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
+		<Item href="/UI/Doc/SkillWheel/Skills/Leadership/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 
 		<Item href="/UI/Doc/SkillWheel/Skills/Leadership/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<Item href="/UI/Doc/SkillWheel/Skills/Leadership/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
@@ -363,7 +363,7 @@
 		<Item href="/UI/Doc/SkillWheel/Skills/Leadership/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<Item href="/UI/Doc/SkillWheel/Skills/Leadership/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<Item href="/UI/Doc/SkillWheel/Skills/Leadership/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Leadership/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<Item href="/UI/Doc/SkillWheel/Skills/Leadership/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 
 	<!-- 幸运 -->
 		<Item href="/UI/Doc/SkillWheel/Skills/Luck/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
@@ -680,7 +680,7 @@
 		<Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkButton8.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkButton8.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
 		<Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkButton9.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkButtonX.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
@@ -694,7 +694,7 @@
 		<Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
 		<Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>

@@ -958,7 +958,7 @@ doFile('/scripts/combat-startup.lua')
 		end;
 
 		-- 后置英雄特效
-		Events_Start_Interface('GodricMP', 0);
+		-- Events_Start_Interface('GodricMP', 0);
 		Events_Start_Interface('Maeve', 0);
 
 		Events_Start_Interface('Gurvilin', 1);
@@ -1657,9 +1657,9 @@ doFile('/scripts/combat-startup.lua')
 							local iLossMana = ObjSnapshotBeforeLastTurn['Hero'][iSide]['iMana'] - ObjSnapshotLastTurn['Hero'][iSide]['iMana'];
 
 							-- 上回合行动单位为英雄 造成生物减员 英雄失去魔法值
-							if itemUnitLast['iSide'] == iSide and itemUnitLast['iUnitCategory'] == ENUM_CATEGORY.HERO and (length(listCreaturesBeEffected) + length(listUnitLastDeath) > 0 or iLossMana > 0) then
-								H55SMOD_MiddlewareListener['Skill'][ENUM_SKILL.ABSOLUTEMORALE]['function']['charge'](itemUnitLast, iSide);
-							end;
+							-- if itemUnitLast['iSide'] == iSide and itemUnitLast['iUnitCategory'] == ENUM_CATEGORY.HERO and (length(listCreaturesBeEffected) + length(listUnitLastDeath) > 0 or iLossMana > 0) then
+							-- 	H55SMOD_MiddlewareListener['Skill'][ENUM_SKILL.ABSOLUTEMORALE]['function']['charge'](itemUnitLast, iSide);
+							-- end;
 						end;
 					end;
 				end;
@@ -1668,7 +1668,7 @@ doFile('/scripts/combat-startup.lua')
 				if itemUnit ~= nil and itemUnit['iUnitCategory'] == ENUM_CATEGORY.HERO then
 					for iSide = ENUM_SIDE.ATTACKER, ENUM_SIDE.DEFENDER do
 						-- Skill
-							H55SMOD_MiddlewareListener['Skill'][ENUM_SKILL.ABSOLUTEMORALE]['function']['consume'](itemUnit, iSide);
+							-- H55SMOD_MiddlewareListener['Skill'][ENUM_SKILL.ABSOLUTEMORALE]['function']['consume'](itemUnit, iSide);
 
 						-- Haven
 							H55SMOD_MiddlewareListener['RedHeavenHero03']['function']['consume']('RedHeavenHero03', iSide, itemUnit);
@@ -3504,6 +3504,7 @@ doFile('/scripts/combat-startup.lua')
 		-- Nimbus
 			H55SMOD_MiddlewareListener['Nimbus'] = {};
 			H55SMOD_MiddlewareListener['Nimbus']['flag'] = '';
+			H55SMOD_MiddlewareListener['Nimbus']['point'] = 0;
 			function Events_MiddlewareListener_Implement_Nimbus(strHero, iSide, itemUnitLast, iLossManaPoints)
 				if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero and itemUnitLast ~= nil and itemUnitLast['strUnitName'] ~= GetHero(iSide) then
 					if H55SMOD_MiddlewareListener['Nimbus']['flag'] == '' then
@@ -3519,10 +3520,15 @@ doFile('/scripts/combat-startup.lua')
 							SetUnitManaPoints(itemHero['strUnitName'], iCurrentMana4Hero);
 							print(itemHero['strUnitName'].." increase "..iLossMana.." mana by [Nimbus' ability]");
 							H55SMOD_MiddlewareListener['Nimbus']['flag'] = itemUnitLast['strUnitName'];
+							H55SMOD_MiddlewareListener['Nimbus']['point'] = H55SMOD_MiddlewareListener['Nimbus']['point'] + iLossMana;
+							print("[Nimbus' ability] has got "..H55SMOD_MiddlewareListener['Nimbus']['point'].." mana points");
 						end;
-						itemHero['iAtb'] = 1.25;
-						push(ListUnitSetATB, itemHero);
-						print(itemHero['strUnitName'].." move now");
+						if H55SMOD_MiddlewareListener['Nimbus']['point'] >= 10 then
+							H55SMOD_MiddlewareListener['Nimbus']['point'] = H55SMOD_MiddlewareListener['Nimbus']['point'] - 10;
+							itemHero['iAtb'] = 1.25;
+							push(ListUnitSetATB, itemHero);
+							print(itemHero['strUnitName'].." move now");
+						end;
 					else
 						H55SMOD_MiddlewareListener['Nimbus']['flag'] = '';
 					end;

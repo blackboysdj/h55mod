@@ -1233,9 +1233,9 @@
 						<PerDividedLevel>1</PerDividedLevel>
 					</Suserain_CostDiscount>
 				</Training>
-				<Prayer_DefenceBonus>2</Prayer_DefenceBonus>
-				<Prayer_InitiativeBonus>0.1</Prayer_InitiativeBonus>
-				<WhiteKnight_PrayerMultiplier>2</WhiteKnight_PrayerMultiplier>
+				<Prayer_DefenceBonus>4</Prayer_DefenceBonus>
+				<Prayer_InitiativeBonus>0.4</Prayer_InitiativeBonus>
+				<WhiteKnight_PrayerMultiplier>1.5</WhiteKnight_PrayerMultiplier>
 				<Encourage_ATBIncrease>0.33</Encourage_ATBIncrease>
 				<Retribution_DamageBonusPerMorale>0.05</Retribution_DamageBonusPerMorale>
 			</Knight>
@@ -1978,7 +1978,7 @@
 			<EmpoweredLightningATBDrop>0.4</EmpoweredLightningATBDrop>
 			<EmpoweredIceFreezeDuration>0.3</EmpoweredIceFreezeDuration>
 			<MagicMirrorLevelMultiplier>1</MagicMirrorLevelMultiplier>
-			<PrayerLevelMultiplier>0.25</PrayerLevelMultiplier>
+			<PrayerLevelMultiplier>0.05</PrayerLevelMultiplier>
 			<DeathScreamLevelMultiplier>0.25</DeathScreamLevelMultiplier>
 			<SkillDefence>
 				<BasicDamageReduce>0.1</BasicDamageReduce>

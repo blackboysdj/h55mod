@@ -220,6 +220,7 @@ H55_EncourageOwners = {};
 H55_KnowYourEnemyOwners = {};
 H55_ForestRageOwners = {};
 H55_SecretsDestructionOwners = {};
+H55_ForestGuardEmblemOwners = {};
 H55_ColdDeathOwners = {};
 H55_MentoringOwners = {};
 H55_BarbarianMentoringOwners = {};
@@ -6402,17 +6403,17 @@ function H55_ContinuesEvent(player)
 				if H55SMOD_HeroSkill[strHero] == nil then
 					H55SMOD_HeroSkill[strHero] = {};
 				end;
-				if HasHeroSkill(strHero, SKILL_ABSOLUTE_MORALE) ~= nil then
-					if H55SMOD_HeroSkill[strHero][SKILL_ABSOLUTE_MORALE] ~= 1 then
-						SetGameVar('H55SMOD_Var_Skill_'..strHero..'_'..SKILL_ABSOLUTE_MORALE, 1);
-						H55SMOD_HeroSkill[strHero][SKILL_ABSOLUTE_MORALE] = 1;
-					end;
-				else
-					if H55SMOD_HeroSkill[strHero][SKILL_ABSOLUTE_MORALE] ~= 0 then
-						SetGameVar('H55SMOD_Var_Skill_'..strHero..'_'..SKILL_ABSOLUTE_MORALE, 0);
-						H55SMOD_HeroSkill[strHero][SKILL_ABSOLUTE_MORALE] = 0;
-					end;
-				end;
+				-- if HasHeroSkill(strHero, SKILL_ABSOLUTE_MORALE) ~= nil then
+				-- 	if H55SMOD_HeroSkill[strHero][SKILL_ABSOLUTE_MORALE] ~= 1 then
+				-- 		SetGameVar('H55SMOD_Var_Skill_'..strHero..'_'..SKILL_ABSOLUTE_MORALE, 1);
+				-- 		H55SMOD_HeroSkill[strHero][SKILL_ABSOLUTE_MORALE] = 1;
+				-- 	end;
+				-- else
+				-- 	if H55SMOD_HeroSkill[strHero][SKILL_ABSOLUTE_MORALE] ~= 0 then
+				-- 		SetGameVar('H55SMOD_Var_Skill_'..strHero..'_'..SKILL_ABSOLUTE_MORALE, 0);
+				-- 		H55SMOD_HeroSkill[strHero][SKILL_ABSOLUTE_MORALE] = 0;
+				-- 	end;
+				-- end;
 			end;
 			if contains(heroes, "Kastore") ~= nil then
 				local strHero = "Kastore";
@@ -6777,6 +6778,25 @@ function H55_ContinuesEvent(player)
 				if (HasHeroSkill(hero,WARLOCK_FEAT_SECRETS_OF_DESTRUCTION) == nil) and (H55_SecretsDestructionOwners[hero] == 1) then
 					H55_SecretsDestructionOwners[hero] = 0;
 					ChangeHeroStat(hero,STAT_KNOWLEDGE,-2);
+				end;
+				if (HasHeroSkill(hero,HERO_SKILL_FOREST_GUARD_EMBLEM) ~= nil) and (H55_ForestGuardEmblemOwners[hero] ~= 1) then
+					H55_ForestGuardEmblemOwners[hero] = 1;
+					ChangeHeroStat(hero,STAT_ATTACK,1);
+					ChangeHeroStat(hero,STAT_DEFENCE,1);
+					ChangeHeroStat(hero,STAT_MORALE,1);
+
+					TTH_DealHeroSkillForestGuardEmblem(hero, player);
+					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
+						ShowFlyingSign("/Text/Game/Scripts/Attack.txt",hero,player,5);
+						ShowFlyingSign("/Text/Game/Scripts/Defense.txt",hero,player,5);
+						ShowFlyingSign("/Text/Game/Scripts/Morale.txt",hero,player,5);
+					end;
+				end;
+				if (HasHeroSkill(hero,HERO_SKILL_FOREST_GUARD_EMBLEM) == nil) and (H55_ForestGuardEmblemOwners[hero] == 1) then
+					H55_ForestGuardEmblemOwners[hero] = 0;
+					ChangeHeroStat(hero,STAT_ATTACK,-1);
+					ChangeHeroStat(hero,STAT_DEFENCE,-1);
+					ChangeHeroStat(hero,STAT_MORALE,-1);
 				end;
 				if (HasHeroSkill(hero,NECROMANCER_FEAT_DEADLY_COLD) ~= nil) and (GetHeroLevel(hero) >= 20) and (H55_ColdDeathOwners[hero] ~= 1) then
 					H55_ColdDeathOwners[hero] = 1;
@@ -11389,5 +11409,43 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 				end;
 			end;
 		end;
+	end;
+-- end
+
+-- by 牙姐 2021-09-07 01:48:23
+-- begin 战地指挥官
+	function TTH_DealHeroSkillForestGuardEmblem(strHero, iPlayer)
+		local arrType = H55_ArmyInfoSimple(strHero);
+		local iRace = H55_GetHeroRaceNum(strHero);
+		local bHasFound = 0;
+	  for i = 0, 6 do
+			if bHasFound == 1 then break end;
+	    for j = 2, 3 do
+				if bHasFound == 1 then break end;
+        if arrType[i] == H55_Creatures[iRace][2][j] then
+					local iGrowth = TTH_TABLE_NCF_CREATURES[H55_Creatures[iRace][2][j]]["GROWTH"];
+					AddHeroCreatures(strHero, H55_Creatures[iRace][2][j], iGrowth);
+					if H55_IsThisAIPlayer(iPlayer) ~= 1 and H55_IsHeroInAnyTown(strHero) == 0 then
+					  ShowFlyingSign({"/Text/Game/Scripts/Join.txt"; num = iGrowth}, strHero, iPlayer, 5)
+					  sleep(8);
+					elseif H55_IsThisAIPlayer(iPlayer) ~= 1 then
+					  sleep(2);
+					end;
+					bHasFound = 1;
+        end;
+	    end;
+	  end;
+	  if bHasFound == 0 then
+			local iGrowth = TTH_TABLE_NCF_CREATURES[H55_Creatures[iRace][2][3]]["GROWTH"];
+			AddHeroCreatures(strHero, H55_Creatures[iRace][2][3], iGrowth);
+			if H55_IsThisAIPlayer(iPlayer) ~= 1 and H55_IsHeroInAnyTown(strHero) == 0 then
+			  ShowFlyingSign({"/Text/Game/Scripts/Join.txt"; num = iGrowth}, strHero, iPlayer, 5)
+			  sleep(8);
+			elseif H55_IsThisAIPlayer(iPlayer) ~= 1 then
+			  sleep(2);
+			end;
+	  end;
+	  local iCountWarDancer = H55_Floor((H55_AbsoluteWeek + 1) / 2) * 10;
+	  RemoveHeroCreatures(strHero, 46, iCountWarDancer);
 	end;
 -- end

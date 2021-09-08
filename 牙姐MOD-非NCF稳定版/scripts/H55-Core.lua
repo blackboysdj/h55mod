@@ -11461,3 +11461,25 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 	  RemoveHeroCreatures(strHero, 46, iCountWarDancer);
 	end;
 -- end
+
+-- by 牙姐 2021-09-08 15:07:12
+-- begin 查看魔法塔魔法
+	function TTH_Scanner()
+		local iPlayer = 1;
+		for i = 1, 8 do
+			if IsPlayerCurrent(i) then
+				iPlayer = i;
+			end;
+		end;
+		local arrTown = GetObjectNamesByType("TOWN");
+		for iIndex, itemTown in arrTown do
+			if GetObjectOwner(itemTown) == iPlayer and H55_IsThisAIPlayer(iPlayer) ~= 1 then
+				UpgradeTownBuilding(itemTown, TOWN_BUILDING_MAGIC_GUILD, 1);
+				UpgradeTownBuilding(itemTown, TOWN_BUILDING_MAGIC_GUILD, 1);
+				UpgradeTownBuilding(itemTown, TOWN_BUILDING_MAGIC_GUILD, 1);
+				UpgradeTownBuilding(itemTown, TOWN_BUILDING_MAGIC_GUILD, 1);
+				UpgradeTownBuilding(itemTown, TOWN_BUILDING_MAGIC_GUILD, 1);
+			end;
+		end;
+	end;
+-- end

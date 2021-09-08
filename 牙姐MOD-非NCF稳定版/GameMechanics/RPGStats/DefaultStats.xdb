@@ -1978,7 +1978,7 @@
 			<EmpoweredLightningATBDrop>0.4</EmpoweredLightningATBDrop>
 			<EmpoweredIceFreezeDuration>0.3</EmpoweredIceFreezeDuration>
 			<MagicMirrorLevelMultiplier>1</MagicMirrorLevelMultiplier>
-			<PrayerLevelMultiplier>0.05</PrayerLevelMultiplier>
+			<PrayerLevelMultiplier>0.1</PrayerLevelMultiplier>
 			<DeathScreamLevelMultiplier>0.25</DeathScreamLevelMultiplier>
 			<SkillDefence>
 				<BasicDamageReduce>0.1</BasicDamageReduce>

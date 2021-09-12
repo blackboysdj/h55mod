@@ -11349,6 +11349,7 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 		[0] = HERO_SKILL_WEAKENING_STRIKE
 		, [1] = HERO_SKILL_ELITE_CASTERS
 		, [2] = HERO_SKILL_MYSTICISM
+		, [3] = HERO_SKILL_PRAYER
 	};
 	function TTH_SetHeroArtifactToGameVar()
 		local arrHero = {};

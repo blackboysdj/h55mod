@@ -250,17 +250,6 @@ doFile('/scripts/combat-startup.lua')
 		end;
 		H55SMOD_Start['Sarge']['function'] = Events_Start_Implement_Sarge;
 
-	-- GodricMP
-		H55SMOD_Start['GodricMP'] = {};
-		H55SMOD_Start['GodricMP']['flag'] = ENUM_STAGE.ONCE.UNEXECUTE;
-		function Events_Start_Implement_GodricMP(strHero, iSide, isReverse)
-			startThread(Thread_Command_UnitCastGlobalSpell, GetHero(iSide), SPELL_PRAYER, 1);
-			print(strHero.." casted SPELL_PRAYER");
-			sleep(20);
-			setATB(GetHero(iSide), 0.7 + 0.01 * H55SMOD_HeroLevel[strHero]);
-		end;
-		H55SMOD_Start['GodricMP']['function'] = Events_Start_Implement_GodricMP;
-
 	-- Maeve
 		H55SMOD_Start['Maeve'] = {};
 		H55SMOD_Start['Maeve']['flag'] = ENUM_STAGE.ONCE.UNEXECUTE;
@@ -888,7 +877,6 @@ doFile('/scripts/combat-startup.lua')
 		end;
 
 		-- 后置英雄特效
-		-- Events_Start_Interface('GodricMP', 0);
 		Events_Start_Interface('Maeve', 0);
 
 		Events_Start_Interface('Gurvilin', 1);
@@ -1599,6 +1587,7 @@ doFile('/scripts/combat-startup.lua')
 							-- H55SMOD_MiddlewareListener['Skill'][ENUM_SKILL.ABSOLUTEMORALE]['function']['consume'](itemUnit, iSide);
 
 						-- Haven
+							H55SMOD_MiddlewareListener['GodricMP']['function']('GodricMP', iSide, itemUnit);
 							H55SMOD_MiddlewareListener['RedHeavenHero03']['function']['consume']('RedHeavenHero03', iSide, itemUnit);
 						-- Sylvan
 						-- Academy
@@ -2312,6 +2301,26 @@ doFile('/scripts/combat-startup.lua')
 				end;
 			end;
 			H55SMOD_MiddlewareListener['RedHeavenHero05']['function']['after'] = Events_MiddlewareListener_Implement_RedHeavenHero05_After;
+		
+		-- GodricMP
+			H55SMOD_MiddlewareListener['GodricMP'] = {};
+			H55SMOD_MiddlewareListener['GodricMP']['flag'] = ENUM_STAGE.ONCE.UNEXECUTE;
+			function Events_MiddlewareListener_Implement_GodricMP(strHero, iSide, itemUnit)
+				if H55SMOD_MiddlewareListener['GodricMP']['flag'] == ENUM_STAGE.ONCE.UNEXECUTE then
+					if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero and itemUnit['strUnitName'] == GetHero(iSide) and TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_PRAYER] == 1 then
+						combatSetPause(1);
+						local itemHero = itemUnit;
+						startThread(Thread_Command_UnitCastGlobalSpell, itemHero['strUnitName'], SPELL_PRAYER, 1);
+						print(strHero.." casted SPELL_PRAYER");
+						itemHero['iAtb'] = 1.25;
+						push(ListUnitSetATB, itemHero);
+						H55SMOD_MiddlewareListener[strHero]['flag'] = ENUM_STAGE.ONCE.EXECUTED;
+						sleep(20);
+						combatSetPause(nil);
+					end;
+				end;
+			end;
+			H55SMOD_MiddlewareListener['GodricMP']['function'] = Events_MiddlewareListener_Implement_GodricMP;
 
 	-- Sylvan
 		-- Gelu

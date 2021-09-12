@@ -7,6 +7,9 @@ DejaVu Sans Mono
 <color=ff0033>
 <color_default>
 
+SKILLTYPE_STANDART_PERK
+SKILLTYPE_SPECIAL_PERK
+
 Shantiri
 
 增加<value=initiative_bonus>%攻击优先度，士222气和攻击力加<value=enchant>，持续时间为<value=duration>回合。
@@ -14,12 +17,25 @@ Shantiri
 8技能 过夜快 英雄特技 战场特技
 
 
+
+7AI结盟+3倍增兵+眼泪+天使联盟+诅咒斗篷+龙神胸甲+终极技能
+你们的支持就是牙姐的动力，谢谢大家，进群下载游戏：241244439
+过夜快※8技能※城镇转换※内政官※定点回城※女巫双技能
+※大量新英雄特长※新英雄技能※新特效宝物※新组合神器※新战场特技※新生物特技※野怪带中立英雄支援
+
+
+机械与巫术的完美结合
+英雄：机械凤凰特-赛勒斯
+板子：6AI结盟+3倍增兵+眼泪+天使联盟+诅咒斗篷+龙神胸甲+终极技能
+8技能 过夜快 新英雄特技 新战场特技
+QQ群241244439
+
 https://www.douyu.com/h55
 http://live.bilibili.com/3234260
 
 7AI结盟+3倍增兵+眼泪+旅行者长靴+哨兵之盾+天使联盟+诅咒斗篷+大法师之书+龙神胸甲+初始技能+终极技能
 
-哥德里克-无损MF&圣堂新终极测试
+哥德里克-圣堂新终极测试2
 7AI结盟+3倍增兵+眼泪+天使联盟+诅咒斗篷+龙神胸甲+初始技能+终极技能
 https://www.douyu.com/h55
 http://live.bilibili.com/3234260
@@ -184,7 +200,4 @@ C：等我到20级之后
 
 
 
-PowerBargain
 
-
-Prayer

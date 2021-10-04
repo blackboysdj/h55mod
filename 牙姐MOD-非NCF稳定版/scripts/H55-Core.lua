@@ -274,14 +274,6 @@ H55_HallCourageStudent = {};
 H55_HallMightStudent = {};
 
 --Artifacts
-
-H55_ArtifactsIndexed = 0;
-H55_MinorArtifactsUsed = {};
-H55_MajorArtifactsUsed = {};
-H55_RelicArtifactsUsed = {};
-H55_UltimateArtifactsUsed = {};
-H55_RemoveTheseArtifactsFromBanks = {};
-
 H55_ArtWoodReceived = {};
 H55_ArtOreReceived = {};
 H55_ArtSulphurReceived = {};
@@ -531,6 +523,9 @@ function TTH_COMMON_MIN(arr)
 	local iCompare = nil;
 	if arr ~= nil and length(arr) > 0 then
 		for iIndex, objItem in arr do
+			if objItem == nil then
+				return nil;
+			end;
 			if iCompare == nil then
 				if objItem ~= nil then
 					iCompare = objItem;
@@ -2269,32 +2264,6 @@ end;
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 --TABLE FUNCTIONS
 ----------------------------------------------------------------------------------------------------------------------------------------------------
-
-function H55_IndexArtifacts()
-	for i,minorartifact in H55_MinorArtifacts do
-		if contains(H55_RemoveTheseArtifactsFromBanks,minorartifact) == nil then
-			H55_Insert(H55_MinorArtifactsUsed,minorartifact);
-		end;
-	end;
-	for i,majorartifact in H55_MajorArtifacts do
-		if contains(H55_RemoveTheseArtifactsFromBanks,majorartifact) == nil then
-			H55_Insert(H55_MajorArtifactsUsed,majorartifact);
-		end;
-	end;
-	for i,relicartifact in H55_RelicArtifacts do
-		if contains(H55_RemoveTheseArtifactsFromBanks,relicartifact) == nil then
-			H55_Insert(H55_RelicArtifactsUsed,relicartifact);
-		end;
-	end;
-	for i,ultimateartifact in H55_UltimateArtifacts do
-		if contains(H55_RemoveTheseArtifactsFromBanks,ultimateartifact) == nil then
-			H55_Insert(H55_UltimateArtifactsUsed,ultimateartifact);
-		end;
-	end;
-	H55_ArtifactsIndexed = 1;
-	print("H55 Day 2 Artifacts indexation complete!")
-end;
-
 function H55_GetHeroClass(hero)
 	local class = "Undetermined"
 	if contains(H55_Knights,hero) ~= nil then class = "Knight" end;
@@ -2499,13 +2468,13 @@ end;
 
 function H55_GetLegionCap(hero)
 		local cap = 0;
-		if (HasArtefact(hero,ARTIFACT_LEGION_T1,0) ~= nil) then cap = 1 end;
-		if (HasArtefact(hero,ARTIFACT_LEGION_T2,0) ~= nil) then cap = 2 end;
-		if (HasArtefact(hero,ARTIFACT_LEGION_T3,0) ~= nil) then cap = 3 end;
-		if (HasArtefact(hero,ARTIFACT_LEGION_T4,0) ~= nil) then cap = 4 end;
-		if (HasArtefact(hero,ARTIFACT_LEGION_T5,0) ~= nil) then cap = 5 end;
-		if (HasArtefact(hero,ARTIFACT_LEGION_T6,0) ~= nil) then cap = 6 end;
-		if (HasArtefact(hero,ARTIFACT_LEGION_T7,0) ~= nil) then cap = 7 end;
+		if (HasArtefact(hero,ARTIFACT_LEGION_BASIC,0) ~= nil) then cap = 1 end;
+		if (HasArtefact(hero,ARTIFACT_LEGION_BASIC,0) ~= nil) then cap = 2 end;
+		if (HasArtefact(hero,ARTIFACT_LEGION_ADVANCED,0) ~= nil) then cap = 3 end;
+		if (HasArtefact(hero,ARTIFACT_LEGION_ADVANCED,0) ~= nil) then cap = 4 end;
+		if (HasArtefact(hero,ARTIFACT_LEGION_ADVANCED,0) ~= nil) then cap = 5 end;
+		if (HasArtefact(hero,ARTIFACT_LEGION_EXPERT,0) ~= nil) then cap = 6 end;
+		if (HasArtefact(hero,ARTIFACT_LEGION_EXPERT,0) ~= nil) then cap = 7 end;
 		return cap
 end;
 
@@ -8896,9 +8865,6 @@ function H55_ContinuesActivator()
 						end;
 					end;
 				end;
-				if (H55_ArtifactsIndexed ~= 1) and (H55_Workday == 2) then
-					H55_IndexArtifacts();
-				end;
 				if (IsPlayerCurrent(i)) and (H55_Workday == 2) then
 					H55_ResetWeeklyEvents(i);
 				end;
@@ -9035,15 +9001,21 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 
 	H55_TriggerToObjectType("CREATURE", OBJECT_TOUCH_TRIGGER, "TTH_TRIGGER_HERO_TOUCH_CREATURE", nil);
 
-	function TTH_UNITY_CONCAT(arr1,arr2)
-	  local retArr;
-	  local lenArr1 = length(arr1);
-	  local lenArr2 = length(arr2);
-	    for i = (lenArr1), (lenArr1 + lenArr2) do
-	        arr1[i] = arr2[i - lenArr1];
+	function TTH_UNITY_CONCAT(arr1, arr2)
+	  local retArr = {};
+	  if arr1 ~= nil and length(arr1) ~= 0 then
+		  local lenArr1 = length(arr1);
+		  for i = 0, lenArr1 - 1 do
+		  	retArr[i] = arr1[i];
+		  end
+		  if arr2 ~= nil and length(arr2) ~= 0 then
+			  local lenArr2 = length(arr2);
+		    for i = (lenArr1), (lenArr1 + lenArr2 - 1) do
+		      retArr[i] = arr2[i - lenArr1];
+		    end;
 	    end;
-	  retArr = arr1;
-	  return retArr
+	  end;
+		return retArr;
 	end;
 
 	TTH_NAMES_OBJECTS = {};
@@ -9385,46 +9357,38 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 		}
 		, ["RESOURCE"] = {
 			["ID"] = {
-				[0] = ARTIFACT_RES_WOOD
-				, [1] = ARTIFACT_RES_ORE
-				, [2] = ARTIFACT_RES_SULPHUR
-				, [3] = ARTIFACT_RES_CRYSTAL
-				, [4] = ARTIFACT_RES_GEM
-				, [5] = ARTIFACT_RES_MERCURY
-				, [6] = ARTIFACT_ENDLESS_SACK_OF_GOLD
+				[0] = ARTIFACT_RES_BASIC
+				, [1] = ARTIFACT_RES_ADVANCED
+				, [2] = ARTIFACT_ENDLESS_SACK_OF_GOLD
+				, [3] = ARTIFACT_ENDLESS_BAG_OF_GOLD
+				, [4] = ARTIFACT_BAND_OF_CONJURER				
 			}
 			, ["NAME"] = {
-				[0] = "/Text/Game/Artifacts/Res_Wood/Name.txt"
-				, [1] = "/Text/Game/Artifacts/Res_Ore/Name.txt"
-				, [2] = "/Text/Game/Artifacts/Res_Sulphur/Name.txt"
-				, [3] = "/Text/Game/Artifacts/Res_Crystal/Name.txt"
-				, [4] = "/Text/Game/Artifacts/Res_Gem/Name.txt"
-				, [5] = "/Text/Game/Artifacts/Res_Mercury/Name.txt"
-				, [6] = "/Text/Game/Artifacts/EndlessSackOfGold/Name.txt"
+				[0] = "/Text/Game/Artifacts/ResBasic/Name.txt"
+				, [1] = "/Text/Game/Artifacts/ResAdvanced/Name.txt"
+				, [2] = "/Text/Game/Artifacts/EndlessSackOfGold/Name.txt"
+				, [3] = "/Text/Game/Artifacts/EndlessBagOfGold/Name.txt"
+				, [4] = "/Text/Game/Artifacts/BandOfConjurer/Name.txt"
 			}
 			, ["COMBINE_ID"] = ARTIFACT_HORN_OF_PLENTY
 			, ["COMBINE_NAME"] = "/Text/Game/Artifacts/Horn_Of_Plenty/Name.txt"
 		}
 		, ["GRAAL"] = {
 			["ID"] = {
-				[0] = ARTIFACT_LEGION_T1
-				, [1] = ARTIFACT_LEGION_T2
-				, [2] = ARTIFACT_LEGION_T3
-				, [3] = ARTIFACT_LEGION_T4
-				, [4] = ARTIFACT_LEGION_T5
-				, [5] = ARTIFACT_LEGION_T6
-				, [6] = ARTIFACT_LEGION_T7
-				, [7] = ARTIFACT_ENDLESS_BAG_OF_GOLD
+				[0] = ARTIFACT_LEGION_BASIC
+				, [1] = ARTIFACT_LEGION_ADVANCED
+				, [2] = ARTIFACT_LEGION_EXPERT
+				, [3] = ARTIFACT_ENDLESS_SACK_OF_GOLD
+				, [4] = ARTIFACT_ENDLESS_BAG_OF_GOLD
+				, [5] = ARTIFACT_CROWN_OF_LEADER
 			}
 			, ["NAME"] = {
-				[0] = "/Text/Game/Artifacts/Legion_T1/Name.txt"
-				, [1] = "/Text/Game/Artifacts/Legion_T2/Name.txt"
-				, [2] = "/Text/Game/Artifacts/Legion_T3/Name.txt"
-				, [3] = "/Text/Game/Artifacts/Legion_T4/Name.txt"
-				, [4] = "/Text/Game/Artifacts/Legion_T5/Name.txt"
-				, [5] = "/Text/Game/Artifacts/Legion_T6/Name.txt"
-				, [6] = "/Text/Game/Artifacts/Legion_T7/Name.txt"
-				, [7] = "/Text/Game/Artifacts/Legion_T8/Name.txt"
+				[0] = "/Text/Game/Artifacts/LegionBasic/Name.txt"
+				, [1] = "/Text/Game/Artifacts/LegionAdvanced/Name.txt"
+				, [2] = "/Text/Game/Artifacts/LegionExpert/Name.txt"
+				, [3] = "/Text/Game/Artifacts/EndlessSackOfGold/Name.txt"
+				, [4] = "/Text/Game/Artifacts/EndlessBagOfGold/Name.txt"
+				, [5] = "/Text/Game/Artifacts/CrownOfLeader/Name.txt"
 			}
 			, ["COMBINE_ID"] = ARTIFACT_GRAAL
 			, ["COMBINE_NAME"] = "/Text/Game/Artifacts/Graal/Name.txt"
@@ -9927,28 +9891,28 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 -- by 牙姐 2018-9-12 17:52:38
 -- begin 开局选择宝物
 	TTH_ARTIFACT_STARTING = {
-		[0] = ARTIFACT_RES_WOOD
-		, [1] = ARTIFACT_RES_ORE
-		, [2] = ARTIFACT_RES_SULPHUR
-		, [3] = ARTIFACT_RES_CRYSTAL
-		, [4] = ARTIFACT_RES_GEM
-		, [5] = ARTIFACT_RES_MERCURY
-		, [6] = ARTIFACT_SWORD_OF_RUINS
-		, [7] = ARTIFACT_BREASTPLATE_OF_PETRIFIED_WOOD
-		, [8] = ARTIFACT_SKULL_HELMET
-		, [9] = ARTIFACT_WISPERING_RING
-		, [10] = ARTIFACT_BEGINNER_MAGIC_STICK
-		, [11] = ARTIFACT_EDGE_OF_BALANCE
-		, [12] = ARTIFACT_STEADFAST
-		, [13] = ARTIFACT_BUCKLER
-		, [14] = ARTIFACT_FOUR_LEAF_CLOVER
-		, [15] = ARTIFACT_GOLDEN_SEXTANT
-		, [16] = ARTIFACT_CROWN_OF_MANY_EYES
-		, [17] = ARTIFACT_RING_OF_LIGHTING_PROTECTION
-		, [18] = ARTIFACT_BOOTS_OF_INTERFERENCE
-		, [19] = ARTIFACT_RIGID_MANTLE
-		, [20] = ARTIFACT_BEARHIDE_WRAPS
-		, [21] = ARTIFACT_RING_OF_UNSUMMONING
+		[0] = ARTIFACT_RES_BASIC
+		, [1] = ARTIFACT_LEGION_BASIC
+		, [2] = ARTIFACT_ORDER_OF_CONSCRIPTION
+		, [3] = ARTIFACT_SWORD_OF_RUINS
+		, [4] = ARTIFACT_BREASTPLATE_OF_PETRIFIED_WOOD
+		, [5] = ARTIFACT_SKULL_HELMET
+		, [6] = ARTIFACT_WISPERING_RING
+		, [7] = ARTIFACT_BEGINNER_MAGIC_STICK
+		, [8] = ARTIFACT_EDGE_OF_BALANCE
+		, [9] = ARTIFACT_STEADFAST
+		, [10] = ARTIFACT_BUCKLER
+		, [11] = ARTIFACT_FOUR_LEAF_CLOVER
+		, [12] = ARTIFACT_GOLDEN_SEXTANT
+		, [13] = ARTIFACT_CROWN_OF_MANY_EYES
+		, [14] = ARTIFACT_RING_OF_LIGHTING_PROTECTION
+		, [15] = ARTIFACT_BOOTS_OF_INTERFERENCE
+		, [16] = ARTIFACT_RIGID_MANTLE
+		, [17] = ARTIFACT_BEARHIDE_WRAPS
+		, [18] = ARTIFACT_RING_OF_UNSUMMONING
+		, [19] = ARTIFACT_RES_ADVANCED
+		, [20] = ARTIFACT_LEGION_ADVANCED
+		, [21] = ARTIFACT_DRUM_OF_CHARGE
 		, [22] = ARTIFACT_TITANS_TRIDENT
 		, [23] = ARTIFACT_RING_OF_LIFE
 		, [24] = ARTIFACT_EVERCOLD_ICICLE
@@ -9960,22 +9924,18 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 		, [30] = ARTIFACT_REINCARNATION
 		, [31] = ARTIFACT_WEREWOLF_CLAW_NECKLACE
 		, [32] = ARTIFACT_CROWN_OF_LEADER
-		, [33] = ARTIFACT_LEGION_T1
-		, [34] = ARTIFACT_LEGION_T2
-		, [35] = ARTIFACT_LEGION_T3
-		, [36] = ARTIFACT_LEGION_T4
-		, [37] = ARTIFACT_NECKLACE_OF_BRAVERY
-		, [38] = ARTIFACT_LION_HIDE_CAPE
-		, [39] = ARTIFACT_HELM_OF_ENLIGHTMENT
-		, [40] = ARTIFACT_CHAIN_MAIL_OF_ENLIGHTMENT
-		, [41] = ARTIFACT_RING_OF_DEATH
-		, [42] = ARTIFACT_RUNIC_WAR_AXE
-		, [43] = ARTIFACT_RUNIC_WAR_HARNESS
-		, [44] = ARTIFACT_TREEBORN_QUIVER
-		, [45] = ARTIFACT_MONK_01
-		, [46] = ARTIFACT_MONK_02
-		, [47] = ARTIFACT_MONK_03
-		, [48] = ARTIFACT_MONK_04
+		, [33] = ARTIFACT_NECKLACE_OF_BRAVERY
+		, [34] = ARTIFACT_LION_HIDE_CAPE
+		, [35] = ARTIFACT_HELM_OF_ENLIGHTMENT
+		, [36] = ARTIFACT_CHAIN_MAIL_OF_ENLIGHTMENT
+		, [37] = ARTIFACT_RING_OF_DEATH
+		, [38] = ARTIFACT_RUNIC_WAR_AXE
+		, [39] = ARTIFACT_RUNIC_WAR_HARNESS
+		, [40] = ARTIFACT_TREEBORN_QUIVER
+		, [41] = ARTIFACT_MONK_01
+		, [42] = ARTIFACT_MONK_02
+		, [43] = ARTIFACT_MONK_03
+		, [44] = ARTIFACT_MONK_04
 	};
 	function TTH_Starting_ChooseArtifact(iPlayer)
 		if H55_ChooseArtifact_Switch == 1 and  contains(TTH_ARTIFACT_STARTING, H55_ChooseArtifact_ID) ~= nil then

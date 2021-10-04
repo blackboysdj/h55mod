@@ -44,77 +44,34 @@ h55_Oasises = GetObjectNamesByType("BUILDING_OASIS");
 h55_Oasises_Qty = length(h55_Oasises);
 
 --Mentors
-
 H55_MentorBoostVisitors = {};
 
---Witch Huts
-
+-- 女巫小屋
 H55_WitchHuts = GetObjectNamesByType("BUILDING_WITCH_HUT");
 H55_WitchHutsQty = length(H55_WitchHuts);
 H55_WHChoice1 = {};
 H55_WHChoice2 = {};
 H55_WHVisited = {};
-
---Sphinx
-
+-- Sphinx
 H55_Sphinxs = GetObjectNamesByType("BUILDING_SPHINX");
 H55_SphinxsQty = length(H55_Sphinxs);
 H55_SphinxVisited = {};
 H55_SphinxExp = {};
-
---Magma Shrines
-
---H55_Magmas = GetObjectNamesByType("BUILDING_MAGMA_SHRINE");
---H55_MagmasQty = length(H55_Magmas);
---H55_MagmaVisited = {};
-
---Obelisks
-
-H55_Obelisks = GetObjectNamesByType("BUILDING_LAKE_OF_SCARLET_SWAN");
-H55_ObelisksQty = length(H55_Obelisks);
-H55_ObeliskArmies = {};
-H55_ObeliskVisited = {};
-H55_ObeliskTotalVisited = {};
-H55_ObeliskChallengeAccepted = {};
-H55_ObeliskGraalFound = {};
-
---Shantiri Disks
-
-H55_Shantiris = GetObjectNamesByType("BUILDING_EYE_OF_MAGI");
-H55_MagiHuts = GetObjectNamesByType("BUILDING_HUT_OF_MAGI");
-H55_ShantirisQty = length(H55_Shantiris);
-H55_ShantiriArmies = {};
-H55_ShantiriVisited = {};
-H55_ShantiriTotalVisited = {};
-H55_ShantiriChallengeAccepted = {};
-H55_ShantiriGraalFound = {};
-
---Seer huts
-
+-- 先知小屋
 H55_Mermaids = GetObjectNamesByType("BUILDING_MERMAIDS");
 H55_MermaidsQty = length(H55_Mermaids);
 H55_MermaidChoices = {};
-
---Summoning temples
-
+-- 莎拉萨神殿
 H55_SummonTemples = GetObjectNamesByType("BUILDING_SIRENS");
 H55_SummonTemplesQty = length(H55_SummonTemples);
 H55_SummonTempleChoices = {};
-
---Junk
-
+-- 手推车
 H55_Wagons = GetObjectNamesByType("BUILDING_WAGON");
 H55_WagonsQty = length(H55_Wagons);
-H55_WagonVisited = {};
-H55_WagonChoices = {};
-
+-- 坟墓
 H55_Skeletons = GetObjectNamesByType("BUILDING_SKELETON");
 H55_SkeletonsQty = length(H55_Skeletons);
-H55_SkeletonVisited = {};
-H55_SkeletonChoices = {};
-
---Banks
-
+-- 银行
 H55_BankLastVisit = {};
 H55_BankPlayerLastVisit = {{},{},{},{},{},{},{},{}};
 H55_BankCurrentPlayerVisit = {};
@@ -168,9 +125,7 @@ H55_DemonTowerArmies = {};
 H55_ForestTowers = GetObjectNamesByType("BUILDING_LEAN_TO");
 H55_ForestTowersQty = length(H55_ForestTowers);
 H55_ForestTowerArmies = {};
-
---Mines
-
+-- 废弃矿井
 H55_AbandonedMines = GetObjectNamesByType("BUILDING_ABANDONED_MINE");
 H55_AbandonedMinesQty = length(H55_AbandonedMines);
 H55_AbandonedMineArmies = {};
@@ -341,179 +296,6 @@ function H55_PrepareAdvMap()
 		end;
 	end;
 
-	--AI Compensation
-
-	-- for i=1,8 do
-	-- 	if (GetPlayerState(i) == 1) and (H55_IsThisAIPlayer(i) == 1) then
-	-- 		local heroes = GetPlayerHeroes(i);
-	-- 		for i,hero in heroes do
-	-- 			--by sdj
-	-- 			if H55_GetHeroClass(hero) == "Knight" then
-	-- 				GiveHeroSkill(hero,4);
-	-- 				GiveHeroSkill(hero,195);
-	-- 			end;
-	-- 			if H55_GetHeroClass(hero) == "Paladin" then
-	-- 				GiveHeroSkill(hero,4);
-	-- 				GiveHeroSkill(hero,195);
-	-- 			end;
-	-- 			if H55_GetHeroClass(hero) == "Heretic" then
-	-- 				GiveHeroSkill(hero,8);
-	-- 				GiveHeroSkill(hero,199);
-	-- 			end;
-
-	-- 			if H55_GetHeroClass(hero) == "Ranger" then
-	-- 				GiveHeroSkill(hero,5);
-	-- 				GiveHeroSkill(hero,191);
-	-- 			end;
-	-- 			if H55_GetHeroClass(hero) == "Warden" then
-	-- 				GiveHeroSkill(hero,5);
-	-- 				GiveHeroSkill(hero,195);
-	-- 			end;
-	-- 			if H55_GetHeroClass(hero) == "Druid" then
-	-- 				GiveHeroSkill(hero,8);
-	-- 				GiveHeroSkill(hero,203);
-	-- 			end;
-
-	-- 			if H55_GetHeroClass(hero) == "Seer" then
-	-- 				GiveHeroSkill(hero,4);
-	-- 				GiveHeroSkill(hero,191);
-	-- 			end;
-	-- 			if H55_GetHeroClass(hero) == "Wizard" then
-	-- 				GiveHeroSkill(hero,8);
-	-- 				GiveHeroSkill(hero,3);
-	-- 			end;
-	-- 			if H55_GetHeroClass(hero) == "Elementalist" then
-	-- 				GiveHeroSkill(hero,8);
-	-- 				GiveHeroSkill(hero,18);
-	-- 			end;
-
-	-- 			if H55_GetHeroClass(hero) == "Demonlord" then
-	-- 				GiveHeroSkill(hero,4);
-	-- 				GiveHeroSkill(hero,199);
-	-- 			end;
-	-- 			if H55_GetHeroClass(hero) == "Gatekeeper" then
-	-- 				GiveHeroSkill(hero,5);
-	-- 				GiveHeroSkill(hero,203);
-	-- 			end;
-	-- 			if H55_GetHeroClass(hero) == "Sorcerer" then
-	-- 				GiveHeroSkill(hero,8);
-	-- 				GiveHeroSkill(hero,18);
-	-- 			end;
-
-	-- 			if H55_GetHeroClass(hero) == "Deathknight" then
-	-- 				GiveHeroSkill(hero,4);
-	-- 				GiveHeroSkill(hero,199);
-	-- 			end;
-	-- 			if H55_GetHeroClass(hero) == "Reaver" then
-	-- 				GiveHeroSkill(hero,1);
-	-- 				GiveHeroSkill(hero,203);
-	-- 			end;
-	-- 			if H55_GetHeroClass(hero) == "Necromancer" then
-	-- 				GiveHeroSkill(hero,8);
-	-- 				GiveHeroSkill(hero,3);
-	-- 			end;
-
-	-- 			if H55_GetHeroClass(hero) == "Engineer" then
-	-- 				GiveHeroSkill(hero,4);
-	-- 				GiveHeroSkill(hero,191);
-	-- 			end;
-	-- 			if H55_GetHeroClass(hero) == "Runemage" then
-	-- 				GiveHeroSkill(hero,8);
-	-- 				GiveHeroSkill(hero,3);
-	-- 			end;
-	-- 			if H55_GetHeroClass(hero) == "Flamekeeper" then
-	-- 				GiveHeroSkill(hero,2);
-	-- 				GiveHeroSkill(hero,203);
-	-- 			end;
-
-	-- 			if H55_GetHeroClass(hero) == "Overlord" then
-	-- 				GiveHeroSkill(hero,6);
-	-- 				GiveHeroSkill(hero,191);
-	-- 			end;
-	-- 			if H55_GetHeroClass(hero) == "Assassin" then
-	-- 				GiveHeroSkill(hero,6);
-	-- 				GiveHeroSkill(hero,199);
-	-- 			end;
-	-- 			if H55_GetHeroClass(hero) == "Warlock" then
-	-- 				GiveHeroSkill(hero,8);
-	-- 				GiveHeroSkill(hero,3);
-	-- 			end;
-
-	-- 			if H55_GetHeroClass(hero) == "Barbarian" then
-	-- 				GiveHeroSkill(hero,6);
-	-- 				GiveHeroSkill(hero,195);
-	-- 			end;
-	-- 			if H55_GetHeroClass(hero) == "Shaman" then
-	-- 				GiveHeroSkill(hero,8);
-	-- 				GiveHeroSkill(hero,3);
-	-- 			end;
-	-- 			if H55_GetHeroClass(hero) == "Witch" then
-	-- 				GiveHeroSkill(hero,8);
-	-- 				GiveHeroSkill(hero,18);
-	-- 			end;
-	-- 			--end
-	-- 		end;
-	-- 	end;
-	-- end;
-
-	--Start Armies
-
-	-- for i=1,8 do
-	-- 	if (GetPlayerState(i) == 1) then
-	-- 		local heroes = GetPlayerHeroes(i);
-	-- 		--by sdj
-	-- 		--heaven
-	-- 		if contains(heroes,"Nathaniel") ~= nil then
-	-- 			AddHeroCreatures("Nathaniel",1,32);
-	-- 		end;
-	-- 		if contains(heroes,"Mardigo") ~= nil then
-	-- 			AddHeroCreatures("Mardigo",5,6);
-	-- 		end;
-	-- 		if contains(heroes,"Orrin") ~= nil then
-	-- 			AddHeroCreatures("Orrin",3,9);
-	-- 		end;
-	-- 		--necropolis
-	-- 		if contains(heroes,"Straker") ~= nil then
-	-- 			AddHeroCreatures("Straker",31,11);
-	-- 		end;
-	-- 		if contains(heroes,"Thant") ~= nil then
-	-- 			AddHeroCreatures("Thant",116,1);
-	-- 		end;
-	-- 		if contains(heroes,"Archilus") ~= nil then
-	-- 			AddHeroCreatures("Archilus",90,1);
-	-- 		end;
-	-- 		--fortress
-	-- 		if contains(heroes,"Ingvar") ~= nil then
-	-- 			AddHeroCreatures("Ingvar",92,21);
-	-- 		end;
-	-- 		if contains(heroes,"Skeggy") ~= nil then
-	-- 			AddHeroCreatures("Skeggy",94,11);
-	-- 		end;
-	-- 		if contains(heroes,"Bersy") ~= nil then
-	-- 			AddHeroCreatures("Bersy",96,5);
-	-- 		end;
-	-- 		--stronghold
-	-- 		if contains(heroes,"Hero9") ~= nil then
-	-- 			AddHeroCreatures("Hero9",117,25);
-	-- 		end;
-	-- 		if contains(heroes,"Hero7") ~= nil then
-	-- 			AddHeroCreatures("Hero7",119,14);
-	-- 		end;
-	-- 		if contains(heroes,"Hero8") ~= nil then
-	-- 			AddHeroCreatures("Hero8",121,11);
-	-- 		end;
-	-- 		if contains(heroes,"Azar") ~= nil then
-	-- 			AddHeroCreatures("Azar",113,5);
-	-- 		end;
-	-- 		if contains(heroes,"Hero4") ~= nil then
-	-- 			AddHeroCreatures("Hero4",125,1);
-	-- 		end;
-	-- 		if contains(heroes,"Hero6") ~= nil then
-	-- 			AddHeroCreatures("Hero6",127,1);
-	-- 		end;
-	-- 	end;
-	-- end;
-
 	--Artifact Merchants
 
 	for i, academy in (GetObjectNamesByType("TOWN_ACADEMY")) do
@@ -557,39 +339,11 @@ function H55_PrepareAdvMap()
 			Trigger(OBJECT_TOUCH_TRIGGER,sphinx,"H55_SphinxVisit");
 		end;
 	end;
-	-- if H55_MagmasQty ~= 0 then
-		-- for i, magma in H55_Magmas do
-			-- SetObjectEnabled(magma,nil);
-			-- H55_MagmaVisited[magma] = {};
-			-- Trigger(OBJECT_TOUCH_TRIGGER,magma,"H55_MagmaVisit");
-		-- end;
-	-- end;
-	if H55_ObelisksQty > 0 then
-		for i,Obelisk in H55_Obelisks do
-			H55_ObeliskArmies[Obelisk] = {};
-			for i = 1,14 do
-				H55_ObeliskArmies[Obelisk][i] = random(3)+1;
-			end;
-			for i = 15,20 do
-				H55_ObeliskArmies[Obelisk][i] = random(2)+1+(i-15);
-			end;
-			for i = 21,26 do
-				H55_ObeliskArmies[Obelisk][i] = random(2)+1+(i-21);
-			end;
-			H55_ObeliskArmies[Obelisk][27] = random(7)+1;
-			H55_ObeliskArmies[Obelisk][28] = random(8)+1;
-			H55_ObeliskArmies[Obelisk][29] = random(9)+1;
-			H55_ObeliskArmies[Obelisk][30] = random(8)+1;
-			SetObjectEnabled(Obelisk,nil);
-			H55_ObeliskVisited[Obelisk] = {};
-			Trigger(OBJECT_TOUCH_TRIGGER,Obelisk,"H55_ObeliskVisit");
-		end;
-	end;
 
 	-- by 牙姐 2021-03-07 05:36:50
 	-- begin 杉提瑞 访问
-		if length(TTH_Arr_Shantiri) > 0 then
-			for iIndexShantiri, objItemShantiri in TTH_Arr_Shantiri do
+		if length(TTH_Arr_Long_Shantiri) > 0 then
+			for iIndexShantiri, objItemShantiri in TTH_Arr_Long_Shantiri do
 				SetObjectEnabled(objItemShantiri, nil);
 				Trigger(OBJECT_TOUCH_TRIGGER, objItemShantiri, "TTH_Trigger_VisitShantiri");
 			end;
@@ -637,35 +391,21 @@ function H55_PrepareAdvMap()
 	end;
 	--end
 
-	--Junk
-
+	--手推车
 	if H55_WagonsQty ~= 0 then
 		for i, wagon in H55_Wagons do
-			H55_WagonChoices[wagon] = {};
-			H55_WagonChoices[wagon][1] = random(6)+3;
-			H55_WagonChoices[wagon][2] = random(12)+1;
-			H55_WagonChoices[wagon][3] = random(length(H55_MinorArtifacts))+1;
-			H55_WagonChoices[wagon][4] = random(7);
-			H55_WagonChoices[wagon][5] = random(4)+2;
 			SetObjectEnabled(wagon,nil);
 			Trigger(OBJECT_TOUCH_TRIGGER,wagon,"H55_WagonVisit");
 		end;
 	end;
+	--坟墓
 	if H55_SkeletonsQty ~= 0 then
 		for i, skeleton in H55_Skeletons do
-			H55_SkeletonChoices[skeleton] = {};
-			H55_SkeletonChoices[skeleton][1] = random(3)+1;
-			H55_SkeletonChoices[skeleton][2] = random(12)+1;
-			H55_SkeletonChoices[skeleton][3] = random(length(H55_MinorArtifacts))+1;
-			H55_SkeletonChoices[skeleton][4] = random(3);
-			H55_SkeletonChoices[skeleton][5] = random(4)+2;
 			SetObjectEnabled(skeleton,nil);
 			Trigger(OBJECT_TOUCH_TRIGGER,skeleton,"H55_SkeletonVisit");
 		end;
 	end;
-
-	--Banks
-
+	--银行
 	if H55_CryptsQty ~= 0 then
 		for i,crypt in H55_Crypts do
 			SetObjectEnabled(crypt,nil);
@@ -773,90 +513,55 @@ function H55_PrepareAdvMap()
 	H55_TriggerToObjectType("BUILDING_SACRIFICIAL_ALTAR",OBJECT_TOUCH_TRIGGER,"H55_SacrificialAltarVisit",nil);
 
 	--Suppliers
-
-	if H55_MysticalGardens ~= nil then
-		for i,garden in H55_MysticalGardens do
-			-- for j,town in alltowns do
-				-- if H55_GetDistance(garden, town) <= 75 then
-					-- H55_Insert(H55_MysticalGardenClaims[garden],town);
-				-- end;
-			-- end;
-			H55_WeeklyMysticalGardenRes[garden] = random(2);
-			H55_MysticalGardensOwned[garden] = 0;
-			Trigger(OBJECT_TOUCH_TRIGGER,garden,"H55_MysticalGardenVisit");
-			SetObjectEnabled(garden,nil);
+		if H55_MysticalGardens ~= nil then
+			for i,garden in H55_MysticalGardens do
+				H55_WeeklyMysticalGardenRes[garden] = random(2);
+				H55_MysticalGardensOwned[garden] = 0;
+				Trigger(OBJECT_TOUCH_TRIGGER,garden,"H55_MysticalGardenVisit");
+				SetObjectEnabled(garden,nil);
+			end;
 		end;
-	end;
 
-	if H55_SiegeWorkshops ~= nil then
-		for i,workshop in H55_SiegeWorkshops do
-			-- for j,town in alltowns do
-				-- if H55_GetDistance(workshop, town) <= 75 then
-					-- H55_Insert(H55_SiegeWorkshopClaims[workshop],town);
-				-- end;
-			-- end;
-			H55_WeeklySiegeWorkshopResQty[workshop] = 3+random(5);
-			H55_SiegeWorkshopsOwned[workshop] = 0;
-			Trigger(OBJECT_TOUCH_TRIGGER,workshop,"H55_SiegeWorkshopVisit");
-			SetObjectEnabled(workshop,nil);
+		if H55_SiegeWorkshops ~= nil then
+			for i,workshop in H55_SiegeWorkshops do
+				H55_WeeklySiegeWorkshopResQty[workshop] = 3+random(5);
+				H55_SiegeWorkshopsOwned[workshop] = 0;
+				Trigger(OBJECT_TOUCH_TRIGGER,workshop,"H55_SiegeWorkshopVisit");
+				SetObjectEnabled(workshop,nil);
+			end;
 		end;
-	end;
 
-	if H55_Windmills ~= nil then
-		for i,mill in H55_Windmills do
-			-- for j,town in alltowns do
-				-- if H55_GetDistance(mill, town) <= 75 then
-					-- H55_Insert(H55_WindmillClaims[mill],town);
-				-- end;
-			-- end;
-			H55_WeeklyWindmillRes[mill] = 1+random(5);
-			H55_WeeklyWindmillResQty[mill] = 3+random(5);
-			H55_WindmillsOwned[mill] = 0;
-			Trigger(OBJECT_TOUCH_TRIGGER,mill,"H55_WindmillVisit");
-			SetObjectEnabled(mill,nil);
+		if H55_Windmills ~= nil then
+			for i,mill in H55_Windmills do
+				H55_WeeklyWindmillRes[mill] = 1+random(5);
+				H55_WeeklyWindmillResQty[mill] = 3+random(5);
+				H55_WindmillsOwned[mill] = 0;
+				Trigger(OBJECT_TOUCH_TRIGGER,mill,"H55_WindmillVisit");
+				SetObjectEnabled(mill,nil);
+			end;
 		end;
-	end;
 
-	if H55_Waterwheels ~= nil then
-		for i,wheel in H55_Waterwheels do
-			-- for j,town in alltowns do
-				-- if H55_GetDistance(wheel, town) <= 75 then
-					-- H55_Insert(H55_WaterwheelClaims[wheel],town);
-				-- end;
-			-- end;
-			H55_WaterwheelsOwned[wheel] = 0;
-			Trigger(OBJECT_TOUCH_TRIGGER,wheel,"H55_WaterwheelVisit");
-			SetObjectEnabled(wheel,nil);
+		if H55_Waterwheels ~= nil then
+			for i,wheel in H55_Waterwheels do
+				H55_WaterwheelsOwned[wheel] = 0;
+				Trigger(OBJECT_TOUCH_TRIGGER,wheel,"H55_WaterwheelVisit");
+				SetObjectEnabled(wheel,nil);
+			end;
 		end;
-	end;
 
 	--Dwelling Conversion
-
-	-- if H55_AreaOfControl == 1 then
-		-- local dwellings = H55_GetAllDwellings()
-		-- if dwellings ~= nil then
-			-- for i,dwelling in dwellings do
-				-- for i,town in alltowns do
-					-- if H55_GetDistance(dwelling, town) <= 75 then
-						-- H55_Insert(H55_DwellingClaims[dwelling],town);
-					-- end;
-				-- end;
-			-- end;
-		-- end;
-	-- end;
-
-	for i=1,8 do
-		H55_TriggerToObjectType(H55_T1DwellingTypes[i],OBJECT_TOUCH_TRIGGER,"H55_T1DwellingVisit",nil);
-	end;
-	for i=1,8 do
-		H55_TriggerToObjectType(H55_T2DwellingTypes[i],OBJECT_TOUCH_TRIGGER,"H55_T2DwellingVisit",nil);
-	end;
-	for i=1,8 do
-		H55_TriggerToObjectType(H55_T3DwellingTypes[i],OBJECT_TOUCH_TRIGGER,"H55_T3DwellingVisit",nil);
-	end;
-	for i=1,8 do
-		H55_TriggerToObjectType(H55_T4DwellingTypes[i],OBJECT_TOUCH_TRIGGER,"H55_T4DwellingVisit",nil);
-	end;
+		for i=1,8 do
+			H55_TriggerToObjectType(H55_T1DwellingTypes[i],OBJECT_TOUCH_TRIGGER,"H55_T1DwellingVisit",nil);
+		end;
+		for i=1,8 do
+			H55_TriggerToObjectType(H55_T2DwellingTypes[i],OBJECT_TOUCH_TRIGGER,"H55_T2DwellingVisit",nil);
+		end;
+		for i=1,8 do
+			H55_TriggerToObjectType(H55_T3DwellingTypes[i],OBJECT_TOUCH_TRIGGER,"H55_T3DwellingVisit",nil);
+		end;
+		for i=1,8 do
+			H55_TriggerToObjectType(H55_T4DwellingTypes[i],OBJECT_TOUCH_TRIGGER,"H55_T4DwellingVisit",nil);
+		end;
 
 	print("H55 Adventure Objects ready");
 
@@ -1013,8 +718,6 @@ function H55_T4DwellingVisit(hero,dwelling)
 		H55_T4DwellingVisitNoAction(hero,dwelling);
 	end;
 end;
-
---and HasArtefact(hero,103,0)
 
 function H55_T1DwellingVisitConvert(hero,dwelling)
 	local player = GetObjectOwner(hero);
@@ -1583,836 +1286,6 @@ end;
 	-- Trigger(OBJECT_TOUCH_TRIGGER,building,"H55_MagmaVisit");
 	-- SetObjectEnabled(building,nil);
 -- end;
-
-------------------------------------------------------------------------------------------------------------------------------------------
---OBELISK
-------------------------------------------------------------------------------------------------------------------------------------------
-
-function H55_ObeliskVisit(hero,obelisk)
-	H55_GrailTouch(hero, obelisk);
-	local player = GetObjectOwner(hero);
-	if H55_PuzzleQuest == 0 then
-		if H55_IsThisAIPlayer(player) == 1 then
-			H55_ObeliskVisitAI(hero,obelisk);
-		elseif H55_ObelisksQty == 1 then
-			if H55_ObeliskVisited[obelisk][player] == nil then
-				H55_ObeliskVisited[obelisk][player] = 1;
-				MarkObjectAsVisited(obelisk,hero);
-				QuestionBoxForPlayers(GetPlayerFilter(player),{"/Text/Game/Scripts/Obelisk/ObeliskOnlyOne.txt"},
-				"H55_OneObeliskChallenge('"..hero.."','"..obelisk.."')","H55_ObeliskRefuse('"..hero.."','"..obelisk.."')");
-			elseif H55_ObeliskVisited[obelisk][player] == 1 and H55_ObeliskChallengeAccepted[player] ~= 1 then
-				QuestionBoxForPlayers(GetPlayerFilter(player),{"/Text/Game/Scripts/Obelisk/ObeliskOnlyOne.txt"},
-				"H55_OneObeliskChallenge('"..hero.."','"..obelisk.."')","H55_ObeliskRefuse('"..hero.."','"..obelisk.."')");
-			elseif H55_ObeliskVisited[obelisk][player] == 1 and H55_ObeliskChallengeAccepted[player] == 1  and H55_ObeliskGraalFound[player] == 1 then
-					ShowFlyingSign("/Text/Game/Scripts/Obelisk/ObeliskQuestComplete.txt",hero,player,5);
-			else
-				ShowFlyingSign({"/Text/Game/Scripts/Obelisk/ObeliskCryptFail.txt"},hero,player,5);
-			end;
-		elseif H55_ObelisksQty >= 2 then
-			if H55_ObeliskTotalVisited[player] == nil then
-				H55_ObeliskVisited[obelisk][player] = 1;
-				H55_ObeliskTotalVisited[player] = 1;
-				ShowFlyingSign({"/Text/Game/Scripts/Obelisk/ObeliskVisit.txt";amount=H55_ObeliskTotalVisited[player],total=H55_ObelisksQty},hero,player,5);
-				MarkObjectAsVisited(obelisk,hero);
-			elseif H55_ObeliskVisited[obelisk][player] == nil then
-				H55_ObeliskVisited[obelisk][player] = 1;
-				H55_ObeliskTotalVisited[player] = H55_ObeliskTotalVisited[player]+1;
-				MarkObjectAsVisited(obelisk,hero);
-				if H55_ObeliskTotalVisited[player] == H55_ObelisksQty 	then
-					QuestionBoxForPlayers(GetPlayerFilter(player),{"/Text/Game/Scripts/Obelisk/ObeliskQuestion.txt"},
-					"H55_ObeliskChallenge('"..hero.."','"..obelisk.."')","H55_ObeliskRefuse('"..hero.."','"..obelisk.."')");
-				else
-					ShowFlyingSign({"/Text/Game/Scripts/Obelisk/ObeliskVisit.txt";amount=H55_ObeliskTotalVisited[player],total=H55_ObelisksQty},hero,player,5);
-				end;
-			elseif H55_ObeliskTotalVisited[player] == H55_ObelisksQty and H55_ObeliskChallengeAccepted[player] ~= 1 then
-					QuestionBoxForPlayers(GetPlayerFilter(player),{"/Text/Game/Scripts/Obelisk/ObeliskQuestion.txt"},
-					"H55_ObeliskChallenge('"..hero.."','"..obelisk.."')","H55_ObeliskRefuse('"..hero.."','"..obelisk.."')");
-			elseif H55_ObeliskTotalVisited[player] == H55_ObelisksQty and H55_ObeliskChallengeAccepted[player] == 1 and H55_ObeliskGraalFound[player] == 1 then
-					ShowFlyingSign("/Text/Game/Scripts/Obelisk/ObeliskQuestComplete.txt",hero,player,5);
-			elseif H55_ObeliskTotalVisited[player] == H55_ObelisksQty and H55_ObeliskChallengeAccepted[player] == 1 and H55_ObeliskGraalFound[player] ~= 1 then
-				ShowFlyingSign({"/Text/Game/Scripts/Obelisk/ObeliskFail.txt"},hero,player,5);
-			else
-				ShowFlyingSign({"/Text/Game/Scripts/Obelisk/ObeliskAlready.txt";amount=H55_ObeliskTotalVisited[player],total=H55_ObelisksQty},hero,player,5);
-			end;
-		end;
-	elseif H55_IsThisAIPlayer(player) == 1 then
-		H55_ObeliskVisitAI(hero,obelisk);
-
-	--User Made Puzzle Quest
-	elseif H55_ObeliskVisited[obelisk][player] == nil then
-		H55_ObeliskVisited[obelisk][player] = 1;
-		OpenPuzzleMap(player,1);
-		MarkObjectAsVisited(obelisk,hero);
-	else
-		ShowFlyingSign({"/Text/Game/Scripts/Obelisk/ObeliskAlready.txt";amount=H55_ObeliskTotalVisited[player],total=H55_ObelisksQty},hero,player,5);
-	end;
-end;
-
-function H55_ObeliskRefuse(hero)
-	print("Challenge refused by player");
-end;
-
-function H55_ObeliskVisitAI(hero,obelisk)
-	Trigger(OBJECT_TOUCH_TRIGGER,obelisk,nil);
-	SetObjectEnabled(obelisk,not nil);
-	MakeHeroInteractWithObject(hero,obelisk);
-	Trigger(OBJECT_TOUCH_TRIGGER,obelisk,"H55_ObeliskVisit");
-	SetObjectEnabled(obelisk,nil);
-end;
-
-function H55_ObeliskChallenge(hero,obelisk)
-	local player = GetObjectOwner(hero);
-	H55_ObeliskChallengeAccepted[player] = 1;
-	local alignment = H55_ObeliskArmies[obelisk][30];
-	local faction1 = 1;
-	local faction2 = 1;
-	if alignment == 1  then faction1 = 3 faction2 = 8 end;
-	if alignment == 2  then faction1 = 4 faction2 = 6 end;
-	if alignment == 3  then faction1 = 3 faction2 = 4 end;
-	if alignment == 4  then faction1 = 8 faction2 = 6 end;
-	if alignment == 5  then faction1 = 8 faction2 = 3 end;
-	if alignment == 6  then faction1 = 6 faction2 = 4 end;
-	if alignment == 7  then faction1 = 4 faction2 = 3 end;
-	if alignment == 8  then faction1 = 6 faction2 = 8 end;
-
-	local rnd01 = H55_ObeliskArmies[obelisk][1]   local rnd02 = H55_ObeliskArmies[obelisk][2]  local rnd03 = H55_ObeliskArmies[obelisk][3];
-	local rnd04 = H55_ObeliskArmies[obelisk][4]   local rnd05 = H55_ObeliskArmies[obelisk][5]  local rnd06 = H55_ObeliskArmies[obelisk][6];
-	local rnd07 = H55_ObeliskArmies[obelisk][7]   local rnd08 = H55_ObeliskArmies[obelisk][8]  local rnd09 = H55_ObeliskArmies[obelisk][9];
-	local rnd10 = H55_ObeliskArmies[obelisk][10]  local rnd11 = H55_ObeliskArmies[obelisk][11] local rnd12 = H55_ObeliskArmies[obelisk][12];
-	local rnd13 = H55_ObeliskArmies[obelisk][13]  local rnd14 = H55_ObeliskArmies[obelisk][14];
-
-	local rnd12a = H55_ObeliskArmies[obelisk][15] local rnd23a = H55_ObeliskArmies[obelisk][16] local rnd34a = H55_ObeliskArmies[obelisk][17];
-	local rnd45a = H55_ObeliskArmies[obelisk][18] local rnd56a = H55_ObeliskArmies[obelisk][19] local rnd67a = H55_ObeliskArmies[obelisk][20];
-
-	local rnd12b = H55_ObeliskArmies[obelisk][21] local rnd23b = H55_ObeliskArmies[obelisk][22] local rnd34b = H55_ObeliskArmies[obelisk][23];
-	local rnd45b = H55_ObeliskArmies[obelisk][24] local rnd56b = H55_ObeliskArmies[obelisk][25] local rnd67b = H55_ObeliskArmies[obelisk][26];
-
-	local combat01 = H55_ObeliskArmies[obelisk][27] local combat02 = H55_ObeliskArmies[obelisk][28] local combat03 = H55_ObeliskArmies[obelisk][29];
-
-	local t01a = H55_Creatures[faction1][1][rnd01];
-	local t02a = H55_Creatures[faction2][2][rnd02];
-	local t03a = H55_Creatures[faction1][3][rnd03];
-	local t04a = H55_Creatures[faction2][4][rnd04];
-	local t05a = H55_Creatures[faction1][5][rnd05];
-	local t06a = H55_Creatures[faction2][6][rnd06];
-	local t07a = H55_Creatures[faction1][7][rnd07];
-
-	local t01b = H55_Creatures[faction2][1][rnd08];
-	local t02b = H55_Creatures[faction1][2][rnd09];
-	local t03b = H55_Creatures[faction2][3][rnd10];
-	local t04b = H55_Creatures[faction1][4][rnd11];
-	local t05b = H55_Creatures[faction2][5][rnd12];
-	local t06b = H55_Creatures[faction1][6][rnd13];
-	local t07b = H55_Creatures[faction2][7][rnd14];
-
-	local t12a = H55_Creatures[faction1][rnd12a][rnd08];
-	local t12b = H55_Creatures[faction2][rnd12b][rnd07];
-	local t23a = H55_Creatures[faction1][rnd23a][rnd06];
-	local t23b = H55_Creatures[faction2][rnd23b][rnd05];
-
-	local t34a = H55_Creatures[faction2][rnd34a][rnd12];
-	local t34b = H55_Creatures[faction1][rnd34b][rnd11];
-	local t45a = H55_Creatures[faction2][rnd45a][rnd10];
-	local t45b = H55_Creatures[faction1][rnd45b][rnd09];
-
-	local t56a = H55_Creatures[faction2][rnd56a][rnd04];
-	local t56b = H55_Creatures[faction1][rnd56b][rnd03];
-	local t67a = H55_Creatures[faction1][rnd67a][rnd02];
-	local t67b = H55_Creatures[faction2][rnd67b][rnd01];
-
-	local multiplier = H55_GetBankDifMultiplier()
-	local boss = 1.3;
-
-	local cnt01 = boss*(random(8)+ H55_Round((multiplier*H55_CreaturesGrowth[faction1][1])));
-	local cnt02 = boss*(random(7)+ H55_Round((multiplier*H55_CreaturesGrowth[faction1][2])));
-	local cnt03 = boss*(random(6)+ H55_Round((multiplier*H55_CreaturesGrowth[faction1][3])));
-	local cnt04 = boss*(random(5)+ H55_Round((multiplier*H55_CreaturesGrowth[faction1][4])));
-	local cnt05 = boss*(random(4)+ H55_Round((multiplier*H55_CreaturesGrowth[faction1][5])));
-	local cnt06 = boss*(random(3)+ H55_Round((multiplier*H55_CreaturesGrowth[faction1][6])));
-	local cnt07 = boss*(random(2)+ H55_Round((multiplier*H55_CreaturesGrowth[faction1][7])));
-	local cntcr = boss*(5*(random(8)+ H55_Round((multiplier*H55_CreaturesGrowth[faction1][1]))));
-
-	if H55_Day <= 112 then
-		if combat03 == 1 or combat03 == 2 or combat03 == 3 then
-			StartCombat(hero,nil,6,t12a,cnt01,t23a,cnt02,t34a,cnt03,t34b,cnt04,t45a,cnt04,t56a,cnt05,nil,"H55_ObeliskWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Void.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-		if combat03 == 4 or combat03 == 5 or combat03 == 6 then
-			StartCombat(hero,nil,6,t12a,cnt01,t12b,cnt01,t23a,cnt02,t45a,cnt04,t56a,cnt05,t67a,cnt06,nil,"H55_ObeliskWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Void.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-		if combat03 == 7 or combat03 == 8 or combat03 == 9 then
-			StartCombat(hero,nil,6,t01a,cnt01,t02a,cnt02,t03a,cnt03,t04a,cnt04,t05a,cnt05,t06a,cnt06,nil,"H55_ObeliskWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Void.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-		if combat03 == 10 then
-			StartCombat(hero,nil,5,t04a,cnt04,t04a,cnt04,t04b,cnt04,t04b,cnt04,t04a,cnt04,nil,"H55_ObeliskWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Void.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-		if combat03 == 11 then
-			StartCombat(hero,nil,4,t05a,cnt05,t05a,cnt05,t05b,cnt05,t05b,cnt05,nil,"H55_ObeliskWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Void.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-		if combat03 == 12 then
-			StartCombat(hero,nil,6,t01a,cntcr,t01a,cntcr,t01b,cntcr,t01b,cntcr,t01a,cntcr,t01b,cntcr,nil,"H55_ObeliskWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Void.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-	end;
-	if H55_Day > 112 then
-		if combat03 == 1 or combat03 == 2 or combat03 == 3 then
-			StartCombat(hero,nil,7,t12a,cnt01,t23a,cnt02,t34a,cnt03,t34a,cnt03,t45a,cnt04,t56a,cnt05,t67a,cnt06,nil,"H55_ObeliskWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Void.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-		if combat03 == 4 or combat03 == 5 or combat03 == 6 then
-			StartCombat(hero,nil,7,t12a,cnt01,t12b,cnt01,t23a,cnt02,t34a,cnt03,t45a,cnt04,t67a,cnt06,t67b,cnt07,nil,"H55_ObeliskWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Void.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-		if combat03 == 7 or combat03 == 8 or combat03 == 9 then
-			StartCombat(hero,nil,7,t01a,cnt01,t02a,cnt02,t03a,cnt03,t04a,cnt04,t05a,cnt05,t06a,cnt06,t07a,cnt07,nil,"H55_ObeliskWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Void.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-		if combat03 == 10 then
-			StartCombat(hero,nil,3,t07a,cnt07,t07a,cnt07,t07b,cnt07,nil,"H55_ObeliskWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Void.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-		if combat03 == 11 then
-			StartCombat(hero,nil,4,t06a,cnt06,t06a,cnt06,t06b,cnt06,t06b,cnt06,nil,"H55_ObeliskWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Void.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-		if combat03 == 12 then
-			StartCombat(hero,nil,6,t02a,cntcr,t02a,cntcr,t02b,cntcr,t02b,cntcr,t02a,cntcr,t02b,cntcr,nil,"H55_ObeliskWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Void.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-	end;
-end;
-
-function H55_OneObeliskChallenge(hero,obelisk)
-	local player = GetObjectOwner(hero);
-	H55_ObeliskChallengeAccepted[player] = 1;
-	local faction = 4;
-
-	local rnd01 = H55_ObeliskArmies[obelisk][1]   local rnd02 = H55_ObeliskArmies[obelisk][2]  local rnd03 = H55_ObeliskArmies[obelisk][3];
-	local rnd04 = H55_ObeliskArmies[obelisk][4]   local rnd05 = H55_ObeliskArmies[obelisk][5]  local rnd06 = H55_ObeliskArmies[obelisk][6];
-	local rnd07 = H55_ObeliskArmies[obelisk][7]   local rnd08 = H55_ObeliskArmies[obelisk][8]  local rnd09 = H55_ObeliskArmies[obelisk][9];
-	local rnd10 = H55_ObeliskArmies[obelisk][10]  local rnd11 = H55_ObeliskArmies[obelisk][11] local rnd12 = H55_ObeliskArmies[obelisk][12];
-	local rnd13 = H55_ObeliskArmies[obelisk][13]  local rnd14 = H55_ObeliskArmies[obelisk][14];
-
-	local rnd12a = H55_ObeliskArmies[obelisk][15] local rnd23a = H55_ObeliskArmies[obelisk][16] local rnd34a = H55_ObeliskArmies[obelisk][17];
-	local rnd45a = H55_ObeliskArmies[obelisk][18] local rnd56a = H55_ObeliskArmies[obelisk][19] local rnd67a = H55_ObeliskArmies[obelisk][20];
-
-	local rnd12b = H55_ObeliskArmies[obelisk][21] local rnd23b = H55_ObeliskArmies[obelisk][22] local rnd34b = H55_ObeliskArmies[obelisk][23];
-	local rnd45b = H55_ObeliskArmies[obelisk][24] local rnd56b = H55_ObeliskArmies[obelisk][25] local rnd67b = H55_ObeliskArmies[obelisk][26];
-
-	local combat01 = H55_ObeliskArmies[obelisk][27] local combat02 = H55_ObeliskArmies[obelisk][28] local combat03 = H55_ObeliskArmies[obelisk][29];
-
-	local t01a = H55_Creatures[faction][1][rnd01];
-	local t02a = H55_Creatures[faction][2][rnd02];
-	local t03a = H55_Creatures[faction][3][rnd03];
-	local t04a = H55_Creatures[faction][4][rnd04];
-	local t05a = H55_Creatures[faction][5][rnd05];
-	local t06a = H55_Creatures[faction][6][rnd06];
-	local t07a = H55_Creatures[faction][7][rnd07];
-
-	local t01b = H55_Creatures[faction][1][rnd08];
-	local t02b = H55_Creatures[faction][2][rnd09];
-	local t03b = H55_Creatures[faction][3][rnd10];
-	local t04b = H55_Creatures[faction][4][rnd11];
-	local t05b = H55_Creatures[faction][5][rnd12];
-	local t06b = H55_Creatures[faction][6][rnd13];
-	local t07b = H55_Creatures[faction][7][rnd14];
-
-	local t12a = H55_Creatures[faction][rnd12a][rnd08];
-	local t12b = H55_Creatures[faction][rnd12b][rnd07];
-	local t23a = H55_Creatures[faction][rnd23a][rnd06];
-	local t23b = H55_Creatures[faction][rnd23b][rnd05];
-
-	local t34a = H55_Creatures[faction][rnd34a][rnd12];
-	local t34b = H55_Creatures[faction][rnd34b][rnd11];
-	local t45a = H55_Creatures[faction][rnd45a][rnd10];
-	local t45b = H55_Creatures[faction][rnd45b][rnd09];
-
-	local t56a = H55_Creatures[faction][rnd56a][rnd04];
-	local t56b = H55_Creatures[faction][rnd56b][rnd03];
-	local t67a = H55_Creatures[faction][rnd67a][rnd02];
-	local t67b = H55_Creatures[faction][rnd67b][rnd01];
-
-	local multiplier = H55_GetBankDifMultiplier()
-
-	local cnt01 = random(8)+ H55_Round((multiplier*H55_CreaturesGrowth[faction][1]));
-	local cnt02 = random(7)+ H55_Round((multiplier*H55_CreaturesGrowth[faction][2]));
-	local cnt03 = random(6)+ H55_Round((multiplier*H55_CreaturesGrowth[faction][3]));
-	local cnt04 = random(5)+ H55_Round((multiplier*H55_CreaturesGrowth[faction][4]));
-	local cnt05 = random(4)+ H55_Round((multiplier*H55_CreaturesGrowth[faction][5]));
-	local cnt06 = random(3)+ H55_Round((multiplier*H55_CreaturesGrowth[faction][6]));
-	local cnt07 = random(2)+ H55_Round((multiplier*H55_CreaturesGrowth[faction][7]));
-	local cntcr = 5*(random(8)+ H55_Round((multiplier*H55_CreaturesGrowth[faction][1])));
-
-	if H55_Day <= 56 then
-		if combat01 == 1 or combat01 == 2 then
-			StartCombat(hero,nil,4,t12a,cnt01,t12b,cnt02,t23a,cnt02,t45a,cnt04,nil,"H55_OneObeliskWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Crypt.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-		if combat01 == 3 or combat01 == 4 then
-			StartCombat(hero,nil,4,t12a,cnt01,t23a,cnt02,t23b,cnt03,t34a,cnt03,nil,"H55_OneObeliskWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Crypt.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-		if combat01 == 5 or combat01 == 6 then
-			StartCombat(hero,nil,4,t01a,cnt01,t02a,cnt02,t03a,cnt03,t04a,cnt04,nil,"H55_OneObeliskWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Crypt.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-		if combat01 == 7 then
-			StartCombat(hero,nil,5,t01a,cnt01,t01a,cnt01,t01b,cnt01,t01b,cnt01,t01a,cnt01,nil,"H55_OneObeliskWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Crypt.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-	end;
-	if H55_Day > 56 and H55_Day <= 112 then
-		if combat02 == 1 or combat02 == 2 or combat02 == 3 then
-			StartCombat(hero,nil,5,t12a,cnt01,t12b,cnt02,t23a,cnt02,t34a,cnt03,t56a,cnt05,nil,"H55_OneObeliskWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Crypt.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-		if combat02 == 4 or combat02 == 5 or combat02 == 6 then
-			StartCombat(hero,nil,5,t12a,cnt01,t23a,cnt02,t23b,cnt03,t34a,cnt03,t45a,cnt04,nil,"H55_OneObeliskWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Crypt.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-		if combat02 == 7 or combat02 == 8 or combat02 == 9 then
-			StartCombat(hero,nil,5,t01a,cnt01,t02a,cnt02,t03a,cnt03,t04a,cnt04,t05a,cnt05,nil,"H55_OneObeliskWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Crypt.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-		if combat02 == 10 then
-			StartCombat(hero,nil,6,t02a,cnt02,t02a,cnt02,t02b,cnt02,t02b,cnt02,t02a,cnt02,t02b,cnt02,nil,"H55_OneObeliskWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Crypt.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-		if combat02 == 11 then
-			StartCombat(hero,nil,5,t03a,cnt03,t03a,cnt03,t03b,cnt03,t03b,cnt03,t03a,cnt03,nil,"H55_OneObeliskWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Crypt.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-	end;
-	if H55_Day > 112 and H55_Day <= 224 then
-		if combat03 == 1 or combat03 == 2 or combat03 == 3 then
-			StartCombat(hero,nil,6,t12a,cnt01,t23a,cnt02,t34a,cnt03,t34b,cnt04,t45a,cnt04,t56a,cnt05,nil,"H55_OneObeliskWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Crypt.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-		if combat03 == 4 or combat03 == 5 or combat03 == 6 then
-			StartCombat(hero,nil,6,t12a,cnt01,t12b,cnt01,t23a,cnt02,t45a,cnt04,t56a,cnt05,t67a,cnt06,nil,"H55_OneObeliskWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Crypt.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-		if combat03 == 7 or combat03 == 8 or combat03 == 9 then
-			StartCombat(hero,nil,6,t01a,cnt01,t02a,cnt02,t03a,cnt03,t04a,cnt04,t05a,cnt05,t06a,cnt06,nil,"H55_OneObeliskWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Crypt.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-		if combat03 == 10 then
-			StartCombat(hero,nil,5,t04a,cnt04,t04a,cnt04,t04b,cnt04,t04b,cnt04,t04a,cnt04,nil,"H55_OneObeliskWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Crypt.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-		if combat03 == 11 then
-			StartCombat(hero,nil,4,t05a,cnt05,t05a,cnt05,t05b,cnt05,t05b,cnt05,nil,"H55_OneObeliskWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Crypt.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-		if combat03 == 12 then
-			StartCombat(hero,nil,6,t01a,cntcr,t01a,cntcr,t01b,cntcr,t01b,cntcr,t01a,cntcr,t01b,cntcr,nil,"H55_OneObeliskWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Crypt.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-	end;
-	if H55_Day > 224 then
-		if combat03 == 1 or combat03 == 2 or combat03 == 3 then
-			StartCombat(hero,nil,7,t12a,cnt01,t23a,cnt02,t34a,cnt03,t34a,cnt03,t45a,cnt04,t56a,cnt05,t67a,cnt06,nil,"H55_OneObeliskWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Crypt.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-		if combat03 == 4 or combat03 == 5 or combat03 == 6 then
-			StartCombat(hero,nil,7,t12a,cnt01,t12b,cnt01,t23a,cnt02,t34a,cnt03,t45a,cnt04,t67a,cnt06,t67b,cnt07,nil,"H55_OneObeliskWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Crypt.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-		if combat03 == 7 or combat03 == 8 or combat03 == 9 then
-			StartCombat(hero,nil,7,t01a,cnt01,t02a,cnt02,t03a,cnt03,t04a,cnt04,t05a,cnt05,t06a,cnt06,t07a,cnt07,nil,"H55_OneObeliskWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Crypt.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-		if combat03 == 10 then
-			StartCombat(hero,nil,3,t07a,cnt07,t07a,cnt07,t07b,cnt07,nil,"H55_OneObeliskWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Crypt.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-		if combat03 == 11 then
-			StartCombat(hero,nil,4,t06a,cnt06,t06a,cnt06,t06b,cnt06,t06b,cnt06,nil,"H55_OneObeliskWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Crypt.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-		if combat03 == 12 then
-			StartCombat(hero,nil,6,t02a,cntcr,t02a,cntcr,t02b,cntcr,t02b,cntcr,t02a,cntcr,t02b,cntcr,nil,
-			"H55_OneObeliskWin","/Arenas/CombatArena/FinalCombat/Bank_Crypt.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-	end;
-end;
-
-function H55_ShantiriVisit(hero,shantiri)
-	H55_GrailTouch(hero, shantiri);
-	local player = GetObjectOwner(hero);
-	if H55_IsThisAIPlayer(player) == 1 then
-		H55_ShantiriVisitAI(hero,shantiri);
-	elseif H55_ShantirisQty == 1 then
-		if H55_ShantiriVisited[shantiri][player] == nil then
-			H55_ShantiriVisited[shantiri][player] = 1;
-			MarkObjectAsVisited(shantiri,hero);
-			QuestionBoxForPlayers(GetPlayerFilter(player),{"/Text/Game/Scripts/Obelisk/ShantiriOnlyOne.txt"},
-			"H55_OneShantiriChallenge('"..hero.."','"..shantiri.."')","H55_ShantiriRefuse('"..hero.."','"..shantiri.."')");
-		elseif H55_ShantiriVisited[shantiri][player] == 1 and H55_ShantiriChallengeAccepted[player] ~= 1 then
-			QuestionBoxForPlayers(GetPlayerFilter(player),{"/Text/Game/Scripts/Obelisk/ShantiriOnlyOne.txt"},
-			"H55_OneShantiriChallenge('"..hero.."','"..shantiri.."')","H55_ShantiriRefuse('"..hero.."','"..shantiri.."')");
-		elseif H55_ShantiriVisited[shantiri][player] == 1 and H55_ShantiriChallengeAccepted[player] == 1  and H55_ShantiriGraalFound[player] == 1 then
-				ShowFlyingSign("/Text/Game/Scripts/Obelisk/ShantiriQuestComplete.txt",hero,player,5);
-		else
-			ShowFlyingSign({"/Text/Game/Scripts/Obelisk/ShantiriCryptFail.txt"},hero,player,5);
-		end;
-	elseif H55_ShantirisQty >= 2 then
-		if H55_ShantiriTotalVisited[player] == nil then
-			H55_ShantiriVisited[shantiri][player] = 1;
-			H55_ShantiriTotalVisited[player] = 1;
-			ShowFlyingSign({"/Text/Game/Scripts/Obelisk/ShantiriVisit.txt";amount=H55_ShantiriTotalVisited[player],total=H55_ShantirisQty},hero,player,5);
-			MarkObjectAsVisited(shantiri,hero);
-		elseif H55_ShantiriVisited[shantiri][player] == nil then
-			H55_ShantiriVisited[shantiri][player] = 1;
-			H55_ShantiriTotalVisited[player] = H55_ShantiriTotalVisited[player]+1;
-			MarkObjectAsVisited(shantiri,hero);
-			if H55_ShantiriTotalVisited[player] == H55_ShantirisQty 	then
-				QuestionBoxForPlayers(GetPlayerFilter(player),{"/Text/Game/Scripts/Obelisk/ShantiriQuestion.txt"},
-				"H55_ShantiriChallenge('"..hero.."','"..shantiri.."')","H55_ShantiriRefuse('"..hero.."','"..shantiri.."')");
-			else
-				ShowFlyingSign({"/Text/Game/Scripts/Obelisk/ShantiriVisit.txt";amount=H55_ShantiriTotalVisited[player],total=H55_ShantirisQty},hero,player,5);
-			end;
-		elseif H55_ShantiriTotalVisited[player] == H55_ShantirisQty and H55_ShantiriChallengeAccepted[player] ~= 1 then
-				QuestionBoxForPlayers(GetPlayerFilter(player),{"/Text/Game/Scripts/Obelisk/ShantiriQuestion.txt"},
-				"H55_ShantiriChallenge('"..hero.."','"..shantiri.."')","H55_ShantiriRefuse('"..hero.."','"..shantiri.."')");
-		elseif H55_ShantiriTotalVisited[player] == H55_ShantirisQty and H55_ShantiriChallengeAccepted[player] == 1 and H55_ShantiriGraalFound[player] == 1 then
-				ShowFlyingSign("/Text/Game/Scripts/Obelisk/ShantiriQuestComplete.txt",hero,player,5);
-		elseif H55_ShantiriTotalVisited[player] == H55_ShantirisQty and H55_ShantiriChallengeAccepted[player] == 1 and H55_ShantiriGraalFound[player] ~= 1 then
-			ShowFlyingSign({"/Text/Game/Scripts/Obelisk/ShantiriFail.txt"},hero,player,5);
-		else
-			ShowFlyingSign({"/Text/Game/Scripts/Obelisk/ShantiriAlready.txt";amount=H55_ShantiriTotalVisited[player],total=H55_ShantirisQty},hero,player,5);
-		end;
-	end;
-end;
-function H55_GrailTouch(s_hero, grail)
-	local player = GetObjectOwner(s_hero);
-	if H55_IsThisAIPlayer(player) ~= 1 then
-		if HasHeroSkill(s_hero, KNIGHT_FEAT_GRAIL_VISION) ~= nil then
-			local i_get = 0;
-			if H55_Touch_Grail[s_hero] == nil then
-				H55_Touch_Grail[s_hero] = {};
-				H55_Touch_Grail[s_hero][grail] = 1;
-				i_get = 1;
-			else
-				if H55_Touch_Grail[s_hero][grail] == nil then
-					H55_Touch_Grail[s_hero][grail] = 1;
-					i_get = 1;
-				end;
-			end;
-			if i_get == 1 then
-				local i_exp = 500;
-				local i_level = GetHeroLevel(s_hero);
-				i_exp = i_exp * i_level;
-				GiveExp(s_hero, i_exp);
-				-- ShowFlyingSign({"/Text/Game/Scripts/Grail/GrailTouch4Exp.txt";exp=i_exp},s_hero,player,5) sleep(4);
-			end;
-			local i_rest = 0;
-			local ci = GetLastSavedCombatIndex();
-			if H55_CI_Grail[s_hero] == nil then
-				H55_CI_Grail[s_hero] = -1;
-				i_rest = 1;
-			end;
-			if H55_CI_Grail[s_hero] ~= H55_CI_Grail_Last[s_hero] then
-				H55_CI_Grail[s_hero] = H55_CI_Grail_Last[s_hero];
-				i_rest = 1;
-			end;
-			if i_rest == 1 then
-				local i_movement = H55_Round(H55_GetHeroMovement(s_hero) * .4 * (1 + 0.5 * TTH_Monk_Move_Bonus(s_hero)));
-				ChangeHeroStat(s_hero, STAT_MOVE_POINTS, i_movement);
-
-				local i_mana = GetHeroStat(s_hero, STAT_MANA_POINTS);
-				local i_knowledge = GetHeroStat(s_hero, STAT_KNOWLEDGE);
-				local i_mana_total = 10 * i_knowledge;
-				if HasHeroSkill(s_hero, PERK_INTELLIGENCE) ~= nil then
-					i_mana_total = 15 * i_knowledge;
-				end;
-				local i_remain_mana = H55_Round(i_mana_total * .4 * (1 + 0.5 * TTH_Monk_Mana_Bonus(s_hero)));
-				if i_remain_mana > i_mana_total - i_mana then
-					ChangeHeroStat(s_hero, STAT_MANA_POINTS, i_mana_total - i_mana);
-				else
-					ChangeHeroStat(s_hero, STAT_MANA_POINTS, i_remain_mana);
-				end;
-
-				ShowFlyingSign({"/Text/Game/Scripts/Grail/GrailTouch4Rest.txt";},s_hero,player,5) sleep(4);
-			end;
-		end;
-	end;
-end;
-
-function H55_ShantiriRefuse(hero)
-	print("Challenge refused by player");
-end;
-
-function H55_ShantiriVisitAI(hero,shantiri)
-	Trigger(OBJECT_TOUCH_TRIGGER,shantiri,nil);
-	SetObjectEnabled(shantiri,not nil);
-	MakeHeroInteractWithObject(hero,shantiri);
-	Trigger(OBJECT_TOUCH_TRIGGER,shantiri,"H55_ShantiriVisit");
-	SetObjectEnabled(shantiri,nil);
-end;
-
-function H55_ShantiriChallenge(hero,shantiri)
-	local player = GetObjectOwner(hero);
-	H55_ShantiriChallengeAccepted[player] = 1;
-	local alignment = H55_ShantiriArmies[shantiri][30];
-	local faction1 = 1;
-	local faction2 = 1;
-	if alignment == 1  then faction1 = 1 faction2 = 2 end;
-	if alignment == 2  then faction1 = 5 faction2 = 7 end;
-	if alignment == 3  then faction1 = 1 faction2 = 7 end;
-	if alignment == 4  then faction1 = 2 faction2 = 5 end;
-	if alignment == 5  then faction1 = 2 faction2 = 1 end;
-	if alignment == 6  then faction1 = 7 faction2 = 5 end;
-	if alignment == 7  then faction1 = 7 faction2 = 1 end;
-	if alignment == 8  then faction1 = 5 faction2 = 2 end;
-
-	local rnd01 = H55_ShantiriArmies[shantiri][1]   local rnd02 = H55_ShantiriArmies[shantiri][2]  local rnd03 = H55_ShantiriArmies[shantiri][3];
-	local rnd04 = H55_ShantiriArmies[shantiri][4]   local rnd05 = H55_ShantiriArmies[shantiri][5]  local rnd06 = H55_ShantiriArmies[shantiri][6];
-	local rnd07 = H55_ShantiriArmies[shantiri][7]   local rnd08 = H55_ShantiriArmies[shantiri][8]  local rnd09 = H55_ShantiriArmies[shantiri][9];
-	local rnd10 = H55_ShantiriArmies[shantiri][10]  local rnd11 = H55_ShantiriArmies[shantiri][11] local rnd12 = H55_ShantiriArmies[shantiri][12];
-	local rnd13 = H55_ShantiriArmies[shantiri][13]  local rnd14 = H55_ShantiriArmies[shantiri][14];
-
-	local rnd12a = H55_ShantiriArmies[shantiri][15] local rnd23a = H55_ShantiriArmies[shantiri][16] local rnd34a = H55_ShantiriArmies[shantiri][17];
-	local rnd45a = H55_ShantiriArmies[shantiri][18] local rnd56a = H55_ShantiriArmies[shantiri][19] local rnd67a = H55_ShantiriArmies[shantiri][20];
-
-	local rnd12b = H55_ShantiriArmies[shantiri][21] local rnd23b = H55_ShantiriArmies[shantiri][22] local rnd34b = H55_ShantiriArmies[shantiri][23];
-	local rnd45b = H55_ShantiriArmies[shantiri][24] local rnd56b = H55_ShantiriArmies[shantiri][25] local rnd67b = H55_ShantiriArmies[shantiri][26];
-
-	local combat01 = H55_ShantiriArmies[shantiri][27] local combat02 = H55_ShantiriArmies[shantiri][28] local combat03 = H55_ShantiriArmies[shantiri][29];
-
-	local t01a = H55_Creatures[faction1][1][rnd01];
-	local t02a = H55_Creatures[faction2][2][rnd02];
-	local t03a = H55_Creatures[faction1][3][rnd03];
-	local t04a = H55_Creatures[faction2][4][rnd04];
-	local t05a = H55_Creatures[faction1][5][rnd05];
-	local t06a = H55_Creatures[faction2][6][rnd06];
-	local t07a = H55_Creatures[faction1][7][rnd07];
-
-	local t01b = H55_Creatures[faction2][1][rnd08];
-	local t02b = H55_Creatures[faction1][2][rnd09];
-	local t03b = H55_Creatures[faction2][3][rnd10];
-	local t04b = H55_Creatures[faction1][4][rnd11];
-	local t05b = H55_Creatures[faction2][5][rnd12];
-	local t06b = H55_Creatures[faction1][6][rnd13];
-	local t07b = H55_Creatures[faction2][7][rnd14];
-
-	local t12a = H55_Creatures[faction1][rnd12a][rnd08];
-	local t12b = H55_Creatures[faction2][rnd12b][rnd07];
-	local t23a = H55_Creatures[faction1][rnd23a][rnd06];
-	local t23b = H55_Creatures[faction2][rnd23b][rnd05];
-
-	local t34a = H55_Creatures[faction2][rnd34a][rnd12];
-	local t34b = H55_Creatures[faction1][rnd34b][rnd11];
-	local t45a = H55_Creatures[faction2][rnd45a][rnd10];
-	local t45b = H55_Creatures[faction1][rnd45b][rnd09];
-
-	local t56a = H55_Creatures[faction2][rnd56a][rnd04];
-	local t56b = H55_Creatures[faction1][rnd56b][rnd03];
-	local t67a = H55_Creatures[faction1][rnd67a][rnd02];
-	local t67b = H55_Creatures[faction2][rnd67b][rnd01];
-
-	local multiplier = H55_GetBankDifMultiplier()
-	local boss = 1.3;
-
-	local cnt01 = boss*(random(8)+ H55_Round((multiplier*H55_CreaturesGrowth[faction1][1])));
-	local cnt02 = boss*(random(7)+ H55_Round((multiplier*H55_CreaturesGrowth[faction1][2])));
-	local cnt03 = boss*(random(6)+ H55_Round((multiplier*H55_CreaturesGrowth[faction1][3])));
-	local cnt04 = boss*(random(5)+ H55_Round((multiplier*H55_CreaturesGrowth[faction1][4])));
-	local cnt05 = boss*(random(4)+ H55_Round((multiplier*H55_CreaturesGrowth[faction1][5])));
-	local cnt06 = boss*(random(3)+ H55_Round((multiplier*H55_CreaturesGrowth[faction1][6])));
-	local cnt07 = boss*(random(2)+ H55_Round((multiplier*H55_CreaturesGrowth[faction1][7])));
-	local cntcr = boss*(5*(random(8)+ H55_Round((multiplier*H55_CreaturesGrowth[faction1][1]))));
-
-	if H55_Day <= 112 then
-		if combat03 == 1 or combat03 == 2 or combat03 == 3 then
-			StartCombat(hero,nil,6,t12a,cnt01,t23a,cnt02,t34a,cnt03,t34b,cnt04,t45a,cnt04,t56a,cnt05,nil,"H55_ShantiriWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Shantiri.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-		if combat03 == 4 or combat03 == 5 or combat03 == 6 then
-			StartCombat(hero,nil,6,t12a,cnt01,t12b,cnt01,t23a,cnt02,t45a,cnt04,t56a,cnt05,t67a,cnt06,nil,"H55_ShantiriWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Shantiri.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-		if combat03 == 7 or combat03 == 8 or combat03 == 9 then
-			StartCombat(hero,nil,6,t01a,cnt01,t02a,cnt02,t03a,cnt03,t04a,cnt04,t05a,cnt05,t06a,cnt06,nil,"H55_ShantiriWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Shantiri.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-		if combat03 == 10 then
-			StartCombat(hero,nil,5,t04a,cnt04,t04a,cnt04,t04b,cnt04,t04b,cnt04,t04a,cnt04,nil,"H55_ShantiriWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Shantiri.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-		if combat03 == 11 then
-			StartCombat(hero,nil,4,t05a,cnt05,t05a,cnt05,t05b,cnt05,t05b,cnt05,nil,"H55_ShantiriWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Shantiri.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-		if combat03 == 12 then
-			StartCombat(hero,nil,6,t01a,cntcr,t01a,cntcr,t01b,cntcr,t01b,cntcr,t01a,cntcr,t01b,cntcr,nil,"H55_ShantiriWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Shantiri.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-	end;
-	if H55_Day > 112 then
-		if combat03 == 1 or combat03 == 2 or combat03 == 3 then
-			StartCombat(hero,nil,7,t12a,cnt01,t23a,cnt02,t34a,cnt03,t34a,cnt03,t45a,cnt04,t56a,cnt05,t67a,cnt06,nil,"H55_ShantiriWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Shantiri.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-		if combat03 == 4 or combat03 == 5 or combat03 == 6 then
-			StartCombat(hero,nil,7,t12a,cnt01,t12b,cnt01,t23a,cnt02,t34a,cnt03,t45a,cnt04,t67a,cnt06,t67b,cnt07,nil,"H55_ShantiriWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Shantiri.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-		if combat03 == 7 or combat03 == 8 or combat03 == 9 then
-			StartCombat(hero,nil,7,t01a,cnt01,t02a,cnt02,t03a,cnt03,t04a,cnt04,t05a,cnt05,t06a,cnt06,t07a,cnt07,nil,"H55_ShantiriWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Shantiri.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-		if combat03 == 10 then
-			StartCombat(hero,nil,3,t07a,cnt07,t07a,cnt07,t07b,cnt07,nil,"H55_ShantiriWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Shantiri.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-		if combat03 == 11 then
-			StartCombat(hero,nil,4,t06a,cnt06,t06a,cnt06,t06b,cnt06,t06b,cnt06,nil,"H55_ShantiriWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Shantiri.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-		if combat03 == 12 then
-			StartCombat(hero,nil,6,t02a,cntcr,t02a,cntcr,t02b,cntcr,t02b,cntcr,t02a,cntcr,t02b,cntcr,nil,"H55_ShantiriWin",
-			"/Arenas/CombatArena/FinalCombat/Bank_Shantiri.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)",1);
-		end;
-	end;
-end;
-
-function H55_OneShantiriChallenge(hero,shantiri)
-	local player = GetObjectOwner(hero);
-	H55_ShantiriChallengeAccepted[player] = 1;
-	local faction = 6;
-
-	local rnd01 = H55_ShantiriArmies[shantiri][1]   local rnd02 = H55_ShantiriArmies[shantiri][2]  local rnd03 = H55_ShantiriArmies[shantiri][3];
-	local rnd04 = H55_ShantiriArmies[shantiri][4]   local rnd05 = H55_ShantiriArmies[shantiri][5]  local rnd06 = H55_ShantiriArmies[shantiri][6];
-	local rnd07 = H55_ShantiriArmies[shantiri][7]   local rnd08 = H55_ShantiriArmies[shantiri][8]  local rnd09 = H55_ShantiriArmies[shantiri][9];
-	local rnd10 = H55_ShantiriArmies[shantiri][10]  local rnd11 = H55_ShantiriArmies[shantiri][11] local rnd12 = H55_ShantiriArmies[shantiri][12];
-	local rnd13 = H55_ShantiriArmies[shantiri][13]  local rnd14 = H55_ShantiriArmies[shantiri][14];
-
-	local rnd12a = H55_ShantiriArmies[shantiri][15] local rnd23a = H55_ShantiriArmies[shantiri][16] local rnd34a = H55_ShantiriArmies[shantiri][17];
-	local rnd45a = H55_ShantiriArmies[shantiri][18] local rnd56a = H55_ShantiriArmies[shantiri][19] local rnd67a = H55_ShantiriArmies[shantiri][20];
-
-	local rnd12b = H55_ShantiriArmies[shantiri][21] local rnd23b = H55_ShantiriArmies[shantiri][22] local rnd34b = H55_ShantiriArmies[shantiri][23];
-	local rnd45b = H55_ShantiriArmies[shantiri][24] local rnd56b = H55_ShantiriArmies[shantiri][25] local rnd67b = H55_ShantiriArmies[shantiri][26];
-
-	local combat01 = H55_ShantiriArmies[shantiri][27] local combat02 = H55_ShantiriArmies[shantiri][28] local combat03 = H55_ShantiriArmies[shantiri][29];
-
-	local t01a = H55_Creatures[faction][1][rnd01];
-	local t02a = H55_Creatures[faction][2][rnd02];
-	local t03a = H55_Creatures[faction][3][rnd03];
-	local t04a = H55_Creatures[faction][4][rnd04];
-	local t05a = H55_Creatures[faction][5][rnd05];
-	local t06a = H55_Creatures[faction][6][rnd06];
-	local t07a = H55_Creatures[faction][7][rnd07];
-
-	local t01b = H55_Creatures[faction][1][rnd08];
-	local t02b = H55_Creatures[faction][2][rnd09];
-	local t03b = H55_Creatures[faction][3][rnd10];
-	local t04b = H55_Creatures[faction][4][rnd11];
-	local t05b = H55_Creatures[faction][5][rnd12];
-	local t06b = H55_Creatures[faction][6][rnd13];
-	local t07b = H55_Creatures[faction][7][rnd14];
-
-	local t12a = H55_Creatures[faction][rnd12a][rnd08];
-	local t12b = H55_Creatures[faction][rnd12b][rnd07];
-	local t23a = H55_Creatures[faction][rnd23a][rnd06];
-	local t23b = H55_Creatures[faction][rnd23b][rnd05];
-
-	local t34a = H55_Creatures[faction][rnd34a][rnd12];
-	local t34b = H55_Creatures[faction][rnd34b][rnd11];
-	local t45a = H55_Creatures[faction][rnd45a][rnd10];
-	local t45b = H55_Creatures[faction][rnd45b][rnd09];
-
-	local t56a = H55_Creatures[faction][rnd56a][rnd04];
-	local t56b = H55_Creatures[faction][rnd56b][rnd03];
-	local t67a = H55_Creatures[faction][rnd67a][rnd02];
-	local t67b = H55_Creatures[faction][rnd67b][rnd01];
-
-	local multiplier = H55_GetBankDifMultiplier()
-
-	local cnt01 = random(8)+ H55_Round((multiplier*H55_CreaturesGrowth[faction][1]));
-	local cnt02 = random(7)+ H55_Round((multiplier*H55_CreaturesGrowth[faction][2]));
-	local cnt03 = random(6)+ H55_Round((multiplier*H55_CreaturesGrowth[faction][3]));
-	local cnt04 = random(5)+ H55_Round((multiplier*H55_CreaturesGrowth[faction][4]));
-	local cnt05 = random(4)+ H55_Round((multiplier*H55_CreaturesGrowth[faction][5]));
-	local cnt06 = random(3)+ H55_Round((multiplier*H55_CreaturesGrowth[faction][6]));
-	local cnt07 = random(2)+ H55_Round((multiplier*H55_CreaturesGrowth[faction][7]));
-	local cntcr = 5*(random(8)+ H55_Round((multiplier*H55_CreaturesGrowth[faction][1])));
-
-	if H55_Day <= 56 then
-		if combat01 == 1 or combat01 == 2 then
-			StartCombat(hero,nil,4,t12a,cnt01,t12b,cnt02,t23a,cnt02,t45a,cnt04,nil,"H55_OneShantiriWin",
-			nil,1);
-		end;
-		if combat01 == 3 or combat01 == 4 then
-			StartCombat(hero,nil,4,t12a,cnt01,t23a,cnt02,t23b,cnt03,t34a,cnt03,nil,"H55_OneShantiriWin",
-			nil,1);
-		end;
-		if combat01 == 5 or combat01 == 6 then
-			StartCombat(hero,nil,4,t01a,cnt01,t02a,cnt02,t03a,cnt03,t04a,cnt04,nil,"H55_OneShantiriWin",
-			nil,1);
-		end;
-		if combat01 == 7 then
-			StartCombat(hero,nil,5,t01a,cnt01,t01a,cnt01,t01b,cnt01,t01b,cnt01,t01a,cnt01,nil,"H55_OneShantiriWin",
-			nil,1);
-		end;
-	end;
-	if H55_Day > 56 and H55_Day <= 112 then
-		if combat02 == 1 or combat02 == 2 or combat02 == 3 then
-			StartCombat(hero,nil,5,t12a,cnt01,t12b,cnt02,t23a,cnt02,t34a,cnt03,t56a,cnt05,nil,"H55_OneShantiriWin",
-			nil,1);
-		end;
-		if combat02 == 4 or combat02 == 5 or combat02 == 6 then
-			StartCombat(hero,nil,5,t12a,cnt01,t23a,cnt02,t23b,cnt03,t34a,cnt03,t45a,cnt04,nil,"H55_OneShantiriWin",
-			nil,1);
-		end;
-		if combat02 == 7 or combat02 == 8 or combat02 == 9 then
-			StartCombat(hero,nil,5,t01a,cnt01,t02a,cnt02,t03a,cnt03,t04a,cnt04,t05a,cnt05,nil,"H55_OneShantiriWin",
-			nil,1);
-		end;
-		if combat02 == 10 then
-			StartCombat(hero,nil,6,t02a,cnt02,t02a,cnt02,t02b,cnt02,t02b,cnt02,t02a,cnt02,t02b,cnt02,nil,"H55_OneShantiriWin",
-			nil,1);
-		end;
-		if combat02 == 11 then
-			StartCombat(hero,nil,5,t03a,cnt03,t03a,cnt03,t03b,cnt03,t03b,cnt03,t03a,cnt03,nil,"H55_OneShantiriWin",
-			nil,1);
-		end;
-	end;
-	if H55_Day > 112 and H55_Day <= 224 then
-		if combat03 == 1 or combat03 == 2 or combat03 == 3 then
-			StartCombat(hero,nil,6,t12a,cnt01,t23a,cnt02,t34a,cnt03,t34b,cnt04,t45a,cnt04,t56a,cnt05,nil,"H55_OneShantiriWin",
-			nil,1);
-		end;
-		if combat03 == 4 or combat03 == 5 or combat03 == 6 then
-			StartCombat(hero,nil,6,t12a,cnt01,t12b,cnt01,t23a,cnt02,t45a,cnt04,t56a,cnt05,t67a,cnt06,nil,"H55_OneShantiriWin",
-			nil,1);
-		end;
-		if combat03 == 7 or combat03 == 8 or combat03 == 9 then
-			StartCombat(hero,nil,6,t01a,cnt01,t02a,cnt02,t03a,cnt03,t04a,cnt04,t05a,cnt05,t06a,cnt06,nil,"H55_OneShantiriWin",
-			nil,1);
-		end;
-		if combat03 == 10 then
-			StartCombat(hero,nil,5,t04a,cnt04,t04a,cnt04,t04b,cnt04,t04b,cnt04,t04a,cnt04,nil,"H55_OneShantiriWin",
-			nil,1);
-		end;
-		if combat03 == 11 then
-			StartCombat(hero,nil,4,t05a,cnt05,t05a,cnt05,t05b,cnt05,t05b,cnt05,nil,"H55_OneShantiriWin",
-			nil,1);
-		end;
-		if combat03 == 12 then
-			StartCombat(hero,nil,6,t01a,cntcr,t01a,cntcr,t01b,cntcr,t01b,cntcr,t01a,cntcr,t01b,cntcr,nil,"H55_OneShantiriWin",
-			nil,1);
-		end;
-	end;
-	if H55_Day > 224 then
-		if combat03 == 1 or combat03 == 2 or combat03 == 3 then
-			StartCombat(hero,nil,7,t12a,cnt01,t23a,cnt02,t34a,cnt03,t34a,cnt03,t45a,cnt04,t56a,cnt05,t67a,cnt06,nil,"H55_OneShantiriWin",
-			nil,1);
-		end;
-		if combat03 == 4 or combat03 == 5 or combat03 == 6 then
-			StartCombat(hero,nil,7,t12a,cnt01,t12b,cnt01,t23a,cnt02,t34a,cnt03,t45a,cnt04,t67a,cnt06,t67b,cnt07,nil,"H55_OneShantiriWin",
-			nil,1);
-		end;
-		if combat03 == 7 or combat03 == 8 or combat03 == 9 then
-			StartCombat(hero,nil,7,t01a,cnt01,t02a,cnt02,t03a,cnt03,t04a,cnt04,t05a,cnt05,t06a,cnt06,t07a,cnt07,nil,"H55_OneShantiriWin",
-			nil,1);
-		end;
-		if combat03 == 10 then
-			StartCombat(hero,nil,3,t07a,cnt07,t07a,cnt07,t07b,cnt07,nil,"H55_OneShantiriWin",
-			nil,1);
-		end;
-		if combat03 == 11 then
-			StartCombat(hero,nil,4,t06a,cnt06,t06a,cnt06,t06b,cnt06,t06b,cnt06,nil,"H55_OneShantiriWin",
-			nil,1);
-		end;
-		if combat03 == 12 then
-			StartCombat(hero,nil,6,t02a,cntcr,t02a,cntcr,t02b,cntcr,t02b,cntcr,t02a,cntcr,t02b,cntcr,nil,
-			"H55_OneShantiriWin",nil,1);
-		end;
-	end;
-end;
-
-function H55_ObeliskWin(hero,result)
-	local player = GetObjectOwner(hero);
-	local floorsize = GetMaxFloor();
-	local mapsize = GetTerrainSize();
-	if result ~= nil then
-		if H55_ObelisksQty == 2 then
-			H55_ArtifactAward(hero,1);
-		end;
-		if H55_ObelisksQty >= 3 and H55_ObelisksQty < 5 then
-			H55_ArtifactAward(hero,2);
-		end;
-		if mapsize == 256 and floorsize == 0 then
-			if H55_ObelisksQty >= 6 and H55_ObelisksQty < 8 then
-				H55_RandomUltimateAward(hero);
-			end;
-		elseif mapsize == 176 and floorsize == 1 then
-			if H55_ObelisksQty >= 6 and H55_ObelisksQty < 8 then
-				H55_RandomUltimateAward(hero);
-			end;
-		else
-			if H55_ObelisksQty >= 6 and H55_ObelisksQty < 8 then
-				H55_ArtifactAward(hero,3);
-			end;
-		end;
-		if H55_ObelisksQty >= 8 then
-			H55_RandomUltimateAward(hero);
-		end;
-		H55_ObeliskGraalFound[player]=1;
-	end;
-end;
-
-function H55_OneObeliskWin(hero,result)
-	local player = GetObjectOwner(hero);
-	if result ~= nil then
-		H55_ArtifactAward(hero,1);
-		H55_ObeliskGraalFound[player]=1;
-	end;
-end;
-
-function H55_ShantiriWin(hero,result)
-	local player = GetObjectOwner(hero);
-	local floorsize = GetMaxFloor();
-	local mapsize = GetTerrainSize();
-	if result ~= nil then
-		if H55_ShantirisQty == 2 then
-			H55_ArtifactAward(hero,1);
-		end;
-		if H55_ShantirisQty >= 3 and H55_ShantirisQty < 5 then
-			H55_ArtifactAward(hero,2);
-		end;
-		if mapsize == 256 and floorsize == 0 then
-			if H55_ShantirisQty >= 6 and H55_ShantirisQty < 8 then
-				H55_RandomUltimateAward(hero);
-			end;
-		elseif mapsize == 176 and floorsize == 1 then
-			if H55_ShantirisQty >= 6 and H55_ShantirisQty < 8 then
-				H55_RandomUltimateAward(hero);
-			end;
-		else
-			if H55_ShantirisQty >= 6 and H55_ShantirisQty < 8 then
-				H55_ArtifactAward(hero,3);
-			end;
-		end;
-		if H55_ShantirisQty >= 8 then
-			H55_RandomUltimateAward(hero);
-		end;
-		H55_ShantiriGraalFound[player]=1;
-	end;
-end;
-
-function H55_OneShantiriWin(hero,result)
-	local player = GetObjectOwner(hero);
-	if result ~= nil then
-		H55_ArtifactAward(hero,1);
-		H55_ShantiriGraalFound[player]=1;
-	end;
-end;
 
 -------------------------------------------------------------------------------------------------------------------------------------------
 --SEER HUT
@@ -3191,11 +2064,7 @@ function H55_GetBank_Restday(bank)
 	local day = GetDate(DAY);
 	local result = 9999;
 	if H55_BankLastVisit[bank] ~= nil then
-		-- print('day: '..day);
-		-- print('bank: '..bank);
-		-- print('H55_BankLastVisit[bank]: '..H55_BankLastVisit[bank]);
 		result = 14 - (day - H55_BankLastVisit[bank])
-		-- print('result: '..result);
 	end;
 	return result
 end;
@@ -3287,12 +2156,37 @@ end;
 
 -- by 牙姐 2018-10-2 14:35:04
 -- begin 勇士之墓胜利
+TTH_TABLE_SkeletonReward4Fortress = {
+	[0] = ARTIFACT_WAND_OF_X
+	, [1] = ARTIFACT_SCROLL_OF_SPELL_X
+	, [2] = ARTIFACT_RUNE_OF_FLAME
+};
+TTH_TABLE_SkeletonReward4Other = {
+	[0] = ARTIFACT_WAND_OF_X
+	, [1] = ARTIFACT_SCROLL_OF_SPELL_X
+};
 function TTH_SkeletonWin(strHero, result)
 	local iPlayer = GetObjectOwner(strHero);
 	local objBank = H55_BankCurrentPlayerVisit[iPlayer];
 	local iDay = GetDate(DAY);
 	if result ~= nil then
-		GiveArtefact(strHero, H55_Melodia_Artifacts[1][random(length(H55_Melodia_Artifacts[1])) + 1]);
+		local strHeroRace = H55_GetHeroRace(strHero);
+		if strHeroRace == "Stronghold" then
+			local arrArtiPool = TTH_TABLE_Artifacts[1];
+			local iLenArtiPool = length(arrArtiPool);
+			local iRanIndexArtiPool = random(iLenArtiPool);
+			GiveArtefact(strHero, arrArtiPool[iRanIndexArtiPool]);
+		elseif strHeroRace == "Fortress" then
+			local arrArtiPool = TTH_UNITY_CONCAT(TTH_TABLE_Artifacts[1], TTH_TABLE_SkeletonReward4Fortress);
+			local iLenArtiPool = length(arrArtiPool);
+			local iRanIndexArtiPool = random(iLenArtiPool);
+			GiveArtefact(strHero, arrArtiPool[iRanIndexArtiPool]);
+		else
+			local arrArtiPool = TTH_UNITY_CONCAT(TTH_TABLE_Artifacts[1], TTH_TABLE_SkeletonReward4Other);
+			local iLenArtiPool = length(arrArtiPool);
+			local iRanIndexArtiPool = random(iLenArtiPool);
+			GiveArtefact(strHero, arrArtiPool[iRanIndexArtiPool]);
+		end;
 		if H55_IsThisAIPlayer(iPlayer) ~= 1 then
 			local iPositionX, iPositionY, iPositionZ = GetObjectPosition(strHero);
 			Play3DSoundForPlayers(GetPlayerFilter(iPlayer), H55_SndArtifact, iPositionX, iPositionY, iPositionZ);
@@ -4055,7 +2949,7 @@ function TTH_Reward_Artifact(strHero, iRewardParam)
 		iMaxLevel = 10;
 	end;
 	local iRandomLevel = iMinLevel + random(iMaxLevel - iMinLevel + 1);
-	GiveArtefact(strHero, H55_Melodia_Artifacts[iRandomLevel][random(length(H55_Melodia_Artifacts[iRandomLevel])) + 1]);
+	GiveArtefact(strHero, TTH_TABLE_Artifacts[iRandomLevel][random(length(TTH_TABLE_Artifacts[iRandomLevel])) + 1]);
 	if H55_IsThisAIPlayer(iPlayer) ~= 1 then
 		local iPositionX, iPositionY, iPositionZ = GetObjectPosition(strHero);
 		Play3DSoundForPlayers(GetPlayerFilter(iPlayer), H55_SndArtifact, iPositionX, iPositionY, iPositionZ);
@@ -4216,1085 +3110,9 @@ function H55_GetHeroClassGroup(strHero)
 end;
 -- end
 
---------------------------------------------------------------------------------------------------------------------------------------------
---AFTERMATH
---------------------------------------------------------------------------------------------------------------------------------------------
-
-function H55_WagonWin01(hero,result)
-	local player = GetObjectOwner(hero);
-	local bank = H55_BankCurrentPlayerVisit[player];
-	local day = GetDate(DAY);
-	local x,y,z = GetObjectPosition(bank);
-	if result ~= nil then
-		Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndInteract,x,y,z);
-		H55_ArtifactAward(hero,1);
-		H55_BankLastVisit[bank] = day;
-		H55_BankPlayerLastVisit[player][bank] = day;
-		MarkObjectAsVisited(bank,hero);
-	else
-		MarkObjectAsVisited(bank,hero);
-	end;
-end;
-
-function H55_WagonWin02(hero,result)
-	local player = GetObjectOwner(hero);
-	local bank = H55_BankCurrentPlayerVisit[player];
-	local day = GetDate(DAY);
-	local x,y,z = GetObjectPosition(bank);
-	if result ~= nil then
-		Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndInteract,x,y,z);
-		H55_GoldReward(hero,0.1);
-		H55_BankLastVisit[bank] = day;
-		H55_BankPlayerLastVisit[player][bank] = day;
-		MarkObjectAsVisited(bank,hero);
-	else
-		MarkObjectAsVisited(bank,hero);
-	end;
-end;
-
-function H55_WagonWin03(hero,result)
-	local player = GetObjectOwner(hero);
-	local bank = H55_BankCurrentPlayerVisit[player];
-	local rndrestype = H55_WagonChoices[bank][4];
-	local rndamount = H55_WagonChoices[bank][5];
-	if HasHeroSkill(hero,PERK_LUCKY_STRIKE) then
-		rndamount = rndamount+1;
-	end;
-	local day = GetDate(DAY);
-	local x,y,z = GetObjectPosition(bank);
-	if rndrestype == 6 then rndamount = rndamount*100 end;
-	if result ~= nil then
-		Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndInteract,x,y,z);
-		H55_GiveResources(player,rndrestype,rndamount,hero);
-		H55_BankLastVisit[bank] = day;
-		H55_BankPlayerLastVisit[player][bank] = day;
-		MarkObjectAsVisited(bank,hero);
-	else
-		MarkObjectAsVisited(bank,hero);
-	end;
-end;
-
-function H55_SkeletonWin01(hero,result)
-	local player = GetObjectOwner(hero);
-	local bank = H55_BankCurrentPlayerVisit[player];
-	local day = GetDate(DAY);
-	local x,y,z = GetObjectPosition(bank);
-	if result ~= nil then
-		Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndInteract,x,y,z);
-		H55_ArtifactAward(hero,1);
-		H55_BankLastVisit[bank] = day;
-		H55_BankPlayerLastVisit[player][bank] = day;
-		MarkObjectAsVisited(bank,hero);
-	else
-		MarkObjectAsVisited(bank,hero);
-	end;
-end;
-
-function H55_SkeletonWin02(hero,result)
-	local player = GetObjectOwner(hero);
-	local bank = H55_BankCurrentPlayerVisit[player];
-	local day = GetDate(DAY);
-	local x,y,z = GetObjectPosition(bank);
-	if result ~= nil then
-		Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndInteract,x,y,z);
-		H55_GoldReward(hero,0.1);
-		H55_BankLastVisit[bank] = day;
-		H55_BankPlayerLastVisit[player][bank] = day;
-		MarkObjectAsVisited(bank,hero);
-	else
-		MarkObjectAsVisited(bank,hero);
-	end;
-end;
-
-function H55_SkeletonWin03(hero,result)
-	local player = GetObjectOwner(hero);
-	local bank = H55_BankCurrentPlayerVisit[player];
-	local day = GetDate(DAY);
-	local x,y,z = GetObjectPosition(bank);
-	if result ~= nil then
-		Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndInteract,x,y,z);
-		if H55_IsThisAIPlayer(player) ~= 1 then ShowFlyingSign("/Text/Game/Scripts/Banks/Already.txt",hero,player,5) end;
-		H55_BankLastVisit[bank] = day;
-		H55_BankPlayerLastVisit[player][bank] = day;
-		MarkObjectAsVisited(bank,hero);
-	else
-		MarkObjectAsVisited(bank,hero);
-	end;
-end;
-
-function H55_AbandonedMineWin(hero,result)
-	if result ~= nil then
-		local player = GetObjectOwner(hero);
-		local mp = H55_MineCurrentPlayerVisit[player];
-		Trigger(OBJECT_TOUCH_TRIGGER,mp,nil);
-		SetObjectEnabled(mp,not nil);
-		MakeHeroInteractWithObject(hero,mp);
-	end;
-end;
-
-function H55_CryptWin(hero,result)
-	local player = GetObjectOwner(hero);
-	local bank = H55_BankCurrentPlayerVisit[player];
-	local day = GetDate(DAY);
-	if result ~= nil then
-		H55_BankLastVisit[bank] = day;
-		H55_BankPlayerLastVisit[player][bank] = day;
-		MarkObjectAsVisited(bank,hero);
-	else
-		MarkObjectAsVisited(bank,hero);
-	end;
-end;
-
-function H55_StoneVaultWin(hero,result)
-	local player = GetObjectOwner(hero);
-	local bank = H55_BankCurrentPlayerVisit[player];
-	local day = GetDate(DAY);
-	if result ~= nil then
-		if day <= 84 then
-			local rnd1 = random(4)+1;
-			H55_GoldReward(hero,1);
-			H55_ResourceReward(hero,0,1);
-			H55_ResourceReward(hero,4,1);
-			if rnd1 == 1 then
-				H55_PrisonersReward(hero,2,4);
-			elseif rnd1 == 2 then
-				H55_SpellAward(hero,1)
-			elseif rnd1 == 3 then
-				H55_RandomArtifactAward(hero,50,45,5);
-			else
-				H55_DocumentAward(hero,1);
-			end;
-		else
-			local rnd2 = random(3)+1;
-			H55_GoldReward(hero,2);
-			H55_ResourceReward(hero,0,2);
-			H55_ResourceReward(hero,4,2);
-			if rnd2 == 1 then
-				H55_PrisonersReward(hero,3,5);
-			elseif rnd2 == 2 then
-				H55_RandomArtifactAward(hero,20,70,10);
-			else
-				H55_DocumentAward(hero,1);
-			end;
-		end;
-		H55_BankLastVisit[bank] = day;
-		H55_BankPlayerLastVisit[player][bank] = day;
-		MarkObjectAsVisited(bank,hero);
-		for i = 1,14 do
-			H55_StoneVaultArmies[bank][i] = random(3)+1;
-		end;
-		for i = 15,20 do
-			H55_StoneVaultArmies[bank][i] = random(2)+1+(i-15);
-		end;
-		for i = 21,26 do
-			H55_StoneVaultArmies[bank][i] = random(2)+1+(i-21);
-		end;
-		H55_StoneVaultArmies[bank][27] = random(7)+1;
-		H55_StoneVaultArmies[bank][28] = random(8)+1;
-		H55_StoneVaultArmies[bank][29] = random(9)+1;
-	else
-		MarkObjectAsVisited(bank,hero);
-	end;
-end;
-
-function H55_MageVaultWin(hero,result)
-	local player = GetObjectOwner(hero)
-	local bank = H55_BankCurrentPlayerVisit[player];
-	local day = GetDate(DAY);
-	if result ~= nil then
-		if day <= 84 then
-			local rnd1 = random(4)+1;
-			H55_GoldReward(hero,2);
-			H55_SpellAward(hero,2);
-			if rnd1 == 1 then
-				H55_RandomArtifactAward(hero,20,70,10);
-			elseif rnd1 == 2 then
-				H55_ResourceReward(hero,2,1);
-				H55_ResourceReward(hero,5,1);
-			elseif rnd1 == 3 then
-				H55_DocumentAward(hero,1);
-			else
-				H55_RandomArtifactAward(hero,20,60,20);
-			end;
-		else
-			local rnd2 = random(4)+1;
-			H55_GoldReward(hero,3);
-			H55_SpellAward(hero,2)
-			if rnd2 == 1 then
-				H55_RandomArtifactAward(hero,20,60,20);
-			elseif rnd2 == 2 then
-				H55_ResourceReward(hero,2,2);
-				H55_ResourceReward(hero,5,2);
-			elseif rnd2 == 3 then
-				H55_RandomArtifactAward(hero,20,50,30);
-			else
-				H55_PrisonersReward(hero,5,6);
-			end;
-		end;
-		H55_BankLastVisit[bank] = day;
-		H55_BankPlayerLastVisit[player][bank] = day;
-		MarkObjectAsVisited(bank,hero);
-		for i = 1,14 do
-			H55_MageVaultArmies[bank][i] = random(3)+1;
-		end;
-		for i = 15,20 do
-			H55_MageVaultArmies[bank][i] = random(2)+1+(i-15);
-		end;
-		for i = 21,26 do
-			H55_MageVaultArmies[bank][i] = random(2)+1+(i-21);
-		end;
-		H55_MageVaultArmies[bank][27] = random(7)+1;
-		H55_MageVaultArmies[bank][28] = random(8)+1;
-		H55_MageVaultArmies[bank][29] = random(9)+1;
-	else
-		MarkObjectAsVisited(bank,hero);
-	end;
-end;
-
-function H55_DwarvenTreasureWin(hero,result)
-	local player = GetObjectOwner(hero)
-	local bank = H55_BankCurrentPlayerVisit[player];
-	local day = GetDate(DAY);
-	if result ~= nil then
-		if day <= 84 then
-			local rnd1 = random(4)+1;
-			H55_GoldReward(hero,1);
-			H55_ResourceReward(hero,3,1);
-			H55_ResourceReward(hero,5,1);
-			if rnd1 == 1 then
-				H55_RandomArtifactAward(hero,20,70,10);
-			elseif rnd1 == 2 then
-				H55_ResourceReward(hero,1,1);
-				H55_RandomArtifactAward(hero,50,45,5);
-			elseif rnd1 == 3 then
-				H55_DocumentAward(hero,1);
-			else
-				H55_PrisonersReward(hero,3,5);
-			end;
-		else
-			local rnd2 = random(4)+1;
-			H55_GoldReward(hero,2);
-			H55_ResourceReward(hero,3,2);
-			H55_ResourceReward(hero,5,2);
-			if rnd2 == 1 then
-				H55_RandomArtifactAward(hero,20,60,20);
-			elseif rnd2 == 2 then
-				H55_ResourceReward(hero,2,2);
-				H55_ResourceReward(hero,5,2);
-				H55_RandomArtifactAward(hero,50,45,5);
-			elseif rnd2 == 3 then
-				H55_DocumentAward(hero,1);
-			else
-				H55_PrisonersReward(hero,5,6);
-			end;
-		end;
-		H55_BankLastVisit[bank] = day;
-		H55_BankPlayerLastVisit[player][bank] = day;
-		MarkObjectAsVisited(bank,hero);
-		for i = 1,14 do
-			H55_DwarvenTreasureArmies[bank][i] = random(3)+1;
-		end;
-		for i = 15,20 do
-			H55_DwarvenTreasureArmies[bank][i] = random(2)+1+(i-15);
-		end;
-		for i = 21,26 do
-			H55_DwarvenTreasureArmies[bank][i] = random(2)+1+(i-21);
-		end;
-		H55_DwarvenTreasureArmies[bank][27] = random(7)+1;
-		H55_DwarvenTreasureArmies[bank][28] = random(8)+1;
-		H55_DwarvenTreasureArmies[bank][29] = random(9)+1;
-	else
-		MarkObjectAsVisited(bank,hero);
-	end;
-end;
-
-function H55_WitchTempleWin(hero,result)
-	local player = GetObjectOwner(hero)
-	local bank = H55_BankCurrentPlayerVisit[player];
-	local day = GetDate(DAY);
-	if result ~= nil then
-		if day <= 84 then
-			local rnd1 = random(4)+1;
-			H55_GoldReward(hero,2);
-			H55_ArtifactAward(hero,2);
-			if rnd1 == 1 then
-				H55_ArtifactAward(hero,1);
-			elseif rnd1 == 2 then
-				H55_ResourceReward(hero,3,1);
-				H55_ResourceReward(hero,4,1);
-			elseif rnd1 == 3 then
-				H55_SpellAward(hero,2);
-			else
-				H55_PrisonersReward(hero,3,5);
-			end;
-		else
-			local rnd2 = random(4)+1;
-			H55_GoldReward(hero,2);
-			H55_RandomArtifactAward(hero,0,80,20);
-			if rnd2 == 1 then
-				H55_RandomArtifactAward(hero,70,30,0);
-			elseif rnd2 == 2 then
-				H55_ResourceReward(hero,3,2);
-				H55_ResourceReward(hero,4,2);
-			elseif rnd2 == 3 then
-				H55_SpellAward(hero,2);
-			else
-				H55_PrisonersReward(hero,5,6);
-			end;
-		end;
-		H55_BankLastVisit[bank] = day;
-		H55_BankPlayerLastVisit[player][bank] = day;
-		MarkObjectAsVisited(bank,hero);
-		for i = 1,14 do
-			H55_WitchTempleArmies[bank][i] = random(3)+1;
-		end;
-		for i = 15,20 do
-			H55_WitchTempleArmies[bank][i] = random(2)+1+(i-15);
-		end;
-		for i = 21,26 do
-			H55_WitchTempleArmies[bank][i] = random(2)+1+(i-21);
-		end;
-		H55_WitchTempleArmies[bank][27] = random(7)+1;
-		H55_WitchTempleArmies[bank][28] = random(8)+1;
-		H55_WitchTempleArmies[bank][29] = random(9)+1;
-	else
-		MarkObjectAsVisited(bank,hero);
-	end;
-end;
-
-function H55_ThicketWin(hero,result)
-	local player = GetObjectOwner(hero);
-	local bank = H55_BankCurrentPlayerVisit[player];
-	local day = GetDate(DAY);
-	if result ~= nil then
-		if day <= 84 then
-			local rnd1 = random(4)+1;
-			H55_GoldReward(hero,4);
-			H55_ArtifactAward(hero,2);
-			if rnd1 == 1 then
-				H55_ArtifactAward(hero,3);
-			elseif rnd1 == 2 then
-				H55_ResourceReward(hero,5,2);
-				H55_ResourceReward(hero,0,3);
-			elseif rnd1 == 3 then
-				H55_DocumentAward(hero,2);
-			else
-				H55_PrisonersReward(hero,5,6);
-			end;
-		else
-			local rnd2 = random(4)+1;
-			H55_GoldReward(hero,4);
-			H55_ArtifactAward(hero,2);
-			if rnd2 == 1 then
-				H55_ArtifactAward(hero,3);
-			elseif rnd2 == 2 then
-				H55_ResourceReward(hero,5,3);
-				H55_ResourceReward(hero,0,4);
-			elseif rnd2 == 3 then
-				H55_DocumentAward(hero,2);
-			else
-				H55_PrisonersReward(hero,6,7);
-			end;
-		end;
-		H55_BankLastVisit[bank] = day;
-		H55_BankPlayerLastVisit[player][bank] = day;
-		MarkObjectAsVisited(bank,hero);
-		for i = 1,14 do
-			H55_ThicketArmies[bank][i] = random(3)+1;
-		end;
-		for i = 15,20 do
-			H55_ThicketArmies[bank][i] = random(2)+1+(i-15);
-		end;
-		for i = 21,26 do
-			H55_ThicketArmies[bank][i] = random(2)+1+(i-21);
-		end;
-		H55_ThicketArmies[bank][27] = random(7)+1;
-		H55_ThicketArmies[bank][28] = random(8)+1;
-		H55_ThicketArmies[bank][29] = random(9)+1;
-	else
-		MarkObjectAsVisited(bank,hero);
-	end;
-end;
-
-function H55_ForestTowerWin(hero,result)
-	local player = GetObjectOwner(hero);
-	local bank = H55_BankCurrentPlayerVisit[player];
-	local day = GetDate(DAY);
-	if result ~= nil then
-		if day <= 84 then
-			local rnd1 = random(4)+1;
-			H55_GoldReward(hero,3);
-			H55_ResourceReward(hero,0,3);
-			if rnd1 == 1 then
-				H55_RandomArtifactAward(hero,20,70,10);
-			elseif rnd1 == 2 then
-				H55_ResourceReward(hero,5,2);
-				H55_RandomArtifactAward(hero,50,45,5);
-			elseif rnd1 == 3 then
-				H55_DocumentAward(hero,2);
-			else
-				H55_PrisonersReward(hero,3,5);
-			end;
-		else
-			local rnd2 = random(4)+1;
-			H55_GoldReward(hero,4);
-			H55_ResourceReward(hero,0,4);
-			if rnd2 == 1 then
-				H55_RandomArtifactAward(hero,20,50,30);
-			elseif rnd2 == 2 then
-				H55_ResourceReward(hero,5,3);
-				H55_RandomArtifactAward(hero,50,45,5);
-			elseif rnd2 == 3 then
-				H55_DocumentAward(hero,2);
-			else
-				H55_PrisonersReward(hero,5,6);
-			end;
-		end;
-		H55_BankLastVisit[bank] = day;
-		H55_BankPlayerLastVisit[player][bank] = day;
-		MarkObjectAsVisited(bank,hero);
-		for i = 1,14 do
-			H55_ForestTowerArmies[bank][i] = random(3)+1;
-		end;
-		for i = 15,20 do
-			H55_ForestTowerArmies[bank][i] = random(2)+1+(i-15);
-		end;
-		for i = 21,26 do
-			H55_ForestTowerArmies[bank][i] = random(2)+1+(i-21);
-		end;
-		H55_ForestTowerArmies[bank][27] = random(7)+1;
-		H55_ForestTowerArmies[bank][28] = random(8)+1;
-		H55_ForestTowerArmies[bank][29] = random(9)+1;
-	else
-		MarkObjectAsVisited(bank,hero);
-	end;
-end;
-
-function H55_PyramidWin(hero,result)
-	local player = GetObjectOwner(hero);
-	local bank = H55_BankCurrentPlayerVisit[player];
-	local day = GetDate(DAY);
-	if result ~= nil then
-		local rnd1 = random(4)+1;
-		H55_GoldReward(hero,3);
-		H55_SpellAward(hero,2);
-		if rnd1 == 1 then
-			H55_RandomArtifactAward(hero,0,20,80);
-		elseif rnd1 == 2 then
-			H55_RandomArtifactAward(hero,20,70,10);
-			H55_ResourceReward(hero,3,3);
-			H55_ResourceReward(hero,2,3);
-		elseif rnd1 == 3 then
-			H55_RandomArtifactAward(hero,20,70,10);
-			H55_DocumentAward(hero,2);
-		else
-			H55_RandomArtifactAward(hero,20,70,10);
-			H55_PrisonersReward(hero,6,7);
-		end;
-		H55_BankLastVisit[bank] = day;
-		H55_BankPlayerLastVisit[player][bank] = day;
-		MarkObjectAsVisited(bank,hero);
-		for i = 1,14 do
-			H55_PyramidArmies[bank][i] = random(3)+1;
-		end;
-		for i = 15,20 do
-			H55_PyramidArmies[bank][i] = random(2)+1+(i-15);
-		end;
-		for i = 21,26 do
-			H55_PyramidArmies[bank][i] = random(2)+1+(i-21);
-		end;
-		H55_PyramidArmies[bank][27] = random(7)+1;
-		H55_PyramidArmies[bank][28] = random(8)+1;
-		H55_PyramidArmies[bank][29] = random(9)+1;
-	else
-		MarkObjectAsVisited(bank,hero);
-	end;
-end;
-
-function H55_OrcTunnelWin(hero,result)
-	local player = GetObjectOwner(hero);
-	local bank = H55_BankCurrentPlayerVisit[player];
-	local day = GetDate(DAY);
-	if result ~= nil then
-		if day <= 84 then
-			local rnd1 = random(4)+1;
-			H55_GoldReward(hero,1);
-			H55_PrisonersReward(hero,1,5);
-			if rnd1 == 1 then
-				H55_RandomArtifactAward(hero,50,50,0);
-			elseif rnd1 == 2 then
-				H55_ResourceReward(hero,0,1);
-				H55_ResourceReward(hero,2,1);
-			elseif rnd1 == 3 then
-				H55_DocumentAward(hero,1);
-			else
-				H55_PrisonersReward(hero,2,5);
-			end;
-		else
-			local rnd2 = random(4)+1;
-			H55_GoldReward(hero,2);
-			H55_PrisonersReward(hero,2,6);
-			if rnd2 == 1 then
-				H55_RandomArtifactAward(hero,20,70,10);
-			elseif rnd2 == 2 then
-				H55_ResourceReward(hero,0,2);
-				H55_ResourceReward(hero,2,2);
-			elseif rnd2 == 3 then
-				H55_DocumentAward(hero,1);
-			else
-				H55_PrisonersReward(hero,3,7);
-			end;
-		end;
-		H55_BankLastVisit[bank] = day;
-		H55_BankPlayerLastVisit[player][bank] = day;
-		MarkObjectAsVisited(bank,hero);
-		for i = 1,14 do
-			H55_OrcTunnelArmies[bank][i] = random(3)+1;
-		end;
-		for i = 15,20 do
-			H55_OrcTunnelArmies[bank][i] = random(2)+1+(i-15);
-		end;
-		for i = 21,26 do
-			H55_OrcTunnelArmies[bank][i] = random(2)+1+(i-21);
-		end;
-		H55_OrcTunnelArmies[bank][27] = random(7)+1;
-		H55_OrcTunnelArmies[bank][28] = random(8)+1;
-		H55_OrcTunnelArmies[bank][29] = random(9)+1;
-	else
-		MarkObjectAsVisited(bank,hero);
-	end;
-end;
-
-function H55_DemonTowerWin(hero,result)
-	local player = GetObjectOwner(hero);
-	local bank = H55_BankCurrentPlayerVisit[player];
-	local day = GetDate(DAY);
-	if result ~= nil then
-		local rnd1 = random(4)+1;
-		H55_GoldReward(hero,3);
-		H55_PrisonersReward(hero,6,7);
-		if rnd1 == 1 then
-			H55_ArtifactAward(hero,2);
-			H55_SpellAward(hero,2);
-		elseif rnd1 == 2 then
-			H55_ArtifactAward(hero,3);
-			H55_ResourceReward(hero,3,3);
-			H55_ResourceReward(hero,2,3);
-		elseif rnd1 == 3 then
-			H55_ArtifactAward(hero,2);
-			H55_DocumentAward(hero,2);
-		else
-			H55_ArtifactAward(hero,3);
-		end;
-		H55_BankLastVisit[bank] = day;
-		H55_BankPlayerLastVisit[player][bank] = day;
-		MarkObjectAsVisited(bank,hero);
-		for i = 1,14 do
-			H55_DemonTowerArmies[bank][i] = random(3)+1;
-		end;
-		for i = 15,20 do
-			H55_DemonTowerArmies[bank][i] = random(2)+1+(i-15);
-		end;
-		for i = 21,26 do
-			H55_DemonTowerArmies[bank][i] = random(2)+1+(i-21);
-		end;
-		H55_DemonTowerArmies[bank][27] = random(7)+1;
-		H55_DemonTowerArmies[bank][28] = random(8)+1;
-		H55_DemonTowerArmies[bank][29] = random(9)+1;
-	else
-		MarkObjectAsVisited(bank,hero);
-	end;
-end;
-
-function H55_StockpileWin(hero,result)
-	local player = GetObjectOwner(hero);
-	local bank = H55_BankCurrentPlayerVisit[player];
-	local day = GetDate(DAY);
-	if result ~= nil then
-		if day <= 84 then
-			local rnd1 = random(2)+1;
-			local rnd3 = random(2)+1;
-			H55_ResourceReward(hero,0,rnd1);
-			H55_ResourceReward(hero,1,rnd1);
-			H55_ResourceReward(hero,2,rnd1);
-			H55_ResourceReward(hero,3,rnd1);
-			H55_ResourceReward(hero,4,rnd1);
-			H55_ResourceReward(hero,5,rnd1);
-			if rnd3 == 2 then
-				H55_RandomArtifactAward(hero,40,50,10);
-			end;
-		else
-			local rnd2 = random(2)+2;
-			local rnd4 = random(2)+1;
-			H55_ResourceReward(hero,0,rnd2);
-			H55_ResourceReward(hero,1,rnd2);
-			H55_ResourceReward(hero,2,rnd2);
-			H55_ResourceReward(hero,3,rnd2);
-			H55_ResourceReward(hero,4,rnd2);
-			H55_ResourceReward(hero,5,rnd2);
-			if rnd4 == 2 then
-				H55_RandomArtifactAward(hero,20,60,20);
-			end;
-		end;
-		H55_BankLastVisit[bank] = day;
-		H55_BankPlayerLastVisit[player][bank] = day;
-		MarkObjectAsVisited(bank,hero);
-		for i = 1,7 do
-			H55_StockpileArmies[bank][i] = random(3)+1
-		end;
-		H55_StockpileArmies[bank][8] = random(5)+1;
-	else
-		MarkObjectAsVisited(bank,hero);
-	end;
-end;
-
-function H55_UtopiaWin(hero,result)
-	local player = GetObjectOwner(hero);
-	local bank = H55_BankCurrentPlayerVisit[player];
-	local day = GetDate(DAY);
-	if result ~= nil then
-		local rnd1 = random(4)+1;
-		H55_GoldReward(hero,4);
-		H55_ArtifactAward(hero,3);
-		H55_ArtifactAward(hero,2);
-		if rnd1 == 1 then
-			H55_ArtifactAward(hero,1);
-		elseif rnd1 == 2 then
-			H55_ResourceReward(hero,4,4);
-		elseif rnd1 == 3 then
-			H55_DocumentAward(hero,2);
-		else
-			H55_PrisonersReward(hero,6,7);
-		end;
-		H55_BankLastVisit[bank] = day;
-		H55_BankPlayerLastVisit[player][bank] = day;
-		MarkObjectAsVisited(bank,hero);
-		for i = 1,6 do
-			H55_UtopiaArmies[bank][i] = random(3)+1;
-		end;
-		H55_UtopiaArmies[bank][7] = random(8)+1;
-	else
-		MarkObjectAsVisited(bank,hero);
-	end;
-end;
-
-function H55_SunkenTempleWin(hero,result)
-	local player = GetObjectOwner(hero);
-	local bank = H55_BankCurrentPlayerVisit[player];
-	local day = GetDate(DAY);
-	if result ~= nil then
-		local rnd1 = random(4)+1;
-		H55_GoldReward(hero,3);
-		H55_ArtifactAward(hero,3);
-		if rnd1 == 1 then
-			H55_RandomArtifactAward(hero,30,70,0);
-			H55_SpellAward(hero,2);
-		elseif rnd1 == 2 then
-			H55_RandomArtifactAward(hero,30,70,0);
-			H55_ResourceReward(hero,3,3);
-			H55_ResourceReward(hero,2,3);
-		elseif rnd1 == 3 then
-			H55_RandomArtifactAward(hero,30,70,0);
-			H55_DocumentAward(hero,2);
-		else
-			H55_RandomArtifactAward(hero,30,70,0);
-			H55_PrisonersReward(hero,6,7);
-		end;
-		H55_BankLastVisit[bank] = day;
-		H55_BankPlayerLastVisit[player][bank] = day;
-		MarkObjectAsVisited(bank,hero);
-		for i = 1,14 do
-			H55_SunkenTempleArmies[bank][i] = random(3)+1;
-		end;
-		for i = 15,20 do
-			H55_SunkenTempleArmies[bank][i] = random(2)+1+(i-15);
-		end;
-		for i = 21,26 do
-			H55_SunkenTempleArmies[bank][i] = random(2)+1+(i-21);
-		end;
-		H55_SunkenTempleArmies[bank][27] = random(7)+1;
-		H55_SunkenTempleArmies[bank][28] = random(8)+1;
-		H55_SunkenTempleArmies[bank][29] = random(9)+1;
-		H55_SunkenTempleArmies[bank][30] = random(8)+1;
-	else
-		MarkObjectAsVisited(bank,hero);
-	end;
-end;
-
-function H55_UnkemptWin(hero,result)
-	local player = GetObjectOwner(hero);
-	local bank = H55_BankCurrentPlayerVisit[player];
-	local day = GetDate(DAY);
-	if result ~= nil then
-		if day <= 84 then
-			local rnd1 = random(4)+1;
-			H55_GoldReward(hero,1);
-			H55_ResourceReward(hero,0,1);
-			if rnd1 == 1 then
-				H55_PrisonersReward(hero,2,4);
-			elseif rnd1 == 2 then
-				H55_SpellAward(hero,1);
-			elseif rnd1 == 3 then
-				H55_RandomArtifactAward(hero,75,25,0);
-			else
-				H55_DocumentAward(hero,1);
-			end;
-		else
-			local rnd2 = random(3)+1;
-			H55_GoldReward(hero,2);
-			H55_ResourceReward(hero,0,2);
-			if rnd2 == 1 then
-				H55_PrisonersReward(hero,3,5);
-			elseif rnd2 == 2 then
-				H55_RandomArtifactAward(hero,50,45,5);
-			else
-				H55_DocumentAward(hero,1);
-			end;
-		end;
-		H55_BankLastVisit[bank] = day;
-		H55_BankPlayerLastVisit[player][bank] = day;
-		MarkObjectAsVisited(bank,hero);
-		for i = 1,14 do
-			H55_UnkemptArmies[bank][i] = random(3)+1;
-		end;
-		for i = 15,20 do
-			H55_UnkemptArmies[bank][i] = random(2)+1+(i-15);
-		end;
-		for i = 21,26 do
-			H55_UnkemptArmies[bank][i] = random(2)+1+(i-21);
-		end;
-		H55_UnkemptArmies[bank][27] = random(7)+1;
-		H55_UnkemptArmies[bank][28] = random(8)+1;
-		H55_UnkemptArmies[bank][29] = random(9)+1;
-		H55_UnkemptArmies[bank][30] = random(8)+1;
-	else
-		MarkObjectAsVisited(bank,hero);
-	end;
-end;
-
-function H55_DemolishWin(hero,result)
-	local player = GetObjectOwner(hero);
-	local bank = H55_BankCurrentPlayerVisit[player];
-	local day = GetDate(DAY);
-	if result ~= nil then
-		if day <= 84 then
-			local rnd1 = random(4)+1;
-			H55_GoldReward(hero,1);
-			H55_RandomArtifactAward(hero,50,50,0);
-			if rnd1 == 1 then
-				H55_PrisonersReward(hero,2,4);
-			elseif rnd1 == 2 then
-				H55_SpellAward(hero,1);
-			elseif rnd1 == 3 then
-				H55_ResourceReward(hero,0,1);
-			else
-				H55_DocumentAward(hero,1);
-			end;
-		else
-			local rnd2 = random(3)+1;
-			H55_GoldReward(hero,2);
-			H55_RandomArtifactAward(hero,20,60,20);
-			if rnd2 == 1 then
-				H55_PrisonersReward(hero,3,5);
-			elseif rnd2 == 2 then
-				H55_ResourceReward(hero,0,2);
-			else
-				H55_DocumentAward(hero,1);
-			end;
-		end;
-		H55_BankLastVisit[bank] = day;
-		H55_BankPlayerLastVisit[player][bank] = day;
-		MarkObjectAsVisited(bank,hero);
-		for i = 1,14 do
-			H55_DemolishArmies[bank][i] = random(3)+1;
-		end;
-		for i = 15,20 do
-			H55_DemolishArmies[bank][i] = random(2)+1+(i-15);
-		end;
-		for i = 21,26 do
-			H55_DemolishArmies[bank][i] = random(2)+1+(i-21);
-		end;
-		H55_DemolishArmies[bank][27] = random(7)+1;
-		H55_DemolishArmies[bank][28] = random(8)+1;
-		H55_DemolishArmies[bank][29] = random(9)+1;
-		H55_DemolishArmies[bank][30] = random(8)+1;
-	else
-		MarkObjectAsVisited(bank,hero);
-	end;
-end;
-
-function H55_TowerWin(hero,result)
-	local player = GetObjectOwner(hero);
-	local bank = H55_BankCurrentPlayerVisit[player];
-	local day = GetDate(DAY);
-	if result ~= nil then
-		if day <= 84 then
-			local rnd1 = random(4)+1;
-			H55_GoldReward(hero,1);
-			H55_PrisonersReward(hero,2,5);
-			if rnd1 == 1 then
-				H55_RandomArtifactAward(hero,20,70,10);
-			elseif rnd1 == 2 then
-				H55_ResourceReward(hero,0,2);
-				H55_ResourceReward(hero,1,2);
-			elseif rnd1 == 3 then
-				H55_DocumentAward(hero,1);
-			else
-				H55_PrisonersReward(hero,3,5);
-			end;
-		else
-			local rnd2 = random(4)+1;
-			H55_GoldReward(hero,2);
-			H55_PrisonersReward(hero,2,6);
-			if rnd2 == 1 then
-				H55_RandomArtifactAward(hero,20,65,15);
-			elseif rnd2 == 2 then
-				H55_ResourceReward(hero,0,2);
-				H55_ResourceReward(hero,1,2);
-			elseif rnd2 == 3 then
-				H55_DocumentAward(hero,1);
-			else
-				H55_PrisonersReward(hero,3,7);
-			end;
-		end;
-		H55_BankLastVisit[bank] = day;
-		H55_BankPlayerLastVisit[player][bank] = day;
-		MarkObjectAsVisited(bank,hero);
-		for i = 1,14 do
-			H55_UnkemptArmies[bank][i] = random(3)+1;
-		end;
-		for i = 15,20 do
-			H55_UnkemptArmies[bank][i] = random(2)+1+(i-15);
-		end;
-		for i = 21,26 do
-			H55_UnkemptArmies[bank][i] = random(2)+1+(i-21);
-		end;
-		H55_UnkemptArmies[bank][27] = random(7)+1;
-		H55_UnkemptArmies[bank][28] = random(8)+1;
-		H55_UnkemptArmies[bank][29] = random(9)+1;
-		H55_UnkemptArmies[bank][30] = random(8)+1;
-	else
-		MarkObjectAsVisited(bank,hero);
-	end;
-end;
-
-function H55_MausoleumWin(hero,result)
-	local player = GetObjectOwner(hero);
-	local bank = H55_BankCurrentPlayerVisit[player];
-	local day = GetDate(DAY);
-	if result ~= nil then
-		local rnd1 = random(4)+1;
-		H55_GoldReward(hero,3);
-		H55_RandomArtifactAward(hero,0,20,80);
-		if rnd1 == 1 then
-			H55_RandomArtifactAward(hero,50,50,0);
-			H55_SpellAward(hero,2);
-		elseif rnd1 == 2 then
-			H55_RandomArtifactAward(hero,30,70,0);
-			H55_ResourceReward(hero,3,3);
-			H55_ResourceReward(hero,2,3);
-		elseif rnd1 == 3 then
-			H55_RandomArtifactAward(hero,50,50,0);
-			H55_DocumentAward(hero,2);
-		else
-			H55_RandomArtifactAward(hero,50,50,0);
-			H55_PrisonersReward(hero,6,7);
-		end;
-		H55_BankLastVisit[bank] = day;
-		H55_BankPlayerLastVisit[player][bank] = day;
-		MarkObjectAsVisited(bank,hero);
-		for i = 1,14 do
-			H55_DemolishArmies[bank][i] = random(3)+1;
-		end;
-		for i = 15,20 do
-			H55_DemolishArmies[bank][i] = random(2)+1+(i-15);
-		end;
-		for i = 21,26 do
-			H55_DemolishArmies[bank][i] = random(2)+1+(i-21);
-		end;
-		H55_DemolishArmies[bank][27] = random(7)+1;
-		H55_DemolishArmies[bank][28] = random(8)+1;
-		H55_DemolishArmies[bank][29] = random(9)+1;
-		H55_DemolishArmies[bank][30] = random(8)+1;
-	else
-		MarkObjectAsVisited(bank,hero);
-	end;
-end;
-
 -------------------------------------------------------------------------------------------------------------------------------------------------
 --REWARDS
 -------------------------------------------------------------------------------------------------------------------------------------------------
-
-function H55_GoldReward(hero,level)
-	local player = GetObjectOwner(hero);
-	local rnd = random(3000)+1;
-	local amount = (level*2000)+rnd;
-	if level == 4 then amount = amount+4000 end;
-	if HasHeroSkill(hero,PERK_LUCKY_STRIKE) then
-		local lucky = 1+(0.1+((random(20)+1)/100));
-		amount = H55_Round(amount*lucky);
-	end;
-	H55_GiveResources(player,6,amount,hero);
-end;
-
-function H55_ResourceReward(hero,type,level)
-	local player = GetObjectOwner(hero);
-	local rnd = random(5)+1;
-	local amount = (level*3)+rnd;
-	if HasHeroSkill(hero,PERK_LUCKY_STRIKE) then
-		local lucky = 1+(0.1+((random(20)+1)/100));
-		amount = H55_Round(amount*lucky);
-	end;
-	H55_GiveResources(player,type,amount,hero);
-end;
-
-function H55_ArtifactAward(hero,level)
-	local player = GetObjectOwner(hero);
-	local x,y,z = GetObjectPosition(hero);
-	if H55_Day == 1 then
-		local rnda = random(length(H55_MinorArtifacts))+1;
-		local rndb = random(length(H55_MajorArtifacts))+1;
-		local rndc = random(length(H55_RelicArtifacts))+1;
-		if level == 3 then
-			GiveArtefact(hero,H55_RelicArtifacts[rndc],0);
-		elseif level == 2 then
-			GiveArtefact(hero,H55_MajorArtifacts[rndb],0);
-		else
-			GiveArtefact(hero,H55_MinorArtifacts[rnda],0);
-		end;
-	else
-		local rnd1 = random(length(H55_MinorArtifactsUsed));
-		local rnd2 = random(length(H55_MajorArtifactsUsed));
-		local rnd3 = random(length(H55_RelicArtifactsUsed));
-		if level == 3 then
-			GiveArtefact(hero,H55_RelicArtifactsUsed[rnd3],0);
-		elseif level == 2 then
-			GiveArtefact(hero,H55_MajorArtifactsUsed[rnd2],0);
-		else
-			GiveArtefact(hero,H55_MinorArtifactsUsed[rnd1],0);
-		end;
-	end;
-	Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndArtifact,x,y,z);
-	if H55_IsThisAIPlayer(player) ~= 1 then
-		ShowFlyingSign("/Text/Game/Scripts/Banks/Giveartifact.txt",hero,player,5);
-		sleep(8);
-	end;
-end;
-
-function H55_RandomArtifactAward(hero,minorchance,majorchance,relicchance)
-	local player = GetObjectOwner(hero);
-	local choice = random(100)+1;
-	local x,y,z = GetObjectPosition(hero);
-	if H55_Day == 1 then
-		local rnda = random(length(H55_MinorArtifacts))+1;
-		local rndb = random(length(H55_MajorArtifacts))+1;
-		local rndc = random(length(H55_RelicArtifacts))+1;
-		if choice <= minorchance then
-			GiveArtefact(hero,H55_MinorArtifacts[rnda],0);
-		elseif choice > minorchance and choice <= (majorchance+minorchance) then
-			GiveArtefact(hero,H55_MajorArtifacts[rndb],0);
-		else
-			GiveArtefact(hero,H55_RelicArtifacts[rndc],0);
-		end;
-	else
-		local rnd1 = random(length(H55_MinorArtifactsUsed));
-		local rnd2 = random(length(H55_MajorArtifactsUsed));
-		local rnd3 = random(length(H55_RelicArtifactsUsed));
-		if choice <= minorchance then
-			GiveArtefact(hero,H55_MinorArtifactsUsed[rnd1],0);
-		elseif choice > minorchance and choice <= (majorchance+minorchance) then
-			GiveArtefact(hero,H55_MajorArtifactsUsed[rnd2],0);
-		else
-			GiveArtefact(hero,H55_RelicArtifactsUsed[rnd3],0);
-		end;
-	end;
-	Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndArtifact,x,y,z);
-	if H55_IsThisAIPlayer(player) ~= 1 then
-		ShowFlyingSign("/Text/Game/Scripts/Banks/Giveartifact.txt",hero,player,5);
-		sleep(8);
-	end;
-end;
-
-function H55_GraalAward(hero,result)
-	local player = GetObjectOwner(hero);
-	local x,y,z = GetObjectPosition(hero);
-	GiveArtefact(hero,53);
-	Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndArtifact,x,y,z);
-	if H55_IsThisAIPlayer(player) ~= 1 then
-		ShowFlyingSign("/Text/Game/Scripts/Banks/Giveartifact.txt",hero,player,5);
-		sleep(8);
-	end;
-end;
-
-function H55_RandomUltimateAward(hero)
-	local player = GetObjectOwner(hero);
-	local x,y,z = GetObjectPosition(hero);
-	if H55_Day == 1 then
-		local rnda = random(length(H55_UltimateArtifacts))+1;
-		GiveArtefact(hero,H55_UltimateArtifacts[rnda],0);
-	else
-		local rnd1 = random(length(H55_UltimateArtifactsUsed));
-		GiveArtefact(hero,H55_UltimateArtifactsUsed[rnd1],0);
-	end;
-	Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndArtifact,x,y,z);
-	if H55_IsThisAIPlayer(player) ~= 1 then
-		ShowFlyingSign("/Text/Game/Scripts/Banks/Giveartifact.txt",hero,player,5);
-		sleep(8);
-	end;
-end;
-
-function H55_PrisonersReward(hero,multiplier,maxtier)
-	local player = GetObjectOwner(hero);
-	local tier = random(maxtier)+1;
-	local faction = H55_GetHeroRaceNum(hero);
-	local amount = random(4)+(multiplier*H55_CreaturesGrowth[faction][tier]);
-	-- local amount = 1;
-	-- if faction == 2 or faction == 6 then
-		-- amount = random(4)+(multiplier*H55_PrisonRewardAmountElves[tier]);
-	-- else
-		-- amount = random(4)+(multiplier*H55_PrisonRewardAmount[tier]);
-	-- end;
-	if HasHeroSkill(hero,PERK_LUCKY_STRIKE) then
-		local lucky = 1+(0.1+((random(20)+1)/100));
-		amount = H55_Round(amount*lucky);
-	end;
-	local type = H55_ArmyInfoSimple(hero);
-	local released = 0;
-	local x,y,z = GetObjectPosition(hero);
-	for i = 0,6 do
-		if type[i] == H55_Creatures[faction][tier][2] and released == 0 then
-			AddHeroCreatures(hero,H55_Creatures[faction][tier][2],amount);
-			if H55_IsThisAIPlayer(player) ~= 1 then ShowFlyingSign({"/Text/Game/Scripts/Banks/Prisoners.txt";num=amount,level=tier},hero,player,7) end;
-			Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndArmy,x,y,z);
-			released = 1;
-		end;
-		if type[i] == H55_Creatures[faction][tier][3] and released == 0 then
-			AddHeroCreatures(hero,H55_Creatures[faction][tier][3],amount);
-			if H55_IsThisAIPlayer(player) ~= 1 then ShowFlyingSign({"/Text/Game/Scripts/Banks/Prisoners.txt";num=amount,level=tier},hero,player,7) end;
-			Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndArmy,x,y,z);
-			released = 1;
-		end;
-		if type[i] == H55_Creatures[faction][tier][1] and released == 0 then
-			AddHeroCreatures(hero,H55_Creatures[faction][tier][1],amount);
-			if H55_IsThisAIPlayer(player) ~= 1 then ShowFlyingSign({"/Text/Game/Scripts/Banks/Prisoners.txt";num=amount,level=tier},hero,player,7) end;
-			Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndArmy,x,y,z);
-			released = 1;
-		end;
-	end;
-	if released == 0 then
-		for i = 0,6 do
-			if (type[i] == 0 or type[i] == nil) and released == 0 then
-				AddHeroCreatures(hero,H55_Creatures[faction][tier][1],amount);
-				if H55_IsThisAIPlayer(player) ~= 1 then ShowFlyingSign({"/Text/Game/Scripts/Banks/Prisoners.txt";num=amount,level=tier},hero,player,7) end;
-				Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndArmy,x,y,z);
-				released = 1;
-			end;
-		end;
-	end;
-	if H55_IsThisAIPlayer(player) ~= 1 then
-		sleep(8);
-	end;
-end;
 
 function H55_StartCreatureBonus(player,hero,multiplier,maxtier)
 	-- local tier = random(maxtier-1)+2;
@@ -5401,260 +3219,11 @@ function H55_SummonTempleReward(hero,multiplier,maxtier)
 	end;
 end;
 
-function H55_SpellAward(hero,level)
-	local player = GetObjectOwner(hero);
-	local rnd5 = random(9)+1;
-	local rnd4 = random(10)+1;
-	local rnd3 = random(11)+1;
-	local rnd2 = random(9)+1;
-	local rnd1 = random(9)+1;
-	local teached = 0;
-	local x,y,z = GetObjectPosition(hero);
-	if level == 2 then
-		if contains(H55_Barbarians,hero) ~= nil then
-			GiveArtefact(hero,ARTIFACT_SCROLL_OF_SPELL_X);
-			Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndArtifact,x,y,z);
-		else
-			if KnowHeroSpell(hero,H55_SpellsL5[rnd5]) == nil then
-				if contains(H55_LightSpells,H55_SpellsL5[rnd5]) then
-					if HasHeroSkill(hero,SKILL_LIGHT_MAGIC) then
-						TeachHeroSpell(hero,H55_SpellsL5[rnd5]);
-						if H55_IsThisAIPlayer(player) ~= 1 then ShowFlyingSign({"/Text/Game/Scripts/Banks/Givespell.txt";name=H55_SpellsTextL5[rnd5]},hero,player,7) end;
-						Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndSpell,x,y,z);
-						teached = 1;
-					end;
-				elseif contains(H55_DarkSpells,H55_SpellsL5[rnd5]) then
-					if HasHeroSkill(hero,SKILL_DARK_MAGIC) then
-						TeachHeroSpell(hero,H55_SpellsL5[rnd5]);
-						if H55_IsThisAIPlayer(player) ~= 1 then ShowFlyingSign({"/Text/Game/Scripts/Banks/Givespell.txt";name=H55_SpellsTextL5[rnd5]},hero,player,7) end;
-						Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndSpell,x,y,z);
-						teached = 1;
-					end;
-				elseif contains(H55_DestructiveSpells,H55_SpellsL5[rnd5]) then
-					if HasHeroSkill(hero,SKILL_DESTRUCTIVE_MAGIC) then
-						TeachHeroSpell(hero,H55_SpellsL5[rnd5]);
-						if H55_IsThisAIPlayer(player) ~= 1 then ShowFlyingSign({"/Text/Game/Scripts/Banks/Givespell.txt";name=H55_SpellsTextL5[rnd5]},hero,player,7) end;
-						Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndSpell,x,y,z);
-						teached = 1;
-					end;
-				elseif contains(H55_SummoningSpells,H55_SpellsL5[rnd5]) then
-					if HasHeroSkill(hero,SKILL_SUMMONING_MAGIC) then
-						TeachHeroSpell(hero,H55_SpellsL5[rnd5]);
-						if H55_IsThisAIPlayer(player) ~= 1 then ShowFlyingSign({"/Text/Game/Scripts/Banks/Givespell.txt";name=H55_SpellsTextL5[rnd5]},hero,player,7) end;
-						Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndSpell,x,y,z);
-						teached = 1;
-					end;
-				end;
-			elseif KnowHeroSpell(hero,H55_SpellsL4[rnd4]) == nil then
-				if contains(H55_LightSpells,H55_SpellsL4[rnd4]) then
-					if HasHeroSkill(hero,SKILL_LIGHT_MAGIC) then
-						TeachHeroSpell(hero,H55_SpellsL4[rnd4]);
-						if H55_IsThisAIPlayer(player) ~= 1 then ShowFlyingSign({"/Text/Game/Scripts/Banks/Givespell.txt";name=H55_SpellsTextL4[rnd4]},hero,player,7) end;
-						Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndSpell,x,y,z);
-						teached = 1;
-					end;
-				elseif contains(H55_DarkSpells,H55_SpellsL4[rnd4]) then
-					if HasHeroSkill(hero,SKILL_DARK_MAGIC) then
-						TeachHeroSpell(hero,H55_SpellsL4[rnd4]);
-						if H55_IsThisAIPlayer(player) ~= 1 then ShowFlyingSign({"/Text/Game/Scripts/Banks/Givespell.txt";name=H55_SpellsTextL4[rnd4]},hero,player,7) end;
-						Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndSpell,x,y,z);
-						teached = 1;
-					end;
-				elseif contains(H55_DestructiveSpells,H55_SpellsL4[rnd4]) then
-					if HasHeroSkill(hero,SKILL_DESTRUCTIVE_MAGIC) then
-						TeachHeroSpell(hero,H55_SpellsL4[rnd4]);
-						if H55_IsThisAIPlayer(player) ~= 1 then ShowFlyingSign({"/Text/Game/Scripts/Banks/Givespell.txt";name=H55_SpellsTextL4[rnd4]},hero,player,7) end;
-						Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndSpell,x,y,z);
-						teached = 1;
-					end;
-				elseif contains(H55_SummoningSpells,H55_SpellsL4[rnd4]) then
-					if HasHeroSkill(hero,SKILL_SUMMONING_MAGIC) then
-						TeachHeroSpell(hero,H55_SpellsL4[rnd4]);
-						if H55_IsThisAIPlayer(player) ~= 1 then ShowFlyingSign({"/Text/Game/Scripts/Banks/Givespell.txt";name=H55_SpellsTextL4[rnd4]},hero,player,7) end;
-						Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndSpell,x,y,z);
-						teached = 1;
-					end;
-				end;
-			elseif KnowHeroSpell(hero,H55_SpellsL4[rnd1]) == nil then
-				if contains(H55_LightSpells,H55_SpellsL4[rnd1]) then
-					if HasHeroSkill(hero,SKILL_LIGHT_MAGIC) then
-						TeachHeroSpell(hero,H55_SpellsL4[rnd1]);
-						if H55_IsThisAIPlayer(player) ~= 1 then ShowFlyingSign({"/Text/Game/Scripts/Banks/Givespell.txt";name=H55_SpellsTextL4[rnd1]},hero,player,7) end;
-						Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndSpell,x,y,z);
-						teached = 1;
-					end;
-				elseif contains(H55_DarkSpells,H55_SpellsL4[rnd1]) then
-					if HasHeroSkill(hero,SKILL_DARK_MAGIC) then
-						TeachHeroSpell(hero,H55_SpellsL4[rnd1]);
-						if H55_IsThisAIPlayer(player) ~= 1 then ShowFlyingSign({"/Text/Game/Scripts/Banks/Givespell.txt";name=H55_SpellsTextL4[rnd1]},hero,player,7) end;
-						Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndSpell,x,y,z);
-						teached = 1;
-					end;
-				elseif contains(H55_DestructiveSpells,H55_SpellsL4[rnd1]) then
-					if HasHeroSkill(hero,SKILL_DESTRUCTIVE_MAGIC) then
-						TeachHeroSpell(hero,H55_SpellsL4[rnd1]);
-						if H55_IsThisAIPlayer(player) ~= 1 then ShowFlyingSign({"/Text/Game/Scripts/Banks/Givespell.txt";name=H55_SpellsTextL4[rnd1]},hero,player,7) end;
-						Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndSpell,x,y,z);
-						teached = 1;
-					end;
-				elseif contains(H55_SummoningSpells,H55_SpellsL4[rnd1]) then
-					if HasHeroSkill(hero,SKILL_SUMMONING_MAGIC) then
-						TeachHeroSpell(hero,H55_SpellsL4[rnd1]);
-						if H55_IsThisAIPlayer(player) ~= 1 then ShowFlyingSign({"/Text/Game/Scripts/Banks/Givespell.txt";name=H55_SpellsTextL4[rnd1]},hero,player,7) end;
-						Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndSpell,x,y,z);
-						teached = 1;
-					end;
-				end;
-			elseif KnowHeroSpell(hero,H55_SpellsL3[rnd3]) == nil then
-				if contains(H55_LightSpells,H55_SpellsL3[rnd3]) then
-					if HasHeroSkill(hero,SKILL_LIGHT_MAGIC) then
-						TeachHeroSpell(hero,H55_SpellsL3[rnd3]);
-						if H55_IsThisAIPlayer(player) ~= 1 then ShowFlyingSign({"/Text/Game/Scripts/Banks/Givespell.txt";name=H55_SpellsTextL3[rnd3]},hero,player,7) end;
-						Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndSpell,x,y,z);
-						teached = 1;
-					end;
-				elseif contains(H55_DarkSpells,H55_SpellsL3[rnd3]) then
-					if HasHeroSkill(hero,SKILL_DARK_MAGIC) then
-						TeachHeroSpell(hero,H55_SpellsL3[rnd3]);
-						if H55_IsThisAIPlayer(player) ~= 1 then ShowFlyingSign({"/Text/Game/Scripts/Banks/Givespell.txt";name=H55_SpellsTextL3[rnd3]},hero,player,7) end;
-						Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndSpell,x,y,z);
-						teached = 1;
-					end;
-				elseif contains(H55_DestructiveSpells,H55_SpellsL3[rnd3]) then
-					if HasHeroSkill(hero,SKILL_DESTRUCTIVE_MAGIC) then
-						TeachHeroSpell(hero,H55_SpellsL3[rnd3]);
-						if H55_IsThisAIPlayer(player) ~= 1 then ShowFlyingSign({"/Text/Game/Scripts/Banks/Givespell.txt";name=H55_SpellsTextL3[rnd3]},hero,player,7) end;
-						Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndSpell,x,y,z);
-						teached = 1;
-					end;
-				elseif contains(H55_SummoningSpells,H55_SpellsL3[rnd3]) then
-					if HasHeroSkill(hero,SKILL_SUMMONING_MAGIC) then
-						TeachHeroSpell(hero,H55_SpellsL3[rnd3]);
-						if H55_IsThisAIPlayer(player) ~= 1 then ShowFlyingSign({"/Text/Game/Scripts/Banks/Givespell.txt";name=H55_SpellsTextL3[rnd3]},hero,player,7) end;
-						Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndSpell,x,y,z);
-						teached = 1;
-					end;
-				end;
-			elseif KnowHeroSpell(hero,H55_SpellsL3[rnd2]) == nil then
-				if contains(H55_LightSpells,H55_SpellsL3[rnd2]) then
-					if HasHeroSkill(hero,SKILL_LIGHT_MAGIC) then
-						TeachHeroSpell(hero,H55_SpellsL3[rnd2]);
-						if H55_IsThisAIPlayer(player) ~= 1 then ShowFlyingSign({"/Text/Game/Scripts/Banks/Givespell.txt";name=H55_SpellsTextL3[rnd2]},hero,player,7) end;
-						Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndSpell,x,y,z);
-						teached = 1;
-					end;
-				elseif contains(H55_DarkSpells,H55_SpellsL3[rnd2]) then
-					if HasHeroSkill(hero,SKILL_DARK_MAGIC) then
-						TeachHeroSpell(hero,H55_SpellsL3[rnd2]);
-						if H55_IsThisAIPlayer(player) ~= 1 then ShowFlyingSign({"/Text/Game/Scripts/Banks/Givespell.txt";name=H55_SpellsTextL3[rnd2]},hero,player,7) end;
-						Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndSpell,x,y,z);
-						teached = 1;
-					end;
-				elseif contains(H55_DestructiveSpells,H55_SpellsL3[rnd2]) then
-					if HasHeroSkill(hero,SKILL_DESTRUCTIVE_MAGIC) then
-						TeachHeroSpell(hero,H55_SpellsL3[rnd2]);
-						if H55_IsThisAIPlayer(player) ~= 1 then ShowFlyingSign({"/Text/Game/Scripts/Banks/Givespell.txt";name=H55_SpellsTextL3[rnd2]},hero,player,7) end;
-						Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndSpell,x,y,z);
-						teached = 1;
-					end;
-				elseif contains(H55_SummoningSpells,H55_SpellsL3[rnd2]) then
-					if HasHeroSkill(hero,SKILL_SUMMONING_MAGIC) then
-						TeachHeroSpell(hero,H55_SpellsL3[rnd2]);
-						if H55_IsThisAIPlayer(player) ~= 1 then ShowFlyingSign({"/Text/Game/Scripts/Banks/Givespell.txt";name=H55_SpellsTextL3[rnd2]},hero,player,7) end;
-						Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndSpell,x,y,z);
-						teached = 1;
-					end;
-				end;
-			end;
-			if teached == 0 then
-				GiveArtefact(hero,ARTIFACT_SCROLL_OF_SPELL_X);
-				Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndArtifact,x,y,z);
-			end;
-			if H55_IsThisAIPlayer(player) ~= 1 then
-				sleep(8);
-			end;
-		end;
-	else
-		if contains(H55_Barbarians,hero) ~= nil then
-			GiveArtefact(hero,ARTIFACT_WAND_OF_X);
-			Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndArtifact,x,y,z);
-		else
-			if HasHeroSkill(hero,PERK_WISDOM) then
-				if KnowHeroSpell(hero,H55_SpellsL3[rnd3]) == nil then
-					TeachHeroSpell(hero,H55_SpellsL3[rnd3]);
-					if H55_IsThisAIPlayer(player) ~= 1 then ShowFlyingSign({"/Text/Game/Scripts/Banks/Givespell.txt";name=H55_SpellsTextL3[rnd3]},hero,player,7) end;
-					Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndSpell,x,y,z);
-					teached = 1;
-				end;
-			end;
-			if teached == 0 then
-				if KnowHeroSpell(hero,H55_SpellsL2[rnd2]) == nil then
-					TeachHeroSpell(hero,H55_SpellsL2[rnd2]);
-					if H55_IsThisAIPlayer(player) ~= 1 then ShowFlyingSign({"/Text/Game/Scripts/Banks/Givespell.txt";name=H55_SpellsTextL2[rnd2]},hero,player,7) end;
-					Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndSpell,x,y,z);
-					teached = 1;
-				elseif KnowHeroSpell(hero,H55_SpellsL2[rnd4]) == nil then
-					TeachHeroSpell(hero,H55_SpellsL2[rnd4]);
-					if H55_IsThisAIPlayer(player) ~= 1 then ShowFlyingSign({"/Text/Game/Scripts/Banks/Givespell.txt";name=H55_SpellsTextL2[rnd4]},hero,player,7) end;
-					Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndSpell,x,y,z);
-					teached = 1;
-				elseif KnowHeroSpell(hero,H55_SpellsL1[rnd1]) == nil then
-					TeachHeroSpell(hero,H55_SpellsL1[rnd1]);
-					if H55_IsThisAIPlayer(player) ~= 1 then ShowFlyingSign({"/Text/Game/Scripts/Banks/Givespell.txt";name=H55_SpellsTextL1[rnd1]},hero,player,7) end;
-					Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndSpell,x,y,z);
-					teached = 1;
-				elseif KnowHeroSpell(hero,H55_SpellsL1[rnd3]) == nil then
-					TeachHeroSpell(hero,H55_SpellsL1[rnd3]);
-					if H55_IsThisAIPlayer(player) ~= 1 then ShowFlyingSign({"/Text/Game/Scripts/Banks/Givespell.txt";name=H55_SpellsTextL1[rnd3]},hero,player,7) end;
-					Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndSpell,x,y,z);
-					teached = 1;
-				end;
-			end;
-			if teached == 0 then
-				GiveArtefact(hero,ARTIFACT_WAND_OF_X);
-				Play3DSoundForPlayers(GetPlayerFilter(player), H55_SndArtifact,x,y,z);
-			end;
-			if H55_IsThisAIPlayer(player) ~= 1 then
-				sleep(8);
-			end;
-		end;
-	end;
-end;
-
-function H55_DocumentAward(hero,level)
-	local player = GetObjectOwner(hero);
-	local rnd = random(4)+1;
-	if level == 2 then
-		ChangeHeroStat(hero,H55_StatAwards[rnd],2);
-		if H55_IsThisAIPlayer(player) ~= 1 then
-			ShowFlyingSign(H55_BankDocumentsL2[rnd],hero,player,7);
-			sleep(8);
-			ShowFlyingSign({H55_BankStatText[rnd];param=2},hero,player,7);
-			sleep(4);
-		end;
-	else
-		ChangeHeroStat(hero,H55_StatAwards[rnd],1);
-		if H55_IsThisAIPlayer(player) ~= 1 then
-			ShowFlyingSign(H55_BankDocumentsL1[rnd],hero,player,7);
-			sleep(8);
-			ShowFlyingSign({H55_BankStatText[rnd];param=1},hero,player,7);
-			sleep(4);
-		end;
-	end;
-end;
-
-function H55_SeerAward(hero,level,skill)
-	local player = GetObjectOwner(hero);
-	ChangeHeroStat(hero,H55_StatAwards[skill],level);
-	if H55_IsThisAIPlayer(player) ~= 1 then
-		sleep(10);
-		ShowFlyingSign({H55_BankStatText[skill];param=level},hero,player,7);
-	end;
-end;
-
 -- by 牙姐 2021-03-07 05:36:50
 -- begin 【杉提瑞圆盘】试炼相关
 	TTH_Arr_Shantiri = GetObjectNamesByType("BUILDING_EYE_OF_MAGI");
+	TTH_Arr_Obelisk = GetObjectNamesByType("BUILDING_LAKE_OF_SCARLET_SWAN");
+	TTH_Arr_Long_Shantiri = TTH_UNITY_CONCAT(TTH_Arr_Shantiri, TTH_Arr_Obelisk);
 	-- 玩家是否访问过 【杉提瑞圆盘】
 	TTH_Map_HasPlayerVisitedShantiri = {};
 	-- 玩家访问 【杉提瑞圆盘】 的数量
@@ -5680,15 +3249,6 @@ end;
 		-- 杉提瑞之触
 		H55_GrailTouch(strHero, objShantiri);
 
-		-- 第一次访问显示地图上所有【杉提瑞圆盘】
-		if TTH_Map_HasPlayerVisitedShantiri[iPlayer] == nil then
-			TTH_Map_HasPlayerVisitedShantiri[iPlayer] = 1;
-			for iIndexShantiri, objShantiri in TTH_Arr_Shantiri do
-				local iX, iY, iZ = GetObjectPosition(objShantiri);
-				OpenCircleFog(iX, iY, iZ, 5, iPlayer);
-			end;
-		end;
-
 		-- 标记【杉提瑞圆盘】已被玩家访问的数量
 		if TTH_Map_FlagPlayerVisitedShantiri[iPlayer] == nil then
 			TTH_Map_FlagPlayerVisitedShantiri[iPlayer] = {};
@@ -5710,7 +3270,13 @@ end;
 		else
 			-- 若英雄未完成试炼，则询问是否进行试炼
 			if TTH_Map_ShantiriTrial4HeroIsComplete[strHero] == nil then
-				QuestionBoxForPlayers(GetPlayerFilter(iPlayer), "/Text/Game/Scripts/Shantiri/QuestionChallengeInfo4Trial.txt", "TTH_Func_Shantiri_ReceiveChallenge('"..strHero.."')", "TTH_Func_Shantiri_RefuseChallenge('"..strHero.."')");
+				-- 若英雄战力不足1W，则提示英雄战力不足
+				local iPower = TTH_Func_CalcPower(strHero);
+				if iPower < 10000 then
+					MessageBoxForPlayers(GetPlayerFilter(iPlayer), {"/Text/Game/Scripts/Shantiri/MessageTrialNotEnoughPower.txt";iPower=iPower}, nil);
+				else
+					QuestionBoxForPlayers(GetPlayerFilter(iPlayer), "/Text/Game/Scripts/Shantiri/QuestionChallengeInfo4Trial.txt", "TTH_Func_Shantiri_ReceiveChallenge('"..strHero.."')", "TTH_Func_Shantiri_RefuseChallenge('"..strHero.."')");
+				end;
 			-- 否则提示，英雄已完成试炼
 			else
 				MessageBoxForPlayers(GetPlayerFilter(iPlayer), "/Text/Game/Scripts/Shantiri/MessageTrialHasCompleted.txt");
@@ -6059,6 +3625,70 @@ end;
 	end;
 -- end
 
+-- 杉提瑞之触
+function H55_GrailTouch(s_hero, grail)
+	local player = GetObjectOwner(s_hero);
+	if H55_IsThisAIPlayer(player) ~= 1 then
+		if HasHeroSkill(s_hero, KNIGHT_FEAT_GRAIL_VISION) ~= nil then
+			-- 第一次访问显示地图上所有【杉提瑞圆盘】
+			if TTH_Map_HasPlayerVisitedShantiri[player] == nil then
+				TTH_Map_HasPlayerVisitedShantiri[player] = 1;
+				for iIndexShantiri, objShantiri in TTH_Arr_Long_Shantiri do
+					local iX, iY, iZ = GetObjectPosition(objShantiri);
+					OpenCircleFog(iX, iY, iZ, 5, player);
+				end;
+			end;
+
+			local i_get = 0;
+			if H55_Touch_Grail[s_hero] == nil then
+				H55_Touch_Grail[s_hero] = {};
+				H55_Touch_Grail[s_hero][grail] = 1;
+				i_get = 1;
+			else
+				if H55_Touch_Grail[s_hero][grail] == nil then
+					H55_Touch_Grail[s_hero][grail] = 1;
+					i_get = 1;
+				end;
+			end;
+			if i_get == 1 then
+				local i_exp = 500;
+				local i_level = GetHeroLevel(s_hero);
+				i_exp = i_exp * i_level;
+				GiveExp(s_hero, i_exp);
+				-- ShowFlyingSign({"/Text/Game/Scripts/Grail/GrailTouch4Exp.txt";exp=i_exp},s_hero,player,5) sleep(4);
+			end;
+			local i_rest = 0;
+			local ci = GetLastSavedCombatIndex();
+			if H55_CI_Grail[s_hero] == nil then
+				H55_CI_Grail[s_hero] = -1;
+				i_rest = 1;
+			end;
+			if H55_CI_Grail[s_hero] ~= H55_CI_Grail_Last[s_hero] then
+				H55_CI_Grail[s_hero] = H55_CI_Grail_Last[s_hero];
+				i_rest = 1;
+			end;
+			if i_rest == 1 then
+				local i_movement = H55_Round(H55_GetHeroMovement(s_hero) * .4 * (1 + 0.5 * TTH_Monk_Move_Bonus(s_hero)));
+				ChangeHeroStat(s_hero, STAT_MOVE_POINTS, i_movement);
+
+				local i_mana = GetHeroStat(s_hero, STAT_MANA_POINTS);
+				local i_knowledge = GetHeroStat(s_hero, STAT_KNOWLEDGE);
+				local i_mana_total = 10 * i_knowledge;
+				if HasHeroSkill(s_hero, PERK_INTELLIGENCE) ~= nil then
+					i_mana_total = 15 * i_knowledge;
+				end;
+				local i_remain_mana = H55_Round(i_mana_total * .4 * (1 + 0.5 * TTH_Monk_Mana_Bonus(s_hero)));
+				if i_remain_mana > i_mana_total - i_mana then
+					ChangeHeroStat(s_hero, STAT_MANA_POINTS, i_mana_total - i_mana);
+				else
+					ChangeHeroStat(s_hero, STAT_MANA_POINTS, i_remain_mana);
+				end;
+
+				ShowFlyingSign({"/Text/Game/Scripts/Grail/GrailTouch4Rest.txt";},s_hero,player,5) sleep(4);
+			end;
+		end;
+	end;
+end;
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 --ACTIVATOR

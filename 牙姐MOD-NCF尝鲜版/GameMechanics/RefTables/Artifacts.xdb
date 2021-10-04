@@ -37,7 +37,7 @@
 				<Icon href="/Textures/HeroScreen/Artifacts/ResWood.xdb#xpointer(/Texture)"/>
 				<CostOfGold>9000</CostOfGold>
 				<AIValue>3000</AIValue>
-				<CanBeGeneratedToSell>true</CanBeGeneratedToSell>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
 				<HeroStatsModif>
 					<Attack>0</Attack>
 					<Defence>0</Defence>
@@ -52,7 +52,7 @@
 			</obj>
 		</Item>
 		<Item>
-			<ID>ARTIFACT_RES_ORE</ID>
+			<ID>ARTIFACT_RES_BASIC</ID>
 			<obj>
 				<NameFileRef href="/Text/Game/Artifacts/Res_Ore/Name.txt"/>
 				<DescriptionFileRef href="/Text/Game/Artifacts/Res_Ore/Description.txt"/>
@@ -77,7 +77,7 @@
 			</obj>
 		</Item>
 		<Item>
-			<ID>ARTIFACT_RES_SULPHUR</ID>
+			<ID>ARTIFACT_RES_ADVANCED</ID>
 			<obj>
 				<NameFileRef href="/Text/Game/Artifacts/Res_Sulphur/Name.txt"/>
 				<DescriptionFileRef href="/Text/Game/Artifacts/Res_Sulphur/Description.txt"/>
@@ -112,7 +112,7 @@
 				<Icon href="/Textures/HeroScreen/Artifacts/ResCrystal.xdb#xpointer(/Texture)"/>
 				<CostOfGold>9000</CostOfGold>
 				<AIValue>3000</AIValue>
-				<CanBeGeneratedToSell>true</CanBeGeneratedToSell>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
 				<HeroStatsModif>
 					<Attack>0</Attack>
 					<Defence>0</Defence>
@@ -127,7 +127,7 @@
 			</obj>
 		</Item>
 		<Item>
-			<ID>ARTIFACT_RES_GEM</ID>
+			<ID>ARTIFACT_PENDANT_OF_BLIND</ID>
 			<obj>
 				<NameFileRef href="/Text/Game/Artifacts/Res_Gem/Name.txt"/>
 				<DescriptionFileRef href="/Text/Game/Artifacts/Res_Gem/Description.txt"/>
@@ -152,7 +152,7 @@
 			</obj>
 		</Item>
 		<Item>
-			<ID>ARTIFACT_RES_MERCURY</ID>
+			<ID>ARTIFACT_GEM_OF_PHANTOM</ID>
 			<obj>
 				<NameFileRef href="/Text/Game/Artifacts/Res_Mercury/Name.txt"/>
 				<DescriptionFileRef href="/Text/Game/Artifacts/Res_Mercury/Description.txt"/>
@@ -777,7 +777,7 @@
 			</obj>
 		</Item>
 		<Item>
-			<ID>ARTIFACT_LEGION_T1</ID>
+			<ID>ARTIFACT_ORDER_OF_CONSCRIPTION</ID>
 			<obj>
 				<NameFileRef href="/Text/Game/Artifacts/Legion_T1/Name.txt"/>
 				<DescriptionFileRef href="/Text/Game/Artifacts/Legion_T1/Description.txt"/>
@@ -802,7 +802,7 @@
 			</obj>
 		</Item>
 		<Item>
-			<ID>ARTIFACT_LEGION_T2</ID>
+			<ID>ARTIFACT_LEGION_BASIC</ID>
 			<obj>
 				<NameFileRef href="/Text/Game/Artifacts/Legion_T2/Name.txt"/>
 				<DescriptionFileRef href="/Text/Game/Artifacts/Legion_T2/Description.txt"/>
@@ -837,7 +837,7 @@
 				<Icon href="/Textures/HeroScreen/Artifacts/LegionT3.xdb#xpointer(/Texture)"/>
 				<CostOfGold>15000</CostOfGold>
 				<AIValue>5000</AIValue>
-				<CanBeGeneratedToSell>true</CanBeGeneratedToSell>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
 				<HeroStatsModif>
 					<Attack>0</Attack>
 					<Defence>0</Defence>
@@ -852,7 +852,7 @@
 			</obj>
 		</Item>
 		<Item>
-			<ID>ARTIFACT_LEGION_T4</ID>
+			<ID>ARTIFACT_DRUM_OF_CHARGE</ID>
 			<obj>
 				<NameFileRef href="/Text/Game/Artifacts/Legion_T4/Name.txt"/>
 				<DescriptionFileRef href="/Text/Game/Artifacts/Legion_T4/Description.txt"/>
@@ -2187,7 +2187,7 @@
 				<Icon href="/Textures/HeroScreen/Artifacts/LegionT5.xdb#xpointer(/Texture)"/>
 				<CostOfGold>30000</CostOfGold>
 				<AIValue>10000</AIValue>
-				<CanBeGeneratedToSell>true</CanBeGeneratedToSell>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
 				<HeroStatsModif>
 					<Attack>0</Attack>
 					<Defence>0</Defence>
@@ -2202,7 +2202,7 @@
 			</obj>
 		</Item>
 		<Item>
-			<ID>ARTIFACT_LEGION_T6</ID>
+			<ID>ARTIFACT_LEGION_ADVANCED</ID>
 			<obj>
 				<NameFileRef href="/Text/Game/Artifacts/Legion_T6/Name.txt"/>
 				<DescriptionFileRef href="/Text/Game/Artifacts/Legion_T6/Description.txt"/>
@@ -2227,7 +2227,7 @@
 			</obj>
 		</Item>
 		<Item>
-			<ID>ARTIFACT_LEGION_T7</ID>
+			<ID>ARTIFACT_LEGION_EXPERT</ID>
 			<obj>
 				<NameFileRef href="/Text/Game/Artifacts/Legion_T7/Name.txt"/>
 				<DescriptionFileRef href="/Text/Game/Artifacts/Legion_T7/Description.txt"/>
@@ -3035,7 +3035,7 @@
 				<Type>ARTF_CLASS_MINOR</Type>
 				<Slot>MISCSLOT1</Slot>
 				<Icon href="/Textures/HeroScreen/Artifacts/Wand_Of_X.xdb#xpointer(/Texture)"/>
-				<CostOfGold>8000</CostOfGold>
+				<CostOfGold>1667</CostOfGold>
 				<AIValue>2600</AIValue>
 				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
 				<HeroStatsModif>
@@ -3060,7 +3060,7 @@
 				<Type>ARTF_CLASS_MINOR</Type>
 				<Slot>MISCSLOT1</Slot>
 				<Icon href="/Textures/HeroScreen/Artifacts/Scroll_of_Spell.xdb#xpointer(/Texture)"/>
-				<CostOfGold>12000</CostOfGold>
+				<CostOfGold>1667</CostOfGold>
 				<AIValue>4000</AIValue>
 				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
 				<HeroStatsModif>
@@ -3085,7 +3085,7 @@
 				<Type>ARTF_CLASS_MINOR</Type>
 				<Slot>MISCSLOT1</Slot>
 				<Icon href="/UI/H5A1/Icons/Artefacts/128x128/Rune_of_Flame.(Texture).xdb#xpointer(/Texture)"/>
-				<CostOfGold>8000</CostOfGold>
+				<CostOfGold>1667</CostOfGold>
 				<AIValue>2600</AIValue>
 				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
 				<HeroStatsModif>

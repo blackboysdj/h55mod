@@ -2608,18 +2608,18 @@
 				<Item>ARTIFACT_TREEBORN_QUIVER</Item>
 				<Item>ARTIFACT_PRINCESS</Item>
 				<Item>ARTIFACT_RES_WOOD</Item>
-				<Item>ARTIFACT_RES_ORE</Item>
-				<Item>ARTIFACT_RES_SULPHUR</Item>
+				<Item>ARTIFACT_RES_BASIC</Item>
+				<Item>ARTIFACT_RES_ADVANCED</Item>
 				<Item>ARTIFACT_RES_CRYSTAL</Item>
-				<Item>ARTIFACT_RES_GEM</Item>
-				<Item>ARTIFACT_RES_MERCURY</Item>	
-				<Item>ARTIFACT_LEGION_T1</Item>
-				<Item>ARTIFACT_LEGION_T2</Item>
+				<Item>ARTIFACT_PENDANT_OF_BLIND</Item>
+				<Item>ARTIFACT_GEM_OF_PHANTOM</Item>	
+				<Item>ARTIFACT_ORDER_OF_CONSCRIPTION</Item>
+				<Item>ARTIFACT_LEGION_BASIC</Item>
 				<Item>ARTIFACT_LEGION_T3</Item>
-				<Item>ARTIFACT_LEGION_T4</Item>
+				<Item>ARTIFACT_DRUM_OF_CHARGE</Item>
 				<Item>ARTIFACT_LEGION_T5</Item>
-				<Item>ARTIFACT_LEGION_T6</Item>
-				<Item>ARTIFACT_LEGION_T7</Item>	
+				<Item>ARTIFACT_LEGION_ADVANCED</Item>
+				<Item>ARTIFACT_LEGION_EXPERT</Item>	
 				<Item>ARTIFACT_STEADFAST</Item>	
 				<Item>ARTIFACT_BUCKLER</Item>	
 				<Item>ARTIFACT_REINCARNATION</Item>
@@ -18295,11 +18295,11 @@
 					<Value>97</Value>
 				</Item>
 				<Item>
-					<Name>ARTIFACT_RES_ORE</Name>
+					<Name>ARTIFACT_RES_BASIC</Name>
 					<Value>98</Value>
 				</Item>
 				<Item>
-					<Name>ARTIFACT_RES_SULPHUR</Name>
+					<Name>ARTIFACT_RES_ADVANCED</Name>
 					<Value>99</Value>
 				</Item>
 				<Item>
@@ -18307,19 +18307,19 @@
 					<Value>100</Value>
 				</Item>	
 				<Item>
-					<Name>ARTIFACT_RES_GEM</Name>
+					<Name>ARTIFACT_PENDANT_OF_BLIND</Name>
 					<Value>101</Value>
 				</Item>	
 				<Item>
-					<Name>ARTIFACT_RES_MERCURY</Name>
+					<Name>ARTIFACT_GEM_OF_PHANTOM</Name>
 					<Value>102</Value>
 				</Item>	
 				<Item>
-					<Name>ARTIFACT_LEGION_T1</Name>
+					<Name>ARTIFACT_ORDER_OF_CONSCRIPTION</Name>
 					<Value>103</Value>
 				</Item>	
 				<Item>
-					<Name>ARTIFACT_LEGION_T2</Name>
+					<Name>ARTIFACT_LEGION_BASIC</Name>
 					<Value>104</Value>
 				</Item>	
 				<Item>
@@ -18327,7 +18327,7 @@
 					<Value>105</Value>
 				</Item>	
 				<Item>
-					<Name>ARTIFACT_LEGION_T4</Name>
+					<Name>ARTIFACT_DRUM_OF_CHARGE</Name>
 					<Value>106</Value>
 				</Item>	
 				<Item>
@@ -18335,11 +18335,11 @@
 					<Value>107</Value>
 				</Item>	
 				<Item>
-					<Name>ARTIFACT_LEGION_T6</Name>
+					<Name>ARTIFACT_LEGION_ADVANCED</Name>
 					<Value>108</Value>
 				</Item>	
 				<Item>
-					<Name>ARTIFACT_LEGION_T7</Name>
+					<Name>ARTIFACT_LEGION_EXPERT</Name>
 					<Value>109</Value>
 				</Item>	
 				<Item>

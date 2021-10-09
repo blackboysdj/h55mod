@@ -3193,7 +3193,7 @@ TTH_TABLE_GIVE_MAGIC_BY_SKILL = {
 			, RANGER_FEAT_FOG_VEIL
 		}
 	}
-	-- 高级召唤 + 烈火勇士 + 高级破坏 + 烈火大师 = 火墙阻隔
+	-- 高级召唤 + 迷雾之墙 + 高级破坏 + 点燃 = 火墙阻隔
 	, {
 		["MAGIC"] = TTH_TABLE_SPELL["SPELL_FIREWALL"]
 		, ["SKILL_MASTERY"] = {
@@ -3207,8 +3207,8 @@ TTH_TABLE_GIVE_MAGIC_BY_SKILL = {
 			}
 		}
 		, ["SKILL_PERK"] = {
-			DEMON_FEAT_FIRE_AFFINITY
-			, PERK_MASTER_OF_FIRE
+			HERO_SKILL_SET_AFIRE
+			, RANGER_FEAT_FOG_VEIL
 		}
 	}
 	-- 高级破坏 + 风暴大师 + 高级光明 + 暴风来袭 = 连锁闪电

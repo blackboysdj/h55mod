@@ -5503,37 +5503,37 @@ function H55_WeeklyEvents(player)
 			H55_DEBUG = {7,"Artifacts",player,hero};--------------------------------------------------------------------------------------------------------
 			------------------------------------------------------------------------------------------------------------------------------------------------
 
-			if (HasArtefact(hero,ARTIFACT_RES_WOOD,0) ~= nil) and (H55_ArtWoodReceived[hero] ~= 1) then
+			if (HasArtefact(hero,ARTIFACT_RES_BASIC,0) ~= nil) and (H55_ArtWoodReceived[hero] ~= 1) then
 				local amount = H55_Round(GetHeroStat(hero,STAT_KNOWLEDGE)/2);
 				if amount < 1 then amount = 1 end;
 				H55_GlobalWeeklyWoodPayout[player] = H55_GlobalWeeklyWoodPayout[player]+amount;
 				H55_ArtWoodReceived[hero] = 1;
 			end;
-			if (HasArtefact(hero,ARTIFACT_RES_ORE,0) ~= nil) and (H55_ArtOreReceived[hero] ~= 1) then
+			if (HasArtefact(hero,ARTIFACT_RES_BASIC,0) ~= nil) and (H55_ArtOreReceived[hero] ~= 1) then
 				local amount = H55_Round(GetHeroStat(hero,STAT_KNOWLEDGE)/2);
 				if amount < 1 then amount = 1 end;
 				H55_GlobalWeeklyOrePayout[player] = H55_GlobalWeeklyOrePayout[player]+amount;
 				H55_ArtOreReceived[hero] = 1;
 			end;
-			if (HasArtefact(hero,ARTIFACT_RES_SULPHUR,0) ~= nil) and (H55_ArtSulphurReceived[hero] ~= 1) then
+			if (HasArtefact(hero,ARTIFACT_RES_ADVANCED,0) ~= nil) and (H55_ArtSulphurReceived[hero] ~= 1) then
 				local amount = H55_Round(GetHeroStat(hero,STAT_KNOWLEDGE)/2);
 				if amount < 1 then amount = 1 end;
 				H55_GlobalWeeklySulphurPayout[player] = H55_GlobalWeeklySulphurPayout[player]+amount;
 				H55_ArtSulphurReceived[hero] = 1;
 			end;
-			if (HasArtefact(hero,ARTIFACT_RES_CRYSTAL,0) ~= nil) and (H55_ArtCrystalReceived[hero] ~= 1) then
+			if (HasArtefact(hero,ARTIFACT_RES_ADVANCED,0) ~= nil) and (H55_ArtCrystalReceived[hero] ~= 1) then
 				local amount = H55_Round(GetHeroStat(hero,STAT_KNOWLEDGE)/2);
 				if amount < 1 then amount = 1 end;
 				H55_GlobalWeeklyCrystalPayout[player] = H55_GlobalWeeklyCrystalPayout[player]+amount;
 				H55_ArtCrystalReceived[hero] = 1;
 			end;
-			if (HasArtefact(hero,ARTIFACT_RES_GEM,0) ~= nil) and (H55_ArtGemReceived[hero] ~= 1) then
+			if (HasArtefact(hero,ARTIFACT_RES_ADVANCED,0) ~= nil) and (H55_ArtGemReceived[hero] ~= 1) then
 				local amount = H55_Round(GetHeroStat(hero,STAT_KNOWLEDGE)/2);
 				if amount < 1 then amount = 1 end;
 				H55_GlobalWeeklyGemPayout[player] = H55_GlobalWeeklyGemPayout[player]+amount;
 				H55_ArtGemReceived[hero] = 1;
 			end;
-			if (HasArtefact(hero,ARTIFACT_RES_MERCURY,0) ~= nil) and (H55_ArtMercuryReceived[hero] ~= 1) then
+			if (HasArtefact(hero,ARTIFACT_RES_ADVANCED,0) ~= nil) and (H55_ArtMercuryReceived[hero] ~= 1) then
 				local amount = H55_Round(GetHeroStat(hero,STAT_KNOWLEDGE)/2);
 				if amount < 1 then amount = 1 end;
 				H55_GlobalWeeklyMercuryPayout[player] = H55_GlobalWeeklyMercuryPayout[player]+amount;
@@ -8236,7 +8236,7 @@ function H55_DailyEvents(player)
 				b_defend_us_all = 3;
 			end;
 			local b_legion_t1 = 1;
-			if HasArtefact(hero,ARTIFACT_LEGION_T1,0) ~= nil then
+			if HasArtefact(hero,ARTIFACT_LEGION_BASIC,0) ~= nil then
 				b_legion_t1 = 1.5;
 			end;
 			i_growth = H55_Round(i_growth * b_defend_us_all * b_legion_t1);
@@ -8646,17 +8646,17 @@ function H55_DailyEvents(player)
 		for strMine, objMine in TTH_RES_BONUS_DAILY do
 			local iPlayer = GetObjectOwner(strMine);
 			if player == iPlayer then
-				if objMine['type'] + 0 == ARTIFACT_RES_WOOD then
+				if objMine['type'] + 0 == ARTIFACT_RES_BASIC then
 					H55_GlobalDailyWoodPayout[iPlayer] = H55_GlobalDailyWoodPayout[iPlayer] + 2 * objMine['level'];
-				elseif objMine['type'] + 0 == ARTIFACT_RES_ORE then
+				elseif objMine['type'] + 0 == ARTIFACT_RES_BASIC then
 					H55_GlobalDailyOrePayout[iPlayer] = H55_GlobalDailyOrePayout[iPlayer] + 2 * objMine['level'];
-				elseif objMine['type'] + 0 == ARTIFACT_RES_SULPHUR then
+				elseif objMine['type'] + 0 == ARTIFACT_RES_ADVANCED then
 					H55_GlobalDailySulphurPayout[iPlayer] = H55_GlobalDailySulphurPayout[iPlayer] + 1 * objMine['level'];
-				elseif objMine['type'] + 0 == ARTIFACT_RES_CRYSTAL then
+				elseif objMine['type'] + 0 == ARTIFACT_RES_ADVANCED then
 					H55_GlobalDailyCrystalPayout[iPlayer] = H55_GlobalDailyCrystalPayout[iPlayer] + 1 * objMine['level'];
-				elseif objMine['type'] + 0 == ARTIFACT_RES_GEM then
+				elseif objMine['type'] + 0 == ARTIFACT_RES_ADVANCED then
 					H55_GlobalDailyGemPayout[iPlayer] = H55_GlobalDailyGemPayout[iPlayer] + 1 * objMine['level'];
-				elseif objMine['type'] + 0 == ARTIFACT_RES_MERCURY then
+				elseif objMine['type'] + 0 == ARTIFACT_RES_ADVANCED then
 					H55_GlobalDailyMercuryPayout[iPlayer] = H55_GlobalDailyMercuryPayout[iPlayer] + 1 * objMine['level'];
 				elseif objMine['type'] + 0 == ARTIFACT_ENDLESS_SACK_OF_GOLD then
 					H55_GlobalDailyGoldPayout[iPlayer] = H55_GlobalDailyGoldPayout[iPlayer] + 1000 * objMine['level'];
@@ -9553,13 +9553,13 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 -- begin 军团宝物 城市加成
 	TTH_TOWN_BONUS_SET = {
 		["ID"] = {
-			[0] = ARTIFACT_LEGION_T1
-			, [1] = ARTIFACT_LEGION_T2
-			, [2] = ARTIFACT_LEGION_T3
-			, [3] = ARTIFACT_LEGION_T4
-			, [4] = ARTIFACT_LEGION_T5
-			, [5] = ARTIFACT_LEGION_T6
-			, [6] = ARTIFACT_LEGION_T7
+			[0] = ARTIFACT_LEGION_BASIC
+			, [1] = ARTIFACT_LEGION_BASIC
+			, [2] = ARTIFACT_LEGION_ADVANCED
+			, [3] = ARTIFACT_LEGION_ADVANCED
+			, [4] = ARTIFACT_LEGION_ADVANCED
+			, [5] = ARTIFACT_LEGION_EXPERT
+			, [6] = ARTIFACT_LEGION_EXPERT
 			, [7] = ARTIFACT_ENDLESS_BAG_OF_GOLD
 			, [8] = ARTIFACT_HORN_OF_PLENTY
 		}
@@ -9652,13 +9652,13 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 -- begin 军团宝物 领袖特
 	TTH_LEADER_BONUS_SET = {
 		["ID"] = {
-			[0] = ARTIFACT_LEGION_T1
-			, [1] = ARTIFACT_LEGION_T2
-			, [2] = ARTIFACT_LEGION_T3
-			, [3] = ARTIFACT_LEGION_T4
-			, [4] = ARTIFACT_LEGION_T5
-			, [5] = ARTIFACT_LEGION_T6
-			, [6] = ARTIFACT_LEGION_T7
+			[0] = ARTIFACT_LEGION_BASIC
+			, [1] = ARTIFACT_LEGION_BASIC
+			, [2] = ARTIFACT_LEGION_ADVANCED
+			, [3] = ARTIFACT_LEGION_ADVANCED
+			, [4] = ARTIFACT_LEGION_ADVANCED
+			, [5] = ARTIFACT_LEGION_EXPERT
+			, [6] = ARTIFACT_LEGION_EXPERT
 		}
 		, ["NAME"] = {
 			[0] = "/Text/Game/Artifacts/Legion_T1/Name.txt"
@@ -9743,21 +9743,21 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 -- by 牙姐 2018-8-22 13:42:58
 -- begin 资源宝物 矿产加成
 	TTH_MINE = {};
-		TTH_MINE[ARTIFACT_RES_WOOD] = GetObjectNamesByType("BUILDING_SAWMILL");
-		TTH_MINE[ARTIFACT_RES_ORE] = GetObjectNamesByType("BUILDING_ORE_PIT");
-		TTH_MINE[ARTIFACT_RES_SULPHUR] = GetObjectNamesByType("BUILDING_SULFUR_DUNE");
-		TTH_MINE[ARTIFACT_RES_CRYSTAL] = GetObjectNamesByType("BUILDING_CRYSTAL_CAVERN");
-		TTH_MINE[ARTIFACT_RES_GEM] = GetObjectNamesByType("BUILDING_GEM_POND");
-		TTH_MINE[ARTIFACT_RES_MERCURY] = GetObjectNamesByType("BUILDING_ALCHEMIST_LAB");
+		TTH_MINE[ARTIFACT_RES_BASIC] = GetObjectNamesByType("BUILDING_SAWMILL");
+		TTH_MINE[ARTIFACT_RES_BASIC] = GetObjectNamesByType("BUILDING_ORE_PIT");
+		TTH_MINE[ARTIFACT_RES_ADVANCED] = GetObjectNamesByType("BUILDING_SULFUR_DUNE");
+		TTH_MINE[ARTIFACT_RES_ADVANCED] = GetObjectNamesByType("BUILDING_CRYSTAL_CAVERN");
+		TTH_MINE[ARTIFACT_RES_ADVANCED] = GetObjectNamesByType("BUILDING_GEM_POND");
+		TTH_MINE[ARTIFACT_RES_ADVANCED] = GetObjectNamesByType("BUILDING_ALCHEMIST_LAB");
 		TTH_MINE[ARTIFACT_ENDLESS_SACK_OF_GOLD] = GetObjectNamesByType("BUILDING_GOLD_MINE");
 	TTH_RES_BONUS_SET = {
 		["ID"] = {
-			[0] = ARTIFACT_RES_WOOD
-			, [1] = ARTIFACT_RES_ORE
-			, [2] = ARTIFACT_RES_SULPHUR
-			, [3] = ARTIFACT_RES_CRYSTAL
-			, [4] = ARTIFACT_RES_GEM
-			, [5] = ARTIFACT_RES_MERCURY
+			[0] = ARTIFACT_RES_BASIC
+			, [1] = ARTIFACT_RES_BASIC
+			, [2] = ARTIFACT_RES_ADVANCED
+			, [3] = ARTIFACT_RES_ADVANCED
+			, [4] = ARTIFACT_RES_ADVANCED
+			, [5] = ARTIFACT_RES_ADVANCED
 			, [6] = ARTIFACT_ENDLESS_SACK_OF_GOLD
 		}
 		, ["NAME"] = {

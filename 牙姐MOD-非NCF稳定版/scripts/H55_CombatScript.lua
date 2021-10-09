@@ -877,7 +877,7 @@ doFile('/scripts/combat-startup.lua')
 		end;
 
 		-- 后置英雄特效
-		Events_Start_Interface('Maeve', 0);
+		-- Events_Start_Interface('Maeve', 0);
 
 		Events_Start_Interface('Gurvilin', 1);
 		Events_Start_Interface('Josephine', 1);
@@ -1588,6 +1588,7 @@ doFile('/scripts/combat-startup.lua')
 
 						-- Haven
 							H55SMOD_MiddlewareListener['GodricMP']['function']('GodricMP', iSide, itemUnit);
+							H55SMOD_MiddlewareListener['Maeve']['function']('Maeve', iSide, itemUnit);
 							H55SMOD_MiddlewareListener['RedHeavenHero03']['function']['consume']('RedHeavenHero03', iSide, itemUnit);
 						-- Sylvan
 						-- Academy
@@ -2321,6 +2322,26 @@ doFile('/scripts/combat-startup.lua')
 				end;
 			end;
 			H55SMOD_MiddlewareListener['GodricMP']['function'] = Events_MiddlewareListener_Implement_GodricMP;
+
+		-- Maeve
+			H55SMOD_MiddlewareListener['Maeve'] = {};
+			H55SMOD_MiddlewareListener['Maeve']['flag'] = ENUM_STAGE.ONCE.UNEXECUTE;
+			function Events_MiddlewareListener_Implement_Maeve(strHero, iSide, itemUnit)
+				if H55SMOD_MiddlewareListener['Maeve']['flag'] == ENUM_STAGE.ONCE.UNEXECUTE then
+					if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero and itemUnit['strUnitName'] == GetHero(iSide) then
+						combatSetPause(1);
+						local itemHero = itemUnit;
+						startThread(Thread_Command_UnitCastGlobalSpell, itemHero['strUnitName'], SPELL_MASS_HASTE, 1);
+						print(strHero.." casted SPELL_MASS_HASTE");
+						itemHero['iAtb'] = 1.25;
+						push(ListUnitSetATB, itemHero);
+						H55SMOD_MiddlewareListener[strHero]['flag'] = ENUM_STAGE.ONCE.EXECUTED;
+						sleep(20);
+						combatSetPause(nil);
+					end;
+				end;
+			end;
+			H55SMOD_MiddlewareListener['Maeve']['function'] = Events_MiddlewareListener_Implement_Maeve;
 
 	-- Sylvan
 		-- Gelu

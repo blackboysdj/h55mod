@@ -374,134 +374,134 @@ function H55_PrepareAdvMap()
 
 	--by sdj
 	--begin
-	if H55_WitchHutsQty ~= 0 then
-		for i, hut in H55_WitchHuts do
-			local choice1 = random(13) + 1;
-			local choice2 = random(13) + 1;
-			while(choice1 == choice2)
-			do
-			   choice2 = random(13) + 1;
-			end
-			H55_WHChoice1[hut] = choice1;
-			H55_WHChoice2[hut] = choice2;
-			H55_WHVisited[hut] = {};
-			SetObjectEnabled(hut, nil);
-			Trigger(OBJECT_TOUCH_TRIGGER, hut, "H55_WitchVisit");
+		if H55_WitchHutsQty ~= 0 then
+			for i, hut in H55_WitchHuts do
+				local choice1 = random(13) + 1;
+				local choice2 = random(13) + 1;
+				while(choice1 == choice2)
+				do
+				   choice2 = random(13) + 1;
+				end
+				H55_WHChoice1[hut] = choice1;
+				H55_WHChoice2[hut] = choice2;
+				H55_WHVisited[hut] = {};
+				SetObjectEnabled(hut, nil);
+				Trigger(OBJECT_TOUCH_TRIGGER, hut, "H55_WitchVisit");
+			end;
 		end;
-	end;
 	--end
 
 	--手推车
-	if H55_WagonsQty ~= 0 then
-		for i, wagon in H55_Wagons do
-			SetObjectEnabled(wagon,nil);
-			Trigger(OBJECT_TOUCH_TRIGGER,wagon,"H55_WagonVisit");
+		if H55_WagonsQty ~= 0 then
+			for i, wagon in H55_Wagons do
+				SetObjectEnabled(wagon,nil);
+				Trigger(OBJECT_TOUCH_TRIGGER,wagon,"H55_WagonVisit");
+			end;
 		end;
-	end;
 	--坟墓
-	if H55_SkeletonsQty ~= 0 then
-		for i, skeleton in H55_Skeletons do
-			SetObjectEnabled(skeleton,nil);
-			Trigger(OBJECT_TOUCH_TRIGGER,skeleton,"H55_SkeletonVisit");
+		if H55_SkeletonsQty ~= 0 then
+			for i, skeleton in H55_Skeletons do
+				SetObjectEnabled(skeleton,nil);
+				Trigger(OBJECT_TOUCH_TRIGGER,skeleton,"H55_SkeletonVisit");
+			end;
 		end;
-	end;
 	--银行
-	if H55_CryptsQty ~= 0 then
-		for i,crypt in H55_Crypts do
-			SetObjectEnabled(crypt,nil);
-			Trigger(OBJECT_TOUCH_TRIGGER,crypt,"H55_CryptVisit");
+		if H55_CryptsQty ~= 0 then
+			for i,crypt in H55_Crypts do
+				SetObjectEnabled(crypt,nil);
+				Trigger(OBJECT_TOUCH_TRIGGER,crypt,"H55_CryptVisit");
+			end;
 		end;
-	end;
-	if H55_DemonTowersQty > 0 then
-		for i,DemonTower in H55_DemonTowers do
-			SetObjectEnabled(DemonTower,nil);
-			Trigger(OBJECT_TOUCH_TRIGGER,DemonTower,"H55_DemonTowerVisit");
+		if H55_DemonTowersQty > 0 then
+			for i,DemonTower in H55_DemonTowers do
+				SetObjectEnabled(DemonTower,nil);
+				Trigger(OBJECT_TOUCH_TRIGGER,DemonTower,"H55_DemonTowerVisit");
+			end;
 		end;
-	end;
-	if H55_ForestTowersQty > 0 then
-		for i,ForestTower in H55_ForestTowers do
-			SetObjectEnabled(ForestTower,nil);
-			Trigger(OBJECT_TOUCH_TRIGGER,ForestTower,"H55_ForestTowerVisit");
+		if H55_ForestTowersQty > 0 then
+			for i,ForestTower in H55_ForestTowers do
+				SetObjectEnabled(ForestTower,nil);
+				Trigger(OBJECT_TOUCH_TRIGGER,ForestTower,"H55_ForestTowerVisit");
+			end;
 		end;
-	end;
-	if H55_StoneVaultsQty > 0 then
-		for i,StoneVault in H55_StoneVaults do
-			SetObjectEnabled(StoneVault,nil);
-			Trigger(OBJECT_TOUCH_TRIGGER,StoneVault,"H55_StoneVaultVisit");
+		if H55_StoneVaultsQty > 0 then
+			for i,StoneVault in H55_StoneVaults do
+				SetObjectEnabled(StoneVault,nil);
+				Trigger(OBJECT_TOUCH_TRIGGER,StoneVault,"H55_StoneVaultVisit");
+			end;
 		end;
-	end;
-	if H55_MageVaultsQty > 0 then
-		for i,MageVault in H55_MageVaults do
-			SetObjectEnabled(MageVault,nil);
-			Trigger(OBJECT_TOUCH_TRIGGER,MageVault,"H55_MageVaultVisit");
+		if H55_MageVaultsQty > 0 then
+			for i,MageVault in H55_MageVaults do
+				SetObjectEnabled(MageVault,nil);
+				Trigger(OBJECT_TOUCH_TRIGGER,MageVault,"H55_MageVaultVisit");
+			end;
 		end;
-	end;
-	if H55_DwarvenTreasuresQty > 0 then
-		for i,DwarvenTreasure in H55_DwarvenTreasures do
-			SetObjectEnabled(DwarvenTreasure,nil);
-			Trigger(OBJECT_TOUCH_TRIGGER,DwarvenTreasure,"H55_DwarvenTreasureVisit");
+		if H55_DwarvenTreasuresQty > 0 then
+			for i,DwarvenTreasure in H55_DwarvenTreasures do
+				SetObjectEnabled(DwarvenTreasure,nil);
+				Trigger(OBJECT_TOUCH_TRIGGER,DwarvenTreasure,"H55_DwarvenTreasureVisit");
+			end;
 		end;
-	end;
-	if H55_WitchTemplesQty > 0 then
-		for i,WitchTemple in H55_WitchTemples do
-			SetObjectEnabled(WitchTemple,nil);
-			Trigger(OBJECT_TOUCH_TRIGGER,WitchTemple,"H55_WitchTempleVisit");
+		if H55_WitchTemplesQty > 0 then
+			for i,WitchTemple in H55_WitchTemples do
+				SetObjectEnabled(WitchTemple,nil);
+				Trigger(OBJECT_TOUCH_TRIGGER,WitchTemple,"H55_WitchTempleVisit");
+			end;
 		end;
-	end;
-	if H55_ThicketsQty > 0 then
-		for i,Thicket in H55_Thickets do
-			SetObjectEnabled(Thicket,nil);
-			Trigger(OBJECT_TOUCH_TRIGGER,Thicket,"H55_ThicketVisit");
+		if H55_ThicketsQty > 0 then
+			for i,Thicket in H55_Thickets do
+				SetObjectEnabled(Thicket,nil);
+				Trigger(OBJECT_TOUCH_TRIGGER,Thicket,"H55_ThicketVisit");
+			end;
 		end;
-	end;
-	if H55_PyramidsQty > 0 then
-		for i,Pyramid in H55_Pyramids do
-			SetObjectEnabled(Pyramid,nil);
-			Trigger(OBJECT_TOUCH_TRIGGER,Pyramid,"H55_PyramidVisit");
+		if H55_PyramidsQty > 0 then
+			for i,Pyramid in H55_Pyramids do
+				SetObjectEnabled(Pyramid,nil);
+				Trigger(OBJECT_TOUCH_TRIGGER,Pyramid,"H55_PyramidVisit");
+			end;
 		end;
-	end;
-	if H55_OrcTunnelsQty > 0 then
-		for i,OrcTunnel in H55_OrcTunnels do
-			SetObjectEnabled(OrcTunnel,nil);
-			Trigger(OBJECT_TOUCH_TRIGGER,OrcTunnel,"H55_OrcTunnelVisit");
+		if H55_OrcTunnelsQty > 0 then
+			for i,OrcTunnel in H55_OrcTunnels do
+				SetObjectEnabled(OrcTunnel,nil);
+				Trigger(OBJECT_TOUCH_TRIGGER,OrcTunnel,"H55_OrcTunnelVisit");
+			end;
 		end;
-	end;
-	if H55_StockpilesQty > 0 then
-		for i,Stockpile in H55_Stockpiles do
-			SetObjectEnabled(Stockpile,nil);
-			Trigger(OBJECT_TOUCH_TRIGGER,Stockpile,"H55_StockpileVisit");
+		if H55_StockpilesQty > 0 then
+			for i,Stockpile in H55_Stockpiles do
+				SetObjectEnabled(Stockpile,nil);
+				Trigger(OBJECT_TOUCH_TRIGGER,Stockpile,"H55_StockpileVisit");
+			end;
 		end;
-	end;
-	if H55_UtopiasQty > 0 then
-		for i,Utopia in H55_Utopias do
-			SetObjectEnabled(Utopia,nil);
-			Trigger(OBJECT_TOUCH_TRIGGER,Utopia,"H55_UtopiaVisit");
+		if H55_UtopiasQty > 0 then
+			for i,Utopia in H55_Utopias do
+				SetObjectEnabled(Utopia,nil);
+				Trigger(OBJECT_TOUCH_TRIGGER,Utopia,"H55_UtopiaVisit");
+			end;
 		end;
-	end;
-	if H55_AbandonedMinesQty > 0 then
-		for i,AbandonedMine in H55_AbandonedMines do
-			SetObjectEnabled(AbandonedMine,nil);
-			Trigger(OBJECT_TOUCH_TRIGGER,AbandonedMine,"H55_AbandonedMineVisit");
+		if H55_AbandonedMinesQty > 0 then
+			for i,AbandonedMine in H55_AbandonedMines do
+				SetObjectEnabled(AbandonedMine,nil);
+				Trigger(OBJECT_TOUCH_TRIGGER,AbandonedMine,"H55_AbandonedMineVisit");
+			end;
 		end;
-	end;
-	if H55_UnkemptsQty > 0 then
-		for i,Unkempt in H55_Unkempts do
-			SetObjectEnabled(Unkempt,nil);
-			Trigger(OBJECT_TOUCH_TRIGGER,Unkempt,"H55_UnkemptVisit");
+		if H55_UnkemptsQty > 0 then
+			for i,Unkempt in H55_Unkempts do
+				SetObjectEnabled(Unkempt,nil);
+				Trigger(OBJECT_TOUCH_TRIGGER,Unkempt,"H55_UnkemptVisit");
+			end;
 		end;
-	end;
-	if H55_DemolishsQty > 0 then
-		for i,Demolish in H55_Demolishs do
-			SetObjectEnabled(Demolish,nil);
-			Trigger(OBJECT_TOUCH_TRIGGER,Demolish,"H55_DemolishVisit");
+		if H55_DemolishsQty > 0 then
+			for i,Demolish in H55_Demolishs do
+				SetObjectEnabled(Demolish,nil);
+				Trigger(OBJECT_TOUCH_TRIGGER,Demolish,"H55_DemolishVisit");
+			end;
 		end;
-	end;
-	if H55_SunkenTemplesQty > 0 then
-		for i,SunkenTemple in H55_SunkenTemples do
-			SetObjectEnabled(SunkenTemple,nil);
-			Trigger(OBJECT_TOUCH_TRIGGER,SunkenTemple,"H55_SunkenTempleVisit");
+		if H55_SunkenTemplesQty > 0 then
+			for i,SunkenTemple in H55_SunkenTemples do
+				SetObjectEnabled(SunkenTemple,nil);
+				Trigger(OBJECT_TOUCH_TRIGGER,SunkenTemple,"H55_SunkenTempleVisit");
+			end;
 		end;
-	end;
 
 	--Artifact Quests
 
@@ -1485,27 +1485,27 @@ function H55_SummonTempleArtifacts(hero,temple)
 		QuestionBoxForPlayers(GetPlayerFilter(player),{"/Text/Game/Scripts/Summon/Mummy.txt"},
 		"H55_SummonMummyAccept('"..hero.."','"..temple.."')","H55_SummonMummyRefuse('"..hero.."','"..temple.."')");
 	end;
-	if HasArtefact(hero,ARTIFACT_RES_SULPHUR,0) ~= nil then
+	if HasArtefact(hero,ARTIFACT_RES_ADVANCED,0) ~= nil then
 		QuestionBoxForPlayers(GetPlayerFilter(player),{"/Text/Game/Scripts/Summon/Fire.txt"},
 		"H55_SummonFireAccept('"..hero.."','"..temple.."')","H55_SummonFireRefuse('"..hero.."','"..temple.."')");
 	end;
-	if HasArtefact(hero,ARTIFACT_RES_CRYSTAL,0) ~= nil then
+	if HasArtefact(hero,ARTIFACT_RES_ADVANCED,0) ~= nil then
 		QuestionBoxForPlayers(GetPlayerFilter(player),{"/Text/Game/Scripts/Summon/Water.txt"},
 		"H55_SummonWaterAccept('"..hero.."','"..temple.."')","H55_SummonWaterRefuse('"..hero.."','"..temple.."')");
 	end;
-	if HasArtefact(hero,ARTIFACT_RES_GEM,0) ~= nil then
+	if HasArtefact(hero,ARTIFACT_RES_ADVANCED,0) ~= nil then
 		QuestionBoxForPlayers(GetPlayerFilter(player),{"/Text/Game/Scripts/Summon/Air.txt"},
 		"H55_SummonAirAccept('"..hero.."','"..temple.."')","H55_SummonAirRefuse('"..hero.."','"..temple.."')");
 	end;
-	if HasArtefact(hero,ARTIFACT_RES_MERCURY,0) ~= nil then
+	if HasArtefact(hero,ARTIFACT_RES_ADVANCED,0) ~= nil then
 		QuestionBoxForPlayers(GetPlayerFilter(player),{"/Text/Game/Scripts/Summon/Earth.txt"},
 		"H55_SummonEarthAccept('"..hero.."','"..temple.."')","H55_SummonEarthRefuse('"..hero.."','"..temple.."')");
 	end;
-	if HasArtefact(hero,ARTIFACT_RES_ORE,0) ~= nil then
+	if HasArtefact(hero,ARTIFACT_RES_BASIC,0) ~= nil then
 		QuestionBoxForPlayers(GetPlayerFilter(player),{"/Text/Game/Scripts/Summon/Wolves.txt"},
 		"H55_SummonWolvesAccept('"..hero.."','"..temple.."')","H55_SummonWolvesRefuse('"..hero.."','"..temple.."')");
 	end;
-	if HasArtefact(hero,ARTIFACT_RES_WOOD,0) ~= nil then
+	if HasArtefact(hero,ARTIFACT_RES_BASIC,0) ~= nil then
 		QuestionBoxForPlayers(GetPlayerFilter(player),{"/Text/Game/Scripts/Summon/Wolves2.txt"},
 		"H55_SummonWolves2Accept('"..hero.."','"..temple.."')","H55_SummonWolves2Refuse('"..hero.."','"..temple.."')");
 	end;
@@ -1530,7 +1530,7 @@ end;
 function H55_SummonFireAccept(hero,temple)
 	local player = GetObjectOwner(hero);
 	local amount = H55_Round(1+(4*(H55_Day/7)));
-	RemoveArtefact(hero,ARTIFACT_RES_SULPHUR);
+	RemoveArtefact(hero,ARTIFACT_RES_ADVANCED);
 	AddHeroCreatures(hero,85,amount);
 	ShowFlyingSign({"/Text/Game/Scripts/Summon/Elementals.txt";num=amount},hero,player,7);
 end;
@@ -1538,7 +1538,7 @@ end;
 function H55_SummonWaterAccept(hero,temple)
 	local player = GetObjectOwner(hero);
 	local amount = H55_Round(1+(4*(H55_Day/7)));
-	RemoveArtefact(hero,ARTIFACT_RES_CRYSTAL);
+	RemoveArtefact(hero,ARTIFACT_RES_ADVANCED);
 	AddHeroCreatures(hero,86,amount);
 	ShowFlyingSign({"/Text/Game/Scripts/Summon/Elementals.txt";num=amount},hero,player,7);
 end;
@@ -1546,7 +1546,7 @@ end;
 function H55_SummonAirAccept(hero,temple)
 	local player = GetObjectOwner(hero);
 	local amount = H55_Round(1+(4*(H55_Day/7)));
-	RemoveArtefact(hero,ARTIFACT_RES_GEM);
+	RemoveArtefact(hero,ARTIFACT_RES_ADVANCED);
 	AddHeroCreatures(hero,88,amount);
 	ShowFlyingSign({"/Text/Game/Scripts/Summon/Elementals.txt";num=amount},hero,player,7);
 end;
@@ -1554,7 +1554,7 @@ end;
 function H55_SummonEarthAccept(hero,temple)
 	local player = GetObjectOwner(hero);
 	local amount = H55_Round(1+(4*(H55_Day/7)));
-	RemoveArtefact(hero,ARTIFACT_RES_MERCURY);
+	RemoveArtefact(hero,ARTIFACT_RES_ADVANCED);
 	AddHeroCreatures(hero,87,amount);
 	ShowFlyingSign({"/Text/Game/Scripts/Summon/Elementals.txt";num=amount},hero,player,7);
 end;
@@ -1562,7 +1562,7 @@ end;
 function H55_SummonWolvesAccept(hero,temple)
 	local player = GetObjectOwner(hero);
 	local amount = H55_Round(1+(6*(H55_Day/7)));
-	RemoveArtefact(hero,ARTIFACT_RES_ORE);
+	RemoveArtefact(hero,ARTIFACT_RES_BASIC);
 	AddHeroCreatures(hero,113,amount);
 	ShowFlyingSign({"/Text/Game/Scripts/Summon/Wolfpack.txt";num=amount},hero,player,7);
 end;
@@ -1570,7 +1570,7 @@ end;
 function H55_SummonWolves2Accept(hero,temple)
 	local player = GetObjectOwner(hero);
 	local amount = H55_Round(1+(6*(H55_Day/7)));
-	RemoveArtefact(hero,ARTIFACT_RES_WOOD);
+	RemoveArtefact(hero,ARTIFACT_RES_BASIC);
 	AddHeroCreatures(hero,113,amount);
 	ShowFlyingSign({"/Text/Game/Scripts/Summon/Wolfpack.txt";num=amount},hero,player,7);
 end;
@@ -2520,10 +2520,21 @@ function H55_ThicketVisit(strHero, objBank)
 	TTH_BankCombatByNoRace(strHero, objBank, strBuildingName, "H55_ThicketVisit", "/Arenas/CombatArena/FinalCombat/Bank_Treant.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)");
 end;
 
+-- 玩家每周银行胜利次数
+TTH_DATA_BankWinTimes = {};
+
 -- by 牙姐 2018-10-3 12:47:39
 -- begin AI银行胜利
 function TTH_BankWinAI(strHero, result)
 	local iPlayer = GetObjectOwner(strHero);
+	if TTH_DATA_BankWinTimes[H55_AbsoluteWeek] == nil then
+		TTH_DATA_BankWinTimes[H55_AbsoluteWeek] = {};
+	end;
+	if TTH_DATA_BankWinTimes[H55_AbsoluteWeek][iPlayer] == nil then
+		TTH_DATA_BankWinTimes[H55_AbsoluteWeek][iPlayer] = 1;
+	else
+		TTH_DATA_BankWinTimes[H55_AbsoluteWeek][iPlayer] = TTH_DATA_BankWinTimes[H55_AbsoluteWeek][iPlayer] + 1;
+	end;
 	local objBank = H55_BankCurrentPlayerVisit[iPlayer];
 	local iDay = GetDate(DAY);
 	if result ~= nil then
@@ -2541,10 +2552,18 @@ end;
 -- begin 普通银行胜利
 function TTH_BankWinNormal(strHero, result)
 	local iPlayer = GetObjectOwner(strHero);
+	if TTH_DATA_BankWinTimes[H55_AbsoluteWeek] == nil then
+		TTH_DATA_BankWinTimes[H55_AbsoluteWeek] = {};
+	end;
+	if TTH_DATA_BankWinTimes[H55_AbsoluteWeek][iPlayer] == nil then
+		TTH_DATA_BankWinTimes[H55_AbsoluteWeek][iPlayer] = 1;
+	else
+		TTH_DATA_BankWinTimes[H55_AbsoluteWeek][iPlayer] = TTH_DATA_BankWinTimes[H55_AbsoluteWeek][iPlayer] + 1;
+	end;
 	local objBank = H55_BankCurrentPlayerVisit[iPlayer];
 	local iDay = GetDate(DAY);
 	if result ~= nil then
-		TTH_BankReward(strHero, 0);
+		TTH_BankReward(strHero);
 		H55_BankLastVisit[objBank] = iDay;
 		H55_BankPlayerLastVisit[iPlayer][objBank] = iDay;
 		MarkObjectAsVisited(objBank, strHero);
@@ -2558,11 +2577,19 @@ end;
 -- begin 高级银行胜利
 function TTH_BankWinAdv(strHero, result)
 	local iPlayer = GetObjectOwner(strHero);
+	if TTH_DATA_BankWinTimes[H55_AbsoluteWeek] == nil then
+		TTH_DATA_BankWinTimes[H55_AbsoluteWeek] = {};
+	end;
+	if TTH_DATA_BankWinTimes[H55_AbsoluteWeek][iPlayer] == nil then
+		TTH_DATA_BankWinTimes[H55_AbsoluteWeek][iPlayer] = 3;
+	else
+		TTH_DATA_BankWinTimes[H55_AbsoluteWeek][iPlayer] = TTH_DATA_BankWinTimes[H55_AbsoluteWeek][iPlayer] + 3;
+	end;
 	local objBank = H55_BankCurrentPlayerVisit[iPlayer];
 	local iDay = GetDate(DAY);
 	if result ~= nil then
-		TTH_BankReward(strHero, 1);
-		TTH_BankReward(strHero, 1);
+		TTH_BankReward(strHero);
+		TTH_BankReward(strHero);
 		H55_BankLastVisit[objBank] = iDay;
 		H55_BankPlayerLastVisit[iPlayer][objBank] = iDay;
 		MarkObjectAsVisited(objBank, strHero);
@@ -2603,7 +2630,7 @@ TTH_TABLE_BankRewardTipName = {
 };
 -- by 牙姐 2018-9-30 22:44:26
 -- begin 银行奖励 5随2 2选1
-function TTH_BankReward(strHero, iLevel)
+function TTH_BankReward(strHero)
 	local iPlayer = GetObjectOwner(strHero);
 	local iRandomEnter = random(5);
 	local iRandomCancel = random(4);
@@ -2623,75 +2650,14 @@ function TTH_BankReward(strHero, iLevel)
 	local strRewardCallbackCancel = TTH_TABLE_BankRewardCallbackName[iRandomCancel];
 	local strRewardEnter = TTH_TABLE_BankRewardTipName[iRandomEnter];
 	local strRewardCancel = TTH_TABLE_BankRewardTipName[iRandomCancel];
-	local iRewardParamEnter = 0;
-	local iRewardParamCancel = 0;
-	if iLevel == 0 then
-		if iRandomEnter == 0 then
-			iRewardParamEnter = H55_AbsoluteWeek;
-		elseif iRandomEnter == 1 then
-			iRewardParamEnter = 1;
-		elseif iRandomEnter == 2 then
-			iRewardParamEnter = 0;
-		elseif iRandomEnter == 3 then
-			iRewardParamEnter = H55_AbsoluteWeek;
-		elseif iRandomEnter == 4 then
-			iRewardParamEnter = H55_AbsoluteWeek;
-		elseif iRandomEnter == 5 then
-			iRewardParamEnter = H55_AbsoluteWeek;
-		end;
-		if iRandomCancel == 0 then
-			iRewardParamCancel = H55_AbsoluteWeek;
-		elseif iRandomCancel == 1 then
-			iRewardParamCancel = 1;
-		elseif iRandomCancel == 2 then
-			iRewardParamCancel = 0;
-		elseif iRandomCancel == 3 then
-			iRewardParamCancel = H55_AbsoluteWeek;
-		elseif iRandomCancel == 4 then
-			iRewardParamCancel = H55_AbsoluteWeek;
-		elseif iRandomCancel == 5 then
-			iRewardParamCancel = H55_AbsoluteWeek;
-		end;
-	elseif iLevel == 1 then
-		if iRandomEnter == 0 then
-			iRewardParamEnter = H55_AbsoluteWeek + 6;
-		elseif iRandomEnter == 1 then
-			iRewardParamEnter = 2;
-		elseif iRandomEnter == 2 then
-			iRewardParamEnter = 1;
-		elseif iRandomEnter == 3 then
-			iRewardParamEnter = H55_AbsoluteWeek + 6;
-		elseif iRandomEnter == 4 then
-			iRewardParamEnter = H55_AbsoluteWeek + 6;
-		elseif iRandomEnter == 5 then
-			iRewardParamEnter = H55_AbsoluteWeek + 6;
-		end;
-		if iRandomCancel == 0 then
-			iRewardParamCancel = H55_AbsoluteWeek + 6;
-		elseif iRandomCancel == 1 then
-			iRewardParamCancel = 2;
-		elseif iRandomCancel == 2 then
-			iRewardParamCancel = 1;
-		elseif iRandomCancel == 3 then
-			iRewardParamCancel = H55_AbsoluteWeek + 6;
-		elseif iRandomCancel == 4 then
-			iRewardParamCancel = H55_AbsoluteWeek + 6;
-		elseif iRandomCancel == 5 then
-			iRewardParamCancel = H55_AbsoluteWeek + 6;
-		end;
-	end;
-	QuestionBoxForPlayers(GetPlayerFilter(iPlayer),{"/Text/Game/Scripts/BankReward/ChooseReward/TemplateChooseReward.txt";strRewardEnter=strRewardEnter,strRewardCancel=strRewardCancel},
-	strRewardCallbackEnter.."('"..strHero.."',"..iRewardParamEnter..")",strRewardCallbackCancel.."('"..strHero.."',"..iRewardParamCancel..")");
-	if iLevel == 0 then
-		TTH_Reward_Gold(strHero, H55_AbsoluteWeek);
-	elseif iLevel == 1 then
-		TTH_Reward_Gold(strHero, H55_AbsoluteWeek + 6);
-	end;
+	QuestionBoxForPlayers(GetPlayerFilter(iPlayer),{"/Text/Game/Scripts/BankReward/ChooseReward/TemplateChooseReward.txt";iBankWinTimes=TTH_DATA_BankWinTimes[H55_AbsoluteWeek][iPlayer],strRewardEnter=strRewardEnter,strRewardCancel=strRewardCancel},
+	strRewardCallbackEnter.."('"..strHero.."')",strRewardCallbackCancel.."('"..strHero.."')");
+	TTH_Reward_Gold(strHero);
 end;
 -- end
 -- by 牙姐 2018-10-3 12:48:56
 -- begin AI银行奖励 5随1
-function TTH_BankRewardAI(strHero, iLevel)
+function TTH_BankRewardAI(strHero)
 	local iPlayer = GetObjectOwner(strHero);
 	local iRandom = random(5);
 	local strClass = H55_GetHeroClass(strHero);
@@ -2700,70 +2666,60 @@ function TTH_BankRewardAI(strHero, iLevel)
 			iRandom = 5;
 		end;
 	end;
-	local iRewardParam = 0;
-	if iLevel == 0 then
-		if iRandom == 0 then
-			iRewardParam = H55_AbsoluteWeek;
-		elseif iRandom == 1 then
-			iRewardParam = 1;
-		elseif iRandom == 2 then
-			iRewardParam = H55_AbsoluteWeek;
-		elseif iRandom == 3 then
-			iRewardParam = H55_AbsoluteWeek;
-		elseif iRandom == 4 then
-			iRewardParam = H55_AbsoluteWeek;
-		elseif iRandom == 5 then
-			iRewardParam = H55_AbsoluteWeek;
-		end;
-	elseif iLevel == 1 then
-		if iRandom == 0 then
-			iRewardParam = H55_AbsoluteWeek + 6;
-		elseif iRandom == 1 then
-			iRewardParam = 2;
-		elseif iRandom == 2 then
-			iRewardParam = H55_AbsoluteWeek + 6;
-		elseif iRandom == 3 then
-			iRewardParam = H55_AbsoluteWeek + 6;
-		elseif iRandom == 4 then
-			iRewardParam = H55_AbsoluteWeek + 6;
-		elseif iRandom == 5 then
-			iRewardParam = H55_AbsoluteWeek + 6;
-		end;
-	end;
 	if iRandom == 0 then
-		TTH_Reward_Resource(strHero, iRewardParam);
+		TTH_Reward_Resource(strHero);
 	elseif iRandom == 1 then
-		TTH_Reward_Stat(strHero, iRewardParam);
+		TTH_Reward_Stat(strHero);
 	elseif iRandom == 2 then
-		TTH_Reward_Spell(strHero, iRewardParam);
+		TTH_Reward_Spell(strHero);
 	elseif iRandom == 3 then
-		TTH_Reward_Artifact(strHero, iRewardParam);
+		TTH_Reward_Artifact(strHero);
 	elseif iRandom == 4 then
-		TTH_Reward_Creature(strHero, iRewardParam);
+		TTH_Reward_Creature(strHero);
 	elseif iRandom == 5 then
-		TTH_Reward_Exp(strHero, iRewardParam);
+		TTH_Reward_Exp(strHero);
 	end;
-	if iLevel == 0 then
-		TTH_Reward_Gold(strHero, H55_AbsoluteWeek);
-	elseif iLevel == 1 then
-		TTH_Reward_Gold(strHero, H55_AbsoluteWeek + 6);
-	end;
+	TTH_Reward_Gold(strHero);
 end;
 -- end
 
 -- by 牙姐 2018-10-2 0:45:52
 -- begin 银行奖励相关
--- iRewardParam: H55_AbsoluteWeek
-function TTH_Reward_Gold(strHero, iRewardParam)
+-- 金币奖励: 2000 * pow(1.1, 周银行胜利次数 - 1) 四舍五入
+function TTH_Reward_Gold(strHero)
 	local iPlayer = GetObjectOwner(strHero);
-	local iGold = 2000 + iRewardParam * 500;
+	local iTimes = TTH_DATA_BankWinTimes[H55_AbsoluteWeek][iPlayer];
+	print('iTimes: '..iTimes);
+	local iGold = 2000;
+	if iTimes > 1 then
+		for i = 1, H55_AbsoluteWeek - 1 + iTimes - 1 do
+			iGold = iGold * 1.1;
+		end
+	end;
+	iGold = H55_Round(iGold);
 	H55_GiveResources(iPlayer, 6, iGold, strHero);
 end;
--- iRewardParam: H55_AbsoluteWeek
-function TTH_Reward_Resource(strHero, iRewardParam)
+-- 资源奖励: 
+	-- 石木: (2 + random(4)) * pow(1.1, 周银行胜利次数 - 1) 四舍五入
+	-- 稀矿: (1 + random(2)) * pow(1.1, 周银行胜利次数 - 1) 四舍五入
+function TTH_Reward_Resource(strHero)
 	local iPlayer = GetObjectOwner(strHero);
-	local iCountNormal = 2 + iRewardParam * 2 + random(5);
-	local iCountSpecial = 1 + iRewardParam + random(3);
+	local iTimes = TTH_DATA_BankWinTimes[H55_AbsoluteWeek][iPlayer];
+	print('iTimes: '..iTimes);
+	local iCountNormal = 2 + random(4);
+	if iTimes > 1 then
+		for i = 1, H55_AbsoluteWeek - 1 + iTimes - 1 do
+			iCountNormal = iCountNormal * 1.1;
+		end
+	end;
+	iCountNormal = H55_Round(iCountNormal);
+	local iCountSpecial = 1 + random(2);
+	if iTimes > 1 then
+		for i = 1, H55_AbsoluteWeek - 1 + iTimes - 1 do
+			iCountSpecial = iCountSpecial * 1.1;
+		end
+	end;
+	iCountSpecial = H55_Round(iCountSpecial);
 	H55_GiveResources(iPlayer, 0, iCountNormal, strHero);
 	H55_GiveResources(iPlayer, 1, iCountNormal, strHero);
 	H55_GiveResources(iPlayer, 2, iCountSpecial, strHero);
@@ -2771,58 +2727,67 @@ function TTH_Reward_Resource(strHero, iRewardParam)
 	H55_GiveResources(iPlayer, 4, iCountSpecial, strHero);
 	H55_GiveResources(iPlayer, 5, iCountSpecial, strHero);
 end;
--- iRewardParam: 1, 2
-function TTH_Reward_Stat(strHero, iRewardParam)
+-- 属性奖励: 1 * pow(1.015, 周银行胜利次数 - 1) 四舍五入
+function TTH_Reward_Stat(strHero)
 	local iPlayer = GetObjectOwner(strHero);
+	local iTimes = TTH_DATA_BankWinTimes[H55_AbsoluteWeek][iPlayer];
+	print('iTimes: '..iTimes);
+	local iStat = 1;
+	if iTimes > 1 then
+		for i = 1, H55_AbsoluteWeek - 1 + iTimes - 1 do
+			iStat = iStat * 1.015;
+		end
+	end;
+	iStat = H55_Round(iStat);
 	local iRandom = random(100) + 1;
 	local iGroup = H55_GetHeroClassGroup(strHero);
 	if iGroup == 1 then
 		if iRandom > 0 and iRandom <= 50 then
-			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_ATTACK, iRewardParam);
+			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_ATTACK, iStat);
 		elseif iRandom > 50 and iRandom <= 100 then
-			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_DEFENCE, iRewardParam);
+			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_DEFENCE, iStat);
 		end;
 	elseif iGroup == 2 then
 		if iRandom > 0 and iRandom <= 24 then
-			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_ATTACK, iRewardParam);
+			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_ATTACK, iStat);
 		elseif iRandom > 24 and iRandom <= 48 then
-			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_DEFENCE, iRewardParam);
+			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_DEFENCE, iStat);
 		elseif iRandom > 48 and iRandom <= 72 then
-			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_SPELL_POWER, iRewardParam);
+			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_SPELL_POWER, iStat);
 		elseif iRandom > 72 and iRandom <= 96 then
-			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_KNOWLEDGE, iRewardParam);
+			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_KNOWLEDGE, iStat);
 		elseif iRandom > 96 and iRandom <= 98 then
-			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_LUCK, iRewardParam);
+			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_LUCK, iStat);
 		elseif iRandom > 98 and iRandom <= 100 then
-			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_MORALE, iRewardParam);
+			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_MORALE, iStat);
 		end;
 	elseif iGroup == 4 then
 		if iRandom > 0 and iRandom <= 24 then
-			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_ATTACK, iRewardParam);
+			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_ATTACK, iStat);
 		elseif iRandom > 24 and iRandom <= 48 then
-			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_DEFENCE, iRewardParam);
+			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_DEFENCE, iStat);
 		elseif iRandom > 48 and iRandom <= 72 then
-			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_SPELL_POWER, iRewardParam);
+			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_SPELL_POWER, iStat);
 		elseif iRandom > 72 and iRandom <= 96 then
-			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_KNOWLEDGE, iRewardParam);
+			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_KNOWLEDGE, iStat);
 		elseif iRandom > 96 and iRandom <= 100 then
-			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_LUCK, iRewardParam);
+			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_LUCK, iStat);
 		end;
 	elseif iGroup == 3 then
 		if iRandom > 0 and iRandom <= 50 then
-			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_SPELL_POWER, iRewardParam);
+			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_SPELL_POWER, iStat);
 		elseif iRandom > 50 and iRandom <= 100 then
-			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_KNOWLEDGE, iRewardParam);
+			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_KNOWLEDGE, iStat);
 		end;
 	elseif iGroup == 5 then
 		if iRandom > 0 and iRandom <= 45 then
-			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_ATTACK, iRewardParam);
+			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_ATTACK, iStat);
 		elseif iRandom > 45 and iRandom <= 90 then
-			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_DEFENCE, iRewardParam);
+			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_DEFENCE, iStat);
 		elseif iRandom > 90 and iRandom <= 95 then
-			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_LUCK, iRewardParam);
+			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_LUCK, iStat);
 		elseif iRandom > 95 and iRandom <= 100 then
-			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_MORALE, iRewardParam);
+			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_MORALE, iStat);
 		end;
 	end;
 end;
@@ -2890,13 +2855,15 @@ function TTH_Reward_Spell_Loop(iPlayer, strHero, strSpellGroup, iSpellLevel, iRe
 	end;
 	return 0;
 end;
--- iRewardParam: 0, 1
-function TTH_Reward_Spell(strHero, iRewardParam)
+-- 魔法奖励: 几率右移(周银行胜利次数 - 1)个单位 0/30/55/75/85/90/99
+function TTH_Reward_Spell(strHero)
 	local iPlayer = GetObjectOwner(strHero);
+	local iTimes = TTH_DATA_BankWinTimes[H55_AbsoluteWeek][iPlayer];
+	print('iTimes: '..iTimes);
 	local strClass = H55_GetHeroClass(strHero);
 	local iHeroLevel = GetHeroLevel(strHero);
-	local iCountLearn = 0;
-	local iRandomType = random(100) + iRewardParam;
+	local iCountLearn = 0;	
+	local iRandomType = random(100) + H55_AbsoluteWeek - 1 + iTimes - 1;
 	local strType = "";
 	if iRandomType < 30 then
 		-- 1级魔法30%几率
@@ -2927,38 +2894,47 @@ function TTH_Reward_Spell(strHero, iRewardParam)
 		end;
 	else
 		ShowFlyingSign({"/Text/Game/Scripts/BankReward/RewardSpell/TemplateNoMore.txt";name=TTH_TABLE_SPELL_TYPE[strType]["NAME"][iIndex]}, strHero, iPlayer, 5);
-		if iRewardParam == 0 then
-			iRewardParam = H55_AbsoluteWeek;
-		else
-			iRewardParam = H55_AbsoluteWeek + 6;
-		end;
-		TTH_Reward_Exp(strHero, iRewardParam);
+		TTH_Reward_Exp(strHero);
 	end;
 end;
--- iRewardParam: H55_AbsoluteWeek
+-- 宝物奖励: 几率右移(周银行胜利次数 - 1)个单位 0/64/96/112/120/124/126
 function TTH_Reward_Artifact(strHero, iRewardParam)
 	local iPlayer = GetObjectOwner(strHero);
-	local iMinLevel = 0;
-	local iMaxLevel = 5;
-	iMinLevel = iMinLevel + H55_Ceil(iRewardParam / 2);
-	if iMinLevel > 6 then
-		iMinLevel = 6;
+	local iTimes = TTH_DATA_BankWinTimes[H55_AbsoluteWeek][iPlayer];
+	print('iTimes: '..iTimes);
+	local iRandomLevel = random(127) + H55_AbsoluteWeek - 1 + iTimes - 1;
+	local iLevel = 1;
+	if iRandomLevel < 64 then
+		-- 1级宝物50%
+		iLevel = 1;
+	elseif iRandomLevel < 96 then
+		-- 2级宝物25%
+		iLevel = 2;
+	elseif iRandomLevel < 112 then
+		-- 3级宝物12.5%
+		iLevel = 3;
+	elseif iRandomLevel < 120 then
+		-- 4级宝物6.25%
+		iLevel = 4;
+	elseif iRandomLevel < 124 then
+		-- 5级宝物3.125%
+		iLevel = 5;
+	else
+		-- 6级宝物1.5625%
+		iLevel = 6;
 	end;
-	iMaxLevel = iMaxLevel + H55_Floor(iRewardParam / 2);
-	if iMaxLevel > 10 then
-		iMaxLevel = 10;
-	end;
-	local iRandomLevel = iMinLevel + random(iMaxLevel - iMinLevel + 1);
-	GiveArtefact(strHero, TTH_TABLE_Artifacts[iRandomLevel][random(length(TTH_TABLE_Artifacts[iRandomLevel])) + 1]);
+	GiveArtefact(strHero, TTH_TABLE_Artifacts[iLevel][random(length(TTH_TABLE_Artifacts[iLevel]))]);
 	if H55_IsThisAIPlayer(iPlayer) ~= 1 then
 		local iPositionX, iPositionY, iPositionZ = GetObjectPosition(strHero);
 		Play3DSoundForPlayers(GetPlayerFilter(iPlayer), H55_SndArtifact, iPositionX, iPositionY, iPositionZ);
 		return nil;
 	end;
 end;
--- iRewardParam: H55_AbsoluteWeek
-function TTH_Reward_Creature(strHero, iRewardParam)
+-- 生物奖励: 周产 * pow(1.05, 周银行胜利次数 - 1) 四舍五入
+function TTH_Reward_Creature(strHero)
 	local iPlayer = GetObjectOwner(strHero);
+	local iTimes = TTH_DATA_BankWinTimes[H55_AbsoluteWeek][iPlayer];
+	print('iTimes: '..iTimes);
 	local listCreatureType = H55_ArmyInfoSimple(strHero);
 	local lenCreatureType = 0;
 	for iIndexType = 0, 6 do
@@ -2969,13 +2945,14 @@ function TTH_Reward_Creature(strHero, iRewardParam)
 	local iRandomCreatureId = listCreatureType[random(lenCreatureType)];
 	for iIndexCreatureId = 1, 999 do
 		if iRandomCreatureId == TTH_TABLE_NCF_CREATURES[iIndexCreatureId]["ID"] then
-			print(iRandomCreatureId)
 			local iGrowth = TTH_TABLE_NCF_CREATURES[iIndexCreatureId]["GROWTH"];
-			print(iGrowth)
 			local strName = TTH_TABLE_NCF_CREATURES[iIndexCreatureId]["NAME"];
-			print(strName)
-			local iNumber = iGrowth + H55_Round(random(iRewardParam * iGrowth) / 4);
-			print(iNumber)
+			if iTimes > 1 then
+				for i = 1, H55_AbsoluteWeek - 1 + iTimes - 1 do
+					iGrowth = iGrowth * 1.05;
+				end
+			end;
+			local iNumber = H55_Round(iGrowth);
 			AddHeroCreatures(strHero, iRandomCreatureId, iNumber);
 			if H55_IsThisAIPlayer(iPlayer) ~= 1 then
 				ShowFlyingSign({"/Text/Game/Scripts/BankReward/RewardCreature/TemplateCreature.txt";num=iNumber,name=strName}, strHero, iPlayer, 5);
@@ -2987,10 +2964,18 @@ function TTH_Reward_Creature(strHero, iRewardParam)
 	end;
 end;
 -- end
--- iRewardParam: H55_AbsoluteWeek
-function TTH_Reward_Exp(strHero, iRewardParam)
+-- 经验奖励: 2000 * pow(1.1, 周银行胜利次数 - 1) 四舍五入
+function TTH_Reward_Exp(strHero)
 	local iPlayer = GetObjectOwner(strHero);
-	local iExp = iRewardParam * 2000;
+	local iTimes = TTH_DATA_BankWinTimes[H55_AbsoluteWeek][iPlayer];
+	print('iTimes: '..iTimes);
+	local iExp = 2000;
+	if iTimes > 1 then
+		for i = 1, H55_AbsoluteWeek - 1 + iTimes - 1 do
+			iExp = iExp * 1.1;
+		end
+	end;
+	iExp = H55_Round(iExp);
 	GiveExp(strHero, iExp);
 	if H55_IsThisAIPlayer(iPlayer) ~= 1 then
 		ShowFlyingSign({"/Text/Game/Scripts/BankReward/RewardExp/GetExp.txt";iExp=iExp}, strHero, iPlayer, 5);

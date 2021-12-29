@@ -54,8 +54,8 @@
 		<Item>
 			<ID>ARTIFACT_RES_BASIC</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Res_Ore/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Res_Ore/Description.txt"/>
+				<NameFileRef href="/Text/Game/Artifacts/Res_Basic/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Res_Basic/Description.txt"/>
 				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
 				<Type>ARTF_CLASS_MINOR</Type>
 				<Slot>INVENTORY</Slot>
@@ -79,8 +79,8 @@
 		<Item>
 			<ID>ARTIFACT_RES_ADVANCED</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Res_Sulphur/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Res_Sulphur/Description.txt"/>
+				<NameFileRef href="/Text/Game/Artifacts/Res_Advanced/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Res_Advanced/Description.txt"/>
 				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
 				<Type>ARTF_CLASS_MINOR</Type>
 				<Slot>INVENTORY</Slot>
@@ -129,14 +129,14 @@
 		<Item>
 			<ID>ARTIFACT_PENDANT_OF_BLIND</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Res_Gem/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Res_Gem/Description.txt"/>
+				<NameFileRef href="/Text/Game/Artifacts/Pendant_Of_Blind/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Pendant_Of_Blind/Description.txt"/>
 				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
-				<Type>ARTF_CLASS_MINOR</Type>
-				<Slot>INVENTORY</Slot>
+				<Type>ARTF_CLASS_MAJOR</Type>
+				<Slot>HEAD</Slot>
 				<Icon href="/Textures/HeroScreen/Artifacts/ResGem.xdb#xpointer(/Texture)"/>
-				<CostOfGold>9000</CostOfGold>
-				<AIValue>3000</AIValue>
+				<CostOfGold>21000</CostOfGold>
+				<AIValue>7000</AIValue>
 				<CanBeGeneratedToSell>true</CanBeGeneratedToSell>
 				<HeroStatsModif>
 					<Attack>0</Attack>
@@ -154,14 +154,14 @@
 		<Item>
 			<ID>ARTIFACT_GEM_OF_PHANTOM</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Res_Mercury/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Res_Mercury/Description.txt"/>
+				<NameFileRef href="/Text/Game/Artifacts/Gem_Of_Phantom/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Gem_Of_Phantom/Description.txt"/>
 				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
-				<Type>ARTF_CLASS_MINOR</Type>
-				<Slot>INVENTORY</Slot>
+				<Type>ARTF_CLASS_MAJOR</Type>
+				<Slot>NECK</Slot>
 				<Icon href="/Textures/HeroScreen/Artifacts/ResMercury.xdb#xpointer(/Texture)"/>
-				<CostOfGold>9000</CostOfGold>
-				<AIValue>3000</AIValue>
+				<CostOfGold>21000</CostOfGold>
+				<AIValue>7000</AIValue>
 				<CanBeGeneratedToSell>true</CanBeGeneratedToSell>
 				<HeroStatsModif>
 					<Attack>0</Attack>
@@ -654,8 +654,8 @@
 		<Item>
 			<ID>ENDLESS_SACK_OF_GOLD</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/EndlessSackOfGold/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/EndlessSackOfGold/Description.txt"/>
+				<NameFileRef href="/Text/Game/Artifacts/Res_Expert/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Res_Expert/Description.txt"/>
 				<Model href="/_(Model)/Artefacts/Endless_Sack_of_Gold.(Model).xdb#xpointer(/Model)"/>
 				<Type>ARTF_CLASS_MINOR</Type>
 				<Slot>INVENTORY</Slot>
@@ -779,14 +779,14 @@
 		<Item>
 			<ID>ARTIFACT_ORDER_OF_CONSCRIPTION</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Legion_T1/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Legion_T1/Description.txt"/>
+				<NameFileRef href="/Text/Game/Artifacts/Order_Of_Conscription/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Order_Of_Conscription/Description.txt"/>
 				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
 				<Type>ARTF_CLASS_MINOR</Type>
 				<Slot>INVENTORY</Slot>
 				<Icon href="/Textures/HeroScreen/Artifacts/LegionT1.xdb#xpointer(/Texture)"/>
-				<CostOfGold>15000</CostOfGold>
-				<AIValue>5000</AIValue>
+				<CostOfGold>9000</CostOfGold>
+				<AIValue>3000</AIValue>
 				<CanBeGeneratedToSell>true</CanBeGeneratedToSell>
 				<HeroStatsModif>
 					<Attack>0</Attack>
@@ -804,14 +804,14 @@
 		<Item>
 			<ID>ARTIFACT_LEGION_BASIC</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Legion_T2/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Legion_T2/Description.txt"/>
+				<NameFileRef href="/Text/Game/Artifacts/Legion_Basic/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Legion_Basic/Description.txt"/>
 				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
 				<Type>ARTF_CLASS_MINOR</Type>
 				<Slot>INVENTORY</Slot>
 				<Icon href="/Textures/HeroScreen/Artifacts/LegionT2.xdb#xpointer(/Texture)"/>
-				<CostOfGold>15000</CostOfGold>
-				<AIValue>5000</AIValue>
+				<CostOfGold>9000</CostOfGold>
+				<AIValue>3000</AIValue>
 				<CanBeGeneratedToSell>true</CanBeGeneratedToSell>
 				<HeroStatsModif>
 					<Attack>0</Attack>
@@ -854,11 +854,11 @@
 		<Item>
 			<ID>ARTIFACT_DRUM_OF_CHARGE</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Legion_T4/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Legion_T4/Description.txt"/>
+				<NameFileRef href="/Text/Game/Artifacts/Drum_Of_Charge/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Drum_Of_Charge/Description.txt"/>
 				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
 				<Type>ARTF_CLASS_MINOR</Type>
-				<Slot>INVENTORY</Slot>
+				<Slot>MISCSLOT1</Slot>
 				<Icon href="/Textures/HeroScreen/Artifacts/LegionT4.xdb#xpointer(/Texture)"/>
 				<CostOfGold>15000</CostOfGold>
 				<AIValue>5000</AIValue>
@@ -1429,8 +1429,8 @@
 		<Item>
 			<ID>ENDLESS_BAG_OF_GOLD</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Legion_T8/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Legion_T8/Description.txt"/>
+				<NameFileRef href="/Text/Game/Artifacts/Endless_Bag_Of_Gold/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Endless_Bag_Of_Gold/Description.txt"/>
 				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
 				<Type>ARTF_CLASS_MAJOR</Type>
 				<Slot>INVENTORY</Slot>
@@ -2204,14 +2204,14 @@
 		<Item>
 			<ID>ARTIFACT_LEGION_ADVANCED</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Legion_T6/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Legion_T6/Description.txt"/>
+				<NameFileRef href="/Text/Game/Artifacts/Legion_Advanced/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Legion_Advanced/Description.txt"/>
 				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
-				<Type>ARTF_CLASS_MAJOR</Type>
+				<Type>ARTF_CLASS_MINOR</Type>
 				<Slot>INVENTORY</Slot>
 				<Icon href="/Textures/HeroScreen/Artifacts/LegionT6.xdb#xpointer(/Texture)"/>
-				<CostOfGold>30000</CostOfGold>
-				<AIValue>10000</AIValue>
+				<CostOfGold>15000</CostOfGold>
+				<AIValue>5000</AIValue>
 				<CanBeGeneratedToSell>true</CanBeGeneratedToSell>
 				<HeroStatsModif>
 					<Attack>0</Attack>
@@ -2229,14 +2229,14 @@
 		<Item>
 			<ID>ARTIFACT_LEGION_EXPERT</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Legion_T7/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Legion_T7/Description.txt"/>
+				<NameFileRef href="/Text/Game/Artifacts/Legion_Expert/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Legion_Expert/Description.txt"/>
 				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
 				<Type>ARTF_CLASS_MAJOR</Type>
 				<Slot>INVENTORY</Slot>
 				<Icon href="/Textures/HeroScreen/Artifacts/LegionT7.xdb#xpointer(/Texture)"/>
-				<CostOfGold>30000</CostOfGold>
-				<AIValue>10000</AIValue>
+				<CostOfGold>21000</CostOfGold>
+				<AIValue>7000</AIValue>
 				<CanBeGeneratedToSell>true</CanBeGeneratedToSell>
 				<HeroStatsModif>
 					<Attack>0</Attack>

@@ -7830,12 +7830,7 @@ function H55_DailyEvents(player)
 				i_set = i_set + 1;
 			end
 
-			local iLeaderHeroBonus = 1;
-			if TTH_LeaderHero_Bonus[hero] ~= nil then
-				for i = 1, TTH_LeaderHero_Bonus[hero] do
-					iLeaderHeroBonus = iLeaderHeroBonus * 1.1;
-				end;
-			end;
+			local iLeaderHeroBonus = TTH_Func_LegionBonus2LeaderHero(hero);
 			print("LeaderHero level is "..iLeaderHeroBonus);
 
 			H55_Power_Hangvul = H55_Power_Hangvul + H55_Round((20 * i_level + 30 * i_defence + 50 * i_city) * (1 + (i_set * 0.2)) * iLeaderHeroBonus);
@@ -7883,12 +7878,7 @@ function H55_DailyEvents(player)
 				i_set = i_set + 1;
 			end
 
-			local iLeaderHeroBonus = 1;
-			if TTH_LeaderHero_Bonus[hero] ~= nil then
-				for i = 1, TTH_LeaderHero_Bonus[hero] do
-					iLeaderHeroBonus = iLeaderHeroBonus * 1.1;
-				end;
-			end;
+			local iLeaderHeroBonus = TTH_Func_LegionBonus2LeaderHero(hero);
 			print("LeaderHero level is "..iLeaderHeroBonus);
 
 			H55_Power_Sylsai = H55_Power_Sylsai + H55_Round((20 * i_level + 30 * i_attack + 50 * i_city) * (1 + (i_set * 0.2)) * iLeaderHeroBonus);
@@ -7937,12 +7927,7 @@ function H55_DailyEvents(player)
 				b_defend_us_all = 1.5;
 			end;
 
-			local iLeaderHeroBonus = 1;
-			if TTH_LeaderHero_Bonus[hero] ~= nil then
-				for i = 1, TTH_LeaderHero_Bonus[hero] do
-					iLeaderHeroBonus = iLeaderHeroBonus * 1.1;
-				end;
-			end;
+			local iLeaderHeroBonus = TTH_Func_LegionBonus2LeaderHero(hero);
 			print("LeaderHero level is "..iLeaderHeroBonus);
 
 			H55_Power_Kunyak = H55_Power_Kunyak + H55_Round((20 * i_level + 30 * i_attack + 50 * i_city) * (1 + (i_set * 0.2)) * b_defend_us_all * iLeaderHeroBonus);
@@ -7987,12 +7972,7 @@ function H55_DailyEvents(player)
 			local i_city = length(H55_GetPlayerTowns(player));
 			local i_set = H55_GetInfernoSetCount(hero);
 
-			local iLeaderHeroBonus = 1;
-			if TTH_LeaderHero_Bonus[hero] ~= nil then
-				for i = 1, TTH_LeaderHero_Bonus[hero] do
-					iLeaderHeroBonus = iLeaderHeroBonus * 1.1;
-				end;
-			end;
+			local iLeaderHeroBonus = TTH_Func_LegionBonus2LeaderHero(hero);
 			print("LeaderHero level is "..iLeaderHeroBonus);
 
 			H55_Power_Biara = H55_Power_Biara + H55_Round((20 * i_level + 30 * i_knowledge + 50 * i_city) * (1 + i_set * 0.5) * iLeaderHeroBonus);
@@ -11735,6 +11715,30 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 			end;
 		end;
 	end;
+-- end
+
+-- begin 军团宝物对领袖特加成
+  function TTH_Func_LegionBonus2LeaderHero(strHero)
+  	local iLegionCount = 0;
+  	if HasArtefact(strHero, ARTIFACT_LEGION_BASIC, 0) ~= nil then
+  		iLegionCount = iLegionCount + 1;
+  	end;
+  	if HasArtefact(strHero, ARTIFACT_LEGION_ADVANCED, 0) ~= nil then
+  		iLegionCount = iLegionCount + 1;
+  	end;
+  	if HasArtefact(strHero, ARTIFACT_LEGION_EXPERT, 0) ~= nil then
+  		iLegionCount = iLegionCount + 1;
+  	end;
+  	local iLeaderHeroBonus = 1;
+  	if iLegionCount == 1 then
+  		iLeaderHeroBonus = 1.25;
+  	elseif iLegionCount == 2 then
+  		iLeaderHeroBonus = 1.5;
+  	elseif iLegionCount == 3 then
+  		iLeaderHeroBonus = 2;
+  	end;
+  	return iLeaderHeroBonus;
+  end;
 -- end
 
 -- begin 测试新版本宝物

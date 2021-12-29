@@ -669,6 +669,75 @@ doFile('/scripts/combat-startup.lua')
 			end;
 			H55SMOD_Start['Artifact'][ARTIFACT_BAND_OF_CONJURER]['function'] = Events_Start_Implement_ARTIFACT_BAND_OF_CONJURER;
 
+		-- 冲锋战鼓
+			H55SMOD_Start['Artifact'][ARTIFACT_DRUM_OF_CHARGE] = {};
+			function Events_Start_Implement_ARTIFACT_DRUM_OF_CHARGE()
+				for iSide = ENUM_SIDE.ATTACKER, ENUM_SIDE.DEFENDER do
+					if TTH_ARTIFACT_EFFECT_COMBAT_HERO[iSide] ~= nil and TTH_ARTIFACT_EFFECT_COMBAT_HERO[iSide][ARTIFACT_DRUM_OF_CHARGE] == 1 then
+						combatSetPause(1);
+						local listCreaturesSnapshotInit = ObjSnapshotInit['Creatures'][iSide];
+						local iLenCreaturesSnapshotInit = length(listCreaturesSnapshotInit);
+						local iOver = tth_mod(I_TIMER, iLenCreaturesSnapshotInit);
+						local itemCreatureSnapshotInit = listCreaturesSnapshotInit[iOver];
+						print(itemCreatureSnapshotInit['strUnitName']..'\'s atb has been increase to 1.25');
+						setATB(itemCreatureSnapshotInit['strUnitName'], 1.25);
+						combatSetPause(nil);
+					end;			
+				end;			
+			end;
+			H55SMOD_Start['Artifact'][ARTIFACT_DRUM_OF_CHARGE]['function'] = Events_Start_Implement_ARTIFACT_DRUM_OF_CHARGE;
+
+		-- 幻影宝石
+			H55SMOD_Start['Artifact'][ARTIFACT_GEM_OF_PHANTOM] = {};
+			H55SMOD_Start['Artifact'][ARTIFACT_GEM_OF_PHANTOM]['function'] = {};
+			H55SMOD_Start['Artifact'][ARTIFACT_GEM_OF_PHANTOM]['strUnitName'] = '';
+			H55SMOD_Start['Artifact'][ARTIFACT_GEM_OF_PHANTOM]['iSide'] = ENUM_SIDE.ATTACKER;
+			H55SMOD_Start['Artifact'][ARTIFACT_GEM_OF_PHANTOM]['existTurn'] = 3;
+			function Events_Start_Implement_ARTIFACT_GEM_OF_PHANTOM_SUMMON()
+				for iSide = ENUM_SIDE.ATTACKER, ENUM_SIDE.DEFENDER do
+					if TTH_ARTIFACT_EFFECT_COMBAT_HERO[iSide] ~= nil and TTH_ARTIFACT_EFFECT_COMBAT_HERO[iSide][ARTIFACT_GEM_OF_PHANTOM] ~= nil and TTH_ARTIFACT_EFFECT_COMBAT_HERO[iSide][ARTIFACT_GEM_OF_PHANTOM] > 0 then
+						combatSetPause(1);
+						local iParaValue = TTH_ARTIFACT_EFFECT_COMBAT_HERO[iSide][ARTIFACT_GEM_OF_PHANTOM];
+						local iCreatureNum = h55_floor(iParaValue / 1000);
+						local iCreatureId = iParaValue - iCreatureNum * 1000;
+						local iBattleSize = getBattleSize();
+						local iPositionX = 0;
+						local iPositionY = 1;
+						if iSide == ENUM_SIDE.ATTACKER then
+							iPositionX = 2;
+						else
+							if iBattleSize == 0 then
+							    iPositionX = 13;
+							else
+							    iPositionX = 15;
+							end;
+						end;
+						local itemCreatureGemOfPhantom  = Thread_Command_SummonCreature(iSide, iCreatureId, iCreatureNum, iPositionX, iPositionY);
+						repeat sleep(1); until (itemCreatureGemOfPhantom ~= nil and IsCombatUnit(itemCreatureGemOfPhantom) ~= nil);
+						H55SMOD_Start['Artifact'][ARTIFACT_GEM_OF_PHANTOM]['strUnitName'] = itemCreatureGemOfPhantom;
+						H55SMOD_Start['Artifact'][ARTIFACT_GEM_OF_PHANTOM]['iSide'] = iSide;
+						combatSetPause(nil);
+					end;			
+				end;			
+			end;
+			H55SMOD_Start['Artifact'][ARTIFACT_GEM_OF_PHANTOM]['function']['summon'] = Events_Start_Implement_ARTIFACT_GEM_OF_PHANTOM_SUMMON;
+			function Events_Start_Implement_ARTIFACT_GEM_OF_PHANTOM_MOVE(iSide, itemUnitLast)
+				if itemUnitLast['iSide'] == iSide and itemUnitLast['strUnitName'] == H55SMOD_Start['Artifact'][ARTIFACT_GEM_OF_PHANTOM]['strUnitName'] then
+					print('existTurn: '..H55SMOD_Start['Artifact'][ARTIFACT_GEM_OF_PHANTOM]['existTurn']);
+					if H55SMOD_Start['Artifact'][ARTIFACT_GEM_OF_PHANTOM]['existTurn'] <= 0 then
+						combatSetPause(1);
+						if IsCombatUnit(itemUnitLast['strUnitName']) ~= nil then
+							startThread(Thread_Command_RemoveCombatUnit, iSide, itemUnitLast['strUnitName']);
+							repeat sleep(1); until IsCombatUnit(itemUnitLast['strUnitName']) == nil;
+						end;
+						combatSetPause(nil);
+					else
+						H55SMOD_Start['Artifact'][ARTIFACT_GEM_OF_PHANTOM]['existTurn'] = H55SMOD_Start['Artifact'][ARTIFACT_GEM_OF_PHANTOM]['existTurn'] - 1;
+					end;
+				end;		
+			end;
+			H55SMOD_Start['Artifact'][ARTIFACT_GEM_OF_PHANTOM]['function']['move'] = Events_Start_Implement_ARTIFACT_GEM_OF_PHANTOM_MOVE;
+
 	-- Skill
 		--魔力再生: 战斗开始前英雄获得20%当前魔法值的临时魔法值 HERO_SKILL_MYSTICISM
 			H55SMOD_Start['Skill'][HERO_SKILL_MYSTICISM] = {};
@@ -863,6 +932,9 @@ doFile('/scripts/combat-startup.lua')
 		end;
 	end;
 	function Events_Init_Interface()
+		-- 前置宝物特效
+		H55SMOD_Start['Artifact'][ARTIFACT_GEM_OF_PHANTOM]['function']['summon']();
+
 		-- 前置英雄特效
 		Events_Start_Interface('Sarge', 0);
 		Events_Start_Interface('Shadwyn', 1);
@@ -893,6 +965,7 @@ doFile('/scripts/combat-startup.lua')
 
 		-- 后置宝物特效
 		H55SMOD_Start['Artifact'][ARTIFACT_BAND_OF_CONJURER]['function']();
+		H55SMOD_Start['Artifact'][ARTIFACT_DRUM_OF_CHARGE]['function']();
 
 		-- 后置技能特效
 		H55SMOD_Start['Skill'][HERO_SKILL_MYSTICISM]['function']();
@@ -1583,6 +1656,9 @@ doFile('/scripts/combat-startup.lua')
 			-- 英雄行动
 				if itemUnit ~= nil and itemUnit['iUnitCategory'] == ENUM_CATEGORY.HERO then
 					for iSide = ENUM_SIDE.ATTACKER, ENUM_SIDE.DEFENDER do
+						-- Artifact
+							H55SMOD_MiddlewareListener['Artifact'][ARTIFACT_PENDANT_OF_BLIND]['function'](iSide, itemUnit);
+
 						-- Skill
 							-- H55SMOD_MiddlewareListener['Skill'][ENUM_SKILL.ABSOLUTEMORALE]['function']['consume'](itemUnit, iSide);
 
@@ -1905,6 +1981,9 @@ doFile('/scripts/combat-startup.lua')
 						-- Fortress
 						-- Dungeon
 						-- Stronghold
+						
+						-- Artifact
+							H55SMOD_Start['Artifact'][ARTIFACT_GEM_OF_PHANTOM]['function']['move'](iSide, itemUnitLast);
 					end;
 				end;
 
@@ -1950,6 +2029,23 @@ doFile('/scripts/combat-startup.lua')
 			end;
 		end;
 		H55SMOD_MiddlewareListener['Artifact'][ARTIFACT_MOONBLADE]['function'] = Events_MiddlewareListener_Implement_Artifact_Moonblade;
+	-- 闪耀坠饰
+		H55SMOD_MiddlewareListener['Artifact'][ARTIFACT_PENDANT_OF_BLIND] = {};
+		H55SMOD_MiddlewareListener['Artifact'][ARTIFACT_PENDANT_OF_BLIND][ENUM_SIDE.ATTACKER] = {};
+		H55SMOD_MiddlewareListener['Artifact'][ARTIFACT_PENDANT_OF_BLIND][ENUM_SIDE.DEFENDER] = {};
+		H55SMOD_MiddlewareListener['Artifact'][ARTIFACT_PENDANT_OF_BLIND][ENUM_SIDE.ATTACKER]['flag'] = ENUM_STAGE.ONCE.UNEXECUTE;
+		H55SMOD_MiddlewareListener['Artifact'][ARTIFACT_PENDANT_OF_BLIND][ENUM_SIDE.DEFENDER]['flag'] = ENUM_STAGE.ONCE.UNEXECUTE;
+		function Events_MiddlewareListener_Implement_Artifact_PendantOfBlind(iSide, itemUnit)
+			if H55SMOD_MiddlewareListener['Artifact'][ARTIFACT_PENDANT_OF_BLIND][iSide]['flag'] == ENUM_STAGE.ONCE.UNEXECUTE then
+				if TTH_ARTIFACT_EFFECT_COMBAT_HERO[iSide][ARTIFACT_PENDANT_OF_BLIND] == 1 then
+					H55SMOD_MiddlewareListener['Artifact'][ARTIFACT_PENDANT_OF_BLIND][iSide]['flag'] = ENUM_STAGE.ONCE.EXECUTED;
+					local iLenCreaturesLast = length(ObjSnapshotLastTurn['Creatures'][getSide(iSide, 1)]);
+					local iOver = tth_mod(I_TIMER, iLenCreaturesLast);
+					startThread(Thread_Command_UnitCastAimedSpell, itemUnit['strUnitName'], SPELL_BLIND, ObjSnapshotLastTurn['Creatures'][getSide(iSide, 1)][iLenCreaturesLast - 1]['strUnitName'], 1);
+				end;
+			end;
+		end;
+		H55SMOD_MiddlewareListener['Artifact'][ARTIFACT_PENDANT_OF_BLIND]['function'] = Events_MiddlewareListener_Implement_Artifact_PendantOfBlind;
 
 -- 技能
 	H55SMOD_MiddlewareListener['Skill'] = {};
@@ -3677,10 +3773,6 @@ doFile('/scripts/combat-startup.lua')
 		-- Bersy
 			H55SMOD_MiddlewareListener['Bersy'] = {};
 			function Events_MiddlewareListener_Implement_Bersy_Creature(strHero, iSide, itemUnitLast, listCreaturesBeMoved)
-				-- print(strHero);
-				-- print(iSide);
-				-- print(itemUnitLast);
-				-- print(listCreaturesBeMoved);
 				if GetHero(getSide(iSide, 1)) ~= nil and GetHeroName(GetHero(getSide(iSide, 1))) == strHero and itemUnitLast['iSide'] == getSide(iSide, 1) then
 					if itemUnitLast['iUnitType'] == CREATURE_BEAR_RIDER or itemUnitLast['iUnitType'] == CREATURE_BLACKBEAR_RIDER or itemUnitLast['iUnitType'] == CREATURE_WHITE_BEAR_RIDER then
 						local iLenCreaturesBeMoved = length(listCreaturesBeMoved);

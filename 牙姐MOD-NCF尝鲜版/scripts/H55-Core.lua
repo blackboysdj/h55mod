@@ -513,6 +513,11 @@ H55SMOD_ListKarissaLevel = {1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34, 37, 40}
 
 TTH_Ildar_Race4Morale = 0;
 
+TTH_Data_TeachSpell_PendantOfBlind = {};
+TTH_Data_GameVar_PendantOfBlind = {};
+TTH_Data_GameVar_DrumOfCharge = {};
+TTH_Data_GameVar_GemOfPhantom = 0;
+
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 --SUPPORT FUNCTIONS
 ----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -3260,29 +3265,6 @@ function H55_SetGlobalDailyPayouts(player,num)
 	H55_GlobalDailyGoldPayout[player] = num;
 end;
 
--- function H55_PayoutThisPlayer(player)
--- 	if (H55_GlobalDailyGoldPayout[player] + H55_GlobalWeeklyGoldPayout[player]) > 0 then
--- 		H55_GiveResourcesSilent(player,6,(H55_GlobalDailyGoldPayout[player]+H55_GlobalWeeklyGoldPayout[player]));
--- 	end;
--- 	if (H55_GlobalDailyWoodPayout[player] + H55_GlobalWeeklyWoodPayout[player]) > 0 then
--- 		H55_GiveResourcesSilent(player,0,(H55_GlobalDailyWoodPayout[player]+H55_GlobalWeeklyWoodPayout[player]));
--- 	end;
--- 	if (H55_GlobalDailyOrePayout[player] + H55_GlobalWeeklyOrePayout[player]) > 0 then
--- 		H55_GiveResourcesSilent(player,1,(H55_GlobalDailyOrePayout[player]+H55_GlobalWeeklyOrePayout[player]));
--- 	end;
--- 	if (H55_GlobalDailyMercuryPayout[player] + H55_GlobalWeeklyMercuryPayout[player]) > 0 then
--- 		H55_GiveResourcesSilent(player,2,(H55_GlobalDailyMercuryPayout[player]+H55_GlobalWeeklyMercuryPayout[player]));
--- 	end;
--- 	if (H55_GlobalDailyCrystalPayout[player] + H55_GlobalWeeklyCrystalPayout[player]) > 0 then
--- 		H55_GiveResourcesSilent(player,3,(H55_GlobalDailyCrystalPayout[player]+H55_GlobalWeeklyCrystalPayout[player]));
--- 	end;
--- 	if (H55_GlobalDailySulphurPayout[player] + H55_GlobalWeeklySulphurPayout[player]) > 0 then
--- 		H55_GiveResourcesSilent(player,4,(H55_GlobalDailySulphurPayout[player]+H55_GlobalWeeklySulphurPayout[player]));
--- 	end;
--- 	if (H55_GlobalDailyGemPayout[player] + H55_GlobalWeeklyGemPayout[player]) > 0 then
--- 		H55_GiveResourcesSilent(player,5,(H55_GlobalDailyGemPayout[player]+H55_GlobalWeeklyGemPayout[player]));
--- 	end;
--- end;
 function H55_PayoutThisPlayer(player)
 	H55_SetResourcesSilent(player,6,(H55_GlobalDailyGoldPayout[player]+H55_GlobalWeeklyGoldPayout[player]));
 	H55_SetResourcesSilent(player,0,(H55_GlobalDailyWoodPayout[player]+H55_GlobalWeeklyWoodPayout[player]));
@@ -3729,74 +3711,7 @@ function TTH_FunctionManagement(strHero)
 	QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
 	, "/Text/Game/Scripts/TownPortal/TTH_TM_or_AF.txt"
 	, "H55_TownManagement('"..iPlayer.."','"..iPlayerRace.."','"..strHero.."','"..iHeroRace.."')"
-	, "TTH_ArtifactManagement('"..iPlayer.."','"..iPlayerRace.."','"..strHero.."','"..iHeroRace.."')");
-end;
-
-function TTH_ArtifactManagement(iPlayer, iPlayerRace, strHero, iHeroRace)
-	iPlayer = iPlayer * 1;
-	iPlayerRace = iPlayerRace * 1;
-	iHeroRace = iHeroRace * 1;
-	local arrGate = GetObjectNamesByType("TOWN");
-	local strTown = nil;
-	local iTownRace = 0;
-	for i, strGate in arrGate do
-		if (GetObjectOwner(strGate) == iPlayer) and (IsHeroInTown(strHero, strGate, 1, 0) == not nil) then
-			strTown = strGate;
-			iTownRace = H55_GetTownRace(strGate);
-		end;
-	end;
-
-	-- by 牙姐 2018-8-21 16:53:24
-	-- begin 宝物合成
-	if strTown ~= nil then
-		local iCombine = TTH_TM_Combine_or_Close(strHero, strTown);
-		-- end
-		if iCombine == 1 then
-			return
-		end;
-	end;
-
-	-- by 牙姐 2018-8-21 16:53:24
-	-- begin 军团宝物 城市加成
-	if strTown ~= nil then
-		local iAddition = TTH_TM_AdditionCity_or_Close(strHero, strTown);
-		-- end
-		if iAddition == 1 then
-			return
-		end;
-	end;
-
-	-- by 牙姐 2021-2-24 22:26:42
-	-- begin 军团宝物 领袖特
-	if strTown == nil then
-		local iLeaderHero = TTH_TM_LeaderHero_or_Close(strHero, strTown);
-		-- end
-		if iLeaderHero == 1 then
-			return
-		end;
-	end;
-
-	-- by 牙姐 2018-8-22 18:24:07
-	-- begin 资源宝物 矿产加成
-	if 1 == 1 then
-		local iAddition = TTH_TM_AdditionMine_or_Close(strHero);
-		-- end
-		if iAddition == 1 then
-			return
-		end;
-	end;
-
-	-- by 牙姐 2018-9-12 18:19:17
-	-- begin 皇家遗物
-	if 1 == 1 then
-		local iAddition = TTH_TM_UseDoppelganger_or_Close(strHero);
-		-- end
-		if iAddition == 1 then
-			return
-		end;
-	end;
-
-	MessageBoxForPlayers(GetPlayerFilter(iPlayer),"/Text/Game/Scripts/TownPortal/TTH_AF_NoArtifact.txt");
+	, "TTH_Func_ArtiManage('"..iPlayer.."','"..strHero.."')");
 end;
 
 function H55_TownManagement(iPlayer, iPlayerRace, strHero, iHeroRace)
@@ -5470,47 +5385,6 @@ function H55_WeeklyEvents(player)
 			end;
 
 			------------------------------------------------------------------------------------------------------------------------------------------------
-			H55_DEBUG = {7,"Artifacts",player,hero};--------------------------------------------------------------------------------------------------------
-			------------------------------------------------------------------------------------------------------------------------------------------------
-
-			if (HasArtefact(hero,ARTIFACT_RES_BASIC,0) ~= nil) and (H55_ArtWoodReceived[hero] ~= 1) then
-				local amount = H55_Round(GetHeroStat(hero,STAT_KNOWLEDGE)/2);
-				if amount < 1 then amount = 1 end;
-				H55_GlobalWeeklyWoodPayout[player] = H55_GlobalWeeklyWoodPayout[player]+amount;
-				H55_ArtWoodReceived[hero] = 1;
-			end;
-			if (HasArtefact(hero,ARTIFACT_RES_BASIC,0) ~= nil) and (H55_ArtOreReceived[hero] ~= 1) then
-				local amount = H55_Round(GetHeroStat(hero,STAT_KNOWLEDGE)/2);
-				if amount < 1 then amount = 1 end;
-				H55_GlobalWeeklyOrePayout[player] = H55_GlobalWeeklyOrePayout[player]+amount;
-				H55_ArtOreReceived[hero] = 1;
-			end;
-			if (HasArtefact(hero,ARTIFACT_RES_ADVANCED,0) ~= nil) and (H55_ArtSulphurReceived[hero] ~= 1) then
-				local amount = H55_Round(GetHeroStat(hero,STAT_KNOWLEDGE)/2);
-				if amount < 1 then amount = 1 end;
-				H55_GlobalWeeklySulphurPayout[player] = H55_GlobalWeeklySulphurPayout[player]+amount;
-				H55_ArtSulphurReceived[hero] = 1;
-			end;
-			if (HasArtefact(hero,ARTIFACT_RES_ADVANCED,0) ~= nil) and (H55_ArtCrystalReceived[hero] ~= 1) then
-				local amount = H55_Round(GetHeroStat(hero,STAT_KNOWLEDGE)/2);
-				if amount < 1 then amount = 1 end;
-				H55_GlobalWeeklyCrystalPayout[player] = H55_GlobalWeeklyCrystalPayout[player]+amount;
-				H55_ArtCrystalReceived[hero] = 1;
-			end;
-			if (HasArtefact(hero,ARTIFACT_RES_ADVANCED,0) ~= nil) and (H55_ArtGemReceived[hero] ~= 1) then
-				local amount = H55_Round(GetHeroStat(hero,STAT_KNOWLEDGE)/2);
-				if amount < 1 then amount = 1 end;
-				H55_GlobalWeeklyGemPayout[player] = H55_GlobalWeeklyGemPayout[player]+amount;
-				H55_ArtGemReceived[hero] = 1;
-			end;
-			if (HasArtefact(hero,ARTIFACT_RES_ADVANCED,0) ~= nil) and (H55_ArtMercuryReceived[hero] ~= 1) then
-				local amount = H55_Round(GetHeroStat(hero,STAT_KNOWLEDGE)/2);
-				if amount < 1 then amount = 1 end;
-				H55_GlobalWeeklyMercuryPayout[player] = H55_GlobalWeeklyMercuryPayout[player]+amount;
-				H55_ArtMercuryReceived[hero] = 1;
-			end;
-
-			------------------------------------------------------------------------------------------------------------------------------------------------
 			H55_DEBUG = {8,"Regalia",player,hero};--------------------------------------------------------------------------------------------------------
 			------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -5642,30 +5516,7 @@ function H55_WeeklyEvents(player)
 
 			if H55_IsThisAIPlayer(player) ~= 1 then
 				for i, town in alltowns do
-					if GetObjectOwner(town) == player and TTH_TOWN_BONUS_WEEK[town] ~= nil then
-						local townrace = H55_GetTownRace(town);
-						if GetTownBuildingLevel(town, TOWN_BUILDING_DWELLING_1) >= 1 and  TTH_TOWN_BONUS_WEEK[town][0] == 1 then
-							SetObjectDwellingCreatures(town, H55_Creatures[townrace][1][1], H55_Round(GetObjectDwellingCreatures(town,H55_Creatures[townrace][1][1]) * 1.1));
-						end;
-						if GetTownBuildingLevel(town, TOWN_BUILDING_DWELLING_2) >= 1 and  TTH_TOWN_BONUS_WEEK[town][1] == 1 then
-							SetObjectDwellingCreatures(town, H55_Creatures[townrace][2][1], H55_Round(GetObjectDwellingCreatures(town,H55_Creatures[townrace][2][1]) * 1.1));
-						end;
-						if GetTownBuildingLevel(town, TOWN_BUILDING_DWELLING_3) >= 1 and  TTH_TOWN_BONUS_WEEK[town][2] == 1 then
-							SetObjectDwellingCreatures(town, H55_Creatures[townrace][3][1], H55_Round(GetObjectDwellingCreatures(town,H55_Creatures[townrace][3][1]) * 1.1));
-						end;
-						if GetTownBuildingLevel(town, TOWN_BUILDING_DWELLING_4) >= 1 and  TTH_TOWN_BONUS_WEEK[town][3] == 1 then
-							SetObjectDwellingCreatures(town, H55_Creatures[townrace][4][1], H55_Round(GetObjectDwellingCreatures(town,H55_Creatures[townrace][4][1]) * 1.1));
-						end;
-						if GetTownBuildingLevel(town, TOWN_BUILDING_DWELLING_5) >= 1 and  TTH_TOWN_BONUS_WEEK[town][4] == 1 then
-							SetObjectDwellingCreatures(town, H55_Creatures[townrace][5][1], H55_Round(GetObjectDwellingCreatures(town,H55_Creatures[townrace][5][1]) * 1.1));
-						end;
-						if GetTownBuildingLevel(town, TOWN_BUILDING_DWELLING_6) >= 1 and  TTH_TOWN_BONUS_WEEK[town][5] == 1 then
-							SetObjectDwellingCreatures(town, H55_Creatures[townrace][6][1], H55_Round(GetObjectDwellingCreatures(town,H55_Creatures[townrace][6][1]) * 1.1));
-						end;
-						if GetTownBuildingLevel(town, TOWN_BUILDING_DWELLING_7) >= 1 and  TTH_TOWN_BONUS_WEEK[town][6] == 1 then
-							SetObjectDwellingCreatures(town, H55_Creatures[townrace][7][1], H55_Round(GetObjectDwellingCreatures(town,H55_Creatures[townrace][7][1]) * 1.1));
-						end;
-					end;
+					TTH_Func_TownBonus8LegionArti(town, player);
 				end;
 			end;
 		end;
@@ -6483,6 +6334,13 @@ function H55_ContinuesEvent(player)
 					end;
 				end;
 			end;
+
+			-- 闪耀坠饰 ARTIFACT_PENDANT_OF_BLIND
+			TTH_Func_PendantOfBlind(hero);
+			-- 冲锋战鼓 ARTIFACT_DRUM_OF_CHARGE
+			TTH_Func_DrumOfCharge(hero);
+			-- 幻影宝石 ARTIFACT_GEM_OF_PHANTOM
+			TTH_Func_GemOfPhantom(hero);
 
 			H55_DEBUG = {14,"Skills",player,hero};
 				if (HasHeroSkill(hero,DEMON_FEAT_DEMONIC_FLAME) ~= nil) and (H55_DemonicFlameOwners[hero] ~= 1) then
@@ -7599,35 +7457,7 @@ function H55_DailyEvents(player)
 	-- 军团金像
 	if H55_IsThisAIPlayer(player) ~= 1 then
 		for i, town in alltowns do
-			if i == 0 then
-			end;
-			if GetObjectOwner(town) == player and TTH_TOWN_BONUS_WEEK[town] ~= nil and TTH_TOWN_BONUS_WEEK[town][7] ~= nil then
-				local townrace = H55_GetTownRace(town);
-				local townhall = GetTownBuildingLevel(town, TOWN_BUILDING_TOWN_HALL);
-				local grail = GetTownBuildingLevel(town, TOWN_BUILDING_GRAIL);
-				local iGold = 0;
-				if townhall == 1 then
-					iGold = 500;
-				elseif townhall == 2 then
-					iGold = 1000;
-				elseif townhall == 3 then
-					iGold = 2000;
-				elseif townhall == 4 then
-					iGold = 4000;
-				end
-				if grail > 0 then
-					iGold = iGold + 5000;
-				end;
-				H55_GlobalDailyGoldPayout[player] = H55_GlobalDailyGoldPayout[player] + iGold * 0.5;
-			end;
-			if GetObjectOwner(town) == player and TTH_TOWN_BONUS_WEEK[town] ~= nil and TTH_TOWN_BONUS_WEEK[town][8] ~= nil then
-				H55_GlobalDailyWoodPayout[player] = H55_GlobalDailyWoodPayout[player] + 4;
-				H55_GlobalDailyOrePayout[player] = H55_GlobalDailyOrePayout[player] + 4;
-				H55_GlobalDailySulphurPayout[player] = H55_GlobalDailySulphurPayout[player] + 2;
-				H55_GlobalDailyGemPayout[player] = H55_GlobalDailyGemPayout[player] + 2;
-				H55_GlobalDailyMercuryPayout[player] = H55_GlobalDailyMercuryPayout[player] + 2;
-				H55_GlobalDailyCrystalPayout[player] = H55_GlobalDailyCrystalPayout[player] + 2;
-			end;
+			TTH_Func_TownBonus8EconomicsArti(town, player);
 		end;
 	end;
 	-- end
@@ -7872,37 +7702,8 @@ function H55_DailyEvents(player)
 		H55_DEBUG = {20,"ArtDaily",player,hero};--------------------------------------------------------------------------------------------------------
 		------------------------------------------------------------------------------------------------------------------------------------------------
 
-		-- if (HasArtefact(hero,ARTIFACT_MONK_01,1) ~= nil) then
-		-- 	ChangeHeroStat(hero,STAT_MANA_POINTS,6);
-		-- end;
-		-- if (HasArtefact(hero,ARTIFACT_MONK_02,1) ~= nil) then
-		-- 	ChangeHeroStat(hero,STAT_MANA_POINTS,4);
-		-- end;
-		-- if (HasArtefact(hero,ARTIFACT_EIGHTFOLD,1) ~= nil) then
-		-- 	ChangeHeroStat(hero,STAT_MANA_POINTS,10);
-		-- end;
 		if (HasArtefact(hero,34,1) ~= nil) and (HasArtefact(hero,35,1) ~= nil) then
 			GiveExp(hero,(H55_Day*10));
-		end;
-		-- if (HasArtefact(hero,ARTIFACT_ENDLESS_SACK_OF_GOLD,0) ~= nil) then
-		-- 	local amount = H55_Round(GetHeroStat(hero,STAT_KNOWLEDGE)*50);
-		-- 	H55_GlobalDailyGoldPayout[player] = H55_GlobalDailyGoldPayout[player] + 500 + amount;
-		-- end;
-		-- if (HasArtefact(hero,ARTIFACT_ENDLESS_BAG_OF_GOLD,0) ~= nil) then
-		-- 	local amount = H55_Round(GetHeroStat(hero,STAT_KNOWLEDGE)*75);
-		-- 	H55_GlobalDailyGoldPayout[player] = H55_GlobalDailyGoldPayout[player] + 1000 + amount;
-		-- end;
-		if (HasArtefact(hero,ARTIFACT_HORN_OF_PLENTY,0) ~= nil) then
-			local amount1 = H55_Round(GetHeroStat(hero, STAT_KNOWLEDGE) / 4) + 1;
-			local amount2 = H55_Round(GetHeroStat(hero, STAT_KNOWLEDGE) / 8) + 1;
-			local goldamount = H55_Round(GetHeroStat(hero,STAT_KNOWLEDGE) * 500);
-			H55_GlobalDailyWoodPayout[player] = H55_GlobalDailyWoodPayout[player] + amount1;
-			H55_GlobalDailyOrePayout[player] = H55_GlobalDailyOrePayout[player] + amount1;
-			H55_GlobalDailySulphurPayout[player] = H55_GlobalDailySulphurPayout[player] + amount2;
-			H55_GlobalDailyGemPayout[player] = H55_GlobalDailyGemPayout[player] + amount2;
-			H55_GlobalDailyMercuryPayout[player] = H55_GlobalDailyMercuryPayout[player] + amount2;
-			H55_GlobalDailyCrystalPayout[player] = H55_GlobalDailyCrystalPayout[player] + amount2;
-			H55_GlobalDailyGoldPayout[player] = H55_GlobalDailyGoldPayout[player] + goldamount;
 		end;
 
 		if hero == "Rissa" then
@@ -8233,7 +8034,7 @@ function H55_DailyEvents(player)
 				b_defend_us_all = 3;
 			end;
 			local b_legion_t1 = 1;
-			if HasArtefact(hero,ARTIFACT_LEGION_T1,0) ~= nil then
+			if HasArtefact(hero,ARTIFACT_LEGION_BASIC,0) ~= nil then
 				b_legion_t1 = 1.5;
 			end;
 			i_growth = H55_Round(i_growth * b_defend_us_all * b_legion_t1);
@@ -8598,26 +8399,7 @@ function H55_DailyEvents(player)
 	end;
 
 	if H55_IsThisAIPlayer(player) ~= 1 then
-		for strMine, objMine in TTH_RES_BONUS_DAILY do
-			local iPlayer = GetObjectOwner(strMine);
-			if player == iPlayer then
-				if objMine['type'] + 0 == ARTIFACT_RES_BASIC then
-					H55_GlobalDailyWoodPayout[iPlayer] = H55_GlobalDailyWoodPayout[iPlayer] + 2 * objMine['level'];
-				elseif objMine['type'] + 0 == ARTIFACT_RES_BASIC then
-					H55_GlobalDailyOrePayout[iPlayer] = H55_GlobalDailyOrePayout[iPlayer] + 2 * objMine['level'];
-				elseif objMine['type'] + 0 == ARTIFACT_RES_ADVANCED then
-					H55_GlobalDailySulphurPayout[iPlayer] = H55_GlobalDailySulphurPayout[iPlayer] + 1 * objMine['level'];
-				elseif objMine['type'] + 0 == ARTIFACT_RES_ADVANCED then
-					H55_GlobalDailyCrystalPayout[iPlayer] = H55_GlobalDailyCrystalPayout[iPlayer] + 1 * objMine['level'];
-				elseif objMine['type'] + 0 == ARTIFACT_RES_ADVANCED then
-					H55_GlobalDailyGemPayout[iPlayer] = H55_GlobalDailyGemPayout[iPlayer] + 1 * objMine['level'];
-				elseif objMine['type'] + 0 == ARTIFACT_RES_ADVANCED then
-					H55_GlobalDailyMercuryPayout[iPlayer] = H55_GlobalDailyMercuryPayout[iPlayer] + 1 * objMine['level'];
-				elseif objMine['type'] + 0 == ARTIFACT_ENDLESS_SACK_OF_GOLD then
-					H55_GlobalDailyGoldPayout[iPlayer] = H55_GlobalDailyGoldPayout[iPlayer] + 1000 * objMine['level'];
-				end;
-			end;
-		end;
+		TTH_Func_MineBonus8ResArti(player);
 	end;
 
 	print("H55 Daily Event "..H55_DailyEventsCounter[player].." Finished");
@@ -9017,410 +8799,357 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 	startThread(TTH_FUNC_HERO_TOUCH__PORTAL_CREATURE);
 -- end
 
--- by 牙姐 2018-8-21 16:53:24
 -- begin 宝物合成
-	TTH_ARTIFACT_SETS = {
-		["DRAGONISH"] = {
-			["ID"] = {
-				[0] = ARTIFACT_DRAGON_SCALE_ARMOR
-				, [1] = ARTIFACT_DRAGON_SCALE_SHIELD
-				, [2] = ARTIFACT_DRAGON_BONE_GRAVES
-				, [3] = ARTIFACT_DRAGON_WING_MANTLE
-				, [4] = ARTIFACT_DRAGON_TEETH_NECKLACE
-				, [5] = ARTIFACT_DRAGON_TALON_CROWN
-				, [6] = ARTIFACT_DRAGON_EYE_RING
-				, [7] = ARTIFACT_DRAGON_FLAME_TONGUE
-			}
-			, ["NAME"] = {
-				[0] = "/Text/Game/Artifacts/Dragon_scale_armor/Name.txt"
-				, [1] = "/Text/Game/Artifacts/DragonscaleShield/Name.txt"
-				, [2] = "/Text/Game/Artifacts/Dragon_bone_greaves/Name.txt"
-				, [3] = "/Text/Game/Artifacts/Dragon_wing_mantle/Name.txt"
-				, [4] = "/Text/Game/Artifacts/Dragon_teeth_necklace/Name.txt"
-				, [5] = "/Text/Game/Artifacts/Dragon_talon_crown/Name.txt"
-				, [6] = "/Text/Game/Artifacts/Dragon_eye_ring/Name.txt"
-				, [7] = "/Text/Game/Artifacts/Dragon_flame_tongue/Name.txt"
-			}
-			, ["COMBINE_ID"] = ARTIFACT_DRACONIC
-			, ["COMBINE_NAME"] = "/Text/Game/Artifacts/Draconic/Name.txt"
-		}
-		, ["DWARVEN"] = {
-			["ID"] = {
-				[0] = ARTIFACT_DWARVEN_MITHRAL_CUIRASS
-				, [1] = ARTIFACT_DWARVEN_MITHRAL_GREAVES
-				, [2] = ARTIFACT_DWARVEN_MITHRAL_HELMET
-				, [3] = ARTIFACT_DWARVEN_MITHRAL_SHIELD
-			}
-			, ["NAME"] = {
-				[0] = "/Text/Game/Artifacts/Dwarven_mithral_cuirass/Name.txt"
-				, [1] = "/Text/Game/Artifacts/Dwarven_mithral_greaves/Name.txt"
-				, [2] = "/Text/Game/Artifacts/Dwarven_mithral_helmet/Name.txt"
-				, [3] = "/Text/Game/Artifacts/Dwarven_mithral_shield/Name.txt"
-			}
-			, ["COMBINE_ID"] = ARTIFACT_SENTINEL
-			, ["COMBINE_NAME"] = "/Text/Game/Artifacts/Sentinel/Name.txt"
-			, [3] = {
-				[STAT_ATTACK] = 0
-				, [STAT_DEFENCE] = 0
-				, [STAT_SPELL_POWER] = 2
-				, [STAT_KNOWLEDGE] = 2
-				, [STAT_LUCK] = 0
-				, [STAT_MORALE] = 0
-			}
-			, [4] = {
-				[STAT_ATTACK] = 0
-				, [STAT_DEFENCE] = 8
-				, [STAT_SPELL_POWER] = 0
-				, [STAT_KNOWLEDGE] = 0
-				, [STAT_LUCK] = 0
-				, [STAT_MORALE] = 0
-			}
-		}
-		, ["LIONS"] = {
-			["ID"] = {
-				[0] = ARTIFACT_CROWN_OF_COURAGE
-				, [1] = ARTIFACT_LION_HIDE_CAPE
-				, [2] = ARTIFACT_NECKLACE_OF_BRAVERY
-			}
-			, [2] = {
-				[STAT_ATTACK] = 4
-				, [STAT_DEFENCE] = 0
-				, [STAT_SPELL_POWER] = 0
-				, [STAT_KNOWLEDGE] = 0
-				, [STAT_LUCK] = 0
-				, [STAT_MORALE] = 0
-			}
-		}
-		, ["MAGIS"] = {
-			["ID"] = {
-				[0] = ARTIFACT_ROBE_OF_MAGI
-				, [1] = ARTIFACT_STAFF_OF_MAGI
-				, [2] = ARTIFACT_CROWN_OF_MAGI
-				, [3] = ARTIFACT_RING_OF_MAGI
-			}
-			, ["NAME"] = {
-				[0] = "/Text/Game/Artifacts/Robe_of_magi/Name.txt"
-				, [1] = "/Text/Game/Artifacts/Staff_of_magi/Name.txt"
-				, [2] = "/Text/Game/Artifacts/Crown_of_magi/Name.txt"
-				, [3] = "/Text/Game/Artifacts/Ring_of_magi/Name.txt"
-			}
-			, ["COMBINE_ID"] = ARTIFACT_EIGHTFOLD
-			, ["COMBINE_NAME"] = "/Text/Game/Artifacts/Eightfold/Name.txt"
-			, [3] = {
-				[STAT_ATTACK] = 0
-				, [STAT_DEFENCE] = 0
-				, [STAT_SPELL_POWER] = 6
-				, [STAT_KNOWLEDGE] = 0
-				, [STAT_LUCK] = 0
-				, [STAT_MORALE] = 0
-			}
-		}
-		, ["NECROMANCERS"] = {
-			["ID"] = {
-				[0] = ARTIFACT_CLOAK_OF_MOURNING
-				, [1] = ARTIFACT_STAFF_OF_VEXINGS
-				, [2] = ARTIFACT_RING_OF_DEATH
-				, [3] = ARTIFACT_NECROMANCER_PENDANT
-			}
-			, ["NAME"] = {
-				[0] = "/Text/Game/Artifacts/Cloak_of_mourning/Name.txt"
-				, [1] = "/Text/Game/Artifacts/Staff_of_vexing/Name.txt"
-				, [2] = "/Text/Game/Artifacts/Ring_of_Death/Name.txt"
-				, [3] = "/Text/Game/Artifacts/Necromancer_Pendant/Name.txt"
-			}
-			, ["COMBINE_ID"] = ARTIFACT_CURSE_SHOULDER
-			, ["COMBINE_NAME"] = "/Text/Game/Artifacts/Curse_Shoulder/Name.txt"
-			, [3] = {
-				[STAT_ATTACK] = 0
-				, [STAT_DEFENCE] = 0
-				, [STAT_SPELL_POWER] = 3
-				, [STAT_KNOWLEDGE] = 3
-				, [STAT_LUCK] = 0
-				, [STAT_MORALE] = 0
-			}
-		}
-		, ["EDUCATIONAL"] = {
-			["ID"] = {
-				[0] = ARTIFACT_HELM_OF_ENLIGHTMENT
-				, [1] = ARTIFACT_CHAIN_MAIL_OF_ENLIGHTMENT
-			}
-		}
-		, ["HUNTERS"] = {
-			["ID"] = {
-				[0] = ARTIFACT_UNICORN_HORN_BOW
-				, [1] = ARTIFACT_TREEBORN_QUIVER
-			}
-		}
-		, ["OGRES"] = {
-			["ID"] = {
-				[0] = ARTIFACT_OGRE_CLUB
-				, [1] = ARTIFACT_OGRE_SHIELD
-			}
-		}
-		, ["RUNIC"] = {
-			["ID"] = {
-				[0] = ARTIFACT_RUNIC_WAR_AXE
-				, [1] = ARTIFACT_RUNIC_WAR_HARNESS
-			}
-		}
-		, ["DEMONIC"] = {
-			["ID"] = {
-				[0] = ARTIFACT_PENDANT_OF_STARDUST
-				, [1] = ARTIFACT_HELM_OF_CHAOS
-			}
-		}
-		, ["MONK"] = {
-			["ID"] = {
-				[0] = ARTIFACT_MONK_01
-				, [1] = ARTIFACT_MONK_02
-				, [2] = ARTIFACT_MONK_03
-				, [3] = ARTIFACT_MONK_04
-			}
-			, [3] = {
-				[STAT_ATTACK] = 0
-				, [STAT_DEFENCE] = 0
-				, [STAT_SPELL_POWER] = 3
-				, [STAT_KNOWLEDGE] = 3
-				, [STAT_LUCK] = 0
-				, [STAT_MORALE] = 0
-			}
-		}
-		, ["GUARDIAN"] = {
-			["ID"] = {
-				[0] = ARTIFACT_GUARDIAN_01
-				, [1] = ARTIFACT_GUARDIAN_02
-				, [2] = ARTIFACT_GUARDIAN_03
-				, [3] = ARTIFACT_PLATE_MAIL_OF_STABILITY
-			}
-			, ["NAME"] = {
-				[0] = "/Text/Game/Artifacts/Guardian_Helmet/Name.txt"
-				, [1] = "/Text/Game/Artifacts/Guardian_Boots/Name.txt"
-				, [2] = "/Text/Game/Artifacts/Guardian_Shield/Name.txt"
-				, [3] = "/Text/Game/Artifacts/PlateMailOfStability/Name.txt"
-			}
-			, ["COMBINE_ID"] = ARTIFACT_ANGELIC_ALLIANCE
-			, ["COMBINE_NAME"] = "/Text/Game/Artifacts/Angelic_Alliance/Name.txt"
-			, [2] = {
-				[STAT_ATTACK] = 1
-				, [STAT_DEFENCE] = 1
-				, [STAT_SPELL_POWER] = 1
-				, [STAT_KNOWLEDGE] = 1
-				, [STAT_LUCK] = 0
-				, [STAT_MORALE] = 0
-			}
-			, [3] = {
-				[STAT_ATTACK] = 1
-				, [STAT_DEFENCE] = 1
-				, [STAT_SPELL_POWER] = 1
-				, [STAT_KNOWLEDGE] = 1
-				, [STAT_LUCK] = 0
-				, [STAT_MORALE] = 0
-			}
-			, [4] = {
-				[STAT_ATTACK] = 1
-				, [STAT_DEFENCE] = 1
-				, [STAT_SPELL_POWER] = 1
-				, [STAT_KNOWLEDGE] = 1
-				, [STAT_LUCK] = 0
-				, [STAT_MORALE] = 0
-			}
-		}
-		, ["ROOKIE"] = {
-			["ID"] = {
-				[0] = ARTIFACT_SWORD_OF_RUINS
-				, [1] = ARTIFACT_BREASTPLATE_OF_PETRIFIED_WOOD
-				, [2] = ARTIFACT_SKULL_HELMET
-				, [3] = ARTIFACT_BUCKLER
-				, [4] = ARTIFACT_BOOTS_OF_INTERFERENCE
-			}
-			, ["NAME"] = {
-				[0] = "/Text/Game/Artifacts/SwordOfRuin/Name.txt"
-				, [1] = "/Text/Game/Artifacts/Breastplate_of_petrified_wood/Name.txt"
-				, [2] = "/Text/Game/Artifacts/Skull_Helmet/Name.txt"
-				, [3] = "/Text/Game/Artifacts/Buckler/Name.txt"
-				, [4] = "/Text/Game/Artifacts/Boots_of_interference/Name.txt"
-			}
-			, ["COMBINE_ID"] = ARTIFACT_PLATE_MAIL_OF_STABILITY
-			, ["COMBINE_NAME"] = "/Text/Game/Artifacts/PlateMailOfStability/Name.txt"
-			, [2] = {
-				[STAT_ATTACK] = 0
-				, [STAT_DEFENCE] = 1
-				, [STAT_SPELL_POWER] = 0
-				, [STAT_KNOWLEDGE] = 0
-				, [STAT_LUCK] = 0
-				, [STAT_MORALE] = 0
-			}
-			, [3] = {
-				[STAT_ATTACK] = 0
-				, [STAT_DEFENCE] = 0
-				, [STAT_SPELL_POWER] = 0
-				, [STAT_KNOWLEDGE] = 1
-				, [STAT_LUCK] = 0
-				, [STAT_MORALE] = 0
-			}
-			, [4] = {
-				[STAT_ATTACK] = 1
-				, [STAT_DEFENCE] = 0
-				, [STAT_SPELL_POWER] = 0
-				, [STAT_KNOWLEDGE] = 0
-				, [STAT_LUCK] = 0
-				, [STAT_MORALE] = 0
-			}
-			, [5] = {
-				[STAT_ATTACK] = 0
-				, [STAT_DEFENCE] = 0
-				, [STAT_SPELL_POWER] = 1
-				, [STAT_KNOWLEDGE] = 0
-				, [STAT_LUCK] = 0
-				, [STAT_MORALE] = 0
-			}
-		}
-		, ["ELEMENT"] = {
-			["ID"] = {
-				[0] = ARTIFACT_TITANS_TRIDENT
-				, [1] = ARTIFACT_EVERCOLD_ICICLE
-				, [2] = ARTIFACT_PHOENIX_FEATHER_CAPE
-				, [3] = ARTIFACT_EARTHSLIDERS
-			}
-			, ["NAME"] = {
-				[0] = "/Text/Game/Artifacts/Titan`s_trident/Name.txt"
-				, [1] = "/Text/Game/Artifacts/Evercold_icicle/Name.txt"
-				, [2] = "/Text/Game/Artifacts/Phoenix_feather_cape/Name.txt"
-				, [3] = "/Text/Game/Artifacts/Earthsliders/Name.txt"
-			}
-			, ["COMBINE_ID"] = ARTIFACT_TOME_OF_DESTRUCTION
-			, ["COMBINE_NAME"] = "/Text/Game/Artifacts/Tome_of_Destruction/Name.txt"
-			, [2] = {
-				[STAT_ATTACK] = 0
-				, [STAT_DEFENCE] = 0
-				, [STAT_SPELL_POWER] = 2
-				, [STAT_KNOWLEDGE] = 0
-				, [STAT_LUCK] = 0
-				, [STAT_MORALE] = 0
-			}
-			, [4] = {
-				[STAT_ATTACK] = 0
-				, [STAT_DEFENCE] = 0
-				, [STAT_SPELL_POWER] = 0
-				, [STAT_KNOWLEDGE] = 2
-				, [STAT_LUCK] = 0
-				, [STAT_MORALE] = 0
-			}
-		}
-		, ["CODEX"] = {
-			["ID"] = {
-				[0] = ARTIFACT_TOME_OF_DESTRUCTION
-				, [1] = ARTIFACT_TOME_OF_LIGHT_MAGIC
-				, [2] = ARTIFACT_TOME_OF_DARK_MAGIC
-				, [3] = ARTIFACT_TOME_OF_SUMMONING_MAGIC
-			}
-			, ["NAME"] = {
-				[0] = "/Text/Game/Artifacts/Tome_of_Destruction/Name.txt"
-				, [1] = "/Text/Game/Artifacts/Tome_of_Light_Magic/Name.txt"
-				, [2] = "/Text/Game/Artifacts/Tome_of_Dark_Magic/Name.txt"
-				, [3] = "/Text/Game/Artifacts/Tome_of_Summoning_Magic/Name.txt"
-			}
-			, ["COMBINE_ID"] = ARTIFACT_CODEX
-			, ["COMBINE_NAME"] = "/Text/Game/Artifacts/Codex/Name.txt"
-		}
-		, ["RESOURCE"] = {
-			["ID"] = {
-				[0] = ARTIFACT_RES_BASIC
-				, [1] = ARTIFACT_RES_ADVANCED
-				, [2] = ARTIFACT_ENDLESS_SACK_OF_GOLD
-				, [3] = ARTIFACT_ENDLESS_BAG_OF_GOLD
-				, [4] = ARTIFACT_BAND_OF_CONJURER				
-			}
-			, ["NAME"] = {
-				[0] = "/Text/Game/Artifacts/ResBasic/Name.txt"
-				, [1] = "/Text/Game/Artifacts/ResAdvanced/Name.txt"
-				, [2] = "/Text/Game/Artifacts/EndlessSackOfGold/Name.txt"
-				, [3] = "/Text/Game/Artifacts/EndlessBagOfGold/Name.txt"
-				, [4] = "/Text/Game/Artifacts/BandOfConjurer/Name.txt"
-			}
-			, ["COMBINE_ID"] = ARTIFACT_HORN_OF_PLENTY
-			, ["COMBINE_NAME"] = "/Text/Game/Artifacts/Horn_Of_Plenty/Name.txt"
-		}
-		, ["GRAAL"] = {
-			["ID"] = {
-				[0] = ARTIFACT_LEGION_BASIC
-				, [1] = ARTIFACT_LEGION_ADVANCED
-				, [2] = ARTIFACT_LEGION_EXPERT
-				, [3] = ARTIFACT_ENDLESS_SACK_OF_GOLD
-				, [4] = ARTIFACT_ENDLESS_BAG_OF_GOLD
-				, [5] = ARTIFACT_CROWN_OF_LEADER
-			}
-			, ["NAME"] = {
-				[0] = "/Text/Game/Artifacts/LegionBasic/Name.txt"
-				, [1] = "/Text/Game/Artifacts/LegionAdvanced/Name.txt"
-				, [2] = "/Text/Game/Artifacts/LegionExpert/Name.txt"
-				, [3] = "/Text/Game/Artifacts/EndlessSackOfGold/Name.txt"
-				, [4] = "/Text/Game/Artifacts/EndlessBagOfGold/Name.txt"
-				, [5] = "/Text/Game/Artifacts/CrownOfLeader/Name.txt"
-			}
-			, ["COMBINE_ID"] = ARTIFACT_GRAAL
-			, ["COMBINE_NAME"] = "/Text/Game/Artifacts/Graal/Name.txt"
-		}
-	}
-	TTH_COMBINE_HERO_DISABLE = {};
-	function TTH_TM_Combine_or_Close(strHero, strTown)
-		local iPlayer = GetObjectOwner(strHero);
-		for indexSet, objSet in TTH_ARTIFACT_SETS do
-			if objSet ~= nil and objSet["ID"] ~= nil and objSet["COMBINE_ID"] ~= nil then
-				if TTH_COMBINE_HERO_DISABLE[strHero] == nil or
-					(TTH_COMBINE_HERO_DISABLE[strHero] ~= nil and TTH_COMBINE_HERO_DISABLE[strHero][indexSet] == nil) then
-					local iCheckCombine = 1;
-					for indexId, iId in objSet["ID"] do
-						if (HasArtefact(strHero, iId, 0) == nil) then
-							iCheckCombine = 0
-							break;
-						end;
-					end;
-					if iCheckCombine == 1 then
-						local iIndex = 0;
-						local valueComponent = {};
-						for indexName, iName in objSet["NAME"] do
-							valueComponent[iIndex] = iName;
-							iIndex = iIndex + 1;
-						end;
-						if length(valueComponent) < 8 then
-							local iStart = length(valueComponent);
-							for i = iStart, 7 do
-								valueComponent[i] = "/Text/Game/Artifacts/None/Name.txt";
-							end
-						end;
-						local valueCombine = objSet["COMBINE_NAME"];
-						QuestionBoxForPlayers(GetPlayerFilter(iPlayer),{"/Text/Game/Scripts/TownPortal/TTH_TM_Combine_or_Close.txt";
-						component0=valueComponent[0],component1=valueComponent[1],component2=valueComponent[2],component3=valueComponent[3],
-						component4=valueComponent[4],component5=valueComponent[5],component6=valueComponent[6],component7=valueComponent[7],
-						combine=valueCombine},
-						"TTH_TM_CB_Combine_Request('"..strHero.."','"..indexSet.."')","TTH_TM_CB_Combine_Abort('"..strHero.."','"..indexSet.."')");
-						return 1;
-					end;
-				end;
-			end;
-		end;
-		return 0;
-	end;
-	function TTH_TM_CB_Combine_Request(strHero, indexSet)
-		for indexId, iId in TTH_ARTIFACT_SETS[indexSet]["ID"] do
-			RemoveArtefact(strHero, iId);
-		end;
-		GiveArtefact(strHero, TTH_ARTIFACT_SETS[indexSet]["COMBINE_ID"]);
-	end;
-	function TTH_TM_CB_Combine_Abort(strHero, indexSet)
-		if TTH_COMBINE_HERO_DISABLE[strHero] == nil then
-			TTH_COMBINE_HERO_DISABLE[strHero] = {};
-		end;
-		TTH_COMBINE_HERO_DISABLE[strHero][indexSet] = 1;
-	end;
+  TTH_TABLE_ArtiCombine = {
+    ["DRAGONISH"] = {
+      ["ID"] = {
+        [0] = ARTIFACT_DRAGON_SCALE_ARMOR
+        , [1] = ARTIFACT_DRAGON_SCALE_SHIELD
+        , [2] = ARTIFACT_DRAGON_BONE_GRAVES
+        , [3] = ARTIFACT_DRAGON_WING_MANTLE
+        , [4] = ARTIFACT_DRAGON_TEETH_NECKLACE
+        , [5] = ARTIFACT_DRAGON_TALON_CROWN
+        , [6] = ARTIFACT_DRAGON_EYE_RING
+        , [7] = ARTIFACT_DRAGON_FLAME_TONGUE
+      }
+      , ["NAME"] = {
+        [0] = "/Text/Game/Artifacts/Dragon_scale_armor/Name.txt"
+        , [1] = "/Text/Game/Artifacts/DragonscaleShield/Name.txt"
+        , [2] = "/Text/Game/Artifacts/Dragon_bone_greaves/Name.txt"
+        , [3] = "/Text/Game/Artifacts/Dragon_wing_mantle/Name.txt"
+        , [4] = "/Text/Game/Artifacts/Dragon_teeth_necklace/Name.txt"
+        , [5] = "/Text/Game/Artifacts/Dragon_talon_crown/Name.txt"
+        , [6] = "/Text/Game/Artifacts/Dragon_eye_ring/Name.txt"
+        , [7] = "/Text/Game/Artifacts/Dragon_flame_tongue/Name.txt"
+      }
+      , ["COMBINE_ID"] = ARTIFACT_DRACONIC
+      , ["COMBINE_NAME"] = "/Text/Game/Artifacts/Draconic/Name.txt"
+    }
+    , ["DWARVEN"] = {
+      ["ID"] = {
+        [0] = ARTIFACT_DWARVEN_MITHRAL_CUIRASS
+        , [1] = ARTIFACT_DWARVEN_MITHRAL_GREAVES
+        , [2] = ARTIFACT_DWARVEN_MITHRAL_HELMET
+        , [3] = ARTIFACT_DWARVEN_MITHRAL_SHIELD
+      }
+      , ["NAME"] = {
+        [0] = "/Text/Game/Artifacts/Dwarven_mithral_cuirass/Name.txt"
+        , [1] = "/Text/Game/Artifacts/Dwarven_mithral_greaves/Name.txt"
+        , [2] = "/Text/Game/Artifacts/Dwarven_mithral_helmet/Name.txt"
+        , [3] = "/Text/Game/Artifacts/Dwarven_mithral_shield/Name.txt"
+      }
+      , ["COMBINE_ID"] = ARTIFACT_SENTINEL
+      , ["COMBINE_NAME"] = "/Text/Game/Artifacts/Sentinel/Name.txt"
+      , [3] = {
+        [STAT_ATTACK] = 0
+        , [STAT_DEFENCE] = 0
+        , [STAT_SPELL_POWER] = 2
+        , [STAT_KNOWLEDGE] = 2
+        , [STAT_LUCK] = 0
+        , [STAT_MORALE] = 0
+      }
+      , [4] = {
+        [STAT_ATTACK] = 0
+        , [STAT_DEFENCE] = 8
+        , [STAT_SPELL_POWER] = 0
+        , [STAT_KNOWLEDGE] = 0
+        , [STAT_LUCK] = 0
+        , [STAT_MORALE] = 0
+      }
+    }
+    , ["LIONS"] = {
+      ["ID"] = {
+        [0] = ARTIFACT_CROWN_OF_COURAGE
+        , [1] = ARTIFACT_LION_HIDE_CAPE
+        , [2] = ARTIFACT_NECKLACE_OF_BRAVERY
+      }
+      , [2] = {
+        [STAT_ATTACK] = 4
+        , [STAT_DEFENCE] = 0
+        , [STAT_SPELL_POWER] = 0
+        , [STAT_KNOWLEDGE] = 0
+        , [STAT_LUCK] = 0
+        , [STAT_MORALE] = 0
+      }
+    }
+    , ["MAGIS"] = {
+      ["ID"] = {
+        [0] = ARTIFACT_ROBE_OF_MAGI
+        , [1] = ARTIFACT_STAFF_OF_MAGI
+        , [2] = ARTIFACT_CROWN_OF_MAGI
+        , [3] = ARTIFACT_RING_OF_MAGI
+      }
+      , ["NAME"] = {
+        [0] = "/Text/Game/Artifacts/Robe_of_magi/Name.txt"
+        , [1] = "/Text/Game/Artifacts/Staff_of_magi/Name.txt"
+        , [2] = "/Text/Game/Artifacts/Crown_of_magi/Name.txt"
+        , [3] = "/Text/Game/Artifacts/Ring_of_magi/Name.txt"
+      }
+      , ["COMBINE_ID"] = ARTIFACT_EIGHTFOLD
+      , ["COMBINE_NAME"] = "/Text/Game/Artifacts/Eightfold/Name.txt"
+      , [3] = {
+        [STAT_ATTACK] = 0
+        , [STAT_DEFENCE] = 0
+        , [STAT_SPELL_POWER] = 6
+        , [STAT_KNOWLEDGE] = 0
+        , [STAT_LUCK] = 0
+        , [STAT_MORALE] = 0
+      }
+    }
+    , ["NECROMANCERS"] = {
+      ["ID"] = {
+        [0] = ARTIFACT_CLOAK_OF_MOURNING
+        , [1] = ARTIFACT_STAFF_OF_VEXINGS
+        , [2] = ARTIFACT_RING_OF_DEATH
+        , [3] = ARTIFACT_NECROMANCER_PENDANT
+      }
+      , ["NAME"] = {
+        [0] = "/Text/Game/Artifacts/Cloak_of_mourning/Name.txt"
+        , [1] = "/Text/Game/Artifacts/Staff_of_vexing/Name.txt"
+        , [2] = "/Text/Game/Artifacts/Ring_of_Death/Name.txt"
+        , [3] = "/Text/Game/Artifacts/Necromancer_Pendant/Name.txt"
+      }
+      , ["COMBINE_ID"] = ARTIFACT_CURSE_SHOULDER
+      , ["COMBINE_NAME"] = "/Text/Game/Artifacts/Curse_Shoulder/Name.txt"
+      , [3] = {
+        [STAT_ATTACK] = 0
+        , [STAT_DEFENCE] = 0
+        , [STAT_SPELL_POWER] = 3
+        , [STAT_KNOWLEDGE] = 3
+        , [STAT_LUCK] = 0
+        , [STAT_MORALE] = 0
+      }
+    }
+    , ["EDUCATIONAL"] = {
+      ["ID"] = {
+        [0] = ARTIFACT_HELM_OF_ENLIGHTMENT
+        , [1] = ARTIFACT_CHAIN_MAIL_OF_ENLIGHTMENT
+      }
+    }
+    , ["HUNTERS"] = {
+      ["ID"] = {
+        [0] = ARTIFACT_UNICORN_HORN_BOW
+        , [1] = ARTIFACT_TREEBORN_QUIVER
+      }
+    }
+    , ["OGRES"] = {
+      ["ID"] = {
+        [0] = ARTIFACT_OGRE_CLUB
+        , [1] = ARTIFACT_OGRE_SHIELD
+      }
+    }
+    , ["RUNIC"] = {
+      ["ID"] = {
+        [0] = ARTIFACT_RUNIC_WAR_AXE
+        , [1] = ARTIFACT_RUNIC_WAR_HARNESS
+      }
+    }
+    , ["DEMONIC"] = {
+      ["ID"] = {
+        [0] = ARTIFACT_PENDANT_OF_STARDUST
+        , [1] = ARTIFACT_HELM_OF_CHAOS
+      }
+    }
+    , ["MONK"] = {
+      ["ID"] = {
+        [0] = ARTIFACT_MONK_01
+        , [1] = ARTIFACT_MONK_02
+        , [2] = ARTIFACT_MONK_03
+        , [3] = ARTIFACT_MONK_04
+      }
+      , [3] = {
+        [STAT_ATTACK] = 0
+        , [STAT_DEFENCE] = 0
+        , [STAT_SPELL_POWER] = 3
+        , [STAT_KNOWLEDGE] = 3
+        , [STAT_LUCK] = 0
+        , [STAT_MORALE] = 0
+      }
+    }
+    , ["GUARDIAN"] = {
+      ["ID"] = {
+        [0] = ARTIFACT_GUARDIAN_01
+        , [1] = ARTIFACT_GUARDIAN_02
+        , [2] = ARTIFACT_GUARDIAN_03
+        , [3] = ARTIFACT_PLATE_MAIL_OF_STABILITY
+      }
+      , ["NAME"] = {
+        [0] = "/Text/Game/Artifacts/Guardian_Helmet/Name.txt"
+        , [1] = "/Text/Game/Artifacts/Guardian_Boots/Name.txt"
+        , [2] = "/Text/Game/Artifacts/Guardian_Shield/Name.txt"
+        , [3] = "/Text/Game/Artifacts/PlateMailOfStability/Name.txt"
+      }
+      , ["COMBINE_ID"] = ARTIFACT_ANGELIC_ALLIANCE
+      , ["COMBINE_NAME"] = "/Text/Game/Artifacts/Angelic_Alliance/Name.txt"
+      , [2] = {
+        [STAT_ATTACK] = 1
+        , [STAT_DEFENCE] = 1
+        , [STAT_SPELL_POWER] = 1
+        , [STAT_KNOWLEDGE] = 1
+        , [STAT_LUCK] = 0
+        , [STAT_MORALE] = 0
+      }
+      , [3] = {
+        [STAT_ATTACK] = 1
+        , [STAT_DEFENCE] = 1
+        , [STAT_SPELL_POWER] = 1
+        , [STAT_KNOWLEDGE] = 1
+        , [STAT_LUCK] = 0
+        , [STAT_MORALE] = 0
+      }
+      , [4] = {
+        [STAT_ATTACK] = 1
+        , [STAT_DEFENCE] = 1
+        , [STAT_SPELL_POWER] = 1
+        , [STAT_KNOWLEDGE] = 1
+        , [STAT_LUCK] = 0
+        , [STAT_MORALE] = 0
+      }
+    }
+    , ["ROOKIE"] = {
+      ["ID"] = {
+        [0] = ARTIFACT_SWORD_OF_RUINS
+        , [1] = ARTIFACT_BREASTPLATE_OF_PETRIFIED_WOOD
+        , [2] = ARTIFACT_SKULL_HELMET
+        , [3] = ARTIFACT_BUCKLER
+        , [4] = ARTIFACT_BOOTS_OF_INTERFERENCE
+      }
+      , ["NAME"] = {
+        [0] = "/Text/Game/Artifacts/SwordOfRuin/Name.txt"
+        , [1] = "/Text/Game/Artifacts/Breastplate_of_petrified_wood/Name.txt"
+        , [2] = "/Text/Game/Artifacts/Skull_Helmet/Name.txt"
+        , [3] = "/Text/Game/Artifacts/Buckler/Name.txt"
+        , [4] = "/Text/Game/Artifacts/Boots_of_interference/Name.txt"
+      }
+      , ["COMBINE_ID"] = ARTIFACT_PLATE_MAIL_OF_STABILITY
+      , ["COMBINE_NAME"] = "/Text/Game/Artifacts/PlateMailOfStability/Name.txt"
+      , [2] = {
+        [STAT_ATTACK] = 0
+        , [STAT_DEFENCE] = 1
+        , [STAT_SPELL_POWER] = 0
+        , [STAT_KNOWLEDGE] = 0
+        , [STAT_LUCK] = 0
+        , [STAT_MORALE] = 0
+      }
+      , [3] = {
+        [STAT_ATTACK] = 0
+        , [STAT_DEFENCE] = 0
+        , [STAT_SPELL_POWER] = 0
+        , [STAT_KNOWLEDGE] = 1
+        , [STAT_LUCK] = 0
+        , [STAT_MORALE] = 0
+      }
+      , [4] = {
+        [STAT_ATTACK] = 1
+        , [STAT_DEFENCE] = 0
+        , [STAT_SPELL_POWER] = 0
+        , [STAT_KNOWLEDGE] = 0
+        , [STAT_LUCK] = 0
+        , [STAT_MORALE] = 0
+      }
+      , [5] = {
+        [STAT_ATTACK] = 0
+        , [STAT_DEFENCE] = 0
+        , [STAT_SPELL_POWER] = 1
+        , [STAT_KNOWLEDGE] = 0
+        , [STAT_LUCK] = 0
+        , [STAT_MORALE] = 0
+      }
+    }
+    , ["ELEMENT"] = {
+      ["ID"] = {
+        [0] = ARTIFACT_TITANS_TRIDENT
+        , [1] = ARTIFACT_EVERCOLD_ICICLE
+        , [2] = ARTIFACT_PHOENIX_FEATHER_CAPE
+        , [3] = ARTIFACT_EARTHSLIDERS
+      }
+      , ["NAME"] = {
+        [0] = "/Text/Game/Artifacts/Titan`s_trident/Name.txt"
+        , [1] = "/Text/Game/Artifacts/Evercold_icicle/Name.txt"
+        , [2] = "/Text/Game/Artifacts/Phoenix_feather_cape/Name.txt"
+        , [3] = "/Text/Game/Artifacts/Earthsliders/Name.txt"
+      }
+      , ["COMBINE_ID"] = ARTIFACT_TOME_OF_DESTRUCTION
+      , ["COMBINE_NAME"] = "/Text/Game/Artifacts/Tome_of_Destruction/Name.txt"
+      , [2] = {
+        [STAT_ATTACK] = 0
+        , [STAT_DEFENCE] = 0
+        , [STAT_SPELL_POWER] = 2
+        , [STAT_KNOWLEDGE] = 0
+        , [STAT_LUCK] = 0
+        , [STAT_MORALE] = 0
+      }
+      , [4] = {
+        [STAT_ATTACK] = 0
+        , [STAT_DEFENCE] = 0
+        , [STAT_SPELL_POWER] = 0
+        , [STAT_KNOWLEDGE] = 2
+        , [STAT_LUCK] = 0
+        , [STAT_MORALE] = 0
+      }
+    }
+    , ["CODEX"] = {
+      ["ID"] = {
+        [0] = ARTIFACT_TOME_OF_DESTRUCTION
+        , [1] = ARTIFACT_TOME_OF_LIGHT_MAGIC
+        , [2] = ARTIFACT_TOME_OF_DARK_MAGIC
+        , [3] = ARTIFACT_TOME_OF_SUMMONING_MAGIC
+      }
+      , ["NAME"] = {
+        [0] = "/Text/Game/Artifacts/Tome_of_Destruction/Name.txt"
+        , [1] = "/Text/Game/Artifacts/Tome_of_Light_Magic/Name.txt"
+        , [2] = "/Text/Game/Artifacts/Tome_of_Dark_Magic/Name.txt"
+        , [3] = "/Text/Game/Artifacts/Tome_of_Summoning_Magic/Name.txt"
+      }
+      , ["COMBINE_ID"] = ARTIFACT_CODEX
+      , ["COMBINE_NAME"] = "/Text/Game/Artifacts/Codex/Name.txt"
+    }
+    , ["RESOURCE"] = {
+      ["ID"] = {
+        [0] = ARTIFACT_RES_BASIC
+        , [1] = ARTIFACT_RES_ADVANCED
+        , [2] = ARTIFACT_ENDLESS_SACK_OF_GOLD
+        , [3] = ARTIFACT_ENDLESS_BAG_OF_GOLD
+        , [4] = ARTIFACT_BAND_OF_CONJURER       
+      }
+      , ["NAME"] = {
+        [0] = "/Text/Game/Artifacts/ResBasic/Name.txt"
+        , [1] = "/Text/Game/Artifacts/ResAdvanced/Name.txt"
+        , [2] = "/Text/Game/Artifacts/EndlessSackOfGold/Name.txt"
+        , [3] = "/Text/Game/Artifacts/EndlessBagOfGold/Name.txt"
+        , [4] = "/Text/Game/Artifacts/BandOfConjurer/Name.txt"
+      }
+      , ["COMBINE_ID"] = ARTIFACT_HORN_OF_PLENTY
+      , ["COMBINE_NAME"] = "/Text/Game/Artifacts/Horn_Of_Plenty/Name.txt"
+    }
+    , ["GRAAL"] = {
+      ["ID"] = {
+        [0] = ARTIFACT_LEGION_BASIC
+        , [1] = ARTIFACT_LEGION_ADVANCED
+        , [2] = ARTIFACT_LEGION_EXPERT
+        , [3] = ARTIFACT_ENDLESS_SACK_OF_GOLD
+        , [4] = ARTIFACT_ENDLESS_BAG_OF_GOLD
+        , [5] = ARTIFACT_CROWN_OF_LEADER
+      }
+      , ["NAME"] = {
+        [0] = "/Text/Game/Artifacts/LegionBasic/Name.txt"
+        , [1] = "/Text/Game/Artifacts/LegionAdvanced/Name.txt"
+        , [2] = "/Text/Game/Artifacts/LegionExpert/Name.txt"
+        , [3] = "/Text/Game/Artifacts/EndlessSackOfGold/Name.txt"
+        , [4] = "/Text/Game/Artifacts/EndlessBagOfGold/Name.txt"
+        , [5] = "/Text/Game/Artifacts/CrownOfLeader/Name.txt"
+      }
+      , ["COMBINE_ID"] = ARTIFACT_GRAAL
+      , ["COMBINE_NAME"] = "/Text/Game/Artifacts/Graal/Name.txt"
+    }
+  };
 -- end
 
 -- by 牙姐 2018-9-7 13:00:48
 -- begin 先知法衣属性加成
 	function TTH_Monk_Mana_Bonus(strHero)
 		local iCount = 0;
-		for indexId, iId in TTH_ARTIFACT_SETS["MONK"]["ID"] do
+		for indexId, iId in TTH_TABLE_ArtiCombine["MONK"]["ID"] do
 			if HasArtefact(strHero, iId, 1) ~= nil then
 				iCount = iCount + 1;
 			end;
@@ -9436,7 +9165,7 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 	end;
 	function TTH_Monk_Move_Bonus(strHero)
 		local iCount = 0;
-		for indexId, iId in TTH_ARTIFACT_SETS["MONK"]["ID"] do
+		for indexId, iId in TTH_TABLE_ArtiCombine["MONK"]["ID"] do
 			if HasArtefact(strHero, iId, 1) ~= nil then
 				iCount = iCount + 1;
 			end;
@@ -9457,7 +9186,7 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 	TTH_ARTIFACT_BONUS_HERO = {};
 	function TTH_Artifact_Bonus_Check(strHero)
 		local iPlayer = GetObjectOwner(strHero);
-		for indexSet, objSet in TTH_ARTIFACT_SETS do
+		for indexSet, objSet in TTH_TABLE_ArtiCombine do
 			local iCount = 0;
 			for indexId, iId in objSet["ID"] do
 				if HasArtefact(strHero, iId, 1) ~= nil then
@@ -9517,343 +9246,816 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 	end;
 -- end
 
--- by 牙姐 2018-8-21 16:53:24
--- begin 军团宝物 城市加成
-	TTH_TOWN_BONUS_SET = {
-		["ID"] = {
-			[0] = ARTIFACT_LEGION_BASIC
-			, [1] = ARTIFACT_LEGION_BASIC
-			, [2] = ARTIFACT_LEGION_ADVANCED
-			, [3] = ARTIFACT_LEGION_ADVANCED
-			, [4] = ARTIFACT_LEGION_ADVANCED
-			, [5] = ARTIFACT_LEGION_EXPERT
-			, [6] = ARTIFACT_LEGION_EXPERT
-			, [7] = ARTIFACT_ENDLESS_BAG_OF_GOLD
-			, [8] = ARTIFACT_HORN_OF_PLENTY
-		}
-		, ["NAME"] = {
-			[0] = "/Text/Game/Artifacts/Legion_T1/Name.txt"
-			, [1] = "/Text/Game/Artifacts/Legion_T2/Name.txt"
-			, [2] = "/Text/Game/Artifacts/Legion_T3/Name.txt"
-			, [3] = "/Text/Game/Artifacts/Legion_T4/Name.txt"
-			, [4] = "/Text/Game/Artifacts/Legion_T5/Name.txt"
-			, [5] = "/Text/Game/Artifacts/Legion_T6/Name.txt"
-			, [6] = "/Text/Game/Artifacts/Legion_T7/Name.txt"
-			, [7] = "/Text/Game/Artifacts/Legion_T8/Name.txt"
-			, [8] = "/Text/Game/Artifacts/Horn_Of_Plenty/Name.txt"
-		}
-		, ["DESC"] = {
-			[0] = "/Text/Game/Scripts/TownPortal/Legion_T1.txt"
-			, [1] = "/Text/Game/Scripts/TownPortal/Legion_T2.txt"
-			, [2] = "/Text/Game/Scripts/TownPortal/Legion_T3.txt"
-			, [3] = "/Text/Game/Scripts/TownPortal/Legion_T4.txt"
-			, [4] = "/Text/Game/Scripts/TownPortal/Legion_T5.txt"
-			, [5] = "/Text/Game/Scripts/TownPortal/Legion_T6.txt"
-			, [6] = "/Text/Game/Scripts/TownPortal/Legion_T7.txt"
-			, [7] = "/Text/Game/Scripts/TownPortal/Legion_T8.txt"
-			, [8] = "/Text/Game/Scripts/TownPortal/Legion_T9.txt"
-		}
-	};
-	TTH_TOWN_BONUS_WEEK = {};
-	TTH_TOWN_BONUS_HERO_DISABLE = {};
-	function TTH_TM_AdditionCity_or_Close(strHero, strTown)
+-- begin 宝物管理
+	function TTH_Func_ArtiManage_Giveup(strHero)
 		local iPlayer = GetObjectOwner(strHero);
-		for i = 0, 8 do
-			if TTH_TOWN_BONUS_HERO_DISABLE[strTown] == nil
-				or (
-					(
-						TTH_TOWN_BONUS_HERO_DISABLE[strTown][strHero] == nil
-						or (
-								TTH_TOWN_BONUS_HERO_DISABLE[strTown][strHero] ~= nil
-								and TTH_TOWN_BONUS_HERO_DISABLE[strTown][strHero][i] == nil
-						)
-					)
-					and (
-						TTH_TOWN_BONUS_HERO_DISABLE[strTown]['flag'] == nil
-						or (
-							TTH_TOWN_BONUS_HERO_DISABLE[strTown]['flag'] ~= nil
-							and TTH_TOWN_BONUS_HERO_DISABLE[strTown]['flag'][i] == nil
-						)
-					)
-				)
-				then
-				if (HasArtefact(strHero, TTH_TOWN_BONUS_SET["ID"][i], 0) ~= nil) then
-					if TTH_TOWN_BONUS_WEEK[strTown] == nil
-						or (TTH_TOWN_BONUS_WEEK[strTown] ~= nil and TTH_TOWN_BONUS_WEEK[strTown][strHero] == nil)
-						or (TTH_TOWN_BONUS_WEEK[strTown] ~= nil and TTH_TOWN_BONUS_WEEK[strTown][strHero] ~= nil and TTH_TOWN_BONUS_WEEK[strTown][strHero][i] == nil) then
-						QuestionBoxForPlayers(GetPlayerFilter(iPlayer),{"/Text/Game/Scripts/TownPortal/TTH_TM_AdditionCity_or_Close.txt";
-						name=TTH_TOWN_BONUS_SET["NAME"][i],desc=TTH_TOWN_BONUS_SET["DESC"][i]},
-						"TTH_TM_CB_AdditionCity_Request('"..strHero.."','"..strTown.."','"..i.."')","TTH_TM_CB_AdditionCity_Abort('"..strHero.."','"..strTown.."','"..i.."')");
-						return 1;
+		print(strHero.." giveup ArtiManage");
+		MessageBoxForPlayers(GetPlayerFilter(iPlayer), "/Text/Game/Scripts/ArtiManage/MessageArtiManageGiveup.txt", nil);
+	end;
+
+	-- 军团宝物在城镇中生效（周结算，可累积）
+		function TTH_Func_TownBonus8LegionArti(strTown, iPlayer)
+			if GetObjectOwner(strTown) == iPlayer and TTH_DATA_TownBonus8Arti[strTown] ~= nil then
+				local iTownRace = H55_GetTownRace(strTown);
+				if TTH_DATA_TownBonus8Arti[strTown][ARTIFACT_LEGION_BASIC] >= 1 then
+					if GetTownBuildingLevel(strTown, TOWN_BUILDING_DWELLING_1) >= 1 then
+						SetObjectDwellingCreatures(strTown, H55_Creatures[iTownRace][1][1], GetObjectDwellingCreatures(strTown, H55_Creatures[iTownRace][1][1]) + TTH_DATA_TownBonus8Arti[strTown][ARTIFACT_LEGION_BASIC] * 2);
+					end;
+					if GetTownBuildingLevel(strTown, TOWN_BUILDING_DWELLING_2) >= 1 then
+						SetObjectDwellingCreatures(strTown, H55_Creatures[iTownRace][2][1], GetObjectDwellingCreatures(strTown, H55_Creatures[iTownRace][2][1]) + TTH_DATA_TownBonus8Arti[strTown][ARTIFACT_LEGION_BASIC] * 2);
+					end;
+					if GetTownBuildingLevel(strTown, TOWN_BUILDING_DWELLING_3) >= 1 then
+						SetObjectDwellingCreatures(strTown, H55_Creatures[iTownRace][3][1], GetObjectDwellingCreatures(strTown, H55_Creatures[iTownRace][3][1]) + TTH_DATA_TownBonus8Arti[strTown][ARTIFACT_LEGION_BASIC] * 2);
+					end;
+				end;
+				if TTH_DATA_TownBonus8Arti[strTown][ARTIFACT_LEGION_ADVANCED] >= 1 then
+					if GetTownBuildingLevel(strTown, TOWN_BUILDING_DWELLING_1) >= 1 then
+						SetObjectDwellingCreatures(strTown, H55_Creatures[iTownRace][4][1], GetObjectDwellingCreatures(strTown, H55_Creatures[iTownRace][4][1]) + TTH_DATA_TownBonus8Arti[strTown][ARTIFACT_LEGION_ADVANCED]);
+					end;
+					if GetTownBuildingLevel(strTown, TOWN_BUILDING_DWELLING_2) >= 1 then
+						SetObjectDwellingCreatures(strTown, H55_Creatures[iTownRace][5][1], GetObjectDwellingCreatures(strTown, H55_Creatures[iTownRace][5][1]) + TTH_DATA_TownBonus8Arti[strTown][ARTIFACT_LEGION_ADVANCED]);
+					end;
+				end;
+				if TTH_DATA_TownBonus8Arti[strTown][ARTIFACT_LEGION_EXPERT] >= 1 then
+					if GetTownBuildingLevel(strTown, TOWN_BUILDING_DWELLING_1) >= 1 then
+						SetObjectDwellingCreatures(strTown, H55_Creatures[iTownRace][6][1], GetObjectDwellingCreatures(strTown, H55_Creatures[iTownRace][6][1]) + TTH_DATA_TownBonus8Arti[strTown][ARTIFACT_LEGION_EXPERT]);
+					end;
+					if GetTownBuildingLevel(strTown, TOWN_BUILDING_DWELLING_2) >= 1 then
+						SetObjectDwellingCreatures(strTown, H55_Creatures[iTownRace][7][1], GetObjectDwellingCreatures(strTown, H55_Creatures[iTownRace][7][1]) + TTH_DATA_TownBonus8Arti[strTown][ARTIFACT_LEGION_EXPERT]);
+					end;
+				end;
+			end;
+		end;	
+
+	-- 资源宝物在城镇中生效（日结算，不可累积）
+		function TTH_Func_TownBonus8EconomicsArti(strTown, iPlayer)
+			if GetObjectOwner(strTown) == iPlayer and TTH_DATA_TownBonus8Arti[strTown] ~= nil and TTH_DATA_TownBonus8Arti[strTown][ARTIFACT_ENDLESS_BAG_OF_GOLD] ~= nil then
+				local iTownHall = GetTownBuildingLevel(strTown, TOWN_BUILDING_TOWN_HALL);
+				local iGrail = GetTownBuildingLevel(strTown, TOWN_BUILDING_GRAIL);
+				local iGold = 0;
+				if iTownHall == 1 then
+					iGold = 500;
+				elseif iTownHall == 2 then
+					iGold = 1000;
+				elseif iTownHall == 3 then
+					iGold = 2000;
+				elseif iTownHall == 4 then
+					iGold = 4000;
+				end
+				if iGrail > 0 then
+					iGold = iGold + 5000;
+				end;
+				H55_GlobalDailyGoldPayout[iPlayer] = H55_GlobalDailyGoldPayout[iPlayer] + iGold * 0.5;
+			end;
+			if GetObjectOwner(strTown) == iPlayer and TTH_DATA_TownBonus8Arti[strTown] ~= nil and TTH_DATA_TownBonus8Arti[strTown][ARTIFACT_HORN_OF_PLENTY] ~= nil then
+				H55_GlobalDailyWoodPayout[iPlayer] = H55_GlobalDailyWoodPayout[iPlayer] + 8;
+				H55_GlobalDailyOrePayout[iPlayer] = H55_GlobalDailyOrePayout[iPlayer] + 8;
+				H55_GlobalDailySulphurPayout[iPlayer] = H55_GlobalDailySulphurPayout[iPlayer] + 4;
+				H55_GlobalDailyGemPayout[iPlayer] = H55_GlobalDailyGemPayout[iPlayer] + 4;
+				H55_GlobalDailyMercuryPayout[iPlayer] = H55_GlobalDailyMercuryPayout[iPlayer] + 4;
+				H55_GlobalDailyCrystalPayout[iPlayer] = H55_GlobalDailyCrystalPayout[iPlayer] + 4;
+			end;
+		end;			
+
+	-- 资源宝物在资源矿中生效
+		function TTH_Func_MineBonus8ResArti(iParaPlayer)
+			for indexMine, objMine in TTH_MINE do
+				local iPlayer = GetObjectOwner(objMine["Id"]);
+				if iParaPlayer == iPlayer then
+					if objMine['BonusArti'] == ARTIFACT_RES_BASIC then
+						if objMine['MineType'] == WOOD then
+							H55_GlobalDailyWoodPayout[iPlayer] = H55_GlobalDailyWoodPayout[iPlayer] + 2 * objMine['BonusLevel'];
+						elseif objMine['MineType'] == ORE then
+							H55_GlobalDailyOrePayout[iPlayer] = H55_GlobalDailyOrePayout[iPlayer] + 2 * objMine['BonusLevel'];
+						end;
+					elseif objMine['BonusArti'] == ARTIFACT_RES_ADVANCED then
+						if objMine['MineType'] == MERCURY then
+							H55_GlobalDailyMercuryPayout[iPlayer] = H55_GlobalDailyMercuryPayout[iPlayer] + 1 * objMine['BonusLevel'];
+						elseif objMine['MineType'] == CRYSTAL then
+							H55_GlobalDailyCrystalPayout[iPlayer] = H55_GlobalDailyCrystalPayout[iPlayer] + 1 * objMine['BonusLevel'];
+						elseif objMine['MineType'] == SULFUR then
+							H55_GlobalDailySulphurPayout[iPlayer] = H55_GlobalDailySulphurPayout[iPlayer] + 1 * objMine['BonusLevel'];
+						elseif objMine['MineType'] == GEM then
+							H55_GlobalDailyGemPayout[iPlayer] = H55_GlobalDailyGemPayout[iPlayer] + 1 * objMine['BonusLevel'];
+						end;
+					elseif objMine['BonusArti'] == ARTIFACT_RES_EXPERT then
+						H55_GlobalDailyGoldPayout[iPlayer] = H55_GlobalDailyGoldPayout[iPlayer] + 1000 * objMine['BonusLevel'];
 					end;
 				end;
 			end;
 		end;
-		return 0;
-	end;
-	function TTH_TM_CB_AdditionCity_Request(strHero, strTown, i)
-		RemoveArtefact(strHero, TTH_TOWN_BONUS_SET["ID"][i + 0]);
-		if TTH_TOWN_BONUS_WEEK[strTown] == nil then
-			TTH_TOWN_BONUS_WEEK[strTown] = {};
-		end;
-		TTH_TOWN_BONUS_WEEK[strTown][i * 1] = 1;
-		if TTH_TOWN_BONUS_HERO_DISABLE[strTown] == nil then
-			TTH_TOWN_BONUS_HERO_DISABLE[strTown] = {};
-		end;
-		if TTH_TOWN_BONUS_HERO_DISABLE[strTown]['flag'] == nil then
-			TTH_TOWN_BONUS_HERO_DISABLE[strTown]['flag'] = {};
-		end;
-		TTH_TOWN_BONUS_HERO_DISABLE[strTown]['flag'][i * 1] = 1;
-	end;
-	function TTH_TM_CB_AdditionCity_Abort(strHero, strTown, i)
-		if TTH_TOWN_BONUS_HERO_DISABLE[strTown] == nil then
-			TTH_TOWN_BONUS_HERO_DISABLE[strTown] = {};
-		end;
-		if TTH_TOWN_BONUS_HERO_DISABLE[strTown][strHero] == nil then
-			TTH_TOWN_BONUS_HERO_DISABLE[strTown][strHero] = {};
-		end;
-		TTH_TOWN_BONUS_HERO_DISABLE[strTown][strHero][i * 1] = 1;
-	end;
--- end
 
--- by 牙姐 2021-2-24 22:27:53
--- begin 军团宝物 领袖特
-	TTH_LEADER_BONUS_SET = {
-		["ID"] = {
-			[0] = ARTIFACT_LEGION_BASIC
-			, [1] = ARTIFACT_LEGION_BASIC
-			, [2] = ARTIFACT_LEGION_ADVANCED
-			, [3] = ARTIFACT_LEGION_ADVANCED
-			, [4] = ARTIFACT_LEGION_ADVANCED
-			, [5] = ARTIFACT_LEGION_EXPERT
-			, [6] = ARTIFACT_LEGION_EXPERT
+	function TTH_Func_ArtiManage(strPlayer, strHero)
+		local iPlayer = strPlayer * 1;
+		local arrGate = GetObjectNamesByType("TOWN");
+		local strTown = nil;
+		for i, strGate in arrGate do
+			if (GetObjectOwner(strGate) == iPlayer) and (IsHeroInTown(strHero, strGate, 1, 0) == not nil) then
+				strTown = strGate;
+				break;
+			end;
+		end;
+
+		-- 根据英雄是否在城镇门口，区分宝物管理大分类
+			if strTown ~= nil then
+				TTH_Func_ArtiManage_AtTownGate(strHero, strTown);
+			else
+				TTH_Func_ArtiManage_NotAtTownGate(strHero);
+			end;
+	end;
+
+	-- 1.若英雄在城门口 strHero strTown
+		-- 1.1.军团之证（城镇加成）
+		-- 1.2.军团斗篷（城镇加成）
+		-- 1.3.军团之帜（城镇加成）
+		-- 1.4.军团金像（城镇加成）
+		-- 1.5.丰收之角（城镇加成）
+		TTH_DATA_TownBonus8Arti = {};
+		TTH_TABLE_ArtiManage_AtTownGateOption = {
+			[ARTIFACT_LEGION_BASIC] = {
+				["Arti"] = ARTIFACT_LEGION_BASIC
+				, ["Text"] = "/Text/Game/Artifacts/Legion_Basic/Name.txt"
+				, ["Effect"] = "/Text/Game/Artifacts/Legion_Basic/Effect.txt"
+				, ["FuncCb"] = "TTH_Func_ArtiManage_AtTownGate_LegionBasic"
+			}
+			, [ARTIFACT_LEGION_ADVANCED] = {
+				["Arti"] = ARTIFACT_LEGION_ADVANCED
+				, ["Text"] = "/Text/Game/Artifacts/Legion_Advanced/Name.txt"
+				, ["Effect"] = "/Text/Game/Artifacts/Legion_Advanced/Effect.txt"
+				, ["FuncCb"] = "TTH_Func_ArtiManage_AtTownGate_LegionAdvanced"
+			}
+			, [ARTIFACT_LEGION_EXPERT] = {
+				["Arti"] = ARTIFACT_LEGION_EXPERT
+				, ["Text"] = "/Text/Game/Artifacts/Legion_Expert/Name.txt"
+				, ["Effect"] = "/Text/Game/Artifacts/Legion_Expert/Effect.txt"
+				, ["FuncCb"] = "TTH_Func_ArtiManage_AtTownGate_LegionExpert"
+			}
+			, [ARTIFACT_ENDLESS_BAG_OF_GOLD] = {
+				["Arti"] = ARTIFACT_ENDLESS_BAG_OF_GOLD
+				, ["Text"] = "/Text/Game/Artifacts/Endless_Bag_Of_Gold/Name.txt"
+				, ["Effect"] = "/Text/Game/Artifacts/Endless_Bag_Of_Gold/Effect.txt"
+				, ["FuncCb"] = "TTH_Func_ArtiManage_AtTownGate_EndlessBagOfGold"
+			}
+			, [ARTIFACT_HORN_OF_PLENTY] = {
+				["Arti"] = ARTIFACT_HORN_OF_PLENTY
+				, ["Text"] = "/Text/Game/Artifacts/Horn_Of_Plenty/Name.txt"
+				, ["Effect"] = "/Text/Game/Artifacts/Horn_Of_Plenty/Effect.txt"
+				, ["FuncCb"] = "TTH_Func_ArtiManage_AtTownGate_HornOfPlenty"
+			}
 		}
-		, ["NAME"] = {
-			[0] = "/Text/Game/Artifacts/Legion_T1/Name.txt"
-			, [1] = "/Text/Game/Artifacts/Legion_T2/Name.txt"
-			, [2] = "/Text/Game/Artifacts/Legion_T3/Name.txt"
-			, [3] = "/Text/Game/Artifacts/Legion_T4/Name.txt"
-			, [4] = "/Text/Game/Artifacts/Legion_T5/Name.txt"
-			, [5] = "/Text/Game/Artifacts/Legion_T6/Name.txt"
-			, [6] = "/Text/Game/Artifacts/Legion_T7/Name.txt"
-		}
-		, ["DESC"] = {
-			[0] = "/Text/Game/Scripts/TownPortal/Legion_T1.txt"
-			, [1] = "/Text/Game/Scripts/TownPortal/Legion_T2.txt"
-			, [2] = "/Text/Game/Scripts/TownPortal/Legion_T3.txt"
-			, [3] = "/Text/Game/Scripts/TownPortal/Legion_T4.txt"
-			, [4] = "/Text/Game/Scripts/TownPortal/Legion_T5.txt"
-			, [5] = "/Text/Game/Scripts/TownPortal/Legion_T6.txt"
-			, [6] = "/Text/Game/Scripts/TownPortal/Legion_T7.txt"
-		}
-	};
-	TTH_TABLE_LeaderHero = {
-		"Biara"
-		, "Hangvul"
-		, "Sylsai"
-		, "Kunyak"
-	};
-	TTH_LeaderHero_Bonus = {};
-	function TTH_TM_LeaderHero_or_Close(strHero)
-		if contains(TTH_TABLE_LeaderHero, strHero) then
+		function TTH_Func_ArtiManage_AtTownGate(strHero, strTown)
+			TTH_Func_ArtiManage_AtTownGateChosen(strHero, strTown, 1);
+		end;
+		function TTH_Func_ArtiManage_AtTownGateChosen(strHero, strTown, iChoose)
 			local iPlayer = GetObjectOwner(strHero);
-			for iIndexLegion, objLegion in TTH_LEADER_BONUS_SET["ID"] do
-				if (HasArtefact(strHero, objLegion, 0) ~= nil) then
-					QuestionBoxForPlayers(GetPlayerFilter(iPlayer),{"/Text/Game/Scripts/TownPortal/TTH_TM_LeaderHero_or_Close.txt";
-					name=TTH_LEADER_BONUS_SET["NAME"][iIndexLegion],desc=TTH_LEADER_BONUS_SET["DESC"][iIndexLegion]},
-					"TTH_TM_CB_LeaderHero_Request('"..strHero.."','"..iIndexLegion.."')","TTH_TM_CB_LeaderHero_Abort('"..strHero.."','"..iIndexLegion.."')");
-					return 1;
+			local strText1 = TTH_TABLE_ArtiManage_AtTownGateOption[ARTIFACT_LEGION_BASIC]["Text"];
+			local strText2 = TTH_TABLE_ArtiManage_AtTownGateOption[ARTIFACT_LEGION_ADVANCED]["Text"];
+			local strText3 = TTH_TABLE_ArtiManage_AtTownGateOption[ARTIFACT_LEGION_EXPERT]["Text"];
+			local strText4 = TTH_TABLE_ArtiManage_AtTownGateOption[ARTIFACT_ENDLESS_BAG_OF_GOLD]["Text"];
+			local strText5 = TTH_TABLE_ArtiManage_AtTownGateOption[ARTIFACT_HORN_OF_PLENTY]["Text"];
+			local strFuncCb1 = TTH_TABLE_ArtiManage_AtTownGateOption[ARTIFACT_LEGION_BASIC]["FuncCb"];
+			local strFuncCb2 = TTH_TABLE_ArtiManage_AtTownGateOption[ARTIFACT_LEGION_ADVANCED]["FuncCb"];
+			local strFuncCb3 = TTH_TABLE_ArtiManage_AtTownGateOption[ARTIFACT_LEGION_EXPERT]["FuncCb"];
+			local strFuncCb4 = TTH_TABLE_ArtiManage_AtTownGateOption[ARTIFACT_ENDLESS_BAG_OF_GOLD]["FuncCb"];
+			local strFuncCb5 = TTH_TABLE_ArtiManage_AtTownGateOption[ARTIFACT_HORN_OF_PLENTY]["FuncCb"];
+			local strFuncCb = '';
+			if iChoose + 0 == 1 then
+				strFuncCb = strFuncCb1;
+			elseif iChoose + 0 == 2 then
+				strFuncCb = strFuncCb2;
+			elseif iChoose + 0 == 3 then
+				strFuncCb = strFuncCb3;
+			elseif iChoose + 0 == 4 then
+				strFuncCb = strFuncCb4;
+			elseif iChoose + 0 == 5 then
+				strFuncCb = strFuncCb5;
+			end;
+			if iChoose + 0 < 5 then
+				local iChooseNext = iChoose + 1;
+				QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
+					, {
+						"/Text/Game/Scripts/ArtiManage/AtTownGate/QuestionChooseType"..iChoose..".txt"
+						;strText1=strText1
+						,strText2=strText2
+						,strText3=strText3
+						,strText4=strText4
+						,strText5=strText5
+					}
+					, strFuncCb.."('"..strHero.."','"..strTown.."')"
+					, "TTH_Func_ArtiManage_AtTownGateChosen('"..strHero.."','"..strTown.."','"..iChooseNext.."')");
+			else
+				QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
+					, {
+						"/Text/Game/Scripts/ArtiManage/AtTownGate/QuestionChooseType"..iChoose..".txt"
+						;strText1=strText1
+						,strText2=strText2
+						,strText3=strText3
+						,strText4=strText4
+						,strText5=strText5
+					}
+					, strFuncCb.."('"..strHero.."','"..strTown.."')"
+					, "TTH_Func_ArtiManage_Giveup('"..strHero.."')");
+			end;
+		end;
+
+		-- 1.1~1.3.军团宝物（城镇加成）可累积
+			function TTH_Func_ArtiManage_AtTownGate_LegionBasic(strHero, strTown)
+				TTH_Func_ArtiManage_AtTownGate_LegionImpl(strHero, strTown, ARTIFACT_LEGION_BASIC);
+			end;
+			function TTH_Func_ArtiManage_AtTownGate_LegionAdvanced(strHero, strTown)
+				TTH_Func_ArtiManage_AtTownGate_LegionImpl(strHero, strTown, ARTIFACT_LEGION_ADVANCED);
+			end;
+			function TTH_Func_ArtiManage_AtTownGate_LegionExpert(strHero, strTown)
+				TTH_Func_ArtiManage_AtTownGate_LegionImpl(strHero, strTown, ARTIFACT_LEGION_EXPERT);
+			end;
+			function TTH_Func_ArtiManage_AtTownGate_LegionImpl(strHero, strTown, strChoose)
+				local iPlayer = GetObjectOwner(strHero);
+				local iChoose = strChoose * 1;
+				local strText = TTH_TABLE_ArtiManage_AtTownGateOption[iChoose]["Text"];
+				local strEffect = TTH_TABLE_ArtiManage_AtTownGateOption[iChoose]["Effect"];
+				local iArti = TTH_TABLE_ArtiManage_AtTownGateOption[iChoose]["Arti"];
+				local iUsed = 0
+				if TTH_DATA_TownBonus8Arti[strTown] == nil or TTH_DATA_TownBonus8Arti[strTown][iArti] == nil then
+					iUsed = 0;
+				else
+					iUsed = TTH_DATA_TownBonus8Arti[strTown][iArti];
+				end;
+				local iBonus = 0;
+				if iArti == ARTIFACT_LEGION_BASIC then
+					iBonus = iUsed * 2;
+				else
+					iBonus = iUsed;
+				end;
+				if HasArtefact(strHero, iArti, 0) ~= nil then
+					QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
+						, {
+							"/Text/Game/Scripts/ArtiManage/AtTownGate/TTH_QB_BonusLegion_or_Giveup.txt"
+							;strText=strText
+							,strEffect=strEffect
+							,iUsed=iUsed
+							,iBonus=iBonus
+						}
+						, "TTH_Func_ArtiManage_AtTownGate_LegionTown_Deal('"..strHero.."','"..strTown.."','"..iChoose.."')"
+						, "TTH_Func_ArtiManage_Giveup('"..strHero.."')");
+				else
+					MessageBoxForPlayers(GetPlayerFilter(iPlayer)
+						, {
+							"/Text/Game/Scripts/ArtiManage/AtTownGate/MsgNoCorrespondArti.txt"
+							;strText=strText
+						}
+						, nil);
 				end;
 			end;
-			return 0;
-		else
-			return 0;
-		end;
-	end;
-	function TTH_TM_CB_LeaderHero_Request(strHero, iIndexLegion)
-		RemoveArtefact(strHero, TTH_LEADER_BONUS_SET["ID"][iIndexLegion + 0]);
-		if TTH_LeaderHero_Bonus[strHero] == nil then
-			TTH_LeaderHero_Bonus[strHero] = 1;
-		else
-			TTH_LeaderHero_Bonus[strHero] = TTH_LeaderHero_Bonus[strHero] + 1;
-		end;
-	end;
-	function TTH_TM_CB_LeaderHero_Abort(strHero, iIndexLegion)
-	end;
--- end
+			function TTH_Func_ArtiManage_AtTownGate_LegionTown_Deal(strHero, strTown, strChoose)
+				local iPlayer = GetObjectOwner(strHero);
+				local iChoose = strChoose * 1;
+				local strText = TTH_TABLE_ArtiManage_AtTownGateOption[iChoose]["Text"];
+				local strEffect = TTH_TABLE_ArtiManage_AtTownGateOption[iChoose]["Effect"];
+				local iArti = TTH_TABLE_ArtiManage_AtTownGateOption[iChoose]["Arti"];
+				RemoveArtefact(strHero, iArti);
+				if TTH_DATA_TownBonus8Arti[strTown] == nil then
+					TTH_DATA_TownBonus8Arti[strTown] = {};
+				end;
+				if TTH_DATA_TownBonus8Arti[strTown][iArti] == nil then
+					TTH_DATA_TownBonus8Arti[strTown][iArti] = 1;
+				else
+					TTH_DATA_TownBonus8Arti[strTown][iArti] = TTH_DATA_TownBonus8Arti[strTown][iArti] + 1;
+				end;
+				local iUsed = TTH_DATA_TownBonus8Arti[strTown][iArti];
+				local iBonus = 0;
+				if iArti == ARTIFACT_LEGION_BASIC then
+					iBonus = iUsed * 2;
+				else
+					iBonus = iUsed;
+				end;
+				MessageBoxForPlayers(GetPlayerFilter(iPlayer)
+					, {
+						"/Text/Game/Scripts/ArtiManage/AtTownGate/TTH_MB_Success.txt"
+						;strText = strText
+						,strEffect = strEffect
+						,iUsed = iUsed
+						,iBonus = iBonus
+					}
+					, nil);
+			end;
 
--- by 牙姐 2018-9-12 18:20:55
--- begin 皇家遗物
-	TTH_USEDOPPELGANGER_HERO_DISABLE = {};
-	function TTH_TM_UseDoppelganger_or_Close(strHero, strTown)
-		local iPlayer = GetObjectOwner(strHero);
-		for i = 0, 8 do
-			if TTH_USEDOPPELGANGER_HERO_DISABLE[strHero] == nil	then
-				if HasArtefact(strHero, ARTIFACT_MASK_OF_DOPPELGANGER, 0) ~= nil then
-					QuestionBoxForPlayers(GetPlayerFilter(iPlayer),{"/Text/Game/Scripts/TownPortal/TTH_TM_UseDoppelganger_or_Close.txt";
-					name="/Text/Game/Artifacts/Mask_Of_Doppelganger/Name.txt"},
-					"TTH_TM_CB_UseDoppelganger_Request('"..strHero.."')","TTH_TM_CB_UseDoppelganger_Abort('"..strHero.."')");
-					return 1;
+		-- 1.4.军团金像（城镇加成）不可累积
+		-- 1.5.丰收之角（城镇加成）不可累积
+			function TTH_Func_ArtiManage_AtTownGate_EndlessBagOfGold(strHero, strTown)
+				TTH_Func_ArtiManage_AtTownGate_EconomicsImpl(strHero, strTown, ARTIFACT_ENDLESS_BAG_OF_GOLD);
+			end;
+			function TTH_Func_ArtiManage_AtTownGate_HornOfPlenty(strHero, strTown)
+				TTH_Func_ArtiManage_AtTownGate_EconomicsImpl(strHero, strTown, ARTIFACT_HORN_OF_PLENTY);
+			end;
+			function TTH_Func_ArtiManage_AtTownGate_EconomicsImpl(strHero, strTown, iArtifactId)
+				local iPlayer = GetObjectOwner(strHero);
+				local strText = TTH_TABLE_ArtiManage_AtTownGateOption[iArtifactId]["Text"];
+				local strEffect = TTH_TABLE_ArtiManage_AtTownGateOption[iArtifactId]["Effect"];
+				local iArti = TTH_TABLE_ArtiManage_AtTownGateOption[iArtifactId]["Arti"];
+				if HasArtefact(strHero, iArti, 0) ~= nil then
+					QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
+						, {
+							"/Text/Game/Scripts/ArtiManage/AtTownGate/QuestionUseArtiType.txt"
+							;strText=strText
+							,strEffect=strEffect
+						}
+						,	"TTH_Func_ArtiManage_AtTownGate_EconomicsTown_Deal('"..strHero.."','"..strTown.."','"..iArtifactId.."')"
+						, nil);
+				else
+					MessageBoxForPlayers(GetPlayerFilter(iPlayer)
+						, {
+							"/Text/Game/Scripts/ArtiManage/AtTownGate/MsgNoCorrespondArti.txt"
+							;strText=strText
+						}
+						, nil);
 				end;
 			end;
-		end;
-		return 0;
-	end;
-	function TTH_TM_CB_UseDoppelganger_Request(strHero)
-		RemoveArtefact(strHero, ARTIFACT_MASK_OF_DOPPELGANGER);
-		GiveExp(strHero, 500 * 1000);
-	end;
-	function TTH_TM_CB_UseDoppelganger_Abort(strHero)
-		TTH_USEDOPPELGANGER_HERO_DISABLE[strHero] = 1;
-	end;
--- end
+			function TTH_Func_ArtiManage_AtTownGate_EconomicsTown_Deal(strHero, strTown, strArtifactId)
+				local iArtifactId = strArtifactId + 0;
+				RemoveArtefact(strHero, iArtifactId);
+				if TTH_DATA_TownBonus8Arti[strTown] == nil then
+					TTH_DATA_TownBonus8Arti[strTown] = {};
+				end;
+				TTH_DATA_TownBonus8Arti[strTown][iArtifactId] = 1;
+			end;
 
--- by 牙姐 2018-8-22 13:42:58
--- begin 资源宝物 矿产加成
-	TTH_MINE = {};
-		TTH_MINE[ARTIFACT_RES_BASIC] = GetObjectNamesByType("BUILDING_SAWMILL");
-		TTH_MINE[ARTIFACT_RES_BASIC] = GetObjectNamesByType("BUILDING_ORE_PIT");
-		TTH_MINE[ARTIFACT_RES_ADVANCED] = GetObjectNamesByType("BUILDING_SULFUR_DUNE");
-		TTH_MINE[ARTIFACT_RES_ADVANCED] = GetObjectNamesByType("BUILDING_CRYSTAL_CAVERN");
-		TTH_MINE[ARTIFACT_RES_ADVANCED] = GetObjectNamesByType("BUILDING_GEM_POND");
-		TTH_MINE[ARTIFACT_RES_ADVANCED] = GetObjectNamesByType("BUILDING_ALCHEMIST_LAB");
-		TTH_MINE[ARTIFACT_ENDLESS_SACK_OF_GOLD] = GetObjectNamesByType("BUILDING_GOLD_MINE");
-	TTH_RES_BONUS_SET = {
-		["ID"] = {
-			[0] = ARTIFACT_RES_BASIC
-			, [1] = ARTIFACT_RES_BASIC
-			, [2] = ARTIFACT_RES_ADVANCED
-			, [3] = ARTIFACT_RES_ADVANCED
-			, [4] = ARTIFACT_RES_ADVANCED
-			, [5] = ARTIFACT_RES_ADVANCED
-			, [6] = ARTIFACT_ENDLESS_SACK_OF_GOLD
-		}
-		, ["NAME"] = {
-			[0] = "/Text/Game/Artifacts/Res_Wood/Name.txt"
-			, [1] = "/Text/Game/Artifacts/Res_Ore/Name.txt"
-			, [2] = "/Text/Game/Artifacts/Res_Sulphur/Name.txt"
-			, [3] = "/Text/Game/Artifacts/Res_Crystal/Name.txt"
-			, [4] = "/Text/Game/Artifacts/Res_Gem/Name.txt"
-			, [5] = "/Text/Game/Artifacts/Res_Mercury/Name.txt"
-			, [6] = "/Text/Game/Artifacts/EndlessSackOfGold/Name.txt"
-		}
-		, ["DESC"] = {
-			[0] = "/Text/Game/Scripts/TownPortal/Res_Wood.txt"
-			, [1] = "/Text/Game/Scripts/TownPortal/Res_Ore.txt"
-			, [2] = "/Text/Game/Scripts/TownPortal/Res_Sulphur.txt"
-			, [3] = "/Text/Game/Scripts/TownPortal/Res_Crystal.txt"
-			, [4] = "/Text/Game/Scripts/TownPortal/Res_Gem.txt"
-			, [5] = "/Text/Game/Scripts/TownPortal/Res_Mercury.txt"
-			, [6] = "/Text/Game/Scripts/TownPortal/Res_Gold.txt"
-		}
-		, ["TOOLTIP"] = {
-			[0] = {
-				[0] = "/Text/Game/Scripts/TownPortal/Tooltip_Wood_0.txt"
-				, [1] = "/Text/Game/Scripts/TownPortal/Tooltip_Wood_1.txt"
-				, [2] = "/Text/Game/Scripts/TownPortal/Tooltip_Wood_2.txt"
-				, [3] = "/Text/Game/Scripts/TownPortal/Tooltip_Wood_3.txt"
-				, [4] = "/Text/Game/Scripts/TownPortal/Tooltip_Wood_4.txt"
+	-- 2.若英雄不在城门口 strHero
+		-- 2.1.矮人十字镐（石木矿加成）
+		-- 2.2.育龙者的魔法盒（稀矿加成）
+		-- 2.3.无尽黄金麻袋（金矿加成）
+		-- 2.4.征兵令（消耗类）
+		-- 2.5.幻影宝石
+		-- 2.6.皇家遗物
+		TTH_DATA_MineBonus8Arti = {};
+		TTH_TABLE_ArtiManage_NotAtTownGateOption = {
+			[ARTIFACT_RES_BASIC] = {
+				["Arti"] = ARTIFACT_RES_BASIC
+				, ["Text"] = "/Text/Game/Artifacts/Res_Basic/Name.txt"
+				, ["Effect"] = "/Text/Game/Artifacts/Res_Basic/Effect.txt"
+				, ["FuncCb"] = "TTH_Func_ArtiManage_NotAtTownGate_ResBasic"
 			}
-			, [1] = {
-				[0] = "/Text/Game/Scripts/TownPortal/Tooltip_Ore_0.txt"
-				, [1] = "/Text/Game/Scripts/TownPortal/Tooltip_Ore_1.txt"
-				, [2] = "/Text/Game/Scripts/TownPortal/Tooltip_Ore_2.txt"
-				, [3] = "/Text/Game/Scripts/TownPortal/Tooltip_Ore_3.txt"
-				, [4] = "/Text/Game/Scripts/TownPortal/Tooltip_Ore_4.txt"
+			, [ARTIFACT_RES_ADVANCED] = {
+				["Arti"] = ARTIFACT_RES_ADVANCED
+				, ["Text"] = "/Text/Game/Artifacts/Res_Advanced/Name.txt"
+				, ["Effect"] = "/Text/Game/Artifacts/Res_Advanced/Effect.txt"
+				, ["FuncCb"] = "TTH_Func_ArtiManage_NotAtTownGate_ResAdvanced"
 			}
-			, [2] = {
-				[0] = "/Text/Game/Scripts/TownPortal/Tooltip_Sulphur_0.txt"
-				, [1] = "/Text/Game/Scripts/TownPortal/Tooltip_Sulphur_1.txt"
-				, [2] = "/Text/Game/Scripts/TownPortal/Tooltip_Sulphur_2.txt"
-				, [3] = "/Text/Game/Scripts/TownPortal/Tooltip_Sulphur_3.txt"
-				, [4] = "/Text/Game/Scripts/TownPortal/Tooltip_Sulphur_4.txt"
+			, [ARTIFACT_RES_EXPERT] = {
+				["Arti"] = ARTIFACT_RES_EXPERT
+				, ["Text"] = "/Text/Game/Artifacts/Res_Expert/Name.txt"
+				, ["Effect"] = "/Text/Game/Artifacts/Res_Expert/Effect.txt"
+				, ["FuncCb"] = "TTH_Func_ArtiManage_NotAtTownGate_ResExpert"
 			}
-			, [3] = {
-				[0] = "/Text/Game/Scripts/TownPortal/Tooltip_Crystal_0.txt"
-				, [1] = "/Text/Game/Scripts/TownPortal/Tooltip_Crystal_1.txt"
-				, [2] = "/Text/Game/Scripts/TownPortal/Tooltip_Crystal_2.txt"
-				, [3] = "/Text/Game/Scripts/TownPortal/Tooltip_Crystal_3.txt"
-				, [4] = "/Text/Game/Scripts/TownPortal/Tooltip_Crystal_4.txt"
+			, [ARTIFACT_ORDER_OF_CONSCRIPTION] = {
+				["Arti"] = ARTIFACT_ORDER_OF_CONSCRIPTION
+				, ["Text"] = "/Text/Game/Artifacts/Order_Of_Conscription/Name.txt"
+				, ["Effect"] = "/Text/Game/Artifacts/Order_Of_Conscription/Effect.txt"
+				, ["FuncCb"] = "TTH_Func_ArtiManage_NotAtTownGate_OrderOfConscription"
 			}
-			, [4] = {
-				[0] = "/Text/Game/Scripts/TownPortal/Tooltip_Gem_0.txt"
-				, [1] = "/Text/Game/Scripts/TownPortal/Tooltip_Gem_1.txt"
-				, [2] = "/Text/Game/Scripts/TownPortal/Tooltip_Gem_2.txt"
-				, [3] = "/Text/Game/Scripts/TownPortal/Tooltip_Gem_3.txt"
-				, [4] = "/Text/Game/Scripts/TownPortal/Tooltip_Gem_4.txt"
+			, [ARTIFACT_GEM_OF_PHANTOM] = {
+				["Arti"] = ARTIFACT_GEM_OF_PHANTOM
+				, ["Text"] = "/Text/Game/Artifacts/Gem_Of_Phantom/Name.txt"
+				, ["Effect"] = "/Text/Game/Artifacts/Gem_Of_Phantom/Effect.txt"
+				, ["FuncCb"] = "TTH_Func_ArtiManage_NotAtTownGate_GemOfPhantom"
 			}
-			, [5] = {
-				[0] = "/Text/Game/Scripts/TownPortal/Tooltip_Mercury_0.txt"
-				, [1] = "/Text/Game/Scripts/TownPortal/Tooltip_Mercury_1.txt"
-				, [2] = "/Text/Game/Scripts/TownPortal/Tooltip_Mercury_2.txt"
-				, [3] = "/Text/Game/Scripts/TownPortal/Tooltip_Mercury_3.txt"
-				, [4] = "/Text/Game/Scripts/TownPortal/Tooltip_Mercury_4.txt"
-			}
-			, [6] = {
-				[0] = "/Text/Game/Scripts/TownPortal/Tooltip_Gold_0.txt"
-				, [1] = "/Text/Game/Scripts/TownPortal/Tooltip_Gold_1.txt"
-				, [2] = "/Text/Game/Scripts/TownPortal/Tooltip_Gold_2.txt"
-				, [3] = "/Text/Game/Scripts/TownPortal/Tooltip_Gold_3.txt"
-				, [4] = "/Text/Game/Scripts/TownPortal/Tooltip_Gold_4.txt"
+			, [ARTIFACT_MASK_OF_DOPPELGANGER] = {
+				["Arti"] = ARTIFACT_MASK_OF_DOPPELGANGER
+				, ["Text"] = "/Text/Game/Artifacts/Mask_Of_Doppelganger/Name.txt"
+				, ["Effect"] = "/Text/Game/Artifacts/Mask_Of_Doppelganger/Effect.txt"
+				, ["FuncCb"] = "TTH_Func_ArtiManage_NotAtTownGate_MaskOfDoppelganger"
 			}
 		}
-	};
-	TTH_RES_BONUS_DAILY = {};
-	TTH_RES_BONUS_HERO_DISABLE = {};
-	function TTH_TM_AdditionMine_or_Close(strHero)
-		local iPlayer = GetObjectOwner(strHero);
-		for i = 0, 6 do
-			if (HasArtefact(strHero, TTH_RES_BONUS_SET["ID"][i], 0) ~= nil) then
-				for indexMine, objMine in TTH_MINE[TTH_RES_BONUS_SET["ID"][i]] do
-					if GetObjectOwner(objMine) == iPlayer and H55_GetDistance(strHero, objMine) <= 5
-						and (TTH_RES_BONUS_DAILY[objMine] == nil or TTH_RES_BONUS_DAILY[objMine]['used'] < 10) then
-						local iUsed = 0;
-						if TTH_RES_BONUS_DAILY[objMine] ~= nil then
-							iUsed = TTH_RES_BONUS_DAILY[objMine]['used'];
-						end;
-						local iLevel = 0;
-						if TTH_RES_BONUS_DAILY[objMine] ~= nil then
-							iLevel = TTH_RES_BONUS_DAILY[objMine]['level'];
-						end;
-						local iCurrentLevel = iLevel + 1;
-						QuestionBoxForPlayers(GetPlayerFilter(iPlayer), {"/Text/Game/Scripts/TownPortal/TTH_TM_AdditionMine_or_Close.txt";
-						name=TTH_RES_BONUS_SET["NAME"][i],desc=TTH_RES_BONUS_SET["DESC"][i],used=iUsed,level=iCurrentLevel},
-						"TTH_TM_CB_AdditionMine_Request('"..strHero.."','"..objMine.."','"..i.."','"..TTH_RES_BONUS_SET["ID"][i].."')","TTH_TM_CB_AdditionMine_Abort('"..strHero.."','"..objMine.."','"..i.."')");
-						return 1;
+		function TTH_Func_ArtiManage_NotAtTownGate(strHero)
+			TTH_Func_ArtiManage_NotAtTownGateChosen(strHero, 1);
+		end;
+		function TTH_Func_ArtiManage_NotAtTownGateChosen(strHero, iChoose)
+			local iPlayer = GetObjectOwner(strHero);
+			local strText1 = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_RES_BASIC]["Text"];
+			local strText2 = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_RES_ADVANCED]["Text"];
+			local strText3 = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_RES_EXPERT]["Text"];
+			local strText4 = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_ORDER_OF_CONSCRIPTION]["Text"];
+			local strText5 = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_GEM_OF_PHANTOM]["Text"];
+			local strText6 = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_MASK_OF_DOPPELGANGER]["Text"];
+			local strFuncCb1 = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_RES_BASIC]["FuncCb"];
+			local strFuncCb2 = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_RES_ADVANCED]["FuncCb"];
+			local strFuncCb3 = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_RES_EXPERT]["FuncCb"];
+			local strFuncCb4 = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_ORDER_OF_CONSCRIPTION]["FuncCb"];
+			local strFuncCb5 = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_GEM_OF_PHANTOM]["FuncCb"];
+			local strFuncCb6 = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_MASK_OF_DOPPELGANGER]["FuncCb"];
+			local strFuncCb = '';
+			if iChoose + 0 == 1 then
+				strFuncCb = strFuncCb1;
+			elseif iChoose + 0 == 2 then
+				strFuncCb = strFuncCb2;
+			elseif iChoose + 0 == 3 then
+				strFuncCb = strFuncCb3;
+			elseif iChoose + 0 == 4 then
+				strFuncCb = strFuncCb4;
+			elseif iChoose + 0 == 5 then
+				strFuncCb = strFuncCb5;
+			elseif iChoose + 0 == 6 then
+				strFuncCb = strFuncCb6;
+			end;
+			if iChoose + 0 < 6 then
+				local iChooseNext = iChoose + 1;
+				QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
+					, {
+						"/Text/Game/Scripts/ArtiManage/NotAtTownGate/QuestionChooseType"..iChoose..".txt"
+						;strText1=strText1
+						,strText2=strText2
+						,strText3=strText3
+						,strText4=strText4
+						,strText5=strText5
+						,strText6=strText6
+					}
+					, strFuncCb.."('"..strHero.."')"
+					, "TTH_Func_ArtiManage_NotAtTownGateChosen('"..strHero.."','"..iChooseNext.."')");
+			else
+				QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
+					, {
+						"/Text/Game/Scripts/ArtiManage/NotAtTownGate/QuestionChooseType"..iChoose..".txt"
+						;strText1=strText1
+						,strText2=strText2
+						,strText3=strText3
+						,strText4=strText4
+						,strText5=strText5
+						,strText6=strText6
+					}
+					, strFuncCb.."('"..strHero.."')"
+					, "TTH_Func_ArtiManage_Giveup('"..strHero.."')");
+			end;
+		end;
+
+		-- 2.1~2.3.资源宝物（资源矿加成）可累积
+			-- 地图所有矿生成集合
+	      TTH_MINE = {};
+	      function TTH_Func_InitMine()
+	      	TTH_Func_GeneMineBean("BUILDING_SAWMILL", WOOD, ARTIFACT_RES_BASIC);
+	      	TTH_Func_GeneMineBean("BUILDING_ORE_PIT", ORE, ARTIFACT_RES_BASIC);
+	      	TTH_Func_GeneMineBean("BUILDING_ALCHEMIST_LAB", MERCURY, ARTIFACT_RES_ADVANCED);
+	      	TTH_Func_GeneMineBean("BUILDING_CRYSTAL_CAVERN", CRYSTAL, ARTIFACT_RES_ADVANCED);
+	      	TTH_Func_GeneMineBean("BUILDING_SULFUR_DUNE", SULFUR, ARTIFACT_RES_ADVANCED);
+	      	TTH_Func_GeneMineBean("BUILDING_GEM_POND", GEM, ARTIFACT_RES_ADVANCED);
+	      	TTH_Func_GeneMineBean("BUILDING_GOLD_MINE", GOLD, ARTIFACT_RES_EXPERT);
+	      end;
+	      function TTH_Func_GeneMineBean(strMineType, enumMineType, idMineBonusArti)
+	      	local arrMine = GetObjectNamesByType(strMineType);
+	      	for indexMine, objMine in arrMine do
+	      	  TTH_MINE[objMine] = {};
+	      	  TTH_MINE[objMine]["Id"] = objMine;
+	      	  TTH_MINE[objMine]["MineType"] = enumMineType; 
+	      	  TTH_MINE[objMine]["BonusArti"] = idMineBonusArti; 
+	      	  TTH_MINE[objMine]["BonusUsed"] = 0; 
+	      	  TTH_MINE[objMine]["BonusLevel"] = 0; 
+	      	end;
+	      end;
+	      TTH_Func_InitMine();
+
+	    -- 资源宝物加成表
+	      TTH_TABLE_ARTIFACT_RES_BONUS = {
+	        ["ArtifactId"] = {
+	          [0] = ARTIFACT_RES_BASIC
+	          , [1] = ARTIFACT_RES_BASIC
+	          , [2] = ARTIFACT_RES_ADVANCED
+	          , [3] = ARTIFACT_RES_ADVANCED
+	          , [4] = ARTIFACT_RES_ADVANCED
+	          , [5] = ARTIFACT_RES_ADVANCED
+	          , [6] = ARTIFACT_RES_EXPERT
+	        }
+	        , ["Name"] = {
+	          [0] = "/Text/Game/Artifacts/Res_Basic/Name.txt"
+	          , [1] = "/Text/Game/Artifacts/Res_Basic/Name.txt"
+	          , [2] = "/Text/Game/Artifacts/Res_Advanced/Name.txt"
+	          , [3] = "/Text/Game/Artifacts/Res_Advanced/Name.txt"
+	          , [4] = "/Text/Game/Artifacts/Res_Advanced/Name.txt"
+	          , [5] = "/Text/Game/Artifacts/Res_Advanced/Name.txt"
+	          , [6] = "/Text/Game/Artifacts/Res_Expert/Name.txt"
+	        }
+	        , ["Desc"] = {
+	          [0] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Res_Wood.txt"
+	          , [1] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Res_Ore.txt"
+	          , [2] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Res_Mercury.txt"
+	          , [3] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Res_Crystal.txt"
+	          , [4] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Res_Sulphur.txt"
+	          , [5] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Res_Gem.txt"
+	          , [6] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Res_Gold.txt"
+	        }
+	        , ["Tooltip"] = {
+	          [0] = {
+	            [0] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Wood_0.txt"
+	            , [1] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Wood_1.txt"
+	            , [2] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Wood_2.txt"
+	            , [3] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Wood_3.txt"
+	            , [4] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Wood_4.txt"
+	          }
+	          , [1] = {
+	            [0] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Ore_0.txt"
+	            , [1] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Ore_1.txt"
+	            , [2] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Ore_2.txt"
+	            , [3] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Ore_3.txt"
+	            , [4] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Ore_4.txt"
+	          }
+	          , [2] = {
+	            [0] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Mercury_0.txt"
+	            , [1] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Mercury_1.txt"
+	            , [2] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Mercury_2.txt"
+	            , [3] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Mercury_3.txt"
+	            , [4] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Mercury_4.txt"
+	          }
+	          , [3] = {
+	            [0] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Crystal_0.txt"
+	            , [1] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Crystal_1.txt"
+	            , [2] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Crystal_2.txt"
+	            , [3] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Crystal_3.txt"
+	            , [4] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Crystal_4.txt"
+	          }
+	          , [4] = {
+	            [0] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Sulphur_0.txt"
+	            , [1] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Sulphur_1.txt"
+	            , [2] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Sulphur_2.txt"
+	            , [3] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Sulphur_3.txt"
+	            , [4] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Sulphur_4.txt"
+	          }
+	          , [5] = {
+	            [0] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Gem_0.txt"
+	            , [1] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Gem_1.txt"
+	            , [2] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Gem_2.txt"
+	            , [3] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Gem_3.txt"
+	            , [4] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Gem_4.txt"
+	          }
+	          , [6] = {
+	            [0] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Gold_0.txt"
+	            , [1] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Gold_1.txt"
+	            , [2] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Gold_2.txt"
+	            , [3] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Gold_3.txt"
+	            , [4] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Gold_4.txt"
+	          }
+	        }
+	      };
+
+			function TTH_Func_ArtiManage_NotAtTownGate_ResBasic(strHero)
+				TTH_Func_ArtiManage_NotAtTownGate_ResImpl(strHero, ARTIFACT_RES_BASIC);
+			end;
+			function TTH_Func_ArtiManage_NotAtTownGate_ResAdvanced(strHero)
+				TTH_Func_ArtiManage_NotAtTownGate_ResImpl(strHero, ARTIFACT_RES_ADVANCED);
+			end;
+			function TTH_Func_ArtiManage_NotAtTownGate_ResExpert(strHero)
+				TTH_Func_ArtiManage_NotAtTownGate_ResImpl(strHero, ARTIFACT_RES_EXPERT);
+			end;
+			function TTH_Func_ArtiManage_NotAtTownGate_ResImpl(strHero, strChoose)
+				local iPlayer = GetObjectOwner(strHero);
+				local iChoose = strChoose * 1;
+				local strText = TTH_TABLE_ArtiManage_NotAtTownGateOption[iChoose]["Text"];
+				local strEffect = TTH_TABLE_ArtiManage_NotAtTownGateOption[iChoose]["Effect"];
+				local iArti = TTH_TABLE_ArtiManage_NotAtTownGateOption[iChoose]["Arti"];
+				if HasArtefact(strHero, iArti, 0) ~= nil then
+					local bIsNearByMine = 0;
+					for indexMine, objMine in TTH_MINE do
+				    local strMineId = objMine["Id"];
+					  if GetObjectOwner(strMineId) == iPlayer and H55_GetDistance(strHero, strMineId) <= 5 and iArti == objMine["BonusArti"] then
+					  	bIsNearByMine = 1;
+					    local iBonusUsed = objMine["BonusUsed"];
+					    local iBonusLevel = objMine["BonusLevel"];
+					    local iMineType = objMine["MineType"];
+					    local iCurrentBonusLevel = iBonusLevel + 1;
+					    local iArtifactId = TTH_TABLE_ARTIFACT_RES_BONUS["ArtifactId"][iMineType];
+					    local strName = TTH_TABLE_ARTIFACT_RES_BONUS["Name"][iMineType];
+					    local strDesc = TTH_TABLE_ARTIFACT_RES_BONUS["Desc"][iMineType];
+					    QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
+					    	, {
+						    	"/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/TTH_QB_BonusMine_or_Giveup.txt"
+						    	;name=strName
+						    	,desc=strDesc
+						    	,used=iBonusUsed
+						    	,level=iCurrentBonusLevel
+						    }
+						    , "TTH_Func_ArtiManage_NotAtTownGate_ResDeal('"..strHero.."','"..strMineId.."','"..iArtifactId.."')"
+						    , "TTH_Func_ArtiManage_Giveup('"..strHero.."')");
+					    return 1;
+					  end;
 					end;
+					if bIsNearByMine == 0 then
+						MessageBoxForPlayers(GetPlayerFilter(iPlayer)
+							, {
+								"/Text/Game/Scripts/ArtiManage/NotAtTownGate/MsgNotNearByMine.txt"
+								;strText=strText
+							}
+							, nil);
+					end;
+				else
+					MessageBoxForPlayers(GetPlayerFilter(iPlayer)
+						, {
+							"/Text/Game/Scripts/ArtiManage/NotAtTownGate/MsgNoCorrespondArti.txt"
+							;strText=strText
+						}
+						, nil);
 				end;
 			end;
-		end;
-		return 0;
-	end;
-	function TTH_TM_CB_AdditionMine_Request(strHero, objMine, i, iTypeMine)
-		RemoveArtefact(strHero, TTH_RES_BONUS_SET["ID"][i + 0]);
-		if TTH_RES_BONUS_DAILY[objMine] == nil then
-			TTH_RES_BONUS_DAILY[objMine] = {};
-			TTH_RES_BONUS_DAILY[objMine]['type'] = iTypeMine;
-			TTH_RES_BONUS_DAILY[objMine]['used'] = 1;
-			TTH_RES_BONUS_DAILY[objMine]['level'] = 1;
-		else
-			TTH_RES_BONUS_DAILY[objMine]['used'] = TTH_RES_BONUS_DAILY[objMine]['used'] + 1;
-			local iUsed = TTH_RES_BONUS_DAILY[objMine]['used'];
-			if iUsed >= 1 and iUsed < 3 then
-				TTH_RES_BONUS_DAILY[objMine]['level'] = 1;
-			elseif iUsed >= 3 and iUsed < 6 then
-				TTH_RES_BONUS_DAILY[objMine]['level'] = 2;
-			elseif iUsed >= 6 and iUsed < 10 then
-				TTH_RES_BONUS_DAILY[objMine]['level'] = 3;
-			elseif iUsed == 10 then
-				TTH_RES_BONUS_DAILY[objMine]['level'] = 4;
+			function TTH_Func_ArtiManage_NotAtTownGate_ResDeal(strHero, strMineId, strArtifactId)
+				local iPlayer = GetObjectOwner(strHero);
+				local objMine = TTH_MINE[strMineId];
+				local iMineType = objMine["MineType"];
+				local iArtifactId = TTH_TABLE_ARTIFACT_RES_BONUS["ArtifactId"][iMineType];
+			  RemoveArtefact(strHero, iArtifactId);
+		    objMine['BonusUsed'] = objMine['BonusUsed'] + 1;
+		    local iUsed = objMine['BonusUsed'];
+		    if iUsed >= 1 and iUsed < 3 then
+		      objMine['BonusLevel'] = 1;
+		    elseif iUsed >= 3 and iUsed < 6 then
+		      objMine['BonusLevel'] = 2;
+		    elseif iUsed >= 6 and iUsed < 10 then
+		      objMine['BonusLevel'] = 3;
+		    elseif iUsed == 10 then
+		      objMine['BonusLevel'] = 4;
+		    end;
+			  local iBonusUsed = objMine["BonusUsed"];
+			  local iBonusLevel = objMine["BonusLevel"];
+			  local iCurrentBonusLevel = iBonusLevel + 1;
+			  local strName = TTH_TABLE_ARTIFACT_RES_BONUS["Name"][iMineType];
+			  local strDesc = TTH_TABLE_ARTIFACT_RES_BONUS["Desc"][iMineType];
+			  OverrideObjectTooltipNameAndDescription(strMineId, "", TTH_TABLE_ARTIFACT_RES_BONUS["Tooltip"][iMineType][objMine['BonusLevel']]);
+			  MessageBoxForPlayers(GetPlayerFilter(iPlayer)
+			  	, {
+				  	"/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/TTH_MB_Success.txt"
+			    	;name=strName
+			    	,desc=strDesc
+			    	,used=iBonusUsed
+			    	,level=iCurrentBonusLevel
+			    }
+			    , nil);
 			end;
-		end;
-		OverrideObjectTooltipNameAndDescription(objMine, "", TTH_RES_BONUS_SET["TOOLTIP"][i + 0][TTH_RES_BONUS_DAILY[objMine]['level']]);
-	end;
-	function TTH_TM_CB_AdditionMine_Abort(strHero, objMine, i)
-		-- if TTH_RES_BONUS_HERO_DISABLE[objMine] == nil then
-		-- 	TTH_RES_BONUS_HERO_DISABLE[objMine] = {};
-		-- end;
-		-- TTH_RES_BONUS_HERO_DISABLE[objMine][strHero] = 1;
-	end;
+
+		-- 2.4.征兵令（消耗类）→立刻获取当前第一格生物一周的产量
+			function TTH_Func_ArtiManage_NotAtTownGate_OrderOfConscription(strHero)
+				local iPlayer = GetObjectOwner(strHero);
+				local strText = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_ORDER_OF_CONSCRIPTION]["Text"];
+				local strEffect = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_ORDER_OF_CONSCRIPTION]["Effect"];
+				local iArti = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_ORDER_OF_CONSCRIPTION]["Arti"];
+				if HasArtefact(strHero, iArti, 0) ~= nil then
+					local listCreatureType = H55_ArmyInfoSimple(strHero);
+					local iCreatureId = listCreatureType[0];
+					local iGrowth = TTH_TABLE_NCF_CREATURES[iCreatureId]["GROWTH"];
+					local strName = TTH_TABLE_NCF_CREATURES[iCreatureId]["NAME"];
+					QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
+						, {
+							"/Text/Game/Scripts/ArtiManage/NotAtTownGate/OrderOfConscription/TTH_QB_UseOrderOfConscription_or_Close.txt"
+							;strCreatureName=strName
+							,strArtiName=strText
+							,iCreatureNumber=iGrowth
+						}
+						,	"TTH_Func_ArtiManage_NotAtTownGate_OrderOfConscription_Deal('"..strHero.."','"..iArti.."','"..iCreatureId.."','"..iGrowth.."')"
+			    	, nil);
+				else
+					MessageBoxForPlayers(GetPlayerFilter(iPlayer)
+						, {
+							"/Text/Game/Scripts/ArtiManage/NotAtTownGate/MsgNoCorrespondArti.txt"
+							;strText=strText
+						}
+						, nil);
+				end;
+			end;
+			function TTH_Func_ArtiManage_NotAtTownGate_OrderOfConscription_Deal(strHero, strArtifactId, strCreatureId, strGrowth)
+				local iPlayer = GetObjectOwner(strHero);
+				local iArtifactId = strArtifactId + 0;
+				local iCreatureId = strCreatureId + 0;
+				local iGrowth = strGrowth + 0;
+			  RemoveArtefact(strHero, iArtifactId);
+				AddHeroCreatures(strHero, iCreatureId, iGrowth);
+				ShowFlyingSign({"/Text/Game/Scripts/Join.txt"; num = iGrowth}, strHero, iPlayer, 5);
+				sleep(4);
+			end;
+		
+		-- 2.5.幻影宝石
+			TTH_DATA_GemOfPhantom = {};
+			function TTH_Func_ArtiManage_NotAtTownGate_GemOfPhantom(strHero)
+				local iPlayer = GetObjectOwner(strHero);
+				local strText = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_GEM_OF_PHANTOM]["Text"];
+				local strEffect = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_GEM_OF_PHANTOM]["Effect"];
+				local iArti = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_GEM_OF_PHANTOM]["Arti"];
+
+				if HasArtefact(strHero, iArti, 1) ~= nil then
+					if TTH_DATA_GemOfPhantom[iPlayer] == nil then
+						TTH_DATA_GemOfPhantom[iPlayer] = {};
+					end;
+					if TTH_DATA_GemOfPhantom[iPlayer][H55_Day] ~= nil then
+						MessageBoxForPlayers(GetPlayerFilter(iPlayer)
+							, {
+								"/Text/Game/Scripts/ArtiManage/NotAtTownGate/GemOfPhantom/TTH_MB_HasUsedToday.txt"
+								;strText=strText
+							}
+							, nil);
+						return 0;
+					end;
+					local iPreRecordCreatureId = TTH_DATA_GemOfPhantom[iPlayer]["CreatureId"];
+					local strPreRecordCreatureName = "";
+					if iPreRecordCreatureId ~= nil then
+						strPreRecordCreatureName = TTH_TABLE_NCF_CREATURES[iPreRecordCreatureId]["NAME"];
+					end;
+					local iPreRecordCreatureNum = TTH_DATA_GemOfPhantom[iPlayer]["CreatureNum"];
+					local listSlotCreatureId = {};
+					local listSlotCreatureNum = {};
+					listSlotCreatureId, listSlotCreatureNum = H55_ArmyInfo(strHero);
+					local iLenSlotCreature = length(listSlotCreatureId);
+					local iSlotCreatureId = listSlotCreatureId[0];
+					local iSlotCreatureNum = listSlotCreatureNum[0];
+					if iLenSlotCreature == 1 then
+						iSlotCreatureNum = iSlotCreatureNum - 1;
+					end;
+					local strSlotCreatureName = TTH_TABLE_NCF_CREATURES[iSlotCreatureId]["NAME"];
+					local iPostRecordCreatureId = 0;
+					local strPostRecordCreatureName = "";
+					local iPostRecordCreatureNum = 0;
+					if iPreRecordCreatureId == iSlotCreatureId then
+						iPostRecordCreatureId = iPreRecordCreatureId;
+						strPostRecordCreatureName = strPreRecordCreatureName;
+						iPostRecordCreatureNum = iPreRecordCreatureNum + iSlotCreatureNum;
+					else
+						iPostRecordCreatureId = iSlotCreatureId;
+						strPostRecordCreatureName = strSlotCreatureName;
+						iPostRecordCreatureNum = iSlotCreatureNum;
+					end;
+					QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
+						, {
+							"/Text/Game/Scripts/ArtiManage/NotAtTownGate/GemOfPhantom/TTH_QB_Use_or_Close.txt"
+							;strPreRecordCreatureName=strPreRecordCreatureName
+							,iPreRecordCreatureNum=iPreRecordCreatureNum
+							,strSlotCreatureName=strSlotCreatureName
+							,iSlotCreatureNum=iSlotCreatureNum
+							,strPostRecordCreatureName=strPostRecordCreatureName
+							,iPostRecordCreatureNum=iPostRecordCreatureNum
+						}
+						, "TTH_Func_ArtiManage_NotAtTownGate_GemOfPhantom_Deal('"..strHero.."','"..iSlotCreatureId.."','"..iSlotCreatureNum.."','"..iPostRecordCreatureId.."','"..iPostRecordCreatureNum.."')"
+						, nil);
+				else
+					MessageBoxForPlayers(GetPlayerFilter(iPlayer)
+						, {
+							"/Text/Game/Scripts/ArtiManage/NotAtTownGate/MsgNoCorrespondArti.txt"
+							;strText=strText
+						}
+						, nil);
+				end;
+			end;
+			function TTH_Func_ArtiManage_NotAtTownGate_GemOfPhantom_Deal(strHero, strSlotCreatureId, strSlotCreatureNum, strPostRecordCreatureId, strPostRecordCreatureNum)
+				local iPlayer = GetObjectOwner(strHero);
+				local iSlotCreatureId = strSlotCreatureId + 0;
+				local iSlotCreatureNum = strSlotCreatureNum + 0;
+				local iPostRecordCreatureId = strPostRecordCreatureId + 0;
+				local iPostRecordCreatureNum = strPostRecordCreatureNum + 0;
+				local strRecordCreatureName = TTH_TABLE_NCF_CREATURES[iPostRecordCreatureId]["NAME"];
+				local iRecordCreatureNum = iPostRecordCreatureNum;
+				RemoveHeroCreatures(strHero, iSlotCreatureId, iSlotCreatureNum);
+				TTH_DATA_GemOfPhantom[iPlayer]["CreatureId"] = iPostRecordCreatureId;
+				TTH_DATA_GemOfPhantom[iPlayer]["CreatureNum"] = iPostRecordCreatureNum;
+				TTH_DATA_GemOfPhantom[iPlayer][H55_Day] = 1;
+				MessageBoxForPlayers(GetPlayerFilter(iPlayer)
+					, {
+						"/Text/Game/Scripts/ArtiManage/NotAtTownGate/GemOfPhantom/TTH_MB_Success.txt"
+						;strRecordCreatureName=strRecordCreatureName
+						,iRecordCreatureNum=iRecordCreatureNum
+					}
+					, nil);
+			end;
+
+		-- 2.6.皇家遗物
+			function TTH_Func_ArtiManage_NotAtTownGate_MaskOfDoppelganger(strHero)
+				local iPlayer = GetObjectOwner(strHero);
+				local strText = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_MASK_OF_DOPPELGANGER]["Text"];
+				local strEffect = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_MASK_OF_DOPPELGANGER]["Effect"];
+				local iArti = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_MASK_OF_DOPPELGANGER]["Arti"];
+
+				if HasArtefact(strHero, iArti, 0) ~= nil then
+					local iExp = 500 * 1000;
+					QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
+						, {
+							"/Text/Game/Scripts/ArtiManage/NotAtTownGate/MaskOfDoppelganger/TTH_QB_Use_or_Close.txt"
+							;strText=strText
+							,iExp=iExp
+						}
+						, "TTH_Func_ArtiManage_NotAtTownGate_MaskOfDoppelganger_Deal('"..strHero.."')"
+						, nil);
+				else
+					MessageBoxForPlayers(GetPlayerFilter(iPlayer)
+						, {
+							"/Text/Game/Scripts/ArtiManage/NotAtTownGate/MsgNoCorrespondArti.txt"
+							;strText=strText
+						}
+						, nil);
+				end;
+			end;
+			function TTH_Func_ArtiManage_NotAtTownGate_MaskOfDoppelganger_Deal(strHero)
+				local iPlayer = GetObjectOwner(strHero);
+				local strText = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_MASK_OF_DOPPELGANGER]["Text"];
+				local iExp = 500 * 1000;
+        RemoveArtefact(strHero, ARTIFACT_MASK_OF_DOPPELGANGER);
+        GiveExp(strHero, iExp);
+				MessageBoxForPlayers(GetPlayerFilter(iPlayer)
+					, {
+						"/Text/Game/Scripts/ArtiManage/NotAtTownGate/MaskOfDoppelganger/TTH_MB_Success.txt"
+						;strText=strText
+						,iExp=iExp
+					}
+					, nil);
+			end;
 -- end
 
 -- by 牙姐 2018-9-12 17:52:38
@@ -9861,49 +10063,48 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 	TTH_ARTIFACT_STARTING = {
 		[0] = ARTIFACT_RES_BASIC
 		, [1] = ARTIFACT_LEGION_BASIC
-		, [2] = ARTIFACT_ORDER_OF_CONSCRIPTION
-		, [3] = ARTIFACT_SWORD_OF_RUINS
-		, [4] = ARTIFACT_BREASTPLATE_OF_PETRIFIED_WOOD
-		, [5] = ARTIFACT_SKULL_HELMET
-		, [6] = ARTIFACT_WISPERING_RING
-		, [7] = ARTIFACT_BEGINNER_MAGIC_STICK
-		, [8] = ARTIFACT_EDGE_OF_BALANCE
-		, [9] = ARTIFACT_STEADFAST
-		, [10] = ARTIFACT_BUCKLER
-		, [11] = ARTIFACT_FOUR_LEAF_CLOVER
-		, [12] = ARTIFACT_GOLDEN_SEXTANT
-		, [13] = ARTIFACT_CROWN_OF_MANY_EYES
-		, [14] = ARTIFACT_RING_OF_LIGHTING_PROTECTION
-		, [15] = ARTIFACT_BOOTS_OF_INTERFERENCE
-		, [16] = ARTIFACT_RIGID_MANTLE
-		, [17] = ARTIFACT_BEARHIDE_WRAPS
-		, [18] = ARTIFACT_RING_OF_UNSUMMONING
-		, [19] = ARTIFACT_RES_ADVANCED
-		, [20] = ARTIFACT_LEGION_ADVANCED
-		, [21] = ARTIFACT_DRUM_OF_CHARGE
-		, [22] = ARTIFACT_TITANS_TRIDENT
-		, [23] = ARTIFACT_RING_OF_LIFE
-		, [24] = ARTIFACT_EVERCOLD_ICICLE
-		, [25] = ARTIFACT_ENDLESS_SACK_OF_GOLD
-		, [26] = ARTIFACT_PHOENIX_FEATHER_CAPE
-		, [27] = ARTIFACT_VALORIOUS_ARMOR
-		, [28] = ARTIFACT_EARTHSLIDERS
-		, [29] = ARTIFACT_TAROT_DECK
-		, [30] = ARTIFACT_REINCARNATION
-		, [31] = ARTIFACT_WEREWOLF_CLAW_NECKLACE
-		, [32] = ARTIFACT_CROWN_OF_LEADER
-		, [33] = ARTIFACT_NECKLACE_OF_BRAVERY
-		, [34] = ARTIFACT_LION_HIDE_CAPE
-		, [35] = ARTIFACT_HELM_OF_ENLIGHTMENT
-		, [36] = ARTIFACT_CHAIN_MAIL_OF_ENLIGHTMENT
-		, [37] = ARTIFACT_RING_OF_DEATH
-		, [38] = ARTIFACT_RUNIC_WAR_AXE
-		, [39] = ARTIFACT_RUNIC_WAR_HARNESS
-		, [40] = ARTIFACT_TREEBORN_QUIVER
-		, [41] = ARTIFACT_MONK_01
-		, [42] = ARTIFACT_MONK_02
-		, [43] = ARTIFACT_MONK_03
-		, [44] = ARTIFACT_MONK_04
+		, [2] = ARTIFACT_SWORD_OF_RUINS
+		, [3] = ARTIFACT_BREASTPLATE_OF_PETRIFIED_WOOD
+		, [4] = ARTIFACT_SKULL_HELMET
+		, [5] = ARTIFACT_WISPERING_RING
+		, [6] = ARTIFACT_BEGINNER_MAGIC_STICK
+		, [7] = ARTIFACT_EDGE_OF_BALANCE
+		, [8] = ARTIFACT_STEADFAST
+		, [9] = ARTIFACT_BUCKLER
+		, [10] = ARTIFACT_FOUR_LEAF_CLOVER
+		, [11] = ARTIFACT_GOLDEN_SEXTANT
+		, [12] = ARTIFACT_CROWN_OF_MANY_EYES
+		, [13] = ARTIFACT_RING_OF_LIGHTING_PROTECTION
+		, [14] = ARTIFACT_BOOTS_OF_INTERFERENCE
+		, [15] = ARTIFACT_RIGID_MANTLE
+		, [16] = ARTIFACT_BEARHIDE_WRAPS
+		, [17] = ARTIFACT_RING_OF_UNSUMMONING
+		, [18] = ARTIFACT_RES_ADVANCED
+		, [19] = ARTIFACT_LEGION_ADVANCED		
+		, [20] = ARTIFACT_ORDER_OF_CONSCRIPTION
+		, [21] = ARTIFACT_TITANS_TRIDENT
+		, [22] = ARTIFACT_RING_OF_LIFE
+		, [23] = ARTIFACT_EVERCOLD_ICICLE
+		, [24] = ARTIFACT_ENDLESS_SACK_OF_GOLD
+		, [25] = ARTIFACT_PHOENIX_FEATHER_CAPE
+		, [26] = ARTIFACT_VALORIOUS_ARMOR
+		, [27] = ARTIFACT_EARTHSLIDERS
+		, [28] = ARTIFACT_TAROT_DECK
+		, [29] = ARTIFACT_REINCARNATION
+		, [30] = ARTIFACT_WEREWOLF_CLAW_NECKLACE
+		, [31] = ARTIFACT_CROWN_OF_LEADER
+		, [32] = ARTIFACT_NECKLACE_OF_BRAVERY
+		, [33] = ARTIFACT_LION_HIDE_CAPE
+		, [34] = ARTIFACT_HELM_OF_ENLIGHTMENT
+		, [35] = ARTIFACT_CHAIN_MAIL_OF_ENLIGHTMENT
+		, [36] = ARTIFACT_RING_OF_DEATH
+		, [37] = ARTIFACT_RUNIC_WAR_AXE
+		, [38] = ARTIFACT_RUNIC_WAR_HARNESS
+		, [39] = ARTIFACT_TREEBORN_QUIVER
+		, [40] = ARTIFACT_MONK_01
+		, [41] = ARTIFACT_MONK_02
+		, [42] = ARTIFACT_MONK_03
+		, [43] = ARTIFACT_MONK_04
 	};
 	function TTH_Starting_ChooseArtifact(iPlayer)
 		if H55_ChooseArtifact_Switch == 1 and  contains(TTH_ARTIFACT_STARTING, H55_ChooseArtifact_ID) ~= nil then
@@ -11700,5 +11901,94 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 				UpgradeTownBuilding(itemTown, TOWN_BUILDING_MAGIC_GUILD, 1);
 			end;
 		end;
+	end;
+-- end
+
+-- begin 闪耀坠饰 ARTIFACT_PENDANT_OF_BLIND
+	function TTH_Func_PendantOfBlind(strHero)
+		local iPlayer = GetObjectOwner(strHero);
+		if HasArtefact(strHero, ARTIFACT_PENDANT_OF_BLIND, 1) ~= nil then
+			if TTH_Data_TeachSpell_PendantOfBlind[strHero] == nil then
+				if KnowHeroSpell(strHero, TTH_TABLE_SPELL["SPELL_BLIND"]["ID"]) == nil then
+					TeachHeroSpell(strHero, TTH_TABLE_SPELL["SPELL_BLIND"]["ID"]);
+					TTH_Data_TeachSpell_PendantOfBlind[strHero] = 1;
+					if H55_IsThisAIPlayer(iPlayer) ~= 1 and H55_IsHeroInAnyTown(strHero) == 0 then 
+						ShowFlyingSign({"/Text/Game/Scripts/Learnspell.txt";name=TTH_TABLE_SPELL["SPELL_BLIND"]["NAME"]}, strHero, iPlayer, 7);
+						sleep(4);
+					end;
+				end;
+			end;
+		end;
+		if HasArtefact(strHero, ARTIFACT_PENDANT_OF_BLIND, 1) ~= nil then
+			if TTH_Data_GameVar_PendantOfBlind ~= 1 then
+				SetGameVar('TTH_Artifact_Effect_Combat_'..strHero..'_'..ARTIFACT_PENDANT_OF_BLIND, 1);
+				TTH_Data_GameVar_PendantOfBlind = 1;
+			end;
+		else
+			if TTH_Data_GameVar_PendantOfBlind ~= 0 then
+				SetGameVar('TTH_Artifact_Effect_Combat_'..strHero..'_'..ARTIFACT_PENDANT_OF_BLIND, 0);
+				TTH_Data_GameVar_PendantOfBlind = 0;
+			end;
+		end;
+	end;
+-- end
+
+-- begin 冲锋战鼓 ARTIFACT_DRUM_OF_CHARGE
+	function TTH_Func_DrumOfCharge(strHero)
+		if HasArtefact(strHero, ARTIFACT_DRUM_OF_CHARGE, 1) ~= nil then
+			if TTH_Data_GameVar_DrumOfCharge ~= 1 then
+				SetGameVar('TTH_Artifact_Effect_Combat_'..strHero..'_'..ARTIFACT_DRUM_OF_CHARGE, 1);
+				TTH_Data_GameVar_DrumOfCharge = 1;
+			end;
+		else
+			if TTH_Data_GameVar_DrumOfCharge ~= 0 then
+				SetGameVar('TTH_Artifact_Effect_Combat_'..strHero..'_'..ARTIFACT_DRUM_OF_CHARGE, 0);
+				TTH_Data_GameVar_DrumOfCharge = 0;
+			end;
+		end;
+	end;
+-- end
+
+-- begin 幻影宝石 ARTIFACT_GEM_OF_PHANTOM
+	function TTH_Func_GemOfPhantom(strHero)
+		local iPlayer = GetObjectOwner(strHero);
+		if HasArtefact(strHero, ARTIFACT_GEM_OF_PHANTOM, 1) ~= nil then
+			if TTH_DATA_GemOfPhantom[iPlayer] ~= nil and TTH_DATA_GemOfPhantom[iPlayer]["CreatureId"] ~= nil and TTH_DATA_GemOfPhantom[iPlayer]["CreatureId"] >= 0 then
+				local iPostRecordCreatureId = TTH_DATA_GemOfPhantom[iPlayer]["CreatureId"];
+				local iPostRecordCreatureNum = TTH_DATA_GemOfPhantom[iPlayer]["CreatureNum"];
+				local iCurrentValue = iPostRecordCreatureId + iPostRecordCreatureNum * 1000;
+				if TTH_Data_GameVar_GemOfPhantom ~= iCurrentValue then
+					SetGameVar('TTH_Artifact_Effect_Combat_'..strHero..'_'..ARTIFACT_GEM_OF_PHANTOM, iCurrentValue);
+					TTH_Data_GameVar_GemOfPhantom = iCurrentValue;
+				end;
+			end;
+		else
+			if TTH_Data_GameVar_GemOfPhantom ~= 0 then
+				SetGameVar('TTH_Artifact_Effect_Combat_'..strHero..'_'..ARTIFACT_GEM_OF_PHANTOM, 0);
+				TTH_Data_GameVar_GemOfPhantom = 0;
+			end;
+		end;
+	end;
+-- end
+
+-- begin 测试新版本宝物
+	function tth_test1(iPlayer)
+		local strHero = GetPlayerHeroes(iPlayer)[0];
+		GiveArtefact(strHero, ARTIFACT_LEGION_BASIC);
+		GiveArtefact(strHero, ARTIFACT_LEGION_ADVANCED);
+		GiveArtefact(strHero, ARTIFACT_LEGION_EXPERT);
+		GiveArtefact(strHero, ARTIFACT_ENDLESS_BAG_OF_GOLD);
+		GiveArtefact(strHero, ARTIFACT_CROWN_OF_LEADER);
+
+		GiveArtefact(strHero, ARTIFACT_RES_BASIC);
+		GiveArtefact(strHero, ARTIFACT_RES_ADVANCED);
+		GiveArtefact(strHero, ARTIFACT_RES_EXPERT);
+		GiveArtefact(strHero, ARTIFACT_BAND_OF_CONJURER);
+		GiveArtefact(strHero, ARTIFACT_HORN_OF_PLENTY);
+
+		GiveArtefact(strHero, ARTIFACT_PENDANT_OF_BLIND);
+		GiveArtefact(strHero, ARTIFACT_GEM_OF_PHANTOM);
+		GiveArtefact(strHero, ARTIFACT_ORDER_OF_CONSCRIPTION);
+		GiveArtefact(strHero, ARTIFACT_DRUM_OF_CHARGE);
 	end;
 -- end

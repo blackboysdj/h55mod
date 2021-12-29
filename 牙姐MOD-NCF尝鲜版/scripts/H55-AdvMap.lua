@@ -71,7 +71,7 @@ H55_WagonsQty = length(H55_Wagons);
 -- 坟墓
 H55_Skeletons = GetObjectNamesByType("BUILDING_SKELETON");
 H55_SkeletonsQty = length(H55_Skeletons);
--- 银行
+-- 宝屋
 H55_BankLastVisit = {};
 H55_BankPlayerLastVisit = {{},{},{},{},{},{},{},{}};
 H55_BankCurrentPlayerVisit = {};
@@ -405,7 +405,7 @@ function H55_PrepareAdvMap()
 				Trigger(OBJECT_TOUCH_TRIGGER,skeleton,"H55_SkeletonVisit");
 			end;
 		end;
-	--银行
+	--宝屋
 		if H55_CryptsQty ~= 0 then
 			for i,crypt in H55_Crypts do
 				SetObjectEnabled(crypt,nil);
@@ -509,7 +509,7 @@ function H55_PrepareAdvMap()
 	H55_TriggerToObjectType("BUILDING_ASTROLOGER_TOWER",OBJECT_TOUCH_TRIGGER,"H55_AstrologerVisit",nil);
 	H55_TriggerToObjectType("BUILDING_SPELL_SHOP",OBJECT_TOUCH_TRIGGER,"H55_SpellShopVisit",nil);
 	H55_TriggerToObjectType("BUILDING_MEMORY_MENTOR",OBJECT_TOUCH_TRIGGER,"H55_MemoryMentorVisit",nil);
-	H55_TriggerToObjectType("BUILDING_BLACK_MARKET",OBJECT_TOUCH_TRIGGER,"H55_BlackMarketVisit",nil);
+	H55_TriggerToObjectType("BUILDING_BLACK_MARKET",OBJECT_TOUCH_TRIGGER,"TTH_ObjectTouchTrigger_BuildingBlackMarket",nil);
 	H55_TriggerToObjectType("BUILDING_SACRIFICIAL_ALTAR",OBJECT_TOUCH_TRIGGER,"H55_SacrificialAltarVisit",nil);
 
 	--Suppliers
@@ -1210,34 +1210,6 @@ function H55_MemoryMentorKN(hero,building)
 	H55_MentorBoostVisitors[hero] = 1;
 	ChangeHeroStat(hero,STAT_KNOWLEDGE,2);
 	ShowFlyingSign("/Text/Game/Scripts/Knowledge.txt",hero,player,5);
-end;
-
-function H55_BlackMarketVisit(hero,building)
-	local player = GetObjectOwner(hero);
-	if H55_IsThisAIPlayer(player) == 1 then
-		H55_BlackMarketRefuseAI(hero,building);
-	elseif H55_GetGuardianOwnCount(hero) == 4 then
-		QuestionBoxForPlayers(GetPlayerFilter(player),{"/Text/Game/Scripts/BlackMarketQuestion.txt"},
-		"H55_BlackMarketAccept('"..hero.."','"..building.."')","H55_BlackMarketRefuse('"..hero.."','"..building.."')");
-	else
-		H55_BlackMarketRefuse(hero,building);
-	end;
-end;
-
-function H55_BlackMarketAccept(hero,building)
-	H55_ExchangeGuardianSet(hero);
-end;
-
-function H55_BlackMarketRefuse(hero,building)
-	Trigger(OBJECT_TOUCH_TRIGGER,building,nil);
-	SetObjectEnabled(building,not nil);
-	MakeHeroInteractWithObject(hero,building);
-	Trigger(OBJECT_TOUCH_TRIGGER,building,"H55_BlackMarketVisit");
-	SetObjectEnabled(building,nil);
-end;
-
-function H55_BlackMarketRefuseAI(hero,building)
-	print("Blocked AI from visiting Artifact Merchant");
 end;
 
 ------------------------------------------------------------------------------------------------------------------------------------------
@@ -2205,7 +2177,7 @@ end;
 ------------------------------------------------------------------------------------------------------------------------------------------------
 
 -- by 牙姐 2018-9-27 13:05:15
--- begin 银行统一战斗方法-8族-非废弃矿井
+-- begin 宝屋统一战斗方法-8族-非废弃矿井
 function TTH_BankCombatByRaceNotMine(strHero, objBank, iFaction, strCallbackVisit, strCombatLink)
 	local iPlayer = GetObjectOwner(strHero);
 	if H55_GetLastVisited(objBank) > 6 and H55_GetPlayerLastVisited(iPlayer, objBank) > 13 then
@@ -2287,7 +2259,7 @@ end;
 -- end
 
 -- by 牙姐 2018-9-30 22:41:32
--- begin 银行统一战斗方法-8族-废弃矿井
+-- begin 宝屋统一战斗方法-8族-废弃矿井
 function TTH_BankCombatByRaceMine(strHero, objBank, iFaction, strCallbackVisit, strCombatLink)
 	local iPlayer = GetObjectOwner(strHero);
 	if H55_GetLastVisited(objBank) > 1 and H55_GetPlayerLastVisited(iPlayer, objBank) > 1 then
@@ -2401,7 +2373,7 @@ function H55_AbandonedMineVisit(strHero, objBank)
 end;
 
 -- by 牙姐 2018-9-27 23:31:27
--- begin 银行统一战斗方法-非8族
+-- begin 宝屋统一战斗方法-非8族
 function TTH_BankCombatByNoRace(strHero, objBank, strBuildingName, strCallbackVisit, strCombatLink)
 	local iPlayer = GetObjectOwner(strHero);
 	if H55_GetLastVisited(objBank) > 6 and H55_GetPlayerLastVisited(iPlayer, objBank) > 13 then
@@ -2520,11 +2492,11 @@ function H55_ThicketVisit(strHero, objBank)
 	TTH_BankCombatByNoRace(strHero, objBank, strBuildingName, "H55_ThicketVisit", "/Arenas/CombatArena/FinalCombat/Bank_Treant.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)");
 end;
 
--- 玩家每周银行胜利次数
+-- 玩家每周宝屋胜利次数
 TTH_DATA_BankWinTimes = {};
 
 -- by 牙姐 2018-10-3 12:47:39
--- begin AI银行胜利
+-- begin AI宝屋胜利
 function TTH_BankWinAI(strHero, result)
 	local iPlayer = GetObjectOwner(strHero);
 	if TTH_DATA_BankWinTimes[H55_AbsoluteWeek] == nil then
@@ -2549,7 +2521,7 @@ end;
 -- end
 
 -- by 牙姐 2018-9-30 13:56:42
--- begin 普通银行胜利
+-- begin 普通宝屋胜利
 function TTH_BankWinNormal(strHero, result)
 	local iPlayer = GetObjectOwner(strHero);
 	if TTH_DATA_BankWinTimes[H55_AbsoluteWeek] == nil then
@@ -2574,7 +2546,7 @@ end;
 -- end
 
 -- by 牙姐 2018-9-30 13:56:42
--- begin 高级银行胜利
+-- begin 高级宝屋胜利
 function TTH_BankWinAdv(strHero, result)
 	local iPlayer = GetObjectOwner(strHero);
 	if TTH_DATA_BankWinTimes[H55_AbsoluteWeek] == nil then
@@ -2629,7 +2601,7 @@ TTH_TABLE_BankRewardTipName = {
 	, [5] = "/Text/Game/Scripts/BankReward/ChooseReward/RewardExp.txt"
 };
 -- by 牙姐 2018-9-30 22:44:26
--- begin 银行奖励 5随2 2选1
+-- begin 宝屋奖励 5随2 2选1
 function TTH_BankReward(strHero)
 	local iPlayer = GetObjectOwner(strHero);
 	local iRandomEnter = random(5);
@@ -2656,7 +2628,7 @@ function TTH_BankReward(strHero)
 end;
 -- end
 -- by 牙姐 2018-10-3 12:48:56
--- begin AI银行奖励 5随1
+-- begin AI宝屋奖励 5随1
 function TTH_BankRewardAI(strHero)
 	local iPlayer = GetObjectOwner(strHero);
 	local iRandom = random(5);
@@ -2683,114 +2655,344 @@ function TTH_BankRewardAI(strHero)
 end;
 -- end
 
--- by 牙姐 2018-10-2 0:45:52
--- begin 银行奖励相关
--- 金币奖励: 2000 * pow(1.1, 周银行胜利次数 - 1) 四舍五入
-function TTH_Reward_Gold(strHero)
-	local iPlayer = GetObjectOwner(strHero);
-	local iTimes = TTH_DATA_BankWinTimes[H55_AbsoluteWeek][iPlayer];
-	print('iTimes: '..iTimes);
-	local iGold = 2000;
-	if iTimes > 1 then
-		for i = 1, H55_AbsoluteWeek - 1 + iTimes - 1 do
-			iGold = iGold * 1.1;
-		end
-	end;
-	iGold = H55_Round(iGold);
-	H55_GiveResources(iPlayer, 6, iGold, strHero);
-end;
--- 资源奖励: 
-	-- 石木: (2 + random(4)) * pow(1.1, 周银行胜利次数 - 1) 四舍五入
-	-- 稀矿: (1 + random(2)) * pow(1.1, 周银行胜利次数 - 1) 四舍五入
-function TTH_Reward_Resource(strHero)
-	local iPlayer = GetObjectOwner(strHero);
-	local iTimes = TTH_DATA_BankWinTimes[H55_AbsoluteWeek][iPlayer];
-	print('iTimes: '..iTimes);
-	local iCountNormal = 2 + random(4);
-	if iTimes > 1 then
-		for i = 1, H55_AbsoluteWeek - 1 + iTimes - 1 do
-			iCountNormal = iCountNormal * 1.1;
-		end
-	end;
-	iCountNormal = H55_Round(iCountNormal);
-	local iCountSpecial = 1 + random(2);
-	if iTimes > 1 then
-		for i = 1, H55_AbsoluteWeek - 1 + iTimes - 1 do
-			iCountSpecial = iCountSpecial * 1.1;
-		end
-	end;
-	iCountSpecial = H55_Round(iCountSpecial);
-	H55_GiveResources(iPlayer, 0, iCountNormal, strHero);
-	H55_GiveResources(iPlayer, 1, iCountNormal, strHero);
-	H55_GiveResources(iPlayer, 2, iCountSpecial, strHero);
-	H55_GiveResources(iPlayer, 3, iCountSpecial, strHero);
-	H55_GiveResources(iPlayer, 4, iCountSpecial, strHero);
-	H55_GiveResources(iPlayer, 5, iCountSpecial, strHero);
-end;
--- 属性奖励: 1 * pow(1.015, 周银行胜利次数 - 1) 四舍五入
-function TTH_Reward_Stat(strHero)
-	local iPlayer = GetObjectOwner(strHero);
-	local iTimes = TTH_DATA_BankWinTimes[H55_AbsoluteWeek][iPlayer];
-	print('iTimes: '..iTimes);
-	local iStat = 1;
-	if iTimes > 1 then
-		for i = 1, H55_AbsoluteWeek - 1 + iTimes - 1 do
-			iStat = iStat * 1.015;
-		end
-	end;
-	iStat = H55_Round(iStat);
-	local iRandom = random(100) + 1;
-	local iGroup = H55_GetHeroClassGroup(strHero);
-	if iGroup == 1 then
-		if iRandom > 0 and iRandom <= 50 then
-			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_ATTACK, iStat);
-		elseif iRandom > 50 and iRandom <= 100 then
-			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_DEFENCE, iStat);
+-- 宝屋阶梯奖励
+	function TTH_Reward_Step(strHero)
+		local iPlayer = GetObjectOwner(strHero);
+		local iTimes = TTH_DATA_BankWinTimes[H55_AbsoluteWeek][iPlayer];
+		local iRealTimes = H55_AbsoluteWeek - 1 + iTimes - 1;
+		local iIndex = 0;
+		if iRealTimes >= 987 then
+			iIndex = 30;
+		elseif iRealTimes >= 610 then
+			iIndex = 20;
+		elseif iRealTimes >= 377 then
+			iIndex = 14;
+		elseif iRealTimes >= 233 then
+			iIndex = 10;
+		elseif iRealTimes >= 144 then
+			iIndex = 7.5;
+		elseif iRealTimes >= 89 then
+			iIndex = 6;
+		elseif iRealTimes >= 55 then
+			iIndex = 4;
+		elseif iRealTimes >= 34 then
+			iIndex = 3;
+		elseif iRealTimes >= 21 then
+			iIndex = 2.5;
+		elseif iRealTimes >= 13 then
+			iIndex = 2;
+		elseif iRealTimes >= 8 then
+			iIndex = 1.75;
+		elseif iRealTimes >= 5 then
+			iIndex = 1.5;
+		elseif iRealTimes >= 3 then
+			iIndex = 1.35;
+		elseif iRealTimes >= 2 then
+			iIndex = 1.2;
+		elseif iRealTimes >= 1 then
+			iIndex = 1.1;
+		elseif iRealTimes >= 0 then
+			iIndex = 1;
 		end;
-	elseif iGroup == 2 then
-		if iRandom > 0 and iRandom <= 24 then
-			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_ATTACK, iStat);
-		elseif iRandom > 24 and iRandom <= 48 then
-			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_DEFENCE, iStat);
-		elseif iRandom > 48 and iRandom <= 72 then
-			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_SPELL_POWER, iStat);
-		elseif iRandom > 72 and iRandom <= 96 then
-			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_KNOWLEDGE, iStat);
-		elseif iRandom > 96 and iRandom <= 98 then
-			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_LUCK, iStat);
-		elseif iRandom > 98 and iRandom <= 100 then
-			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_MORALE, iStat);
-		end;
-	elseif iGroup == 4 then
-		if iRandom > 0 and iRandom <= 24 then
-			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_ATTACK, iStat);
-		elseif iRandom > 24 and iRandom <= 48 then
-			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_DEFENCE, iStat);
-		elseif iRandom > 48 and iRandom <= 72 then
-			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_SPELL_POWER, iStat);
-		elseif iRandom > 72 and iRandom <= 96 then
-			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_KNOWLEDGE, iStat);
-		elseif iRandom > 96 and iRandom <= 100 then
-			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_LUCK, iStat);
-		end;
-	elseif iGroup == 3 then
-		if iRandom > 0 and iRandom <= 50 then
-			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_SPELL_POWER, iStat);
-		elseif iRandom > 50 and iRandom <= 100 then
-			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_KNOWLEDGE, iStat);
-		end;
-	elseif iGroup == 5 then
-		if iRandom > 0 and iRandom <= 45 then
-			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_ATTACK, iStat);
-		elseif iRandom > 45 and iRandom <= 90 then
-			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_DEFENCE, iStat);
-		elseif iRandom > 90 and iRandom <= 95 then
-			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_LUCK, iStat);
-		elseif iRandom > 95 and iRandom <= 100 then
-			TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_MORALE, iStat);
+		print('iRealTimes: '..iRealTimes);
+		print('iIndex: '..iIndex);
+		return iIndex;
+	end;
+-- 金币奖励
+	function TTH_Reward_Gold(strHero)
+		local iPlayer = GetObjectOwner(strHero);
+		local iScale = TTH_Reward_Step(strHero);
+		local iGold = H55_Round(1500 * iScale + 500);
+		H55_GiveResources(iPlayer, 6, iGold, strHero);
+	end;
+-- 资源奖励
+	function TTH_Reward_Resource(strHero)
+		local iPlayer = GetObjectOwner(strHero);
+		local iScale = TTH_Reward_Step(strHero);
+		local iCountNormal = H55_Round(4 * iScale);
+		local iCountSpecial = H55_Round(2 * iScale);
+		local iWeekBonus = H55_Round((H55_AbsoluteWeek - 1) / 2);
+		H55_GiveResources(iPlayer, 0, iCountNormal + random(4 + iWeekBonus * 2), strHero);
+		H55_GiveResources(iPlayer, 1, iCountNormal + random(4 + iWeekBonus * 2), strHero);
+		H55_GiveResources(iPlayer, 2, iCountSpecial + random(2 + iWeekBonus), strHero);
+		H55_GiveResources(iPlayer, 3, iCountSpecial + random(2 + iWeekBonus), strHero);
+		H55_GiveResources(iPlayer, 4, iCountSpecial + random(2 + iWeekBonus), strHero);
+		H55_GiveResources(iPlayer, 5, iCountSpecial + random(2 + iWeekBonus), strHero);
+	end;
+-- 属性奖励
+	function TTH_Reward_Stat(strHero)
+		local iPlayer = GetObjectOwner(strHero);
+		local iScale = TTH_Reward_Step(strHero);
+		local iStat = H55_Round(0.49 * iScale + 0.51);
+		local iRandom = random(100) + 1;
+		local iGroup = H55_GetHeroClassGroup(strHero);
+		if iGroup == 1 then
+			if iRandom > 0 and iRandom <= 50 then
+				TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_ATTACK, iStat);
+			elseif iRandom > 50 and iRandom <= 100 then
+				TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_DEFENCE, iStat);
+			end;
+		elseif iGroup == 2 then
+			if iRandom > 0 and iRandom <= 24 then
+				TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_ATTACK, iStat);
+			elseif iRandom > 24 and iRandom <= 48 then
+				TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_DEFENCE, iStat);
+			elseif iRandom > 48 and iRandom <= 72 then
+				TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_SPELL_POWER, iStat);
+			elseif iRandom > 72 and iRandom <= 96 then
+				TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_KNOWLEDGE, iStat);
+			elseif iRandom > 96 and iRandom <= 98 then
+				TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_LUCK, iStat);
+			elseif iRandom > 98 and iRandom <= 100 then
+				TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_MORALE, iStat);
+			end;
+		elseif iGroup == 4 then
+			if iRandom > 0 and iRandom <= 24 then
+				TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_ATTACK, iStat);
+			elseif iRandom > 24 and iRandom <= 48 then
+				TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_DEFENCE, iStat);
+			elseif iRandom > 48 and iRandom <= 72 then
+				TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_SPELL_POWER, iStat);
+			elseif iRandom > 72 and iRandom <= 96 then
+				TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_KNOWLEDGE, iStat);
+			elseif iRandom > 96 and iRandom <= 100 then
+				TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_LUCK, iStat);
+			end;
+		elseif iGroup == 3 then
+			if iRandom > 0 and iRandom <= 50 then
+				TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_SPELL_POWER, iStat);
+			elseif iRandom > 50 and iRandom <= 100 then
+				TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_KNOWLEDGE, iStat);
+			end;
+		elseif iGroup == 5 then
+			if iRandom > 0 and iRandom <= 45 then
+				TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_ATTACK, iStat);
+			elseif iRandom > 45 and iRandom <= 90 then
+				TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_DEFENCE, iStat);
+			elseif iRandom > 90 and iRandom <= 95 then
+				TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_LUCK, iStat);
+			elseif iRandom > 95 and iRandom <= 100 then
+				TTH_HERO_STAT_BONUS(iPlayer, strHero, STAT_MORALE, iStat);
+			end;
 		end;
 	end;
-end;
+-- 魔法奖励: random(100 + 绝对周数 - 1) + 周宝屋胜利次数 - 1 0/30/55/75/85/90/99
+	function TTH_Reward_Spell(strHero)
+		local iPlayer = GetObjectOwner(strHero);
+		local iTimes = TTH_DATA_BankWinTimes[H55_AbsoluteWeek][iPlayer];
+		print('iTimes: '..iTimes);
+		local strClass = H55_GetHeroClass(strHero);
+		local iHeroLevel = GetHeroLevel(strHero);
+		local iCountLearn = 0;	
+		local iRandomType = random(100 + H55_AbsoluteWeek - 1) + iTimes - 1;
+		local strType = "";
+		if iRandomType < 30 then
+			-- 1级魔法30%几率
+			strType = "1";
+		elseif iRandomType < 55 then
+			-- 2级魔法25%几率
+			strType = "2";
+		elseif iRandomType < 75 then
+			-- 3级魔法20%几率
+			strType = "3";
+		elseif iRandomType < 85 then
+			-- 4级魔法10%几率
+			strType = "4";
+		elseif iRandomType < 90 then
+			-- 5级魔法5%几率
+			strType = "5";
+		else
+			-- 群体魔法5%几率+强效魔法5%几率
+			strType = "MASSandEMPOWERED";
+		end;
+		local iIndex = random(length(TTH_TABLE_SPELL_TYPE[strType]["ID"])) + 1;
+		if KnowHeroSpell(strHero, TTH_TABLE_SPELL_TYPE[strType]["ID"][iIndex]) == nil then
+			TeachHeroSpell(strHero, TTH_TABLE_SPELL_TYPE[strType]["ID"][iIndex]);
+			if H55_IsThisAIPlayer(iPlayer) ~= 1 then
+				ShowFlyingSign({"/Text/Game/Scripts/BankReward/RewardSpell/TemplateSpell.txt";name=TTH_TABLE_SPELL_TYPE[strType]["NAME"][iIndex]}, strHero, iPlayer, 5);
+				local iPositionX, iPositionY, iPositionZ = GetObjectPosition(strHero);
+				Play3DSoundForPlayers(GetPlayerFilter(iPlayer), H55_SndSpell, iPositionX, iPositionY, iPositionZ);
+			end;
+		else
+			ShowFlyingSign({"/Text/Game/Scripts/BankReward/RewardSpell/TemplateNoMore.txt";name=TTH_TABLE_SPELL_TYPE[strType]["NAME"][iIndex]}, strHero, iPlayer, 5);
+			TTH_Reward_Exp(strHero);
+		end;
+	end;
+-- 宝物奖励: random(100 + 绝对周数 - 1) + 周宝屋胜利次数 - 1 0/64/96/112/120/124/126
+	function TTH_Reward_Artifact(strHero, iRewardParam)
+		local iPlayer = GetObjectOwner(strHero);
+		local iTimes = TTH_DATA_BankWinTimes[H55_AbsoluteWeek][iPlayer];
+		print('iTimes: '..iTimes);
+		local iRandomLevel = random(127 + H55_AbsoluteWeek - 1) + iTimes - 1;
+		local iLevel = 1;
+		if iRandomLevel < 64 then
+			-- 1级宝物50%
+			iLevel = 1;
+		elseif iRandomLevel < 96 then
+			-- 2级宝物25%
+			iLevel = 2;
+		elseif iRandomLevel < 112 then
+			-- 3级宝物12.5%
+			iLevel = 3;
+		elseif iRandomLevel < 120 then
+			-- 4级宝物6.25%
+			iLevel = 4;
+		elseif iRandomLevel < 124 then
+			-- 5级宝物3.125%
+			iLevel = 5;
+		else
+			-- 6级宝物1.5625%
+			iLevel = 6;
+		end;
+		GiveArtefact(strHero, TTH_TABLE_Artifacts[iLevel][random(length(TTH_TABLE_Artifacts[iLevel]))]);
+		if H55_IsThisAIPlayer(iPlayer) ~= 1 then
+			local iPositionX, iPositionY, iPositionZ = GetObjectPosition(strHero);
+			Play3DSoundForPlayers(GetPlayerFilter(iPlayer), H55_SndArtifact, iPositionX, iPositionY, iPositionZ);
+			return nil;
+		end;
+	end;
+-- 生物奖励
+	function TTH_Reward_Creature(strHero)
+		local iPlayer = GetObjectOwner(strHero);
+		local iScale = TTH_Reward_Step(strHero);
+		local listCreatureType = H55_ArmyInfoSimple(strHero);
+		local iLenCreatureType = 0;
+		for iIndexType = 0, 6 do
+			if listCreatureType[iIndexType] ~= 0 then
+				iLenCreatureType = iLenCreatureType + 1;
+			end;
+		end;
+		local iRandomCreatureId = listCreatureType[random(iLenCreatureType)];
+		local iGrowth = TTH_TABLE_NCF_CREATURES[iRandomCreatureId]["GROWTH"];
+		local strName = TTH_TABLE_NCF_CREATURES[iRandomCreatureId]["NAME"];
+		local iNumber = H55_Round(iGrowth * iScale);
+		AddHeroCreatures(strHero, iRandomCreatureId, iNumber);
+		if H55_IsThisAIPlayer(iPlayer) ~= 1 then
+			ShowFlyingSign({"/Text/Game/Scripts/BankReward/RewardCreature/TemplateCreature.txt";num=iNumber,name=strName}, strHero, iPlayer, 5);
+			local iPositionX, iPositionY, iPositionZ = GetObjectPosition(strHero);
+			Play3DSoundForPlayers(GetPlayerFilter(iPlayer), H55_SndArmy, iPositionX, iPositionY, iPositionZ);
+			return nil;
+		end;
+	end;
+-- 经验奖励
+	function TTH_Reward_Exp(strHero)
+		local iPlayer = GetObjectOwner(strHero);
+		local iScale = TTH_Reward_Step(strHero);
+		local iExp = H55_Round(2000 * iScale);
+		GiveExp(strHero, iExp);
+		if H55_IsThisAIPlayer(iPlayer) ~= 1 then
+			ShowFlyingSign({"/Text/Game/Scripts/BankReward/RewardExp/GetExp.txt";iExp=iExp}, strHero, iPlayer, 5);
+			return nil;
+		end;
+	end;
+
+-- 宝屋加属性通用方法
+	function TTH_HERO_STAT_BONUS(iPlayer, strHero, iStatId, iNumber)
+		ChangeHeroStat(strHero, iStatId, iNumber);
+		if H55_IsThisAIPlayer(iPlayer) ~= 1 then
+			local strTemplate = "/Text/Game/Scripts/Stat/Template.txt";
+			local strStatName = "";
+			if iStatId == STAT_ATTACK then
+				strStatName = "/Text/Game/Scripts/Stat/Attack.txt";
+			elseif iStatId == STAT_DEFENCE then
+				strStatName = "/Text/Game/Scripts/Stat/Defense.txt";
+			elseif iStatId == STAT_SPELL_POWER then
+				strStatName = "/Text/Game/Scripts/Stat/Spellpower.txt";
+			elseif iStatId == STAT_KNOWLEDGE then
+				strStatName = "/Text/Game/Scripts/Stat/Knowledge.txt";
+			elseif iStatId == STAT_LUCK then
+				strStatName = "/Text/Game/Scripts/Stat/Luck.txt";
+			elseif iStatId == STAT_MORALE then
+				strStatName = "/Text/Game/Scripts/Stat/Morale.txt";
+			end;
+			sleep(10);
+			ShowFlyingSign({strTemplate;name=strStatName,number=iNumber}, strHero, iPlayer, 5);
+		end;
+	end;
+
+-- 获取英雄职业类型
+	-- 1.力量型英雄
+	-- 2.平衡型英雄-非墓园
+	-- 4.平衡型英雄-墓园
+	-- 3.魔法型英雄
+	-- 5.野蛮人英雄
+	function H55_GetHeroClassGroup(strHero)
+		local strClass = H55_GetHeroClass(strHero);
+		if strClass == "Knight" then
+			return 1;
+		end;
+		if strClass == "Paladin" then
+			return 2;
+		end;
+		if strClass == "Heretic" then
+			return 3;
+		end;
+
+		if strClass == "Ranger" then
+			return 1;
+		end;
+		if strClass == "Warden" then
+			return 2;
+		end;
+		if strClass == "Druid" then
+			return 3;
+		end;
+
+		if strClass == "Seer" then
+			return 1;
+		end;
+		if strClass == "Wizard" then
+			return 2;
+		end;
+		if strClass == "Elementalist" then
+			return 3;
+		end;
+
+		if strClass == "Demonlord" then
+			return 1;
+		end;
+		if strClass == "Gatekeeper" then
+			return 2;
+		end;
+		if strClass == "Sorcerer" then
+			return 3;
+		end;
+
+		if strClass == "Deathknight" then
+			return 1;
+		end;
+		if strClass == "Reaver" then
+			return 4;
+		end;
+		if strClass == "Necromancer" then
+			return 3;
+		end;
+
+		if strClass == "Engineer" then
+			return 1;
+		end;
+		if strClass == "Runemage" then
+			return 2;
+		end;
+		if strClass == "Flamekeeper" then
+			return 3;
+		end;
+
+		if strClass == "Overlord" then
+			return 1;
+		end;
+		if strClass == "Assassin" then
+			return 2;
+		end;
+		if strClass == "Warlock" then
+			return 3;
+		end;
+
+		if strClass == "Barbarian" then
+			return 5;
+		end;
+	end;
+
 function TTH_Reward_Shout_Loop(iPlayer, strHero, strShoutGroup, iShoutLevel, iRewardParam)
 	if iRewardParam == 0 then
 		for iIndex = 1, iShoutLevel do
@@ -2855,245 +3057,6 @@ function TTH_Reward_Spell_Loop(iPlayer, strHero, strSpellGroup, iSpellLevel, iRe
 	end;
 	return 0;
 end;
--- 魔法奖励: 几率右移(周银行胜利次数 - 1)个单位 0/30/55/75/85/90/99
-function TTH_Reward_Spell(strHero)
-	local iPlayer = GetObjectOwner(strHero);
-	local iTimes = TTH_DATA_BankWinTimes[H55_AbsoluteWeek][iPlayer];
-	print('iTimes: '..iTimes);
-	local strClass = H55_GetHeroClass(strHero);
-	local iHeroLevel = GetHeroLevel(strHero);
-	local iCountLearn = 0;	
-	local iRandomType = random(100) + H55_AbsoluteWeek - 1 + iTimes - 1;
-	local strType = "";
-	if iRandomType < 30 then
-		-- 1级魔法30%几率
-		strType = "1";
-	elseif iRandomType < 55 then
-		-- 2级魔法25%几率
-		strType = "2";
-	elseif iRandomType < 75 then
-		-- 3级魔法20%几率
-		strType = "3";
-	elseif iRandomType < 85 then
-		-- 4级魔法10%几率
-		strType = "4";
-	elseif iRandomType < 90 then
-		-- 5级魔法5%几率
-		strType = "5";
-	else
-		-- 群体魔法5%几率+强效魔法5%几率
-		strType = "MASSandEMPOWERED";
-	end;
-	local iIndex = random(length(TTH_TABLE_SPELL_TYPE[strType]["ID"])) + 1;
-	if KnowHeroSpell(strHero, TTH_TABLE_SPELL_TYPE[strType]["ID"][iIndex]) == nil then
-		TeachHeroSpell(strHero, TTH_TABLE_SPELL_TYPE[strType]["ID"][iIndex]);
-		if H55_IsThisAIPlayer(iPlayer) ~= 1 then
-			ShowFlyingSign({"/Text/Game/Scripts/BankReward/RewardSpell/TemplateSpell.txt";name=TTH_TABLE_SPELL_TYPE[strType]["NAME"][iIndex]}, strHero, iPlayer, 5);
-			local iPositionX, iPositionY, iPositionZ = GetObjectPosition(strHero);
-			Play3DSoundForPlayers(GetPlayerFilter(iPlayer), H55_SndSpell, iPositionX, iPositionY, iPositionZ);
-		end;
-	else
-		ShowFlyingSign({"/Text/Game/Scripts/BankReward/RewardSpell/TemplateNoMore.txt";name=TTH_TABLE_SPELL_TYPE[strType]["NAME"][iIndex]}, strHero, iPlayer, 5);
-		TTH_Reward_Exp(strHero);
-	end;
-end;
--- 宝物奖励: 几率右移(周银行胜利次数 - 1)个单位 0/64/96/112/120/124/126
-function TTH_Reward_Artifact(strHero, iRewardParam)
-	local iPlayer = GetObjectOwner(strHero);
-	local iTimes = TTH_DATA_BankWinTimes[H55_AbsoluteWeek][iPlayer];
-	print('iTimes: '..iTimes);
-	local iRandomLevel = random(127) + H55_AbsoluteWeek - 1 + iTimes - 1;
-	local iLevel = 1;
-	if iRandomLevel < 64 then
-		-- 1级宝物50%
-		iLevel = 1;
-	elseif iRandomLevel < 96 then
-		-- 2级宝物25%
-		iLevel = 2;
-	elseif iRandomLevel < 112 then
-		-- 3级宝物12.5%
-		iLevel = 3;
-	elseif iRandomLevel < 120 then
-		-- 4级宝物6.25%
-		iLevel = 4;
-	elseif iRandomLevel < 124 then
-		-- 5级宝物3.125%
-		iLevel = 5;
-	else
-		-- 6级宝物1.5625%
-		iLevel = 6;
-	end;
-	GiveArtefact(strHero, TTH_TABLE_Artifacts[iLevel][random(length(TTH_TABLE_Artifacts[iLevel]))]);
-	if H55_IsThisAIPlayer(iPlayer) ~= 1 then
-		local iPositionX, iPositionY, iPositionZ = GetObjectPosition(strHero);
-		Play3DSoundForPlayers(GetPlayerFilter(iPlayer), H55_SndArtifact, iPositionX, iPositionY, iPositionZ);
-		return nil;
-	end;
-end;
--- 生物奖励: 周产 * pow(1.05, 周银行胜利次数 - 1) 四舍五入
-function TTH_Reward_Creature(strHero)
-	local iPlayer = GetObjectOwner(strHero);
-	local iTimes = TTH_DATA_BankWinTimes[H55_AbsoluteWeek][iPlayer];
-	print('iTimes: '..iTimes);
-	local listCreatureType = H55_ArmyInfoSimple(strHero);
-	local lenCreatureType = 0;
-	for iIndexType = 0, 6 do
-		if listCreatureType[iIndexType] ~= 0 then
-			lenCreatureType = lenCreatureType + 1;
-		end;
-	end;
-	local iRandomCreatureId = listCreatureType[random(lenCreatureType)];
-	for iIndexCreatureId = 1, 999 do
-		if iRandomCreatureId == TTH_TABLE_NCF_CREATURES[iIndexCreatureId]["ID"] then
-			local iGrowth = TTH_TABLE_NCF_CREATURES[iIndexCreatureId]["GROWTH"];
-			local strName = TTH_TABLE_NCF_CREATURES[iIndexCreatureId]["NAME"];
-			if iTimes > 1 then
-				for i = 1, H55_AbsoluteWeek - 1 + iTimes - 1 do
-					iGrowth = iGrowth * 1.05;
-				end
-			end;
-			local iNumber = H55_Round(iGrowth);
-			AddHeroCreatures(strHero, iRandomCreatureId, iNumber);
-			if H55_IsThisAIPlayer(iPlayer) ~= 1 then
-				ShowFlyingSign({"/Text/Game/Scripts/BankReward/RewardCreature/TemplateCreature.txt";num=iNumber,name=strName}, strHero, iPlayer, 5);
-				local iPositionX, iPositionY, iPositionZ = GetObjectPosition(strHero);
-				Play3DSoundForPlayers(GetPlayerFilter(iPlayer), H55_SndArmy, iPositionX, iPositionY, iPositionZ);
-				return nil;
-			end;
-		end;
-	end;
-end;
--- end
--- 经验奖励: 2000 * pow(1.1, 周银行胜利次数 - 1) 四舍五入
-function TTH_Reward_Exp(strHero)
-	local iPlayer = GetObjectOwner(strHero);
-	local iTimes = TTH_DATA_BankWinTimes[H55_AbsoluteWeek][iPlayer];
-	print('iTimes: '..iTimes);
-	local iExp = 2000;
-	if iTimes > 1 then
-		for i = 1, H55_AbsoluteWeek - 1 + iTimes - 1 do
-			iExp = iExp * 1.1;
-		end
-	end;
-	iExp = H55_Round(iExp);
-	GiveExp(strHero, iExp);
-	if H55_IsThisAIPlayer(iPlayer) ~= 1 then
-		ShowFlyingSign({"/Text/Game/Scripts/BankReward/RewardExp/GetExp.txt";iExp=iExp}, strHero, iPlayer, 5);
-		return nil;
-	end;
-end;
--- end
-
--- by 牙姐 2018-10-1 0:53:53
--- begin 银行加属性通用方法
-function TTH_HERO_STAT_BONUS(iPlayer, strHero, iStatId, iNumber)
-	ChangeHeroStat(strHero, iStatId, iNumber);
-	if H55_IsThisAIPlayer(iPlayer) ~= 1 then
-		local strTemplate = "/Text/Game/Scripts/Stat/Template.txt";
-		local strStatName = "";
-		if iStatId == STAT_ATTACK then
-			strStatName = "/Text/Game/Scripts/Stat/Attack.txt";
-		elseif iStatId == STAT_DEFENCE then
-			strStatName = "/Text/Game/Scripts/Stat/Defense.txt";
-		elseif iStatId == STAT_SPELL_POWER then
-			strStatName = "/Text/Game/Scripts/Stat/Spellpower.txt";
-		elseif iStatId == STAT_KNOWLEDGE then
-			strStatName = "/Text/Game/Scripts/Stat/Knowledge.txt";
-		elseif iStatId == STAT_LUCK then
-			strStatName = "/Text/Game/Scripts/Stat/Luck.txt";
-		elseif iStatId == STAT_MORALE then
-			strStatName = "/Text/Game/Scripts/Stat/Morale.txt";
-		end;
-		sleep(10);
-		ShowFlyingSign({strTemplate;name=strStatName,number=iNumber}, strHero, iPlayer, 5);
-	end;
-end;
--- end
-
--- by 牙姐 2018-9-27 23:31:27
--- begin 获取英雄职业类型
-	-- 1.力量型英雄
-	-- 2.平衡型英雄-非墓园
-	-- 4.平衡型英雄-墓园
-	-- 3.魔法型英雄
-	-- 5.野蛮人英雄
-function H55_GetHeroClassGroup(strHero)
-	local strClass = H55_GetHeroClass(strHero);
-	if strClass == "Knight" then
-		return 1;
-	end;
-	if strClass == "Paladin" then
-		return 2;
-	end;
-	if strClass == "Heretic" then
-		return 3;
-	end;
-
-	if strClass == "Ranger" then
-		return 1;
-	end;
-	if strClass == "Warden" then
-		return 2;
-	end;
-	if strClass == "Druid" then
-		return 3;
-	end;
-
-	if strClass == "Seer" then
-		return 1;
-	end;
-	if strClass == "Wizard" then
-		return 2;
-	end;
-	if strClass == "Elementalist" then
-		return 3;
-	end;
-
-	if strClass == "Demonlord" then
-		return 1;
-	end;
-	if strClass == "Gatekeeper" then
-		return 2;
-	end;
-	if strClass == "Sorcerer" then
-		return 3;
-	end;
-
-	if strClass == "Deathknight" then
-		return 1;
-	end;
-	if strClass == "Reaver" then
-		return 4;
-	end;
-	if strClass == "Necromancer" then
-		return 3;
-	end;
-
-	if strClass == "Engineer" then
-		return 1;
-	end;
-	if strClass == "Runemage" then
-		return 2;
-	end;
-	if strClass == "Flamekeeper" then
-		return 3;
-	end;
-
-	if strClass == "Overlord" then
-		return 1;
-	end;
-	if strClass == "Assassin" then
-		return 2;
-	end;
-	if strClass == "Warlock" then
-		return 3;
-	end;
-
-	if strClass == "Barbarian" then
-		return 5;
-	end;
-end;
--- end
 
 -------------------------------------------------------------------------------------------------------------------------------------------------
 --REWARDS
@@ -3674,6 +3637,432 @@ function H55_GrailTouch(s_hero, grail)
 		end;
 	end;
 end;
+
+-- begin 宝物商店访问触发器
+	function TTH_Test_GiveComponentArtifact2Hero(iPlayer)
+		local strHero = GetPlayerHeroes(iPlayer)[0];
+		GiveArtefact(strHero, ARTIFACT_GUARDIAN_01);
+		GiveArtefact(strHero, ARTIFACT_GUARDIAN_02);
+		GiveArtefact(strHero, ARTIFACT_GUARDIAN_03);
+		GiveArtefact(strHero, ARTIFACT_PLATE_MAIL_OF_STABILITY);
+		GiveArtefact(strHero, ARTIFACT_LEGION_BASIC);
+		GiveArtefact(strHero, ARTIFACT_LEGION_ADVANCED);
+		GiveArtefact(strHero, ARTIFACT_LEGION_EXPERT);
+		GiveArtefact(strHero, ARTIFACT_ENDLESS_SACK_OF_GOLD);
+		GiveArtefact(strHero, ARTIFACT_ENDLESS_BAG_OF_GOLD);
+		GiveArtefact(strHero, ARTIFACT_CROWN_OF_LEADER);
+		GiveArtefact(strHero, ARTIFACT_RES_BASIC);
+		GiveArtefact(strHero, ARTIFACT_RES_ADVANCED);
+		GiveArtefact(strHero, ARTIFACT_ENDLESS_SACK_OF_GOLD);
+		GiveArtefact(strHero, ARTIFACT_ENDLESS_BAG_OF_GOLD);
+		GiveArtefact(strHero, ARTIFACT_BAND_OF_CONJURER);
+		GiveArtefact(strHero, ARTIFACT_CLOAK_OF_MOURNING);
+		GiveArtefact(strHero, ARTIFACT_STAFF_OF_VEXINGS);
+		GiveArtefact(strHero, ARTIFACT_RING_OF_DEATH);
+		GiveArtefact(strHero, ARTIFACT_NECROMANCER_PENDANT);
+		GiveArtefact(strHero, ARTIFACT_DRAGON_SCALE_ARMOR);
+		GiveArtefact(strHero, ARTIFACT_DRAGON_SCALE_SHIELD);
+		GiveArtefact(strHero, ARTIFACT_DRAGON_BONE_GRAVES);
+		GiveArtefact(strHero, ARTIFACT_DRAGON_WING_MANTLE);
+		GiveArtefact(strHero, ARTIFACT_DRAGON_TEETH_NECKLACE);
+		GiveArtefact(strHero, ARTIFACT_DRAGON_TALON_CROWN);
+		GiveArtefact(strHero, ARTIFACT_DRAGON_EYE_RING);
+		GiveArtefact(strHero, ARTIFACT_DRAGON_FLAME_TONGUE);
+		GiveArtefact(strHero, ARTIFACT_DWARVEN_MITHRAL_CUIRASS);
+		GiveArtefact(strHero, ARTIFACT_DWARVEN_MITHRAL_GREAVES);
+		GiveArtefact(strHero, ARTIFACT_DWARVEN_MITHRAL_HELMET);
+		GiveArtefact(strHero, ARTIFACT_DWARVEN_MITHRAL_SHIELD);
+		GiveArtefact(strHero, ARTIFACT_ROBE_OF_MAGI);
+		GiveArtefact(strHero, ARTIFACT_STAFF_OF_MAGI);
+		GiveArtefact(strHero, ARTIFACT_CROWN_OF_MAGI);
+		GiveArtefact(strHero, ARTIFACT_RING_OF_MAGI);
+		GiveArtefact(strHero, ARTIFACT_TOME_OF_DESTRUCTION);
+		GiveArtefact(strHero, ARTIFACT_TOME_OF_LIGHT_MAGIC);
+		GiveArtefact(strHero, ARTIFACT_TOME_OF_DARK_MAGIC);
+		GiveArtefact(strHero, ARTIFACT_TOME_OF_SUMMONING_MAGIC);
+		GiveArtefact(strHero, ARTIFACT_SWORD_OF_RUINS);
+		GiveArtefact(strHero, ARTIFACT_BREASTPLATE_OF_PETRIFIED_WOOD);
+		GiveArtefact(strHero, ARTIFACT_SKULL_HELMET);
+		GiveArtefact(strHero, ARTIFACT_BUCKLER);
+		GiveArtefact(strHero, ARTIFACT_BOOTS_OF_INTERFERENCE);
+		GiveArtefact(strHero, ARTIFACT_TITANS_TRIDENT);
+		GiveArtefact(strHero, ARTIFACT_EVERCOLD_ICICLE);
+		GiveArtefact(strHero, ARTIFACT_PHOENIX_FEATHER_CAPE);
+		GiveArtefact(strHero, ARTIFACT_EARTHSLIDERS);
+	end;
+	function TTH_Test_VisitBlackMarkent(iPlayer)
+		local strHero = GetPlayerHeroes(iPlayer)[0];
+		local objBlackMarket = GetObjectNamesByType("BUILDING_BLACK_MARKET")[0];
+		MakeHeroInteractWithObject(strHero, objBlackMarket);
+	end;
+
+	function TTH_ObjectTouchTrigger_BuildingBlackMarket(strHero, strBuilding)
+		local iPlayer = GetObjectOwner(strHero);
+		if H55_IsThisAIPlayer(iPlayer) == 1 then
+			print("Blocked AI from visiting Artifact Merchant");
+		else
+			QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
+				, "/Text/Game/Scripts/ArtiManage/CombineArtifact/TTH_QB_CombineArtifact_or_VisitBlackMarket.txt"
+				, "TTH_Func_VisitBlackMarket('"..strHero.."','"..strBuilding.."')"
+				, "TTH_Func_ArtiManage_CombineArtifact('"..strHero.."')");
+		end;
+	end;
+
+	-- 英雄选择合成宝物
+		TTH_TABLE_ArtiManage_ArtifactCombine = {
+			[ARTIFACT_ANGELIC_ALLIANCE] = {
+				["ArtifactId"] = ARTIFACT_ANGELIC_ALLIANCE
+				, ["Text"] = "/Text/Game/Artifacts/Angelic_Alliance/Name.txt"
+				, ["Component"] = {
+					[ARTIFACT_GUARDIAN_01] = {
+						["ArtifactId"] = ARTIFACT_GUARDIAN_01
+						, ["Text"] = "/Text/Game/Artifacts/Guardian_Helmet/Name.txt"
+					}
+					, [ARTIFACT_GUARDIAN_02] = {
+						["ArtifactId"] = ARTIFACT_GUARDIAN_02
+						, ["Text"] = "/Text/Game/Artifacts/Guardian_Boots/Name.txt"
+					}
+					, [ARTIFACT_GUARDIAN_03] = {
+						["ArtifactId"] = ARTIFACT_GUARDIAN_03
+						, ["Text"] = "/Text/Game/Artifacts/Guardian_Shield/Name.txt"
+					}
+					, [ARTIFACT_PLATE_MAIL_OF_STABILITY] = {
+						["ArtifactId"] = ARTIFACT_PLATE_MAIL_OF_STABILITY
+						, ["Text"] = "/Text/Game/Artifacts/PlateMailOfStability/Name.txt"
+					}
+				}
+			}
+			,[ARTIFACT_GRAAL] = {
+				["ArtifactId"] = ARTIFACT_GRAAL
+				, ["Text"] = "/Text/Game/Artifacts/Graal/Name.txt"
+				, ["Component"] = {
+					[ARTIFACT_LEGION_BASIC] = {
+						["ArtifactId"] = ARTIFACT_LEGION_BASIC
+						, ["Text"] = "/Text/Game/Artifacts/Legion_Basic/Name.txt"
+					}
+					, [ARTIFACT_LEGION_ADVANCED] = {
+						["ArtifactId"] = ARTIFACT_LEGION_ADVANCED
+						, ["Text"] = "/Text/Game/Artifacts/Legion_Advanced/Name.txt"
+					}
+					, [ARTIFACT_LEGION_EXPERT] = {
+						["ArtifactId"] = ARTIFACT_LEGION_EXPERT
+						, ["Text"] = "/Text/Game/Artifacts/Legion_Expert/Name.txt"
+					}
+					, [ARTIFACT_ENDLESS_BAG_OF_GOLD] = {
+						["ArtifactId"] = ARTIFACT_ENDLESS_BAG_OF_GOLD
+						, ["Text"] = "/Text/Game/Artifacts/Endless_Bag_Of_Gold/Name.txt"
+					}
+					, [ARTIFACT_CROWN_OF_LEADER] = {
+						["ArtifactId"] = ARTIFACT_CROWN_OF_LEADER
+						, ["Text"] = "/Text/Game/Artifacts/Crown_Of_Leader/Name.txt"
+					}
+				}
+			}
+			,[ARTIFACT_HORN_OF_PLENTY] = {
+				["ArtifactId"] = ARTIFACT_HORN_OF_PLENTY
+				, ["Text"] = "/Text/Game/Artifacts/Horn_Of_Plenty/Name.txt"
+				, ["Component"] = {
+					[ARTIFACT_RES_BASIC] = {
+						["ArtifactId"] = ARTIFACT_RES_BASIC
+						, ["Text"] = "/Text/Game/Artifacts/Res_Basic/Name.txt"
+					}
+					, [ARTIFACT_RES_ADVANCED] = {
+						["ArtifactId"] = ARTIFACT_RES_ADVANCED
+						, ["Text"] = "/Text/Game/Artifacts/Res_Advanced/Name.txt"
+					}
+					, [ARTIFACT_RES_EXPERT] = {
+						["ArtifactId"] = ARTIFACT_RES_EXPERT
+						, ["Text"] = "/Text/Game/Artifacts/Res_Expert/Name.txt"
+					}
+					, [ARTIFACT_BAND_OF_CONJURER] = {
+						["ArtifactId"] = ARTIFACT_BAND_OF_CONJURER
+						, ["Text"] = "/Text/Game/Artifacts/Band_Of_Conjurer/Name.txt"
+					}
+				}
+			}
+			,[ARTIFACT_CURSE_SHOULDER] = {
+				["ArtifactId"] = ARTIFACT_CURSE_SHOULDER
+				, ["Text"] = "/Text/Game/Artifacts/Curse_Shoulder/Name.txt"
+				, ["Component"] = {
+					[ARTIFACT_CLOAK_OF_MOURNING] = {
+						["ArtifactId"] = ARTIFACT_CLOAK_OF_MOURNING
+						, ["Text"] = "/Text/Game/Artifacts/Cloak_of_mourning/Name.txt"
+					}
+					, [ARTIFACT_STAFF_OF_VEXINGS] = {
+						["ArtifactId"] = ARTIFACT_STAFF_OF_VEXINGS
+						, ["Text"] = "/Text/Game/Artifacts/Staff_of_vexing/Name.txt"
+					}
+					, [ARTIFACT_RING_OF_DEATH] = {
+						["ArtifactId"] = ARTIFACT_RING_OF_DEATH
+						, ["Text"] = "/Text/Game/Artifacts/Ring_of_Death/Name.txt"
+					}
+					, [ARTIFACT_NECROMANCER_PENDANT] = {
+						["ArtifactId"] = ARTIFACT_NECROMANCER_PENDANT
+						, ["Text"] = "/Text/Game/Artifacts/Necromancer_Pendant/Name.txt"
+					}
+				}
+			}
+			,[ARTIFACT_DRACONIC] = {
+				["ArtifactId"] = ARTIFACT_DRACONIC
+				, ["Text"] = "/Text/Game/Artifacts/Draconic/Name.txt"
+				, ["Component"] = {
+					[ARTIFACT_DRAGON_SCALE_ARMOR] = {
+						["ArtifactId"] = ARTIFACT_DRAGON_SCALE_ARMOR
+						, ["Text"] = "/Text/Game/Artifacts/Dragon_scale_armor/Name.txt"
+					}
+					, [ARTIFACT_DRAGON_SCALE_SHIELD] = {
+						["ArtifactId"] = ARTIFACT_DRAGON_SCALE_SHIELD
+						, ["Text"] = "/Text/Game/Artifacts/DragonscaleShield/Name.txt"
+					}
+					, [ARTIFACT_DRAGON_BONE_GRAVES] = {
+						["ArtifactId"] = ARTIFACT_DRAGON_BONE_GRAVES
+						, ["Text"] = "/Text/Game/Artifacts/Dragon_bone_greaves/Name.txt"
+					}
+					, [ARTIFACT_DRAGON_WING_MANTLE] = {
+						["ArtifactId"] = ARTIFACT_DRAGON_WING_MANTLE
+						, ["Text"] = "/Text/Game/Artifacts/Dragon_wing_mantle/Name.txt"
+					}
+					, [ARTIFACT_DRAGON_TEETH_NECKLACE] = {
+						["ArtifactId"] = ARTIFACT_DRAGON_TEETH_NECKLACE
+						, ["Text"] = "/Text/Game/Artifacts/Dragon_teeth_necklace/Name.txt"
+					}
+					, [ARTIFACT_DRAGON_TALON_CROWN] = {
+						["ArtifactId"] = ARTIFACT_DRAGON_TALON_CROWN
+						, ["Text"] = "/Text/Game/Artifacts/Dragon_talon_crown/Name.txt"
+					}
+					, [ARTIFACT_DRAGON_EYE_RING] = {
+						["ArtifactId"] = ARTIFACT_DRAGON_EYE_RING
+						, ["Text"] = "/Text/Game/Artifacts/Dragon_eye_ring/Name.txt"
+					}
+					, [ARTIFACT_DRAGON_FLAME_TONGUE] = {
+						["ArtifactId"] = ARTIFACT_DRAGON_FLAME_TONGUE
+						, ["Text"] = "/Text/Game/Artifacts/Dragon_flame_tongue/Name.txt"
+					}
+				}
+			}
+			,[ARTIFACT_SENTINEL] = {
+				["ArtifactId"] = ARTIFACT_SENTINEL
+				, ["Text"] = "/Text/Game/Artifacts/Sentinel/Name.txt"
+				, ["Component"] = {
+					[ARTIFACT_DWARVEN_MITHRAL_CUIRASS] = {
+						["ArtifactId"] = ARTIFACT_DWARVEN_MITHRAL_CUIRASS
+						, ["Text"] = "/Text/Game/Artifacts/Dwarven_mithral_cuirass/Name.txt"
+					}
+					, [ARTIFACT_DWARVEN_MITHRAL_GREAVES] = {
+						["ArtifactId"] = ARTIFACT_DWARVEN_MITHRAL_GREAVES
+						, ["Text"] = "/Text/Game/Artifacts/Dwarven_mithral_greaves/Name.txt"
+					}
+					, [ARTIFACT_DWARVEN_MITHRAL_HELMET] = {
+						["ArtifactId"] = ARTIFACT_DWARVEN_MITHRAL_HELMET
+						, ["Text"] = "/Text/Game/Artifacts/Dwarven_mithral_helmet/Name.txt"
+					}
+					, [ARTIFACT_DWARVEN_MITHRAL_SHIELD] = {
+						["ArtifactId"] = ARTIFACT_DWARVEN_MITHRAL_SHIELD
+						, ["Text"] = "/Text/Game/Artifacts/Dwarven_mithral_shield/Name.txt"
+					}
+				}
+			}
+			,[ARTIFACT_EIGHTFOLD] = {
+				["ArtifactId"] = ARTIFACT_EIGHTFOLD
+				, ["Text"] = "/Text/Game/Artifacts/Eightfold/Name.txt"
+				, ["Component"] = {
+					[ARTIFACT_ROBE_OF_MAGI] = {
+						["ArtifactId"] = ARTIFACT_ROBE_OF_MAGI
+						, ["Text"] = "/Text/Game/Artifacts/Robe_of_magi/Name.txt"
+					}
+					, [ARTIFACT_STAFF_OF_MAGI] = {
+						["ArtifactId"] = ARTIFACT_STAFF_OF_MAGI
+						, ["Text"] = "/Text/Game/Artifacts/Staff_of_magi/Name.txt"
+					}
+					, [ARTIFACT_CROWN_OF_MAGI] = {
+						["ArtifactId"] = ARTIFACT_CROWN_OF_MAGI
+						, ["Text"] = "/Text/Game/Artifacts/Crown_of_magi/Name.txt"
+					}
+					, [ARTIFACT_RING_OF_MAGI] = {
+						["ArtifactId"] = ARTIFACT_RING_OF_MAGI
+						, ["Text"] = "/Text/Game/Artifacts/Ring_of_magi/Name.txt"
+					}
+				}
+			}
+			,[ARTIFACT_CODEX] = {
+				["ArtifactId"] = ARTIFACT_CODEX
+				, ["Text"] = "/Text/Game/Artifacts/Codex/Name.txt"
+				, ["Component"] = {
+					[ARTIFACT_TOME_OF_DESTRUCTION] = {
+						["ArtifactId"] = ARTIFACT_TOME_OF_DESTRUCTION
+						, ["Text"] = "/Text/Game/Artifacts/Tome_of_Destruction/Name.txt"
+					}
+					, [ARTIFACT_TOME_OF_LIGHT_MAGIC] = {
+						["ArtifactId"] = ARTIFACT_TOME_OF_LIGHT_MAGIC
+						, ["Text"] = "/Text/Game/Artifacts/Tome_of_Light_Magic/Name.txt"
+					}
+					, [ARTIFACT_TOME_OF_DARK_MAGIC] = {
+						["ArtifactId"] = ARTIFACT_TOME_OF_DARK_MAGIC
+						, ["Text"] = "/Text/Game/Artifacts/Tome_of_Dark_Magic/Name.txt"
+					}
+					, [ARTIFACT_TOME_OF_SUMMONING_MAGIC] = {
+						["ArtifactId"] = ARTIFACT_TOME_OF_SUMMONING_MAGIC
+						, ["Text"] = "/Text/Game/Artifacts/Tome_of_Summoning_Magic/Name.txt"
+					}
+				}
+			}
+			,[ARTIFACT_PLATE_MAIL_OF_STABILITY] = {
+				["ArtifactId"] = ARTIFACT_PLATE_MAIL_OF_STABILITY
+				, ["Text"] = "/Text/Game/Artifacts/PlateMailOfStability/Name.txt"
+				, ["Component"] = {
+					[ARTIFACT_SWORD_OF_RUINS] = {
+						["ArtifactId"] = ARTIFACT_SWORD_OF_RUINS
+						, ["Text"] = "/Text/Game/Artifacts/SwordOfRuin/Name.txt"
+					}
+					, [ARTIFACT_BREASTPLATE_OF_PETRIFIED_WOOD] = {
+						["ArtifactId"] = ARTIFACT_BREASTPLATE_OF_PETRIFIED_WOOD
+						, ["Text"] = "/Text/Game/Artifacts/Breastplate_of_petrified_wood/Name.txt"
+					}
+					, [ARTIFACT_SKULL_HELMET] = {
+						["ArtifactId"] = ARTIFACT_SKULL_HELMET
+						, ["Text"] = "/Text/Game/Artifacts/Skull_Helmet/Name.txt"
+					}
+					, [ARTIFACT_BUCKLER] = {
+						["ArtifactId"] = ARTIFACT_BUCKLER
+						, ["Text"] = "/Text/Game/Artifacts/Buckler/Name.txt"
+					}
+					, [ARTIFACT_BOOTS_OF_INTERFERENCE] = {
+						["ArtifactId"] = ARTIFACT_BOOTS_OF_INTERFERENCE
+						, ["Text"] = "/Text/Game/Artifacts/Boots_of_interference/Name.txt"
+					}
+				}
+			}
+			,[ARTIFACT_TOME_OF_DESTRUCTION] = {
+				["ArtifactId"] = ARTIFACT_TOME_OF_DESTRUCTION
+				, ["Text"] = "/Text/Game/Artifacts/Tome_of_Destruction/Name.txt"
+				, ["Component"] = {
+					[ARTIFACT_TITANS_TRIDENT] = {
+						["ArtifactId"] = ARTIFACT_TITANS_TRIDENT
+						, ["Text"] = "/Text/Game/Artifacts/Titan`s_trident/Name.txt"
+					}
+					, [ARTIFACT_EVERCOLD_ICICLE] = {
+						["ArtifactId"] = ARTIFACT_EVERCOLD_ICICLE
+						, ["Text"] = "/Text/Game/Artifacts/Evercold_icicle/Name.txt"
+					}
+					, [ARTIFACT_PHOENIX_FEATHER_CAPE] = {
+						["ArtifactId"] = ARTIFACT_PHOENIX_FEATHER_CAPE
+						, ["Text"] = "/Text/Game/Artifacts/Phoenix_feather_cape/Name.txt"
+					}
+					, [ARTIFACT_EARTHSLIDERS] = {
+						["ArtifactId"] = ARTIFACT_EARTHSLIDERS
+						, ["Text"] = "/Text/Game/Artifacts/Earthsliders/Name.txt"
+					}
+				}
+			}
+		}
+		function TTH_Func_ArtiManage_CombineArtifact(strHero)
+			TTH_Func_ArtiManage_CombineArtifactChosen(strHero, 1);
+		end;
+		function TTH_Func_ArtiManage_CombineArtifactChosen(strHero, iChoose)
+			local iPlayer = GetObjectOwner(strHero);
+			local strText1 = TTH_TABLE_ArtiManage_ArtifactCombine[ARTIFACT_ANGELIC_ALLIANCE]["Text"];
+			local strText2 = TTH_TABLE_ArtiManage_ArtifactCombine[ARTIFACT_GRAAL]["Text"];
+			local strText3 = TTH_TABLE_ArtiManage_ArtifactCombine[ARTIFACT_HORN_OF_PLENTY]["Text"];
+			local strText4 = TTH_TABLE_ArtiManage_ArtifactCombine[ARTIFACT_CURSE_SHOULDER]["Text"];
+			local strText5 = TTH_TABLE_ArtiManage_ArtifactCombine[ARTIFACT_DRACONIC]["Text"];
+			local strText6 = TTH_TABLE_ArtiManage_ArtifactCombine[ARTIFACT_SENTINEL]["Text"];
+			local strText7 = TTH_TABLE_ArtiManage_ArtifactCombine[ARTIFACT_EIGHTFOLD]["Text"];
+			local strText8 = TTH_TABLE_ArtiManage_ArtifactCombine[ARTIFACT_CODEX]["Text"];
+			local strText9 = TTH_TABLE_ArtiManage_ArtifactCombine[ARTIFACT_PLATE_MAIL_OF_STABILITY]["Text"];
+			local strText10 = TTH_TABLE_ArtiManage_ArtifactCombine[ARTIFACT_TOME_OF_DESTRUCTION]["Text"];
+			local iArtifactId = 0;
+			if iChoose + 0 == 1 then
+				iArtifactId = ARTIFACT_ANGELIC_ALLIANCE;
+			elseif iChoose + 0 == 2 then
+				iArtifactId = ARTIFACT_GRAAL;
+			elseif iChoose + 0 == 3 then
+				iArtifactId = ARTIFACT_HORN_OF_PLENTY;
+			elseif iChoose + 0 == 4 then
+				iArtifactId = ARTIFACT_CURSE_SHOULDER;
+			elseif iChoose + 0 == 5 then
+				iArtifactId = ARTIFACT_DRACONIC;
+			elseif iChoose + 0 == 6 then
+				iArtifactId = ARTIFACT_SENTINEL;
+			elseif iChoose + 0 == 7 then
+				iArtifactId = ARTIFACT_EIGHTFOLD;
+			elseif iChoose + 0 == 8 then
+				iArtifactId = ARTIFACT_CODEX;
+			elseif iChoose + 0 == 9 then
+				iArtifactId = ARTIFACT_PLATE_MAIL_OF_STABILITY;
+			elseif iChoose + 0 == 10 then
+				iArtifactId = ARTIFACT_TOME_OF_DESTRUCTION;
+			end;
+			if iChoose + 0 < 10 then
+				local iChooseNext = iChoose + 1;
+				QuestionBoxForPlayers(GetPlayerFilter(iPlayer), {"/Text/Game/Scripts/ArtiManage/CombineArtifact/QuestionChooseType"..iChoose..".txt";strText1=strText1,strText2=strText2,strText3=strText3,strText4=strText4,strText5=strText5,strText6=strText6,strText7=strText7,strText8=strText8,strText9=strText9,strText10=strText10}, "TTH_Func_ArtiManage_CombineArtifactImpl('"..strHero.."','"..iArtifactId.."')", "TTH_Func_ArtiManage_CombineArtifactChosen('"..strHero.."','"..iChooseNext.."')");
+			else
+				QuestionBoxForPlayers(GetPlayerFilter(iPlayer), {"/Text/Game/Scripts/ArtiManage/CombineArtifact/QuestionChooseType"..iChoose..".txt";strText1=strText1,strText2=strText2,strText3=strText3,strText4=strText4,strText5=strText5,strText6=strText6,strText7=strText7,strText8=strText8,strText9=strText9,strText10=strText10}, "TTH_Func_ArtiManage_CombineArtifactImpl('"..strHero.."','"..iArtifactId.."')", "TTH_Func_ArtiManage_Giveup('"..strHero.."')");
+			end;
+		end;
+		function TTH_Func_ArtiManage_CombineArtifactImpl(strHero, strArtifactId)
+			local iPlayer = GetObjectOwner(strHero);
+			local iArtifactId = strArtifactId + 0;
+			local objArtifact = TTH_TABLE_ArtiManage_ArtifactCombine[iArtifactId];
+			local strCombineText = objArtifact["Text"];
+			local arrComponentTextExist = {"", "", "", "", "", "", "", ""};
+			local arrComponentTextNotExist = {"", "", "", "", "", "", "", ""};
+			local iComponentCount = length(objArtifact["Component"]);
+			local iIndex = 0;
+			for iComponent, objComponent in objArtifact["Component"] do
+				if HasArtefact(strHero, objComponent["ArtifactId"], 0) ~= nil then
+					arrComponentTextExist[iIndex] = objComponent["Text"];
+				else
+					arrComponentTextNotExist[iIndex] = objComponent["Text"];
+					iComponentCount = iComponentCount - 1;
+				end;
+				iIndex = iIndex + 1;
+			end;
+			if iComponentCount < length(objArtifact["Component"]) then
+				MessageBoxForPlayers(GetPlayerFilter(iPlayer), {"/Text/Game/Scripts/ArtiManage/CombineArtifact/TTH_MB_NotCompleteComponent.txt"
+					;strComponentText0=arrComponentTextNotExist[0]
+					,strComponentText1=arrComponentTextNotExist[1]
+					,strComponentText2=arrComponentTextNotExist[2]
+					,strComponentText3=arrComponentTextNotExist[3]
+					,strComponentText4=arrComponentTextNotExist[4]
+					,strComponentText5=arrComponentTextNotExist[5]
+					,strComponentText6=arrComponentTextNotExist[6]
+					,strComponentText7=arrComponentTextNotExist[7]
+					,strCombineText=strCombineText}, nil);
+			else
+				QuestionBoxForPlayers(GetPlayerFilter(iPlayer), {"/Text/Game/Scripts/ArtiManage/CombineArtifact/TTH_QB_CombineArtifact_or_Giveup.txt"
+					;strComponentText0=arrComponentTextExist[0]
+					,strComponentText1=arrComponentTextExist[1]
+					,strComponentText2=arrComponentTextExist[2]
+					,strComponentText3=arrComponentTextExist[3]
+					,strComponentText4=arrComponentTextExist[4]
+					,strComponentText5=arrComponentTextExist[5]
+					,strComponentText6=arrComponentTextExist[6]
+					,strComponentText7=arrComponentTextExist[7]
+					,strCombineText=strCombineText}, "TTH_Func_ArtiManage_CombineArtifactDeal('"..strHero.."','"..iArtifactId.."')", "TTH_Func_ArtiManage_Giveup('"..strHero.."')");
+			end;
+		end;		
+		function TTH_Func_ArtiManage_CombineArtifactDeal(strHero, strArtifactId)
+			local iPlayer = GetObjectOwner(strHero);
+			local iArtifactId = strArtifactId + 0;
+			local objArtifact = TTH_TABLE_ArtiManage_ArtifactCombine[iArtifactId];
+			local strCombineText = objArtifact["Text"];
+			for iIndex, objComponent in objArtifact["Component"] do
+				RemoveArtefact(strHero, objComponent["ArtifactId"]);
+			end;
+			GiveArtefact(strHero, iArtifactId);
+			MessageBoxForPlayers(GetPlayerFilter(iPlayer), {"/Text/Game/Scripts/ArtiManage/CombineArtifact/TTH_MB_CombineArtifactSuccess.txt"
+				;strCombineText=strCombineText}, nil);
+		end;
+
+	-- 英雄选择访问宝物商店
+		function TTH_Func_VisitBlackMarket(strHero, strBuilding)
+			Trigger(OBJECT_TOUCH_TRIGGER, strBuilding, nil);
+			SetObjectEnabled(strBuilding, not nil);
+			MakeHeroInteractWithObject(strHero, strBuilding);
+			Trigger(OBJECT_TOUCH_TRIGGER, strBuilding, "TTH_ObjectTouchTrigger_BuildingBlackMarket");
+			SetObjectEnabled(strBuilding, nil);
+		end;
+-- end
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 --ACTIVATOR

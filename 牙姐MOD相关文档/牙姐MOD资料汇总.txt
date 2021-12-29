@@ -134,7 +134,7 @@
   圣堂
     名称: 佑福仪式
     所属: 领导
-    效果：提升我方生物攻防士气各4点/主动性40%，持续【2+英雄等级*0.1】回合
+    效果: 提升我方生物攻防士气各4点/主动性40%，持续【2+英雄等级*0.1】回合
     前置:
       骑士:     神圣指引(领导)  +   速度能量(进攻)  +   无敌冲锋(反击)
       圣骑士:   神圣指引(领导)  +   闪电思维(启蒙)  +   不灭之光(光明)
@@ -950,7 +950,7 @@
         弩车
         连珠火球
         神秘机械
-          英雄首次行动（及战争机械累积行动10次后）触发--对战争机械周围的我方生物施放法术：
+          英雄首次行动（及战争机械累积行动10次后）触发--对战争机械周围的我方生物施放法术: 
             弩车--魔法净化
             投石车--幻象军团
             急救帐篷--神秘护甲
@@ -1443,9 +1443,9 @@
           每周会有女妖加入英雄部队(根据英雄等级，英雄咒力，亡灵城镇数)
           英雄可将幽灵及升级形态升级为女妖
           英雄带领的女妖在对敌方生物造成战损时对其施放【寒冰激射】
-          名称：女妖
-          模型：花妖
-          属性：
+          名称: 女妖
+          模型: 花妖
+          属性: 
             攻击: 5
             防御: 5
             伤害: 4-6
@@ -1473,8 +1473,8 @@
         弩车
         熔岩爆裂
           弩车会和本场战斗首次造成有效战损或击杀的友方生物链接，每次该类型生物造成有效战损时，弩车会追加攻击，有效战损即造成减员≥【英雄等级/8(向下取整&至少为1)】
-            注1：弩车追加攻击后ATB会被置为0
-            注2：造成多队有效战损时弩车也会同时对这些生物追加攻击
+            注1: 弩车追加攻击后ATB会被置为0
+            注2: 造成多队有效战损时弩车也会同时对这些生物追加攻击
       卡里----幸福宝贝赞助并设计
         Skeggy
         初级机械, 初级幸运, 士兵之幸
@@ -1897,7 +1897,7 @@
   H55_BuildNeutralTowns = 1; 新开地图无主城镇的建筑等级，0~5 0就是1级城建，1就是6级城建（有1级魔法塔、铁匠铺、市场、酒馆），每高一级，多5级左右城建
   H55_AIHandicap = 0; AI难度减弱，0是正常，1是减弱
   H55_AICheatMode = 4; AI难度，0是AI不作弊，1是40%，2是60%，3是80%，4是100%，5是120%
-  H55_BanksDifficulty = 1; 银行难度系数，推荐不要动
+  H55_BanksDifficulty = 1; 宝屋难度系数，推荐不要动
   H55_NeutralStackSize = 1; 野怪初始数量系数，推荐不要动
   ☆☆☆☆☆☆☆☆☆☆☆☆ 以上的好都别去修改，以下的都是可以修改的选项
   H55_AllAgainstOne = 0; 0是乱战，1是AI结盟
@@ -1912,7 +1912,7 @@
   H55_AISetBonus_Draconic = 0; 0是不送，1是送龙神胸甲
   H55_AISkillBonusBasic = 0; 0是不送，1是送初始技能
   H55_AISkillBonusAbsolute = 0; 0是不送，1是送终极技能
-  H55_AITownLevel = 1; AI城镇的建筑等级：选择范围0~5 默认为1 0就是1级城建 1就是6级城建（有1级魔法塔、铁匠铺、市场、酒馆） 每高一级，多5级左右城建
+  H55_AITownLevel = 1; AI城镇的建筑等级: 选择范围0~5 默认为1 0就是1级城建 1就是6级城建（有1级魔法塔、铁匠铺、市场、酒馆） 每高一级，多5级左右城建
   H55_AICheats = 0; 0是不生效，1是生效（就是会给所有AI送这些装备和技能）
   ☆☆☆☆☆☆☆☆☆☆☆☆
   H55_PlayerSetBonus_Tear = 0; 0是不送，1是送眼泪
@@ -1924,7 +1924,7 @@
   H55_PlayerSetBonus_Draconic = 0; 0是不送，1是送龙神胸甲
   H55_PlayerSkillBonusBasic = 0; 0是不送，1是送初始技能
   H55_PlayerSkillBonusAbsolute = 0; 0是不送，1是送终极技能
-  H55_PlayerTownLevel = 0; 玩家城镇的建筑等级：选择范围0~5 默认为0 0就是1级城建 1就是6级城建（有1级魔法塔、铁匠铺、市场、酒馆） 每高一级，多5级左右城建
+  H55_PlayerTownLevel = 0; 玩家城镇的建筑等级: 选择范围0~5 默认为0 0就是1级城建 1就是6级城建（有1级魔法塔、铁匠铺、市场、酒馆） 每高一级，多5级左右城建
   H55_PlayerCheats = 0; 0是不生效，1是生效（就是会给您送这些装备和技能）
   ☆☆☆☆☆☆☆☆☆☆☆☆
   H55_ChooseHero_Name = 'Ving'; 选择英雄的控制台名
@@ -2057,147 +2057,251 @@
     ------------------------------
 
 14.宝物分档
-  -- 1.资源宝物
-    ARTIFACT_RES_WOOD = 97              --神圣种子→木材产量+100%（在木材矿中使用）
-    ARTIFACT_RES_ORE = 98               --矮人十字镐→石料产量+100%（在石料矿中使用）
-    ARTIFACT_RES_SULPHUR = 99             --育龙者的魔法盒→硫磺产量+100%（在硫磺矿中使用）
-    ARTIFACT_RES_CRYSTAL = 100            --水晶眼球→水晶产量+100%（在水晶矿中使用）
-    ARTIFACT_RES_GEM = 101              --无尽宝石戒指→宝石产量+100%（在宝石矿中使用）
-    ARTIFACT_RES_MERCURY = 102            --无尽水银瓶→水银产量+100%（在水银矿中使用）
+  -- 1.散件-低
+    ARTIFACT_RES_BASIC = 98               
+      --矮人十字镐<背包-98>: 木材/石矿产量增加（英雄携带宝物在非城门处→打开魔法书（按C）→城镇管理→宝物管理→资源宝物）
+    ARTIFACT_SWORD_OF_RUINS = 1           
+      --力量宝剑: 英雄攻击+2
+    ARTIFACT_BREASTPLATE_OF_PETRIFIED_WOOD = 14   
+      --神力胸甲: 英雄咒力+2
+    ARTIFACT_SKULL_HELMET = 55            
+      --亡灵巫师头盔: 英雄知识+2
+    ARTIFACT_WISPERING_RING = 65          
+      --谨慎指环: 英雄攻击+2防御+2，我方生物移动速度-1
+    ARTIFACT_BEGINNER_MAGIC_STICK = 80        
+      --学徒魔杖: 英雄咒力+1知识+1
+    ARTIFACT_EDGE_OF_BALANCE = 90           
+      --平衡利刃: 正义阵营英雄攻击+3防御-1，邪恶阵营英雄攻击-1防御+3
+    ARTIFACT_STEADFAST = 110            
+      --坚定之盾: 英雄攻击-1防御+4
+    ARTIFACT_BUCKLER = 111              
+      --矮人之盾: 英雄防御+2
+    ARTIFACT_FOUR_LEAF_CLOVER = 8           
+      --四叶苜蓿: 英雄幸运+1
+    ARTIFACT_GOLDEN_SEXTANT = 10          
+      --海精灵的六分仪: 英雄知识+1，英雄海上移动力+25%
+    ARTIFACT_CROWN_OF_MANY_EYES = 12        
+      --全视王冠: 英雄咒力+1，英雄视野+4
+    ARTIFACT_RING_OF_LIGHTING_PROTECTION = 20     
+      --防电指环: 我方生物受到的电属性魔法杀伤-50%，英雄知识+1
+    ARTIFACT_BOOTS_OF_INTERFERENCE = 27       
+      --魔防战靴: 我方生物魔法抵抗几率+10%
+    ARTIFACT_RIGID_MANTLE = 62            
+      --西莱纳斗篷: 我方生物受到的土属性魔法杀伤-50%，英雄防御+1
+    ARTIFACT_BEARHIDE_WRAPS = 84          
+      --熊皮大衣: 英雄防御+1，我方生物受到的冰属性魔法杀伤-25%
+    ARTIFACT_RING_OF_UNSUMMONING = 93         
+      --驱逐之戒: 英雄可以使用【驱逐】，降低敌方【召唤魔法】效果（【召唤元素】数量-50%，【召唤凤凰】【剑刃障壁】【召唤蜂窝】生命-50%）
 
-  -- 2.散件-低
-    ARTIFACT_SWORD_OF_RUINS = 1           --力量宝剑→英雄攻击+2
-    ARTIFACT_BREASTPLATE_OF_PETRIFIED_WOOD = 14   --神力胸甲→英雄咒力+2
-    ARTIFACT_SKULL_HELMET = 55            --亡灵巫师头盔→英雄知识+2
-    ARTIFACT_WISPERING_RING = 65          --谨慎指环→英雄攻击+2防御+2，我方生物移动速度-1
-    ARTIFACT_BEGINNER_MAGIC_STICK = 80        --学徒魔杖→英雄咒力+1知识+1
-    ARTIFACT_EDGE_OF_BALANCE = 90           --平衡利刃→正义阵营英雄攻击+3防御-1，邪恶阵营英雄攻击-1防御+3
-    ARTIFACT_STEADFAST = 110            --坚定之盾→英雄攻击-1防御+4
-    ARTIFACT_BUCKLER = 111              --矮人之盾→英雄防御+2
-    ARTIFACT_FOUR_LEAF_CLOVER = 8           --四叶苜蓿→英雄幸运+1
-    ARTIFACT_GOLDEN_SEXTANT = 10          --海精灵的六分仪→英雄知识+1，英雄海上移动力+25%
-    ARTIFACT_CROWN_OF_MANY_EYES = 12        --全视王冠→英雄咒力+1，英雄视野+4
-    ARTIFACT_RING_OF_LIGHTING_PROTECTION = 20     --防电指环→我方生物受到的电属性魔法杀伤-50%，英雄知识+1
-    ARTIFACT_BOOTS_OF_INTERFERENCE = 27       --魔防战靴→我方生物魔法抵抗几率+10%
-    ARTIFACT_RIGID_MANTLE = 62            --西莱纳斗篷→我方生物受到的土属性魔法杀伤-50%，英雄防御+1
-    ARTIFACT_BEARHIDE_WRAPS = 84          --熊皮大衣→英雄防御+1，我方生物受到的冰属性魔法杀伤-25%
-    ARTIFACT_RING_OF_UNSUMMONING = 93         --驱逐之戒→英雄可以使用【驱逐】，降低敌方【召唤魔法】效果（【召唤元素】数量-50%，【召唤凤凰】【剑刃障壁】【召唤蜂窝】生命-50%）
+  -- 2.散件-中
+    ARTIFACT_RES_ADVANCED = 99           
+      --育龙者的魔法盒<背包-99>: 硫磺/水晶/宝石/水银产量增加（英雄携带宝物在非城门处→打开魔法书（按C）→城镇管理→宝物管理→资源宝物）
+    ARTIFACT_LEGION_BASIC = 104            
+      --军团之证<背包-104>: 当前城镇1~3级兵种产量永久+2，立刻生效，可累积（英雄携带宝物在城门处→打开魔法书（按C）→城镇管理→宝物管理→军团宝物）
+    ARTIFACT_ORDER_OF_CONSCRIPTION = 103            
+      --征兵令（消耗类）<背包-103>: 立刻获取当前第一格生物一周的产量（使用方式: 大地图（英雄未站在城门口）→打开魔法书（按C）→城镇管理→宝物管理）
+    ARTIFACT_TITANS_TRIDENT = 5           
+      --泰坦的三叉戟: 英雄电属性魔法杀伤+50%
+    ARTIFACT_RING_OF_LIFE = 21            
+      --活力指环: 我方生物生命值上限+2
+    ARTIFACT_EVERCOLD_ICICLE = 18           
+      --永冻冰柱: 英雄冰属性魔法杀伤+50%
+    ARTIFACT_ENDLESS_SACK_OF_GOLD = 28        
+      --无尽黄金麻袋: 在金矿中使用使该矿产量翻倍
+    ARTIFACT_PHOENIX_FEATHER_CAPE = 32        
+      --凤羽披风: 英雄火属性魔法杀伤+50%
+    ARTIFACT_VALORIOUS_ARMOR = 56           
+      --勇猛战甲: 英雄防御+1士气+1
+    ARTIFACT_EARTHSLIDERS = 61            
+      --翡翠便鞋: 英雄土属性魔法杀伤+50%
+    ARTIFACT_TAROT_DECK = 87            
+      --占卜纸牌: 英雄知识+1幸运+1
+    ARTIFACT_REINCARNATION = 112          
+      --轮回之戒: 释放充能转化英雄第一格升级形态部队为另一种形态（英雄战斗胜利后充能）
+    ARTIFACT_WEREWOLF_CLAW_NECKLACE = 17      
+      --血爪项链: 我方生物伤害+1
+    ARTIFACT_CROWN_OF_LEADER = 88           
+      --领袖王冠: 英雄士气+1，【外交术】【理财术】【募兵术】效果+100%
 
-  -- 3.散件-中
-    ARTIFACT_TITANS_TRIDENT = 5           --泰坦的三叉戟→英雄电属性魔法杀伤+50%
-    ARTIFACT_RING_OF_LIFE = 21            --活力指环→我方生物生命值上限+2
-    ARTIFACT_EVERCOLD_ICICLE = 18           --永冻冰柱→英雄冰属性魔法杀伤+50%
-    ARTIFACT_ENDLESS_SACK_OF_GOLD = 28        --无尽黄金麻袋→在金矿中使用使该矿产量翻倍
-    ARTIFACT_PHOENIX_FEATHER_CAPE = 32        --凤羽披风→英雄火属性魔法杀伤+50%
-    ARTIFACT_VALORIOUS_ARMOR = 56           --勇猛战甲→英雄防御+1士气+1
-    ARTIFACT_EARTHSLIDERS = 61            --翡翠便鞋→英雄土属性魔法杀伤+50%
-    ARTIFACT_TAROT_DECK = 87            --占卜纸牌→英雄知识+1幸运+1
-    ARTIFACT_REINCARNATION = 112          --轮回之戒→释放充能转化英雄第一格升级形态部队为另一种形态（英雄战斗胜利后充能）
-    ARTIFACT_WEREWOLF_CLAW_NECKLACE = 17      --血爪项链→我方生物伤害+1
-    ARTIFACT_CROWN_OF_LEADER = 88           --领袖王冠→英雄士气+1，【外交术】【理财术】【募兵术】效果+100%
+  -- 3.套装组件-低
+    ARTIFACT_NECKLACE_OF_BRAVERY = 16         
+      --雄狮项链: 英雄士气+1
+    ARTIFACT_LION_HIDE_CAPE = 31          
+      --狮鬃披风: 英雄士气+2
+    ARTIFACT_HELM_OF_ENLIGHTMENT = 34         
+      --启迪头巾: 英雄知识+3经验获取+10%
+    ARTIFACT_CHAIN_MAIL_OF_ENLIGHTMENT = 35     
+      --启迪鳞甲: 英雄咒力+3经验获取+20%
+    ARTIFACT_RING_OF_DEATH = 70           
+      --无悔指环: 我方生物免疫【光明圣言】，英雄攻击+1防御+1士气-1
+    ARTIFACT_RUNIC_WAR_AXE = 81           
+      --符文战斧: 英雄攻击+2咒力+2
+    ARTIFACT_RUNIC_WAR_HARNESS = 82         
+      --符文战甲: 英雄防御+2知识+2
+    ARTIFACT_TREEBORN_QUIVER = 95           
+      --林生箭袋: 我方远程生物攻击+4且无限弹药
+    ARTIFACT_MONK_01 = 116              
+      --先知布帽: 英雄战斗胜利后魔法值+4
+    ARTIFACT_MONK_02 = 117              
+      --先知长袍: 英雄咒力+1知识+1，战斗胜利后魔法值+2
+    ARTIFACT_MONK_03 = 118              
+      --先知凉鞋: 英雄战斗胜利后移动力+250
+    ARTIFACT_MONK_04 = 119              
+      --先知软剑: 英雄攻击+2，战斗胜利后魔法值+3（副手）
 
-  -- 4.兵种增产-低
-    ARTIFACT_LEGION_T1 = 103            --军团之令→1级兵种产量+10%（在城镇中使用）
-    ARTIFACT_LEGION_T2 = 104            --军团之证→2级兵种产量+10%（在城镇中使用）
-    ARTIFACT_LEGION_T3 = 105            --军团之冠→3级兵种产量+10%（在城镇中使用）
-    ARTIFACT_LEGION_T4 = 106            --军团之鼓→4级兵种产量+10%（在城镇中使用）
+  -- 4.散件-高
+    ARTIFACT_LEGION_ADVANCED = 108            
+      --军团斗篷<背包-108>: 当前城镇4~5级兵种产量永久+1，立刻生效，可累积（英雄携带宝物在城门处→打开魔法书（按C）→城镇管理→宝物管理→军团宝物）
+    ARTIFACT_DRUM_OF_CHARGE = 106            
+      --冲锋战鼓<口袋-106>: 战斗开始时随机一队我方生物立即行动
+    ARTIFACT_WAYFARER_BOOTS = 26          
+      --引路长靴: 英雄在非本族地形不受移动力惩罚
+    ARTIFACT_MOONBLADE = 58             
+      --月光利刃: 英雄战斗中每次使用魔法后回复2点魔法值（副手）
+    ARTIFACT_BOOTS_OF_SWIFTNESS = 57        
+      --疾风靴: 我方生物移动速度+1
+    ARTIFACT_BOOTS_OF_SPEED = 24          
+      --快速旅行长靴: 英雄陆地移动力+25%
+    ARTIFACT_INHERITANCE = 115            
+      --幸运护符: 英雄战斗胜利后获得幸运避难所效果
+    ARTIFACT_GREAT_AXE_OF_GIANT_SLAYING = 2     
+      --山王战斧: 英雄攻击+5
+    ARTIFACT_ICEBERG_SHIELD = 9           
+      --冰晶护盾: 英雄防御+3，我方生物受到的火属性魔法杀伤-50%
+    ARTIFACT_NECKLACE_OF_POWER = 19         
+      --胜利项链: 英雄攻击+2咒力+2
+    ARTIFACT_NIGHTMARISH_RING = 23          
+      --意志磨灭戒指: 敌方生物士气-2
+    ARTIFACT_GOLDEN_HORSESHOE = 25          
+      --黄金马蹄铁: 英雄幸运+2
+    ARTIFACT_ENDLESS_BAG_OF_GOLD = 29         
+      --军团金像: 金币产量+50%（在城镇中使用）
+    ARTIFACT_RING_OF_CELERITY = 59          
+      --迅捷指环: 我方生物主动性+10%
+    ARTIFACT_BAND_OF_CONJURER = 60          
+      --元素腕带: 英雄可以使用【召唤元素】（且召唤元素生效咒力+4），战斗开始时随机召唤一队数量为【英雄等级*1】的元素生物
+    ARTIFACT_JINXING_BAND = 63            
+      --诅咒指环: 敌方生物幸运-2
+    ARTIFACT_BONESTUDDED_LEATHER = 64         
+      --皮纹战袍: 英雄咒力+5士气-1
+    ARTIFACT_HELM_OF_CHAOS = 66           
+      --混沌头盔: 英雄知识+5防御-1
+    ARTIFACT_RING_OF_THE_SHADOWBRAND = 73       
+      --阴影烙印指环: 英雄咒力+4
+    ARTIFACT_DWARVEN_SMITHY_HUMMER = 85       
+      --矮人精制战锤: 英雄攻击+3，我方生物受到的冰属性魔法杀伤-25%
+    ARTIFACT_BOOK_OF_POWER = 94           
+      --力量之书: 英雄【无启蒙】或【初级启蒙】则知识+1咒力+1，【高级启蒙】则知识+2咒力+2，【专家启蒙】则知识+3咒力+3，将【洞察魔法】效果提升到4级
 
-  -- 5.套装组件-低
-    ARTIFACT_NECKLACE_OF_BRAVERY = 16         --雄狮项链→英雄士气+1
-    ARTIFACT_LION_HIDE_CAPE = 31          --狮鬃披风→英雄士气+2
-    ARTIFACT_HELM_OF_ENLIGHTMENT = 34         --启迪头巾→英雄知识+3经验获取+10%
-    ARTIFACT_CHAIN_MAIL_OF_ENLIGHTMENT = 35     --启迪鳞甲→英雄咒力+3经验获取+20%
-    ARTIFACT_RING_OF_DEATH = 70           --无悔指环→我方生物免疫【光明圣言】，英雄攻击+1防御+1士气-1
-    ARTIFACT_RUNIC_WAR_AXE = 81           --符文战斧→英雄攻击+2咒力+2
-    ARTIFACT_RUNIC_WAR_HARNESS = 82         --符文战甲→英雄防御+2知识+2
-    ARTIFACT_TREEBORN_QUIVER = 95           --林生箭袋→我方远程生物攻击+4且无限弹药
-    ARTIFACT_MONK_01 = 116              --先知布帽→英雄战斗胜利后魔法值+4
-    ARTIFACT_MONK_02 = 117              --先知长袍→英雄咒力+1知识+1，战斗胜利后魔法值+2
-    ARTIFACT_MONK_03 = 118              --先知凉鞋→英雄战斗胜利后移动力+250
-    ARTIFACT_MONK_04 = 119              --先知软剑→英雄攻击+2，战斗胜利后魔法值+3（副手）
+  -- 5.套装组件-高
+    ARTIFACT_CROWN_OF_COURAGE = 11          
+      --狮冠: 英雄士气+2幸运+2
+    ARTIFACT_DRAGON_SCALE_ARMOR = 36        
+      --龙鳞铠甲: 英雄攻击+2防御+2，我方大型生物主动性+5%
+    ARTIFACT_DRAGON_SCALE_SHIELD = 37         
+      --龙鳞护盾: 英雄防御+4，我方小型生物主动性+5%
+    ARTIFACT_DRAGON_BONE_GRAVES = 38        
+      --龙骨护胫: 英雄咒力+4，我方近战地面生物主动性+10%
+    ARTIFACT_DRAGON_WING_MANTLE = 39        
+      --龙翼披风: 英雄咒力+2知识+2，我方近战飞行生物主动性+10%
+    ARTIFACT_DRAGON_TEETH_NECKLACE = 40       
+      --龙牙项链: 英雄咒力+4，我方施法生物主动性+10%
+    ARTIFACT_DRAGON_TALON_CROWN = 41        
+      --龙爪王冠: 英雄知识+4，我方战争机械主动性+10%
+    ARTIFACT_DRAGON_EYE_RING = 42           
+      --龙眼指环: 英雄攻击+1防御+1咒力+1知识+1，我方远程生物主动性+10%
+    ARTIFACT_DRAGON_FLAME_TONGUE = 43         
+      --炎龙火舌: 英雄攻击+4，我方生物受到的冰属性魔法杀伤-50%
+    ARTIFACT_ROBE_OF_MAGI = 44            
+      --萨-伊苏斯的长袍: 英雄咒力+6
+    ARTIFACT_CROWN_OF_MAGI = 46           
+      --萨-伊苏斯的王冠: 英雄知识+6
+    ARTIFACT_DWARVEN_MITHRAL_CUIRASS = 48       
+      --矮人王胸甲: 英雄防御+3咒力+2，我方生物免疫【内向爆裂】
+    ARTIFACT_DWARVEN_MITHRAL_GREAVES = 49       
+      --矮人王护胫: 英雄防御+2咒力+3，我方生物免疫【延迟大法】
+    ARTIFACT_DWARVEN_MITHRAL_HELMET = 50      
+      --矮人王头盔: 英雄防御+2知识+3，我方生物免疫【失明诅咒】
+    ARTIFACT_DWARVEN_MITHRAL_SHIELD = 51      
+      --矮人王护盾: 英雄防御+5,我方生物免疫【癫狂诅咒】
+    ARTIFACT_OGRE_CLUB = 74             
+      --食人魔棒: 英雄攻击+6，我方生物主动性-5%
+    ARTIFACT_OGRE_SHIELD = 75             
+      --食人魔盾牌: 英雄防御+6，我方生物主动性-5%
+    ARTIFACT_SKULL_OF_MARKAL = 83           
+      --冥界头骨: 英雄咒力+4知识+4士气-2
+    ARTIFACT_GUARDIAN_01 = 120            
+      --无名英雄之盔: 英雄咒力+3知识+3
+    ARTIFACT_GUARDIAN_02 = 121            
+      --无名英雄之靴: 英雄全属性+1
+    ARTIFACT_GUARDIAN_03 = 122            
+      --无名英雄之盾: 英雄攻击+3防御+3
 
-  -- 6.功能性宝物-低
-    ARTIFACT_WAYFARER_BOOTS = 26          --引路长靴→英雄在非本族地形不受移动力惩罚
-    ARTIFACT_MOONBLADE = 58             --月光利刃→英雄战斗中每次使用魔法后回复2点魔法值（副手）
-    ARTIFACT_BOOTS_OF_SWIFTNESS = 57        --疾风靴→我方生物移动速度+1
-    ARTIFACT_BOOTS_OF_SPEED = 24          --快速旅行长靴→英雄陆地移动力+25%
-    ARTIFACT_INHERITANCE = 115            --幸运护符→英雄战斗胜利后获得幸运避难所效果
+  -- 6.功能性宝物
+    ARTIFACT_LEGION_EXPERT = 109            
+      --军团之帜<背包-109>: 当前城镇6~7级兵种产量永久+1，立刻生效，可累积（英雄携带宝物在城门处→打开魔法书（按C）→城镇管理→宝物管理→军团宝物）
+    ARTIFACT_PENDANT_OF_BLIND = 101              
+      --闪耀权冠<头盔-101>: 英雄学会【失明诅咒】，战斗中英雄首次行动时自动对随机的敌方生物施放一次【失明诅咒】
+    ARTIFACT_GEM_OF_PHANTOM = 102          
+      --幻影宝石<项链-102>: 可将一支部队摄取进幻影宝石中，并在战斗开始时以召唤生物形式加入战场，行动4次后消失。再次摄取时，若兵种相同则增加数量，若兵种不同则直接替换。（使用方式: 英雄携带宝物在非城门处→打开魔法书（按C）→城镇管理→宝物管理→幻影宝石）
+    ARTIFACT_UNICORN_HORN_BOW = 4           
+      --独角兽角弓: 我方远程兵种无射程惩罚
+    ARTIFACT_STAFF_OF_VEXINGS = 6           
+      --冥界手杖: 英雄士气-2，敌方生物主动性-20%
+    ARTIFACT_SHACKLES_OF_WAR = 7          
+      --末日勇士桎梏: 敌我双方无法退出战斗
+    ARTIFACT_PLATE_MAIL_OF_STABILITY = 13       
+      --无名英雄之甲: 英雄攻击+2防御+2咒力+2知识+2，我方生物魔法抵抗几率+20%
+    ARTIFACT_PEDANT_OF_MASTERY = 15         
+      --技能坠饰: 英雄种族技能提升1级
+    ARTIFACT_RING_OF_HASTE = 22           
+      --速度指环: 我方生物主动性+20%
+    ARTIFACT_CLOAK_OF_MOURNING = 33         
+      --死亡阴影斗篷: 敌方生物的士气-2幸运-2
+    ARTIFACT_STAFF_OF_MAGI = 45           
+      --萨-伊苏斯的手杖: 忽略敌我双方的魔法抵抗几率
+    ARTIFACT_RING_OF_MAGI = 47            
+      --萨-伊苏斯的指环: 英雄魔法值消耗-50%
+    ARTIFACT_TWISTING_NEITHER = 67          
+      --聚合饰物: 敌方英雄每消耗2点魔法值，我方英雄就获得1点魔法值
+    ARTIFACT_SHAWL_OF_GREAT_LICH = 69         
+      --桑德罗的斗篷: 忽略敌方生物【免疫心智控制】
+    ARTIFACT_NECROMANCER_PENDANT = 71         
+      --招魂护身符: 英雄招魂比例+10%，DE消耗-10%
+    ARTIFACT_TOME_OF_DESTRUCTION = 76         
+      --破坏魔法书: 英雄可以使用全部破坏魔法
+    ARTIFACT_TOME_OF_LIGHT_MAGIC = 77         
+      --光明魔法书: 英雄可以使用全部光明魔法
+    ARTIFACT_TOME_OF_DARK_MAGIC = 78        
+      --黑暗魔法书: 英雄可以使用全部黑暗魔法
+    ARTIFACT_TOME_OF_SUMMONING_MAGIC = 79       
+      --召唤魔法书: 英雄可以使用召唤黑暗魔法
+    ARTIFACT_RING_OF_MACHINE_AFFINITY = 91      
+      --机械引力戒指: 弩车发射次数+1，投石车发射次数+1，医疗帐篷治疗效果+100%，弹药车提供的远程攻击+4
+    ARTIFACT_PENDANT_OF_STARDUST = 113        
+      --星尘坠饰: 套装加成效果所需数量-1
 
-  -- 7.散件-高
-    ARTIFACT_GREAT_AXE_OF_GIANT_SLAYING = 2     --山王战斧→英雄攻击+5
-    ARTIFACT_ICEBERG_SHIELD = 9           --冰晶护盾→英雄防御+3，我方生物受到的火属性魔法杀伤-50%
-    ARTIFACT_NECKLACE_OF_POWER = 19         --胜利项链→英雄攻击+2咒力+2
-    ARTIFACT_NIGHTMARISH_RING = 23          --意志磨灭戒指→敌方生物士气-2
-    ARTIFACT_GOLDEN_HORSESHOE = 25          --黄金马蹄铁→英雄幸运+2
-    ARTIFACT_ENDLESS_BAG_OF_GOLD = 29         --军团金像→金币产量+50%（在城镇中使用）
-    ARTIFACT_RING_OF_CELERITY = 59          --迅捷指环→我方生物主动性+10%
-    ARTIFACT_BAND_OF_CONJURER = 60          --元素腕带→英雄可以使用【召唤元素】（且召唤元素生效咒力+4），战斗开始时随机召唤一队数量为【英雄等级*1】的元素生物
-    ARTIFACT_JINXING_BAND = 63            --诅咒指环→敌方生物幸运-2
-    ARTIFACT_BONESTUDDED_LEATHER = 64         --皮纹战袍→英雄咒力+5士气-1
-    ARTIFACT_HELM_OF_CHAOS = 66           --混沌头盔→英雄知识+5防御-1
-    ARTIFACT_RING_OF_THE_SHADOWBRAND = 73       --阴影烙印指环→英雄咒力+4
-    ARTIFACT_DWARVEN_SMITHY_HUMMER = 85       --矮人精制战锤→英雄攻击+3，我方生物受到的冰属性魔法杀伤-25%
-    ARTIFACT_BOOK_OF_POWER = 94           --力量之书→英雄【无启蒙】或【初级启蒙】则知识+1咒力+1，【高级启蒙】则知识+2咒力+2，【专家启蒙】则知识+3咒力+3，将【洞察魔法】效果提升到4级
-
-  -- 8.套装组件-高
-    ARTIFACT_CROWN_OF_COURAGE = 11          --狮冠→英雄士气+2幸运+2
-    ARTIFACT_DRAGON_SCALE_ARMOR = 36        --龙鳞铠甲→英雄攻击+2防御+2，我方大型生物主动性+5%
-    ARTIFACT_DRAGON_SCALE_SHIELD = 37         --龙鳞护盾→英雄防御+4，我方小型生物主动性+5%
-    ARTIFACT_DRAGON_BONE_GRAVES = 38        --龙骨护胫→英雄咒力+4，我方近战地面生物主动性+10%
-    ARTIFACT_DRAGON_WING_MANTLE = 39        --龙翼披风→英雄咒力+2知识+2，我方近战飞行生物主动性+10%
-    ARTIFACT_DRAGON_TEETH_NECKLACE = 40       --龙牙项链→英雄咒力+4，我方施法生物主动性+10%
-    ARTIFACT_DRAGON_TALON_CROWN = 41        --龙爪王冠→英雄知识+4，我方战争机械主动性+10%
-    ARTIFACT_DRAGON_EYE_RING = 42           --龙眼指环→英雄攻击+1防御+1咒力+1知识+1，我方远程生物主动性+10%
-    ARTIFACT_DRAGON_FLAME_TONGUE = 43         --炎龙火舌→英雄攻击+4，我方生物受到的冰属性魔法杀伤-50%
-    ARTIFACT_ROBE_OF_MAGI = 44            --萨-伊苏斯的长袍→英雄咒力+6
-    ARTIFACT_CROWN_OF_MAGI = 46           --萨-伊苏斯的王冠→英雄知识+6
-    ARTIFACT_DWARVEN_MITHRAL_CUIRASS = 48       --矮人王胸甲→英雄防御+3咒力+2，我方生物免疫【内向爆裂】
-    ARTIFACT_DWARVEN_MITHRAL_GREAVES = 49       --矮人王护胫→英雄防御+2咒力+3，我方生物免疫【延迟大法】
-    ARTIFACT_DWARVEN_MITHRAL_HELMET = 50      --矮人王头盔→英雄防御+2知识+3，我方生物免疫【失明诅咒】
-    ARTIFACT_DWARVEN_MITHRAL_SHIELD = 51      --矮人王护盾→英雄防御+5,我方生物免疫【癫狂诅咒】
-    ARTIFACT_OGRE_CLUB = 74             --食人魔棒→英雄攻击+6，我方生物主动性-5%
-    ARTIFACT_OGRE_SHIELD = 75             --食人魔盾牌→英雄防御+6，我方生物主动性-5%
-    ARTIFACT_SKULL_OF_MARKAL = 83           --冥界头骨→英雄咒力+4知识+4士气-2
-    ARTIFACT_GUARDIAN_01 = 120            --无名英雄之盔→英雄咒力+3知识+3
-    ARTIFACT_GUARDIAN_02 = 121            --无名英雄之靴→英雄全属性+1
-    ARTIFACT_GUARDIAN_03 = 122            --无名英雄之盾→英雄攻击+3防御+3
-
-  -- 9.兵种增产-高
-    ARTIFACT_LEGION_T5 = 107            --军团号角→5级兵种产量+10%（在城镇中使用增加）
-    ARTIFACT_LEGION_T6 = 108            --军团斗篷→6级兵种产量+10%（在城镇中使用增加）
-    ARTIFACT_LEGION_T7 = 109            --军团之帜→7级兵种产量+10%（在城镇中使用增加）
-
-  -- 10.功能性宝物-高
-    ARTIFACT_UNICORN_HORN_BOW = 4           --独角兽角弓→我方远程兵种无射程惩罚
-    ARTIFACT_STAFF_OF_VEXINGS = 6           --冥界手杖→英雄士气-2，敌方生物主动性-20%
-    ARTIFACT_SHACKLES_OF_WAR = 7          --末日勇士桎梏→敌我双方无法退出战斗
-    ARTIFACT_PLATE_MAIL_OF_STABILITY = 13       --无名英雄之甲→英雄攻击+2防御+2咒力+2知识+2，我方生物魔法抵抗几率+20%
-    ARTIFACT_PEDANT_OF_MASTERY = 15         --技能坠饰→英雄种族技能提升1级
-    ARTIFACT_RING_OF_HASTE = 22           --速度指环→我方生物主动性+20%
-    ARTIFACT_CLOAK_OF_MOURNING = 33         --死亡阴影斗篷→敌方生物的士气-2幸运-2
-    ARTIFACT_STAFF_OF_MAGI = 45           --萨-伊苏斯的手杖→忽略敌我双方的魔法抵抗几率
-    ARTIFACT_RING_OF_MAGI = 47            --萨-伊苏斯的指环→英雄魔法值消耗-50%
-    ARTIFACT_TWISTING_NEITHER = 67          --聚合饰物→敌方英雄每消耗2点魔法值，我方英雄就获得1点魔法值
-    ARTIFACT_SHAWL_OF_GREAT_LICH = 69         --桑德罗的斗篷→忽略敌方生物【免疫心智控制】
-    ARTIFACT_NECROMANCER_PENDANT = 71         --招魂护身符→英雄招魂比例+10%，DE消耗-10%
-    ARTIFACT_TOME_OF_DESTRUCTION = 76         --破坏魔法书→英雄可以使用全部破坏魔法
-    ARTIFACT_TOME_OF_LIGHT_MAGIC = 77         --光明魔法书→英雄可以使用全部光明魔法
-    ARTIFACT_TOME_OF_DARK_MAGIC = 78        --黑暗魔法书→英雄可以使用全部黑暗魔法
-    ARTIFACT_TOME_OF_SUMMONING_MAGIC = 79       --召唤魔法书→英雄可以使用召唤黑暗魔法
-    ARTIFACT_RING_OF_MACHINE_AFFINITY = 91      --机械引力戒指→弩车发射次数+1，投石车发射次数+1，医疗帐篷治疗效果+100%，弹药车提供的远程攻击+4
-    ARTIFACT_PENDANT_OF_STARDUST = 113        --星尘坠饰→套装加成效果所需数量-1
-
-  -- 11.神器
-    ARTIFACT_ANGELIC_ALLIANCE = 68          --天使联盟→英雄攻击+8士气+4，战斗开始时自动施放【群体疾速行动】【群体非凡神力】
-    ARTIFACT_ANGEL_WINGS = 30             --天使之翼→英雄士气+2幸运+2，获得飞行能力
-    ARTIFACT_GRAAL = 53               --亚莎之泪→建造奇迹（在城镇中使用）
-    ARTIFACT_MASK_OF_DOPPELGANGER = 89        --皇家遗物→获得2,000,000经验值（在城镇中使用）
-    ARTIFACT_HORN_OF_PLENTY = 92          --丰收之角→资源仓库每天获得木石+8稀矿+4（在城镇中使用）
-    ARTIFACT_CURSE_SHOULDER = 114           --诅咒斗篷→英雄咒力+6知识+6士气-3，战斗开始时自动施放【群体延迟大法】【群体痛苦折磨】
-    ARTIFACT_DRACONIC = 123             --龙神胸甲→英雄攻击+5防御+5咒力+5知识+5，每天获得1个7级生物
-    ARTIFACT_SENTINEL = 124             --哨兵之盾→英雄防御+12，战斗开始时自动施放【群体坚韧不屈】【群体正当之力】
-    ARTIFACT_EIGHTFOLD = 125            --亚莎之八重杖→英雄咒力+12，英雄施法后有25%几率再次行动
-    ARTIFACT_CODEX = 126              --大法师之典→英雄知识+12，每天获得1只【凤凰】
+  -- 7.神器
+    ARTIFACT_ANGELIC_ALLIANCE = 68          
+      --天使联盟: 英雄攻击+8士气+4，战斗开始时自动施放【群体疾速行动】【群体非凡神力】
+    ARTIFACT_ANGEL_WINGS = 30             
+      --天使之翼: 英雄士气+2幸运+2，获得飞行能力
+    ARTIFACT_GRAAL = 53               
+      --亚莎之泪: 建造奇迹（在城镇中使用）
+    ARTIFACT_MASK_OF_DOPPELGANGER = 89        
+      --皇家遗物: 获得2,000,000经验值（在城镇中使用）
+    ARTIFACT_HORN_OF_PLENTY = 92          
+      --丰收之角: 资源仓库每天获得木石+8稀矿+4（在城镇中使用）
+    ARTIFACT_CURSE_SHOULDER = 114           
+      --诅咒斗篷: 英雄咒力+6知识+6士气-3，战斗开始时自动施放【群体延迟大法】【群体痛苦折磨】
+    ARTIFACT_DRACONIC = 123             
+      --龙神胸甲: 英雄攻击+5防御+5咒力+5知识+5，每天获得1个7级生物
+    ARTIFACT_SENTINEL = 124             
+      --哨兵之盾: 英雄防御+12，战斗开始时自动施放【群体坚韧不屈】【群体正当之力】
+    ARTIFACT_EIGHTFOLD = 125            
+      --亚莎之八重杖: 英雄咒力+12，英雄施法后有25%几率再次行动
+    ARTIFACT_CODEX = 126              
+      --大法师之典: 英雄知识+12，每天获得1只【凤凰】
 
   -- 初高神-分档
     ARTF_CLASS_MINOR 初级 1~5
@@ -2219,17 +2323,17 @@
         狮鬃披风
         狮冠
       特效
-        2件：
+        2件: 
           英雄攻击+4
           骑士英雄普攻时目标生物士气-2
-        3件：
+        3件: 
           英雄获得【入神】效果
     箭手梦幻
       组件
         林生箭袋
         独角兽角弓
       特效
-        2件：
+        2件: 
           我方远程生物攻击后ATB置为0.3
           游侠英雄攻击或【精准射击】【箭如雨下】后ATB置为0.3
     萨-伊苏斯的徽章
@@ -2239,19 +2343,19 @@
         萨-伊苏斯的手杖
         萨-伊苏斯的指环
       特效
-        2件：
+        2件: 
           我方施法生物魔法值+100%咒力+100%
           魔法师英雄施法后ATB消耗额外-10%
-        3件：
+        3件: 
           英雄咒力+6
-        4件：
+        4件: 
           英雄施法后ATB消耗额外-10%
     鄂加斯的意志
       组件
         意志磨灭戒指
         混沌头盔
       特效
-        2件：
+        2件: 
           英雄攻击+5
           门禁守卫英雄【门禁大师】【烈狱幻境】【门禁卫士】效果+25%
     死亡拥抱
@@ -2261,12 +2365,12 @@
         死亡阴影斗篷
         招魂护身符
       特效
-        2件：
+        2件: 
           敌方生物移动速度-1
           亡灵巫师英雄【女妖尖叫】额外令敌方生物士气-1幸运-1
-        3件：
+        3件: 
           英雄咒力+3知识+3
-        4件：
+        4件: 
           敌方生物士气低落后攻击-20%防御-20%（持续1回合）
           亡灵巫师英雄DE消耗-25%
     矮人王的盔甲
@@ -2276,19 +2380,19 @@
         矮人王护胫
         矮人王护盾
       特效
-        2件：
+        2件: 
           我方生物所受魔法伤害-40%
           符文法师英雄咒力+10%
-        3件：
+        3件: 
           英雄咒力+2知识+2
-        4件：
+        4件: 
           英雄防御+8
     符文之力
       组件
         符文战斧
         符文战甲
       特效
-        2件：
+        2件: 
           英雄攻击+1防御+1咒力+1知识+1
           术士英雄【元素锁链】效果+100%
     力量武器
@@ -2296,7 +2400,7 @@
         食人魔棒
         食人魔盾牌
       特效
-        2件：
+        2件: 
           我方生物攻击+3生命+2
           野蛮人英雄攻击后ATB置为0.3
     启迪法衣
@@ -2304,7 +2408,7 @@
         启迪头巾
         启迪鳞甲
       特效
-        2件：
+        2件: 
           英雄经验获取+15%
     龙之力
       组件
@@ -2317,13 +2421,13 @@
         龙眼指环
         炎龙火舌
       特效
-        2件：
+        2件: 
           英雄攻击+1防御+1咒力+1知识+1
-        4件：
+        4件: 
           我方7级生物攻击+5防御+5生命+20
-        6件：
+        6件: 
           英雄攻击+3防御+3咒力+3知识+3
-        8件：
+        8件: 
           每天获得1个7级生物
     先知法衣
       组件
@@ -2332,11 +2436,11 @@
         先知凉鞋
         先知软剑
       特效
-        2件：
+        2件: 
           战斗后魔法回复+50%
-        3件：
+        3件: 
           英雄咒力+3知识+3
-        4件：
+        4件: 
           战斗后移动力回复+50%
     无名英雄的遗志
       组件
@@ -2345,11 +2449,11 @@
         无名英雄之盾
         无名英雄之甲
       特效
-        2件：
+        2件: 
           英雄全属性+1
-        3件：
+        3件: 
           英雄全属性+1
-        4件：
+        4件: 
           英雄全属性+1
     学徒套装
       组件
@@ -2359,13 +2463,13 @@
         矮人之盾
         魔防战靴
       特效
-        2件：
+        2件: 
           英雄防御+1
-        3件：
+        3件: 
           英雄知识+1
-        4件：
+        4件: 
           英雄攻击+1
-        5件：
+        5件: 
           英雄咒力+1
     元素之力
       组件
@@ -2374,9 +2478,9 @@
         凤羽披风
         翡翠便鞋
       特效
-        2件：
+        2件: 
           英雄咒力+2
-        4件：
+        4件: 
           英雄知识+2
 
   -- 宝物合成
@@ -2390,23 +2494,17 @@
             无名英雄之甲
         亚莎之泪
           组件
-            军团之令
             军团之证
-            军团之冠
-            军团之鼓
-            军团号角
             军团斗篷
             军团之帜
             军团金像
+            领袖王冠
         丰收之角
           组件
-            神圣种子
             矮人十字镐
             育龙者的魔法盒
-            水晶眼球
-            无尽宝石戒指
-            无尽水银瓶
             无尽黄金麻袋
+            元素腕带
         诅咒斗篷
           组件
             无悔指环
@@ -2455,12 +2553,27 @@
             凤羽披风
             翡翠便鞋
 
-15.银行相关
+15.宝屋相关
   对应关系
     固定兵力+固定奖励
-      BUILDING_WAGON          手推车→每队30的农民3形态，奖励5石矿
-      BUILDING_SKELETON         勇士之墓→每队20的僵尸3形态，奖励一件等级1的宝物
-    8种族
+      手推车
+        建筑ID:
+          BUILDING_WAGON
+        兵力: 
+          每队30的农民3形态
+        奖励
+          1.木矿3份
+          2.石矿3份
+      勇士之墓
+        建筑ID:
+          BUILDING_SKELETON
+        兵力: 
+          每队20的僵尸3形态
+        奖励: 
+          1.据点英雄: 获得随机宝物1件（范围在: "宝物档位: 1.散件-低"中随机）
+          2.堡垒英雄: 获得魔棒/魔法卷轴/火焰符文/随机宝物1件（范围在: "宝物档位: 1.散件-低"中随机）
+          3.其它英雄: 获得魔棒/魔法卷轴/随机宝物1件（范围在: "宝物档位: 1.散件-低"中随机）
+    8种族-普通宝屋
       BUILDING_UNKEMPT        逃兵哨塔（圣堂）
       BUILDING_LEAN_TO        树塔（森林）
       BUILDING_NAGA_BANK        象牙塔（学院）
@@ -2470,7 +2583,7 @@
       BUILDING_DWARVEN_TREASURE     矮人宝藏（堡垒）
       BUILDING_NAGA_TEMPLE      兽人坑洞（据点）
       BUILDING_ABANDONED_MINE     废弃的矿洞（8种族随机）
-    非8种族
+    非8种族-高级宝屋
       BUILDING_CYCLOPS_STOCKPILE    元素反应堆（中立元素）
       BUILDING_DRAGON_UTOPIA      龙国
       BUILDING_PYRAMID        金字塔
@@ -2479,25 +2592,30 @@
       BUILDING_DEMOLISH         被掘毁的王陵
       BUILDING_TREANT_THICKET     德鲁伊岩洞
   奖励
-    高级银行计算时当前周数会按额外增加6周计算
-    固定奖励：金币2000+500*当前周数
-    随机奖励：5随2→2选1，选择前只能知道大分类，但是不知道具体数值
-      生物：必为英雄所带领兵种（非同族亦可）；数量=生物周产/2+random(当前月数*生物周产/2)
-      魔法：
+    普通宝屋: 周宝屋胜利次数+1，结算一次奖励
+    高级宝屋: 周宝屋胜利次数+3，结算两次奖励
+    宝屋阶梯奖励规则: 周有效结算次数 = 绝对周数 - 1 + 周宝屋胜利次数 - 1
+      周有效结算次数: 0    1    2     3    5     8  13   21  34  55  89  144  233  377  610  987 
+      数值奖励的倍数: 1  1.1  1.2  1.35  1.5  1.75   2  2.5   3   4   6  7.5   10   14   20   30 
+    固定金币奖励: 1500 * 数值奖励的倍数 + 500
+    随机奖励: 5随2→2选1，选择前只能知道大分类，但是不知道具体数值
+      生物: 必为英雄所带领兵种（非同族亦可）; 数量 = 周产 * 数值奖励的倍数
+      魔法: random(100 + 绝对周数 - 1) + 周宝屋胜利次数 - 1   0/30/55/75/85/90/99
         1.分为多档魔法，1级魔法30%几率，2级魔法25%几率，3级魔法20%几率，4级魔法10%几率，5级魔法5%几率，群体魔法5%几率，强效魔法5%几率
-        2.银行选择魔法后如果已经学习则转化为经验值
-        3.银行中的魔法选项会直接转化为经验选项，并只提供给非野蛮人职业
+        2.宝屋选择魔法后如果已经学习则转化为经验值
+        3.宝屋中的魔法选项会直接转化为经验选项，并只提供给非野蛮人职业
         4.经验值=绝对游戏周数*2000
-      属性点：
+      属性点: 0.49 * 数值奖励的倍数 + 0.51
         1.力量型英雄     A/D→50%/50%
         2.平衡型英雄-非墓园   A/D/P/K/M/L→23%/23%/23%/23%/4%/4%
         4.平衡型英雄-墓园  A/D/P/K/L→23%/23%/23%/23%/8%
         3.魔法型英雄     P/K→50%/50%
         5.野蛮人英雄     A/D/M/L→45%/45%5%/5%
-      资源：
-        石木:(2+当前月数*2)+(0~4)
-        稀矿:(1+当前月数)+(0~2)
-      宝物：参见宝物分等1~10级，第1周1~5（同开局随机），之后双数周+1等级上限，单数周+1等级下限，第11周以后为6~10
+      资源: 
+        石木: 4 * 数值奖励的倍数 + random(4 + 绝对周数 - 1)
+        稀矿: 2 * 数值奖励的倍数 + random((4 + 绝对周数 - 1) / 2)
+      宝物: random(100 + 绝对周数 - 1) + 周宝屋胜利次数 - 1   0/64/96/112/120/124/126
+        参见宝物分档1~6级
 
 16.资源宝物相关
   资源宝物可在资源矿上重复使用，使用与当前矿产资源匹配的宝物后，矿产资源产量增加
@@ -2508,8 +2626,10 @@
 
 17.军团宝物相关
   军团宝物可在城镇中使用
-  同一级别只能使用一次
-  效果为每周增加未招募的相应等级兵种10%的可招募
+  同一级别可使用多次
+    每使用1个军团之证当前城镇1~3级兵种周产量永久+2
+    每使用1个军团斗篷当前城镇4~5级兵种周产量永久+1
+    每使用1个军团之帜当前城镇6~7级兵种周产量永久+1
 
 18.英雄试炼功能
   选择不同试炼

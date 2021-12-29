@@ -10,13 +10,29 @@ DejaVu Sans Mono
 SKILLTYPE_STANDART_PERK
 SKILLTYPE_SPECIAL_PERK
 
+ARTF_CLASS_MINOR
+ARTF_CLASS_MAJOR
+ARTF_CLASS_RELIC
+ARTF_CLASS_GRAIL
+
 Shantiri
 
 增加<value=initiative_bonus>%攻击优先度，士222气和攻击力加<value=enchant>，持续时间为<value=duration>回合。
 
 8技能 过夜快 英雄特技 战场特技
 
+  -- 初高神-分档
+    ARTF_CLASS_MINOR 初级 1~5
+    ARTF_CLASS_MAJOR 高级 6~9
+    ARTF_CLASS_RELIC 神器 10~11
+    不售卖及地图生成 11
 
+  -- 价格
+    1~2 → 9000
+    3~5 → 15000
+    6~7 → 21000
+    8~10 → 30000
+    11 → 150000
 
 7AI结盟+3倍增兵+眼泪+天使联盟+诅咒斗篷+龙神胸甲+终极技能
 你们的支持就是牙姐的动力，谢谢大家，进群下载游戏：241244439
@@ -96,55 +112,16 @@ ffmpeg -ss 00:08:18 -to 00:14:58 -i 赛勒斯-破口-剪辑前.mp4 -codec copy �
 ffmpeg -f concat -safe 0 -i filelist.txt -c copy 篷车的反杀.mp4
 
 
-
-
-ffmpeg -ss 00:13:19 -to 00:40:30 -i 1.mp4 -codec copy 游离大陆基本战斗思想.mp4
-
-
-ffmpeg -ss 00:16:02 -to 00:19:32 -i 圣堂新终极--佑福仪式-03.mp4 -codec copy 圣堂新终极--佑福仪式-精剪版-01-地牢消耗.mp4
-ffmpeg -ss 00:07:51 -to 00:08:38 -i 圣堂新终极--佑福仪式-04.mp4 -codec copy 圣堂新终极--佑福仪式-精剪版-02-学院消耗.mp4
-ffmpeg -ss 00:18:30 -to 00:25:20 -i 圣堂新终极--佑福仪式-05.mp4 -codec copy 圣堂新终极--佑福仪式-精剪版-03-地牢决战.mp4
-ffmpeg -ss 00:47:37 -to 01:00:06 -i 圣堂新终极--佑福仪式-05.mp4 -codec copy 圣堂新终极--佑福仪式-精剪版-04-01-洗点+龙国.mp4
-ffmpeg -ss 00:00:00 -to 00:01:03 -i 圣堂新终极--佑福仪式-06.mp4 -codec copy 圣堂新终极--佑福仪式-精剪版-04-02-洗点+龙国.mp4
-ffmpeg -ss 00:54:00 -to 00:56:58 -i 圣堂新终极--佑福仪式-07.mp4 -codec copy 圣堂新终极--佑福仪式-精剪版-05-森林决战.mp4
-ffmpeg -ss 00:37:50 -to 00:45:52 -i 圣堂新终极--佑福仪式-09.mp4 -codec copy 圣堂新终极--佑福仪式-精剪版-06-学院决战.mp4
-ffmpeg -ss 00:26:05 -to 00:59:59 -i 圣堂新终极--佑福仪式-12.mp4 -codec copy 圣堂新终极--佑福仪式-精剪版-07-01-试炼.mp4
-ffmpeg -ss 00:00:00 -to 00:23:12 -i 圣堂新终极--佑福仪式-13.mp4 -codec copy 圣堂新终极--佑福仪式-精剪版-07-02-试炼.mp4
-ffmpeg -ss 00:52:54 -to 00:59:59 -i 圣堂新终极--佑福仪式-13.mp4 -codec copy 圣堂新终极--佑福仪式-精剪版-08-01-地狱决战.mp4
-ffmpeg -ss 00:00:00 -to 00:24:30 -i 圣堂新终极--佑福仪式-14.mp4 -codec copy 圣堂新终极--佑福仪式-精剪版-08-02-地狱决战.mp4
-ffmpeg -ss 00:19:35 -to 00:20:42 -i 圣堂新终极--佑福仪式-15.mp4 -codec copy 圣堂新终极--佑福仪式-精剪版-09-01-堡垒决战.mp4
-ffmpeg -ss 00:46:32 -to 00:59:57 -i 圣堂新终极--佑福仪式-15.mp4 -codec copy 圣堂新终极--佑福仪式-精剪版-09-02-堡垒决战.mp4
-ffmpeg -ss 00:00:00 -to 00:27:42 -i 圣堂新终极--佑福仪式-16.mp4 -codec copy 圣堂新终极--佑福仪式-精剪版-09-03-堡垒决战.mp4
-ffmpeg -ss 00:08:46 -to 00:19:28 -i 圣堂新终极--佑福仪式-18.mp4 -codec copy 圣堂新终极--佑福仪式-精剪版-10-墓园决战.mp4
-
-ffmpeg -f concat -safe 0 -i filelist.txt -c copy 圣堂新终极--佑福仪式-精剪版-04-洗点+龙国.mp4
-ffmpeg -f concat -safe 0 -i filelist.txt -c copy 圣堂新终极--佑福仪式-精剪版-07-试炼.mp4
-ffmpeg -f concat -safe 0 -i filelist.txt -c copy 圣堂新终极--佑福仪式-精剪版-08-地狱决战.mp4
-ffmpeg -f concat -safe 0 -i filelist.txt -c copy 圣堂新终极--佑福仪式-精剪版-09-堡垒决战.mp4
-
-03 00:16:02 -to 00:19:32 圣堂新终极--佑福仪式-精剪版-01-地牢消耗
-04 00:07:51 -to 00:08:38 圣堂新终极--佑福仪式-精剪版-02-学院消耗
-05 00:18:30 -to 00:25:20 圣堂新终极--佑福仪式-精剪版-03-地牢决战
-05 00:47:37 -to 01:00:06 圣堂新终极--佑福仪式-精剪版-04-01-洗点+龙国
-05 00:00:00 -to 00:01:03 圣堂新终极--佑福仪式-精剪版-04-02-洗点+龙国
-07 00:54:00 -to 00:56:58 圣堂新终极--佑福仪式-精剪版-05-森林决战
-09 00:37:50 -to 00:45:52 圣堂新终极--佑福仪式-精剪版-06-学院决战
-12 00:26:05 -to 00:结尾  圣堂新终极--佑福仪式-精剪版-07-01-试炼
-13 00:00:00 -to 00:23:12 圣堂新终极--佑福仪式-精剪版-07-02-试炼
-13 00:52:54 -to 00:结尾  圣堂新终极--佑福仪式-精剪版-08-01-地狱决战
-14 00:00:00 -to 00:24:30 圣堂新终极--佑福仪式-精剪版-08-02-地狱决战
-15 00:19:35 -to 00:20:42 圣堂新终极--佑福仪式-精剪版-09-01-堡垒决战
-15 00:46:32 -to 00:20:42 圣堂新终极--佑福仪式-精剪版-09-02-堡垒决战
-16 00:00:00 -to 00:27:42 圣堂新终极--佑福仪式-精剪版-09-03-堡垒决战
-18 00:08:46 -to 00:19:28 圣堂新终极--佑福仪式-精剪版-10-墓园决战
-
-
 MASTERY_NONE
 MASTERY_BASIC
 MASTERY_ADVANCED
 MASTERY_EXPERT
 MASTERY_EXTRA_EXPERT
 
+BUILDING_EYE_OF_MAGI
+BUILDING_HUT_OF_MAGI
+? BUILDING_MAGMA_SHRINE
+BUILDING_LAKE_OF_SCARLET_SWAN
 
 【英雄无敌5.5牙姐MOD】英雄前瞻--维托利奥
 https://mp.weixin.qq.com/s/8_0XorVTycmQA6QtgiDQtQ
@@ -272,3 +249,7 @@ C：等我到20级之后
     ARTIFACT_LEGION_T3 = 105            --军团之冠→3级兵种产量+10%（在城镇中使用）
     ARTIFACT_LEGION_T5 = 107            --军团号角→5级兵种产量+10%（在城镇中使用增加）
 
+
+3 WAND_OF_X
+52 SCROLL_OF_SPELL_X
+86 ARTIFACT_RUNE_OF_FLAME

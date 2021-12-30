@@ -516,7 +516,7 @@ TTH_Ildar_Race4Morale = 0;
 TTH_Data_TeachSpell_PendantOfBlind = {};
 TTH_Data_GameVar_PendantOfBlind = {};
 TTH_Data_GameVar_DrumOfCharge = {};
-TTH_Data_GameVar_GemOfPhantom = 0;
+TTH_Data_GameVar_GemOfPhantom = {};
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 --SUPPORT FUNCTIONS
@@ -6250,10 +6250,6 @@ function H55_ContinuesEvent(player)
 				end;
 			end;
 
-			------------------------------------------------------------------------------------------------------------------------------------------------
-			--H55_DEBUG = {12,"ArtSets",player,hero};-------------------------------------------------------------------------------------------------------
-			------------------------------------------------------------------------------------------------------------------------------------------------
-
 			if H55_IsHeroInAnyTown(hero) == 0 then
 				TTH_Artifact_Bonus_Check(hero);
 			end;
@@ -9918,10 +9914,15 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 						TTH_DATA_GemOfPhantom[iPlayer] = {};
 					end;
 					if TTH_DATA_GemOfPhantom[iPlayer][H55_Day] ~= nil then
+						local iRecordCreatureId = TTH_DATA_GemOfPhantom[iPlayer]["CreatureId"];
+						local strRecordCreatureName = TTH_TABLE_NCF_CREATURES[iRecordCreatureId]["NAME"];
+						local iRecordCreatureNum = TTH_DATA_GemOfPhantom[iPlayer]["CreatureNum"];
 						MessageBoxForPlayers(GetPlayerFilter(iPlayer)
 							, {
 								"/Text/Game/Scripts/ArtiManage/NotAtTownGate/GemOfPhantom/TTH_MB_HasUsedToday.txt"
 								;strText=strText
+								,strRecordCreatureName=strRecordCreatureName
+								,iRecordCreatureNum=iRecordCreatureNum
 							}
 							, nil);
 						return 0;
@@ -11884,9 +11885,22 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 	end;
 -- end
 
+-- begin 获取英雄所属玩家ID
+	function TTH_Func_GetObjectOwner(strHero)
+		local iPlayer = 0;
+		for i = 1, 8 do
+			local arrHero = GetPlayerHeroes(i);
+			if contains(arrHero, strHero) ~= nil then
+				iPlayer = i;
+				return iPlayer;
+			end;
+		end;
+	end;
+-- end
+
 -- begin 闪耀坠饰 ARTIFACT_PENDANT_OF_BLIND
 	function TTH_Func_PendantOfBlind(strHero)
-		local iPlayer = GetObjectOwner(strHero);
+		local iPlayer = TTH_Func_GetObjectOwner(strHero);
 		if HasArtefact(strHero, ARTIFACT_PENDANT_OF_BLIND, 1) ~= nil then
 			if TTH_Data_TeachSpell_PendantOfBlind[strHero] == nil then
 				if KnowHeroSpell(strHero, TTH_TABLE_SPELL["SPELL_BLIND"]["ID"]) == nil then
@@ -11900,14 +11914,14 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 			end;
 		end;
 		if HasArtefact(strHero, ARTIFACT_PENDANT_OF_BLIND, 1) ~= nil then
-			if TTH_Data_GameVar_PendantOfBlind ~= 1 then
+			if TTH_Data_GameVar_PendantOfBlind[strHero] ~= 1 then
 				SetGameVar('TTH_Artifact_Effect_Combat_'..strHero..'_'..ARTIFACT_PENDANT_OF_BLIND, 1);
-				TTH_Data_GameVar_PendantOfBlind = 1;
+				TTH_Data_GameVar_PendantOfBlind[strHero] = 1;
 			end;
 		else
-			if TTH_Data_GameVar_PendantOfBlind ~= 0 then
+			if TTH_Data_GameVar_PendantOfBlind[strHero] ~= 0 then
 				SetGameVar('TTH_Artifact_Effect_Combat_'..strHero..'_'..ARTIFACT_PENDANT_OF_BLIND, 0);
-				TTH_Data_GameVar_PendantOfBlind = 0;
+				TTH_Data_GameVar_PendantOfBlind[strHero] = 0;
 			end;
 		end;
 	end;
@@ -11916,14 +11930,14 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 -- begin 冲锋战鼓 ARTIFACT_DRUM_OF_CHARGE
 	function TTH_Func_DrumOfCharge(strHero)
 		if HasArtefact(strHero, ARTIFACT_DRUM_OF_CHARGE, 1) ~= nil then
-			if TTH_Data_GameVar_DrumOfCharge ~= 1 then
+			if TTH_Data_GameVar_DrumOfCharge[strHero] ~= 1 then
 				SetGameVar('TTH_Artifact_Effect_Combat_'..strHero..'_'..ARTIFACT_DRUM_OF_CHARGE, 1);
-				TTH_Data_GameVar_DrumOfCharge = 1;
+				TTH_Data_GameVar_DrumOfCharge[strHero] = 1;
 			end;
 		else
-			if TTH_Data_GameVar_DrumOfCharge ~= 0 then
+			if TTH_Data_GameVar_DrumOfCharge[strHero] ~= 0 then
 				SetGameVar('TTH_Artifact_Effect_Combat_'..strHero..'_'..ARTIFACT_DRUM_OF_CHARGE, 0);
-				TTH_Data_GameVar_DrumOfCharge = 0;
+				TTH_Data_GameVar_DrumOfCharge[strHero] = 0;
 			end;
 		end;
 	end;
@@ -11931,21 +11945,21 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 
 -- begin 幻影宝石 ARTIFACT_GEM_OF_PHANTOM
 	function TTH_Func_GemOfPhantom(strHero)
-		local iPlayer = GetObjectOwner(strHero);
+		local iPlayer = TTH_Func_GetObjectOwner(strHero);
 		if HasArtefact(strHero, ARTIFACT_GEM_OF_PHANTOM, 1) ~= nil then
 			if TTH_DATA_GemOfPhantom[iPlayer] ~= nil and TTH_DATA_GemOfPhantom[iPlayer]["CreatureId"] ~= nil and TTH_DATA_GemOfPhantom[iPlayer]["CreatureId"] >= 0 then
 				local iPostRecordCreatureId = TTH_DATA_GemOfPhantom[iPlayer]["CreatureId"];
 				local iPostRecordCreatureNum = TTH_DATA_GemOfPhantom[iPlayer]["CreatureNum"];
 				local iCurrentValue = iPostRecordCreatureId + iPostRecordCreatureNum * 1000;
-				if TTH_Data_GameVar_GemOfPhantom ~= iCurrentValue then
+				if TTH_Data_GameVar_GemOfPhantom[strHero] ~= iCurrentValue then
 					SetGameVar('TTH_Artifact_Effect_Combat_'..strHero..'_'..ARTIFACT_GEM_OF_PHANTOM, iCurrentValue);
-					TTH_Data_GameVar_GemOfPhantom = iCurrentValue;
+					TTH_Data_GameVar_GemOfPhantom[strHero] = iCurrentValue;
 				end;
 			end;
 		else
-			if TTH_Data_GameVar_GemOfPhantom ~= 0 then
+			if TTH_Data_GameVar_GemOfPhantom[strHero] ~= 0 then
 				SetGameVar('TTH_Artifact_Effect_Combat_'..strHero..'_'..ARTIFACT_GEM_OF_PHANTOM, 0);
-				TTH_Data_GameVar_GemOfPhantom = 0;
+				TTH_Data_GameVar_GemOfPhantom[strHero] = 0;
 			end;
 		end;
 	end;

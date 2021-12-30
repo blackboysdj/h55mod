@@ -2115,6 +2115,8 @@ doFile('/scripts/combat-startup.lua')
 					local iLenCreaturesLast = length(ObjSnapshotLastTurn['Creatures'][getSide(iSide, 1)]);
 					local iOver = tth_mod(I_TIMER, iLenCreaturesLast);
 					startThread(Thread_Command_UnitCastAimedSpell, itemUnit['strUnitName'], SPELL_BLIND, ObjSnapshotLastTurn['Creatures'][getSide(iSide, 1)][iLenCreaturesLast - 1]['strUnitName'], 1);
+					itemUnit['iAtb'] = 1.25;
+					push(ListUnitSetATB, itemUnit);
 				end;
 			end;
 		end;

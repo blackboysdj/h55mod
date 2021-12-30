@@ -924,8 +924,8 @@ doFile('/scripts/combat-startup.lua')
 				for indexArtifact, objArtifact in TTH_ARTIFACT_EFFECT_COMBAT do
 					local strKey = 'TTH_Artifact_Effect_Combat_'..strHero..'_'..objArtifact;
 					local strValue = GetGameVar(strKey);
-					if strValue ~= nil and strValue ~= '' and strValue * 1 == 1 then
-						TTH_ARTIFACT_EFFECT_COMBAT_HERO[iSide][objArtifact] = 1;
+					if strValue ~= nil and strValue ~= '' and strValue + 0 > 0 then
+						TTH_ARTIFACT_EFFECT_COMBAT_HERO[iSide][objArtifact] = strValue + 0;
 					end;
 				end;
 			end;
@@ -2042,6 +2042,8 @@ doFile('/scripts/combat-startup.lua')
 					local iLenCreaturesLast = length(ObjSnapshotLastTurn['Creatures'][getSide(iSide, 1)]);
 					local iOver = tth_mod(I_TIMER, iLenCreaturesLast);
 					startThread(Thread_Command_UnitCastAimedSpell, itemUnit['strUnitName'], SPELL_BLIND, ObjSnapshotLastTurn['Creatures'][getSide(iSide, 1)][iLenCreaturesLast - 1]['strUnitName'], 1);
+					itemUnit['iAtb'] = 1.25;
+					push(ListUnitSetATB, itemUnit);
 				end;
 			end;
 		end;

@@ -21,18 +21,30 @@ Shantiri
 
 8技能 过夜快 英雄特技 战场特技
 
-  -- 初高神-分档
-    ARTF_CLASS_MINOR 初级 1~5
-    ARTF_CLASS_MAJOR 高级 6~9
-    ARTF_CLASS_RELIC 神器 10~11
-    不售卖及地图生成 11
 
-  -- 价格
-    1~2 → 9000
-    3~5 → 15000
-    6~7 → 21000
-    8~10 → 30000
-    11 → 150000
+    ARTIFACT_RES_ORE = ARTIFACT_RES_BASIC = 98               --矮人十字镐→木材/石矿产量+100%（在木材/石料矿中使用）
+    ARTIFACT_RES_SULPHUR = ARTIFACT_RES_ADVANCED = 99           --育龙者的魔法盒→硫磺/水晶/宝石/水银产量+100%（在硫磺/水晶/宝石/水银矿中使用）
+
+    ARTIFACT_LEGION_T2 = ARTIFACT_LEGION_BASIC = 104            --军团之证→1~2级兵种产量+10%（在城镇中使用）
+    ARTIFACT_LEGION_T6 = ARTIFACT_LEGION_ADVANCED = 108            --军团斗篷→3~5级兵种产量+10%（在城镇中使用）
+    ARTIFACT_LEGION_T7 = ARTIFACT_LEGION_EXPERT = 109            --军团之帜→6~7级兵种产量+10%（在城镇中使用）
+
+    ARTIFACT_RES_GEM = ARTIFACT_PENDANT_OF_BLIND = 101              --闪耀坠饰→战斗开始时随机失明一支敌方部队
+    ARTIFACT_RES_MERCURY = ARTIFACT_GEM_OF_PHANTOM = 102          --幻影宝石→可将一支部队放入幻影宝石中，并在战斗开始时以召唤生物形式加入战场，行动3次后消失。替换兵种时，幻影宝石中的兵种不返还。
+    ARTIFACT_LEGION_T1 = ARTIFACT_ORDER_OF_CONSCRIPTION = 103            --征兵令（消耗类）→立刻获取当前第一格生物一周的产量
+    ARTIFACT_LEGION_T4 = ARTIFACT_DRUM_OF_CHARGE = 106            --冲锋战鼓→战斗开始提升一支部队的ATB到0.3
+
+
+<br><color_default>（使用方式: 英雄携带宝物在对应资源矿附近→打开魔法书（按C）→城镇管理→宝物管理→）
+<body_bright>
+<br>
+<color=ffcfb53b>===大法师之典===
+<color=green>光明魔法书
+<color_default>黑暗魔法书
+<color_default>召唤魔法书
+<color_default>破坏魔法书
+<br>
+<color=fffff826>集齐全套可访问宝物商店进行合成
 
 7AI结盟+3倍增兵+眼泪+天使联盟+诅咒斗篷+龙神胸甲+终极技能
 你们的支持就是牙姐的动力，谢谢大家，进群下载游戏：241244439

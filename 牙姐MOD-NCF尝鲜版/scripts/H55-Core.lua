@@ -9465,7 +9465,7 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 				if HasArtefact(strHero, iArti, 0) ~= nil then
 					QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
 						, {
-							"/Text/Game/Scripts/ArtiManage/AtTownGate/TTH_QB_BonusLegion_or_Giveup.txt"
+							"/Text/Game/Scripts/ArtiManage/AtTownGate/Legion/TTH_QB_BonusLegion_or_Giveup.txt"
 							;strText=strText
 							,strEffect=strEffect
 							,iUsed=iUsed
@@ -9506,7 +9506,7 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 				end;
 				MessageBoxForPlayers(GetPlayerFilter(iPlayer)
 					, {
-						"/Text/Game/Scripts/ArtiManage/AtTownGate/TTH_MB_Success.txt"
+						"/Text/Game/Scripts/ArtiManage/AtTownGate/Legion/TTH_MB_Success.txt"
 						;strText = strText
 						,strEffect = strEffect
 						,iUsed = iUsed
@@ -9531,7 +9531,7 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 				if HasArtefact(strHero, iArti, 0) ~= nil then
 					QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
 						, {
-							"/Text/Game/Scripts/ArtiManage/AtTownGate/QuestionUseArtiType.txt"
+							"/Text/Game/Scripts/ArtiManage/AtTownGate/Economics/TTH_QB_BonusEconomics_or_Giveup.txt"
 							;strText=strText
 							,strEffect=strEffect
 						}
@@ -9547,12 +9547,22 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 				end;
 			end;
 			function TTH_Func_ArtiManage_AtTownGate_EconomicsTown_Deal(strHero, strTown, strArtifactId)
+				local iPlayer = GetObjectOwner(strHero);
 				local iArtifactId = strArtifactId + 0;
+				local strText = TTH_TABLE_ArtiManage_AtTownGateOption[iArtifactId]["Text"];
+				local strEffect = TTH_TABLE_ArtiManage_AtTownGateOption[iArtifactId]["Effect"];
 				RemoveArtefact(strHero, iArtifactId);
 				if TTH_DATA_TownBonus8Arti[strTown] == nil then
 					TTH_DATA_TownBonus8Arti[strTown] = {};
 				end;
 				TTH_DATA_TownBonus8Arti[strTown][iArtifactId] = 1;
+				MessageBoxForPlayers(GetPlayerFilter(iPlayer)
+					, {
+						"/Text/Game/Scripts/ArtiManage/AtTownGate/Economics/TTH_MB_Success.txt"
+						;strText = strText
+						,strEffect = strEffect
+					}
+					, nil);
 			end;
 
 	-- 2.若英雄不在城门口 strHero
@@ -12010,3 +12020,4 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 		GiveArtefact(strHero, ARTIFACT_DRUM_OF_CHARGE);
 	end;
 -- end
+

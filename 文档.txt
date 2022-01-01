@@ -46,6 +46,36 @@ Shantiri
 <br>
 <color=fffff826>集齐全套可访问宝物商店进行合成
 
+
+local iPlayerWinner = GetSavedCombatArmyPlayer(iCombatIndex, 1);
+print('iPlayerWinner: '..iPlayerWinner);
+local iPlayerLoser = GetSavedCombatArmyPlayer(iCombatIndex, 0);
+print('iPlayerLoser: '..iPlayerLoser);
+local iHeroWinner = GetSavedCombatArmyHero(iCombatIndex, 1);
+print('iHeroWinner: '..iHeroWinner);
+local iHeroLoser = GetSavedCombatArmyHero(iCombatIndex, 0);
+print('iHeroLoser: ');
+print(iHeroLoser);
+local iCountStacksWinner = GetSavedCombatArmyCreaturesCount(iCombatIndex, 1);
+print('iCountStacksWinner: '..iCountStacksWinner);
+for i = 0, iCountStacksWinner - 1 do
+  local iCreatureId, iCountCreature, iCountCreatureDeath = GetSavedCombatArmyCreatureInfo(iCombatIndex, 1, i);
+  print('iCreatureId: '..iCreatureId);
+  print('iCountCreature: '..iCountCreature);
+  print('iCountCreatureDeath: '..iCountCreatureDeath);
+end;
+local iCountStacksLoser = GetSavedCombatArmyCreaturesCount(iCombatIndex, 0);
+print('iCountStacksLoser: '..iCountStacksLoser);
+for i = 0, iCountStacksLoser - 1 do
+  local iCreatureId, iCountCreature, iCountCreatureDeath = GetSavedCombatArmyCreatureInfo(iCombatIndex, 0, i);
+  print('iCreatureId: '..iCreatureId);
+  print('iCountCreature: '..iCountCreature);
+  print('iCountCreatureDeath: '..iCountCreatureDeath);
+end;
+
+consoleCmd
+
+
 7AI结盟+3倍增兵+眼泪+天使联盟+诅咒斗篷+龙神胸甲+终极技能
 你们的支持就是牙姐的动力，谢谢大家，进群下载游戏：241244439
 过夜快※8技能※城镇转换※内政官※定点回城※女巫双技能

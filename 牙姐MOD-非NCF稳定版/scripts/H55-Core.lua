@@ -518,6 +518,58 @@ TTH_Data_GameVar_PendantOfBlind = {};
 TTH_Data_GameVar_DrumOfCharge = {};
 TTH_Data_GameVar_GemOfPhantom = {};
 
+-- begin TTH环境
+	-- debug
+		TTH_DEBUG = {}
+		TTH_DEBUG.objRecord = {};	-- funcName, iPlayer, strHero, arrOtherParam
+		TTH_DEBUG.arrRecord = {};
+
+		function TTH_DEBUG.printDebugInfo()
+			for iIndexRecord, objItemRecord in TTH_DEBUG.arrRecord do
+				print('index: '..iIndexRecord);
+				for k, v in objItemRecord do
+					print('--key: '..k);
+					print('--value: ');
+					print(v);
+				end;
+			end;
+		end;
+
+		function TTH_DEBUG.test()
+			for k, v in TTH_DEBUG.objRecord do
+				print('--key: '..k);
+				print('--value: ');
+				print(v);
+			end;
+		end;
+
+		function TTH_DEBUG.recordFuncInfo(...)
+			local iParamCount = arg['n'];
+			TTH_DEBUG.objRecord['recordName'] = arg[1];
+			TTH_DEBUG.objRecord['iPlayer'] = arg[2];
+			TTH_DEBUG.objRecord['strHero'] = arg[3];
+			if iParamCount > 3 then
+				for i = 4, iParamCount do
+						TTH_DEBUG.objRecord[i - 3] = arg[i];
+				end;
+			end;
+		end;
+
+		function TTH_DEBUG.recordCrashInfo()
+			TTH_COMMON.push(TTH_DEBUG.arrRecord, TTH_DEBUG.objRecord);
+		end;
+
+	-- common
+		TTH_COMMON = {}
+		function TTH_COMMON.push(arr, item)
+			if arr == nil then
+				arr = {};
+			end;
+	    arr[length(arr)] = item;
+	    return arr;
+		end;
+-- end
+
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 --SUPPORT FUNCTIONS
 ----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -8516,6 +8568,7 @@ function H55_CrashProtection()
 			H55_AmountCrashes = H55_AmountCrashes+1;
 			H55_Switch = 1;
 			H55_DbgTxt = H55_DEBUG;
+			TTH_DEBUG.recordCrashInfo();
 			startThread(H55_ContinuesActivator);
 			--sleep(2)
 			print("The H55 script engine has been restarted!");
@@ -9280,13 +9333,16 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 
 -- begin 宝物管理
 	function TTH_Func_ArtiManage_Giveup(strHero)
+		TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_Giveup-begin', nil, strHero, strHero);
 		local iPlayer = GetObjectOwner(strHero);
 		print(strHero.." giveup ArtiManage");
 		MessageBoxForPlayers(GetPlayerFilter(iPlayer), "/Text/Game/Scripts/ArtiManage/MessageArtiManageGiveup.txt", nil);
+		TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_Giveup-end', nil, strHero);
 	end;
 
 	-- 军团宝物在城镇中生效（周结算，可累积）
 		function TTH_Func_TownBonus8LegionArti(strTown, iPlayer)
+			TTH_DEBUG.recordFuncInfo('TTH_Func_TownBonus8LegionArti-begin', iPlayer, nil, strTown, iPlayer);
 			if GetObjectOwner(strTown) == iPlayer and TTH_DATA_TownBonus8Arti[strTown] ~= nil then
 				local iTownRace = H55_GetTownRace(strTown);
 				if TTH_DATA_TownBonus8Arti[strTown][ARTIFACT_LEGION_BASIC] >= 1 then
@@ -9317,10 +9373,12 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 					end;
 				end;
 			end;
+			TTH_DEBUG.recordFuncInfo('TTH_Func_TownBonus8LegionArti-end', iPlayer, nil);
 		end;	
 
 	-- 资源宝物在城镇中生效（日结算，不可累积）
 		function TTH_Func_TownBonus8EconomicsArti(strTown, iPlayer)
+			TTH_DEBUG.recordFuncInfo('TTH_Func_TownBonus8EconomicsArti-begin', iPlayer, nil, strTown, iPlayer);
 			if GetObjectOwner(strTown) == iPlayer and TTH_DATA_TownBonus8Arti[strTown] ~= nil and TTH_DATA_TownBonus8Arti[strTown][ARTIFACT_ENDLESS_BAG_OF_GOLD] ~= nil then
 				local iTownHall = GetTownBuildingLevel(strTown, TOWN_BUILDING_TOWN_HALL);
 				local iGrail = GetTownBuildingLevel(strTown, TOWN_BUILDING_GRAIL);
@@ -9347,10 +9405,12 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 				H55_GlobalDailyMercuryPayout[iPlayer] = H55_GlobalDailyMercuryPayout[iPlayer] + 4;
 				H55_GlobalDailyCrystalPayout[iPlayer] = H55_GlobalDailyCrystalPayout[iPlayer] + 4;
 			end;
+			TTH_DEBUG.recordFuncInfo('TTH_Func_TownBonus8EconomicsArti-end', iPlayer, nil);
 		end;			
 
 	-- 资源宝物在资源矿中生效
 		function TTH_Func_MineBonus8ResArti(iParaPlayer)
+			TTH_DEBUG.recordFuncInfo('TTH_Func_MineBonus8ResArti-begin', iParaPlayer, nil, iParaPlayer);
 			for indexMine, objMine in TTH_MINE do
 				local iPlayer = GetObjectOwner(objMine["Id"]);
 				if iParaPlayer == iPlayer then
@@ -9375,10 +9435,12 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 					end;
 				end;
 			end;
+			TTH_DEBUG.recordFuncInfo('TTH_Func_MineBonus8ResArti-end', iParaPlayer, nil);
 		end;
 
 	function TTH_Func_ArtiManage(strPlayer, strHero)
 		local iPlayer = strPlayer * 1;
+		TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage-begin', iPlayer, strHero, strPlayer, strHero);
 		local arrGate = GetObjectNamesByType("TOWN");
 		local strTown = nil;
 		for i, strGate in arrGate do
@@ -9394,6 +9456,7 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 			else
 				TTH_Func_ArtiManage_NotAtTownGate(strHero);
 			end;
+		TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage-end', iPlayer, strHero);
 	end;
 
 	-- 1.若英雄在城门口 strHero strTown
@@ -9440,6 +9503,7 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 		end;
 		function TTH_Func_ArtiManage_AtTownGateChosen(strHero, strTown, iChoose)
 			local iPlayer = GetObjectOwner(strHero);
+			TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_AtTownGateChosen-begin', iPlayer, strHero, strHero, strTown, iChoose);
 			local strText1 = TTH_TABLE_ArtiManage_AtTownGateOption[ARTIFACT_LEGION_BASIC]["Text"];
 			local strText2 = TTH_TABLE_ArtiManage_AtTownGateOption[ARTIFACT_LEGION_ADVANCED]["Text"];
 			local strText3 = TTH_TABLE_ArtiManage_AtTownGateOption[ARTIFACT_LEGION_EXPERT]["Text"];
@@ -9488,6 +9552,7 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 					, strFuncCb.."('"..strHero.."','"..strTown.."')"
 					, "TTH_Func_ArtiManage_Giveup('"..strHero.."')");
 			end;
+			TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_AtTownGateChosen-end', iPlayer, strHero);
 		end;
 
 		-- 1.1~1.3.军团宝物（城镇加成）可累积
@@ -9502,6 +9567,7 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 			end;
 			function TTH_Func_ArtiManage_AtTownGate_LegionImpl(strHero, strTown, strChoose)
 				local iPlayer = GetObjectOwner(strHero);
+				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_AtTownGate_LegionImpl-begin', iPlayer, strHero, strHero, strTown, strChoose);
 				local iChoose = strChoose * 1;
 				local strText = TTH_TABLE_ArtiManage_AtTownGateOption[iChoose]["Text"];
 				local strEffect = TTH_TABLE_ArtiManage_AtTownGateOption[iChoose]["Effect"];
@@ -9537,9 +9603,11 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 						}
 						, nil);
 				end;
+				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_AtTownGate_LegionImpl-end', iPlayer, strHero);
 			end;
 			function TTH_Func_ArtiManage_AtTownGate_LegionTown_Deal(strHero, strTown, strChoose)
 				local iPlayer = GetObjectOwner(strHero);
+				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_AtTownGate_LegionTown_Deal-begin', iPlayer, strHero, strHero, strTown, strChoose);
 				local iChoose = strChoose * 1;
 				local strText = TTH_TABLE_ArtiManage_AtTownGateOption[iChoose]["Text"];
 				local strEffect = TTH_TABLE_ArtiManage_AtTownGateOption[iChoose]["Effect"];
@@ -9569,6 +9637,7 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 						,iBonus = iBonus
 					}
 					, nil);
+				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_AtTownGate_LegionTown_Deal-end', iPlayer, strHero);
 			end;
 
 		-- 1.4.军团金像（城镇加成）不可累积
@@ -9581,6 +9650,7 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 			end;
 			function TTH_Func_ArtiManage_AtTownGate_EconomicsImpl(strHero, strTown, iArtifactId)
 				local iPlayer = GetObjectOwner(strHero);
+				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_AtTownGate_EconomicsImpl-begin', iPlayer, strHero, strHero, strTown, iArtifactId);
 				local strText = TTH_TABLE_ArtiManage_AtTownGateOption[iArtifactId]["Text"];
 				local strEffect = TTH_TABLE_ArtiManage_AtTownGateOption[iArtifactId]["Effect"];
 				local iArti = TTH_TABLE_ArtiManage_AtTownGateOption[iArtifactId]["Arti"];
@@ -9601,8 +9671,10 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 						}
 						, nil);
 				end;
+				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_AtTownGate_EconomicsImpl-end', iPlayer, strHero);
 			end;
 			function TTH_Func_ArtiManage_AtTownGate_EconomicsTown_Deal(strHero, strTown, strArtifactId)
+				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_AtTownGate_EconomicsTown_Deal-begin', iPlayer, strHero, strHero, strTown, strArtifactId);
 				local iPlayer = GetObjectOwner(strHero);
 				local iArtifactId = strArtifactId + 0;
 				local strText = TTH_TABLE_ArtiManage_AtTownGateOption[iArtifactId]["Text"];
@@ -9619,6 +9691,7 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 						,strEffect = strEffect
 					}
 					, nil);
+				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_AtTownGate_EconomicsTown_Deal-end', iPlayer, strHero);
 			end;
 
 	-- 2.若英雄不在城门口 strHero
@@ -9672,6 +9745,7 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 		end;
 		function TTH_Func_ArtiManage_NotAtTownGateChosen(strHero, iChoose)
 			local iPlayer = GetObjectOwner(strHero);
+			TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_NotAtTownGateChosen-begin', iPlayer, strHero, strHero, iChoose);
 			local strText1 = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_RES_BASIC]["Text"];
 			local strText2 = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_RES_ADVANCED]["Text"];
 			local strText3 = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_RES_EXPERT]["Text"];
@@ -9726,6 +9800,7 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 					, strFuncCb.."('"..strHero.."')"
 					, "TTH_Func_ArtiManage_Giveup('"..strHero.."')");
 			end;
+			TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_NotAtTownGateChosen-end', iPlayer, strHero);
 		end;
 
 		-- 2.1~2.3.资源宝物（资源矿加成）可累积
@@ -9846,6 +9921,7 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 			end;
 			function TTH_Func_ArtiManage_NotAtTownGate_ResImpl(strHero, strChoose)
 				local iPlayer = GetObjectOwner(strHero);
+				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_NotAtTownGate_ResImpl-begin', iPlayer, strHero, strHero, strChoose);
 				local iChoose = strChoose * 1;
 				local strText = TTH_TABLE_ArtiManage_NotAtTownGateOption[iChoose]["Text"];
 				local strEffect = TTH_TABLE_ArtiManage_NotAtTownGateOption[iChoose]["Effect"];
@@ -9892,9 +9968,11 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 						}
 						, nil);
 				end;
+				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_NotAtTownGate_ResImpl-end', iPlayer, strHero);
 			end;
 			function TTH_Func_ArtiManage_NotAtTownGate_ResDeal(strHero, strMineId, strArtifactId)
 				local iPlayer = GetObjectOwner(strHero);
+				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_NotAtTownGate_ResDeal-begin', iPlayer, strHero, strHero, strMineId, strArtifactId);
 				local objMine = TTH_MINE[strMineId];
 				local iMineType = objMine["MineType"];
 				local iArtifactId = TTH_TABLE_ARTIFACT_RES_BONUS["ArtifactId"][iMineType];
@@ -9925,11 +10003,13 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 			    	,level=iCurrentBonusLevel
 			    }
 			    , nil);
+				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_NotAtTownGate_ResDeal-end', iPlayer, strHero);
 			end;
 
 		-- 2.4.征兵令（消耗类）→立刻获取当前第一格生物一周的产量
 			function TTH_Func_ArtiManage_NotAtTownGate_OrderOfConscription(strHero)
 				local iPlayer = GetObjectOwner(strHero);
+				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_NotAtTownGate_OrderOfConscription-begin', iPlayer, strHero, strHero);
 				local strText = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_ORDER_OF_CONSCRIPTION]["Text"];
 				local strEffect = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_ORDER_OF_CONSCRIPTION]["Effect"];
 				local iArti = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_ORDER_OF_CONSCRIPTION]["Arti"];
@@ -9955,9 +10035,11 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 						}
 						, nil);
 				end;
+				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_NotAtTownGate_OrderOfConscription-end', iPlayer, strHero);
 			end;
 			function TTH_Func_ArtiManage_NotAtTownGate_OrderOfConscription_Deal(strHero, strArtifactId, strCreatureId, strGrowth)
 				local iPlayer = GetObjectOwner(strHero);
+				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_NotAtTownGate_OrderOfConscription-begin', iPlayer, strHero, strHero, strArtifactId, strCreatureId, strGrowth);
 				local iArtifactId = strArtifactId + 0;
 				local iCreatureId = strCreatureId + 0;
 				local iGrowth = strGrowth + 0;
@@ -9965,12 +10047,14 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 				AddHeroCreatures(strHero, iCreatureId, iGrowth);
 				ShowFlyingSign({"/Text/Game/Scripts/Join.txt"; num = iGrowth}, strHero, iPlayer, 5);
 				sleep(4);
+				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_NotAtTownGate_OrderOfConscription-end', iPlayer, strHero);
 			end;
 		
 		-- 2.5.幻影宝石
 			TTH_DATA_GemOfPhantom = {};
 			function TTH_Func_ArtiManage_NotAtTownGate_GemOfPhantom(strHero)
 				local iPlayer = GetObjectOwner(strHero);
+				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_NotAtTownGate_GemOfPhantom-begin', iPlayer, strHero, strHero);
 				local strText = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_GEM_OF_PHANTOM]["Text"];
 				local strEffect = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_GEM_OF_PHANTOM]["Effect"];
 				local iArti = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_GEM_OF_PHANTOM]["Arti"];
@@ -10041,9 +10125,11 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 						}
 						, nil);
 				end;
+				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_NotAtTownGate_GemOfPhantom-end', iPlayer, strHero);
 			end;
 			function TTH_Func_ArtiManage_NotAtTownGate_GemOfPhantom_Deal(strHero, strSlotCreatureId, strSlotCreatureNum, strPostRecordCreatureId, strPostRecordCreatureNum)
 				local iPlayer = GetObjectOwner(strHero);
+				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_NotAtTownGate_GemOfPhantom_Deal-begin', iPlayer, strHero, strHero, strSlotCreatureId, strSlotCreatureNum, strPostRecordCreatureId, strPostRecordCreatureNum);
 				local iSlotCreatureId = strSlotCreatureId + 0;
 				local iSlotCreatureNum = strSlotCreatureNum + 0;
 				local iPostRecordCreatureId = strPostRecordCreatureId + 0;
@@ -10061,11 +10147,13 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 						,iRecordCreatureNum=iRecordCreatureNum
 					}
 					, nil);
+				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_NotAtTownGate_GemOfPhantom_Deal-end', iPlayer, strHero);
 			end;
 
 		-- 2.6.皇家遗物
 			function TTH_Func_ArtiManage_NotAtTownGate_MaskOfDoppelganger(strHero)
 				local iPlayer = GetObjectOwner(strHero);
+				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_NotAtTownGate_MaskOfDoppelganger-begin', iPlayer, strHero, strHero);
 				local strText = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_MASK_OF_DOPPELGANGER]["Text"];
 				local strEffect = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_MASK_OF_DOPPELGANGER]["Effect"];
 				local iArti = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_MASK_OF_DOPPELGANGER]["Arti"];
@@ -10088,9 +10176,11 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 						}
 						, nil);
 				end;
+				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_NotAtTownGate_MaskOfDoppelganger-end', iPlayer, strHero);
 			end;
 			function TTH_Func_ArtiManage_NotAtTownGate_MaskOfDoppelganger_Deal(strHero)
 				local iPlayer = GetObjectOwner(strHero);
+				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_NotAtTownGate_MaskOfDoppelganger_Deal-begin', iPlayer, strHero, strHero);
 				local strText = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_MASK_OF_DOPPELGANGER]["Text"];
 				local iExp = 500 * 1000;
         RemoveArtefact(strHero, ARTIFACT_MASK_OF_DOPPELGANGER);
@@ -10102,6 +10192,7 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 						,iExp=iExp
 					}
 					, nil);
+				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_NotAtTownGate_MaskOfDoppelganger_Deal-end', iPlayer, strHero);
 			end;
 -- end
 
@@ -11677,6 +11768,7 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 -- begin 闪耀坠饰 ARTIFACT_PENDANT_OF_BLIND
 	function TTH_Func_PendantOfBlind(strHero)
 		local iPlayer = TTH_Func_GetObjectOwner(strHero);
+		TTH_DEBUG.recordFuncInfo('TTH_Func_PendantOfBlind-begin', iPlayer, strHero, strHero);
 		if HasArtefact(strHero, ARTIFACT_PENDANT_OF_BLIND, 1) ~= nil then
 			if TTH_Data_TeachSpell_PendantOfBlind[strHero] == nil then
 				if KnowHeroSpell(strHero, TTH_TABLE_SPELL["SPELL_BLIND"]["ID"]) == nil then
@@ -11700,11 +11792,13 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 				TTH_Data_GameVar_PendantOfBlind[strHero] = 0;
 			end;
 		end;
+		TTH_DEBUG.recordFuncInfo('TTH_Func_PendantOfBlind-end', iPlayer, strHero);
 	end;
 -- end
 
 -- begin 冲锋战鼓 ARTIFACT_DRUM_OF_CHARGE
 	function TTH_Func_DrumOfCharge(strHero)
+		TTH_DEBUG.recordFuncInfo('TTH_Func_DrumOfCharge-begin', nil, strHero, strHero);
 		if HasArtefact(strHero, ARTIFACT_DRUM_OF_CHARGE, 1) ~= nil then
 			if TTH_Data_GameVar_DrumOfCharge[strHero] ~= 1 then
 				SetGameVar('TTH_Artifact_Effect_Combat_'..strHero..'_'..ARTIFACT_DRUM_OF_CHARGE, 1);
@@ -11716,12 +11810,14 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 				TTH_Data_GameVar_DrumOfCharge[strHero] = 0;
 			end;
 		end;
+		TTH_DEBUG.recordFuncInfo('TTH_Func_DrumOfCharge-end', nil, strHero);
 	end;
 -- end
 
 -- begin 幻影宝石 ARTIFACT_GEM_OF_PHANTOM
 	function TTH_Func_GemOfPhantom(strHero)
 		local iPlayer = TTH_Func_GetObjectOwner(strHero);
+		TTH_DEBUG.recordFuncInfo('TTH_Func_GemOfPhantom-begin', iPlayer, strHero, strHero);
 		if HasArtefact(strHero, ARTIFACT_GEM_OF_PHANTOM, 1) ~= nil then
 			if TTH_DATA_GemOfPhantom[iPlayer] ~= nil and TTH_DATA_GemOfPhantom[iPlayer]["CreatureId"] ~= nil and TTH_DATA_GemOfPhantom[iPlayer]["CreatureId"] >= 0 then
 				local iPostRecordCreatureId = TTH_DATA_GemOfPhantom[iPlayer]["CreatureId"];
@@ -11738,7 +11834,34 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 				TTH_Data_GameVar_GemOfPhantom[strHero] = 0;
 			end;
 		end;
+		TTH_DEBUG.recordFuncInfo('TTH_Func_GemOfPhantom-end', iPlayer, strHero);
 	end;
+-- end
+
+-- begin 军团宝物对领袖特加成
+  function TTH_Func_LegionBonus2LeaderHero(strHero)
+		TTH_DEBUG.recordFuncInfo('TTH_Func_LegionBonus2LeaderHero-begin', nil, strHero, strHero);
+  	local iLegionCount = 0;
+  	if HasArtefact(strHero, ARTIFACT_LEGION_BASIC, 0) ~= nil then
+  		iLegionCount = iLegionCount + 1;
+  	end;
+  	if HasArtefact(strHero, ARTIFACT_LEGION_ADVANCED, 0) ~= nil then
+  		iLegionCount = iLegionCount + 1;
+  	end;
+  	if HasArtefact(strHero, ARTIFACT_LEGION_EXPERT, 0) ~= nil then
+  		iLegionCount = iLegionCount + 1;
+  	end;
+  	local iLeaderHeroBonus = 1;
+  	if iLegionCount == 1 then
+  		iLeaderHeroBonus = 1.25;
+  	elseif iLegionCount == 2 then
+  		iLeaderHeroBonus = 1.5;
+  	elseif iLegionCount == 3 then
+  		iLeaderHeroBonus = 2;
+  	end;
+		TTH_DEBUG.recordFuncInfo('TTH_Func_LegionBonus2LeaderHero-end', nil, strHero);
+  	return iLeaderHeroBonus;
+  end;
 -- end
 
 -- begin 军团宝物对领袖特加成
@@ -11786,3 +11909,21 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 		GiveArtefact(strHero, ARTIFACT_DRUM_OF_CHARGE);
 	end;
 -- end
+
+SetTrigger(COMBAT_RESULTS_TRIGGER, "TTH_TRIGGER_CombatResults"); 
+function TTH_TRIGGER_CombatResults(iCombatIndex) 
+	TTH_TRIGGER_CombatResults_LoseCreature(iCombatIndex);
+	TTH_TRIGGER_CombatResults_ReviveCreature(iCombatIndex);
+end;
+
+
+function TTH_TRIGGER_CombatResults_LoseCreature(iCombatIndex)
+	print('TTH_TRIGGER_CombatResults_LoseCreature:'..'inside');
+end;
+
+function TTH_TRIGGER_CombatResults_ReviveCreature(iCombatIndex)
+	print('TTH_TRIGGER_CombatResults_ReviveCreature:'..'inside');
+end;
+
+doFile("/scripts/TTH_MOD_CombatResults_LoseCreature.lua");
+doFile("/scripts/TTH_MOD_CombatResults_ReviveCreature.lua");

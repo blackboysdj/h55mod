@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<AdvMapObjectLink>
-    <Link href="/MapObjects/Neutral/Cherubin.xdb#xpointer(/AdvMapMonsterShared)"/>
-    <RndGroup/>
-    <IconFile>Icons\Creature_956.dds</IconFile>
-    <HideInEditor>false</HideInEditor>
-</AdvMapObjectLink>

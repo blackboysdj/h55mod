@@ -70,6 +70,11 @@ doFile('/scripts/combat-startup.lua')
 		--GetAttackerBuilding(iCategory) 															--获取攻方建筑
 		--GetDefenderBuilding(iCategory) 															--获取守方建筑
 
+-- 常量
+	TTH_FINAL = {};
+	TTH_FINAL.GAMEVAR_COMBAT_ARTIFACT = "TTH_Artifact_Effect_Combat_";
+	TTH_FINAL.GAMEVAR_COMBAT_SKILL = "TTH_Skill_Effect_Combat_";
+
 -- 枚举
 	-- 枚举: 攻守方
 	ENUM_SIDE = {};
@@ -264,34 +269,34 @@ doFile('/scripts/combat-startup.lua')
 		H55SMOD_Start['Maeve']['function'] = Events_Start_Implement_Maeve;
 
 	-- Gurvilin
-		H55SMOD_Start['Gurvilin'] = {};
-		H55SMOD_Start['Gurvilin']['flag'] = ENUM_STAGE.ONCE.UNEXECUTE;
-		function Events_Start_Implement_Gurvilin(strHero, iSide, isReverse)
-			local iPositionXCaster = -1;
-			if iSide == ENUM_SIDE.ATTACKER then
-				iPositionXCaster = 2;
-			else
-				iPositionXCaster = 13;
-			end;
-			for iIndexSide = ENUM_SIDE.ATTACKER, ENUM_SIDE.DEFENDER do
-				local listCreaturesTarget = GetCreatures(iIndexSide);
-				local iLenCreaturesTarget = length(listCreaturesTarget);
-				local itemCreatureCaster = nil;
-				for iIndexCreaturesTarget = 0, iLenCreaturesTarget - 1 do
-					if IsCombatUnit(listCreaturesTarget[iIndexCreaturesTarget]) ~= nil and GetCreatureNumber(listCreaturesTarget[iIndexCreaturesTarget]) > 0 then
-						repeat sleep(1); until itemCreatureCaster == nil or (itemCreatureCaster ~= nil and IsCombatUnit(itemCreatureCaster) == nil);
-						itemCreatureCaster = Thread_Command_AddCreature(iSide, CREATURE_MASTER_GENIE, H55SMOD_HeroLevel[strHero] * 1, iPositionXCaster, 1);
-						if itemCreatureCaster ~= nil and IsCombatUnit(itemCreatureCaster) ~= nil then
-							startThread(Thread_Command_UnitCastAimedSpell_WithoutMana, itemCreatureCaster, SPELL_ABILITY_RANDOM_CAST_DARK_LIGHT, listCreaturesTarget[iIndexCreaturesTarget]);
-							sleep(20);
-							startThread(Thread_Command_RemoveCombatUnit, iSide, itemCreatureCaster);
-							sleep(20);
-						end;
-					end;
-				end;
-			end;
-		end;
-		H55SMOD_Start['Gurvilin']['function'] = Events_Start_Implement_Gurvilin;
+		-- H55SMOD_Start['Gurvilin'] = {};
+		-- H55SMOD_Start['Gurvilin']['flag'] = ENUM_STAGE.ONCE.UNEXECUTE;
+		-- function Events_Start_Implement_Gurvilin(strHero, iSide, isReverse)
+		-- 	local iPositionXCaster = -1;
+		-- 	if iSide == ENUM_SIDE.ATTACKER then
+		-- 		iPositionXCaster = 2;
+		-- 	else
+		-- 		iPositionXCaster = 13;
+		-- 	end;
+		-- 	for iIndexSide = ENUM_SIDE.ATTACKER, ENUM_SIDE.DEFENDER do
+		-- 		local listCreaturesTarget = GetCreatures(iIndexSide);
+		-- 		local iLenCreaturesTarget = length(listCreaturesTarget);
+		-- 		local itemCreatureCaster = nil;
+		-- 		for iIndexCreaturesTarget = 0, iLenCreaturesTarget - 1 do
+		-- 			if IsCombatUnit(listCreaturesTarget[iIndexCreaturesTarget]) ~= nil and GetCreatureNumber(listCreaturesTarget[iIndexCreaturesTarget]) > 0 then
+		-- 				repeat sleep(1); until itemCreatureCaster == nil or (itemCreatureCaster ~= nil and IsCombatUnit(itemCreatureCaster) == nil);
+		-- 				itemCreatureCaster = Thread_Command_AddCreature(iSide, CREATURE_MASTER_GENIE, H55SMOD_HeroLevel[strHero] * 1, iPositionXCaster, 1);
+		-- 				if itemCreatureCaster ~= nil and IsCombatUnit(itemCreatureCaster) ~= nil then
+		-- 					startThread(Thread_Command_UnitCastAimedSpell_WithoutMana, itemCreatureCaster, SPELL_ABILITY_RANDOM_CAST_DARK_LIGHT, listCreaturesTarget[iIndexCreaturesTarget]);
+		-- 					sleep(20);
+		-- 					startThread(Thread_Command_RemoveCombatUnit, iSide, itemCreatureCaster);
+		-- 					sleep(20);
+		-- 				end;
+		-- 			end;
+		-- 		end;
+		-- 	end;
+		-- end;
+		-- H55SMOD_Start['Gurvilin']['function'] = Events_Start_Implement_Gurvilin;
 
 	-- Josephine
 		H55SMOD_Start['Josephine'] = {};
@@ -539,7 +544,7 @@ doFile('/scripts/combat-startup.lua')
 			local iScale2 = h55_ceil(H55SMOD_HeroLevel[strHero] / 3);
 
 			local List_LightOrDarkAngel_Creatures = {};
-			if H55SMOD_HeroAbility[strHero] == 'light' then
+			if H55SMOD_HeroAbility[strHero] == 'Light' then
 				List_LightOrDarkAngel_Creatures = List_LightAngel_Creatures;
 			else
 				List_LightOrDarkAngel_Creatures = List_DarkAngel_Creatures;
@@ -893,7 +898,7 @@ doFile('/scripts/combat-startup.lua')
 	function Events_Init_HeroLevel()
 		for iIndexHero = 1, length(H55SMOD_Heroes) do
 			local strHero = H55SMOD_Heroes[iIndexHero];
-			local strHeroLevel = GetGameVar('H55SMOD_Var_Level_'..strHero);
+			local strHeroLevel = GetGameVar('TTH_Var_HeroLevel_'..strHero);
 			if strHeroLevel == nil or strHeroLevel == '' then
 				H55SMOD_HeroLevel[strHero] = 0;
 			else
@@ -902,8 +907,8 @@ doFile('/scripts/combat-startup.lua')
 		end;
 		for iSide = ENUM_SIDE.ATTACKER, ENUM_SIDE.DEFENDER do
 			if GetHero(iSide) ~= nil and H55SMOD_HeroLevel[GetHeroName(GetHero(iSide))] == 0 then
-				TTH_HeroNotExistOnMap = iSide;
-				setATB(GetHero(TTH_HeroNotExistOnMap), 0);
+				-- TTH_HeroNotExistOnMap = iSide;
+				-- setATB(GetHero(TTH_HeroNotExistOnMap), 0);
 				if GetHero(getSide(iSide, 1)) ~= nil and H55SMOD_HeroLevel[GetHeroName(GetHero(getSide(iSide, 1)))] ~= 0 then
 					H55SMOD_HeroLevel[GetHeroName(GetHero(iSide))] = H55SMOD_HeroLevel[GetHeroName(GetHero(getSide(iSide, 1)))];
 				else
@@ -925,43 +930,13 @@ doFile('/scripts/combat-startup.lua')
 				H55SMOD_HeroSkill[strHero][SKILL_ABSOLUTE_MORALE] = strHeroSkill * 1;
 			end;
 		end;
-		if 1 == 1 then
-			local strHero = 'Kastore';
-			if H55SMOD_HeroSkill[strHero] == nil then
-				H55SMOD_HeroSkill[strHero] = {};
-			end;
-			if 1 == 1 then
-				local strHeroSkill = GetGameVar('H55SMOD_Var_Skill_'..strHero..'_'..SKILL_MASTER_OF_ICE);
-				if strHeroSkill == nil or strHeroSkill == '' then
-					H55SMOD_HeroSkill[strHero][SKILL_MASTER_OF_ICE] = 0;
-				else
-					H55SMOD_HeroSkill[strHero][SKILL_MASTER_OF_ICE] = strHeroSkill * 1;
-				end;
-			end;
-			if 1 == 1 then
-				local strHeroSkill = GetGameVar('H55SMOD_Var_Skill_'..strHero..'_'..SKILL_MASTER_OF_FIRE);
-				if strHeroSkill == nil or strHeroSkill == '' then
-					H55SMOD_HeroSkill[strHero][SKILL_MASTER_OF_FIRE] = 0;
-				else
-					H55SMOD_HeroSkill[strHero][SKILL_MASTER_OF_FIRE] = strHeroSkill * 1;
-				end;
-			end;
-			if 1 == 1 then
-				local strHeroSkill = GetGameVar('H55SMOD_Var_Skill_'..strHero..'_'..SKILL_MASTER_OF_LIGHTNINGS);
-				if strHeroSkill == nil or strHeroSkill == '' then
-					H55SMOD_HeroSkill[strHero][SKILL_MASTER_OF_LIGHTNINGS] = 0;
-				else
-					H55SMOD_HeroSkill[strHero][SKILL_MASTER_OF_LIGHTNINGS] = strHeroSkill * 1;
-				end;
-			end;
-		end;
 	end;
 	function Events_Init_HeroSkill()
 		for iSide = ENUM_SIDE.ATTACKER, ENUM_SIDE.DEFENDER do
 			if GetHero(iSide) ~= nil then
 				local strHero = GetHeroName(GetHero(iSide));
 				for indexSkill, objSkill in TTH_SKILL_EFFECT_COMBAT do
-					local strKey = 'TTH_Skill_Effect_Combat_'..strHero..'_'..objSkill;
+					local strKey = TTH_FINAL.GAMEVAR_COMBAT_SKILL..strHero..'_'..objSkill;
 					local strValue = GetGameVar(strKey);
 					if strValue ~= nil and strValue ~= '' and strValue * 1 == 1 then
 						TTH_SKILL_EFFECT_COMBAT_HERO[iSide][objSkill] = 1;
@@ -977,11 +952,13 @@ doFile('/scripts/combat-startup.lua')
 				H55SMOD_HeroAbility[strHero] = {};
 			end;
 			if 1 == 1 then
-				local strHeroAbility = GetGameVar('H55SMOD_Var_Ability_'..strHero);
-				if strHeroAbility == nil or strHeroAbility == '' or strHeroAbility == 'light' then
-					H55SMOD_HeroAbility[strHero] = 'light';
+				local strHeroAbility = GetGameVar('TTH_Var_Talent_'..strHero);
+				if strHeroAbility == nil
+					or strHeroAbility == ''
+					or strHeroAbility == '0' then
+					H55SMOD_HeroAbility[strHero] = 'Light';
 				else
-					H55SMOD_HeroAbility[strHero] = 'dark';
+					H55SMOD_HeroAbility[strHero] = 'Dark';
 				end;
 			end;
 		end;
@@ -991,7 +968,7 @@ doFile('/scripts/combat-startup.lua')
 			if GetHero(iSide) ~= nil then
 				local strHero = GetHeroName(GetHero(iSide));
 				for indexArtifact, objArtifact in TTH_ARTIFACT_EFFECT_COMBAT do
-					local strKey = 'TTH_Artifact_Effect_Combat_'..strHero..'_'..objArtifact;
+					local strKey = TTH_FINAL.GAMEVAR_COMBAT_ARTIFACT..strHero..'_'..objArtifact;
 					local strValue = GetGameVar(strKey);
 					if strValue ~= nil and strValue ~= '' and strValue + 0 > 0 then
 						TTH_ARTIFACT_EFFECT_COMBAT_HERO[iSide][objArtifact] = strValue + 0;
@@ -1021,7 +998,7 @@ doFile('/scripts/combat-startup.lua')
 		-- 后置英雄特效
 		-- Events_Start_Interface('Maeve', 0);
 
-		Events_Start_Interface('Gurvilin', 1);
+		-- Events_Start_Interface('Gurvilin', 1);
 		Events_Start_Interface('Josephine', 1);
 
 		-- Events_Start_Interface('Efion', 1);
@@ -1214,7 +1191,7 @@ doFile('/scripts/combat-startup.lua')
 							-- Inferno
 								H55SMOD_MiddlewareListener['Efion']['function']['product']('Efion', iSide, itemUnitLast, iLossManaPoints);
 							-- Necropolis
-								H55SMOD_MiddlewareListener['Nikolay']['function']('Nikolay', iSide, itemUnitLast, iLossManaPoints);
+								H55SMOD_MiddlewareListener['Straker']['function']('Straker', iSide, itemUnitLast, iLossManaPoints);
 								H55SMOD_MiddlewareListener['Effig']['function']('Effig', iSide, itemUnitLast, iLossManaPoints);
 								H55SMOD_MiddlewareListener['Nimbus']['function']('Nimbus', getSide(iSide, 1), itemUnitLast, iLossManaPoints);
 							-- Fortress
@@ -1343,6 +1320,7 @@ doFile('/scripts/combat-startup.lua')
 									-- Haven
 									-- Sylvan
 									-- Academy
+										H55SMOD_MiddlewareListener['Gurvilin']['function']['creature']('Gurvilin', iSide, itemUnitLast, ObjSnapshotLastTurn['Creatures'][iSide][iIndexCreaturesLast], iLossManaPoints);
 									-- Inferno
 									-- Necropolis
 										H55SMOD_MiddlewareListener['Thant']['function']['creature']('Thant', iSide, itemUnitLast, ObjSnapshotLastTurn['Creatures'][iSide][iIndexCreaturesLast], iLossManaPoints);
@@ -2684,6 +2662,21 @@ doFile('/scripts/combat-startup.lua')
 			end;
 			H55SMOD_MiddlewareListener['Davius']['function']['kill'] = Events_MiddlewareListener_Implement_Davius_Kill;
 
+		-- Gurvilin
+			H55SMOD_MiddlewareListener['Gurvilin'] = {};
+			H55SMOD_MiddlewareListener['Gurvilin']['function'] = {};
+			function Events_MiddlewareListener_Implement_Gurvilin_Creature(strHero, iSide, itemUnitLast, itemUnitLoss, iLossManaPoints)
+				if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero and itemUnitLoss['iSide'] == iSide and itemUnitLoss['iUnitType'] == CREATURE_Enchanter then
+					local itemHero = geneUnitStatus(GetHero(iSide));
+					local iDiffMana = 2; --h55_ceil(iLossManaPoints * (0.1 + 0.01 * H55SMOD_HeroLevel[strHero]));
+					local iBeforeMana = GetUnitManaPoints(itemHero['strUnitName']);
+					local iCurrentMana = iBeforeMana + iDiffMana;
+			        SetUnitManaPoints(itemHero['strUnitName'], iCurrentMana);
+					print(itemHero['strUnitName'].." remain "..iDiffMana.." mana");
+				end;
+			end;
+			H55SMOD_MiddlewareListener['Gurvilin']['function']['creature'] = Events_MiddlewareListener_Implement_Gurvilin_Creature;
+
 		-- Emilia
 			H55SMOD_MiddlewareListener['Emilia'] = {};
 			function Events_MiddlewareListener_Implement_Emilia(strHero, iSide, itemUnitLast, listUnitLastSummonBeDestroied)
@@ -3385,9 +3378,9 @@ doFile('/scripts/combat-startup.lua')
 			end;
 			H55SMOD_MiddlewareListener['Gles']['function'] = Events_MiddlewareListener_Implement_Gles;
 
-		-- Nikolay
-			H55SMOD_MiddlewareListener['Nikolay'] = {};
-			function Events_MiddlewareListener_Implement_Nikolay(strHero, iSide, itemUnitLast, iLossManaPoints)
+		-- Straker
+			H55SMOD_MiddlewareListener['Straker'] = {};
+			function Events_MiddlewareListener_Implement_Straker(strHero, iSide, itemUnitLast, iLossManaPoints)
 				if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero and itemUnitLast['strUnitName'] == GetHero(iSide) then
 					local listCreaturesTarget = GetCreatures(getSide(iSide, 1));
 					local iLenCreaturesTarget = length(listCreaturesTarget);
@@ -3411,7 +3404,7 @@ doFile('/scripts/combat-startup.lua')
 							local itemCreatureTarget = geneUnitStatus(listCreaturesTarget[iIndexCreaturesTarget]);
 							if IsCombatUnit(itemCreatureTarget['strUnitName']) ~= nil and itemCreatureTarget['iUnitNumber'] > 0 then
 								repeat sleep(1); until itemCreatureCaster == nil or (itemCreatureCaster ~= nil and IsCombatUnit(itemCreatureCaster) == nil);
-								itemCreatureCaster = Thread_Command_AddCreature(iSide, CREATURE_Nikolay_Skill, 1, iPositionX, iPositionY);
+								itemCreatureCaster = Thread_Command_AddCreature(iSide, CREATURE_Straker_Skill, 1, iPositionX, iPositionY);
 								if itemCreatureCaster ~= nil and IsCombatUnit(itemCreatureCaster) ~= nil then
 									-- startThread(AttackCombatUnit, itemCreatureCaster, itemCreatureTarget['strUnitName']);
 									startThread(ShootCombatUnit, itemCreatureCaster, itemCreatureTarget['strUnitName']);
@@ -3426,7 +3419,7 @@ doFile('/scripts/combat-startup.lua')
 					end;
 				end;
 			end;
-			H55SMOD_MiddlewareListener['Nikolay']['function'] = Events_MiddlewareListener_Implement_Nikolay;
+			H55SMOD_MiddlewareListener['Straker']['function'] = Events_MiddlewareListener_Implement_Straker;
 
 		-- Effig
 			H55SMOD_MiddlewareListener['Effig'] = {};
@@ -4078,21 +4071,21 @@ doFile('/scripts/combat-startup.lua')
 								or itemUnitLastSummon['iUnitType'] == CREATURE_EARTH_ELEMENTAL
 								or itemUnitLastSummon['iUnitType'] == CREATURE_AIR_ELEMENTAL
 								or itemUnitLastSummon['iUnitType'] == CREATURE_PHOENIX then
-								if H55SMOD_HeroSkill[strHero][SKILL_MASTER_OF_ICE] == 1 and H55SMOD_MiddlewareListener[strHero]['flag']['water'] == nil then
+								if TTH_SKILL_EFFECT_COMBAT_HERO[iSide][SKILL_MASTER_OF_ICE] == 1 and H55SMOD_MiddlewareListener[strHero]['flag']['water'] == nil then
 									combatSetPause(1);
 									local strSummonCreatureWater = Thread_Command_SummonCreature(iSide, CREATURE_WATER_ELEMENTAL, h55_ceil(H55SMOD_HeroLevel[strHero] / 3), itemUnitLastSummon['iPositionX'], itemUnitLastSummon['iPositionY']);
 									H55SMOD_MiddlewareListener[strHero]['flag'][strSummonCreatureWater] = ENUM_STAGE.ONCE.EXECUTED;
 									H55SMOD_MiddlewareListener[strHero]['flag']['water'] = ENUM_STAGE.ONCE.EXECUTED;
 									combatSetPause(nil);
 								end;
-								if H55SMOD_HeroSkill[strHero][SKILL_MASTER_OF_FIRE] == 1 and H55SMOD_MiddlewareListener[strHero]['flag']['fire'] == nil then
+								if TTH_SKILL_EFFECT_COMBAT_HERO[iSide][SKILL_MASTER_OF_FIRE] == 1 and H55SMOD_MiddlewareListener[strHero]['flag']['fire'] == nil then
 									combatSetPause(1);
 									local strSummonCreatureFire = Thread_Command_SummonCreature(iSide, CREATURE_FIRE_ELEMENTAL, h55_ceil(H55SMOD_HeroLevel[strHero] / 3), itemUnitLastSummon['iPositionX'], itemUnitLastSummon['iPositionY']);
 									H55SMOD_MiddlewareListener[strHero]['flag'][strSummonCreatureFire] = ENUM_STAGE.ONCE.EXECUTED;
 									H55SMOD_MiddlewareListener[strHero]['flag']['fire'] = ENUM_STAGE.ONCE.EXECUTED;
 									combatSetPause(nil);
 								end;
-								if H55SMOD_HeroSkill[strHero][SKILL_MASTER_OF_LIGHTNINGS] == 1 and H55SMOD_MiddlewareListener[strHero]['flag']['lightning'] == nil then
+								if TTH_SKILL_EFFECT_COMBAT_HERO[iSide][SKILL_MASTER_OF_LIGHTNINGS] == 1 and H55SMOD_MiddlewareListener[strHero]['flag']['lightning'] == nil then
 									combatSetPause(1);
 									local strSummonCreatureAir = Thread_Command_SummonCreature(iSide, CREATURE_AIR_ELEMENTAL, h55_ceil(H55SMOD_HeroLevel[strHero] / 3), itemUnitLastSummon['iPositionX'], itemUnitLastSummon['iPositionY']);
 									H55SMOD_MiddlewareListener[strHero]['flag'][strSummonCreatureAir] = ENUM_STAGE.ONCE.EXECUTED;

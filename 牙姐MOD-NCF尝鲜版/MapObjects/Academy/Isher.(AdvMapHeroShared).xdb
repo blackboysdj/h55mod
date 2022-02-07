@@ -35,7 +35,7 @@
 		<Mastery>MASTERY_ADVANCED</Mastery>
 		<SkillID>HERO_SKILL_DEFENCE</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Academy55/Machinist/Name.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Academy/Isher/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Academy55/Machinist/Description.txt"/>
 	<SpecializationIcon href="/Textures/HeroScreen/Specializations/Academy/Machinist.xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Academy/Academy_Razzak_128x128.(Texture).xdb#xpointer(/Texture)"/>

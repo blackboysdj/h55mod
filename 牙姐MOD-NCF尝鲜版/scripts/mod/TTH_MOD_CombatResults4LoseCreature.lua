@@ -1,0 +1,2 @@
+function TTH_TRIGGER.interfaceCombatResults4LoseCreature(iCombatIndex)
+end;

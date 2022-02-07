@@ -35,7 +35,7 @@
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_ARTIFICIER</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Academy55/Resource/Name.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Academy/Rissa/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Academy55/Resource/Description.txt"/>
 	<SpecializationIcon href="/Textures/Interface/MessageBox/rMercury.xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Academy/Academy_Rissa_128x128.(Texture).xdb#xpointer(/Texture)"/>

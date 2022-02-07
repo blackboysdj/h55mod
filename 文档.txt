@@ -1,297 +1,469 @@
-YaHei Consolas Hybr
-DejaVu Sans Mono
-
-
-<body_bright>
-<color=yellow>
-<color=ff0033>
-<color_default>
-
-SKILLTYPE_STANDART_PERK
-SKILLTYPE_SPECIAL_PERK
-
-ARTF_CLASS_MINOR
-ARTF_CLASS_MAJOR
-ARTF_CLASS_RELIC
-ARTF_CLASS_GRAIL
-
-Shantiri
-
-增加<value=initiative_bonus>%攻击优先度，士222气和攻击力加<value=enchant>，持续时间为<value=duration>回合。
-
-8技能 过夜快 英雄特技 战场特技
-
-
-    ARTIFACT_RES_ORE = ARTIFACT_RES_BASIC = 98               --矮人十字镐→木材/石矿产量+100%（在木材/石料矿中使用）
-    ARTIFACT_RES_SULPHUR = ARTIFACT_RES_ADVANCED = 99           --育龙者的魔法盒→硫磺/水晶/宝石/水银产量+100%（在硫磺/水晶/宝石/水银矿中使用）
-
-    ARTIFACT_LEGION_T2 = ARTIFACT_LEGION_BASIC = 104            --军团之证→1~2级兵种产量+10%（在城镇中使用）
-    ARTIFACT_LEGION_T6 = ARTIFACT_LEGION_ADVANCED = 108            --军团斗篷→3~5级兵种产量+10%（在城镇中使用）
-    ARTIFACT_LEGION_T7 = ARTIFACT_LEGION_EXPERT = 109            --军团之帜→6~7级兵种产量+10%（在城镇中使用）
-
-    ARTIFACT_RES_GEM = ARTIFACT_PENDANT_OF_BLIND = 101              --闪耀坠饰→战斗开始时随机失明一支敌方部队
-    ARTIFACT_RES_MERCURY = ARTIFACT_GEM_OF_PHANTOM = 102          --幻影宝石→可将一支部队放入幻影宝石中，并在战斗开始时以召唤生物形式加入战场，行动3次后消失。替换兵种时，幻影宝石中的兵种不返还。
-    ARTIFACT_LEGION_T1 = ARTIFACT_ORDER_OF_CONSCRIPTION = 103            --征兵令（消耗类）→立刻获取当前第一格生物一周的产量
-    ARTIFACT_LEGION_T4 = ARTIFACT_DRUM_OF_CHARGE = 106            --冲锋战鼓→战斗开始提升一支部队的ATB到0.3
-
-
-<br><color_default>（使用方式: 英雄携带宝物在对应资源矿附近→打开魔法书（按C）→城镇管理→宝物管理→）
-<body_bright>
-<br>
-<color=ffcfb53b>===大法师之典===
-<color=green>光明魔法书
-<color_default>黑暗魔法书
-<color_default>召唤魔法书
-<color_default>破坏魔法书
-<br>
-<color=fffff826>集齐全套可访问宝物商店进行合成
-
-
-local iPlayerWinner = GetSavedCombatArmyPlayer(iCombatIndex, 1);
-print('iPlayerWinner: '..iPlayerWinner);
-local iPlayerLoser = GetSavedCombatArmyPlayer(iCombatIndex, 0);
-print('iPlayerLoser: '..iPlayerLoser);
-local iHeroWinner = GetSavedCombatArmyHero(iCombatIndex, 1);
-print('iHeroWinner: '..iHeroWinner);
-local iHeroLoser = GetSavedCombatArmyHero(iCombatIndex, 0);
-print('iHeroLoser: ');
-print(iHeroLoser);
-local iCountStacksWinner = GetSavedCombatArmyCreaturesCount(iCombatIndex, 1);
-print('iCountStacksWinner: '..iCountStacksWinner);
-for i = 0, iCountStacksWinner - 1 do
-  local iCreatureId, iCountCreature, iCountCreatureDeath = GetSavedCombatArmyCreatureInfo(iCombatIndex, 1, i);
-  print('iCreatureId: '..iCreatureId);
-  print('iCountCreature: '..iCountCreature);
-  print('iCountCreatureDeath: '..iCountCreatureDeath);
-end;
-local iCountStacksLoser = GetSavedCombatArmyCreaturesCount(iCombatIndex, 0);
-print('iCountStacksLoser: '..iCountStacksLoser);
-for i = 0, iCountStacksLoser - 1 do
-  local iCreatureId, iCountCreature, iCountCreatureDeath = GetSavedCombatArmyCreatureInfo(iCombatIndex, 0, i);
-  print('iCreatureId: '..iCreatureId);
-  print('iCountCreature: '..iCountCreature);
-  print('iCountCreatureDeath: '..iCountCreatureDeath);
-end;
-
-consoleCmd
-
-
-7AI结盟+3倍增兵+眼泪+天使联盟+诅咒斗篷+龙神胸甲+终极技能
-你们的支持就是牙姐的动力，谢谢大家，进群下载游戏：241244439
-过夜快※8技能※城镇转换※内政官※定点回城※女巫双技能
-※大量新英雄特长※新英雄技能※新特效宝物※新组合神器※新战场特技※新生物特技※野怪带中立英雄支援
-
-
-机械与巫术的完美结合
-英雄：机械凤凰特-赛勒斯
-板子：6AI结盟+3倍增兵+眼泪+天使联盟+诅咒斗篷+龙神胸甲+终极技能
-8技能 过夜快 新英雄特技 新战场特技
-QQ群241244439
-
-https://www.douyu.com/h55
-http://live.bilibili.com/3234260
-
-7AI结盟+3倍增兵+眼泪+旅行者长靴+哨兵之盾+天使联盟+诅咒斗篷+大法师之书+龙神胸甲+初始技能+终极技能
-
-哥德里克-圣堂新终极测试2
-7AI结盟+3倍增兵+眼泪+天使联盟+诅咒斗篷+龙神胸甲+初始技能+终极技能
-https://www.douyu.com/h55
-http://live.bilibili.com/3234260
-
-BUILDING_MEMORY_MENTOR
-
-    CREATURE_FIRE_MECHANICAL = 930
-    CREATURE_WATER_MECHANICAL = 931
-    CREATURE_EARTH_MECHANICAL = 932
-    CREATURE_AIR_MECHANICAL = 933
-    CREATURE_PHOENIX_MECHANICAL = 934
-
-    ABILITY_MECHANICAL
-
-    Wood = 木材
-    Ore = 石材
-    Mercury = 水银 - 水
-    Crystal = 水晶 - 气
-    Sulphur = 硫磺 - 火
-    Gem = 宝石 - 地
-    Gold = 金币
-
-基础机械元素只要木或石
-地和火魔法换回来
-机械元素施法动作
-机械凤凰不能交易
-
-天使移动动作
-英雄H&R后，战场跳过回合BUG
-PS换皮
-
-建新地图
-上传视频
-剪辑视频
-
-
-
-视频素材
-	免版权素材
-	Royalty Free
-	CC0
-	免引用
-	可商用
-地图
-	国家测绘局的官方地图
-禁用词
-	新华社新闻报道中的禁用词和慎用词
-抽奖
-	UP主在系统里发起的动态抽奖
-数据
-	完播率，互动率
-修改视频时的弹幕问题
-	建2P，迁移弹幕，删1P
-
-
-ffmpeg -ss 00:00:01 -t 12 -i 赛勒斯-10级技能-剪辑前2.mp4 -codec copy 赛勒斯-决战技能-剪辑后2.mp4
-ffmpeg -ss 00:08:18 -to 00:14:58 -i 赛勒斯-破口-剪辑前.mp4 -codec copy 赛勒斯-破口-剪辑后.mp4
-ffmpeg -f concat -safe 0 -i filelist.txt -c copy 篷车的反杀.mp4
-
-
-MASTERY_NONE
-MASTERY_BASIC
-MASTERY_ADVANCED
-MASTERY_EXPERT
-MASTERY_EXTRA_EXPERT
-
-BUILDING_EYE_OF_MAGI
-BUILDING_HUT_OF_MAGI
-? BUILDING_MAGMA_SHRINE
-BUILDING_LAKE_OF_SCARLET_SWAN
-
-【英雄无敌5.5牙姐MOD】英雄前瞻--维托利奥
-https://mp.weixin.qq.com/s/8_0XorVTycmQA6QtgiDQtQ
-
-麻烦大家动动手指，支持一下牙姐，关注下公众号【无策略不单机】，以后英雄前瞻、攻略、机器人，都会放到微信公众号上，谢谢大家的支持~~
-后续公众号上会有如下福利（公众号关注满500人，群里一人点一下就有了）：
-1.每天更新一篇推文（版本前瞻，英雄攻略）
-2.机器人放到公众号上实现
-3.新的大版本更新（包含3~4个相关英雄）
-
-
-
-进攻小场
-1 6
-1 4
-1 2
-
-进攻大场
-1 5
-1 11
-1 2
-
-防守小场
-15 6
-15 4
-14 2
-
-防守大场
-17 5
-17 11
-16 2
-
-攻城
-1 5
-1 8
-1 11
-1 2
-
-
-英雄首次行动（或累积10次机械行动后）触发：
-弩车--魔法净化
-投石车--幻象军团
-急救帐篷--神秘护甲
-弹药车--正当之力
-
-
-攻防
-	启蒙
-	等级
-	宝物
-		3种
-	英雄特技
-伤害
-	箭术     → 寒铁之刃
-	战争狂人 → 报偿
-	幸运
-主动
-	宝物
-	人造荣耀
-	弹射学   → 三箭连射
-             → 符文机械
-             → 燃烧箭
-
-
-野怪支援BUG修复
-开场施放技能的英雄优化
-
-基于非常强大八人图，开荒梯度：
-SSS：只有想不到，没有做不到
-SS：依靠特技和自带技能扫图
-S：1.需要特定技能扫图
-      2.依靠特技和自带技能mf
-A：需要特定技能mf
-B：第二周开始mf
-C：等我到20级之后
-
-
-6个资源宝物变2个
-7个军团宝物变3个
-
-幻影宝石
-增加几件基础宝物，包括
-	战斗回蓝
-	征兵令（消耗类）立刻获取当前第一格生物一周的产量
-	战斗开始提升随机一支部队的ATB到0.3
-	附魔靴→英雄行动力耗尽时若穿戴附魔靴，且魔法值大于一半，则消耗一半魔法值，回复一半移动力（每天只能生效一次）
-	战地指挥官只生效一次
-	挖坟资源宝物修改
-	玫芙
-	火墙
-
-  -- 1.资源宝物
-    ARTIFACT_RES_WOOD = 97              --神圣种子→木材产量+100%（在木材矿中使用）
-    ARTIFACT_RES_ORE = 98               --矮人十字镐→石料产量+100%（在石料矿中使用）
-    ARTIFACT_RES_SULPHUR = 99             --育龙者的魔法盒→硫磺产量+100%（在硫磺矿中使用）
-    ARTIFACT_RES_CRYSTAL = 100            --水晶眼球→水晶产量+100%（在水晶矿中使用）
-    ARTIFACT_RES_GEM = 101              --无尽宝石戒指→宝石产量+100%（在宝石矿中使用）
-    ARTIFACT_RES_MERCURY = 102            --无尽水银瓶→水银产量+100%（在水银矿中使用）
-
-  -- 4.兵种增产-低
-    ARTIFACT_LEGION_T1 = 103            --军团之令→1级兵种产量+10%（在城镇中使用）
-    ARTIFACT_LEGION_T2 = 104            --军团之证→2级兵种产量+10%（在城镇中使用）
-    ARTIFACT_LEGION_T3 = 105            --军团之冠→3级兵种产量+10%（在城镇中使用）
-    ARTIFACT_LEGION_T4 = 106            --军团之鼓→4级兵种产量+10%（在城镇中使用）
-    ARTIFACT_LEGION_T5 = 107            --军团号角→5级兵种产量+10%（在城镇中使用增加）
-    ARTIFACT_LEGION_T6 = 108            --军团斗篷→6级兵种产量+10%（在城镇中使用增加）
-    ARTIFACT_LEGION_T7 = 109            --军团之帜→7级兵种产量+10%（在城镇中使用增加）
-
-		ARTIFACT_RES_ORE = 98               --矮人十字镐→木材/石矿产量+100%（在木材/石料矿中使用）
-		ARTIFACT_RES_SULPHUR = 99           --育龙者的魔法盒→硫磺/水晶/宝石/水银产量+100%（在硫磺/水晶/宝石/水银矿中使用）
-
-		ARTIFACT_LEGION_T2 = 104            --军团之证→1~2级兵种产量+10%（在城镇中使用）
-		ARTIFACT_LEGION_T6 = 108            --军团斗篷→3~5级兵种产量+10%（在城镇中使用）
-    ARTIFACT_LEGION_T7 = 109            --军团之帜→6~7级兵种产量+10%（在城镇中使用）
-
-    ARTIFACT_RES_GEM = 101              闪耀坠饰 战斗开始时随机失明一支敌方部队
-    ARTIFACT_RES_MERCURY = 102          幻影宝石 可将一支部队放入幻影宝石中，并在战斗开始时以召唤生物形式加入战场，行动3次后消失。替换兵种时，幻影宝石中的兵种不返还。
-		ARTIFACT_LEGION_T1 = 103            征兵令（消耗类）立刻获取当前第一格生物一周的产量
-    ARTIFACT_LEGION_T4 = 106            冲锋战鼓 战斗开始提升一支部队的ATB到0.3
-
-
-
-    ARTIFACT_RES_WOOD = 97              --神圣种子→木材产量+100%（在木材矿中使用）
-    ARTIFACT_RES_CRYSTAL = 100            --水晶眼球→水晶产量+100%（在水晶矿中使用）
-    ARTIFACT_LEGION_T3 = 105            --军团之冠→3级兵种产量+10%（在城镇中使用）
-    ARTIFACT_LEGION_T5 = 107            --军团号角→5级兵种产量+10%（在城镇中使用增加）
-
-
-3 WAND_OF_X
-52 SCROLL_OF_SPELL_X
-86 ARTIFACT_RUNE_OF_FLAME
+字体
+  YaHei Consolas Hybr
+  DejaVu Sans Mono
+  ********_homm homm********
+
+新版本调整
+  眼泪
+  √理财还是不对
+  活力+3HP
+  拜姐周四提示
+  √政务厅金币
+  死亡行军文案
+  内政信息上方空行
+  地狱占了墓园城，没有自动转
+  √获得资源飘字
+  乌尔夫斯坦边境哨塔数量在信息管理→个人里面显示
+  英雄储备的宝物，不会影响英雄属性
+  定点回城: 内政官任第二座城内政官后，传送门会锁定第二座城
+  就是这个城的内政官解职了，然后其它英雄不能就职这个城的内政官
+  额外的政绩总加成，下周才生效
+  每日城镇点数没有更新
+
+<.*?>
+
+/Text/TTH/Heroes/Specializations/Fortress/Wulfstan/Text.txt
+
+<body_bright>英雄: <color=ff0033>拉扎克
+<body_bright>职业: <color=yellow>先知
+<body_bright>控制台名: <color=yellow>Isher
+<body_bright>初始技能: <color=yellow>高级防御+活力
+<body_bright>战争机械: <color=yellow>帐篷
+<body_bright>生物特长: <color=0099FF>铁魔像<color_default> （种族: 学院）
+<body_bright>英雄天赋：<color=ff0033>魔像工匠
+<body_bright>1) <color=0099FF>铁魔像<body_bright>攻防增加<color_default>（数值为: 英雄等级/2 向上取整）
+<color=7F38EC>战场特效:
+<body_bright>1) <color=0099FF>铁魔像<body_bright>被攻击减员后会恢复生命值<color_default>（数值为: 当前数量*5）
+<color=orange>内政官特效:
+<body_bright>1) 通过内政<color=yellow>【建造建筑】<body_bright>按百分比减少资源消耗<color_default>（数值为: 0.2+英雄等级*0.01）
+
+术语
+  <color=0099FF>属性
+  <color=0099FF>生物
+  <color=0099FF>种族
+  <color=0099FF>资源
+  XX及升级形态
+  <color=yellow>【英雄主动技能次数】
+  <color=yellow>【内政操作次数】
+  <color=yellow>【管辖城镇配额】
+  <color=yellow>【野外生物招募点】
+
+颜色
+  默认亮 <body_bright>
+  黄 <color=yellow>
+  <color=ff0033>
+  灰 <color_default>
+  暗金 <color=ffcfb53b>
+  合成宝物最下方提示合成的颜色 <color=fffff826>
+  <color=orange>
+  <color=white>
+
+  <color=red>玩家 1
+  <color=blue>玩家 2
+  <color=green>玩家 3
+  <color=yellow>玩家 4
+  <color=orange>玩家 5
+  <color=0099FF>玩家 6
+  <color=7F38EC>玩家 7
+  <color=8B4513>玩家 8
+
+内政官数据结构
+  TTH_VARI.arrMayor = {
+    ["Orrin"] = {
+      ["Oper"] = {
+        ["MaxTimes"] = 2
+        , ["UsedTimes"] = 1
+      }
+      ["Town"] = {
+        ["0-86-192-AdvMapTown-88888"] = {
+          ["Value"] = 80
+        }
+      }
+      , ["Bonus"] = {
+        [STAT_ATTACK] = 1
+        , [STAT_DEFENCE] = 1
+        , [STAT_SPELL_POWER] = 1
+        , [STAT_KNOWLEDGE] = 1
+        , [STAT_LUCK] = 1
+        , [STAT_MORALE] = 1
+      }
+      , ["IsExpedition"] = {
+        ["Status"] = 0
+        , ["Duration"] = 0
+      }
+      , ["IsDefeat"] = {
+        ["Status"] = 0
+        , ["Duration"] = 0
+      }
+    }
+  };
+
+闪退
+  1.不要开着360这样的杀软
+  2.不要频繁读档
+  3.操作不要太快，前一个界面还没消失就点下一个
+  4.如果是同一个地方频繁跳出，可能是你的有宝物商店的城被AI占了
+
+对话框
+  local strPathMain={
+  TTH_PATH.Artifact["Economic"]["HasBonus"]
+    ;strArtifactName=strArtifactName
+    ,strArtifactName=strArtifactName
+  };
+  TTH_GLOBAL.sign(strHero, strPathMain);
+  return nil;
+
+  local strPathMain={
+  TTH_PATH.Artifact["Economic"][ARTIFACT_ENDLESS_BAG_OF_GOLD]["Confirm"]
+    ;strArtifactName=strArtifactName
+    ,strArtifactName=strArtifactName
+  };
+  local strCallbackOk = "TTH_ARTI.implActive029("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strTown)..")";
+  local strCallbackCancel = "TTH_COMMON.cancelOption()";
+  TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+
+  local strPathMain={
+  TTH_PATH.Artifact["Economic"][ARTIFACT_ENDLESS_BAG_OF_GOLD]["Confirm"]
+    ;strArtifactName=strArtifactName
+    ,strArtifactName=strArtifactName
+  };
+  TTH_GLOBAL.showDialog8Frame(iPlayer, strHero);
+
+NCF生物
+  929 魔幻法师
+
+技能类型
+  SKILLTYPE_STANDART_PERK
+  SKILLTYPE_SPECIAL_PERK
+
+宝物类型
+  ARTF_CLASS_MINOR
+  ARTF_CLASS_MAJOR
+  ARTF_CLASS_RELIC
+  ARTF_CLASS_GRAIL
+
+主技能等级
+  MASTERY_NONE
+  MASTERY_BASIC
+  MASTERY_ADVANCED
+  MASTERY_EXPERT
+  MASTERY_EXTRA_EXPERT
+
+待整理
+  Shantiri
+  BUILDING_MEMORY_MENTOR
+  BUILDING_EYE_OF_MAGI
+  BUILDING_HUT_OF_MAGI
+  ? BUILDING_MAGMA_SHRINE
+  BUILDING_LAKE_OF_SCARLET_SWAN
+
+  consoleCmd
+
+  -- RC15宝物
+    Draconic: Grants friendly creatures Immunity to Armageddon
+    Elrath_01: Grants friendly creatures Immunity to Curse of the Netherworld
+    Orb_01: +33% Damage to Air Spells
+    Orb_02: +33% Damage to Earth Spells
+    Orb_03: +33% Damage to Fire Spells
+    Orb_04: +33% Damage to Frost Spells
+    Pirate_03: -1 Morale to enemy creatures
+    Sentinel: +6HP
+    Upg_AR1: 减敌方生物1士气1幸运
+    Upg_AR3: +2HP
+    Upg_HM2: Immunity to Hypnotize
+    Upg_HM3: +4HP
+    Upg_SW1: 5%魔抗
+    Upg_SW2: 10%魔抗
+    Upg_SW3: 减敌方生物1士气1幸运
+
+未实装的技能
+  HERO_SKILL_NAVIGATION 回到今天开始的位置
+  HERO_SKILL_FIRE_PROTECTION
+  HERO_SKILL_CHILLING_BONES
+  HERO_SKILL_DISGUISE_AND_RECKON
+  HERO_SKILL_SUN_FIRE
+  HERO_SKILL_SEAL_OF_PROTECTION
+  HERO_SKILL_LUCK_OF_THE_BARBARIAN
+  HERO_SKILL_EXPERT_TRAINER
+
+使用率低的技能
+
+可主动使用的技能
+  外交术
+  宝物学者 随机消耗一件宝物→获得制宝等级点数的各类稀矿
+
+机械坐标
+  进攻小场
+    1 6
+    1 4
+    1 2
+  进攻大场
+    1 5
+    1 11
+    1 2
+  防守小场
+    15 6
+    15 4
+    14 2
+  防守大场
+    17 5
+    17 11
+    16 2
+  攻城
+    1 5
+    1 8
+    1 11
+    1 2
+
+随机宝物编号
+  3 WAND_OF_X
+  52 SCROLL_OF_SPELL_X
+  86 ARTIFACT_RUNE_OF_FLAME
+
+战斗结束trigger
+  GetLastSavedCombatIndex();
+
+  local iPlayerWinner = GetSavedCombatArmyPlayer(iCombatIndex, 1);
+  print('iPlayerWinner: '..iPlayerWinner);
+  local iPlayerLoser = GetSavedCombatArmyPlayer(iCombatIndex, 0);
+  print('iPlayerLoser: '..iPlayerLoser);
+  local iHeroWinner = GetSavedCombatArmyHero(iCombatIndex, 1);
+  print('iHeroWinner: '..iHeroWinner);
+  local iHeroLoser = GetSavedCombatArmyHero(iCombatIndex, 0);
+  print('iHeroLoser: ');
+  print(iHeroLoser);
+  local iCountStacksWinner = GetSavedCombatArmyCreaturesCount(iCombatIndex, 1);
+  print('iCountStacksWinner: '..iCountStacksWinner);
+  for i = 0, iCountStacksWinner - 1 do
+    local iCreatureId, iCountCreature, iCountCreatureDeath = GetSavedCombatArmyCreatureInfo(iCombatIndex, 1, i);
+    print('iCreatureId: '..iCreatureId);
+    print('iCountCreature: '..iCountCreature);
+    print('iCountCreatureDeath: '..iCountCreatureDeath);
+  end;
+  local iCountStacksLoser = GetSavedCombatArmyCreaturesCount(iCombatIndex, 0);
+  print('iCountStacksLoser: '..iCountStacksLoser);
+  for i = 0, iCountStacksLoser - 1 do
+    local iCreatureId, iCountCreature, iCountCreatureDeath = GetSavedCombatArmyCreatureInfo(iCombatIndex, 0, i);
+    print('iCreatureId: '..iCreatureId);
+    print('iCountCreature: '..iCountCreature);
+    print('iCountCreatureDeath: '..iCountCreatureDeath);
+  end;
+
+----------------------------------------
+========================================
+
+临时记录
+  内政官7代
+    城主：在该英雄管理的城镇的控制范围内的野外核心兵种建筑产量+25%。
+    城主：该英雄管理的城镇的区域控制内，本方英雄移动力消耗减少10%。
+    城主：在英雄管理的城镇的区域控制范围内，所有本方英雄战斗时士气增加20点。
+    城主：所有本方英雄在该英雄管理的城镇的区域控制范围内战斗时天命加20点。
+    城主：英雄管理的城镇的区域控制范围内本方英雄获得的经验增加20%。
+    城主：英雄管理的城镇的控制区域范围内的木矿和石矿日产量加1。
+    城主：英雄管理的城镇的建造时资源消耗减少10%。
+    城主：英雄管理的城镇可以每回合建设两次。
+    城主：英雄管理的城镇的招募兵种的时金币需求减少15%。
+
+    3rd Upgrades
+    SetObjectOwner
+    GetHeroCreatures (heroName, CREATURE_FOOTMAN)
+    CreateDwelling("",town_race,8,PLAYER_,X,Y,Z,ROTATE)
+    WarpToMap
+    New triggers: HERO_ADD_SKILL_TRIGGER, HERO_REMOVE_SKILL_TRIGGER, parameters for event handlers: heroName, skill, mastery
+
+    New trigger: HERO_TOUCH_TRIGGER (works as OBJECT_TOUCH_HERO, applies to heroes only, and hero must be disabled with SetObjectEnabled() function)
+
+
+
+
+
+    CreateArtifact(arg1, Artifact_ID, X, Y, Floor_ID)
+    This function creates an artifact on the map of type Artifact_ID (see the artifact listing for the numbers) at location (X, Y) on the surface (Floor_ID = 0) or underground (Floor_ID = 1). I have no clue what arg1 actually is, in my trials it didn't matter what I filled in for it - just that it was there, to make the other arguments match.
+
+    GetGuardsTier(object_name)
+    This function actually returns an array containing the creature's Tiers of all creatures in the garrison structure (can be any garrisonable object, apparently: garrison, town or mine). Note that the Tier in this array is composed; it also includes the upgrade status according to the following formula: Tier * 2 + upg_status, where upg_status = 0 for the base creature and 1 for the upgraded version. As such, the range is from 2 (unupgraded Tier 1 creature) to 15 (upgraded Tier 7 creature). It does not distinguish between creatures of different factions, nor does it count the various stacksizes. Note that the GetObjectCreatures function pretty much does the same thing, but then with more detail.
+
+    GetHeroTown(Hero_name)
+    Returns the name of the Town in which the Hero with Hero_name is garrisoned. Note that the Hero must actually be garrisoned in a Town; a visiting Hero will not work for this function.
+
+    GetObjectsFromPath(Hero_name, X, Y, Floor_ID)
+    This function returns an array of objects that are blocking the Hero with Hero_name from reaching the tile with coordinates X, Y on the surface (Floor_ID = 0) or underground (Floor_ID = 1). I've managed to have it report Monsters here as well, but their definition is cryptic: "<Floor_ID>-<X-coord>-<Y-coord>--<some_number>". However, this definition is NOT an object name, whereas the return value for other objects is their factual name. Further analysis is required.
+
+    GetPlayerState(Player_ID)
+    This function returns the status of the specified player. I haven't fully explored this function, but found out it returns a value of 1 if the player exists on the map and is alive, and it returns 3 if it has been defeated. I didn't check other values.
+
+    RemoveAllMonsters(CreatureType_ID)
+    When called, this function removes any and all neutral creatures on the map corresponding to the used CreatureType_ID. Other neutral stacks are not affected.
+
+    SetPlayerHeroesCountNotForHire(Player_ID, nr)
+    Sets the amount of slots locked from hiring a Hero for player of Player_ID by nr amount. The value of nr has to be between 0 (all 8 slots open for a Hero to be hired) and 8 (the player can not hire any Hero). Note that this limitation does not count for Heroes acquired in other ways than hiring from a Tavern.
+
+    CreateStatic(Scripted name, Reference to data file, X-coord, Y-coord, Floor)
+    The function adds the static referred to in the data file, on the coordinates specified. The name of the static can be chosen freely and is usable in other scripts afterwards. Scripted name needs to be in ".
+    CreateStatic( scriptName, dataFile, x,y,floorID, rot=0, terrainAligned=-1, scalePercent=100 )
+    terrainAligned: -1=auto (as pre-patch), 0=disable, 1=force terrain align
+    scalePercent: 100=normal size
+
+    CreateTreasure(ScriptName, type, Qty, x, y, floorID, rot)
+    Creates treasure with type type, with quantity Qty and script name ScriptName, on the location (x,y,floorID) with rotation rot. If the location is occupied, treasure is created on nearby tile.
+    ScriptName - script name of the created treasure, so it can be later used in scripts
+    type
+    0 - crystal
+    1 - gem
+    2 - gold
+    3 - mercury
+    4 - ore
+    5 - sulfur
+    6 - wood
+    7 - UNKNOWN
+    8 - campfire
+    9 - treasure chest
+    10 - sea chest
+    11 - floatsome
+    12 - UNKNOWN
+    13 - shipwrecked peasant
+
+    GiveArtifact/GiveArtefacy, bindToHero - comment incorrect. Should read: 0 - do not bind (default), 1 - bind to hero.
+
+    CreateMonster( monsterName, creatureID, creatureCount, x,y,floorID, moodID=1, courageID=2, rotation=0, doesNotGrow=0)
+    -Now you can set whether the monster should grow.
+
+  2.Crashes
+  4.SetHeroLootable(hero,nil);
+  5.城墙+D 魔法塔+P 职业建筑给非职业的加属性
+  6.英雄类型→女巫小屋/银行/试炼
+  7.邪教大师 是否施法生物 DEMON_FEAT_EXPLODING_CORPSES
+  8.守护天使 额外7级生物可以供招募 KNIGHT_FEAT_GUARDIAN_ANGEL
+  9.H55_GetAlignedTownsOwned 玩家有几个同该英雄种族相同的城镇
+  10.烈狱幻境 额外狗 H55_InfernalLoom
+  11.H55_ResetConquestHero 重置内政官英雄
+  12.H55_GetHeroEnlightenmentStrength 获取内政官英雄经验系数
+  13.H55_AdjustGovernorDefense 内政官建筑属性
+  14.H55_GetHeroEnlightenmentStrength 内政官经验
+  15.奥森 Straker 技能重做
+  16.先知小屋改为发布随机任务
+    1.杀怪
+    2.拥有N幢建筑
+    3.拥有N座城镇
+    4.生物
+    5.
+
+
+  GetGameVar( name )
+  SetGameVar( name, value )
+  开始游戏时重置数据
+
+  -- 先知小屋
+  H55_Mermaids = GetObjectNamesByType("BUILDING_MERMAIDS");
+  H55_MermaidsQty = length(H55_Mermaids);
+  H55_MermaidChoices = {};
+  -- 莎拉萨神殿
+  H55_SummonTemples = GetObjectNamesByType("BUILDING_SIRENS");
+  H55_SummonTemplesQty = length(H55_SummonTemples);
+  H55_SummonTempleChoices = {};
+
+  全体保卫 HERO_SKILL_DEFEND_US_ALL +1 3级
+  魔像的行进 WIZARD_FEAT_MARCH_OF_THE_MACHINES +1 3级
+  战争掠劫 WIZARD_FEAT_SPOILS_OF_WAR +1 魔童
+  灼热之火 DEMON_FEAT_DEMONIC_FLAME +1 矮子1级
+  亚莎之泪的预见 KNIGHT_FEAT_GRAIL_VISION 送资源
+  理财 PERK_ESTATES +金币
+  永恒奴役 PERK_NO_REST_FOR_THE_WICKED +知识点数的 骷髅
+
+  拜娅拉 Biara
+  汉格瓦尔 Hangvul
+  希尔塞 Sylsai
+  库恩亚克 Kunyak
+  卡利德 Calid2
+  科尔汉 Hero9
+  地精支援 加钱 HERO_SKILL_GOBLIN_SUPPORT
+  瑞萨 Rissa 加资源
+
+  PERK_FORTUNATE_ADVENTURER 增加可占领经济建筑收益
+
+待开发
+  1.幽魂矿井 改动 偷矿
+  3.领袖特移除，分别设计新特技，内政相关
+    加布里埃尔: 每天获得一份水晶
+    杰诺娃: 每天额外250金币
+    山德鲁: 额外魔法习得
+    莎蒂娅: 重做
+    厄格特: 非我方城镇势力范围内，提高移动力
+  3.内政官改动
+    城门
+      内政
+        成为内政官
+        解职内政官
+        建造建筑
+      宝物
+        军团宝物
+        其它宝物
+      技能
+        英雄天赋
+        通用技能
+    非城门
+    内政
+      定点回城（5级塔，且建造了传送门的城镇）
+      解职内政官（双倍代价）
+    宝物
+      资源宝物
+      其它宝物
+    技能
+      英雄天赋
+      通用技能
+  4.士气-5 亡巫功能提示选择
+  5.天使移动动作
+  6.内比罗斯: 敌方英雄无法逃跑
+  7.shantiri传送
+
+视频相关
+  7AI结盟+3倍增兵+眼泪+旅行者长靴+哨兵之盾+天使联盟+诅咒斗篷+大法师之书+龙神胸甲+初始技能+终极技能
+  你们的支持就是牙姐的动力，谢谢大家，进群下载游戏：241244439
+  过夜快※8技能※城镇转换※内政官※定点回城※女巫双技能
+  ※大量新英雄特长※新英雄技能※新特效宝物※新组合神器※新战场特技※新生物特技※野怪带中立英雄支援
+
+直播相关
+  英雄无敌5-神遗大陆（测试）
+  英雄：尤佛瑞汀+乌尔夫斯坦
+  板子：7AI结盟+3倍增兵+眼泪+天使联盟+诅咒斗篷+龙神胸甲+初始技能+终极技能
+  8技能/过夜快/战场特技/主动天赋/主动技能/主动宝物/格鲁/德肯/宝物合成
+  https://www.douyu.com/h55
+  QQ群241244439
+
+  http://live.bilibili.com/3234260
+
+  ffmpeg -ss 00:00:01 -t 12 -i 赛勒斯-10级技能-剪辑前2.mp4 -codec copy 赛勒斯-决战技能-剪辑后2.mp4
+  ffmpeg -ss 00:08:18 -to 00:14:58 -i 赛勒斯-破口-剪辑前.mp4 -codec copy 赛勒斯-破口-剪辑后.mp4
+  ffmpeg -f concat -safe 0 -i filelist.txt -c copy 篷车的反杀.mp4
+
+公众号相关
+  【英雄无敌5.5牙姐MOD】英雄前瞻--维托利奥
+  https://mp.weixin.qq.com/s/8_0XorVTycmQA6QtgiDQtQ
+
+  麻烦大家动动手指，支持一下牙姐，关注下公众号【无策略不单机】，以后英雄前瞻、攻略、机器人，都会放到微信公众号上，谢谢大家的支持~~
+  后续公众号上会有如下福利（公众号关注满500人，群里一人点一下就有了）：
+  1.每天更新一篇推文（版本前瞻，英雄攻略）
+  2.机器人放到公众号上实现
+  3.新的大版本更新（包含3~4个相关英雄）
+
+其它
+  视频素材
+    免版权素材
+    Royalty Free
+    CC0
+    免引用
+    可商用
+  地图
+    国家测绘局的官方地图
+  禁用词
+    新华社新闻报道中的禁用词和慎用词
+  抽奖
+    UP主在系统里发起的动态抽奖
+  数据
+    完播率，互动率
+  修改视频时的弹幕问题
+    建2P，迁移弹幕，删1P
+
+
+
+

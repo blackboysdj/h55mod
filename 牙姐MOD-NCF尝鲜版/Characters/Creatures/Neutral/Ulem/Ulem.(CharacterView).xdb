@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CharacterView>
+	<Model href="Ulem.xdb#xpointer(/Model)"/>
+	<AnimSet href="/Characters/Creatures/Academy/Alternative Upgrade/T4_Combat_Mage-arena.xdb#xpointer(/AnimSet)"/>
+	<sequence/>
+	<Effect/>
+</CharacterView>

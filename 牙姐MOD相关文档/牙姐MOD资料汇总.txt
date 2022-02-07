@@ -670,13 +670,17 @@
           英雄额外提高【复仇打击】【英雄等级*1%】效果
           战斗开始前英雄部队中的步兵及升级形态可被训练成相应形态且数量为【兵种数量*(4%+英雄等级*0.2%) (向上取整)】的骑士
       伊莎贝尔
-        Isabell
-        初级反击, 初级领导, 训练专家
-        帐篷
-        君王风范
-          每天上缴250黄金
-          训练额外减少【英雄等级/3*2%】费用
-          英雄初始获得技能【训练专家】
+        <body_bright>英雄: <color=ff0033>伊莎贝尔
+        <body_bright>职业: <color=yellow>骑士
+        <body_bright>控制台名: <color=yellow>Isabell
+        <body_bright>初始技能: <color=yellow>初级反击+训练专家/初级后勤
+        <body_bright>战争机械: <color=yellow>帐篷
+        <body_bright>英雄天赋: <color=ff0033>君王风范
+        <body_bright>1) 每天上缴 <color=yellow>250<body_bright> 单位<color=0099FF>黄金
+        <body_bright>2) 训练所需<color=0099FF>黄金<body_bright>按百分比减少<color_default>（数值为: 英雄等级/3*2%）
+        <body_bright>3) 英雄初始获得技能<color=yellow>【训练专家】<color_default>（无法通过英雄升级习得）
+        <color=orange>内政官特效:
+        <body_bright>1) 额外增加<color=yellow>【内政点数】<color_default>（数值为: 管辖城镇数量*20）
       维托利奥
         Christian
         高级战争机械, 弹射学
@@ -733,7 +737,7 @@
         艾尔拉斯的选民
           每当英雄施放【光明魔法】时会对一个【合理目标】施放【神圣复仇】
       拜亚拉
-        Saint Isabell
+        SaintIsabell
         高级光明, 佑福大师
         非凡神力
         龙神祝福
@@ -900,12 +904,16 @@
           英雄控制的帐篷对我方生物进行治疗/对敌方生物造成伤害时，英雄会对其施放【活力再生】/【腐烂诅咒】并立刻行动
     德鲁伊ENCHANTER
       温利尔
-        Elleshar
-        初级启蒙, 初级破坏, 学术
-        连珠火球
-        身经百战
-          英雄额外提高【英雄等级*2%】战斗所获得经验
-          英雄额外提高【英雄等级/3 (向下取整)】点知识
+        <body_bright>英雄: <color=ff0033>温利尔
+        <body_bright>职业: <color=yellow>德鲁伊
+        <body_bright>控制台名: <color=yellow>Elleshar
+        <body_bright>初始技能: <color=yellow>初级启蒙+学术/初级破坏
+        <body_bright>战争机械: <color=yellow>无
+        <body_bright>英雄天赋: <color=ff0033>身经百战
+        <body_bright>1) 提高战斗获得<color=0099FF>经验<color_default>（数值为: 英雄等级*2%）
+        <body_bright>2) 提高<color=0099FF>知识<color_default>（数值为: 英雄等级/3 向下取整）
+        <color=orange>内政官特效:
+        <body_bright>1) 其它内政英雄提高<color=yellow>【内政点数】<color_default>（数值为: 温利尔等级+知识）
       娜瑞莎----寒卿赞助并设计
         Ildar
         初级巫术, 初级光明, 初级黑暗
@@ -950,19 +958,24 @@
         弩车
         连珠火球
         神秘机械
-          英雄首次行动（及战争机械累积行动10次后）触发--对战争机械周围的我方生物施放法术: 
+          英雄首次行动（及战争机械累积行动10次后）触发--对战争机械周围的我方生物施放法术:
             弩车--魔法净化
             投石车--幻象军团
             急救帐篷--神秘护甲
             弹药车--正当之力
       拉扎克
-        Isher
-        高级防御, 活力
-        帐篷
-        偏转飞弹
-        魔像工匠
-          英雄所带领的铁魔像及升级形态增加【英雄等级/2 (向上取整)】点攻防
-          英雄所带领的铁魔像及升级形态被攻击减员后会恢复一定的数量
+        <body_bright>英雄: <color=ff0033>拉扎克
+        <body_bright>职业: <color=yellow>先知
+        <body_bright>控制台名: <color=yellow>Isher
+        <body_bright>初始技能: <color=yellow>高级防御+活力
+        <body_bright>战争机械: <color=yellow>帐篷
+        <body_bright>生物特长: <color=0099FF>铁魔像<color_default> （种族: 学院）
+        <body_bright>英雄天赋: <color=ff0033>魔像工匠
+        <body_bright>1) <color=0099FF>铁魔像<body_bright>增加<color=0099FF>攻击/防御<color_default>（数值为: 英雄等级/2 向上取整）
+        <color=7F38EC>战场特效:
+        <body_bright>1) <color=0099FF>铁魔像<color=yellow>【被攻击减员后】<body_bright>会恢复<color=0099FF>生命值<color_default>（数值为: 当前数量*5）
+        <color=orange>内政官特效:
+        <body_bright>1) 通过内政<color=yellow>【建造建筑】<body_bright>按百分比减少<color=0099FF>资源<body_bright>消耗<color_default>（数值为: 0.2+英雄等级*0.01）
       戴维斯
         Davius
         高级进攻, 战术部署
@@ -1086,163 +1099,147 @@
         雷霆之怒
           英雄施法的闪电法术无法被敌方生物完全抵抗
           开场在敌方底线召唤伤害为【英雄等级*10】的【闪电风暴】(无法移动且持续3个标准回合)
-  地狱
-    恶魔领主GATE_KEEPER
-      艾丹
-        Calh
-        初级进攻, 战术部署, 初级启蒙
+  地牢
+    地牢领主BEASTMASTER
+      宇尔沃娜
+        Urunir
+        高级领导, 神圣指引, 初级进攻
         帐篷
-        领主召唤
-          每当战场上有生物阵亡英雄会消耗【英雄等级*30】点魔法值召唤【英雄等级*1】数量的深渊领主
-            1.战后保留
-            2.尸体消失
-            3.导致战斗结束的阵亡不生效
-            4.每场战斗生效一次
-      格劳尔
-        Calid
-        初级进攻, 战争狂人, 初级领导
+        血腥少女
+          英雄所带领的血腥少女及升级形态增加【英雄等级/2 (向上取整)】点攻防
+      基特拉
+        Menel
+        高级领导, 初级防御, 敏捷光环
         帐篷
-        猎犬驯师
-          英雄所带领的地狱犬及升级形态增加【英雄等级/2 (向上取整)】点攻防
-          英雄主动攻击对敌方生物造成减员后英雄所带领的地狱犬及升级形态（主力）会立即对目标生物进行攻击并再次行动
-      迪里布
-        Deleb
-        初级进攻, 初级机械, 弹射学
-        弩车
-        严冬冰环
-        钢铁少女
-          弩车额外附加【(英雄等级-1)/3 (向下取整) *20】(至少为1)点火系伤害
-          弩车攻击对两队及以上敌方生物造成减员时会对这些生物进行标记，英雄行动时会对标记施放【严冬冰环】并清除标记
-      内比罗斯
-        Jazaz
-        高级进攻, 战术部署, 初级后勤
+        奴隶监工
+          英雄所带领的牛头怪及升级形态增加【英雄等级/2 (向上取整)】点攻防
+          英雄所带领的牛头怪及升级形态【移动】到我方生物（非牛头怪及升级形态）周围时可再次行动
+      索戈尔
+        Ferigl
+        高级领导, 初级进攻, 战术部署
         帐篷
-        混乱抉择
-          英雄部队额外+1幸运
-          敌方英雄在战场上无法使用战术
-      马巴斯
-        Marder
-        初级进攻, 初级幸运, 魔法抵抗
+        血腥突袭
+          英雄所带领的黑暗骑兵及升级形态的【蜥蜴撕咬】效果提高到【60%+英雄等级*0.5%】
+          英雄施放魔法时若消耗大于10点则召唤阴影中的刺客突袭所有敌人
+      希尔塞
+        <body_bright>英雄: <color=ff0033>希尔塞
+        <body_bright>职业: <color=yellow>地牢领主
+        <body_bright>控制台名: <color=yellow>Sylsai
+        <body_bright>初始技能: <color=yellow>高级领导+募兵术+外交术
+        <body_bright>战争机械: <color=yellow>帐篷
+        <body_bright>英雄天赋: <color=ff0033>外交领主
+        <body_bright>1) 可选择非<color=0099FF>地牢<body_bright>生物为<color=yellow>【外交生物】
+        <body_bright>2) 更换<color=yellow>【外交生物】<body_bright>时需消耗一次<color=yellow>【英雄主动技能次数】
+        <body_bright>3) 可消耗一次<color=yellow>【英雄主动技能次数】<body_bright>在<color=0099FF>地牢<color=yellow>【野外生物招募点】<body_bright>设立<color=yellow>【外交站】<color_default>（可招募【外交生物】）
+        <body_bright>4) <color=yellow>【英雄主动技能次数】<color_default>（每周恢复一次）
+        <color=orange>内政官特效:
+        <body_bright>1) 可用<color=yellow>【内政操作次数】<body_bright>代替<color=yellow>【英雄主动技能次数】
+        <body_bright>1) <color=yellow>【外交生物】<body_bright>会每周加入<color=yellow>【所辖的城镇】<color_default>（数值为: 同级本族生物基础周产+外交站数量）
+      威欧里格
+        Welygg
+        高级领导, 初级防御, 外交术
         帐篷
-        魔法破坏
-          英雄生物额外获得【5%+英雄等级*1%】魔法抵抗几率
-      奥兰多--非NCF稳定版
-        Orlando2
-        初级进攻, 初级反击, 极度痛击
-        帐篷
-        粉碎者
-          英雄额外提高【英雄等级*5%】直接攻击伤害
-            战斗开始可选择直接攻击【合理目标】一次
-      奥兰多--NCF尝鲜版
-        Orlando2
-        初级进攻, 初级反击, 极度痛击
-        帐篷
-        粉碎者
-          英雄额外提高【英雄等级*5%】直接攻击伤害
-            战斗开始可选择直接攻击【合理目标】一次
-            英雄主动攻击额外触发【斩首剑】及【屠杀者之刃】（每队生物只触发一次）
-    门禁守卫DEMON_LORD
-      阿莱斯特
-        Efion
-        初级异界门, 初级黑暗, 心智大师
+        蝎狮统帅
+          每周会有蝎狮加入英雄部队(根据英雄等级，英雄攻击，地牢城镇数)
+          英雄部队额外提高【英雄等级*5%】战力
+          野外生物有更高倾向加入英雄部队
+          击败野外生物时会获得额外资源
+    刺客SEER
+      维尚
+        Ohtarig
+        初级后勤, 高级黑暗, 侦察术
         弹药车
-        迷惑心智
-        夺魂魔
-          英雄初始知识+1
-          英雄施放的【迷惑心智】魔法额外减少目标【英雄等级*1】点魔法值
-          英雄行动时会对战场上敌方最密集区域施放群体【迷惑心智】
-            1.我方英雄【释放魔法】时充能
-            2.开场自带一次充能
-      格洛克
-        Grok
-        初级异界门, 初级后勤, 传送突袭
+        腐烂诅咒
+        黑手
+          英雄所带领的密探及升级形态增加【英雄等级/2 (向上取整)】点攻防
+      埃莉娜
+        Eruina
+        高级后勤, 初级进攻, 箭术
         弹药车
+        魔法神箭
+        女巫会长
+          英雄所带领的暗影巫女及暗影女族长，在英雄使用单体杀伤魔法命中目标时有【10%+英雄等级*2%】几率对其射击一次
+          英雄魔法只对单一敌方生物造成战损时，会对其额外施放一次【寒冰激射】
+      莱托兹
+        Dalom
+        初级后勤, 高级黑暗, 痛苦大师
+        帐篷
+        腐烂诅咒, 破甲弱化
+        毒药专家
+          开场时英雄对每支敌方部队有【10%+英雄等级*2%】几率施放【腐烂诅咒】
+      莎蒂娅
+        Kelodin
+        初级后勤, 高级防御, 闪避
+        帐篷
+        偏转飞弹
+        影舞者
+          英雄部队额外降低【英雄等级*2%】受到的远程伤害
+      伊拉娅
+        Shadwyn
+        初级后勤, 高级召唤
+        弹药车
+        幻象军团
+        幻象大师
+          开场在敌方数量最少的部队周围召唤一队数量不大于【英雄等级*1】和【部队数量】的相同形态兵种
+      斯拉塞
+        Thralsai
+        高级后勤, 初级进攻, 传送突袭
+        帐篷
         传送突袭
         猛攻者
           英雄移动力增加5%
           英雄额外增加【英雄等级/4 (向下取整)】移动力
           【传送突袭】减少一半魔法值消耗
-      马鲁斯塔
-        Malustar
-        初级异界门, 初级召唤, 符咒大师
-        弹药车
+    术士WARLOCK
+      阿格贝斯
+        Agbeth
+        初级穿透, 初级破坏, 风暴大师
+        霹雳闪电
+        风暴领域
+          英雄魔法只对单一敌方生物造成战损时，会对与其相连的所有敌方生物各施放一次【霹雳闪电】
+      伊蓓丝
+        Almegir
+        初级穿透, 初级巫术, 黑暗仪式
+        霹雳闪电
+        黑暗神秘术
+          英雄额外提高【英雄等级/3 (向下取整)】点知识
+          英雄魔法值消耗后回复【1+英雄等级/6 (向下取整)】点魔法值
+      塞纳特
+        Inagost
+        初级穿透, 初级破坏, 法术强效
+        魔法神箭
+        催化剂
+          英雄施放【强效魔法】时额外减少【5%+英雄等级*1%】魔法值消耗
+      卡斯托雷
+        Kastore
+        初级穿透, 初级召唤, 符咒大师
         召唤元素
-        召唤大师
+        元素平衡
           每当我方生物全队阵亡时英雄会在该部队尸体上召唤一队数量为【英雄等级/3+阵亡HP/(元素HP×4) (向上取整)】的元素生物
           英雄施放的【召唤元素】【召唤凤凰】额外增加【英雄等级/3 (向上取整)】的咒力
-          英雄部队通过【异界召唤】出地狱部队时额外召唤一队数量为1的火元素
-      耐莫斯
-        Nymus
-        高级异界门, 门禁大师
-        弹药车
-        异界门大师
-          英雄部队的【异界召唤】额外增加【英雄等级*1%】数量
-      耶泽蓓丝
-        Oddrema
-        初级异界门, 初级黑暗, 痛苦大师
-        弹药车
-        破甲弱化
-        妖妇
-          英雄所带领的妖姬及升级形态增加【英雄等级/2 (向上取整)】点攻防
-      卡-贝勒斯
-        Sovereign2
-        初级异界门, 初级进攻, 战争狂人
-        弹药车
-        冥府诅咒
-        魔王降临
-          英雄永久获得额外【1+(英雄等级-1)/4 (向下取整)】种增益
-            1级-幸运泉
-            5级-寺庙
-            9级-幸运避难所
-            13级-青春之泉
-            17级-仙女环
-            21级-地母神祠
-            25级-褴褛的旗帜
-            29级-幸运石像
-            33级-活力魔井
-            37级-沙漠绿洲
-      阿格雷尔
-        Agrael
-        初级异界门, 初级光明, 愤怒大师
-        疾速行动
-        迅捷光环
-          英雄部队额外提高【10%+英雄等级*0.75%】主动性
-      泽达
-        Zydar
-        初级异界门, 地狱烈火, 初级破坏
-        弹药车
+          英雄召唤出元素生物时，根据英雄破坏系子技能额外召唤出数量为【英雄等级/3 (向上取整)】的元素生物(本场战斗只生效一次)
+            1.寒冰大师-水元素
+            2.烈火大师-火元素
+            3.风暴大师-风元素
+      雷拉格
+        Raelag
+        初级穿透, 初级黑暗, 心智大师
+        延迟大法
+        威吓
+          敌方部队额外降低【15%+英雄等级*0.5%】主动性
+      兰勒斯
+        Ranleth
+        终极破坏
         连珠火球
-        地狱烈火
-          英雄在非行动回合魔法值变化后立刻行动
-            1.增加大于等于10点
-            2.减少大于5点
-    恶魔巫师SORCERER
-      艾许
-        Ash
-        初级巫术, 初级破坏, 烈火大师
-        连珠火球
-        复仇烈焰
+        终极破坏
           英雄施放的【连珠火球】额外增加【英雄等级/3 (向上取整)】的咒力
-          英雄行动时会对上回合击杀过我方单位的敌方单位施放【连珠火球】
-      拜娅拉
-        Biara
-        初级巫术, 初级领导, 外交术
-        霹雳闪电
-        恶魔统领
-          英雄部队每天额外招募一定战力的生物(生物同英雄第一格生物，战力累积，生物限定为地狱生物)
-      卡利德
-        Calid2
-        初级巫术, 初级启蒙, 学士
-        乱石利刺
-        恶魔导师
-          玩家所有英雄每天获得【75*卡利德知识*(1+鄂加斯的意志套装数量/2)】点经验值
-      谢尔坦
-        Sheltem
-        初级穿透, 强效魔法, 初级破坏
-        魔法神箭
-        黑暗玄者
-          英雄施放【强效魔法】时额外减少【5%+英雄等级*1%】魔法值消耗
-          英雄每天可以主动将咒力或知识的一半互相转化
+          英雄初始自带【终极破坏】
+      萨费罗斯
+        Sephinroth
+        初级穿透, 初级破坏, 寒冰大师
+        寒冰激射, 神秘水晶
+        水晶室女
+          英雄魔法只对单一敌方生物造成战损时，会在其周围可用空位上召唤【神秘水晶】
   墓园
     死亡骑士DEATHKNIGHT
       罗德哈特
@@ -1273,12 +1270,18 @@
           急救/瘟疫帐篷增加【英雄等级*5】点治疗/伤害效果
           英雄部队首次全队阵亡后【英雄等级*1】个巫妖大师会对该部队施放【亡者复生】
       尼科莱
-        Nikolay
-        初级亡巫, 邪恶远征, 初级防御
-        帐篷
-        亡者复生
-        君临亡域
-          英雄回合魔法值消耗时会对敌方施放群体【弱化打击】
+        <body_bright>英雄: <color=ff0033>尼科莱
+        <body_bright>职业: <color=yellow>死亡骑士
+        <body_bright>控制台名: <color=yellow>Nikolay
+        <body_bright>初始技能: <color=yellow>初级亡巫/邪恶远征/初级防御
+        <body_bright>战争机械: <color=yellow>帐篷
+        <body_bright>初始魔法: <color=yellow>亡者复生
+        <body_bright>英雄天赋: <color=ff0033>君临亡域
+        <body_bright>1) 被同族内政官视为<color=yellow>【所辖的城镇】
+        <body_bright>2) 己方英雄战斗胜利后若<color=ff0033>尼科莱<body_bright>在附近<color_default>（距离小于【领地半径】）<body_bright>则战损的部分<color=0099FF>墓园<body_bright>生物将以能量形式被收集<color_default>（比例为: 尼科莱亡灵巫术技能等级*0.1+英雄等级*0.01）
+        <body_bright>3) 英雄可在<color=0099FF>墓园<body_bright>城镇中释放收集的能量，转化为<color=yellow>【可招募生物】
+        <color=orange>内政官特效:
+        <body_bright>1) 释放能量会同时在<color=yellow>【所辖的城镇】<body_bright>中生效
       奥森
         Straker
         初级亡巫, 初级防御, 活力
@@ -1445,7 +1448,7 @@
           英雄带领的女妖在对敌方生物造成战损时对其施放【寒冰激射】
           名称: 女妖
           模型: 花妖
-          属性: 
+          属性:
             攻击: 5
             防御: 5
             伤害: 4-6
@@ -1458,6 +1461,163 @@
             特殊能力:
               亡灵生物 ABILITY_UNDEAD
               死亡阴云 ABILITY_DEATH_CLOUD
+  地狱
+    恶魔领主GATE_KEEPER
+      艾丹
+        Calh
+        初级进攻, 战术部署, 初级启蒙
+        帐篷
+        领主召唤
+          每当战场上有生物阵亡英雄会消耗【英雄等级*30】点魔法值召唤【英雄等级*1】数量的深渊领主
+            1.战后保留
+            2.尸体消失
+            3.导致战斗结束的阵亡不生效
+            4.每场战斗生效一次
+      格劳尔
+        Calid
+        初级进攻, 战争狂人, 初级领导
+        帐篷
+        猎犬驯师
+          英雄所带领的地狱犬及升级形态增加【英雄等级/2 (向上取整)】点攻防
+          英雄主动攻击对敌方生物造成减员后英雄所带领的地狱犬及升级形态（主力）会立即对目标生物进行攻击并再次行动
+      迪里布
+        Deleb
+        初级进攻, 初级机械, 弹射学
+        弩车
+        严冬冰环
+        钢铁少女
+          弩车额外附加【(英雄等级-1)/3 (向下取整) *20】(至少为1)点火系伤害
+          弩车攻击对两队及以上敌方生物造成减员时会对这些生物进行标记，英雄行动时会对标记施放【严冬冰环】并清除标记
+      内比罗斯
+        Jazaz
+        高级进攻, 战术部署, 初级后勤
+        帐篷
+        混乱抉择
+          英雄部队额外+1幸运
+          敌方英雄在战场上无法使用战术
+      马巴斯
+        Marder
+        初级进攻, 初级幸运, 魔法抵抗
+        帐篷
+        魔法破坏
+          英雄生物额外获得【5%+英雄等级*1%】魔法抵抗几率
+      奥兰多--非NCF稳定版
+        Orlando2
+        初级进攻, 初级反击, 极度痛击
+        帐篷
+        粉碎者
+          英雄额外提高【英雄等级*5%】直接攻击伤害
+            战斗开始可选择直接攻击【合理目标】一次
+      奥兰多--NCF尝鲜版
+        Orlando2
+        初级进攻, 初级反击, 极度痛击
+        帐篷
+        粉碎者
+          英雄额外提高【英雄等级*5%】直接攻击伤害
+            战斗开始可选择直接攻击【合理目标】一次
+            英雄主动攻击额外触发【斩首剑】及【屠杀者之刃】（每队生物只触发一次）
+    门禁守卫DEMON_LORD
+      阿莱斯特
+        Efion
+        初级异界门, 初级黑暗, 心智大师
+        弹药车
+        迷惑心智
+        夺魂魔
+          英雄初始知识+1
+          英雄施放的【迷惑心智】魔法额外减少目标【英雄等级*1】点魔法值
+          英雄行动时会对战场上敌方最密集区域施放群体【迷惑心智】
+            1.我方英雄【释放魔法】时充能
+            2.开场自带一次充能
+      格洛克
+        Grok
+        初级异界门, 初级后勤, 传送突袭
+        弹药车
+        传送突袭
+        猛攻者
+          英雄移动力增加5%
+          英雄额外增加【英雄等级/4 (向下取整)】移动力
+          【传送突袭】减少一半魔法值消耗
+      马鲁斯塔
+        Malustar
+        初级异界门, 初级召唤, 符咒大师
+        弹药车
+        召唤元素
+        召唤大师
+          每当我方生物全队阵亡时英雄会在该部队尸体上召唤一队数量为【英雄等级/3+阵亡HP/(元素HP×4) (向上取整)】的元素生物
+          英雄施放的【召唤元素】【召唤凤凰】额外增加【英雄等级/3 (向上取整)】的咒力
+          英雄部队通过【异界召唤】出地狱部队时额外召唤一队数量为1的火元素
+      耐莫斯
+        Nymus
+        高级异界门, 门禁大师
+        弹药车
+        异界门大师
+          英雄部队的【异界召唤】额外增加【英雄等级*1%】数量
+      耶泽蓓丝
+        Oddrema
+        初级异界门, 初级黑暗, 痛苦大师
+        弹药车
+        破甲弱化
+        妖妇
+          英雄所带领的妖姬及升级形态增加【英雄等级/2 (向上取整)】点攻防
+      卡-贝勒斯
+        Sovereign
+        初级异界门, 初级进攻, 战争狂人
+        弹药车
+        冥府诅咒
+        魔王降临
+          英雄永久获得额外【1+(英雄等级-1)/4 (向下取整)】种增益
+            1级-幸运泉
+            5级-寺庙
+            9级-幸运避难所
+            13级-青春之泉
+            17级-仙女环
+            21级-地母神祠
+            25级-褴褛的旗帜
+            29级-幸运石像
+            33级-活力魔井
+            37级-沙漠绿洲
+      阿格雷尔
+        Agrael
+        初级异界门, 初级光明, 愤怒大师
+        疾速行动
+        迅捷光环
+          英雄部队额外提高【10%+英雄等级*0.75%】主动性
+      泽达
+        Zydar
+        初级异界门, 地狱烈火, 初级破坏
+        弹药车
+        连珠火球
+        地狱烈火
+          英雄在非行动回合魔法值变化后立刻行动
+            1.增加大于等于10点
+            2.减少大于5点
+    恶魔巫师SORCERER
+      艾许
+        Ash
+        初级巫术, 初级破坏, 烈火大师
+        连珠火球
+        复仇烈焰
+          英雄施放的【连珠火球】额外增加【英雄等级/3 (向上取整)】的咒力
+          英雄行动时会对上回合击杀过我方单位的敌方单位施放【连珠火球】
+      拜娅拉
+        Biara
+        初级巫术, 初级领导, 外交术
+        霹雳闪电
+        恶魔统领
+          英雄部队每天额外招募一定战力的生物(生物同英雄第一格生物，战力累积，生物限定为地狱生物)
+      卡利德
+        Calid2
+        初级巫术, 初级启蒙, 学士
+        乱石利刺
+        恶魔导师
+          玩家所有英雄每天获得【75*卡利德知识*(1+鄂加斯的意志套装数量/2)】点经验值
+      谢尔坦
+        Sheltem
+        初级穿透, 强效魔法, 初级破坏
+        魔法神箭
+        黑暗玄者
+          英雄施放【强效魔法】时额外减少【5%+英雄等级*1%】魔法值消耗
+          英雄每天可以主动将咒力或知识的一半互相转化
   堡垒
     工程师ENGINEER
       艾巴
@@ -1587,162 +1747,41 @@
           野外生物有更高倾向加入英雄部队
           击败野外生物时会获得额外资源
       尤佛瑞汀
-        Ufretin
-        初级反击, 初级领导, 理财术
-        帐篷, 弹药车
-        建筑师
-          每天上缴250黄金
-          每周上缴【500+当前黄金数*(英雄等级*1%+玩家城镇数*10%)】黄金
+        <body_bright>英雄: <color=ff0033>尤佛瑞汀
+        <body_bright>职业: <color=yellow>守卫者
+        <body_bright>控制台名: <color=yellow>Ufretin
+        <body_bright>初始技能: <color=yellow>初级反击/初级领导+理财术
+        <body_bright>战争机械: <color=yellow>帐篷/弹药车
+        <body_bright>英雄天赋: <color=ff0033>建筑大师
+        <body_bright>1) 每天上缴 <color=yellow>250<body_bright> 单位<color=0099FF>黄金
+        <color=orange>内政官特效:
+        <body_bright>1) 每周首次通过内政<color=yellow>【建造建筑】<body_bright>不消耗<color=0099FF>资源
+        <body_bright>2) <color=yellow>【所辖的城镇】<body_bright>的每层<color=0099FF>建筑<body_bright>都会为英雄提供 <color=yellow>500<body_bright> 点<color=0099FF>经验
       乌尔夫斯坦
-        Wulfstan
-        初级反击, 初级后勤, 初级防御
-        帐篷
-        边境守卫
-          英雄在我方城镇两天路程内
-            1.额外提高【英雄等级/2 (向下取整)】点防御
-            2.获得额外50%移动力
-  地牢
-    地牢领主BEASTMASTER
-      宇尔沃娜
-        Urunir
-        高级领导, 神圣指引, 初级进攻
-        帐篷
-        血腥少女
-          英雄所带领的血腥少女及升级形态增加【英雄等级/2 (向上取整)】点攻防
-      基特拉
-        Menel
-        高级领导, 初级防御, 敏捷光环
-        帐篷
-        奴隶监工
-          英雄所带领的牛头怪及升级形态增加【英雄等级/2 (向上取整)】点攻防
-          英雄所带领的牛头怪及升级形态【移动】到我方生物（非牛头怪及升级形态）周围时可再次行动
-      索戈尔
-        Ferigl
-        高级领导, 初级进攻, 战术部署
-        帐篷
-        血腥突袭
-          英雄所带领的黑暗骑兵及升级形态的【蜥蜴撕咬】效果提高到【60%+英雄等级*0.5%】
-          英雄施放魔法时若消耗大于10点则召唤阴影中的刺客突袭所有敌人
-      希尔塞
-        Sylsai
-        高级领导, 募兵术, 外交术
-        帐篷
-        地牢领主
-          英雄部队每天额外招募一定战力的生物(生物同英雄第一格生物，战力累积，生物限定为地牢生物)
-      威欧里格
-        Welygg
-        高级领导, 初级防御, 外交术
-        帐篷
-        蝎狮统帅
-          每周会有蝎狮加入英雄部队(根据英雄等级，英雄攻击，地牢城镇数)
-          英雄部队额外提高【英雄等级*5%】战力
-          野外生物有更高倾向加入英雄部队
-          击败野外生物时会获得额外资源
-    刺客SEER
-      维尚
-        Ohtarig
-        初级后勤, 高级黑暗, 侦察术
-        弹药车
-        腐烂诅咒
-        黑手
-          英雄所带领的密探及升级形态增加【英雄等级/2 (向上取整)】点攻防
-      埃莉娜
-        Eruina
-        高级后勤, 初级进攻, 箭术
-        弹药车
-        魔法神箭
-        女巫会长
-          英雄所带领的暗影巫女及暗影女族长，在英雄使用单体杀伤魔法命中目标时有【10%+英雄等级*2%】几率对其射击一次
-          英雄魔法只对单一敌方生物造成战损时，会对其额外施放一次【寒冰激射】
-      莱托兹
-        Dalom
-        初级后勤, 高级黑暗, 痛苦大师
-        帐篷
-        腐烂诅咒, 破甲弱化
-        毒药专家
-          开场时英雄对每支敌方部队有【10%+英雄等级*2%】几率施放【腐烂诅咒】
-      莎蒂娅
-        Kelodin
-        初级后勤, 高级防御, 闪避
-        帐篷
-        偏转飞弹
-        影舞者
-          英雄部队额外降低【英雄等级*2%】受到的远程伤害
-      伊拉娅
-        Shadwyn
-        初级后勤, 高级召唤
-        弹药车
-        幻象军团
-        幻象大师
-          开场在敌方数量最少的部队周围召唤一队数量不大于【英雄等级*1】和【部队数量】的相同形态兵种
-      斯拉塞
-        Thralsai
-        高级后勤, 初级进攻, 传送突袭
-        帐篷
-        传送突袭
-        猛攻者
-          英雄移动力增加5%
-          英雄额外增加【英雄等级/4 (向下取整)】移动力
-          【传送突袭】减少一半魔法值消耗
-    术士WARLOCK
-      阿格贝斯
-        Agbeth
-        初级穿透, 初级破坏, 风暴大师
-        霹雳闪电
-        风暴领域
-          英雄魔法只对单一敌方生物造成战损时，会对与其相连的所有敌方生物各施放一次【霹雳闪电】
-      伊蓓丝
-        Almegir
-        初级穿透, 初级巫术, 黑暗仪式
-        霹雳闪电
-        黑暗神秘术
-          英雄额外提高【英雄等级/3 (向下取整)】点知识
-          英雄魔法值消耗后回复【1+英雄等级/6 (向下取整)】点魔法值
-      塞纳特
-        Inagost
-        初级穿透, 初级破坏, 法术强效
-        魔法神箭
-        催化剂
-          英雄施放【强效魔法】时额外减少【5%+英雄等级*1%】魔法值消耗
-      卡斯托雷
-        Kastore
-        初级穿透, 初级召唤, 符咒大师
-        召唤元素
-        元素平衡
-          每当我方生物全队阵亡时英雄会在该部队尸体上召唤一队数量为【英雄等级/3+阵亡HP/(元素HP×4) (向上取整)】的元素生物
-          英雄施放的【召唤元素】【召唤凤凰】额外增加【英雄等级/3 (向上取整)】的咒力
-          英雄召唤出元素生物时，根据英雄破坏系子技能额外召唤出数量为【英雄等级/3 (向上取整)】的元素生物(本场战斗只生效一次)
-            1.寒冰大师-水元素
-            2.烈火大师-火元素
-            3.风暴大师-风元素
-      雷拉格
-        Raelag
-        初级穿透, 初级黑暗, 心智大师
-        延迟大法
-        威吓
-          敌方部队额外降低【15%+英雄等级*0.5%】主动性
-      兰勒斯
-        Ranleth
-        终极破坏
-        连珠火球
-        终极破坏
-          英雄施放的【连珠火球】额外增加【英雄等级/3 (向上取整)】的咒力
-          英雄初始自带【终极破坏】
-      萨费罗斯
-        Sephinroth
-        初级穿透, 初级破坏, 寒冰大师
-        寒冰激射, 神秘水晶
-        水晶室女
-          英雄魔法只对单一敌方生物造成战损时，会在其周围可用空位上召唤【神秘水晶】
+        <body_bright>英雄: <color=ff0033>乌尔夫斯坦
+        <body_bright>职业: <color=yellow>守卫者
+        <body_bright>控制台名: <color=yellow>Wulfstan
+        <body_bright>初始技能: <color=yellow>初级反击/初级后勤/初级防御
+        <body_bright>战争机械: <color=yellow>帐篷
+        <body_bright>英雄天赋: <color=ff0033>边境守卫
+        <body_bright>1) 可消耗一次<color=yellow>【英雄主动技能次数】<body_bright>在<color=0099FF>堡垒<color=yellow>【野外生物招募点】<body_bright>设立<color=yellow>【边境哨塔】<color_default>（被同族内政官视为【所辖的城镇】）
+        <body_bright>2) 每座<color=yellow>【边境哨塔】<body_bright>首次设立后英雄<color=0099FF>攻击+2/防御+2
+        <body_bright>3) <color=yellow>【英雄主动技能次数】<color_default>（每周恢复一次）
+        <color=orange>内政官特效:
+        <body_bright>1) 可用<color=yellow>【内政操作次数】<body_bright>代替<color=yellow>【英雄主动技能次数】
   据点
     酋长BARBARIAN
       科尔汉
-        Hero9
-        高级血怒, 地精支援
-        弹药车
-        地精王
-          英雄所带领的地精额外减少【英雄等级*1%】叛逃阀值
-          每周一英雄部队中额外增加【英雄等级*1】个地精
+        <body_bright>英雄: <color=ff0033>科尔汉
+        <body_bright>职业: <color=yellow>酋长
+        <body_bright>控制台名: <color=yellow>Hero9
+        <body_bright>初始技能: <color=yellow>高级血怒+地精支援
+        <body_bright>战争机械: <color=yellow>弹药车
+        <body_bright>生物特长: <color=0099FF>地精<color_default> （种族: 据点）
+        <body_bright>英雄天赋: <color=ff0033>地精王
+        <body_bright>1) <color=0099FF>地精<body_bright>按百分比额外减少叛逃阀值<color_default>（数值为: 英雄等级*1%）
+        <color=orange>内政官特效:
+        <body_bright>1) 增加<color=yellow>【内政点数】<color_default>（数值为: 科尔汉部队及【所辖的城镇】中的地精总数量/20 四舍五入）
       哈戈什
         Hero7
         初级血怒, 初级进攻, 箭术
@@ -2058,249 +2097,249 @@
 
 14.宝物分档
   -- 1.散件-低
-    ARTIFACT_RES_BASIC = 98               
+    ARTIFACT_RES_BASIC = 98
       --矮人十字镐<背包-98>: 木材/石矿产量增加（英雄携带宝物在非城门处→打开魔法书（按C）→城镇管理→宝物管理→资源宝物）
-    ARTIFACT_SWORD_OF_RUINS = 1           
+    ARTIFACT_SWORD_OF_RUINS = 1
       --力量宝剑: 英雄攻击+2
-    ARTIFACT_BREASTPLATE_OF_PETRIFIED_WOOD = 14   
+    ARTIFACT_BREASTPLATE_OF_PETRIFIED_WOOD = 14
       --神力胸甲: 英雄咒力+2
-    ARTIFACT_SKULL_HELMET = 55            
+    ARTIFACT_SKULL_HELMET = 55
       --亡灵巫师头盔: 英雄知识+2
-    ARTIFACT_WISPERING_RING = 65          
+    ARTIFACT_WISPERING_RING = 65
       --谨慎指环: 英雄攻击+2防御+2，我方生物移动速度-1
-    ARTIFACT_BEGINNER_MAGIC_STICK = 80        
+    ARTIFACT_BEGINNER_MAGIC_STICK = 80
       --学徒魔杖: 英雄咒力+1知识+1
-    ARTIFACT_EDGE_OF_BALANCE = 90           
+    ARTIFACT_EDGE_OF_BALANCE = 90
       --平衡利刃: 正义阵营英雄攻击+3防御-1，邪恶阵营英雄攻击-1防御+3
-    ARTIFACT_STEADFAST = 110            
+    ARTIFACT_STEADFAST = 110
       --坚定之盾: 英雄攻击-1防御+4
-    ARTIFACT_BUCKLER = 111              
+    ARTIFACT_BUCKLER = 111
       --矮人之盾: 英雄防御+2
-    ARTIFACT_FOUR_LEAF_CLOVER = 8           
+    ARTIFACT_FOUR_LEAF_CLOVER = 8
       --四叶苜蓿: 英雄幸运+1
-    ARTIFACT_GOLDEN_SEXTANT = 10          
+    ARTIFACT_GOLDEN_SEXTANT = 10
       --海精灵的六分仪: 英雄知识+1，英雄海上移动力+25%
-    ARTIFACT_CROWN_OF_MANY_EYES = 12        
+    ARTIFACT_CROWN_OF_MANY_EYES = 12
       --全视王冠: 英雄咒力+1，英雄视野+4
-    ARTIFACT_RING_OF_LIGHTING_PROTECTION = 20     
+    ARTIFACT_RING_OF_LIGHTING_PROTECTION = 20
       --防电指环: 我方生物受到的电属性魔法杀伤-50%，英雄知识+1
-    ARTIFACT_BOOTS_OF_INTERFERENCE = 27       
+    ARTIFACT_BOOTS_OF_INTERFERENCE = 27
       --魔防战靴: 我方生物魔法抵抗几率+10%
-    ARTIFACT_RIGID_MANTLE = 62            
+    ARTIFACT_RIGID_MANTLE = 62
       --西莱纳斗篷: 我方生物受到的土属性魔法杀伤-50%，英雄防御+1
-    ARTIFACT_BEARHIDE_WRAPS = 84          
+    ARTIFACT_BEARHIDE_WRAPS = 84
       --熊皮大衣: 英雄防御+1，我方生物受到的冰属性魔法杀伤-25%
-    ARTIFACT_RING_OF_UNSUMMONING = 93         
+    ARTIFACT_RING_OF_UNSUMMONING = 93
       --驱逐之戒: 英雄可以使用【驱逐】，降低敌方【召唤魔法】效果（【召唤元素】数量-50%，【召唤凤凰】【剑刃障壁】【召唤蜂窝】生命-50%）
 
   -- 2.散件-中
-    ARTIFACT_RES_ADVANCED = 99           
+    ARTIFACT_RES_ADVANCED = 99
       --育龙者的魔法盒<背包-99>: 硫磺/水晶/宝石/水银产量增加（英雄携带宝物在非城门处→打开魔法书（按C）→城镇管理→宝物管理→资源宝物）
-    ARTIFACT_LEGION_BASIC = 104            
+    ARTIFACT_LEGION_BASIC = 104
       --军团之证<背包-104>: 当前城镇1~3级兵种产量永久+2，立刻生效，可累积（英雄携带宝物在城门处→打开魔法书（按C）→城镇管理→宝物管理→军团宝物）
-    ARTIFACT_ORDER_OF_CONSCRIPTION = 103            
+    ARTIFACT_ORDER_OF_CONSCRIPTION = 103
       --征兵令（消耗类）<背包-103>: 立刻获取当前第一格生物一周的产量（使用方式: 大地图（英雄未站在城门口）→打开魔法书（按C）→城镇管理→宝物管理）
-    ARTIFACT_TITANS_TRIDENT = 5           
+    ARTIFACT_TITANS_TRIDENT = 5
       --泰坦的三叉戟: 英雄电属性魔法杀伤+50%
-    ARTIFACT_RING_OF_LIFE = 21            
+    ARTIFACT_RING_OF_LIFE = 21
       --活力指环: 我方生物生命值上限+2
-    ARTIFACT_EVERCOLD_ICICLE = 18           
+    ARTIFACT_EVERCOLD_ICICLE = 18
       --永冻冰柱: 英雄冰属性魔法杀伤+50%
-    ARTIFACT_ENDLESS_SACK_OF_GOLD = 28        
+    ARTIFACT_ENDLESS_SACK_OF_GOLD = 28
       --无尽黄金麻袋: 在金矿中使用使该矿产量翻倍
-    ARTIFACT_PHOENIX_FEATHER_CAPE = 32        
+    ARTIFACT_PHOENIX_FEATHER_CAPE = 32
       --凤羽披风: 英雄火属性魔法杀伤+50%
-    ARTIFACT_VALORIOUS_ARMOR = 56           
+    ARTIFACT_VALORIOUS_ARMOR = 56
       --勇猛战甲: 英雄防御+1士气+1
-    ARTIFACT_EARTHSLIDERS = 61            
+    ARTIFACT_EARTHSLIDERS = 61
       --翡翠便鞋: 英雄土属性魔法杀伤+50%
-    ARTIFACT_TAROT_DECK = 87            
+    ARTIFACT_TAROT_DECK = 87
       --占卜纸牌: 英雄知识+1幸运+1
-    ARTIFACT_REINCARNATION = 112          
+    ARTIFACT_REINCARNATION = 112
       --轮回之戒: 释放充能转化英雄第一格升级形态部队为另一种形态（英雄战斗胜利后充能）
-    ARTIFACT_WEREWOLF_CLAW_NECKLACE = 17      
+    ARTIFACT_WEREWOLF_CLAW_NECKLACE = 17
       --血爪项链: 我方生物伤害+1
-    ARTIFACT_CROWN_OF_LEADER = 88           
+    ARTIFACT_CROWN_OF_LEADER = 88
       --领袖王冠: 英雄士气+1，【外交术】【理财术】【募兵术】效果+100%
 
   -- 3.套装组件-低
-    ARTIFACT_NECKLACE_OF_BRAVERY = 16         
+    ARTIFACT_NECKLACE_OF_BRAVERY = 16
       --雄狮项链: 英雄士气+1
-    ARTIFACT_LION_HIDE_CAPE = 31          
+    ARTIFACT_LION_HIDE_CAPE = 31
       --狮鬃披风: 英雄士气+2
-    ARTIFACT_HELM_OF_ENLIGHTMENT = 34         
+    ARTIFACT_HELM_OF_ENLIGHTMENT = 34
       --启迪头巾: 英雄知识+3经验获取+10%
-    ARTIFACT_CHAIN_MAIL_OF_ENLIGHTMENT = 35     
+    ARTIFACT_CHAIN_MAIL_OF_ENLIGHTMENT = 35
       --启迪鳞甲: 英雄咒力+3经验获取+20%
-    ARTIFACT_RING_OF_DEATH = 70           
+    ARTIFACT_RING_OF_DEATH = 70
       --无悔指环: 我方生物免疫【光明圣言】，英雄攻击+1防御+1士气-1
-    ARTIFACT_RUNIC_WAR_AXE = 81           
+    ARTIFACT_RUNIC_WAR_AXE = 81
       --符文战斧: 英雄攻击+2咒力+2
-    ARTIFACT_RUNIC_WAR_HARNESS = 82         
+    ARTIFACT_RUNIC_WAR_HARNESS = 82
       --符文战甲: 英雄防御+2知识+2
-    ARTIFACT_TREEBORN_QUIVER = 95           
+    ARTIFACT_TREEBORN_QUIVER = 95
       --林生箭袋: 我方远程生物攻击+4且无限弹药
-    ARTIFACT_MONK_01 = 116              
+    ARTIFACT_MONK_01 = 116
       --先知布帽: 英雄战斗胜利后魔法值+4
-    ARTIFACT_MONK_02 = 117              
+    ARTIFACT_MONK_02 = 117
       --先知长袍: 英雄咒力+1知识+1，战斗胜利后魔法值+2
-    ARTIFACT_MONK_03 = 118              
+    ARTIFACT_MONK_03 = 118
       --先知凉鞋: 英雄战斗胜利后移动力+250
-    ARTIFACT_MONK_04 = 119              
+    ARTIFACT_MONK_04 = 119
       --先知软剑: 英雄攻击+2，战斗胜利后魔法值+3（副手）
 
   -- 4.散件-高
-    ARTIFACT_LEGION_ADVANCED = 108            
+    ARTIFACT_LEGION_ADVANCED = 108
       --军团斗篷<背包-108>: 当前城镇4~5级兵种产量永久+1，立刻生效，可累积（英雄携带宝物在城门处→打开魔法书（按C）→城镇管理→宝物管理→军团宝物）
-    ARTIFACT_DRUM_OF_CHARGE = 106            
+    ARTIFACT_DRUM_OF_CHARGE = 106
       --冲锋战鼓<口袋-106>: 战斗开始时随机一队我方生物立即行动
-    ARTIFACT_WAYFARER_BOOTS = 26          
+    ARTIFACT_WAYFARER_BOOTS = 26
       --引路长靴: 英雄在非本族地形不受移动力惩罚
-    ARTIFACT_MOONBLADE = 58             
+    ARTIFACT_MOONBLADE = 58
       --月光利刃: 英雄战斗中每次使用魔法后回复2点魔法值（副手）
-    ARTIFACT_BOOTS_OF_SWIFTNESS = 57        
+    ARTIFACT_BOOTS_OF_SWIFTNESS = 57
       --疾风靴: 我方生物移动速度+1
-    ARTIFACT_BOOTS_OF_SPEED = 24          
+    ARTIFACT_BOOTS_OF_SPEED = 24
       --快速旅行长靴: 英雄陆地移动力+25%
-    ARTIFACT_INHERITANCE = 115            
+    ARTIFACT_INHERITANCE = 115
       --幸运护符: 英雄战斗胜利后获得幸运避难所效果
-    ARTIFACT_GREAT_AXE_OF_GIANT_SLAYING = 2     
+    ARTIFACT_GREAT_AXE_OF_GIANT_SLAYING = 2
       --山王战斧: 英雄攻击+5
-    ARTIFACT_ICEBERG_SHIELD = 9           
+    ARTIFACT_ICEBERG_SHIELD = 9
       --冰晶护盾: 英雄防御+3，我方生物受到的火属性魔法杀伤-50%
-    ARTIFACT_NECKLACE_OF_POWER = 19         
+    ARTIFACT_NECKLACE_OF_POWER = 19
       --胜利项链: 英雄攻击+2咒力+2
-    ARTIFACT_NIGHTMARISH_RING = 23          
+    ARTIFACT_NIGHTMARISH_RING = 23
       --意志磨灭戒指: 敌方生物士气-2
-    ARTIFACT_GOLDEN_HORSESHOE = 25          
+    ARTIFACT_GOLDEN_HORSESHOE = 25
       --黄金马蹄铁: 英雄幸运+2
-    ARTIFACT_ENDLESS_BAG_OF_GOLD = 29         
+    ARTIFACT_ENDLESS_BAG_OF_GOLD = 29
       --军团金像: 金币产量+50%（在城镇中使用）
-    ARTIFACT_RING_OF_CELERITY = 59          
+    ARTIFACT_RING_OF_CELERITY = 59
       --迅捷指环: 我方生物主动性+10%
-    ARTIFACT_BAND_OF_CONJURER = 60          
+    ARTIFACT_BAND_OF_CONJURER = 60
       --元素腕带: 英雄可以使用【召唤元素】（且召唤元素生效咒力+4），战斗开始时随机召唤一队数量为【英雄等级*1】的元素生物
-    ARTIFACT_JINXING_BAND = 63            
+    ARTIFACT_JINXING_BAND = 63
       --诅咒指环: 敌方生物幸运-2
-    ARTIFACT_BONESTUDDED_LEATHER = 64         
+    ARTIFACT_BONESTUDDED_LEATHER = 64
       --皮纹战袍: 英雄咒力+5士气-1
-    ARTIFACT_HELM_OF_CHAOS = 66           
+    ARTIFACT_HELM_OF_CHAOS = 66
       --混沌头盔: 英雄知识+5防御-1
-    ARTIFACT_RING_OF_THE_SHADOWBRAND = 73       
+    ARTIFACT_RING_OF_THE_SHADOWBRAND = 73
       --阴影烙印指环: 英雄咒力+4
-    ARTIFACT_DWARVEN_SMITHY_HUMMER = 85       
+    ARTIFACT_DWARVEN_SMITHY_HUMMER = 85
       --矮人精制战锤: 英雄攻击+3，我方生物受到的冰属性魔法杀伤-25%
-    ARTIFACT_BOOK_OF_POWER = 94           
+    ARTIFACT_BOOK_OF_POWER = 94
       --力量之书: 英雄【无启蒙】或【初级启蒙】则知识+1咒力+1，【高级启蒙】则知识+2咒力+2，【专家启蒙】则知识+3咒力+3，将【洞察魔法】效果提升到4级
 
   -- 5.套装组件-高
-    ARTIFACT_CROWN_OF_COURAGE = 11          
+    ARTIFACT_CROWN_OF_COURAGE = 11
       --狮冠: 英雄士气+2幸运+2
-    ARTIFACT_DRAGON_SCALE_ARMOR = 36        
+    ARTIFACT_DRAGON_SCALE_ARMOR = 36
       --龙鳞铠甲: 英雄攻击+2防御+2，我方大型生物主动性+5%
-    ARTIFACT_DRAGON_SCALE_SHIELD = 37         
+    ARTIFACT_DRAGON_SCALE_SHIELD = 37
       --龙鳞护盾: 英雄防御+4，我方小型生物主动性+5%
-    ARTIFACT_DRAGON_BONE_GRAVES = 38        
+    ARTIFACT_DRAGON_BONE_GRAVES = 38
       --龙骨护胫: 英雄咒力+4，我方近战地面生物主动性+10%
-    ARTIFACT_DRAGON_WING_MANTLE = 39        
+    ARTIFACT_DRAGON_WING_MANTLE = 39
       --龙翼披风: 英雄咒力+2知识+2，我方近战飞行生物主动性+10%
-    ARTIFACT_DRAGON_TEETH_NECKLACE = 40       
+    ARTIFACT_DRAGON_TEETH_NECKLACE = 40
       --龙牙项链: 英雄咒力+4，我方施法生物主动性+10%
-    ARTIFACT_DRAGON_TALON_CROWN = 41        
+    ARTIFACT_DRAGON_TALON_CROWN = 41
       --龙爪王冠: 英雄知识+4，我方战争机械主动性+10%
-    ARTIFACT_DRAGON_EYE_RING = 42           
+    ARTIFACT_DRAGON_EYE_RING = 42
       --龙眼指环: 英雄攻击+1防御+1咒力+1知识+1，我方远程生物主动性+10%
-    ARTIFACT_DRAGON_FLAME_TONGUE = 43         
+    ARTIFACT_DRAGON_FLAME_TONGUE = 43
       --炎龙火舌: 英雄攻击+4，我方生物受到的冰属性魔法杀伤-50%
-    ARTIFACT_ROBE_OF_MAGI = 44            
+    ARTIFACT_ROBE_OF_MAGI = 44
       --萨-伊苏斯的长袍: 英雄咒力+6
-    ARTIFACT_CROWN_OF_MAGI = 46           
+    ARTIFACT_CROWN_OF_MAGI = 46
       --萨-伊苏斯的王冠: 英雄知识+6
-    ARTIFACT_DWARVEN_MITHRAL_CUIRASS = 48       
+    ARTIFACT_DWARVEN_MITHRAL_CUIRASS = 48
       --矮人王胸甲: 英雄防御+3咒力+2，我方生物免疫【内向爆裂】
-    ARTIFACT_DWARVEN_MITHRAL_GREAVES = 49       
+    ARTIFACT_DWARVEN_MITHRAL_GREAVES = 49
       --矮人王护胫: 英雄防御+2咒力+3，我方生物免疫【延迟大法】
-    ARTIFACT_DWARVEN_MITHRAL_HELMET = 50      
+    ARTIFACT_DWARVEN_MITHRAL_HELMET = 50
       --矮人王头盔: 英雄防御+2知识+3，我方生物免疫【失明诅咒】
-    ARTIFACT_DWARVEN_MITHRAL_SHIELD = 51      
+    ARTIFACT_DWARVEN_MITHRAL_SHIELD = 51
       --矮人王护盾: 英雄防御+5,我方生物免疫【癫狂诅咒】
-    ARTIFACT_OGRE_CLUB = 74             
+    ARTIFACT_OGRE_CLUB = 74
       --食人魔棒: 英雄攻击+6，我方生物主动性-5%
-    ARTIFACT_OGRE_SHIELD = 75             
+    ARTIFACT_OGRE_SHIELD = 75
       --食人魔盾牌: 英雄防御+6，我方生物主动性-5%
-    ARTIFACT_SKULL_OF_MARKAL = 83           
+    ARTIFACT_SKULL_OF_MARKAL = 83
       --冥界头骨: 英雄咒力+4知识+4士气-2
-    ARTIFACT_GUARDIAN_01 = 120            
+    ARTIFACT_GUARDIAN_01 = 120
       --无名英雄之盔: 英雄咒力+3知识+3
-    ARTIFACT_GUARDIAN_02 = 121            
+    ARTIFACT_GUARDIAN_02 = 121
       --无名英雄之靴: 英雄全属性+1
-    ARTIFACT_GUARDIAN_03 = 122            
+    ARTIFACT_GUARDIAN_03 = 122
       --无名英雄之盾: 英雄攻击+3防御+3
 
   -- 6.功能性宝物
-    ARTIFACT_LEGION_EXPERT = 109            
+    ARTIFACT_LEGION_EXPERT = 109
       --军团之帜<背包-109>: 当前城镇6~7级兵种产量永久+1，立刻生效，可累积（英雄携带宝物在城门处→打开魔法书（按C）→城镇管理→宝物管理→军团宝物）
-    ARTIFACT_PENDANT_OF_BLIND = 101              
+    ARTIFACT_PENDANT_OF_BLIND = 101
       --闪耀权冠<头盔-101>: 英雄学会【失明诅咒】，战斗中英雄首次行动时自动对随机的敌方生物施放一次【失明诅咒】
-    ARTIFACT_GEM_OF_PHANTOM = 102          
+    ARTIFACT_GEM_OF_PHANTOM = 102
       --幻影宝石<项链-102>: 可将一支部队摄取进幻影宝石中，并在战斗开始时以召唤生物形式加入战场，行动4次后消失。再次摄取时，若兵种相同则增加数量，若兵种不同则直接替换。（使用方式: 英雄携带宝物在非城门处→打开魔法书（按C）→城镇管理→宝物管理→幻影宝石）
-    ARTIFACT_UNICORN_HORN_BOW = 4           
+    ARTIFACT_UNICORN_HORN_BOW = 4
       --独角兽角弓: 我方远程兵种无射程惩罚
-    ARTIFACT_STAFF_OF_VEXINGS = 6           
+    ARTIFACT_STAFF_OF_VEXINGS = 6
       --冥界手杖: 英雄士气-2，敌方生物主动性-20%
-    ARTIFACT_SHACKLES_OF_WAR = 7          
+    ARTIFACT_SHACKLES_OF_WAR = 7
       --末日勇士桎梏: 敌我双方无法退出战斗
-    ARTIFACT_PLATE_MAIL_OF_STABILITY = 13       
+    ARTIFACT_PLATE_MAIL_OF_STABILITY = 13
       --无名英雄之甲: 英雄攻击+2防御+2咒力+2知识+2，我方生物魔法抵抗几率+20%
-    ARTIFACT_PEDANT_OF_MASTERY = 15         
+    ARTIFACT_PEDANT_OF_MASTERY = 15
       --技能坠饰: 英雄种族技能提升1级
-    ARTIFACT_RING_OF_HASTE = 22           
+    ARTIFACT_RING_OF_HASTE = 22
       --速度指环: 我方生物主动性+20%
-    ARTIFACT_CLOAK_OF_MOURNING = 33         
+    ARTIFACT_CLOAK_OF_MOURNING = 33
       --死亡阴影斗篷: 敌方生物的士气-2幸运-2
-    ARTIFACT_STAFF_OF_MAGI = 45           
+    ARTIFACT_STAFF_OF_MAGI = 45
       --萨-伊苏斯的手杖: 忽略敌我双方的魔法抵抗几率
-    ARTIFACT_RING_OF_MAGI = 47            
+    ARTIFACT_RING_OF_MAGI = 47
       --萨-伊苏斯的指环: 英雄魔法值消耗-50%
-    ARTIFACT_TWISTING_NEITHER = 67          
+    ARTIFACT_TWISTING_NEITHER = 67
       --聚合饰物: 敌方英雄每消耗2点魔法值，我方英雄就获得1点魔法值
-    ARTIFACT_SHAWL_OF_GREAT_LICH = 69         
+    ARTIFACT_SHAWL_OF_GREAT_LICH = 69
       --桑德罗的斗篷: 忽略敌方生物【免疫心智控制】
-    ARTIFACT_NECROMANCER_PENDANT = 71         
+    ARTIFACT_NECROMANCER_PENDANT = 71
       --招魂护身符: 英雄招魂比例+10%，DE消耗-10%
-    ARTIFACT_TOME_OF_DESTRUCTION = 76         
+    ARTIFACT_TOME_OF_DESTRUCTION = 76
       --破坏魔法书: 英雄可以使用全部破坏魔法
-    ARTIFACT_TOME_OF_LIGHT_MAGIC = 77         
+    ARTIFACT_TOME_OF_LIGHT_MAGIC = 77
       --光明魔法书: 英雄可以使用全部光明魔法
-    ARTIFACT_TOME_OF_DARK_MAGIC = 78        
+    ARTIFACT_TOME_OF_DARK_MAGIC = 78
       --黑暗魔法书: 英雄可以使用全部黑暗魔法
-    ARTIFACT_TOME_OF_SUMMONING_MAGIC = 79       
+    ARTIFACT_TOME_OF_SUMMONING_MAGIC = 79
       --召唤魔法书: 英雄可以使用召唤黑暗魔法
-    ARTIFACT_RING_OF_MACHINE_AFFINITY = 91      
+    ARTIFACT_RING_OF_MACHINE_AFFINITY = 91
       --机械引力戒指: 弩车发射次数+1，投石车发射次数+1，医疗帐篷治疗效果+100%，弹药车提供的远程攻击+4
-    ARTIFACT_PENDANT_OF_STARDUST = 113        
+    ARTIFACT_PENDANT_OF_STARDUST = 113
       --星尘坠饰: 套装加成效果所需数量-1
 
   -- 7.神器
-    ARTIFACT_ANGELIC_ALLIANCE = 68          
+    ARTIFACT_ANGELIC_ALLIANCE = 68
       --天使联盟: 英雄攻击+8士气+4，战斗开始时自动施放【群体疾速行动】【群体非凡神力】
-    ARTIFACT_ANGEL_WINGS = 30             
+    ARTIFACT_ANGEL_WINGS = 30
       --天使之翼: 英雄士气+2幸运+2，获得飞行能力
-    ARTIFACT_GRAAL = 53               
+    ARTIFACT_GRAAL = 53
       --亚莎之泪: 建造奇迹（在城镇中使用）
-    ARTIFACT_MASK_OF_DOPPELGANGER = 89        
+    ARTIFACT_MASK_OF_DOPPELGANGER = 89
       --皇家遗物: 获得2,000,000经验值（在城镇中使用）
-    ARTIFACT_HORN_OF_PLENTY = 92          
+    ARTIFACT_HORN_OF_PLENTY = 92
       --丰收之角: 资源仓库每天获得木石+8稀矿+4（在城镇中使用）
-    ARTIFACT_CURSE_SHOULDER = 114           
+    ARTIFACT_CURSE_SHOULDER = 114
       --诅咒斗篷: 英雄咒力+6知识+6士气-3，战斗开始时自动施放【群体延迟大法】【群体痛苦折磨】
-    ARTIFACT_DRACONIC = 123             
+    ARTIFACT_DRACONIC = 123
       --龙神胸甲: 英雄攻击+5防御+5咒力+5知识+5，每天获得1个7级生物
-    ARTIFACT_SENTINEL = 124             
+    ARTIFACT_SENTINEL = 124
       --哨兵之盾: 英雄防御+12，战斗开始时自动施放【群体坚韧不屈】【群体正当之力】
-    ARTIFACT_EIGHTFOLD = 125            
+    ARTIFACT_EIGHTFOLD = 125
       --亚莎之八重杖: 英雄咒力+12，英雄施法后有25%几率再次行动
-    ARTIFACT_CODEX = 126              
+    ARTIFACT_CODEX = 126
       --大法师之典: 英雄知识+12，每天获得1只【凤凰】
 
   -- 初高神-分档
@@ -2323,17 +2362,17 @@
         狮鬃披风
         狮冠
       特效
-        2件: 
+        2件:
           英雄攻击+4
           骑士英雄普攻时目标生物士气-2
-        3件: 
+        3件:
           英雄获得【入神】效果
     箭手梦幻
       组件
         林生箭袋
         独角兽角弓
       特效
-        2件: 
+        2件:
           我方远程生物攻击后ATB置为0.3
           游侠英雄攻击或【精准射击】【箭如雨下】后ATB置为0.3
     萨-伊苏斯的徽章
@@ -2343,19 +2382,19 @@
         萨-伊苏斯的手杖
         萨-伊苏斯的指环
       特效
-        2件: 
+        2件:
           我方施法生物魔法值+100%咒力+100%
           魔法师英雄施法后ATB消耗额外-10%
-        3件: 
+        3件:
           英雄咒力+6
-        4件: 
+        4件:
           英雄施法后ATB消耗额外-10%
     鄂加斯的意志
       组件
         意志磨灭戒指
         混沌头盔
       特效
-        2件: 
+        2件:
           英雄攻击+5
           门禁守卫英雄【门禁大师】【烈狱幻境】【门禁卫士】效果+25%
     死亡拥抱
@@ -2365,12 +2404,12 @@
         死亡阴影斗篷
         招魂护身符
       特效
-        2件: 
+        2件:
           敌方生物移动速度-1
           亡灵巫师英雄【女妖尖叫】额外令敌方生物士气-1幸运-1
-        3件: 
+        3件:
           英雄咒力+3知识+3
-        4件: 
+        4件:
           敌方生物士气低落后攻击-20%防御-20%（持续1回合）
           亡灵巫师英雄DE消耗-25%
     矮人王的盔甲
@@ -2380,19 +2419,19 @@
         矮人王护胫
         矮人王护盾
       特效
-        2件: 
+        2件:
           我方生物所受魔法伤害-40%
           符文法师英雄咒力+10%
-        3件: 
+        3件:
           英雄咒力+2知识+2
-        4件: 
+        4件:
           英雄防御+8
     符文之力
       组件
         符文战斧
         符文战甲
       特效
-        2件: 
+        2件:
           英雄攻击+1防御+1咒力+1知识+1
           术士英雄【元素锁链】效果+100%
     力量武器
@@ -2400,7 +2439,7 @@
         食人魔棒
         食人魔盾牌
       特效
-        2件: 
+        2件:
           我方生物攻击+3生命+2
           野蛮人英雄攻击后ATB置为0.3
     启迪法衣
@@ -2408,7 +2447,7 @@
         启迪头巾
         启迪鳞甲
       特效
-        2件: 
+        2件:
           英雄经验获取+15%
     龙之力
       组件
@@ -2421,13 +2460,13 @@
         龙眼指环
         炎龙火舌
       特效
-        2件: 
+        2件:
           英雄攻击+1防御+1咒力+1知识+1
-        4件: 
+        4件:
           我方7级生物攻击+5防御+5生命+20
-        6件: 
+        6件:
           英雄攻击+3防御+3咒力+3知识+3
-        8件: 
+        8件:
           每天获得1个7级生物
     先知法衣
       组件
@@ -2436,11 +2475,11 @@
         先知凉鞋
         先知软剑
       特效
-        2件: 
+        2件:
           战斗后魔法回复+50%
-        3件: 
+        3件:
           英雄咒力+3知识+3
-        4件: 
+        4件:
           战斗后移动力回复+50%
     无名英雄的遗志
       组件
@@ -2449,11 +2488,11 @@
         无名英雄之盾
         无名英雄之甲
       特效
-        2件: 
+        2件:
           英雄全属性+1
-        3件: 
+        3件:
           英雄全属性+1
-        4件: 
+        4件:
           英雄全属性+1
     学徒套装
       组件
@@ -2463,13 +2502,13 @@
         矮人之盾
         魔防战靴
       特效
-        2件: 
+        2件:
           英雄防御+1
-        3件: 
+        3件:
           英雄知识+1
-        4件: 
+        4件:
           英雄攻击+1
-        5件: 
+        5件:
           英雄咒力+1
     元素之力
       组件
@@ -2478,9 +2517,9 @@
         凤羽披风
         翡翠便鞋
       特效
-        2件: 
+        2件:
           英雄咒力+2
-        4件: 
+        4件:
           英雄知识+2
 
   -- 宝物合成
@@ -2559,7 +2598,7 @@
       手推车
         建筑ID:
           BUILDING_WAGON
-        兵力: 
+        兵力:
           每队30的农民3形态
         奖励
           1.木矿3份
@@ -2567,9 +2606,9 @@
       勇士之墓
         建筑ID:
           BUILDING_SKELETON
-        兵力: 
+        兵力:
           每队20的僵尸3形态
-        奖励: 
+        奖励:
           1.据点英雄: 获得随机宝物1件（范围在: "宝物档位: 1.散件-低"中随机）
           2.堡垒英雄: 获得魔棒/魔法卷轴/火焰符文/随机宝物1件（范围在: "宝物档位: 1.散件-低"中随机）
           3.其它英雄: 获得魔棒/魔法卷轴/随机宝物1件（范围在: "宝物档位: 1.散件-低"中随机）
@@ -2595,8 +2634,8 @@
     普通宝屋: 周宝屋胜利次数+1，结算一次奖励
     高级宝屋: 周宝屋胜利次数+3，结算两次奖励
     宝屋阶梯奖励规则: 周有效结算次数 = 绝对周数 - 1 + 周宝屋胜利次数 - 1
-      周有效结算次数: 0    1    2     3    5     8  13   21  34  55  89  144  233  377  610  987 
-      数值奖励的倍数: 1  1.1  1.2  1.35  1.5  1.75   2  2.5   3   4   6  7.5   10   14   20   30 
+      周有效结算次数: 0    1    2     3    5     8  13   21  34  55  89  144  233  377  610  987
+      数值奖励的倍数: 1  1.1  1.2  1.35  1.5  1.75   2  2.5   3   4   6  7.5   10   14   20   30
     固定金币奖励: 1500 * 数值奖励的倍数 + 500
     随机奖励: 5随2→2选1，选择前只能知道大分类，但是不知道具体数值
       生物: 必为英雄所带领兵种（非同族亦可）; 数量 = 周产 * 数值奖励的倍数
@@ -2611,7 +2650,7 @@
         4.平衡型英雄-墓园  A/D/P/K/L→23%/23%/23%/23%/8%
         3.魔法型英雄     P/K→50%/50%
         5.野蛮人英雄     A/D/M/L→45%/45%5%/5%
-      资源: 
+      资源:
         石木: 4 * 数值奖励的倍数 + random(4 + 绝对周数 - 1)
         稀矿: 2 * 数值奖励的倍数 + random((4 + 绝对周数 - 1) / 2)
       宝物: random(100 + 绝对周数 - 1) + 周宝屋胜利次数 - 1   0/64/96/112/120/124/126
@@ -2657,11 +2696,11 @@
   1.默认的炒英雄功能请使用配置文件实现
   2.要在游戏过程中临时炒英雄，请参考如下控制台语句
     第一天执行
-      @H55_HireHero1(玩家ID, 英雄ID)
-      @H55_HireHero1(1, 'Gelu')
+      @TTH.hero1(玩家ID, 英雄ID)
+      @TTH.hero1(1, 'Gelu')
     第二天执行
-      @H55_HireHero2(玩家ID)
-      @H55_HireHero2(1)
+      @TTH.hero2(玩家ID)
+      @TTH.hero2(1)
 
 20.领袖特相关
   领袖特
@@ -2683,6 +2722,131 @@
     希尔塞: 基础加成 * (1 + 种族套装数量*0.2) * 军团宝物加成
   据点
     库恩亚克: 基础加成 * (1 + 种族套装数量*0.2) * 全面保卫加成 * 军团宝物加成
-      全面保卫加成: 
+      全面保卫加成:
         已学: 1.5
         未学: 1
+
+21.内政官
+  1.内政官管辖城镇的数量
+    1.英雄等级/15（向下取整）+1
+    2.特殊英雄
+      2.1.堡垒-汉格瓦尔: 按英雄等级/10计算
+  2.内政操作次数（每周一开始前重置）
+    1.英雄等级/15（向下取整）+1
+    2.特殊英雄
+      2.1.堡垒-汉格瓦尔: 按英雄等级/10计算
+      2.2.圣堂-埃兰妮: 可消耗农民增加内政操作次数
+      2.3.部分英雄可消耗内政操作次数使用英雄主动技能
+        2.3.1.森林-马洛迪亚
+        2.3.2.
+      2.4.
+    2.就职/解职内政官，都会消耗一次
+    3.建造城镇建筑，会消耗一次
+  3.建造城镇建筑
+    1.同正常建造建筑的资源消耗和前置
+    2.特殊英雄
+      2.1.堡垒-尤佛瑞汀
+      2.2.学院-拉扎克
+  4.设立传送点
+    1.消耗资源: 普矿-10/稀矿-5/金币-5000
+    2.消耗一次内政操作次数
+    3.前置为5级魔法塔
+      3.1.地狱为烈狱幻境+1级魔法塔
+      3.2.据点为力量殿堂+旅行者小屋
+    4.定点回城，需要设立传送点
+    5.近点回城，不需要设立传送点，但是若有传送点，则免费
+  5.就职内政官
+    1.扣除一次内政操作次数
+    2.立刻就职
+  6.解职内政官
+    1.扣除一次内政操作次数
+    2.立刻解职
+  7.转换城镇
+    1.执行转换的英雄和当前城镇不为同一种族
+    2.当前城镇的内城没有英雄驻守
+    3.消耗资源: 城镇评分为基数，普矿*2/稀矿*1/金币*1000
+  8.内政点数（城镇评分）
+    1.城镇的内政点数为普通建筑*1+兵种建筑*2+特殊建筑*3+眼泪*10
+    2.英雄的内政点数为所管辖的所有城镇的内政点数之和
+    3.英雄每天获得政绩，同内政点数，可累积
+      3.1.每1000点政绩可兑换一份奖励
+        3.1.1.本周内政操作次数+1
+        3.1.2.移动力回复满值
+        3.1.3.魔法值回复满值
+      3.2.每10000点政绩可兑换一份超值奖励
+        3.2.1.周内政操作次数上限+1
+        3.2.2.可管辖城镇配额+1
+        3.2.3.领地范围+20
+    4.特殊种族
+      4.1.墓园的兵种建筑按*3计算
+      4.2.森林的特殊建筑按*5计算
+    5.特殊英雄
+      5.1.据点-科尔汉: 地精数量增加内政点数
+      5.2.圣堂-伊莎贝尔: 管辖城镇额外内政点数
+      5.3.森林-温利尔: 加成其它内政英雄的内政点数
+      5.4.
+  9.附带建筑
+    1.部分英雄成为内政官后，会立刻为当前城镇免费建造特殊建筑
+    2.特殊英雄
+      2.1.圣堂-拉特格: 马厩
+      2.2.森林-安文: 复仇者行会
+      2.3.学院-瑞萨: 财宝洞穴
+      2.4.地牢-无
+      2.5.墓园-无
+      2.6.地狱-耐莫斯: 烈狱幻境
+      2.7.堡垒-英伽: 符文神祠（+1建筑等级）
+      2.8.据点-魁洛克: 奴隶市场
+  10.加成
+    1.领地
+      1.1.内政官所管辖的城镇的60公里范围内称作 该内政官的【内政领地】
+      1.2.领地范围为: 地图大小/4-20, 例如，320的图就是60
+      1.1.玩家所有【内政领地】的合集称作 该玩家的【王国领地】
+      1.2.内政官在自己的【内政领地】范围内，该内政官和所管辖的城镇才有相互的加成
+      1.3.若内政官离开自己的【内政领地】，则进入【远征】状态
+        1.3.1.新的一天开始时结算，内政官是否处于【远征】状态
+        1.3.2.【远征】状态下，每天扣除远征军费: 远征天数*1000金币
+        1.3.3.内政官回到自己的【内政领地】范围内，结束【远征】状态，重置远征天数
+      1.4.特殊英雄
+        1.4.1.墓园-尼科莱: 该英雄的坐标可被其它墓园内政英雄视做所管辖城镇的坐标
+        1.4.2.堡垒-乌尔夫斯坦: 设立的【边境哨塔】视做其它堡垒内政英雄所管辖城镇的坐标
+        1.4.3.
+    2.城镇加成
+      1.兵种周产增加（根据内政官的英雄等级）
+        1.1.英雄等级 / 1.5
+        1.2.英雄等级 / 2
+        1.3.英雄等级 / 3
+        1.4.英雄等级 / 4
+        1.5.英雄等级 / 6
+        1.6.英雄等级 / 8
+        1.7.英雄等级 / 12
+      2.特殊英雄
+        2.1.学院-德肯: 所有生物按英雄等级+英雄知识来计算
+        2.2.据点兵种特: 特长生物按英雄等级+英雄攻击来计算
+        2.3.其他兵种特: 特长生物按英雄等级+英雄知识来计算
+        2.4.地狱-拜娅拉: 每周四会有一次半周产，产量同因英雄增加的周产
+        2.5.
+    3.英雄加成
+      3.1.属性加成
+        3.1.1.每级城墙+1防御
+        3.1.2.每级魔法塔+1知识
+          3.1.2.1.据点为力量殿堂+旅行者小屋
+          3.1.2.2.
+        3.1.3.特殊建筑
+          3.1.3.1.圣堂-训练营/英雄祠: +每级2攻击+1士气
+          3.1.3.2.森林-复仇者行会: 每级+2攻击+1幸运
+          3.1.3.3.学院-图书馆: 每级魔法塔+1咒力
+          3.1.3.4.地牢-元素祭坛: 每级2点咒力
+          3.1.3.5.墓园-无
+          3.1.3.6.地狱-无
+          3.1.3.7.堡垒-石场: 每级城墙+1防御/每级符文神祠+1咒力
+          3.1.3.8.据点-无
+      3.2.每日经验加成
+        3.2.1.每天开始时获得经验值
+        3.2.2.200+内政点数*英雄等级
+        3.2.3.特殊建筑
+          3.2.3.1.地狱-献祭深坑: 每天获得的内政经验+200
+          3.2.3.2.
+        3.2.4.特殊英雄
+          3.2.4.1.地狱-卡利德: 每天获得的内政经验*1.5，英雄50码范围内的其它英雄，战斗胜利后额外获得经验值，数值同卡利德的每天可获得的内政经验
+          3.2.4.2.
+

@@ -1,8701 +1,10567 @@
-----------------------------------------------------------------------------------------------------------------------------------------------------
---MIGHT & MAGIC: HEROES 5.5 - CORE
-----------------------------------------------------------------------------------------------------------------------------------------------------
-
---Author: Magnomagus
---Website: http://heroescommunity.com/viewthread.php3?TID=41303
-
-----------------------------------------------------------------------------------------------------------------------------------------------------
---SYSTEM VARIABLES
-----------------------------------------------------------------------------------------------------------------------------------------------------
-
---Game
-TTH_NUM_MAX = 999999;
-
-H55_Switch = 1;
-H55_Difficulty = GetDifficulty();
-H55_TeamAsked = 0;
-H55_GameMode = 0;
-H55_AmountCrashes = 0;
-H55_AmountCycles = 0;
-H55_AmountCyclesAI = 0;
-H55_CycleSpeed = 2;
-H55_PuzzleQuest = 0;
-H55_DEBUG = {0,"",0,""};
-H55_DbgTxt = {0,"",0,""};
-H55_NewDayTrigger = 0;
-H55_NeutralStackSize = 1;
-H55_GovernorExpCoef = 1;
-H55_IgnoreExpAdjustment = 0;
-H55_CompetitiveRunelore = 0;
-H55_NoMentoring = 0;
-H55_BuildNeutralTowns = 0;
-H55_PlayerTownLevel = 0;
-H55_AITownLevel = 1;
-H55_AICheatValue = 0;
-H55_AIHandicap = 0;
-H55_AICheatMode = 4;
-H55_AllAgainstOne = 0;
+--作者: 琳星之守护
+--QQ群: 241244439
+--微信公众号: 无策略不单机
 
 doFile("/scripts/H55-Settings.lua");
 
---Timer
-
-H55_Day = 1;
-H55_Week = 1;
-H55_AbsoluteWeek = 1;
-H55_Month = 1;
-H55_Workday = 1;
-H55_DailyEventsCounter = {1,1,1,1,1,1,1,1};
-H55_EstatesDay = {};
-H55_MiningDay = {};
-H55_TestDay = 0;
-H55_BankTest = 0;
-
---AI
-
-H55_PlayerStatus = {0,0,0,0,0,0,0,0}
-H55_PlayerFactions = {0,0,0,0,0,0,0,0}
-H55_AIStartResources = {20001,20501,20601,20701,20801,20901,21001,30001,30501,30601,30701,30801,30901,31001,50001,50501,50601,50701,50801,50901,51001};
-H55_AIStartResourcesNormal = {20000,20500,20600,20700,20800,20900,21000,30000,30500,30600,30700,30800,30900,31000,50000,50500,50600,50700,50800,50900,51000};
-H55_AIKillMode = 1;
-H55_AmountAIBankVisits = 0;
-
-H55_StartBonusGold = {
-10500,10600,10700,10800,10900,11000,
-20500,20600,20700,20800,20900,21000,
-30500,30600,30700,30800,30900,31000,
-50500,50600,50700,50800,50900,51000,
-10501,10601,10701,10801,10901,11001,
-20501,20601,20701,20801,20901,21001,
-30501,30601,30701,30801,30901,31001,
-50501,50601,50701,50801,50901,51001
-};
-
-H55_StartBonusNormal = {18,19,20,21};
-H55_StartBonusHard = {13,14,15,16};
-H55_StartBonusImpossible = {8,9,10,11};
-
-H55_StartBonusNormalWO = {33,34,35,36};
-H55_StartBonusHardWO = {23,24,25,26};
-H55_StartBonusImpossibleWO = {13,14,15,16};
-
---Neutrals
-
-H55_TownQtyDivisor = 1;
-H55_TownQtyBankDifficulty = 0.01;
-
---Town Gate
-
-H55_TeleportStatus = {};
-H55_TownGateOwners = {};
-H55_Pi = 3.1417;
-H55_SpinSwitch = 1;
-
---Town Conversion
-
-H55_TownManageOwners = {};
-H55_TownConvOwners = {};
-H55_MaxTownsPerFaction = 1;
-H55_AmountAIConversions = 0;
-H55_AmountAIDwellingConversions = 0;
-H55_MaxDwellingsT1 = 2;
-H55_MaxDwellingsT2 = 2;
-H55_MaxDwellingsT3 = 2;
-H55_MaxDwellingsT4 = 4;
-H55_UniqueDwellings = {};
-
---Governance
-
-H55_Governors = {};
-H55_GovernorsWithTown = {};
-H55_TownsWithGovernor = {};
-H55_GovernorInaugurationDay = {};
-H55_CastleDefenseOwners = {};
-H55_MageGuildBonusOwners = {};
-H55_SpecialAttackOwners = {};
-H55_SpecialKnowledgeOwners = {};
-H55_RunicShrineBonusOwners = {};
-H55_SpecialSpellPowerOwners = {};
-H55_GovernanceTier1 = {};
-H55_GovernanceTier2 = {};
-H55_GovernanceTier3 = {};
-H55_GovernanceTier4 = {};
-H55_GovernanceTier5 = {};
-H55_GovernanceTier6 = {};
-H55_GovernanceTier7 = {};
-
---Economy
-
-H55_GlobalWeeklyWoodPayout = {0,0,0,0,0,0,0,0};
-H55_GlobalDailyWoodPayout = {0,0,0,0,0,0,0,0};
-H55_GlobalWeeklyOrePayout = {0,0,0,0,0,0,0,0};
-H55_GlobalDailyOrePayout = {0,0,0,0,0,0,0,0};
-H55_GlobalWeeklyMercuryPayout = {0,0,0,0,0,0,0,0};
-H55_GlobalDailyMercuryPayout = {0,0,0,0,0,0,0,0};
-H55_GlobalWeeklyCrystalPayout = {0,0,0,0,0,0,0,0};
-H55_GlobalDailyCrystalPayout = {0,0,0,0,0,0,0,0};
-H55_GlobalWeeklySulphurPayout = {0,0,0,0,0,0,0,0};
-H55_GlobalDailySulphurPayout = {0,0,0,0,0,0,0,0};
-H55_GlobalWeeklyGemPayout = {0,0,0,0,0,0,0,0};
-H55_GlobalDailyGemPayout = {0,0,0,0,0,0,0,0};
-H55_GlobalWeeklyGoldPayout = {0,0,0,0,0,0,0,0};
-H55_GlobalDailyGoldPayout = {0,0,0,0,0,0,0,0};
-H55_TaxRate = 5;
-
---Supply
-
-H55_MysticalGardens = GetObjectNamesByType("BUILDING_MYSTICAL_GARDEN");
-H55_MysticalGardenClaims = {};
-H55_Windmills = GetObjectNamesByType("BUILDING_WINDMILL");
-H55_WindmillClaims = {};
-H55_Waterwheels = GetObjectNamesByType("BUILDING_WATER_WHEEL");
-H55_WaterwheelClaims = {};
-H55_SiegeWorkshops = GetObjectNamesByType("BUILDING_WARMACHINE_FACTORY");
-H55_SiegeWorkshopClaims = {};
-
-H55_MysticalGardensOwned = {};
-H55_WeeklyMysticalGardenRes = {};
-H55_WindmillsOwned = {};
-H55_WeeklyWindmillRes = {};
-H55_WeeklyWindmillResQty = {};
-H55_WaterwheelsOwned = {};
-H55_SiegeWorkshopsOwned = {};
-H55_WeeklySiegeWorkshopResQty = {};
-
-H55_GoblinNetworkOwners = {};
-H55_DwarvenNetworkOwners = {};
-H55_NetworkSkillAmount = {0,0,0,0,0,0,0,0};
-
---Movement
-
-H55_AcademyMoveCorrection = {};
-H55_FortressMoveCorrection = {};
-H55_HavenMoveCorrection = {};
-H55_SylvanMoveCorrection = {};
-H55_StrongholdMoveCorrection = {};
-H55_InfernoMoveCorrection = {};
-H55_DungeonMoveCorrection = {};
-
-----------------------------------------------------------------------------------------------------------------------------------------------------
---DYNAMIC VARIABLES
-----------------------------------------------------------------------------------------------------------------------------------------------------
-
---Skills
-
-H55_EstatesOwners = {};
-H55_MiningOwners = {};
-H55_LeadershipOwners = {};
-H55_LeadershipPowerOwners = {};
-H55_LuckPowerOwners = {};
-H55_BaseLeadershipOwners = {};
-H55_OccultismOwners = {};
-H55_OccultismPowerOwners = {};
-H55_OverkillOwners = {};
-H55_OverkillSumOwners = {};
-H55_BaseOccultismOwners = {};
-H55_ExpertShatterOwners = {};
-H55_DemonicFlameOwners = {};
-H55_DemonicRetaliationOwners = {};
-H55_DemonicRetaliationPlusOwners = {};
-H55_ChillingSteelOwners = {};
-H55_ChillingBonesOwners = {};
-H55_ExplodingCorpsesOwners = {};
-H55_ConsumeCorpseOwners = {};
-H55_SpoilsOwners = {};
-H55_TwilightOwners = {};
-H55_PariahOwners = {};
-H55_CertificateOwners = {};
-H55_DarkRevelationOwners = {};
-H55_OffensiveFormationOwners = {};
-H55_DefensiveFormationOwners = {};
-H55_OffensiveFormationPlusOwners = {};
-H55_DefensiveFormationPlusOwners = {};
-H55_RunicKnowledgeOwners = {};
-H55_LuckyStrikeOwners = {};
-H55_ArcaneExaltationOwners = {};
-H55_RetributionOwners = {};
-H55_PrayerOwners = {};
-H55_EmpathyOwners = {};
-H55_EncourageOwners = {};
-H55_KnowYourEnemyOwners = {};
-H55_ForestRageOwners = {};
-H55_SecretsDestructionOwners = {};
-H55_ForestGuardEmblemOwners = {};
-H55_ColdDeathOwners = {};
-H55_MentoringOwners = {};
-H55_BarbarianMentoringOwners = {};
-H55_TripleCatapultOwners = {};
-H55_TripleCatapultExpertOwners = {};
-H55_TripleCatapultRingOwners = {};
-H55_PreparationOwners = {};
-H55_BackToVoidOwners = {};
-H55_RefinedManaOwners = {};
-H55_BRefinedManaOwners = {};
-H55_GuardianAngelOwners = {};
-H55_StudentAwardOwners = {};
-H55_AcademyAwardOwners = {};
-H55_ExpertTrainerOwners = {};
-H55_LordOfUndeadOwners = {};
-H55_RaiseArchersOwners = {};
-H55_ExpertTrainerPlusOwners = {};
-
-H55_ShatterLightOwners = {};
-H55_BaseShatterLightOwners = {};
-H55_ShatterDarkOwners = {};
-H55_BaseShatterDarkOwners = {};
-H55_ShatterDestructiveOwners = {};
-H55_BaseShatterDestructiveOwners = {};
-H55_ShatterSummoningOwners = {};
-H55_BaseShatterSummoningOwners = {};
-
-H55_ImbueBallistaOwners = {};
-H55_HeroHasImbuedHisArrows = {};
-H55_HeroHasImbuedHisBallista = {};
-
---Town Buildings
-
-H55_HallIntrigueStudent = {};
-H55_FountainStudent = {};
-H55_PrimalAltarStudent = {};
-H55_BrotherhoodStudent = {};
-H55_PileSkullsStudent = {};
-
-
-for i, town in GetObjectNamesByType("TOWN") do
-	H55_HallIntrigueStudent[town] = {};
-	H55_FountainStudent[town] = {};
-	H55_PrimalAltarStudent[town] = {};
-	H55_BrotherhoodStudent[town] = {};
-	H55_PileSkullsStudent[town] = {};
-end;
-
-H55_HallTrialStudent = {};
-H55_HallCourageStudent = {};
-H55_HallMightStudent = {};
-
---Artifacts
-H55_ArtWoodReceived = {};
-H55_ArtOreReceived = {};
-H55_ArtSulphurReceived = {};
-H55_ArtCrystalReceived = {};
-H55_ArtGemReceived = {};
-H55_ArtMercuryReceived = {};
-H55_ArtInterestReceived = {};
-H55_ArtMoveReceived = {};
-H55_ArtManaReceived = {};
-H55_EightFoldManaReceived = {};
-H55_Monk1ManaReceived = {};
-H55_Monk2ManaReceived = {};
-H55_Monk4ManaReceived = {};
-H55_EternalLightManaReceived = {};
-H55_PayBackManaReceived = {};
-H55_SecretsOfDestructionManaReceived = {};
-H55_RitualManaReceived = {};
-H55_SkillMasteryManaReceived = {};
-
-H55_CodexReceived = {};
-H55_CIResurrectT1 = {};
-H55_CIResurrectT2 = {};
-H55_CIResurrectT3 = {};
-H55_CIResurrectT4 = {};
-H55_CIResurrectT5 = {};
-H55_CIResurrectT6 = {};
-H55_CIResurrectT7 = {};
-H55_CIResurrectTALL = {};
-H55_RefuseCIResurrectT1 = {};
-H55_RefuseCIResurrectT2 = {};
-H55_RefuseCIResurrectT3 = {};
-H55_RefuseCIResurrectT4 = {};
-H55_RefuseCIResurrectT5 = {};
-H55_RefuseCIResurrectT6 = {};
-H55_RefuseCIResurrectT7 = {};
-H55_RefuseCIResurrectTALL = {};
-
-H55_LegionT1Received = {};
-H55_LegionT2Received = {};
-H55_LegionT3Received = {};
-H55_LegionT4Received = {};
-H55_LegionT5Received = {};
-H55_LegionT6Received = {};
-H55_LegionT7Received = {};
-
--- by 牙姐
-H55_DraconicReceived = {};
-H55_SentinelReceived = {};
-H55_PhoenixReceived = {};
-H55_CIReincarnation = {};
-H55_CIReincarnation_newest = {};
-H55_ChangedReincarnation = {};
-H55_CI_Inheritance = {};
-H55_CINecromancy_Pelt = -1;
-H55_PowerNecromancy_Pelt = 0;
-H55_CI_Kyrre = -1;
-H55_CI_Hero2 = -1;
-H55_CI_Melodia = -1;
-H55_Power_Hangvul = 0;
-H55_Reset_Hangvul = 0;
-H55_Power_Sylsai = 0;
-H55_Reset_Sylsai = 0;
-H55_Power_Welygg = 0;
-H55_Reset_Welygg = 0;
-H55_Reset_Gelu = 0;
-H55_Power_Kunyak = 0;
-H55_Reset_Kunyak = 0;
-H55_Power_Biara = 0;
-H55_Reset_Biara = 0;
-H55_Power_Cyrus = 0;
-H55_Reset_Cyrus = 0;
-H55_Reset_KujinMP = 0;
-H55_Reset_Hero9 = 0;
-H55_CI_Sovereign = -1;
-H55_Hero_Stat_List = {};
-
-H55_PendantMasteryOwners = {};
-H55_PendantMasteryPlusOwners = {};
-H55_DragonishSetOwners = {};
-H55_DragonishHalfSetOwners = {};
-H55_DragonishCrSetOwners = {};
-H55_NecroSetOwners = {};
-H55_NecroHalfSetOwners = {};
-H55_RunicSetOwners = {};
-H55_ArcherSetOwners = {};
-H55_LionSetOwners = {};
-H55_VestmentSetOwners = {};
-H55_DwarvenSetOwners = {};
-H55_SarIssusSetOwners = {};
-H55_SarIssusPlusSetOwners = {};
-H55_UrgashSetOwners = {};
-H55_MonkSetOwners = {};
-H55_GuardianSetOwners = {};
-H55_SaintSetOwners = {};
--- H55_ManaPotionOwners = {};
--- H55_ResurrectPotionOwners = {};
-
---Specs
-
-H55_ShamanPattern = {};
-
--- by 牙姐
-H55_CragLevel = 0;
-H55_NadaurLevel = 0;
-H55_SandroLevel = 0;
--- H55_TimerkhanLevel = 0;
-H55_IldarLevel = 0;
-H55_VinraelLevel = 0;
-H55_VinraelMana_Level = 1;
-H55_TazarLevel = 0;
-H55_MephalaLevel = 0;
-H55_MaahirLevel = 0;
-H55_EllesharLevel = 0;
-H55_VegeyrLevel = 0;
-H55_AlmegirLevel = 0;
-H55_Hero2Level = 0;
-H55_Hero3Level = 0;
-H55_ZouleikaLevel = 0;
-H55_Hero7Level = 0;
-H55_CI_Zombie_Straker = 0;
-H55_Town_Zombie_Straker = 0;
-
-H55_StatSpecNumbersA = {7,14,21,28,35,42,49,56};
---H55_StatSpecNumbersB = {8,16,24,32,40,48,56,62};
-H55_StatSpecReceived = {};
-
-H55_WeeklyReinforce_List = {};
-H55_InfernalLoomTable = {};
-H55_DefendUsTable = {};
-
-H55_JenovaReceived = 0;
-H55_RedHeavenHero06Received = 0;
-H55_RissaReceived = 0;
--- H55_SephinrothReceived = 0;
-H55_UfretinReceived = 0;
-
-H55_MatewaReceived = 0;
-
-H55_HydrasReceived = 0;
-H55_DjinnsReceived = 0;
-H55_RakshasasReceived = 0;
-H55_ClericsReceived = 0;
-H55_TreantsReceived = 0;
-H55_NightmaresReceived = 0;
-H55_PitFiendsReceived = 0;
-H55_WitchesReceived = 0;
-H55_WightsReceived = 0;
-H55_LichesReceived = 0;
-H55_ThanesReceived = 0;
-
--- by 牙姐
-H55_BlackKnightReceived = 0;
-H55_MummyReceived = 0;
-H55_BlackKnightReceived_Change = 0
-H55_MummyReceived_Change = 0
-H55_WolfReceived_Change = 0;
-H55_MelodiaReceived = 0;
-H55_WolfReceived = 0;
-H55_QuroqReceived = 0;
-
-H55_ManticoresReceived = 0;
-H55_MummiesReceived = 0;
-H55_WolvesReceived = 0;
-
-H55_HeavenReceived_Change = 0
-H55_Training_Cost_Isabell_List = {150, 255, 1800, 3900};
-H55_Training_DownId_Isabell_List = {1, 3, 5, 9};
-H55_Training_UpId_Isabell_List = {3, 5, 9, 11};
-
-H55_DivineGuardiansReceived = {0,0,0,0,0,0,0,0};
-H55_SpoilsReceived = {};
-H55_ElementalsReceived = {};
-H55_SpellcastersReceived = {};
-H55_DragonishReceived = {};
-H55_EmbraceReceived = {};
-H55_LightPenaltyReceived = {};
-H55_DestructivePenaltyReceived = {};
-
-H55_WeeklyEventsDone = {};
-
--- by 牙姐
-H55_length_playerheroes = {0,0,0,0,0,0,0,0};
-H55_length_playerheroes_script = {0,0,0,0,0,0,0,0};
-H55_flag_startbonus = {};
-H55_Welygg_Switch = 0;
-
-H55_TeachSpell_L3 = {};
-H55_TeachSpell_L4 = {};
-
-H55_Touch_Grail = {};
-H55_CI_Grail = {};
-H55_CI_Grail_Last = {};
---end
-
--- by 牙姐
--- begin core arguments
-H55_Switch_Bank_Restday = 0;
--- end core arguments
-
--- by 牙姐
--- begin Wulfstan
-H55SMOD_Wulfstan = {};
--- end Wulfstan
-
--- by 牙姐
--- begin Death_Tread
-TTH_DEATH_TREAD = {};
--- end Death_Tread
-
--- by 牙姐
--- begin 英雄手动特技3
-TTH_HeroCustomAbilityOwner3 = {};
--- end 英雄手动特技3
-
--- by 牙姐
--- begin 英雄手动特技3
-TTH_HeroCustomAbility_CastCreature_GCD = {};
-TTH_HeroCustomAbility_CastCreature_GCD_Reduce8Daily = {};
-TTH_HeroCustomAbility_CI = {};
--- end 英雄手动特技3
-
--- by 牙姐
--- begin 士气<-5转化为亡灵巫师
-TTH_Necromancer = {};
--- end
-
--- combat var  by 牙姐
-H55SMOD_HeroLevel = {};
-H55SMOD_HeroSkill = {};
-H55SMOD_HeroArtifact = {};
-H55SMOD_HeroAbility = {};
--- end
-
--- karissa SKELETON
-H55SMOD_ListKarissaLevel = {1, 4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34, 37, 40};
-
-TTH_Ildar_Race4Morale = 0;
-
-TTH_Data_TeachSpell_PendantOfBlind = {};
-TTH_Data_GameVar_PendantOfBlind = {};
-TTH_Data_GameVar_DrumOfCharge = {};
-TTH_Data_GameVar_GemOfPhantom = {};
-
--- begin TTH环境
-	-- debug
-		TTH_DEBUG = {}
-		TTH_DEBUG.objRecord = {};	-- funcName, iPlayer, strHero, arrOtherParam
-		TTH_DEBUG.arrRecord = {};
-
-		function TTH_DEBUG.printDebugInfo()
-			for iIndexRecord, objItemRecord in TTH_DEBUG.arrRecord do
-				print('index: '..iIndexRecord);
-				for k, v in objItemRecord do
-					print('--key: '..k);
-					print('--value: ');
-					print(v);
-				end;
-			end;
-		end;
-
-		function TTH_DEBUG.test()
-			for k, v in TTH_DEBUG.objRecord do
-				print('--key: '..k);
-				print('--value: ');
-				print(v);
-			end;
-		end;
-
-		function TTH_DEBUG.recordFuncInfo(...)
-			local iParamCount = arg['n'];
-			TTH_DEBUG.objRecord['recordName'] = arg[1];
-			TTH_DEBUG.objRecord['iPlayer'] = arg[2];
-			TTH_DEBUG.objRecord['strHero'] = arg[3];
-			if iParamCount > 3 then
-				for i = 4, iParamCount do
-						TTH_DEBUG.objRecord[i - 3] = arg[i];
-				end;
-			end;
-		end;
-
-		function TTH_DEBUG.recordCrashInfo()
-			TTH_COMMON.push(TTH_DEBUG.arrRecord, TTH_DEBUG.objRecord);
-		end;
+-- TTH环境
+	-- 变量
+		TTH_VARI = {};
+
+		TTH_VARI.talent = {};
+		TTH_VARI.artifact = {};
+		TTH_VARI.perk = {};
+
+		TTH_VARI.luck4Hero = {};
+		TTH_VARI.townSkillManage = ""; -- 在城门使用主动技能时记录城镇
+
+		-- 日期
+			TTH_VARI.month = 1;
+			TTH_VARI.week = 1;
+			TTH_VARI.absoluteWeek = 1;
+			TTH_VARI.day = 1;
+			TTH_VARI.dayOfWeek = 1;
+
+		-- 地图建筑
+			TTH_VARI.arrTown = {};
+			TTH_VARI.arrBuilding = {};
+
+		-- 政绩加成
+			TTH_VARI.arrRecordPoint = {};
+
+		TTH_VARI.playerStatus = {0, 0, 0, 0, 0, 0, 0, 0}; -- 0: human; 1: ai; 2: non-exist
+		TTH_VARI.playerFaction = {0, 0, 0, 0, 0, 0, 0, 0}; -- 1: HEAVEN; 2: PRESERVE; 3: INFERNO; 4: NECROMANCY; 5: ACADEMY; 6: DUNGEON; 7: FORTRESS; 8: STRONGHOLD
+		TTH_VARI.arrPathNavigation = {};
+		TTH_VARI.arrPathArrow = {};
 
 	-- common
-		TTH_COMMON = {}
-		function TTH_COMMON.push(arr, item)
-			if arr == nil then
-				arr = {};
-			end;
-	    arr[length(arr)] = item;
-	    return arr;
-		end;
--- end
+		TTH_COMMON = {};
 
-----------------------------------------------------------------------------------------------------------------------------------------------------
---SUPPORT FUNCTIONS
-----------------------------------------------------------------------------------------------------------------------------------------------------
-
--- by 牙姐 2018-10-16 19:03:31
--- begin 通用函数
--- 数组中最小值
-function TTH_COMMON_MIN(arr)
-	local iCompare = nil;
-	if arr ~= nil and length(arr) > 0 then
-		for iIndex, objItem in arr do
-			if objItem == nil then
-				return nil;
+		-- 是否字符串
+			function TTH_COMMON.isString(param)
+				return param .. "" == param;
 			end;
-			if iCompare == nil then
-				if objItem ~= nil then
-					iCompare = objItem;
+
+		-- 通过方法名执行方法
+			function TTH_COMMON.parse(...)
+				local iParamCount = arg["n"];
+				local strFuncName = arg[1];
+				local strParam = "";
+				if iParamCount > 1 then
+					for i = 2, iParamCount do
+						if TTH_COMMON.isString(arg[i]) then
+							strParam = strParam..TTH_COMMON.psp(arg[i]);
+						else
+							strParam = strParam..arg[i];
+						end;
+						if i ~= iParamCount then
+							strParam = strParam..",";
+						end;
+					end;
 				end;
-			else
-				if objItem ~= nil and iCompare > objItem then
-					iCompare = objItem;
+				parse(strFuncName.."("..strParam..")")();
+			end;
+
+		-- 为该类型对象设置触发器
+			function TTH_COMMON.setTrigger2ObjectType(strObjectType, enumTriggerType, funcHandler, bPrevent)
+		    local arrObject = GetObjectNamesByType(strObjectType);
+		    for iIndex, objItem in arrObject do
+	        SetTrigger(enumTriggerType, objItem, funcHandler);
+	        if bPrevent == nil then
+	           SetObjectEnabled(objItem, nil);
+	        end;
+		    end;
+			end;
+
+		-- 数值
+			-- 四舍五入
+				function TTH_COMMON.round(fNumber)
+					if fNumber < 0 then
+						return 0;
+					end;
+					local fOffset = mod(fNumber, 1);
+					local iResult = fNumber - fOffset;
+					if fOffset >= 0.5 then
+						iResult = iResult + 1;
+					end;
+					return iResult;
+				end;
+
+			-- 降位
+				function TTH_COMMON.floor(fNumber)
+					if fNumber < 0 then
+						return 0;
+					end;
+					local fOffset = mod(fNumber, 1);
+					local iResult = fNumber - fOffset;
+					return iResult;
+				end;
+
+			-- 进位
+				function TTH_COMMON.ceil(fNumber)
+					if fNumber < 0 then
+						return 0;
+					end;
+					local fOffset = mod(fNumber, 1);
+					local iResult = fNumber - fOffset;
+					if fOffset ~= 0 then
+						iResult = iResult + 1;
+					end;
+					return iResult;
+				end;
+
+		-- 数组
+			-- 在数组末尾插入一个对象: push
+				function TTH_COMMON.push(arr, objTarget)
+					if arr == nil then
+						arr = {};
+					end;
+			    arr[length(arr)] = objTarget;
+			    return arr;
+				end;
+
+			-- 从数组中移除一个对象: remove
+				function TTH_COMMON.remove8Key(arr, index)
+					if arr == nil then
+						arr = {};
+					end;
+					local arrNew = {};
+					for k, v in arr do
+						if k ~= index then
+							TTH_COMMON.push(arrNew, {[k] = v});
+						end;
+					end
+			    return arrNew;
+				end;
+				function TTH_COMMON.remove8Value(arr, value) -- :TODO
+					if arr == nil then
+						arr = {};
+					end;
+					local arrNew = {};
+					for k, v in arr do
+						if v ~= value then
+							TTH_COMMON.push(arrNew, {[k] = v});
+						end;
+					end
+			    return arrNew;
+				end;
+
+			-- 两个数组相连
+				function TTH_COMMON.concat(arr1, arr2)
+				  local retArr = {};
+				  if arr1 ~= nil then
+					  local lenArr1 = length(arr1);
+					  for i = 0, lenArr1 - 1 do
+					  	retArr[i] = arr1[i];
+					  end
+					  if arr2 ~= nil then
+						  local lenArr2 = length(arr2);
+					    for i = (lenArr1), (lenArr1 + lenArr2 - 1) do
+					      retArr[i] = arr2[i - lenArr1];
+					    end;
+				    end;
+				  end;
+					return retArr;
+				end;
+
+			-- 获取数组中对象的个数
+				function TTH_COMMON.getTargetCount(arr, objTarget)
+					local iCount = 0;
+					for iIndex, objItem in arr do
+						if objItem == objTarget then
+							iCount = iCount + 1;
+						end;
+					end;
+					return iCount;
+				end;
+
+			-- 数组中最小值
+				function TTH_COMMON.min(arr)
+					local iCompare = nil;
+					if arr ~= nil and length(arr) > 0 then
+						for iIndex, objItem in arr do
+							if objItem == nil then
+								return nil;
+							end;
+							if iCompare == nil then
+								if objItem ~= nil then
+									iCompare = objItem;
+								end;
+							else
+								if objItem ~= nil and iCompare > objItem then
+									iCompare = objItem;
+								end;
+							end;
+						end;
+					end;
+					return iCompare;
+				end;
+
+			-- 数组中最大值
+				function TTH_COMMON.max(arr)
+					local iCompare = nil;
+					if arr ~= nil and length(arr) > 0 then
+						for iIndex, objItem in arr do
+							if objItem == nil then
+								return nil;
+							end;
+							if iCompare == nil then
+								if objItem ~= nil then
+									iCompare = objItem;
+								end;
+							else
+								if objItem ~= nil and iCompare > objItem then
+									iCompare = objItem;
+								end;
+							end;
+						end;
+					end;
+					return iCompare;
+				end;
+
+			-- 数组对象中按key排列的最小值
+				function TTH_COMMON.min8key(arr, strKey)
+					local iCompare = nil;
+					if arr ~= nil and length(arr) > 0 then
+						for iIndex, objItem in arr do
+							if objItem == nil then
+								return nil;
+							end;
+							if iCompare == nil then
+								if objItem ~= nil then
+									iCompare = objItem;
+								end;
+							else
+								if objItem ~= nil and iCompare[strKey] > objItem[strKey] then
+									iCompare = objItem;
+								end;
+							end;
+						end;
+					end;
+					return iCompare;
+				end;
+
+		-- 对象
+			-- 返回合并后的对象
+				function TTH_COMMON.combineObject(obj1, obj2)
+					local retObj = {};
+					for key, value in obj1 do
+						retObj[key] = obj1[key] + obj2[key];
+					end;
+					return retObj;
+				end;
+
+			-- 返回对象间的差值
+				function TTH_COMMON.diffObject(obj1, obj2)
+					local retObj = {};
+					for key, value in obj1 do
+						retObj[key] = obj1[key] - obj2[key];
+					end;
+					return retObj;
+				end;
+
+		-- 对话框
+			-- 包装字符串回调参数
+				function TTH_COMMON.psp(param)
+					local ret = nil;
+					if TTH_COMMON.isString(param) then
+						ret = "'"..param.."'";
+					else
+						ret = param.."";
+					end;
+					return ret;
+				end;
+
+			-- 取消操作的空函数
+				function TTH_COMMON.cancelOption()
+					print("cancel option");
+				end;
+
+		-- 控件
+			-- 多选框
+				-- Text 文案
+				-- Callback 回调方法名
+				TTH_VARI.arrOption = {};
+				TTH_VARI.strPathRadioTips = "";
+				TTH_VARI.strPathRadioFrame = "/Text/Game/Scripts/TTH_QB_Radio/Frame.txt";
+				TTH_VARI.strPathRadioNavigation = "/Text/Game/Scripts/TTH_QB_Radio/Navigation.txt";
+				TTH_VARI.strPathRadioAnchor = "/Text/Game/Scripts/TTH_QB_Radio/Anchor.txt";
+				TTH_VARI.strPathRadioDefaultTips = "/Text/Game/Scripts/TTH_QB_Radio/DefaultTips.txt";
+				TTH_VARI.strPathRadioOptionPre = "/Text/Game/Scripts/TTH_QB_Radio/Option";
+				TTH_VARI.strPathRadioOptionPost = ".txt";
+				function TTH_COMMON.optionRadio(iPlayer, strHero, arrOption, strTips)
+					TTH_VARI.arrOption = arrOption;
+					local iOptionCount = length(TTH_VARI.arrOption);
+					if strTips ~= nil then
+						TTH_VARI.strPathRadioTips = strTips;
+					else
+						TTH_VARI.strPathRadioTips = TTH_VARI.strPathRadioDefaultTips;
+					end;
+					TTH_COMMON.optionChoose(iPlayer, strHero, iOptionCount, 1);
+				end;
+				function TTH_COMMON.optionChoose(iPlayer, strHero, iOptionCount, iChosen)
+					local iChosenNext = iChosen + 1;
+					if iChosen > iOptionCount then
+						TTH_COMMON.cancelOption();
+					else
+						if iOptionCount > 20 then
+							print("Too more options, don\'t supported");
+						else
+							local arrText = {};
+							for i = 1, 20 do
+								if TTH_VARI.arrOption[i] ~= nil then
+									arrText[i] = TTH_VARI.arrOption[i]["Text"];
+								else
+									arrText[i] = "";
+								end;
+							end;
+
+							local strCallback = TTH_VARI.arrOption[iChosen]["Callback"];
+							QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
+								, {
+									TTH_VARI.strPathRadioFrame
+									;strPathNavigation={
+										TTH_VARI.strPathRadioNavigation
+										;strPathAnchor1={
+											TTH_VARI.strPathRadioAnchor
+											;strArrow=TTH_VARI.arrPathArrow[0]
+											,strAnchor=TTH_VARI.arrPathNavigation[0]
+										}
+										,strPathAnchor2={
+											TTH_VARI.strPathRadioAnchor
+											;strArrow=TTH_VARI.arrPathArrow[1]
+											,strAnchor=TTH_VARI.arrPathNavigation[1]
+										}
+										,strPathAnchor3={
+											TTH_VARI.strPathRadioAnchor
+											;strArrow=TTH_VARI.arrPathArrow[2]
+											,strAnchor=TTH_VARI.arrPathNavigation[2]
+										}
+										,strPathAnchor4={
+											TTH_VARI.strPathRadioAnchor
+											;strArrow=TTH_VARI.arrPathArrow[3]
+											,strAnchor=TTH_VARI.arrPathNavigation[3]
+										}
+										,strPathAnchor5={
+											TTH_VARI.strPathRadioAnchor
+											;strArrow=TTH_VARI.arrPathArrow[4]
+											,strAnchor=TTH_VARI.arrPathNavigation[4]
+										}
+									}
+									,strTips=TTH_VARI.strPathRadioTips
+									,strPathRadioOption={
+										TTH_VARI.strPathRadioOptionPre..iChosen..TTH_VARI.strPathRadioOptionPost
+										;strText1=arrText[1]
+										,strText2=arrText[2]
+										,strText3=arrText[3]
+										,strText4=arrText[4]
+										,strText5=arrText[5]
+										,strText6=arrText[6]
+										,strText7=arrText[7]
+										,strText8=arrText[8]
+										,strText9=arrText[9]
+										,strText10=arrText[10]
+										,strText11=arrText[11]
+										,strText12=arrText[12]
+										,strText13=arrText[13]
+										,strText14=arrText[14]
+										,strText15=arrText[15]
+										,strText16=arrText[16]
+										,strText17=arrText[17]
+										,strText18=arrText[18]
+										,strText19=arrText[19]
+										,strText20=arrText[20]
+									}
+								}
+								, strCallback.."("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(TTH_VARI.arrOption[iChosen]["Id"])..")"
+								, "TTH_COMMON.optionChoose("..iPlayer..","..TTH_COMMON.psp(strHero)..","..iOptionCount..","..iChosenNext..")"
+							);
+						end;
+					end;
+				end;
+
+			-- 导航栏
+				-- 打开新界面
+					function TTH_COMMON.initNavi(strPath)
+						TTH_VARI.arrPathNavigation = {};
+						TTH_VARI.arrPathArrow = {};
+						TTH_VARI.arrPathNavigation[0] = strPath;
+						TTH_VARI.arrPathArrow[0] = TTH_PATH.Basic["Arrow"];
+					end;
+
+				-- 下一层界面
+					function TTH_COMMON.nextNavi(strPath)
+						TTH_VARI.arrPathNavigation[length(TTH_VARI.arrPathNavigation)] = strPath;
+						TTH_VARI.arrPathArrow[length(TTH_VARI.arrPathArrow)] = TTH_PATH.Basic["Arrow"];
+					end;
+
+		-- 当前进程休眠/唤醒 一般用在传送时
+			TTH_VARI.sleepSwitch = TTH_ENUM.No;
+			function TTH_COMMON.sleep()
+				TTH_VARI.sleepSwitch = TTH_ENUM.Yes;
+				while TTH_VARI.sleepSwitch == TTH_ENUM.Yes do
+					sleep(5);
 				end;
 			end;
-		end;
-	end;
-	return iCompare;
-end;
--- end
+			function TTH_COMMON.wakeup()
+				TTH_VARI.sleepSwitch = TTH_ENUM.No;
+			end;
 
-function H55_SetSleepTime(num)
-	if num ~= 0 and num <= 100 then
-		H55_CycleSpeed = num;
-	else
-		print("Value must be between 1 and 100!");
-	end;
-end;
+	-- cheat
+		TTH = {};
 
-function H55_Round(num)
-	if num < 0.5 then
-		return 0;
-	end;
-	local ost = mod(num, 1);
-	local res = num - ost;
-	if ost < 0.5 then
-		return res;
-		else res = res + 1;
-		return res;
-	end;
-end;
+		-- 恢复英雄移动力
+			function TTH.run()
+				for i = 1, 8 do
+					local arrHero = GetPlayerHeroes(i);
+					for iIndexHero, strHero in arrHero do
+						ChangeHeroStat(strHero, STAT_MOVE_POINTS, TTH_FINAL.NUM_MAX);
+					end;
+				end;
+			end;
 
-function H55_RndWithout(num,excluded)
-	local rnd1 = random(num)+1;
-	local rnd2 = random(num)+1;
-	local rnd3 = random(num)+1;
-	local rnd4 = random(num)+1;
-	local rnd5 = random(num)+1;
-	if rnd1 ~= excluded then return rnd1
-	elseif rnd2 ~= excluded then return rnd2
-	elseif rnd3 ~= excluded then return rnd3
-	elseif rnd4 ~= excluded then return rnd4
-	else return rnd5
-	end;
-end;
+		-- 地图全开
+			function TTH.see()
+				for i = 1, 8 do
+					for j = 0, GetMaxFloor() do
+						OpenCircleFog(0, 0, j, TTH_FINAL.NUM_MAX, i);
+					end;
+				end;
+			end;
 
-function H55_Floor(num)
-	local ost = mod(num, 1);
-	return num - ost;
-end;
+		-- 资源全满
+				function TTH.rich()
+					for i = 1, 8 do
+						TTH_GLOBAL.increaseResource(i, WOOD, 9999);
+						TTH_GLOBAL.increaseResource(i, ORE, 9999);
+						TTH_GLOBAL.increaseResource(i, MERCURY, 9999);
+						TTH_GLOBAL.increaseResource(i, CRYSTAL, 9999);
+						TTH_GLOBAL.increaseResource(i, SULFUR, 9999);
+						TTH_GLOBAL.increaseResource(i, GEM, 9999);
+						TTH_GLOBAL.increaseResource(i, GOLD, 9999999);
+					end;
+				end;
 
-function H55_Ceil(num)
-	local ost = mod(num, 1);
-	if ost > 0 then
-		return num - ost + 1;
-	else
-		return num - ost;
-	end;
-end;
+		-- 招募指定英雄
+			function TTH.hero1(iPlayer, strHero)
+				if strHero ~= nil then
+					H55_ChooseHero_Name = strHero;
+				end;
+				for i = TOWN_HEAVEN, TOWN_STRONGHOLD do
+					AllowPlayerTavernRace(iPlayer, i, TTH_ENUM.No);
+				end
+				for i = PLAYER_1, PLAYER_8 do
+					if i == iPlayer then
+						AllowPlayerTavernHero(i, H55_ChooseHero_Name, TTH_ENUM.Yes);
+					else
+						AllowPlayerTavernHero(i, H55_ChooseHero_Name, TTH_ENUM.No);
+					end;
+				end;
+			end;
+			function TTH.hero2(iPlayer)
+				for i = TOWN_HEAVEN, TOWN_STRONGHOLD do
+					AllowPlayerTavernRace(iPlayer, i, TTH_ENUM.Yes);
+				end
+			end;
 
-function H55_GetDistance(object1,object2)
-	local x1,y1,z1 = GetObjectPosition(object1);
-	local x2,y2,z2 = GetObjectPosition(object2);
-	local a = 0;
-	local b = 0;
-	local distance = 0;
-	if z1 == z2 then
-		if x1 > x2 then a = x1-x2 elseif x2 > x1 then a = x2-x1 end;
-		if y1 > y2 then b = y1-y2 elseif y2 > y1 then b = y2-y1 end;
-		if a == 0 then
-			distance = b;
-		elseif b == 0 then
-			distance = a;
-		else
-			local pythagoras1 = a*a;
-			local pythagoras2 = b*b;
-			distance = H55_Round(sqrt(pythagoras1+pythagoras2));
-		end;
-	else
-		distance = 1000;
-	end;
-	return distance;
-end;
+		-- 查看魔法塔魔法
+			function TTH.scanner()
+				local iPlayer = 1;
+				for i = 1, 8 do
+					if IsPlayerCurrent(i) then
+						iPlayer = i;
+					end;
+				end;
+				local arrTown = GetObjectNamesByType("TOWN");
+				for i, strTown in arrTown do
+					if GetObjectOwner(strTown) == iPlayer and TTH_GLOBAL.isAi(iPlayer) ~= TTH_ENUM.Yes then
+						UpgradeTownBuilding(strTown, TOWN_BUILDING_MAGIC_GUILD, 1);
+						UpgradeTownBuilding(strTown, TOWN_BUILDING_MAGIC_GUILD, 1);
+						UpgradeTownBuilding(strTown, TOWN_BUILDING_MAGIC_GUILD, 1);
+						UpgradeTownBuilding(strTown, TOWN_BUILDING_MAGIC_GUILD, 1);
+						UpgradeTownBuilding(strTown, TOWN_BUILDING_MAGIC_GUILD, 1);
+					end;
+				end;
+			end;
 
-function H55_GetDistanceUG(object1,object2)
-	local x1,y1,z1 = GetObjectPosition(object1);
-	local x2,y2,z2 = GetObjectPosition(object2);
-	local a = 0;
-	local b = 0;
-	local distance = 0;
-	if x1 > x2 then a = x1-x2 elseif x2 > x1 then a = x2-x1 end;
-	if y1 > y2 then b = y1-y2 elseif y2 > y1 then b = y2-y1 end;
-	if a == 0 then
-		distance = b;
-	elseif b == 0 then
-		distance = a;
-	else
-		local pythagoras1 = a*a;
-		local pythagoras2 = b*b;
-		distance = H55_Round(sqrt(pythagoras1+pythagoras2));
-	end;
-	if z1 == z2 then
-		distance = distance + 10;
-	end;
-	return distance;
-end;
+	-- ai
+		TTH_AI = {};
 
-function H55_ContainsAmount(array, sample)
-	local amount = 0;
-	for index, element in array do
-		if (element == sample) then
-			amount = amount+1;
-		end;
-	end;
-	return amount;
-end;
+		-- AI相关
+			-- AI系数相关
+				-- 地图大小
+					function TTH_AI.getCoef8MapSize()
+						local bHasUnderground = GetMaxFloor();
+						local iMapSize = GetTerrainSize();
+						local fCoef = 1;
+						if bHasUnderground == 0 then
+							if iMapSize == 320 then fCoef = 1.2 end;
+							if iMapSize == 256 then fCoef = 1.1 end;
+							if iMapSize == 216 then fCoef = 1.1 end;
+						end;
+						if bHasUnderground == 1 then
+							if iMapSize == 320 then fCoef = 1.3 end;
+							if iMapSize == 256 then fCoef = 1.2 end;
+							if iMapSize == 216 then fCoef = 1.2 end;
+							if iMapSize == 176 then fCoef = 1.1 end;
+						end;
+						return fCoef;
+					end;
 
-function H55_Insert(array, sample)
-	local index = length(array);
-	array[index] = sample;
-end;
+				-- 游戏难度
+					function TTH_AI.getCoef8GameDifficulty()
+						local iGameDifficulty = TTH_GLOBAL.getGameDifficulty();
+						local fCoef = 1;
+						if iGameDifficulty == 3 then fCoef = 1.5 end;
+						if iGameDifficulty == 2 then fCoef = 1.2 end;
+						if iGameDifficulty == 1 then fCoef = 1 end;
+						return fCoef;
+					end;
 
-function H55_TakeResources(PlayerID,ResourceID,chosenamount,AffectedHero)
-	local currentamount = GetPlayerResource(PlayerID,ResourceID);
-	local newamount = currentamount - chosenamount;
-	if newamount < 0 then
-		SetPlayerResource (PlayerID,ResourceID,0,AffectedHero);
-	else
-		SetPlayerResource (PlayerID,ResourceID,newamount,AffectedHero);
-	end;
-end;
+				-- 游戏时间
+					function TTH_AI.getCoef8GameDuration()
+						local fCoef = 1;
+						if TTH_VARI.day >= 56 and TTH_VARI.day < 112 then fCoef = 1.1 end;
+						if TTH_VARI.day >= 112 and TTH_VARI.day < 168 then fCoef = 1.2 end;
+						if TTH_VARI.day >= 168 and TTH_VARI.day < 224 then fCoef = 1.3 end;
+						if TTH_VARI.day >= 224 then fCoef = 1.4 end;
+						return fCoef;
+					end;
 
-function H55_GiveResources(PlayerID,ResourceID,chosenamount,AffectedHero)
-	local currentamount = GetPlayerResource(PlayerID,ResourceID);
-	local newamount = currentamount + chosenamount;
-	if newamount > 0 then
-		SetPlayerResource (PlayerID,ResourceID,newamount,AffectedHero);
-	end;
-end;
+				-- AI作弊等级
+					function TTH_AI.getCoef8AiCheatMode()
+						local fCoef = 1;
+						if H55_AICheatMode == 0 then
+							fCoef = 0;
+						elseif H55_AICheatMode == 1 then
+							fCoef = 0.4;
+						elseif H55_AICheatMode == 2 then
+							fCoef = 0.6;
+						elseif H55_AICheatMode == 3 then
+							fCoef = 0.8;
+						elseif H55_AICheatMode == 4 then
+							fCoef = 1;
+						elseif H55_AICheatMode == 5 then
+							fCoef = 1.2;
+						elseif H55_AICheatMode == 6 then
+							fCoef = 1.4;
+						else
+							fCoef = 1;
+						end;
+						return fCoef;
+					end;
 
-function H55_TakeResourcesSilent(PlayerID,ResourceID,chosenamount)
-	local currentamount = GetPlayerResource(PlayerID,ResourceID);
-	local newamount = currentamount - chosenamount;
-	if newamount < 0 then
-		SetPlayerResource (PlayerID,ResourceID,0);
-	else
-		SetPlayerResource (PlayerID,ResourceID,newamount);
-	end;
-end;
+				-- AI增兵系数
+					function TTH_AI.getCoef8Setting()
+						local fCoef = 1;
+						if H55_AIArmyCoef >= 1 and H55_AIArmyCoef <= 20 then
+							fCoef = H55_AIArmyCoef;
+						end;
+						return fCoef;
+					end;
 
-function H55_GiveResourcesSilent(PlayerID,ResourceID,chosenamount)
-	local currentamount = GetPlayerResource(PlayerID,ResourceID);
-	local newamount = currentamount + chosenamount;
-	if newamount > 0 then
-		SetPlayerResource (PlayerID,ResourceID,newamount);
-	end;
-end;
+				-- AI是否开启作弊
+					function TTH_AI.isAiCheat()
+						local bCheat = TTH_ENUM.No;
+						if H55_AICheatMode > 0 then
+							bCheat = TTH_ENUM.Yes;
+						end;
+						return bCheat;
+					end;
 
-function H55_SetResourcesSilent(PlayerID,ResourceID,chosenamount)
-	local currentamount = GetPlayerResource(PlayerID,ResourceID);
-	local newamount = currentamount + chosenamount;
-	if newamount > 0 then
-		SetPlayerResource (PlayerID,ResourceID,newamount);
-	end;
-end;
+				-- AI每周作弊 加金币 和 产量
+					function TTH_AI.cheatAiWeekly(iPlayer)
+						TTH_MAIN.debug("TTH_AI.cheatAiWeekly", iPlayer, nil);
 
-function H55_ArmyInfo(hero)
-	local type = {};
-	local count = {};
-	type[0], type[1], type[2], type[3], type[4], type[5], type[6] = GetHeroCreaturesTypes(hero);
-		for i = 0,6 do
-			if(type[i] ~= 0) then
-				count[i] = GetHeroCreatures(hero,type[i]);
-			else
-			count[i] = 0;
+						if TTH_AI.isAiCheat() == TTH_ENUM.Yes then
+							local fCoef8MapSize = TTH_AI.getCoef8MapSize();
+							local fCoef8Difficulty = TTH_AI.getCoef8GameDifficulty();
+							local fCoef8GameDuration = TTH_AI.getCoef8GameDuration();
+							local fCoef8AiCheatMode = TTH_AI.getCoef8AiCheatMode();
+							local fCoef8Setting = TTH_AI.getCoef8Setting();
+							local fGrowth4Coef = fCoef8MapSize * fCoef8Difficulty * fCoef8GameDuration * fCoef8AiCheatMode * fCoef8Setting;
+							local fCoef8TownCount = 0.5 + 0.5 * length(TTH_GLOBAL.listTown8Player(iPlayer));
+							local iCheatGold = TTH_COMMON.round(fGrowth4Coef * fCoef8TownCount * 20000);
+							TTH_GLOBAL.putSettleResource(iPlayer, GOLD, iCheatGold);
+							for iIndexTown, strTown in TTH_VARI.arrTown do
+								if GetObjectOwner(strTown) == iPlayer then
+									local iTownRace = TTH_GLOBAL.getRace8Town(strTown);
+									for i = 1, 7 do
+										local iDwellingLevel = GetTownBuildingLevel(strTown, TOWN_BUILDING_DWELLING_1 + i - 1);
+										if iDwellingLevel >= 1 then
+											local iCreatureId = TTH_TABLE.Creature8RaceAndLevel[iTownRace][i][1];
+											local iCanRecruitCount = GetObjectDwellingCreatures(strTown, iCreatureId);
+											local iGrowth = TTH_TABLE_NCF_CREATURES[iCreatureId]["GROWTH"];
+											iGrowth = TTH_COMMON.round(fGrowth4Coef * TTH_TABLE_NCF_CREATURES[iCreatureId]["GROWTH"]);
+											SetObjectDwellingCreatures(strTown
+												, iCreatureId
+												, iCanRecruitCount + iGrowth
+											);
+										end;
+									end
+								end;
+							end;
+						end;
+					end;
+
+			-- AI 自动转化前哨
+				function TTH_AI.convertDwelling4Ai(iPlayer)
+					TTH_MAIN.debug("TTH_AI.convertDwelling4Ai", iPlayer, nil);
+
+					if H55_TownConvEnabled == 1 then
+						local iPlayerRace = TTH_GLOBAL.getPlayerRace(iPlayer);
+						for iTier = 1, 4 do
+							for jDwellingRace = TOWN_HEAVEN, TOWN_STRONGHOLD do
+								local arrDwelling = GetObjectNamesByType(TTH_TABLE.DwellingOnAdvMap[iTier][jDwellingRace]);
+								for i, strDwelling in arrDwelling do
+									if GetObjectOwner(strDwelling) == iPlayer
+										and jDwellingRace ~= iPlayerRace then
+										ReplaceDwelling(strDwelling, iPlayerRace);
+									end;
+								end;
+							end;
+						end;
+					end;
+				end;
+
+			-- AI 自动转化城镇
+				function TTH_AI.convertTown4Ai(iPlayer)
+					TTH_MAIN.debug("TTH_AI.convertTown4Ai", iPlayer, nil);
+
+					if H55_TownConvEnabled == 1 then
+						for i, strTown in TTH_VARI.arrTown do
+							local iPlayerRace = TTH_GLOBAL.getPlayerRace(iPlayer);
+							local iTownRace = TTH_GLOBAL.getRace8Town(strTown);
+							if GetObjectOwner(strTown) == iPlayer
+								and iTownRace ~= iPlayerRace
+								and TTH_GLOBAL.isGarrisonHasHero(iPlayer, strTown) == 0 then
+								local iCalcValue, iCalcLevel, objTown = TTH_MANAGE.calcTownValue(strTown); -- :TODO objTown
+								TransformTown(strTown, iPlayerRace);
+								sleep(1);
+								TTH_MANAGE.rebuildTownBuilding(strTown, iPlayerRace, objTown);
+								sleep(1);
+							end;
+						end;
+					end;
+				end;
+
+			-- AI 自动给经验
+				function TTH_AI.giveExp8Day4Ai(iPlayer)
+					TTH_MAIN.debug("TTH_AI.giveExp8Day4Ai", iPlayer, nil);
+
+					local arrHero = GetPlayerHeroes(iPlayer);
+					for i, strHero in arrHero do
+						local iHeroLevel = GetHeroLevel(strHero);
+						local iExp = TTH_COMMON.round(300 + ((1 + (iHeroLevel / 10)) * iHeroLevel * iHeroLevel));
+						GiveExp(strHero, iExp);
+					end;
+				end;
+
+	-- global
+		TTH_GLOBAL = {};
+
+		-- 学院城和地牢城宝物商店
+			function TTH_GLOBAL.checkArtifactMerchant(iPlayer, strTown)
+				TTH_MAIN.debug("TTH_GLOBAL.checkArtifactMerchant", iPlayer, nil, strTown);
+
+				local iTownRace = TTH_GLOBAL.getRace8Town(strTown);
+				if TTH_GLOBAL.isAi(iPlayer) == TTH_ENUM.Yes then
+					if iTownRace == TOWN_ACADEMY then
+						DestroyTownBuildingToLevel(strTown, TOWN_BUILDING_SPECIAL_3, 0, 0);
+						SetTownBuildingLimitLevel(strTown, TOWN_BUILDING_SPECIAL_3, TTH_ENUM.Unable);
+					end;
+					if iTownRace == TOWN_DUNGEON then
+						DestroyTownBuildingToLevel(strTown, TOWN_BUILDING_SPECIAL_4, 0, 0);
+						SetTownBuildingLimitLevel(strTown, TOWN_BUILDING_SPECIAL_4, TTH_ENUM.Unable);
+					end;
+				else
+					if iTownRace == TOWN_ACADEMY then
+						SetTownBuildingLimitLevel(strTown, TOWN_BUILDING_SPECIAL_3, TTH_ENUM.Enable);
+					end;
+					if iTownRace == TOWN_DUNGEON then
+						SetTownBuildingLimitLevel(strTown, TOWN_BUILDING_SPECIAL_4, TTH_ENUM.Enable);
+					end;
+				end;
+			end;
+
+		-- 据点城也可回复魔法值
+			function TTH_GLOBAL.recoveryManaNearByStrongholdTown(iPlayer, strHero)
+				TTH_MAIN.debug("TTH_GLOBAL.recoveryManaNearByStrongholdTown", iPlayer, strHero);
+
+				local arrTownStronghold = GetObjectNamesByType("TOWN_STRONGHOLD");
+				if arrTownStronghold ~= nil then
+					local iCurrentMana = GetHeroStat(strHero, STAT_MANA_POINTS);
+					local iMaxMana = 10 * GetHeroStat(strHero, STAT_KNOWLEDGE);
+					if HasHeroSkill(strHero, HERO_SKILL_INTELLIGENCE) ~= nil
+						or HasHeroSkill(strHero, HERO_SKILL_BARBARIAN_INTELLIGENCE) ~= nil then
+						iMaxMana = 15 * GetHeroStat(strHero, STAT_KNOWLEDGE);
+					end;
+					if iCurrentMana < iMaxMana then
+						for i, strTown in arrTownStronghold do
+							if GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_1) >= 1
+								and (TTH_GLOBAL.getDistance(strHero, strTown) <= 6) then
+								ChangeHeroStat(strHero, STAT_MANA_POINTS, iMaxMana - iCurrentMana);
+								break;
+							end;
+						end;
+					end;
+				end;
+			end;
+
+		-- 回复所有移动力并提示
+			function TTH_GLOBAL.recoveryMaxMove(strHero)
+				ChangeHeroStat(strHero, STAT_MOVE_POINTS, TTH_FINAL.NUM_MAX);
+				local strText = TTH_PATH.FlyingSign["RecoveryMaxMove2Hero"];
+				TTH_GLOBAL.sign(strHero, strText);
+			end;
+
+		-- 回复所有魔法值并提示
+			function TTH_GLOBAL.recoveryMaxMana(strHero)
+				ChangeHeroStat(strHero, STAT_MANA_POINTS, TTH_FINAL.NUM_MAX);
+				local strText = TTH_PATH.FlyingSign["RecoveryMaxMana2Hero"];
+				TTH_GLOBAL.sign(strHero, strText);
+			end;
+
+		-- 提示城镇中有额外生物可以供招募
+			function TTH_GLOBAL.signHero4TownRecruit(strHero)
+				if TTH_GLOBAL.isHeroAtGarrison(strHero) == 0 then
+					local iPlayer = GetObjectOwner(strHero);
+					if TTH_GLOBAL.isAi(iPlayer) ~= TTH_ENUM.Yes then
+						ShowFlyingSign(TTH_PATH.FlyingSign["SignHero4TownRecruit"], strHero, iPlayer, 5);
+						sleep(2);
+					end;
+				end;
+			end;
+
+		-- 提示生物加入了城镇
+			function TTH_GLOBAL.signHero4TownJoin(strHero)
+				if TTH_GLOBAL.isHeroAtGarrison(strHero) == 0 then
+					local iPlayer = GetObjectOwner(strHero);
+					if TTH_GLOBAL.isAi(iPlayer) ~= TTH_ENUM.Yes then
+						ShowFlyingSign(TTH_PATH.FlyingSign["SignHero4TownJoin"], strHero, iPlayer, 5);
+						sleep(2);
+					end;
+				end;
+			end;
+
+		-- 获得/失去英雄属性 并提示
+			function TTH_GLOBAL.signChangeHeroStat(strHero, iStatId, iStatBonusNumber)
+				if iStatBonusNumber ~= 0 then
+					ChangeHeroStat(strHero, iStatId, iStatBonusNumber);
+					local strStatName = TTH_PATH.Stat[iStatId];
+					local strPathTemplate = "";
+					if iStatBonusNumber > 0 then
+						strPathTemplate = TTH_PATH.Stat["TemplateIncrease"];
+					else
+						strPathTemplate = TTH_PATH.Stat["TemplateDecrease"];
+					end;
+					local strText = {
+						strPathTemplate
+						;strStatName=strStatName
+						,iStatBonusNumber=iStatBonusNumber
+					};
+					TTH_GLOBAL.sign(strHero, strText);
+				end;
+			end;
+
+		-- 飘字提示
+			function TTH_GLOBAL.sign(strHero, strPath)
+				if TTH_GLOBAL.isHeroAtGarrison(strHero) == 0 then
+					local iPlayer = GetObjectOwner(strHero);
+					if TTH_GLOBAL.isAi(iPlayer) ~= TTH_ENUM.Yes then
+						ShowFlyingSign(strPath, strHero, iPlayer, 5);
+						sleep(2);
+					end;
+				end;
+			end;
+
+		-- 获取英雄最大移动力
+			function TTH_GLOBAL.getMaxMove8Hero(strHero)
+				local iMovePoint = 2500;
+				if (HasHeroSkill(strHero, SKILL_LOGISTICS) ~= nil) then
+					if (GetHeroSkillMastery(strHero, SKILL_LOGISTICS) == 1) then
+						iMovePoint = 2749;
+					elseif (GetHeroSkillMastery(strHero, SKILL_LOGISTICS) == 2) then
+						iMovePoint = 2999;
+					elseif (GetHeroSkillMastery(strHero, SKILL_LOGISTICS) == 3) then
+						iMovePoint = 3249;
+					end;
+				end;
+				if (HasArtefact(strHero, ARTIFACT_BOOTS_OF_SPEED, 1) ~= nil) then
+					iMovePoint = TTH_COMMON.round(iMovePoint * 1.25);
+				end;
+				return iMovePoint;
+			end;
+
+		-- 获取两个单位间的距离
+			function TTH_GLOBAL.getDistance(obj1, obj2, bCheckAxisZ)
+				local iX1, iY1, iZ1 = GetObjectPosition(obj1);
+				local iX2, iY2, iZ2 = GetObjectPosition(obj2);
+				local a = 0;
+				local b = 0;
+				local iDistance = 0;
+				if iZ1 == iZ2 then
+					if iX1 > iX2 then
+						a = iX1-iX2;
+					else
+						a = iX2-iX1;
+					end;
+					if iY1 > iY2 then
+						b = iY1-iY2;
+					else
+						b = iY2-iY1;
+					end;
+					iDistance = TTH_COMMON.round(sqrt(a * a + b * b));
+				else
+					if bCheckAxisZ == nil then
+						iDistance = TTH_FINAL.NUM_MAX;
+					else
+						iDistance = TTH_COMMON.round(sqrt(a * a + b * b)) + 10;
+					end;
+				end;
+				return iDistance;
+			end;
+
+		-- 生物
+			-- 置换英雄生物
+				function TTH_GLOBAL.replaceCreature4Hero(strHero, iPreCreatureId, iPreCreatureNum, iPostCreatureId, iPostCreatureNum)
+					local arrCreature4Hero = TTH_GLOBAL.getHeroCreatureInfo(strHero);
+					if arrCreature4Hero[1]["Count"] == 0 then
+						AddHeroCreatures(strHero, iPostCreatureId, iPostCreatureNum);
+						sleep(1);
+						RemoveHeroCreatures(strHero, iPreCreatureId, iPreCreatureNum);
+					elseif arrCreature4Hero[6]["Count"] ~= 0 then
+						RemoveHeroCreatures(strHero, iPreCreatureId, iPreCreatureNum);
+						sleep(1);
+						AddHeroCreatures(strHero, iPostCreatureId, iPostCreatureNum);
+					else
+						RemoveHeroCreatures(strHero, iPreCreatureId, iPreCreatureNum);
+						sleep(1);
+						AddHeroCreatures(strHero, iPostCreatureId, iPostCreatureNum);
+					end;
+				end;
+
+			-- 减少英雄生物 <带提示>
+				function TTH_GLOBAL.reduceCreature4Hero8Sign(strHero, iCreatureId, iCreatureNumber, strPath)
+					if iCreatureId > 0 and iCreatureId < 1000 and iCreatureNumber > 0 then
+						RemoveHeroCreatures(strHero, iCreatureId, iCreatureNumber);
+						local strCreatureName = TTH_TABLE_NCF_CREATURES[iCreatureId]["NAME"];
+						if TTH_GLOBAL.isHeroAtGarrison(strHero) == 0 then
+							local iPlayer = GetObjectOwner(strHero);
+							if TTH_GLOBAL.isAi(iPlayer) ~= TTH_ENUM.Yes then
+								ShowFlyingSign({strPath;strCreatureName=strCreatureName,iCreatureNumber=iCreatureNumber}, strHero, iPlayer, 5);
+								sleep(2);
+							end;
+						end;
+					end;
+				end;
+
+			-- 增加英雄生物 <带提示>
+				function TTH_GLOBAL.addCreature4Hero8Sign(strHero, iCreatureId, iCreatureNumber, iChangeType)
+					if iCreatureId > 0 and iCreatureId < 1000 and iCreatureNumber > 0 then
+						AddHeroCreatures(strHero, iCreatureId, iCreatureNumber);
+						local strCreatureName = TTH_TABLE_NCF_CREATURES[iCreatureId]["NAME"];
+						if TTH_GLOBAL.isHeroAtGarrison(strHero) == 0 then
+							local iPlayer = GetObjectOwner(strHero);
+							if TTH_GLOBAL.isAi(iPlayer) ~= TTH_ENUM.Yes then
+								local strPath = "";
+								if iChangeType == TTH_ENUM.AddCreature then
+									strPath = TTH_PATH.FlyingSign["AddCreature2Hero"];
+								elseif iChangeType == TTH_ENUM.CastCreature then
+									strPath = TTH_PATH.FlyingSign["CastCreature2Hero"];
+								end;
+								ShowFlyingSign({strPath;strCreatureName=strCreatureName,iCreatureNumber=iCreatureNumber}, strHero, iPlayer, 5);
+								sleep(2);
+							end;
+						end;
+					end;
+				end;
+
+			-- 获取英雄槽位的生物信息，并以数组方式返回，下标从0开始
+				function TTH_GLOBAL.getHeroCreatureInfo(strHero)
+					local arrCreature = {[0] = {}, [1] = {}, [2] = {}, [3] = {}, [4] = {}, [5] = {}, [6] = {}};
+					arrCreature[0]["Id"], arrCreature[1]["Id"], arrCreature[2]["Id"], arrCreature[3]["Id"], arrCreature[4]["Id"], arrCreature[5]["Id"], arrCreature[6]["Id"] = GetHeroCreaturesTypes(strHero);
+					for i = 0, 6 do
+						if(arrCreature[i]["Id"] ~= 0) then
+							arrCreature[i]["Count"] = GetHeroCreatures(strHero, arrCreature[i]["Id"]);
+						else
+							arrCreature[i]["Count"] = 0;
+						end;
+					end;
+					return arrCreature;
+				end;
+
+			-- 获取城镇/野怪/矿/要塞槽位的生物信息，并以数组方式返回，下标从0开始
+				function TTH_GLOBAL.getObjectCreatureInfo(strObject)
+					local arrCreature = {[0] = {}, [1] = {}, [2] = {}, [3] = {}, [4] = {}, [5] = {}, [6] = {}};
+					arrCreature[0]["Id"], arrCreature[1]["Id"], arrCreature[2]["Id"], arrCreature[3]["Id"], arrCreature[4]["Id"], arrCreature[5]["Id"], arrCreature[6]["Id"] = GetObjectCreaturesTypes(strObject);
+					for i = 0, 6 do
+						if(arrCreature[i]["Id"] ~= 0) then
+							arrCreature[i]["Count"] = GetObjectCreatures(strObject, arrCreature[i]["Id"]);
+						else
+							arrCreature[i]["Count"] = 0;
+						end;
+					end;
+					return arrCreature;
+				end;
+
+			-- 根据配置改变野怪数量
+				function TTH_GLOBAL.changeMonsterStackSize(fMultiplier)
+					if fMultiplier > 0.1 and fMultiplier ~= 1 then
+						print("TTH Change Monster stack sizes...");
+						print("WARNING: The game might lag for several minutes, the job is done when you can open your townscreen.");
+						print("TTH Game blocked...");
+						BlockGame();
+						local arrMonster = GetObjectNamesByType("CREATURE");
+						local iLenMonster = length(arrMonster);
+						for i = 0, iLenMonster - 1 do
+							local arrCreature4Object = TTH_GLOBAL.getObjectCreatureInfo(arrMonster[i]);
+							for i = 0, 6 do
+								if arrCreature4Object[i]["Id"] ~= 0 then
+									if fMultiplier > 1 then
+										local iOffsetCount = TTH_COMMON.round(arrCreature4Object[i]["Count"] * fMultiplier - arrCreature4Object[i]["Count"]);
+										if iOffsetCount > 0 then
+											AddObjectCreatures(arrMonster[i], arrCreature4Object[i]["Id"], iOffsetCount);
+										end;
+									elseif fMultiplier >= 0.1 and fMultiplier < 1 then
+										local iOffsetCount = TTH_COMMON.round(arrCreature4Object[i]["Count"] - arrCreature4Object[i]["Count"] * fMultiplier);
+										if iOffsetCount > 0 then
+											RemoveObjectCreatures(arrMonster[i], arrCreature4Object[i]["Id"], iOffsetCount);
+										end;
+									end;
+								end;
+							end;
+						end;
+						UnblockGame();
+						print("TTH Game Unblocked...");
+					end;
+				end;
+
+		-- 城镇
+			-- 增加城镇生物产量
+				function TTH_GLOBAL.updateTownDwellingCreature(strTown, arrCreatureGrowth8Tier)
+					local iTownRace = TTH_GLOBAL.getRace8Town(strTown);
+					for iTier = 1, 7 do
+						if arrCreatureGrowth8Tier[iTier] > 0
+							and GetTownBuildingLevel(strTown, iTier + TOWN_BUILDING_DWELLING_1 - 1) >= 1 then
+							SetObjectDwellingCreatures(strTown, TTH_TABLE.Creature8RaceAndLevel[iTownRace][iTier][1]
+								, GetObjectDwellingCreatures(strTown, TTH_TABLE.Creature8RaceAndLevel[iTownRace][iTier][1])
+									+ arrCreatureGrowth8Tier[iTier]);
+						end;
+					end;
+				end;
+
+		-- 游戏准备阶段
+			-- 从初始状态查验是否为AI
+				function TTH_GLOBAL.detectPlayerState(iPlayer)
+					if (GetPlayerState(iPlayer) == 1) then
+							local arrHero = GetPlayerHeroes(iPlayer);
+							if arrHero ~= nil then
+								for iIndexHero, strHero in arrHero do
+									EnableHeroAI(strHero, not nil);
+									TTH_VARI.playerStatus[iPlayer] = 1;
+								end;
+							else
+								local iGold = GetPlayerResource(iPlayer, 6);
+								if mod(iGold, 100) == 1 then
+									TTH_VARI.playerStatus[iPlayer] = 1;
+								else
+									TTH_VARI.playerStatus[iPlayer] = 0;
+								end;
+							end;
+					else
+						TTH_VARI.playerStatus[iPlayer] = 2;
+					end;
+
+					-- 战役BUG修复
+						if iPlayer == PLAYER_2 then
+							if GetMapDataPath() == "Maps/Scenario/C1M5/" then
+								TTH_VARI.playerStatus[PLAYER_2] = 1;
+							end;
+						end;
+				end;
+
+			-- 初始化每位玩家的状态
+				function TTH_GLOBAL.detectPlayer1()
+					TTH_GLOBAL.detectPlayerState(PLAYER_1);
+				end;
+				function TTH_GLOBAL.detectPlayer2()
+					TTH_GLOBAL.detectPlayerState(PLAYER_2);
+				end;
+				function TTH_GLOBAL.detectPlayer3()
+					TTH_GLOBAL.detectPlayerState(PLAYER_3);
+				end;
+				function TTH_GLOBAL.detectPlayer4()
+					TTH_GLOBAL.detectPlayerState(PLAYER_4);
+				end;
+				function TTH_GLOBAL.detectPlayer5()
+					TTH_GLOBAL.detectPlayerState(PLAYER_5);
+				end;
+				function TTH_GLOBAL.detectPlayer6()
+					TTH_GLOBAL.detectPlayerState(PLAYER_6);
+				end;
+				function TTH_GLOBAL.detectPlayer7()
+					TTH_GLOBAL.detectPlayerState(PLAYER_7);
+				end;
+				function TTH_GLOBAL.detectPlayer8()
+					TTH_GLOBAL.detectPlayerState(PLAYER_8);
+				end;
+
+			-- 初始化每位玩家的种族
+				function TTH_GLOBAL.detectPlayerFaction()
+					local arrTown = GetObjectNamesByType("TOWN");
+					for i = 1, 8 do
+						for iIndexTown, objTown in arrTown do
+							if GetObjectOwner(objTown) == i then
+								TTH_VARI.playerFaction[i] = TTH_GLOBAL.getRace8Town(objTown);
+							end;
+						end;
+					end;
+				end;
+				function TTH_GLOBAL.detectPlayerFactionBak()
+					for i = 1, 8 do
+						if TTH_VARI.playerFaction[i] == 0 and TTH_VARI.playerStatus[i] == 0 then
+							local arrHero = GetPlayerHeroes(i);
+							if arrHero ~= nil then
+								TTH_VARI.playerFaction[i] = TTH_GLOBAL.getRace8Hero(arrHero[0]);
+							end;
+						end;
+					end;
+				end;
+
+		-- 初始化
+			-- 初始化游戏难度 进入游戏时选择的难度
+				TTH_VARI.gameDifficulty = 0;
+				function TTH_GLOBAL.initGameDifficulty()
+					TTH_VARI.gameDifficulty = GetDifficulty();
+				end;
+				function TTH_GLOBAL.getGameDifficulty()
+					return TTH_VARI.gameDifficulty;
+				end;
+
+			-- 初始化领地半径 根据地图大小
+				TTH_VARI.TerritoryRadius = 60;
+				function TTH_GLOBAL.initTerritoryRadius()
+					local iMapSize = GetTerrainSize();
+					TTH_VARI.TerritoryRadius = TTH_COMMON.round(iMapSize / 4 - 20);
+				end;
+
+			-- 初始化城镇列表
+				function TTH_GLOBAL.initAdvTown()
+					TTH_VARI.arrTown = GetObjectNamesByType("TOWN");
+
+					-- 初始城建配置
+						local iNeutralTownLevel = H55_BuildNeutralTowns;
+						local iPlayerTownLevel = 0;
+						if H55_PlayerCheats == 1 then
+							iPlayerTownLevel = H55_PlayerTownLevel;
+						end;
+						local iAITownLevel = 1;
+						if H55_AICheats == 1 then
+							iAITownLevel = H55_AITownLevel;
+						end;
+						for iIndexTown, objTown in TTH_VARI.arrTown do
+							local iPlayer = GetObjectOwner(objTown);
+							if iPlayer == 0 then
+								TTH_MANAGE.constructTown(objTown, iNeutralTownLevel);
+							else
+								if TTH_GLOBAL.isAi(iPlayer) ~= TTH_ENUM.Yes then
+									TTH_MANAGE.constructTown(objTown, iPlayerTownLevel);
+								else
+									TTH_MANAGE.constructTown(objTown, iAITownLevel);
+								end;
+							end;
+						end;
+				end;
+
+			-- 初始化地图建筑
+				function TTH_GLOBAL.initAdvBuilding()
+					TTH_VARI.arrBuilding = {};
+
+					-- 初始化 BUFF建筑
+						TTH_VARI.arrBuilding["BUILDING_FONTAIN_OF_FORTUNE"] = GetObjectNamesByType("BUILDING_FONTAIN_OF_FORTUNE");
+						TTH_VARI.arrBuilding["BUILDING_TEMPLE"] = GetObjectNamesByType("BUILDING_TEMPLE");
+						TTH_VARI.arrBuilding["BUILDING_FORTUITOUS_SANCTUARY"] = GetObjectNamesByType("BUILDING_FORTUITOUS_SANCTUARY");
+						TTH_VARI.arrBuilding["BUILDING_FONTAIN_OF_YOUTH"] = GetObjectNamesByType("BUILDING_FONTAIN_OF_YOUTH");
+						TTH_VARI.arrBuilding["BUILDING_FAERIE_RING"] = GetObjectNamesByType("BUILDING_FAERIE_RING");
+						TTH_VARI.arrBuilding["BUILDING_NOMADS_SHAMAN"] = GetObjectNamesByType("BUILDING_NOMADS_SHAMAN");
+						TTH_VARI.arrBuilding["BUILDING_RALLY_FLAG"] = GetObjectNamesByType("BUILDING_RALLY_FLAG");
+						TTH_VARI.arrBuilding["BUILDING_IDOL_OF_FORTUNE"] = GetObjectNamesByType("BUILDING_IDOL_OF_FORTUNE");
+						TTH_VARI.arrBuilding["BUILDING_MAGIC_WELL"] = GetObjectNamesByType("BUILDING_MAGIC_WELL");
+						TTH_VARI.arrBuilding["BUILDING_OASIS"] = GetObjectNamesByType("BUILDING_OASIS");
+						TTH_VARI.arrBuilding["BUILDING_STABLES"] = GetObjectNamesByType("BUILDING_STABLES");
+
+					-- 初始化 宝屋建筑
+						TTH_VARI.arrBuilding["BUILDING_WAGON"] = GetObjectNamesByType("BUILDING_WAGON");
+						TTH_VARI.arrBuilding["BUILDING_SKELETON"] = GetObjectNamesByType("BUILDING_SKELETON");
+
+						TTH_VARI.arrBuilding["BUILDING_UNKEMPT"] = GetObjectNamesByType("BUILDING_UNKEMPT"); -- 逃兵哨塔（圣堂）
+						TTH_VARI.arrBuilding["BUILDING_LEAN_TO"] = GetObjectNamesByType("BUILDING_LEAN_TO"); -- 树塔（森林）
+						TTH_VARI.arrBuilding["BUILDING_NAGA_BANK"] = GetObjectNamesByType("BUILDING_NAGA_BANK"); -- 象牙塔（学院）
+						TTH_VARI.arrBuilding["BUILDING_BLOOD_TEMPLE"] = GetObjectNamesByType("BUILDING_BLOOD_TEMPLE"); -- 血之神庙（地牢）
+						TTH_VARI.arrBuilding["BUILDING_CRYPT"] = GetObjectNamesByType("BUILDING_CRYPT"); -- 地穴（墓园）
+						TTH_VARI.arrBuilding["BUILDING_GARGOYLE_STONEVAULT"] = GetObjectNamesByType("BUILDING_GARGOYLE_STONEVAULT"); -- 石像鬼穹顶（地狱）
+						TTH_VARI.arrBuilding["BUILDING_DWARVEN_TREASURE"] = GetObjectNamesByType("BUILDING_DWARVEN_TREASURE"); -- 矮人宝藏（堡垒）
+						TTH_VARI.arrBuilding["BUILDING_NAGA_TEMPLE"] = GetObjectNamesByType("BUILDING_NAGA_TEMPLE"); -- 兽人坑洞（据点）
+
+						TTH_VARI.arrBuilding["BUILDING_CYCLOPS_STOCKPILE"] = GetObjectNamesByType("BUILDING_CYCLOPS_STOCKPILE"); -- 元素反应堆（中立元素）
+						TTH_VARI.arrBuilding["BUILDING_DRAGON_UTOPIA"] = GetObjectNamesByType("BUILDING_DRAGON_UTOPIA"); -- 龙国
+						TTH_VARI.arrBuilding["BUILDING_PYRAMID"] = GetObjectNamesByType("BUILDING_PYRAMID"); -- 金字塔
+						TTH_VARI.arrBuilding["BUILDING_BUOY"] = GetObjectNamesByType("BUILDING_BUOY"); -- 鄂加斯邪庙
+						TTH_VARI.arrBuilding["BUILDING_SUNKEN_TEMPLE"] = GetObjectNamesByType("BUILDING_SUNKEN_TEMPLE"); -- 沉沦的神庙
+						TTH_VARI.arrBuilding["BUILDING_DEMOLISH"] = GetObjectNamesByType("BUILDING_DEMOLISH"); -- 被掘毁的王陵
+						TTH_VARI.arrBuilding["BUILDING_TREANT_THICKET"] = GetObjectNamesByType("BUILDING_TREANT_THICKET"); -- 德鲁伊岩洞
+
+					-- 初始化 可占领的经济建筑
+						TTH_VARI.arrBuilding["BUILDING_MYSTICAL_GARDEN"] = GetObjectNamesByType("BUILDING_MYSTICAL_GARDEN"); -- 神秘花园
+						TTH_VARI.arrBuilding["BUILDING_WINDMILL"] = GetObjectNamesByType("BUILDING_WINDMILL"); -- 矮人地穴
+						TTH_VARI.arrBuilding["BUILDING_WATER_WHEEL"] = GetObjectNamesByType("BUILDING_WATER_WHEEL"); -- 风车
+						TTH_VARI.arrBuilding["BUILDING_WARMACHINE_FACTORY"] = GetObjectNamesByType("BUILDING_WARMACHINE_FACTORY"); -- 战争机械工厂
+
+					-- 初始化 资源矿
+						TTH_VARI.arrBuilding["BUILDING_SAWMILL"] = GetObjectNamesByType("BUILDING_SAWMILL"); -- 木矿
+						TTH_VARI.arrBuilding["BUILDING_ORE_PIT"] = GetObjectNamesByType("BUILDING_ORE_PIT"); -- 石矿
+						TTH_VARI.arrBuilding["BUILDING_ALCHEMIST_LAB"] = GetObjectNamesByType("BUILDING_ALCHEMIST_LAB"); -- 水银矿
+						TTH_VARI.arrBuilding["BUILDING_CRYSTAL_CAVERN"] = GetObjectNamesByType("BUILDING_CRYSTAL_CAVERN"); -- 水晶矿
+						TTH_VARI.arrBuilding["BUILDING_SULFUR_DUNE"] = GetObjectNamesByType("BUILDING_SULFUR_DUNE"); -- 硫磺矿
+						TTH_VARI.arrBuilding["BUILDING_GEM_POND"] = GetObjectNamesByType("BUILDING_GEM_POND"); -- 宝石矿
+						TTH_VARI.arrBuilding["BUILDING_GOLD_MINE"] = GetObjectNamesByType("BUILDING_GOLD_MINE"); -- 金矿
+						TTH_VARI.arrBuilding["BUILDING_ABANDONED_MINE"] = GetObjectNamesByType("BUILDING_ABANDONED_MINE"); -- 废弃的矿洞（8种族随机）
+						TTH_GLOBAL.initMine();
+
+					-- 初始化 先知小屋
+						TTH_VARI.arrBuilding["BUILDING_MERMAIDS"] = GetObjectNamesByType("BUILDING_MERMAIDS");
+						TTH_GLOBAL.initMermaids();
+
+					-- 绑定建筑访问触发器
+						-- 可占领的经济建筑
+							TTH_COMMON.setTrigger2ObjectType("BUILDING_MYSTICAL_GARDEN", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitMysticalGarden", nil);
+							TTH_COMMON.setTrigger2ObjectType("BUILDING_WINDMILL", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitWindmill", nil);
+							TTH_COMMON.setTrigger2ObjectType("BUILDING_WATER_WHEEL", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitWaterWheel", nil);
+							TTH_COMMON.setTrigger2ObjectType("BUILDING_WARMACHINE_FACTORY", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitWarmachineFactory", nil);
+
+						-- 可占领的资源矿
+							TTH_COMMON.setTrigger2ObjectType("BUILDING_SAWMILL", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitWood", nil);
+							TTH_COMMON.setTrigger2ObjectType("BUILDING_ORE_PIT", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitOre", nil);
+							TTH_COMMON.setTrigger2ObjectType("BUILDING_ALCHEMIST_LAB", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitMercury", nil);
+							TTH_COMMON.setTrigger2ObjectType("BUILDING_CRYSTAL_CAVERN", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitCrystal", nil);
+							TTH_COMMON.setTrigger2ObjectType("BUILDING_SULFUR_DUNE", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitSulfur", nil);
+							TTH_COMMON.setTrigger2ObjectType("BUILDING_GEM_POND", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitGem", nil);
+							TTH_COMMON.setTrigger2ObjectType("BUILDING_GOLD_MINE", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitGold", nil);
+							-- TTH_COMMON.setTrigger2ObjectType("BUILDING_ABANDONED_MINE", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitRandom", nil);
+
+						-- 大地图上的兵种前哨建筑
+							for iTier = 1, 4 do
+								for jDwellingRace = TOWN_HEAVEN, TOWN_STRONGHOLD do
+									TTH_COMMON.setTrigger2ObjectType(TTH_TABLE.DwellingOnAdvMap[iTier][jDwellingRace], OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitDwellingOnAdvMap", nil);
+								end;
+							end;
+
+						-- 记忆导师
+							TTH_COMMON.setTrigger2ObjectType("BUILDING_MEMORY_MENTOR", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitMemoryMentor", nil);
+
+						-- 先知小屋
+							TTH_COMMON.setTrigger2ObjectType("BUILDING_MERMAIDS", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitMermaids", nil);
+				end;
+
+			-- 初始化日询事件的次数 by 玩家
+				TTH_VARI.counterDealDailyEvent = {};
+				TTH_VARI.counterResetDailyEvent = {};
+				function TTH_GLOBAL.initDailyEventCount(iPlayer)
+					TTH_VARI.counterDealDailyEvent[iPlayer] = 0;
+					TTH_VARI.counterResetDailyEvent[iPlayer] = 0;
+				end;
+
+			-- 初始化周询事件的次数 by 玩家
+				TTH_VARI.counterDealWeeklyEvent = {};
+				TTH_VARI.counterResetWeeklyEvent = {};
+				function TTH_GLOBAL.initWeeklyEventCount(iPlayer)
+					TTH_VARI.counterDealWeeklyEvent[iPlayer] = 0;
+					TTH_VARI.counterResetWeeklyEvent[iPlayer] = 0;
+				end;
+
+			-- AI初始设置
+				function TTH_GLOBAL.initAi(iPlayer)
+					if H55_AIHandicap == 1 then
+						if TTH_VARI.playerStatus[iPlayer] == 1 then
+							SetPlayerResource(iPlayer, WOOD, 10);
+							SetPlayerResource(iPlayer, ORE, 10);
+							SetPlayerResource(iPlayer, MERCURY, 5);
+							SetPlayerResource(iPlayer, CRYSTAL, 5);
+							SetPlayerResource(iPlayer, SULFUR, 5);
+							SetPlayerResource(iPlayer, GEM, 5);
+							SetPlayerResource(iPlayer, GOLD, 10000);
+						end;
+					end;
+					if H55_AICheats == 1 then
+						if TTH_VARI.playerStatus[iPlayer] == 1 then
+							local arrHero = GetPlayerHeroes(iPlayer);
+							for iIndexHero, strHero in arrHero do
+								SetHeroLootable(strHero, nil); -- AI的第一个英雄的宝物不会掉落
+								if H55_AISetBonus_Tear == 1 then
+									TTH_GLOBAL.giveTear(strHero);
+									print("Tear has been given!");
+								end;
+								if H55_AISetBonus_Travel == 1 then
+									TTH_GLOBAL.giveTravel(strHero);
+									print("Travel has been given!");
+								end;
+								if H55_AISetBonus_Draconic == 1 then
+									TTH_GLOBAL.giveDraconic(strHero);
+									print("Draconic has been given!");
+								end;
+								if H55_AISetBonus_Shield == 1 then
+									TTH_GLOBAL.giveShield(strHero);
+									print("Shield has been given!");
+								end;
+								if H55_AISetBonus_Angelic_Alliance == 1 then
+									TTH_GLOBAL.giveAngelicAlliance(strHero);
+									print("Angelic_Alliance has been given!");
+								end;
+								if H55_AISetBonus_Curse_Shoulder == 1 then
+									TTH_GLOBAL.giveCurseShoulder(strHero);
+									print("Curse_Shoulder has been given!");
+								end;
+								if H55_AISetBonus_Phoenix == 1 then
+									TTH_GLOBAL.givePhoenix(strHero);
+									print("Phoenix has been given!");
+								end;
+								if H55_AISkillBonusBasic == 1 then
+									TTH_GLOBAL.teachSkillBasic(strHero);
+									print("BasicSkill has been teached!");
+								end;
+								if H55_AISkillBonusAbsolute == 1 then
+									TTH_GLOBAL.teachSkillAbsolute(strHero);
+									print("AbsoluteSkill has been teached!");
+								end;
+							end;
+						end;
+					end;
+					if H55_PlayerCheats == 1 then
+						if TTH_VARI.playerStatus[iPlayer] == 0 then
+							local arrHero = GetPlayerHeroes(iPlayer);
+							for iIndexHero, strHero in arrHero do
+								if H55_PlayerSetBonus_Tear == 1 then
+									TTH_GLOBAL.giveTear(strHero);
+									print("Tear has been given!");
+								end;
+								if H55_PlayerSetBonus_Travel == 1 then
+									TTH_GLOBAL.giveTravel(strHero);
+									print("Travel has been given!");
+								end;
+								if H55_PlayerSetBonus_Draconic == 1 then
+									TTH_GLOBAL.giveDraconic(strHero);
+									print("Draconic has been given!");
+								end;
+								if H55_PlayerSetBonus_Shield == 1 then
+									TTH_GLOBAL.giveShield(strHero);
+									print("Shield has been given!");
+								end;
+								if H55_PlayerSetBonus_Angelic_Alliance == 1 then
+									TTH_GLOBAL.giveAngelicAlliance(strHero);
+									print("Angelic_Alliance has been given!");
+								end;
+								if H55_PlayerSetBonus_Curse_Shoulder == 1 then
+									TTH_GLOBAL.giveCurseShoulder(strHero);
+									print("Curse_Shoulder has been given!");
+								end;
+								if H55_PlayerSetBonus_Phoenix == 1 then
+									TTH_GLOBAL.givePhoenix(strHero);
+									print("Phoenix has been given!");
+								end;
+								if H55_PlayerSkillBonusBasic == 1 then
+									TTH_GLOBAL.teachSkillBasic(strHero);
+									print("BasicSkill has been teached!");
+								end;
+								if H55_PlayerSkillBonusAbsolute == 1 then
+									TTH_GLOBAL.teachSkillAbsolute(strHero);
+									print("AbsoluteSkill has been teached!");
+								end;
+							end;
+						end;
+					end;
+					if H55_AIArmyCoef ~= 1 then
+						if TTH_VARI.playerStatus[iPlayer] == 0 then
+							print("AI army is increased by "..H55_AIArmyCoef.."00%!");
+							print("Good Luck player "..iPlayer.."!");
+						end;
+					end;
+				end;
+				function TTH_GLOBAL.giveTear(strHero)
+					GiveArtefact(strHero, 53);
+				end;
+				function TTH_GLOBAL.giveSet(strHero)
+					local enumHeroClass = TTH_TABLE.Hero[strHero]["Class"];
+					if enumHeroClass == TTH_ENUM.Knight then
+						GiveArtefact(strHero, ARTIFACT_ANGELIC_ALLIANCE);
+						GiveArtefact(strHero, 31);
+						GiveArtefact(strHero, 16);
+						GiveArtefact(strHero, 11);
+					end;
+					if enumHeroClass == TTH_ENUM.Paladin then
+						GiveArtefact(strHero, 48);
+						GiveArtefact(strHero, 49);
+						GiveArtefact(strHero, 50);
+						GiveArtefact(strHero, 51);
+					end;
+					if enumHeroClass == TTH_ENUM.Heretic then
+						GiveArtefact(strHero, 55);
+						GiveArtefact(strHero, 33);
+						GiveArtefact(strHero, 6);
+						GiveArtefact(strHero, 70);
+						GiveArtefact(strHero, 71);
+						GiveArtefact(strHero, 83);
+					end;
+
+					if enumHeroClass == TTH_ENUM.Ranger then
+						GiveArtefact(strHero, ARTIFACT_ANGELIC_ALLIANCE);
+						GiveArtefact(strHero, 4);
+						GiveArtefact(strHero, 95);
+					end;
+					if enumHeroClass == TTH_ENUM.Warden then
+						GiveArtefact(strHero, ARTIFACT_ANGELIC_ALLIANCE);
+						GiveArtefact(strHero, 124);
+					end;
+					if enumHeroClass == TTH_ENUM.Druid then
+						GiveArtefact(strHero, 126);
+						GiveArtefact(strHero, 34);
+						GiveArtefact(strHero, 35);
+					end;
+
+					if enumHeroClass == TTH_ENUM.Seer then
+						GiveArtefact(strHero, 31);
+						GiveArtefact(strHero, 16);
+						GiveArtefact(strHero, 11);
+						GiveArtefact(strHero, 25);
+						GiveArtefact(strHero, 124);
+					end;
+					if enumHeroClass == TTH_ENUM.Wizard then
+						GiveArtefact(strHero, 44);
+						GiveArtefact(strHero, 45);
+						GiveArtefact(strHero, 46);
+						GiveArtefact(strHero, 47);
+						GiveArtefact(strHero, 79);
+					end;
+					if enumHeroClass == TTH_ENUM.Elementalist then
+						GiveArtefact(strHero, 44);
+						GiveArtefact(strHero, 45);
+						GiveArtefact(strHero, 46);
+						GiveArtefact(strHero, 47);
+						GiveArtefact(strHero, 76);
+					end;
+
+					if enumHeroClass == TTH_ENUM.Demonlord then
+						GiveArtefact(strHero, 23);
+						GiveArtefact(strHero, 66);
+						GiveArtefact(strHero, ARTIFACT_ANGELIC_ALLIANCE);
+					end;
+					if enumHeroClass == TTH_ENUM.Gatekeeper then
+						GiveArtefact(strHero, 48);
+						GiveArtefact(strHero, 49);
+						GiveArtefact(strHero, 50);
+						GiveArtefact(strHero, 51);
+					end;
+					if enumHeroClass == TTH_ENUM.Sorcerer then
+						GiveArtefact(strHero, 126);
+						GiveArtefact(strHero, 116);
+						GiveArtefact(strHero, 117);
+						GiveArtefact(strHero, 118);
+						GiveArtefact(strHero, 119);
+					end;
+
+					if enumHeroClass == TTH_ENUM.Deathknight then
+						GiveArtefact(strHero, 124);
+						GiveArtefact(strHero, 38);
+						GiveArtefact(strHero, 42);
+						GiveArtefact(strHero, 43);
+						GiveArtefact(strHero, 36);
+					end;
+					if enumHeroClass == TTH_ENUM.Reaver then
+						GiveArtefact(strHero, 55);
+						GiveArtefact(strHero, 33);
+						GiveArtefact(strHero, 6);
+						GiveArtefact(strHero, 70);
+						GiveArtefact(strHero, 71);
+						GiveArtefact(strHero, 83);
+					end;
+					if enumHeroClass == TTH_ENUM.Necromancer then
+						GiveArtefact(strHero, 55);
+						GiveArtefact(strHero, 33);
+						GiveArtefact(strHero, 6);
+						GiveArtefact(strHero, 70);
+						GiveArtefact(strHero, 71);
+						GiveArtefact(strHero, 83);
+					end;
+
+					if enumHeroClass == TTH_ENUM.Engineer then
+						GiveArtefact(strHero, 91);
+						GiveArtefact(strHero, 41);
+						GiveArtefact(strHero, 74);
+						GiveArtefact(strHero, 75);
+					end;
+					if enumHeroClass == TTH_ENUM.Runemage then
+						GiveArtefact(strHero, 2);
+						GiveArtefact(strHero, 48);
+						GiveArtefact(strHero, 49);
+						GiveArtefact(strHero, 50);
+						GiveArtefact(strHero, 51);
+					end;
+					if enumHeroClass == TTH_ENUM.Flamekeeper then
+						GiveArtefact(strHero, 85);
+						GiveArtefact(strHero, 48);
+						GiveArtefact(strHero, 49);
+						GiveArtefact(strHero, 50);
+						GiveArtefact(strHero, 51);
+					end;
+
+					if enumHeroClass == TTH_ENUM.Overlord then
+						GiveArtefact(strHero, ARTIFACT_ANGELIC_ALLIANCE);
+						GiveArtefact(strHero, 31);
+						GiveArtefact(strHero, 16);
+						GiveArtefact(strHero, 11);
+					end;
+					if enumHeroClass == TTH_ENUM.Assassin then
+						GiveArtefact(strHero, 42);
+						GiveArtefact(strHero, 36);
+						GiveArtefact(strHero, 37);
+						GiveArtefact(strHero, 41);
+						GiveArtefact(strHero, 40);
+						GiveArtefact(strHero, 39);
+					end;
+					if enumHeroClass == TTH_ENUM.Warlock then
+						GiveArtefact(strHero, 125);
+						GiveArtefact(strHero, 81);
+						GiveArtefact(strHero, 82);
+					end;
+
+					if enumHeroClass == TTH_ENUM.Barbarian then
+						GiveArtefact(strHero, 31);
+						GiveArtefact(strHero, 16);
+						GiveArtefact(strHero, 11);
+						GiveArtefact(strHero, 74);
+						GiveArtefact(strHero, 75);
+						GiveArtefact(strHero, 57);
+					end;
+				end;
+				function TTH_GLOBAL.giveTravel(strHero)
+					GiveArtefact(strHero, 24);
+				end;
+				function TTH_GLOBAL.giveDraconic(strHero)
+					GiveArtefact(strHero, 123);
+				end;
+				function TTH_GLOBAL.giveShield(strHero)
+					GiveArtefact(strHero, 124);
+				end;
+				function TTH_GLOBAL.giveAngelicAlliance(strHero)
+					GiveArtefact(strHero, 68);
+				end;
+				function TTH_GLOBAL.giveCurseShoulder(strHero)
+					GiveArtefact(strHero, 114);
+				end;
+				function TTH_GLOBAL.givePhoenix(strHero)
+					GiveArtefact(strHero, 126);
+				end;
+				function TTH_GLOBAL.teachSkillBasic(strHero)
+					local enumHeroClass = TTH_TABLE.Hero[strHero]["Class"];
+					if enumHeroClass == TTH_ENUM.Knight then
+						GiveHeroSkill(strHero, 4);
+						GiveHeroSkill(strHero, 195);
+					end;
+					if enumHeroClass == TTH_ENUM.Paladin then
+						GiveHeroSkill(strHero, 4);
+						GiveHeroSkill(strHero, 195);
+					end;
+					if enumHeroClass == TTH_ENUM.Heretic then
+						GiveHeroSkill(strHero, 8);
+						GiveHeroSkill(strHero, 199);
+					end;
+
+					if enumHeroClass == TTH_ENUM.Ranger then
+						GiveHeroSkill(strHero, 5);
+						GiveHeroSkill(strHero, 191);
+					end;
+					if enumHeroClass == TTH_ENUM.Warden then
+						GiveHeroSkill(strHero, 5);
+						GiveHeroSkill(strHero, 195);
+					end;
+					if enumHeroClass == TTH_ENUM.Druid then
+						GiveHeroSkill(strHero, 8);
+						GiveHeroSkill(strHero, 203);
+					end;
+
+					if enumHeroClass == TTH_ENUM.Seer then
+						GiveHeroSkill(strHero, 4);
+						GiveHeroSkill(strHero, 191);
+					end;
+					if enumHeroClass == TTH_ENUM.Wizard then
+						GiveHeroSkill(strHero, 8);
+						GiveHeroSkill(strHero, 3);
+					end;
+					if enumHeroClass == TTH_ENUM.Elementalist then
+						GiveHeroSkill(strHero, 8);
+						GiveHeroSkill(strHero, 18);
+					end;
+
+					if enumHeroClass == TTH_ENUM.Demonlord then
+						GiveHeroSkill(strHero, 4);
+						GiveHeroSkill(strHero, 199);
+					end;
+					if enumHeroClass == TTH_ENUM.Gatekeeper then
+						GiveHeroSkill(strHero, 5);
+						GiveHeroSkill(strHero, 203);
+					end;
+					if enumHeroClass == TTH_ENUM.Sorcerer then
+						GiveHeroSkill(strHero, 8);
+						GiveHeroSkill(strHero, 18);
+					end;
+
+					if enumHeroClass == TTH_ENUM.Deathknight then
+						GiveHeroSkill(strHero, 10);
+						GiveHeroSkill(strHero, 199);
+					end;
+					if enumHeroClass == TTH_ENUM.Reaver then
+						GiveHeroSkill(strHero, 1);
+						GiveHeroSkill(strHero, 203);
+					end;
+					if enumHeroClass == TTH_ENUM.Necromancer then
+						GiveHeroSkill(strHero, 8);
+						GiveHeroSkill(strHero, 3);
+					end;
+
+					if enumHeroClass == TTH_ENUM.Engineer then
+						GiveHeroSkill(strHero, 4);
+						GiveHeroSkill(strHero, 191);
+					end;
+					if enumHeroClass == TTH_ENUM.Runemage then
+						GiveHeroSkill(strHero, 8);
+						GiveHeroSkill(strHero, 3);
+					end;
+					if enumHeroClass == TTH_ENUM.Flamekeeper then
+						GiveHeroSkill(strHero, 2);
+						GiveHeroSkill(strHero, 203);
+					end;
+
+					if enumHeroClass == TTH_ENUM.Overlord then
+						GiveHeroSkill(strHero, 6);
+						GiveHeroSkill(strHero, 191);
+					end;
+					if enumHeroClass == TTH_ENUM.Assassin then
+						GiveHeroSkill(strHero, 6);
+						GiveHeroSkill(strHero, 199);
+					end;
+					if enumHeroClass == TTH_ENUM.Warlock then
+						GiveHeroSkill(strHero, 8);
+						GiveHeroSkill(strHero, 3);
+					end;
+
+					if enumHeroClass == TTH_ENUM.Barbarian then
+						GiveHeroSkill(strHero, 6);
+						GiveHeroSkill(strHero, 195);
+					end;
+				end;
+				function TTH_GLOBAL.teachSkillAbsolute(strHero)
+					local enumHeroClass = TTH_TABLE.Hero[strHero]["Class"];
+					if enumHeroClass == TTH_ENUM.Knight then
+						GiveHeroSkill(strHero, HERO_SKILL_LEADERSHIP);
+						GiveHeroSkill(strHero, HERO_SKILL_LEADERSHIP);
+						GiveHeroSkill(strHero, HERO_SKILL_OFFENCE);
+						GiveHeroSkill(strHero, HERO_SKILL_OFFENCE);
+						GiveHeroSkill(strHero, HERO_SKILL_TRAINING);
+						GiveHeroSkill(strHero, HERO_SKILL_TRAINING);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_ENCOURAGE);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_FRENZY);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_POWER_OF_HASTE);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_HOLY_CHARGE);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_ABSOLUTE_CHARGE);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_PRAYER);
+					end;
+					if enumHeroClass == TTH_ENUM.Paladin then
+						GiveHeroSkill(strHero, HERO_SKILL_LEADERSHIP);
+						GiveHeroSkill(strHero, HERO_SKILL_LEADERSHIP);
+						GiveHeroSkill(strHero, HERO_SKILL_LEARNING);
+						GiveHeroSkill(strHero, HERO_SKILL_LEARNING);
+						GiveHeroSkill(strHero, HERO_SKILL_LIGHT_MAGIC);
+						GiveHeroSkill(strHero, HERO_SKILL_LIGHT_MAGIC);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_ENCOURAGE);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_EAGLE_EYE);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_QUICKNESS_OF_MIND);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_MASTER_OF_BLESSING);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_ETERNAL_LIGHT);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_PRAYER);
+					end;
+					if enumHeroClass == TTH_ENUM.Heretic then
+						GiveHeroSkill(strHero, HERO_SKILL_LEADERSHIP);
+						GiveHeroSkill(strHero, HERO_SKILL_LEADERSHIP);
+						GiveHeroSkill(strHero, HERO_SKILL_SORCERY);
+						GiveHeroSkill(strHero, HERO_SKILL_SORCERY);
+						GiveHeroSkill(strHero, HERO_SKILL_DARK_MAGIC);
+						GiveHeroSkill(strHero, HERO_SKILL_DARK_MAGIC);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_ENCOURAGE);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_WISDOM);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_INSIGHTS);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_MASTER_OF_SICKNESS);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_PARIAH);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_PRAYER);
+					end;
+
+					if enumHeroClass == TTH_ENUM.Ranger then
+						GiveHeroSkill(strHero, 5);
+						GiveHeroSkill(strHero, 5);
+						GiveHeroSkill(strHero, 5);
+						GiveHeroSkill(strHero, 16);
+						GiveHeroSkill(strHero, 16);
+						GiveHeroSkill(strHero, 6);
+						sleep(1);
+						GiveHeroSkill(strHero, 32);
+						sleep(1);
+						GiveHeroSkill(strHero, 116);
+						sleep(1);
+						GiveHeroSkill(strHero, 65);
+						sleep(1);
+						GiveHeroSkill(strHero, 117);
+						sleep(1);
+						GiveHeroSkill(strHero, 36);
+						sleep(1);
+						GiveHeroSkill(strHero, 124);
+					end;
+					if enumHeroClass == TTH_ENUM.Warden then
+						GiveHeroSkill(strHero, 5);
+						GiveHeroSkill(strHero, 5);
+						GiveHeroSkill(strHero, 7);
+						GiveHeroSkill(strHero, 7);
+						GiveHeroSkill(strHero, 7);
+						GiveHeroSkill(strHero, 6);
+						sleep(1);
+						GiveHeroSkill(strHero, 31);
+						sleep(1);
+						GiveHeroSkill(strHero, 39);
+						sleep(1);
+						GiveHeroSkill(strHero, 77);
+						sleep(1);
+						GiveHeroSkill(strHero, 171);
+						sleep(1);
+						GiveHeroSkill(strHero, 34);
+						sleep(1);
+						GiveHeroSkill(strHero, 124);
+					end;
+					if enumHeroClass == TTH_ENUM.Druid then
+						GiveHeroSkill(strHero, 5);
+						GiveHeroSkill(strHero, 5);
+						GiveHeroSkill(strHero, 5);
+						GiveHeroSkill(strHero, 8);
+						GiveHeroSkill(strHero, 8);
+						GiveHeroSkill(strHero, 11);
+						sleep(1);
+						GiveHeroSkill(strHero, 145);
+						sleep(1);
+						GiveHeroSkill(strHero, 142);
+						sleep(1);
+						GiveHeroSkill(strHero, 42);
+						sleep(1);
+						GiveHeroSkill(strHero, 148);
+						sleep(1);
+						GiveHeroSkill(strHero, 51);
+						sleep(1);
+						GiveHeroSkill(strHero, 124);
+					end;
+
+					if enumHeroClass == TTH_ENUM.Seer then
+						GiveHeroSkill(strHero, 8);
+						GiveHeroSkill(strHero, 8);
+						GiveHeroSkill(strHero, 8);
+						GiveHeroSkill(strHero, 3);
+						GiveHeroSkill(strHero, 3);
+						GiveHeroSkill(strHero, 5);
+						sleep(1);
+						GiveHeroSkill(strHero, 41);
+						sleep(1);
+						GiveHeroSkill(strHero, 119);
+						sleep(1);
+						GiveHeroSkill(strHero, 27);
+						sleep(1);
+						GiveHeroSkill(strHero, 155);
+						sleep(1);
+						GiveHeroSkill(strHero, 145);
+						sleep(1);
+						GiveHeroSkill(strHero, 137);
+					end;
+					if enumHeroClass == TTH_ENUM.Wizard then
+						GiveHeroSkill(strHero, 8);
+						GiveHeroSkill(strHero, 8);
+						GiveHeroSkill(strHero, 8);
+						GiveHeroSkill(strHero, 3);
+						GiveHeroSkill(strHero, 3);
+						GiveHeroSkill(strHero, 17);
+						sleep(1);
+						GiveHeroSkill(strHero, 41);
+						sleep(1);
+						GiveHeroSkill(strHero, 67);
+						sleep(1);
+						GiveHeroSkill(strHero, 25);
+						sleep(1);
+						GiveHeroSkill(strHero, 79);
+						sleep(1);
+						GiveHeroSkill(strHero, 69);
+						sleep(1);
+						GiveHeroSkill(strHero, 137);
+					end;
+					if enumHeroClass == TTH_ENUM.Elementalist then
+						GiveHeroSkill(strHero, HERO_SKILL_DESTRUCTIVE_MAGIC);
+						GiveHeroSkill(strHero, HERO_SKILL_DESTRUCTIVE_MAGIC);
+						GiveHeroSkill(strHero, HERO_SKILL_DESTRUCTIVE_MAGIC);
+						GiveHeroSkill(strHero, HERO_SKILL_INVOCATION);
+						GiveHeroSkill(strHero, HERO_SKILL_INVOCATION);
+						GiveHeroSkill(strHero, HERO_SKILL_SORCERY);
+						GiveHeroSkill(strHero, HERO_SKILL_SORCERY);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_MASTER_OF_ICE);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_MASTER_OF_FIRE);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_MASTER_OF_LIGHTNINGS);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_DARK_RITUAL);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_CASTER_CERTIFICATE);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_WISDOM);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_ABSOLUTE_WIZARDY);
+					end;
+
+					if enumHeroClass == TTH_ENUM.Demonlord then
+						GiveHeroSkill(strHero, 14);
+						GiveHeroSkill(strHero, 14);
+						GiveHeroSkill(strHero, 14);
+						GiveHeroSkill(strHero, 1);
+						GiveHeroSkill(strHero, 1);
+						sleep(1);
+						GiveHeroSkill(strHero, 89);
+						sleep(1);
+						GiveHeroSkill(strHero, 86);
+						sleep(1);
+						GiveHeroSkill(strHero, 20);
+						sleep(1);
+						GiveHeroSkill(strHero, 138);
+						sleep(1);
+						GiveHeroSkill(strHero, 98);
+					end;
+					if enumHeroClass == TTH_ENUM.Gatekeeper then
+						GiveHeroSkill(strHero, 14);
+						GiveHeroSkill(strHero, 14);
+						GiveHeroSkill(strHero, 14);
+						GiveHeroSkill(strHero, 1);
+						GiveHeroSkill(strHero, 1);
+						sleep(1);
+						GiveHeroSkill(strHero, 89);
+						sleep(1);
+						GiveHeroSkill(strHero, 86);
+						sleep(1);
+						GiveHeroSkill(strHero, 20);
+						sleep(1);
+						GiveHeroSkill(strHero, 138);
+						sleep(1);
+						GiveHeroSkill(strHero, 98);
+					end;
+					if enumHeroClass == TTH_ENUM.Sorcerer then
+						GiveHeroSkill(strHero, 14);
+						GiveHeroSkill(strHero, 14);
+						GiveHeroSkill(strHero, 14);
+						GiveHeroSkill(strHero, 1);
+						GiveHeroSkill(strHero, 1);
+						sleep(1);
+						GiveHeroSkill(strHero, 89);
+						sleep(1);
+						GiveHeroSkill(strHero, 86);
+						sleep(1);
+						GiveHeroSkill(strHero, 20);
+						sleep(1);
+						GiveHeroSkill(strHero, 138);
+						sleep(1);
+						GiveHeroSkill(strHero, 98);
+					end;
+
+					if enumHeroClass == TTH_ENUM.Deathknight then
+						GiveHeroSkill(strHero, 15);
+						GiveHeroSkill(strHero, 15);
+						GiveHeroSkill(strHero, 10);
+						GiveHeroSkill(strHero, 10);
+						sleep(1);
+						GiveHeroSkill(strHero, 63);
+						sleep(1);
+						GiveHeroSkill(strHero, 48);
+						sleep(1);
+						GiveHeroSkill(strHero, 83);
+						sleep(1);
+						GiveHeroSkill(strHero, 111);
+					end;
+					if enumHeroClass == TTH_ENUM.Reaver then
+						GiveHeroSkill(strHero, 15);
+						GiveHeroSkill(strHero, 15);
+						GiveHeroSkill(strHero, 8);
+						GiveHeroSkill(strHero, 10);
+						sleep(1);
+						GiveHeroSkill(strHero, 63);
+						sleep(1);
+						GiveHeroSkill(strHero, 41);
+						sleep(1);
+						GiveHeroSkill(strHero, 47);
+						sleep(1);
+						GiveHeroSkill(strHero, 111);
+					end;
+					if enumHeroClass == TTH_ENUM.Necromancer then
+						GiveHeroSkill(strHero, 15);
+						GiveHeroSkill(strHero, 15);
+						GiveHeroSkill(strHero, 3);
+						GiveHeroSkill(strHero, 3);
+						sleep(1);
+						GiveHeroSkill(strHero, 63);
+						sleep(1);
+						GiveHeroSkill(strHero, 25);
+						sleep(1);
+						GiveHeroSkill(strHero, 140);
+						sleep(1);
+						GiveHeroSkill(strHero, 111);
+					end;
+
+					if enumHeroClass == TTH_ENUM.Engineer then
+						GiveHeroSkill(strHero, 7);
+						GiveHeroSkill(strHero, 7);
+						GiveHeroSkill(strHero, 5);
+						GiveHeroSkill(strHero, 5);
+						GiveHeroSkill(strHero, 151);
+						sleep(1);
+						GiveHeroSkill(strHero, 39);
+						sleep(1);
+						GiveHeroSkill(strHero, 31);
+						sleep(1);
+						GiveHeroSkill(strHero, 103);
+						sleep(1);
+						GiveHeroSkill(strHero, 161);
+						sleep(1);
+						GiveHeroSkill(strHero, 167);
+					end;
+					if enumHeroClass == TTH_ENUM.Runemage then
+						GiveHeroSkill(strHero, 7);
+						GiveHeroSkill(strHero, 7);
+						GiveHeroSkill(strHero, 5);
+						GiveHeroSkill(strHero, 5);
+						GiveHeroSkill(strHero, 11);
+						GiveHeroSkill(strHero, 11);
+						sleep(1);
+						GiveHeroSkill(strHero, 38);
+						sleep(1);
+						GiveHeroSkill(strHero, 31);
+						sleep(1);
+						GiveHeroSkill(strHero, 103);
+						sleep(1);
+						GiveHeroSkill(strHero, 49);
+						sleep(1);
+						GiveHeroSkill(strHero, 165);
+						sleep(1);
+						GiveHeroSkill(strHero, 167);
+					end;
+					if enumHeroClass == TTH_ENUM.Flamekeeper then
+						GiveHeroSkill(strHero, 7);
+						GiveHeroSkill(strHero, 7);
+						GiveHeroSkill(strHero, 7);
+						GiveHeroSkill(strHero, 5);
+						GiveHeroSkill(strHero, 5);
+						GiveHeroSkill(strHero, 13);
+						sleep(1);
+						GiveHeroSkill(strHero, 39);
+						sleep(1);
+						GiveHeroSkill(strHero, 77);
+						sleep(1);
+						GiveHeroSkill(strHero, 31);
+						sleep(1);
+						GiveHeroSkill(strHero, 103);
+						sleep(1);
+						GiveHeroSkill(strHero, 55);
+						sleep(1);
+						GiveHeroSkill(strHero, 167);
+					end;
+
+					if enumHeroClass == TTH_ENUM.Overlord then
+						GiveHeroSkill(strHero, 9);
+						GiveHeroSkill(strHero, 9);
+						GiveHeroSkill(strHero, 9);
+						GiveHeroSkill(strHero, 18);
+						GiveHeroSkill(strHero, 18);
+						GiveHeroSkill(strHero, 18);
+						sleep(1);
+						GiveHeroSkill(strHero, 43);
+						sleep(1);
+						GiveHeroSkill(strHero, 44);
+						sleep(1);
+						GiveHeroSkill(strHero, 45);
+						sleep(1);
+						GiveHeroSkill(strHero, 70);
+						sleep(1);
+						GiveHeroSkill(strHero, 72);
+						sleep(1);
+						GiveHeroSkill(strHero, 150);
+					end;
+					if enumHeroClass == TTH_ENUM.Assassin then
+						GiveHeroSkill(strHero, 9);
+						GiveHeroSkill(strHero, 9);
+						GiveHeroSkill(strHero, 9);
+						GiveHeroSkill(strHero, 18);
+						GiveHeroSkill(strHero, 18);
+						GiveHeroSkill(strHero, 18);
+						sleep(1);
+						GiveHeroSkill(strHero, 43);
+						sleep(1);
+						GiveHeroSkill(strHero, 44);
+						sleep(1);
+						GiveHeroSkill(strHero, 45);
+						sleep(1);
+						GiveHeroSkill(strHero, 70);
+						sleep(1);
+						GiveHeroSkill(strHero, 72);
+						sleep(1);
+						GiveHeroSkill(strHero, 150);
+					end;
+					if enumHeroClass == TTH_ENUM.Warlock then
+						GiveHeroSkill(strHero, 9);
+						GiveHeroSkill(strHero, 9);
+						GiveHeroSkill(strHero, 9);
+						GiveHeroSkill(strHero, 18);
+						GiveHeroSkill(strHero, 18);
+						GiveHeroSkill(strHero, 18);
+						sleep(1);
+						GiveHeroSkill(strHero, 43);
+						sleep(1);
+						GiveHeroSkill(strHero, 44);
+						sleep(1);
+						GiveHeroSkill(strHero, 45);
+						sleep(1);
+						GiveHeroSkill(strHero, 70);
+						sleep(1);
+						GiveHeroSkill(strHero, 72);
+						sleep(1);
+						GiveHeroSkill(strHero, 150);
+					end;
+
+					if enumHeroClass == TTH_ENUM.Barbarian then
+						GiveHeroSkill(strHero, 172);
+						GiveHeroSkill(strHero, 172);
+						GiveHeroSkill(strHero, 172);
+						GiveHeroSkill(strHero, 6);
+						GiveHeroSkill(strHero, 6);
+						GiveHeroSkill(strHero, 4);
+						sleep(1);
+						GiveHeroSkill(strHero, 174);
+						sleep(1);
+						GiveHeroSkill(strHero, 178);
+						sleep(1);
+						GiveHeroSkill(strHero, 36);
+						sleep(1);
+						GiveHeroSkill(strHero, 76);
+						sleep(1);
+						GiveHeroSkill(strHero, 75);
+						sleep(1);
+						GiveHeroSkill(strHero, 176);
+					end;
+				end;
+
+			-- 开局选择金币
+				function TTH_GLOBAL.chooseStartGold(iPlayer)
+					if TTH_VARI.playerStatus[iPlayer] == 0 then
+						local iGold = GetPlayerResource(iPlayer, GOLD);
+						if mod(iGold, 10000) >= 500 and mod(iGold, 10000) <= 1001 then
+							TTH_GLOBAL.increaseResource(iPlayer, GOLD, 2500);
+						end;
+					end;
+				end;
+
+			-- 开局选择生物
+				function TTH_GLOBAL.chooseStartCreature(iPlayer)
+					if TTH_VARI.playerStatus[iPlayer] == 0 then
+						local iWOOD = GetPlayerResource(iPlayer, WOOD);
+						local iORE = GetPlayerResource(iPlayer, ORE);
+						local iMERCURY = GetPlayerResource(iPlayer, MERCURY);
+						local iCRYSTAL = GetPlayerResource(iPlayer, CRYSTAL);
+						local iSULFUR = GetPlayerResource(iPlayer, SULFUR);
+						local iGEM = GetPlayerResource(iPlayer, GEM);
+						if iWOOD ~= iMERCURY * 2
+							or iWOOD ~= iCRYSTAL * 2
+							or iWOOD ~= iSULFUR * 2
+							or iWOOD ~= iGEM * 2 then
+							local iGameDifficulty = TTH_GLOBAL.getGameDifficulty();
+							local iNumberBasic = 0;
+							if iGameDifficulty == 0 then
+								iNumberBasic = 15;
+							elseif iGameDifficulty == 3 then
+								iNumberBasic = 5;
+							else
+								iNumberBasic = 10;
+							end;
+							SetPlayerResource(iPlayer, WOOD, iNumberBasic * 2);
+							SetPlayerResource(iPlayer, ORE, iNumberBasic * 2);
+							SetPlayerResource(iPlayer, MERCURY, iNumberBasic);
+							SetPlayerResource(iPlayer, CRYSTAL, iNumberBasic);
+							SetPlayerResource(iPlayer, SULFUR, iNumberBasic);
+							SetPlayerResource(iPlayer, GEM, iNumberBasic);
+							TTH_GLOBAL.implStartCreature(iPlayer);
+						end;
+					end;
+				end;
+				function TTH_GLOBAL.implStartCreature(iPlayer)
+					local arrHero = GetPlayerHeroes(iPlayer);
+					local strHero = arrHero[0];
+					local iTier = 1;
+					if H55_StartCreatureBonusTier < 1
+						or H55_StartCreatureBonusTier > 7 then
+						return nil;
+					end
+					iTier = H55_StartCreatureBonusTier;
+					local iGold = GetPlayerResource(iPlayer, GOLD);
+					if iTier == 6 then
+						SetPlayerResource(iPlayer, GOLD, iGold - 2000);
+					elseif iTier == 7 then
+						SetPlayerResource(iPlayer, GOLD, iGold - 5000);
+					end;
+					local iHeroRace = TTH_GLOBAL.getRace8Hero(strHero);
+					local iGrowth = 1;
+					local iCreatureId = TTH_TABLE.Creature8RaceAndLevel[iHeroRace][iTier][1];
+					if iTier == 4 then
+						iGrowth = 3;
+					elseif iTier < 4 then
+						iGrowth = TTH_TABLE_NCF_CREATURES[iCreatureId]["GROWTH"];
+					end;
+					TTH_GLOBAL.addCreature4Hero8Sign(strHero, iCreatureId, iGrowth, TTH_ENUM.AddCreature);
+				end;
+
+			-- 开局选择宝物
+				function TTH_GLOBAL.chooseStartArtifact(iPlayer)
+					if H55_ChooseArtifact_Switch == 1 and  contains(TTH_ARTIFACT_STARTING, H55_ChooseArtifact_ID) ~= nil then
+						if TTH_VARI.playerStatus[iPlayer] == 0 then
+							for indexArtifact, objArtifact in TTH_ARTIFACT_STARTING do
+								local arrHero = GetPlayerHeroes(iPlayer);
+								for indexHero, strHero in arrHero do
+									if HasArtefact(strHero, objArtifact, 0) ~= nil or HasArtefact(strHero, objArtifact, 1) ~= nil then
+										RemoveArtefact(strHero, objArtifact);
+										GiveArtefact(strHero, H55_ChooseArtifact_ID);
+										print("Chosen artifact has been given");
+										return nil;
+									end;
+								end;
+							end;
+						end;
+					end;
+				end;
+
+			-- 开局设置资源
+				function TTH_GLOBAL.setStartResource(iPlayer)
+					if H55_PlayerStartResource == 0 then
+						if TTH_VARI.playerStatus[iPlayer] == 0 then
+							SetPlayerResource(iPlayer, 0, 0);
+							SetPlayerResource(iPlayer, 1, 0);
+							SetPlayerResource(iPlayer, 2, 0);
+							SetPlayerResource(iPlayer, 3, 0);
+							SetPlayerResource(iPlayer, 4, 0);
+							SetPlayerResource(iPlayer, 5, 0);
+							SetPlayerResource(iPlayer, 6, 0);
+							print("Player's resource has been token");
+						end;
+					end;
+				end;
+
+			-- 根据游戏难度设置经验系数
+				function TTH_GLOBAL.setExpCoef8GameDifficulty()
+						local iGameDifficulty = TTH_GLOBAL.getGameDifficulty();
+						local coef = 1;
+						if iGameDifficulty == 3 then coef = 1.27 end;
+						if iGameDifficulty == 2 then coef = 1.18 end;
+						if iGameDifficulty == 1 then coef = 1.09 end;
+						SetHeroesExpCoef(coef);
+				end;
+
+			-- 初始英雄触发器绑定 英雄升级
+				function TTH_GLOBAL.triggerInitHeroLevelUp(strHero)
+					SetTrigger(HERO_LEVELUP_TRIGGER, strHero, "TTH_TRIGGER.heroLevelUp"..strHero);
+				end;
+
+			-- 初始玩家触发器绑定 招募英雄
+				function TTH_GLOBAL.triggerInitPlayerAddHero(iPlayer)
+					SetTrigger(PLAYER_ADD_HERO_TRIGGER, iPlayer, "TTH_TRIGGER.playerAddHero");
+				end;
+
+			-- 初始玩家触发器绑定 失去英雄
+				function TTH_GLOBAL.triggerInitPlayerRemoveHero(iPlayer)
+					SetTrigger(PLAYER_REMOVE_HERO_TRIGGER, iPlayer, "TTH_TRIGGER.playerRemoveHero");
+				end;
+
+			-- 绑定英雄自定义技能4 王国管理
+				function TTH_GLOBAL.bindHeroCustomAbility4Hero(strHero)
+					ControlHeroCustomAbility(strHero, CUSTOM_ABILITY_4, CUSTOM_ABILITY_ENABLED);
+				end;
+
+			-- 招募指定英雄
+				function TTH_GLOBAL.hireHero(iPlayer)
+					if H55_ChooseHero_Switch == 1 and H55_ChooseHero_Name ~= "" then
+						if TTH_VARI.day == 1 then
+							TTH.hero1(iPlayer);
+						end;
+						if TTH_VARI.day == 2 then
+							TTH.hero2(iPlayer);
+						end;
+					end;
+				end;
+
+		-- 组队
+			-- 若有多名玩家，弹窗询问玩家是否组队
+				function TTH_GLOBAL.questionTeam()
+					local iPlayer = 1;
+					for i = 1, 8 do
+						if IsPlayerCurrent(i) then
+							iPlayer = i;
+						end;
+					end;
+					if TTH_COMMON.getTargetCount(TTH_VARI.playerStatus, 0) > 1 then
+						QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
+							, "/Text/Game/Scripts/Teamquestion.txt"
+							, "TTH_GLOBAL.doHumanTeamUp"
+							, "TTH_GLOBAL.doHumanFfa");
+					end;
+					if H55_AllAgainstOne == 1 then
+						TTH_GLOBAL.doAiTeamUp();
+					end;
+				end;
+
+			-- 人类玩家组队
+				function TTH_GLOBAL.doHumanTeamUp()
+					local iIndexFirstHuman = 1;
+					for i = 1, 8 do
+						if TTH_VARI.playerStatus[i] == 0 then
+							iIndexFirstHuman = i;
+							break;
+						end;
+					end;
+					for i = 1, 8 do
+						if TTH_VARI.playerStatus[i] == 0 then
+							SetPlayerTeam(i, iIndexFirstHuman);
+						end;
+					end;
+				end;
+
+			-- 人类玩家FFA
+				function TTH_GLOBAL.doHumanFfa()
+					print("Human is FFA");
+				end;
+
+			-- AI玩家组队
+				function TTH_GLOBAL.doAiTeamUp()
+					local iIndexFirstAi = 1;
+					for i = 1, 8 do
+						if TTH_VARI.playerStatus[i] == 1 then
+							iIndexFirstAi = i;
+							break;
+						end;
+					end;
+					for i = 1, 8 do
+						if TTH_VARI.playerStatus[i] == 1 then
+							SetPlayerTeam(i, iIndexFirstAi);
+						end;
+					end;
+				end;
+
+		-- 资源
+			TTH_VARI.settleResource = {};
+
+			-- 减少玩家资源
+				function TTH_GLOBAL.reduceResource(iPlayer, enumResource, iReduceCount)
+					local iCurrentCount = GetPlayerResource(iPlayer, enumResource);
+					local iNewCount = iCurrentCount - iReduceCount;
+					if iNewCount < 0 then
+						SetPlayerResource (iPlayer, enumResource, 0);
+					else
+						SetPlayerResource (iPlayer, enumResource, iNewCount);
+					end;
+				end;
+
+			-- 增加玩家资源
+				function TTH_GLOBAL.increaseResource(iPlayer, enumResource, iIncreasedCount, strHero)
+					local iCurrentCount = GetPlayerResource(iPlayer, enumResource);
+					local iNewCount = iCurrentCount + iIncreasedCount;
+					if iNewCount < 0 then
+						SetPlayerResource(iPlayer, enumResource, 0);
+					else
+						if strHero == nil then
+							SetPlayerResource(iPlayer, enumResource, iNewCount);
+						else
+							SetPlayerResource(iPlayer, enumResource, iNewCount, strHero);
+						end;
+					end;
+				end;
+
+			-- 初始化玩家资源结算表
+				function TTH_GLOBAL.initSettleResource(iPlayer)
+					if TTH_VARI.settleResource[iPlayer] == nil then
+						TTH_VARI.settleResource[iPlayer] = {};
+					end;
+					for i = WOOD, GOLD do
+						TTH_VARI.settleResource[iPlayer][i] = 0;
+					end;
+				end;
+
+			-- 设置玩家资源
+				function TTH_GLOBAL.putSettleResource(iPlayer, enumResource, iCount)
+					TTH_VARI.settleResource[iPlayer][enumResource] = TTH_VARI.settleResource[iPlayer][enumResource] + iCount;
+				end;
+
+			-- 结算玩家资源
+				function TTH_GLOBAL.dealSettleResource(iPlayer)
+					TTH_MAIN.debug("TTH_GLOBAL.dealSettleResource", iPlayer, nil);
+
+					for i = WOOD, GOLD do
+						TTH_GLOBAL.increaseResource(iPlayer, i, TTH_VARI.settleResource[iPlayer][i]);
+						TTH_VARI.settleResource[iPlayer][i] = 0;
+					end;
+				end;
+
+		-- 设置英雄的战场脚本
+			function TTH_GLOBAL.setHeroCombatScript(strHero)
+				TTH_MAIN.debug("TTH_GLOBAL.setHeroCombatScript", nil, strHero);
+
+				ResetHeroCombatScript(strHero);
+				SetHeroCombatScript(strHero, "/scripts/H55_CombatScript.xdb#xpointer(/Script)");
+			end;
+
+		-- 兵种特初始赠送生物 Specialty
+			function TTH_GLOBAL.initHero4Specialty(strHero)
+				TTH_MAIN.debug("TTH_GLOBAL.initHero4Specialty", nil, strHero);
+
+				local arrSpecialty = TTH_TABLE.Hero[strHero]["Specialty"];
+				if arrSpecialty ~= nil then
+					for i, objSpecialty in arrSpecialty do
+						local iCreatureId = objSpecialty["CreatureId"];
+						local objCreature = TTH_TABLE_NCF_CREATURES[iCreatureId];
+						local iInitNumber = objCreature["GROWTH"];
+						if objCreature["TIER"] >= 4 then
+							iInitNumber = TTH_COMMON.floor(iInitNumber / 2);
+						end;
+						TTH_GLOBAL.addCreature4Hero8Sign(strHero, iCreatureId, iInitNumber, TTH_ENUM.AddCreature);
+					end
+				end;
+			end;
+
+		-- 兵种特每周赠送生物 Specialty
+			function TTH_GLOBAL.giveHero4Specialty8Weekly(iPlayer, strHero)
+				TTH_MAIN.debug("TTH_GLOBAL.giveHero4Specialty8Weekly", iPlayer, strHero);
+
+				local arrSpecialty = TTH_TABLE.Hero[strHero]["Specialty"];
+				if arrSpecialty ~= nil then
+					local iHeroLevel = GetHeroLevel(strHero);
+					for i, objSpecialty in arrSpecialty do
+						local iCreatureId = objSpecialty["CreatureId"];
+						local objCreature = TTH_TABLE_NCF_CREATURES[iCreatureId];
+						local iGrowth = objCreature["GROWTH"];
+						local iHeroStat = 0;
+						if objSpecialty["Stat"] ~= nil then
+							iHeroStat = GetHeroStat(strHero, objSpecialty["Stat"]);
+						end;
+						local fBonus8Artifact = 1;
+						if objSpecialty["ArtifactId"] ~= nil then
+							if HasArtefact(strHero, objSpecialty["ArtifactId"], 0) ~= nil then
+								fBonus8Artifact = 1.5;
+							end;
+						end;
+						local fBonus8Perk = 1;
+						if objSpecialty["PerkId"] ~= nil then
+							if HasHeroSkill(strHero, objSpecialty["PerkId"]) ~= nil then
+								fBonus8Perk = 1.5;
+							end;
+						end;
+
+						local iWeeklyNumber = TTH_COMMON.round(iGrowth * (iHeroLevel + iHeroStat) / 40 * fBonus8Artifact * fBonus8Perk);
+						if iWeeklyNumber < 1 then
+							iWeeklyNumber = 1;
+						end;
+						local iPlayer = TTH_GLOBAL.GetObjectOwner(strHero);
+						if TTH_GLOBAL.isAi(iPlayer) == TTH_ENUM.Yes then
+							iWeeklyNumber = iWeeklyNumber * H55_AIArmyCoef; -- AI按倍数增兵
+						end;
+
+						if objCreature["Upgrade"] ~= nil then
+							local arrCreature4Hero = TTH_GLOBAL.getHeroCreatureInfo(strHero);
+							for i = 0, 6 do
+								if arrCreature4Hero[i]["Id"] == objCreature["Upgrade"][1] then
+									iCreatureId = objCreature["Upgrade"][1];
+									break;
+								elseif arrCreature4Hero[i]["Id"] == objCreature["Upgrade"][2] then
+									iCreatureId = objCreature["Upgrade"][2];
+									break;
+								elseif arrCreature4Hero[i]["Id"] == iCreatureId then
+									break;
+								else
+								end;
+							end;
+						end;
+
+						TTH_GLOBAL.addCreature4Hero8Sign(strHero, iCreatureId, iWeeklyNumber, TTH_ENUM.AddCreature);
+					end
+				end;
+			end;
+
+		-- 属性特增加属性 Attribute
+			TTH_VARI.attribute4Hero = {};
+			function TTH_GLOBAL.giveHero4Attribute(strHero)
+				TTH_MAIN.debug("TTH_GLOBAL.giveHero4Attribute", nil, strHero);
+
+				local objAttribute = TTH_TABLE.Hero[strHero]["Attribute"];
+				if objAttribute ~= nil then
+					if TTH_VARI.attribute4Hero[strHero] == nil then
+						TTH_VARI.attribute4Hero[strHero] = 0;
+					end;
+					local iHeroLevel = GetHeroLevel(strHero);
+					local iStep = objAttribute["Step"];
+					local enumAttriType = objAttribute["Type"];
+					local iDiffStat = TTH_COMMON.floor(iHeroLevel / iStep) - TTH_VARI.attribute4Hero[strHero];
+					if iDiffStat > 0 then
+						ChangeHeroStat(strHero, enumAttriType, iDiffStat);
+						TTH_VARI.attribute4Hero[strHero] = TTH_COMMON.floor(iHeroLevel / iStep);
+						if TTH_GLOBAL.isHeroAtGarrison(strHero) == 0 then
+							local iPlayer = TTH_GLOBAL.GetObjectOwner(strHero);
+							if TTH_GLOBAL.isAi(iPlayer) ~= TTH_ENUM.Yes then
+								TTH_GLOBAL.signChangeHeroStat(strHero, enumAttriType, iDiffStat, TTH_ENUM.Yes);
+							end;
+						end;
+					end;
+				end;
+			end;
+
+		-- 执行传送
+			function TTH_GLOBAL.teleHero2Point(iPlayer, strHero, strPoint, bIsDeviation)
+				local iPosX, iPosY, iPosZ = GetObjectPosition(strPoint);
+				Play2DSoundForPlayers(GetPlayerFilter(iPlayer), H55_SndTPStart);
+				PlayVisualEffect("/Effects/_(Effect)/Spells/townportal_start.xdb#xpointer(/Effect)", strPoint, "", 0, 0, 0, 0, iPosZ);
+				if bIsDeviation == TTH_ENUM.Yes then
+					SetObjectPosition(strHero, iPosX + 1, iPosY + 1, iPosZ);
+				else
+					SetObjectPosition(strHero, iPosX, iPosY, iPosZ);
+				end;
+				TTH_COMMON.wakeup();
+				sleep(8);
+				Play2DSoundForPlayers(GetPlayerFilter(iPlayer), H55_SndTPEnd);
+			end;
+
+		-- 获取
+			-- 获取玩家种族
+				function TTH_GLOBAL.getPlayerRace(iPlayer)
+					return TTH_VARI.playerFaction[iPlayer];
+				end;
+
+			-- 根据城镇获取种族
+				function TTH_GLOBAL.getRace8Town(strTown)
+					local iTownRace = 0;
+					if contains(GetObjectNamesByType("TOWN_HEAVEN"), strTown) ~= nil then
+						iTownRace = TOWN_HEAVEN;
+					elseif contains(GetObjectNamesByType("TOWN_PRESERVE"), strTown) ~= nil then
+						iTownRace = TOWN_PRESERVE;
+					elseif contains(GetObjectNamesByType("TOWN_ACADEMY"), strTown) ~= nil then
+						iTownRace = TOWN_ACADEMY;
+					elseif contains(GetObjectNamesByType("TOWN_DUNGEON"), strTown) ~= nil then
+						iTownRace = TOWN_DUNGEON;
+					elseif contains(GetObjectNamesByType("TOWN_NECROMANCY"), strTown) ~= nil then
+						iTownRace = TOWN_NECROMANCY;
+					elseif contains(GetObjectNamesByType("TOWN_INFERNO"), strTown) ~= nil then
+						iTownRace = TOWN_INFERNO;
+					elseif contains(GetObjectNamesByType("TOWN_FORTRESS"), strTown) ~= nil then
+						iTownRace = TOWN_FORTRESS;
+					elseif contains(GetObjectNamesByType("TOWN_STRONGHOLD"), strTown) ~= nil then
+						iTownRace = TOWN_STRONGHOLD;
+					end;
+					return iTownRace;
+				end;
+
+			-- 根据英雄获取种族
+				function TTH_GLOBAL.getRace8Hero(strHero)
+					return TTH_TABLE.Hero[strHero]["Race"];
+				end;
+
+			-- 根据英雄获取玩家 该方法可在英雄在内城时使用 系统自带的GetObjectOwner不可在英雄在内城时使用
+				function TTH_GLOBAL.GetObjectOwner(strHero)
+					local iPlayer = 0;
+					for i = 1, 8 do
+						local arrHero = GetPlayerHeroes(i);
+						if contains(arrHero, strHero) ~= nil then
+							iPlayer = i;
+							return iPlayer;
+						end;
+					end;
+				end;
+
+			-- 获取玩家是否为AI -- 0: 不是AI; 1: 是AI
+				function TTH_GLOBAL.isAi(iPlayer)
+					local bPlayerStatus = 0;
+					if TTH_VARI.playerStatus[iPlayer] == 1 then
+						bPlayerStatus = 1;
+					end;
+					return bPlayerStatus;
+				end;
+
+			-- 获取玩家拥有的城镇数组
+				function TTH_GLOBAL.listTown8Player(iPlayer)
+					local arrPlayerTown = {};
+					for iIndexTown, objTown in TTH_VARI.arrTown do
+						if GetObjectOwner(objTown) == iPlayer then
+							TTH_COMMON.push(arrPlayerTown, objTown);
+						end;
+					end;
+					return arrPlayerTown;
+				end;
+
+			-- 获取玩家拥有的城镇数量
+				function TTH_GLOBAL.countTown8Player(iPlayer)
+					local iCount = 0;
+					for iIndexTown, objTown in TTH_VARI.arrTown do
+						if GetObjectOwner(objTown) == iPlayer then
+							iCount = iCount + 1;
+						end;
+					end;
+					return iCount;
+				end;
+
+			-- 获取玩家拥有的该种族城镇数组
+				function TTH_GLOBAL.listTown8Player4Race(iPlayer, iRace)
+					local arrPlayerTown = {};
+					for iIndexTown, objTown in GetObjectNamesByType(TTH_GLOBAL.getRaceType8RaceId(iRace)) do
+						if GetObjectOwner(objTown) == iPlayer then
+							TTH_COMMON.push(arrPlayerTown, objTown);
+						end;
+					end;
+					return arrPlayerTown;
+				end;
+
+			-- 获取玩家所占领的前哨总数量，不分等级
+				function TTH_GLOBAL.countDwelling8Player(iPlayer)
+					local iCount = 0;
+					for iTier = 1, 4 do
+						for iRace = TOWN_HEAVEN, TOWN_STRONGHOLD do
+							local arrDwelling8Race = GetObjectNamesByType(TTH_TABLE.DwellingOnAdvMap[iTier][iRace]);
+							for i, strDwelling in arrDwelling8Race do
+								if GetObjectOwner(strDwelling) == iPlayer then
+									iCount = iCount + 1;
+								end;
+							end;
+						end;
+					end;
+					return iCount;
+				end;
+
+			-- 获取玩家所占领的资源矿总数量
+				function TTH_GLOBAL.countMine8Player(iPlayer)
+					local iCount = 0;
+					for iIndex, strMineType in TTH_TABLE.MineOnAdvMap do
+						for i, strMine in TTH_VARI.arrBuilding[strMineType] do
+							if GetObjectOwner(strMine) == iPlayer then
+								iCount = iCount + 1;
+							end;
+						end;
+					end;
+					return iCount;
+				end;
+
+			-- 根据种族ID获取城镇字符串
+				function TTH_GLOBAL.getRaceType8RaceId(iRace)
+					local strRaceType = "";
+					if iRace == TOWN_HEAVEN then
+						strRaceType = "TOWN_HEAVEN";
+					elseif iRace == TOWN_PRESERVE then
+						strRaceType = "TOWN_PRESERVE";
+					elseif iRace == TOWN_ACADEMY then
+						strRaceType = "TOWN_ACADEMY";
+					elseif iRace == TOWN_DUNGEON then
+						strRaceType = "TOWN_DUNGEON";
+					elseif iRace == TOWN_NECROMANCY then
+						strRaceType = "TOWN_NECROMANCY";
+					elseif iRace == TOWN_INFERNO then
+						strRaceType = "TOWN_INFERNO";
+					elseif iRace == TOWN_FORTRESS then
+						strRaceType = "TOWN_FORTRESS";
+					elseif iRace == TOWN_STRONGHOLD then
+						strRaceType = "TOWN_STRONGHOLD";
+					end;
+					return strRaceType;
+				end;
+
+			-- 获取英雄所在城门口 -- nil: 不在城门口; strTown: 城镇ID
+				function TTH_GLOBAL.isHeroAtTownGate(strHero)
+					local iPlayer = GetObjectOwner(strHero);
+					local strTown = nil;
+					for i, strGate in TTH_GLOBAL.listTown8Player(iPlayer) do
+						if IsHeroInTown(strHero, strGate, 1, 0) == not nil then
+							strTown = strGate;
+							break;
+						end;
+					end;
+					return strTown;
+				end;
+
+			-- 获取内城是否有英雄 -- 0: 否; 1: 是
+				function TTH_GLOBAL.isGarrisonHasHero(iPlayer, strTown)
+					local arrHero = GetPlayerHeroes(iPlayer);
+					local bIsHeroAtTownGarrison = 0;
+					for iIndexHero, strHero in arrHero do
+						if TTH_GLOBAL.getDistance(strHero, strTown) == 0 then
+							bIsHeroAtTownGarrison = 1;
+							break;
+						end;
+					end;
+					return bIsHeroAtTownGarrison;
+				end;
+
+			-- 获取英雄是否驻扎在内城 -- 0: 否; 1: 是
+				function TTH_GLOBAL.isHeroAtGarrison(strHero)
+					local bIsHeroAtGarrison = TTH_ENUM.No;
+					-- 距离方式
+						-- for iIndexTown, strTown in TTH_VARI.arrTown do
+						-- 	if TTH_GLOBAL.getDistance(strHero, strTown) == 0 then
+						-- 		bIsHeroAtGarrison = 1;
+						-- 		break;
+						-- 	end;
+						-- end;
+
+					if GetHeroTown(strHero) then
+						bIsHeroAtGarrison = TTH_ENUM.Yes;
+					end;
+					return bIsHeroAtGarrison;
+				end;
+
+			-- 获取英雄离最近城镇的距离
+				function TTH_GLOBAL.getDistance4Hero2NearestTown(strHero)
+					local iPlayer = TTH_GLOBAL.GetObjectOwner(strHero);
+					local arrTown = TTH_GLOBAL.listTown8Player(iPlayer);
+					local arrDistance = {};
+					for i, strTown in arrTown do
+						TTH_COMMON.push(arrDistance, TTH_GLOBAL.getDistance(strHero, strTown, 1));
+					end
+					local iMinDistance = TTH_COMMON.min(arrDistance);
+					return iMinDistance;
+				end;
+
+			-- 获取英雄离最近管辖城镇的距离
+				function TTH_GLOBAL.getDistance4Hero2NearestMayorTown(strHero)
+					local iPlayer = TTH_GLOBAL.GetObjectOwner(strHero);
+					local arrTown = TTH_VARI.arrMayor[strHero]["Town"];
+					local arrDistance = {};
+					for strTown, objTown in arrTown do
+						TTH_COMMON.push(arrDistance, TTH_GLOBAL.getDistance(strHero, strTown));
+					end
+
+					local arrDistanceWulfstan = TTH_TALENT.getDistance4Hero2NearestMayorTown8Wulfstan(iPlayer, strHero);
+					arrDistance = TTH_COMMON.concat(arrDistance, arrDistanceWulfstan);
+
+					local iDistanceNikolay = TTH_TALENT.getDistance4Hero2NearestMayorTown8Nikolay(iPlayer, strHero);
+					arrDistance = TTH_COMMON.push(arrDistance, iDistanceNikolay);
+
+					local iMinDistance = TTH_COMMON.min(arrDistance);
+					return iMinDistance;
+				end;
+
+			-- 获取英雄真实幸运
+				function TTH_GLOBAL.getRealLuck8Hero(strHero)
+					local iLuck = 0;
+					if TTH_VARI.luck4Hero[strHero] ~= nil then
+						iLuck = iLuck + TTH_VARI.luck4Hero[strHero];
+					end;
+					if TTH_GLOBAL.getSetComponentCount(strHero, TTH_ENUM.SET_GUARDIAN) >= 4 then
+						iLuck = iLuck + 1;
+					end;
+					if HasArtefact(strHero, ARTIFACT_FOUR_LEAF_CLOVER, 1) ~= nil then
+						iLuck = iLuck + 1;
+					end;
+					if HasArtefact(strHero, ARTIFACT_TAROT_DECK, 1) ~= nil then
+						iLuck = iLuck + 1;
+					end;
+					if HasArtefact(strHero, ARTIFACT_GUARDIAN_02, 1) ~= nil then
+						iLuck = iLuck + 1;
+					end;
+					if HasArtefact(strHero, ARTIFACT_GOLDEN_HORSESHOE, 1) ~= nil then
+						iLuck = iLuck + 1;
+					end;
+					if HasArtefact(strHero, ARTIFACT_CROWN_OF_COURAGE, 1) ~= nil then
+						iLuck = iLuck + 2;
+					end;
+					if HasArtefact(strHero, ARTIFACT_ANGEL_WINGS, 1) ~= nil then
+						iLuck = iLuck + 2;
+					end;
+					if GetHeroSkillMastery(strHero, SKILL_LUCK) ~= nil then
+						iLuck = iLuck + GetHeroSkillMastery(strHero, SKILL_LUCK);
+					end;
+					if HasHeroSkill(strHero, HERO_SKILL_FOREST_RAGE) ~= nil then
+						iLuck = iLuck + 1;
+					end;
+					return iLuck;
+				end;
+
+			-- 获取英雄当前战力
+				function TTH_GLOBAL.getPower8Hero(strHero)
+					local arrCreature4Hero = TTH_GLOBAL.getHeroCreatureInfo(strHero);
+					local iPower = 0;
+					for i = 0, 6 do
+						if arrCreature4Hero[i]["Id"] ~= 0 then
+							iPower = iPower + TTH_TABLE_NCF_CREATURES[arrCreature4Hero[i]["Id"]]["POWER"] * arrCreature4Hero[i]["Count"];
+						end;
+					end;
+					return iPower;
+				end;
+
+		-- 全局参数
+			-- 保存英雄等级到游戏全局参数中
+				function TTH_GLOBAL.setGameVar4HeroLevel(strHero)
+					TTH_MAIN.debug("TTH_GLOBAL.setGameVar4HeroLevel", nil, strHero);
+
+					local iHeroLevel = GetHeroLevel(strHero);
+					SetGameVar('TTH_Var_HeroLevel_'..strHero, iHeroLevel);
+				end;
+
+			-- 保存英雄宝物到游戏全局参数中
+				TTH_TABLE.CombatArtifact = {
+					[0] = ARTIFACT_ANGELIC_ALLIANCE
+					, [1] = ARTIFACT_CURSE_SHOULDER
+					, [2] = ARTIFACT_SENTINEL
+					, [3] = ARTIFACT_EIGHTFOLD
+					, [4] = ARTIFACT_MOONBLADE
+					, [5] = ARTIFACT_BAND_OF_CONJURER
+					, [6] = ARTIFACT_PENDANT_OF_BLIND
+					, [7] = ARTIFACT_DRUM_OF_CHARGE
+					, [8] = ARTIFACT_GEM_OF_PHANTOM
+				};
+				function TTH_GLOBAL.setGameVar4HeroArtifact(iPlayer, strHero)
+					TTH_MAIN.debug("TTH_GLOBAL.setGameVar4HeroArtifact", iPlayer, strHero);
+
+					for iIndexArtifact, objArtifact in TTH_TABLE.CombatArtifact do
+						local strKey = TTH_FINAL.GAMEVAR_COMBAT_ARTIFACT..strHero..'_'..objArtifact;
+						if HasArtefact(strHero, objArtifact, 1) ~= nil then
+							local iValue = 1;
+							if objArtifact == ARTIFACT_GEM_OF_PHANTOM then
+								iValue = TTH_ARTI.calcValue102(iPlayer, strHero);
+							end;
+							SetGameVar(strKey, iValue);
+						else
+							SetGameVar(strKey, 0);
+						end;
+					end;
+				end;
+				function TTH_GLOBAL.removeGameVar4HeroArtifact(strHero)
+					for iIndexArtifact, objArtifact in TTH_TABLE.CombatArtifact do
+						local strKey = TTH_FINAL.GAMEVAR_COMBAT_ARTIFACT..strHero..'_'..objArtifact;
+						SetGameVar(strKey, 0);
+					end;
+				end;
+
+			-- 保存英雄技能到游戏全局参数中
+				TTH_TABLE.CombatSkill = {
+					[0] = HERO_SKILL_WEAKENING_STRIKE
+					, [1] = HERO_SKILL_ELITE_CASTERS
+					, [2] = HERO_SKILL_MYSTICISM
+					, [3] = HERO_SKILL_PRAYER
+					, [4] = HERO_SKILL_MASTER_OF_ICE
+					, [5] = HERO_SKILL_MASTER_OF_FIRE
+					, [6] = HERO_SKILL_MASTER_OF_LIGHTNINGS
+				};
+				function TTH_GLOBAL.setGameVar4HeroSkill(strHero)
+					for iIndexSkill, objSkill in TTH_TABLE.CombatSkill do
+						local strKey = TTH_FINAL.GAMEVAR_COMBAT_SKILL..strHero..'_'..objSkill;
+						if HasHeroSkill(strHero, objSkill) ~= nil then
+							SetGameVar(strKey, 1);
+						else
+							SetGameVar(strKey, 0);
+						end;
+					end;
+				end;
+				function TTH_GLOBAL.removeGameVar4HeroSkill(strHero)
+					for iIndexSkill, objSkill in TTH_TABLE.CombatSkill do
+						local strKey = TTH_FINAL.GAMEVAR_COMBAT_SKILL..strHero..'_'..objSkill;
+						SetGameVar(strKey, 0);
+					end;
+				end;
+
+		-- 战斗胜利后
+			-- 魔法值恢复
+				TTH_TABLE.RecoveryMana4Winner = {
+					[0] = {
+						["Id"] = ARTIFACT_MONK_01
+						, ["Value"] = 4
+						, ["Type"] = TTH_ENUM.Artifact
+					}
+					, [1] = {
+						["Id"] = ARTIFACT_MONK_02
+						, ["Value"] = 2
+						, ["Type"] = TTH_ENUM.Artifact
+					}
+					, [2] = {
+						["Id"] = ARTIFACT_MONK_04
+						, ["Value"] = 3
+						, ["Type"] = TTH_ENUM.Artifact
+					}
+					, [3] = {
+						["Id"] = HERO_SKILL_ETERNAL_LIGHT
+						, ["Value"] = 2
+						, ["Type"] = TTH_ENUM.Perk
+					}
+					, [4] = {
+						["Id"] = HERO_SKILL_PAYBACK
+						, ["Value"] = 2
+						, ["Type"] = TTH_ENUM.Perk
+					}
+					, [5] = {
+						["Id"] = HERO_SKILL_SECRETS_OF_DESTRUCTION
+						, ["Value"] = 2
+						, ["Type"] = TTH_ENUM.Perk
+					}
+					, [6] = {
+						["Id"] = HERO_SKILL_LIGHT_MAGIC
+						, ["Value"] = 1
+						, ["Type"] = TTH_ENUM.Mastery
+					}
+					, [7] = {
+						["Id"] = HERO_SKILL_DARK_MAGIC
+						, ["Value"] = 1
+						, ["Type"] = TTH_ENUM.Mastery
+					}
+					, [8] = {
+						["Id"] = HERO_SKILL_SUMMONING_MAGIC
+						, ["Value"] = 1
+						, ["Type"] = TTH_ENUM.Mastery
+					}
+					, [9] = {
+						["Id"] = HERO_SKILL_DESTRUCTIVE_MAGIC
+						, ["Value"] = 1
+						, ["Type"] = TTH_ENUM.Mastery
+					}
+				}
+				-- 执行
+					function TTH_GLOBAL.dealRecoveryMana4Winner(iPlayer, strHero)
+						TTH_MAIN.debug("TTH_GLOBAL.dealRecoveryMana4Winner", iPlayer, strHero);
+
+						local iRecovery = TTH_GLOBAL.calcRecoveryMana4Winner(strHero);
+						if iRecovery > 0 then
+							ChangeHeroStat(strHero, STAT_MANA_POINTS, TTH_COMMON.round(iRecovery));
+							if TTH_GLOBAL.isHeroAtGarrison(strHero) == 0 then
+								local iPlayer = GetObjectOwner(strHero);
+								if TTH_GLOBAL.isAi(iPlayer) ~= TTH_ENUM.Yes then
+									ShowFlyingSign({"/Text/Game/Scripts/CombatManaReceived.txt";num=iRecovery}, strHero, iPlayer, 5);
+									sleep(2);
+								end;
+							end;
+						end;
+					end;
+				-- 计算
+						function TTH_GLOBAL.calcRecoveryMana4Winner(strHero)
+							local iRecovery = 0;
+							for i, objItem in TTH_TABLE.RecoveryMana4Winner do
+								if objItem["Type"] == TTH_ENUM.Artifact then
+									if HasArtefact(strHero, objItem["Id"], 1) then
+										iRecovery = iRecovery + objItem["Value"];
+									end;
+								elseif objItem["Type"] == TTH_ENUM.Perk then
+									if HasHeroSkill(strHero, objItem["Id"]) then
+										iRecovery = iRecovery + objItem["Value"];
+									end;
+								elseif objItem["Type"] == TTH_ENUM.Mastery then
+									if GetHeroSkillMastery(strHero, objItem["Id"]) > 0 then
+										iRecovery = iRecovery + objItem["Value"] * GetHeroSkillMastery(strHero, objItem["Id"]);
+									end;
+								end
+							end;
+							if iRecovery > 0 then
+								if HasHeroSkill(strHero, HERO_SKILL_MYSTICISM) ~= nil
+									or HasHeroSkill(strHero, HERO_SKILL_BARBARIAN_MYSTICISM) ~= nil then
+									iRecovery = iRecovery * 2;
+								end;
+								iRecovery = iRecovery  * (1 + 0.5 * TTH_GLOBAL.isBonus8MonkMana(strHero));
+							end;
+							return iRecovery;
+						end;
+
+			-- 移动力恢复
+				-- 执行
+					function TTH_GLOBAL.dealRecoveryMove4Winner(iPlayer, strHero)
+						TTH_MAIN.debug("TTH_GLOBAL.dealRecoveryMove4Winner", iPlayer, strHero);
+
+						local iRecovery = TTH_GLOBAL.calcRecoveryMove4Winner(strHero);
+						if iRecovery > 0 then
+							ChangeHeroStat(strHero, STAT_MOVE_POINTS, TTH_COMMON.round(iRecovery));
+						end;
+					end;
+				-- 计算
+					function TTH_GLOBAL.calcRecoveryMove4Winner(strHero)
+						local iRecovery = 0;
+						if HasArtefact(strHero, ARTIFACT_MONK_03, 1) then
+							iRecovery = iRecovery + 350;
+						end;
+						iRecovery = iRecovery + TTH_TALENT.dealKyrre(strHero);
+						iRecovery = iRecovery + TTH_TALENT.dealHero2(strHero);
+						if TTH_GLOBAL.isBonus8MonkMove(strHero) == TTH_ENUM.Enable then
+							iRecovery = iRecovery  * 1.5;
+							if HasHeroSkill(strHero, HERO_SKILL_PATH_OF_WAR) then
+								iRecovery = iRecovery + 175;
+							end;
+						end;
+						return iRecovery;
+					end;
+
+		-- 宝物套装属性
+			TTH_VARI.artifactSetBonus8Hero = {};
+
+			-- 英雄携带套装宝物件数 by 套装ID
+				function TTH_GLOBAL.getSetComponentCount(strHero, iSetId)
+	        local iCount = 0;
+	        for iIndexComponent, iComponentId in TTH_TABLE.ArtifactSetBonus[iSetId]["Component"] do
+	          if HasArtefact(strHero, iComponentId, 1) ~= nil then
+	            iCount = iCount + 1;
+	          end;
+	        end;
+		      -- 计算 星尘坠饰
+		        if HasArtefact(strHero, ARTIFACT_PENDANT_OF_STARDUST, 1) ~= nil then
+		          iCount = iCount + 1;
+		        end;
+		      return iCount;
+				end;
+
+			-- :TODO 启迪 2件套经验值加成
+				function TTH_GLOBAL.coefExp8Enlightment(strHero)
+					local fCoef = 1;
+					if HasArtefact(strHero, ARTIFACT_HELM_OF_ENLIGHTMENT, 1) ~= nil then
+					  fCoef = fCoef + 0.1;
+					end;
+					if HasArtefact(strHero, ARTIFACT_CHAIN_MAIL_OF_ENLIGHTMENT, 1) ~= nil then
+					  fCoef = fCoef + 0.2;
+					end;
+					if TTH_GLOBAL.getSetComponentCount(strHero, TTH_ENUM.SET_EDUCATIONAL) >= 2 then
+					  fCoef = fCoef + 0.15;
+					end;
+					return fCoef;
+				end;
+
+			-- 先知法衣
+				-- 2件套50%战后魔法值回复加成
+					function TTH_GLOBAL.isBonus8MonkMana(strHero)
+						local bBonusEnable = TTH_ENUM.Unable;
+						if TTH_GLOBAL.getSetComponentCount(strHero, TTH_ENUM.SET_MONK) >= 2 then
+							bBonusEnable = TTH_ENUM.Enable;
+						end;
+						return bBonusEnable;
+					end;
+
+				-- 4件套50%战后移动力回复加成
+					function TTH_GLOBAL.isBonus8MonkMove(strHero)
+						local bBonusEnable = TTH_ENUM.Unable;
+						if TTH_GLOBAL.getSetComponentCount(strHero, TTH_ENUM.SET_MONK) >= 4 then
+							bBonusEnable = TTH_ENUM.Enable;
+						end;
+						return bBonusEnable;
+					end;
+
+			-- 计算属性
+				function TTH_GLOBAL.upgradeArtifactSetBonus8Hero(iPlayer, strHero)
+					TTH_MAIN.debug("TTH_GLOBAL.upgradeArtifactSetBonus8Hero", nil, strHero);
+
+				  if TTH_GLOBAL.isHeroAtGarrison(strHero) == 0 then
+				    local iPlayer = GetObjectOwner(strHero);
+				    for iSetId, objSet in TTH_TABLE.ArtifactSetBonus do
+				      local iCount = TTH_GLOBAL.getSetComponentCount(strHero, iSetId); -- 统计套装件数（含星尘坠饰）
+
+				      -- 初始化套装奖励在存储空间 by 英雄
+				        if TTH_VARI.artifactSetBonus8Hero[strHero] == nil then
+				          TTH_VARI.artifactSetBonus8Hero[strHero] = {};
+				        end;
+				        if TTH_VARI.artifactSetBonus8Hero[strHero][iSetId] == nil then
+				          TTH_VARI.artifactSetBonus8Hero[strHero][iSetId] = {};
+				        end;
+
+				      -- 查验有几件套装组件，并随之改变英雄属性
+					      if objSet["SetBonus"] ~= nil then
+					      	local objSetBonus = objSet["SetBonus"];
+						      for i = 1, 8 do
+						        if objSetBonus[i] ~= nil then
+						          if iCount >= i then
+						            if TTH_VARI.artifactSetBonus8Hero[strHero][iSetId][i] == nil then
+						              for iIndexStat, iNumStat in objSetBonus[i] do
+						                if iNumStat ~= 0 then
+						                  ChangeHeroStat(strHero, iIndexStat, iNumStat);
+						                end;
+						              end;
+						              TTH_VARI.artifactSetBonus8Hero[strHero][iSetId][i] = 1;
+						              TTH_GLOBAL.showArtifactSetFlyingSign(strHero, iPlayer, 1);
+						            end;
+						          end;
+						          if iCount < i then
+						            if TTH_VARI.artifactSetBonus8Hero[strHero][iSetId][i] == 1 then
+						              for indexStat, iNumStat in objSetBonus[i] do
+						                if iNumStat ~= 0 then
+						                  ChangeHeroStat(strHero, indexStat, -1 * iNumStat);
+						                end;
+						              end;
+						              TTH_VARI.artifactSetBonus8Hero[strHero][iSetId][i] = nil;
+						              TTH_GLOBAL.showArtifactSetFlyingSign(strHero, iPlayer, 0);
+						            end;
+						          end;
+						        end;
+						      end;
+					      end;
+				    end;
+				  end;
+				end;
+
+			-- 飘字
+				function TTH_GLOBAL.showArtifactSetFlyingSign(strHero, iPlayer, iShowType)
+				  if TTH_GLOBAL.isAi(iPlayer) ~= TTH_ENUM.Yes and TTH_GLOBAL.isHeroAtGarrison(strHero) == 0 then
+				    if iShowType == 0 then
+				      ShowFlyingSign("/Text/Game/Scripts/SetLost.txt", strHero, iPlayer, 5);
+				    else
+				      ShowFlyingSign("/Text/Game/Scripts/SetBonus.txt", strHero, iPlayer, 5);
+				    end;
+				    sleep(1);
+				  end;
+				end;
+
+		-- 英雄技能效果实装
+			TTH_VARI.threadUpgradeSkillBonus8Hero = "";
+			function TTH_GLOBAL.upgradeSkillBonus8Hero(iPlayer, strHero)
+				TTH_MAIN.debug("TTH_GLOBAL.upgradeSkillBonus8Hero", iPlayer, strHero);
+
+				TTH_VARI.threadUpgradeSkillBonus8Hero = strHero;
+				startThread(TTH_GLOBAL.threadUpgradeSkillBonus8Hero);
+			end;
+			function TTH_GLOBAL.threadUpgradeSkillBonus8Hero()
+				local strHero = TTH_VARI.threadUpgradeSkillBonus8Hero;
+				TTH_GLOBAL.implSkillBonus8Hero(strHero);
+			end;
+			function TTH_GLOBAL.dealSkillBonus8Hero(strHero)
+				TTH_MAIN.debug("TTH_GLOBAL.dealSkillBonus8Hero", nil, strHero);
+
+				TTH_GLOBAL.implSkillBonus8Hero(strHero);
+			end;
+			function TTH_GLOBAL.implSkillBonus8Hero(strHero)
+				sleep(1);
+				TTH_GLOBAL.setGameVar4HeroSkill(strHero);
+				TTH_GLOBAL.giveMagic8Skill(strHero);
+				TTH_GLOBAL.giveMagic8Wisdom(strHero);
+				TTH_GLOBAL.giveAttribute8Skill(strHero);
+
+				TTH_GLOBAL.dealForestGuardEmblem(strHero); -- 战地指挥官
+				TTH_GLOBAL.dealLuckyStrike(strHero); -- 士兵的幸运
+				TTH_GLOBAL.dealStudentAward(strHero); -- 毕业生
+				TTH_GLOBAL.dealAcademyAward(strHero); -- 魔法师
+				TTH_GLOBAL.dealInvocation(strHero); -- 穿透
+			end;
+
+			-- 根据英雄技能赠送魔法相关
+				function TTH_GLOBAL.giveMagic8Skill(strHero)
+					for i, objItem in TTH_TABLE_GIVE_MAGIC_BY_SKILL do
+						if KnowHeroSpell(strHero, objItem["MAGIC"]["ID"]) == nil then
+							local bCheck = 1;
+							if length(objItem["SKILL_MASTERY"]) > 0 then
+								for j, objMastery in objItem["SKILL_MASTERY"] do
+									if GetHeroSkillMastery(strHero, objMastery["MASTERY"]) < objMastery["LEVEL"] then
+										bCheck = 0;
+										break;
+									end;
+								end;
+							end;
+							if length(objItem["SKILL_PERK"]) > 0 then
+								for j, objPerk in objItem["SKILL_PERK"] do
+									if HasHeroSkill(strHero, objPerk) == nil then
+										bCheck = 0;
+										break;
+									end;
+								end;
+							end;
+							if bCheck == 1 then
+								TeachHeroSpell(strHero, objItem["MAGIC"]["ID"]);
+								local strText = {
+									"/Text/Game/Scripts/Learnspell.txt"
+									;name=objItem["MAGIC"]["NAME"]
+								};
+								TTH_GLOBAL.sign(strHero, strText);
+							end;
+						end;
+					end;
+				end;
+
+			-- 洞察魔力及力量书赠送魔法相关
+				TTH_TABLE.MagicBonus8Wisdom = {
+					[TTH_ENUM.Basic] = {
+						[1] = SPELL_ANTI_MAGIC
+						, [2] = SPELL_SORROW
+						, [3] = SPELL_BLADE_BARRIER
+						, [4] = SPELL_METEOR_SHOWER
+					}
+					, [TTH_ENUM.Advanced] = {
+						[1] = SPELL_DIVINE_VENGEANCE
+						, [2] = SPELL_BLIND
+						, [3] = SPELL_PHANTOM
+						, [4] = SPELL_IMPLOSION
+					}
+				};
+				TTH_VARI.magicBonus8Wisdom4HeroRecord = {};
+				TTH_ENUM.None = 1;
+				TTH_ENUM.Basic = 2;
+				TTH_ENUM.Advanced = 3;
+				function TTH_GLOBAL.giveMagic8Wisdom(strHero)
+					if HasHeroSkill(strHero, HERO_SKILL_WISDOM) ~= nil then
+						if TTH_VARI.magicBonus8Wisdom4HeroRecord[strHero] == nil then
+							TTH_VARI.magicBonus8Wisdom4HeroRecord[strHero] = TTH_ENUM.Basic;
+							local arrMagic = TTH_TABLE.MagicBonus8Wisdom[TTH_ENUM.Basic];
+							local arrMagicUnknow = {};
+							for i = 1, 4 do
+								if KnowHeroSpell(strHero, arrMagic[i]) == nil then
+									TTH_COMMON.push(arrMagicUnknow, arrMagic[i]);
+								end;
+							end;
+							if length(arrMagicUnknow) > 0 then
+								local iRan = random(length(arrMagicUnknow));
+								TeachHeroSpell(strHero, arrMagicUnknow[iRan]);
+								local strText = {
+									"/Text/Game/Scripts/Learnspell.txt"
+									;name=TTH_TABLE_SPELL[arrMagicUnknow[iRan]]["NAME"]
+								};
+								TTH_GLOBAL.sign(strHero, strText);
+							end;
+						end;
+						if HasArtefact(strHero, ARTIFACT_BOOK_OF_POWER, 1) ~= nil then
+							if TTH_VARI.magicBonus8Wisdom4HeroRecord[strHero] == TTH_ENUM.Basic then
+								TTH_VARI.magicBonus8Wisdom4HeroRecord[strHero] = TTH_ENUM.Advanced;
+								local arrMagic = TTH_TABLE.MagicBonus8Wisdom[TTH_ENUM.Advanced];
+								local arrMagicUnknow = {};
+								for i = 1, 4 do
+									if KnowHeroSpell(strHero, arrMagic[i]) == nil then
+										TTH_COMMON.push(arrMagicUnknow, arrMagic[i]);
+									end;
+								end;
+								if length(arrMagicUnknow) > 0 then
+									local iRan = random(length(arrMagicUnknow));
+									TeachHeroSpell(strHero, arrMagicUnknow[iRan]);
+									local strText = {
+										"/Text/Game/Scripts/Learnspell.txt"
+										;name=TTH_TABLE_SPELL[arrMagicUnknow[iRan]]["NAME"]
+									};
+									TTH_GLOBAL.sign(strHero, strText);
+								end;
+							end;
+						end;
+					end;
+				end;
+
+			-- 英雄技能赠送属性
+				TTH_TABLE.AttributeBonus8Skill = {
+					[HERO_SKILL_DEMONIC_FLAME] = { -- 灼热之火
+						["HeroLevel"] = 10
+						, ["Stat"] = {
+							[STAT_ATTACK] = 2
+							, [STAT_DEFENCE] = 0
+							, [STAT_SPELL_POWER] = 0
+							, [STAT_KNOWLEDGE] = 0
+							, [STAT_LUCK] = 0
+							, [STAT_MORALE] = 0
+						}
+					}
+					, [HERO_SKILL_DEMONIC_RETALIATION] = { -- 地狱愤怒
+						["HeroLevel"] = 1
+						, ["Stat"] = {
+							[STAT_ATTACK] = 2
+							, [STAT_DEFENCE] = 0
+							, [STAT_SPELL_POWER] = 0
+							, [STAT_KNOWLEDGE] = 0
+							, [STAT_LUCK] = 0
+							, [STAT_MORALE] = 0
+						}
+					}
+					, [HERO_SKILL_CASTER_CERTIFICATE] = { -- 神秘精髓
+						["HeroLevel"] = 20
+						, ["Stat"] = {
+							[STAT_ATTACK] = 0
+							, [STAT_DEFENCE] = 0
+							, [STAT_SPELL_POWER] = 2
+							, [STAT_KNOWLEDGE] = 0
+							, [STAT_LUCK] = 0
+							, [STAT_MORALE] = 0
+						}
+					}
+					, [HERO_SKILL_TWILIGHT] = { -- 微光黎明
+						["HeroLevel"] = 30
+						, ["Stat"] = {
+							[STAT_ATTACK] = 0
+							, [STAT_DEFENCE] = 0
+							, [STAT_SPELL_POWER] = 3
+							, [STAT_KNOWLEDGE] = 0
+							, [STAT_LUCK] = 0
+							, [STAT_MORALE] = 0
+						}
+					}
+					, [HERO_SKILL_PARIAH] = { -- 堕落骑士
+						["HeroLevel"] = 30
+						, ["Stat"] = {
+							[STAT_ATTACK] = 0
+							, [STAT_DEFENCE] = 0
+							, [STAT_SPELL_POWER] = 5
+							, [STAT_KNOWLEDGE] = 0
+							, [STAT_LUCK] = -1
+							, [STAT_MORALE] = 0
+						}
+					}
+					, [HERO_SKILL_BARBARIAN_DARK_REVELATION] = { -- 黑暗启示
+						["HeroLevel"] = 1
+						, ["Stat"] = {
+							[STAT_ATTACK] = 0
+							, [STAT_DEFENCE] = 0
+							, [STAT_SPELL_POWER] = 0
+							, [STAT_KNOWLEDGE] = 2
+							, [STAT_LUCK] = 0
+							, [STAT_MORALE] = 0
+						}
+					}
+					, [HERO_SKILL_ELITE_CASTERS] = { -- 精炼魔力
+						["HeroLevel"] = 20
+						, ["Stat"] = {
+							[STAT_ATTACK] = 0
+							, [STAT_DEFENCE] = 0
+							, [STAT_SPELL_POWER] = 0
+							, [STAT_KNOWLEDGE] = 2
+							, [STAT_LUCK] = 0
+							, [STAT_MORALE] = 0
+						}
+					}
+					, [HERO_SKILL_BARBARIAN_ELITE_CASTERS] = { -- 精炼魔力
+						["HeroLevel"] = 20
+						, ["Stat"] = {
+							[STAT_ATTACK] = 0
+							, [STAT_DEFENCE] = 0
+							, [STAT_SPELL_POWER] = 0
+							, [STAT_KNOWLEDGE] = 2
+							, [STAT_LUCK] = 0
+							, [STAT_MORALE] = 0
+						}
+					}
+					, [HERO_SKILL_CUNNING_OF_THE_WOODS] = { -- 知己知彼
+						["HeroLevel"] = 1
+						, ["Stat"] = {
+							[STAT_ATTACK] = 0
+							, [STAT_DEFENCE] = 0
+							, [STAT_SPELL_POWER] = 0
+							, [STAT_KNOWLEDGE] = 1
+							, [STAT_LUCK] = 0
+							, [STAT_MORALE] = 0
+						}
+					}
+					, [HERO_SKILL_FOREST_RAGE] = { -- 自然的愤怒
+						["HeroLevel"] = 1
+						, ["Stat"] = {
+							[STAT_ATTACK] = 0
+							, [STAT_DEFENCE] = 0
+							, [STAT_SPELL_POWER] = 0
+							, [STAT_KNOWLEDGE] = 0
+							, [STAT_LUCK] = 1
+							, [STAT_MORALE] = 0
+						}
+					}
+					, [HERO_SKILL_LORD_OF_UNDEAD] = { -- 丧尸之王
+						["HeroLevel"] = 1
+						, ["Stat"] = {
+							[STAT_ATTACK] = 0
+							, [STAT_DEFENCE] = 0
+							, [STAT_SPELL_POWER] = 0
+							, [STAT_KNOWLEDGE] = 1
+							, [STAT_LUCK] = 0
+							, [STAT_MORALE] = 0
+						}
+					}
+					, [HERO_SKILL_RAISE_ARCHERS] = { -- 宝物学者
+						["HeroLevel"] = 1
+						, ["Stat"] = {
+							[STAT_ATTACK] = 0
+							, [STAT_DEFENCE] = 0
+							, [STAT_SPELL_POWER] = 1
+							, [STAT_KNOWLEDGE] = 1
+							, [STAT_LUCK] = 0
+							, [STAT_MORALE] = 0
+						}
+					}
+					, [HERO_SKILL_OFFENSIVE_FORMATION] = { -- 攻击编队
+						["HeroLevel"] = 1
+						, ["Stat"] = {
+							[STAT_ATTACK] = 2
+							, [STAT_DEFENCE] = 0
+							, [STAT_SPELL_POWER] = 0
+							, [STAT_KNOWLEDGE] = 0
+							, [STAT_LUCK] = 0
+							, [STAT_MORALE] = 0
+						}
+					}
+					, [HERO_SKILL_DEFENSIVE_FORMATION] = { -- 防御编队
+						["HeroLevel"] = 1
+						, ["Stat"] = {
+							[STAT_ATTACK] = 0
+							, [STAT_DEFENCE] = 2
+							, [STAT_SPELL_POWER] = 0
+							, [STAT_KNOWLEDGE] = 0
+							, [STAT_LUCK] = 0
+							, [STAT_MORALE] = 0
+						}
+					}
+					, [HERO_SKILL_RETRIBUTION] = { -- 报偿
+						["HeroLevel"] = 1
+						, ["Stat"] = {
+							[STAT_ATTACK] = 2
+							, [STAT_DEFENCE] = 0
+							, [STAT_SPELL_POWER] = 0
+							, [STAT_KNOWLEDGE] = 0
+							, [STAT_LUCK] = 0
+							, [STAT_MORALE] = 0
+						}
+					}
+					, [HERO_SKILL_ELEMENTAL_OVERKILL] = { -- 驱魔咒语
+						["HeroLevel"] = 1
+						, ["Stat"] = {
+							[STAT_ATTACK] = 0
+							, [STAT_DEFENCE] = 0
+							, [STAT_SPELL_POWER] = 2
+							, [STAT_KNOWLEDGE] = 0
+							, [STAT_LUCK] = 0
+							, [STAT_MORALE] = 0
+						}
+					}
+					, [HERO_SKILL_MASTER_OF_SECRETS] = { -- 法力提升
+						["HeroLevel"] = 20
+						, ["Stat"] = {
+							[STAT_ATTACK] = 0
+							, [STAT_DEFENCE] = 0
+							, [STAT_SPELL_POWER] = 2
+							, [STAT_KNOWLEDGE] = 0
+							, [STAT_LUCK] = 0
+							, [STAT_MORALE] = 0
+						}
+					}
+					, [HERO_SKILL_SECRETS_OF_DESTRUCTION] = { -- 毁灭之道
+						["HeroLevel"] = 20
+						, ["Stat"] = {
+							[STAT_ATTACK] = 0
+							, [STAT_DEFENCE] = 0
+							, [STAT_SPELL_POWER] = 0
+							, [STAT_KNOWLEDGE] = 2
+							, [STAT_LUCK] = 0
+							, [STAT_MORALE] = 0
+						}
+					}
+					, [HERO_SKILL_FOREST_GUARD_EMBLEM] = { -- 战地指挥官
+						["HeroLevel"] = 1
+						, ["Stat"] = {
+							[STAT_ATTACK] = -1
+							, [STAT_DEFENCE] = 1
+							, [STAT_SPELL_POWER] = 0
+							, [STAT_KNOWLEDGE] = 0
+							, [STAT_LUCK] = 0
+							, [STAT_MORALE] = 1
+						}
+					}
+					, [HERO_SKILL_DEADLY_COLD] = { -- 致命深寒
+						["HeroLevel"] = 20
+						, ["Stat"] = {
+							[STAT_ATTACK] = 0
+							, [STAT_DEFENCE] = 0
+							, [STAT_SPELL_POWER] = 2
+							, [STAT_KNOWLEDGE] = 0
+							, [STAT_LUCK] = 0
+							, [STAT_MORALE] = 0
+						}
+					}
+				};
+				TTH_VARI.attributeBonus8Skill4HeroRecord = {};
+				function TTH_GLOBAL.giveAttribute8Skill(strHero)
+					if TTH_VARI.attributeBonus8Skill4HeroRecord[strHero] == nil then
+						TTH_VARI.attributeBonus8Skill4HeroRecord[strHero] = {};
+					end;
+					for iSkill, objItem in TTH_TABLE.AttributeBonus8Skill do
+						if TTH_VARI.attributeBonus8Skill4HeroRecord[strHero][iSkill] == nil then
+							TTH_VARI.attributeBonus8Skill4HeroRecord[strHero][iSkill] = TTH_ENUM.No;
+						end;
+						if TTH_VARI.attributeBonus8Skill4HeroRecord[strHero][iSkill] == TTH_ENUM.No
+							and HasHeroSkill(strHero, iSkill) ~= nil
+							and GetHeroLevel(strHero) >= objItem["HeroLevel"] then
+							for i = STAT_ATTACK, STAT_MORALE do
+								TTH_GLOBAL.signChangeHeroStat(strHero, i, objItem["Stat"][i]);
+							end;
+							TTH_VARI.attributeBonus8Skill4HeroRecord[strHero][iSkill] = TTH_ENUM.Yes;
+						end;
+						if TTH_VARI.attributeBonus8Skill4HeroRecord[strHero][iSkill] == TTH_ENUM.Yes
+							and HasHeroSkill(strHero, iSkill) == nil then
+							for i = STAT_ATTACK, STAT_MORALE do
+								TTH_GLOBAL.signChangeHeroStat(strHero, i, -1 * objItem["Stat"][i]);
+							end;
+							TTH_VARI.attributeBonus8Skill4HeroRecord[strHero][iSkill] = TTH_ENUM.No;
+						end;
+					end;
+				end;
+
+			-- 战地指挥官
+				TTH_VARI.recordForestGuardEmblem = {};
+				function TTH_GLOBAL.dealForestGuardEmblem(strHero)
+					if TTH_VARI.recordForestGuardEmblem[strHero] ~= nil then
+						return nil;
+					end;
+					if TTH_VARI.recordForestGuardEmblem[strHero] == nil
+						and HasHeroSkill(strHero, HERO_SKILL_FOREST_GUARD_EMBLEM) ~= nil then
+						TTH_VARI.recordForestGuardEmblem[strHero] = TTH_ENUM.Yes;
+					  local iCountWarDancer = TTH_COMMON.floor((TTH_VARI.absoluteWeek + 1) / 2) * 10;
+					  if iCountWarDancer > 50 then
+					  	iCountWarDancer = 50;
+					  end;
+					  RemoveHeroCreatures(strHero, CREATURE_WAR_DANCER, iCountWarDancer);
+						local arrCreature4Hero = TTH_GLOBAL.getHeroCreatureInfo(strHero);
+						local iRace = TTH_GLOBAL.getRace8Hero(strHero);
+						local iGrowth = TTH_TABLE_NCF_CREATURES[TTH_TABLE.Creature8RaceAndLevel[iRace][2][3]]["GROWTH"];
+						local iCreatureId = 0;
+					  for iSlot = 0, 6 do
+					  	if arrCreature4Hero[iSlot]["Id"] == TTH_TABLE.Creature8RaceAndLevel[iRace][2][3] then
+					  		iCreatureId = arrCreature4Hero[iSlot]["Id"];
+					  		break;
+					  	end;
+					  end;
+					  if iCreatureId == 0 then
+							iCreatureId = TTH_TABLE.Creature8RaceAndLevel[iRace][2][2];
+					  end;
+					  TTH_GLOBAL.addCreature4Hero8Sign(strHero, iCreatureId, iGrowth, TTH_ENUM.AddCreature);
+					end;
+				end;
+
+			-- 士兵的幸运
+				TTH_VARI.recordLuckyStrike = {};
+				function TTH_GLOBAL.dealLuckyStrike(strHero)
+					if TTH_VARI.recordLuckyStrike[strHero] == nil
+						and HasHeroSkill(strHero, HERO_SKILL_LUCKY_STRIKE) ~= nil then
+						TTH_VARI.recordLuckyStrike[strHero] = TTH_ENUM.Yes;
+						if TTH_GLOBAL.getRace8Hero(strHero) == TOWN_ACADEMY then
+							TTH_GLOBAL.signChangeHeroStat(strHero, STAT_LUCK, 1);
+						end;
+					end;
+				end;
+
+			-- 毕业生
+				TTH_VARI.recordStudentAward = {};
+				function TTH_GLOBAL.dealStudentAward(strHero)
+					if TTH_VARI.recordStudentAward[strHero] == nil
+						and HasHeroSkill(strHero, HERO_SKILL_STUDENT_AWARD) ~= nil then
+						TTH_VARI.recordStudentAward[strHero] = TTH_ENUM.Yes;
+						GiveExp(strHero, GetHeroLevel(strHero) * 250);
+					end;
+				end;
+
+			-- 魔法师
+				TTH_VARI.recordAcademyAward = {};
+				function TTH_GLOBAL.dealAcademyAward(strHero)
+					if TTH_VARI.recordAcademyAward[strHero] == nil
+						and HasHeroSkill(strHero, HERO_SKILL_ACADEMY_AWARD) ~= nil then
+						TTH_VARI.recordAcademyAward[strHero] = TTH_ENUM.Yes;
+						GiveExp(strHero, GetHeroLevel(strHero) * 250);
+						local iPlayer = TTH_GLOBAL.GetObjectOwner(strHero);
+						TTH_GLOBAL.increaseResource(iPlayer, GOLD, GetHeroLevel(strHero) * 250, strHero);
+					end;
+				end;
+
+			-- 穿透
+				TTH_VARI.recordInvocation = {};
+				function TTH_GLOBAL.dealInvocation(strHero)
+					local iPower = 0;
+					iPower = iPower + GetHeroSkillMastery(strHero, SKILL_INVOCATION);
+					if HasHeroSkill(strHero, SKILL_DESTRUCTIVE_MAGIC) == nil then
+						iPower = iPower + GetHeroSkillMastery(strHero, SKILL_INVOCATION);
+					end;
+					if TTH_VARI.recordInvocation[strHero] == nil then
+						TTH_GLOBAL.signChangeHeroStat(strHero, STAT_SPELL_POWER, iPower);
+						TTH_VARI.recordInvocation[strHero] = iPower;
+					end;
+					if TTH_VARI.recordInvocation[strHero] ~= iPower then
+						TTH_GLOBAL.signChangeHeroStat(strHero, STAT_SPELL_POWER, iPower - TTH_VARI.recordInvocation[strHero]);
+						TTH_VARI.recordInvocation[strHero] = iPower;
+					end;
+				end;
+
+		-- 更新银行时间剩余时间
+			function TTH_GLOBAL.refreshBankRestDay(iPlayer)
+				TTH_MAIN.debug("TTH_GLOBAL.refreshBankRestDay", iPlayer, nil);
+
+				for i, strBankName in TTH_TABLE.BankType do
+					for j, objBank in TTH_VARI.arrBuilding[strBankName] do
+						local iRestDay = H55_GetBank_Restday(objBank);
+						local iType = 1;
+						if iRestDay <= 0 then
+							iType = 0;
+						end;
+						if iRestDay ~= 9999 and iRestDay >= 0 then
+							OverrideObjectTooltipNameAndDescription(objBank, H55_BankTipsTextType[iType + 1], H55_BankTipsTextDay[iRestDay + 1]);
+						end;
+					end
+				end
+			end;
+
+		-- 获取英雄已学会魔法数量
+			function TTH_GLOBAL.countHeroKnowSpell(strHero)
+				local iCount = 0;
+				for i, objMagicType in TTH_TABLE_SPELL_TYPE do
+					for j, strMagicId in objMagicType["ID"] do
+						if KnowHeroSpell(strHero, strMagicId) ~= nil then
+							iCount = iCount + 1;
+						end;
+					end;
+				end;
+				return iCount;
+			end;
+
+		-- 特殊
+			-- 士气<-5 转化为亡灵巫师
+				TTH_VARI.semiNecro = {};
+				function TTH_GLOBAL.makeHeroNecro(iPlayer, strHero)
+					if TTH_VARI.semiNecro[strHero] == nil
+						and GetHeroStat(strHero, STAT_MORALE) <= -5 then
+						MakeHeroNecromancer(strHero, 3);
+						TTH_VARI.semiNecro[strHero] = TTH_ENUM.Yes;
+						print("Make "..strHero.." to a Necromancer");
+					end;
+				end;
+
+		-- 王国管理带信息的对话框
+			-- 对话框（框架）
+				function TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, iDialogType, strDetail, strCallbackOk, strCallbackCancel)
+					local funcDialog = MessageBoxForPlayers;
+					if iDialogType == TTH_ENUM.QuestionBox then
+						funcDialog = QuestionBoxForPlayers;
+					end;
+					local strFrame = TTH_TABLE.KingManagePath["Widget"]["Frame"]["Text"];
+					local strNavigation = TTH_GLOBAL.geneWidgetNavigation();
+					local strMain = "";
+					if strDetail ~= nil then
+						strMain = TTH_GLOBAL.geneWidgetMain(iPlayer, strHero, strDetail);
+					end;
+					local strHeroInfo = TTH_GLOBAL.geneWidgetHeroInfo(iPlayer, strHero);
+					local strMayorExpedition = "";
+					local strMayorHero = "";
+					local strMayorTown = "";
+					if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+						strMayorExpedition = TTH_GLOBAL.geneWidgetMayorExpedition(iPlayer, strHero);
+						strMayorHero = TTH_GLOBAL.geneWidgetMayorHero(iPlayer, strHero);
+						strMayorTown = TTH_GLOBAL.geneWidgetMayorTown(iPlayer, strHero);
+					end;
+					local strPlayer = TTH_GLOBAL.geneWidgetPlayer(iPlayer, strHero);
+					local strMission = "";
+					if TTH_VARI.MermaidsMission8Player[iPlayer]["HasAccept"] == TTH_ENUM.Yes then
+						strMission = TTH_GLOBAL.geneWidgetMissionInfo(iPlayer, strHero);
+					end;
+					funcDialog(GetPlayerFilter(iPlayer)
+						, {
+							strFrame
+							;strNavigation=strNavigation
+							,strMain=strMain
+							,strHeroInfo=strHeroInfo
+							,strMayorExpedition=strMayorExpedition
+							,strMayorHero=strMayorHero
+							,strMayorTown=strMayorTown
+							,strPlayer=strPlayer
+							,strMission=strMission
+						}
+						, strCallbackOk
+						, strCallbackCancel
+					);
+				end;
+
+			-- 导航栏（控件）
+				function TTH_GLOBAL.geneWidgetNavigation()
+					local strPathNavigation = TTH_TABLE.KingManagePath["Widget"]["Navigation"]["Text"];
+					local strPathAnchor = TTH_TABLE.KingManagePath["Widget"]["Anchor"]["Text"];
+					local strPath = {
+						strPathNavigation
+						;strPathAnchor1={
+							strPathAnchor
+							;strArrow=TTH_VARI.arrPathArrow[0]
+							,strAnchor=TTH_VARI.arrPathNavigation[0]
+						}
+						,strPathAnchor2={
+							strPathAnchor
+							;strArrow=TTH_VARI.arrPathArrow[1]
+							,strAnchor=TTH_VARI.arrPathNavigation[1]
+						}
+						,strPathAnchor3={
+							strPathAnchor
+							;strArrow=TTH_VARI.arrPathArrow[2]
+							,strAnchor=TTH_VARI.arrPathNavigation[2]
+						}
+						,strPathAnchor4={
+							strPathAnchor
+							;strArrow=TTH_VARI.arrPathArrow[3]
+							,strAnchor=TTH_VARI.arrPathNavigation[3]
+						}
+						,strPathAnchor5={
+							strPathAnchor
+							;strArrow=TTH_VARI.arrPathArrow[4]
+							,strAnchor=TTH_VARI.arrPathNavigation[4]
+						}
+					}
+					return strPath;
+				end;
+
+			-- 主体信息（控件）
+				function TTH_GLOBAL.geneWidgetMain(iPlayer, strHero, strDetail)
+					local strPath = {
+						TTH_TABLE.KingManagePath["Widget"]["Main"]["Text"]
+						;strDetail=strDetail
+					};
+					return strPath;
+				end;
+
+			-- 英雄信息（控件）
+				-- <color=8B4513>================英雄信息================
+				-- <body_bright>英雄等级: <color=yellow><value=iHeroLevel>
+				-- <body_bright>英雄战力: <color=yellow><value=iPower>
+				-- <body_bright>英雄移动力: <color=yellow><value=iMovePoint>
+				-- <body_bright>英雄魔法值: <color=yellow><value=iManaPoint>
+				-- <body_bright>本周内政操作总次数: <color=yellow><value=iMaxOperTimes>
+				-- <body_bright>本周内政操作剩余次数: <color=yellow><value=iRemainOperTimes>
+				-- <body_bright>当前政绩: <color=yellow><value=iReportPoint>
+				function TTH_GLOBAL.geneWidgetHeroInfo(iPlayer, strHero)
+					local iHeroLevel = GetHeroLevel(strHero);
+					local iPower = TTH_GLOBAL.getPower8Hero(strHero);
+					local iMovePoint = GetHeroStat(strHero, STAT_MOVE_POINTS);
+					local iManaPoint = GetHeroStat(strHero, STAT_MANA_POINTS);
+					local iMaxOperTimes = TTH_MANAGE.getOperTimes(strHero);
+					local iRemainOperTimes = TTH_MANAGE.getRemainOperTimes(strHero);
+					local iReportPoint = TTH_MANAGE.getRecordPoint(strHero);
+					local strPath = {
+						TTH_TABLE.KingManagePath["Widget"]["HeroInfo"]["Text"]
+						;iHeroLevel=iHeroLevel
+						,iPower=iPower
+						,iMovePoint=iMovePoint
+						,iManaPoint=iManaPoint
+						,iMaxOperTimes=iMaxOperTimes
+						,iRemainOperTimes=iRemainOperTimes
+						,iReportPoint=iReportPoint
+					};
+					return strPath;
+				end;
+
+			-- 远征信息（控件）
+				-- <color=8B4513>================远征信息================
+				-- <body_bright>距离最近管辖城镇的距离: <color=yellow><value=iDistanceNearestTown>
+				-- <body_bright>是否远征: <color=yellow><value=bIsExpedition>
+				-- <body_bright>远征天数: <color=yellow><value=iExpeditionDuration>
+				-- <body_bright>每日远征军费: <color=yellow><value=iExpeditionCost>
+				function TTH_GLOBAL.geneWidgetMayorExpedition(iPlayer, strHero)
+					local iDistanceNearestTown = TTH_GLOBAL.getDistance4Hero2NearestMayorTown(strHero);
+					local bIsExpedition = TTH_PATH.Switch[TTH_MANAGE.getHeroExpeditionStatus(strHero)];
+					local iExpeditionDuration = TTH_MANAGE.getHeroExpeditionDuration(strHero);
+					local iExpeditionCost = TTH_MANAGE.getHeroExpeditionCost(strHero);
+					local strPath = {
+						TTH_TABLE.KingManagePath["Widget"]["MayorExpedition"]["Text"]
+						;iDistanceNearestTown=iDistanceNearestTown
+						,bIsExpedition=bIsExpedition
+						,iExpeditionDuration=iExpeditionDuration
+						,iExpeditionCost=iExpeditionCost
+					};
+					return strPath;
+				end;
+
+			-- 内政英雄加成（控件）
+				-- <color=8B4513>================英雄内政================
+				-- <body_bright>管辖城镇总评分: <color=yellow><value=iTotalTownValue>
+				-- <body_bright>每日获得政绩: <color=yellow><value=iReportPoint8Day>
+				-- <body_bright>每天获得经验: <color=yellow><value=iExp8Day>
+				-- <body_bright>额外攻击: <color=yellow><value=iBuffAttack>
+				-- <body_bright>额外防御: <color=yellow><value=iBuffDefence>
+				-- <body_bright>额外咒力: <color=yellow><value=iBuffSpellPower>
+				-- <body_bright>额外知识: <color=yellow><value=iBuffKnowledge>
+				-- <body_bright>额外士气: <color=yellow><value=iBuffMorale>
+				-- <body_bright>额外幸运: <color=yellow><value=iBuffLuck>
+				function TTH_GLOBAL.geneWidgetMayorHero(iPlayer, strHero)
+					local iTotalTownValue = TTH_MANAGE.totalTownValue4Mayor(strHero);
+					local iReportPoint8Day = TTH_MANAGE.calcDailyRecordPoint(strHero);
+					local iExp8Day = TTH_MANAGE.calcDailyExp4Mayor(strHero);
+					local objBuff = TTH_MANAGE.getMayorBonus(strHero);
+					local strPath = {
+						TTH_TABLE.KingManagePath["Widget"]["MayorHero"]["Text"]
+						;iTotalTownValue=iTotalTownValue
+						,iReportPoint8Day=iReportPoint8Day
+						,iExp8Day=iExp8Day
+						,iBuffAttack=objBuff[STAT_ATTACK]
+						,iBuffDefence=objBuff[STAT_DEFENCE]
+						,iBuffSpellPower=objBuff[STAT_SPELL_POWER]
+						,iBuffKnowledge=objBuff[STAT_KNOWLEDGE]
+						,iBuffMorale=objBuff[STAT_LUCK]
+						,iBuffLuck=objBuff[STAT_MORALE]
+					};
+					return strPath;
+				end;
+
+			-- 内政城镇加成（控件）
+				-- <color=8B4513>================城镇内政================
+				-- <body_bright>1级生物周产增加: <color=yellow><value=iBuffTier1>
+				-- <body_bright>2级生物周产增加: <color=yellow><value=iBuffTier2>
+				-- <body_bright>3级生物周产增加: <color=yellow><value=iBuffTier3>
+				-- <body_bright>4级生物周产增加: <color=yellow><value=iBuffTier4>
+				-- <body_bright>5级生物周产增加: <color=yellow><value=iBuffTier5>
+				-- <body_bright>6级生物周产增加: <color=yellow><value=iBuffTier6>
+				-- <body_bright>7级生物周产增加: <color=yellow><value=iBuffTier7>
+				function TTH_GLOBAL.geneWidgetMayorTown(iPlayer, strHero)
+					local strSingleTown = "";
+					for strTown, iTownValue in TTH_VARI.arrMayor[strHero]["Town"] do
+						strSingleTown = strTown;
+						break;
+					end
+					local arrCreatureGrowth8Tier = TTH_MANAGE.calcTownDwellingCreature(strSingleTown);
+					local strPath = {
+						TTH_TABLE.KingManagePath["Widget"]["MayorTown"]["Text"]
+						;iBuffTier1=arrCreatureGrowth8Tier[1]
+						,iBuffTier2=arrCreatureGrowth8Tier[2]
+						,iBuffTier3=arrCreatureGrowth8Tier[3]
+						,iBuffTier4=arrCreatureGrowth8Tier[4]
+						,iBuffTier5=arrCreatureGrowth8Tier[5]
+						,iBuffTier6=arrCreatureGrowth8Tier[6]
+						,iBuffTier7=arrCreatureGrowth8Tier[7]
+					};
+					return strPath;
+				end;
+
+			-- 获取玩家的领土面积
+				function TTH_GLOBAL.getPlayerTerritoryMeasure(iPlayer)
+					local iTerritoryRadius = TTH_MANAGE.getTerritoryRadius(iPlayer);
+					local iLenTown = length(TTH_GLOBAL.listTown8Player(iPlayer));
+					local iTerritoryMeasure = TTH_COMMON.round(iLenTown * TTH_FINAL.PI * iTerritoryRadius * iTerritoryRadius);
+					return iTerritoryMeasure;
+				end;
+
+			-- 获取地图面积
+				function TTH_GLOBAL.getMapMeasure()
+					local iMapSize = GetTerrainSize();
+					local iMapMeasure = iMapSize * iMapSize;
+					return iMapMeasure;
+				end;
+
+			-- 获取玩家所占领的前哨
+				function TTH_GLOBAL.listDwelling8Player(iPlayer, iTier)
+					local arrDwelling = {};
+					for iRace = TOWN_HEAVEN, TOWN_STRONGHOLD do
+						local arrDwelling8Race = GetObjectNamesByType(TTH_TABLE.DwellingOnAdvMap[iTier][iRace]);
+						for i, strDwelling in arrDwelling8Race do
+							if GetObjectOwner(strDwelling) == iPlayer then
+								TTH_COMMON.push(arrDwelling, strDwelling);
+							end;
+						end
+					end;
+					return arrDwelling;
+				end;
+
+			-- 玩家信息（控件）
+				-- <color=8B4513>================玩家信息================
+				-- <body_bright>玩家领土总面积: <color=yellow><value=iTerritoryMeasure>
+				-- <body_bright>占地图面积的 <color=yellow><value=fTerritoryPercent> %
+				-- <body_bright>玩家城镇: <color=yellow><value=iCountPlayerTown> <body_bright>座
+				-- <body_bright>其中 <color=yellow><value=strRaceName> <body_bright>城镇: <color=yellow><value=iCountRaceTown> <body_bright>座
+				-- <body_bright>已设立传送点的城镇: <color=yellow><value=iCountTeleportTown> <body_bright>座
+				-- <body_bright>已有内政官管辖的城镇: <color=yellow><value=iCountMayorTown> <body_bright>座
+				-- <body_bright>1级前哨: <color=yellow><value=iCountDwelling1> <body_bright>座
+				-- <body_bright>2级前哨: <color=yellow><value=iCountDwelling2> <body_bright>座
+				-- <body_bright>3级前哨: <color=yellow><value=iCountDwelling3> <body_bright>座
+				-- <body_bright>军事前哨: <color=yellow><value=iCountDwelling4> <body_bright>座
+				-- <body_bright>玩家每周额外内政操作次数: <color=yellow><value=iExtraOperTimes> <body_bright>次
+				-- <body_bright>玩家额外内政管辖城镇数: <color=yellow><value=iExtraAbilityQuota> <body_bright>座
+				-- <body_bright>玩家领地半径: <color=yellow><value=iDefaultTerritoryRadius> <body_bright>+ <color=green><value=iExtraTerritoryRadius>
+				function TTH_GLOBAL.geneWidgetPlayer(iPlayer, strHero)
+					local iTerritoryMeasure = TTH_GLOBAL.getPlayerTerritoryMeasure(iPlayer);
+					local iMapMeasure = TTH_GLOBAL.getMapMeasure();
+					local fTerritoryPercent = TTH_COMMON.round(iTerritoryMeasure / iMapMeasure * 100);
+					local iCountPlayerTown = length(TTH_GLOBAL.listTown8Player(iPlayer));
+					local iPlayerRace = TTH_GLOBAL.getPlayerRace(iPlayer);
+					local strRaceName = TTH_PATH.Race[iPlayerRace];
+					local iCountRaceTown = length(TTH_GLOBAL.listTown8Player4Race(iPlayer, iPlayerRace));
+					local iCountTeleportTown = length(TTH_MANAGE.listTeleportTown(iPlayer));
+					local iCountMayorTown = length(TTH_MANAGE.listMayorTown8Player(iPlayer));
+					local iCountDwelling1 = length(TTH_GLOBAL.listDwelling8Player(iPlayer, 1));
+					local iCountDwelling2 = length(TTH_GLOBAL.listDwelling8Player(iPlayer, 2));
+					local iCountDwelling3 = length(TTH_GLOBAL.listDwelling8Player(iPlayer, 3));
+					local iCountDwelling4 = length(TTH_GLOBAL.listDwelling8Player(iPlayer, 4));
+					local iExtraOperTimes = TTH_MANAGE.getExtraOperTimes(iPlayer);
+					local iExtraAbilityQuota = TTH_MANAGE.getExtraAbilityQuota(iPlayer);
+					local iDefaultTerritoryRadius = TTH_MANAGE.getDefaultTerritoryRadius(iPlayer);
+					local iExtraTerritoryRadius = TTH_MANAGE.getExtraTerritoryRadius(iPlayer);
+					local strPath = {
+						TTH_TABLE.KingManagePath["Widget"]["Player"]["Text"]
+						;iTerritoryMeasure=iTerritoryMeasure
+						,iMapMeasure=iMapMeasure
+						,fTerritoryPercent=fTerritoryPercent
+						,iCountPlayerTown=iCountPlayerTown
+						,iPlayerRace=iPlayerRace
+						,strRaceName=strRaceName
+						,iCountRaceTown=iCountRaceTown
+						,iCountTeleportTown=iCountTeleportTown
+						,iCountMayorTown=iCountMayorTown
+						,iCountDwelling1=iCountDwelling1
+						,iCountDwelling2=iCountDwelling2
+						,iCountDwelling3=iCountDwelling3
+						,iCountDwelling4=iCountDwelling4
+						,iExtraOperTimes=iExtraOperTimes
+						,iExtraAbilityQuota=iExtraAbilityQuota
+						,iDefaultTerritoryRadius=iDefaultTerritoryRadius
+						,iExtraTerritoryRadius=iExtraTerritoryRadius
+					};
+					return strPath;
+				end;
+
+			-- 任务信息（控件）
+				-- <color=8B4513>================任务信息================
+				-- <body_bright>任务奖励: <color=yellow><value=strTextReward>
+				-- <value=strPathTemplate>
+				---- <value=iCurrentValue>
+				---- <value=iTargetValue>
+				---- <value=strTargetText>
+				function TTH_GLOBAL.geneWidgetMissionInfo(iPlayer, strHero)
+					local strPath = "";
+
+					if TTH_VARI.MermaidsMission8Player[iPlayer]["HasAccept"] == TTH_ENUM.Yes then -- 玩家已经接受任务
+						if TTH_VARI.MermaidsMission8Player[iPlayer]["Hero"] == strHero then -- 当前英雄接受的任务
+							local iRewardIndex = TTH_VARI.MermaidsMission8Player[iPlayer]["RewardIndex"];
+							local objReward = TTH_TABLE.MermaidsReward[iRewardIndex];
+							local strTextReward = "";
+							if objReward["Type"] == TTH_ENUM.Artifact then
+								strTextReward = TTH_TABLE.Artifact[objReward["Id"]]["Text"];
+							end;
+							if TTH_VISIT.hasCompleteVisitMermaids(iPlayer, strHero) == TTH_ENUM.Yes then
+								strPath = {
+									TTH_PATH.Visit["Mermaids"]["HasComplete"]
+									;strTextReward=strTextReward
+								};
+							else
+								local objMission = TTH_VARI.MermaidsMission8Player[iPlayer]["Mission"];
+								local iTargetId = objMission["TargetId"];
+								local strTargetText = "";
+								if objMission["Type"] == TTH_ENUM.MermaidsKillCreature8Race then
+									strTargetText = TTH_PATH.Race[iTargetId];
+								elseif objMission["Type"] == TTH_ENUM.MermaidsKillCreature8Special then
+									local iCreatureId8Tier7 = TTH_TABLE.Creature8RaceAndLevel[iTargetId][7][1];
+									strTargetText = TTH_TABLE_NCF_CREATURES[iCreatureId8Tier7]["NAME"];
+								elseif objMission["Type"] == TTH_ENUM.MermaidsKillCreature8Tier then
+									strTargetText = TTH_COMMON.psp(iTargetId);
+								elseif objMission["Type"] == TTH_ENUM.MermaidsLevelUp then
+								elseif objMission["Type"] == TTH_ENUM.MermaidsConstructTown then
+								elseif objMission["Type"] == TTH_ENUM.MermaidsCaptureTown then
+								elseif objMission["Type"] == TTH_ENUM.MermaidsCaptureDwelling then
+								elseif objMission["Type"] == TTH_ENUM.MermaidsCaptureMine then
+								end;
+								local strPathTemplate = TTH_TABLE.MermaidsMission[objMission["Type"]]["TemplateAccept"];
+								strPath = {
+									TTH_PATH.Visit["Mermaids"]["MissionInfo"]
+									;strTextReward=strTextReward
+									,strPathTemplate={
+										strPathTemplate
+										;iCurrentValue=objMission["CurrentValue"]
+										,iTargetValue=objMission["TargetValue"]
+										,strTargetText=strTargetText
+									}
+								};
+							end;
+						end;
+					end;
+					return strPath;
+				end;
+
+	-- visit 访问建筑事件
+		TTH_VISIT = {}
+
+		-- 英雄访问建筑，不执行建筑脚本
+			function TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback)
+				SetTrigger(OBJECT_TOUCH_TRIGGER, strBuildingName, nil);
+				SetObjectEnabled(strBuildingName, not nil);
+				MakeHeroInteractWithObject(strHero, strBuildingName);
+				SetTrigger(OBJECT_TOUCH_TRIGGER, strBuildingName, funcCallback);
+				SetObjectEnabled(strBuildingName, nil);
+			end;
+
+		-- 可占领的经济建筑
+			TTH_VARI.economicBuildingOwner = {
+				["BUILDING_MYSTICAL_GARDEN"] = {}
+				, ["BUILDING_WINDMILL"] = {}
+				, ["BUILDING_WATER_WHEEL"] = {}
+				, ["BUILDING_WARMACHINE_FACTORY"] = {}
+			};
+
+			-- 访问
+				function TTH_VISIT.visitEconomicBuilding(strHero, strBuildingName, strBuildingType, funcCallback)
+					local iPlayer = GetObjectOwner(strHero);
+					if TTH_GLOBAL.isAi(iPlayer) == TTH_ENUM.Yes then
+						TTH_VISIT.captureEconomicBuilding4Ai(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback);
+					else
+						TTH_VISIT.confirmEconomicBuilding4Human(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback);
+					end;
+				end;
+
+			-- 执行AI占领
+				function TTH_VISIT.captureEconomicBuilding4Ai(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback)
+					if TTH_VARI.economicBuildingOwner[strBuildingType][strBuildingName] == iPlayer then
+						TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
+					else
+						TTH_VARI.economicBuildingOwner[strBuildingType][strBuildingName] = iPlayer;
+						OverrideObjectTooltipNameAndDescription(strBuildingName, TTH_PATH.Visit["Player"][iPlayer], TTH_PATH.Visit["Economic"][strBuildingType]["Desc"]);
+						MarkObjectAsVisited(strBuildingName, strHero);
+						TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
+					end;
+				end;
+
+			-- 询问人类是否占领
+				function TTH_VISIT.confirmEconomicBuilding4Human(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback)
+					if TTH_VARI.economicBuildingOwner[strBuildingType][strBuildingName] == iPlayer then
+						ShowFlyingSign(TTH_PATH.Visit["Economic"]["HasCapture"], strHero, iPlayer, 5);
+						return nil;
+					end;
+					QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
+						, TTH_PATH.Visit["Economic"][strBuildingType]["Confirm"]
+						, "TTH_VISIT.captureEconomicBuilding4Human("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strBuildingName)..","..TTH_COMMON.psp(strBuildingType)..","..TTH_COMMON.psp(funcCallback)..")"
+						, "TTH_VISIT.visitBuildingWithoutScript("..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strBuildingName)..","..TTH_COMMON.psp(funcCallback)..")"
+					);
+				end;
+
+			-- 执行人类占领
+				function TTH_VISIT.captureEconomicBuilding4Human(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback)
+					if GetPlayerResource(iPlayer, GOLD) < 1000 then
+						ShowFlyingSign(TTH_PATH.Visit["Economic"]["NotEnoughRes"], strHero, iPlayer, 5);
+						TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
+						return nil;
+					end;
+					TTH_GLOBAL.reduceResource(iPlayer, GOLD, 1000);
+					TTH_VARI.economicBuildingOwner[strBuildingType][strBuildingName] = iPlayer;
+					OverrideObjectTooltipNameAndDescription(strBuildingName, TTH_PATH.Visit["Player"][iPlayer], TTH_PATH.Visit["Economic"][strBuildingType]["Desc"]);
+					MarkObjectAsVisited(strBuildingName, strHero);
+					TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
+				end;
+
+			--神秘花园
+				function TTH_VISIT.visitMysticalGarden(strHero, strBuildingName)
+					local strBuildingType = "BUILDING_MYSTICAL_GARDEN";
+					TTH_VISIT.visitEconomicBuilding(strHero, strBuildingName, strBuildingType, "TTH_VISIT.visitMysticalGarden");
+				end;
+
+			--矮人地穴
+				function TTH_VISIT.visitWindmill(strHero, strBuildingName)
+					local strBuildingType = "BUILDING_WINDMILL";
+					TTH_VISIT.visitEconomicBuilding(strHero, strBuildingName, strBuildingType, "TTH_VISIT.visitWindmill");
+				end;
+
+			--风车
+				function TTH_VISIT.visitWaterWheel(strHero, strBuildingName)
+					local strBuildingType = "BUILDING_WATER_WHEEL";
+					TTH_VISIT.visitEconomicBuilding(strHero, strBuildingName, strBuildingType, "TTH_VISIT.visitWaterWheel");
+				end;
+
+			--战争机械工厂
+				function TTH_VISIT.visitWarmachineFactory(strHero, strBuildingName)
+					local strBuildingType = "BUILDING_WARMACHINE_FACTORY";
+					TTH_VISIT.visitEconomicBuilding(strHero, strBuildingName, strBuildingType, "TTH_VISIT.visitWarmachineFactory");
+				end;
+
+		-- 可占领的资源矿
+			TTH_VARI.arrMineBuilding = {};
+			TTH_TABLE.MineBuilding = {
+				["BUILDING_SAWMILL"] = {
+					["ArtifactId"] = ARTIFACT_RES_BASIC
+					, ["Resource"] = WOOD
+				}
+				, ["BUILDING_ORE_PIT"] = {
+					["ArtifactId"] = ARTIFACT_RES_BASIC
+					, ["Resource"] = ORE
+				}
+				, ["BUILDING_ALCHEMIST_LAB"] = {
+					["ArtifactId"] = ARTIFACT_RES_ADVANCED
+					, ["Resource"] = MERCURY
+				}
+				, ["BUILDING_CRYSTAL_CAVERN"] = {
+					["ArtifactId"] = ARTIFACT_RES_ADVANCED
+					, ["Resource"] = CRYSTAL
+				}
+				, ["BUILDING_SULFUR_DUNE"] = {
+					["ArtifactId"] = ARTIFACT_RES_ADVANCED
+					, ["Resource"] = SULFUR
+				}
+				, ["BUILDING_GEM_POND"] = {
+					["ArtifactId"] = ARTIFACT_RES_ADVANCED
+					, ["Resource"] = GEM
+				}
+				, ["BUILDING_GOLD_MINE"] = {
+					["ArtifactId"] = ARTIFACT_RES_EXPERT
+					, ["Resource"] = GOLD
+				}
+			}
+
+			-- 初始化资源矿的对象
+				function TTH_GLOBAL.initMine()
+					for strMineType, objMine in TTH_TABLE.MineBuilding do
+						for i, strMineName in TTH_VARI.arrBuilding[strMineType] do
+							TTH_VARI.arrMineBuilding[strMineName] = {
+								["Type"] = strMineType
+								, ["BonusLevel"] = 0
+							};
+						end;
+					end;
+				end;
+
+			-- 每周资源矿的资源宝物加成结算
+				function TTH_GLOBAL.dealWeeklyBonusMine(iPlayer)
+					TTH_MAIN.debug("TTH_GLOBAL.dealWeeklyBonusMine", iPlayer, nil);
+
+					for strMineName, objMine in TTH_VARI.arrMineBuilding do
+						if GetObjectOwner(strMineName) == iPlayer then
+							local objMine = TTH_VARI.arrMineBuilding[strMineName];
+							if objMine["BonusLevel"] > 0 then
+								local iPosX, iPosY, iPosZ = GetObjectPosition(strMineName);
+								local iUnit = 5;
+								if objMine["Type"] == "BUILDING_SAWMILL" then
+									CreateTreasure("", 6, iUnit + random(iUnit), iPosX, iPosY, iPosZ);
+									sleep(1);
+									CreateTreasure("", 6, iUnit + random(iUnit), iPosX, iPosY, iPosZ);
+								elseif objMine["Type"] == "BUILDING_ORE_PIT" then
+									CreateTreasure("", 4, iUnit + random(iUnit), iPosX, iPosY, iPosZ);
+									sleep(1);
+									CreateTreasure("", 4, iUnit + random(iUnit), iPosX, iPosY, iPosZ);
+								elseif objMine["Type"] == "BUILDING_ALCHEMIST_LAB" then
+									CreateTreasure("", 3, iUnit + random(iUnit), iPosX, iPosY, iPosZ);
+								elseif objMine["Type"] == "BUILDING_CRYSTAL_CAVERN" then
+									CreateTreasure("", 0, iUnit + random(iUnit), iPosX, iPosY, iPosZ);
+								elseif objMine["Type"] == "BUILDING_SULFUR_DUNE" then
+									CreateTreasure("", 5, iUnit + random(iUnit), iPosX, iPosY, iPosZ);
+								elseif objMine["Type"] == "BUILDING_GEM_POND" then
+									CreateTreasure("", 1, iUnit + random(iUnit), iPosX, iPosY, iPosZ);
+								elseif objMine["Type"] == "BUILDING_GOLD_MINE" then
+									CreateTreasure("", 2, iUnit * 10 + random(iUnit * 10), iPosX, iPosY, iPosZ);
+								end;
+							end;
+						end;
+					end;
+				end;
+
+			-- 访问
+				function TTH_VISIT.visitMineBuilding(strHero, strBuildingName, strBuildingType, funcCallback)
+					local iPlayer = GetObjectOwner(strHero);
+					if TTH_GLOBAL.isAi(iPlayer) == TTH_ENUM.Yes then
+						TTH_VISIT.captureMineBuilding4Ai(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback);
+					else
+						TTH_VISIT.captureMineBuilding4Human(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback);
+					end;
+				end;
+
+			-- 执行AI占领
+				function TTH_VISIT.captureMineBuilding4Ai(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback)
+					TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
+				end;
+
+			-- 执行人类占领
+				function TTH_VISIT.captureMineBuilding4Human(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback)
+					if GetObjectOwner(strBuildingName) == iPlayer then
+						TTH_VISIT.checkPreMineBuilding4Human(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback);
+					else
+						TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
+					end;
+				end;
+
+			-- 是否携带对应资源宝物
+				function TTH_VISIT.checkPreMineBuilding4Human(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback)
+					local iArtifactId = TTH_TABLE.MineBuilding[strBuildingType]["ArtifactId"];
+					if HasArtefact(strHero, iArtifactId, 0) ~= nil then
+						TTH_VISIT.confirmMineBuilding4Human(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback);
+					else
+						TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
+					end;
+				end;
+
+			-- 是否使用对应资源宝物
+				function TTH_VISIT.confirmMineBuilding4Human(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback)
+					TTH_COMMON.initNavi(TTH_PATH.Visit["Mine"]["Text"]);
+
+					local strBuildingText = TTH_PATH.Mine[strBuildingType];
+					local iArtifactId = TTH_TABLE.MineBuilding[strBuildingType]["ArtifactId"];
+					local strArtifactName = TTH_TABLE.Artifact[iArtifactId]["Text"];
+					local objBuilding = TTH_VARI.arrMineBuilding[strBuildingName];
+					local iBonusLevel = objBuilding["BonusLevel"];
+					local strPathMain={
+						TTH_PATH.Visit["Mine"]["Confirm"]
+						;strBuildingText=strBuildingText
+						,strArtifactName=strArtifactName
+						,iBonusLevel=iBonusLevel
+					};
+					local strCallbackOk = "TTH_VISIT.implMineBuilding4Human("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strBuildingName)..","..TTH_COMMON.psp(strBuildingType)..","..TTH_COMMON.psp(funcCallback)..")";
+					local strCallbackCancel = "TTH_VISIT.visitBuildingWithoutScript("..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strBuildingName)..","..TTH_COMMON.psp(funcCallback)..")";
+					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+				end;
+
+			-- 使用对应资源宝物
+				function TTH_VISIT.implMineBuilding4Human(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback)
+					RemoveArtefact(strHero, TTH_TABLE.MineBuilding[strBuildingType]["ArtifactId"]);
+					TTH_VARI.arrMineBuilding[strBuildingName]["BonusLevel"] = TTH_VARI.arrMineBuilding[strBuildingName]["BonusLevel"] + 1;
+					ShowFlyingSign(TTH_PATH.Visit["Mine"]["Success"], strHero, iPlayer, 5);
+					TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
+				end;
+
+				-- 木矿
+					function TTH_VISIT.visitWood(strHero, strBuildingName)
+						local strBuildingType = "BUILDING_SAWMILL";
+						TTH_VISIT.visitMineBuilding(strHero, strBuildingName, strBuildingType, "TTH_VISIT.visitWood");
+					end;
+				-- 石矿
+					function TTH_VISIT.visitOre(strHero, strBuildingName)
+						local strBuildingType = "BUILDING_ORE_PIT";
+						TTH_VISIT.visitMineBuilding(strHero, strBuildingName, strBuildingType, "TTH_VISIT.visitOre");
+					end;
+				-- 水银矿
+					function TTH_VISIT.visitMercury(strHero, strBuildingName)
+						local strBuildingType = "BUILDING_ALCHEMIST_LAB";
+						TTH_VISIT.visitMineBuilding(strHero, strBuildingName, strBuildingType, "TTH_VISIT.visitMercury");
+					end;
+				-- 水晶矿
+					function TTH_VISIT.visitCrystal(strHero, strBuildingName)
+						local strBuildingType = "BUILDING_CRYSTAL_CAVERN";
+						TTH_VISIT.visitMineBuilding(strHero, strBuildingName, strBuildingType, "TTH_VISIT.visitCrystal");
+					end;
+				-- 硫磺矿
+					function TTH_VISIT.visitSulfur(strHero, strBuildingName)
+						local strBuildingType = "BUILDING_SULFUR_DUNE";
+						TTH_VISIT.visitMineBuilding(strHero, strBuildingName, strBuildingType, "TTH_VISIT.visitSulfur");
+					end;
+				-- 宝石矿
+					function TTH_VISIT.visitGem(strHero, strBuildingName)
+						local strBuildingType = "BUILDING_GEM_POND";
+						TTH_VISIT.visitMineBuilding(strHero, strBuildingName, strBuildingType, "TTH_VISIT.visitGem");
+					end;
+				-- 金矿
+					function TTH_VISIT.visitGold(strHero, strBuildingName)
+						local strBuildingType = "BUILDING_GOLD_MINE";
+						TTH_VISIT.visitMineBuilding(strHero, strBuildingName, strBuildingType, "TTH_VISIT.visitGold");
+					end;
+
+		-- 大地图上的兵种前哨建筑
+			-- 访问
+				function TTH_VISIT.visitDwellingOnAdvMap(strHero, strBuildingName)
+					TTH_COMMON.initNavi(TTH_PATH.Visit["DwellingOnAdvMap"]["Text"]);
+
+					local iPlayer = GetObjectOwner(strHero);
+					local iHeroRace = TTH_GLOBAL.getRace8Hero(strHero);
+					local funcCallback = "TTH_VISIT.visitDwellingOnAdvMap";
+					if TTH_GLOBAL.isAi(iPlayer) == TTH_ENUM.Yes then
+						TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
+					else
+						for iTier = 1, 4 do
+							for jDwellingRace = TOWN_HEAVEN, TOWN_STRONGHOLD do
+								local arrDwelling = GetObjectNamesByType(TTH_TABLE.DwellingOnAdvMap[iTier][jDwellingRace]);
+								for i, strDwelling in arrDwelling do
+									if strBuildingName == strDwelling
+										and GetObjectOwner(strBuildingName) == iPlayer then
+										if jDwellingRace ~= iHeroRace then
+											TTH_VISIT.confirmDwellingOnAdvMap4Human(iPlayer, strHero, strBuildingName, iTier, iHeroRace, funcCallback);
+											return nil;
+										else
+											if strHero == "Wulfstan" then
+												TTH_TALENT.visitDwellingWulfstan(iPlayer, strHero, strBuildingName, funcCallback);
+												return nil;
+											end;
+											if strHero == "Sylsai" then
+												TTH_TALENT.visitDwellingSylsai(iPlayer, strHero, strBuildingName, funcCallback);
+												return nil;
+											end;
+										end;
+									end;
+								end;
+							end;
+						end;
+						TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
+					end;
+				end;
+
+			-- 询问人类是否转化
+				function TTH_VISIT.confirmDwellingOnAdvMap4Human(iPlayer, strHero, strBuildingName, iTier, iHeroRace, funcCallback)
+					QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
+						, {
+				      TTH_PATH.Visit["DwellingOnAdvMap"]["Confirm"]
+				      ;iCountWood=TTH_TABLE.ConvertDwellingRes[iTier][WOOD]
+				      ,iCountOre=TTH_TABLE.ConvertDwellingRes[iTier][ORE]
+				      ,iCountGold=TTH_TABLE.ConvertDwellingRes[iTier][GOLD]
+				      ,strHeroRaceName=TTH_PATH.Race[iHeroRace]
+				      ,iTier=iTier
+				    }
+						, "TTH_VISIT.convertDwellingOnAdvMap4Human("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strBuildingName)..","..iTier..","..iHeroRace..","..TTH_COMMON.psp(funcCallback)..")"
+						, "TTH_VISIT.visitBuildingWithoutScript("..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strBuildingName)..","..TTH_COMMON.psp(funcCallback)..")"
+					);
+				end;
+
+			-- 执行人类转化
+				function TTH_VISIT.convertDwellingOnAdvMap4Human(iPlayer, strHero, strBuildingName, iTier, iHeroRace, funcCallback)
+					if GetPlayerResource(iPlayer, WOOD) < TTH_TABLE.ConvertDwellingRes[iTier][WOOD]
+						or GetPlayerResource(iPlayer, ORE) < TTH_TABLE.ConvertDwellingRes[iTier][ORE]
+						or GetPlayerResource(iPlayer, GOLD) < TTH_TABLE.ConvertDwellingRes[iTier][GOLD] then
+						ShowFlyingSign(TTH_PATH.Visit["DwellingOnAdvMap"]["NotEnoughRes"], strHero, iPlayer, 5);
+						TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
+						return nil;
+					end;
+					local iPosX, iPosY, iPosZ = GetObjectPosition(strBuildingName);
+					TTH_GLOBAL.reduceResource(iPlayer, WOOD, TTH_TABLE.ConvertDwellingRes[iTier][WOOD]);
+					TTH_GLOBAL.reduceResource(iPlayer, ORE, TTH_TABLE.ConvertDwellingRes[iTier][ORE]);
+					TTH_GLOBAL.reduceResource(iPlayer, GOLD, TTH_TABLE.ConvertDwellingRes[iTier][GOLD]);
+					Play3DSoundForPlayers(GetPlayerFilter(iPlayer), H55_SndCrash, iPosX, iPosY, iPosZ);
+					ReplaceDwelling(strBuildingName, iHeroRace);
+				end;
+
+		-- 记忆导师
+			function TTH_VISIT.visitMemoryMentor(strHero, strBuildingName)
+				TTH_GLOBAL.setMemoryMentorVisitor(strHero);
+				TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, "TTH_VISIT.visitMemoryMentor");
+			end;
+			function TTH_GLOBAL.setMemoryMentorVisitor(strHero)
+				TTH_VARI.visitedMemoryMentorFlag = TTH_ENUM.Yes;
+				TTH_VARI.visitedMemoryMentorHero = strHero;
+			end;
+			function TTH_GLOBAL.resetMemoryMentorVisitor()
+				TTH_VARI.visitedMemoryMentorFlag = TTH_ENUM.No;
+				TTH_VARI.visitedMemoryMentorHero = "";
+			end;
+
+		-- 先知小屋
+			TTH_ENUM.MermaidsKillCreature8Race = 0;
+			TTH_ENUM.MermaidsKillCreature8Special = 1;
+			TTH_ENUM.MermaidsKillCreature8Tier = 2;
+			TTH_ENUM.MermaidsLevelUp = 3;
+			TTH_ENUM.MermaidsConstructTown = 4;
+			TTH_ENUM.MermaidsCaptureTown = 5;
+			TTH_ENUM.MermaidsCaptureDwelling = 6;
+			TTH_ENUM.MermaidsCaptureMine = 7;
+			TTH_TABLE.MermaidsReward = {
+				[0] = {
+					["Type"] = TTH_ENUM.Artifact
+					, ["Id"] = ARTIFACT_ORB_AIR
+				}
+				, [1] = {
+					["Type"] = TTH_ENUM.Artifact
+					, ["Id"] = ARTIFACT_ORB_EARTH
+				}
+				, [2] = {
+					["Type"] = TTH_ENUM.Artifact
+					, ["Id"] = ARTIFACT_ORB_FIRE
+				}
+				, [3] = {
+					["Type"] = TTH_ENUM.Artifact
+					, ["Id"] = ARTIFACT_ORB_WATER
+				}
+			};
+			TTH_TABLE.MermaidsMission = {
+				[0] = {
+					["Type"] = TTH_ENUM.MermaidsKillCreature8Race
+					, ["TargetValue"] = 2000
+					, ["TemplateConfirm"] = TTH_PATH.Visit["Mermaids"]["MissionType"]["KillCreature8RaceConfirm"]
+					, ["TemplateAccept"] = TTH_PATH.Visit["Mermaids"]["MissionType"]["KillCreature8RaceAccept"]
+				}
+				, [1] = {
+					["Type"] = TTH_ENUM.MermaidsKillCreature8Special
+					, ["TargetValue"] = 500
+					, ["TemplateConfirm"] = TTH_PATH.Visit["Mermaids"]["MissionType"]["KillCreature8SpecialConfirm"]
+					, ["TemplateAccept"] = TTH_PATH.Visit["Mermaids"]["MissionType"]["KillCreature8SpecialAccept"]
+				}
+				, [2] = {
+					["Type"] = TTH_ENUM.MermaidsKillCreature8Tier
+					, ["TargetValue"] = 500
+					, ["TemplateConfirm"] = TTH_PATH.Visit["Mermaids"]["MissionType"]["KillCreature8TierConfirm"]
+					, ["TemplateAccept"] = TTH_PATH.Visit["Mermaids"]["MissionType"]["KillCreature8TierAccept"]
+				}
+				, [3] = {
+					["Type"] = TTH_ENUM.MermaidsLevelUp
+					, ["TargetValue"] = 10
+					, ["TemplateConfirm"] = TTH_PATH.Visit["Mermaids"]["MissionType"]["LevelUpConfirm"]
+					, ["TemplateAccept"] = TTH_PATH.Visit["Mermaids"]["MissionType"]["LevelUpAccept"]
+				}
+				, [4] = {
+					["Type"] = TTH_ENUM.MermaidsConstructTown
+					, ["TargetValue"] = 20
+					, ["TemplateConfirm"] = TTH_PATH.Visit["Mermaids"]["MissionType"]["ConstructTownConfirm"]
+					, ["TemplateAccept"] = TTH_PATH.Visit["Mermaids"]["MissionType"]["ConstructTownAccept"]
+				}
+				, [5] = {
+					["Type"] = TTH_ENUM.MermaidsCaptureTown
+					, ["TargetValue"] = 2
+					, ["TemplateConfirm"] = TTH_PATH.Visit["Mermaids"]["MissionType"]["CaptureTownConfirm"]
+					, ["TemplateAccept"] = TTH_PATH.Visit["Mermaids"]["MissionType"]["CaptureTownAccept"]
+				}
+				, [6] = {
+					["Type"] = TTH_ENUM.MermaidsCaptureDwelling
+					, ["TargetValue"] = 5
+					, ["TemplateConfirm"] = TTH_PATH.Visit["Mermaids"]["MissionType"]["CaptureDwellingConfirm"]
+					, ["TemplateAccept"] = TTH_PATH.Visit["Mermaids"]["MissionType"]["CaptureDwellingAccept"]
+				}
+				, [7] = {
+					["Type"] = TTH_ENUM.MermaidsCaptureMine
+					, ["TargetValue"] = 10
+					, ["TemplateConfirm"] = TTH_PATH.Visit["Mermaids"]["MissionType"]["CaptureMineConfirm"]
+					, ["TemplateAccept"] = TTH_PATH.Visit["Mermaids"]["MissionType"]["CaptureMineAccept"]
+				}
+			}
+			TTH_VARI.MermaidsMission8Player = {};
+			function TTH_GLOBAL.initMermaids()
+				for i, strMermaidsName in TTH_VARI.arrBuilding["BUILDING_MERMAIDS"] do
+					for iPlayer = PLAYER_1, PLAYER_8 do
+						if TTH_GLOBAL.isAi(iPlayer) == TTH_ENUM.Yes then
+							SetAIPlayerAttractor(strMermaidsName, iPlayer, -1);
+						end;
+					end;
+				end;
+				for iPlayer = PLAYER_1, PLAYER_8 do
+					TTH_VARI.MermaidsMission8Player[iPlayer] = {
+						["LockDate"] = 0
+						, ["HasAccept"] = TTH_ENUM.No
+					};
+				end;
+			end;
+			function TTH_VISIT.combatResultMermaids(iPlayer, strHero, iCombatIndex)
+				if TTH_VARI.MermaidsMission8Player[iPlayer]["Hero"] == strHero then
+					local objMission = TTH_VARI.MermaidsMission8Player[iPlayer]["Mission"];
+					local iMissionType = objMission["Type"];
+					if iMissionType == TTH_ENUM.MermaidsKillCreature8Race
+						or iMissionType == TTH_ENUM.MermaidsKillCreature8Special
+						or iMissionType == TTH_ENUM.MermaidsKillCreature8Tier then
+						local iTargetId = objMission["TargetId"];
+						local iTargetValue = objMission["TargetValue"];
+						local iCurrentValue = objMission["CurrentValue"];
+						local iCountStacksLoser = GetSavedCombatArmyCreaturesCount(iCombatIndex, 0);
+						local iCountKillCreature = 0;
+						for i = 0, iCountStacksLoser - 1 do
+						  local iCreatureId, iCountCreature, iCountCreatureDeath = GetSavedCombatArmyCreatureInfo(iCombatIndex, 0, i);
+						  if iMissionType == TTH_ENUM.MermaidsKillCreature8Race then
+						  	for i = 1, 7 do
+						  		for j = 1, 3 do
+								  	if iCreatureId == TTH_TABLE.Creature8RaceAndLevel[iTargetId][i][j] then
+								  		iCountKillCreature = iCountKillCreature + iCountCreature;
+								  	end;
+						  		end;
+						  	end;
+						  elseif iMissionType == TTH_ENUM.MermaidsKillCreature8Special then
+						  	for i = 1, 3 do
+							  	if iCreatureId == TTH_TABLE.Creature8RaceAndLevel[iTargetId][7][i] then
+							  		iCountKillCreature = iCountKillCreature + iCountCreature;
+							  	end;
+						  	end;
+						  elseif iMissionType == TTH_ENUM.MermaidsKillCreature8Tier then
+						  	if TTH_TABLE_NCF_CREATURES[iCreatureId]["TIER"] == iTargetId then
+						  		iCountKillCreature = iCountKillCreature + iCountCreature;
+						  	end;
+						  end;
+						end;
+						TTH_VARI.MermaidsMission8Player[iPlayer]["Mission"]["CurrentValue"] = TTH_VARI.MermaidsMission8Player[iPlayer]["Mission"]["CurrentValue"] + iCountKillCreature;
+					end;
+				end;
+			end;
+			function TTH_VISIT.visitMermaids(strHero, strBuildingName)
+				TTH_COMMON.nextNavi(TTH_PATH.Visit["Mermaids"]["Text"]);
+
+				MarkObjectAsVisited(strBuildingName, strHero);
+				local iPlayer = GetObjectOwner(strHero);
+				if TTH_GLOBAL.isAi(iPlayer) == TTH_ENUM.Yes then
+				else
+					TTH_VISIT.checkPreVisitMermaids4LockDate(iPlayer, strHero, strBuildingName);
+				end;
+			end;
+			function TTH_VISIT.checkPreVisitMermaids4LockDate(iPlayer, strHero, strBuildingName)
+				if TTH_VARI.MermaidsMission8Player[iPlayer]["LockDate"] > TTH_VARI.day then
+					local strText = TTH_PATH.Visit["Mermaids"]["LockDate"];
+					TTH_GLOBAL.sign(strHero, strText);
+					return nil;
+				end;
+
+				TTH_VISIT.checkPreVisitMermaids(iPlayer, strHero, strBuildingName);
+			end;
+			function TTH_VISIT.checkPreVisitMermaids(iPlayer, strHero, strBuildingName)
+				if TTH_VARI.MermaidsMission8Player[iPlayer]["HasAccept"] == TTH_ENUM.Yes then -- 玩家已经接受任务
+					if TTH_VARI.MermaidsMission8Player[iPlayer]["Hero"] == strHero then -- 当前英雄接受的任务
+						if TTH_VISIT.hasCompleteVisitMermaids(iPlayer, strHero) == TTH_ENUM.Yes then -- 任务已完成
+							-- 交付奖励
+								TTH_VISIT.implVisitMermaids4Reward(iPlayer, strHero, strBuildingName);
+						else -- 任务未完成
+							-- 询问是否继续任务
+								TTH_VISIT.confirmVisitMermaids4GoOn(iPlayer, strHero, strBuildingName);
+						end;
+					else -- 其它英雄接受的任务
+						-- 提示
+							local strText = TTH_PATH.Visit["Mermaids"]["OtherHeroHasAccept"];
+							TTH_GLOBAL.sign(strHero, strText);
+					end;
+				else -- 玩家没有接受任务
+					-- 询问是否接受任务
+						TTH_VISIT.checkPreVisitMermaids4VisitedToday(iPlayer, strHero, strBuildingName);
+				end;
+			end;
+			-- 查验是否已完成
+				function TTH_VISIT.hasCompleteVisitMermaids(iPlayer, strHero)
+					local bHasComplete = TTH_ENUM.No;
+					local iTargetId = TTH_VARI.MermaidsMission8Player[iPlayer]["Mission"]["TargetId"];
+					local iMissionType = TTH_VARI.MermaidsMission8Player[iPlayer]["Mission"]["Type"];
+					if iMissionType == TTH_ENUM.MermaidsKillCreature8Race then
+					elseif iMissionType == TTH_ENUM.MermaidsKillCreature8Special then
+					elseif iMissionType == TTH_ENUM.MermaidsKillCreature8Tier then
+					elseif iMissionType == TTH_ENUM.MermaidsLevelUp then
+						TTH_VARI.MermaidsMission8Player[iPlayer]["Mission"]["CurrentValue"] = GetHeroLevel(strHero);
+					elseif iMissionType == TTH_ENUM.MermaidsConstructTown then
+	      		local iTownLevel = 0;
+	      		for i, strTown in TTH_VARI.arrTown do
+	      			if GetObjectOwner(strTown) == iPlayer then
+			      		local objTown = TTH_MANAGE.analysisTownBuildLevel(strTown);
+			      		local iTownBuildingTotalLevel = TTH_MANAGE.calcTownBuildingTotalLevel(objTown);
+			      		iTownLevel = iTownLevel + iTownBuildingTotalLevel;
+			      	end;
+	      		end;
+	      		TTH_VARI.MermaidsMission8Player[iPlayer]["Mission"]["CurrentValue"] = iTownLevel;
+					elseif iMissionType == TTH_ENUM.MermaidsCaptureTown then
+	      		TTH_VARI.MermaidsMission8Player[iPlayer]["Mission"]["CurrentValue"] = TTH_GLOBAL.countTown8Player(iPlayer);
+					elseif iMissionType == TTH_ENUM.MermaidsCaptureDwelling then
+	      		TTH_VARI.MermaidsMission8Player[iPlayer]["Mission"]["CurrentValue"] = TTH_GLOBAL.countDwelling8Player(iPlayer);
+					elseif iMissionType == TTH_ENUM.MermaidsCaptureMine then
+	      		TTH_VARI.MermaidsMission8Player[iPlayer]["Mission"]["CurrentValue"] = TTH_GLOBAL.countMine8Player(iPlayer);
+					end;
+
+					local objMission = TTH_VARI.MermaidsMission8Player[iPlayer]["Mission"];
+					if objMission["CurrentValue"] >= objMission["TargetValue"] then
+						bHasComplete = TTH_ENUM.Yes;
+					end;
+					return bHasComplete;
+				end;
+			-- 交付奖励
+				function TTH_VISIT.implVisitMermaids4Reward(iPlayer, strHero, strBuildingName)
+					local iRewardIndex = TTH_VARI.MermaidsMission8Player[iPlayer]["RewardIndex"];
+					local objReward = TTH_TABLE.MermaidsReward[iRewardIndex];
+					local strTextReward = "";
+					if objReward["Type"] == TTH_ENUM.Artifact then
+						strTextReward = TTH_TABLE.Artifact[objReward["Id"]]["Text"];
+						GiveArtefact(strHero, objReward["Id"]);
+					end;
+					TTH_VARI.MermaidsMission8Player[iPlayer] = {
+						["LockDate"] = TTH_VARI.day + 7
+						, ["HasAccept"] = TTH_ENUM.No
+					};
+					local strPathMain = {
+						TTH_PATH.Visit["Mermaids"]["Reward"]
+						;strTextReward=strTextReward
+					};
+					TTH_GLOBAL.sign(strHero, strPathMain);
+				end;
+			-- 询问是否继续任务
+				function TTH_VISIT.confirmVisitMermaids4GoOn(iPlayer, strHero, strBuildingName)
+					local strWidgetMissionInfo = TTH_GLOBAL.geneWidgetMissionInfo(iPlayer, strHero);
+					local strPathMain = {
+						TTH_PATH.Visit["Mermaids"]["ConfirmGoOn"]
+						;strWidgetMissionInfo=strWidgetMissionInfo
+					};
+					local strCallbackOk = "TTH_COMMON.cancelOption()";
+					local strCallbackCancel = "TTH_VISIT.giveupVisitMermaids("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strBuildingName)..")";
+					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+				end;
+				function TTH_VISIT.giveupVisitMermaids(iPlayer, strHero, strBuildingName)
+					TTH_GLOBAL.reduceResource(iPlayer, GOLD, TTH_FINAL.MERMAIDS_FINE);
+					TTH_VARI.MermaidsMission8Player[iPlayer] = {
+						["LockDate"] = TTH_VARI.day + 7
+						, ["HasAccept"] = TTH_ENUM.No
+					};
+					local strText = TTH_PATH.Visit["Mermaids"]["SuccessGiveup"];
+					TTH_GLOBAL.sign(strHero, strText);
+				end;
+			-- 询问是否接受任务
+				function TTH_VISIT.checkPreVisitMermaids4VisitedToday(iPlayer, strHero, strBuildingName)
+					if TTH_VARI.MermaidsMission8Player[iPlayer]["VisitedToday"] == TTH_VARI.day then
+						local strText = TTH_PATH.Visit["Mermaids"]["VisitedToday"];
+						TTH_GLOBAL.sign(strHero, strText);
+						return nil;
+					end;
+
+					TTH_VARI.MermaidsMission8Player[iPlayer]["VisitedToday"] = TTH_VARI.day;
+					TTH_VISIT.confirmVisitMermaids4Accept(iPlayer, strHero, strBuildingName);
+				end;
+				function TTH_VISIT.confirmVisitMermaids4Accept(iPlayer, strHero, strBuildingName)
+					local iRandomReward = random(length(TTH_TABLE.MermaidsReward));
+					local objReward = TTH_TABLE.MermaidsReward[iRandomReward];
+					local strTextReward = "";
+					if objReward["Type"] == TTH_ENUM.Artifact then
+						strTextReward = TTH_TABLE.Artifact[objReward["Id"]]["Text"];
+					end;
+					local iRandomMission = random(length(TTH_TABLE.MermaidsMission));
+					local objMission = TTH_TABLE.MermaidsMission[iRandomMission];
+					local iTargetId = -1;
+					local strTargetText = "";
+					local iTargetValue = objMission["TargetValue"];
+					if objMission["Type"] == TTH_ENUM.MermaidsKillCreature8Race then
+						iTargetId = random(8); -- TOWN_RACE 0~7
+						strTargetText = TTH_PATH.Race[iTargetId];
+					elseif objMission["Type"] == TTH_ENUM.MermaidsKillCreature8Special then
+						iTargetId = random(8); -- TOWN_RACE 0~7
+						local iCreatureId8Tier7 = TTH_TABLE.Creature8RaceAndLevel[iTargetId][7][1];
+						strTargetText = TTH_TABLE_NCF_CREATURES[iCreatureId8Tier7]["NAME"];
+					elseif objMission["Type"] == TTH_ENUM.MermaidsKillCreature8Tier then
+						iTargetId = random(4) + 4; -- Tier 1~7
+						strTargetText = TTH_COMMON.psp(iTargetId);
+						iTargetValue = iTargetValue * (7 - iTargetId + 1);
+					elseif objMission["Type"] == TTH_ENUM.MermaidsLevelUp then
+					elseif objMission["Type"] == TTH_ENUM.MermaidsConstructTown then
+					elseif objMission["Type"] == TTH_ENUM.MermaidsCaptureTown then
+					elseif objMission["Type"] == TTH_ENUM.MermaidsCaptureDwelling then
+					elseif objMission["Type"] == TTH_ENUM.MermaidsCaptureMine then
+					end;
+					local strPathTemplate = objMission["TemplateConfirm"];
+
+					local strPathMain = {
+						TTH_PATH.Visit["Mermaids"]["ConfirmAccept"]
+						;strTextReward=strTextReward
+						,strPathTemplate={
+							strPathTemplate
+							;iTargetValue=iTargetValue
+							,strTargetText=strTargetText
+						}
+					};
+					local strCallbackOk = "TTH_VISIT.implVisitMermaids4Accept("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strBuildingName)..","..iRandomReward..","..iRandomMission..","..iTargetId..")";
+					local strCallbackCancel = "TTH_COMMON.cancelOption()";
+					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+				end;
+				function TTH_VISIT.implVisitMermaids4Accept(iPlayer, strHero, strBuildingName, iRewardIndex, iMissionIndex, iTargetId)
+					local objReward = TTH_TABLE.MermaidsReward[iRewardIndex];
+					local strTextReward = "";
+					if objReward["Type"] == TTH_ENUM.Artifact then
+						strTextReward = TTH_TABLE.Artifact[objReward["Id"]]["Text"];
+					end;
+					local objMission = TTH_TABLE.MermaidsMission[iMissionIndex];
+					local strTargetText = "";
+					local iCurrentValue = 0;
+					local iDiffValue = objMission["TargetValue"];
+					if objMission["Type"] == TTH_ENUM.MermaidsKillCreature8Race then
+						strTargetText = TTH_PATH.Race[iTargetId];
+					elseif objMission["Type"] == TTH_ENUM.MermaidsKillCreature8Special then
+						local iCreatureId8Tier7 = TTH_TABLE.Creature8RaceAndLevel[iTargetId][7][1];
+						strTargetText = TTH_TABLE_NCF_CREATURES[iCreatureId8Tier7]["NAME"];
+					elseif objMission["Type"] == TTH_ENUM.MermaidsKillCreature8Tier then
+						strTargetText = TTH_COMMON.psp(iTargetId);
+						iDiffValue = iDiffValue * (7 - iTargetId + 1);
+					elseif objMission["Type"] == TTH_ENUM.MermaidsLevelUp then
+						iCurrentValue = GetHeroLevel(strHero);
+					elseif objMission["Type"] == TTH_ENUM.MermaidsConstructTown then
+	      		local iTownLevel = 0;
+	      		for i, strTown in TTH_VARI.arrTown do
+	      			if GetObjectOwner(strTown) == iPlayer then
+			      		local objTown = TTH_MANAGE.analysisTownBuildLevel(strTown);
+			      		local iTownBuildingTotalLevel = TTH_MANAGE.calcTownBuildingTotalLevel(objTown);
+			      		iTownLevel = iTownLevel + iTownBuildingTotalLevel;
+			      	end;
+	      		end;
+	      		iCurrentValue = iTownLevel;
+					elseif objMission["Type"] == TTH_ENUM.MermaidsCaptureTown then
+	      		iCurrentValue = TTH_GLOBAL.countTown8Player(iPlayer);
+					elseif objMission["Type"] == TTH_ENUM.MermaidsCaptureDwelling then
+	      		iCurrentValue = TTH_GLOBAL.countDwelling8Player(iPlayer);
+					elseif objMission["Type"] == TTH_ENUM.MermaidsCaptureMine then
+	      		iCurrentValue = TTH_GLOBAL.countMine8Player(iPlayer);
+					end;
+					local iTargetValue = iCurrentValue + iDiffValue;
+					local strPathTemplate = objMission["TemplateAccept"];
+
+					TTH_VARI.MermaidsMission8Player[iPlayer] = {
+						["LockDate"] = 0
+						, ["HasAccept"] = TTH_ENUM.Yes
+						, ["Hero"] = strHero
+						, ["BuildingName"] = strBuildingName
+						, ["RewardIndex"] = iRewardIndex
+						, ["Mission"] = {
+							["Type"] = objMission["Type"]
+							, ["TargetId"] = iTargetId
+							, ["TargetValue"] = iTargetValue
+							, ["CurrentValue"] = iCurrentValue
+						}
+					};
+					local strPathMain = {
+						TTH_PATH.Visit["Mermaids"]["SuccessAccept"]
+						;strTextReward=strTextReward
+						,strPathTemplate={
+							strPathTemplate
+							;iCurrentValue=iCurrentValue
+							,iTargetValue=iTargetValue
+							,strTargetText=strTargetText
+						}
+					};
+					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.MessageBox, strPathMain);
+				end;
+
+	-- manage
+		TTH_MANAGE = {};
+
+		TTH_VARI.arrMayor = {}; -- 内政关系表
+		TTH_VARI.arrDefeatMayor = {}; --战败表
+
+		TTH_VARI.teleport8Town = {};
+
+		-- getter/setter/is
+			-- 获取城镇的内政官 nil: 无; strHero: 有
+				function TTH_MANAGE.getMayor8Town(strTown)
+					local strMayor = nil;
+					for strHero, objMayor in TTH_VARI.arrMayor do
+						local arrTown = objMayor["Town"];
+						if arrTown ~= nil and length(arrTown) > 0 then
+							for strTownHasMayor, objTownHasMayor in arrTown do
+								if strTownHasMayor == strTown then
+									strMayor = strHero;
+									return strMayor;
+								end;
+							end;
+						end;
+					end;
+					return strMayor;
+				end;
+
+			-- 英雄是否是内政官
+				function TTH_MANAGE.isMayor(strHero)
+					local objMayor = TTH_VARI.arrMayor[strHero];
+					local arrTown = objMayor["Town"];
+					local bIsMayor = TTH_ENUM.No;
+					if arrTown ~= nil and length(arrTown) > 0 then
+						bIsMayor = TTH_ENUM.Yes;
+					end;
+					return bIsMayor;
+				end;
+
+			-- 获取内城官所辖城镇评分总和
+				function TTH_MANAGE.totalTownValue4Mayor(strMayor)
+					local objMayor = TTH_VARI.arrMayor[strMayor];
+					local arrTown = objMayor["Town"];
+					local iTotalTownValue = 0;
+					for strTown, objTown in arrTown do
+						iTotalTownValue = iTotalTownValue + objTown["Value"];
+					end;
+					iTotalTownValue = iTotalTownValue + TTH_TALENT.calcTownValueIsabell(strMayor, arrTown);
+					iTotalTownValue = iTotalTownValue + TTH_TALENT.calcTownValueElleshar(strMayor, arrTown);
+					iTotalTownValue = iTotalTownValue + TTH_TALENT.calcTownValueHero9(strMayor, arrTown);
+					return iTotalTownValue;
+				end;
+
+		-- 政绩
+			-- 获取英雄当前政绩
+				function TTH_MANAGE.getRecordPoint(strHero)
+					return TTH_VARI.arrMayor[strHero]["RecordPoint"];
+				end;
+
+			-- 计算英雄每日获得政绩
+				function TTH_MANAGE.calcDailyRecordPoint(strHero)
+					local iRecordPoint = 0;
+					if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+						local iTownValue = TTH_MANAGE.totalTownValue4Mayor(strHero);
+						iRecordPoint = iTownValue;
+					end;
+					return iRecordPoint;
+				end;
+
+			-- 给予英雄每日政绩
+				function TTH_MANAGE.giveDailyRecordPoint(iPlayer, strHero)
+					TTH_MAIN.debug("TTH_MANAGE.giveDailyRecordPoint", iPlayer, strHero);
+
+					local iRecordPoint = TTH_MANAGE.calcDailyRecordPoint(strHero);
+					if iRecordPoint ~= 0 then
+						TTH_VARI.arrMayor[strHero]["RecordPoint"] = TTH_VARI.arrMayor[strHero]["RecordPoint"] + iRecordPoint;
+					end;
+				end;
+
+			-- 英雄政绩兑换
+				function TTH_MANAGE.useRecordPoint(strHero, iRecordPoint)
+					if iRecordPoint ~= 0 then
+						TTH_VARI.arrMayor[strHero]["RecordPoint"] = TTH_VARI.arrMayor[strHero]["RecordPoint"] - iRecordPoint;
+					end;
+				end;
+
+		-- 经验
+			-- 获取内城官所辖城镇中有几座建造了献祭深坑的地狱建筑
+				function TTH_MANAGE.totalSacrificialPit4Mayor(strMayor)
+					if TTH_GLOBAL.getRace8Hero(strMayor) == TOWN_INFERNO then
+						local objMayor = TTH_VARI.arrMayor[strMayor];
+						local arrTown = objMayor["Town"];
+						local iPitCount = 0;
+						for strTown, objTown in arrTown do
+							if GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_5) >= 1 then
+								iPitCount = iPitCount + 1;
+							end;
+						end
+						return iPitCount;
+					end;
+					return 0;
+				end;
+
+			-- 计算内政官每日获得经验
+				function TTH_MANAGE.calcDailyExp4Mayor(strMayor)
+					local iExp = 0;
+					if TTH_MANAGE.isMayor(strMayor) == TTH_ENUM.Yes then
+						local iTownValue = TTH_MANAGE.totalTownValue4Mayor(strMayor);
+						local iHeroLevel = GetHeroLevel(strMayor);
+						iCountPit = TTH_MANAGE.totalSacrificialPit4Mayor(strMayor);
+						iExp = 200 * (1 + iCountPit) + iTownValue * iHeroLevel;
+						if strMayor == "Calid2" then
+							iExp = TTH_COMMON.round(iExp * 1.5);
+						end;
+					end;
+					return iExp;
+				end;
+
+			-- 给予内政官每日经验
+				function TTH_MANAGE.giveDailyExp4Mayor(iPlayer, strMayor)
+					TTH_MAIN.debug("TTH_MANAGE.giveDailyExp4Mayor", iPlayer, strMayor);
+
+					local iExp = TTH_MANAGE.calcDailyExp4Mayor(strMayor);
+					iExp = iExp * TTH_GLOBAL.coefExp8Enlightment(strMayor);
+					GiveExp(strMayor, TTH_COMMON.round(iExp));
+				end;
+
+		-- 初始化内政信息
+			function TTH_MANAGE.initMayor(strHero)
+				TTH_MAIN.debug("TTH_MANAGE.initMayor", nil, strHero);
+
+				-- 战败表中没有该英雄的记录
+					if TTH_VARI.arrDefeatMayor[strHero] == nil then
+						-- 没有内政信息
+							if TTH_VARI.arrMayor[strHero] == nil then
+								TTH_VARI.arrMayor[strHero] = {};
+								TTH_MANAGE.resetOperTimes(strHero);
+								TTH_MANAGE.constructData4Mayor(strHero);
+
+						-- 有内政信息
+							else
+								-- 内政信息中该英雄为战败状态
+									if TTH_VARI.arrMayor[strHero]["IsDefeat"] ~= nil then
+										-- 重置战败状态
+											TTH_VARI.arrMayor[strHero]["IsDefeat"] = {
+												["Status"] = TTH_ENUM.No
+												, ["Duration"] = 0
+											};
+
+										-- 处理内政官加成
+											TTH_MANAGE.dealMayorBonus(strHero);
+									end;
+							end;
+
+				-- 战败表中有该英雄的记录
+					else
+						-- 根据战败表中的信息更新英雄加成
+							TTH_MANAGE.implMayorBonus(strHero, TTH_VARI.arrMayor[strHero]["Bonus"], -1);
+
+						-- 从战败表中删除该英雄的记录
+							TTH_VARI.arrDefeatMayor[strHero] = nil;
+					end;
+			end;
+
+		-- 每日刷新内政信息
+			function TTH_MANAGE.refreshDailyMayor(iPlayer, strHero)
+				TTH_MAIN.debug("TTH_MANAGE.refreshDailyMayor", iPlayer, strHero);
+
+				local objMayor = TTH_VARI.arrMayor[strHero];
+				-- 若英雄已战败3天，将英雄已加成属性记录到战败表中，否则战败时长增加1天
+					if objMayor["IsDefeat"]["Status"] == TTH_ENUM.Yes then
+						objMayor["IsDefeat"]["Duration"] = objMayor["IsDefeat"]["Duration"] + 1;
+						if objMayor["IsDefeat"]["Duration"] >= 3 then
+							TTH_VARI.arrDefeatMayor[strHero] = {
+								["Bonus"] = TTH_MANAGE.constructData4HeroHasBonus(strHero)
+							};
+							TTH_MANAGE.constructData4Mayor(strHero);
+						end;
+					end;
+
+				-- 查验内政关系-解绑不属于玩家的城镇
+					local arrTown = objMayor["Town"];
+					local bIsMayor = TTH_ENUM.No;
+					if arrTown ~= nil and length(arrTown) > 0 then
+						for strTown, objTown in arrTown do
+							if GetObjectOwner(strTown) ~= iPlayer then
+								TTH_MANAGE.unbindTown2Hero(strHero, strTown);
+							else
+								bIsMayor = TTH_ENUM.Yes;
+							end;
+						end
+					end;
+
+					TTH_MANAGE.dealMayorBonus(strHero); -- 处理内政官加成
+
+				 -- 更新远征状态
+					if bIsMayor == TTH_ENUM.Yes then
+						TTH_MANAGE.updateExpeditionStatus(iPlayer, strHero, TTH_ENUM.Yes);
+					end;
+			end;
+
+		-- 构造数据结构
+			-- 构造政绩加成的数据结构
+				function TTH_MANAGE.initConstructData4RecordPoint(iPlayer)
+					TTH_VARI.arrRecordPoint[iPlayer] = {
+					  ["OperTimes"] = 0
+					  , ["AbilityQuota"] = 0
+					  , ["TerritoryRadius"] = 0
+					};
+				end;
+
+			-- 构造内政信息初始的数据结构
+				function TTH_MANAGE.constructData4Mayor(strHero)
+					TTH_VARI.arrMayor[strHero]["Town"] = {};
+					TTH_VARI.arrMayor[strHero]["Bonus"] = {
+						[STAT_ATTACK] = 0
+						, [STAT_DEFENCE] = 0
+						, [STAT_SPELL_POWER] = 0
+						, [STAT_KNOWLEDGE] = 0
+						, [STAT_LUCK] = 0
+						, [STAT_MORALE] = 0
+					};
+					TTH_VARI.arrMayor[strHero]["IsExpedition"] = {
+						["Status"] = TTH_ENUM.No
+						, ["Duration"] = 0
+					};
+					TTH_VARI.arrMayor[strHero]["IsDefeat"] = {
+						["Status"] = TTH_ENUM.No
+						, ["Duration"] = 0
+					};
+					TTH_VARI.arrMayor[strHero]["RecordPoint"] = 0;
+				end;
+
+			-- 构造英雄已加成属性的数据结构
+				function TTH_MANAGE.constructData4HeroHasBonus(strHero)
+					local bIsExpedition = TTH_VARI.arrMayor[strHero]["IsExpedition"]["Status"];
+					local objBonus = {
+						[STAT_ATTACK] = 0
+						, [STAT_DEFENCE] = 0
+						, [STAT_SPELL_POWER] = 0
+						, [STAT_KNOWLEDGE] = 0
+						, [STAT_LUCK] = 0
+						, [STAT_MORALE] = 0
+					};
+					if bIsExpedition == TTH_ENUM.No then
+						objBonus = TTH_VARI.arrMayor[strHero]["Bonus"];
+					end;
+					return objBonus;
+				end;
+
+			-- 构造英雄应加成属性的数据结构
+				function TTH_MANAGE.constructData4HeroShouldBonus(strHero)
+					local bIsExpedition = TTH_MANAGE.checkIsExpedition8Hero(strHero);
+					local objBonus = {
+						[STAT_ATTACK] = 0
+						, [STAT_DEFENCE] = 0
+						, [STAT_SPELL_POWER] = 0
+						, [STAT_KNOWLEDGE] = 0
+						, [STAT_LUCK] = 0
+						, [STAT_MORALE] = 0
+					};
+					if bIsExpedition == TTH_ENUM.No then
+						objBonus = TTH_MANAGE.getMayorBonus(strHero);
+					end;
+					return objBonus;
+				end;
+
+		-- 内政关系
+			-- 绑定内政关系
+				function TTH_MANAGE.bindTown2Hero(strHero, strTown, iTownValue)
+					TTH_VARI.arrMayor[strHero]["Town"][strTown] = {
+						["Value"] = iTownValue
+					};
+				end;
+
+			-- 解绑内政关系
+				function TTH_MANAGE.unbindTown2Hero(strHero, strTown)
+					TTH_VARI.arrMayor[strHero]["Town"] = TTH_COMMON.remove8Key(TTH_VARI.arrMayor[strHero]["Town"], strTown);
+				end;
+
+		-- 内政官加成
+			-- 处理内政官加成
+				function TTH_MANAGE.dealMayorBonus(strHero)
+					local bPreIsExpedition = TTH_VARI.arrMayor[strHero]["IsExpedition"]["Status"]; -- 获取内政表中该英雄的远征状态
+					local objPreBonus = TTH_MANAGE.constructData4HeroHasBonus(strHero); -- 获取已加成属性表
+					local bPostIsExpedition = TTH_MANAGE.checkIsExpedition8Hero(strHero); -- 获取当前远征状态
+					local objPostBonus = TTH_MANAGE.constructData4HeroShouldBonus(strHero); -- 获取应加成属性表
+
+					local objDiffBonus = TTH_COMMON.diffObject(objPostBonus, objPreBonus);
+					TTH_MANAGE.implMayorBonus(strHero, objDiffBonus, 1);
+					TTH_VARI.arrMayor[strHero]["Bonus"] = objPostBonus;
+				end;
+
+			-- 根据城镇建筑计算内政官加成
+				function TTH_MANAGE.calcMayorBonus(objTown)
+					local iTownRace = objTown["TownRace"];
+					local iAttack = 0;
+					local iDefence = objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_FORT];
+					local iSpellPower = 0;
+					local iKnowledge = 0;
+					local iLuck = 0;
+					local iMorale = 0;
+
+					-- 特殊建筑
+						if iTownRace == TOWN_HEAVEN then
+							iKnowledge = iKnowledge + objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD];
+							iAttack = iAttack + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] * 2;
+							iMorale = iMorale + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] * 1;
+							iAttack = iAttack + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_2] * 2;
+							iMorale = iMorale + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_2] * 1;
+						elseif iTownRace == TOWN_PRESERVE then
+							iAttack = iAttack + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_3] * 2;
+							iLuck = iLuck + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_3] * 1;
+							iAttack = iAttack + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_0] * 2;
+							iLuck = iLuck + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_0] * 1;
+						elseif iTownRace == TOWN_ACADEMY then
+							iKnowledge = iKnowledge + objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD];
+							iSpellPower = iSpellPower + objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD] * objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1];
+						elseif iTownRace == TOWN_DUNGEON then
+							iKnowledge = iKnowledge + objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD];
+							iSpellPower = iSpellPower + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] * 2;
+						elseif iTownRace == TOWN_NECROMANCY then
+							iKnowledge = iKnowledge + objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD];
+						elseif iTownRace == TOWN_INFERNO then
+							iKnowledge = iKnowledge + objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD];
+						elseif iTownRace == TOWN_FORTRESS then
+							iKnowledge = iKnowledge + objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD];
+							iDefence = iDefence + objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_FORT] * objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_4];
+							iSpellPower = iSpellPower + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1];
+						elseif iTownRace == TOWN_STRONGHOLD then
+							iKnowledge = iKnowledge + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_3];
+						end;
+
+					local objHeroBonus = {
+						[STAT_ATTACK] = iAttack
+						, [STAT_DEFENCE] = iDefence
+						, [STAT_SPELL_POWER] = iSpellPower
+						, [STAT_KNOWLEDGE] = iKnowledge
+						, [STAT_LUCK] = iLuck
+						, [STAT_MORALE] = iMorale
+					};
+					return objHeroBonus;
+				end;
+
+			-- 获取英雄所辖城镇加成总和
+				function TTH_MANAGE.getMayorBonus(strHero)
+					local objTotalBonus = {
+						[STAT_ATTACK] = 0
+						, [STAT_DEFENCE] = 0
+						, [STAT_SPELL_POWER] = 0
+						, [STAT_KNOWLEDGE] = 0
+						, [STAT_LUCK] = 0
+						, [STAT_MORALE] = 0
+					};
+					local objMayor = TTH_VARI.arrMayor[strHero];
+					if objMayor ~= nil then
+						local arrTown = objMayor["Town"];
+						if arrTown ~= nil then
+							for strTown, objTown in arrTown do
+								local objAnalysisTown = TTH_MANAGE.analysisTownBuildLevel(strTown);
+								local objBonus = TTH_MANAGE.calcMayorBonus(objAnalysisTown);
+								objTotalBonus = TTH_COMMON.combineObject(objTotalBonus, objBonus);
+							end;
+						end;
+					end;
+					return objTotalBonus;
+				end;
+
+			-- 实装内政官加成数据
+				function TTH_MANAGE.implMayorBonus(strHero, objBonus, bDirection)
+					if objBonus[STAT_ATTACK] ~= 0 then
+						ChangeHeroStat(strHero, STAT_ATTACK, objBonus[STAT_ATTACK] * bDirection);
+					end;
+					if objBonus[STAT_DEFENCE] ~= 0 then
+						ChangeHeroStat(strHero, STAT_DEFENCE, objBonus[STAT_DEFENCE] * bDirection);
+					end;
+					if objBonus[STAT_SPELL_POWER] ~= 0 then
+						ChangeHeroStat(strHero, STAT_SPELL_POWER, objBonus[STAT_SPELL_POWER] * bDirection);
+					end;
+					if objBonus[STAT_KNOWLEDGE] ~= 0 then
+						ChangeHeroStat(strHero, STAT_KNOWLEDGE, objBonus[STAT_KNOWLEDGE] * bDirection);
+					end;
+					if objBonus[STAT_LUCK] ~= 0 then
+						ChangeHeroStat(strHero, STAT_LUCK, objBonus[STAT_LUCK] * bDirection);
+					end;
+					if objBonus[STAT_MORALE] ~= 0 then
+						ChangeHeroStat(strHero, STAT_MORALE, objBonus[STAT_MORALE] * bDirection);
+					end;
+				end;
+
+		-- 城镇兵种产量加成
+			TTH_TABLE.Coef8Mayor4TownDwellingCreature = {
+				[1] = 1.5
+				, [2] = 2
+				, [3] = 3
+				, [4] = 4
+				, [5] = 6
+				, [6] = 8
+				, [7] = 12
+			};
+			function TTH_MANAGE.bonusTownDwellingCreature8Mayor(strTown)
+				TTH_MAIN.debug("TTH_MANAGE.bonusTownDwellingCreature8Mayor", nil, nil, strTown);
+
+				local arrCreatureGrowth8Tier = TTH_MANAGE.calcTownDwellingCreature(strTown);
+				TTH_GLOBAL.updateTownDwellingCreature(strTown, arrCreatureGrowth8Tier);
+			end;
+			function TTH_MANAGE.calcTownDwellingCreature(strTown)
+				local arrCreatureGrowth8Tier = {
+					[1] = 0
+					, [2] = 0
+					, [3] = 0
+					, [4] = 0
+					, [5] = 0
+					, [6] = 0
+					, [7] = 0
+				};
+				if TTH_MANAGE.checkIsExpedition8Town(strTown) == TTH_ENUM.No then
+					local strMayor = TTH_MANAGE.getMayor8Town(strTown);
+					if strMayor ~= nil then
+						local iHeroLevel = GetHeroLevel(strMayor);
+						local iHeroKnowledge = GetHeroStat(strMayor, STAT_KNOWLEDGE);
+						for iTier = 1, 7 do
+							arrCreatureGrowth8Tier[iTier] = TTH_COMMON.round(iHeroLevel / TTH_TABLE.Coef8Mayor4TownDwellingCreature[iTier]);
+						end;
+						if TTH_TABLE.Hero[strMayor]["Specialty"] ~= nil then
+							for iTier = 1, 7 do
+								if TTH_TABLE.Hero[strMayor]["Specialty"] ~= nil then
+									local arrSpecialty = TTH_TABLE.Hero[strMayor]["Specialty"];
+									if arrSpecialty ~= nil then
+										for i, objSpecialty in arrSpecialty do
+											local iCreatureId = objSpecialty["CreatureId"];
+											local objCreature = TTH_TABLE_NCF_CREATURES[iCreatureId];
+											if objCreature["Upgrade"] ~= nil and objCreature["TIER"] == iTier then
+												local enumHeroStat = objSpecialty["Stat"];
+												local iHeroStat = GetHeroStat(strMayor, enumHeroStat);
+												arrCreatureGrowth8Tier[iTier] = TTH_COMMON.round((iHeroLevel + iHeroStat) / TTH_TABLE.Coef8Mayor4TownDwellingCreature[iTier]);
+											end;
+										end;
+									end;
+								end;
+							end;
+						end;
+						if strMayor == "Cyrus" then
+							for iTier = 1, 7 do
+								arrCreatureGrowth8Tier[iTier] = TTH_COMMON.round((iHeroLevel + iHeroKnowledge) / TTH_TABLE.Coef8Mayor4TownDwellingCreature[iTier]);
+							end;
+						end;
+					end;
+				end;
+				return arrCreatureGrowth8Tier;
+			end;
+
+		-- 远征
+			-- 获取英雄的领地半径
+				function TTH_MANAGE.getTerritoryRadius(iPlayer)
+					local iTerritoryRadius = TTH_MANAGE.getDefaultTerritoryRadius(iPlayer) + TTH_MANAGE.getExtraTerritoryRadius(iPlayer);
+					return iTerritoryRadius;
+				end;
+
+			-- 获取因地图默认的领地半径
+				function TTH_MANAGE.getDefaultTerritoryRadius(iPlayer)
+					local iTerritoryRadius = TTH_VARI.TerritoryRadius;
+					return iTerritoryRadius;
+				end;
+
+			-- 获取政绩加成的额外领地半径
+				function TTH_MANAGE.getExtraTerritoryRadius(iPlayer)
+					local iTerritoryRadius = TTH_VARI.arrRecordPoint[iPlayer]["TerritoryRadius"];
+					return iTerritoryRadius;
+				end;
+
+			-- 通过政绩永久加成额外领地半径
+				function TTH_MANAGE.buffExtraTerritoryRadius(iPlayer)
+					TTH_VARI.arrRecordPoint[iPlayer]["TerritoryRadius"] = TTH_VARI.arrRecordPoint[iPlayer]["TerritoryRadius"] + 20;
+				end;
+
+			-- 检测是否远征-英雄
+				function TTH_MANAGE.checkIsExpedition8Hero(strHero)
+					local iPlayer = TTH_GLOBAL.GetObjectOwner(strHero);
+					local iAlreadyMayor, arrMayorTown = TTH_MANAGE.getAlreadyMayorInfo(strHero);
+					local bIsExpedition = TTH_ENUM.Yes;
+					if iAlreadyMayor > 0 then
+						for strTown, objTown in arrMayorTown do
+							if TTH_GLOBAL.getDistance(strHero, strTown) <= TTH_MANAGE.getTerritoryRadius(iPlayer) then
+								bIsExpedition = TTH_ENUM.No;
+								break;
+							end;
+						end
+						local bIsExpeditionWulfstan = TTH_TALENT.checkExpedition8Wulfstan(iPlayer, strHero);
+						local bIsExpeditionNikolay = TTH_TALENT.checkExpeditionNikolay(iPlayer, strHero);
+						if bIsExpedition == TTH_ENUM.No
+							or bIsExpeditionWulfstan == TTH_ENUM.No
+							or bIsExpeditionNikolay == TTH_ENUM.No
+							then
+							bIsExpedition = TTH_ENUM.No;
+						end;
+					else
+						bIsExpedition = TTH_ENUM.No;
+					end;
+					return bIsExpedition;
+				end;
+
+			-- 检测是否远征-城镇
+				function TTH_MANAGE.checkIsExpedition8Town(strTown)
+					local iPlayer = GetObjectOwner(strTown);
+					local strHero = TTH_MANAGE.getMayor8Town(strTown);
+					local iAlreadyMayor, arrMayorTown = TTH_MANAGE.getAlreadyMayorInfo(strHero);
+					local bIsExpedition = TTH_ENUM.Yes;
+					if iAlreadyMayor > 0 then
+						for strTown, objTown in arrMayorTown do
+							if TTH_GLOBAL.getDistance(strHero, strTown) <= TTH_MANAGE.getTerritoryRadius(iPlayer) then
+								bIsExpedition = TTH_ENUM.No;
+								break;
+							end;
+						end
+						local bIsExpeditionWulfstan = TTH_TALENT.checkExpedition8Wulfstan(iPlayer, strHero);
+						local bIsExpeditionNikolay = TTH_TALENT.checkExpeditionNikolay(iPlayer, strHero);
+						if bIsExpedition == TTH_ENUM.No
+							or bIsExpeditionWulfstan == TTH_ENUM.No
+							or bIsExpeditionNikolay == TTH_ENUM.No
+							then
+							bIsExpedition = TTH_ENUM.No;
+						end;
+					else
+						bIsExpedition = TTH_ENUM.No;
+					end;
+					return bIsExpedition;
+				end;
+
+			-- 更新远征状态
+				function TTH_MANAGE.updateExpeditionStatus(iPlayer, strHero, bIsDaily)
+					local bPreIsExpedition = TTH_VARI.arrMayor[strHero]["IsExpedition"]["Status"];
+					local bIsExpedition = TTH_MANAGE.checkIsExpedition8Hero(strHero);
+					if bIsExpedition == TTH_ENUM.Yes then
+						TTH_VARI.arrMayor[strHero]["IsExpedition"]["Status"] = bIsExpedition;
+						if bIsDaily == TTH_ENUM.Yes then
+							TTH_VARI.arrMayor[strHero]["IsExpedition"]["Duration"] = TTH_VARI.arrMayor[strHero]["IsExpedition"]["Duration"] + 1;
+							TTH_GLOBAL.putSettleResource(iPlayer, GOLD, -1 * TTH_VARI.arrMayor[strHero]["IsExpedition"]["Duration"] * TTH_FINAL.MILITARY_EXPEDITION)
+							local strText = {
+								TTH_PATH.Mayor["BeginExpedition"]
+								;iDuration=TTH_VARI.arrMayor[strHero]["IsExpedition"]["Duration"]
+							};
+							TTH_GLOBAL.sign(strHero, strText);
+						end;
+					else
+						TTH_VARI.arrMayor[strHero]["IsExpedition"]["Status"] = bIsExpedition;
+						TTH_VARI.arrMayor[strHero]["IsExpedition"]["Duration"] = 0;
+						if bIsExpedition ~= bPreIsExpedition then
+							if bIsDaily == TTH_ENUM.Yes then
+								TTH_GLOBAL.sign(strHero, TTH_PATH.Mayor["EndExpedition"]);
+							end;
+						end;
+					end;
+				end;
+
+			-- 获取英雄远征天数
+				function TTH_MANAGE.getHeroExpeditionStatus(strHero)
+					local iDuration = TTH_VARI.arrMayor[strHero]["IsExpedition"]["Status"];
+					return iDuration;
+				end;
+
+			-- 获取英雄远征天数
+				function TTH_MANAGE.getHeroExpeditionDuration(strHero)
+					local iDuration = TTH_VARI.arrMayor[strHero]["IsExpedition"]["Duration"];
+					return iDuration;
+				end;
+
+			-- 获取英雄远征军费
+				function TTH_MANAGE.getHeroExpeditionCost(strHero)
+					local iCost = TTH_VARI.arrMayor[strHero]["IsExpedition"]["Duration"] * TTH_FINAL.MILITARY_EXPEDITION;
+					return iCost;
+				end;
+
+		-- 内政操作次数
+			-- 获取内政操作次数（重置值）
+				function TTH_MANAGE.getOperTimes(strHero)
+					local iPlayer = TTH_GLOBAL.GetObjectOwner(strHero);
+					local iTimes = TTH_MANAGE.getDefaultOperTimes(strHero) + TTH_MANAGE.getExtraOperTimes(iPlayer);
+					return iTimes;
+				end;
+
+			-- 获取内政操作次数（重置值）（基础值）
+				function TTH_MANAGE.getDefaultOperTimes(strHero)
+					local iLevel = GetHeroLevel(strHero);
+					local iStep = 15;
+					if strHero == "Hangvul" then
+						iStep = 10;
+					end;
+					local iTimes = TTH_COMMON.floor(iLevel / iStep) + 1;
+					return iTimes;
+				end;
+
+			-- 获取内政操作次数（重置值）（通过政绩加成的额外值）
+				function TTH_MANAGE.getExtraOperTimes(iPlayer)
+					local iTimes = TTH_VARI.arrRecordPoint[iPlayer]["OperTimes"];
+					return iTimes;
+				end;
+
+			-- 永久增强英雄的内政操作次数
+				function TTH_MANAGE.buffExtraOperTimes(iPlayer)
+					TTH_VARI.arrRecordPoint[iPlayer]["OperTimes"] = TTH_VARI.arrRecordPoint[iPlayer]["OperTimes"] + 1;
+				end;
+
+			-- 获取内政操作次数（剩余值）
+				function TTH_MANAGE.getRemainOperTimes(strHero)
+					local iTimes = 0;
+					local objMayor = TTH_VARI.arrMayor[strHero];
+					if objMayor ~= nil then
+						iTimes = objMayor["Oper"]["MaxTimes"] - objMayor["Oper"]["UsedTimes"];
+					end;
+					return iTimes;
+				end;
+
+			-- 重置内政操作次数
+				function TTH_MANAGE.resetOperTimes(strHero)
+					local iMaxTimes = TTH_MANAGE.getOperTimes(strHero);
+					TTH_VARI.arrMayor[strHero]["Oper"] = {
+						["MaxTimes"] = iMaxTimes
+						, ["UsedTimes"] = 0
+					};
+				end;
+
+			-- 更新内政操作次数上限
+				function TTH_MANAGE.updateMaxOperTimes(strHero)
+					TTH_MAIN.debug("TTH_MANAGE.updateMaxOperTimes", nil, strHero);
+
+					local iMaxTimes = TTH_MANAGE.getOperTimes(strHero);
+					TTH_VARI.arrMayor[strHero]["Oper"]["MaxTimes"] = iMaxTimes;
+				end;
+
+			-- 使用内政操作次数
+				function TTH_MANAGE.useOperTimes(strHero)
+					TTH_VARI.arrMayor[strHero]["Oper"]["UsedTimes"] = TTH_VARI.arrMayor[strHero]["Oper"]["UsedTimes"] + 1;
+				end;
+
+			-- 增加最大内政操作次数
+				function TTH_MANAGE.addMaxOperTimes(strHero)
+					TTH_VARI.arrMayor[strHero]["Oper"]["MaxTimes"] = TTH_VARI.arrMayor[strHero]["Oper"]["MaxTimes"] + 1;
+				end;
+
+		-- 管辖城镇
+			-- 获取英雄可管辖城镇的配额
+				function TTH_MANAGE.getAbilityQuota(strHero)
+					local iPlayer = TTH_GLOBAL.GetObjectOwner(strHero);
+					local iQuota = TTH_MANAGE.getDefaultAbilityQuota(strHero) + TTH_MANAGE.getExtraAbilityQuota(iPlayer);
+					return iQuota;
+				end;
+
+			-- 获取英雄可管辖城镇的配额（基础值）
+				function TTH_MANAGE.getDefaultAbilityQuota(strHero)
+					local iLevel = GetHeroLevel(strHero);
+					local iStep = 15;
+					if strHero == "Hangvul" then
+						iStep = 10;
+					end;
+					local iQuota = TTH_COMMON.floor(iLevel / iStep) + 1;
+					return iQuota;
+				end;
+
+			-- 获取英雄可管辖城镇的配额（通过政绩加成的额外值）
+				function TTH_MANAGE.getExtraAbilityQuota(iPlayer)
+					local iQuota = TTH_VARI.arrRecordPoint[iPlayer]["AbilityQuota"];
+					return iQuota;
+				end;
+
+			-- 永久增强英雄可管辖城镇的配额
+				function TTH_MANAGE.buffExtraAbilityQuota(iPlayer)
+					TTH_VARI.arrRecordPoint[iPlayer]["AbilityQuota"] = TTH_VARI.arrRecordPoint[iPlayer]["AbilityQuota"] + 1;
+				end;
+
+			-- :TODO 获取英雄已管辖城镇的数量
+				function TTH_MANAGE.getAlreadyMayorInfo(strHero)
+					local objMayor = TTH_VARI.arrMayor[strHero];
+					local arrMayorTown = {};
+					local iAlreadyMayor = 0;
+					if objMayor ~= nil then
+						arrMayorTown = objMayor["Town"];
+						iAlreadyMayor = length(arrMayorTown);
+					end;
+					return iAlreadyMayor, arrMayorTown;
+				end;
+
+			-- 获取英雄所辖城镇评分总和
+				function TTH_MANAGE.getMayorValue(strHero)
+					local iValue = 0;
+					local objMayor = TTH_VARI.arrMayor[strHero];
+					if objMayor ~= nil then
+						local arrTown = objMayor["Town"];
+						if arrTown ~= nil then
+							for iIndexTown, objTown in arrTown do
+								iValue = iValue + objTown["Value"];
+							end;
+						end;
+					end;
+					return iValue;
+				end;
+
+			-- 获取玩家所辖城镇列表
+				function TTH_MANAGE.listMayorTown8Player(iPlayer)
+					local arrHero = GetPlayerHeroes(iPlayer);
+					local arrTown = {};
+					for i, strHero in arrHero do
+						for strTown, iTownValue in TTH_VARI.arrMayor[strHero]["Town"] do
+							if contains(arrTown, strTown) == nil then
+							 	TTH_COMMON.push(arrTown, strTown);
+							end;
+						end;
+					end;
+					return arrTown;
+				end;
+
+			-- 获取英雄所辖城镇列表
+				function TTH_MANAGE.listMayorTown8Hero(strHero)
+					local arrRetTown = {};
+					local objMayor = TTH_VARI.arrMayor[strHero];
+					if objMayor ~= nil then
+						local arrTown = objMayor["Town"];
+						if arrTown ~= nil then
+							for strTown, objTown in arrTown do
+								if contains(arrRetTown, strTown) == nil then
+								 	TTH_COMMON.push(arrRetTown, strTown);
+								end;
+							end;
+						end;
+					end;
+					return arrRetTown;
+				end;
+
+		-- 城镇建筑
+			-- 建造城镇建筑
+				function TTH_MANAGE.constructTown(strTown, iLevel)
+					if IsObjectExists(strTown) == 1 then
+						local iRace = TTH_GLOBAL.getRace8Town(strTown);
+						if iLevel >= 0 then
+							-- 普通建筑
+								UpgradeTownBuilding(strTown, TOWN_BUILDING_MARKETPLACE, 1);
+								UpgradeTownBuilding(strTown, TOWN_BUILDING_TAVERN, 1);
+						end;
+						if iLevel >= 1 then
+							-- 普通建筑
+								UpgradeTownBuilding(strTown, TOWN_BUILDING_TOWN_HALL, 1);
+								UpgradeTownBuilding(strTown, TOWN_BUILDING_BLACKSMITH, 1);
+							-- 魔法塔
+								if iRace ~= TOWN_STRONGHOLD then
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_MAGIC_GUILD, 1);
+								else
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_SPECIAL_1, 1);
+								end;
+						end;
+						if iLevel >= 2 then
+							-- 普通建筑
+								UpgradeTownBuilding(strTown, TOWN_BUILDING_FORT, 1);
+								UpgradeTownBuilding(strTown, TOWN_BUILDING_MARKETPLACE, 1);
+								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_1, 1);
+								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_2, 1);
+								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_3, 1);
+							-- 魔法塔
+								if iRace ~= TOWN_STRONGHOLD then
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_MAGIC_GUILD, 1);
+								else
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_SPECIAL_1, 1);
+								end;
+						end;
+						if iLevel >= 3 then
+							-- 普通建筑
+								UpgradeTownBuilding(strTown, TOWN_BUILDING_TOWN_HALL, 1);
+								UpgradeTownBuilding(strTown, TOWN_BUILDING_FORT, 1);
+								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_1, 1);
+								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_2, 1);
+								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_3, 1);
+								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_4, 1);
+								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_5, 1);
+							-- 魔法塔
+								if iRace ~= TOWN_STRONGHOLD then
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_MAGIC_GUILD, 1);
+								else
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_SPECIAL_1, 1);
+								end;
+						end;
+						if iLevel >= 4 then
+							-- 普通建筑
+								UpgradeTownBuilding(strTown, TOWN_BUILDING_FORT, 1);
+								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_4, 1);
+								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_5, 1);
+								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_6, 1);
+								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_7, 1);
+							-- 魔法塔
+								if iRace ~= TOWN_STRONGHOLD then
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_MAGIC_GUILD, 1);
+								else
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_SPECIAL_3, 1);
+								end;
+						end;
+						if iLevel >= 5 then
+							-- 普通建筑
+								UpgradeTownBuilding(strTown, TOWN_BUILDING_TOWN_HALL, 1);
+								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_6, 1);
+								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_7, 1);
+							-- 魔法塔
+								if iRace ~= TOWN_STRONGHOLD then
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_MAGIC_GUILD, 1);
+								end;
+						end;
+						if iLevel >= 6 then
+							-- 特殊建筑
+								for i = 0, 6 do
+									if TTH_TABLE.SpecialBuilding[iRace][i] ~= nil then
+										UpgradeTownBuilding(strTown, TTH_TABLE.SpecialBuilding[iRace][i], 1);
+									end;
+								end;
+						end;
+						if iLevel >= 7 then
+							-- 眼泪
+								UpgradeTownBuilding(strTown, TOWN_BUILDING_GRAIL, 1);
+						end;
+					end;
+				end;
+
+			-- 解析城镇建筑等级
+				function TTH_MANAGE.analysisTownBuildLevel(strTown)
+					local iTownRace = TTH_GLOBAL.getRace8Town(strTown);
+					local objTown = {
+						["TownRace"] = iTownRace
+						, [TTH_ENUM.TownBuildBasic] = {
+							[TOWN_BUILDING_TOWN_HALL] = GetTownBuildingLevel(strTown, TOWN_BUILDING_TOWN_HALL)
+							, [TOWN_BUILDING_FORT] = GetTownBuildingLevel(strTown, TOWN_BUILDING_FORT)
+							, [TOWN_BUILDING_MARKETPLACE] = GetTownBuildingLevel(strTown, TOWN_BUILDING_MARKETPLACE)
+							, [TOWN_BUILDING_SHIPYARD] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SHIPYARD)
+							, [TOWN_BUILDING_TAVERN] = GetTownBuildingLevel(strTown, TOWN_BUILDING_TAVERN)
+							, [TOWN_BUILDING_BLACKSMITH] = GetTownBuildingLevel(strTown, TOWN_BUILDING_BLACKSMITH)
+						}
+						, [TTH_ENUM.TownBuildDwelling] = {
+							[TOWN_BUILDING_DWELLING_1] = GetTownBuildingLevel(strTown, TOWN_BUILDING_DWELLING_1)
+							, [TOWN_BUILDING_DWELLING_2] = GetTownBuildingLevel(strTown, TOWN_BUILDING_DWELLING_2)
+							, [TOWN_BUILDING_DWELLING_3] = GetTownBuildingLevel(strTown, TOWN_BUILDING_DWELLING_3)
+							, [TOWN_BUILDING_DWELLING_4] = GetTownBuildingLevel(strTown, TOWN_BUILDING_DWELLING_4)
+							, [TOWN_BUILDING_DWELLING_5] = GetTownBuildingLevel(strTown, TOWN_BUILDING_DWELLING_5)
+							, [TOWN_BUILDING_DWELLING_6] = GetTownBuildingLevel(strTown, TOWN_BUILDING_DWELLING_6)
+							, [TOWN_BUILDING_DWELLING_7] = GetTownBuildingLevel(strTown, TOWN_BUILDING_DWELLING_7)
+						}
+						, [TTH_ENUM.TownBuildSpecial] = {
+							[TOWN_BUILDING_SPECIAL_0] = 0
+							, [TOWN_BUILDING_SPECIAL_1] = 0
+							, [TOWN_BUILDING_SPECIAL_2] = 0
+							, [TOWN_BUILDING_SPECIAL_3] = 0
+							, [TOWN_BUILDING_SPECIAL_4] = 0
+							, [TOWN_BUILDING_SPECIAL_5] = 0
+							, [TOWN_BUILDING_SPECIAL_6] = 0
+						}
+						, [TTH_ENUM.TownBuildGrail] = {
+							[TOWN_BUILDING_GRAIL] = GetTownBuildingLevel(strTown, TOWN_BUILDING_GRAIL)
+						}
+					};
+
+					-- 特殊建筑
+						if iTownRace == TOWN_HEAVEN then
+							objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD] = GetTownBuildingLevel(strTown, TOWN_BUILDING_MAGIC_GUILD);
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_0] = 0;
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_1);
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_2] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_2);
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_3] = 0;
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_4] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_4);
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_5] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_5);
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_6] = 0;
+						elseif iTownRace == TOWN_PRESERVE then
+							objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD] = GetTownBuildingLevel(strTown, TOWN_BUILDING_MAGIC_GUILD);
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_0] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_0);
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] = 0;
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_2] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_2);
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_3] = 0;
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_4] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_4);
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_5] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_5);
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_6] = 0;
+						elseif iTownRace == TOWN_ACADEMY then
+							objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD] = GetTownBuildingLevel(strTown, TOWN_BUILDING_MAGIC_GUILD);
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_0] = 0;
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_1);
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_2] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_2);
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_3] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_3);
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_4] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_4);
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_5] = 0;
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_6] = 0;
+						elseif iTownRace == TOWN_DUNGEON then
+							objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD] = GetTownBuildingLevel(strTown, TOWN_BUILDING_MAGIC_GUILD);
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_0] = 0;
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_1);
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_2] = 0;
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_3] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_3);
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_4] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_4);
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_5] = 0;
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_6] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_6);
+						elseif iTownRace == TOWN_NECROMANCY then
+							objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD] = GetTownBuildingLevel(strTown, TOWN_BUILDING_MAGIC_GUILD);
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_0] = 0;
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_1);
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_2] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_2);
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_3] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_3);
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_4] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_4);
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_5] = 0;
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_6] = 0;
+						elseif iTownRace == TOWN_INFERNO then
+							objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD] = GetTownBuildingLevel(strTown, TOWN_BUILDING_MAGIC_GUILD);
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_0] = 0;
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_1);
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_2] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_2);
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_3] = 0;
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_4] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_4);
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_5] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_5);
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_6] = 0;
+						elseif iTownRace == TOWN_FORTRESS then
+							objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD] = GetTownBuildingLevel(strTown, TOWN_BUILDING_MAGIC_GUILD);
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_0] = 0;
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_1);
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_2] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_2);
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_3] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_3);
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_4] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_4);
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_5] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_5);
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_6] = 0;
+						elseif iTownRace == TOWN_STRONGHOLD then
+							objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_1) + GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_3) + 1;
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_0] = 0;
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] = 0;
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_2] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_2);
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_3] = 0;
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_4] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_4);
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_5] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_5);
+							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_6] = 0;
+						end;
+
+					return objTown;
+				end;
+
+			-- 计算内政点数（城镇评分）
+				function TTH_MANAGE.calcTownValue(objTown)
+					local iCalcValue = 0;
+
+					local arrTownBuildBasic = objTown[TTH_ENUM.TownBuildBasic];
+					local arrTownBuildDwelling = objTown[TTH_ENUM.TownBuildDwelling];
+					local arrTownBuildSpecial = objTown[TTH_ENUM.TownBuildSpecial];
+					local arrTownBuildGrail = objTown[TTH_ENUM.TownBuildGrail];
+					for iBuildId, iValue in arrTownBuildBasic do
+						iCalcValue = iCalcValue + iValue;
+					end;
+					for iBuildId, iValue in arrTownBuildDwelling do
+						if objTown["TownRace"] == TOWN_NECROMANCY then
+							iCalcValue = iCalcValue + iValue * 3;
+						else
+							iCalcValue = iCalcValue + iValue * 2;
+						end;
+					end;
+					for iBuildId, iValue in arrTownBuildSpecial do
+						if objTown["TownRace"] == TOWN_PRESERVE then
+							iCalcValue = iCalcValue + iValue * 5;
+						else
+							iCalcValue = iCalcValue + iValue * 3;
+						end;
+					end;
+					for iBuildId, iValue in arrTownBuildGrail do
+						iCalcValue = iCalcValue + iValue * 10;
+					end;
+
+					return iCalcValue;
+				end;
+
+			-- 计算城镇建筑总等级
+				function TTH_MANAGE.calcTownBuildingTotalLevel(objTown)
+					local iTotalLevel = 0;
+
+					local arrTownBuildBasic = objTown[TTH_ENUM.TownBuildBasic];
+					local arrTownBuildDwelling = objTown[TTH_ENUM.TownBuildDwelling];
+					local arrTownBuildSpecial = objTown[TTH_ENUM.TownBuildSpecial];
+					local arrTownBuildGrail = objTown[TTH_ENUM.TownBuildGrail];
+					for iBuildId, iValue in arrTownBuildBasic do
+						iTotalLevel = iTotalLevel + iValue;
+					end;
+					for iBuildId, iValue in arrTownBuildDwelling do
+						iTotalLevel = iTotalLevel + iValue;
+					end;
+					for iBuildId, iValue in arrTownBuildSpecial do
+						iTotalLevel = iTotalLevel + iValue;
+					end;
+					for iBuildId, iValue in arrTownBuildGrail do
+						iTotalLevel = iTotalLevel + iValue;
+					end;
+
+					return iTotalLevel;
+				end;
+
+			-- 重建城镇建筑
+				function TTH_MANAGE.rebuildTownBuilding(strTown, iRace, objTownConvert)
+					-- 普通建筑
+						for i = 2, 4 do
+							if objTownConvert[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_TOWN_HALL] >= i then
+								UpgradeTownBuilding(strTown, TOWN_BUILDING_TOWN_HALL, 1);
+							end;
+						end;
+						for i = 1, 3 do
+							if objTownConvert[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_FORT] >= i then
+								UpgradeTownBuilding(strTown, TOWN_BUILDING_FORT, 1);
+							end;
+						end;
+						for i = 1, 2 do
+							if objTownConvert[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MARKETPLACE] >= i then
+								UpgradeTownBuilding(strTown, TOWN_BUILDING_MARKETPLACE, 1);
+							end;
+						end;
+						if objTownConvert[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_SHIPYARD] == 1 then
+							UpgradeTownBuilding(strTown, TOWN_BUILDING_SHIPYARD, 1);
+						end;
+						if objTownConvert[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_TAVERN] == 1 then
+							UpgradeTownBuilding(strTown, TOWN_BUILDING_TAVERN, 1);
+						end;
+						if objTownConvert[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_BLACKSMITH] == 1 then
+							UpgradeTownBuilding(strTown, TOWN_BUILDING_BLACKSMITH, 1);
+						end;
+						for i = 1, 2 do
+							if objTownConvert[TTH_ENUM.TownBuildDwelling][TOWN_BUILDING_DWELLING_1] >= i then
+								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_1, 1);
+							end;
+						end;
+						for i = 1, 2 do
+							if objTownConvert[TTH_ENUM.TownBuildDwelling][TOWN_BUILDING_DWELLING_2] >= i then
+								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_2, 1);
+							end;
+						end;
+						for i = 1, 2 do
+							if objTownConvert[TTH_ENUM.TownBuildDwelling][TOWN_BUILDING_DWELLING_3] >= i then
+								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_3, 1);
+							end;
+						end;
+						for i = 1, 2 do
+							if objTownConvert[TTH_ENUM.TownBuildDwelling][TOWN_BUILDING_DWELLING_4] >= i then
+								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_4, 1);
+							end;
+						end;
+						for i = 1, 2 do
+							if objTownConvert[TTH_ENUM.TownBuildDwelling][TOWN_BUILDING_DWELLING_5] >= i then
+								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_5, 1);
+							end;
+						end;
+						for i = 1, 2 do
+							if objTownConvert[TTH_ENUM.TownBuildDwelling][TOWN_BUILDING_DWELLING_6] >= i then
+								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_6, 1);
+							end;
+						end;
+						for i = 1, 2 do
+							if objTownConvert[TTH_ENUM.TownBuildDwelling][TOWN_BUILDING_DWELLING_7] >= i then
+								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_7, 1);
+							end;
+						end;
+						if objTownConvert[TTH_ENUM.TownBuildGrail][TOWN_BUILDING_GRAIL] == 1 then
+							UpgradeTownBuilding(strTown, TOWN_BUILDING_GRAIL, 1);
+						end;
+
+					-- 魔法塔
+						if iRace ~= TOWN_STRONGHOLD then
+							for i = 1, 5 do
+								if objTownConvert[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD] >= i then
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_MAGIC_GUILD, 1);
+								end;
+							end;
+						else
+							for i = 1, 5 do
+								if objTownConvert[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD] >= i then
+									if i <= 3 then
+										UpgradeTownBuilding(strTown, TOWN_BUILDING_SPECIAL_1, 1);
+									elseif i == 4 then
+										UpgradeTownBuilding(strTown, TOWN_BUILDING_SPECIAL_3, 1);
+									end;
+								end;
+							end;
+						end;
+
+					-- 特殊建筑
+						local iPlayer = GetObjectOwner(strTown);
+						TTH_GLOBAL.checkArtifactMerchant(iPlayer, strTown);
+
+						local iTotalLevelBuildingSpecial = 0;
+						for i = TOWN_BUILDING_SPECIAL_0, TOWN_BUILDING_SPECIAL_6 do
+							iTotalLevelBuildingSpecial = iTotalLevelBuildingSpecial + objTownConvert[TTH_ENUM.TownBuildSpecial][i];
+						end
+						if iTotalLevelBuildingSpecial == 1 then
+							UpgradeTownBuilding(strTown, TTH_TABLE.SpecialBuilding[iRace][0], 1);
+						elseif iTotalLevelBuildingSpecial > 1 then
+							for i = 0, iTotalLevelBuildingSpecial - 1 do
+								if TTH_TABLE.SpecialBuilding[iRace][i] ~= nil then
+									UpgradeTownBuilding(strTown, TTH_TABLE.SpecialBuilding[iRace][i], 1);
+								end;
+							end;
+						end;
+				end;
+
+			-- 特殊英雄成为内政官后建造附带建筑
+				TTH_TABLE.AttachBuilding = {
+					["Brem"] = TOWN_BUILDING_SPECIAL_4
+					, ["Metlirn"] = TOWN_BUILDING_SPECIAL_0
+					, ["Rissa"] = TOWN_BUILDING_SPECIAL_4
+					, ["Nymus"] = TOWN_BUILDING_SPECIAL_1
+					, ["Una"] = TOWN_BUILDING_SPECIAL_1
+					, ["Quroq"] = TOWN_BUILDING_SPECIAL_5
+				}
+				function TTH_MANAGE.attachBuilding(iPlayer, strHero, strTown)
+					if TTH_TABLE.AttachBuilding[strHero] ~= nil then
+						UpgradeTownBuilding(strTown, TTH_TABLE.AttachBuilding[strHero], 1);
+					end;
+				end;
+
+		-- 传送点
+			-- 设立传送点
+				function TTH_MANAGE.setUpTeleport2AppointTown(strTown)
+					TTH_VARI.teleport8Town[strTown] = 1;
+				end;
+
+			-- 获取该城镇传送点是否已经设立 nil: 未设立; 1: 已设立
+				function TTH_MANAGE.isExistTeleport(strTown)
+					return TTH_VARI.teleport8Town[strTown];
+				end;
+
+			-- 根据玩家获取已经设立了传送点的城镇列表 0: 没有; arrTown: 有
+				function TTH_MANAGE.listTeleportTown(iPlayer)
+					local arrTown = GetObjectNamesByType("TOWN");
+					local arrTeleportTown = {};
+					for iIndexTown, strTown in arrTown do
+						if GetObjectOwner(strTown) == iPlayer and TTH_VARI.teleport8Town[strTown] == 1 then
+							TTH_COMMON.push(arrTeleportTown, strTown);
+						end;
+					end
+					return arrTeleportTown;
+				end;
+
+		TTH_ENUM.KingManage = 0; -- 王国管理
+		TTH_ENUM.ShowInfo = 1; -- 信息查询
+		TTH_ENUM.SkillManage = 2; -- 技能管理
+		TTH_ENUM.TownManage = 3; -- 城镇管理
+		TTH_ENUM.ExchangeRecord = 4; -- 政绩管理
+
+		TTH_TABLE.KingManagePath = {
+			["Widget"] = {
+				["Frame"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/Widget/Frame.txt"
+				}
+				, ["Navigation"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/Widget/Navigation.txt"
+				}
+				, ["Anchor"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/Widget/Anchor.txt"
+				}
+				, ["Main"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/Widget/Main.txt"
+				}
+				, ["HeroInfo"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/Widget/HeroInfo.txt"
+				}
+				, ["MayorExpedition"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/Widget/MayorExpedition.txt"
+				}
+				, ["MayorHero"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/Widget/MayorHero.txt"
+				}
+				, ["MayorTown"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/Widget/MayorTown.txt"
+				}
+				, ["Player"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/Widget/Player.txt"
+				}
+			}
+			, ["KingManage"] = {
+				["Text"] = "/Text/Game/Scripts/TTH_KingManage/KingManage.txt"
+			}
+			, ["ShowInfo"] = {
+				["Text"] = "/Text/Game/Scripts/TTH_KingManage/ShowInfo.txt"
+			}
+			, ["SkillManage"] = {
+				["Text"] = "/Text/Game/Scripts/TTH_KingManage/SkillManage.txt"
+				, ["NoOption"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/SkillManage/NoOption.txt"
+				}
+			}
+			, ["TownManage"] = {
+				["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage.txt"
+				, ["ConvertTown"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/ConvertTown.txt"
+					, ["HasMayor"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/ConvertTown/HasMayor.txt"
+					}
+					, ["SameRace"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/ConvertTown/SameRace.txt"
+					}
+					, ["NotEnoughRes"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/ConvertTown/NotEnoughRes.txt"
+					}
+					, ["GarrisonHero"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/ConvertTown/GarrisonHero.txt"
+					}
+					, ["ConfirmConvert"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/ConvertTown/ConfirmConvert.txt"
+					}
+				}
+				, ["AssumeMayor"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/AssumeMayor.txt"
+					, ["NotSameRace"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/AssumeMayor/NotSameRace.txt"
+					}
+					, ["HasMayorOther"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/AssumeMayor/HasMayorOther.txt"
+					}
+					, ["HasMayorSelf"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/AssumeMayor/HasMayorSelf.txt"
+					}
+					, ["NoQuota"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/AssumeMayor/NoQuota.txt"
+					}
+					, ["NoOperTimes"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/AssumeMayor/NoOperTimes.txt"
+					}
+					, ["ConfirmAssume"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/AssumeMayor/ConfirmAssume.txt"
+					}
+					, ["AssumeSuccess"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/AssumeMayor/AssumeSuccess.txt"
+					}
+				}
+				, ["StepDownMayor"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/StepDownMayor.txt"
+					, ["NotMatchHero"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/StepDownMayor/NotMatchHero.txt"
+					}
+					, ["NoOperTimes"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/StepDownMayor/NoOperTimes.txt"
+					}
+					, ["ConfirmStepDown"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/StepDownMayor/ConfirmStepDown.txt"
+					}
+					, ["StepDownSuccess"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/StepDownMayor/StepDownSuccess.txt"
+					}
+				}
+				, ["BuildStructure"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/BuildStructure.txt"
+					, ["NoMayor"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/BuildStructure/NoMayor.txt"
+					}
+					, ["NotMatchHero"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/BuildStructure/NotMatchHero.txt"
+					}
+					, ["NoTownInfo"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/BuildStructure/NoTownInfo.txt"
+					}
+					, ["NoOperTimes"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/BuildStructure/NoOperTimes.txt"
+					}
+					, ["NotEnoughMove"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/BuildStructure/NotEnoughMove.txt"
+					}
+					, ["NoUnbuilt"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/BuildStructure/NoUnbuilt.txt"
+					}
+					, ["NotEnoughRes"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/BuildStructure/NotEnoughRes.txt"
+					}
+					, ["ConfirmBuild"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/BuildStructure/ConfirmBuild.txt"
+					}
+					, ["BuildSuccess"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/BuildStructure/BuildSuccess.txt"
+					}
+				}
+				, ["SetUpTeleport"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/SetUpTeleport.txt"
+					, ["NotMatchHero"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/SetUpTeleport/NotMatchHero.txt"
+					}
+					, ["Exist"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/SetUpTeleport/Exist.txt"
+					}
+					, ["NotEnoughMagic"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/SetUpTeleport/NotEnoughMagic.txt"
+					}
+					, ["NotEnoughRes"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/SetUpTeleport/NotEnoughRes.txt"
+					}
+					, ["NoOperTimes"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/SetUpTeleport/NoOperTimes.txt"
+					}
+					, ["ConfirmSetUp"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/SetUpTeleport/ConfirmSetUp.txt"
+					}
+					, ["SetUpSuccess"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/SetUpTeleport/SetUpSuccess.txt"
+					}
+				}
+				, ["Teleport2AppointTown"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/Teleport2AppointTown.txt"
+					, ["NoTeleportTown"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/Teleport2AppointTown/NoTeleportTown.txt"
+					}
+					, ["ConfirmTown"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/Teleport2AppointTown/ConfirmTown.txt"
+					}
+					, ["HeroInGarrison"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/Teleport2AppointTown/HeroInGarrison.txt"
+					}
+					, ["ResTip"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/Teleport2AppointTown/ResTip.txt"
+					}
+					, ["ManaTip"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/Teleport2AppointTown/ManaTip.txt"
+					}
+					, ["NotEnoughRes"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/Teleport2AppointTown/NotEnoughRes.txt"
+					}
+					, ["NotEnoughMana"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/Teleport2AppointTown/NotEnoughMana.txt"
+					}
+					, ["GoldTip"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/Teleport2AppointTown/GoldTip.txt"
+					}
+					, ["MoveTip"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/Teleport2AppointTown/MoveTip.txt"
+					}
+					, ["NotEnoughGold"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/Teleport2AppointTown/NotEnoughGold.txt"
+					}
+					, ["NotEnoughMove"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/Teleport2AppointTown/NotEnoughMove.txt"
+					}
+				}
+				, ["Teleport2NearByTown"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/Teleport2NearByTown.txt"
+					, ["NotEnoughHeroLevel"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/Teleport2NearByTown/NotEnoughHeroLevel.txt"
+					}
+					, ["NoTown"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/Teleport2NearByTown/NoTown.txt"
+					}
+					, ["ConfirmTown"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/Teleport2NearByTown/ConfirmTown.txt"
+					}
+					, ["HeroInGarrison"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/Teleport2NearByTown/HeroInGarrison.txt"
+					}
+					, ["HasTeleport"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/Teleport2NearByTown/HasTeleport.txt"
+					}
+					, ["NoTeleport"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/Teleport2NearByTown/NoTeleport.txt"
+					}
+					, ["ResTip"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/Teleport2NearByTown/ResTip.txt"
+					}
+					, ["ManaTip"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/Teleport2NearByTown/ManaTip.txt"
+					}
+					, ["NotEnoughRes"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/Teleport2NearByTown/NotEnoughRes.txt"
+					}
+					, ["NotEnoughMana"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/Teleport2NearByTown/NotEnoughMana.txt"
+					}
+					, ["GoldTip"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/Teleport2NearByTown/GoldTip.txt"
+					}
+					, ["MoveTip"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/Teleport2NearByTown/MoveTip.txt"
+					}
+					, ["NotEnoughGold"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/Teleport2NearByTown/NotEnoughGold.txt"
+					}
+					, ["NotEnoughMove"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/Teleport2NearByTown/NotEnoughMove.txt"
+					}
+				}
+			}
+			, ["ExchangeRecord"] = {
+				["Text"] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord.txt"
+				, ["ChooseOption"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/ChooseOption.txt"
+				}
+				, ["NotEnoughPoint"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/NotEnoughPoint.txt"
+				}
+				, ["Success"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/Success.txt"
+				}
+				, ["CurrentOperTimes"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/CurrentOperTimes.txt"
+					, ["RewardText"] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/RewardCurrentOperTimes.txt"
+				}
+				, ["RecoveryMove"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/RecoveryMove.txt"
+					, ["RewardText"] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/RewardRecoveryMove.txt"
+				}
+				, ["RecoveryMana"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/RecoveryMana.txt"
+					, ["RewardText"] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/RewardRecoveryMana.txt"
+				}
+				, ["MaxOperTimes"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/MaxOperTimes.txt"
+					, ["RewardText"] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/RewardMaxOperTimes.txt"
+				}
+				, ["AbilityQuota"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/AbilityQuota.txt"
+					, ["RewardText"] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/RewardAbilityQuota.txt"
+				}
+				, ["TerritoryRadius"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/TerritoryRadius.txt"
+					, ["RewardText"] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/RewardTerritoryRadius.txt"
+				}
+			}
+		};
+
+		-- 英雄主动技能4
+		function TTH_MANAGE.customAbility(strHero, CUSTOM_ABILITY_ID)
+			if CUSTOM_ABILITY_ID == CUSTOM_ABILITY_4 then
+				TTH_MANAGE.kingManage(strHero);
 			end;
 		end;
-	return type,count
-end;
 
-function H55_ArmyInfoSimple(hero)
-	local type = {};
-	type[0], type[1], type[2], type[3], type[4], type[5], type[6] = GetHeroCreaturesTypes(hero);
-	return type
-end;
+		-- 王国管理-总入口
+			TTH_TABLE.KingManageOption = {
+				[1] = {
+					["Id"] = TTH_ENUM.ShowInfo
+					, ["Text"] = TTH_TABLE.KingManagePath["ShowInfo"]["Text"]
+					, ["Callback"] = "TTH_MANAGE.dealShowInfo"
+				}
+				, [2] = {
+					["Id"] = TTH_ENUM.SkillManage
+					, ["Text"] = TTH_TABLE.KingManagePath["SkillManage"]["Text"]
+					, ["Callback"] = "TTH_MANAGE.dealSkillManage"
+				}
+				, [3] = {
+					["Id"] = TTH_ENUM.TownManage
+					, ["Text"] = TTH_TABLE.KingManagePath["TownManage"]["Text"]
+					, ["Callback"] = "TTH_MANAGE.dealTownManage"
+				}
+				, [4] = {
+					["Id"] = TTH_ENUM.ExchangeRecord
+					, ["Text"] = TTH_TABLE.KingManagePath["ExchangeRecord"]["Text"]
+					, ["Callback"] = "TTH_MANAGE.dealExchangeRecord"
+				}
+			};
+			function TTH_MANAGE.kingManage(strHero)
+				TTH_COMMON.initNavi(TTH_TABLE.KingManagePath["KingManage"]["Text"]);
 
-function H55_GetHeroTaxRate(hero)
-	local type,count = H55_ArmyInfo(hero)
-	local army = 0;
-	local level = GetHeroLevel(hero);
-	for i = 0,6 do
-		if type[i] ~= 0 then
-			army = army + count[i];
-		end;
-	end;
-	local tax = H55_Round( (level+sqrt(army)) * H55_TaxRate);
-	return tax;
-end;
-
-function H55_MonsterInfo(creature)
-	local type = {};
-	local count = {};
-	type[0], type[1], type[2], type[3], type[4], type[5], type[6] = GetObjectCreaturesTypes(creature);
-		for i = 0,6 do
-			if(type[i] ~= 0) then
-				count[i] = GetObjectCreatures(creature,type[i]);
-			else
-			count[i] = 0;
+				local iPlayer = GetObjectOwner(strHero);
+				TTH_COMMON.optionRadio(iPlayer, strHero, TTH_TABLE.KingManageOption);
 			end;
-		end;
-	return type,count
-end;
 
-function H55_IncStackSize(multiplier)
-	print("H55 Modifying Neutral stack sizes...");
-	BlockGame();
-	local neutrals = GetObjectNamesByType("CREATURE");
-	local totalamount = length(neutrals)
-	for i = 1, totalamount-1 do
-		local type,count = H55_MonsterInfo(neutrals[i]);
-		for ind = 0,6 do
-			if (type[ind] ~= 0) and (type[ind] ~= nil) then
-				local amount = H55_Round((count[ind]*multiplier)-count[ind]);
-				AddObjectCreatures(neutrals[i],type[ind],amount)
+			-- 信息查询
+				function TTH_MANAGE.dealShowInfo(iPlayer, strHero)
+					TTH_COMMON.nextNavi(TTH_TABLE.KingManagePath["ShowInfo"]["Text"]);
+
+					TTH_GLOBAL.setGameVar4HeroLevel(strHero);
+					TTH_GLOBAL.giveHero4Attribute(strHero);
+					TTH_GLOBAL.dealSkillBonus8Hero(strHero);
+					TTH_MANAGE.updateMaxOperTimes(strHero); -- 更新内政操作次数上限
+
+					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero);
+				end;
+
+			-- 技能管理
+				function TTH_MANAGE.dealSkillManage(iPlayer, strHero)
+					TTH_COMMON.nextNavi(TTH_TABLE.KingManagePath["SkillManage"]["Text"]);
+
+					local strTown = TTH_GLOBAL.isHeroAtTownGate(strHero);
+					TTH_VARI.townSkillManage = strTown;
+
+					local optionSkillManage = {};
+					local iIndex = 1;
+					for iKey, objItem in TTH_TABLE.FuncTalent[TTH_ENUM.FuncActive] do
+						if iKey == strHero then
+							if strTown ~= nil	and objItem[TTH_ENUM.FuncAtGate] ~= nil then
+								local objOption = {
+									["Id"] = iKey
+									, ["Text"] = objItem["Text"]
+									, ["Callback"] = objItem[TTH_ENUM.FuncAtGate]
+								};
+								optionSkillManage[iIndex] = objOption;
+								iIndex = iIndex + 1;
+							end;
+							if strTown == nil	and objItem[TTH_ENUM.FuncNotAtGate] ~= nil then
+								local objOption = {
+									["Id"] = strHero
+									, ["Text"] = objItem["Text"]
+									, ["Callback"] = objItem[TTH_ENUM.FuncNotAtGate]
+								};
+								optionSkillManage[iIndex] = objOption;
+								iIndex = iIndex + 1;
+							end;
+						end;
+					end;
+					for iKey, objItem in TTH_TABLE.FuncArtifact[TTH_ENUM.FuncActive] do
+						if HasArtefact(strHero, iKey, objItem["NeedWear"]) then
+							if strTown ~= nil	and objItem[TTH_ENUM.FuncAtGate] ~= nil then
+								local objOption = {
+									["Id"] = iKey
+									, ["Text"] = objItem["Text"]
+									, ["Callback"] = objItem[TTH_ENUM.FuncAtGate]
+								};
+								optionSkillManage[iIndex] = objOption;
+								iIndex = iIndex + 1;
+							end;
+							if strTown == nil	and objItem[TTH_ENUM.FuncNotAtGate] ~= nil then
+								local objOption = {
+									["Id"] = strHero
+									, ["Text"] = objItem["Text"]
+									, ["Callback"] = objItem[TTH_ENUM.FuncNotAtGate]
+								};
+								optionSkillManage[iIndex] = objOption;
+								iIndex = iIndex + 1;
+							end;
+						end;
+					end;
+					for iKey, objItem in TTH_TABLE.FuncPerk[TTH_ENUM.FuncActive] do
+						if HasHeroSkill(strHero, iKey) then
+							if strTown ~= nil	and objItem[TTH_ENUM.FuncAtGate] ~= nil then
+								local objOption = {
+									["Id"] = iKey
+									, ["Text"] = objItem["Text"]
+									, ["Callback"] = objItem[TTH_ENUM.FuncAtGate]
+								};
+								optionSkillManage[iIndex] = objOption;
+								iIndex = iIndex + 1;
+							end;
+							if strTown == nil	and objItem[TTH_ENUM.FuncNotAtGate] ~= nil then
+								local objOption = {
+									["Id"] = strHero
+									, ["Text"] = objItem["Text"]
+									, ["Callback"] = objItem[TTH_ENUM.FuncNotAtGate]
+								};
+								optionSkillManage[iIndex] = objOption;
+								iIndex = iIndex + 1;
+							end;
+						end;
+					end;
+
+					if optionSkillManage == nil or length(optionSkillManage) == 0 then
+						local strPath = TTH_TABLE.KingManagePath["SkillManage"]["NoOption"]["Text"];
+						TTH_GLOBAL.sign(strHero, strPath);
+					end;
+
+					TTH_COMMON.optionRadio(iPlayer, strHero, optionSkillManage);
+				end;
+
+			-- 城镇管理
+				TTH_ENUM.ConvertTown = 1; -- 转换城镇
+				TTH_ENUM.AssumeMayor = 2; -- 成为内政官
+				TTH_ENUM.StepDownMayor = 3; -- 解职内政官
+				TTH_ENUM.BuildStructure = 4; -- 建造建筑
+				TTH_ENUM.SetUpTeleport = 5; -- 设立传送点
+				TTH_ENUM.Teleport2AppointTown = 1; -- 定点回城
+				TTH_ENUM.Teleport2NearByTown = 2; -- 近点回城
+
+				function TTH_MANAGE.dealTownManage(iPlayer, strHero)
+					TTH_COMMON.nextNavi(TTH_TABLE.KingManagePath["TownManage"]["Text"]);
+
+					local strTown = TTH_GLOBAL.isHeroAtTownGate(strHero);
+					if strTown ~= nil then
+						TTH_MANAGE.dealTownManageAtGate(iPlayer, strHero, strTown);
+					else
+						TTH_MANAGE.dealTownManageNotAtGate(iPlayer, strHero);
+					end;
+				end;
+
+				-- 英雄在城门口
+					TTH_TABLE.TownManageAtGateOption = {
+						[1] = {
+							["Id"] = TTH_ENUM.ConvertTown
+							, ["Text"] = TTH_TABLE.KingManagePath["TownManage"]["ConvertTown"]["Text"]
+							, ["Callback"] = "TTH_MANAGE.dealConvertTown"
+						}
+						, [2] = {
+							["Id"] = TTH_ENUM.AssumeMayor
+							, ["Text"] = TTH_TABLE.KingManagePath["TownManage"]["AssumeMayor"]["Text"]
+							, ["Callback"] = "TTH_MANAGE.dealAssumeMayor"
+						}
+						, [3] = {
+							["Id"] = TTH_ENUM.StepDownMayor
+							, ["Text"] = TTH_TABLE.KingManagePath["TownManage"]["StepDownMayor"]["Text"]
+							, ["Callback"] = "TTH_MANAGE.dealStepDownMayor"
+						}
+						, [4] = {
+							["Id"] = TTH_ENUM.BuildStructure
+							, ["Text"] = TTH_TABLE.KingManagePath["TownManage"]["BuildStructure"]["Text"]
+							, ["Callback"] = "TTH_MANAGE.dealBuildStructure"
+						}
+						, [5] = {
+							["Id"] = TTH_ENUM.SetUpTeleport
+							, ["Text"] = TTH_TABLE.KingManagePath["TownManage"]["SetUpTeleport"]["Text"]
+							, ["Callback"] = "TTH_MANAGE.dealSetUpTeleport"
+						}
+					};
+					TTH_VARI.townName4TownManage = "";
+					TTH_VARI.townInfo4TownManage = {};
+					function TTH_MANAGE.dealTownManageAtGate(iPlayer, strHero, strTown)
+						TTH_VARI.townName4TownManage = strTown;
+						TTH_COMMON.optionRadio(iPlayer, strHero, TTH_TABLE.TownManageAtGateOption);
+					end;
+
+					-- 转换城镇
+						-- 入口
+							function TTH_MANAGE.dealConvertTown(iPlayer, strHero)
+								TTH_COMMON.nextNavi(TTH_TABLE.KingManagePath["TownManage"]["ConvertTown"]["Text"]);
+
+								local strTown = TTH_VARI.townName4TownManage;
+								TTH_MANAGE.checkPreConvertTown4Mayor(iPlayer, strHero, strTown);
+							end;
+
+						-- 前置查验
+							-- 当前城镇已有内政官
+								function TTH_MANAGE.checkPreConvertTown4Mayor(iPlayer, strHero, strTown)
+									if TTH_MANAGE.getMayor8Town(strTown) ~= nil then
+										local strText = TTH_TABLE.KingManagePath["TownManage"]["ConvertTown"]["HasMayor"]["Text"];
+										TTH_GLOBAL.sign(strHero, strText);
+										return nil;
+									end;
+									TTH_MANAGE.checkPreConvertTown4Race(iPlayer, strHero, strTown);
+								end;
+
+							-- 执行转换的英雄和当前城镇是否为同一种族
+								function TTH_MANAGE.checkPreConvertTown4Race(iPlayer, strHero, strTown)
+									if TTH_GLOBAL.getRace8Hero(strHero) == TTH_GLOBAL.getRace8Town(strTown) then
+										local strText = TTH_TABLE.KingManagePath["TownManage"]["ConvertTown"]["SameRace"]["Text"];
+										TTH_GLOBAL.sign(strHero, strText);
+										return nil;
+									end;
+									TTH_MANAGE.checkPreConvertTown4Garrison(iPlayer, strHero, strTown);
+								end;
+
+							-- 当前城镇的内城是否有英雄驻守
+								function TTH_MANAGE.checkPreConvertTown4Garrison(iPlayer, strHero, strTown)
+									if TTH_GLOBAL.isGarrisonHasHero(iPlayer, strTown) == 1 then
+										local strText = TTH_TABLE.KingManagePath["TownManage"]["ConvertTown"]["GarrisonHero"]["Text"];
+										TTH_GLOBAL.sign(strHero, strText);
+										return nil;
+									end;
+									TTH_MANAGE.checkPreConvertTown4Resource(iPlayer, strHero, strTown);
+								end;
+
+							-- 玩家是否有足够的资源转换城镇
+								function TTH_MANAGE.checkPreConvertTown4Resource(iPlayer, strHero, strTown)
+									local objTown = TTH_MANAGE.analysisTownBuildLevel(strTown);
+									TTH_VARI.townInfo4TownManage = objTown;
+									local iTownValue = TTH_MANAGE.calcTownValue(objTown);
+
+									local iCountWood = iTownValue * 2;
+									local iCountOre = iTownValue * 2;
+									local iCountMercury = iTownValue * 1;
+									local iCountCrystal = iTownValue * 1;
+									local iCountSulphur = iTownValue * 1;
+									local iCountGem = iTownValue * 1;
+									local iCountGold = iTownValue * 1000;
+
+									if iCountWood > GetPlayerResource(iPlayer, WOOD)
+										or iCountOre > GetPlayerResource(iPlayer, ORE)
+										or iCountMercury > GetPlayerResource(iPlayer, MERCURY)
+										or iCountCrystal > GetPlayerResource(iPlayer, CRYSTAL)
+										or iCountSulphur > GetPlayerResource(iPlayer, SULFUR)
+										or iCountGem > GetPlayerResource(iPlayer, GEM)
+										or iCountGold > GetPlayerResource(iPlayer, GOLD) then
+										local strPathMain={
+											TTH_TABLE.KingManagePath["TownManage"]["ConvertTown"]["NotEnoughRes"]["Text"]
+											;iTownValue=iTownValue
+											,iCountWood=iCountWood
+											,iCountOre=iCountOre
+											,iCountMercury=iCountMercury
+											,iCountCrystal=iCountCrystal
+											,iCountSulphur=iCountSulphur
+											,iCountGem=iCountGem
+											,iCountGold=iCountGold
+										};
+										TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.MessageBox, strPathMain);
+										return nil;
+									end;
+
+									TTH_MANAGE.confirmConvertTown(iPlayer, strHero, strTown, iTownValue);
+								end;
+
+							-- 已满足条件，询问是否转换城镇
+								function TTH_MANAGE.confirmConvertTown(iPlayer, strHero, strTown, iTownValue)
+									local iCountWood = iTownValue * 2;
+									local iCountOre = iTownValue * 2;
+									local iCountMercury = iTownValue * 1;
+									local iCountCrystal = iTownValue * 1;
+									local iCountSulphur = iTownValue * 1;
+									local iCountGem = iTownValue * 1;
+									local iCountGold = iTownValue * 1000;
+									local strPathMain={
+										TTH_TABLE.KingManagePath["TownManage"]["ConvertTown"]["ConfirmConvert"]["Text"]
+										;iTownValue=iTownValue
+										,iCountWood=iCountWood
+										,iCountOre=iCountOre
+										,iCountMercury=iCountMercury
+										,iCountCrystal=iCountCrystal
+										,iCountSulphur=iCountSulphur
+										,iCountGem=iCountGem
+										,iCountGold=iCountGold
+									};
+									local strCallbackOk = "TTH_MANAGE.implConvertTown("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strTown)..","..iTownValue..")";
+									local strCallbackCancel = "TTH_COMMON.cancelOption()";
+									TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+								end;
+
+						-- 执行转换
+							function TTH_MANAGE.implConvertTown(iPlayer, strHero, strTown, iTownValue)
+								local iHeroRace = TTH_GLOBAL.getRace8Hero(strHero);
+								local iMovePoint = GetHeroStat(strHero, STAT_MOVE_POINTS);
+
+								-- 扣除资源及移动力
+									TTH_GLOBAL.reduceResource(iPlayer, WOOD, iTownValue * 2);
+									TTH_GLOBAL.reduceResource(iPlayer, ORE, iTownValue * 2);
+									TTH_GLOBAL.reduceResource(iPlayer, MERCURY, iTownValue * 1);
+									TTH_GLOBAL.reduceResource(iPlayer, CRYSTAL, iTownValue * 1);
+									TTH_GLOBAL.reduceResource(iPlayer, SULFUR, iTownValue * 1);
+									TTH_GLOBAL.reduceResource(iPlayer, GEM, iTownValue * 1);
+									TTH_GLOBAL.reduceResource(iPlayer, GOLD, iTownValue * 1000);
+									ChangeHeroStat(strHero, STAT_MOVE_POINTS, -1 * iMovePoint);
+
+								-- 执行转换
+									Play2DSoundForPlayers(GetPlayerFilter(iPlayer), "/Maps/Scenario/A2C2M1/Siege_WallCrash02sound.xdb#xpointer(/Sound)");
+									TransformTown(strTown, iHeroRace);
+									sleep(1);
+
+								-- 重建建筑
+									TTH_MANAGE.rebuildTownBuilding(strTown, iHeroRace, TTH_VARI.townInfo4TownManage);
+									sleep(1);
+
+								-- 英雄访问城镇
+									MakeHeroInteractWithObject(strHero, strTown);
+							end;
+
+					-- 成为内政官
+						-- 入口
+							function TTH_MANAGE.dealAssumeMayor(iPlayer, strHero)
+								TTH_COMMON.nextNavi(TTH_TABLE.KingManagePath["TownManage"]["AssumeMayor"]["Text"]);
+
+								local strTown = TTH_VARI.townName4TownManage;
+								TTH_MANAGE.checkPreAssumeMayor4Race(iPlayer, strHero, strTown);
+							end;
+
+						-- 前置查验
+							-- 当前英雄和当前城镇是否为同一种族
+								function TTH_MANAGE.checkPreAssumeMayor4Race(iPlayer, strHero, strTown)
+									if TTH_GLOBAL.getRace8Hero(strHero) ~= TTH_GLOBAL.getRace8Town(strTown) then
+										local strText = TTH_TABLE.KingManagePath["TownManage"]["AssumeMayor"]["NotSameRace"]["Text"];
+										TTH_GLOBAL.sign(strHero, strText);
+										return nil;
+									end;
+									TTH_MANAGE.checkPreAssumeMayor4HasMayor(iPlayer, strHero, strTown);
+								end;
+
+							-- 当前城镇是否有内政官
+								function TTH_MANAGE.checkPreAssumeMayor4HasMayor(iPlayer, strHero, strTown)
+									local strMayor = TTH_MANAGE.getMayor8Town(strTown);
+									if strMayor ~= nil then
+										if strMayor ~= strHero then
+											local strText = TTH_TABLE.KingManagePath["TownManage"]["AssumeMayor"]["HasMayorOther"]["Text"];
+											TTH_GLOBAL.sign(strHero, strText);
+										else
+											local strText = TTH_TABLE.KingManagePath["TownManage"]["AssumeMayor"]["HasMayorSelf"]["Text"];
+											TTH_GLOBAL.sign(strHero, strText);
+										end;
+										return nil;
+									end;
+									TTH_MANAGE.checkPreAssumeMayor4Quota(iPlayer, strHero, strTown);
+								end;
+
+							-- 当前英雄是否有足够的城镇管理配额
+								function TTH_MANAGE.checkPreAssumeMayor4Quota(iPlayer, strHero, strTown)
+									local iAbilityQuota = TTH_MANAGE.getAbilityQuota(strHero);
+									local iAlreadyQuota = TTH_MANAGE.getAlreadyMayorInfo(strHero);
+									if iAbilityQuota <= iAlreadyQuota then
+										local strText = TTH_TABLE.KingManagePath["TownManage"]["AssumeMayor"]["NoQuota"]["Text"];
+										TTH_GLOBAL.sign(strHero, strText);
+										return nil;
+									end;
+									TTH_MANAGE.checkPreAssumeMayor4OperTimes(iPlayer, strHero, strTown);
+								end;
+
+							-- 当前英雄是否有足够的内政操作次数
+								function TTH_MANAGE.checkPreAssumeMayor4OperTimes(iPlayer, strHero, strTown)
+									local iRemainOperTimes = TTH_MANAGE.getRemainOperTimes(strHero);
+									if iRemainOperTimes <= 0 then
+										local strText = TTH_TABLE.KingManagePath["TownManage"]["AssumeMayor"]["NoOperTimes"]["Text"];
+										TTH_GLOBAL.sign(strHero, strText);
+										return nil;
+									end;
+									TTH_MANAGE.confirmAssumeMayor(iPlayer, strHero, strTown);
+								end;
+
+							-- 已满足条件，询问是否就职内政官
+								function TTH_MANAGE.confirmAssumeMayor(iPlayer, strHero, strTown)
+									local iPostRemainOperTimes = TTH_MANAGE.getRemainOperTimes(strHero) - 1;
+									local objTown = TTH_MANAGE.analysisTownBuildLevel(strTown);
+									local iTownValue = TTH_MANAGE.calcTownValue(objTown);
+									local iPostMayorValue = TTH_MANAGE.getMayorValue(strHero) + iTownValue;
+									local iPostAlreadyMayor = TTH_MANAGE.getAlreadyMayorInfo(strHero) + 1;
+
+									local strPathMain = {
+										TTH_TABLE.KingManagePath["TownManage"]["AssumeMayor"]["ConfirmAssume"]["Text"]
+										;iTownValue=iTownValue
+										,iPostRemainOperTimes=iPostRemainOperTimes
+										,iPostMayorValue=iPostMayorValue
+										,iPostAlreadyMayor=iPostAlreadyMayor
+									};
+									local strCallbackOk = "TTH_MANAGE.implAssumeMayor("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strTown)..","..iTownValue..")";
+									local strCallbackCancel = "TTH_COMMON.cancelOption()";
+									TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+								end;
+
+						-- 执行就职
+							function TTH_MANAGE.implAssumeMayor(iPlayer, strHero, strTown, iTownValue)
+								-- 就职流程
+									TTH_MANAGE.useOperTimes(strHero);
+									TTH_MANAGE.bindTown2Hero(strHero, strTown, iTownValue);
+									TTH_MANAGE.dealMayorBonus(strHero);
+									TTH_MANAGE.updateExpeditionStatus(iPlayer, strHero, TTH_ENUM.No); -- 更新远征状态
+
+								-- 执行成功
+									local iRemainOperTimes = TTH_MANAGE.getRemainOperTimes(strHero);
+									local iMayorValue = TTH_MANAGE.getMayorValue(strHero);
+									local iAlreadyMayor = TTH_MANAGE.getAlreadyMayorInfo(strHero);
+									local strPathMain = {
+										TTH_TABLE.KingManagePath["TownManage"]["AssumeMayor"]["AssumeSuccess"]["Text"]
+										;iRemainOperTimes=iRemainOperTimes
+										,iMayorValue=iMayorValue
+										,iAlreadyMayor=iAlreadyMayor
+									};
+									TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.MessageBox, strPathMain);
+
+								-- 附带建筑
+									TTH_MANAGE.attachBuilding(iPlayer, strHero, strTown);
+							end;
+
+					-- 解职内政官
+						-- 入口
+							function TTH_MANAGE.dealStepDownMayor(iPlayer, strHero)
+								TTH_COMMON.nextNavi(TTH_TABLE.KingManagePath["TownManage"]["StepDownMayor"]["Text"]);
+
+								local strTown = TTH_VARI.townName4TownManage;
+								TTH_MANAGE.checkPreStepDownMayor4Mayor(iPlayer, strHero, strTown);
+							end;
+
+						-- 前置查验
+							-- 当前英雄是否为该城镇的内政官
+								function TTH_MANAGE.checkPreStepDownMayor4Mayor(iPlayer, strHero, strTown)
+									if TTH_VARI.arrMayor[strHero]["Town"][strTown] == nil then
+										local strText = TTH_TABLE.KingManagePath["TownManage"]["StepDownMayor"]["NotMatchHero"]["Text"];
+										TTH_GLOBAL.sign(strHero, strText);
+										return nil;
+									end;
+									TTH_MANAGE.checkPreStepDownMayor4OperTimes(iPlayer, strHero, strTown);
+								end;
+
+							-- 当前英雄是否有足够的内政操作次数
+								function TTH_MANAGE.checkPreStepDownMayor4OperTimes(iPlayer, strHero, strTown)
+									local iRemainOperTimes = TTH_MANAGE.getRemainOperTimes(strHero);
+									if iRemainOperTimes <= 0 then
+										local strText = TTH_TABLE.KingManagePath["TownManage"]["StepDownMayor"]["NoOperTimes"]["Text"];
+										TTH_GLOBAL.sign(strHero, strText);
+										return nil;
+									end;
+									TTH_MANAGE.confirmStepDownMayor(iPlayer, strHero, strTown);
+								end;
+
+							-- 已满足条件，询问是否解职内政官
+								function TTH_MANAGE.confirmStepDownMayor(iPlayer, strHero, strTown)
+									local iPostRemainOperTimes = TTH_MANAGE.getRemainOperTimes(strHero) - 1;
+									local objTown = TTH_MANAGE.analysisTownBuildLevel(strTown);
+									local iTownValue = TTH_MANAGE.calcTownValue(objTown);
+									local iPostMayorValue = TTH_MANAGE.getMayorValue(strHero) - iTownValue;
+									local iPostAlreadyMayor = TTH_MANAGE.getAlreadyMayorInfo(strHero) - 1;
+
+									local strPathMain = {
+										TTH_TABLE.KingManagePath["TownManage"]["StepDownMayor"]["ConfirmStepDown"]["Text"]
+										;iTownValue=iTownValue
+										,iPostRemainOperTimes=iPostRemainOperTimes
+										,iPostMayorValue=iPostMayorValue
+										,iPostAlreadyMayor=iPostAlreadyMayor
+									};
+									local strCallbackOk = "TTH_MANAGE.implStepDownMayor("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strTown)..")";
+									local strCallbackCancel = "TTH_COMMON.cancelOption()";
+									TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+								end;
+
+						-- 执行解职
+							function TTH_MANAGE.implStepDownMayor(iPlayer, strHero, strTown)
+								-- 解职流程
+									TTH_MANAGE.useOperTimes(strHero);
+									TTH_MANAGE.unbindTown2Hero(strHero, strTown);
+									TTH_MANAGE.dealMayorBonus(strHero);
+									TTH_MANAGE.updateExpeditionStatus(iPlayer, strHero, TTH_ENUM.No); -- 更新远征状态
+
+								-- 执行成功
+									local iRemainOperTimes = TTH_MANAGE.getRemainOperTimes(strHero);
+									local iMayorValue = TTH_MANAGE.getMayorValue(strHero);
+									local iAlreadyMayor = TTH_MANAGE.getAlreadyMayorInfo(strHero);
+									local strPathMain = {
+										TTH_TABLE.KingManagePath["TownManage"]["StepDownMayor"]["StepDownSuccess"]["Text"]
+										;iRemainOperTimes=iRemainOperTimes
+										,iMayorValue=iMayorValue
+										,iAlreadyMayor=iAlreadyMayor
+									};
+									TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.MessageBox, strPathMain);
+							end;
+
+					-- 建造建筑
+						TTH_VARI.TownBuilding8Move = 2000;
+
+						-- 入口
+							function TTH_MANAGE.dealBuildStructure(iPlayer, strHero)
+								TTH_COMMON.nextNavi(TTH_TABLE.KingManagePath["TownManage"]["BuildStructure"]["Text"]);
+
+								local strTown = TTH_VARI.townName4TownManage;
+								TTH_MANAGE.checkPreBuildStructure4Mayor(iPlayer, strHero, strTown);
+							end;
+
+						-- 前置查验
+							-- 当前英雄是否为该城镇的内政官
+								function TTH_MANAGE.checkPreBuildStructure4Mayor(iPlayer, strHero, strTown)
+									if TTH_VARI.arrMayor[strHero]["Town"][strTown] == nil then
+										local strText = TTH_TABLE.KingManagePath["TownManage"]["BuildStructure"]["NotMatchHero"]["Text"];
+										TTH_GLOBAL.sign(strHero, strText);
+										return nil;
+									end;
+									TTH_MANAGE.checkPreBuildStructure4OperTimes(iPlayer, strHero, strTown);
+								end;
+
+							-- 当前英雄是否有足够的内政操作次数
+								function TTH_MANAGE.checkPreBuildStructure4OperTimes(iPlayer, strHero, strTown)
+									local iRemainOperTimes = TTH_MANAGE.getRemainOperTimes(strHero);
+									if iRemainOperTimes <= 0 then
+										local strText = TTH_TABLE.KingManagePath["TownManage"]["BuildStructure"]["NoOperTimes"]["Text"];
+										TTH_GLOBAL.sign(strHero, strText);
+										return nil;
+									end;
+									TTH_MANAGE.checkPreBuildStructure4Move(iPlayer, strHero, strTown);
+								end;
+
+							-- 当前英雄是否有足够的移动力 >= 2000
+								function TTH_MANAGE.checkPreBuildStructure4Move(iPlayer, strHero, strTown)
+									local iMovePoint = GetHeroStat(strHero, STAT_MOVE_POINTS);
+									if iMovePoint < TTH_VARI.TownBuilding8Move then
+										local strText = TTH_TABLE.KingManagePath["TownManage"]["BuildStructure"]["NotEnoughMove"]["Text"];
+										TTH_GLOBAL.sign(strHero, strText);
+										return nil;
+									end;
+									TTH_MANAGE.checkPreBuildStructure4Building(iPlayer, strHero, strTown);
+								end;
+
+							-- 当前城镇是否有剩余建筑未建造
+								function TTH_MANAGE.checkPreBuildStructure4Building(iPlayer, strHero, strTown)
+									local arrChooseBuildingOption = {};
+									local iTownRace = TTH_GLOBAL.getRace8Town(strTown);
+
+									local objTown = TTH_MANAGE.analysisTownBuildLevel(strTown);
+									local iTownBuildingTotalLevel = TTH_MANAGE.calcTownBuildingTotalLevel(objTown);
+									local i = 1;
+									for iIndexBuilding, objBuilding in TTH_TABLE.TownBuilding[iTownRace] do
+										local iLevel = GetTownBuildingLevel(strTown, objBuilding["Id"]);
+										-- 建筑对象需求的城镇等级 小于等于 当前城镇的城镇等级
+										if objBuilding["TownLevel"] <= iTownBuildingTotalLevel then
+											-- 建筑对象的等级 大于 当前城镇中该建筑的等级
+											if objBuilding["Level"] > iLevel then
+												-- 建筑对象需求的前置建筑的等级 小于等于 当前城镇中该前置建筑的等级
+												if objBuilding["Base"]["Id"] == TTH_ENUM.TownBuildingNoBase
+													or (
+														objBuilding["Base"]["Id"] ~= TTH_ENUM.TownBuildingNoBase
+														and objBuilding["Base"]["Level"] <= GetTownBuildingLevel(strTown, objBuilding["Base"]["Id"])
+													)
+													then
+														arrChooseBuildingOption[i] = {
+															["Id"] = iIndexBuilding
+															, ["Text"] = objBuilding["Text"]
+															, ["Callback"] = "TTH_MANAGE.checkPreBuildStructure4Res"
+														};
+														i = i + 1;
+												end;
+											end;
+										end;
+									end
+
+									if arrChooseBuildingOption == nil
+										or length(arrChooseBuildingOption) == 0 then
+										local strText = TTH_TABLE.KingManagePath["TownManage"]["BuildStructure"]["NoUnbuilt"]["Text"]
+										TTH_GLOBAL.sign(strHero, strText);
+										return nil;
+									end;
+									TTH_COMMON.optionRadio(iPlayer, strHero, arrChooseBuildingOption);
+								end;
+
+							-- 当前玩家是否有足够的资源建造该建筑
+								function TTH_MANAGE.checkPreBuildStructure4Res(iPlayer, strHero, iIndexBuilding)
+									local strTown = TTH_VARI.townName4TownManage;
+									local iTownRace = TTH_GLOBAL.getRace8Town(strTown);
+									local objBuilding = TTH_TABLE.TownBuilding[iTownRace][iIndexBuilding];
+
+									local iCoef = 1
+										* TTH_TALENT.calcCoefUfretin(strHero)
+										* TTH_TALENT.calcCoefIsher(strHero);
+
+									if iCoef * objBuilding["Resource"][WOOD] > GetPlayerResource(iPlayer, WOOD)
+										or iCoef * objBuilding["Resource"][ORE] > GetPlayerResource(iPlayer, ORE)
+										or iCoef * objBuilding["Resource"][MERCURY] > GetPlayerResource(iPlayer, MERCURY)
+										or iCoef * objBuilding["Resource"][CRYSTAL] > GetPlayerResource(iPlayer, CRYSTAL)
+										or iCoef * objBuilding["Resource"][SULFUR] > GetPlayerResource(iPlayer, SULFUR)
+										or iCoef * objBuilding["Resource"][GEM] > GetPlayerResource(iPlayer, GEM)
+										or iCoef * objBuilding["Resource"][GOLD] > GetPlayerResource(iPlayer, GOLD) then
+										local strText = TTH_TABLE.KingManagePath["TownManage"]["BuildStructure"]["NotEnoughRes"]["Text"];
+										TTH_GLOBAL.sign(strHero, strText);
+										return nil;
+									end;
+
+									TTH_MANAGE.confirmBuildStructure(iPlayer, strHero, strTown, iIndexBuilding);
+								end;
+
+							-- 已满足条件，询问是否建造建筑
+								function TTH_MANAGE.confirmBuildStructure(iPlayer, strHero, strTown, iIndexBuilding)
+									local iTownRace = TTH_GLOBAL.getRace8Town(strTown);
+									local objBuilding = TTH_TABLE.TownBuilding[iTownRace][iIndexBuilding];
+									local strBuildingText = objBuilding["Text"];
+
+									local iCoef = 1
+										* TTH_TALENT.calcCoefUfretin(strHero)
+										* TTH_TALENT.calcCoefIsher(strHero);
+
+									local iCountWood = TTH_COMMON.round(iCoef * objBuilding["Resource"][WOOD]);
+									local iCountOre = TTH_COMMON.round(iCoef * objBuilding["Resource"][ORE]);
+									local iCountMercury = TTH_COMMON.round(iCoef * objBuilding["Resource"][MERCURY]);
+									local iCountCrystal = TTH_COMMON.round(iCoef * objBuilding["Resource"][CRYSTAL]);
+									local iCountSulphur = TTH_COMMON.round(iCoef * objBuilding["Resource"][SULFUR]);
+									local iCountGem = TTH_COMMON.round(iCoef * objBuilding["Resource"][GEM]);
+									local iCountGold = TTH_COMMON.round(iCoef * objBuilding["Resource"][GOLD]);
+
+									local strPathMain = {
+										TTH_TABLE.KingManagePath["TownManage"]["BuildStructure"]["ConfirmBuild"]["Text"]
+										;strBuildingText=strBuildingText
+										,iCountWood=iCountWood
+										,iCountOre=iCountOre
+										,iCountMercury=iCountMercury
+										,iCountCrystal=iCountCrystal
+										,iCountSulphur=iCountSulphur
+										,iCountGem=iCountGem
+										,iCountGold=iCountGold
+									};
+									local strCallbackOk = "TTH_MANAGE.implBuildStructure("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strTown)..","..iIndexBuilding..")";
+									local strCallbackCancel = "TTH_COMMON.cancelOption()";
+									TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+								end;
+
+						-- 执行建造
+							function TTH_MANAGE.implBuildStructure(iPlayer, strHero, strTown, iIndexBuilding)
+								local iTownRace = TTH_GLOBAL.getRace8Town(strTown);
+								local objBuilding = TTH_TABLE.TownBuilding[iTownRace][iIndexBuilding];
+
+
+								-- 建造流程
+									-- 扣除资源
+										local iCoef = 1
+											* TTH_TALENT.calcCoefUfretin(strHero)
+											* TTH_TALENT.calcCoefIsher(strHero);
+										local iCountWood = TTH_COMMON.round(iCoef * objBuilding["Resource"][WOOD]);
+										local iCountOre = TTH_COMMON.round(iCoef * objBuilding["Resource"][ORE]);
+										local iCountMercury = TTH_COMMON.round(iCoef * objBuilding["Resource"][MERCURY]);
+										local iCountCrystal = TTH_COMMON.round(iCoef * objBuilding["Resource"][CRYSTAL]);
+										local iCountSulphur = TTH_COMMON.round(iCoef * objBuilding["Resource"][SULFUR]);
+										local iCountGem = TTH_COMMON.round(iCoef * objBuilding["Resource"][GEM]);
+										local iCountGold = TTH_COMMON.round(iCoef * objBuilding["Resource"][GOLD]);
+										TTH_GLOBAL.reduceResource(iPlayer, WOOD, iCountWood);
+										TTH_GLOBAL.reduceResource(iPlayer, ORE, iCountOre);
+										TTH_GLOBAL.reduceResource(iPlayer, MERCURY, iCountMercury);
+										TTH_GLOBAL.reduceResource(iPlayer, CRYSTAL, iCountCrystal);
+										TTH_GLOBAL.reduceResource(iPlayer, SULFUR, iCountSulphur);
+										TTH_GLOBAL.reduceResource(iPlayer, GEM, iCountGem);
+										TTH_GLOBAL.reduceResource(iPlayer, GOLD, iCountGold);
+
+									-- 扣除移动力
+										ChangeHeroStat(strHero, STAT_MOVE_POINTS, -1 * TTH_VARI.TownBuilding8Move);
+
+									-- 扣除内政操作次数
+										TTH_MANAGE.useOperTimes(strHero);
+										TTH_TALENT.useTimesUfretin(strHero);
+
+									-- 执行建造
+										UpgradeTownBuilding(strTown, objBuilding["Id"], 1);
+
+									-- 处理内政官加成
+										sleep(1);
+										TTH_MANAGE.dealMayorBonus(strHero);
+
+								-- 执行成功
+									local strBuildingText = objBuilding["Text"];
+									local iRemainOperTimes = TTH_MANAGE.getRemainOperTimes(strHero);
+
+									local strPathMain = {
+										TTH_TABLE.KingManagePath["TownManage"]["BuildStructure"]["BuildSuccess"]["Text"]
+										;strBuildingText=strBuildingText
+										,iRemainOperTimes=iRemainOperTimes
+									};
+									TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.MessageBox, strPathMain);
+							end;
+
+					-- 设立传送点
+						-- 入口
+							function TTH_MANAGE.dealSetUpTeleport(iPlayer, strHero)
+								TTH_COMMON.nextNavi(TTH_TABLE.KingManagePath["TownManage"]["SetUpTeleport"]["Text"]);
+
+								local strTown = TTH_VARI.townName4TownManage;
+								TTH_MANAGE.checkPreSetUpTeleport4Mayor(iPlayer, strHero, strTown);
+							end;
+
+						-- 前置查验
+							-- 当前英雄是否为该城镇的内政官
+								function TTH_MANAGE.checkPreSetUpTeleport4Mayor(iPlayer, strHero, strTown)
+									if TTH_VARI.arrMayor[strHero]["Town"][strTown] == nil then
+										local strText = TTH_TABLE.KingManagePath["TownManage"]["SetUpTeleport"]["NotMatchHero"]["Text"];
+										TTH_GLOBAL.sign(strHero, strText);
+										return nil;
+									end;
+									TTH_MANAGE.checkPreSetUpTeleport4Exist(iPlayer, strHero, strTown);
+								end;
+
+							-- 当前城镇的传送点是否已设立
+								function TTH_MANAGE.checkPreSetUpTeleport4Exist(iPlayer, strHero, strTown)
+									if TTH_MANAGE.isExistTeleport(strTown) ~= nil then
+										local strText = TTH_TABLE.KingManagePath["TownManage"]["SetUpTeleport"]["Exist"]["Text"];
+										TTH_GLOBAL.sign(strHero, strText);
+										return nil;
+									end;
+									TTH_MANAGE.checkPreSetUpTeleport4MagicLevel(iPlayer, strHero, strTown);
+								end;
+
+							-- 当前城镇是否有足够的魔法等级
+								function TTH_MANAGE.checkPreSetUpTeleport4MagicLevel(iPlayer, strHero, strTown)
+									local iTownRace = TTH_GLOBAL.getRace8Town(strTown);
+									local bEnoughMagic = 0;
+									if iTownRace == TOWN_STRONGHOLD then
+										if GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_1) == 3
+											and GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_3) == 1 then
+											bEnoughMagic = 1;
+										end;
+									elseif iTownRace == TOWN_INFERNO then
+										if GetTownBuildingLevel(strTown, TOWN_BUILDING_MAGIC_GUILD) >= 1
+											and GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_1) == 1 then
+											bEnoughMagic = 1;
+										end;
+									else
+										if GetTownBuildingLevel(strTown, TOWN_BUILDING_MAGIC_GUILD) == 5 then
+											bEnoughMagic = 1;
+										end;
+									end;
+									if bEnoughMagic == 0 then
+										local strText = TTH_TABLE.KingManagePath["TownManage"]["SetUpTeleport"]["NotEnoughMagic"]["Text"];
+										TTH_GLOBAL.sign(strHero, strText);
+										return nil;
+									end;
+									TTH_MANAGE.checkPreSetUpTeleport4Res(iPlayer, strHero, strTown);
+								end;
+
+							-- 是否有足够的资源设立传送点，普矿: 10; 稀矿: 5; 金币: 5000
+								function TTH_MANAGE.checkPreSetUpTeleport4Res(iPlayer, strHero, strTown)
+									local iUnitRes = 5;
+									local iCountWood = iUnitRes * 2;
+									local iCountOre = iUnitRes * 2;
+									local iCountMercury = iUnitRes * 1;
+									local iCountCrystal = iUnitRes * 1;
+									local iCountSulphur = iUnitRes * 1;
+									local iCountGem = iUnitRes * 1;
+									local iCountGold = iUnitRes * 1000;
+
+									if iCountWood > GetPlayerResource(iPlayer, WOOD)
+										or iCountOre > GetPlayerResource(iPlayer, ORE)
+										or iCountMercury > GetPlayerResource(iPlayer, MERCURY)
+										or iCountCrystal > GetPlayerResource(iPlayer, CRYSTAL)
+										or iCountSulphur > GetPlayerResource(iPlayer, SULFUR)
+										or iCountGem > GetPlayerResource(iPlayer, GEM)
+										or iCountGold > GetPlayerResource(iPlayer, GOLD) then
+										local strText = TTH_TABLE.KingManagePath["TownManage"]["SetUpTeleport"]["NotEnoughRes"]["Text"];
+										TTH_GLOBAL.sign(strHero, strText);
+										return nil;
+									end;
+
+									TTH_MANAGE.checkPreSetUpTeleport4OperTimes(iPlayer, strHero, strTown);
+								end;
+
+							-- 当前英雄是否有足够的内政操作次数
+								function TTH_MANAGE.checkPreSetUpTeleport4OperTimes(iPlayer, strHero, strTown)
+									local iRemainOperTimes = TTH_MANAGE.getRemainOperTimes(strHero);
+									if iRemainOperTimes <= 0 then
+										local strText = TTH_TABLE.KingManagePath["TownManage"]["SetUpTeleport"]["NoOperTimes"]["Text"];
+										TTH_GLOBAL.sign(strHero, strText);
+										return nil;
+									end;
+									TTH_MANAGE.confirmSetUpTeleport(iPlayer, strHero, strTown);
+								end;
+
+							-- 已满足条件，询问是否设立传送点
+								function TTH_MANAGE.confirmSetUpTeleport(iPlayer, strHero, strTown)
+									local iUnitRes = 5;
+									local iCountWood = iUnitRes * 2;
+									local iCountOre = iUnitRes * 2;
+									local iCountMercury = iUnitRes * 1;
+									local iCountCrystal = iUnitRes * 1;
+									local iCountSulphur = iUnitRes * 1;
+									local iCountGem = iUnitRes * 1;
+									local iCountGold = iUnitRes * 1000;
+
+									local strPathMain = {
+										TTH_TABLE.KingManagePath["TownManage"]["SetUpTeleport"]["ConfirmSetUp"]["Text"]
+										;iCountWood=iCountWood
+										,iCountOre=iCountOre
+										,iCountMercury=iCountMercury
+										,iCountCrystal=iCountCrystal
+										,iCountSulphur=iCountSulphur
+										,iCountGem=iCountGem
+										,iCountGold=iCountGold
+									};
+									local strCallbackOk = "TTH_MANAGE.implSetUpTeleport("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strTown)..")";
+									local strCallbackCancel = "TTH_COMMON.cancelOption()";
+									TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+								end;
+
+						-- 执行设立
+							function TTH_MANAGE.implSetUpTeleport(iPlayer, strHero, strTown, iIndexBuilding)
+								local iTownRace = TTH_GLOBAL.getRace8Town(strTown);
+								local objBuilding = TTH_TABLE.TownBuilding[iTownRace][iIndexBuilding];
+
+								-- 设立流程
+									-- 扣除资源
+										local iUnitRes = 5;
+										local iCountWood = iUnitRes * 2;
+										local iCountOre = iUnitRes * 2;
+										local iCountMercury = iUnitRes * 1;
+										local iCountCrystal = iUnitRes * 1;
+										local iCountSulphur = iUnitRes * 1;
+										local iCountGem = iUnitRes * 1;
+										local iCountGold = iUnitRes * 1000;
+
+										TTH_GLOBAL.reduceResource(iPlayer, WOOD, iCountWood);
+										TTH_GLOBAL.reduceResource(iPlayer, ORE, iCountOre);
+										TTH_GLOBAL.reduceResource(iPlayer, MERCURY, iCountMercury);
+										TTH_GLOBAL.reduceResource(iPlayer, CRYSTAL, iCountCrystal);
+										TTH_GLOBAL.reduceResource(iPlayer, SULFUR, iCountSulphur);
+										TTH_GLOBAL.reduceResource(iPlayer, GEM, iCountGem);
+										TTH_GLOBAL.reduceResource(iPlayer, GOLD, iCountGold);
+
+									-- 扣除内政操作次数
+										TTH_MANAGE.useOperTimes(strHero);
+
+									-- 执行设立
+										TTH_MANAGE.setUpTeleport2AppointTown(strTown);
+
+								-- 执行成功
+									local strPathMain = TTH_TABLE.KingManagePath["TownManage"]["SetUpTeleport"]["SetUpSuccess"]["Text"];
+									TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.MessageBox, strPathMain);
+							end;
+
+				-- 英雄不在城门口
+					TTH_TABLE.TownManageNotAtGateOption = {
+						[1] = {
+							["Id"] = TTH_ENUM.Teleport2AppointTown
+							, ["Text"] = TTH_TABLE.KingManagePath["TownManage"]["Teleport2AppointTown"]["Text"]
+							, ["Callback"] = "TTH_MANAGE.dealTeleport2AppointTown"
+						}
+						, [2] = {
+							["Id"] = TTH_ENUM.Teleport2NearByTown
+							, ["Text"] = TTH_TABLE.KingManagePath["TownManage"]["Teleport2NearByTown"]["Text"]
+							, ["Callback"] = "TTH_MANAGE.dealTeleport2NearByTown"
+						}
+					};
+					function TTH_MANAGE.dealTownManageNotAtGate(iPlayer, strHero)
+						TTH_COMMON.optionRadio(iPlayer, strHero, TTH_TABLE.TownManageNotAtGateOption);
+					end;
+
+					-- 传送状态开关
+						TTH_ENUM.TownManageTeleportTown4TeleportStart = 1;
+						TTH_ENUM.TownManageTeleportTown4TeleportEnd = 2;
+						TTH_VARI.bTownManageTeleportTown4TeleportStatus = TTH_ENUM.TownManageTeleportTown4TeleportEnd;
+
+					-- 定点回城
+						-- 参数
+							TTH_VARI.teleportTown = ""; -- 玩家选择了将要传送的城镇
+							TTH_VARI.arrTeleportTown = {}; -- 玩家城镇中已设立了传送点的城镇列表
+							TTH_VARI.arrTeleportTown8Race = {}; -- 玩家城镇中已设立了传送点的城镇列表 按种族分类
+
+							TTH_ENUM.TownManageTeleport2AppointTown8Res = 1;
+							TTH_ENUM.TownManageTeleport2AppointTown8Mana = 2;
+							TTH_ENUM.TownManageTeleport2AppointTown8Gold = 1;
+							TTH_ENUM.TownManageTeleport2AppointTown8Move = 2;
+							TTH_VARI.teleport2AppointTownChosenResOrMana = 1;
+							TTH_VARI.teleport2AppointTownChosenGoldOrMove = 1;
+							TTH_VARI.teleport2AppointTownUnitRes = 5;
+							TTH_VARI.teleport2AppointTownLimitMana = 5;
+							TTH_VARI.teleport2AppointTownLimitMove = 50;
+
+						-- 入口
+							function TTH_MANAGE.dealTeleport2AppointTown(iPlayer, strHero)
+								TTH_COMMON.nextNavi(TTH_TABLE.KingManagePath["TownManage"]["Teleport2AppointTown"]["Text"]);
+
+								TTH_MANAGE.checkPreTeleport2AppointTown4HasTeleportTown(iPlayer, strHero);
+							end;
+
+						-- 前置查验
+							-- 玩家是否有已设立传送点的城镇
+								function TTH_MANAGE.checkPreTeleport2AppointTown4HasTeleportTown(iPlayer, strHero)
+									TTH_VARI.arrTeleportTown = TTH_MANAGE.listTeleportTown(iPlayer);
+									if TTH_VARI.arrTeleportTown == nil or length(TTH_VARI.arrTeleportTown) == 0 then
+										local strText = TTH_TABLE.KingManagePath["TownManage"]["Teleport2AppointTown"]["NoTeleportTown"]["Text"];
+										TTH_GLOBAL.sign(strHero, strText);
+										return nil;
+									end;
+									TTH_MANAGE.radioTeleport2AppointTown4Race(iPlayer, strHero);
+								end;
+
+							-- 选择要传送城镇的种族
+								function TTH_MANAGE.radioTeleport2AppointTown4Race(iPlayer, strHero)
+									TTH_VARI.arrTeleportTown8Race = {};
+									local arrTeleportRaceOption = {};
+									local i = 1;
+									local strCallback = "TTH_MANAGE.cameraTeleport2AppointTown4Town";
+									for iIndexTown, strTown in TTH_VARI.arrTeleportTown do
+										local iTownRace = TTH_GLOBAL.getRace8Town(strTown);
+										arrTeleportRaceOption[i] = {
+											["Id"] = iTownRace
+											, ["Text"] = TTH_PATH.Race[iTownRace]
+											, ["Callback"] = strCallback
+										};
+										TTH_VARI.arrTeleportTown8Race[iTownRace] = TTH_COMMON.push(TTH_VARI.arrTeleportTown8Race[iTownRace], strTown);
+										i = i + 1;
+									end;
+									TTH_COMMON.optionRadio(iPlayer, strHero, arrTeleportRaceOption);
+								end;
+
+							-- 选择要传送的城镇<视角定位>
+								function TTH_MANAGE.cameraTeleport2AppointTown4Town(iPlayer, strHero, iTownRace)
+									local arrTown = TTH_VARI.arrTeleportTown8Race[iTownRace];
+									local iManaPoint = GetHeroStat(strHero, STAT_MANA_POINTS);
+									local iMovePoint = GetHeroStat(strHero, STAT_MOVE_POINTS);
+
+									-- 传送状态: 开启
+										TTH_VARI.bTownManageTeleportTown4TeleportStatus = TTH_ENUM.TownManageTeleportTown4TeleportStart;
+
+									for iIndexTown, strTown in arrTown do
+										if TTH_VARI.bTownManageTeleportTown4TeleportStatus == TTH_ENUM.TownManageTeleportTown4TeleportStart then
+											-- 视角定位
+												local iPosX, iPosY, iPosZ = GetObjectPosition(strTown);
+												MoveCamera(iPosX, iPosY, iPosZ, 50, TTH_FINAL.PI/2, 1, 1, 1, 1);
+												sleep(2);
+
+											local strPathMain = {
+												TTH_TABLE.KingManagePath["TownManage"]["Teleport2AppointTown"]["ConfirmTown"]["Text"]
+												;iPosX=iPosX
+												,iPosY=iPosY
+												,iPosZ=TTH_PATH.Basic["PosZ"][iPosZ]
+												,iManaPoint=iManaPoint
+												,iMovePoint=iMovePoint
+											};
+											local strCallbackOk = "TTH_MANAGE.checkPreTeleport2AppointTown4GarrisonHero("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strTown)..")";
+											local strCallbackCancel = "TTH_COMMON.wakeup()";
+											TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+										end;
+									end;
+								end;
+
+							-- 确认内城是否有英雄
+								function TTH_MANAGE.checkPreTeleport2AppointTown4GarrisonHero(iPlayer, strHero, strTown)
+									if TTH_GLOBAL.isGarrisonHasHero(iPlayer, strTown) == 1 then
+										local strText = TTH_TABLE.KingManagePath["TownManage"]["Teleport2AppointTown"]["HeroInGarrison"]["Text"];
+										TTH_GLOBAL.sign(strHero, strText);
+
+										-- 传送状态: 关闭
+											TTH_VARI.bTownManageTeleportTown4TeleportStatus = TTH_ENUM.TownManageTeleportTown4TeleportEnd;
+
+										return nil;
+									end;
+									TTH_VARI.teleportTown = strTown;
+									TTH_MANAGE.checkPreTeleport2AppointTown4ResOrMana(iPlayer, strHero);
+								end;
+
+							-- 玩家选择消耗资源or魔法值
+								TTH_TABLE.TownManageTeleport2AppointTown4ResOrManaOption = {
+									[1] = {
+										["Id"] = TTH_ENUM.TownManageTeleport2AppointTown8Res
+										, ["Text"] = TTH_TABLE.KingManagePath["TownManage"]["Teleport2AppointTown"]["ResTip"]["Text"]
+										, ["Callback"] = "TTH_MANAGE.checkPreTeleport2AppointTown4Res"
+									}
+									, [2] = {
+										["Id"] = TTH_ENUM.TownManageTeleport2AppointTown8Mana
+										, ["Text"] = TTH_TABLE.KingManagePath["TownManage"]["Teleport2AppointTown"]["ManaTip"]["Text"]
+										, ["Callback"] = "TTH_MANAGE.checkPreTeleport2AppointTown4Mana"
+									}
+								};
+								function TTH_MANAGE.checkPreTeleport2AppointTown4ResOrMana(iPlayer, strHero)
+									TTH_COMMON.optionRadio(iPlayer, strHero, TTH_TABLE.TownManageTeleport2AppointTown4ResOrManaOption);
+								end;
+
+							-- 是否有足够的资源
+								function TTH_MANAGE.checkPreTeleport2AppointTown4Res(iPlayer, strHero)
+									TTH_VARI.teleport2AppointTownChosenResOrMana = TTH_ENUM.TownManageTeleport2AppointTown8Res;
+									local iCountMercury = TTH_VARI.teleport2AppointTownUnitRes * 1;
+									local iCountCrystal = TTH_VARI.teleport2AppointTownUnitRes * 1;
+									local iCountSulphur = TTH_VARI.teleport2AppointTownUnitRes * 1;
+									local iCountGem = TTH_VARI.teleport2AppointTownUnitRes * 1;
+									if iCountMercury > GetPlayerResource(iPlayer, MERCURY)
+										or iCountCrystal > GetPlayerResource(iPlayer, CRYSTAL)
+										or iCountSulphur > GetPlayerResource(iPlayer, SULFUR)
+										or iCountGem > GetPlayerResource(iPlayer, GEM) then
+										local strText = TTH_TABLE.KingManagePath["TownManage"]["Teleport2AppointTown"]["NotEnoughRes"]["Text"];
+										TTH_GLOBAL.sign(strHero, strText);
+
+										-- 传送状态: 关闭
+											TTH_VARI.bTownManageTeleportTown4TeleportStatus = TTH_ENUM.TownManageTeleportTown4TeleportEnd;
+
+										return nil;
+									end;
+
+									TTH_MANAGE.checkPreTeleport2AppointTown4GoldOrMove(iPlayer, strHero);
+								end;
+
+							-- 是否有足够的魔法值
+								function TTH_MANAGE.checkPreTeleport2AppointTown4Mana(iPlayer, strHero)
+									TTH_VARI.teleport2AppointTownChosenResOrMana = TTH_ENUM.TownManageTeleport2AppointTown8Mana;
+									local iManaPoint = GetHeroStat(strHero, STAT_MANA_POINTS);
+									if iManaPoint < TTH_VARI.teleport2AppointTownLimitMana then
+										local strText = TTH_TABLE.KingManagePath["TownManage"]["Teleport2AppointTown"]["NotEnoughMana"]["Text"];
+										TTH_GLOBAL.sign(strHero, strText);
+
+										-- 传送状态: 关闭
+											TTH_VARI.bTownManageTeleportTown4TeleportStatus = TTH_ENUM.TownManageTeleportTown4TeleportEnd;
+
+										return nil;
+									end;
+
+									TTH_MANAGE.checkPreTeleport2AppointTown4GoldOrMove(iPlayer, strHero);
+								end;
+
+							-- 玩家选择消耗金币or移动力
+								TTH_TABLE.TownManageTeleport2AppointTown4GoldOrMoveOption = {
+									[1] = {
+										["Id"] = TTH_ENUM.TownManageTeleport2AppointTown8Gold
+										, ["Text"] = TTH_TABLE.KingManagePath["TownManage"]["Teleport2AppointTown"]["GoldTip"]["Text"]
+										, ["Callback"] = "TTH_MANAGE.checkPreTeleport2AppointTown4Gold"
+									}
+									, [2] = {
+										["Id"] = TTH_ENUM.TownManageTeleport2AppointTown8Move
+										, ["Text"] = TTH_TABLE.KingManagePath["TownManage"]["Teleport2AppointTown"]["MoveTip"]["Text"]
+										, ["Callback"] = "TTH_MANAGE.checkPreTeleport2AppointTown4Move"
+									}
+								};
+
+								function TTH_MANAGE.checkPreTeleport2AppointTown4GoldOrMove(iPlayer, strHero)
+									TTH_COMMON.optionRadio(iPlayer, strHero, TTH_TABLE.TownManageTeleport2AppointTown4GoldOrMoveOption);
+								end;
+
+							-- 是否有足够的金币
+								function TTH_MANAGE.checkPreTeleport2AppointTown4Gold(iPlayer, strHero)
+									TTH_VARI.teleport2AppointTownChosenGoldOrMove = TTH_ENUM.TownManageTeleport2AppointTown8Gold;
+
+									local iCountGold = TTH_VARI.teleport2AppointTownUnitRes * 1000;
+									if iCountGold > GetPlayerResource(iPlayer, GOLD) then
+										local strText = TTH_TABLE.KingManagePath["TownManage"]["Teleport2AppointTown"]["NotEnoughGold"]["Text"];
+										TTH_GLOBAL.sign(strHero, strText);
+
+										-- 传送状态: 关闭
+											TTH_VARI.bTownManageTeleportTown4TeleportStatus = TTH_ENUM.TownManageTeleportTown4TeleportEnd;
+
+										return nil;
+									end;
+
+									TTH_MANAGE.implTeleport2AppointTown(iPlayer, strHero);
+								end;
+
+							-- 是否有足够的移动力
+								function TTH_MANAGE.checkPreTeleport2AppointTown4Move(iPlayer, strHero)
+									TTH_VARI.teleport2AppointTownChosenGoldOrMove = TTH_ENUM.TownManageTeleport2AppointTown8Move;
+									local iMovePoint = GetHeroStat(strHero, STAT_MOVE_POINTS);
+									if iMovePoint < TTH_VARI.teleport2AppointTownLimitMove then
+										local strText = TTH_TABLE.KingManagePath["TownManage"]["Teleport2AppointTown"]["NotEnoughMove"]["Text"];
+										TTH_GLOBAL.sign(strHero, strText);
+
+										-- 传送状态: 关闭
+											TTH_VARI.bTownManageTeleportTown4TeleportStatus = TTH_ENUM.TownManageTeleportTown4TeleportEnd;
+
+										return nil;
+									end;
+
+									TTH_MANAGE.implTeleport2AppointTown(iPlayer, strHero);
+								end;
+
+						-- 执行定点回城
+								function TTH_MANAGE.implTeleport2AppointTown(iPlayer, strHero)
+									local strTown = TTH_VARI.teleportTown;
+
+									-- 扣除资源/魔法值/金币/移动力
+										if TTH_VARI.teleport2AppointTownChosenResOrMana == TTH_ENUM.TownManageTeleport2AppointTown8Res then
+											local iCountMercury = TTH_VARI.teleport2AppointTownUnitRes * 1;
+											local iCountCrystal = TTH_VARI.teleport2AppointTownUnitRes * 1;
+											local iCountSulphur = TTH_VARI.teleport2AppointTownUnitRes * 1;
+											local iCountGem = TTH_VARI.teleport2AppointTownUnitRes * 1;
+											TTH_GLOBAL.reduceResource(iPlayer, MERCURY, iCountMercury);
+											TTH_GLOBAL.reduceResource(iPlayer, CRYSTAL, iCountCrystal);
+											TTH_GLOBAL.reduceResource(iPlayer, SULFUR, iCountSulphur);
+											TTH_GLOBAL.reduceResource(iPlayer, GEM, iCountGem);
+										else
+											local iManaPoint = GetHeroStat(strHero, STAT_MANA_POINTS);
+											ChangeHeroStat(strHero, STAT_MANA_POINTS, -1 * iManaPoint);
+										end;
+										if TTH_VARI.teleport2AppointTownChosenGoldOrMove == TTH_ENUM.TownManageTeleport2AppointTown8Gold then
+											local iCountGold = TTH_VARI.teleport2AppointTownUnitRes * 1000;
+											TTH_GLOBAL.reduceResource(iPlayer, GOLD, iCountGold);
+										else
+											local iMovePoint = GetHeroStat(strHero, STAT_MOVE_POINTS);
+											ChangeHeroStat(strHero, STAT_MOVE_POINTS, -1 * iMovePoint);
+										end;
+
+									-- 执行传送
+										-- 传送状态: 关闭
+											TTH_VARI.bTownManageTeleportTown4TeleportStatus = TTH_ENUM.TownManageTeleportTown4TeleportEnd;
+
+										TTH_GLOBAL.teleHero2Point(iPlayer, strHero, strTown);
+								end;
+
+					-- 近点回城
+						-- 参数
+							TTH_VARI.arrNearByTown = {}; -- 玩家城镇列表
+							TTH_VARI.objNearByTown = nil; -- 最近城镇对象
+
+							TTH_ENUM.TownManageTeleport2NearByTown8Res = 1;
+							TTH_ENUM.TownManageTeleport2NearByTown8Mana = 2;
+							TTH_ENUM.TownManageTeleport2NearByTown8Gold = 1;
+							TTH_ENUM.TownManageTeleport2NearByTown8Move = 2;
+							TTH_VARI.teleport2NearByTownChosenResOrMana = 1;
+							TTH_VARI.teleport2NearByTownChosenGoldOrMove = 1;
+							TTH_VARI.teleport2NearByTownUnitRes = 2;
+							TTH_VARI.teleport2NearByTownLimitMana = 5;
+							TTH_VARI.teleport2NearByTownLimitMove = 50;
+
+						-- 入口
+							function TTH_MANAGE.dealTeleport2NearByTown(iPlayer, strHero)
+								TTH_COMMON.nextNavi(TTH_TABLE.KingManagePath["TownManage"]["Teleport2NearByTown"]["Text"]);
+
+								TTH_MANAGE.checkPreTeleport2NearByTown4HeroLevel(iPlayer, strHero);
+							end;
+
+						-- 前置查验
+							-- 当前英雄等级是否达到20级
+								function TTH_MANAGE.checkPreTeleport2NearByTown4HeroLevel(iPlayer, strHero)
+									TTH_VARI.arrNearByTown = TTH_GLOBAL.listTown8Player(iPlayer);
+									if GetHeroLevel(strHero) < 20 then
+										local strText = TTH_TABLE.KingManagePath["TownManage"]["Teleport2NearByTown"]["NotEnoughHeroLevel"]["Text"];
+										TTH_GLOBAL.sign(strHero, strText);
+										return nil;
+									end;
+
+									TTH_MANAGE.checkPreTeleport2NearByTown4HasTown(iPlayer, strHero);
+								end;
+
+							-- 己方是否有城镇
+								function TTH_MANAGE.checkPreTeleport2NearByTown4HasTown(iPlayer, strHero)
+									TTH_VARI.arrNearByTown = TTH_GLOBAL.listTown8Player(iPlayer);
+									if TTH_VARI.arrNearByTown == nil or length(TTH_VARI.arrNearByTown) == 0 then
+										local strText = TTH_TABLE.KingManagePath["TownManage"]["Teleport2NearByTown"]["NoTown"]["Text"];
+										TTH_GLOBAL.sign(strHero, strText);
+										return nil;
+									end;
+
+									TTH_MANAGE.confirmPreTeleport2NearByTown4Town(iPlayer, strHero);
+								end;
+
+							-- 询问是否传送到该城镇
+								function TTH_MANAGE.confirmPreTeleport2NearByTown4Town(iPlayer, strHero)
+									local arrTown = TTH_VARI.arrNearByTown;
+									local arrCompareTown = {};
+									local strKey = "Distance";
+									local iPosHeroX, iPosHeroY, iPosHeroZ = GetObjectPosition(strHero);
+									for iIndexTown, strTown in arrTown do
+										local iValue = TTH_GLOBAL.getDistance(strHero, strTown, 1);
+										arrCompareTown[strTown] = {
+											["Id"] = strTown
+											, [strKey] = iValue
+										};
+									end
+									local objNearByTown = TTH_COMMON.min8key(arrCompareTown, strKey);
+									TTH_VARI.strNearByTown = objNearByTown["Id"];
+
+									local iManaPoint = GetHeroStat(strHero, STAT_MANA_POINTS);
+									local iMovePoint = GetHeroStat(strHero, STAT_MOVE_POINTS);
+
+									-- 传送状态: 开启
+										TTH_VARI.bTownManageTeleportTown4TeleportStatus = TTH_ENUM.TownManageTeleportTown4TeleportStart;
+
+									if TTH_VARI.bTownManageTeleportTown4TeleportStatus == TTH_ENUM.TownManageTeleportTown4TeleportStart then
+										-- 视角定位
+											local iPosX, iPosY, iPosZ = GetObjectPosition(TTH_VARI.strNearByTown);
+											MoveCamera(iPosX, iPosY, iPosZ, 50, TTH_FINAL.PI/2, 1, 1, 1, 1);
+											sleep(2);
+
+										local strPathMain = {
+											TTH_TABLE.KingManagePath["TownManage"]["Teleport2NearByTown"]["ConfirmTown"]["Text"]
+											;iPosX=iPosX
+											,iPosY=iPosY
+											,iPosZ=TTH_PATH.Basic["PosZ"][iPosZ]
+											,iManaPoint=iManaPoint
+											,iMovePoint=iMovePoint
+										};
+										local strCallbackOk = "TTH_MANAGE.checkPreTeleport2NearByTown4GarrisonHero("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(TTH_VARI.strNearByTown)..")";
+										local strCallbackCancel = "TTH_COMMON.wakeup()";
+										TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+									end;
+								end;
+
+							-- 确认内城是否有英雄
+								function TTH_MANAGE.checkPreTeleport2NearByTown4GarrisonHero(iPlayer, strHero, strTown)
+									if TTH_GLOBAL.isGarrisonHasHero(iPlayer, strTown) == 1 then
+										local strText = TTH_TABLE.KingManagePath["TownManage"]["Teleport2NearByTown"]["HeroInGarrison"]["Text"];
+										TTH_GLOBAL.sign(strHero, strText);
+
+										-- 传送状态: 关闭
+											TTH_VARI.bTownManageTeleportTown4TeleportStatus = TTH_ENUM.TownManageTeleportTown4TeleportEnd;
+
+										return nil;
+									end;
+									TTH_MANAGE.checkPreTeleport2NearByTown4HasTeleport(iPlayer, strHero, strTown);
+								end;
+
+							-- 该城镇是否已设立传送点
+								function TTH_MANAGE.checkPreTeleport2NearByTown4HasTeleport(iPlayer, strHero, strTown)
+									if TTH_MANAGE.isExistTeleport(strTown) == 1 then
+										local strText = TTH_TABLE.KingManagePath["TownManage"]["Teleport2NearByTown"]["HasTeleport"]["Text"];
+										TTH_GLOBAL.sign(strHero, strText);
+
+										TTH_MANAGE.implTeleport2NearByTown(iPlayer, strHero);
+									else
+										local iManaPoint = GetHeroStat(strHero, STAT_MANA_POINTS);
+										local iMovePoint = GetHeroStat(strHero, STAT_MOVE_POINTS);
+										local iPosX, iPosY, iPosZ = GetObjectPosition(TTH_VARI.strNearByTown);
+										local strPathMain = {
+											TTH_TABLE.KingManagePath["TownManage"]["Teleport2NearByTown"]["NoTeleport"]["Text"]
+											;iPosX=iPosX
+											,iPosY=iPosY
+											,iPosZ=TTH_PATH.Basic["PosZ"][iPosZ]
+											,iManaPoint=iManaPoint
+											,iMovePoint=iMovePoint
+										};
+										TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.MessageBox, strPathMain);
+
+										TTH_MANAGE.checkPreTeleport2NearByTown4ResOrMana(iPlayer, strHero);
+									end;
+								end;
+
+							-- 玩家选择消耗资源or魔法值
+								TTH_TABLE.TownManageTeleport2NearByTown4ResOrManaOption = {
+									[1] = {
+										["Id"] = TTH_ENUM.TownManageTeleport2NearByTown8Res
+										, ["Text"] = TTH_TABLE.KingManagePath["TownManage"]["Teleport2NearByTown"]["ResTip"]["Text"]
+										, ["Callback"] = "TTH_MANAGE.checkPreTeleport2NearByTown4Res"
+									}
+									, [2] = {
+										["Id"] = TTH_ENUM.TownManageTeleport2NearByTown8Mana
+										, ["Text"] = TTH_TABLE.KingManagePath["TownManage"]["Teleport2NearByTown"]["ManaTip"]["Text"]
+										, ["Callback"] = "TTH_MANAGE.checkPreTeleport2NearByTown4Mana"
+									}
+								};
+								function TTH_MANAGE.checkPreTeleport2NearByTown4ResOrMana(iPlayer, strHero)
+									TTH_COMMON.optionRadio(iPlayer, strHero, TTH_TABLE.TownManageTeleport2NearByTown4ResOrManaOption);
+								end;
+
+							-- 是否有足够的资源
+								function TTH_MANAGE.checkPreTeleport2NearByTown4Res(iPlayer, strHero)
+									TTH_VARI.teleport2NearByTownChosenResOrMana = TTH_ENUM.TownManageTeleport2NearByTown8Res;
+									local iCountMercury = TTH_VARI.teleport2NearByTownUnitRes * 1;
+									local iCountCrystal = TTH_VARI.teleport2NearByTownUnitRes * 1;
+									local iCountSulphur = TTH_VARI.teleport2NearByTownUnitRes * 1;
+									local iCountGem = TTH_VARI.teleport2NearByTownUnitRes * 1;
+									if iCountMercury > GetPlayerResource(iPlayer, MERCURY)
+										or iCountCrystal > GetPlayerResource(iPlayer, CRYSTAL)
+										or iCountSulphur > GetPlayerResource(iPlayer, SULFUR)
+										or iCountGem > GetPlayerResource(iPlayer, GEM) then
+										local strText = TTH_TABLE.KingManagePath["TownManage"]["Teleport2NearByTown"]["NotEnoughRes"]["Text"];
+										TTH_GLOBAL.sign(strHero, strText);
+
+										-- 传送状态: 关闭
+											TTH_VARI.bTownManageTeleportTown4TeleportStatus = TTH_ENUM.TownManageTeleportTown4TeleportEnd;
+
+										return nil;
+									end;
+
+									TTH_MANAGE.checkPreTeleport2NearByTown4GoldOrMove(iPlayer, strHero);
+								end;
+
+							-- 是否有足够的魔法值
+								function TTH_MANAGE.checkPreTeleport2NearByTown4Mana(iPlayer, strHero)
+									TTH_VARI.teleport2NearByTownChosenResOrMana = TTH_ENUM.TownManageTeleport2NearByTown8Mana;
+									local iManaPoint = GetHeroStat(strHero, STAT_MANA_POINTS);
+									if iManaPoint < TTH_VARI.teleport2NearByTownLimitMana then
+										local strText = TTH_TABLE.KingManagePath["TownManage"]["Teleport2NearByTown"]["NotEnoughMana"]["Text"];
+										TTH_GLOBAL.sign(strHero, strText);
+
+										-- 传送状态: 关闭
+											TTH_VARI.bTownManageTeleportTown4TeleportStatus = TTH_ENUM.TownManageTeleportTown4TeleportEnd;
+
+										return nil;
+									end;
+
+									TTH_MANAGE.checkPreTeleport2NearByTown4GoldOrMove(iPlayer, strHero);
+								end;
+
+							-- 玩家选择消耗金币or移动力
+								TTH_TABLE.TownManageTeleport2NearByTown4GoldOrMoveOption = {
+									[1] = {
+										["Id"] = TTH_ENUM.TownManageTeleport2NearByTown8Gold
+										, ["Text"] = TTH_TABLE.KingManagePath["TownManage"]["Teleport2NearByTown"]["GoldTip"]["Text"]
+										, ["Callback"] = "TTH_MANAGE.checkPreTeleport2NearByTown4Gold"
+									}
+									, [2] = {
+										["Id"] = TTH_ENUM.TownManageTeleport2NearByTown8Move
+										, ["Text"] = TTH_TABLE.KingManagePath["TownManage"]["Teleport2NearByTown"]["MoveTip"]["Text"]
+										, ["Callback"] = "TTH_MANAGE.checkPreTeleport2NearByTown4Move"
+									}
+								};
+								function TTH_MANAGE.checkPreTeleport2NearByTown4GoldOrMove(iPlayer, strHero)
+									TTH_COMMON.optionRadio(iPlayer, strHero, TTH_TABLE.TownManageTeleport2NearByTown4GoldOrMoveOption);
+								end;
+
+							-- 是否有足够的金币
+								function TTH_MANAGE.checkPreTeleport2NearByTown4Gold(iPlayer, strHero)
+									TTH_VARI.teleport2NearByTownChosenGoldOrMove = TTH_ENUM.TownManageTeleport2NearByTown8Gold;
+
+									local iCountGold = TTH_VARI.teleport2NearByTownUnitRes * 1000;
+									if iCountGold > GetPlayerResource(iPlayer, GOLD) then
+										local strText = TTH_TABLE.KingManagePath["TownManage"]["Teleport2NearByTown"]["NotEnoughGold"]["Text"];
+										TTH_GLOBAL.sign(strHero, strText);
+
+										-- 传送状态: 关闭
+											TTH_VARI.bTownManageTeleportTown4TeleportStatus = TTH_ENUM.TownManageTeleportTown4TeleportEnd;
+
+										return nil;
+									end;
+
+									TTH_MANAGE.implTeleport2NearByTown(iPlayer, strHero);
+								end;
+
+							-- 是否有足够的移动力
+								function TTH_MANAGE.checkPreTeleport2NearByTown4Move(iPlayer, strHero)
+									TTH_VARI.teleport2NearByTownChosenGoldOrMove = TTH_ENUM.TownManageTeleport2NearByTown8Move;
+									local iMovePoint = GetHeroStat(strHero, STAT_MOVE_POINTS);
+									if iMovePoint < TTH_VARI.teleport2NearByTownLimitMove then
+										local strText = TTH_TABLE.KingManagePath["TownManage"]["Teleport2NearByTown"]["NotEnoughMove"]["Text"];
+										TTH_GLOBAL.sign(strHero, strText);
+
+										-- 传送状态: 关闭
+											TTH_VARI.bTownManageTeleportTown4TeleportStatus = TTH_ENUM.TownManageTeleportTown4TeleportEnd;
+
+										return nil;
+									end;
+
+									TTH_MANAGE.implTeleport2NearByTown(iPlayer, strHero);
+								end;
+
+						-- 执行定点回城
+							function TTH_MANAGE.implTeleport2NearByTown(iPlayer, strHero)
+								local strTown = TTH_VARI.strNearByTown;
+
+								-- 扣除资源/魔法值/金币/移动力
+									if TTH_VARI.teleport2NearByTownChosenResOrMana == TTH_ENUM.TownManageTeleport2NearByTown8Res then
+										local iCountMercury = TTH_VARI.teleport2NearByTownUnitRes * 1;
+										local iCountCrystal = TTH_VARI.teleport2NearByTownUnitRes * 1;
+										local iCountSulphur = TTH_VARI.teleport2NearByTownUnitRes * 1;
+										local iCountGem = TTH_VARI.teleport2NearByTownUnitRes * 1;
+										TTH_GLOBAL.reduceResource(iPlayer, MERCURY, iCountMercury);
+										TTH_GLOBAL.reduceResource(iPlayer, CRYSTAL, iCountCrystal);
+										TTH_GLOBAL.reduceResource(iPlayer, SULFUR, iCountSulphur);
+										TTH_GLOBAL.reduceResource(iPlayer, GEM, iCountGem);
+									else
+										local iManaPoint = GetHeroStat(strHero, STAT_MANA_POINTS);
+										ChangeHeroStat(strHero, STAT_MANA_POINTS, -1 * TTH_COMMON.round(0.5 * iManaPoint));
+									end;
+									if TTH_VARI.teleport2NearByTownChosenGoldOrMove == TTH_ENUM.TownManageTeleport2NearByTown8Gold then
+										local iCountGold = TTH_VARI.teleport2NearByTownUnitRes * 1000;
+										TTH_GLOBAL.reduceResource(iPlayer, GOLD, iCountGold);
+									else
+										local iMovePoint = GetHeroStat(strHero, STAT_MOVE_POINTS);
+										ChangeHeroStat(strHero, STAT_MOVE_POINTS, -1 * TTH_COMMON.round(0.5 * iMovePoint));
+									end;
+
+								-- 执行传送
+									-- 传送状态: 关闭
+										TTH_VARI.bTownManageTeleportTown4TeleportStatus = TTH_ENUM.TownManageTeleportTown4TeleportEnd;
+
+									TTH_GLOBAL.teleHero2Point(iPlayer, strHero, strTown);
+							end;
+
+			-- 政绩管理
+				TTH_ENUM.CurrentOperTimes = 1; -- 本周内政操作次数+1
+				TTH_ENUM.RecoveryMove = 2; -- 移动力回复满值
+				TTH_ENUM.RecoveryMana = 3; -- 魔法值回复满值
+				TTH_ENUM.MaxOperTimes = 4; -- 周内政操作次数上限+1
+				TTH_ENUM.AbilityQuota = 5; -- 可管辖城镇配额+1
+				TTH_ENUM.TerritoryRadius = 6; -- 领地范围+20
+
+				TTH_TABLE.ExchangeRecordOption = {
+					[1] = {
+						["Id"] = TTH_ENUM.CurrentOperTimes
+						, ["Text"] = TTH_TABLE.KingManagePath["ExchangeRecord"]["CurrentOperTimes"]["Text"]
+						, ["Callback"] = "TTH_MANAGE.checkPreExchangeRecord4Point"
+						, ["Cost"] = 1000
+						, ["RewardText"] = TTH_TABLE.KingManagePath["ExchangeRecord"]["CurrentOperTimes"]["RewardText"]
+					}
+					, [2] = {
+						["Id"] = TTH_ENUM.RecoveryMove
+						, ["Text"] = TTH_TABLE.KingManagePath["ExchangeRecord"]["RecoveryMove"]["Text"]
+						, ["Callback"] = "TTH_MANAGE.checkPreExchangeRecord4Point"
+						, ["Cost"] = 1000
+						, ["RewardText"] = TTH_TABLE.KingManagePath["ExchangeRecord"]["RecoveryMove"]["RewardText"]
+					}
+					, [3] = {
+						["Id"] = TTH_ENUM.RecoveryMana
+						, ["Text"] = TTH_TABLE.KingManagePath["ExchangeRecord"]["RecoveryMana"]["Text"]
+						, ["Callback"] = "TTH_MANAGE.checkPreExchangeRecord4Point"
+						, ["Cost"] = 1000
+						, ["RewardText"] = TTH_TABLE.KingManagePath["ExchangeRecord"]["RecoveryMana"]["RewardText"]
+					}
+					, [4] = {
+						["Id"] = TTH_ENUM.MaxOperTimes
+						, ["Text"] = TTH_TABLE.KingManagePath["ExchangeRecord"]["MaxOperTimes"]["Text"]
+						, ["Callback"] = "TTH_MANAGE.checkPreExchangeRecord4Point"
+						, ["Cost"] = 10000
+						, ["RewardText"] = TTH_TABLE.KingManagePath["ExchangeRecord"]["MaxOperTimes"]["RewardText"]
+					}
+					, [5] = {
+						["Id"] = TTH_ENUM.AbilityQuota
+						, ["Text"] = TTH_TABLE.KingManagePath["ExchangeRecord"]["AbilityQuota"]["Text"]
+						, ["Callback"] = "TTH_MANAGE.checkPreExchangeRecord4Point"
+						, ["Cost"] = 10000
+						, ["RewardText"] = TTH_TABLE.KingManagePath["ExchangeRecord"]["AbilityQuota"]["RewardText"]
+					}
+					, [6] = {
+						["Id"] = TTH_ENUM.TerritoryRadius
+						, ["Text"] = TTH_TABLE.KingManagePath["ExchangeRecord"]["TerritoryRadius"]["Text"]
+						, ["Callback"] = "TTH_MANAGE.checkPreExchangeRecord4Point"
+						, ["Cost"] = 10000
+						, ["RewardText"] = TTH_TABLE.KingManagePath["ExchangeRecord"]["TerritoryRadius"]["RewardText"]
+					}
+				};
+
+				-- 入口
+					function TTH_MANAGE.dealExchangeRecord(iPlayer, strHero)
+						TTH_COMMON.nextNavi(TTH_TABLE.KingManagePath["ExchangeRecord"]["Text"]);
+
+						local iCurrentPoint = TTH_MANAGE.getRecordPoint(strHero);
+						local iDailyPoint = TTH_MANAGE.calcDailyRecordPoint(strHero);
+
+						local strPathMain = {
+							TTH_TABLE.KingManagePath["ExchangeRecord"]["ChooseOption"]["Text"]
+							;iCurrentPoint=iCurrentPoint
+							,iDailyPoint=iDailyPoint
+						};
+						TTH_COMMON.optionRadio(iPlayer, strHero, TTH_TABLE.ExchangeRecordOption, strPathMain);
+					end;
+
+				-- 是否有足够的政绩
+					function TTH_MANAGE.checkPreExchangeRecord4Point(iPlayer, strHero, iType)
+						if TTH_MANAGE.getRecordPoint(strHero) < TTH_TABLE.ExchangeRecordOption[iType]["Cost"] then
+							local strPath = TTH_TABLE.KingManagePath["ExchangeRecord"]["NotEnoughPoint"]["Text"];
+							TTH_GLOBAL.sign(strHero, strPath);
+							return nil;
+						end;
+
+						TTH_MANAGE.implExchangeRecord(iPlayer, strHero, iType)
+					end;
+
+				-- 兑换
+					function TTH_MANAGE.implExchangeRecord(iPlayer, strHero, iType)
+						TTH_MANAGE.useRecordPoint(strHero, TTH_TABLE.ExchangeRecordOption[iType]["Cost"]);
+						if iType == TTH_ENUM.CurrentOperTimes then
+							TTH_MANAGE.addMaxOperTimes(strHero);
+						elseif iType == TTH_ENUM.RecoveryMove then
+							TTH_GLOBAL.recoveryMaxMove(strHero);
+						elseif iType == TTH_ENUM.RecoveryMana then
+							TTH_GLOBAL.recoveryMaxMana(strHero);
+						elseif iType == TTH_ENUM.MaxOperTimes then
+							TTH_MANAGE.buffExtraOperTimes(iPlayer);
+						elseif iType == TTH_ENUM.AbilityQuota then
+							TTH_MANAGE.buffExtraAbilityQuota(iPlayer);
+						elseif iType == TTH_ENUM.TerritoryRadius then
+							TTH_MANAGE.buffExtraTerritoryRadius(iPlayer);
+						end;
+
+						local strPathMain = {
+							TTH_TABLE.KingManagePath["ExchangeRecord"]["Success"]["Text"]
+							;iCost=TTH_TABLE.ExchangeRecordOption[iType]["Cost"]
+							,strReward=TTH_TABLE.ExchangeRecordOption[iType]["RewardText"]
+						};
+						TTH_GLOBAL.sign(strHero, strPathMain);
+					end;
+
+	-- trigger
+		TTH_TRIGGER = {};
+
+		function TTH_TRIGGER.errorHookTrigger()
+			TTH_MAIN.listDebug[TTH_VARI.day] = TTH_COMMON.push(TTH_MAIN.listDebug[TTH_VARI.day], TTH_MAIN.recordDebug);
+		end;
+
+		-- 战斗结束触发器
+			TTH_VARI.combatIndex = -1;
+			function TTH_TRIGGER.combatResults(iCombatIndex)
+				TTH_VARI.combatIndex = iCombatIndex;
+				startThread(TTH_TRIGGER.thread4CombatResults);
 			end;
-		end;
-	end;
-	UnblockGame();
-	print("H55 Neutrals processed");
-end;
+			function TTH_TRIGGER.thread4CombatResults()
+				local iCombatIndex = TTH_VARI.combatIndex;
 
-function H55_TriggerToObjectType(object_type,trigger_type,handler,prevent_disabling)
-    local names = GetObjectNamesByType(object_type);
-    for i,name in names do
-        SetTrigger(trigger_type,name,handler);
-        if(prevent_disabling==nil) then
-            SetObjectEnabled(name,nil);
+				local iPlayerWinner = GetSavedCombatArmyPlayer(iCombatIndex, 1);
+				local strHeroWinner = GetSavedCombatArmyHero(iCombatIndex, 1);
+
+				TTH_MAIN.debug("TTH_TRIGGER.combatResults", iPlayerWinner, strHeroWinner);
+
+				-- 胜利英雄
+					if strHeroWinner ~= nil then
+						-- 通用
+							TTH_GLOBAL.dealRecoveryMana4Winner(iPlayerWinner, strHeroWinner); -- 战斗胜利后魔法值恢复
+							TTH_GLOBAL.dealRecoveryMove4Winner(iPlayerWinner, strHeroWinner); -- 战斗胜利后移动力恢复
+
+						TTH_TALENT.combatResultNikolay(iPlayerWinner, strHeroWinner, iCombatIndex); -- 尼科莱
+						TTH_VISIT.combatResultMermaids(iPlayerWinner, strHeroWinner, iCombatIndex); -- 先知小屋
+
+						for iKey, objItem in TTH_TABLE.FuncTalent[TTH_ENUM.FuncCombatResult] do
+							if iKey == strHeroWinner then
+								TTH_COMMON.parse(objItem[TTH_ENUM.FuncAlways], iPlayerWinner, strHeroWinner, iCombatIndex);
+							end;
+						end;
+						for iKey, objItem in TTH_TABLE.FuncArtifact[TTH_ENUM.FuncCombatResult] do
+							if HasArtefact(strHeroWinner, iKey, objItem["NeedWear"]) then
+								TTH_COMMON.parse(objItem[TTH_ENUM.FuncAlways], iPlayerWinner, strHeroWinner, iCombatIndex);
+							end;
+						end;
+						for iKey, objItem in TTH_TABLE.FuncPerk[TTH_ENUM.FuncCombatResult] do
+							if HasHeroSkill(strHeroWinner, iKey) then
+								TTH_COMMON.parse(objItem[TTH_ENUM.FuncAlways], iPlayerWinner, strHeroWinner, iCombatIndex);
+							end;
+						end;
+					end;
+
+				-- 模块
+					TTH_TRIGGER.interfaceCombatResults4LoseCreature(iCombatIndex);
+					TTH_TRIGGER.interfaceCombatResults4ReviveCreature(iCombatIndex);
+			end;
+
+			-- 失去生物接口
+				function TTH_TRIGGER.interfaceCombatResults4LoseCreature(iCombatIndex)
+				end;
+
+			-- 复活生物接口
+				function TTH_TRIGGER.interfaceCombatResults4ReviveCreature(iCombatIndex)
+				end;
+
+		-- 英雄升级触发器
+			TTH_VARI.heroLevelUp = "";
+			TTH_VARI.filterHeroLevelUp = {};
+			function TTH_TRIGGER.heroLevelUp(strHero)
+				local iHeroLevel = GetHeroLevel(strHero);
+				if TTH_VARI.filterHeroLevelUp[strHero] == nil
+					or TTH_VARI.filterHeroLevelUp[strHero] < iHeroLevel then
+					TTH_VARI.filterHeroLevelUp[strHero] = iHeroLevel;
+					TTH_VARI.heroLevelUp = strHero;
+					print(strHero.." level up to Lv."..iHeroLevel);
+
+					TTH_GLOBAL.setGameVar4HeroLevel(strHero);
+					TTH_GLOBAL.giveHero4Attribute(strHero);
+					TTH_GLOBAL.dealSkillBonus8Hero(strHero);
+					TTH_MANAGE.updateMaxOperTimes(strHero); -- 更新内政操作次数上限
+					for iKey, objItem in TTH_TABLE.FuncTalent[TTH_ENUM.FuncLevelUp] do
+						if iKey == strHero then
+							TTH_COMMON.parse(objItem[TTH_ENUM.FuncAlways], strHero);
+						end;
+					end;
+				end;
+			end;
+
+			doFile("/scripts/TTH_Trigger_HeroLevelUp.lua");
+
+		-- 玩家招募英雄触发器
+			TTH_VARI.hero8PlayerAdd = "";
+			function TTH_TRIGGER.playerAddHero(strHero)
+				print("Player add a Hero-"..strHero);
+				TTH_VARI.hero8PlayerAdd = strHero;
+				startThread(TTH_TRIGGER.thread4PlayerAddHero);
+			end;
+			function TTH_TRIGGER.thread4PlayerAddHero()
+				local strHero = TTH_VARI.hero8PlayerAdd;
+
+				TTH_MAIN.debug("TTH_TRIGGER.playerAddHero", nil, strHero);
+
+				SetTrigger(HERO_LEVELUP_TRIGGER, strHero, "TTH_TRIGGER.heroLevelUp"..strHero);
+				TTH_GLOBAL.setHeroCombatScript(strHero);
+				TTH_GLOBAL.initHero4Specialty(strHero);
+				TTH_GLOBAL.bindHeroCustomAbility4Hero(strHero);
+				TTH_MANAGE.initMayor(strHero);
+				TTH_GLOBAL.setGameVar4HeroLevel(strHero);
+				TTH_GLOBAL.giveHero4Attribute(strHero);
+				TTH_GLOBAL.dealSkillBonus8Hero(strHero);
+				TTH_MANAGE.updateMaxOperTimes(strHero); -- 更新内政操作次数上限
+
+				for iKey, objItem in TTH_TABLE.FuncTalent[TTH_ENUM.FuncInit] do
+					if iKey == strHero then
+						TTH_COMMON.parse(objItem[TTH_ENUM.FuncAlways], strHero);
+					end;
+				end;
+			end;
+
+		-- 玩家失去英雄触发器
+			TTH_VARI.hero8PlayerRemove = "";
+			TTH_VARI.heroWinner8PlayerRemove = "";
+			function TTH_TRIGGER.playerRemoveHero(strHero, strHeroWinner)
+				TTH_MAIN.debug("TTH_TRIGGER.playerRemoveHero", nil, strHero, strHeroWinner);
+
+				print(strHero..' has defeated');
+				TTH_VARI.hero8PlayerRemove = strHero;
+				TTH_VARI.heroWinner8PlayerRemove = strHeroWinner;
+				startThread(TTH_TRIGGER.thread4PlayerRemoveHero);
+			end;
+			function TTH_TRIGGER.thread4PlayerRemoveHero()
+				local strHero = TTH_VARI.hero8PlayerRemove;
+				local strHeroWinner = TTH_VARI.heroWinner8PlayerRemove;
+
+				TTH_GLOBAL.removeGameVar4HeroArtifact(strHero);
+				TTH_GLOBAL.removeGameVar4HeroSkill(strHero);
+			end;
+
+	-- 英雄天赋
+		TTH_TALENT = {};
+
+		-- 转化类英雄天赋
+			TTH_VARI.castCreatureGcd = {};
+			function TTH_TALENT.initCastCreature(strHero)
+				TTH_MAIN.debug("TTH_TALENT.initCastCreature", nil, strHero);
+
+				TTH_VARI.castCreatureGcd[strHero] = 0;
+			end;
+			function TTH_TALENT.activeCastCreature(iPlayer, strHero)
+				TTH_COMMON.nextNavi(TTH_PATH.Talent["Cast"]["Hero"][strHero]);
+
+				TTH_TALENT.checkPreActiveCastCreature4Gcd(iPlayer, strHero);
+			end;
+			function TTH_TALENT.checkPreActiveCastCreature4Gcd(iPlayer, strHero)
+				local iGcd = TTH_VARI.castCreatureGcd[strHero];
+    		if iGcd > 0 then
+    			local strCastType = TTH_PATH.CastCreatureType[TTH_TABLE.CastCreature[strHero]["CastType"]];
+    			local strPathMain = {
+    				TTH_PATH.Talent["Cast"]["InGcd"]
+    				;iGcd=iGcd
+    				,strCastType=strCastType
+    			};
+    			TTH_GLOBAL.sign(strHero, strPathMain);
+    			return nil;
+    		end;
+
+    		TTH_TALENT.checkPreActiveCastCreature4CreatureExsit(iPlayer, strHero);
+    	end;
+			function TTH_TALENT.checkPreActiveCastCreature4CreatureExsit(iPlayer, strHero)
+				local arrCreature4Hero = TTH_GLOBAL.getHeroCreatureInfo(strHero);
+				local arrPreCreature = TTH_TABLE.CastCreature[strHero]["PreCreature"];
+				local iCreatureNumber4Hero = 0;
+				local i = 1;
+				local arrOption = {};
+				for iIndexSlot = 0, 6 do
+					local iSlotCreatureId = arrCreature4Hero[iIndexSlot]["Id"];
+					for iPreCreatureId, objPreCreature in arrPreCreature do
+						if iPreCreatureId == iSlotCreatureId then
+							arrOption[i] = {
+								["Id"] = iSlotCreatureId
+								, ["Text"] = TTH_TABLE_NCF_CREATURES[iPreCreatureId]["NAME"]
+								, ["Callback"] = "TTH_TALENT.checkPreActiveCastCreature4Limit"
+							};
+							i = i + 1;
+						end;
+					end;
+				end;
+
+				if length(arrOption) == 0 then
+					local strCastType = TTH_PATH.CastCreatureType[TTH_TABLE.CastCreature[strHero]["CastType"]];
+					local strPathMain = {
+						TTH_PATH.Talent["Cast"]["NoSuitableCreature"]
+						;strCastType=strCastType
+					};
+    			TTH_GLOBAL.sign(strHero, strPathMain);
+					return nil;
+				end;
+
+				TTH_COMMON.optionRadio(iPlayer, strHero, arrOption);
+			end;
+			function TTH_TALENT.checkPreActiveCastCreature4Limit(iPlayer, strHero, iPreCreatureId)
+				local iHeroLevel = GetHeroLevel(strHero);
+				local objPreCreature = TTH_TABLE.CastCreature[strHero]["PreCreature"][iPreCreatureId];
+				local arrRes = {};
+				arrRes[WOOD] = GetPlayerResource(iPlayer, WOOD);
+				arrRes[ORE] = GetPlayerResource(iPlayer, ORE);
+				arrRes[MERCURY] = GetPlayerResource(iPlayer, MERCURY);
+				arrRes[CRYSTAL] = GetPlayerResource(iPlayer, CRYSTAL);
+				arrRes[SULFUR] = GetPlayerResource(iPlayer, SULFUR);
+				arrRes[GEM] = GetPlayerResource(iPlayer, GEM);
+				arrRes[GOLD] = GetPlayerResource(iPlayer, GOLD);
+
+				-- 根据 转化前后生物比例 计算 可转化生物数量
+					local arrCreature4Hero = TTH_GLOBAL.getHeroCreatureInfo(strHero);
+					local iPreCreatureCount = 0;
+					for iIndexSlot = 0, 6 do
+						if iPreCreatureId == arrCreature4Hero[iIndexSlot]["Id"] then
+							iPreCreatureCount = arrCreature4Hero[iIndexSlot]["Count"];
+							break;
+						end;
+					end;
+					local iCountCreature8Scale = TTH_COMMON.floor(iPreCreatureCount / objPreCreature["Scale"]);
+
+				-- 根据 英雄等级 计算 可转化生物数量（至少为1）
+					local iCountCreature8Step = TTH_COMMON.floor(iHeroLevel / objPreCreature["HeroStep"]) + 1;
+
+				-- 根据 玩家资源及转化单个生物消耗 计算 可转化生物数量
+					for i = WOOD, GOLD do
+						if objPreCreature["Res"][i] == 0 then
+							arrRes[i] = TTH_FINAL.NUM_MAX;
+						else
+							arrRes[i] = TTH_COMMON.floor(arrRes[i] / objPreCreature["Res"][i]);
+						end;
+					end;
+					local iCountCreature8Res = TTH_COMMON.min(arrRes);
+					local iPostCreatureNum = TTH_COMMON.min({iCountCreature8Scale, iCountCreature8Step, iCountCreature8Res});
+
+				if iPostCreatureNum <= 0 then
+					local strCastType = TTH_PATH.CastCreatureType[TTH_TABLE.CastCreature[strHero]["CastType"]];
+					local strPathMain = {
+						TTH_PATH.Talent["Cast"]["Limit"]
+						;strCastType=strCastType
+					};
+    			TTH_GLOBAL.sign(strHero, strPathMain);
+					return nil;
+				end;
+
+				TTH_TALENT.confirmActiveCastCreature(iPlayer, strHero, iPreCreatureId, iPostCreatureNum);
+			end;
+			function TTH_TALENT.confirmActiveCastCreature(iPlayer, strHero, iPreCreatureId, iPostCreatureNum)
+				local objPreCreature = TTH_TABLE.CastCreature[strHero]["PreCreature"][iPreCreatureId];
+				local strCastType = TTH_PATH.CastCreatureType[TTH_TABLE.CastCreature[strHero]["CastType"]];
+				local iPreCreatureNum = iPostCreatureNum * objPreCreature["Scale"];
+				local strPreCreatureName = TTH_TABLE_NCF_CREATURES[iPreCreatureId]["NAME"];
+				local iPostCreatureId = objPreCreature["PostCreatureId"];
+				local strPostCreatureName = TTH_TABLE_NCF_CREATURES[iPostCreatureId]["NAME"];
+				local objRes = objPreCreature["Res"];
+				local iCountWood = iPostCreatureNum * objRes[WOOD];
+				local iCountOre = iPostCreatureNum * objRes[ORE];
+				local iCountMercury = iPostCreatureNum * objRes[MERCURY];
+				local iCountCrystal = iPostCreatureNum * objRes[CRYSTAL];
+				local iCountSulfur = iPostCreatureNum * objRes[SULFUR];
+				local iCountGem = iPostCreatureNum * objRes[GEM];
+				local iCountGold = iPostCreatureNum * objRes[GOLD];
+				local iMaxGcd = objPreCreature["MaxGcd"];
+
+				local strPathMain={
+					TTH_PATH.Talent["Cast"]["Confirm"]
+					;strCastType=strCastType
+					,iPreCreatureNum=iPreCreatureNum
+					,strPreCreatureName=strPreCreatureName
+					,iPostCreatureNum=iPostCreatureNum
+					,strPostCreatureName=strPostCreatureName
+					,iCountWood=iCountWood
+					,iCountOre=iCountOre
+					,iCountMercury=iCountMercury
+					,iCountCrystal=iCountCrystal
+					,iCountSulfur=iCountSulfur
+					,iCountGem=iCountGem
+					,iCountGold=iCountGold
+					,iMaxGcd=iMaxGcd
+				};
+				local strCallbackOk = "TTH_TALENT.implActiveCastCreature("..iPlayer..","..TTH_COMMON.psp(strHero)..","..iPreCreatureId..","..iPostCreatureNum..")";
+				local strCallbackCancel = "TTH_COMMON.cancelOption()";
+				TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+			end;
+			function TTH_TALENT.implActiveCastCreature(iPlayer, strHero, iPreCreatureId, iPostCreatureNum)
+				local objPreCreature = TTH_TABLE.CastCreature[strHero]["PreCreature"][iPreCreatureId];
+				local strCastType = TTH_PATH.CastCreatureType[TTH_TABLE.CastCreature[strHero]["CastType"]];
+				local iPreCreatureNum = iPostCreatureNum * objPreCreature["Scale"];
+				local strPreCreatureName = TTH_TABLE_NCF_CREATURES[iPreCreatureId]["NAME"];
+				local iPostCreatureId = objPreCreature["PostCreatureId"];
+				local strPostCreatureName = TTH_TABLE_NCF_CREATURES[iPostCreatureId]["NAME"];
+				local objRes = objPreCreature["Res"];
+				local iCountWood = iPostCreatureNum * objRes[WOOD];
+				local iCountOre = iPostCreatureNum * objRes[ORE];
+				local iCountMercury = iPostCreatureNum * objRes[MERCURY];
+				local iCountCrystal = iPostCreatureNum * objRes[CRYSTAL];
+				local iCountSulfur = iPostCreatureNum * objRes[SULFUR];
+				local iCountGem = iPostCreatureNum * objRes[GEM];
+				local iCountGold = iPostCreatureNum * objRes[GOLD];
+				local iMaxGcd = objPreCreature["MaxGcd"];
+
+				local strPathMain={
+					TTH_PATH.Talent["Cast"]["Success"]
+					;strCastType=strCastType
+					,iPreCreatureNum=iPreCreatureNum
+					,strPreCreatureName=strPreCreatureName
+					,iPostCreatureNum=iPostCreatureNum
+					,strPostCreatureName=strPostCreatureName
+					,iCountWood=iCountWood
+					,iCountOre=iCountOre
+					,iCountMercury=iCountMercury
+					,iCountCrystal=iCountCrystal
+					,iCountSulfur=iCountSulfur
+					,iCountGem=iCountGem
+					,iCountGold=iCountGold
+					,iMaxGcd=iMaxGcd
+				};
+				TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.MessageBox, strPathMain);
+
+				TTH_GLOBAL.reduceResource(iPlayer, WOOD, iCountWood);
+				TTH_GLOBAL.reduceResource(iPlayer, ORE, iCountOre);
+				TTH_GLOBAL.reduceResource(iPlayer, MERCURY, iCountMercury);
+				TTH_GLOBAL.reduceResource(iPlayer, CRYSTAL, iCountCrystal);
+				TTH_GLOBAL.reduceResource(iPlayer, SULFUR, iCountSulfur);
+				TTH_GLOBAL.reduceResource(iPlayer, GEM, iCountGem);
+				TTH_GLOBAL.reduceResource(iPlayer, GOLD, iCountGold);
+				TTH_GLOBAL.replaceCreature4Hero(strHero, iPreCreatureId, iPreCreatureNum, iPostCreatureId, iPostCreatureNum);
+				TTH_VARI.castCreatureGcd[strHero] = iMaxGcd;
+			end;
+			function TTH_TALENT.combatResultCastCreature(iPlayer, strHero, iCombatIndex)
+				TTH_MAIN.debug("TTH_TALENT.combatResultCastCreature", iPlayer, strHero, iCombatIndex);
+
+				TTH_TALENT.reduceGcdCastCreature(iPlayer, strHero);
+			end;
+			function TTH_TALENT.resetDailyCastCreature(iPlayer, strHero)
+				TTH_MAIN.debug("TTH_TALENT.resetDailyCastCreature", iPlayer, strHero);
+
+				TTH_TALENT.reduceGcdCastCreature(iPlayer, strHero);
+			end;
+			function TTH_TALENT.reduceGcdCastCreature(iPlayer, strHero)
+				if TTH_VARI.castCreatureGcd[strHero] > 0 then
+					TTH_VARI.castCreatureGcd[strHero] = TTH_VARI.castCreatureGcd[strHero] - 1;
+				end;
+				local strPathMain = "";
+				local strCastType = TTH_PATH.CastCreatureType[TTH_TABLE.CastCreature[strHero]["CastType"]];
+				local iGcd = TTH_VARI.castCreatureGcd[strHero];
+				if iGcd > 0 then
+					strPathMain = {
+						TTH_PATH.Talent["Cast"]["CantCast"]
+						;strCastType=strCastType
+						,iGcd=iGcd
+					};
+				else
+					strPathMain = {
+						TTH_PATH.Talent["Cast"]["CanCast"]
+						;strCastType=strCastType
+					};
+				end;
+  			TTH_GLOBAL.sign(strHero, strPathMain);
+			end;
+
+		-- Heaven
+      -- Nathaniel 埃兰妮 001
+      	function TTH_TALENT.initNathaniel(strHero)
+					TTH_MAIN.debug("TTH_TALENT.initNathaniel", nil, strHero);
+
+      		TTH_VARI.talent[strHero] = {
+						["UsedTimes"] = 0
+					};
+      	end;
+      	function TTH_TALENT.activeNathaniel(iPlayer, strHero)
+      		TTH_COMMON.nextNavi(TTH_PATH.Talent[strHero]["Text"]);
+
+					TTH_TALENT.checkPreActiveNathaniel4Creature(iPlayer, strHero);
+      	end;
+      	function TTH_TALENT.checkPreActiveNathaniel4Creature(iPlayer, strHero)
+					local iTimes = TTH_VARI.talent[strHero]["UsedTimes"] + 1;
+					local iRequireCreatureNumber = 10;
+					for i = 1, iTimes do
+						iRequireCreatureNumber = iRequireCreatureNumber * 2;
+					end;
+
+					local arrCreature4Hero = TTH_GLOBAL.getHeroCreatureInfo(strHero);
+					local iCreatureNumber4Hero = 0;
+					for iIndexSlot = 0, 6 do
+						for j = 1, 3 do
+							if arrCreature4Hero[iIndexSlot]["Id"] == TTH_TABLE.Creature8RaceAndLevel[TOWN_HEAVEN][1][j] then
+								iCreatureNumber4Hero = iCreatureNumber4Hero + arrCreature4Hero[iIndexSlot]["Count"];
+							end;
+						end;
+					end;
+
+      		if iCreatureNumber4Hero < iRequireCreatureNumber then
+	    			TTH_GLOBAL.sign(strHero, TTH_PATH.Talent[strHero]["NotEnoughCreature"]);
+	    			return nil;
+      		end;
+
+      		TTH_TALENT.comfirmActiveNathaniel(iPlayer, strHero, iTimes, iRequireCreatureNumber, iCreatureNumber4Hero);
+      	end;
+      	function TTH_TALENT.comfirmActiveNathaniel(iPlayer, strHero, iTimes, iRequireCreatureNumber, iCreatureNumber4Hero)
+					local iCreatureId = TTH_TABLE.Creature8RaceAndLevel[TOWN_HEAVEN][1][1];
+					local iCreatureName = TTH_TABLE_NCF_CREATURES[iCreatureId]["NAME"];
+
+					local strPathMain={
+						TTH_PATH.Talent[strHero]["ConfirmActive"]
+						;iTimes=iTimes
+						,iCreatureName=iCreatureName
+						,iRequireCreatureNumber=iRequireCreatureNumber
+						,iCreatureNumber4Hero=iCreatureNumber4Hero
+					};
+					local strCallbackOk = "TTH_TALENT.implActiveNathaniel("..iPlayer..","..TTH_COMMON.psp(strHero)..")";
+					local strCallbackCancel = "TTH_COMMON.cancelOption()";
+					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+      	end;
+      	function TTH_TALENT.implActiveNathaniel(iPlayer, strHero)
+					local iTimes = TTH_VARI.talent[strHero]["UsedTimes"] + 1;
+					local iRequireCreatureNumber = 10;
+					local strPath = TTH_PATH.Talent[strHero]["LoseCreature"];
+					for i = 1, iTimes do
+						iRequireCreatureNumber = iRequireCreatureNumber * 2;
+					end;
+
+					local arrCreature4Hero = TTH_GLOBAL.getHeroCreatureInfo(strHero);
+					for iIndexSlot = 0, 6 do
+						for j = 1, 3 do
+							if iRequireCreatureNumber > 0
+								and arrCreature4Hero[iIndexSlot]["Id"] == TTH_TABLE.Creature8RaceAndLevel[TOWN_HEAVEN][1][j] then
+								local iCreatureId = arrCreature4Hero[iIndexSlot]["Id"];
+								if iRequireCreatureNumber >= arrCreature4Hero[iIndexSlot]["Count"] then
+									local iCreatureNumber = arrCreature4Hero[iIndexSlot]["Count"];
+									TTH_GLOBAL.reduceCreature4Hero8Sign(strHero, iCreatureId, iCreatureNumber, strPath);
+									iRequireCreatureNumber = iRequireCreatureNumber - iCreatureNumber;
+								else
+									local iCreatureNumber = iRequireCreatureNumber;
+									TTH_GLOBAL.reduceCreature4Hero8Sign(strHero, iCreatureId, iCreatureNumber, strPath);
+									iRequireCreatureNumber = 0;
+								end;
+							end;
+						end;
+					end;
+
+					TTH_MANAGE.addMaxOperTimes(strHero);
+					TTH_VARI.talent[strHero]["UsedTimes"] = TTH_VARI.talent[strHero]["UsedTimes"] + 1;
+					local strText = TTH_PATH.Talent[strHero]["Success"];
+    			TTH_GLOBAL.sign(strHero, strText);
+      	end;
+      	function TTH_TALENT.resetWeeklyNathaniel(iPlayer, strHero)
+      		TTH_MAIN.debug("TTH_TALENT.resetWeeklyNathaniel", iPlayer, strHero);
+
+      		TTH_VARI.talent[strHero]["UsedTimes"] = 0;
+      	end;
+
+      -- Isabell 006 伊莎贝尔
+      	function TTH_TALENT.calcTownValueIsabell(strHero, arrTown)
+					TTH_MAIN.debug("TTH_TALENT.calcTownValueIsabell", nil, strHero, arrTown);
+
+					local iTownValue = 0;
+					local strHeroIsabell = "Isabell";
+					if strHero == strHeroIsabell then
+						iTownValue = length(arrTown) * 20;
+					end;
+					return iTownValue;
+      	end;
+
+		-- Preserve
+			-- :TODO Kyrre 凯琳
+				function TTH_TALENT.dealKyrre(strHero)
+					local iRecovery = 0;
+					if strHero == "Kyrre" then
+						local iHeroLevel = GetHeroLevel(strHero);
+						iRecovery = 10 * iHeroLevel;
+					end;
+					return iRecovery;
+				end;
+
+      -- Melodia 032 马洛迪亚
+      	function TTH_TALENT.initMelodia(strHero)
+					TTH_MAIN.debug("TTH_TALENT.initMelodia", nil, strHero);
+
+      		TTH_VARI.talent[strHero] = {
+						["CurrentTimes"] = 1
+						, ["MaxTimes"] = 1
+					};
+      	end;
+      	function TTH_TALENT.activeMelodia(iPlayer, strHero)
+					TTH_COMMON.nextNavi(TTH_PATH.Talent[strHero]["Text"]);
+
+					TTH_TALENT.checkPreActiveMelodia4Times(iPlayer, strHero);
+      	end;
+      	function TTH_TALENT.checkPreActiveMelodia4Times(iPlayer, strHero)
+      		if TTH_VARI.talent[strHero]["CurrentTimes"] <= 0 then
+      			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+      				if TTH_MANAGE.getRemainOperTimes(strHero) <= 0 then
+			    			TTH_GLOBAL.sign(strHero, TTH_PATH.Talent[strHero]["NotEnoughTimes"]);
+		    				return nil;
+      				end;
+      			else
+		    			TTH_GLOBAL.sign(strHero, TTH_PATH.Talent[strHero]["NotEnoughTimes"]);
+	    				return nil;
+		    		end;
+      		end;
+
+      		TTH_TALENT.implActiveMelodia(iPlayer, strHero);
+      	end;
+      	function TTH_TALENT.implActiveMelodia(iPlayer, strHero)
+      		local iLuck = TTH_GLOBAL.getRealLuck8Hero(strHero) + 1;
+    			local iHeroLevel = GetHeroLevel(strHero);
+    			local iArtifactLevel = TTH_COMMON.floor(sqrt(iLuck + iHeroLevel));
+    			if iArtifactLevel > 7 then
+    				iArtifactLevel = 7;
+    			end;
+    			local iRandomIndex = random(length(TTH_TABLE_Artifacts[iArtifactLevel]));
+    			local iPosX, iPosY, iPosZ = GetObjectPosition(strHero);
+    			local iArtifactId = TTH_TABLE_Artifacts[iArtifactLevel][iRandomIndex];
+    			CreateArtifact("", iArtifactId, iPosX, iPosY, iPosZ);
+
+      		if TTH_VARI.talent[strHero]["CurrentTimes"] > 0 then
+    				TTH_VARI.talent[strHero]["CurrentTimes"] = TTH_VARI.talent[strHero]["CurrentTimes"] - 1;
+		    	else
+      			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+		    			TTH_MANAGE.useOperTimes(strHero);
+		    		end;
+      		end;
+
+      		local strText = TTH_PATH.Talent[strHero]["Success"]
+    			TTH_GLOBAL.sign(strHero, strText);
+      	end;
+      	function TTH_TALENT.resetWeeklyMelodia(iPlayer, strHero)
+      		TTH_MAIN.debug("TTH_TALENT.resetWeeklyMelodia", iPlayer, strHero);
+
+      		TTH_VARI.talent[strHero]["CurrentTimes"] = TTH_VARI.talent[strHero]["MaxTimes"];
+      	end;
+
+      -- Elleshar 036 温利尔
+      	function TTH_TALENT.calcTownValueElleshar(strHero, arrTown)
+					TTH_MAIN.debug("TTH_TALENT.calcTownValueElleshar", nil, strHero, arrTown);
+
+					local iTownValue = 0;
+					local strHeroElleshar = "Elleshar";
+					local iPlayer = TTH_GLOBAL.GetObjectOwner(strHero);
+					local arrHero = GetPlayerHeroes(iPlayer);
+					if contains(arrHero, strHeroElleshar) ~= nil then
+						local iHeroLevel = GetHeroLevel(strHeroElleshar);
+						local iHeroKnowledge = GetHeroStat(strHeroElleshar, STAT_KNOWLEDGE);
+						iTownValue = iHeroLevel + iHeroKnowledge;
+					end;
+					return iTownValue;
+      	end;
+
+			-- Ildar 037 娜瑞莎
+      	function TTH_TALENT.initIldar(strHero)
+					TTH_MAIN.debug("TTH_TALENT.initIldar", nil, strHero);
+
+      		TTH_VARI.talent[strHero] = {
+						["PreGameVar"] = "TTH_Var_Talent_"
+						, ["CurrentType"] = TTH_ENUM.IldarLight
+					};
+					local strKey = TTH_VARI.talent[strHero]["PreGameVar"]..strHero;
+					SetGameVar(strKey, TTH_VARI.talent[strHero]["CurrentType"]);
+      	end;
+      	function TTH_TALENT.activeIldar(iPlayer, strHero)
+					TTH_COMMON.nextNavi(TTH_PATH.Talent[strHero]["Text"]);
+
+					TTH_TALENT.confirmActiveIldar(iPlayer, strHero);
+      	end;
+      	function TTH_TALENT.confirmActiveIldar(iPlayer, strHero)
+					local iCurrentType = TTH_VARI.talent[strHero]["CurrentType"];
+					local strCurrentTypeName = TTH_PATH.Talent[strHero][iCurrentType];
+					local iTargetType = 1 - iCurrentType;
+					local strTargetTypeName = TTH_PATH.Talent[strHero][iTargetType];
+
+					local strPathMain={
+						TTH_PATH.Talent[strHero]["ConfirmActive"]
+						;strCurrentTypeName=strCurrentTypeName
+						,strTargetTypeName=strTargetTypeName
+					};
+					local strCallbackOk = "TTH_TALENT.implActiveIldar("..iPlayer..","..TTH_COMMON.psp(strHero)..")";
+					local strCallbackCancel = "TTH_COMMON.cancelOption()";
+					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+      	end;
+      	function TTH_TALENT.implActiveIldar(iPlayer, strHero)
+      		local iCurrentType = TTH_VARI.talent[strHero]["CurrentType"];
+      		local iTargetType = 1 - iCurrentType;
+      		TTH_VARI.talent[strHero]["CurrentType"] = iTargetType;
+					local strKey = TTH_VARI.talent[strHero]["PreGameVar"]..strHero;
+					SetGameVar(strKey, iTargetType);
+      		local strTargetTypeName = TTH_PATH.Talent[strHero][iTargetType];
+      		local strPathMain={
+      			TTH_PATH.Talent[strHero]["Success"]
+      			;strTargetTypeName=strTargetTypeName
+      		};
+    			TTH_GLOBAL.sign(strHero, strPathMain);
+      	end;
+
+			-- Vinrael 艾丽莎
+				function TTH_TALENT.levelUpVinrael(strHero)
+					TTH_MAIN.debug("TTH_TALENT.levelUpVinrael", iPlayer, strHero);
+
+					ChangeHeroStat(strHero, STAT_MANA_POINTS, TTH_FINAL.NUM_MAX);
+				end;
+
+		-- Academy
+			-- Isher 043 拉扎克
+				function TTH_TALENT.calcCoefIsher(strHero)
+					local strHeroIsher = "Isher";
+					local iCoef = 1;
+					if strHeroIsher == strHero then
+						local iHeroLevel = GetHeroLevel(strHero)
+						iCoef = 1 - (0.2 + iHeroLevel * 0.01);
+					end;
+					return iCoef;
+				end;
+
+      -- Rissa 046 瑞萨
+      	function TTH_TALENT.initRissa(strHero)
+					TTH_MAIN.debug("TTH_TALENT.initRissa", nil, strHero);
+
+      		TTH_VARI.talent[strHero] = {
+						["CurrentTimes"] = 1
+						, ["MaxTimes"] = 1
+					};
+      	end;
+      	function TTH_TALENT.activeRissa(iPlayer, strHero)
+					TTH_COMMON.nextNavi(TTH_PATH.Talent[strHero]["Text"]);
+
+					TTH_TALENT.checkPreActiveRissa4Times(iPlayer, strHero);
+      	end;
+      	function TTH_TALENT.checkPreActiveRissa4Times(iPlayer, strHero)
+      		if TTH_VARI.talent[strHero]["CurrentTimes"] <= 0 then
+      			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+      				if TTH_MANAGE.getRemainOperTimes(strHero) <= 0 then
+			    			TTH_GLOBAL.sign(strHero, TTH_PATH.Talent[strHero]["NotEnoughTimes"]);
+		    				return nil;
+      				end;
+      			else
+		    			TTH_GLOBAL.sign(strHero, TTH_PATH.Talent[strHero]["NotEnoughTimes"]);
+	    				return nil;
+		    		end;
+      		end;
+
+      		TTH_TALENT.implActiveRissa(iPlayer, strHero);
+      	end;
+      	function TTH_TALENT.implActiveRissa(iPlayer, strHero)
+    			local iHeroLevel = GetHeroLevel(strHero);
+    			local iKnowledge = GetHeroStat(strHero, STAT_KNOWLEDGE);
+    			local iResCount = TTH_COMMON.round((iHeroLevel + iKnowledge) / 3);
+    			local iRandomIndex = random(4);
+    			local iTreasureId = TTH_ENUM.TreasureNone;
+    			if iRandomIndex == 0 then
+    				iTreasureId = TTH_ENUM.TreasureMercury;
+    			elseif iRandomIndex == 1 then
+    				iTreasureId = TTH_ENUM.TreasureCrystal;
+    			elseif iRandomIndex == 2 then
+    				iTreasureId = TTH_ENUM.TreasureSulfur;
+    			elseif iRandomIndex == 3 then
+    				iTreasureId = TTH_ENUM.TreasureGem;
+    			end;
+    			local iPosX, iPosY, iPosZ = GetObjectPosition(strHero);
+    			CreateTreasure("", iTreasureId, iResCount, iPosX, iPosY, iPosZ);
+
+      		if TTH_VARI.talent[strHero]["CurrentTimes"] > 0 then
+    				TTH_VARI.talent[strHero]["CurrentTimes"] = TTH_VARI.talent[strHero]["CurrentTimes"] - 1;
+		    	else
+      			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+		    			TTH_MANAGE.useOperTimes(strHero);
+		    		end;
+      		end;
+
+      		local strText = TTH_PATH.Talent[strHero]["Success"]
+    			TTH_GLOBAL.sign(strHero, strText);
+      	end;
+      	function TTH_TALENT.resetWeeklyRissa(iPlayer, strHero)
+      		TTH_MAIN.debug("TTH_TALENT.resetWeeklyMelodia", iPlayer, strHero);
+
+      		TTH_VARI.talent[strHero]["CurrentTimes"] = TTH_VARI.talent[strHero]["MaxTimes"];
+      	end;
+
+      -- Maahir 马希尔 050
+      	function TTH_TALENT.initMaahir(strHero)
+					TTH_MAIN.debug("TTH_TALENT.initMaahir", nil, strHero);
+
+      		TTH_VARI.talent[strHero] = {
+						["CurrentTimes"] = 1
+						, ["MaxTimes"] = 1
+					};
+      	end;
+      	function TTH_TALENT.activeMaahir(iPlayer, strHero)
+					TTH_COMMON.nextNavi(TTH_PATH.Talent[strHero]["Text"]);
+
+					TTH_TALENT.checkPreActiveMaahir4OtherHero(iPlayer, strHero);
+      	end;
+      	function TTH_TALENT.checkPreActiveMaahir4OtherHero(iPlayer, strHero)
+					local arrHero = GetPlayerHeroes(iPlayer);
+      		if length(arrHero) == 1 then
+  					local strText = TTH_PATH.Talent[strHero]["NoOtherHero"];
+	    			TTH_GLOBAL.sign(strHero, strText);
+    				return nil;
+      		end;
+
+      		TTH_TALENT.checkPreActiveMaahir4OperTimes(iPlayer, strHero);
+      	end;
+      	function TTH_TALENT.checkPreActiveMaahir4OperTimes(iPlayer, strHero)
+      		if TTH_VARI.talent[strHero]["CurrentTimes"] <= 0 then
+      			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+      				if TTH_MANAGE.getRemainOperTimes(strHero) <= 0 then
+      					local strText = TTH_PATH.Talent[strHero]["NotEnoughOperTimes"];
+			    			TTH_GLOBAL.sign(strHero, strText);
+		    				return nil;
+      				end;
+      			else
+    					local strText = TTH_PATH.Talent[strHero]["NotEnoughOperTimes"];
+		    			TTH_GLOBAL.sign(strHero, strText);
+	    				return nil;
+		    		end;
+      		end;
+
+      		TTH_TALENT.checkPreActiveMaahir4Mana(iPlayer, strHero);
+      	end;
+      	function TTH_TALENT.checkPreActiveMaahir4Mana(iPlayer, strHero)
+      		if GetHeroStat(strHero, STAT_MANA_POINTS) < 20 then
+      			local strText = TTH_PATH.Talent[strHero]["NotEnoughMana"];
+	    			TTH_GLOBAL.sign(strHero, strText);
+    				return nil;
+      		end;
+
+      		TTH_TALENT.checkPreActiveMaahir4SuitableHero(iPlayer, strHero);
+      	end;
+      	function TTH_TALENT.checkPreActiveMaahir4SuitableHero(iPlayer, strHero)
+					local arrOption = {};
+					local arrHero = GetPlayerHeroes(iPlayer);
+					local i = 1;
+					for iIndexHero, strTeleHero in arrHero do
+						if strTeleHero ~= strHero
+							and TTH_GLOBAL.isHeroAtGarrison(strTeleHero) == TTH_ENUM.No then
+							arrOption[i] = {
+								["Id"] = strTeleHero
+								, ["Text"] = TTH_TABLE.Hero[strTeleHero]["Text"]
+								, ["Callback"] = "TTH_TALENT.implActiveMaahir"
+							};
+							i = i + 1;
+						end;
+					end;
+					if length(arrOption) == 0 then
+	    			local strText = TTH_PATH.Talent[strHero]["NotSuitableHero"];
+						TTH_GLOBAL.sign(strHero, strText);
+						return nil;
+					end;
+
+					TTH_COMMON.optionRadio(iPlayer, strHero, arrOption);
+      	end;
+      	function TTH_TALENT.implActiveMaahir(iPlayer, strHero, strTeleHero)
+      		local iMovePoints = GetHeroStat(strHero, STAT_MOVE_POINTS);
+      		ChangeHeroStat(strHero, STAT_MOVE_POINTS, iMovePoints * -1);
+      		ChangeHeroStat(strHero, STAT_MANA_POINTS, -20);
+      		if TTH_VARI.talent[strHero]["CurrentTimes"] > 0 then
+    				TTH_VARI.talent[strHero]["CurrentTimes"] = TTH_VARI.talent[strHero]["CurrentTimes"] - 1;
+		    	else
+      			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+		    			TTH_MANAGE.useOperTimes(strHero);
+		    		end;
+      		end;
+      		TTH_GLOBAL.teleHero2Point(iPlayer, strTeleHero, strHero, TTH_ENUM.Yes);
+
+      		local strText = TTH_PATH.Talent[strHero]["Success"];
+    			TTH_GLOBAL.sign(strHero, strText);
+      	end;
+      	function TTH_TALENT.resetDailyMaahir(iPlayer, strHero)
+      		TTH_MAIN.debug("TTH_TALENT.resetDailyMaahir", iPlayer, strHero);
+
+      		TTH_VARI.talent[strHero]["CurrentTimes"] = TTH_VARI.talent[strHero]["MaxTimes"];
+      	end;
+
+		-- Dungeon
+			-- Sylsai 062 希尔塞
+      	function TTH_TALENT.initSylsai(strHero)
+					TTH_MAIN.debug("TTH_TALENT.initSylsai", nil, strHero);
+
+      		TTH_VARI.talent[strHero] = {
+						["CurrentTimes"] = 1
+						, ["MaxTimes"] = 1
+						, ["AppointCreature"] = CREATURE_UNKNOWN
+						, ["Diplomacy"] = {}
+					};
+      	end;
+      	function TTH_TALENT.activeSylsai(iPlayer, strHero)
+					TTH_COMMON.nextNavi(TTH_PATH.Talent["Sylsai"]["Text"]);
+
+      		TTH_TALENT.checkPreActiveSylsai4SuitableCreature(iPlayer, strHero);
+      	end;
+      	function TTH_TALENT.checkPreActiveSylsai4SuitableCreature(iPlayer, strHero)
+					local arrCreature4Hero = TTH_GLOBAL.getHeroCreatureInfo(strHero);
+      		local arrOption = {};
+      		local i = 1;
+					for iIndex = 0, 6 do
+						if arrCreature4Hero[iIndex]["Count"] > 0 then
+							local iCreatureId = arrCreature4Hero[iIndex]["Id"];
+							local bIsMatch = TTH_ENUM.No;
+							for iTier = 1, 7 do
+								for jType = 1, 3 do
+									local iDungeonCreatureId = TTH_TABLE.Creature8RaceAndLevel[TOWN_DUNGEON][iTier][jType];
+									if iCreatureId == iDungeonCreatureId then
+										bIsMatch = TTH_ENUM.Yes;
+									end;
+								end;
+							end;
+							if bIsMatch == TTH_ENUM.No then
+								arrOption[i] = {
+									["Id"] = iCreatureId
+									, ["Text"] = TTH_TABLE_NCF_CREATURES[iCreatureId]["NAME"]
+									, ["Callback"] = "TTH_TALENT.checkPreActiveSylsai4OperTimes"
+								};
+								i = i + 1;
+							end;
+						end;
+					end;
+
+					if length(arrOption) == 0 then
+						local strText = TTH_PATH.Talent[strHero]["NoSuitableCreature"];
+			    	TTH_GLOBAL.sign(strHero, strText);
+						return nil;
+					end;
+
+					TTH_COMMON.optionRadio(iPlayer, strHero, arrOption);
+      	end;
+      	function TTH_TALENT.checkPreActiveSylsai4OperTimes(iPlayer, strHero, iCreatureId)
+      		if TTH_VARI.talent[strHero]["AppointCreature"] == CREATURE_UNKNOWN then
+      			TTH_TALENT.implActiveSylsai(iPlayer, strHero, iCreatureId);
+      			return nil;
+      		end;
+
+      		if TTH_VARI.talent[strHero]["CurrentTimes"] <= 0 then
+      			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+      				if TTH_MANAGE.getRemainOperTimes(strHero) <= 0 then
+			    			TTH_GLOBAL.sign(strHero, TTH_PATH.Talent[strHero]["NotEnoughOperTimes"]);
+		    				return nil;
+      				end;
+      			else
+		    			TTH_GLOBAL.sign(strHero, TTH_PATH.Talent[strHero]["NotEnoughOperTimes"]);
+	    				return nil;
+		    		end;
+      		end;
+
+					TTH_TALENT.confirmActiveSylsai(iPlayer, strHero, iCreatureId);
+      	end;
+      	function TTH_TALENT.confirmActiveSylsai(iPlayer, strHero, iCreatureId)
+      		local iPreCreatureId = TTH_VARI.talent[strHero]["AppointCreature"];
+      		local strPreCreatureName = TTH_TABLE_NCF_CREATURES[iPreCreatureId]["NAME"];
+      		local iPostCreatureId = iCreatureId;
+      		local strPostCreatureName = TTH_TABLE_NCF_CREATURES[iPostCreatureId]["NAME"];
+      		local bIsChange = TTH_ENUM.Yes;
+    			local strPathMain = {
+    				TTH_PATH.Talent[strHero]["ConfirmActive"]
+    		    ;strPreCreatureName=strPreCreatureName
+    				,strPostCreatureName=strPostCreatureName
+    			};
+    			local strCallbackOk = "TTH_TALENT.implActiveSylsai("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(iPostCreatureId)..","..bIsChange..")";
+    			local strCallbackCancel = "TTH_COMMON.cancelOption()";
+    			TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+      	end;
+      	function TTH_TALENT.implActiveSylsai(iPlayer, strHero, iCreatureId, bIsChange)
+      		if bIsChange == TTH_ENUM.Yes then
+	      		if TTH_VARI.talent[strHero]["CurrentTimes"] > 0 then
+	    				TTH_VARI.talent[strHero]["CurrentTimes"] = TTH_VARI.talent[strHero]["CurrentTimes"] - 1;
+			    	else
+	      			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+			    			TTH_MANAGE.useOperTimes(strHero);
+			    		end;
+	      		end;
+      		end;
+      		TTH_VARI.talent[strHero]["AppointCreature"] = iCreatureId;
+					local strCreatureName = TTH_TABLE_NCF_CREATURES[iCreatureId]["NAME"];
+					local strPathMain = {
+						TTH_PATH.Talent[strHero]["SuccessActive"]
+				    ;strCreatureName=strCreatureName
+					};
+		    	TTH_GLOBAL.sign(strHero, strPathMain);
+      	end;
+				function TTH_TALENT.visitDwellingSylsai(iPlayer, strHero, strBuildingName, funcCallback)
+					TTH_COMMON.nextNavi(TTH_PATH.Talent[strHero]["Text"]);
+
+					TTH_TALENT.checkPreVisitDwellingSylsai4Times(iPlayer, strHero, strBuildingName, funcCallback);
+				end;
+				function TTH_TALENT.checkPreVisitDwellingSylsai4Times(iPlayer, strHero, strBuildingName, funcCallback)
+      		if TTH_VARI.talent[strHero]["CurrentTimes"] <= 0 then
+      			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+      				if TTH_MANAGE.getRemainOperTimes(strHero) <= 0 then
+      					local strText = TTH_PATH.Talent[strHero]["NotEnoughOperTimes"];
+			    			TTH_GLOBAL.sign(strHero, strText);
+
+			    			TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
+		    				return nil;
+      				end;
+      			else
+    					local strText = TTH_PATH.Talent[strHero]["NotEnoughOperTimes"];
+		    			TTH_GLOBAL.sign(strHero, strText);
+
+		    			TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
+	    				return nil;
+		    		end;
+      		end;
+
+      		TTH_TALENT.checkPreVisitDwellingSylsai4AppointCreature(iPlayer, strHero, strBuildingName, funcCallback);
+				end;
+				function TTH_TALENT.checkPreVisitDwellingSylsai4AppointCreature(iPlayer, strHero, strBuildingName, funcCallback)
+      		if TTH_VARI.talent[strHero]["AppointCreature"] == CREATURE_UNKNOWN then
+	    			TTH_GLOBAL.sign(strHero, TTH_PATH.Talent[strHero]["NoAppointCreature"]);
+
+		    		TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
+    				return nil;
+      		end;
+
+      		TTH_TALENT.confirmVisitDwellingSylsai(iPlayer, strHero, strBuildingName, funcCallback);
+				end;
+				function TTH_TALENT.confirmVisitDwellingSylsai(iPlayer, strHero, strBuildingName, funcCallback)
+					local iCreatureId = TTH_VARI.talent[strHero]["AppointCreature"];
+					local strCreatureName = TTH_TABLE_NCF_CREATURES[iCreatureId]["NAME"];
+
+					local strPathMain = {
+						TTH_PATH.Talent[strHero]["ConfirmVisitDwelling"]
+				    ;strCreatureName=strCreatureName
+					};
+					local strCallbackOk = "TTH_TALENT.implVisitDwellingSylsai("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strBuildingName)..")";
+					local strCallbackCancel = "TTH_VISIT.visitBuildingWithoutScript("..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strBuildingName)..","..TTH_COMMON.psp(funcCallback)..")";
+					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+				end;
+				function TTH_TALENT.implVisitDwellingSylsai(iPlayer, strHero, strBuildingName)
+      		if TTH_VARI.talent[strHero]["CurrentTimes"] > 0 then
+    				TTH_VARI.talent[strHero]["CurrentTimes"] = TTH_VARI.talent[strHero]["CurrentTimes"] - 1;
+		    	else
+      			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+		    			TTH_MANAGE.useOperTimes(strHero);
+		    		end;
+      		end;
+
+      		local iPosX, iPosY, iPosZ = GetObjectPosition(strBuildingName);
+      		Play3DSoundForPlayers(GetPlayerFilter(iPlayer), H55_SndCrash, iPosX, iPosY, iPosZ);
+      		local iHeroRace = TTH_GLOBAL.getRace8Hero(strHero);
+					local iCreatureId = TTH_VARI.talent[strHero]["AppointCreature"];
+      		ReplaceDwelling(strBuildingName, iHeroRace, iCreatureId);
+
+      		if contains(TTH_VARI.talent[strHero]["Diplomacy"], strBuildingName) == nil then
+						TTH_VARI.talent[strHero]["Diplomacy"] = TTH_COMMON.push(TTH_VARI.talent[strHero]["Diplomacy"], strBuildingName);
+					end;
+      		OverrideObjectTooltipNameAndDescription(strBuildingName, TTH_PATH.Talent[strHero]["Title"], TTH_PATH.Talent[strHero]["Desc"]);
+					local strText = TTH_PATH.Talent[strHero]["SuccessVisitDwelling"];
+					TTH_GLOBAL.sign(strHero, strText);
+				end;
+      	function TTH_TALENT.dealWeeklySylsai(iPlayer, strHero)
+      		TTH_MAIN.debug("TTH_TALENT.dealWeeklySylsai", iPlayer, strHero);
+
+					if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+						local iCreatureId = TTH_VARI.talent[strHero]["AppointCreature"];
+						local iGrowth = TTH_TABLE_NCF_CREATURES[iCreatureId]["GROWTH"];
+						if TTH_VARI.talent[strHero]["Diplomacy"] ~= nil then
+							local arrDiplomacy = TTH_VARI.talent[strHero]["Diplomacy"];
+							iGrowth = iGrowth + length(arrDiplomacy);
+						end;
+	    			local arrTown = TTH_MANAGE.listMayorTown8Hero(strHero);
+	    			for i, strTown in arrTown do
+	    				AddObjectCreatures(strTown, iCreatureId, iGrowth);
+	    			end;
+						TTH_GLOBAL.signHero4TownJoin(strHero);
+	    		end;
+      	end;
+      	function TTH_TALENT.resetWeeklySylsai(iPlayer, strHero)
+      		TTH_MAIN.debug("TTH_TALENT.resetWeeklySylsai", iPlayer, strHero);
+
+      		TTH_VARI.talent[strHero]["CurrentTimes"] = TTH_VARI.talent[strHero]["MaxTimes"];
+      	end;
+				function TTH_TALENT.dealDailySylsai(iPlayer, strHero)
+					TTH_MAIN.debug("TTH_TALENT.dealDailySylsai", iPlayer, strHero);
+
+					local arrDiplomacy = TTH_VARI.talent[strHero]["Diplomacy"];
+					for i, strDiplomacy in arrDiplomacy do
+						if GetObjectOwner(strDiplomacy) ~= iPlayer then
+							TTH_VARI.talent[strHero]["Diplomacy"] = TTH_COMMON.remove8Value(TTH_VARI.talent[strHero]["Diplomacy"], strDiplomacy);
+						end;
+					end
+				end;
+
+		-- Necromancy
+			-- Nikolay 080 尼科莱
+      	function TTH_TALENT.initNikolay(strHero)
+					TTH_MAIN.debug("TTH_TALENT.initNikolay", nil, strHero);
+
+      		TTH_VARI.talent[strHero] = {
+      			["Tier"] = {
+	      			[1] = 0
+	      			, [2] = 0
+	      			, [3] = 0
+	      			, [4] = 0
+	      			, [5] = 0
+	      			, [6] = 0
+	      			, [7] = 0
+	      		}
+      		};
+      	end;
+				function TTH_TALENT.combatResultNikolay(iPlayer, strHero, iCombatIndex)
+					TTH_MAIN.debug("TTH_TALENT.combatResultNikolay", iPlayer, strHero, iCombatIndex);
+
+					local strHeroNikolay = "Nikolay";
+      		local bInArea = TTH_ENUM.No;
+      		if strHero == strHeroNikolay then
+      			bInArea = TTH_ENUM.Yes;
+      		else
+	      		if (
+	      				TTH_GLOBAL.getRace8Hero(strHero) == TOWN_NECROMANCY
+	      			  or TTH_VARI.semiNecro[strHero] ~= nil
+	      			)
+	      			and contains(GetPlayerHeroes(iPlayer), strHeroNikolay) ~= nil
+	      			and TTH_GLOBAL.getDistance(strHero, strHeroNikolay) <= TTH_MANAGE.getTerritoryRadius(iPlayer) then
+	      			bInArea = TTH_ENUM.Yes;
+	      		end;
+      		end;
+      		if bInArea == TTH_ENUM.Yes then
+      			local iHeroLevel = GetHeroLevel(strHeroNikolay);
+      			local iCoef = GetHeroSkillMastery(strHero, SKILL_NECROMANCY) * 0.1 + iHeroLevel * 0.01;
+      			local iCountStacksWinner = GetSavedCombatArmyCreaturesCount(iCombatIndex, 1);
+      			for i = 0, iCountStacksWinner - 1 do
+      			  local iCreatureId, iCountCreature, iCountCreatureDeath = GetSavedCombatArmyCreatureInfo(iCombatIndex, 1, i);
+      			  for iTier = 1, 7 do
+      			  	for jType = 1, 3 do
+      			  		local iTempCreatureId = TTH_TABLE.Creature8RaceAndLevel[TOWN_NECROMANCY][iTier][jType];
+      			  		if iCountCreatureDeath > 0 and iCreatureId == iTempCreatureId  then
+      			  			TTH_VARI.talent[strHeroNikolay]["Tier"][iTier] = TTH_VARI.talent[strHeroNikolay]["Tier"][iTier] + iCoef * iCountCreatureDeath;
+      			  		end;
+      			  	end;
+      			  end;
+      			end;
+						local strText = TTH_PATH.Talent[strHeroNikolay]["GainPower"];
+						TTH_GLOBAL.sign(strHeroNikolay, strText);
+      		end;
+				end;
+				function TTH_TALENT.activeNikolay(iPlayer, strHero)
+					TTH_COMMON.nextNavi(TTH_PATH.Talent[strHero]["Text"]);
+
+					local strTown = TTH_VARI.townSkillManage;
+					TTH_TALENT.checkPreActiveNikolay4TowmRace(iPlayer, strHero, strTown);
+				end;
+				function TTH_TALENT.checkPreActiveNikolay4TowmRace(iPlayer, strHero, strTown)
+					if TTH_GLOBAL.getRace8Town(strTown) ~= TOWN_NECROMANCY then
+						local strText = TTH_PATH.Talent[strHero]["NotNecTown"];
+						TTH_GLOBAL.sign(strHero, strText);
+						return nil;
+					end;
+
+					TTH_TALENT.checkPreActiveNikolay4TowmRace(iPlayer, strHero, strTown);
+				end;
+				function TTH_TALENT.confirmActiveNikolay(iPlayer, strHero, strTown)
+					local strPathMain = {
+						TTH_PATH.Talent[strHero]["ConfirmActive"]
+				    ;iCountTier1=TTH_COMMON.floor(TTH_VARI.talent[strHero]["Tier"][1])
+						,iCountTier2=TTH_COMMON.floor(TTH_VARI.talent[strHero]["Tier"][2])
+						,iCountTier3=TTH_COMMON.floor(TTH_VARI.talent[strHero]["Tier"][3])
+						,iCountTier4=TTH_COMMON.floor(TTH_VARI.talent[strHero]["Tier"][4])
+						,iCountTier5=TTH_COMMON.floor(TTH_VARI.talent[strHero]["Tier"][5])
+						,iCountTier6=TTH_COMMON.floor(TTH_VARI.talent[strHero]["Tier"][6])
+						,iCountTier7=TTH_COMMON.floor(TTH_VARI.talent[strHero]["Tier"][7])
+					};
+					local strCallbackOk = "TTH_TALENT.implActiveNikolay("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strTown)..")";
+					local strCallbackCancel = "TTH_COMMON.cancelOption()";
+					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+				end;
+				function TTH_TALENT.implActiveNikolay(iPlayer, strHero, strTown)
+					local arrCreatureGrowth8Tier = {
+						[1] = TTH_COMMON.floor(TTH_VARI.talent[strHero]["Tier"][1])
+						, [2] = TTH_COMMON.floor(TTH_VARI.talent[strHero]["Tier"][2])
+						, [3] = TTH_COMMON.floor(TTH_VARI.talent[strHero]["Tier"][3])
+						, [4] = TTH_COMMON.floor(TTH_VARI.talent[strHero]["Tier"][4])
+						, [5] = TTH_COMMON.floor(TTH_VARI.talent[strHero]["Tier"][5])
+						, [6] = TTH_COMMON.floor(TTH_VARI.talent[strHero]["Tier"][6])
+						, [7] = TTH_COMMON.floor(TTH_VARI.talent[strHero]["Tier"][7])
+					};
+					TTH_VARI.talent[strHero]["Tier"] = {
+						[1] = TTH_VARI.talent[strHero]["Tier"][1] - TTH_COMMON.floor(TTH_VARI.talent[strHero]["Tier"][1])
+						, [2] = TTH_VARI.talent[strHero]["Tier"][2] - TTH_COMMON.floor(TTH_VARI.talent[strHero]["Tier"][2])
+						, [3] = TTH_VARI.talent[strHero]["Tier"][3] - TTH_COMMON.floor(TTH_VARI.talent[strHero]["Tier"][3])
+						, [4] = TTH_VARI.talent[strHero]["Tier"][4] - TTH_COMMON.floor(TTH_VARI.talent[strHero]["Tier"][4])
+						, [5] = TTH_VARI.talent[strHero]["Tier"][5] - TTH_COMMON.floor(TTH_VARI.talent[strHero]["Tier"][5])
+						, [6] = TTH_VARI.talent[strHero]["Tier"][6] - TTH_COMMON.floor(TTH_VARI.talent[strHero]["Tier"][6])
+						, [7] = TTH_VARI.talent[strHero]["Tier"][7] - TTH_COMMON.floor(TTH_VARI.talent[strHero]["Tier"][7])
+					};
+
+					if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+						local arrTown = TTH_MANAGE.listMayorTown8Hero(strHero);
+						for i, strMayorTown in arrTown do
+							TTH_GLOBAL.updateTownDwellingCreature(strMayorTown, arrCreatureGrowth8Tier);
+						end
+					else
+						TTH_GLOBAL.updateTownDwellingCreature(strTown, arrCreatureGrowth8Tier);
+					end;
+					TTH_GLOBAL.signHero4TownRecruit(strHero);
+				end;
+      	function TTH_TALENT.checkExpeditionNikolay(iPlayer, strHero)
+      		TTH_MAIN.debug("TTH_TALENT.checkExpeditionNikolay", iPlayer, strHero);
+
+      		local bIsExpedition = TTH_ENUM.Yes;
+      		local strHeroNikolay = "Nikolay";
+      		if strHero == strHeroNikolay then
+      			bIsExpedition = TTH_ENUM.No;
+      		else
+	      		if (
+	      				TTH_GLOBAL.getRace8Hero(strHero) == TOWN_NECROMANCY
+	      			  or TTH_VARI.semiNecro[strHero] ~= nil
+	      			)
+	      			and contains(GetPlayerHeroes(iPlayer), strHeroNikolay) ~= nil
+	      			and TTH_GLOBAL.getDistance(strHero, strHeroNikolay) <= TTH_MANAGE.getTerritoryRadius(iPlayer) then
+	      			bIsExpedition = TTH_ENUM.No;
+	      		end;
+      		end;
+      		return bIsExpedition;
+      	end;
+      	function TTH_TALENT.getDistance4Hero2NearestMayorTown8Nikolay(iPlayer, strHero)
+      		TTH_MAIN.debug("TTH_TALENT.getDistance4Hero2NearestMayorTown8Nikolay", iPlayer, strHero);
+
+      		local iDistance = TTH_FINAL.NUM_MAX;
+      		local strHeroNikolay = "Nikolay";
+      		if strHero == strHeroNikolay then
+      			iDistance = 0;
+      		else
+	      		if (
+	      				TTH_GLOBAL.getRace8Hero(strHero) == TOWN_NECROMANCY
+	      			  or TTH_VARI.semiNecro[strHero] ~= nil
+	      			)
+	      			and contains(GetPlayerHeroes(iPlayer), strHeroNikolay) ~= nil then
+	      		  iDistance = TTH_GLOBAL.getDistance(strHero, strHeroNikolay);
+	      		end;
+      		end;
+      		return iDistance;
+      	end;
+
+			-- Pelt 094 弗拉基米尔
+				function TTH_TALENT.initPelt(strHero)
+					TTH_MAIN.debug("TTH_TALENT.initPelt", nil, strHero);
+
+					TTH_VARI.talent[strHero] = {
+						["Power"] = 0
+					};
+				end;
+				function TTH_TALENT.combatResultPelt(iPlayer, strHero, iCombatIndex)
+					TTH_MAIN.debug("TTH_TALENT.combatResultPelt", iPlayer, strHero, iCombatIndex);
+
+					local iPlayer = GetObjectOwner(strHero);
+					local iHeroRace = TTH_GLOBAL.getRace8Hero(strHero);
+					local iNecroSet = TTH_GLOBAL.getSetComponentCount(strHero, TTH_ENUM.SET_NECROMANCERS_PELT);
+					local iHeroLevel = GetHeroLevel(strHero);
+					local iKnowledge = GetHeroStat(strHero, STAT_KNOWLEDGE);
+					local iTownCount = length(TTH_GLOBAL.listTown8Player4Race(iPlayer, TOWN_NECROMANCY));
+					local iGainPower = TTH_COMMON.round((30 * iKnowledge + 50 * iTownCount) * (1 + iNecroSet * 0.1));
+					TTH_VARI.talent[strHero]["Power"] = TTH_VARI.talent[strHero]["Power"]	+ iGainPower;
+
+					local strPathMain = {
+    				TTH_PATH.Talent[strHero]["GainPower"]
+	    			;iGainPower=iGainPower
+						,iCurrentPower=TTH_VARI.talent[strHero]["Power"]
+	    		};
+					TTH_GLOBAL.sign(strHero, strPathMain);
+				end;
+				function TTH_TALENT.activePelt(iPlayer, strHero)
+					TTH_COMMON.nextNavi(TTH_PATH.Talent[strHero]["Text"]);
+
+					local iNecroSet = TTH_GLOBAL.getSetComponentCount(strHero, TTH_ENUM.SET_NECROMANCERS_PELT);
+					local iCastLevel = iNecroSet + 1;
+					local arrCreature4Hero = TTH_GLOBAL.getHeroCreatureInfo(strHero);
+      		local arrOption = {};
+      		local i = 1;
+					for iIndex = 0, 6 do
+						local iCreatureId = arrCreature4Hero[iIndex]["Id"];
+						for jIndex = 1, iCastLevel do
+							for kIndex = 1, 3 do
+								if iCreatureId == TTH_TABLE.Creature8RaceAndLevel[TOWN_NECROMANCY][jIndex][kIndex]
+									and TTH_VARI.talent[strHero]["Power"] >= TTH_TABLE_NCF_CREATURES[iCreatureId]["POWER"] then
+									arrOption[i] = {
+										["Id"] = iCreatureId
+										, ["Text"] = TTH_TABLE_NCF_CREATURES[iCreatureId]["NAME"]
+										, ["Callback"] = "TTH_TALENT.implActivePelt"
+									};
+									i = i + 1;
+								end;
+							end;
+						end;
+						if (
+								(iCreatureId == CREATURE_MUMMY	and iCastLevel >= 5)
+								or (iCreatureId == CREATURE_DEATH_KNIGHT and iCastLevel >= 6)
+								or (iCreatureId == CREATURE_935 and iCastLevel >= 5)
+							)
+							and TTH_VARI.talent[strHero]["Power"] >= TTH_TABLE_NCF_CREATURES[iCreatureId]["POWER"] then
+							arrOption[i] = {
+								["Id"] = iCreatureId
+								, ["Text"] = TTH_TABLE_NCF_CREATURES[iCreatureId]["NAME"]
+								, ["Callback"] = "TTH_TALENT.implActivePelt"
+							};
+							i = i + 1;
+						end;
+					end;
+
+					if length(arrOption) == 0 then
+						local arrArtifactNameExist = {};
+						local arrArtifactNameNotExist = {};
+						for i = 0, 5 do
+							local iComponentId = TTH_TABLE.ArtifactSetBonus[TTH_ENUM.SET_NECROMANCERS_PELT]["Component"][i];
+							if HasArtefact(strHero, iComponentId, 1) ~= nil then
+							  arrArtifactNameExist[i + 1] = TTH_TABLE.Artifact[iComponentId]["Text"];
+							  arrArtifactNameNotExist[i + 1] = "";
+							else
+							  arrArtifactNameExist[i + 1] = "";
+							  arrArtifactNameNotExist[i + 1] = TTH_TABLE.Artifact[iComponentId]["Text"];
+							end;
+						end;
+						local strPathMain = {
+	    				TTH_PATH.Talent[strHero]["NoCreature4Cast"]
+		    			;iCurrentPower=TTH_VARI.talent[strHero]["Power"]
+		    			,iCastLevel=iCastLevel
+		    			,strTownRace=TTH_PATH.Race[TOWN_NECROMANCY]
+		    			,strArtifactNameExist1=arrArtifactNameExist[1]
+		    			,strArtifactNameNotExist1=arrArtifactNameNotExist[1]
+		    			,strArtifactNameExist2=arrArtifactNameExist[2]
+		    			,strArtifactNameNotExist2=arrArtifactNameNotExist[2]
+		    			,strArtifactNameExist3=arrArtifactNameExist[3]
+		    			,strArtifactNameNotExist3=arrArtifactNameNotExist[3]
+		    			,strArtifactNameExist4=arrArtifactNameExist[4]
+		    			,strArtifactNameNotExist4=arrArtifactNameNotExist[4]
+		    			,strArtifactNameExist5=arrArtifactNameExist[5]
+		    			,strArtifactNameNotExist5=arrArtifactNameNotExist[5]
+		    			,strArtifactNameExist6=arrArtifactNameExist[6]
+		    			,strArtifactNameNotExist6=arrArtifactNameNotExist[6]
+		    		};
+			    	TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.MessageBox, strPathMain);
+						return nil;
+					end;
+
+					TTH_COMMON.optionRadio(iPlayer, strHero, arrOption);
+				end;
+				function TTH_TALENT.implActivePelt(iPlayer, strHero, iCreatureId)
+					local iPower4Creature = TTH_TABLE_NCF_CREATURES[iCreatureId]["POWER"];
+					local iCreatureNumber = TTH_COMMON.floor(TTH_VARI.talent[strHero]["Power"] / iPower4Creature);
+					local iUsedPower = iPower4Creature * iCreatureNumber;
+					TTH_VARI.talent[strHero]["Power"] = TTH_VARI.talent[strHero]["Power"] - iUsedPower;
+					TTH_GLOBAL.addCreature4Hero8Sign(strHero, iCreatureId, iCreatureNumber, TTH_ENUM.CastCreature);
+					local strPathMain = {
+    				TTH_PATH.Talent[strHero]["Success"]
+	    			;iCreatureNumber=iCreatureNumber
+						,strCreatureName=TTH_TABLE_NCF_CREATURES[iCreatureId]["NAME"]
+						,iUsedPower=iUsedPower
+	    		};
+					TTH_GLOBAL.sign(strHero, strPathMain);
+				end;
+
+			-- Sandro 山德鲁
+				TTH_VARI.talent["Sandro"] = {
+					["Step"] = 5
+					, ["Bonus"] = 0
+				};
+				function TTH_TALENT.dealSandro(iPlayer, strHero)
+					TTH_MAIN.debug("TTH_TALENT.dealSandro", iPlayer, strHero);
+
+					local iCountMagic = TTH_GLOBAL.countHeroKnowSpell(strHero);
+					if iCountMagic / TTH_VARI.talent[strHero]["Step"] > TTH_VARI.talent[strHero]["Bonus"] then
+						local iStatBonusNumber = TTH_COMMON.ceil(iCountMagic / TTH_VARI.talent[strHero]["Step"]) - TTH_VARI.talent[strHero]["Bonus"];
+						TTH_GLOBAL.signChangeHeroStat(strHero, STAT_SPELL_POWER, iStatBonusNumber);
+						TTH_GLOBAL.signChangeHeroStat(strHero, STAT_KNOWLEDGE, iStatBonusNumber);
+						TTH_VARI.talent[strHero]["Bonus"] = TTH_COMMON.ceil(iCountMagic / TTH_VARI.talent[strHero]["Step"]);
+					end;
+				end;
+
+		-- Inferno
+			-- Sovereign 110 卡-贝勒斯
+				TTH_VARI.talent["Sovereign"] = {
+					["Building8Level"] = {
+						["BUILDING_FONTAIN_OF_FORTUNE"] = {
+							["Level"] = 1
+						}
+						, ["BUILDING_TEMPLE"] = {
+							["Level"] = 5
+						}
+						, ["BUILDING_FORTUITOUS_SANCTUARY"] = {
+							["Level"] = 9
+						}
+						, ["BUILDING_FONTAIN_OF_YOUTH"] = {
+							["Level"] = 13
+						}
+						, ["BUILDING_FAERIE_RING"] = {
+							["Level"] = 17
+						}
+						, ["BUILDING_NOMADS_SHAMAN"] = {
+							["Level"] = 21
+						}
+						, ["BUILDING_RALLY_FLAG"] = {
+							["Level"] = 25
+						}
+						, ["BUILDING_IDOL_OF_FORTUNE"] = {
+							["Level"] = 29
+						}
+						, ["BUILDING_MAGIC_WELL"] = {
+							["Level"] = 33
+						}
+						, ["BUILDING_OASIS"] = {
+							["Level"] = 37
+						}
+					}
+				};
+        function TTH_TALENT.combatResultSovereign(iPlayer, strHero, iCombatIndex)
+        	TTH_MAIN.debug("TTH_TALENT.combatResultSovereign", iPlayer, strHero, iCombatIndex);
+
+        	local iHeroLevel = GetHeroLevel(strHero);
+        	for strBuilding, objItem in TTH_VARI.talent["Sovereign"]["Building8Level"] do
+        		if length(TTH_VARI.arrBuilding[strBuilding]) > 0
+        			and iLevel >= objItem["Level"] then
+        			MakeHeroInteractWithObject(strHero, TTH_VARI.arrBuilding[strBuilding][0]);
+        		end;
+        	end
         end;
-    end;
-end;
 
-function H55_GetAmountActivePlayers()
-	local active = 0;
-	for i=1,8 do
-		if (GetPlayerState(i) == 1) then
-			active = active+1;
-		end;
-	end;
-	return active
-end;
+      -- Biara 114 拜娅拉
+      	function TTH_TALENT.dealDailyBiara(iPlayer, strHero)
+      		TTH_MAIN.debug("TTH_TALENT.dealDailyBiara", iPlayer, strHero);
 
-function H55_UpdateTownQtyDifficulty()
-	local towns = GetObjectNamesByType("TOWN");
-	H55_TownQtyDivisor = (length(towns))/(H55_GetAmountActivePlayers());
-	H55_MaxTownsPerFaction = H55_Round(H55_AmountExtraTownsDwellings+H55_TownQtyDivisor);
-	H55_MaxDwellingsT1 = H55_Round(H55_AmountExtraTownsDwellings+(H55_TownQtyDivisor/2));
-	H55_MaxDwellingsT2 = H55_Round(H55_AmountExtraTownsDwellings+(H55_TownQtyDivisor/2));
-	H55_MaxDwellingsT3 = H55_Round(H55_AmountExtraTownsDwellings+(H55_TownQtyDivisor/2));
-	H55_MaxDwellingsT4 = 2+H55_Round(H55_AmountExtraTownsDwellings+(H55_TownQtyDivisor/2));
-	if H55_TownQtyDivisor >= 2 and H55_TownQtyDivisor < 3 then H55_TownQtyBankDifficulty = 0.02 end;
-	if H55_TownQtyDivisor >= 3 and H55_TownQtyDivisor < 4 then H55_TownQtyBankDifficulty = 0.03 end;
-	if H55_TownQtyDivisor >= 4 and H55_TownQtyDivisor < 5 then H55_TownQtyBankDifficulty = 0.04 end;
-	if H55_TownQtyDivisor >= 5 then H55_TownQtyBankDifficulty = 0.05 end;
-end;
+      		if TTH_VARI.dayOfWeek == 4 then
+  					local iHeroLevel = GetHeroLevel(strHero);
+  					local iHeroKnowledge = GetHeroStat(strHero, STAT_KNOWLEDGE);
+  					local arrCreatureGrowth8Tier = {};
+  					for iTier = 1, 7 do
+  						arrCreatureGrowth8Tier[iTier] = TTH_COMMON.round(iHeroLevel / TTH_TABLE.Coef8Mayor4TownDwellingCreature[iTier]);
+  					end;
+      			local arrTown = TTH_MANAGE.listMayorTown8Hero(strHero);
+      			for i, strTown in arrTown do
+    					TTH_GLOBAL.updateTownDwellingCreature(strTown, arrCreatureGrowth8Tier);
+      			end;
+      			TTH_GLOBAL.signHero4TownRecruit(strHero);
+      		end;
+      	end;
 
-function H55_ConstructNeutralTowns(level)
-	local towns = GetObjectNamesByType("TOWN");
-	for i,town in towns do
-		if GetObjectOwner(town) == 0 then
-			if level == 1 then
-				UpgradeTownBuilding(town,TOWN_BUILDING_TOWN_HALL,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_TAVERN,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_MARKETPLACE,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_BLACKSMITH,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1);
-			elseif level == 2 then
-				UpgradeTownBuilding(town,TOWN_BUILDING_TOWN_HALL,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_FORT,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_TAVERN,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_MARKETPLACE,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_BLACKSMITH,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_1,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_2,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_3,1);
-			elseif level == 3 then
-				UpgradeTownBuilding(town,TOWN_BUILDING_TOWN_HALL,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_FORT,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_FORT,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_TAVERN,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_MARKETPLACE,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_BLACKSMITH,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_1,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_2,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_3,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_4,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_5,1);
-			elseif level == 4 then
-				UpgradeTownBuilding(town,TOWN_BUILDING_TOWN_HALL,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_FORT,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_FORT,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_FORT,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_TAVERN,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_MARKETPLACE,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_BLACKSMITH,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_1,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_2,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_3,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_4,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_5,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_6,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_1,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_2,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_3,1);
-			elseif level >= 5 then
-				UpgradeTownBuilding(town,TOWN_BUILDING_TOWN_HALL,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_TOWN_HALL,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_FORT,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_FORT,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_FORT,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_TAVERN,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_MARKETPLACE,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_BLACKSMITH,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_1,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_2,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_3,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_4,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_5,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_6,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_1,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_2,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_3,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_4,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_5,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_6,1);
-				UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_7,1);
-			end;
-		end;
-	end;
-end;
+      -- Sheltem 116 谢尔坦
+      	function TTH_TALENT.initSheltem(strHero)
+					TTH_MAIN.debug("TTH_TALENT.initSheltem", nil, strHero);
 
-function H55_ConstructPlayerTowns(iLevel, iPlayer)
-	local listTown = GetObjectNamesByType("TOWN");
-	for i, objTown in listTown do
-		if GetObjectOwner(objTown) == iPlayer and H55_IsThisAIPlayer(iPlayer) ~= 1 then
-			H55_ConstructTowns(objTown, iLevel);
-		end;
-	end;
-end;
+					TTH_VARI.talent[strHero] = {
+						["Flag"] = TTH_ENUM.Enable
+					};
+      	end;
+      	function TTH_TALENT.activeSheltem(iPlayer, strHero)
+					TTH_COMMON.nextNavi(TTH_PATH.Talent[strHero]["Text"]);
 
-function H55_ConstructAITowns(iLevel, iPlayer)
-	local listTown = GetObjectNamesByType("TOWN");
-	for i, objTown in listTown do
-		if GetObjectOwner(objTown) == iPlayer and H55_IsThisAIPlayer(iPlayer) == 1 then
-			H55_ConstructTowns(objTown, iLevel);
-		end;
-	end;
-end;
+					TTH_TALENT.checkPredealSheltem4Times(iPlayer, strHero);
+      	end;
+      	function TTH_TALENT.checkPredealSheltem4Times(iPlayer, strHero)
+      		if TTH_VARI.talent[strHero] == TTH_ENUM.Unable then
+      			local strText = TTH_PATH.Talent[strHero]["HasUsed"];
+						TTH_GLOBAL.sign(strHero, strText);
+						return nil;
+      		end;
+      		TTH_TALENT.radioActiveSheltem(iPlayer, strHero);
+      	end;
+      	function TTH_TALENT.radioActiveSheltem(iPlayer, strHero)
+      		local iSpellPower = GetHeroStat(strHero, STAT_SPELL_POWER);
+      		local iKnowledge = GetHeroStat(strHero, STAT_KNOWLEDGE);
+      		local iChangeSpellPower = TTH_COMMON.floor(iSpellPower / 2);
+      		local iChangeKnowledge = TTH_COMMON.floor(iKnowledge / 2);
+	      	local strPathP2K = {
+	      		TTH_PATH.Talent[strHero]["P2K"]
+	      		;iChangeSpellPower=iChangeSpellPower
+	      	};
+	      	local strPathK2P = {
+	      		TTH_PATH.Talent[strHero]["K2P"]
+	      		;iChangeKnowledge=iChangeKnowledge
+	      	};
+      		local arrOption = {
+						[1] = {
+							["Id"] = STAT_SPELL_POWER
+							, ["Text"] = strPathP2K
+							, ["Callback"] = "TTH_TALENT.implActiveSheltem"
+						}
+						, [2] = {
+							["Id"] = STAT_KNOWLEDGE
+							, ["Text"] = strPathK2P
+							, ["Callback"] = "TTH_TALENT.implActiveSheltem"
+						}
+					};
+					TTH_COMMON.optionRadio(iPlayer, strHero, arrOption);
+      	end;
+      	function TTH_TALENT.implActiveSheltem(iPlayer, strHero, iStat)
+      		if iStat == STAT_SPELL_POWER then
+      			local iSpellPower = GetHeroStat(strHero, STAT_SPELL_POWER);
+      			local iChangeSpellPower = TTH_COMMON.floor(iSpellPower / 2);
+      			if iChangeSpellPower > 0 then
+      				TTH_GLOBAL.signChangeHeroStat(strHero, STAT_SPELL_POWER, iChangeSpellPower * -1);
+      				TTH_GLOBAL.signChangeHeroStat(strHero, STAT_KNOWLEDGE, iChangeSpellPower * 1);
+      			end;
+      		elseif iStat == STAT_KNOWLEDGE then
+      			local iKnowledge = GetHeroStat(strHero, STAT_KNOWLEDGE);
+      			local iChangeKnowledge = TTH_COMMON.floor(iKnowledge / 2);
+      			if iChangeKnowledge > 0 then
+      				TTH_GLOBAL.signChangeHeroStat(strHero, STAT_KNOWLEDGE, iChangeKnowledge * -1);
+      				TTH_GLOBAL.signChangeHeroStat(strHero, STAT_SPELL_POWER, iChangeKnowledge * 1);
+      			end;
+      		end;
+      		TTH_VARI.talent[strHero] = TTH_ENUM.Unable;
+      	end;
+      	function TTH_TALENT.resetDailySheltem(iPlayer, strHero)
+      		TTH_MAIN.debug("TTH_TALENT.resetDailySheltem", iPlayer, strHero);
 
-function H55_ConstructTowns(objTown, iLevel)
-	if GetObjectOwner(objTown) ~= 0 then
-		if iLevel == 0 then
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_MARKETPLACE,1);
-		elseif iLevel == 1 then
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_TOWN_HALL,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_TAVERN,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_MARKETPLACE,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_BLACKSMITH,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_MAGIC_GUILD,1);
-		elseif iLevel == 2 then
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_TOWN_HALL,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_FORT,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_TAVERN,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_MARKETPLACE,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_BLACKSMITH,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_MAGIC_GUILD,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_DWELLING_1,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_DWELLING_2,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_DWELLING_3,1);
-		elseif iLevel == 3 then
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_TOWN_HALL,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_FORT,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_FORT,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_TAVERN,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_MARKETPLACE,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_BLACKSMITH,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_MAGIC_GUILD,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_MAGIC_GUILD,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_DWELLING_1,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_DWELLING_2,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_DWELLING_3,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_DWELLING_4,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_DWELLING_5,1);
-		elseif iLevel == 4 then
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_TOWN_HALL,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_FORT,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_FORT,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_FORT,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_TAVERN,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_MARKETPLACE,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_BLACKSMITH,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_MAGIC_GUILD,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_MAGIC_GUILD,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_MAGIC_GUILD,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_DWELLING_1,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_DWELLING_2,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_DWELLING_3,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_DWELLING_4,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_DWELLING_5,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_DWELLING_6,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_DWELLING_1,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_DWELLING_2,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_DWELLING_3,1);
-		elseif iLevel >= 5 then
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_TOWN_HALL,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_TOWN_HALL,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_FORT,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_FORT,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_FORT,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_TAVERN,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_MARKETPLACE,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_BLACKSMITH,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_MAGIC_GUILD,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_MAGIC_GUILD,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_MAGIC_GUILD,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_MAGIC_GUILD,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_DWELLING_1,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_DWELLING_2,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_DWELLING_3,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_DWELLING_4,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_DWELLING_5,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_DWELLING_6,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_DWELLING_1,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_DWELLING_2,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_DWELLING_3,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_DWELLING_4,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_DWELLING_5,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_DWELLING_6,1);
-			UpgradeTownBuilding(objTown, TOWN_BUILDING_DWELLING_7,1);
-		end;
-	end;
-end;
+      		TTH_VARI.talent[strHero] = TTH_ENUM.Enable;
+      	end;
 
-function H55_BuildMyTowns(player)
-	local towns = GetObjectNamesByType("TOWN");
-	for i,town in towns do
-		if GetObjectOwner(town) == player then
-			UpgradeTownBuilding(town,TOWN_BUILDING_TOWN_HALL,1);
-			UpgradeTownBuilding(town,TOWN_BUILDING_TOWN_HALL,1);
-			UpgradeTownBuilding(town,TOWN_BUILDING_FORT,1);
-			UpgradeTownBuilding(town,TOWN_BUILDING_FORT,1);
-			UpgradeTownBuilding(town,TOWN_BUILDING_FORT,1);
-			UpgradeTownBuilding(town,TOWN_BUILDING_TAVERN,1);
-			UpgradeTownBuilding(town,TOWN_BUILDING_MARKETPLACE,1);
-			UpgradeTownBuilding(town,TOWN_BUILDING_MARKETPLACE,1);
-			UpgradeTownBuilding(town,TOWN_BUILDING_BLACKSMITH,1);
-			UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1);
-			UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1);
-			UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1);
-			UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1);
-			UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_1,1);
-			UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_2,1);
-			UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_3,1);
-			UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_4,1);
-			UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_5,1);
-			UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_6,1);
-			UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_1,1);
-			UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_2,1);
-			UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_3,1);
-			UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_4,1);
-			UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_5,1);
-			UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_6,1);
-			UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_7,1);
-		end;
-	end;
-end;
+		-- Fortress
+			-- Ufretin 133 尤佛瑞汀
+      	function TTH_TALENT.initUfretin(strHero)
+					TTH_MAIN.debug("TTH_TALENT.initUfretin", nil, strHero);
 
-----------------------------------------------------------------------------------------------------------------------------------------------------
---AI FUNCTIONS
-----------------------------------------------------------------------------------------------------------------------------------------------------
-
-function H55_DetectP1AI()
-	if (GetPlayerState(PLAYER_1) == 1) then
-			local heroes = GetPlayerHeroes(PLAYER_1);
-			if heroes ~= nil then
-				for i, hero in heroes do
-					EnableHeroAI(hero,not nil);
-					H55_PlayerStatus[1] = 1;
-				end;
-			else
-				local modetoken = GetPlayerResource(PLAYER_1,6);
-				if contains(H55_AIStartResources,modetoken) ~= nil then
-					H55_PlayerStatus[1] = 1;
-				else
-					H55_PlayerStatus[1] = 0;
-				end;
-			end;
-	else
-		H55_PlayerStatus[1] = 2;
-	end;
-end;
-
-function H55_DetectP2AI()
-	if (GetPlayerState(PLAYER_2) == 1) then
-			local heroes = GetPlayerHeroes(PLAYER_2);
-			if heroes ~= nil then
-				for i, hero in heroes do
-					EnableHeroAI(hero,not nil);
-					H55_PlayerStatus[2] = 1;
-				end;
-			else
-				local modetoken = GetPlayerResource(PLAYER_2,6);
-				if contains(H55_AIStartResources,modetoken) ~= nil then
-					H55_PlayerStatus[2] = 1;
-				else
-					H55_PlayerStatus[2] = 0;
-				end;
-			end;
-	else
-		H55_PlayerStatus[2] = 2;
-	end;
-
-	--Campaign Bugfix
-
-	if GetMapDataPath() == "Maps/Scenario/C1M5/" then
-		H55_PlayerStatus[2] = 1;
-	end;
-end;
-
-function H55_DetectP3AI()
-	if (GetPlayerState(PLAYER_3) == 1) then
-			local heroes = GetPlayerHeroes(PLAYER_3);
-			if heroes ~= nil then
-				for i, hero in heroes do
-					EnableHeroAI(hero,not nil);
-					H55_PlayerStatus[3] = 1;
-				end;
-			else
-				local modetoken = GetPlayerResource(PLAYER_3,6);
-				if contains(H55_AIStartResources,modetoken) ~= nil then
-					H55_PlayerStatus[3] = 1;
-				else
-					H55_PlayerStatus[3] = 0;
-				end;
-			end;
-	else
-		H55_PlayerStatus[3] = 2;
-	end;
-end;
-
-function H55_DetectP4AI()
-	if (GetPlayerState(PLAYER_4) == 1) then
-			local heroes = GetPlayerHeroes(PLAYER_4);
-			if heroes ~= nil then
-				for i, hero in heroes do
-					EnableHeroAI(hero,not nil);
-					H55_PlayerStatus[4] = 1;
-				end;
-			else
-				local modetoken = GetPlayerResource(PLAYER_4,6);
-				if contains(H55_AIStartResources,modetoken) ~= nil then
-					H55_PlayerStatus[4] = 1;
-				else
-					H55_PlayerStatus[4] = 0;
-				end;
-			end;
-	else
-		H55_PlayerStatus[4] = 2;
-	end;
-end;
-
-function H55_DetectP5AI()
-	if (GetPlayerState(PLAYER_5) == 1) then
-			local heroes = GetPlayerHeroes(PLAYER_5);
-			if heroes ~= nil then
-				for i, hero in heroes do
-					EnableHeroAI(hero,not nil);
-					H55_PlayerStatus[5] = 1;
-				end;
-			else
-				local modetoken = GetPlayerResource(PLAYER_5,6);
-				if contains(H55_AIStartResources,modetoken) ~= nil then
-					H55_PlayerStatus[5] = 1;
-				else
-					H55_PlayerStatus[5] = 0;
-				end;
-			end;
-	else
-		H55_PlayerStatus[5] = 2;
-	end;
-end;
-
-function H55_DetectP6AI()
-	if (GetPlayerState(PLAYER_6) == 1) then
-			local heroes = GetPlayerHeroes(PLAYER_6);
-			if heroes ~= nil then
-				for i, hero in heroes do
-					EnableHeroAI(hero,not nil);
-					H55_PlayerStatus[6] = 1;
-				end;
-			else
-				local modetoken = GetPlayerResource(PLAYER_6,6);
-				if contains(H55_AIStartResources,modetoken) ~= nil then
-					H55_PlayerStatus[6] = 1;
-				else
-					H55_PlayerStatus[6] = 0;
-				end;
-			end;
-	else
-		H55_PlayerStatus[6] = 2;
-	end;
-end;
-
-function H55_DetectP7AI()
-	if (GetPlayerState(PLAYER_7) == 1) then
-			local heroes = GetPlayerHeroes(PLAYER_7);
-			if heroes ~= nil then
-				for i, hero in heroes do
-					EnableHeroAI(hero,not nil);
-					H55_PlayerStatus[7] = 1;
-				end;
-			else
-				local modetoken = GetPlayerResource(PLAYER_7,6);
-				if contains(H55_AIStartResources,modetoken) ~= nil then
-					H55_PlayerStatus[7] = 1;
-				else
-					H55_PlayerStatus[7] = 0;
-				end;
-			end;
-	else
-		H55_PlayerStatus[7] = 2;
-	end;
-end;
-
-function H55_DetectP8AI()
-	if (GetPlayerState(PLAYER_8) == 1) then
-			local heroes = GetPlayerHeroes(PLAYER_8);
-			if heroes ~= nil then
-				for i, hero in heroes do
-					EnableHeroAI(hero,not nil);
-					H55_PlayerStatus[8] = 1;
-				end;
-			else
-				local modetoken = GetPlayerResource(PLAYER_8,6);
-				if contains(H55_AIStartResources,modetoken) ~= nil then
-					H55_PlayerStatus[8] = 1;
-				else
-					H55_PlayerStatus[8] = 0;
-				end;
-			end;
-	else
-		H55_PlayerStatus[8] = 2;
-	end;
-end;
-
-function H55_DetectPlayerFactions()
-	local towns = GetObjectNamesByType("TOWN");
-	for i=1,8 do
-		for j, town in towns do
-			if GetObjectOwner(town) == i then
-				H55_PlayerFactions[i] = H55_GetTownRace(town);
-			end;
-		end;
-	end;
-end;
-
-function H55_DetectPlayerFactionsSecond()
-	for i=1,8 do
-		if H55_PlayerFactions[i] == 0 and H55_PlayerStatus[i] == 0 then
-			local heroes = GetPlayerHeroes(i);
-			if heroes ~= nil then
-				H55_PlayerFactions[i] = (H55_GetHeroRaceNum(heroes[0]));
-			end;
-		end;
-	end;
-end;
-
-function H55_GetPlayerRace(player)
-	local answer = H55_PlayerFactions[player];
-	return answer;
-end;
-
-function H55_UpdateGameMode()
-	local gamemode = 0;
-	for i=1,8 do
-		local modetoken = GetPlayerResource(i,6);
-		if contains(H55_AIStartResources,modetoken) == nil and H55_PlayerStatus[i] == 1 then
-			gamemode = 1;
-		end;
-	end;
-	H55_GameMode = gamemode;
-end;
-
-function H55_IsThisAIPlayer(player)
-	local answer = 0;
-	if H55_PlayerStatus[player] == 1 then
-		answer = 1;
-	end;
-	return answer;
-end;
-
-function H55_DetectTeamConfig()
-	local teamsituation = 0;
-	local amounthuman = H55_ContainsAmount(H55_PlayerStatus,0);
-	local amountai = H55_ContainsAmount(H55_PlayerStatus,1);
-	--if amounthuman == amountai then teamsituation = 1 end;
-	if amounthuman == 2 and amountai >= 2 then teamsituation = 1 end;
-	if amounthuman == 3 and amountai >= 3 then teamsituation = 1 end;
-	if amounthuman == 4 and amountai == 4 then teamsituation = 1 end;
-	if amounthuman == 1 and amountai >= 2 then teamsituation = 2 end;
-	return teamsituation
-end;
-
-function H55_TeamHumansvsAI()
-	for i=1,8 do
-		if H55_PlayerStatus[i] == 0 then SetPlayerTeam(i,1) end;
-		if H55_PlayerStatus[i] == 1 then SetPlayerTeam(i,2) end;
-	end;
-end;
-
-function H55_NoTeams()
-	print("H55 Request for Teams Canceled")
-end;
-
-function H55_AIMapSizeCoef()
-		local floorsize = GetMaxFloor();
-		local mapsize = GetTerrainSize();
-		local coef = 1;
-		if floorsize == 0 then
-			if mapsize == 320 then coef = 1.2 end;
-			if mapsize == 256 then coef = 1.1 end;
-			if mapsize == 216 then coef = 1.1 end;
-		end;
-		if floorsize == 1 then
-			if mapsize == 320 then coef = 1.3 end;
-			if mapsize == 256 then coef = 1.2 end;
-			if mapsize == 216 then coef = 1.2 end;
-			if mapsize == 176 then coef = 1.1 end;
-		end;
-		return coef
-end;
-
-function H55_AIDifficultyCoef()
-		local coef = 0.4;
-		if H55_Difficulty == 3 then coef = 0.7 end;
-		if H55_Difficulty == 2 then coef = 0.6 end;
-		if H55_Difficulty == 1 then coef = 0.5 end;
-		return coef
-end;
-
-function H55_SetEasyExperience()
-		local coef = 1;
-		if H55_Difficulty == 3 then coef = 1.27 end;
-		if H55_Difficulty == 2 then coef = 1.18 end;
-		if H55_Difficulty == 1 then coef = 1.09 end;
-		SetHeroesExpCoef(coef);
-		print("H55 Experience settings ignored");
-end;
-
-function H55_AITimerCoef()
-	local coef = 1;
-	if H55_Day >= 56 and H55_Day < 112 then coef = 1.1 end;
-	if H55_Day >= 112 and H55_Day < 168 then coef = 1.2 end;
-	if H55_Day >= 168 and H55_Day < 224 then coef = 1.3 end;
-	if H55_Day >= 224 then coef = 1.4 end;
-	return coef
-end;
-
-function H55_AICheatSetting()
-	local coef = 1;
-	if H55_AICheatMode == 0 then
-		coef = 0.4;
-	elseif H55_AICheatMode == 1 then
-		coef = 0.4;
-	elseif H55_AICheatMode == 2 then
-		coef = 0.6;
-	elseif H55_AICheatMode == 3 then
-		coef = 0.8;
-	elseif H55_AICheatMode == 5 then
-		coef = 1.2;
-	elseif H55_AICheatMode == 6 then
-		coef = 1.4;
-	else
-		coef = 1;
-	end;
-	return coef
-end;
-
-----------------------------------------------------------------------------------------------------------------------------------------------------
---CONSOLE COMMANDS
-----------------------------------------------------------------------------------------------------------------------------------------------------
-
-function H55_Move(hero,num)
-	ChangeHeroStat(hero,STAT_MOVE_POINTS,num);
-end;
-
-function H55_NoFog(player)
-	OpenCircleFog(0,0,0,9999,player);
-	OpenCircleFog(0,0,1,9999,player);
-end;
-
-function H55_Speedrun(player)
-	local heroes = GetPlayerHeroes(player)
-	for i,hero in heroes do
-		AddHeroCreatures(hero,84,999);
-	end;
-end;
-
--- by 牙姐
-function H55_AIStartSetting(player)
-	if (GetPlayerState(player) == 1) then
-		if H55_AllAgainstOne == 1 then
-			for index = 1, 8 do
-				if (index == player) then
-					SetPlayerTeam(index, 1);
-				elseif (GetPlayerState(index) == 1) then
-					SetPlayerTeam(index, 2);
-				end;
-			end;
-			print("All players have teamed up against player "..player.."!");
-		end;
-		for index = 1, 8 do
-			local heroes = GetPlayerHeroes(index);
-			for i, hero in heroes do
-				if (index ~= player) and (H55_AICheats == 1) then
-					if H55_AISetBonus_Tear == 1 then
-						H55_AIStartSetting_GiveTear(hero);
-						print("Tear has been given!");
+					TTH_VARI.talent[strHero] = {
+						["TownLevel"] = 0
+						, ["CurrentTimes"] = 1
+						, ["MaxTimes"] = 1
+					};
+      	end;
+				function TTH_TALENT.calcCoefUfretin(strHero)
+					local strHeroUfretin = "Ufretin";
+					local iCoef = 1;
+					if strHeroUfretin == strHero then
+						if TTH_VARI.talent[strHero]["CurrentTimes"] > 0 then
+							iCoef = 0;
+						end;
 					end;
-					-- if H55_AISetBonus_Set == 1 then
-					-- 	H55_AIStartSetting_GiveSet(hero);
-					-- 	print("ArtifactSet has been given!");
-					-- end;
-					if H55_AISetBonus_Travel == 1 then
-						H55_AIStartSetting_GiveTravel(hero);
-						print("Travel has been given!");
-					end;
-					if H55_AISetBonus_Draconic == 1 then
-						H55_AIStartSetting_GiveDraconic(hero);
-						print("Draconic has been given!");
-					end;
-					if H55_AISetBonus_Shield == 1 then
-						H55_AIStartSetting_GiveShield(hero);
-						print("Shield has been given!");
-					end;
-					if H55_AISetBonus_Angelic_Alliance == 1 then
-						H55_AIStartSetting_GiveAngelicAlliance(hero);
-						print("Angelic_Alliance has been given!");
-					end;
-					if H55_AISetBonus_Curse_Shoulder == 1 then
-						H55_AIStartSetting_GiveCurseShoulder(hero);
-						print("Curse_Shoulder has been given!");
-					end;
-					if H55_AISetBonus_Phoenix == 1 then
-						H55_AIStartSetting_GivePhoenix(hero);
-						print("Phoenix has been given!");
-					end;
-					if H55_AISkillBonusBasic == 1 then
-						H55_AIStartSetting_TeachSkill_Basic(hero);
-						print("BasicSkill has been teached!");
-					end;
-					if H55_AISkillBonusAbsolute == 1 then
-						H55_AIStartSetting_TeachSkill_Absolute(hero);
-						print("AbsoluteSkill has been teached!");
+					return iCoef;
+				end;
+				function TTH_TALENT.useTimesUfretin(strHero)
+					local strHeroUfretin = "Ufretin";
+					if strHeroUfretin == strHero then
+						if TTH_VARI.talent[strHero]["CurrentTimes"] > 0 then
+							TTH_VARI.talent[strHero]["CurrentTimes"] = TTH_VARI.talent[strHero]["CurrentTimes"] - 1;
+						end;
 					end;
 				end;
-				if (index == player) and (H55_PlayerCheats == 1) then
-					if H55_PlayerSetBonus_Tear == 1 then
-						H55_AIStartSetting_GiveTear(hero);
-						print("Tear has been given!");
+      	function TTH_TALENT.resetWeeklyUfretin(iPlayer, strHero)
+      		TTH_MAIN.debug("TTH_TALENT.resetWeeklyUfretin", iPlayer, strHero);
+
+      		TTH_VARI.talent[strHero]["CurrentTimes"] = TTH_VARI.talent[strHero]["MaxTimes"];
+      	end;
+      	function TTH_TALENT.dealDailyUfretin(iPlayer, strHero)
+					TTH_MAIN.debug("TTH_TALENT.dealDailyUfretin", iPlayer, strHero);
+
+      		if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+	      		local arrTown = TTH_MANAGE.listMayorTown8Hero(strHero);
+	      		local iTownLevel = 0;
+	      		for i, strTown in arrTown do
+		      		local objTown = TTH_MANAGE.analysisTownBuildLevel(strTown);
+		      		local iTownBuildingTotalLevel = TTH_MANAGE.calcTownBuildingTotalLevel(objTown);
+		      		iTownLevel = iTownLevel + iTownBuildingTotalLevel;
+	      		end
+	      		local iDiff = iTownLevel - TTH_VARI.talent[strHero]["TownLevel"];
+	      		if iDiff > 0 then
+	      			TTH_VARI.talent[strHero]["TownLevel"] = iTownLevel;
+	      			GiveExp(strHero, iDiff * 500);
+	      		end;
+	      	end;
+      	end;
+
+			-- Wulfstan 134 乌尔夫斯坦
+				TTH_FINAL.WULFSTAN_BONUS = 2;
+      	function TTH_TALENT.initWulfstan(strHero)
+					TTH_MAIN.debug("TTH_TALENT.initWulfstan", nil, strHero);
+
+					TTH_VARI.talent[strHero] = {
+						["BonusLevel"] = 0
+						, ["Outpost"] = {}
+						, ["OutpostHistory"] = {}
+						, ["CurrentTimes"] = 1
+						, ["MaxTimes"] = 1
+					};
+      	end;
+				function TTH_TALENT.dealDailyWulfstan(iPlayer, strHero)
+					TTH_MAIN.debug("TTH_TALENT.dealDailyWulfstan", iPlayer, strHero);
+
+					local arrOutpost = TTH_VARI.talent[strHero]["Outpost"];
+					for i, strOutpost in arrOutpost do
+						if GetObjectOwner(strOutpost) ~= iPlayer then
+							TTH_VARI.talent[strHero]["Outpost"] = TTH_COMMON.remove8Value(TTH_VARI.talent[strHero]["Outpost"], strOutpost);
+							-- :TODO 希尔塞
+      				OverrideObjectTooltipNameAndDescription(strOutpost, TTH_PATH.Talent[strHero]["TitleCapture"], TTH_PATH.Talent[strHero]["DescCapture"]);
+						end;
+					end
+				end;
+				function TTH_TALENT.visitDwellingWulfstan(iPlayer, strHero, strBuildingName, funcCallback)
+					TTH_COMMON.nextNavi(TTH_PATH.Talent[strHero]["Text"]);
+
+					TTH_TALENT.checkPreVisitDwellingWulfstan4Times(iPlayer, strHero, strBuildingName, funcCallback);
+				end;
+				function TTH_TALENT.checkPreVisitDwellingWulfstan4Times(iPlayer, strHero, strBuildingName, funcCallback)
+      		if TTH_VARI.talent[strHero]["CurrentTimes"] <= 0 then
+      			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+      				if TTH_MANAGE.getRemainOperTimes(strHero) <= 0 then
+      					local strText = TTH_PATH.Talent[strHero]["NotEnoughTimes"];
+			    			TTH_GLOBAL.sign(strHero, strText);
+
+			    			TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
+		    				return nil;
+      				end;
+      			else
+    					local strText = TTH_PATH.Talent[strHero]["NotEnoughTimes"];
+		    			TTH_GLOBAL.sign(strHero, strText);
+
+		    			TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
+	    				return nil;
+		    		end;
+      		end;
+
+      		TTH_TALENT.checkPreVisitDwellingWulfstan4HasOutpost(iPlayer, strHero, strBuildingName, funcCallback);
+				end;
+				function TTH_TALENT.checkPreVisitDwellingWulfstan4HasOutpost(iPlayer, strHero, strBuildingName, funcCallback)
+      		if contains(TTH_VARI.talent[strHero]["Outpost"], strBuildingName) ~= nil then
+	    			TTH_GLOBAL.sign(strHero, TTH_PATH.Talent[strHero]["HasOutpost"]);
+
+		    		TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
+    				return nil;
+      		end;
+
+      		TTH_TALENT.confirmVisitDwellingWulfstan(iPlayer, strHero, strBuildingName, funcCallback);
+				end;
+				function TTH_TALENT.confirmVisitDwellingWulfstan(iPlayer, strHero, strBuildingName, funcCallback)
+					local strText = TTH_PATH.Talent[strHero]["ConfirmVisitDwelling"];
+					local strCallbackOk = "TTH_TALENT.implVisitDwellingWulfstan("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strBuildingName)..")";
+					local strCallbackCancel = "TTH_VISIT.visitBuildingWithoutScript("..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strBuildingName)..","..TTH_COMMON.psp(funcCallback)..")";
+					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strText, strCallbackOk, strCallbackCancel);
+				end;
+				function TTH_TALENT.implVisitDwellingWulfstan(iPlayer, strHero, strBuildingName)
+      		if TTH_VARI.talent[strHero]["CurrentTimes"] > 0 then
+    				TTH_VARI.talent[strHero]["CurrentTimes"] = TTH_VARI.talent[strHero]["CurrentTimes"] - 1;
+		    	else
+      			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+		    			TTH_MANAGE.useOperTimes(strHero);
+		    		end;
+      		end;
+					TTH_VARI.talent[strHero]["Outpost"] = TTH_COMMON.push(TTH_VARI.talent[strHero]["Outpost"], strBuildingName);
+      		if contains(TTH_VARI.talent[strHero]["OutpostHistory"], strBuildingName) == nil then
+						TTH_VARI.talent[strHero]["OutpostHistory"] = TTH_COMMON.push(TTH_VARI.talent[strHero]["OutpostHistory"], strBuildingName);
+						TTH_GLOBAL.signChangeHeroStat(strHero, STAT_ATTACK, TTH_FINAL.WULFSTAN_BONUS);
+						TTH_GLOBAL.signChangeHeroStat(strHero, STAT_DEFENCE, TTH_FINAL.WULFSTAN_BONUS);
+      		end;
+      		OverrideObjectTooltipNameAndDescription(strBuildingName, TTH_PATH.Talent[strHero]["Title"], TTH_PATH.Talent[strHero]["Desc"]);
+					local strText = TTH_PATH.Talent[strHero]["SuccessVisitDwelling"];
+					TTH_GLOBAL.sign(strHero, strText);
+				end;
+      	function TTH_TALENT.resetWeeklyWulfstan(iPlayer, strHero)
+      		TTH_MAIN.debug("TTH_TALENT.resetWeeklyWulfstan", iPlayer, strHero);
+
+      		TTH_VARI.talent[strHero]["CurrentTimes"] = TTH_VARI.talent[strHero]["MaxTimes"];
+      	end;
+      	function TTH_TALENT.checkExpedition8Wulfstan(iPlayer, strHero)
+      		TTH_MAIN.debug("TTH_TALENT.checkExpedition8Wulfstan", iPlayer, strHero);
+
+      		local bIsExpedition = TTH_ENUM.Yes;
+      		if strHero == "Wulfstan" then
+      			bIsExpedition = TTH_ENUM.No;
+      		else
+	      		if TTH_GLOBAL.getRace8Hero(strHero) == TOWN_FORTRESS
+	      			and TTH_VARI.talent["Wulfstan"] ~= nil then
+		      		local arrDwelling = TTH_VARI.talent["Wulfstan"]["Outpost"];
+		      		for i, strDwellingName in arrDwelling do
+		      			if TTH_GLOBAL.getDistance(strHero, strDwellingName) <= TTH_MANAGE.getTerritoryRadius(iPlayer) then
+		      				bIsExpedition = TTH_ENUM.No;
+		      				break;
+		      			end;
+		      		end;
+	      		end;
+      		end;
+      		return bIsExpedition;
+      	end;
+      	function TTH_TALENT.getDistance4Hero2NearestMayorTown8Wulfstan(iPlayer, strHero)
+      		TTH_MAIN.debug("TTH_TALENT.getDistance4Hero2NearestMayorTown8Wulfstan", iPlayer, strHero);
+
+      		local arrDistance = {};
+      		if strHero == "Wulfstan" then
+      			arrDistance = {0};
+      		else
+	      		if TTH_GLOBAL.getRace8Hero(strHero) == TOWN_FORTRESS
+	      			and TTH_VARI.talent["Wulfstan"] ~= nil then
+	      			local arrDwelling = TTH_VARI.talent["Wulfstan"]["Outpost"];
+	      			for i, strDwellingName in arrDwelling do
+	      				TTH_COMMON.push(arrDistance, TTH_GLOBAL.getDistance(strHero, "Wulfstan"));
+	      			end
+	      		end;
+      		end;
+      		return arrDistance;
+      	end;
+
+		-- Stronghold
+			-- :TODO Hero2 厄格特
+				function TTH_TALENT.dealHero2(strHero)
+					local iRecovery = 0;
+					if strHero == "Hero2" then
+						local iHeroLevel = GetHeroLevel(strHero);
+						iRecovery = 10 * iHeroLevel;
 					end;
-					-- if H55_PlayerSetBonus_Set == 1 then
-					-- 	H55_AIStartSetting_GiveSet(hero);
-					-- 	print("ArtifactSet has been given!");
-					-- end;
-					if H55_PlayerSetBonus_Travel == 1 then
-						H55_AIStartSetting_GiveTravel(hero);
-						print("Travel has been given!");
+					return iRecovery;
+				end;
+
+      -- Hero9 135 科尔汉
+      	function TTH_TALENT.calcTownValueHero9(strHero, arrTown)
+					TTH_MAIN.debug("TTH_TALENT.calcTownValueHero9", nil, strHero, arrTown);
+
+					local iTownValue = 0;
+					local strHeroHero9 = "Hero9";
+					if strHero == strHeroHero9 then
+						local iGoblinCount = 0;
+						for strTown, objTown in arrTown do
+							local arrCreature4Object = TTH_GLOBAL.getObjectCreatureInfo(strTown);
+							local iLevel = GetHeroLevel(strHero);
+							for iSlot = 0, 6 do
+								if arrCreature4Object[iSlot]["Id"] == CREATURE_GOBLIN
+									or arrCreature4Object[iSlot]["Id"] == CREATURE_GOBLIN_TRAPPER
+									or arrCreature4Object[iSlot]["Id"] == CREATURE_GOBLIN_DEFILER then
+									iGoblinCount = iGoblinCount + arrCreature4Object[iSlot]["Count"];
+								end;
+							end;
+						end;
+						local arrCreature4Object = TTH_GLOBAL.getHeroCreatureInfo(strHero);
+						local iLevel = GetHeroLevel(strHero);
+						for iSlot = 0, 6 do
+							if arrCreature4Object[iSlot]["Id"] == CREATURE_GOBLIN
+								or arrCreature4Object[iSlot]["Id"] == CREATURE_GOBLIN_TRAPPER
+								or arrCreature4Object[iSlot]["Id"] == CREATURE_GOBLIN_DEFILER then
+								iGoblinCount = iGoblinCount + arrCreature4Object[iSlot]["Count"];
+							end;
+						end;
+						iTownValue = TTH_COMMON.round(iGoblinCount / 20);
 					end;
-					if H55_PlayerSetBonus_Draconic == 1 then
-						H55_AIStartSetting_GiveDraconic(hero);
-						print("Draconic has been given!");
-					end;
-					if H55_PlayerSetBonus_Shield == 1 then
-						H55_AIStartSetting_GiveShield(hero);
-						print("Shield has been given!");
-					end;
-					if H55_PlayerSetBonus_Angelic_Alliance == 1 then
-						H55_AIStartSetting_GiveAngelicAlliance(hero);
-						print("Angelic_Alliance has been given!");
-					end;
-					if H55_PlayerSetBonus_Curse_Shoulder == 1 then
-						H55_AIStartSetting_GiveCurseShoulder(hero);
-						print("Curse_Shoulder has been given!");
-					end;
-					if H55_PlayerSetBonus_Phoenix == 1 then
-						H55_AIStartSetting_GivePhoenix(hero);
-						print("Phoenix has been given!");
-					end;
-					if H55_PlayerSkillBonusBasic == 1 then
-						H55_AIStartSetting_TeachSkill_Basic(hero);
-						print("BasicSkill has been teached!");
-					end;
-					if H55_PlayerSkillBonusAbsolute == 1 then
-						H55_AIStartSetting_TeachSkill_Absolute(hero);
-						print("AbsoluteSkill has been teached!");
-					end;
-				end;
-			end;
-		end;
-		if H55_AIArmyCoef ~= 1 then
-			H55_AIKillMode = H55_AIArmyCoef;
-			print("AI army is increased by "..H55_AIArmyCoef.."00%!");
-		end;
-		print("Good Luck player "..player.."!");
-	else
-		print ("Request denied, player "..player.." is not an active player!")
-	end;
-end;
-
-function H55_AIStartSetting_GiveTear(s_hero)
-	GiveArtefact(s_hero, 53);
-end;
-
-function H55_AIStartSetting_GiveSet(s_hero)
-	local s_class = H55_GetHeroClass(s_hero);
-	if s_class == "Knight" then
-		GiveArtefact(s_hero, ARTIFACT_ANGELIC_ALLIANCE);
-		GiveArtefact(s_hero, 31);
-		GiveArtefact(s_hero, 16);
-		GiveArtefact(s_hero, 11);
-	end;
-	if s_class == "Paladin" then
-		GiveArtefact(s_hero, 48);
-		GiveArtefact(s_hero, 49);
-		GiveArtefact(s_hero, 50);
-		GiveArtefact(s_hero, 51);
-	end;
-	if s_class == "Heretic" then
-		GiveArtefact(s_hero, 55);
-		GiveArtefact(s_hero, 33);
-		GiveArtefact(s_hero, 6);
-		GiveArtefact(s_hero, 70);
-		GiveArtefact(s_hero, 71);
-		GiveArtefact(s_hero, 83);
-	end;
-
-	if s_class == "Ranger" then
-		GiveArtefact(s_hero, ARTIFACT_ANGELIC_ALLIANCE);
-		GiveArtefact(s_hero,4);
-		GiveArtefact(s_hero,95);
-	end;
-	if s_class == "Warden" then
-		GiveArtefact(s_hero, ARTIFACT_ANGELIC_ALLIANCE);
-		GiveArtefact(s_hero, 124);
-	end;
-	if s_class == "Druid" then
-		GiveArtefact(s_hero, 126);
-		GiveArtefact(s_hero,34);
-		GiveArtefact(s_hero,35);
-	end;
-
-	if s_class == "Seer" then
-		GiveArtefact(s_hero, 31);
-		GiveArtefact(s_hero, 16);
-		GiveArtefact(s_hero, 11);
-		GiveArtefact(s_hero, 25);
-		GiveArtefact(s_hero, 124);
-	end;
-	if s_class == "Wizard" then
-		GiveArtefact(s_hero,44);
-		GiveArtefact(s_hero,45);
-		GiveArtefact(s_hero,46);
-		GiveArtefact(s_hero,47);
-		GiveArtefact(s_hero,79);
-	end;
-	if s_class == "Elementalist" then
-		GiveArtefact(s_hero, 44);
-		GiveArtefact(s_hero, 45);
-		GiveArtefact(s_hero, 46);
-		GiveArtefact(s_hero, 47);
-		GiveArtefact(s_hero,76);
-	end;
-
-	if s_class == "Demonlord" then
-		GiveArtefact(s_hero,23);
-		GiveArtefact(s_hero,66);
-		GiveArtefact(s_hero, ARTIFACT_ANGELIC_ALLIANCE);
-	end;
-	if s_class == "Gatekeeper" then
-		GiveArtefact(s_hero, 48);
-		GiveArtefact(s_hero, 49);
-		GiveArtefact(s_hero, 50);
-		GiveArtefact(s_hero, 51);
-	end;
-	if s_class == "Sorcerer" then
-		GiveArtefact(s_hero, 126);
-		GiveArtefact(s_hero, 116);
-		GiveArtefact(s_hero, 117);
-		GiveArtefact(s_hero, 118);
-		GiveArtefact(s_hero, 119);
-	end;
-
-	if s_class == "Deathknight" then
-		GiveArtefact(s_hero, 124);
-		GiveArtefact(s_hero, 38);
-		GiveArtefact(s_hero, 42);
-		GiveArtefact(s_hero, 43);
-		GiveArtefact(s_hero, 36);
-	end;
-	if s_class == "Reaver" then
-		GiveArtefact(s_hero, 55);
-		GiveArtefact(s_hero, 33);
-		GiveArtefact(s_hero, 6);
-		GiveArtefact(s_hero, 70);
-		GiveArtefact(s_hero, 71);
-		GiveArtefact(s_hero, 83);
-	end;
-	if s_class == "Necromancer" then
-		GiveArtefact(s_hero, 55);
-		GiveArtefact(s_hero, 33);
-		GiveArtefact(s_hero, 6);
-		GiveArtefact(s_hero, 70);
-		GiveArtefact(s_hero, 71);
-		GiveArtefact(s_hero, 83);
-	end;
-
-	if s_class == "Engineer" then
-		GiveArtefact(s_hero, 91);
-		GiveArtefact(s_hero, 41);
-		GiveArtefact(s_hero, 74);
-		GiveArtefact(s_hero, 75);
-	end;
-	if s_class == "Runemage" then
-		GiveArtefact(s_hero, 2);
-		GiveArtefact(s_hero, 48);
-		GiveArtefact(s_hero, 49);
-		GiveArtefact(s_hero, 50);
-		GiveArtefact(s_hero, 51);
-	end;
-	if s_class == "Flamekeeper" then
-		GiveArtefact(s_hero, 85);
-		GiveArtefact(s_hero, 48);
-		GiveArtefact(s_hero, 49);
-		GiveArtefact(s_hero, 50);
-		GiveArtefact(s_hero, 51);
-	end;
-
-	if s_class == "Overlord" then
-		GiveArtefact(s_hero, ARTIFACT_ANGELIC_ALLIANCE);
-		GiveArtefact(s_hero, 31);
-		GiveArtefact(s_hero, 16);
-		GiveArtefact(s_hero, 11);
-	end;
-	if s_class == "Assassin" then
-		GiveArtefact(s_hero, 42);
-		GiveArtefact(s_hero, 36);
-		GiveArtefact(s_hero, 37);
-		GiveArtefact(s_hero, 41);
-		GiveArtefact(s_hero, 40);
-		GiveArtefact(s_hero, 39);
-	end;
-	if s_class == "Warlock" then
-		GiveArtefact(s_hero, 125);
-		GiveArtefact(s_hero,81);
-		GiveArtefact(s_hero,82);
-	end;
-
-	if s_class == "Barbarian" then
-		GiveArtefact(s_hero, 31);
-		GiveArtefact(s_hero, 16);
-		GiveArtefact(s_hero, 11);
-		GiveArtefact(s_hero, 74);
-		GiveArtefact(s_hero, 75);
-		GiveArtefact(s_hero, 57);
-	end;
-	if s_class == "Shaman" then
-		GiveArtefact(s_hero,125);
-		GiveArtefact(s_hero,34);
-		GiveArtefact(s_hero,35);
-	end;
-	if s_class == "Witch" then
-		GiveArtefact(s_hero, 126);
-		GiveArtefact(s_hero, 116);
-		GiveArtefact(s_hero, 117);
-		GiveArtefact(s_hero, 118);
-		GiveArtefact(s_hero, 119);
-	end;
-end;
-
-function H55_AIStartSetting_GiveTravel(s_hero)
-	GiveArtefact(s_hero, 24);
-end;
-
-function H55_AIStartSetting_GiveDraconic(s_hero)
-	GiveArtefact(s_hero, 123);
-end;
-function H55_AIStartSetting_GiveShield(s_hero)
-	GiveArtefact(s_hero, 124);
-end;
-function H55_AIStartSetting_GiveAngelicAlliance(s_hero)
-	GiveArtefact(s_hero, 68);
-end;
-function H55_AIStartSetting_GiveCurseShoulder(s_hero)
-	GiveArtefact(s_hero, 114);
-end;
-function H55_AIStartSetting_GivePhoenix(s_hero)
-	GiveArtefact(s_hero, 126);
-end;
-
-function H55_AIStartSetting_TeachSkill_Basic(s_hero)
-	local s_class = H55_GetHeroClass(s_hero);
-	if s_class == "Knight" then
-		GiveHeroSkill(s_hero,4);
-		GiveHeroSkill(s_hero,195);
-	end;
-	if s_class == "Paladin" then
-		GiveHeroSkill(s_hero,4);
-		GiveHeroSkill(s_hero,195);
-	end;
-	if s_class == "Heretic" then
-		GiveHeroSkill(s_hero,8);
-		GiveHeroSkill(s_hero,199);
-	end;
-
-	if s_class == "Ranger" then
-		GiveHeroSkill(s_hero,5);
-		GiveHeroSkill(s_hero,191);
-	end;
-	if s_class == "Warden" then
-		GiveHeroSkill(s_hero,5);
-		GiveHeroSkill(s_hero,195);
-	end;
-	if s_class == "Druid" then
-		GiveHeroSkill(s_hero,8);
-		GiveHeroSkill(s_hero,203);
-	end;
-
-	if s_class == "Seer" then
-		GiveHeroSkill(s_hero,4);
-		GiveHeroSkill(s_hero,191);
-	end;
-	if s_class == "Wizard" then
-		GiveHeroSkill(s_hero,8);
-		GiveHeroSkill(s_hero,3);
-	end;
-	if s_class == "Elementalist" then
-		GiveHeroSkill(s_hero,8);
-		GiveHeroSkill(s_hero,18);
-	end;
-
-	if s_class == "Demonlord" then
-		GiveHeroSkill(s_hero,4);
-		GiveHeroSkill(s_hero,199);
-	end;
-	if s_class == "Gatekeeper" then
-		GiveHeroSkill(s_hero,5);
-		GiveHeroSkill(s_hero,203);
-	end;
-	if s_class == "Sorcerer" then
-		GiveHeroSkill(s_hero,8);
-		GiveHeroSkill(s_hero,18);
-	end;
-
-	if s_class == "Deathknight" then
-		GiveHeroSkill(s_hero,10);
-		GiveHeroSkill(s_hero,199);
-	end;
-	if s_class == "Reaver" then
-		GiveHeroSkill(s_hero,1);
-		GiveHeroSkill(s_hero,203);
-	end;
-	if s_class == "Necromancer" then
-		GiveHeroSkill(s_hero,8);
-		GiveHeroSkill(s_hero,3);
-	end;
-
-	if s_class == "Engineer" then
-		GiveHeroSkill(s_hero,4);
-		GiveHeroSkill(s_hero,191);
-	end;
-	if s_class == "Runemage" then
-		GiveHeroSkill(s_hero,8);
-		GiveHeroSkill(s_hero,3);
-	end;
-	if s_class == "Flamekeeper" then
-		GiveHeroSkill(s_hero,2);
-		GiveHeroSkill(s_hero,203);
-	end;
-
-	if s_class == "Overlord" then
-		GiveHeroSkill(s_hero,6);
-		GiveHeroSkill(s_hero,191);
-	end;
-	if s_class == "Assassin" then
-		GiveHeroSkill(s_hero,6);
-		GiveHeroSkill(s_hero,199);
-	end;
-	if s_class == "Warlock" then
-		GiveHeroSkill(s_hero,8);
-		GiveHeroSkill(s_hero,3);
-	end;
-
-	if s_class == "Barbarian" then
-		GiveHeroSkill(s_hero,6);
-		GiveHeroSkill(s_hero,195);
-	end;
-	if s_class == "Shaman" then
-		GiveHeroSkill(s_hero,8);
-		GiveHeroSkill(s_hero,3);
-	end;
-	if s_class == "Witch" then
-		GiveHeroSkill(s_hero,8);
-		GiveHeroSkill(s_hero,18);
-	end;
-end;
-
-function H55_AIStartSetting_TeachSkill_Absolute(s_hero)
-	if H55_GetHeroClass(s_hero) == "Knight" then
-		GiveHeroSkill(s_hero, HERO_SKILL_LEADERSHIP);
-		GiveHeroSkill(s_hero, HERO_SKILL_LEADERSHIP);
-		GiveHeroSkill(s_hero, HERO_SKILL_OFFENCE);
-		GiveHeroSkill(s_hero, HERO_SKILL_OFFENCE);
-		GiveHeroSkill(s_hero, HERO_SKILL_TRAINING);
-		GiveHeroSkill(s_hero, HERO_SKILL_TRAINING);
-		sleep(1);
-		GiveHeroSkill(s_hero, HERO_SKILL_ENCOURAGE);
-		sleep(1);
-		GiveHeroSkill(s_hero, HERO_SKILL_FRENZY);
-		sleep(1);
-		GiveHeroSkill(s_hero, HERO_SKILL_POWER_OF_HASTE);
-		sleep(1);
-		GiveHeroSkill(s_hero, HERO_SKILL_HOLY_CHARGE);
-		sleep(1);
-		GiveHeroSkill(s_hero, HERO_SKILL_ABSOLUTE_CHARGE);
-		sleep(1);
-		GiveHeroSkill(s_hero, HERO_SKILL_PRAYER);
-	end;
-	if H55_GetHeroClass(s_hero) == "Paladin" then
-		GiveHeroSkill(s_hero, HERO_SKILL_LEADERSHIP);
-		GiveHeroSkill(s_hero, HERO_SKILL_LEADERSHIP);
-		GiveHeroSkill(s_hero, HERO_SKILL_LEARNING);
-		GiveHeroSkill(s_hero, HERO_SKILL_LEARNING);
-		GiveHeroSkill(s_hero, HERO_SKILL_LIGHT_MAGIC);
-		GiveHeroSkill(s_hero, HERO_SKILL_LIGHT_MAGIC);
-		sleep(1);
-		GiveHeroSkill(s_hero, HERO_SKILL_ENCOURAGE);
-		sleep(1);
-		GiveHeroSkill(s_hero, HERO_SKILL_EAGLE_EYE);
-		sleep(1);
-		GiveHeroSkill(s_hero, HERO_SKILL_QUICKNESS_OF_MIND);
-		sleep(1);
-		GiveHeroSkill(s_hero, HERO_SKILL_MASTER_OF_BLESSING);
-		sleep(1);
-		GiveHeroSkill(s_hero, HERO_SKILL_ETERNAL_LIGHT);
-		sleep(1);
-		GiveHeroSkill(s_hero, HERO_SKILL_PRAYER);
-	end;
-	if H55_GetHeroClass(s_hero) == "Heretic" then
-		GiveHeroSkill(s_hero, HERO_SKILL_LEADERSHIP);
-		GiveHeroSkill(s_hero, HERO_SKILL_LEADERSHIP);
-		GiveHeroSkill(s_hero, HERO_SKILL_SORCERY);
-		GiveHeroSkill(s_hero, HERO_SKILL_SORCERY);
-		GiveHeroSkill(s_hero, HERO_SKILL_DARK_MAGIC);
-		GiveHeroSkill(s_hero, HERO_SKILL_DARK_MAGIC);
-		sleep(1);
-		GiveHeroSkill(s_hero, HERO_SKILL_ENCOURAGE);
-		sleep(1);
-		GiveHeroSkill(s_hero, HERO_SKILL_WISDOM);
-		sleep(1);
-		GiveHeroSkill(s_hero, HERO_SKILL_INSIGHTS);
-		sleep(1);
-		GiveHeroSkill(s_hero, HERO_SKILL_MASTER_OF_SICKNESS);
-		sleep(1);
-		GiveHeroSkill(s_hero, HERO_SKILL_PARIAH);
-		sleep(1);
-		GiveHeroSkill(s_hero, HERO_SKILL_PRAYER);
-	end;
-
-	if H55_GetHeroClass(s_hero) == "Ranger" then
-		GiveHeroSkill(s_hero,5);
-		GiveHeroSkill(s_hero,5);
-		GiveHeroSkill(s_hero,5);
-		GiveHeroSkill(s_hero,16);
-		GiveHeroSkill(s_hero,16);
-		GiveHeroSkill(s_hero,6);
-		sleep(1);
-		GiveHeroSkill(s_hero,32);
-		sleep(1);
-		GiveHeroSkill(s_hero,116);
-		sleep(1);
-		GiveHeroSkill(s_hero,65);
-		sleep(1);
-		GiveHeroSkill(s_hero,117);
-		sleep(1);
-		GiveHeroSkill(s_hero,36);
-		sleep(1);
-		GiveHeroSkill(s_hero,124);
-	end;
-	if H55_GetHeroClass(s_hero) == "Warden" then
-		GiveHeroSkill(s_hero,5);
-		GiveHeroSkill(s_hero,5);
-		GiveHeroSkill(s_hero,7);
-		GiveHeroSkill(s_hero,7);
-		GiveHeroSkill(s_hero,7);
-		GiveHeroSkill(s_hero,6);
-		sleep(1);
-		GiveHeroSkill(s_hero,31);
-		sleep(1);
-		GiveHeroSkill(s_hero,39);
-		sleep(1);
-		GiveHeroSkill(s_hero,77);
-		sleep(1);
-		GiveHeroSkill(s_hero,171);
-		sleep(1);
-		GiveHeroSkill(s_hero,34);
-		sleep(1);
-		GiveHeroSkill(s_hero,124);
-	end;
-	if H55_GetHeroClass(s_hero) == "Druid" then
-		GiveHeroSkill(s_hero,5);
-		GiveHeroSkill(s_hero,5);
-		GiveHeroSkill(s_hero,5);
-		GiveHeroSkill(s_hero,8);
-		GiveHeroSkill(s_hero,8);
-		GiveHeroSkill(s_hero,11);
-		sleep(1);
-		GiveHeroSkill(s_hero,145);
-		sleep(1);
-		GiveHeroSkill(s_hero,142);
-		sleep(1);
-		GiveHeroSkill(s_hero,42);
-		sleep(1);
-		GiveHeroSkill(s_hero,148);
-		sleep(1);
-		GiveHeroSkill(s_hero,51);
-		sleep(1);
-		GiveHeroSkill(s_hero,124);
-	end;
-
-	if H55_GetHeroClass(s_hero) == "Seer" then
-		GiveHeroSkill(s_hero,8);
-		GiveHeroSkill(s_hero,8);
-		GiveHeroSkill(s_hero,8);
-		GiveHeroSkill(s_hero,3);
-		GiveHeroSkill(s_hero,3);
-		GiveHeroSkill(s_hero,5);
-		sleep(1);
-		GiveHeroSkill(s_hero,41);
-		sleep(1);
-		GiveHeroSkill(s_hero,119);
-		sleep(1);
-		GiveHeroSkill(s_hero,27);
-		sleep(1);
-		GiveHeroSkill(s_hero,155);
-		sleep(1);
-		GiveHeroSkill(s_hero,145);
-		sleep(1);
-		GiveHeroSkill(s_hero,137);
-	end;
-	if H55_GetHeroClass(s_hero) == "Wizard" then
-		GiveHeroSkill(s_hero,8);
-		GiveHeroSkill(s_hero,8);
-		GiveHeroSkill(s_hero,8);
-		GiveHeroSkill(s_hero,3);
-		GiveHeroSkill(s_hero,3);
-		GiveHeroSkill(s_hero,17);
-		sleep(1);
-		GiveHeroSkill(s_hero,41);
-		sleep(1);
-		GiveHeroSkill(s_hero,67);
-		sleep(1);
-		GiveHeroSkill(s_hero,25);
-		sleep(1);
-		GiveHeroSkill(s_hero,79);
-		sleep(1);
-		GiveHeroSkill(s_hero,69);
-		sleep(1);
-		GiveHeroSkill(s_hero,137);
-	end;
-	if H55_GetHeroClass(s_hero) == "Elementalist" then
-		GiveHeroSkill(s_hero, HERO_SKILL_DESTRUCTIVE_MAGIC);
-		GiveHeroSkill(s_hero, HERO_SKILL_DESTRUCTIVE_MAGIC);
-		GiveHeroSkill(s_hero, HERO_SKILL_DESTRUCTIVE_MAGIC);
-		GiveHeroSkill(s_hero, HERO_SKILL_INVOCATION);
-		GiveHeroSkill(s_hero, HERO_SKILL_INVOCATION);
-		GiveHeroSkill(s_hero, HERO_SKILL_SORCERY);
-		GiveHeroSkill(s_hero, HERO_SKILL_SORCERY);
-		sleep(1);
-		GiveHeroSkill(s_hero, HERO_SKILL_MASTER_OF_ICE);
-		sleep(1);
-		GiveHeroSkill(s_hero, HERO_SKILL_MASTER_OF_FIRE);
-		sleep(1);
-		GiveHeroSkill(s_hero, HERO_SKILL_MASTER_OF_LIGHTNINGS);
-		sleep(1);
-		GiveHeroSkill(s_hero, HERO_SKILL_DARK_RITUAL);
-		sleep(1);
-		GiveHeroSkill(s_hero, HERO_SKILL_CASTER_CERTIFICATE);
-		sleep(1);
-		GiveHeroSkill(s_hero, HERO_SKILL_WISDOM);
-		sleep(1);
-		GiveHeroSkill(s_hero, HERO_SKILL_ABSOLUTE_WIZARDY);
-	end;
-
-	if H55_GetHeroClass(s_hero) == "Demonlord" then
-		GiveHeroSkill(s_hero,14);
-		GiveHeroSkill(s_hero,14);
-		GiveHeroSkill(s_hero,14);
-		GiveHeroSkill(s_hero,1);
-		GiveHeroSkill(s_hero,1);
-		sleep(1);
-		GiveHeroSkill(s_hero,89);
-		sleep(1);
-		GiveHeroSkill(s_hero,86);
-		sleep(1);
-		GiveHeroSkill(s_hero,20);
-		sleep(1);
-		GiveHeroSkill(s_hero,138);
-		sleep(1);
-		GiveHeroSkill(s_hero,98);
-	end;
-	if H55_GetHeroClass(s_hero) == "Gatekeeper" then
-		GiveHeroSkill(s_hero,14);
-		GiveHeroSkill(s_hero,14);
-		GiveHeroSkill(s_hero,14);
-		GiveHeroSkill(s_hero,1);
-		GiveHeroSkill(s_hero,1);
-		sleep(1);
-		GiveHeroSkill(s_hero,89);
-		sleep(1);
-		GiveHeroSkill(s_hero,86);
-		sleep(1);
-		GiveHeroSkill(s_hero,20);
-		sleep(1);
-		GiveHeroSkill(s_hero,138);
-		sleep(1);
-		GiveHeroSkill(s_hero,98);
-	end;
-	if H55_GetHeroClass(s_hero) == "Sorcerer" then
-		GiveHeroSkill(s_hero,14);
-		GiveHeroSkill(s_hero,14);
-		GiveHeroSkill(s_hero,14);
-		GiveHeroSkill(s_hero,1);
-		GiveHeroSkill(s_hero,1);
-		sleep(1);
-		GiveHeroSkill(s_hero,89);
-		sleep(1);
-		GiveHeroSkill(s_hero,86);
-		sleep(1);
-		GiveHeroSkill(s_hero,20);
-		sleep(1);
-		GiveHeroSkill(s_hero,138);
-		sleep(1);
-		GiveHeroSkill(s_hero,98);
-	end;
-
-	if H55_GetHeroClass(s_hero) == "Deathknight" then
-		GiveHeroSkill(s_hero,15);
-		GiveHeroSkill(s_hero,15);
-		GiveHeroSkill(s_hero,10);
-		GiveHeroSkill(s_hero,10);
-		sleep(1);
-		GiveHeroSkill(s_hero,63);
-		sleep(1);
-		GiveHeroSkill(s_hero,48);
-		sleep(1);
-		GiveHeroSkill(s_hero,83);
-		sleep(1);
-		GiveHeroSkill(s_hero,111);
-	end;
-	if H55_GetHeroClass(s_hero) == "Reaver" then
-		GiveHeroSkill(s_hero,15);
-		GiveHeroSkill(s_hero,15);
-		GiveHeroSkill(s_hero,8);
-		GiveHeroSkill(s_hero,10);
-		sleep(1);
-		GiveHeroSkill(s_hero,63);
-		sleep(1);
-		GiveHeroSkill(s_hero,41);
-		sleep(1);
-		GiveHeroSkill(s_hero,47);
-		sleep(1);
-		GiveHeroSkill(s_hero,111);
-	end;
-	if H55_GetHeroClass(s_hero) == "Necromancer" then
-		GiveHeroSkill(s_hero,15);
-		GiveHeroSkill(s_hero,15);
-		GiveHeroSkill(s_hero,3);
-		GiveHeroSkill(s_hero,3);
-		sleep(1);
-		GiveHeroSkill(s_hero,63);
-		sleep(1);
-		GiveHeroSkill(s_hero,25);
-		sleep(1);
-		GiveHeroSkill(s_hero,140);
-		sleep(1);
-		GiveHeroSkill(s_hero,111);
-	end;
-
-	if H55_GetHeroClass(s_hero) == "Engineer" then
-		GiveHeroSkill(s_hero,7);
-		GiveHeroSkill(s_hero,7);
-		GiveHeroSkill(s_hero,5);
-		GiveHeroSkill(s_hero,5);
-		GiveHeroSkill(s_hero,151);
-		sleep(1);
-		GiveHeroSkill(s_hero,39);
-		sleep(1);
-		GiveHeroSkill(s_hero,31);
-		sleep(1);
-		GiveHeroSkill(s_hero,103);
-		sleep(1);
-		GiveHeroSkill(s_hero,161);
-		sleep(1);
-		GiveHeroSkill(s_hero,167);
-	end;
-	if H55_GetHeroClass(s_hero) == "Runemage" then
-		GiveHeroSkill(s_hero,7);
-		GiveHeroSkill(s_hero,7);
-		GiveHeroSkill(s_hero,5);
-		GiveHeroSkill(s_hero,5);
-		GiveHeroSkill(s_hero,11);
-		GiveHeroSkill(s_hero,11);
-		sleep(1);
-		GiveHeroSkill(s_hero,38);
-		sleep(1);
-		GiveHeroSkill(s_hero,31);
-		sleep(1);
-		GiveHeroSkill(s_hero,103);
-		sleep(1);
-		GiveHeroSkill(s_hero,49);
-		sleep(1);
-		GiveHeroSkill(s_hero,165);
-		sleep(1);
-		GiveHeroSkill(s_hero,167);
-	end;
-	if H55_GetHeroClass(s_hero) == "Flamekeeper" then
-		GiveHeroSkill(s_hero,7);
-		GiveHeroSkill(s_hero,7);
-		GiveHeroSkill(s_hero,7);
-		GiveHeroSkill(s_hero,5);
-		GiveHeroSkill(s_hero,5);
-		GiveHeroSkill(s_hero,13);
-		sleep(1);
-		GiveHeroSkill(s_hero,39);
-		sleep(1);
-		GiveHeroSkill(s_hero,77);
-		sleep(1);
-		GiveHeroSkill(s_hero,31);
-		sleep(1);
-		GiveHeroSkill(s_hero,103);
-		sleep(1);
-		GiveHeroSkill(s_hero,55);
-		sleep(1);
-		GiveHeroSkill(s_hero,167);
-	end;
-
-	if H55_GetHeroClass(s_hero) == "Overlord" then
-		GiveHeroSkill(s_hero,9);
-		GiveHeroSkill(s_hero,9);
-		GiveHeroSkill(s_hero,9);
-		GiveHeroSkill(s_hero,18);
-		GiveHeroSkill(s_hero,18);
-		GiveHeroSkill(s_hero,18);
-		sleep(1);
-		GiveHeroSkill(s_hero,43);
-		sleep(1);
-		GiveHeroSkill(s_hero,44);
-		sleep(1);
-		GiveHeroSkill(s_hero,45);
-		sleep(1);
-		GiveHeroSkill(s_hero,70);
-		sleep(1);
-		GiveHeroSkill(s_hero,72);
-		sleep(1);
-		GiveHeroSkill(s_hero,150);
-	end;
-	if H55_GetHeroClass(s_hero) == "Assassin" then
-		GiveHeroSkill(s_hero,9);
-		GiveHeroSkill(s_hero,9);
-		GiveHeroSkill(s_hero,9);
-		GiveHeroSkill(s_hero,18);
-		GiveHeroSkill(s_hero,18);
-		GiveHeroSkill(s_hero,18);
-		sleep(1);
-		GiveHeroSkill(s_hero,43);
-		sleep(1);
-		GiveHeroSkill(s_hero,44);
-		sleep(1);
-		GiveHeroSkill(s_hero,45);
-		sleep(1);
-		GiveHeroSkill(s_hero,70);
-		sleep(1);
-		GiveHeroSkill(s_hero,72);
-		sleep(1);
-		GiveHeroSkill(s_hero,150);
-	end;
-	if H55_GetHeroClass(s_hero) == "Warlock" then
-		GiveHeroSkill(s_hero,9);
-		GiveHeroSkill(s_hero,9);
-		GiveHeroSkill(s_hero,9);
-		GiveHeroSkill(s_hero,18);
-		GiveHeroSkill(s_hero,18);
-		GiveHeroSkill(s_hero,18);
-		sleep(1);
-		GiveHeroSkill(s_hero,43);
-		sleep(1);
-		GiveHeroSkill(s_hero,44);
-		sleep(1);
-		GiveHeroSkill(s_hero,45);
-		sleep(1);
-		GiveHeroSkill(s_hero,70);
-		sleep(1);
-		GiveHeroSkill(s_hero,72);
-		sleep(1);
-		GiveHeroSkill(s_hero,150);
-	end;
-
-	if H55_GetHeroClass(s_hero) == "Barbarian" then
-		GiveHeroSkill(s_hero,172);
-		GiveHeroSkill(s_hero,172);
-		GiveHeroSkill(s_hero,172);
-		GiveHeroSkill(s_hero,6);
-		GiveHeroSkill(s_hero,6);
-		GiveHeroSkill(s_hero,4);
-		sleep(1);
-		GiveHeroSkill(s_hero,174);
-		sleep(1);
-		GiveHeroSkill(s_hero,178);
-		sleep(1);
-		GiveHeroSkill(s_hero,36);
-		sleep(1);
-		GiveHeroSkill(s_hero,76);
-		sleep(1);
-		GiveHeroSkill(s_hero,75);
-		sleep(1);
-		GiveHeroSkill(s_hero,176);
-	end;
-end;
-
--- HireHero
-H55_HireHero_Status = 0;
-function H55_HireHero_Step1(i_player)
-	if H55_HireHero_Status == 0 then
-		AllowPlayerTavernRace(i_player, 0, 0);
-		AllowPlayerTavernRace(i_player, 1, 0);
-		AllowPlayerTavernRace(i_player, 2, 0);
-		AllowPlayerTavernRace(i_player, 3, 0);
-		AllowPlayerTavernRace(i_player, 4, 0);
-		AllowPlayerTavernRace(i_player, 5, 0);
-		AllowPlayerTavernRace(i_player, 6, 0);
-		AllowPlayerTavernRace(i_player, 7, 0);
-		AllowPlayerTavernHero(i_player, H55_ChooseHero_Name, 1);
-		H55_HireHero_Status = 1;
-	end;
-end;
-function H55_HireHero_Step2(i_player)
-	if H55_HireHero_Status == 1 then
-		AllowPlayerTavernRace(i_player, 0, 1);
-		AllowPlayerTavernRace(i_player, 1, 1);
-		AllowPlayerTavernRace(i_player, 2, 1);
-		AllowPlayerTavernRace(i_player, 3, 1);
-		AllowPlayerTavernRace(i_player, 4, 1);
-		AllowPlayerTavernRace(i_player, 5, 1);
-		AllowPlayerTavernRace(i_player, 6, 1);
-		AllowPlayerTavernRace(i_player, 7, 1);
-		H55_HireHero_Status = 2;
-	end;
-end;
-function H55_HireHero1(i_player, str_choosehero_name)
-	AllowPlayerTavernRace(i_player, 0, 0);
-	AllowPlayerTavernRace(i_player, 1, 0);
-	AllowPlayerTavernRace(i_player, 2, 0);
-	AllowPlayerTavernRace(i_player, 3, 0);
-	AllowPlayerTavernRace(i_player, 4, 0);
-	AllowPlayerTavernRace(i_player, 5, 0);
-	AllowPlayerTavernRace(i_player, 6, 0);
-	AllowPlayerTavernRace(i_player, 7, 0);
-	AllowPlayerTavernHero(i_player, str_choosehero_name, 1);
-end;
-function H55_HireHero2(i_player)
-	AllowPlayerTavernRace(i_player, 0, 1);
-	AllowPlayerTavernRace(i_player, 1, 1);
-	AllowPlayerTavernRace(i_player, 2, 1);
-	AllowPlayerTavernRace(i_player, 3, 1);
-	AllowPlayerTavernRace(i_player, 4, 1);
-	AllowPlayerTavernRace(i_player, 5, 1);
-	AllowPlayerTavernRace(i_player, 6, 1);
-	AllowPlayerTavernRace(i_player, 7, 1);
-end;
---end
-
-function H55_TearPlaced()
-	H55_PuzzleQuest = 1;
-end;
-
-function H55_TC_On()
-	H55_TownConvEnabled = 1;
-end;
-
-function H55_TC_Off()
-	H55_TownConvEnabled = 0;
-end;
-
-function H55_IDNearbyTown(hero)
-	local towns = GetObjectNamesByType("TOWN");
-	local distance = 0;
-	local townid = "No Town Nearby";
-	for i,town in towns do
-		if H55_GetDistance(hero,town) <= 12 then
-		 distance = H55_GetDistance(hero,town);
-		 townid = town
-		end;
-	end;
-	print(distance);
-	print(townid);
-end;
-
-function H55_Dbg()
-	print("Index: "..H55_DbgTxt[1].." Chapter: "..H55_DbgTxt[2].." Player: "..H55_DbgTxt[3].." Hero: "..H55_DbgTxt[4]);
-end;
-
-----------------------------------------------------------------------------------------------------------------------------------------------------
---TABLE FUNCTIONS
-----------------------------------------------------------------------------------------------------------------------------------------------------
-function H55_GetHeroClass(hero)
-	local class = "Undetermined"
-	if contains(H55_Knights,hero) ~= nil then class = "Knight" end;
-	if contains(H55_Paladins,hero) ~= nil then class = "Paladin" end;
-	if contains(H55_Heretics,hero) ~= nil then class = "Heretic" end;
-	if contains(H55_Demonlords,hero) ~= nil then class = "Demonlord" end;
-	if contains(H55_Gatekeepers,hero) ~= nil then class = "Gatekeeper" end;
-	if contains(H55_Sorcerers,hero) ~= nil then class = "Sorcerer" end;
-	if contains(H55_DeathKnights,hero) ~= nil then class = "Deathknight" end;
-	if contains(H55_Reavers,hero) ~= nil then class = "Reaver" end;
-	if contains(H55_Necromancers,hero) ~= nil then class = "Necromancer" end;
-	if contains(H55_Rangers,hero) ~= nil then class = "Ranger" end;
-	if contains(H55_Wardens,hero) ~= nil then class = "Warden" end;
-	if contains(H55_Druids,hero) ~= nil then class = "Druid" end;
-	if contains(H55_Seers,hero) ~= nil then class = "Seer" end;
-	if contains(H55_Wizards,hero) ~= nil then class = "Wizard" end;
-	if contains(H55_Elementalists,hero) ~= nil then class = "Elementalist" end;
-	if contains(H55_Overlords,hero) ~= nil then class = "Overlord" end;
-	if contains(H55_Assassins,hero) ~= nil then class = "Assassin" end;
-	if contains(H55_Warlocks,hero) ~= nil then class = "Warlock" end;
-	if contains(H55_Engineers,hero) ~= nil then class = "Engineer" end;
-	if contains(H55_Flamekeepers,hero) ~= nil then class = "Flamekeeper" end;
-	if contains(H55_Runemages,hero) ~= nil then class = "Runemage" end;
-	if contains(H55_Barbarians,hero) ~= nil then class = "Barbarian" end;
-	if contains(H55_Shamans,hero) ~= nil then class = "Shaman" end;
-	if contains(H55_Witches,hero) ~= nil then class = "Witch" end;
-	return class
-end;
-
-function H55_GetHeroClassType(hero)
-	local type = "Mind"
-	if contains(H55_Knights,hero) ~= nil
-		or contains(H55_Demonlords,hero) ~= nil
-		or contains(H55_DeathKnights,hero) ~= nil
-		or contains(H55_Rangers,hero) ~= nil
-		or contains(H55_Overlords,hero) ~= nil
-		or contains(H55_Engineers,hero) ~= nil
-		or contains(H55_Flamekeepers,hero) ~= nil
-		or contains(H55_Seers,hero) ~= nil then type = "Might"
-	elseif contains(H55_Heretics,hero) ~= nil
-		or contains(H55_Sorcerers,hero) ~= nil
-		or contains(H55_Necromancers,hero) ~= nil
-		or contains(H55_Warlocks,hero) ~= nil
-		or contains(H55_Druids,hero) ~= nil
-		or contains(H55_Shamans,hero) ~= nil
-		or contains(H55_Witches,hero) ~= nil
-		or contains(H55_Elementalists,hero) ~= nil then type = "Magic"
-	elseif contains(H55_Barbarians,hero) ~= nil then type = "Barbarian"
-	else type = "Mind"
-	end;
-	return type
-end;
-
-function H55_GetHeroWitchType(hero)
-	local type = "Magic"
-	if contains(H55_Knights,hero) ~= nil and contains(H55_Renegades,hero) == nil then type = "MightG"
-	elseif contains(H55_Knights,hero) ~= nil and contains(H55_Renegades,hero) ~= nil then type = "MightB"
-	elseif contains(H55_Rangers,hero) ~= nil
-		or contains(H55_Engineers,hero) ~= nil
-		or contains(H55_Flamekeepers,hero) ~= nil then type = "MightG"
-	elseif contains(H55_Overlords,hero) ~= nil
-		or contains(H55_Demonlords,hero) ~= nil
-		or contains(H55_DeathKnights,hero) ~= nil then type = "MightB"
-	elseif contains(H55_Paladins,hero) ~= nil
-		or contains(H55_Wardens,hero) ~= nil
-		or contains(H55_Gatekeepers,hero) ~= nil then type = "MindG"
-	elseif contains(H55_Reavers,hero) ~= nil
-		-- or contains(H55_Heretics,hero) ~= nil
-		or contains(H55_Seers,hero) ~= nil
-		or contains(H55_Assassins,hero) ~= nil then type = "MindB"
-	elseif contains(H55_Runemages,hero) ~= nil then type = "Special"
-	elseif contains(H55_Barbarians,hero) ~= nil then type = "Barbarian"
-	else type = "Magic"
-	end;
-	return type
-end;
-
--- by 牙姐 2021-04-02 04:34:05
--- begin 英雄类型
-function TTH_GetHeroTrialType(strHero)
-	local strType = "";
-	if contains(H55_Knights, strHero) ~= nil
-		or contains(H55_Paladins, strHero) ~= nil
-		or contains(H55_Rangers, strHero) ~= nil
-		or contains(H55_Wardens, strHero) ~= nil
-		or contains(H55_Seers, strHero) ~= nil
-		or contains(H55_Demonlords, strHero) ~= nil
-		or contains(H55_Gatekeepers, strHero) ~= nil
-		or contains(H55_DeathKnights, strHero) ~= nil
-		or contains(H55_Reavers, strHero) ~= nil
-		or contains(H55_Engineers, strHero) ~= nil
-		or contains(H55_Overlords, strHero) ~= nil then
-		strType = "Might"
-	elseif contains(H55_Heretics, strHero) ~= nil
-		or contains(H55_Druids, strHero) ~= nil
-		or contains(H55_Wizards, strHero) ~= nil
-		or contains(H55_Elementalists, strHero) ~= nil
-		or contains(H55_Sorcerers, strHero) ~= nil
-		or contains(H55_Necromancers, strHero) ~= nil
-		or contains(H55_Runemages, strHero) ~= nil
-		or contains(H55_Flamekeepers, strHero) ~= nil
-		or contains(H55_Assassins, strHero) ~= nil
-		or contains(H55_Warlocks, strHero) ~= nil then
-		strType = "Magic"
-	elseif contains(H55_Barbarians, strHero) ~= nil then
-		strType = "Barbarian"
-	end;
-	return strType
-end;
--- end
-
-function H55_GetTownRace(town)
-	local towntype = 0;
-	if contains(GetObjectNamesByType("TOWN_HEAVEN"),town) ~= nil then towntype = 1 end;
-	if contains(GetObjectNamesByType("TOWN_PRESERVE"),town) ~= nil then towntype = 2 end;
-	if contains(GetObjectNamesByType("TOWN_INFERNO"),town) ~= nil then towntype = 3 end;
-	if contains(GetObjectNamesByType("TOWN_NECROMANCY"),town) ~= nil then towntype = 4 end;
-	if contains(GetObjectNamesByType("TOWN_ACADEMY"),town) ~= nil then towntype = 5 end;
-	if contains(GetObjectNamesByType("TOWN_DUNGEON"),town) ~= nil then towntype = 6 end;
-	if contains(GetObjectNamesByType("TOWN_FORTRESS"),town) ~= nil then towntype = 7 end;
-	if contains(GetObjectNamesByType("TOWN_STRONGHOLD"),town) ~= nil then towntype = 8 end;
-	return towntype
-end;
-
-function H55_GetTownRaceID(num)
-	local townid = TOWN_HEAVEN;
-	if num == 1 then townid = TOWN_HEAVEN end;
-	if num == 2 then townid = TOWN_PRESERVE end;
-	if num == 3 then townid = TOWN_INFERNO end;
-	if num == 4 then townid = TOWN_NECROMANCY end;
-	if num == 5 then townid = TOWN_ACADEMY end;
-	if num == 6 then townid = TOWN_DUNGEON end;
-	if num == 7 then townid = TOWN_FORTRESS end;
-	if num == 8 then townid = TOWN_STRONGHOLD end;
-	return townid
-end;
-
-function H55_GetHeroRaceNum(hero)
-	local race = 0;
-	if contains(H55_HavenHeroes,hero) ~= nil then race = 1 end;
-	if contains(H55_SylvanHeroes,hero) ~= nil then race = 2 end;
-	if contains(H55_InfernoHeroes,hero) ~= nil then race = 3 end;
-	if contains(H55_NecropolisHeroes,hero) ~= nil then race = 4 end;
-	if contains(H55_AcademyHeroes,hero) ~= nil then race = 5 end;
-	if contains(H55_DungeonHeroes,hero) ~= nil then race = 6 end;
-	if contains(H55_FortressHeroes,hero) ~= nil then race = 7 end;
-	if contains(H55_StrongholdHeroes,hero) ~= nil then race = 8 end;
-	return race
-end;
-
-function H55_GetHeroRace(hero)
-	local race = "Undetermined";
-	if contains(H55_HavenHeroes,hero) ~= nil then race = "Haven" end;
-	if contains(H55_SylvanHeroes,hero) ~= nil then race = "Sylvan" end;
-	if contains(H55_AcademyHeroes,hero) ~= nil then race = "Academy" end;
-	if contains(H55_FortressHeroes,hero) ~= nil then race = "Fortress" end;
-	if contains(H55_InfernoHeroes,hero) ~= nil then race = "Inferno" end;
-	if contains(H55_NecropolisHeroes,hero) ~= nil then race = "Necropolis" end;
-	if contains(H55_DungeonHeroes,hero) ~= nil then race = "Dungeon" end;
-	if contains(H55_StrongholdHeroes,hero) ~= nil then race = "Stronghold" end;
-	return race
-end;
-
-function H55_GetRaceElementalType(cityrace)
-	local elemtype = 87;
-	if cityrace == "Haven" then elemtype = 88 end;
-	if cityrace == "Academy" then elemtype = 88 end;
-	if cityrace == "Stronghold" then elemtype = 87 end;
-	if cityrace == "Necropolis" then elemtype = 86 end;
-	if cityrace == "Dungeon" then elemtype = 87 end;
-	if cityrace == "Sylvan" then elemtype = 86 end;
-	if cityrace == "Fortress" then elemtype = 85 end;
-	if cityrace == "Inferno" then elemtype = 85 end;
-	return elemtype
-end;
-
-function H55_GetRaceElementalTypeID(cityrace)
-	local elemtype = 87;
-	if cityrace == 1 then elemtype = 88 end;
-	if cityrace == 5 then elemtype = 88 end;
-	if cityrace == 8 then elemtype = 87 end;
-	if cityrace == 4 then elemtype = 86 end;
-	if cityrace == 6 then elemtype = 87 end;
-	if cityrace == 2 then elemtype = 86 end;
-	if cityrace == 7 then elemtype = 85 end;
-	if cityrace == 3 then elemtype = 85 end;
-	return elemtype
-end;
-
-function H55_GetRaceCasterTypes(cityrace)
-	local castertypes = {10,110,9};
-	if cityrace == "Haven" then castertypes = {10,110,9} end;
-	if cityrace == "Academy" then castertypes = {64,162,63} end;
-	if cityrace == "Stronghold" then castertypes = {124,176,123} end;
-	if cityrace == "Necropolis" then castertypes = {38,156,37} end;
-	if cityrace == "Dungeon" then castertypes = {82,143,81} end;
-	if cityrace == "Sylvan" then castertypes = {50,148,49} end;
-	if cityrace == "Fortress" then castertypes = {101,170,100} end;
-	if cityrace == "Inferno" then castertypes = {26,136,25} end;
-	return castertypes
-end;
-
-function H55_GetLegionCap(hero)
-		local cap = 0;
-		if (HasArtefact(hero,ARTIFACT_LEGION_BASIC,0) ~= nil) then cap = 1 end;
-		if (HasArtefact(hero,ARTIFACT_LEGION_BASIC,0) ~= nil) then cap = 2 end;
-		if (HasArtefact(hero,ARTIFACT_LEGION_ADVANCED,0) ~= nil) then cap = 3 end;
-		if (HasArtefact(hero,ARTIFACT_LEGION_ADVANCED,0) ~= nil) then cap = 4 end;
-		if (HasArtefact(hero,ARTIFACT_LEGION_ADVANCED,0) ~= nil) then cap = 5 end;
-		if (HasArtefact(hero,ARTIFACT_LEGION_EXPERT,0) ~= nil) then cap = 6 end;
-		if (HasArtefact(hero,ARTIFACT_LEGION_EXPERT,0) ~= nil) then cap = 7 end;
-		return cap
-end;
-
-function H55_GetAmountAlignedTowns(racenum)
-	local amountcities = 0;
-	if racenum == 1 then amountcities = length(GetObjectNamesByType("TOWN_HEAVEN")) end;
-	if racenum == 5 then amountcities = length(GetObjectNamesByType("TOWN_ACADEMY")) end;
-	if racenum == 8 then amountcities = length(GetObjectNamesByType("TOWN_STRONGHOLD")) end;
-	if racenum == 4 then amountcities = length(GetObjectNamesByType("TOWN_NECROMANCY")) end;
-	if racenum == 6 then amountcities = length(GetObjectNamesByType("TOWN_DUNGEON")) end;
-	if racenum == 2 then amountcities = length(GetObjectNamesByType("TOWN_PRESERVE")) end;
-	if racenum == 7 then amountcities = length(GetObjectNamesByType("TOWN_FORTRESS")) end;
-	if racenum == 3 then amountcities = length(GetObjectNamesByType("TOWN_INFERNO")) end;
-	return amountcities;
-end;
-
-function H55_GetHallTrialLevel(hero,player)
-	local level = 0;
-	local towns = H55_GetAlignedTownsOwned(hero,player);
-	if towns ~= nil then
-		for i,town in towns do
-			local hall = GetTownBuildingLevel(town, TOWN_BUILDING_SPECIAL_1);
-			if hall > level then
-				level = hall;
-			end;
-		end;
-	end;
-	return level;
-end;
-
-function H55_GetWalkerHutLevel(hero,player)
-	local level = 0;
-	local towns = H55_GetAlignedTownsOwned(hero,player);
-	if towns ~= nil then
-		for i,town in towns do
-			local hall = GetTownBuildingLevel(town, TOWN_BUILDING_SPECIAL_3);
-			if hall > level then
-				level = hall;
-			end;
-		end;
-	end;
-	return level;
-end;
-
-function H55_GetPlayerTowns(player)
-	local cities = {};
-	local towns = GetObjectNamesByType("TOWN");
-	for i,town in towns do
-		if GetObjectOwner(town) == player then
-			H55_Insert(cities,town);
-		end;
-	end;
-	return cities;
-end;
-
-function H55_GetAlignedTownsOwned(hero,player)
-	local cities = {};
-	local cityrace = H55_GetHeroRace(hero);
-	if cityrace == "Haven" then
-		local haventowns = GetObjectNamesByType("TOWN_HEAVEN");
-		if length(haventowns) ~= 0 then
-			for i, town in haventowns do
-				if GetObjectOwner(town) == player then
-					H55_Insert(cities,town);
-				end;
-			end;
-		end;
-	elseif cityrace == "Academy" then
-		local academytowns = GetObjectNamesByType("TOWN_ACADEMY");
-		if length(academytowns) ~= 0 then
-			for i, town in academytowns do
-				if GetObjectOwner(town) == player then
-					H55_Insert(cities,town);
-				end;
-			end;
-		end;
-	elseif cityrace == "Stronghold" then
-		local strongholdtowns = GetObjectNamesByType("TOWN_STRONGHOLD");
-		if length(strongholdtowns) ~= 0 then
-			for i, town in strongholdtowns do
-				if GetObjectOwner(town) == player then
-					H55_Insert(cities,town);
-				end;
-			end;
-		end;
-	elseif cityrace == "Dungeon" then
-		local dungeontowns = GetObjectNamesByType("TOWN_DUNGEON");
-		if length(dungeontowns) ~= 0 then
-			for i, town in dungeontowns do
-				if GetObjectOwner(town) == player then
-					H55_Insert(cities,town);
-				end;
-			end;
-		end;
-	elseif cityrace == "Sylvan" then
-		local sylvantowns = GetObjectNamesByType("TOWN_PRESERVE");
-		if length(sylvantowns) ~= 0 then
-			for i, town in sylvantowns do
-				if GetObjectOwner(town) == player then
-					H55_Insert(cities,town);
-				end;
-			end;
-		end;
-	elseif cityrace == "Necropolis" then
-		local necropolistowns = GetObjectNamesByType("TOWN_NECROMANCY");
-		if length(necropolistowns) ~= 0 then
-			for i, town in necropolistowns do
-				if GetObjectOwner(town) == player then
-					H55_Insert(cities,town);
-				end;
-			end;
-		end;
-	elseif cityrace == "Inferno" then
-		local infernotowns = GetObjectNamesByType("TOWN_INFERNO");
-		if length(infernotowns) ~= 0 then
-			for i, town in infernotowns do
-				if GetObjectOwner(town) == player then
-					H55_Insert(cities,town);
-				end;
-			end;
-		end;
-	elseif cityrace == "Fortress" then
-		local fortresstowns = GetObjectNamesByType("TOWN_FORTRESS");
-		if length(fortresstowns) ~= 0 then
-			for i, town in fortresstowns do
-				if GetObjectOwner(town) == player then
-					H55_Insert(cities,town);
-				end;
-			end;
-		end;
-	else
-		cities = {};
-	end;
-	return cities;
-end;
-
-function H55_IsNativeTownNearby(hero,player)
-	local answer = 0;
-	local towns = H55_GetAlignedTownsOwned(hero,player);
-	for i,town in towns do
-		if H55_GetDistance(hero,town) <= 50 then
-			answer = 1;
-		end;
-	end;
-	return answer;
-end;
-
-function H55_GetJoinSpecMultiplier(hero,player)
-	local multiplier = 1;
-	local amount = length(H55_GetAlignedTownsOwned(hero,player));
-	if amount == 2 then
-		multiplier = 1.75;
-	elseif amount == 3 then
-		multiplier = 2.5;
-	elseif amount >= 4 then
-		multiplier = 3.5;
-	end;
-	return multiplier;
-end;
-
-function H55_GetPlayerShatterStrength(player)
-	local heroes = GetPlayerHeroes(player);
-	local shatterstrength = 0;
-	for i,hero in heroes do
-		local level = GetHeroLevel(hero);
-		local knowledge = GetHeroStat(hero,STAT_KNOWLEDGE);
-		if (HasArtefact(hero,60,0) ~= nil) then
-			level = (level+(0.5*knowledge));
-			knowledge = (knowledge+(0.3*knowledge));
-		end;
-		local levelcoef = level/25;
-		local knowledgecoef = knowledge/15;
-		if HasHeroSkill(hero,HERO_SKILL_SHATTER_DESTRUCTIVE_MAGIC) and (GetHeroSkillMastery(hero,HERO_SKILL_SHATTER_DESTRUCTIVE_MAGIC) >= 2) then
-			shatterstrength = (shatterstrength + (levelcoef*1));
-		end;
-		if HasHeroSkill(hero,HERO_SKILL_SHATTER_SUMMONING_MAGIC) and (GetHeroSkillMastery(hero,HERO_SKILL_SHATTER_SUMMONING_MAGIC) >= 2) then
-			shatterstrength = (shatterstrength + (levelcoef*1));
-		end;
-		if HasHeroSkill(hero,HERO_SKILL_SHATTER_LIGHT_MAGIC) and (GetHeroSkillMastery(hero,HERO_SKILL_SHATTER_LIGHT_MAGIC) >= 2) then
-			shatterstrength = (shatterstrength + (levelcoef*1));
-		end;
-		if HasHeroSkill(hero,HERO_SKILL_SHATTER_DARK_MAGIC) and (GetHeroSkillMastery(hero,HERO_SKILL_SHATTER_DARK_MAGIC) >= 2) then
-			shatterstrength = (shatterstrength + (levelcoef*1));
-		end;
-		if HasHeroSkill(hero,KNIGHT_FEAT_ELEMENTAL_BALANCE) then
-			shatterstrength = (shatterstrength + (levelcoef*1));
-		end;
-		if (HasArtefact(hero,ARTIFACT_TWISTING_NEITHER,0) ~= nil) then
-			shatterstrength = (shatterstrength + (knowledgecoef*1));
-		end;
-	end;
-	if shatterstrength > 5 then shatterstrength = 5 end;
-	return shatterstrength;
-end;
-
-function H55_GetHeroEnlightenmentStrength(hero)
-	local strength = 1;
-	if HasHeroSkill(hero,SKILL_LEARNING) then
-		strength = strength + ((GetHeroSkillMastery(hero,SKILL_LEARNING) * 0.05));
-	elseif HasHeroSkill(hero,HERO_SKILL_BARBARIAN_LEARNING) then
-		strength = strength + ((GetHeroSkillMastery(hero,HERO_SKILL_BARBARIAN_LEARNING) * 0.05));
-	end;
-	if HasArtefact(hero,34,1) ~= nil then
-		strength = strength+0.1;
-	end;
-	if HasArtefact(hero,35,1) ~= nil then
-		strength = strength+0.2;
-	end;
-	return strength;
-end;
-
-function H55_GetOccultismPower(hero)
-	local power = 0;
-	if (HasHeroSkill(hero,SKILL_INVOCATION) ~= nil) then
-		if (GetHeroSkillMastery(hero,SKILL_INVOCATION) == 1) then
-			power = 1;
-		end;
-		if (GetHeroSkillMastery(hero,SKILL_INVOCATION) == 2) then
-			power = 2;
-		end;
-		if (GetHeroSkillMastery(hero,SKILL_INVOCATION) == 3) then
-			power = 3;
-		end;
-	end;
-	if (HasHeroSkill(hero,SKILL_INVOCATION) ~= nil) and (HasHeroSkill(hero,SKILL_DESTRUCTIVE_MAGIC) == nil) then
-		power = power*2;
-	end;
-	return power;
-end;
-
-function H55_GetMonkSetCount(hero)
-	local gainedartifacts = {0,0,0,0};
-	if (HasArtefact(hero,116,1) ~= nil) then gainedartifacts[1] = 1 end;
-	if (HasArtefact(hero,117,1) ~= nil) then gainedartifacts[2] = 1 end;
-	if (HasArtefact(hero,118,1) ~= nil) then gainedartifacts[3] = 1 end;
-	if (HasArtefact(hero,119,1) ~= nil) then gainedartifacts[4] = 1 end;
-	local pendantofstardust = 0;
-	if (HasArtefact(hero,113,1) ~= nil) then pendantofstardust = 1 end;
-	local setstrength = (gainedartifacts[1]+gainedartifacts[2]+gainedartifacts[3]+gainedartifacts[4]);
-	if setstrength > 0 then
-		setstrength = setstrength + pendantofstardust;
-	end
-	return setstrength
-end;
-
-function H55_GetOgreSetCount(hero)
-	local gainedartifacts = {0,0};
-	if (HasArtefact(hero,74,1) ~= nil) then gainedartifacts[1] = 1 end;
-	if (HasArtefact(hero,75,1) ~= nil) then gainedartifacts[2] = 1 end;
-	local pendantofstardust = 0;
-	if (HasArtefact(hero,113,1) ~= nil) then pendantofstardust = 1 end;
-	local setstrength = (gainedartifacts[1]+gainedartifacts[2]);
-	if setstrength > 0 then
-		setstrength = setstrength + pendantofstardust;
-	end
-	return setstrength
-end;
-
-function H55_GetRunicSetCount(hero)
-	local gainedartifacts = {0,0};
-	if (HasArtefact(hero,81,1) ~= nil) then gainedartifacts[1] = 1 end;
-	if (HasArtefact(hero,82,1) ~= nil) then gainedartifacts[2] = 1 end;
-	local pendantofstardust = 0;
-	if (HasArtefact(hero,113,1) ~= nil) then pendantofstardust = 1 end;
-	local setstrength = (gainedartifacts[1]+gainedartifacts[2]);
-	if setstrength > 0 then
-		setstrength = setstrength + pendantofstardust;
-	end
-	return setstrength
-end;
-
-function H55_GetInfernoSetCount(hero)
-	local gainedartifacts = {0,0};
-	if (HasArtefact(hero,23,1) ~= nil) then gainedartifacts[1] = 1 end;
-	if (HasArtefact(hero,66,1) ~= nil) then gainedartifacts[2] = 1 end;
-	local pendantofstardust = 0;
-	if (HasArtefact(hero,113,1) ~= nil) then pendantofstardust = 1 end;
-	local setstrength = (gainedartifacts[1]+gainedartifacts[2]);
-	if setstrength > 0 then
-		setstrength = setstrength + pendantofstardust;
-	end
-	return setstrength
-end;
-
-function H55_GetDwarvenSetCount(hero)
-	local gainedartifacts = {0,0,0,0};
-	if (HasArtefact(hero,48,1) ~= nil) then gainedartifacts[1] = 1 end;
-	if (HasArtefact(hero,49,1) ~= nil) then gainedartifacts[2] = 1 end;
-	if (HasArtefact(hero,50,1) ~= nil) then gainedartifacts[3] = 1 end;
-	if (HasArtefact(hero,51,1) ~= nil) then gainedartifacts[4] = 1 end;
-	local pendantofstardust = 0;
-	if (HasArtefact(hero,113,1) ~= nil) then pendantofstardust = 1 end;
-	local setstrength = (gainedartifacts[1]+gainedartifacts[2]+gainedartifacts[3]+gainedartifacts[4]);
-	if setstrength > 0 then
-		setstrength = setstrength + pendantofstardust;
-	end
-	return setstrength
-end;
-
-function H55_GetDwarvenOwnCount(hero)
-	local gainedartifacts = {0,0,0,0};
-	if (HasArtefact(hero,48,0) ~= nil) then gainedartifacts[1] = 1 end;
-	if (HasArtefact(hero,49,0) ~= nil) then gainedartifacts[2] = 1 end;
-	if (HasArtefact(hero,50,0) ~= nil) then gainedartifacts[3] = 1 end;
-	if (HasArtefact(hero,51,0) ~= nil) then gainedartifacts[4] = 1 end;
-	local setstrength = (gainedartifacts[1]+gainedartifacts[2]+gainedartifacts[3]+gainedartifacts[4]);
-	return setstrength
-end;
-
-function H55_ExchangeDwarvenSet(hero)
-	RemoveArtefact(hero,48);
-	RemoveArtefact(hero,49);
-	RemoveArtefact(hero,50);
-	RemoveArtefact(hero,51);
-	GiveArtefact(hero,124);
-end;
-
-function H55_GetLionSetCount(hero)
-	local gainedartifacts = {0,0,0};
-	if (HasArtefact(hero,11,1) ~= nil) then gainedartifacts[1] = 1 end;
-	if (HasArtefact(hero,16,1) ~= nil) then gainedartifacts[2] = 1 end;
-	if (HasArtefact(hero,31,1) ~= nil) then gainedartifacts[3] = 1 end;
-	local pendantofstardust = 0;
-	if (HasArtefact(hero,113,1) ~= nil) then pendantofstardust = 1 end;
-	local setstrength = (gainedartifacts[1]+gainedartifacts[2]+gainedartifacts[3]);
-	if setstrength > 0 then
-		setstrength = setstrength + pendantofstardust;
-	end
-	return setstrength
-end;
-
-function H55_GetVestmentSetCount(hero)
-	local gainedartifacts = {0,0};
-	if (HasArtefact(hero,34,1) ~= nil) then gainedartifacts[1] = 1 end;
-	if (HasArtefact(hero,35,1) ~= nil) then gainedartifacts[2] = 1 end;
-	local pendantofstardust = 0;
-	if (HasArtefact(hero,113,1) ~= nil) then pendantofstardust = 1 end;
-	local setstrength = (gainedartifacts[1]+gainedartifacts[2]);
-	if setstrength > 0 then
-		setstrength = setstrength + pendantofstardust;
-	end
-	return setstrength
-end;
-
-function H55_GetNecroSetCount(hero)
-	local gainedartifacts = {0,0,0,0,0,0};
-	if (HasArtefact(hero,6,1) ~= nil) then gainedartifacts[1] = 1 end;
-	if (HasArtefact(hero,70,1) ~= nil) then gainedartifacts[2] = 1 end;
-	if (HasArtefact(hero,71,1) ~= nil) then gainedartifacts[3] = 1 end;
-	if (HasArtefact(hero,33,1) ~= nil) then gainedartifacts[4] = 1 end;
-	if (HasArtefact(hero,55,1) ~= nil) then gainedartifacts[5] = 1 end;
-	if (HasArtefact(hero,83,1) ~= nil) then gainedartifacts[6] = 1 end;
-	local pendantofstardust = 0;
-	if (HasArtefact(hero,113,1) ~= nil) then pendantofstardust = 1 end;
-	local setstrength = (gainedartifacts[1]+gainedartifacts[2]+gainedartifacts[3]+gainedartifacts[4]+gainedartifacts[5]+gainedartifacts[6]);
-	if setstrength > 0 then
-		setstrength = setstrength + pendantofstardust;
-	end
-	return setstrength
-end;
-
-function H55_GetSarIssusSetCount(hero)
-	local gainedartifacts = {0,0,0,0};
-	if (HasArtefact(hero,44,1) ~= nil) then gainedartifacts[1] = 1 end;
-	if (HasArtefact(hero,45,1) ~= nil) then gainedartifacts[2] = 1 end;
-	if (HasArtefact(hero,46,1) ~= nil) then gainedartifacts[3] = 1 end;
-	if (HasArtefact(hero,47,1) ~= nil) then gainedartifacts[4] = 1 end;
-	local pendantofstardust = 0;
-	if (HasArtefact(hero,113,1) ~= nil) then pendantofstardust = 1 end;
-	local setstrength = (gainedartifacts[1]+gainedartifacts[2]+gainedartifacts[3]+gainedartifacts[4]);
-	if setstrength > 0 then
-		setstrength = setstrength + pendantofstardust;
-	end
-	return setstrength
-end;
-
-function H55_GetSarIssusOwnCount(hero)
-	local gainedartifacts = {0,0,0,0};
-	if (HasArtefact(hero,44,0) ~= nil) then gainedartifacts[1] = 1 end;
-	if (HasArtefact(hero,45,0) ~= nil) then gainedartifacts[2] = 1 end;
-	if (HasArtefact(hero,46,0) ~= nil) then gainedartifacts[3] = 1 end;
-	if (HasArtefact(hero,47,0) ~= nil) then gainedartifacts[4] = 1 end;
-	local setstrength = (gainedartifacts[1]+gainedartifacts[2]+gainedartifacts[3]+gainedartifacts[4]);
-	return setstrength
-end;
-
-function H55_ExchangeSarIssusSet(hero)
-	RemoveArtefact(hero,44);
-	RemoveArtefact(hero,45);
-	RemoveArtefact(hero,46);
-	RemoveArtefact(hero,47);
-	GiveArtefact(hero,125);
-end;
-
-function H55_GetLegionOwnCount(hero)
-	local gainedartifacts = {0,0,0,0,0,0,0,0};
-	if (HasArtefact(hero,103,0) ~= nil) then gainedartifacts[1] = 1 end;
-	if (HasArtefact(hero,104,0) ~= nil) then gainedartifacts[2] = 1 end;
-	if (HasArtefact(hero,105,0) ~= nil) then gainedartifacts[3] = 1 end;
-	if (HasArtefact(hero,106,0) ~= nil) then gainedartifacts[4] = 1 end;
-	if (HasArtefact(hero,107,0) ~= nil) then gainedartifacts[5] = 1 end;
-	if (HasArtefact(hero,108,0) ~= nil) then gainedartifacts[6] = 1 end;
-	if (HasArtefact(hero,109,0) ~= nil) then gainedartifacts[7] = 1 end;
-	if (HasArtefact(hero,29,0) ~= nil) then gainedartifacts[8] = 1 end;
-	local setstrength = (gainedartifacts[1]+gainedartifacts[2]+gainedartifacts[3]+gainedartifacts[4]+gainedartifacts[5]+gainedartifacts[6]+gainedartifacts[7]+gainedartifacts[8]);
-	return setstrength
-end;
-
-function H55_ExchangeLegionSet(hero)
-	RemoveArtefact(hero,103);
-	RemoveArtefact(hero,104);
-	RemoveArtefact(hero,105);
-	RemoveArtefact(hero,106);
-	RemoveArtefact(hero,107);
-	RemoveArtefact(hero,108);
-	RemoveArtefact(hero,109);
-	RemoveArtefact(hero,29);
-	GiveArtefact(hero,53);
-end;
-
-function H55_GetDragonishSetCount(hero)
-	local gainedartifacts = {0,0,0,0,0,0,0,0};
-	if (HasArtefact(hero,36,1) ~= nil) then gainedartifacts[1] = 1 end;
-	if (HasArtefact(hero,37,1) ~= nil) then gainedartifacts[2] = 1 end;
-	if (HasArtefact(hero,38,1) ~= nil) then gainedartifacts[3] = 1 end;
-	if (HasArtefact(hero,39,1) ~= nil) then gainedartifacts[4] = 1 end;
-	if (HasArtefact(hero,40,1) ~= nil) then gainedartifacts[5] = 1 end;
-	if (HasArtefact(hero,41,1) ~= nil) then gainedartifacts[6] = 1 end;
-	if (HasArtefact(hero,42,1) ~= nil) then gainedartifacts[7] = 1 end;
-	if (HasArtefact(hero,43,1) ~= nil) then gainedartifacts[8] = 1 end;
-	local pendantofstardust = 0;
-	if (HasArtefact(hero,113,1) ~= nil) then pendantofstardust = 1 end;
-	local setstrength = (gainedartifacts[1]+gainedartifacts[2]+gainedartifacts[3]+gainedartifacts[4]+gainedartifacts[5]+gainedartifacts[6]+gainedartifacts[7]+gainedartifacts[8]);
-	if setstrength > 0 then
-		setstrength = setstrength + pendantofstardust;
-	end
-	return setstrength
-end;
-
-function H55_GetDragonishOwnCount(hero)
-	local gainedartifacts = {0,0,0,0,0,0,0,0};
-	if (HasArtefact(hero,36,0) ~= nil) then gainedartifacts[1] = 1 end;
-	if (HasArtefact(hero,37,0) ~= nil) then gainedartifacts[2] = 1 end;
-	if (HasArtefact(hero,38,0) ~= nil) then gainedartifacts[3] = 1 end;
-	if (HasArtefact(hero,39,0) ~= nil) then gainedartifacts[4] = 1 end;
-	if (HasArtefact(hero,40,0) ~= nil) then gainedartifacts[5] = 1 end;
-	if (HasArtefact(hero,41,0) ~= nil) then gainedartifacts[6] = 1 end;
-	if (HasArtefact(hero,42,0) ~= nil) then gainedartifacts[7] = 1 end;
-	if (HasArtefact(hero,43,0) ~= nil) then gainedartifacts[8] = 1 end;
-	local setstrength = (gainedartifacts[1]+gainedartifacts[2]+gainedartifacts[3]+gainedartifacts[4]+gainedartifacts[5]+gainedartifacts[6]+gainedartifacts[7]+gainedartifacts[8]);
-	return setstrength
-end;
-
-function H55_ExchangeDragonishSet(hero)
-	RemoveArtefact(hero,36);
-	RemoveArtefact(hero,37);
-	RemoveArtefact(hero,38);
-	RemoveArtefact(hero,39);
-	RemoveArtefact(hero,40);
-	RemoveArtefact(hero,41);
-	RemoveArtefact(hero,42);
-	RemoveArtefact(hero,43);
-	GiveArtefact(hero,123);
-end;
-
-function H55_GetSaintSetCount(hero)
-	local gainedartifacts = {0,0,0,0,0};
-	if (HasArtefact(hero,112,1) ~= nil) then gainedartifacts[1] = 1 end;
-	if (HasArtefact(hero,113,1) ~= nil) then gainedartifacts[2] = 1 end;
-	if (HasArtefact(hero,114,1) ~= nil) then gainedartifacts[3] = 1 end;
-	if (HasArtefact(hero,115,1) ~= nil) then gainedartifacts[4] = 1 end;
-	if (HasArtefact(hero,68,1) ~= nil) then gainedartifacts[5] = 1 end;
-	local setstrength = (gainedartifacts[1]+gainedartifacts[2]+gainedartifacts[3]+gainedartifacts[4]+gainedartifacts[5]);
-	return setstrength
-end;
-
-function H55_GetSaintOwnCount(hero)
-	local gainedartifacts = {0,0,0,0,0};
-	if (HasArtefact(hero,112,0) ~= nil) then gainedartifacts[1] = 1 end;
-	if (HasArtefact(hero,113,0) ~= nil) then gainedartifacts[2] = 1 end;
-	if (HasArtefact(hero,114,0) ~= nil) then gainedartifacts[3] = 1 end;
-	if (HasArtefact(hero,115,0) ~= nil) then gainedartifacts[4] = 1 end;
-	if (HasArtefact(hero,68,0) ~= nil) then gainedartifacts[5] = 1 end;
-	local setstrength = (gainedartifacts[1]+gainedartifacts[2]+gainedartifacts[3]+gainedartifacts[4]+gainedartifacts[5]);
-	return setstrength
-end;
-
-function H55_ExchangeSaintSet(hero)
-	RemoveArtefact(hero,112);
-	RemoveArtefact(hero,113);
-	RemoveArtefact(hero,114);
-	RemoveArtefact(hero,115);
-	RemoveArtefact(hero,68);
-	GiveArtefact(hero,126);
-end;
-
-function H55_GetTomesOwnCount(hero)
-	local gainedartifacts = {0,0,0,0};
-	if (HasArtefact(hero,76,0) ~= nil) then gainedartifacts[1] = 1 end;
-	if (HasArtefact(hero,77,0) ~= nil) then gainedartifacts[2] = 1 end;
-	if (HasArtefact(hero,78,0) ~= nil) then gainedartifacts[3] = 1 end;
-	if (HasArtefact(hero,79,0) ~= nil) then gainedartifacts[4] = 1 end;
-	local setstrength = (gainedartifacts[1]+gainedartifacts[2]+gainedartifacts[3]+gainedartifacts[4]);
-	return setstrength
-end;
-
-function H55_ExchangeTomesSet(hero)
-	RemoveArtefact(hero,76);
-	RemoveArtefact(hero,77);
-	RemoveArtefact(hero,78);
-	RemoveArtefact(hero,79);
-	GiveArtefact(hero,126);
-end;
-
-function H55_GetGuardianSetCount(hero)
-	local gainedartifacts = {0,0,0,0};
-	if (HasArtefact(hero,13,1) ~= nil) then gainedartifacts[1] = 1 end;
-	if (HasArtefact(hero,120,1) ~= nil) then gainedartifacts[2] = 1 end;
-	if (HasArtefact(hero,121,1) ~= nil) then gainedartifacts[3] = 1 end;
-	if (HasArtefact(hero,122,1) ~= nil) then gainedartifacts[4] = 1 end;
-	local pendantofstardust = 0;
-	if (HasArtefact(hero,113,1) ~= nil) then pendantofstardust = 1 end;
-	local setstrength = (gainedartifacts[1]+gainedartifacts[2]+gainedartifacts[3]+gainedartifacts[4]);
-	if setstrength > 0 then
-		setstrength = setstrength + pendantofstardust;
-	end
-	return setstrength
-end;
-
-function H55_ExchangeGuardianSet(hero)
-	RemoveArtefact(hero,13);
-	RemoveArtefact(hero,120);
-	RemoveArtefact(hero,121);
-	RemoveArtefact(hero,122);
-	GiveArtefact(hero,ARTIFACT_ANGELIC_ALLIANCE);
-end;
-
-function H55_GetGuardianOwnCount(hero)
-	local gainedartifacts = {0,0,0,0};
-	if (HasArtefact(hero,13,0) ~= nil) then gainedartifacts[1] = 1 end;
-	if (HasArtefact(hero,120,0) ~= nil) then gainedartifacts[2] = 1 end;
-	if (HasArtefact(hero,121,0) ~= nil) then gainedartifacts[3] = 1 end;
-	if (HasArtefact(hero,122,0) ~= nil) then gainedartifacts[4] = 1 end;
-	local setstrength = (gainedartifacts[1]+gainedartifacts[2]+gainedartifacts[3]+gainedartifacts[4]);
-	return setstrength
-end;
-
-function H55_GetCornucopiaOwnCount(hero)
-	local gainedartifacts = {0,0,0,0,0,0};
-	if (HasArtefact(hero,97,0) ~= nil) then gainedartifacts[1] = 1 end;
-	if (HasArtefact(hero,98,0) ~= nil) then gainedartifacts[2] = 1 end;
-	if (HasArtefact(hero,99,0) ~= nil) then gainedartifacts[3] = 1 end;
-	if (HasArtefact(hero,100,0) ~= nil) then gainedartifacts[4] = 1 end;
-	if (HasArtefact(hero,101,0) ~= nil) then gainedartifacts[5] = 1 end;
-	if (HasArtefact(hero,102,0) ~= nil) then gainedartifacts[6] = 1 end;
-	local setstrength = (gainedartifacts[1]+gainedartifacts[2]+gainedartifacts[3]+gainedartifacts[4]+gainedartifacts[5]+gainedartifacts[6]);
-	return setstrength
-end;
-
-function H55_ExchangeCornucopia(hero)
-	RemoveArtefact(hero,97);
-	RemoveArtefact(hero,98);
-	RemoveArtefact(hero,99);
-	RemoveArtefact(hero,100);
-	RemoveArtefact(hero,101);
-	RemoveArtefact(hero,102);
-	GiveArtefact(hero,92);
-end;
-
-function H55_HasHeroCultMaster(hero)
-	local multiplier = 1;
-	if (HasHeroSkill(hero,DEMON_FEAT_EXPLODING_CORPSES) ~= nil) then
-		multiplier = 2;
-	end;
-	return multiplier
-end;
-
-function H55_HasHeroDefendUs(hero)
-	local multiplier = 1;
-	if (HasHeroSkill(hero,HERO_SKILL_DEFEND_US_ALL) ~= nil) then
-		multiplier = 2;
-	end;
-	return multiplier
-end;
-
-function H55_GetSpecialNecroReq(hero)
-	local req = 0;
-	if H55_GetHeroRaceNum(hero) == 4 and HasHeroSkill(hero,KNIGHT_FEAT_ROAD_HOME) == nil then
-		req = 1;
-	end;
-	return req;
-end;
-
-function H55_GetHeroResurrectionCoef(hero)
-	local coef = 0.3+((GetHeroStat(hero,STAT_KNOWLEDGE))*0.01);
-	-- if HasHeroSkill(hero,PERK_FIRST_AID) ~= nil then
-		-- coef = coef+0.05;
-	-- end;
-	if HasHeroSkill(hero,NECROMANCER_FEAT_LAST_AID) and HasHeroWarMachine(hero,3) then
-		coef = coef+0.1;
-	end;
-	if HasHeroSkill(hero,KNIGHT_FEAT_ROAD_HOME) then
-		coef = coef+0.1;
-	end;
-	if coef >= 0.9 then
-		coef = 0.9;
-	end;
-	return coef;
-end;
-
-function H55_WeeklyReinforce(s_hero, i_player, i_tlevel, i_stat_id, i_spec_creature_id, i_spec_skill_id)
-	local i_race = H55_GetHeroRaceNum(s_hero);
-	local i_level = GetHeroLevel(s_hero);
-	local i_stat = GetHeroStat(s_hero, i_stat_id);
-	local i_city = length(H55_GetPlayerTowns(i_player));
-	local b_skill = 1;
-	if i_spec_skill_id ~= -1 then
-		if HasHeroSkill(s_hero, i_spec_skill_id) ~= nil then
-			b_skill = 1.5;
-		end;
-	end;
-	local b_legion = 1;
-	if HasArtefact(s_hero, H55_ARTIFACT_LEGION_LIST[i_tlevel], 0) ~= nil then
-		b_legion = 1.5;
-	end;
-	local i_value = (i_level + 1.5 * i_stat + 2.5 * i_city) * b_skill * b_legion;
-	local i_growth = H55_Ceil(H55_COEF_LIST[i_tlevel] * i_value / 2);
-	-- by 牙姐 2020-04-15 22:34:56
-	-- begin AI的兵种特在每周增兵时按玩家设置的增兵倍数翻倍
-		if H55_IsThisAIPlayer(i_player) == 1 then
-			i_growth = H55_Ceil(i_growth * H55_AIArmyCoef);
-		end;
-	--end
-	if  (H55_WeeklyReinforce_List[s_hero] ~= 1) and (i_growth >= 1) then
-		if i_spec_creature_id ~= -1 then
-			AddHeroCreatures(s_hero, i_spec_creature_id, i_growth);
-		else
-			local b_has_reinforce = 0;
-			for i = 0, 6 do
-				if b_has_reinforce == 1 then
-					break;
-				end;
-				local type = H55_ArmyInfoSimple(s_hero);
-				for j = 1, 3 do
-					if type[i] == H55_Creatures[i_race][i_tlevel][j] and b_has_reinforce == 0 then
-						AddHeroCreatures(s_hero, H55_Creatures[i_race][i_tlevel][j], i_growth);
-						b_has_reinforce = 1;
+					return iTownValue;
+      	end;
+
+	-- 宝物
+		TTH_ARTI = {};
+
+		-- ARTIFACT_ORDER_OF_CONSCRIPTION 103 回城令
+			TTH_VARI.mainTown4Player = {};
+			function TTH_ARTI.init1034Player(iPlayer) -- 初始化玩家的主城
+				TTH_MAIN.debug("TTH_ARTI.init1034Player", iPlayer, nil);
+
+				for i, strTown in TTH_VARI.arrTown do
+					if iPlayer == GetObjectOwner(strTown)
+						and TTH_VARI.mainTown4Player[iPlayer] == nil then
+						TTH_VARI.mainTown4Player[iPlayer] = strTown;
 						break;
 					end;
 				end;
 			end;
-			if b_has_reinforce == 0 then
-				AddHeroCreatures(s_hero, H55_Creatures[i_race][i_tlevel][1], i_growth);
-				b_has_reinforce = 1;
-			end;
-		end;
-		if H55_IsThisAIPlayer(i_player) ~= 1 and H55_IsHeroInAnyTown(s_hero) == 0 then
-			ShowFlyingSign({"/Text/Game/Scripts/Join.txt"; num = i_growth}, s_hero, i_player, 5);
-			sleep(8);
-		elseif H55_IsThisAIPlayer(i_player) ~= 1 then
-			sleep(2);
-		end;
-		H55_WeeklyReinforce_List[s_hero] = 1;
-	end;
-end;
-
-function H55_InfernalLoom(hero,player,u1,u2,u3,coef,multiplier)
-	local type = H55_ArmyInfoSimple(hero);
-	local level = GetHeroLevel(hero);
-	local growth = H55_Round(multiplier*(coef*level));
-	if growth >= 1 then
-		for i = 0,6 do
-			if (type[i] == u1) and (H55_InfernalLoomTable[hero] ~= 1) then
-				AddHeroCreatures(hero,u1,growth);
-				H55_InfernalLoomTable[hero] = 1;
-				if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-					ShowFlyingSign({"/Text/Game/Scripts/Reinforcements.txt"; num=growth},hero,player,5);
-					sleep(8);
-				end;
-			elseif (type[i] ==u2) and (H55_InfernalLoomTable[hero] ~= 1) then
-				AddHeroCreatures(hero,u2,growth);
-				H55_InfernalLoomTable[hero] = 1;
-				if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-					ShowFlyingSign({"/Text/Game/Scripts/Reinforcements.txt"; num=growth},hero,player,5);
-					sleep(8);
-				end;
-			elseif (type[i] ==u3) and (H55_InfernalLoomTable[hero] ~= 1) then
-				AddHeroCreatures(hero,u3,growth);
-				H55_InfernalLoomTable[hero] = 1;
-				if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-					ShowFlyingSign({"/Text/Game/Scripts/Reinforcements.txt"; num=growth},hero,player,5);
-					sleep(8);
-				end;
-			end;
-		end;
-	end
-end;
-
-function H55_DefendUsDaily(hero,player,u1,u2,u3,growth)
-	local type = H55_ArmyInfoSimple(hero);
-	--local level = GetHeroLevel(hero);
-	if growth >= 1 then
-		for i = 0,6 do
-			if (type[i] == u1) and (H55_DefendUsTable[hero] ~= 1) then
-				AddHeroCreatures(hero,u1,growth);
-				H55_DefendUsTable[hero] = 1;
-				-- if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-					-- ShowFlyingSign({"/Text/Game/Scripts/Reinforcements.txt"; num=growth},hero,player,5);
-					-- sleep(8);
-				-- end;
-			elseif (type[i] ==u2) and (H55_DefendUsTable[hero] ~= 1) then
-				AddHeroCreatures(hero,u2,growth);
-				H55_DefendUsTable[hero] = 1;
-				-- if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-					-- ShowFlyingSign({"/Text/Game/Scripts/Reinforcements.txt"; num=growth},hero,player,5);
-					-- sleep(8);
-				-- end;
-			elseif (type[i] ==u3) and (H55_DefendUsTable[hero] ~= 1) then
-				AddHeroCreatures(hero,u3,growth);
-				H55_DefendUsTable[hero] = 1;
-				-- if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-					-- ShowFlyingSign({"/Text/Game/Scripts/Reinforcements.txt"; num=growth},hero,player,5);
-					-- sleep(8);
-				-- end;
-			end;
-		end;
-	end;
-	H55_DefendUsTable[hero] = 0;
-end;
-
-function H55_AdjustStatSpec(player,hero,stat,multiplier)
-	local level = GetHeroLevel(hero);
-	-- if H55_StatSpecReceived[hero] == nil then
-		-- H55_StatSpecReceived[hero] = 99;
-	-- end;
-	if multiplier == 7 then
-		for i=1,8 do
-			if (H55_StatSpecNumbersA[i] == level) and (H55_StatSpecReceived[hero] ~= i) then
-				ChangeHeroStat(hero,stat,1);
-				H55_StatSpecReceived[hero] = i;
-				if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-					if stat == 1 then ShowFlyingSign("/Text/Game/Scripts/Attack.txt",hero,player,5) end;
-					if stat == 2 then ShowFlyingSign("/Text/Game/Scripts/Defense.txt",hero,player,5) end;
-					if stat == 3 then ShowFlyingSign("/Text/Game/Scripts/Spellpower.txt",hero,player,5) end;
-					if stat == 4 then ShowFlyingSign("/Text/Game/Scripts/Knowledge.txt",hero,player,5) end;
-				end;
-			end;
-		end;
-	elseif multiplier == 8 then
-		for j=1,8 do
-			if  ((H55_StatSpecNumbersA[j]+j) == level) and (H55_StatSpecReceived[hero] ~= j) then
-				ChangeHeroStat(hero,stat,1);
-				H55_StatSpecReceived[hero] = j;
-				if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-					if stat == 1 then ShowFlyingSign("/Text/Game/Scripts/Attack.txt",hero,player,5) end;
-					if stat == 2 then ShowFlyingSign("/Text/Game/Scripts/Defense.txt",hero,player,5) end;
-					if stat == 3 then ShowFlyingSign("/Text/Game/Scripts/Spellpower.txt",hero,player,5) end;
-					if stat == 4 then ShowFlyingSign("/Text/Game/Scripts/Knowledge.txt",hero,player,5) end;
-				end;
-			end;
-		end;
-	end;
-end;
-
-function H55_SetGlobalWeeklyPayouts(player,num)
-	H55_GlobalWeeklyWoodPayout[player] = num;
-	H55_GlobalWeeklyOrePayout[player] = num;
-	H55_GlobalWeeklyMercuryPayout[player] = num;
-	H55_GlobalWeeklyCrystalPayout[player] = num;
-	H55_GlobalWeeklySulphurPayout[player] = num;
-	H55_GlobalWeeklyGemPayout[player] = num;
-	H55_GlobalWeeklyGoldPayout[player] = num;
-end;
-
-function H55_SetGlobalDailyPayouts(player,num)
-	H55_GlobalDailyWoodPayout[player] = num;
-	H55_GlobalDailyOrePayout[player] = num;
-	H55_GlobalDailyMercuryPayout[player] = num;
-	H55_GlobalDailyCrystalPayout[player] = num;
-	H55_GlobalDailySulphurPayout[player] = num;
-	H55_GlobalDailyGemPayout[player] = num;
-	H55_GlobalDailyGoldPayout[player] = num;
-end;
-
-function H55_PayoutThisPlayer(player)
-	H55_SetResourcesSilent(player,6,(H55_GlobalDailyGoldPayout[player]+H55_GlobalWeeklyGoldPayout[player]));
-	H55_SetResourcesSilent(player,0,(H55_GlobalDailyWoodPayout[player]+H55_GlobalWeeklyWoodPayout[player]));
-	H55_SetResourcesSilent(player,1,(H55_GlobalDailyOrePayout[player]+H55_GlobalWeeklyOrePayout[player]));
-	H55_SetResourcesSilent(player,2,(H55_GlobalDailyMercuryPayout[player]+H55_GlobalWeeklyMercuryPayout[player]));
-	H55_SetResourcesSilent(player,3,(H55_GlobalDailyCrystalPayout[player]+H55_GlobalWeeklyCrystalPayout[player]));
-	H55_SetResourcesSilent(player,4,(H55_GlobalDailySulphurPayout[player]+H55_GlobalWeeklySulphurPayout[player]));
-	H55_SetResourcesSilent(player,5,(H55_GlobalDailyGemPayout[player]+H55_GlobalWeeklyGemPayout[player]));
-end;
-
-
-function H55_ApplyMoveCorrection(hero)
-	--This function can only be invoked when the hero is not in a town!
-	local player = GetObjectOwner(hero);
-	if H55_IsNativeTownNearby(hero,player) == 1 then
-		if (H55_GetHeroRaceNum(hero) == 1) then
-			ChangeHeroStat(hero,STAT_MOVE_POINTS,-100);
-		end;
-		if (H55_GetHeroRaceNum(hero) == 2) then
-			ChangeHeroStat(hero,STAT_MOVE_POINTS,-100);
-		end;
-		if (H55_GetHeroRaceNum(hero) == 8) then
-			ChangeHeroStat(hero,STAT_MOVE_POINTS,-100);
-		end;
-		if (H55_GetHeroRaceNum(hero) == 5) then
-			ChangeHeroStat(hero,STAT_MOVE_POINTS,100);
-		end;
-		if (H55_GetHeroRaceNum(hero) == 7) then
-			ChangeHeroStat(hero,STAT_MOVE_POINTS,100);
-		end;
-		if (H55_GetHeroRaceNum(hero) == 3) and (H55_GetHeroClass(hero) == "Gatekeeper") then
-			ChangeHeroStat(hero,STAT_MOVE_POINTS,-100);
-		end;
-		if (H55_GetHeroRaceNum(hero) == 6) and (H55_GetHeroClass(hero) == "Warlock") then
-			ChangeHeroStat(hero,STAT_MOVE_POINTS,-100);
-		end;
-	end;
-end;
-
-function H55_ZombieCarryArmy(player, hero, ci)
-	local s_hero = 'Straker';
-	if hero == s_hero then
-		if H55_CI_Zombie_Straker ~= ci then
-			H55_CI_Zombie_Straker = ci;
-			if GetSavedCombatArmyHero(ci, 1) == s_hero then
-				local iLevel = GetHeroLevel(s_hero);
-				local iCoef = 0.4 + iLevel * 0.02;
-				local iCountStacks = GetSavedCombatArmyCreaturesCount(ci, 1);
-				for i = 0, iCountStacks - 1, 1 do
-					local iCreature, iCountCreature, iCountCreatureDeath = GetSavedCombatArmyCreatureInfo(ci, 1, i);
-					if iCountCreatureDeath > 0 and H55_Town_Zombie_Straker ~= 0 and H55_GetTownRace(H55_Town_Zombie_Straker) == 4 then
-						local townrace = H55_GetTownRace(H55_Town_Zombie_Straker);
-						local town = H55_Town_Zombie_Straker;
-						if GetTownBuildingLevel(town, TOWN_BUILDING_DWELLING_1) >= 1 then
-							if iCreature == H55_Creatures[townrace][1][1] or iCreature == H55_Creatures[townrace][1][2] or iCreature == H55_Creatures[townrace][1][3] then
-								SetObjectDwellingCreatures(town, H55_Creatures[townrace][1][1], GetObjectDwellingCreatures(town,H55_Creatures[townrace][1][1]) + (H55_Ceil(iCoef * iCountCreatureDeath)));
-							end;
-						end;
-						if GetTownBuildingLevel(town, TOWN_BUILDING_DWELLING_2) >= 1 then
-							if iCreature == H55_Creatures[townrace][2][1] or iCreature == H55_Creatures[townrace][2][2] or iCreature == H55_Creatures[townrace][2][3] then
-								SetObjectDwellingCreatures(town, H55_Creatures[townrace][2][1], GetObjectDwellingCreatures(town,H55_Creatures[townrace][2][1]) + (H55_Ceil(iCoef * iCountCreatureDeath)));
-							end;
-						end;
-						if GetTownBuildingLevel(town, TOWN_BUILDING_DWELLING_3) >= 1 then
-							if iCreature == H55_Creatures[townrace][3][1] or iCreature == H55_Creatures[townrace][3][2] or iCreature == H55_Creatures[townrace][3][3] then
-								SetObjectDwellingCreatures(town, H55_Creatures[townrace][3][1], GetObjectDwellingCreatures(town,H55_Creatures[townrace][3][1]) + (H55_Ceil(iCoef * iCountCreatureDeath)));
-							end;
-						end;
-						if GetTownBuildingLevel(town, TOWN_BUILDING_DWELLING_4) >= 1 then
-							if iCreature == H55_Creatures[townrace][4][1] or iCreature == H55_Creatures[townrace][4][2] or iCreature == H55_Creatures[townrace][4][3] then
-								SetObjectDwellingCreatures(town, H55_Creatures[townrace][4][1], GetObjectDwellingCreatures(town,H55_Creatures[townrace][4][1]) + (H55_Ceil(iCoef * iCountCreatureDeath)));
-							end;
-						end;
-						if GetTownBuildingLevel(town, TOWN_BUILDING_DWELLING_5) >= 1 then
-							if iCreature == H55_Creatures[townrace][5][1] or iCreature == H55_Creatures[townrace][5][2] or iCreature == H55_Creatures[townrace][5][3] then
-								SetObjectDwellingCreatures(town, H55_Creatures[townrace][5][1], GetObjectDwellingCreatures(town,H55_Creatures[townrace][5][1]) + (H55_Ceil(iCoef * iCountCreatureDeath)));
-							end;
-						end;
-						if GetTownBuildingLevel(town, TOWN_BUILDING_DWELLING_6) >= 1 then
-							if iCreature == H55_Creatures[townrace][6][1] or iCreature == H55_Creatures[townrace][6][2] or iCreature == H55_Creatures[townrace][6][3] then
-								SetObjectDwellingCreatures(town, H55_Creatures[townrace][6][1], GetObjectDwellingCreatures(town,H55_Creatures[townrace][6][1]) + (H55_Ceil(iCoef * iCountCreatureDeath)));
-							end;
-						end;
-						if GetTownBuildingLevel(town, TOWN_BUILDING_DWELLING_7) >= 1 then
-							if iCreature == H55_Creatures[townrace][7][1] or iCreature == H55_Creatures[townrace][7][2] or iCreature == H55_Creatures[townrace][7][3] then
-								SetObjectDwellingCreatures(town, H55_Creatures[townrace][7][1], GetObjectDwellingCreatures(town,H55_Creatures[townrace][7][1]) + (H55_Ceil(iCoef * iCountCreatureDeath)));
-							end;
-						end;
-					end;
-				end;
-			end;
-		end;
-	end;
-end;
-
-function H55_ResurrectArmy(player,hero,ci,tier,manacost)
-	local stackscount = GetSavedCombatArmyCreaturesCount(ci,1);
-	local race = H55_GetHeroRaceNum(hero);
-	local reduction = 0;
-	local coef = H55_GetHeroResurrectionCoef(hero);
-	if H55_GetSaintSetCount(hero) >= 3 then reduction = 2 end;
-	-- if manacost == 0 then reduction = 0 end;
-	if manacost ~= 0 then
-		for i = 0,stackscount-1,1 do
-			cr,cnt,died = GetSavedCombatArmyCreatureInfo(ci,1,i);
-			if died > 0 then
-				local resurrect = 0;
-				local bodies = coef*died;
-				if bodies >= 0.5 then resurrect = H55_Round(coef*died) end;
-				if resurrect >= 1 then
-					if cr == H55_Creatures[race][tier][2] then
-						if (GetHeroStat(hero,STAT_MANA_POINTS)<(manacost-reduction)) then
-							if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-								ShowFlyingSign({"/Text/Game/Scripts/NoManaResurrect.txt"},hero,player,5);
-								sleep(8);
-							end;
-						else
-							AddHeroCreatures(hero,H55_Creatures[race][tier][2],resurrect);
-							if manacost ~= 0 then ChangeHeroStat(hero,STAT_MANA_POINTS,(-manacost+reduction)) end;
-							if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-								ShowFlyingSign({"/Text/Game/Scripts/Resurrection.txt"; num=resurrect},hero,player,5);
-								sleep(8);
-							end;
-						end;
-					end;
-					if cr == H55_Creatures[race][tier][3] then
-						if (GetHeroStat(hero,STAT_MANA_POINTS)<(manacost-reduction)) then
-							if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-								ShowFlyingSign({"/Text/Game/Scripts/NoManaResurrect.txt"},hero,player,5);
-								sleep(8);
-							end;
-						else
-							AddHeroCreatures(hero,H55_Creatures[race][tier][3],resurrect);
-							if manacost ~= 0 then ChangeHeroStat(hero,STAT_MANA_POINTS,(-manacost+reduction)) end;
-							if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-								ShowFlyingSign({"/Text/Game/Scripts/Resurrection.txt"; num=resurrect},hero,player,5);
-								sleep(8);
-							end;
-						end;
-					end;
-					if cr == H55_Creatures[race][tier][1] then
-						if (GetHeroStat(hero,STAT_MANA_POINTS)<(manacost-reduction)) then
-							if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-								ShowFlyingSign({"/Text/Game/Scripts/NoManaResurrect.txt"},hero,player,5);
-								sleep(8);
-							end;
-						else
-							AddHeroCreatures(hero,H55_Creatures[race][tier][1],resurrect);
-							if manacost ~= 0 then ChangeHeroStat(hero,STAT_MANA_POINTS,(-manacost+reduction)) end;
-							if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-								ShowFlyingSign({"/Text/Game/Scripts/Resurrection.txt"; num=resurrect},hero,player,5);
-								sleep(8);
-							end;
-						end;
-					end;
-				end;
-			end;
-		end;
-	else
-		for i = 0,stackscount-1,1 do
-			cr,cnt,died = GetSavedCombatArmyCreatureInfo(ci,1,i);
-			if died > 0 then
-				local resurrect = 0;
-				local bodies = coef*died;
-				if bodies >= 0.5 then resurrect = H55_Round(coef*died) end;
-				if resurrect >= 1 then
-					if cr == H55_Creatures[race][tier][2] then
-						AddHeroCreatures(hero,H55_Creatures[race][tier][2],resurrect);
-						if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-							ShowFlyingSign({"/Text/Game/Scripts/Resurrection.txt"; num=resurrect},hero,player,5);
-							sleep(8);
-						end;
-					end;
-					if cr == H55_Creatures[race][tier][3] then
-						AddHeroCreatures(hero,H55_Creatures[race][tier][3],resurrect);
-						if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-							ShowFlyingSign({"/Text/Game/Scripts/Resurrection.txt"; num=resurrect},hero,player,5);
-							sleep(8);
-						end;
-					end;
-					if cr == H55_Creatures[race][tier][1] then
-						AddHeroCreatures(hero,H55_Creatures[race][tier][1],resurrect);
-						if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-							ShowFlyingSign({"/Text/Game/Scripts/Resurrection.txt"; num=resurrect},hero,player,5);
-							sleep(8);
-						end;
-					end;
-				end;
-			end;
-		end;
-	end;
-end;
-
------------------------------------------------------------------------------------------------------------------------------------------------------
---TOWN MANAGEMENT
------------------------------------------------------------------------------------------------------------------------------------------------------
-
-function H55_Spinlock()
-	H55_SpinSwitch = 1;
-	while H55_SpinSwitch == 1 do
-		sleep(5);
-		print("H55 Spinlocking...");
-	end;
-end;
-
-function H55_EndSpinlock()
-	H55_SpinSwitch = 0;
-end;
-
-function H55_EnableATP()
-	H55_TownGateEnabled = 1;
-end;
-
-function H55_EnableGovernance()
-	H55_GovernanceEnabled = 1;
-end;
-
-function H55_IsAnyHeroInTown(town,player)
-	local answer = 0;
-	local heroes = GetPlayerHeroes(player);
-	for i,hero in heroes do
-		if (H55_GetDistance(hero,town) == 0) then
-			answer = answer+1;
-		end;
-	end;
-	return answer;
-end;
-
-function H55_IsHeroInAnyGate(hero)
-	local answer = 0;
-	local towns = GetObjectNamesByType("TOWN");
-	for i,town in towns do
-		if (IsHeroInTown(hero,town,1,0) == not nil) then
-			answer = answer+1;
-		end;
-	end;
-	return answer;
-end;
-
-function H55_IsHeroInAnyTown(hero)
-	local answer = 0;
-	local towns = GetObjectNamesByType("TOWN");
-	for i,town in towns do
-		if (H55_GetDistance(hero,town) == 0) then
-			answer = answer+1;
-		end;
-	end;
-	return answer;
-end;
-
-function H55_GetHeroMovement(hero)
-	local movement = 2500;
-	if (HasHeroSkill(hero,SKILL_LOGISTICS) ~= nil) then
-		if (GetHeroSkillMastery(hero,SKILL_LOGISTICS) == 1) then
-			movement = 2749;
-		elseif (GetHeroSkillMastery(hero,SKILL_LOGISTICS) == 2) then
-			movement = 2999;
-		elseif (GetHeroSkillMastery(hero,SKILL_LOGISTICS) == 3) then
-			movement = 3249;
-		end;
-	end;
-	if (HasArtefact(hero,ARTIFACT_BOOTS_OF_SPEED,1) ~= nil) then movement=H55_Round(movement*1.25) end;
-	return movement;
-end;
-
-function H55_InfoHeroMovement(hero)
-	local movement = 2500;
-	if (HasHeroSkill(hero,SKILL_LOGISTICS) ~= nil) then
-		if (GetHeroSkillMastery(hero,SKILL_LOGISTICS) == 1) then
-			movement = 2749;
-		elseif (GetHeroSkillMastery(hero,SKILL_LOGISTICS) == 2) then
-			movement = 2999;
-		elseif (GetHeroSkillMastery(hero,SKILL_LOGISTICS) == 3) then
-			movement = 3249;
-		end;
-	end;
-	if (HasArtefact(hero,ARTIFACT_BOOTS_OF_SPEED,1) ~= nil) then movement=H55_Round(movement*1.25) end;
-	if H55_Governors[hero] == 1 then movement=H55_Round(movement*0.6) end;
-	return movement;
-end;
-
-function H55_InfoHeroManaRegen(hero)
-	local mana = (GetHeroStat(hero,STAT_KNOWLEDGE));
-	if (HasHeroSkill(hero,PERK_MYSTICISM) ~= nil) then mana=mana*2 end;
-	if (HasHeroSkill(hero,WARLOCK_FEAT_PAYBACK) ~= nil) then mana=mana+4 end;
-	if (HasArtefact(hero,ARTIFACT_MONK_01,1) ~= nil) then mana=mana+6 end;
-	if (HasArtefact(hero,ARTIFACT_MONK_02,1) ~= nil) then mana=mana+4 end;
-	if (HasArtefact(hero,ARTIFACT_EIGHTFOLD,1) ~= nil) then	mana=mana+10 end;
-	return mana;
-end;
-
-function H55_InfoElementals(hero)
-	local player = GetObjectOwner(hero);
-	local elementals = 0;
-	if H55_GetPlayerShatterStrength(player) >= 0.03 then
-		local towns = H55_GetPlayerTowns(player);
-		local multiplier = H55_GetPlayerShatterStrength(player);
-		if (length(towns) > 0) then
-			for i,town in towns do
-				local townrace = H55_GetTownRace(town);
-				--local elemtype = H55_GetRaceElementalTypeID(townrace);
-				if townrace == 8 then
-					local growth = 2+(GetTownBuildingLevel(town, TOWN_BUILDING_SPECIAL_1))+(GetTownBuildingLevel(town, TOWN_BUILDING_SPECIAL_3));
-					local totalgrowth = H55_Round(multiplier*growth);
-					--if totalgrowth >= 1 then
-						elementals = elementals+totalgrowth;
-					--end;
-				else
-					local growth = 1+GetTownBuildingLevel(town, TOWN_BUILDING_MAGIC_GUILD);
-					local totalgrowth = H55_Round(multiplier*growth);
-					--if totalgrowth >= 1 then
-						elementals = elementals+totalgrowth;
-					--end;
-				end;
-			end;
-		end;
-	else
-		elementals = 0;
-	end;
-	return elementals;
-end;
-
-function H55_InfoLegion(hero)
-	local cap = H55_GetLegionCap(hero)
-	local growth = 0;
-	local bonus = 0;
-	if HasHeroSkill(hero,PERK_RECRUITMENT) ~= nil then bonus = bonus+5 end;
-	if HasArtefact(hero,ARTIFACT_CROWN_OF_LEADER,1) ~= nil and HasHeroSkill(hero,PERK_RECRUITMENT) ~= nil then bonus = bonus+5 end;
-	if H55_Governors[hero] == 1 then bonus = bonus+5 end;
-	if cap == 1 then growth = H55_Round((GetHeroStat(hero,STAT_KNOWLEDGE)+bonus)/1)
-	elseif cap == 2 then growth = H55_Round((GetHeroStat(hero,STAT_KNOWLEDGE)+bonus)/1.5)
-	elseif cap == 3 then growth = H55_Round((GetHeroStat(hero,STAT_KNOWLEDGE)+bonus)/2)
-	elseif cap == 4 then growth = H55_Round((GetHeroStat(hero,STAT_KNOWLEDGE)+bonus)/3)
-	elseif cap == 5 then growth = H55_Round((GetHeroStat(hero,STAT_KNOWLEDGE)+bonus)/4)
-	elseif cap == 6 then growth = H55_Round((GetHeroStat(hero,STAT_KNOWLEDGE)+bonus)/6)
-	elseif cap == 7 then growth = H55_Round((GetHeroStat(hero,STAT_KNOWLEDGE)+bonus)/12)
-	else growth = 0
-	end;
-	if cap ~= 0 then
-		if growth < 1 then growth = 1 end;
-	end;
-	return growth;
-end;
-
-function H55_InfoSkeletonTaxes(hero)
-	local type,count = H55_ArmyInfo(hero);
-	local amount = 0;
-	local taxes = 0;
-	for i = 0,6 do
-		if (type[i] == 30) then
-			amount = amount + count[i]
-		elseif (type[i] ==152) then
-			amount = amount + count[i]
-		elseif (type[i] ==29) then
-			amount = amount + count[i]
-		end;
-	end;
-	if amount > 0 then
-		taxes = H55_Round(amount/2);
-	end;
-	return taxes;
-end;
-
-function H55_InfoGoblinTaxes(hero)
-	local type,count = H55_ArmyInfo(hero);
-	local amount = 0;
-	local taxes = 0;
-	for i = 0,6 do
-		if (type[i] == 118) then
-			amount = amount + count[i]
-		elseif (type[i] ==173) then
-			amount = amount + count[i]
-		elseif (type[i] ==117) then
-			amount = amount + count[i]
-		end;
-	end;
-	if amount > 0 then
-		taxes = H55_Round(amount/2);
-	end;
-	return taxes;
-end;
-
-function H55_InfoGoldIncome(hero)
-	local gold = 0;
-	if (HasHeroSkill(hero,PERK_ESTATES) ~= nil) then gold = gold+(H55_Round(GetHeroStat(hero,STAT_KNOWLEDGE)*25)) end;
-	if (HasHeroSkill(hero,NECROMANCER_FEAT_LORD_OF_UNDEAD) ~= nil) then gold = gold+H55_InfoSkeletonTaxes(hero) end;
-	if (HasHeroSkill(hero,HERO_SKILL_GOBLIN_SUPPORT) ~= nil) then gold = gold+H55_InfoGoblinTaxes(hero) end;
-	-- if (HasArtefact(hero,ARTIFACT_ENDLESS_SACK_OF_GOLD,0) ~= nil) then gold = gold+(H55_Round(GetHeroStat(hero,STAT_KNOWLEDGE)*50)) end;
-	-- if (HasArtefact(hero,ARTIFACT_ENDLESS_BAG_OF_GOLD,0) ~= nil) then gold = gold+(H55_Round(GetHeroStat(hero,STAT_KNOWLEDGE)*75)) end;
-	return gold;
-end;
-
-function H55_InfoGovEnabled()
-	if H55_GovernanceEnabled == 1 then
-		return H55_TM_Txt_Enabled;
-	else
-		return H55_TM_Txt_Disabled;
-	end;
-end;
-
-function H55_InfoTCEnabled()
-	if H55_TownConvEnabled == 1 then
-		return H55_TM_Txt_Enabled;
-	else
-		return H55_TM_Txt_Disabled;
-	end;
-end;
-
-function H55_InfoOccupation(hero)
-	if H55_Governors[hero] == 1 then
-		return H55_TM_Txt_Governor;
-	else
-		return H55_TM_Txt_Conquest;
-	end;
-end;
-
-function H55_InfoWages(player)
-	local heroes = GetPlayerHeroes(player);
-	local totaltax = 0;
-	for i,hero in heroes do
-		totaltax = totaltax+H55_Round(H55_GetHeroTaxRate(hero));
-	end;
-	return totaltax;
-end;
-
-function H55_AbortTC(hero)
-	print("H55 Player Takes No Action");
-	-- if HasArtefact(hero,47,1) and HasHeroSkill(hero,42) then
-		-- ChangeHeroStat(hero,STAT_MANA_POINTS,8);
-	-- elseif HasArtefact(hero,47,1) then
-		-- ChangeHeroStat(hero,STAT_MANA_POINTS,10);
-	-- elseif HasHeroSkill(hero,42) then
-		-- ChangeHeroStat(hero,STAT_MANA_POINTS,16);
-	-- else
-		-- ChangeHeroStat(hero,STAT_MANA_POINTS,20);
-	-- end;
-end;
-
-function TTH_FunctionManagement(strHero)
-	local iPlayer = GetObjectOwner(strHero);
-	local iPlayerRace = H55_GetPlayerRace(iPlayer);
-	local iHeroRace = H55_GetHeroRaceNum(strHero);
-
-	QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
-	, "/Text/Game/Scripts/TownPortal/TTH_TM_or_AF.txt"
-	, "H55_TownManagement('"..iPlayer.."','"..iPlayerRace.."','"..strHero.."','"..iHeroRace.."')"
-	, "TTH_Func_ArtiManage('"..iPlayer.."','"..strHero.."')");
-end;
-
-function H55_TownManagement(iPlayer, iPlayerRace, strHero, iHeroRace)
-	iPlayer = iPlayer * 1;
-	iPlayerRace = iPlayerRace * 1;
-	iHeroRace = iHeroRace * 1;
-	local arrGate = GetObjectNamesByType("TOWN");
-	local strTown = nil;
-	local iTownRace = 0;
-	for i, strGate in arrGate do
-		if (GetObjectOwner(strGate) == iPlayer) and (IsHeroInTown(strHero, strGate, 1, 0) == not nil) then
-			strTown = strGate;
-			iTownRace = H55_GetTownRace(strGate);
-		end;
-	end;
-
-	if H55_TownManageOwners[strHero] == 1 then
-		if H55_TownGateEnabled == 0 then
-			if strTown ~= nil and iTownRace ~= iHeroRace then --hero is in strange town
-				-- if H55_TownConvEnabled == 1 and iHeroRace == iPlayerRace then
-				--  by 牙姐 convert anyrace
-				if H55_TownConvEnabled == 1 then
-					H55_TM_Conv_or_Close(strHero, strTown);
-				else
-					H55_TM_InfoOnly(strHero, strTown);
-				end;
-			elseif strTown ~= nil and iTownRace == iHeroRace then --hero is in native town
-				if H55_GovernanceEnabled == 1 and H55_Governors[strHero] == nil and iTownRace == iHeroRace then
-					H55_TM_Gov_or_Close(strHero, strTown);
-				elseif H55_GovernanceEnabled == 1 and H55_Governors[strHero] ~= nil and H55_GovernorsWithTown[strHero] == strTown then
-					H55_TM_End_or_Close(strHero, strTown);
-				else
-					H55_TM_InfoOnly(strHero, strTown);
-				end;
-			else
-				-- if iHeroRace == 8 and GetHeroLevel(strHero) >= 2 then
-					-- H55_TM_Wtp_or_Close(strHero, strTown);
-				-- else
-					H55_TM_InfoOnly(strHero, strTown);
-				-- end;
-			end;
-		else
-			if iHeroRace ~= 3 then
-				if strTown ~= nil and iTownRace ~= iHeroRace then --hero is in strange town
-					-- if H55_TownConvEnabled == 1 and iHeroRace == iPlayerRace then
-					--  by 牙姐 convert anyrace
-					if H55_TownConvEnabled == 1 then
-						H55_TM_Conv_or_Tele(strHero, strTown);
-					else
-						H55_TM_Tele_or_Close(strHero, strTown);
-					end;
-				elseif strTown ~= nil and iTownRace == iHeroRace then --hero is in native town
-					if H55_GovernanceEnabled == 1 and H55_Governors[strHero] == nil and iTownRace == iHeroRace then
-						H55_TM_Gov_or_Tele(strHero, strTown);
-					elseif H55_GovernanceEnabled == 1 and H55_Governors[strHero] ~= nil and H55_GovernorsWithTown[strHero] == strTown then
-						H55_TM_End_or_Close(strHero, strTown);
-					else
-						H55_TM_Tele_or_Close(strHero, strTown);
-					end;
-				else
-					-- if iHeroRace == 8 and GetHeroStat(strHero,STAT_MOVE_POINTS) < 2000 and GetHeroLevel(strHero) >= 2 then
-						-- H55_TM_Wtp_or_Close(strHero, strTown);
-					-- else
-						H55_TM_Tele_or_Close(strHero, strTown);
-					-- end;
-				end;
-			else
-				if strTown ~= nil then
-					if iTownRace ~= iHeroRace then
-						if H55_TownConvEnabled == 1 then
-							H55_TM_Conv_or_Close(strHero, strTown);
-						else
-							H55_TM_InfoOnly(strHero, strTown);
-						end;
-					else
-						if H55_GovernanceEnabled == 1 then
-							if H55_Governors[strHero] == nil then
-								H55_TM_Gov_or_TeleInferno(strHero, strTown);
-							else
-								if H55_GovernorsWithTown[strHero] == strTown then
-									H55_TM_End_or_Close(strHero, strTown);
-								else
-									H55_TM_TeleInferno_or_Close(strHero, strTown);
-								end;
-							end;
-						else
-							H55_TM_TeleInferno_or_Close(strHero, strTown);
-						end;
-					end;
-				else
-					H55_TM_InfoOnly(strHero, strTown);
-				end;
-			end;
-		end;
-	end;
-end;
-
-function H55_TM_Gov_or_TeleInferno(hero,town)
-	local player = GetObjectOwner(hero);
-	local v_movement = GetHeroStat(hero,STAT_MOVE_POINTS);
-	local v_mana = H55_InfoHeroManaRegen(hero);
-	local v_occupation = H55_InfoOccupation(hero);
-	local v_estates = H55_InfoGoldIncome(hero);
-	local v_summons = H55_InfoElementals(hero);
-	local v_artifactsummons_tier = H55_GetLegionCap(hero);
-	local v_artifactsummons = H55_InfoLegion(hero);
-	local v_tier1 = 0;
-	local v_tier2 = 0;
-	local v_tier3 = 0;
-	local v_tier4 = 0;
-	local v_tier5 = 0;
-	local v_tier6 = 0;
-	local v_tier7 = 0;
-	local v_governance = H55_InfoGovEnabled();
-	local v_conversion = H55_InfoTCEnabled();
-	local v_maxtowns = H55_MaxTownsPerFaction;
-	local v_t1d = H55_MaxDwellingsT1;
-	local v_t2d = H55_MaxDwellingsT2;
-	local v_t3d = H55_MaxDwellingsT3;
-	local v_t4d = H55_MaxDwellingsT4;
-	if H55_GovernanceTier1[hero] ~= nil then v_tier1 = H55_GovernanceTier1[hero] end;
-	if H55_GovernanceTier2[hero] ~= nil then v_tier2 = H55_GovernanceTier2[hero] end;
-	if H55_GovernanceTier3[hero] ~= nil then v_tier3 = H55_GovernanceTier3[hero] end;
-	if H55_GovernanceTier4[hero] ~= nil then v_tier4 = H55_GovernanceTier4[hero] end;
-	if H55_GovernanceTier5[hero] ~= nil then v_tier5 = H55_GovernanceTier5[hero] end;
-	if H55_GovernanceTier6[hero] ~= nil then v_tier6 = H55_GovernanceTier6[hero] end;
-	if H55_GovernanceTier7[hero] ~= nil then v_tier7 = H55_GovernanceTier7[hero] end;
-	QuestionBoxForPlayers(GetPlayerFilter(player),{"/Text/Game/Scripts/TownPortal/TM_Gov_or_TeleInferno.txt";
-	occupation=v_occupation,movement=v_movement,mana=v_mana,estates=v_estates,artifactsummons_tier=v_artifactsummons_tier,artifactsummons=v_artifactsummons,
-	summons=v_summons,tier1=v_tier1,tier2=v_tier2,tier3=v_tier3,tier4=v_tier4,tier5=v_tier5,tier6=v_tier6,tier7=v_tier7,
-	governance=v_governance,conversion=v_conversion,maxtowns=v_maxtowns,t1d=v_t1d,t2d=v_t2d,t3d=v_t3d,t4d=v_t4d},
-	"H55_TGStartQuestionBox('"..hero.."','"..town.."')","H55_ATP_Inferno_QuestionBox('"..hero.."','"..town.."')");
-end;
-
-function H55_TM_TeleInferno_or_Close(hero,town)
-	local player = GetObjectOwner(hero);
-	local v_movement = GetHeroStat(hero,STAT_MOVE_POINTS);
-	local v_mana = H55_InfoHeroManaRegen(hero);
-	local v_occupation = H55_InfoOccupation(hero);
-	local v_estates = H55_InfoGoldIncome(hero);
-	--local v_wages = H55_GetHeroTaxRate(hero);
-	--local v_allwages = H55_InfoWages(player);
-	local v_summons = H55_InfoElementals(hero);
-	local v_artifactsummons_tier = H55_GetLegionCap(hero);
-	local v_artifactsummons = H55_InfoLegion(hero);
-	local v_tier1 = 0;
-	local v_tier2 = 0;
-	local v_tier3 = 0;
-	local v_tier4 = 0;
-	local v_tier5 = 0;
-	local v_tier6 = 0;
-	local v_tier7 = 0;
-	local v_governance = H55_InfoGovEnabled();
-	local v_conversion = H55_InfoTCEnabled();
-	local v_maxtowns = H55_MaxTownsPerFaction;
-	local v_t1d = H55_MaxDwellingsT1;
-	local v_t2d = H55_MaxDwellingsT2;
-	local v_t3d = H55_MaxDwellingsT3;
-	local v_t4d = H55_MaxDwellingsT4;
-	if H55_GovernanceTier1[hero] ~= nil then v_tier1 = H55_GovernanceTier1[hero] end;
-	if H55_GovernanceTier2[hero] ~= nil then v_tier2 = H55_GovernanceTier2[hero] end;
-	if H55_GovernanceTier3[hero] ~= nil then v_tier3 = H55_GovernanceTier3[hero] end;
-	if H55_GovernanceTier4[hero] ~= nil then v_tier4 = H55_GovernanceTier4[hero] end;
-	if H55_GovernanceTier5[hero] ~= nil then v_tier5 = H55_GovernanceTier5[hero] end;
-	if H55_GovernanceTier6[hero] ~= nil then v_tier6 = H55_GovernanceTier6[hero] end;
-	if H55_GovernanceTier7[hero] ~= nil then v_tier7 = H55_GovernanceTier7[hero] end;
-	QuestionBoxForPlayers(GetPlayerFilter(player),{"/Text/Game/Scripts/TownPortal/TM_TeleInferno_or_Close.txt";
-	occupation=v_occupation,movement=v_movement,mana=v_mana,estates=v_estates,artifactsummons_tier=v_artifactsummons_tier,artifactsummons=v_artifactsummons,
-	summons=v_summons,tier1=v_tier1,tier2=v_tier2,tier3=v_tier3,tier4=v_tier4,tier5=v_tier5,tier6=v_tier6,tier7=v_tier7,    --wages=v_wages,allwages=v_allwages,
-	governance=v_governance,conversion=v_conversion,maxtowns=v_maxtowns,t1d=v_t1d,t2d=v_t2d,t3d=v_t3d,t4d=v_t4d},
-	"H55_ATP_Inferno_QuestionBox('"..hero.."','"..town.."')","H55_AbortTC('"..hero.."')");
-end;
-
-function H55_ATP_Inferno_QuestionBox(hero,strCurrentTown)
-	H55_TeleportStatus[hero] = 1;
-	local player = GetObjectOwner(hero);
-	local towns = GetObjectNamesByType("TOWN");
-	local targets = 0;
-	if (GetTownBuildingLevel(strCurrentTown, TOWN_BUILDING_SPECIAL_1) == 1) then
-		for i,town in towns do
-			if (player == GetObjectOwner(town)) and (town ~= strCurrentTown) and (H55_GetTownRace(town) == 3) and (GetTownBuildingLevel(town, TOWN_BUILDING_SPECIAL_1) == 1) then
-				targets = targets+1
-			end;
-		end;
-		if targets > 0 then
-			for i,town in towns do
-				if H55_TeleportStatus[hero] == 1 then
-					if (player == GetObjectOwner(town)) and (town ~= strCurrentTown) and (H55_GetTownRace(town) == 3) and (GetTownBuildingLevel(town, TOWN_BUILDING_SPECIAL_1) == 1) then
-						local x,y,z=GetObjectPosition(town);
-						MoveCamera(x,y,z,50,H55_Pi/2,1,1,1,1);
-						sleep(4);
-						QuestionBoxForPlayers(GetPlayerFilter(player),"/Text/Game/Scripts/TownPortal/TP_Question.txt",
-						"H55_Teleport_Inferno_Now('"..hero.."','"..town.."')","H55_EndSpinlock");
-						H55_Spinlock();
-					end;
-				end;
-			end;
-		else
-			ShowFlyingSign("/Text/Game/Scripts/TownPortal/TP_NoTargets_Inferno.txt", hero, player, 5);
-		end;
-	else
-		ShowFlyingSign("/Text/Game/Scripts/TownPortal/TP_NoRequire_Inferno.txt", hero, player, 5);
-	end;
-end;
-
-function H55_Teleport_Inferno_Now(hero,town)
-	local player = GetObjectOwner(hero);
-	local movepoints = GetHeroStat(hero,STAT_MOVE_POINTS);
-	local x,y,z=GetObjectPosition(town);
-	H55_TeleportStatus[hero] = 2;
-	-- ChangeHeroStat(hero,STAT_MOVE_POINTS,(-1*movepoints));
-	-- ChangeHeroStat(hero,STAT_MANA_POINTS,-25);
-	print("H55 Performing Teleport..");
-	Play2DSoundForPlayers(GetPlayerFilter(player), H55_SndTPStart);
-	PlayVisualEffect("/Effects/_(Effect)/Spells/townportal_start.xdb#xpointer(/Effect)",town,"",0,0,0,0,z);
-	SetObjectPosition(hero,x,y,z);
-	H55_EndSpinlock();
-	sleep(8);
-	Play2DSoundForPlayers(GetPlayerFilter(player), H55_SndTPEnd);
-end;
-
-function H55_TM_InfoOnly(hero,town)
-	local player = GetObjectOwner(hero);
-	local v_movement = GetHeroStat(hero,STAT_MOVE_POINTS);
-	local v_mana = H55_InfoHeroManaRegen(hero);
-	local v_occupation = H55_InfoOccupation(hero);
-	local v_estates = H55_InfoGoldIncome(hero);
-	local v_summons = H55_InfoElementals(hero);
-	local v_artifactsummons_tier = H55_GetLegionCap(hero);
-	local v_artifactsummons = H55_InfoLegion(hero);
-	local v_tier1 = 0;
-	local v_tier2 = 0;
-	local v_tier3 = 0;
-	local v_tier4 = 0;
-	local v_tier5 = 0;
-	local v_tier6 = 0;
-	local v_tier7 = 0;
-	local v_governance = H55_InfoGovEnabled();
-	local v_conversion = H55_InfoTCEnabled();
-	local v_maxtowns = H55_MaxTownsPerFaction;
-	local v_t1d = H55_MaxDwellingsT1;
-	local v_t2d = H55_MaxDwellingsT2;
-	local v_t3d = H55_MaxDwellingsT3;
-	local v_t4d = H55_MaxDwellingsT4;
-	if H55_GovernanceTier1[hero] ~= nil then v_tier1 = H55_GovernanceTier1[hero] end;
-	if H55_GovernanceTier2[hero] ~= nil then v_tier2 = H55_GovernanceTier2[hero] end;
-	if H55_GovernanceTier3[hero] ~= nil then v_tier3 = H55_GovernanceTier3[hero] end;
-	if H55_GovernanceTier4[hero] ~= nil then v_tier4 = H55_GovernanceTier4[hero] end;
-	if H55_GovernanceTier5[hero] ~= nil then v_tier5 = H55_GovernanceTier5[hero] end;
-	if H55_GovernanceTier6[hero] ~= nil then v_tier6 = H55_GovernanceTier6[hero] end;
-	if H55_GovernanceTier7[hero] ~= nil then v_tier7 = H55_GovernanceTier7[hero] end;
-	MessageBoxForPlayers(GetPlayerFilter(player),{"/Text/Game/Scripts/TownPortal/TM_Info_Only.txt";
-	occupation=v_occupation,movement=v_movement,mana=v_mana,estates=v_estates,artifactsummons_tier=v_artifactsummons_tier,artifactsummons=v_artifactsummons,
-	summons=v_summons,tier1=v_tier1,tier2=v_tier2,tier3=v_tier3,tier4=v_tier4,tier5=v_tier5,tier6=v_tier6,tier7=v_tier7,
-	governance=v_governance,conversion=v_conversion,maxtowns=v_maxtowns,t1d=v_t1d,t2d=v_t2d,t3d=v_t3d,t4d=v_t4d},
-	"H55_AbortTC('"..hero.."')");
-end;
-
-function H55_TM_Conv_or_Tele(hero,town)
-	local player = GetObjectOwner(hero);
-	local v_movement = GetHeroStat(hero,STAT_MOVE_POINTS);
-	local v_mana = H55_InfoHeroManaRegen(hero);
-	local v_occupation = H55_InfoOccupation(hero);
-	local v_estates = H55_InfoGoldIncome(hero);
-	local v_summons = H55_InfoElementals(hero);
-	local v_artifactsummons_tier = H55_GetLegionCap(hero);
-	local v_artifactsummons = H55_InfoLegion(hero);
-	local v_tier1 = 0;
-	local v_tier2 = 0;
-	local v_tier3 = 0;
-	local v_tier4 = 0;
-	local v_tier5 = 0;
-	local v_tier6 = 0;
-	local v_tier7 = 0;
-	local v_governance = H55_InfoGovEnabled();
-	local v_conversion = H55_InfoTCEnabled();
-	local v_maxtowns = H55_MaxTownsPerFaction;
-	local v_t1d = H55_MaxDwellingsT1;
-	local v_t2d = H55_MaxDwellingsT2;
-	local v_t3d = H55_MaxDwellingsT3;
-	local v_t4d = H55_MaxDwellingsT4;
-	if H55_GovernanceTier1[hero] ~= nil then v_tier1 = H55_GovernanceTier1[hero] end;
-	if H55_GovernanceTier2[hero] ~= nil then v_tier2 = H55_GovernanceTier2[hero] end;
-	if H55_GovernanceTier3[hero] ~= nil then v_tier3 = H55_GovernanceTier3[hero] end;
-	if H55_GovernanceTier4[hero] ~= nil then v_tier4 = H55_GovernanceTier4[hero] end;
-	if H55_GovernanceTier5[hero] ~= nil then v_tier5 = H55_GovernanceTier5[hero] end;
-	if H55_GovernanceTier6[hero] ~= nil then v_tier6 = H55_GovernanceTier6[hero] end;
-	if H55_GovernanceTier7[hero] ~= nil then v_tier7 = H55_GovernanceTier7[hero] end;
-	QuestionBoxForPlayers(GetPlayerFilter(player),{"/Text/Game/Scripts/TownPortal/TM_Conv_or_Tele.txt";
-	occupation=v_occupation,movement=v_movement,mana=v_mana,estates=v_estates,artifactsummons_tier=v_artifactsummons_tier,artifactsummons=v_artifactsummons,
-	summons=v_summons,tier1=v_tier1,tier2=v_tier2,tier3=v_tier3,tier4=v_tier4,tier5=v_tier5,tier6=v_tier6,tier7=v_tier7,
-	governance=v_governance,conversion=v_conversion,maxtowns=v_maxtowns,t1d=v_t1d,t2d=v_t2d,t3d=v_t3d,t4d=v_t4d},
-	"H55_TCQuestionBox('"..hero.."','"..town.."')","H55_ATPQuestionBox('"..hero.."')");
-end;
-
-function H55_TM_Conv_or_Close(hero,town)
-	local player = GetObjectOwner(hero);
-	local v_movement = GetHeroStat(hero,STAT_MOVE_POINTS);
-	local v_mana = H55_InfoHeroManaRegen(hero);
-	local v_occupation = H55_InfoOccupation(hero);
-	local v_estates = H55_InfoGoldIncome(hero);
-	local v_summons = H55_InfoElementals(hero);
-	local v_artifactsummons_tier = H55_GetLegionCap(hero);
-	local v_artifactsummons = H55_InfoLegion(hero);
-	local v_tier1 = 0;
-	local v_tier2 = 0;
-	local v_tier3 = 0;
-	local v_tier4 = 0;
-	local v_tier5 = 0;
-	local v_tier6 = 0;
-	local v_tier7 = 0;
-	local v_governance = H55_InfoGovEnabled();
-	local v_conversion = H55_InfoTCEnabled();
-	local v_maxtowns = H55_MaxTownsPerFaction;
-	local v_t1d = H55_MaxDwellingsT1;
-	local v_t2d = H55_MaxDwellingsT2;
-	local v_t3d = H55_MaxDwellingsT3;
-	local v_t4d = H55_MaxDwellingsT4;
-	if H55_GovernanceTier1[hero] ~= nil then v_tier1 = H55_GovernanceTier1[hero] end;
-	if H55_GovernanceTier2[hero] ~= nil then v_tier2 = H55_GovernanceTier2[hero] end;
-	if H55_GovernanceTier3[hero] ~= nil then v_tier3 = H55_GovernanceTier3[hero] end;
-	if H55_GovernanceTier4[hero] ~= nil then v_tier4 = H55_GovernanceTier4[hero] end;
-	if H55_GovernanceTier5[hero] ~= nil then v_tier5 = H55_GovernanceTier5[hero] end;
-	if H55_GovernanceTier6[hero] ~= nil then v_tier6 = H55_GovernanceTier6[hero] end;
-	if H55_GovernanceTier7[hero] ~= nil then v_tier7 = H55_GovernanceTier7[hero] end;
-	QuestionBoxForPlayers(GetPlayerFilter(player),{"/Text/Game/Scripts/TownPortal/TM_Conv_or_Close.txt";
-	occupation=v_occupation,movement=v_movement,mana=v_mana,estates=v_estates,artifactsummons_tier=v_artifactsummons_tier,artifactsummons=v_artifactsummons,
-	summons=v_summons,tier1=v_tier1,tier2=v_tier2,tier3=v_tier3,tier4=v_tier4,tier5=v_tier5,tier6=v_tier6,tier7=v_tier7,
-	governance=v_governance,conversion=v_conversion,maxtowns=v_maxtowns,t1d=v_t1d,t2d=v_t2d,t3d=v_t3d,t4d=v_t4d},
-	"H55_TCQuestionBox('"..hero.."','"..town.."')","H55_AbortTC('"..hero.."')");
-end;
-
-function H55_TM_Gov_or_Tele(hero,town)
-	local player = GetObjectOwner(hero);
-	local v_movement = GetHeroStat(hero,STAT_MOVE_POINTS);
-	local v_mana = H55_InfoHeroManaRegen(hero);
-	local v_occupation = H55_InfoOccupation(hero);
-	local v_estates = H55_InfoGoldIncome(hero);
-	local v_summons = H55_InfoElementals(hero);
-	local v_artifactsummons_tier = H55_GetLegionCap(hero);
-	local v_artifactsummons = H55_InfoLegion(hero);
-	local v_tier1 = 0;
-	local v_tier2 = 0;
-	local v_tier3 = 0;
-	local v_tier4 = 0;
-	local v_tier5 = 0;
-	local v_tier6 = 0;
-	local v_tier7 = 0;
-	local v_governance = H55_InfoGovEnabled();
-	local v_conversion = H55_InfoTCEnabled();
-	local v_maxtowns = H55_MaxTownsPerFaction;
-	local v_t1d = H55_MaxDwellingsT1;
-	local v_t2d = H55_MaxDwellingsT2;
-	local v_t3d = H55_MaxDwellingsT3;
-	local v_t4d = H55_MaxDwellingsT4;
-	if H55_GovernanceTier1[hero] ~= nil then v_tier1 = H55_GovernanceTier1[hero] end;
-	if H55_GovernanceTier2[hero] ~= nil then v_tier2 = H55_GovernanceTier2[hero] end;
-	if H55_GovernanceTier3[hero] ~= nil then v_tier3 = H55_GovernanceTier3[hero] end;
-	if H55_GovernanceTier4[hero] ~= nil then v_tier4 = H55_GovernanceTier4[hero] end;
-	if H55_GovernanceTier5[hero] ~= nil then v_tier5 = H55_GovernanceTier5[hero] end;
-	if H55_GovernanceTier6[hero] ~= nil then v_tier6 = H55_GovernanceTier6[hero] end;
-	if H55_GovernanceTier7[hero] ~= nil then v_tier7 = H55_GovernanceTier7[hero] end;
-	QuestionBoxForPlayers(GetPlayerFilter(player),{"/Text/Game/Scripts/TownPortal/TM_Gov_or_Tele.txt";
-	occupation=v_occupation,movement=v_movement,mana=v_mana,estates=v_estates,artifactsummons_tier=v_artifactsummons_tier,artifactsummons=v_artifactsummons,
-	summons=v_summons,tier1=v_tier1,tier2=v_tier2,tier3=v_tier3,tier4=v_tier4,tier5=v_tier5,tier6=v_tier6,tier7=v_tier7,
-	governance=v_governance,conversion=v_conversion,maxtowns=v_maxtowns,t1d=v_t1d,t2d=v_t2d,t3d=v_t3d,t4d=v_t4d},
-	"H55_TGStartQuestionBox('"..hero.."','"..town.."')","H55_ATPQuestionBox('"..hero.."')");
-end;
-
-function H55_TM_Tele_or_Close(hero,town)
-	local player = GetObjectOwner(hero);
-	local v_movement = GetHeroStat(hero,STAT_MOVE_POINTS);
-	local v_mana = H55_InfoHeroManaRegen(hero);
-	local v_occupation = H55_InfoOccupation(hero);
-	local v_estates = H55_InfoGoldIncome(hero);
-	--local v_wages = H55_GetHeroTaxRate(hero);
-	--local v_allwages = H55_InfoWages(player);
-	local v_summons = H55_InfoElementals(hero);
-	local v_artifactsummons_tier = H55_GetLegionCap(hero);
-	local v_artifactsummons = H55_InfoLegion(hero);
-	local v_tier1 = 0;
-	local v_tier2 = 0;
-	local v_tier3 = 0;
-	local v_tier4 = 0;
-	local v_tier5 = 0;
-	local v_tier6 = 0;
-	local v_tier7 = 0;
-	local v_governance = H55_InfoGovEnabled();
-	local v_conversion = H55_InfoTCEnabled();
-	local v_maxtowns = H55_MaxTownsPerFaction;
-	local v_t1d = H55_MaxDwellingsT1;
-	local v_t2d = H55_MaxDwellingsT2;
-	local v_t3d = H55_MaxDwellingsT3;
-	local v_t4d = H55_MaxDwellingsT4;
-	if H55_GovernanceTier1[hero] ~= nil then v_tier1 = H55_GovernanceTier1[hero] end;
-	if H55_GovernanceTier2[hero] ~= nil then v_tier2 = H55_GovernanceTier2[hero] end;
-	if H55_GovernanceTier3[hero] ~= nil then v_tier3 = H55_GovernanceTier3[hero] end;
-	if H55_GovernanceTier4[hero] ~= nil then v_tier4 = H55_GovernanceTier4[hero] end;
-	if H55_GovernanceTier5[hero] ~= nil then v_tier5 = H55_GovernanceTier5[hero] end;
-	if H55_GovernanceTier6[hero] ~= nil then v_tier6 = H55_GovernanceTier6[hero] end;
-	if H55_GovernanceTier7[hero] ~= nil then v_tier7 = H55_GovernanceTier7[hero] end;
-	QuestionBoxForPlayers(GetPlayerFilter(player),{"/Text/Game/Scripts/TownPortal/TM_Tele_or_Close.txt";
-	occupation=v_occupation,movement=v_movement,mana=v_mana,estates=v_estates,artifactsummons_tier=v_artifactsummons_tier,artifactsummons=v_artifactsummons,
-	summons=v_summons,tier1=v_tier1,tier2=v_tier2,tier3=v_tier3,tier4=v_tier4,tier5=v_tier5,tier6=v_tier6,tier7=v_tier7,    --wages=v_wages,allwages=v_allwages,
-	governance=v_governance,conversion=v_conversion,maxtowns=v_maxtowns,t1d=v_t1d,t2d=v_t2d,t3d=v_t3d,t4d=v_t4d},
-	"H55_ATPQuestionBox('"..hero.."')","H55_AbortTC('"..hero.."')");
-end;
-
-function H55_TM_Wtp_or_Close(hero,town)
-	local player = GetObjectOwner(hero);
-	local v_movement = GetHeroStat(hero,STAT_MOVE_POINTS);
-	local v_mana = H55_InfoHeroManaRegen(hero);
-	local v_occupation = H55_InfoOccupation(hero);
-	local v_estates = H55_InfoGoldIncome(hero);
-	local v_summons = H55_InfoElementals(hero);
-	local v_artifactsummons_tier = H55_GetLegionCap(hero);
-	local v_artifactsummons = H55_InfoLegion(hero);
-	local v_tier1 = 0;
-	local v_tier2 = 0;
-	local v_tier3 = 0;
-	local v_tier4 = 0;
-	local v_tier5 = 0;
-	local v_tier6 = 0;
-	local v_tier7 = 0;
-	local v_governance = H55_InfoGovEnabled();
-	local v_conversion = H55_InfoTCEnabled();
-	local v_maxtowns = H55_MaxTownsPerFaction;
-	local v_t1d = H55_MaxDwellingsT1;
-	local v_t2d = H55_MaxDwellingsT2;
-	local v_t3d = H55_MaxDwellingsT3;
-	local v_t4d = H55_MaxDwellingsT4;
-	if H55_GovernanceTier1[hero] ~= nil then v_tier1 = H55_GovernanceTier1[hero] end;
-	if H55_GovernanceTier2[hero] ~= nil then v_tier2 = H55_GovernanceTier2[hero] end;
-	if H55_GovernanceTier3[hero] ~= nil then v_tier3 = H55_GovernanceTier3[hero] end;
-	if H55_GovernanceTier4[hero] ~= nil then v_tier4 = H55_GovernanceTier4[hero] end;
-	if H55_GovernanceTier5[hero] ~= nil then v_tier5 = H55_GovernanceTier5[hero] end;
-	if H55_GovernanceTier6[hero] ~= nil then v_tier6 = H55_GovernanceTier6[hero] end;
-	if H55_GovernanceTier7[hero] ~= nil then v_tier7 = H55_GovernanceTier7[hero] end;
-	QuestionBoxForPlayers(GetPlayerFilter(player),{"/Text/Game/Scripts/TownPortal/TM_Wtp_or_Close.txt";
-	occupation=v_occupation,movement=v_movement,mana=v_mana,estates=v_estates,artifactsummons_tier=v_artifactsummons_tier,artifactsummons=v_artifactsummons,
-	summons=v_summons,tier1=v_tier1,tier2=v_tier2,tier3=v_tier3,tier4=v_tier4,tier5=v_tier5,tier6=v_tier6,tier7=v_tier7,    --wages=v_wages,allwages=v_allwages,
-	governance=v_governance,conversion=v_conversion,maxtowns=v_maxtowns,t1d=v_t1d,t2d=v_t2d,t3d=v_t3d,t4d=v_t4d},
-	"H55_WTPQuestionBox('"..hero.."')","H55_AbortTC('"..hero.."')");
-end;
-
-function H55_TM_Gov_or_Close(hero,town)
-	local player = GetObjectOwner(hero);
-	local v_movement = GetHeroStat(hero,STAT_MOVE_POINTS);
-	local v_mana = H55_InfoHeroManaRegen(hero);
-	local v_occupation = H55_InfoOccupation(hero);
-	local v_estates = H55_InfoGoldIncome(hero);
-	local v_summons = H55_InfoElementals(hero);
-	local v_artifactsummons_tier = H55_GetLegionCap(hero);
-	local v_artifactsummons = H55_InfoLegion(hero);
-	local v_tier1 = 0;
-	local v_tier2 = 0;
-	local v_tier3 = 0;
-	local v_tier4 = 0;
-	local v_tier5 = 0;
-	local v_tier6 = 0;
-	local v_tier7 = 0;
-	local v_governance = H55_InfoGovEnabled();
-	local v_conversion = H55_InfoTCEnabled();
-	local v_maxtowns = H55_MaxTownsPerFaction;
-	local v_t1d = H55_MaxDwellingsT1;
-	local v_t2d = H55_MaxDwellingsT2;
-	local v_t3d = H55_MaxDwellingsT3;
-	local v_t4d = H55_MaxDwellingsT4;
-	if H55_GovernanceTier1[hero] ~= nil then v_tier1 = H55_GovernanceTier1[hero] end;
-	if H55_GovernanceTier2[hero] ~= nil then v_tier2 = H55_GovernanceTier2[hero] end;
-	if H55_GovernanceTier3[hero] ~= nil then v_tier3 = H55_GovernanceTier3[hero] end;
-	if H55_GovernanceTier4[hero] ~= nil then v_tier4 = H55_GovernanceTier4[hero] end;
-	if H55_GovernanceTier5[hero] ~= nil then v_tier5 = H55_GovernanceTier5[hero] end;
-	if H55_GovernanceTier6[hero] ~= nil then v_tier6 = H55_GovernanceTier6[hero] end;
-	if H55_GovernanceTier7[hero] ~= nil then v_tier7 = H55_GovernanceTier7[hero] end;
-	QuestionBoxForPlayers(GetPlayerFilter(player),{"/Text/Game/Scripts/TownPortal/TM_Gov_or_Close.txt";
-	occupation=v_occupation,movement=v_movement,mana=v_mana,estates=v_estates,artifactsummons_tier=v_artifactsummons_tier,artifactsummons=v_artifactsummons,
-	summons=v_summons,tier1=v_tier1,tier2=v_tier2,tier3=v_tier3,tier4=v_tier4,tier5=v_tier5,tier6=v_tier6,tier7=v_tier7,
-	governance=v_governance,conversion=v_conversion,maxtowns=v_maxtowns,t1d=v_t1d,t2d=v_t2d,t3d=v_t3d,t4d=v_t4d},
-	"H55_TGStartQuestionBox('"..hero.."','"..town.."')","H55_AbortTC('"..hero.."')");
-end;
-
-function H55_TM_End_or_Close(hero,town)
-	local player = GetObjectOwner(hero);
-	local v_movement = GetHeroStat(hero,STAT_MOVE_POINTS);
-	local v_mana = H55_InfoHeroManaRegen(hero);
-	local v_occupation = H55_InfoOccupation(hero);
-	local v_estates = H55_InfoGoldIncome(hero);
-	local v_summons = H55_InfoElementals(hero);
-	local v_artifactsummons_tier = H55_GetLegionCap(hero);
-	local v_artifactsummons = H55_InfoLegion(hero);
-	local v_tier1 = 0;
-	local v_tier2 = 0;
-	local v_tier3 = 0;
-	local v_tier4 = 0;
-	local v_tier5 = 0;
-	local v_tier6 = 0;
-	local v_tier7 = 0;
-	local v_governance = H55_InfoGovEnabled();
-	local v_conversion = H55_InfoTCEnabled();
-	local v_maxtowns = H55_MaxTownsPerFaction;
-	local v_t1d = H55_MaxDwellingsT1;
-	local v_t2d = H55_MaxDwellingsT2;
-	local v_t3d = H55_MaxDwellingsT3;
-	local v_t4d = H55_MaxDwellingsT4;
-	if H55_GovernanceTier1[hero] ~= nil then v_tier1 = H55_GovernanceTier1[hero] end;
-	if H55_GovernanceTier2[hero] ~= nil then v_tier2 = H55_GovernanceTier2[hero] end;
-	if H55_GovernanceTier3[hero] ~= nil then v_tier3 = H55_GovernanceTier3[hero] end;
-	if H55_GovernanceTier4[hero] ~= nil then v_tier4 = H55_GovernanceTier4[hero] end;
-	if H55_GovernanceTier5[hero] ~= nil then v_tier5 = H55_GovernanceTier5[hero] end;
-	if H55_GovernanceTier6[hero] ~= nil then v_tier6 = H55_GovernanceTier6[hero] end;
-	if H55_GovernanceTier7[hero] ~= nil then v_tier7 = H55_GovernanceTier7[hero] end;
-	QuestionBoxForPlayers(GetPlayerFilter(player),{"/Text/Game/Scripts/TownPortal/TM_End_or_Close.txt";
-	occupation=v_occupation,movement=v_movement,mana=v_mana,estates=v_estates,artifactsummons_tier=v_artifactsummons_tier,artifactsummons=v_artifactsummons,
-	summons=v_summons,tier1=v_tier1,tier2=v_tier2,tier3=v_tier3,tier4=v_tier4,tier5=v_tier5,tier6=v_tier6,tier7=v_tier7,
-	governance=v_governance,conversion=v_conversion,maxtowns=v_maxtowns,t1d=v_t1d,t2d=v_t2d,t3d=v_t3d,t4d=v_t4d},
-	"H55_TGEndQuestionBox('"..hero.."','"..town.."')","H55_AbortTC('"..hero.."')");
-end;
-
-function H55_TGStartQuestionBox(hero,town)
-	local player = GetObjectOwner(hero);
-	if H55_TownsWithGovernor[town] ~= nil then
-		if IsObjectExists(H55_TownsWithGovernor[town]) == 1 then
-			ShowFlyingSign("/Text/Game/Scripts/TownPortal/TM_TownAlready.txt", hero, player, 5);
-		else
-			H55_ResetConquestHero(H55_TownsWithGovernor[town],town);
-			QuestionBoxForPlayers(GetPlayerFilter(player),{"/Text/Game/Scripts/TownPortal/TG_StartQuestion.txt"},
-			"H55_StartGovernor('"..hero.."','"..town.."')","H55_AbortTC('"..hero.."')");
-		end;
-	else
-		QuestionBoxForPlayers(GetPlayerFilter(player),{"/Text/Game/Scripts/TownPortal/TG_StartQuestion.txt"},
-		"H55_StartGovernor('"..hero.."','"..town.."')","H55_AbortTC('"..hero.."')");
-	end;
-end;
-
-function H55_TGEndQuestionBox(hero,town)
-	local player = GetObjectOwner(hero);
-	local term = (H55_Day-H55_GovernorInaugurationDay[hero])
-	local v_fine = 0;
-	if term <= 27 then v_fine = (28-term)*(GetHeroLevel(hero)*100) end;
-	QuestionBoxForPlayers(GetPlayerFilter(player),{"/Text/Game/Scripts/TownPortal/TG_EndQuestion.txt";fine=v_fine},
-	"H55_EndGovernor('"..hero.."','"..town.."')","H55_AbortTC('"..hero.."')");
-end;
-
-function H55_StartGovernor(hero,town)
-	local player = GetObjectOwner(hero);
-	H55_Governors[hero] = 1;
-	H55_GovernorsWithTown[hero] = town;
-	H55_TownsWithGovernor[town] = hero;
-	H55_GovernorInaugurationDay[hero] = H55_Day;
-	H55_CastleDefenseOwners[hero] = 0;
-	H55_MageGuildBonusOwners[hero] = 0;
-	H55_SpecialAttackOwners[hero] = 0;
-	H55_SpecialKnowledgeOwners[hero] = 0;
-	H55_SpecialSpellPowerOwners[hero] = 0;
-	H55_RunicShrineBonusOwners[hero] = 0;
-	ShowFlyingSign("/Text/Game/Scripts/TownPortal/TG_Inaugurated.txt", hero, player, 5);
-end;
-
-function H55_EndGovernor(hero,town)
-	local player = GetObjectOwner(hero);
-	local term = (H55_Day-H55_GovernorInaugurationDay[hero])
-	local fine = 0;
-	if term <= 27 then fine = (28-term)*(GetHeroLevel(hero)*100) end;
-	if fine > 0 then
-		if GetPlayerResource(player,6) >= fine then
-			H55_TakeResourcesSilent(player,6,fine);
-			H55_ResetConquestHero(hero,town);
-			ShowFlyingSign("/Text/Game/Scripts/TownPortal/TG_Resigned.txt", hero, player, 5);
-		else
-			ShowFlyingSign("/Text/Game/Scripts/TownPortal/TG_ResignRefuse.txt", hero, player, 5);
-		end;
-	else
-		H55_ResetConquestHero(hero,town);
-		ShowFlyingSign("/Text/Game/Scripts/TownPortal/TG_Resigned.txt", hero, player, 5);
-	end;
-end;
-
-function H55_ResetConquestHero(hero,town)
-	H55_Governors[hero] = nil;
-	H55_GovernorsWithTown[hero] = nil;
-	H55_TownsWithGovernor[town] = nil;
-	H55_GovernorInaugurationDay[hero] = nil;
-	if IsObjectExists(hero) == 1 then
-		H55_AdjustGovernorDefense(hero,nil);
-	end;
-	H55_CastleDefenseOwners[hero] = 0;
-	H55_MageGuildBonusOwners[hero] = 0;
-	H55_SpecialAttackOwners[hero] = 0;
-	H55_SpecialKnowledgeOwners[hero] = 0;
-	H55_SpecialSpellPowerOwners[hero] = 0;
-	H55_RunicShrineBonusOwners[hero] = 0;
-end;
-
-function H55_ATPQuestionBox(hero)
-	H55_TeleportStatus[hero] = 1;
-	local player = GetObjectOwner(hero);
-	local towns = GetObjectNamesByType("TOWN");
-	local targets = 0;
-	if H55_Governors[hero] == 1 then
-		if GetHeroStat(hero,STAT_MOVE_POINTS) < 2000 then
-			ShowFlyingSign("/Text/Game/Scripts/TownPortal/TP_NoMovement.txt", hero, player, 5);
-		elseif GetHeroStat(hero,STAT_MANA_POINTS) < 25 then
-			ShowFlyingSign("/Text/Game/Scripts/TownPortal/TP_NoMana.txt", hero, player, 5);
-		else
-			local hometown = H55_GovernorsWithTown[hero];
-			if (player == GetObjectOwner(hometown)) and H55_GetTownRace(hometown) ~= 8 and (GetTownBuildingLevel(hometown,TOWN_BUILDING_MAGIC_GUILD) == 5) then
-				local x,y,z=GetObjectPosition(hometown);
-				MoveCamera(x,y,z,50,H55_Pi/2,1,1,1,1);
-				sleep(4);
-				QuestionBoxForPlayers(GetPlayerFilter(player),"/Text/Game/Scripts/TownPortal/TP_Question.txt",
-				"H55_TeleportNow('"..hero.."','"..hometown.."')","H55_EndSpinlock");
-				H55_Spinlock();
-			elseif (player == GetObjectOwner(hometown)) and H55_GetTownRace(hometown) == 8 and (GetTownBuildingLevel(hometown,TOWN_BUILDING_SPECIAL_1) == 3) and (GetTownBuildingLevel(hometown,TOWN_BUILDING_SPECIAL_3) == 1) then
-				local x,y,z=GetObjectPosition(hometown);
-				MoveCamera(x,y,z,50,H55_Pi/2,1,1,1,1);
-				sleep(4);
-				QuestionBoxForPlayers(GetPlayerFilter(player),"/Text/Game/Scripts/TownPortal/TP_Question.txt",
-				"H55_TeleportNow('"..hero.."','"..hometown.."')","H55_EndSpinlock");
-				H55_Spinlock();
-			else
-				ShowFlyingSign("/Text/Game/Scripts/TownPortal/TP_NoTargets.txt", hero, player, 5);
-			end;
-		end;
-	else
-		if GetHeroStat(hero,STAT_MOVE_POINTS) < 2000 then
-			ShowFlyingSign("/Text/Game/Scripts/TownPortal/TP_NoMovement.txt", hero, player, 5);
-		elseif GetHeroStat(hero,STAT_MANA_POINTS) < 25 then
-			ShowFlyingSign("/Text/Game/Scripts/TownPortal/TP_NoMana.txt", hero, player, 5);
-		else
-			for i,town in towns do
-				if (player == GetObjectOwner(town)) and H55_GetTownRace(town) ~= 8 and (GetTownBuildingLevel(town,TOWN_BUILDING_MAGIC_GUILD) == 5) then
-					targets = targets+1
-				end;
-				if (player == GetObjectOwner(town)) and H55_GetTownRace(town) == 8 and (GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_1) == 3) and (GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_3) == 1) then
-					targets = targets+1
-				end;
-			end;
-			if targets > 0 then
-				for i,town in towns do
-					if H55_TeleportStatus[hero] == 1 then
-						if (player == GetObjectOwner(town)) then
-							if H55_GetTownRace(town) ~= 8 and (GetTownBuildingLevel(town,TOWN_BUILDING_MAGIC_GUILD) == 5) then
-								local x,y,z=GetObjectPosition(town);
-								MoveCamera(x,y,z,50,H55_Pi/2,1,1,1,1);
-								sleep(4);
-								QuestionBoxForPlayers(GetPlayerFilter(player),"/Text/Game/Scripts/TownPortal/TP_Question.txt",
-								"H55_TeleportNow('"..hero.."','"..town.."')","H55_EndSpinlock");
-								H55_Spinlock();
-							elseif H55_GetTownRace(town) == 8 and (GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_1) == 3) and (GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_3) == 1) then
-								local x,y,z=GetObjectPosition(town);
-								MoveCamera(x,y,z,50,H55_Pi/2,1,1,1,1);
-								sleep(4);
-								QuestionBoxForPlayers(GetPlayerFilter(player),"/Text/Game/Scripts/TownPortal/TP_Question.txt",
-								"H55_TeleportNow('"..hero.."','"..town.."')","H55_EndSpinlock");
-								H55_Spinlock();
-							end;
-						end;
-					end;
-				end;
-			else
-				ShowFlyingSign("/Text/Game/Scripts/TownPortal/TP_NoTargets.txt", hero, player, 5);
-			end;
-		end;
-	end;
-end;
-
-function H55_WTPQuestionBox(hero)
-	local player = GetObjectOwner(hero);
-	local towns = H55_GetPlayerTowns(player);
-	local distances = {};
-	local distancesbytown = {};
-	for i=1,length(towns)-1 do
-		distances[i] = H55_GetDistanceUG(hero,towns[i]);
-	end;
-	for i,town in towns do
-		distancesbytown[town] = H55_GetDistanceUG(hero,town);
-	end;
-	-- for i,town in towns do
-		--if (player == GetObjectOwner(town)) then
-			-- distances[town] = H55_GetDistanceUG(hero,town);
-		--end;
-	-- end;
-	if distances ~= nil then
-		local target = H55_LowestSample(distances);
-		for i, town in towns do
-			if (distancesbytown[town] == target) then
-				targettown = town;
-			end;
-		end;
-		print(targettown);
-		if GetHeroStat(hero,STAT_MANA_POINTS) < 10 then
-			ShowFlyingSign("/Text/Game/Scripts/TownPortal/TP_NoMana.txt", hero, player, 5);
-		else
-			H55_TeleportNow(hero,targettown);
-		end;
-	else
-		ShowFlyingSign("/Text/Game/Scripts/TownPortal/TP_NoTargets.txt", hero, player, 5);
-	end;
-end;
-
-function H55_TeleportNow(hero,town)
-	local player = GetObjectOwner(hero);
-	local movepoints = GetHeroStat(hero,STAT_MOVE_POINTS);
-	local x,y,z=GetObjectPosition(town);
-	H55_TeleportStatus[hero] = 2;
-	ChangeHeroStat(hero,STAT_MOVE_POINTS,(-1*movepoints));
-	ChangeHeroStat(hero,STAT_MANA_POINTS,-25);
-	print("H55 Performing Teleport..");
-	Play2DSoundForPlayers(GetPlayerFilter(player), H55_SndTPStart);
-	PlayVisualEffect("/Effects/_(Effect)/Spells/townportal_start.xdb#xpointer(/Effect)",town,"",0,0,0,0,z);
-	SetObjectPosition(hero,x,y,z);
-	H55_EndSpinlock();
-	sleep(8);
-	Play2DSoundForPlayers(GetPlayerFilter(player), H55_SndTPEnd);
-end;
-
-function H55_TCQuestionBox(hero,town)
-	local player = GetObjectOwner(hero);
-	local movepoints = GetHeroStat(hero,STAT_MOVE_POINTS);
-	local x,y,z=GetObjectPosition(town);
-	local playerrace = H55_GetPlayerRace(player);
-	local townrace = H55_GetTownRace(town);
-	if H55_GetAmountAlignedTowns(playerrace) < H55_MaxTownsPerFaction then
-		if (GetTownBuildingLevel(town,TOWN_BUILDING_TOWN_HALL) ~= 4) then
-			local tavern = GetTownBuildingLevel(town,TOWN_BUILDING_TAVERN);
-			local marketplace = GetTownBuildingLevel(town,TOWN_BUILDING_MARKETPLACE);
-			local blacksmith = GetTownBuildingLevel(town,TOWN_BUILDING_BLACKSMITH);
-			local fort = GetTownBuildingLevel(town,TOWN_BUILDING_FORT);
-			local townhall = GetTownBuildingLevel(town,TOWN_BUILDING_TOWN_HALL);
-			local dwelling1 = GetTownBuildingLevel(town,TOWN_BUILDING_DWELLING_1);
-			local dwelling2 = GetTownBuildingLevel(town,TOWN_BUILDING_DWELLING_2);
-			local dwelling3 = GetTownBuildingLevel(town,TOWN_BUILDING_DWELLING_3);
-			local dwelling4 = GetTownBuildingLevel(town,TOWN_BUILDING_DWELLING_4);
-			local dwelling5 = GetTownBuildingLevel(town,TOWN_BUILDING_DWELLING_5);
-			local dwelling6 = GetTownBuildingLevel(town,TOWN_BUILDING_DWELLING_6);
-			local dwelling7 = GetTownBuildingLevel(town,TOWN_BUILDING_DWELLING_7);
-			local shipyard = GetTownBuildingLevel(town,TOWN_BUILDING_SHIPYARD);
-			local guild = 0;
-			if townrace ~= 8 then
-				guild = GetTownBuildingLevel(town,TOWN_BUILDING_MAGIC_GUILD);
-			end;
-			local grail = GetTownBuildingLevel(town,TOWN_BUILDING_GRAIL);
-			local special1 = 0;
-			local special2 = 0;
-			local special3 = 0;
-			local special4 = GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_4);
-			local special5 = 0;
-			if townrace ~= 1 and townrace ~= 2 and townrace ~= 3 then
-				special3 = GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_3);
-			end;
-			if townrace == 2 then
-				special1 = GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_0);
-			else
-				special1 = GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_1);
-			end;
-			if townrace == 6 then
-				special2 = GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_6);
-			else
-				special2 = GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_2);
-			end;
-			if townrace ~= 4 and townrace ~= 5 and townrace ~= 6 then
-				special5 = GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_5);
-			else
-				special5 = 0;
-			end;
-
-			local townvalue = tavern+marketplace+blacksmith+fort+townhall+dwelling1+dwelling2+dwelling3+dwelling4+dwelling5+dwelling6+dwelling7+shipyard+guild+grail+special1+special2+special3+special4+special5;
-
-			-- local gold_qty = 3000+(townvalue*3000);
-			-- local wood_qty = 3+(townvalue*3);
-			-- local ore_qty = 3+(townvalue*3);
-			-- local mercury_qty = 1+(townvalue*1);
-			-- local crystal_qty = 1+(townvalue*1);
-			-- local sulphur_qty = 1+(townvalue*1);
-			-- local gem_qty = 1+(townvalue*1);
-
-			local gold_qty = 1500+(townvalue*1500);
-			local wood_qty = 2+(townvalue*2);
-			local ore_qty = 2+(townvalue*2);
-			local mercury_qty = 1+(townvalue*1);
-			local crystal_qty = 1+(townvalue*1);
-			local sulphur_qty = 1+(townvalue*1);
-			local gem_qty = 1+(townvalue*1);
-
-			MoveCamera(x,y,z,50,H55_Pi/2,1,1,1,1);
-			sleep(4);
-			QuestionBoxForPlayers(GetPlayerFilter(player),{"/Text/Game/Scripts/TownPortal/TC_Question.txt";gold=gold_qty,wood=wood_qty,ore=ore_qty,mercury=mercury_qty,crystal=crystal_qty,sulphur=sulphur_qty,gem=gem_qty},
-			"H55_ConvertNow('"..hero.."','"..town.."','"..townvalue.."')","H55_AbortTC('"..hero.."')");
-		else
-			ShowFlyingSign("/Text/Game/Scripts/TownPortal/TC_NoTarget.txt", hero, player, 5);
-		end;
-	else
-		ShowFlyingSign("/Text/Game/Scripts/TownPortal/TC_Limit.txt", hero, player, 5);
-	end;
-end;
-
-function H55_ConvertNow(hero,town,townvalue)
-	local herorace = H55_GetHeroRaceNum(hero);
-	local towntype = H55_GetTownRaceID(herorace);
-	local townrace = H55_GetTownRace(town);
-	local player = GetObjectOwner(hero);
-	local movepoints = GetHeroStat(hero,STAT_MOVE_POINTS);
-
-	local tavern = GetTownBuildingLevel(town,TOWN_BUILDING_TAVERN);
-	local marketplace = GetTownBuildingLevel(town,TOWN_BUILDING_MARKETPLACE);
-	local blacksmith = GetTownBuildingLevel(town,TOWN_BUILDING_BLACKSMITH);
-	local fort = GetTownBuildingLevel(town,TOWN_BUILDING_FORT);
-	local townhall = GetTownBuildingLevel(town,TOWN_BUILDING_TOWN_HALL);
-	local dwelling1 = GetTownBuildingLevel(town,TOWN_BUILDING_DWELLING_1);
-	local dwelling2 = GetTownBuildingLevel(town,TOWN_BUILDING_DWELLING_2);
-	local dwelling3 = GetTownBuildingLevel(town,TOWN_BUILDING_DWELLING_3);
-	local dwelling4 = GetTownBuildingLevel(town,TOWN_BUILDING_DWELLING_4);
-	local dwelling5 = GetTownBuildingLevel(town,TOWN_BUILDING_DWELLING_5);
-	local dwelling6 = GetTownBuildingLevel(town,TOWN_BUILDING_DWELLING_6);
-	local dwelling7 = GetTownBuildingLevel(town,TOWN_BUILDING_DWELLING_7);
-	local shipyard = GetTownBuildingLevel(town,TOWN_BUILDING_SHIPYARD);
-	local guild = 0;
-	if townrace ~= 8 then
-		guild = GetTownBuildingLevel(town,TOWN_BUILDING_MAGIC_GUILD);
-	end;
-	local grail = GetTownBuildingLevel(town,TOWN_BUILDING_GRAIL);
-	local special1 = 0;
-	local special2 = 0;
-	local special3 = 0;
-	local special4 = GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_4);
-	local special5 = 0;
-	if townrace ~= 1 and townrace ~= 2 and townrace ~= 3 then
-		special3 = GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_3);
-	end;
-	if townrace == 2 then
-		special1 = GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_0);
-	else
-		special1 = GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_1);
-	end;
-	if townrace == 6 then
-		special2 = GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_6);
-	else
-		special2 = GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_2);
-	end;
-	if townrace ~= 4 and townrace ~= 5 and townrace ~= 6 then
-		special5 = GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_5);
-	else
-		special5 = 0;
-	end;
-	local guildconversionpoints = special1+special3+1;
-
-	local x,y,z=GetObjectPosition(town);
-
-	-- local gold_qty = 3000+(townvalue*3000);
-	-- local wood_qty = 3+(townvalue*3);
-	-- local ore_qty = 3+(townvalue*3);
-	-- local mercury_qty = 1+(townvalue*1);
-	-- local crystal_qty = 1+(townvalue*1);
-	-- local sulphur_qty = 1+(townvalue*1);
-	-- local gem_qty = 1+(townvalue*1);
-
-	local gold_qty = 1500+(townvalue*1500);
-	local wood_qty = 2+(townvalue*2);
-	local ore_qty = 2+(townvalue*2);
-	local mercury_qty = 1+(townvalue*1);
-	local crystal_qty = 1+(townvalue*1);
-	local sulphur_qty = 1+(townvalue*1);
-	local gem_qty = 1+(townvalue*1);
-
-	if GetPlayerResource(player,0) < wood_qty then
-		ShowFlyingSign("/Text/Game/Scripts/TownPortal/TC_NoRes.txt", hero, player, 5);
-		H55_EndSpinlock();
-	elseif GetPlayerResource(player,1) < ore_qty then
-		ShowFlyingSign("/Text/Game/Scripts/TownPortal/TC_NoRes.txt", hero, player, 5);
-		H55_EndSpinlock();
-	elseif GetPlayerResource(player,2) < mercury_qty then
-		ShowFlyingSign("/Text/Game/Scripts/TownPortal/TC_NoRes.txt", hero, player, 5);
-		H55_EndSpinlock();
-	elseif GetPlayerResource(player,3) < crystal_qty then
-		ShowFlyingSign("/Text/Game/Scripts/TownPortal/TC_NoRes.txt", hero, player, 5);
-		H55_EndSpinlock();
-	elseif GetPlayerResource(player,4) < sulphur_qty then
-		ShowFlyingSign("/Text/Game/Scripts/TownPortal/TC_NoRes.txt", hero, player, 5);
-		H55_EndSpinlock();
-	elseif GetPlayerResource(player,5) < gem_qty then
-		ShowFlyingSign("/Text/Game/Scripts/TownPortal/TC_NoRes.txt", hero, player, 5);
-		H55_EndSpinlock();
-	elseif GetPlayerResource(player,6) < gold_qty then
-		ShowFlyingSign("/Text/Game/Scripts/TownPortal/TC_NoRes.txt", hero, player, 5);
-		H55_EndSpinlock();
-	else
-		ChangeHeroStat(hero,STAT_MOVE_POINTS,(-1*movepoints));
-
-		print("H55 Performing Town Conversion..");
-
-		H55_TakeResourcesSilent(player,0,wood_qty);
-		H55_TakeResourcesSilent(player,1,ore_qty);
-		H55_TakeResourcesSilent(player,2,mercury_qty);
-		H55_TakeResourcesSilent(player,3,crystal_qty);
-		H55_TakeResourcesSilent(player,4,sulphur_qty);
-		H55_TakeResourcesSilent(player,5,gem_qty);
-		H55_TakeResourcesSilent(player,6,gold_qty);
-
-		Play2DSoundForPlayers(GetPlayerFilter(player),"/Maps/Scenario/A2C2M1/Siege_WallCrash02sound.xdb#xpointer(/Sound)");
-		TransformTown(town,towntype);
-
-		sleep(1);
-
-			if tavern == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_TAVERN,1) end;
-			if marketplace == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_MARKETPLACE,1)
-		elseif marketplace == 2 then UpgradeTownBuilding(town,TOWN_BUILDING_MARKETPLACE,1) UpgradeTownBuilding(town,TOWN_BUILDING_MARKETPLACE,1) end;
-			if blacksmith == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_BLACKSMITH,1) end;
-			if fort == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_FORT,1)
-		elseif fort == 2 then UpgradeTownBuilding(town,TOWN_BUILDING_FORT,1) UpgradeTownBuilding(town,TOWN_BUILDING_FORT,1)
-		elseif fort == 3 then UpgradeTownBuilding(town,TOWN_BUILDING_FORT,1) UpgradeTownBuilding(town,TOWN_BUILDING_FORT,1) UpgradeTownBuilding(town,TOWN_BUILDING_FORT,1) end;
-			if townhall == 2 then UpgradeTownBuilding(town,TOWN_BUILDING_TOWN_HALL,1)
-		elseif townhall == 3 then UpgradeTownBuilding(town,TOWN_BUILDING_TOWN_HALL,1) UpgradeTownBuilding(town,TOWN_BUILDING_TOWN_HALL,1) end;
-			if dwelling1 == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_1,1)
-		elseif dwelling1 == 2 then UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_1,1) UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_1,1) end;
-			if dwelling2 == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_2,1)
-		elseif dwelling2 == 2 then UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_2,1) UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_2,1) end;
-			if dwelling3 == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_3,1)
-		elseif dwelling3 == 2 then UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_3,1) UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_3,1) end;
-			if dwelling4 == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_4,1)
-		elseif dwelling4 == 2 then UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_4,1) UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_4,1) end;
-			if dwelling5 == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_5,1)
-		elseif dwelling5 == 2 then UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_5,1) UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_5,1) end;
-			if dwelling6 == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_6,1)
-		elseif dwelling6 == 2 then UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_6,1) UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_6,1) end;
-			if dwelling7 == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_7,1)
-		elseif dwelling7 == 2 then UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_7,1) UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_7,1) end;
-			if shipyard == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_SHIPYARD,1) end;
-			if grail == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_GRAIL,1) end;
-
-			if herorace ~= 8 and townrace ~= 8 then
-					if guild == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1)
-				elseif guild == 2 then UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1)
-				elseif guild == 3 then UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1)
-				elseif guild == 4 then UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1)
-				elseif guild == 5 then UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) end;
-			end;
-
-			if herorace ~= 8 and townrace == 8 then
-					if guildconversionpoints == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1)
-				elseif guildconversionpoints == 2 then UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1)
-				elseif guildconversionpoints == 3 then UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1)
-				elseif guildconversionpoints == 4 then UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1)
-				elseif guildconversionpoints == 5 then UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) end;
-			end;
-
-			if herorace == 8 then
-					if guild == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_SPECIAL_1,1)
-				elseif guild == 2 then UpgradeTownBuilding(town,TOWN_BUILDING_SPECIAL_1,1) UpgradeTownBuilding(town,TOWN_BUILDING_SPECIAL_1,1)
-				elseif guild == 3 then UpgradeTownBuilding(town,TOWN_BUILDING_SPECIAL_1,1) UpgradeTownBuilding(town,TOWN_BUILDING_SPECIAL_1,1) UpgradeTownBuilding(town,TOWN_BUILDING_SPECIAL_3,1)
-				elseif guild == 4 then UpgradeTownBuilding(town,TOWN_BUILDING_SPECIAL_1,1) UpgradeTownBuilding(town,TOWN_BUILDING_SPECIAL_1,1) UpgradeTownBuilding(town,TOWN_BUILDING_SPECIAL_3,1) UpgradeTownBuilding(town,TOWN_BUILDING_SPECIAL_1,1)
-				elseif guild == 5 then UpgradeTownBuilding(town,TOWN_BUILDING_SPECIAL_1,1) UpgradeTownBuilding(town,TOWN_BUILDING_SPECIAL_1,1) UpgradeTownBuilding(town,TOWN_BUILDING_SPECIAL_3,1) UpgradeTownBuilding(town,TOWN_BUILDING_SPECIAL_1,1) end;
-			end;
-
-			--Special buildings
-			if herorace ~= 1 and herorace ~= 2 and herorace ~= 3 and herorace ~= 8 then
-				if special3 == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_SPECIAL_3,1) end;
-			end;
-			if herorace == 2 then
-				if special1 == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_SPECIAL_0,1) end;
-			elseif herorace ~= 8 then
-				if special1 == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_SPECIAL_1,1) end;
-			end;
-			if herorace == 6 then
-				if special2 == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_SPECIAL_6,1) end;
-			else
-				if special2 == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_SPECIAL_2,1) end;
-			end;
-			if herorace ~= 4 and herorace ~= 5 and herorace ~= 6 then
-				if special5 == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_SPECIAL_5,1) end;
-			end;
-
-			--Crash Protection
-			if herorace == 5 then SetTownBuildingLimitLevel(town,TOWN_BUILDING_SPECIAL_3,1) end;
-			if herorace == 6 then SetTownBuildingLimitLevel(town,TOWN_BUILDING_SPECIAL_4,1) end;
-
-		H55_EndSpinlock();
-		sleep(3);
-	end;
-end;
-
-function H55_ConvertNowAI(town,player,playerrace)
-	local towntype = H55_GetTownRaceID(playerrace);
-	local townrace = H55_GetTownRace(town);
-
-	local tavern = GetTownBuildingLevel(town,TOWN_BUILDING_TAVERN);
-	local marketplace = GetTownBuildingLevel(town,TOWN_BUILDING_MARKETPLACE);
-	local blacksmith = GetTownBuildingLevel(town,TOWN_BUILDING_BLACKSMITH);
-	local fort = GetTownBuildingLevel(town,TOWN_BUILDING_FORT);
-	local townhall = GetTownBuildingLevel(town,TOWN_BUILDING_TOWN_HALL);
-	local dwelling1 = GetTownBuildingLevel(town,TOWN_BUILDING_DWELLING_1);
-	local dwelling2 = GetTownBuildingLevel(town,TOWN_BUILDING_DWELLING_2);
-	local dwelling3 = GetTownBuildingLevel(town,TOWN_BUILDING_DWELLING_3);
-	local dwelling4 = GetTownBuildingLevel(town,TOWN_BUILDING_DWELLING_4);
-	local dwelling5 = GetTownBuildingLevel(town,TOWN_BUILDING_DWELLING_5);
-	local dwelling6 = GetTownBuildingLevel(town,TOWN_BUILDING_DWELLING_6);
-	local dwelling7 = GetTownBuildingLevel(town,TOWN_BUILDING_DWELLING_7);
-	local shipyard = GetTownBuildingLevel(town,TOWN_BUILDING_SHIPYARD);
-	local guild = 0;
-	if townrace ~= 8 then
-		guild = GetTownBuildingLevel(town,TOWN_BUILDING_MAGIC_GUILD);
-	end;
-	local grail = GetTownBuildingLevel(town,TOWN_BUILDING_GRAIL);
-	local special1 = 0;
-	local special2 = 0;
-	local special3 = 0;
-	local special4 = GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_4);
-	local special5 = 0;
-	if townrace ~= 1 and townrace ~= 2 and townrace ~= 3 then
-		special3 = GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_3);
-	end;
-	if townrace == 2 then
-		special1 = GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_0);
-	else
-		special1 = GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_1);
-	end;
-	if townrace == 6 then
-		special2 = GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_6);
-	else
-		special2 = GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_2);
-	end;
-	if townrace ~= 4 and townrace ~= 5 and townrace ~= 6 then
-		special5 = GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_5);
-	else
-		special5 = 0;
-	end;
-	local guildconversionpoints = special1+special3+1;
-
-	TransformTown(town,towntype);
-
-	H55_AmountAIConversions = H55_AmountAIConversions+1;
-
-	sleep(1);
-
-		if tavern == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_TAVERN,1) end;
-		if marketplace == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_MARKETPLACE,1)
-	elseif marketplace == 2 then UpgradeTownBuilding(town,TOWN_BUILDING_MARKETPLACE,1) UpgradeTownBuilding(town,TOWN_BUILDING_MARKETPLACE,1) end;
-		if blacksmith == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_BLACKSMITH,1) end;
-		if fort == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_FORT,1)
-	elseif fort == 2 then UpgradeTownBuilding(town,TOWN_BUILDING_FORT,1) UpgradeTownBuilding(town,TOWN_BUILDING_FORT,1)
-	elseif fort == 3 then UpgradeTownBuilding(town,TOWN_BUILDING_FORT,1) UpgradeTownBuilding(town,TOWN_BUILDING_FORT,1) UpgradeTownBuilding(town,TOWN_BUILDING_FORT,1) end;
-		if townhall == 2 then UpgradeTownBuilding(town,TOWN_BUILDING_TOWN_HALL,1)
-	elseif townhall == 3 then UpgradeTownBuilding(town,TOWN_BUILDING_TOWN_HALL,1) UpgradeTownBuilding(town,TOWN_BUILDING_TOWN_HALL,1) end;
-		if dwelling1 == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_1,1)
-	elseif dwelling1 == 2 then UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_1,1) UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_1,1) end;
-		if dwelling2 == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_2,1)
-	elseif dwelling2 == 2 then UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_2,1) UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_2,1) end;
-		if dwelling3 == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_3,1)
-	elseif dwelling3 == 2 then UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_3,1) UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_3,1) end;
-		if dwelling4 == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_4,1)
-	elseif dwelling4 == 2 then UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_4,1) UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_4,1) end;
-		if dwelling5 == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_5,1)
-	elseif dwelling5 == 2 then UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_5,1) UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_5,1) end;
-		if dwelling6 == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_6,1)
-	elseif dwelling6 == 2 then UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_6,1) UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_6,1) end;
-		if dwelling7 == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_7,1)
-	elseif dwelling7 == 2 then UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_7,1) UpgradeTownBuilding(town,TOWN_BUILDING_DWELLING_7,1) end;
-		if shipyard == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_SHIPYARD,1) end;
-		if grail == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_GRAIL,1) end;
-
-		if playerrace ~= 8 and townrace ~= 8 then
-				if guild == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1)
-			elseif guild == 2 then UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1)
-			elseif guild == 3 then UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1)
-			elseif guild == 4 then UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1)
-			elseif guild == 5 then UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) end;
-		end;
-
-		if playerrace ~= 8 and townrace == 8 then
-				if guildconversionpoints == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1)
-			elseif guildconversionpoints == 2 then UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1)
-			elseif guildconversionpoints == 3 then UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1)
-			elseif guildconversionpoints == 4 then UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1)
-			elseif guildconversionpoints == 5 then UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) UpgradeTownBuilding(town,TOWN_BUILDING_MAGIC_GUILD,1) end;
-		end;
-
-		if playerrace == 8 then
-				if guild == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_SPECIAL_1,1)
-			elseif guild == 2 then UpgradeTownBuilding(town,TOWN_BUILDING_SPECIAL_1,1) UpgradeTownBuilding(town,TOWN_BUILDING_SPECIAL_1,1)
-			elseif guild == 3 then UpgradeTownBuilding(town,TOWN_BUILDING_SPECIAL_1,1) UpgradeTownBuilding(town,TOWN_BUILDING_SPECIAL_1,1) UpgradeTownBuilding(town,TOWN_BUILDING_SPECIAL_3,1)
-			elseif guild == 4 then UpgradeTownBuilding(town,TOWN_BUILDING_SPECIAL_1,1) UpgradeTownBuilding(town,TOWN_BUILDING_SPECIAL_1,1) UpgradeTownBuilding(town,TOWN_BUILDING_SPECIAL_3,1) UpgradeTownBuilding(town,TOWN_BUILDING_SPECIAL_1,1)
-			elseif guild == 5 then UpgradeTownBuilding(town,TOWN_BUILDING_SPECIAL_1,1) UpgradeTownBuilding(town,TOWN_BUILDING_SPECIAL_1,1) UpgradeTownBuilding(town,TOWN_BUILDING_SPECIAL_3,1) UpgradeTownBuilding(town,TOWN_BUILDING_SPECIAL_1,1) end;
-		end;
-
-		--Special buildings
-		if playerrace ~= 1 and playerrace ~= 2 and playerrace ~= 3 and playerrace ~= 8 then
-			if special3 == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_SPECIAL_3,1) end;
-		end;
-		if playerrace == 2 then
-			if special1 == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_SPECIAL_0,1) end;
-		elseif playerrace ~= 8 then
-			if special1 == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_SPECIAL_1,1) end;
-		end;
-		if playerrace == 6 then
-			if special2 == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_SPECIAL_6,1) end;
-		else
-			if special2 == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_SPECIAL_2,1) end;
-		end;
-		if playerrace ~= 4 and playerrace ~= 5 and playerrace ~= 6 then
-			if special5 == 1 then UpgradeTownBuilding(town,TOWN_BUILDING_SPECIAL_5,1) end;
-		end;
-
-		--Crash Protection
-		if playerrace == 5 then DestroyTownBuildingToLevel(town,TOWN_BUILDING_SPECIAL_3,0,0) end;
-		if playerrace == 6 then DestroyTownBuildingToLevel(town,TOWN_BUILDING_SPECIAL_4,0,0) end;
-end;
-
-----------------------------------------------------------------------------------------------------------------------------------------------------
---WEEKLY CONTINUES EVENT
-----------------------------------------------------------------------------------------------------------------------------------------------------
-
-function H55_WeeklyEvents(player)
-
-	------------------------------------------------------------------------------------------------------------------------------------------------
-	H55_DEBUG = {1,"AI Cheating",player,""};--------------------------------------------------------------------------------------------------------
-	------------------------------------------------------------------------------------------------------------------------------------------------
-
-	local alltowns = GetObjectNamesByType("TOWN");
-	local haventowns = GetObjectNamesByType("TOWN_HEAVEN");
-	local sylvantowns = GetObjectNamesByType("TOWN_PRESERVE");
-	local academytowns = GetObjectNamesByType("TOWN_ACADEMY");
-	local strongholdtowns = GetObjectNamesByType("TOWN_STRONGHOLD");
-	local dungeontowns = GetObjectNamesByType("TOWN_DUNGEON");
-	local necropolistowns = GetObjectNamesByType("TOWN_NECROMANCY");
-	local infernotowns = GetObjectNamesByType("TOWN_INFERNO");
-	local fortresstowns = GetObjectNamesByType("TOWN_FORTRESS");
-
-	if H55_GameMode == 0 and H55_IsThisAIPlayer(player) == 1 then
-		local currentamount = GetPlayerResource(player,6);
-		local difficulty = GetDifficulty();
-		local mapsizecoef = H55_AIMapSizeCoef();
-		local difficultycoef = H55_AIDifficultyCoef();
-		local timercoef = H55_AITimerCoef();
-		local killercoef = H55_AIKillMode;
-		local cheatcoef = H55_AICheatSetting();
-		local growthcoef = mapsizecoef*difficultycoef*timercoef*cheatcoef*killercoef;
-		local towncoef = 0.5 + (0.5 * (length(H55_GetPlayerTowns(player))));
-		local addedamount = H55_Round(growthcoef*(towncoef*20000));
-		--local addedamount = H55_Round( towncoef*( (10000*killercoef) + (difficulty*(5000*killercoef)) ) );
-		H55_GlobalWeeklyGoldPayout[player] = H55_GlobalWeeklyGoldPayout[player]+addedamount;
-		H55_AICheatValue = growthcoef; --Testing Purpose
-		for i,town in alltowns do
-			if (GetObjectOwner(town) == player) then
-				local townrace = H55_GetTownRace(town);
-				if GetTownBuildingLevel(town, TOWN_BUILDING_DWELLING_1) >= 1 then
-					SetObjectDwellingCreatures(town, H55_Creatures[townrace][1][1], GetObjectDwellingCreatures(town,H55_Creatures[townrace][1][1]) + (H55_Round(growthcoef*(H55_CreaturesGrowth[townrace][1]))));
-				end;
-				if GetTownBuildingLevel(town, TOWN_BUILDING_DWELLING_2) >= 1 then
-					SetObjectDwellingCreatures(town, H55_Creatures[townrace][2][1], GetObjectDwellingCreatures(town,H55_Creatures[townrace][2][1]) + (H55_Round(growthcoef*(H55_CreaturesGrowth[townrace][2]))));
-				end;
-				if GetTownBuildingLevel(town, TOWN_BUILDING_DWELLING_3) >= 1 then
-					SetObjectDwellingCreatures(town, H55_Creatures[townrace][3][1], GetObjectDwellingCreatures(town,H55_Creatures[townrace][3][1]) + (H55_Round(growthcoef*(H55_CreaturesGrowth[townrace][3]))));
-				end;
-				if GetTownBuildingLevel(town, TOWN_BUILDING_DWELLING_4) >= 1 then
-					SetObjectDwellingCreatures(town, H55_Creatures[townrace][4][1], GetObjectDwellingCreatures(town,H55_Creatures[townrace][4][1]) + (H55_Round(growthcoef*(H55_CreaturesGrowth[townrace][4]))));
-				end;
-				if GetTownBuildingLevel(town, TOWN_BUILDING_DWELLING_5) >= 1 then
-					SetObjectDwellingCreatures(town, H55_Creatures[townrace][5][1], GetObjectDwellingCreatures(town,H55_Creatures[townrace][5][1]) + (H55_Round(growthcoef*(H55_CreaturesGrowth[townrace][5]))));
-				end;
-				if GetTownBuildingLevel(town, TOWN_BUILDING_DWELLING_6) >= 1 and (difficulty >=1) then
-					SetObjectDwellingCreatures(town, H55_Creatures[townrace][6][1], GetObjectDwellingCreatures(town,H55_Creatures[townrace][6][1]) + (H55_Round(growthcoef*(H55_CreaturesGrowth[townrace][6]))));
-				end;
-				if GetTownBuildingLevel(town, TOWN_BUILDING_DWELLING_7) >= 1 and (difficulty >=2) then
-					SetObjectDwellingCreatures(town, H55_Creatures[townrace][7][1], GetObjectDwellingCreatures(town,H55_Creatures[townrace][7][1]) + (H55_Round(growthcoef*(H55_CreaturesGrowth[townrace][7]))));
-				end;
-			end;
-		end;
-	end;
-
-	------------------------------------------------------------------------------------------------------------------------------------------------
-	H55_DEBUG = {2,"Suppliers",player,""};----------------------------------------------------------------------------------------------------------
-	------------------------------------------------------------------------------------------------------------------------------------------------
-
-	if H55_MysticalGardens ~= nil then
-		local gardengold = 0;
-		local gardengems = 0;
-		local gardenbonus = H55_NetworkSkillAmount[player];
-		for i,garden in H55_MysticalGardens do
-			if H55_MysticalGardensOwned[garden] == player then
-				if H55_WeeklyMysticalGardenRes[garden] == 0 then
-					gardengold = gardengold + 500;
-					if gardenbonus >= 1 then
-						gardengold = gardengold + (gardenbonus*250);
-					end;
-				elseif H55_WeeklyMysticalGardenRes[garden] == 1 then
-					gardengems = gardengems + 5 + gardenbonus;
-				end;
-			end;
-		end;
-		if gardengold > 0 then
-			H55_GlobalWeeklyGoldPayout[player] = H55_GlobalWeeklyGoldPayout[player]+gardengold;
-		end;
-		if gardengems > 0 then
-			H55_GlobalWeeklyGemPayout[player] = H55_GlobalWeeklyGemPayout[player]+gardengems;
-		end;
-	end;
-
-	if H55_SiegeWorkshops ~= nil then
-		local workshopwood = 0;
-		local workshopore = 0;
-		local workshopbonus = H55_NetworkSkillAmount[player];
-		for i,workshop in H55_SiegeWorkshops do
-			if H55_SiegeWorkshopsOwned[workshop] == player then
-				workshopwood = workshopwood + H55_WeeklySiegeWorkshopResQty[workshop] + workshopbonus;
-				workshopore = workshopore + H55_WeeklySiegeWorkshopResQty[workshop] + workshopbonus;
-			end;
-		end;
-		if workshopwood > 0 then
-			H55_GlobalWeeklyWoodPayout[player] = H55_GlobalWeeklyWoodPayout[player]+workshopwood;
-		end;
-		if workshopore > 0 then
-			H55_GlobalWeeklyOrePayout[player] = H55_GlobalWeeklyOrePayout[player]+workshopore;
-		end;
-	end;
-
-	if H55_Windmills ~= nil then
-		local millore = 0;
-		local millmercury = 0;
-		local millcrystal = 0;
-		local millsulphur = 0;
-		local millgems = 0;
-		local millbonus = H55_NetworkSkillAmount[player];
-		for i,mill in H55_Windmills do
-			if H55_WindmillsOwned[mill] == player then
-				if H55_WeeklyWindmillRes[mill] == 1 then
-					millore = millore + H55_WeeklyWindmillResQty[mill] + millbonus;
-				elseif H55_WeeklyWindmillRes[mill] == 2 then
-					millmercury = millmercury + H55_WeeklyWindmillResQty[mill] + millbonus;
-				elseif H55_WeeklyWindmillRes[mill] == 3 then
-					millcrystal = millcrystal + H55_WeeklyWindmillResQty[mill] + millbonus;
-				elseif H55_WeeklyWindmillRes[mill] == 4 then
-					millsulphur = millsulphur + H55_WeeklyWindmillResQty[mill] + millbonus;
-				else
-					millgems = millgems + H55_WeeklyWindmillResQty[mill] + millbonus;
-				end;
-			end;
-		end;
-		if millore > 0 then
-			H55_GlobalWeeklyOrePayout[player] = H55_GlobalWeeklyOrePayout[player]+millore;
-		end;
-		if millmercury > 0 then
-			H55_GlobalWeeklyMercuryPayout[player] = H55_GlobalWeeklyMercuryPayout[player]+millmercury;
-		end;
-		if millcrystal > 0 then
-			H55_GlobalWeeklyCrystalPayout[player] = H55_GlobalWeeklyCrystalPayout[player]+millcrystal;
-		end;
-		if millsulphur > 0 then
-			H55_GlobalWeeklySulphurPayout[player] = H55_GlobalWeeklySulphurPayout[player]+millsulphur;
-		end;
-		if millgems > 0 then
-			H55_GlobalWeeklyGemPayout[player] = H55_GlobalWeeklyGemPayout[player]+millgems;
-		end;
-	end;
-
-	if H55_Waterwheels ~= nil then
-		local wheelgold = 0;
-		local wheelbonus = H55_NetworkSkillAmount[player];
-		for i,wheel in H55_Waterwheels do
-			if H55_WaterwheelsOwned[wheel] == player then
-				wheelgold = wheelgold + 1000;
-				if wheelbonus >= 1 then
-					wheelgold = wheelgold + (wheelbonus*500);
-				end;
-			end;
-		end;
-		if wheelgold > 0 then
-			H55_GlobalWeeklyGoldPayout[player] = H55_GlobalWeeklyGoldPayout[player]+wheelgold;
-		end;
-	end;
-
-	if H55_GetPlayerShatterStrength(player) >= 0.03 then
-		--local race = H55_GetPlayerRace(player);
-		local towns = H55_GetPlayerTowns(player);
-		--local elemtype = H55_GetRaceElementalType(race);
-		local multiplier = H55_GetPlayerShatterStrength(player);
-		if (length(towns) > 0) then
-			for i,town in towns do
-				local townrace = H55_GetTownRace(town);
-				local elemtype = H55_GetRaceElementalTypeID(townrace);
-				if townrace == 8 then
-					local growth = 2+(GetTownBuildingLevel(town, TOWN_BUILDING_SPECIAL_1))+(GetTownBuildingLevel(town, TOWN_BUILDING_SPECIAL_3));
-					local totalgrowth = H55_Round(multiplier*growth);
-					if totalgrowth >= 1 then
-						AddObjectCreatures(town,elemtype,totalgrowth);
-						if H55_IsThisAIPlayer(player) ~= 1 then
-							ShowFlyingSign({"/Text/Game/Scripts/Garrison.txt"; num=totalgrowth},town,player,5);
-							sleep(1);
-						end;
-					end;
-				else
-					local growth = 1+GetTownBuildingLevel(town, TOWN_BUILDING_MAGIC_GUILD);
-					local totalgrowth = H55_Round(multiplier*growth);
-					if totalgrowth >= 1 then
-						AddObjectCreatures(town,elemtype,totalgrowth);
-						if H55_IsThisAIPlayer(player) ~= 1 then
-							ShowFlyingSign({"/Text/Game/Scripts/Garrison.txt"; num=totalgrowth},town,player,5);
-							sleep(1);
-						end;
-					end;
-				end;
-			end;
-		end;
-	end;
-
-	------------------------------------------------------------------------------------------------------------------------------------------------
-	H55_DEBUG = {3,"Economic Weekly",player,""};----------------------------------------------------------------------------------------------------
-	------------------------------------------------------------------------------------------------------------------------------------------------
-
-	local heroes = GetPlayerHeroes(player);
-	if heroes~=nil then
-
-		--Economic specs
-
-		-- by 牙姐
-		--begin
-		if contains(heroes,"Jenova") ~= nil then
-			if H55_JenovaReceived == 0 then
-				local i_level = GetHeroLevel("Jenova");
-				local i_gold = 1500 + i_level * 150;
-				H55_GlobalWeeklyGoldPayout[player] = H55_GlobalWeeklyGoldPayout[player] + i_gold;
-				H55_JenovaReceived = 1;
-			end;
-		end;
-		if contains(heroes,"Quroq") ~= nil then
-			if H55_QuroqReceived == 0 then
-				local i_level = GetHeroLevel("Quroq");
-				local i_city = length(strongholdtowns);
-				local i_slave = 0;
-				if i_city > 0 then
-					for i, town in strongholdtowns do
-						if (GetObjectOwner(town) == player) then
-							if GetTownBuildingLevel(town, TOWN_BUILDING_STRONGHOLD_SLAVE_MARKET) ~= 0 then
-								i_slave = i_slave + 1;
-							end;
-						end;
-					end;
-				end;
-				local type = H55_ArmyInfoSimple("Quroq");
-				local i_race_0 = 0;
-				local i_race_1 = 0;
-				local i_race_2 = 0;
-				local i_race_3 = 0;
-				local i_race_4 = 0;
-				local i_race_5 = 0;
-				local i_race_6 = 0;
-				local i_race_7 = 0;
-				local i_race_8 = 0;
-
-				for i = 0, 6 do
-					for j = 1, 8 do
-						for k = 1, 7 do
-							for l = 1, 3 do
-								if type[i] == H55_Creatures[j][k][l] then
-									if j == 1 then
-										i_race_1 = 1;
-									elseif j == 2 then
-										i_race_2 = 1;
-									elseif j == 3 then
-										i_race_3 = 1;
-									elseif j == 4 then
-										i_race_4 = 1;
-									elseif j == 5 then
-										i_race_5 = 1;
-									elseif j == 6 then
-										i_race_6 = 1;
-									elseif j == 7 then
-										i_race_7 = 1;
-									elseif j == 8 then
-										i_race_8 = 1;
-									end;
-								end;
-							end;
-						end;
-					end;
-				end;
-				for i = 0, 6 do
-					for j = 1, 9 do
-						if type[i] == H55_NeutralCreatures[j] then
-							i_race_0 = 1;
-						end;
-					end;
-				end;
-				local i_race = i_race_0 + i_race_1 + i_race_2 + i_race_3 + i_race_4 + i_race_5 + i_race_6 + i_race_7 + i_race_8;
-				local i_gold = H55_Round((500 + i_level * 50) * (1 + i_slave * 0.5) * (1 + i_race * 0.5));
-				H55_GlobalWeeklyGoldPayout[player] = H55_GlobalWeeklyGoldPayout[player] + i_gold;
-				H55_QuroqReceived = 1;
-			end;
-		end;
-		if contains(heroes,"Ufretin") ~= nil then
-			if H55_UfretinReceived == 0 then
-				local i_level = GetHeroLevel("Ufretin");
-				local i_city = length(H55_GetPlayerTowns(player));
-				local i_gold = 500 + H55_Floor(GetPlayerResource(player, 6) * (0.01 * i_level + 0.1 * i_city));
-				H55_GlobalWeeklyGoldPayout[player] = H55_GlobalWeeklyGoldPayout[player] + i_gold;
-				H55_UfretinReceived = 1;
-			end;
-		end;
-		if contains(heroes,"RedHeavenHero06") ~= nil then
-			print("-------------------------------------------------------------------------------")
-			print("RedHeavenHero06 Event begin")
-			local i_level = GetHeroLevel("RedHeavenHero06");
-			if H55_RedHeavenHero06Received == 0 then
-				H55_GlobalWeeklySulphurPayout[player] = H55_GlobalWeeklySulphurPayout[player] + i_level;
-				H55_GlobalWeeklyCrystalPayout[player] = H55_GlobalWeeklyCrystalPayout[player] + i_level;
-				H55_GlobalWeeklyGemPayout[player] = H55_GlobalWeeklyGemPayout[player] + i_level;
-				H55_GlobalWeeklyMercuryPayout[player] = H55_GlobalWeeklyMercuryPayout[player] + i_level;
-				H55_RedHeavenHero06Received = 1;
-			end;
-			print("RedHeavenHero06 Event end")
-			print("-------------------------------------------------------------------------------")
-		end;
-		--end
-
-		------------------------------------------------------------------------------------------------------------------------------------------------
-		H55_DEBUG = {4,"Reinforcements",player,""};-----------------------------------------------------------------------------------------------------
-		------------------------------------------------------------------------------------------------------------------------------------------------
-
-		----  by 牙姐
-		-- if contains(heroes,"Archilus") ~= nil then
-		-- 	H55_WeeklyReinforce("Archilus", player, 6, STAT_KNOWLEDGE, 90, -1);
-		-- end;
-		-- if contains(heroes,"Thant") ~= nil then
-		-- 	H55_WeeklyReinforce("Thant", player, 5, STAT_KNOWLEDGE, 116, DEMON_FEAT_EXPLODING_CORPSES);
-		-- end;
-		-- if contains(heroes,"Azar") ~= nil then
-		-- 	H55_WeeklyReinforce("Azar", player, 4, STAT_ATTACK, 113, HERO_SKILL_DEFEND_US_ALL);
-		-- end;
-		-- if contains(heroes,"Gelu") ~= nil then
-		-- 	H55_WeeklyReinforce("Gelu", player, 7, STAT_ATTACK, 114, -1);
-		-- end;
-		-- if contains(heroes,"Welygg") ~= nil then
-		-- 	H55_WeeklyReinforce("Welygg", player, 6, STAT_ATTACK, 115, PERK_DIPLOMACY);
-		-- end;
-		-- if contains(heroes,"Davius") ~= nil then
-		-- 	H55_WeeklyReinforce("Davius", player, 6, STAT_ATTACK, -1, -1);
-		-- end;
-
-			--heaven
-			if contains(heroes, "Nathaniel") ~= nil then
-				H55_WeeklyReinforce("Nathaniel", player, 1, STAT_KNOWLEDGE, -1, -1);
-			end;
-			if contains(heroes, "Orrin") ~= nil then
-				H55_WeeklyReinforce("Orrin", player, 2, STAT_KNOWLEDGE, -1, -1);
-			end;
-			if contains(heroes, "Mardigo") ~= nil then
-				H55_WeeklyReinforce("Mardigo", player, 3, STAT_KNOWLEDGE, -1, -1);
-			end;
-			if contains(heroes, "Ving") ~= nil then
-				H55_WeeklyReinforce("Ving", player, 4, STAT_KNOWLEDGE, -1, -1);
-			end;
-			if contains(heroes, "Sarge") ~= nil then
-				H55_WeeklyReinforce("Sarge", player, 6, STAT_KNOWLEDGE, -1, -1);
-			end;
-			--preserve
-			if contains(heroes, "Gillion") ~= nil then
-				H55_WeeklyReinforce("Gillion", player, 2, STAT_KNOWLEDGE, -1, -1);
-			end;
-			if contains(heroes, "Ossir") ~= nil then
-				H55_WeeklyReinforce("Ossir", player, 3, STAT_KNOWLEDGE, -1, -1);
-			end;
-			if contains(heroes, "Itil") ~= nil then
-				H55_WeeklyReinforce("Itil", player, 5, STAT_KNOWLEDGE, -1, -1);
-			end;
-			if contains(heroes, "Gelu") ~= nil then
-				H55_WeeklyReinforce("Gelu", player, 6, STAT_KNOWLEDGE, 114, -1);
-			end;
-			--necropolis
-			if contains(heroes, "Straker") ~= nil then
-				H55_WeeklyReinforce("Straker", player, 2, STAT_KNOWLEDGE, -1, -1);
-			end;
-			if contains(heroes, "Muscip") ~= nil then
-				H55_WeeklyReinforce("Muscip", player, 3, STAT_KNOWLEDGE, -1, -1);
-			end;
-			if contains(heroes, "Tamika") ~= nil then
-				H55_WeeklyReinforce("Tamika", player, 4, STAT_KNOWLEDGE, -1, -1);
-			end;
-			if contains(heroes, "Thant") ~= nil then
-				H55_WeeklyReinforce("Thant", player, 5, STAT_KNOWLEDGE, 116, DEMON_FEAT_EXPLODING_CORPSES);
-			end;
-			if contains(heroes, "Adelaide") ~= nil then
-				H55_WeeklyReinforce("Adelaide", player, 5, STAT_KNOWLEDGE, 935, DEMON_FEAT_EXPLODING_CORPSES);
-			end;
-			if contains(heroes, "Archilus") ~= nil then
-				H55_WeeklyReinforce("Archilus", player, 6, STAT_KNOWLEDGE, 90, -1);
-			end;
-			--fortress
-			if contains(heroes, "Ingvar") ~= nil then
-				H55_WeeklyReinforce("Ingvar", player, 1, STAT_KNOWLEDGE, -1, -1);
-			end;
-			if contains(heroes, "Skeggy") ~= nil then
-				H55_WeeklyReinforce("Skeggy", player, 2, STAT_KNOWLEDGE, -1, -1);
-			end;
-			if contains(heroes, "Bersy") ~= nil then
-				H55_WeeklyReinforce("Bersy", player, 3, STAT_KNOWLEDGE, -1, -1);
-			end;
-			if contains(heroes, "Egil") ~= nil then
-				H55_WeeklyReinforce("Egil", player, 5, STAT_KNOWLEDGE, -1, -1);
-			end;
-			--stronghold
-			if contains(heroes, "Hero9") ~= nil then
-				H55_WeeklyReinforce("Hero9", player, 1, STAT_KNOWLEDGE, -1, -1);
-			end;
-			if contains(heroes, "Hero7") ~= nil then
-				H55_WeeklyReinforce("Hero7", player, 2, STAT_KNOWLEDGE, -1, -1);
-			end;
-			if contains(heroes, "Hero8") ~= nil then
-				H55_WeeklyReinforce("Hero8", player, 3, STAT_KNOWLEDGE, -1, -1);
-			end;
-			if contains(heroes, "Azar") ~= nil then
-				H55_WeeklyReinforce("Azar", player, 4, STAT_KNOWLEDGE, 113, HERO_SKILL_DEFEND_US_ALL);
-			end;
-			if contains(heroes, "Hero6") ~= nil then
-				H55_WeeklyReinforce("Hero6", player, 6, STAT_KNOWLEDGE, -1, -1);
-			end;
-			--inferno
-			if contains(heroes, "Calid") ~= nil then
-				H55_WeeklyReinforce("Calid", player, 3, STAT_KNOWLEDGE, -1, -1);
-			end;
-			if contains(heroes, "Oddrema") ~= nil then
-				H55_WeeklyReinforce("Oddrema", player, 4, STAT_KNOWLEDGE, -1, -1);
-			end;
-			--academy
-			if contains(heroes, "Havez") ~= nil then
-				H55_WeeklyReinforce("Havez", player, 1, STAT_KNOWLEDGE, -1, -1);
-			end;
-			if contains(heroes, "Isher") ~= nil then
-				H55_WeeklyReinforce("Isher", player, 3, STAT_KNOWLEDGE, -1, -1);
-			end;
-			if contains(heroes, "Razzak") ~= nil then
-				H55_WeeklyReinforce("Razzak", player, 4, STAT_KNOWLEDGE, -1, -1);
-			end;
-			if contains(heroes, "Davius") ~= nil then
-				H55_WeeklyReinforce("Davius", player, 6, STAT_KNOWLEDGE, -1, -1);
-			end;
-			--dungeon
-			if contains(heroes, "Ohtarig") ~= nil then
-				H55_WeeklyReinforce("Ohtarig", player, 1, STAT_KNOWLEDGE, -1, -1);
-			end;
-			if contains(heroes, "Urunir") ~= nil then
-				H55_WeeklyReinforce("Urunir", player, 2, STAT_KNOWLEDGE, -1, -1);
-			end;
-			if contains(heroes, "Menel") ~= nil then
-				H55_WeeklyReinforce("Menel", player, 3, STAT_KNOWLEDGE, -1, -1);
-			end;
-			if contains(heroes, "Ferigl") ~= nil then
-				H55_WeeklyReinforce("Ferigl", player, 4, STAT_KNOWLEDGE, -1, -1);
-			end;
-			if contains(heroes, "Eruina") ~= nil then
-				H55_WeeklyReinforce("Eruina", player, 6, STAT_KNOWLEDGE, -1, -1);
-			end;
-			if contains(heroes, "Welygg") ~= nil then
-				H55_WeeklyReinforce("Welygg", player, 6, STAT_KNOWLEDGE, 115, PERK_DIPLOMACY);
-			end;
+			function TTH_ARTI.init1034Hero(iPlayer, strHero) -- 赠送玩家初始英雄一个回城令
+				TTH_MAIN.debug("TTH_ARTI.init1034Hero", iPlayer, strHero);
 
-		---- end
-
-		------------------------------------------------------------------------------------------------------------------------------------------------
-		H55_DEBUG = {5,"Recruits",player,""};-----------------------------------------------------------------------------------------------------------
-		------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-
-		for i,hero in heroes do
-
-		------------------------------------------------------------------------------------------------------------------------------------------------
-		H55_DEBUG = {6,"Summons",player,hero};----------------------------------------------------------------------------------------------------------
-		------------------------------------------------------------------------------------------------------------------------------------------------
-
-			if H55_GetHeroClass(hero) == "Demonlord" or H55_GetHeroClass(hero) == "Sorcerer" then
-				if HasHeroSkill(hero,SKILL_GATING) == nil then
-					local cities = H55_GetAlignedTownsOwned(hero,player)
-					local multiplier = 0;
-					if cities ~= nil then
-						for i,city in cities do
-							if GetTownBuildingLevel(city,TOWN_BUILDING_SPECIAL_1) == 1 then
-								multiplier = multiplier+1;
-							end;
-						end;
-					end;
-					if multiplier >= 1 then
-						H55_InfernalLoom(hero,player,20,133,19,H55_T3_COEF,multiplier);
-					end;
-				end;
-			end;
-			if contains(H55_NecropolisHeroes,hero) ~= nil and GetHeroLevel(hero) >= 20 then
-				if HasHeroSkill(hero,PERK_NO_REST_FOR_THE_WICKED) ~= nil then
-					local knowledge = GetHeroStat(hero,STAT_KNOWLEDGE);
-					if knowledge >= 1 then
-						H55_DefendUsDaily(hero,player,30,152,29,knowledge);
-					end;
-				end;
-			end;
-			if (HasHeroSkill(hero,KNIGHT_FEAT_GUARDIAN_ANGEL) ~= nil) and (H55_GuardianAngelOwners[hero] ~= 1) then
-				H55_GuardianAngelOwners[hero] = 1;
-			end;
-			if (HasHeroSkill(hero,KNIGHT_FEAT_GUARDIAN_ANGEL) == nil) and (H55_GuardianAngelOwners[hero] == 1) then
-				H55_GuardianAngelOwners[hero] = 0;
-			end;
-			if H55_GuardianAngelOwners[hero] == 1 and H55_DivineGuardiansReceived[player] ~= 1 then
-				local level = GetHeroLevel(hero);
-				local race = H55_GetHeroRaceNum(hero);
-				local towns = H55_GetAlignedTownsOwned(hero,player);
-				local growth = 1;
-				if length(towns) >= 1 then
-					for i,town in towns do
-						if GetTownBuildingLevel(town, TOWN_BUILDING_DWELLING_7) >= 1 then
-							SetObjectDwellingCreatures(town, H55_Creatures[race][7][1], GetObjectDwellingCreatures(town,H55_Creatures[race][7][1]) + growth);
-							if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-								ShowFlyingSign({"/Text/Game/Scripts/Recruits.txt"; num=growth},hero,player,5);
-								sleep(8);
-							else
-								sleep(2);
-							end;
-						end;
-					end;
-				end;
-				H55_DivineGuardiansReceived[player] = 1;
-			end;
-			if (HasHeroSkill(hero,DEMON_FEAT_EXPLODING_CORPSES) ~= nil) and (H55_ExplodingCorpsesOwners[hero] ~= 1) then
-				H55_ExplodingCorpsesOwners[hero] = 1;
-			end;
-			if (HasHeroSkill(hero,DEMON_FEAT_EXPLODING_CORPSES) == nil) and (H55_ExplodingCorpsesOwners[hero] == 1) then
-				H55_ExplodingCorpsesOwners[hero] = 0;
-			end;
-			if H55_ExplodingCorpsesOwners[hero] == 1 then
-				local type = H55_ArmyInfoSimple(hero);
-				local knowledge = GetHeroStat(hero,STAT_KNOWLEDGE);
-				--local multiplier = H55_GetJoinSpecMultiplier(hero,player);
-				local racenum = H55_GetHeroRaceNum(hero);
-				-- local coef = 0.4;
-				local coef = 0.25;
-				-- if racenum == 2 then
-				-- 	coef = 0.33;
-				-- end;
-				if racenum == 3 or racenum == 6 then
-					coef = 0.17;
-				end;
-				if racenum == 5 or racenum == 8 then
-					coef = 0.42;
-				end;
-				local growth = H55_Round(coef*knowledge);
-				if growth >= 1 then
-					local cityrace = H55_GetHeroRace(hero);
-					local castertypes = H55_GetRaceCasterTypes(cityrace);
-					for i = 0,6 do
-						if((type[i] == castertypes[1]) and (H55_SpellcastersReceived[player] ~= 1) and (growth >= 1)) then
-							AddHeroCreatures(hero,castertypes[1],growth);
-							H55_SpellcastersReceived[player] = 1;
-							if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-								ShowFlyingSign({"/Text/Game/Scripts/Reinforcements.txt"; num=growth},hero,player,5)
-								sleep(8);
-							end;
-						elseif((type[i] == castertypes[2]) and (H55_SpellcastersReceived[player] ~= 1) and (growth >= 1)) then
-							AddHeroCreatures(hero,castertypes[2],growth);
-							H55_SpellcastersReceived[player] = 1;
-							if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-								ShowFlyingSign({"/Text/Game/Scripts/Reinforcements.txt"; num=growth},hero,player,5)
-								sleep(8);
-							end;
-						elseif((type[i] ==castertypes[3]) and (H55_SpellcastersReceived[player] ~= 1) and (growth >= 1)) then
-							AddHeroCreatures(hero,castertypes[3],growth);
-							H55_SpellcastersReceived[player] = 1;
-							if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-								ShowFlyingSign({"/Text/Game/Scripts/Reinforcements.txt"; num=growth},hero,player,5)
-								sleep(8);
-							end;
-						end;
-					end;
-				end;
-			end;
-
-			------------------------------------------------------------------------------------------------------------------------------------------------
-			H55_DEBUG = {8,"Regalia",player,hero};--------------------------------------------------------------------------------------------------------
-			------------------------------------------------------------------------------------------------------------------------------------------------
-
-			local i_regalia_bonus = 0;
-			if HasHeroSkill(hero, PERK_RECRUITMENT) ~= nil then i_regalia_bonus = i_regalia_bonus + 5 end;
-			if HasArtefact(hero, ARTIFACT_CROWN_OF_LEADER, 1) ~= nil and HasHeroSkill(hero, PERK_RECRUITMENT) ~= nil then i_regalia_bonus = i_regalia_bonus + 5 end;
-			if H55_Governors[hero] == 1 then
-				i_regalia_bonus = i_regalia_bonus + 5;
-				local town = H55_GovernorsWithTown[hero];
-				local townrace = H55_GetTownRace(town);
-				local herorace = H55_GetHeroRaceNum(hero);
-				if IsObjectExists(hero) ~= 1 then
-					H55_ResetConquestHero(hero);
-				elseif GetObjectOwner(town) ~= player then
-					H55_ResetConquestHero(hero);
-				else
-					for k = 1, 7 do
-						if HasArtefact(hero,H55_ARTIFACT_LEGION_LIST[k],0) ~= nil then
-							local i_growth = H55_Round((GetHeroStat(hero,STAT_KNOWLEDGE) + i_regalia_bonus) * H55_COEF_LIST[k]);
-							if i_growth < 1 then i_growth = 1 end;
-							if GetTownBuildingLevel(town, H55_TOWN_BUILDING_DWELLING_LIST[k]) >= 1 and i_growth >= 1 then
-								SetObjectDwellingCreatures(town, H55_Creatures[townrace][k][1], GetObjectDwellingCreatures(town,H55_Creatures[townrace][k][1]) + i_growth);
-							end;
-							if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-								ShowFlyingSign({"/Text/Game/Scripts/Recruits.txt"; num = i_growth},hero,player,5);
-								sleep(8);
-							else
-								sleep(2);
-							end;
-						end;
-					end;
-				end;
-			else
-				for k = 1, 7 do
-					if HasArtefact(hero, H55_ARTIFACT_LEGION_LIST[k], 0) ~= nil then
-						local type = H55_ArmyInfoSimple(hero);
-						local i_growth = H55_Round((GetHeroStat(hero,STAT_KNOWLEDGE) + i_regalia_bonus) * H55_COEF_LIST[k]);
-						if i_growth < 1 then i_growth = 1 end;
-						local i_race = H55_GetHeroRaceNum(hero);
-						for i = 0, 6 do
-							if type[i] == H55_Creatures[i_race][k][2] then
-								AddHeroCreatures(hero, H55_Creatures[i_race][k][2], i_growth);
-								if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-									ShowFlyingSign({"/Text/Game/Scripts/Reinforcements.txt"; num = i_growth}, hero, player, 5);
-									sleep(8);
-								end;
-								break;
-							elseif type[i] == H55_Creatures[i_race][k][3] then
-								AddHeroCreatures(hero, H55_Creatures[i_race][k][3], i_growth);
-								if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-									ShowFlyingSign({"/Text/Game/Scripts/Reinforcements.txt"; num = i_growth}, hero, player, 5);
-									sleep(8);
-								end;
-								break;
-							elseif type[i] == H55_Creatures[i_race][k][1] then
-								AddHeroCreatures(hero, H55_Creatures[i_race][k][1], i_growth);
-								if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-									ShowFlyingSign({"/Text/Game/Scripts/Reinforcements.txt"; num = i_growth}, hero, player, 5);
-									sleep(8);
-								end;
-								break;
-							end;
-						end;
-					end;
-				end;
-			end;
-
-			------------------------------------------------------------------------------------------------------------------------------------------------
-			H55_DEBUG = {8,"Governance",player,hero};-------------------------------------------------------------------------------------------------------
-			------------------------------------------------------------------------------------------------------------------------------------------------
-
-			H55_GovernanceTier1[hero] = 0;
-			H55_GovernanceTier2[hero] = 0;
-			H55_GovernanceTier3[hero] = 0;
-			H55_GovernanceTier4[hero] = 0;
-			H55_GovernanceTier5[hero] = 0;
-			H55_GovernanceTier6[hero] = 0;
-			H55_GovernanceTier7[hero] = 0;
-
-			if H55_IsThisAIPlayer(player) ~= 1 and H55_GovernanceEnabled == 1 and H55_Governors[hero] == 1 then
-				local town = H55_GovernorsWithTown[hero];
-				local townrace = H55_GetTownRace(town);
-				local herorace = H55_GetHeroRaceNum(hero);
-				local growthcoef = 1 + (GetHeroLevel(hero) * 0.033);
-				if IsObjectExists(hero) ~= 1 then
-					H55_ResetConquestHero(hero);
-				elseif GetObjectOwner(town) ~= player then
-					H55_ResetConquestHero(hero);
-				else
-					local tier1 = H55_Round(growthcoef * (2 * H55_CreaturesGrowth[townrace][1])) - (2 * H55_CreaturesGrowth[townrace][1]);
-					local tier2 = H55_Round(growthcoef * (2 * H55_CreaturesGrowth[townrace][2])) - (2 * H55_CreaturesGrowth[townrace][2]);
-					local tier3 = H55_Round(growthcoef * (2 * H55_CreaturesGrowth[townrace][3])) - (2 * H55_CreaturesGrowth[townrace][3]);
-					local tier4 = H55_Round(growthcoef * (2 * H55_CreaturesGrowth[townrace][4])) - (2 * H55_CreaturesGrowth[townrace][4]);
-					local tier5 = H55_Round(growthcoef * (2 * H55_CreaturesGrowth[townrace][5])) - (2 * H55_CreaturesGrowth[townrace][5]);
-					local tier6 = H55_Round(growthcoef * (2 * H55_CreaturesGrowth[townrace][6])) - (2 * H55_CreaturesGrowth[townrace][6]);
-					local tier7 = H55_Round(growthcoef * (2 * H55_CreaturesGrowth[townrace][7])) - (2 * H55_CreaturesGrowth[townrace][7]);
-
-					H55_GovernanceTier1[hero] = H55_GovernanceTier1[hero] + tier1;
-					H55_GovernanceTier2[hero] = H55_GovernanceTier2[hero] + tier2;
-					H55_GovernanceTier3[hero] = H55_GovernanceTier3[hero] + tier3;
-					H55_GovernanceTier4[hero] = H55_GovernanceTier4[hero] + tier4;
-					H55_GovernanceTier5[hero] = H55_GovernanceTier5[hero] + tier5;
-					H55_GovernanceTier6[hero] = H55_GovernanceTier6[hero] + tier6;
-					H55_GovernanceTier7[hero] = H55_GovernanceTier7[hero] + tier7;
-
-					if GetTownBuildingLevel(town, TOWN_BUILDING_DWELLING_1) >= 1 and tier1 >= 1 then
-						SetObjectDwellingCreatures(town, H55_Creatures[townrace][1][1], GetObjectDwellingCreatures(town,H55_Creatures[townrace][1][1]) + tier1);
-					end;
-					if GetTownBuildingLevel(town, TOWN_BUILDING_DWELLING_2) >= 1 and tier2 >= 1 then
-						SetObjectDwellingCreatures(town, H55_Creatures[townrace][2][1], GetObjectDwellingCreatures(town,H55_Creatures[townrace][2][1]) + tier2);
-					end;
-					if GetTownBuildingLevel(town, TOWN_BUILDING_DWELLING_3) >= 1 and tier3 >= 1 then
-						SetObjectDwellingCreatures(town, H55_Creatures[townrace][3][1], GetObjectDwellingCreatures(town,H55_Creatures[townrace][3][1]) + tier3);
-					end;
-					if GetTownBuildingLevel(town, TOWN_BUILDING_DWELLING_4) >= 1 and tier4 >= 1 then
-						SetObjectDwellingCreatures(town, H55_Creatures[townrace][4][1], GetObjectDwellingCreatures(town,H55_Creatures[townrace][4][1]) + tier4);
-					end;
-					if GetTownBuildingLevel(town, TOWN_BUILDING_DWELLING_5) >= 1 and tier5 >= 1 then
-						SetObjectDwellingCreatures(town, H55_Creatures[townrace][5][1], GetObjectDwellingCreatures(town,H55_Creatures[townrace][5][1]) + tier5);
-					end;
-					if GetTownBuildingLevel(town, TOWN_BUILDING_DWELLING_6) >= 1 and tier6 >= 1 then
-						SetObjectDwellingCreatures(town, H55_Creatures[townrace][6][1], GetObjectDwellingCreatures(town,H55_Creatures[townrace][6][1]) + tier6);
-					end;
-					if GetTownBuildingLevel(town, TOWN_BUILDING_DWELLING_7) >= 1 and tier7 >= 1 then
-						SetObjectDwellingCreatures(town, H55_Creatures[townrace][7][1], GetObjectDwellingCreatures(town,H55_Creatures[townrace][7][1]) + tier7)
-					end;
-				end;
-			end;
-
-			if H55_IsThisAIPlayer(player) ~= 1 then
-				for i, town in alltowns do
-					TTH_Func_TownBonus8LegionArti(town, player);
-				end;
-			end;
-		end;
-	end;
-	H55_WeeklyEventsDone[player] = 1;
-end;
-
-function H55_ResetWeeklyEvents()
-
-	------------------------------------------------------------------------------------------------------------------------------------------------
-	H55_DEBUG = {9,"Reset",0,""};-------------------------------------------------------------------------------------------------------------------
-	------------------------------------------------------------------------------------------------------------------------------------------------
-
-	H55_JenovaReceived = 0;
-	H55_QuroqReceived = 0;
-	H55_RedHeavenHero06Received = 0;
-	-- H55_SephinrothReceived = 0;
-	H55_UfretinReceived = 0;
-
-	H55_WeeklyReinforce_List = {};
-	H55_InfernalLoomTable = {};
-	H55_MatewaReceived = 0;
-
-	H55_HydrasReceived = 0;
-	H55_DjinnsReceived = 0;
-	H55_RakshasasReceived = 0;
-	H55_ClericsReceived = 0;
-	H55_TreantsReceived = 0;
-	H55_NightmaresReceived = 0;
-	H55_PitFiendsReceived = 0;
-	H55_WitchesReceived = 0;
-	H55_WightsReceived = 0;
-	H55_LichesReceived = 0;
-	H55_ThanesReceived = 0;
-
-	-- by 牙姐
-	H55_BlackKnightReceived = 0;
-	H55_MummyReceived = 0;
-	H55_WolfReceived = 0;
-
-	H55_ManticoresReceived = 0;
-	H55_MummiesReceived = 0;
-	H55_WolvesReceived = 0;
-
-	H55_ArtWoodReceived = {};
-	H55_ArtOreReceived = {};
-	H55_ArtCrystalReceived = {};
-	H55_ArtSulphurReceived = {};
-	H55_ArtMercuryReceived = {};
-	H55_ArtGemReceived = {};
-	H55_ArtInterestReceived = {};
-
-	H55_LegionT1Received = {};
-	H55_LegionT2Received = {};
-	H55_LegionT3Received = {};
-	H55_LegionT4Received = {};
-	H55_LegionT5Received = {};
-	H55_LegionT6Received = {};
-	H55_LegionT7Received = {};
-
-	H55_SpellcastersReceived = {};
-	H55_ElementalsReceived = {};
-	H55_CodexReceived = {};
-	H55_DivineGuardiansReceived = {0,0,0,0,0,0,0,0};
-
-	for i,garden in H55_MysticalGardens do
-		H55_WeeklyMysticalGardenRes[garden] = random(2);
-	end;
-	for i,mill in H55_Windmills do
-		H55_WeeklyWindmillRes[mill] = 1+random(5);
-		H55_WeeklyWindmillResQty[mill] = 3+random(5);
-	end;
-	for i,workshop in H55_SiegeWorkshops do
-		H55_WeeklySiegeWorkshopResQty[workshop] = 2+random(3);
-	end;
-
-	H55_WeeklyEventsDone = {};
-end;
-
------------------------------------------------------------------------------------------------------------------------------------------------------
---CONTINUES EVENT
------------------------------------------------------------------------------------------------------------------------------------------------------
-
--- function  by 牙姐
-function H55_fun_start_creatures_bonus(arr_hero, s_hero, i_creature_id, i_num)
-	if contains(arr_hero, s_hero) ~= nil and H55_flag_startbonus[s_hero] == nil then
-		AddHeroCreatures(s_hero, i_creature_id, i_num);
-		H55_flag_startbonus[s_hero] = 1;
-	end;
-end;
-
-function H55_fun_hero_stat_bonus(i_player, arr_hero, s_hero, i_step, i_stat_id)
-	if H55_Hero_Stat_List[s_hero] == nil then
-		H55_Hero_Stat_List[s_hero] = 0;
-	end;
-	if contains(arr_hero, s_hero) ~= nil then
-		local i_level = GetHeroLevel(s_hero);
-		if ((mod(i_level, i_step) == 0) and (i_level / i_step > H55_Hero_Stat_List[s_hero])) then
-			print("H55 "..s_hero.." processed match");
-			ChangeHeroStat(s_hero, i_stat_id, H55_Floor(i_level / i_step) - H55_Hero_Stat_List[s_hero]);
-			print("H55 "..s_hero.." processed worked");
-			if H55_IsThisAIPlayer(i_player) ~= 1 and H55_IsHeroInAnyTown(s_hero) == 0 then
-				local str_url = "";
-				if i_stat_id == STAT_ATTACK then
-					str_url = "/Text/Game/Scripts/Attack.txt";
-				elseif i_stat_id == STAT_DEFENCE then
-					str_url = "/Text/Game/Scripts/Defense.txt";
-				elseif i_stat_id == STAT_SPELL_POWER then
-					str_url = "/Text/Game/Scripts/Spellpower.txt";
-				elseif i_stat_id == STAT_KNOWLEDGE then
-					str_url = "/Text/Game/Scripts/Knowledge.txt";
-				end;
-				ShowFlyingSign(str_url, s_hero, i_player, 5);
-			end;
-			H55_Hero_Stat_List[s_hero] = H55_Floor(i_level / i_step);
-		end
-	end;
-end;
-
-function H55_fun_hero_stat_bonus_special(i_player, arr_hero, s_hero, i_step, i_stat_id, i_type)
-	local s_hero_flag = s_hero..i_stat_id;
-	if H55_Hero_Stat_List[s_hero_flag] == nil then
-		H55_Hero_Stat_List[s_hero_flag] = 0;
-	end;
-	if contains(arr_hero, s_hero) ~= nil then
-		if i_type == 1 then
-			local i_num_magic = H55_GetNumberKnowHeroSpell(s_hero);
-			if i_num_magic / i_step > H55_Hero_Stat_List[s_hero_flag] then
-				print("H55 "..s_hero.." processed match");
-				ChangeHeroStat(s_hero, i_stat_id, H55_Ceil(i_num_magic / i_step) - H55_Hero_Stat_List[s_hero_flag]);
-				print("H55 "..s_hero.." processed worked");
-				if H55_IsThisAIPlayer(i_player) ~= 1 and H55_IsHeroInAnyTown(s_hero) == 0 then
-					local str_url = "";
-					if i_stat_id == STAT_ATTACK then
-						str_url = "/Text/Game/Scripts/Attack.txt";
-					elseif i_stat_id == STAT_DEFENCE then
-						str_url = "/Text/Game/Scripts/Defense.txt";
-					elseif i_stat_id == STAT_SPELL_POWER then
-						str_url = "/Text/Game/Scripts/Spellpower.txt";
-					elseif i_stat_id == STAT_KNOWLEDGE then
-						str_url = "/Text/Game/Scripts/Knowledge.txt";
-					end;
-					ShowFlyingSign(str_url, s_hero, i_player, 5);
-				end;
-				H55_Hero_Stat_List[s_hero_flag] = H55_Ceil(i_num_magic / i_step);
-			end;
-		end;
-	end;
-end;
-
-function H55_GetNumberKnowHeroSpell(s_hero)
-	local iNumber = 0;
-	for i1 = 1, length(H55_SpellsL1) do
-		if KnowHeroSpell(s_hero, H55_SpellsL1[i1]) ~= nil then iNumber = iNumber + 1 end;
-	end;
-	for i2 = 1, length(H55_SpellsL2) do
-		if KnowHeroSpell(s_hero, H55_SpellsL2[i2]) ~= nil then iNumber = iNumber + 1 end;
-	end;
-	for i3 = 1, length(H55_SpellsL3) do
-		if KnowHeroSpell(s_hero, H55_SpellsL3[i3]) ~= nil then iNumber = iNumber + 1 end;
-	end;
-	for i4 = 1, length(H55_SpellsL4) do
-		if KnowHeroSpell(s_hero, H55_SpellsL4[i4]) ~= nil then iNumber = iNumber + 1 end;
-	end;
-	for i5 = 1, length(H55_SpellsL5) do
-		if KnowHeroSpell(s_hero, H55_SpellsL5[i5]) ~= nil then iNumber = iNumber + 1 end;
-	end;
-	return iNumber;
-end;
-
-function H55_func_special_creature_return(i_player, s_special_hero, i_creature_id)
-	if H55_IsThisAIPlayer(i_player) ~= 1 then
-		local heroes = GetPlayerHeroes(i_player);
-		local b_isexist = 0;
-		for i, s_hero in heroes do
-			if s_hero == s_special_hero then
-				b_isexist = 1;
-				break;
-			end;
-		end;
-		if b_isexist == 1 then
-			for i, s_hero in heroes do
-				if s_hero ~= s_special_hero then
-					local type, count = H55_ArmyInfo(s_hero);
-					for i = 0, 6 do
-						if type[i] == i_creature_id then
-							RemoveHeroCreatures(s_hero, type[i], count[i]);
-							AddHeroCreatures(s_special_hero, type[i], count[i]);
-						end;
-					end
-				end;
-			end;
-		end;
-	end;
-end;
-
-function TTH_FixedCreatureToHero(iPlayer, strSpecialHero, iCreatureId, bMinCount)
-	if H55_IsThisAIPlayer(iPlayer) ~= 1 then
-		local arrHero = GetPlayerHeroes(iPlayer);
-		local bExist = 0;
-		for i, strHero in arrHero do
-			if strHero == strSpecialHero then
-				bExist = 1;
-				local typeSpecial, countSpecial = H55_ArmyInfo(strSpecialHero);
-				local iLenArmy = 0;
-				for j = 0, 6 do
-					if countSpecial[j] > 0 and typeSpecial[j] ~= iCreatureId then
-						iLenArmy = iLenArmy + 1;
-					end;
-				end;
-				if iLenArmy < 7 then
-					local bExistSpecial = 0;
-					local iCountSpecial = 0;
-					for k = 0, 6 do
-						if typeSpecial[k] == iCreatureId then
-							bExistSpecial = 1;
-							iCountSpecial = countSpecial[k];
-							break;
-						end;
-					end
-					if bMinCount == 1 then
-						local iHeroLevel = GetHeroLevel(strSpecialHero);
-						local iNumber = H55_Ceil(iHeroLevel / 2);
-						if bExistSpecial == 0 then
-							AddHeroCreatures(strSpecialHero, iCreatureId, iNumber);
-						end;
-						if bExistSpecial == 1 and iCountSpecial < iNumber then
-							AddHeroCreatures(strSpecialHero, iCreatureId, iNumber - iCountSpecial);
-						end;
-					end;
-				end;
-				break;
-			end;
-		end;
-		if bExist == 1 then
-			for iHero, strHero in arrHero do
-				if strHero ~= strSpecialHero then
-					local type, count = H55_ArmyInfo(strHero);
-					for i = 0, 6 do
-						if type[i] == iCreatureId then
-							RemoveHeroCreatures(strHero, type[i], count[i]);
-							if bMinCount == 0 then
-								AddHeroCreatures(strSpecialHero, type[i], count[i]);
-							end;
-						end;
-					end
-				end;
-			end;
-		end;
-	end;
-end;
-
-function H55_set_cs(s_hero)
-	SetHeroCombatScript(s_hero, "/scripts/H55_CombatScript.xdb#xpointer(/Script)");
-end;
-function H55_reset_cs(s_hero)
-	ResetHeroCombatScript(s_hero);
-end;
--- end
-
-function H55_ContinuesEvent(player)
-
-	------------------------------------------------------------------------------------------------------------------------------------------------
-	--H55_DEBUG = {10,"Primaries",player,""};-------------------------------------------------------------------------------------------------------
-	------------------------------------------------------------------------------------------------------------------------------------------------
-
-	local heroes = GetPlayerHeroes(player);
-
-	local alltowns = GetObjectNamesByType("TOWN");
-	local strongholdtowns = GetObjectNamesByType("TOWN_STRONGHOLD");
-	local dungeontowns = GetObjectNamesByType("TOWN_DUNGEON");
-	local sylvantowns = GetObjectNamesByType("TOWN_PRESERVE");
-	local necromancytowns = GetObjectNamesByType("TOWN_NECROMANCY");
-
-	ci = GetLastSavedCombatIndex();
-
-	if H55_IsThisAIPlayer(player) == 1 then
-		H55_AmountCyclesAI = H55_AmountCyclesAI+1;
-	end;
-
-	-- if heroes ~= nil and H55_IsThisAIPlayer(player) ~= 1 then
-	if heroes ~= nil then
-		if H55_length_playerheroes_script[player] ~= length(heroes) then
-			H55_length_playerheroes_script[player] = length(heroes);
-			for i, s_hero in heroes do
-				ResetHeroCombatScript(s_hero);
-				SetHeroCombatScript(s_hero, "/scripts/H55_CombatScript.xdb#xpointer(/Script)");
-			end;
-		end;
-	end;
-
-	-- by 牙姐 2018-7-27 15:55:33
-	-- begin 兵种特城市兵种还原
-	if necromancytowns ~= nil then
-		for i, town in necromancytowns do
-			if GetObjectOwner(town) == player and H55_IsAnyHeroInTown(town, player) == 0 then
-				local iRace = H55_GetTownRace(town);
-				if GetTownBuildingLevel(town, TOWN_BUILDING_DWELLING_1) == 2 then
-					local type, count = H55_MonsterInfo(town);
-					for idArmy = 0, 6 do
-						if type[idArmy] >= 958 and type[idArmy] <= 971 then
-							if count[6] == 0 then
-								AddObjectCreatures(town, H55_Creatures[iRace][1][1], count[idArmy]);
-								RemoveObjectCreatures(town, type[idArmy], count[idArmy]);
-							else
-								RemoveObjectCreatures(town, type[idArmy], count[idArmy]);
-								AddObjectCreatures(town, H55_Creatures[iRace][1][1], count[idArmy]);
-							end;
-						end;
-						if type[idArmy] >= 972 and type[idArmy] <= 985 then
-							if count[6] == 0 then
-								AddObjectCreatures(town, H55_Creatures[iRace][1][2], count[idArmy]);
-								RemoveObjectCreatures(town, type[idArmy], count[idArmy]);
-							else
-								RemoveObjectCreatures(town, type[idArmy], count[idArmy]);
-								AddObjectCreatures(town, H55_Creatures[iRace][1][2], count[idArmy]);
-							end;
-						end;
-						if type[idArmy] >= 986 and type[idArmy] <= 999 then
-							if count[6] == 0 then
-								AddObjectCreatures(town, H55_Creatures[iRace][1][3], count[idArmy]);
-								RemoveObjectCreatures(town, type[idArmy], count[idArmy]);
-							else
-								RemoveObjectCreatures(town, type[idArmy], count[idArmy]);
-								AddObjectCreatures(town, H55_Creatures[iRace][1][3], count[idArmy]);
-							end;
-						end;
-					end;
-				end;
-			end;
-		end;
-	end;
-	--end
-
-	-- by 牙姐
-	-- 初始生物奖励
-	if heroes ~= nil and H55_IsThisAIPlayer(player) ~= 1 then
-		if H55_length_playerheroes[player] ~= length(heroes) then
-			H55_length_playerheroes[player] = length(heroes);
-			--heaven
-				H55_fun_start_creatures_bonus(heroes, "Nathaniel", 1, 22);
-				H55_fun_start_creatures_bonus(heroes, "Orrin", 3, 12);
-				H55_fun_start_creatures_bonus(heroes, "Mardigo", 5, 10);
-				H55_fun_start_creatures_bonus(heroes, "Ving", 7, 2);
-				H55_fun_start_creatures_bonus(heroes, "Sarge", 11, 1);
-			--preserve
-				H55_fun_start_creatures_bonus(heroes, "Gillion", 45, 9);
-				H55_fun_start_creatures_bonus(heroes, "Ossir", 47, 7);
-				H55_fun_start_creatures_bonus(heroes, "Gelu", 114, 1);
-			--necropolis
-				H55_fun_start_creatures_bonus(heroes, "Karissa", 29, 22);
-				H55_fun_start_creatures_bonus(heroes, "Straker", 31, 15);
-				H55_fun_start_creatures_bonus(heroes, "Tamika", 35, 2);
-				H55_fun_start_creatures_bonus(heroes, "Thant", 116, 1);
-				H55_fun_start_creatures_bonus(heroes, "Adelaide", 935, 7);
-				H55_fun_start_creatures_bonus(heroes, "Archilus", 90, 1);
-			--fortress
-				H55_fun_start_creatures_bonus(heroes, "Ingvar", 92, 18);
-				H55_fun_start_creatures_bonus(heroes, "Skeggy", 94, 14);
-				H55_fun_start_creatures_bonus(heroes, "Bersy", 96, 7);
-				H55_fun_start_creatures_bonus(heroes, "Egil", 100, 2);
-			--stronghold
-				H55_fun_start_creatures_bonus(heroes, "Hero9", 117, 25);
-				H55_fun_start_creatures_bonus(heroes, "Hero7", 119, 14);
-				H55_fun_start_creatures_bonus(heroes, "Hero8", 121, 11);
-				H55_fun_start_creatures_bonus(heroes, "Azar", 113, 5);
-				H55_fun_start_creatures_bonus(heroes, "Hero6", 127, 1);
-			--inferno
-				H55_fun_start_creatures_bonus(heroes, "Calid", 19, 8);
-				H55_fun_start_creatures_bonus(heroes, "Oddrema", 21, 2);
-			--academy
-				H55_fun_start_creatures_bonus(heroes, "Havez", 57, 20);
-				H55_fun_start_creatures_bonus(heroes, "Isher", 61, 9);
-				H55_fun_start_creatures_bonus(heroes, "Razzak", 63, 2);
-				H55_fun_start_creatures_bonus(heroes, "Davius", 67, 1);
-			--dungeon
-				H55_fun_start_creatures_bonus(heroes, "Ohtarig", 71, 7);
-				H55_fun_start_creatures_bonus(heroes, "Urunir", 73, 5);
-				H55_fun_start_creatures_bonus(heroes, "Menel", 75, 6);
-				H55_fun_start_creatures_bonus(heroes, "Ferigl", 77, 2);
-				H55_fun_start_creatures_bonus(heroes, "Eruina", 81, 1);
-				H55_fun_start_creatures_bonus(heroes, "Welygg", 115, 1);
-
-		end;
-	end;
-	-- end
-
-
-	-- by 牙姐
-	-- 初始生物奖励
-	if heroes ~= nil and H55_IsThisAIPlayer(player) ~= 1 then
-		--heaven
-			TTH_FixedCreatureToHero(player, "Jeddite", 953, 1);
-			TTH_FixedCreatureToHero(player, "Cyrus", 934, 0);
-	end;
-
-	if heroes~=nil then
-		-- H55_fun_hero_stat_bonus(player, heroes, "Crag", 4, STAT_ATTACK);
-		H55_fun_hero_stat_bonus(player, heroes, "Nadaur", 5, STAT_ATTACK);
-		H55_fun_hero_stat_bonus(player, heroes, "Mephala", 3, STAT_DEFENCE);
-		H55_fun_hero_stat_bonus(player, heroes, "Tazar", 3, STAT_DEFENCE);
-		H55_fun_hero_stat_bonus_special(player, heroes, "Sandro", 5, STAT_SPELL_POWER, 1);
-		H55_fun_hero_stat_bonus_special(player, heroes, "Sandro", 5, STAT_KNOWLEDGE, 1);
-		H55_fun_hero_stat_bonus(player, heroes, "Maahir", 3, STAT_KNOWLEDGE);
-		H55_fun_hero_stat_bonus(player, heroes, "Almegir", 3, STAT_KNOWLEDGE);
-		H55_fun_hero_stat_bonus(player, heroes, "Elleshar", 3, STAT_KNOWLEDGE);
-		H55_fun_hero_stat_bonus(player, heroes, "Vinrael", 3, STAT_KNOWLEDGE);
-		H55_fun_hero_stat_bonus(player, heroes, "Una", 3, STAT_KNOWLEDGE);
-		-- H55_fun_hero_stat_bonus(player, heroes, "Ildar", 4, STAT_SPELL_POWER);
-
-		if contains(heroes,"Vinrael") ~= nil then
-			local level = GetHeroLevel("Vinrael");
-			-- by 牙姐
-			-- begin
-			if level > H55_VinraelMana_Level then
-				local i_diff = 0;
-				local s_hero = "Vinrael";
-				local i_mana = GetHeroStat(s_hero, STAT_MANA_POINTS);
-				local i_knowledge = GetHeroStat(s_hero, STAT_KNOWLEDGE);
-				local i_mana_total = 10 * i_knowledge;
-				if HasHeroSkill(s_hero, PERK_INTELLIGENCE) ~= nil then
-					i_mana_total = 15 * i_knowledge;
-				end;
-				if i_mana < i_mana_total then
-					i_diff = i_mana_total - i_mana;
-					ChangeHeroStat(s_hero, STAT_MANA_POINTS, i_diff);
-				end;
-				H55_VinraelMana_Level = level;
-			end
-			--end
-		end;
-
-		for i,hero in heroes do
-			-- by 牙姐 2018-10-15 19:35:44
-			-- begin 英雄通用技能3
-			if TTH_HeroCustomAbilityOwner3[hero] ~= 1 then
-				if contains(TTH_TABLE_HeroCustomAbilityOwner3, hero) ~= nil then
-					ControlHeroCustomAbility(hero, CUSTOM_ABILITY_3, CUSTOM_ABILITY_ENABLED);
-					if contains(TTH_TABLE_HeroCustomAbility_CastCreature, hero) ~= nil then
-						TTH_HeroCustomAbility_CastCreature_GCD[hero] = 0;
-						print('Gcd-init:'..TTH_HeroCustomAbility_CastCreature_GCD[hero]);
-					end;
-					print(hero.." custom ability has been given");
-					TTH_HeroCustomAbilityOwner3[hero] = 1;
-				end;
-			end;
-			--end
-
-			-- by 牙姐 2019-5-18 19:06:04
-			-- begin 士气<-5 转化为亡灵巫师
-				if TTH_Necromancer[hero] == nil and GetHeroStat(hero, STAT_MORALE) <= -5 then
-					MakeHeroNecromancer(hero, 3);
-					TTH_Necromancer[hero] = 1;
-					print(hero.." had been changed to a Necromancer");
-				end;
-			-- end
-
-			-- by 牙姐 2018-7-27 10:15:58
-			-- begin 卡里萨 骷髅
-			if hero ~= "Karissa" then
-				local iRace = H55_GetHeroRaceNum("Karissa");
-				local type, count = H55_ArmyInfo(hero);
-				for idArmy = 0, 6 do
-					if type[idArmy] >= 958 and type[idArmy] <= 971 then
-						if count[6] == 0 then
-							AddHeroCreatures(hero, H55_Creatures[iRace][1][1], count[idArmy]);
-							sleep(1);
-							RemoveHeroCreatures(hero, type[idArmy], count[idArmy]);
-							sleep(1);
-							break;
-						else
-							RemoveHeroCreatures(hero, type[idArmy], count[idArmy]);
-							sleep(1);
-							AddHeroCreatures(hero, H55_Creatures[iRace][1][1], count[idArmy]);
-							sleep(1);
-							break;
-						end;
-					elseif type[idArmy] >= 972 and type[idArmy] <= 985 then
-						if count[6] == 0 then
-							AddHeroCreatures(hero, H55_Creatures[iRace][1][2], count[idArmy]);
-							sleep(1);
-							RemoveHeroCreatures(hero, type[idArmy], count[idArmy]);
-							sleep(1);
-							break;
-						else
-							RemoveHeroCreatures(hero, type[idArmy], count[idArmy]);
-							sleep(1);
-							AddHeroCreatures(hero, H55_Creatures[iRace][1][2], count[idArmy]);
-							sleep(1);
-							break;
-						end;
-					elseif type[idArmy] >= 986 and type[idArmy] <= 999 then
-						if count[6] == 0 then
-							AddHeroCreatures(hero, H55_Creatures[iRace][1][3], count[idArmy]);
-							sleep(1);
-							RemoveHeroCreatures(hero, type[idArmy], count[idArmy]);
-							sleep(1);
-							break;
-						else
-							RemoveHeroCreatures(hero, type[idArmy], count[idArmy]);
-							sleep(1);
-							AddHeroCreatures(hero, H55_Creatures[iRace][1][3], count[idArmy]);
-							sleep(1);
-							break;
-						end;
-					end;
-				end;
-			else
-				local strHero = "Karissa";
-				local iLevelHero = GetHeroLevel(strHero);
-				local iRace = H55_GetHeroRaceNum(strHero);
-				local lenListKarissaLevel = length(H55SMOD_ListKarissaLevel);
-				local idLevel = 0;
-				for i = 1, lenListKarissaLevel do
-					if iLevelHero >= H55SMOD_ListKarissaLevel[i] then
-						idLevel = i;
-					end;
-				end;
-				local type, count = H55_ArmyInfo(strHero);
-				for idArmy = 0, 6 do
-					if (type[idArmy] == H55_Creatures[iRace][1][1] or (type[idArmy] >= 958 and type[idArmy] <= 971)) and type[idArmy] ~= 958 + idLevel - 1 then
-						if count[6] == 0 then
-							AddHeroCreatures(strHero, 958 + idLevel - 1, count[idArmy]);
-							sleep(1);
-							RemoveHeroCreatures(strHero, type[idArmy], count[idArmy]);
-							sleep(1);
-							break;
-						else
-							RemoveHeroCreatures(strHero, type[idArmy], count[idArmy]);
-							sleep(1);
-							AddHeroCreatures(strHero, 958 + idLevel - 1, count[idArmy]);
-							sleep(1);
-							break;
-						end;
-					elseif (type[idArmy] == H55_Creatures[iRace][1][2] or (type[idArmy] >= 972 and type[idArmy] <= 985)) and type[idArmy] ~= 972 + idLevel - 1 then
-						if count[6] == 0 then
-							AddHeroCreatures(strHero, 972 + idLevel - 1, count[idArmy]);
-							sleep(1);
-							RemoveHeroCreatures(strHero, type[idArmy], count[idArmy]);
-							sleep(1);
-							break;
-						else
-							RemoveHeroCreatures(strHero, type[idArmy], count[idArmy]);
-							sleep(1);
-							AddHeroCreatures(strHero, 972 + idLevel - 1, count[idArmy]);
-							sleep(1);
-							break;
-						end;
-					elseif (type[idArmy] == H55_Creatures[iRace][1][3] or (type[idArmy] >= 986 and type[idArmy] <= 999)) and type[idArmy] ~= 986 + idLevel - 1 then
-						if count[6] == 0 then
-							AddHeroCreatures(strHero, 986 + idLevel - 1, count[idArmy]);
-							sleep(1);
-							RemoveHeroCreatures(strHero, type[idArmy], count[idArmy]);
-							sleep(1);
-							break;
-						else
-							RemoveHeroCreatures(strHero, type[idArmy], count[idArmy]);
-							sleep(1);
-							AddHeroCreatures(strHero, 986 + idLevel - 1, count[idArmy]);
-							sleep(1);
-							break;
-						end;
-					end;
-				end;
-			end;
-			--end
-
-			H55_DEBUG = {11,"TownGain",player,hero};
-				if H55_IsThisAIPlayer(player) ~= 1 then
-					if H55_TownConvEnabled == 1 or H55_TownGateEnabled == 1 or H55_GovernanceEnabled == 1 then
-						if H55_TownManageOwners[hero] ~= 1 then
-							ControlHeroCustomAbility(hero,CUSTOM_ABILITY_4,CUSTOM_ABILITY_ENABLED);
-							H55_TownManageOwners[hero] = 1;
-						end;
-					end;
-				end;
-				if H55_GetHeroClass(hero) == "Shaman" or H55_GetHeroClass(hero) == "Witch" then
-					if strongholdtowns ~= nil then
-						for i, town in strongholdtowns do
-							if (GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_1) >= 1) and H55_HallTrialStudent[hero] ~= 1 and (H55_GetDistance(hero,town) <= 6) then
-								ChangeHeroStat(hero,STAT_DEFENCE,2);
-								H55_HallTrialStudent[hero]=1;
-								if H55_IsThisAIPlayer(player) ~= 1 and H55_GetDistance(hero,town) ~= 0 then
-									ShowFlyingSign("/Text/Game/Scripts/Defense.txt",hero,player,5);
-								end;
-							end;
-							if (GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_1) >= 2) and H55_HallCourageStudent[hero] ~= 1 and (H55_GetDistance(hero,town) <= 6) then
-								ChangeHeroStat(hero,STAT_DEFENCE,2);
-								H55_HallCourageStudent[hero]=1;
-								if H55_IsThisAIPlayer(player) ~= 1 and H55_GetDistance(hero,town) ~= 0 then
-									ShowFlyingSign("/Text/Game/Scripts/Defense.txt",hero,player,5);
-								end;
-							end;
-							if (GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_1) == 3) and H55_HallMightStudent[hero] ~= 1 and (H55_GetDistance(hero,town) <= 6) then
-								ChangeHeroStat(hero,STAT_DEFENCE,2);
-								H55_HallMightStudent[hero]=1;
-								if H55_IsThisAIPlayer(player) ~= 1 and H55_GetDistance(hero,town) ~= 0 then
-									ShowFlyingSign("/Text/Game/Scripts/Defense.txt",hero,player,5);
-								end;
-							end;
-							if (GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_4) == 1) and H55_PileSkullsStudent[town][hero] ~= 1 and (H55_GetDistance(hero,town) <= 6) then
-								ChangeHeroStat(hero,STAT_KNOWLEDGE,1);
-								H55_PileSkullsStudent[town][hero]=1;
-								if H55_IsThisAIPlayer(player) ~= 1 and H55_GetDistance(hero,town) ~= 0 then
-									ShowFlyingSign("/Text/Game/Scripts/Knowledge.txt",hero,player,5);
-								end;
-							end;
-						end;
-					end;
-				end;
-				if H55_GetHeroClass(hero) == "Overlord" then
-					if dungeontowns ~= nil then
-						for i, town in dungeontowns do
-							if (GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_6) == 1) and H55_HallIntrigueStudent[town][hero] ~= 1 and (H55_GetDistance(hero,town) <= 6) then
-								ChangeHeroStat(hero,STAT_DEFENCE,1);
-								H55_HallIntrigueStudent[town][hero]=1;
-								if H55_IsThisAIPlayer(player) ~= 1 and H55_GetDistance(hero,town) ~= 0 then
-									ShowFlyingSign("/Text/Game/Scripts/Defense.txt",hero,player,5);
-								end;
-							end;
-						end;
-					end;
-				end;
-				if H55_GetHeroClass(hero) == "Assassin" then
-					if dungeontowns ~= nil then
-						for i, town in dungeontowns do
-							if (GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_6) == 1) and H55_HallIntrigueStudent[town][hero] ~= 1 and (H55_GetDistance(hero,town) <= 6) then
-								ChangeHeroStat(hero,STAT_KNOWLEDGE,1);
-								H55_HallIntrigueStudent[town][hero]=1;
-								if H55_IsThisAIPlayer(player) ~= 1 and H55_GetDistance(hero,town) ~= 0 then
-									ShowFlyingSign("/Text/Game/Scripts/Knowledge.txt",hero,player,5);
-								end;
-							end;
-						end;
-					end;
-				end;
-				if H55_GetHeroClass(hero) == "Assassin" or H55_GetHeroClass(hero) == "Overlord" then
-					if dungeontowns ~= nil then
-						for i, town in dungeontowns do
-							if (GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_1) == 2) and H55_PrimalAltarStudent[town][hero] ~= 1 and (H55_GetDistance(hero,town) <= 6) then
-								ChangeHeroStat(hero,STAT_ATTACK,1);
-								H55_PrimalAltarStudent[town][hero]=1;
-								if H55_IsThisAIPlayer(player) ~= 1 and H55_GetDistance(hero,town) ~= 0 then
-									ShowFlyingSign("/Text/Game/Scripts/Attack.txt",hero,player,5);
-								end;
-							end;
-						end;
-					end;
-				end;
-				if H55_GetHeroClass(hero) == "Druid" then
-					if sylvantowns ~= nil then
-						for i, town in sylvantowns do
-							if (GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_2) == 2) and H55_FountainStudent[town][hero] ~= 1 and (H55_GetDistance(hero,town) <= 6) then
-								ChangeHeroStat(hero,STAT_SPELL_POWER,1);
-								H55_FountainStudent[town][hero]=1;
-								if H55_IsThisAIPlayer(player) ~= 1 and H55_GetDistance(hero,town) ~= 0 then
-									ShowFlyingSign("/Text/Game/Scripts/Spellpower.txt",hero,player,5);
-								end;
-							end;
-						end;
-					end;
-				end;
-				if H55_GetHeroClass(hero) == "Warden" then
-					if sylvantowns ~= nil then
-						for i, town in sylvantowns do
-							if (GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_0) == 2) and H55_BrotherhoodStudent[town][hero] ~= 1 and (H55_GetDistance(hero,town) <= 6) then
-								ChangeHeroStat(hero,STAT_DEFENCE,1);
-								H55_BrotherhoodStudent[town][hero]=1;
-								if H55_IsThisAIPlayer(player) ~= 1 and H55_GetDistance(hero,town) ~= 0 then
-									ShowFlyingSign("/Text/Game/Scripts/Defense.txt",hero,player,5);
-								end;
-							end;
-						end;
-					end;
-				end;
-
-			for iIndexHavenHero = 1, length(H55SMOD_HavenHeroes) do
-				local strHero = H55SMOD_HavenHeroes[iIndexHavenHero];
-				if H55SMOD_HeroSkill[strHero] == nil then
-					H55SMOD_HeroSkill[strHero] = {};
-				end;
-				-- if HasHeroSkill(strHero, SKILL_ABSOLUTE_MORALE) ~= nil then
-				-- 	if H55SMOD_HeroSkill[strHero][SKILL_ABSOLUTE_MORALE] ~= 1 then
-				-- 		SetGameVar('H55SMOD_Var_Skill_'..strHero..'_'..SKILL_ABSOLUTE_MORALE, 1);
-				-- 		H55SMOD_HeroSkill[strHero][SKILL_ABSOLUTE_MORALE] = 1;
-				-- 	end;
-				-- else
-				-- 	if H55SMOD_HeroSkill[strHero][SKILL_ABSOLUTE_MORALE] ~= 0 then
-				-- 		SetGameVar('H55SMOD_Var_Skill_'..strHero..'_'..SKILL_ABSOLUTE_MORALE, 0);
-				-- 		H55SMOD_HeroSkill[strHero][SKILL_ABSOLUTE_MORALE] = 0;
-				-- 	end;
-				-- end;
-			end;
-			if contains(heroes, "Kastore") ~= nil then
-				local strHero = "Kastore";
-				if H55SMOD_HeroSkill[strHero] == nil then
-					H55SMOD_HeroSkill[strHero] = {};
-				end;
-				if HasHeroSkill(strHero, SKILL_MASTER_OF_ICE) ~= nil then
-					if H55SMOD_HeroSkill[strHero][SKILL_MASTER_OF_ICE] ~= 1 then
-						SetGameVar('H55SMOD_Var_Skill_'..strHero..'_'..SKILL_MASTER_OF_ICE, 1);
-						H55SMOD_HeroSkill[strHero][SKILL_MASTER_OF_ICE] = 1;
-					end;
-				else
-					if H55SMOD_HeroSkill[strHero][SKILL_MASTER_OF_ICE] ~= 0 then
-						SetGameVar('H55SMOD_Var_Skill_'..strHero..'_'..SKILL_MASTER_OF_ICE, 0);
-						H55SMOD_HeroSkill[strHero][SKILL_MASTER_OF_ICE] = 0;
-					end;
-				end;
-				if HasHeroSkill(strHero, SKILL_MASTER_OF_FIRE) ~= nil then
-					if H55SMOD_HeroSkill[strHero][SKILL_MASTER_OF_FIRE] ~= 1 then
-						SetGameVar('H55SMOD_Var_Skill_'..strHero..'_'..SKILL_MASTER_OF_FIRE, 1);
-						H55SMOD_HeroSkill[strHero][SKILL_MASTER_OF_FIRE] = 1;
-					end;
-				else
-					if H55SMOD_HeroSkill[strHero][SKILL_MASTER_OF_FIRE] ~= 0 then
-						SetGameVar('H55SMOD_Var_Skill_'..strHero..'_'..SKILL_MASTER_OF_FIRE, 0);
-						H55SMOD_HeroSkill[strHero][SKILL_MASTER_OF_FIRE] = 0;
-					end;
+				if TTH_GLOBAL.isAi(iPlayer) ~= TTH_ENUM.Yes then
+					GiveArtefact(strHero, ARTIFACT_ORDER_OF_CONSCRIPTION, 1);
 				end;
-				if HasHeroSkill(strHero, SKILL_MASTER_OF_LIGHTNINGS) ~= nil then
-					if H55SMOD_HeroSkill[strHero][SKILL_MASTER_OF_LIGHTNINGS] ~= 1 then
-						SetGameVar('H55SMOD_Var_Skill_'..strHero..'_'..SKILL_MASTER_OF_LIGHTNINGS, 1);
-						H55SMOD_HeroSkill[strHero][SKILL_MASTER_OF_LIGHTNINGS] = 1;
-					end;
-				else
-					if H55SMOD_HeroSkill[strHero][SKILL_MASTER_OF_LIGHTNINGS] ~= 0 then
-						SetGameVar('H55SMOD_Var_Skill_'..strHero..'_'..SKILL_MASTER_OF_LIGHTNINGS, 0);
-						H55SMOD_HeroSkill[strHero][SKILL_MASTER_OF_LIGHTNINGS] = 0;
-					end;
-				end;
-			end;
-
-			if H55_IsHeroInAnyTown(hero) == 0 then
-				TTH_Artifact_Bonus_Check(hero);
 			end;
+			function TTH_ARTI.active103(iPlayer, strHero)
+				TTH_COMMON.nextNavi(TTH_PATH.Artifact[ARTIFACT_ORDER_OF_CONSCRIPTION]["Text"]);
 
-			if (HasHeroSkill(hero,PERK_PRAYER) ~= nil) and (H55_GetHeroRaceNum(hero) == 4) then
-				TeachHeroSpell(hero,SPELL_MASS_BLESS);
+				local strTown = TTH_VARI.mainTown4Player[iPlayer];
+				TTH_ARTI.checkPreActive1034HasLostTown(iPlayer, strHero, strTown)
 			end;
-
-			-- 根据英雄技能赠送魔法相关
-			for iIndexGmbs, objGmbs in TTH_TABLE_GIVE_MAGIC_BY_SKILL do
-				TTH_GiveMagic8Skill(hero, player, objGmbs);
-			end;
-
-			if (HasHeroSkill(hero,PERK_WISDOM) ~= nil) then
-				if H55_TeachSpell_L3[hero] == nil then
-					local index_l3 = 0;
-					local arr_spell_l3 = {};
-					local arr_text_l3 = {};
-					if KnowHeroSpell(hero, H55_SpellsL4[5]) == nil then
-						arr_spell_l3[index_l3] = H55_SpellsL4[5];
-						arr_text_l3[index_l3] = H55_SpellsTextL4[5];
-						index_l3 = index_l3 + 1;
-					end;
-					if KnowHeroSpell(hero, H55_SpellsL1[2]) == nil then
-						arr_spell_l3[index_l3] = H55_SpellsL1[2];
-						arr_text_l3[index_l3] = H55_SpellsTextL1[2];
-						index_l3 = index_l3 + 1;
-					end;
-					if KnowHeroSpell(hero, H55_SpellsL3[9]) == nil then
-						arr_spell_l3[index_l3] = H55_SpellsL3[9];
-						arr_text_l3[index_l3] = H55_SpellsTextL3[9];
-						index_l3 = index_l3 + 1;
-					end;
-					if KnowHeroSpell(hero, H55_SpellsL4[4]) == nil then
-						arr_spell_l3[index_l3] = H55_SpellsL4[4];
-						arr_text_l3[index_l3] = H55_SpellsTextL4[4];
-						index_l3 = index_l3 + 1;
-					end;
-					if index_l3 > 0 then
-						local i_ran = random(length(arr_spell_l3));
-						TeachHeroSpell(hero, arr_spell_l3[i_ran]);
-						H55_TeachSpell_L3[hero] = 1;
-						if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign({"/Text/Game/Scripts/Learnspell.txt";name=arr_text_l3[i_ran]},hero,player,7) sleep(4) end;
-					end;
+			function TTH_ARTI.checkPreActive1034HasLostTown(iPlayer, strHero, strTown)
+				if GetObjectOwner(strTown) ~= iPlayer then
+					local strText = TTH_PATH.Artifact[ARTIFACT_ORDER_OF_CONSCRIPTION]["HasLostTown"];
+					TTH_GLOBAL.sign(strHero, strText);
+					return nil;
 				end;
 
-				if (HasArtefact(hero, ARTIFACT_BOOK_OF_POWER, 1) ~= nil) then
-					if H55_TeachSpell_L4[hero] == nil then
-						local index_l4 = 0;
-						local arr_spell_l4 = {};
-						local arr_text_l4 = {};
-						if KnowHeroSpell(hero, H55_SpellsL5[6]) == nil then
-							arr_spell_l4[index_l4] = H55_SpellsL5[6];
-							arr_text_l4[index_l4] = H55_SpellsTextL5[6];
-							index_l4 = index_l4 + 1;
-						end;
-						if KnowHeroSpell(hero, H55_SpellsL4[1]) == nil then
-							arr_spell_l4[index_l4] = H55_SpellsL4[1];
-							arr_text_l4[index_l4] = H55_SpellsTextL4[1];
-							index_l4 = index_l4 + 1;
-						end;
-						if KnowHeroSpell(hero, H55_SpellsL4[9]) == nil then
-							arr_spell_l4[index_l4] = H55_SpellsL4[9];
-							arr_text_l4[index_l4] = H55_SpellsTextL4[9];
-							index_l4 = index_l4 + 1;
-						end;
-						if KnowHeroSpell(hero, H55_SpellsL5[5]) == nil then
-							arr_spell_l4[index_l4] = H55_SpellsL5[5];
-							arr_text_l4[index_l4] = H55_SpellsTextL5[5];
-							index_l4 = index_l4 + 1;
-						end;
-						if index_l4 > 0 then
-							local i_ran = random(length(arr_spell_l4));
-							TeachHeroSpell(hero, arr_spell_l4[i_ran]);
-							H55_TeachSpell_L4[hero] = 1;
-							if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign({"/Text/Game/Scripts/Learnspell.txt";name=arr_text_l4[i_ran]},hero,player,7) sleep(4) end;
-						end;
-					end;
-				end;
+				TTH_ARTI.confirmActive103(iPlayer, strHero, strTown);
 			end;
-
-			-- 闪耀坠饰 ARTIFACT_PENDANT_OF_BLIND
-			TTH_Func_PendantOfBlind(hero);
-			-- 冲锋战鼓 ARTIFACT_DRUM_OF_CHARGE
-			TTH_Func_DrumOfCharge(hero);
-			-- 幻影宝石 ARTIFACT_GEM_OF_PHANTOM
-			TTH_Func_GemOfPhantom(hero);
-
-			H55_DEBUG = {14,"Skills",player,hero};
-				if (HasHeroSkill(hero,DEMON_FEAT_DEMONIC_FLAME) ~= nil) and (H55_DemonicFlameOwners[hero] ~= 1) then
-					H55_DemonicFlameOwners[hero] = 1;
-					ChangeHeroStat(hero,STAT_DEFENCE,2);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign("/Text/Game/Scripts/Defense.txt",hero,player,5) end;
-				end;
-				if (HasHeroSkill(hero,DEMON_FEAT_DEMONIC_FLAME) == nil) and (H55_DemonicFlameOwners[hero] == 1) then
-					H55_DemonicFlameOwners[hero] = 0;
-					ChangeHeroStat(hero,STAT_DEFENCE,-2);
-				end;
-				if (HasHeroSkill(hero,KNIGHT_FEAT_CASTER_CERTIFICATE) ~= nil) and (GetHeroLevel(hero) >= 20) and (H55_CertificateOwners[hero] ~= 1) then
-					H55_CertificateOwners[hero] = 1;
-					ChangeHeroStat(hero,STAT_SPELL_POWER,2);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign("/Text/Game/Scripts/Spellpower.txt",hero,player,5) end;
-				end;
-				if (HasHeroSkill(hero,KNIGHT_FEAT_CASTER_CERTIFICATE) == nil) and (H55_CertificateOwners[hero] == 1) then
-					H55_CertificateOwners[hero] = 0;
-					ChangeHeroStat(hero,STAT_SPELL_POWER,-2);
-				end;
-				if (HasHeroSkill(hero,NECROMANCER_FEAT_TWILIGHT) ~= nil) and (GetHeroLevel(hero) >= 30) and (H55_TwilightOwners[hero] ~= 1) then
-					H55_TwilightOwners[hero] = 1;
-					ChangeHeroStat(hero,STAT_SPELL_POWER,3);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign("/Text/Game/Scripts/Spellpower.txt",hero,player,5) end;
-				end;
-				if (HasHeroSkill(hero,NECROMANCER_FEAT_TWILIGHT) == nil) and (H55_TwilightOwners[hero] == 1) then
-					H55_TwilightOwners[hero] = 0;
-					ChangeHeroStat(hero,STAT_SPELL_POWER,-3);
-				end;
-				if (HasHeroSkill(hero,KNIGHT_FEAT_PARIAH) ~= nil) and (GetHeroLevel(hero) >= 30) and (H55_PariahOwners[hero] ~= 1) then
-					H55_PariahOwners[hero] = 1;
-					ChangeHeroStat(hero,STAT_SPELL_POWER,5);
-					ChangeHeroStat(hero,STAT_LUCK,-1);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign("/Text/Game/Scripts/Spellpower.txt",hero,player,5) end;
-				end;
-				if (HasHeroSkill(hero,KNIGHT_FEAT_PARIAH) == nil) and (H55_PariahOwners[hero] == 1) then
-					H55_PariahOwners[hero] = 0;
-					ChangeHeroStat(hero,STAT_SPELL_POWER,-5);
-					ChangeHeroStat(hero,STAT_LUCK,1);
-				end;
-				if (HasHeroSkill(hero,NECROMANCER_FEAT_CHILLING_BONES) ~= nil) and (H55_ChillingBonesOwners[hero] ~= 1) then
-					H55_ChillingBonesOwners[hero] = 1;
-					ChangeHeroStat(hero,STAT_DEFENCE,2);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign("/Text/Game/Scripts/Defense.txt",hero,player,5) end;
-				end;
-				if (HasHeroSkill(hero,NECROMANCER_FEAT_CHILLING_BONES) == nil) and (H55_ChillingBonesOwners[hero] == 1) then
-					H55_ChillingBonesOwners[hero] = 0;
-					ChangeHeroStat(hero,STAT_DEFENCE,-2);
-				end;
-				if (HasHeroSkill(hero,DEMON_FEAT_DEMONIC_RETALIATION) ~= nil) and (H55_DemonicRetaliationOwners[hero] ~= 1) then
-					H55_DemonicRetaliationOwners[hero] = 1;
-					ChangeHeroStat(hero,STAT_ATTACK,2);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign("/Text/Game/Scripts/Attack.txt",hero,player,5) end;
-				end;
-				if (HasHeroSkill(hero,DEMON_FEAT_DEMONIC_RETALIATION) == nil) and (H55_DemonicRetaliationOwners[hero] == 1) then
-					H55_DemonicRetaliationOwners[hero] = 0;
-					ChangeHeroStat(hero,STAT_ATTACK,-2);
-				end;
-				if (HasHeroSkill(hero,WARLOCK_FEAT_DARK_REVELATION) ~= nil) and (H55_RunicKnowledgeOwners[hero] ~= 1) then
-					H55_RunicKnowledgeOwners[hero] = 1;
-					ChangeHeroStat(hero,STAT_KNOWLEDGE,2);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign("/Text/Game/Scripts/Knowledge.txt",hero,player,5) end;
-				end;
-				if (HasHeroSkill(hero,WARLOCK_FEAT_DARK_REVELATION) == nil) and (H55_RunicKnowledgeOwners[hero] == 1) then
-					H55_RunicKnowledgeOwners[hero] = 0;
-					ChangeHeroStat(hero,STAT_KNOWLEDGE,-2);
-				end;
-				if (HasHeroSkill(hero,HERO_SKILL_BARBARIAN_DARK_REVELATION) ~= nil) and (H55_DarkRevelationOwners[hero] ~= 1) then
-					H55_DarkRevelationOwners[hero] = 1;
-					ChangeHeroStat(hero,STAT_KNOWLEDGE,2);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign("/Text/Game/Scripts/Knowledge.txt",hero,player,5) end;
-				end;
-				if (HasHeroSkill(hero,HERO_SKILL_BARBARIAN_DARK_REVELATION) == nil) and (H55_DarkRevelationOwners[hero] == 1) then
-					H55_DarkRevelationOwners[hero] = 0;
-					ChangeHeroStat(hero,STAT_KNOWLEDGE,-2);
-				end;
-				if (HasHeroSkill(hero,WARLOCK_FEAT_ELITE_CASTERS) ~= nil) and (GetHeroLevel(hero) >= 20) and (H55_RefinedManaOwners[hero] ~= 1) then
-					H55_RefinedManaOwners[hero] = 1;
-					ChangeHeroStat(hero,STAT_KNOWLEDGE,2);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign("/Text/Game/Scripts/Knowledge.txt",hero,player,5) end;
-				end;
-				if (HasHeroSkill(hero,WARLOCK_FEAT_ELITE_CASTERS) == nil) and (H55_RefinedManaOwners[hero] == 1) then
-					H55_RefinedManaOwners[hero] = 0;
-					ChangeHeroStat(hero,STAT_KNOWLEDGE,-2);
-				end;
-				if (HasHeroSkill(hero,HERO_SKILL_BARBARIAN_ELITE_CASTERS) ~= nil) and (GetHeroLevel(hero) >= 20) and (H55_BRefinedManaOwners[hero] ~= 1) then
-					H55_BRefinedManaOwners[hero] = 1;
-					ChangeHeroStat(hero,STAT_KNOWLEDGE,2);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign("/Text/Game/Scripts/Knowledge.txt",hero,player,5) end;
-				end;
-				if (HasHeroSkill(hero,HERO_SKILL_BARBARIAN_ELITE_CASTERS) == nil) and (H55_BRefinedManaOwners[hero] == 1) then
-					H55_BRefinedManaOwners[hero] = 0;
-					ChangeHeroStat(hero,STAT_KNOWLEDGE,-2);
-				end;
-				if (HasHeroSkill(hero,RANGER_FEAT_CUNNING_OF_THE_WOODS) ~= nil) and (H55_KnowYourEnemyOwners[hero] ~= 1) then
-					H55_KnowYourEnemyOwners[hero] = 1;
-					ChangeHeroStat(hero,STAT_KNOWLEDGE,1);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign("/Text/Game/Scripts/Knowledge.txt",hero,player,5) end;
-				end;
-				if (HasHeroSkill(hero,RANGER_FEAT_CUNNING_OF_THE_WOODS) == nil) and (H55_KnowYourEnemyOwners[hero] == 1) then
-					H55_KnowYourEnemyOwners[hero] = 0;
-					ChangeHeroStat(hero,STAT_KNOWLEDGE,-1);
-				end;
-				if (HasHeroSkill(hero,RANGER_FEAT_FOREST_RAGE) ~= nil) and (H55_ForestRageOwners[hero] ~= 1) then
-					H55_ForestRageOwners[hero] = 1;
-					ChangeHeroStat(hero,STAT_LUCK,1);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign("/Text/Game/Scripts/Luck.txt",hero,player,5) end;
-				end;
-				if (HasHeroSkill(hero,RANGER_FEAT_FOREST_RAGE) == nil) and (H55_ForestRageOwners[hero] == 1) then
-					H55_ForestRageOwners[hero] = 0;
-					ChangeHeroStat(hero,STAT_LUCK,-1);
-				end;
-				if (HasHeroSkill(hero,PERK_LUCKY_STRIKE) ~= nil) and (H55_GetHeroRaceNum == 5) and (H55_LuckyStrikeOwners[hero] ~= 1) then
-					H55_LuckyStrikeOwners[hero] = 1;
-					ChangeHeroStat(hero,STAT_LUCK,1);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign("/Text/Game/Scripts/Luck.txt",hero,player,5) end;
-				end;
-				if (HasHeroSkill(hero,PERK_LUCKY_STRIKE) == nil) and (H55_GetHeroRaceNum == 5) and (H55_LuckyStrikeOwners[hero] == 1) then
-					H55_LuckyStrikeOwners[hero] = 0;
-					ChangeHeroStat(hero,STAT_LUCK,-1);
-				end;
-				if (HasHeroSkill(hero,HERO_SKILL_DEATH_TO_NONEXISTENT) ~= nil) and (H55_BackToVoidOwners[hero] ~= 1) then
-					H55_BackToVoidOwners[hero] = 1;
-					ChangeHeroStat(hero,STAT_ATTACK,2);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign("/Text/Game/Scripts/Attack.txt",hero,player,5) end;
-				end;
-				if (HasHeroSkill(hero,HERO_SKILL_DEATH_TO_NONEXISTENT) == nil) and (H55_BackToVoidOwners[hero] == 1) then
-					H55_BackToVoidOwners[hero] = 0;
-					ChangeHeroStat(hero,STAT_ATTACK,-2);
-				end;
-				if (HasHeroSkill(hero,NECROMANCER_FEAT_LORD_OF_UNDEAD) ~= nil) and (H55_LordOfUndeadOwners[hero] ~= 1) then
-					H55_LordOfUndeadOwners[hero] = 1;
-					ChangeHeroStat(hero,STAT_KNOWLEDGE,1);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-						ShowFlyingSign("/Text/Game/Scripts/Knowledge.txt",hero,player,5);
-					end;
-				end;
-				if (HasHeroSkill(hero,NECROMANCER_FEAT_LORD_OF_UNDEAD) == nil) and (H55_LordOfUndeadOwners[hero] == 1) then
-					H55_LordOfUndeadOwners[hero] = 0;
-					ChangeHeroStat(hero,STAT_KNOWLEDGE,-1);
-				end;
-				if (HasHeroSkill(hero,PERK_RAISE_ARCHERS) ~= nil) and (H55_RaiseArchersOwners[hero] ~= 1) then
-					H55_RaiseArchersOwners[hero] = 1;
-					ChangeHeroStat(hero,STAT_KNOWLEDGE,1);
-					ChangeHeroStat(hero,STAT_SPELL_POWER,1);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-						ShowFlyingSign("/Text/Game/Scripts/Knowledge.txt",hero,player,5);
-						ShowFlyingSign("/Text/Game/Scripts/Spellpower.txt",hero,player,5);
-					end;
-				end;
-				if (HasHeroSkill(hero,PERK_RAISE_ARCHERS) == nil) and (H55_RaiseArchersOwners[hero] == 1) then
-					H55_RaiseArchersOwners[hero] = 0;
-					ChangeHeroStat(hero,STAT_KNOWLEDGE,-1);
-					ChangeHeroStat(hero,STAT_SPELL_POWER,-1);
-				end;
-				if (HasHeroSkill(hero,HERO_SKILL_OFFENSIVE_FORMATION) ~= nil) and (H55_OffensiveFormationOwners[hero] ~= 1) and (H55_GetHeroRaceNum(hero) ~= 7) then
-					H55_OffensiveFormationOwners[hero] = 1;
-					ChangeHeroStat(hero,STAT_ATTACK,2);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign("/Text/Game/Scripts/Attack.txt",hero,player,5) end;
-				end;
-				if (HasHeroSkill(hero,HERO_SKILL_OFFENSIVE_FORMATION) == nil) and (H55_OffensiveFormationOwners[hero] == 1) and (H55_GetHeroRaceNum(hero) ~= 7) then
-					H55_OffensiveFormationOwners[hero] = 0;
-					ChangeHeroStat(hero,STAT_ATTACK,-2);
-				end;
-				if (HasHeroSkill(hero,HERO_SKILL_OFFENSIVE_FORMATION) ~= nil) and (GetHeroLevel(hero) >= 20) and (H55_OffensiveFormationPlusOwners[hero] ~= 1) and (H55_GetHeroRaceNum(hero) ~= 7) then
-					H55_OffensiveFormationPlusOwners[hero] = 1;
-					ChangeHeroStat(hero,STAT_ATTACK,1);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign("/Text/Game/Scripts/Attack.txt",hero,player,5) end;
-				end;
-				if (HasHeroSkill(hero,HERO_SKILL_OFFENSIVE_FORMATION) == nil) and (H55_OffensiveFormationPlusOwners[hero] == 1) and (H55_GetHeroRaceNum(hero) ~= 7) then
-					H55_OffensiveFormationPlusOwners[hero] = 0;
-					ChangeHeroStat(hero,STAT_ATTACK,-1);
-				end;
-				if (HasHeroSkill(hero,HERO_SKILL_DEFENSIVE_FORMATION) ~= nil) and (H55_DefensiveFormationOwners[hero] ~= 1) and (H55_GetHeroRaceNum(hero) ~= 7) then
-					H55_DefensiveFormationOwners[hero] = 1;
-					ChangeHeroStat(hero,STAT_DEFENCE,2);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign("/Text/Game/Scripts/Defense.txt",hero,player,5) end;
-				end;
-				if (HasHeroSkill(hero,HERO_SKILL_DEFENSIVE_FORMATION) == nil) and (H55_DefensiveFormationOwners[hero] == 1) and (H55_GetHeroRaceNum(hero) ~= 7) then
-					H55_DefensiveFormationOwners[hero] = 0;
-					ChangeHeroStat(hero,STAT_DEFENCE,-2);
-				end;
-				if (HasHeroSkill(hero,HERO_SKILL_DEFENSIVE_FORMATION) ~= nil) and (GetHeroLevel(hero) >= 20) and (H55_DefensiveFormationPlusOwners[hero] ~= 1) and (H55_GetHeroRaceNum(hero) ~= 7) then
-					H55_DefensiveFormationPlusOwners[hero] = 1;
-					ChangeHeroStat(hero,STAT_DEFENCE,1);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign("/Text/Game/Scripts/Defense.txt",hero,player,5) end;
-				end;
-				if (HasHeroSkill(hero,HERO_SKILL_DEFENSIVE_FORMATION) == nil) and (H55_DefensiveFormationPlusOwners[hero] == 1) and (H55_GetHeroRaceNum(hero) ~= 7) then
-					H55_DefensiveFormationPlusOwners[hero] = 0;
-					ChangeHeroStat(hero,STAT_DEFENCE,-1);
-				end;
-				if (HasHeroSkill(hero,KNIGHT_FEAT_RETRIBUTION) ~= nil) and (H55_RetributionOwners[hero] ~= 1) and (H55_GetHeroRaceNum(hero) == 4) then
-					H55_RetributionOwners[hero] = 1;
-					ChangeHeroStat(hero,STAT_ATTACK,2);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign("/Text/Game/Scripts/Attack.txt",hero,player,5) end;
-				end;
-				if (HasHeroSkill(hero,KNIGHT_FEAT_RETRIBUTION) == nil) and (H55_RetributionOwners[hero] == 1) and (H55_GetHeroRaceNum(hero) == 4) then
-					H55_RetributionOwners[hero] = 0;
-					ChangeHeroStat(hero,STAT_ATTACK,-2);
-				end;
-				if (HasHeroSkill(hero,WARLOCK_FEAT_ELEMENTAL_OVERKILL) ~= nil) and (H55_OverkillOwners[hero] ~= 1) then
-					H55_OverkillOwners[hero] = 1;
-					ChangeHeroStat(hero,STAT_SPELL_POWER,2);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign("/Text/Game/Scripts/Spellpower.txt",hero,player,5) end;
-				end;
-				if (HasHeroSkill(hero,WARLOCK_FEAT_ELEMENTAL_OVERKILL) == nil) and (H55_OverkillOwners[hero] == 1) then
-					H55_OverkillOwners[hero] = 0;
-					ChangeHeroStat(hero,STAT_SPELL_POWER,-2);
-				end;
-				if (HasHeroSkill(hero,WARLOCK_FEAT_ELEMENTAL_OVERKILL) ~= nil) and (HasHeroSkill(hero,SKILL_SUMMONING_MAGIC) ~= nil) and (H55_OverkillSumOwners[hero] ~= 1) then
-					H55_OverkillSumOwners[hero] = 1;
-					ChangeHeroStat(hero,STAT_SPELL_POWER,2);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign("/Text/Game/Scripts/Spellpower.txt",hero,player,5) end;
-				end;
-				if (HasHeroSkill(hero,WARLOCK_FEAT_ELEMENTAL_OVERKILL) == nil) and (H55_OverkillSumOwners[hero] == 1) then
-					H55_OverkillSumOwners[hero] = 0;
-					ChangeHeroStat(hero,STAT_SPELL_POWER,-2);
-				end;
-				if (HasHeroSkill(hero,SKILL_SUMMONING_MAGIC) == nil) and (H55_OverkillSumOwners[hero] == 1) then
-					H55_OverkillSumOwners[hero] = 0;
-					ChangeHeroStat(hero,STAT_SPELL_POWER,-2);
-				end;
-				if (HasHeroSkill(hero,DEMON_FEAT_MASTER_OF_SECRETS) ~= nil) and (GetHeroLevel(hero) >= 20) and (H55_ArcaneExaltationOwners[hero] ~= 1) then
-					H55_ArcaneExaltationOwners[hero] = 1;
-					ChangeHeroStat(hero,STAT_SPELL_POWER,2);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign("/Text/Game/Scripts/Spellpower.txt",hero,player,5) end;
-				end;
-				if (HasHeroSkill(hero,DEMON_FEAT_MASTER_OF_SECRETS) == nil) and (H55_ArcaneExaltationOwners[hero] == 1) then
-					H55_ArcaneExaltationOwners[hero] = 0;
-					ChangeHeroStat(hero,STAT_SPELL_POWER,-2);
-				end;
-				if (HasHeroSkill(hero,WARLOCK_FEAT_SECRETS_OF_DESTRUCTION) ~= nil) and (GetHeroLevel(hero) >= 20) and (H55_SecretsDestructionOwners[hero] ~= 1) then
-					H55_SecretsDestructionOwners[hero] = 1;
-					ChangeHeroStat(hero,STAT_KNOWLEDGE,2);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign("/Text/Game/Scripts/Knowledge.txt",hero,player,5) end;
-				end;
-				if (HasHeroSkill(hero,WARLOCK_FEAT_SECRETS_OF_DESTRUCTION) == nil) and (H55_SecretsDestructionOwners[hero] == 1) then
-					H55_SecretsDestructionOwners[hero] = 0;
-					ChangeHeroStat(hero,STAT_KNOWLEDGE,-2);
-				end;
-				if (HasHeroSkill(hero,HERO_SKILL_FOREST_GUARD_EMBLEM) ~= nil) and (H55_ForestGuardEmblemOwners[hero] ~= 1) then
-					H55_ForestGuardEmblemOwners[hero] = 1;
-					ChangeHeroStat(hero,STAT_ATTACK,1);
-					ChangeHeroStat(hero,STAT_DEFENCE,1);
-					ChangeHeroStat(hero,STAT_MORALE,1);
-
-					TTH_DealHeroSkillForestGuardEmblem(hero, player);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-						ShowFlyingSign("/Text/Game/Scripts/Attack.txt",hero,player,5);
-						ShowFlyingSign("/Text/Game/Scripts/Defense.txt",hero,player,5);
-						ShowFlyingSign("/Text/Game/Scripts/Morale.txt",hero,player,5);
-					end;
-				end;
-				if (HasHeroSkill(hero,HERO_SKILL_FOREST_GUARD_EMBLEM) == nil) and (H55_ForestGuardEmblemOwners[hero] == 1) then
-					H55_ForestGuardEmblemOwners[hero] = 0;
-					ChangeHeroStat(hero,STAT_ATTACK,-1);
-					ChangeHeroStat(hero,STAT_DEFENCE,-1);
-					ChangeHeroStat(hero,STAT_MORALE,-1);
-				end;
-				if (HasHeroSkill(hero,NECROMANCER_FEAT_DEADLY_COLD) ~= nil) and (GetHeroLevel(hero) >= 20) and (H55_ColdDeathOwners[hero] ~= 1) then
-					H55_ColdDeathOwners[hero] = 1;
-					ChangeHeroStat(hero,STAT_SPELL_POWER,2);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign("/Text/Game/Scripts/Spellpower.txt",hero,player,5) end;
-				end;
-				if (HasHeroSkill(hero,NECROMANCER_FEAT_DEADLY_COLD) == nil) and (H55_ColdDeathOwners[hero] == 1) then
-					H55_ColdDeathOwners[hero] = 0;
-					ChangeHeroStat(hero,STAT_SPELL_POWER,-2);
-				end;
-				if (HasHeroSkill(hero,DEMON_FEAT_TRIPLE_CATAPULT) ~= nil) and (HasHeroWarMachine(hero,4) ~= nil) and (H55_TripleCatapultOwners[hero] ~= 1) then
-					H55_TripleCatapultOwners[hero] = 1;
-					ChangeHeroStat(hero,STAT_ATTACK,2);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign("/Text/Game/Scripts/Attack.txt",hero,player,5) end;
-				end;
-				if (HasHeroSkill(hero,DEMON_FEAT_TRIPLE_CATAPULT) == nil) and (H55_TripleCatapultOwners[hero] == 1) then
-					H55_TripleCatapultOwners[hero] = 0;
-					ChangeHeroStat(hero,STAT_ATTACK,-2);
-				end;
-				if (HasHeroWarMachine(hero,4) == nil) and (H55_TripleCatapultOwners[hero] == 1) then
-					H55_TripleCatapultOwners[hero] = 0;
-					ChangeHeroStat(hero,STAT_ATTACK,-2);
-				end;
-				if (HasHeroSkill(hero,DEMON_FEAT_TRIPLE_CATAPULT) ~= nil) and GetHeroSkillMastery(hero,SKILL_WAR_MACHINES) == 3 and (HasHeroWarMachine(hero,4) ~= nil) and (H55_TripleCatapultExpertOwners[hero] ~= 1) then
-					H55_TripleCatapultExpertOwners[hero] = 1;
-					ChangeHeroStat(hero,STAT_ATTACK,1);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign("/Text/Game/Scripts/Attack.txt",hero,player,5) end;
-				end;
-				if (HasHeroSkill(hero,DEMON_FEAT_TRIPLE_CATAPULT) == nil) and (H55_TripleCatapultExpertOwners[hero] == 1) then
-					H55_TripleCatapultExpertOwners[hero] = 0;
-					ChangeHeroStat(hero,STAT_ATTACK,-1);
-				end;
-				if GetHeroSkillMastery(hero,SKILL_WAR_MACHINES) < 3 and (H55_TripleCatapultExpertOwners[hero] == 1) then
-					H55_TripleCatapultExpertOwners[hero] = 0;
-					ChangeHeroStat(hero,STAT_ATTACK,-1);
-				end;
-				if (HasHeroWarMachine(hero,4) == nil) and (H55_TripleCatapultExpertOwners[hero] == 1) then
-					H55_TripleCatapultExpertOwners[hero] = 0;
-					ChangeHeroStat(hero,STAT_ATTACK,-1);
-				end;
-				if (HasHeroSkill(hero,DEMON_FEAT_TRIPLE_CATAPULT) ~= nil) and (HasHeroWarMachine(hero,4) ~= nil) and (HasArtefact(hero,ARTIFACT_RING_OF_MACHINE_AFFINITY,1) ~= nil) and (H55_TripleCatapultRingOwners[hero] ~= 1) then
-					H55_TripleCatapultRingOwners[hero] = 1;
-					ChangeHeroStat(hero,STAT_ATTACK,1);
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign("/Text/Game/Scripts/Attack.txt",hero,player,5) end;
-				end;
-				if (HasHeroSkill(hero,DEMON_FEAT_TRIPLE_CATAPULT) == nil) and (H55_TripleCatapultRingOwners[hero] == 1) then
-					H55_TripleCatapultRingOwners[hero] = 0;
-					ChangeHeroStat(hero,STAT_ATTACK,-1);
-				end;
-				if (HasArtefact(hero,ARTIFACT_RING_OF_MACHINE_AFFINITY,1) == nil) and (H55_TripleCatapultRingOwners[hero] == 1) then
-					H55_TripleCatapultRingOwners[hero] = 0;
-					ChangeHeroStat(hero,STAT_ATTACK,-1);
-				end;
-				if (HasHeroWarMachine(hero,4) == nil) and (H55_TripleCatapultRingOwners[hero] == 1) then
-					H55_TripleCatapultRingOwners[hero] = 0;
-					ChangeHeroStat(hero,STAT_ATTACK,-1);
-				end;
-				if (HasHeroSkill(hero,KNIGHT_FEAT_STUDENT_AWARD) ~= nil) and (H55_StudentAwardOwners[hero] ~= 1) then
-					H55_StudentAwardOwners[hero] = 1;
-					GiveExp(hero,(GetHeroLevel(hero)*250));
-				end;
-				if (HasHeroSkill(hero,WIZARD_FEAT_ACADEMY_AWARD) ~= nil) and (H55_AcademyAwardOwners[hero] ~= 1) then
-					H55_AcademyAwardOwners[hero] = 1;
-					if H55_IsThisAIPlayer(player) ~= 1 then sleep(1) end;
-					H55_GiveResources(player,6,(GetHeroLevel(hero)*250),hero);
-				end;
-				if (HasHeroSkill(hero,PERK_FORTUNATE_ADVENTURER) ~= nil) and (H55_DwarvenNetworkOwners[hero] ~= 1) then
-					H55_DwarvenNetworkOwners[hero] = 1;
-					H55_NetworkSkillAmount[player] = H55_NetworkSkillAmount[player]+1;
-				end;
-				if (HasHeroSkill(hero,PERK_FORTUNATE_ADVENTURER) == nil) and (H55_DwarvenNetworkOwners[hero] == 1) then
-					H55_DwarvenNetworkOwners[hero] = 0;
-					H55_NetworkSkillAmount[player] = H55_NetworkSkillAmount[player]-1;
-				end;
-				if (HasHeroSkill(hero,SKILL_INVOCATION) ~= nil) and H55_OccultismPowerOwners[hero] == nil then
-					H55_OccultismPowerOwners[hero] = 0;
-				end;
-				if (HasHeroSkill(hero,SKILL_INVOCATION) == nil) and H55_OccultismPowerOwners[hero] ~= nil then
-					if H55_OccultismPowerOwners[hero] > 0 then
-						ChangeHeroStat(hero,STAT_SPELL_POWER,-H55_OccultismPowerOwners[hero]);
-						H55_OccultismPowerOwners[hero] = nil;
-					end;
-				end;
-				if H55_OccultismPowerOwners[hero] ~= nil then
-					local power = H55_GetOccultismPower(hero);
-					if H55_OccultismPowerOwners[hero] < power then
-						ChangeHeroStat(hero,STAT_SPELL_POWER,(power-H55_OccultismPowerOwners[hero]));
-						H55_OccultismPowerOwners[hero] = power;
-					end;
-					if H55_OccultismPowerOwners[hero] > power then
-						ChangeHeroStat(hero,STAT_SPELL_POWER,-(H55_OccultismPowerOwners[hero]-power));
-						H55_OccultismPowerOwners[hero] = power;
-					end;
-				end;
-				if contains(H55_NecropolisHeroes,hero) ~= nil then
-					if (HasHeroSkill(hero,SKILL_LEADERSHIP) ~= nil) then
-						H55_BaseLeadershipOwners[hero] = 1;
-						if (GetHeroSkillMastery(hero,SKILL_LEADERSHIP) == 1) and ((H55_LeadershipOwners[hero] == nil) or (H55_LeadershipOwners[hero] == 0)) then
-							H55_LeadershipOwners[hero] = 1;
-							ChangeHeroStat(hero,STAT_ATTACK,2);
-							if H55_IsThisAIPlayer(player) ~= 1 and H55_Day ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign("/Text/Game/Scripts/Attack.txt",hero,player,5) end;
-						end;
-						if (GetHeroSkillMastery(hero,SKILL_LEADERSHIP) == 2) and (H55_LeadershipOwners[hero] == 1) then
-							H55_LeadershipOwners[hero] = 2;
-							ChangeHeroStat(hero,STAT_ATTACK,2);
-							if H55_IsThisAIPlayer(player) ~= 1 and H55_Day ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign("/Text/Game/Scripts/Attack.txt",hero,player,5) end;
-						end;
-						if (GetHeroSkillMastery(hero,SKILL_LEADERSHIP) == 3) and (H55_LeadershipOwners[hero] == 2) then
-							H55_LeadershipOwners[hero] = 3;
-							ChangeHeroStat(hero,STAT_ATTACK,2);
-							if H55_IsThisAIPlayer(player) ~= 1 and H55_Day ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign("/Text/Game/Scripts/Attack.txt",hero,player,5) end;
-						end;
-					end;
-					if (H55_BaseLeadershipOwners[hero] == 1) then
-						if (GetHeroSkillMastery(hero,SKILL_LEADERSHIP) == 2) and (H55_LeadershipOwners[hero] == 3) then
-							H55_LeadershipOwners[hero] = 2;
-							ChangeHeroStat(hero,STAT_ATTACK,-2);
-						end;
-						if (GetHeroSkillMastery(hero,SKILL_LEADERSHIP) == 1) and (H55_LeadershipOwners[hero] == 3) then
-							H55_LeadershipOwners[hero] = 1;
-							ChangeHeroStat(hero,STAT_ATTACK,-4);
-						end;
-						if (GetHeroSkillMastery(hero,SKILL_LEADERSHIP) == 1) and (H55_LeadershipOwners[hero] == 2) then
-							H55_LeadershipOwners[hero] = 1;
-							ChangeHeroStat(hero,STAT_ATTACK,-2);
-						end;
-					end;
-					if (HasHeroSkill(hero,SKILL_LEADERSHIP) == nil) and (H55_BaseLeadershipOwners[hero] == 1) then
-						H55_BaseLeadershipOwners[hero] = 0;
-						if (H55_LeadershipOwners[hero] == 3) then
-							H55_LeadershipOwners[hero] = 0;
-							ChangeHeroStat(hero,STAT_ATTACK,-6);
-						end;
-						if (H55_LeadershipOwners[hero] == 2) then
-							H55_LeadershipOwners[hero] = 0;
-							ChangeHeroStat(hero,STAT_ATTACK,-4);
-						end;
-						if (H55_LeadershipOwners[hero] == 1) then
-							H55_LeadershipOwners[hero] = 0;
-							ChangeHeroStat(hero,STAT_ATTACK,-2);
-						end;
-					end;
-				end;
+			function TTH_ARTI.confirmActive103(iPlayer, strHero, strTown)
+				local strTown = TTH_VARI.mainTown4Player[iPlayer];
+				local strArtifactName = TTH_TABLE.Artifact[ARTIFACT_ORDER_OF_CONSCRIPTION]["Text"];
 
-			H55_ZombieCarryArmy(player,hero,ci);
-
-			if (HasArtefact(hero,ARTIFACT_MONK_03,1)) ~= nil and (H55_ArtMoveReceived[hero] ~= ci) and (GetSavedCombatArmyHero(ci,1)==hero) then
-				ChangeHeroStat(hero,STAT_MOVE_POINTS,350 * (1 + 0.5 * TTH_Monk_Move_Bonus(hero)));
-				H55_ArtMoveReceived[hero] = ci;
-			end;
-			local i_total_mana = 0;
-			if (HasArtefact(hero,ARTIFACT_EIGHTFOLD,1)) ~= nil and (H55_EightFoldManaReceived[hero] ~= ci) and (GetSavedCombatArmyHero(ci,1)==hero) then
-				if HasHeroSkill(hero, PERK_MYSTICISM) == nil then
-					i_total_mana = i_total_mana + 10;
-				else
-					i_total_mana = i_total_mana + 20;
-				end;
-				H55_EightFoldManaReceived[hero] = ci;
-			end;
-			if (HasArtefact(hero,ARTIFACT_MONK_01,1)) ~= nil and (H55_Monk1ManaReceived[hero] ~= ci) and (GetSavedCombatArmyHero(ci,1)==hero) then
-				if HasHeroSkill(hero, PERK_MYSTICISM) == nil then
-					i_total_mana = i_total_mana + 4;
-				else
-					i_total_mana = i_total_mana + 8;
-				end;
-				H55_Monk1ManaReceived[hero] = ci;
-			end;
-			if (HasArtefact(hero,ARTIFACT_MONK_02,1)) ~= nil and (H55_Monk2ManaReceived[hero] ~= ci) and (GetSavedCombatArmyHero(ci,1)==hero) then
-				if HasHeroSkill(hero, PERK_MYSTICISM) == nil then
-					i_total_mana = i_total_mana + 2;
-				else
-					i_total_mana = i_total_mana + 4;
-				end;
-				H55_Monk2ManaReceived[hero] = ci;
-			end;
-			if (HasArtefact(hero,ARTIFACT_MONK_04,1)) ~= nil and (H55_Monk4ManaReceived[hero] ~= ci) and (GetSavedCombatArmyHero(ci,1)==hero) then
-				if HasHeroSkill(hero, PERK_MYSTICISM) == nil then
-					i_total_mana = i_total_mana + 3;
-				else
-					i_total_mana = i_total_mana + 6;
-				end;
-				H55_Monk4ManaReceived[hero] = ci;
-			end;
-			if HasHeroSkill(hero, HERO_SKILL_ETERNAL_LIGHT) ~= nil and (H55_EternalLightManaReceived[hero] ~= ci) and (GetSavedCombatArmyHero(ci,1)==hero) then
-				if HasHeroSkill(hero, PERK_MYSTICISM) == nil then
-					i_total_mana = i_total_mana + 2;
-				else
-					i_total_mana = i_total_mana + 4;
-				end;
-				H55_EternalLightManaReceived[hero] = ci;
-			end;
-			if HasHeroSkill(hero, WARLOCK_FEAT_PAYBACK) ~= nil and (H55_PayBackManaReceived[hero] ~= ci) and (GetSavedCombatArmyHero(ci,1)==hero) then
-				if HasHeroSkill(hero, PERK_MYSTICISM) == nil then
-					i_total_mana = i_total_mana + 2;
-				else
-					i_total_mana = i_total_mana + 4;
-				end;
-				H55_PayBackManaReceived[hero] = ci;
-			end;
-			if HasHeroSkill(hero, WARLOCK_FEAT_SECRETS_OF_DESTRUCTION) ~= nil and (H55_SecretsOfDestructionManaReceived[hero] ~= ci) and (GetSavedCombatArmyHero(ci,1)==hero) then
-				if HasHeroSkill(hero, PERK_MYSTICISM) == nil then
-					i_total_mana = i_total_mana + 2;
-				else
-					i_total_mana = i_total_mana + 4;
-				end;
-				H55_SecretsOfDestructionManaReceived[hero] = ci;
-			end;
-			if HasHeroSkill(hero, PERK_DARK_RITUAL) ~= nil and (H55_RitualManaReceived[hero] ~= ci) and (GetSavedCombatArmyHero(ci,1)==hero) then
-				if HasHeroSkill(hero, PERK_MYSTICISM) == nil then
-					i_total_mana = i_total_mana + 4;
-				else
-					i_total_mana = i_total_mana + 8;
-				end;
-				H55_RitualManaReceived[hero] = ci;
-			end;
-			if (H55_SkillMasteryManaReceived[hero] ~= ci) and (GetSavedCombatArmyHero(ci,1)==hero) then
-				local i_level_light = GetHeroSkillMastery(hero, SKILL_LIGHT_MAGIC);
-				local i_level_dark = GetHeroSkillMastery(hero, SKILL_DARK_MAGIC);
-				local i_level_summoning = GetHeroSkillMastery(hero, SKILL_SUMMONING_MAGIC);
-				local i_level_destructive = GetHeroSkillMastery(hero, SKILL_DESTRUCTIVE_MAGIC);
-				local i_level_total = i_level_light + i_level_dark + i_level_summoning + i_level_destructive;
-				-- local i_level_calc = H55_Ceil(i_level_total / 2);
-				local i_level_calc = i_level_total;
-				if HasHeroSkill(hero, PERK_MYSTICISM) == nil then
-					i_total_mana = i_total_mana + i_level_calc;
-				else
-					i_total_mana = i_total_mana + i_level_calc * 2;
-				end;
-				H55_SkillMasteryManaReceived[hero] = ci;
-			end;
-			if i_total_mana > 0 then
-				i_total_mana = i_total_mana  * (1 + 0.5 * TTH_Monk_Mana_Bonus(hero));
-				ChangeHeroStat(hero, STAT_MANA_POINTS, i_total_mana);
-				if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-					ShowFlyingSign({"/Text/Game/Scripts/CombatManaReceived.txt"; num = i_total_mana}, hero, player, 5);
-					sleep(8);
-				elseif H55_IsThisAIPlayer(player) ~= 1 then
+				-- 视角定位
+					local iPosX, iPosY, iPosZ = GetObjectPosition(strTown);
+					MoveCamera(iPosX, iPosY, iPosZ, 50, TTH_FINAL.PI/2, 1, 1, 1, 1);
 					sleep(2);
+
+				local strPathMain={
+					TTH_PATH.Artifact[ARTIFACT_ORDER_OF_CONSCRIPTION]["Confirm"]
+					;strArtifactName=strArtifactName
+				};
+				local strCallbackOk = "TTH_ARTI.implActive103("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strTown)..")";
+				local strCallbackCancel = "TTH_COMMON.cancelOption()";
+				TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+			end;
+			function TTH_ARTI.implActive103(iPlayer, strHero, strTown)
+				RemoveArtefact(strHero, ARTIFACT_ORDER_OF_CONSCRIPTION);
+				MakeHeroInteractWithObject(strHero, strTown);
+			end;
+
+		-- 军团宝物 ARTIFACT_LEGION_X
+			TTH_VARI.bonusLegion4Town = {};
+
+			-- 每周城镇生物周产结算
+				function TTH_ARTI.bonusTownDwellingCreature8Legion(strTown)
+					TTH_MAIN.debug("TTH_ARTI.bonusTownDwellingCreature8Legion", nil, nil, strTown);
+
+					if TTH_VARI.bonusLegion4Town[strTown] ~= nil then
+						local arrCreatureGrowth8Tier = {
+							[1] = TTH_VARI.bonusLegion4Town[strTown][ARTIFACT_LEGION_BASIC] * 2
+							, [2] = TTH_VARI.bonusLegion4Town[strTown][ARTIFACT_LEGION_BASIC] * 2
+							, [3] = TTH_VARI.bonusLegion4Town[strTown][ARTIFACT_LEGION_BASIC] * 2
+							, [4] = TTH_VARI.bonusLegion4Town[strTown][ARTIFACT_LEGION_ADVANCED] * 1
+							, [5] = TTH_VARI.bonusLegion4Town[strTown][ARTIFACT_LEGION_ADVANCED] * 1
+							, [6] = TTH_VARI.bonusLegion4Town[strTown][ARTIFACT_LEGION_EXPERT] * 1
+							, [7] = TTH_VARI.bonusLegion4Town[strTown][ARTIFACT_LEGION_EXPERT] * 1
+						};
+						TTH_GLOBAL.updateTownDwellingCreature(strTown, arrCreatureGrowth8Tier);
+					end;
+				end;
+
+			-- ARTIFACT_LEGION_BASIC 104 军团之证
+				function TTH_ARTI.active104(iPlayer, strHero)
+					TTH_COMMON.nextNavi(TTH_PATH.Artifact["Legion"][ARTIFACT_LEGION_BASIC]["Text"]);
+
+					local strTown = TTH_VARI.townSkillManage;
+					TTH_ARTI.confirmActive104(iPlayer, strHero, strTown);
+				end;
+				function TTH_ARTI.confirmActive104(iPlayer, strHero, strTown)
+					local strArtifactName = TTH_TABLE.Artifact[ARTIFACT_LEGION_BASIC]["Text"];
+					local iBonusLevel = 0;
+					if TTH_VARI.bonusLegion4Town[strTown] ~= nil then
+						iBonusLevel = TTH_VARI.bonusLegion4Town[strTown][ARTIFACT_LEGION_BASIC];
+					end;
+					local strPathMain={
+						TTH_PATH.Artifact["Legion"]["Confirm"]
+						;strArtifactName=strArtifactName
+						,iTierMin=1
+						,iTierMax=3
+						,iBonusNumber=2
+						,iBonusLevel=iBonusLevel
+					};
+					local strCallbackOk = "TTH_ARTI.implActive104("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strTown)..")";
+					local strCallbackCancel = "TTH_COMMON.cancelOption()";
+					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+				end;
+				function TTH_ARTI.implActive104(iPlayer, strHero, strTown)
+					if TTH_VARI.bonusLegion4Town[strTown] == nil then
+						TTH_VARI.bonusLegion4Town[strTown] = {
+							[ARTIFACT_LEGION_BASIC] = 0
+							, [ARTIFACT_LEGION_ADVANCED] = 0
+							, [ARTIFACT_LEGION_EXPERT] = 0
+						};
+					end;
+					RemoveArtefact(strHero, ARTIFACT_LEGION_BASIC);
+					TTH_VARI.bonusLegion4Town[strTown][ARTIFACT_LEGION_BASIC] = TTH_VARI.bonusLegion4Town[strTown][ARTIFACT_LEGION_BASIC] + 1;
+					local strPathMain={
+						TTH_PATH.Artifact["Legion"]["Success"]
+						;iTierMin=1
+						,iTierMax=3
+						,iBonusNumber=2
+					};
+					TTH_GLOBAL.sign(strHero, strPathMain);
+				end;
+
+			-- ARTIFACT_LEGION_ADVANCED 108 军团斗篷
+				function TTH_ARTI.active108(iPlayer, strHero)
+					TTH_COMMON.nextNavi(TTH_PATH.Artifact["Legion"][ARTIFACT_LEGION_ADVANCED]["Text"]);
+
+					local strTown = TTH_VARI.townSkillManage;
+					TTH_ARTI.confirmActive108(iPlayer, strHero, strTown);
+				end;
+				function TTH_ARTI.confirmActive108(iPlayer, strHero, strTown)
+					local strArtifactName = TTH_TABLE.Artifact[ARTIFACT_LEGION_ADVANCED]["Text"];
+					local iBonusLevel = 0;
+					if TTH_VARI.bonusLegion4Town[strTown] ~= nil then
+						iBonusLevel = TTH_VARI.bonusLegion4Town[strTown][ARTIFACT_LEGION_ADVANCED];
+					end;
+					local strPathMain={
+						TTH_PATH.Artifact["Legion"]["Confirm"]
+						;strArtifactName=strArtifactName
+						,iTierMin=4
+						,iTierMax=5
+						,iBonusNumber=1
+						,iBonusLevel=iBonusLevel
+					};
+					local strCallbackOk = "TTH_ARTI.implActive108("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strTown)..")";
+					local strCallbackCancel = "TTH_COMMON.cancelOption()";
+					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+				end;
+				function TTH_ARTI.implActive108(iPlayer, strHero, strTown)
+					if TTH_VARI.bonusLegion4Town[strTown] == nil then
+						TTH_VARI.bonusLegion4Town[strTown] = {
+							[ARTIFACT_LEGION_BASIC] = 0
+							, [ARTIFACT_LEGION_ADVANCED] = 0
+							, [ARTIFACT_LEGION_EXPERT] = 0
+						};
+					end;
+					RemoveArtefact(strHero, ARTIFACT_LEGION_ADVANCED);
+					TTH_VARI.bonusLegion4Town[strTown][ARTIFACT_LEGION_ADVANCED] = TTH_VARI.bonusLegion4Town[strTown][ARTIFACT_LEGION_ADVANCED] + 1;
+					local strPathMain={
+						TTH_PATH.Artifact["Legion"]["Success"]
+						;iTierMin=4
+						,iTierMax=5
+						,iBonusNumber=1
+					};
+					TTH_GLOBAL.sign(strHero, strPathMain);
+				end;
+
+			-- ARTIFACT_LEGION_EXPERT 109 军团之帜
+				function TTH_ARTI.active109(iPlayer, strHero)
+					TTH_COMMON.nextNavi(TTH_PATH.Artifact["Legion"][ARTIFACT_LEGION_EXPERT]["Text"]);
+
+					local strTown = TTH_VARI.townSkillManage;
+					TTH_ARTI.confirmActive109(iPlayer, strHero, strTown);
+				end;
+				function TTH_ARTI.confirmActive109(iPlayer, strHero, strTown)
+					local strArtifactName = TTH_TABLE.Artifact[ARTIFACT_LEGION_EXPERT]["Text"];
+					local iBonusLevel = 0;
+					if TTH_VARI.bonusLegion4Town[strTown] ~= nil then
+						iBonusLevel = TTH_VARI.bonusLegion4Town[strTown][ARTIFACT_LEGION_EXPERT];
+					end;
+					local strPathMain={
+						TTH_PATH.Artifact["Legion"]["Confirm"]
+						;strArtifactName=strArtifactName
+						,iTierMin=6
+						,iTierMax=7
+						,iBonusNumber=1
+						,iBonusLevel=iBonusLevel
+					};
+					local strCallbackOk = "TTH_ARTI.implActive109("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strTown)..")";
+					local strCallbackCancel = "TTH_COMMON.cancelOption()";
+					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+				end;
+				function TTH_ARTI.implActive109(iPlayer, strHero, strTown)
+					if TTH_VARI.bonusLegion4Town[strTown] == nil then
+						TTH_VARI.bonusLegion4Town[strTown] = {
+							[ARTIFACT_LEGION_BASIC] = 0
+							, [ARTIFACT_LEGION_ADVANCED] = 0
+							, [ARTIFACT_LEGION_EXPERT] = 0
+						};
+					end;
+					RemoveArtefact(strHero, ARTIFACT_LEGION_EXPERT);
+					TTH_VARI.bonusLegion4Town[strTown][ARTIFACT_LEGION_EXPERT] = TTH_VARI.bonusLegion4Town[strTown][ARTIFACT_LEGION_EXPERT] + 1;
+					local strPathMain={
+						TTH_PATH.Artifact["Legion"]["Success"]
+						;iTierMin=6
+						,iTierMax=7
+						,iBonusNumber=1
+					};
+					TTH_GLOBAL.sign(strHero, strPathMain);
+				end;
+
+		-- 军团宝物 ARTIFACT_Economic_X
+			TTH_VARI.bonusEconomic4Town = {};
+			-- 每日城镇军团宝物经济结算
+				function TTH_ARTI.bonusTown8Economic(iPlayer, strTown)
+					TTH_MAIN.debug("TTH_ARTI.bonusTown8Economic", iPlayer, nil, strTown);
+
+					if TTH_VARI.bonusEconomic4Town[strTown] ~= nil
+						and TTH_VARI.bonusEconomic4Town[strTown][ARTIFACT_ENDLESS_BAG_OF_GOLD] == TTH_ENUM.Yes then
+						local iTownHall = GetTownBuildingLevel(strTown, TOWN_BUILDING_TOWN_HALL);
+						local iGrail = GetTownBuildingLevel(strTown, TOWN_BUILDING_GRAIL);
+						local iGold = 0;
+						if iTownHall == 1 then
+							iGold = 500;
+						elseif iTownHall == 2 then
+							iGold = 1000;
+						elseif iTownHall == 3 then
+							iGold = 2000;
+						elseif iTownHall == 4 then
+							iGold = 4000;
+						end
+						if iGrail > 0 then
+							iGold = iGold + 5000;
+						end;
+						TTH_GLOBAL.putSettleResource(iPlayer, GOLD, iGold * 0.5);
+					end;
+					if TTH_VARI.bonusEconomic4Town[strTown] ~= nil
+						and TTH_VARI.bonusEconomic4Town[strTown][ARTIFACT_HORN_OF_PLENTY] == TTH_ENUM.Yes then
+						TTH_GLOBAL.putSettleResource(iPlayer, WOOD, 8);
+						TTH_GLOBAL.putSettleResource(iPlayer, ORE, 8);
+						TTH_GLOBAL.putSettleResource(iPlayer, MERCURY, 4);
+						TTH_GLOBAL.putSettleResource(iPlayer, CRYSTAL, 4);
+						TTH_GLOBAL.putSettleResource(iPlayer, SULFUR, 4);
+						TTH_GLOBAL.putSettleResource(iPlayer, GEM, 4);
+					end;
+				end;
+
+			-- ARTIFACT_ENDLESS_BAG_OF_GOLD 029 军团金像
+				function TTH_ARTI.active029(iPlayer, strHero)
+					TTH_COMMON.nextNavi(TTH_PATH.Artifact["Economic"][ARTIFACT_ENDLESS_BAG_OF_GOLD]["Text"]);
+
+					local strTown = TTH_VARI.townSkillManage;
+					TTH_ARTI.checkPreActive0294HasBonus(iPlayer, strHero, strTown);
+				end;
+				function TTH_ARTI.checkPreActive0294HasBonus(iPlayer, strHero, strTown)
+					local strArtifactName = TTH_TABLE.Artifact[ARTIFACT_ENDLESS_BAG_OF_GOLD]["Text"];
+					if TTH_VARI.bonusEconomic4Town[strTown] ~= nil
+						and TTH_VARI.bonusEconomic4Town[strTown][ARTIFACT_ENDLESS_BAG_OF_GOLD] == TTH_ENUM.Yes then
+						local strPathMain={
+							TTH_PATH.Artifact["Economic"]["HasBonus"]
+							;strArtifactName=strArtifactName
+						};
+						TTH_GLOBAL.sign(strHero, strPathMain);
+						return nil;
+					end;
+
+					TTH_ARTI.confirmActive029(iPlayer, strHero, strTown);
+				end;
+				function TTH_ARTI.confirmActive029(iPlayer, strHero, strTown)
+					local strArtifactName = TTH_TABLE.Artifact[ARTIFACT_ENDLESS_BAG_OF_GOLD]["Text"];
+					local strPathMain={
+						TTH_PATH.Artifact["Economic"][ARTIFACT_ENDLESS_BAG_OF_GOLD]["Confirm"]
+						;strArtifactName=strArtifactName
+					};
+					local strCallbackOk = "TTH_ARTI.implActive029("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strTown)..")";
+					local strCallbackCancel = "TTH_COMMON.cancelOption()";
+					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+				end;
+				function TTH_ARTI.implActive029(iPlayer, strHero, strTown)
+					if TTH_VARI.bonusEconomic4Town[strTown] == nil then
+						TTH_VARI.bonusEconomic4Town[strTown] = {};
+					end;
+					local strArtifactName = TTH_TABLE.Artifact[ARTIFACT_ENDLESS_BAG_OF_GOLD]["Text"];
+					RemoveArtefact(strHero, ARTIFACT_ENDLESS_BAG_OF_GOLD);
+					TTH_VARI.bonusEconomic4Town[strTown][ARTIFACT_ENDLESS_BAG_OF_GOLD] = TTH_ENUM.Yes;
+					local strPathMain={
+						TTH_PATH.Artifact["Economic"][ARTIFACT_ENDLESS_BAG_OF_GOLD]["Success"]
+						;strArtifactName=strArtifactName
+					};
+					TTH_GLOBAL.sign(strHero, strPathMain);
+				end;
+
+			-- ARTIFACT_HORN_OF_PLENTY 092 丰收之角 木石日产量永久+8, 稀矿日产量永久+4
+				function TTH_ARTI.active092(iPlayer, strHero)
+					TTH_COMMON.nextNavi(TTH_PATH.Artifact["Economic"][ARTIFACT_HORN_OF_PLENTY]["Text"]);
+
+					local strTown = TTH_VARI.townSkillManage;
+					TTH_ARTI.checkPreActive0924HasBonus(iPlayer, strHero, strTown);
+				end;
+				function TTH_ARTI.checkPreActive0924HasBonus(iPlayer, strHero, strTown)
+					local strArtifactName = TTH_TABLE.Artifact[ARTIFACT_HORN_OF_PLENTY]["Text"];
+					if TTH_VARI.bonusEconomic4Town[strTown] ~= nil
+						and TTH_VARI.bonusEconomic4Town[strTown][ARTIFACT_HORN_OF_PLENTY] == TTH_ENUM.Yes then
+						local strPathMain={
+							TTH_PATH.Artifact["Economic"]["HasBonus"]
+							;strArtifactName=strArtifactName
+						};
+						TTH_GLOBAL.sign(strHero, strPathMain);
+						return nil;
+					end;
+
+					TTH_ARTI.confirmActive092(iPlayer, strHero, strTown);
+				end;
+				function TTH_ARTI.confirmActive092(iPlayer, strHero, strTown)
+					local strArtifactName = TTH_TABLE.Artifact[ARTIFACT_HORN_OF_PLENTY]["Text"];
+					local strPathMain={
+						TTH_PATH.Artifact["Economic"][ARTIFACT_HORN_OF_PLENTY]["Confirm"]
+						;strArtifactName=strArtifactName
+					};
+					local strCallbackOk = "TTH_ARTI.implActive092("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strTown)..")";
+					local strCallbackCancel = "TTH_COMMON.cancelOption()";
+					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+				end;
+				function TTH_ARTI.implActive092(iPlayer, strHero, strTown)
+					if TTH_VARI.bonusEconomic4Town[strTown] == nil then
+						TTH_VARI.bonusEconomic4Town[strTown] = {};
+					end;
+					local strArtifactName = TTH_TABLE.Artifact[ARTIFACT_HORN_OF_PLENTY]["Text"];
+					RemoveArtefact(strHero, ARTIFACT_HORN_OF_PLENTY);
+					TTH_VARI.bonusEconomic4Town[strTown][ARTIFACT_HORN_OF_PLENTY] = TTH_ENUM.Yes;
+					local strPathMain={
+						TTH_PATH.Artifact["Economic"][ARTIFACT_HORN_OF_PLENTY]["Success"]
+						;strArtifactName=strArtifactName
+					};
+					TTH_GLOBAL.sign(strHero, strPathMain);
+				end;
+
+		-- ARTIFACT_MASK_OF_DOPPELGANGER 089 皇家遗物
+			function TTH_ARTI.active089(iPlayer, strHero)
+				TTH_COMMON.nextNavi(TTH_PATH.Artifact[ARTIFACT_MASK_OF_DOPPELGANGER]["Text"]);
+
+				TTH_ARTI.confirmActive089(iPlayer, strHero);
+			end;
+			function TTH_ARTI.confirmActive089(iPlayer, strHero)
+				local strArtifactName = TTH_TABLE.Artifact[ARTIFACT_MASK_OF_DOPPELGANGER]["Text"];
+				local iExp = 500 * 1000;
+				local strPathMain={
+				TTH_PATH.Artifact[ARTIFACT_MASK_OF_DOPPELGANGER]["ConfirmActive"]
+				  ;strArtifactName=strArtifactName
+				  ,iExp=iExp
+				};
+				local strCallbackOk = "TTH_ARTI.implActive089("..iPlayer..","..TTH_COMMON.psp(strHero)..")";
+				local strCallbackCancel = "TTH_COMMON.cancelOption()";
+				TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+  		end;
+			function TTH_ARTI.implActive089(iPlayer, strHero)
+				local iExp = 500 * 1000;
+      	RemoveArtefact(strHero, ARTIFACT_MASK_OF_DOPPELGANGER);
+				GiveExp(strHero, iExp);
+  		end;
+
+		-- ARTIFACT_GEM_OF_PHANTOM 102 幻影宝石
+			function TTH_ARTI.active102(iPlayer, strHero)
+				TTH_COMMON.nextNavi(TTH_PATH.Artifact[ARTIFACT_GEM_OF_PHANTOM]["Text"]);
+
+				TTH_ARTI.checkPreActive1024Slot(iPlayer, strHero);
+			end;
+			function TTH_ARTI.checkPreActive1024Slot(iPlayer, strHero)
+				local bIsSingleSlot = TTH_ENUM.No;
+				local arrCreature4Hero = TTH_GLOBAL.getHeroCreatureInfo(strHero);
+				if arrCreature4Hero[1]["Count"] == 0 then
+					bIsSingleSlot = TTH_ENUM.Yes;
+				end;
+				if bIsSingleSlot == TTH_ENUM.Yes then
+					local strText = TTH_PATH.Artifact[ARTIFACT_GEM_OF_PHANTOM]["SingleSlot"];
+					TTH_GLOBAL.sign(strHero, strText);
+					return nil;
+				end;
+
+				TTH_ARTI.radioActive102(iPlayer, strHero);
+			end;
+			function TTH_ARTI.radioActive102(iPlayer, strHero)
+				local arrCreature4Hero = TTH_GLOBAL.getHeroCreatureInfo(strHero);
+    		local arrOption = {};
+				local i = 1;
+				for iSlot = 0, 6 do
+					arrOption[i] = {
+						["Id"] = iSlot
+						, ["Text"] = TTH_TABLE_NCF_CREATURES[arrCreature4Hero[iSlot]["Id"]]["NAME"]
+						, ["Callback"] = "TTH_ARTI.confirmActive102"
+					};
+					i = i + 1;
+				end;
+				TTH_COMMON.optionRadio(iPlayer, strHero, arrOption);
+  		end;
+			function TTH_ARTI.confirmActive102(iPlayer, strHero, iSlot)
+				if TTH_VARI.artifact[ARTIFACT_GEM_OF_PHANTOM] == nil then
+					TTH_VARI.artifact[ARTIFACT_GEM_OF_PHANTOM] = {};
+				end;
+				if TTH_VARI.artifact[ARTIFACT_GEM_OF_PHANTOM][iPlayer] == nil then
+					TTH_VARI.artifact[ARTIFACT_GEM_OF_PHANTOM][iPlayer] = {
+						["CreatureId"] = 0
+						, ["CreatureNum"] = 0
+					};
+				end;
+
+				local iPreRecordCreatureId = TTH_VARI.artifact[ARTIFACT_GEM_OF_PHANTOM][iPlayer]["CreatureId"];
+				local strPreRecordCreatureName = TTH_TABLE_NCF_CREATURES[iPreRecordCreatureId]["NAME"];
+				if iPreRecordCreatureId == 0 then
+					strPreRecordCreatureName = TTH_PATH.Basic["None"];
+				end;
+				local iPreRecordCreatureNum = TTH_VARI.artifact[ARTIFACT_GEM_OF_PHANTOM][iPlayer]["CreatureNum"];
+
+				local arrCreature4Hero = TTH_GLOBAL.getHeroCreatureInfo(strHero);
+				local iSlotCreatureId = arrCreature4Hero[iSlot]["Id"];
+				local strSlotCreatureName = TTH_TABLE_NCF_CREATURES[iSlotCreatureId]["NAME"];
+				local iSlotCreatureNum = arrCreature4Hero[iSlot]["Count"];
+
+				local strPostRecordCreatureName = strSlotCreatureName;
+				local iPostRecordCreatureNum = 0;
+
+				if iPreRecordCreatureId == iSlotCreatureId then
+					iPostRecordCreatureNum = iPreRecordCreatureNum + iSlotCreatureNum;
+				else
+					iPostRecordCreatureNum = iSlotCreatureNum;
+				end;
+
+				local strPathMain={
+					TTH_PATH.Artifact[ARTIFACT_GEM_OF_PHANTOM]["ConfirmActive"]
+				  ;strPreRecordCreatureName=strPreRecordCreatureName
+				  ,iPreRecordCreatureNum=iPreRecordCreatureNum
+				  ,strSlotCreatureName=strSlotCreatureName
+				  ,iSlotCreatureNum=iSlotCreatureNum
+				  ,strPostRecordCreatureName=strPostRecordCreatureName
+				  ,iPostRecordCreatureNum=iPostRecordCreatureNum
+				};
+				local strCallbackOk = "TTH_ARTI.implActive102("..iPlayer..","..TTH_COMMON.psp(strHero)..","..iSlot..")";
+				local strCallbackCancel = "TTH_COMMON.cancelOption()";
+				TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+  		end;
+			function TTH_ARTI.implActive102(iPlayer, strHero, iSlot)
+				local iPreRecordCreatureId = TTH_VARI.artifact[ARTIFACT_GEM_OF_PHANTOM][iPlayer]["CreatureId"];
+				local iPreRecordCreatureNum = TTH_VARI.artifact[ARTIFACT_GEM_OF_PHANTOM][iPlayer]["CreatureNum"];
+
+				local arrCreature4Hero = TTH_GLOBAL.getHeroCreatureInfo(strHero);
+				local iSlotCreatureId = arrCreature4Hero[iSlot]["Id"];
+				local strSlotCreatureName = TTH_TABLE_NCF_CREATURES[iSlotCreatureId]["NAME"];
+				local iSlotCreatureNum = arrCreature4Hero[iSlot]["Count"];
+
+				local iPostRecordCreatureId = iSlotCreatureId;
+				local strPostRecordCreatureName = strSlotCreatureName;
+				local iPostRecordCreatureNum = 0;
+
+				if iPreRecordCreatureId == iSlotCreatureId then
+					iPostRecordCreatureNum = iPreRecordCreatureNum + iSlotCreatureNum;
+				else
+					iPostRecordCreatureNum = iSlotCreatureNum;
+				end;
+				RemoveHeroCreatures(strHero, iSlotCreatureId, iSlotCreatureNum);
+				TTH_VARI.artifact[ARTIFACT_GEM_OF_PHANTOM][iPlayer] = {
+					["CreatureId"] = iPostRecordCreatureId
+					, ["CreatureNum"] = iPostRecordCreatureNum
+				};
+				local strKey = TTH_FINAL.GAMEVAR_COMBAT_ARTIFACT..strHero..'_'..ARTIFACT_GEM_OF_PHANTOM;
+				SetGameVar(strKey, TTH_ARTI.calcValue102(strHero));
+				local strPathMain={
+					TTH_PATH.Artifact[ARTIFACT_GEM_OF_PHANTOM]["SuccessActive"]
+				  ;strPostRecordCreatureName=strPostRecordCreatureName
+				  ,iPostRecordCreatureNum=iPostRecordCreatureNum
+				};
+				TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, nil, strPathMain);
+  		end;
+			function TTH_ARTI.calcValue102(iPlayer, strHero)
+				local iCurrentValue = 0;
+				if TTH_VARI.artifact[ARTIFACT_GEM_OF_PHANTOM] ~= nil
+					and TTH_VARI.artifact[ARTIFACT_GEM_OF_PHANTOM][iPlayer] ~= nil
+					and TTH_VARI.artifact[ARTIFACT_GEM_OF_PHANTOM][iPlayer]["CreatureId"] > 0
+					and TTH_VARI.artifact[ARTIFACT_GEM_OF_PHANTOM][iPlayer]["CreatureNum"] > 0 then
+					local iPostRecordCreatureId = TTH_VARI.artifact[ARTIFACT_GEM_OF_PHANTOM][iPlayer]["CreatureId"];
+					local iPostRecordCreatureNum = TTH_VARI.artifact[ARTIFACT_GEM_OF_PHANTOM][iPlayer]["CreatureNum"];
+					iCurrentValue = iPostRecordCreatureId + iPostRecordCreatureNum * 1000;
+				end;
+				return iCurrentValue;
+			end;
+
+		-- ARTIFACT_REINCARNATION 112 轮回之戒
+			function TTH_ARTI.active112(iPlayer, strHero)
+				TTH_COMMON.nextNavi(TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Text"]);
+
+				local arrCreature4Hero = TTH_GLOBAL.getHeroCreatureInfo(strHero);
+    		local arrOption = {};
+				local i = 1;
+				for iIndex = 0, 6 do
+					if TTH_TABLE_NCF_CREATURES[arrCreature4Hero[iIndex]["Id"]]["Pair"] ~= nil then
+						arrOption[i] = {
+							["Id"] = arrCreature4Hero[iIndex]["Id"]
+							, ["Text"] = TTH_TABLE_NCF_CREATURES[arrCreature4Hero[iIndex]["Id"]]["NAME"]
+							, ["Callback"] = "TTH_ARTI.implActive112"
+						};
+						i = i + 1;
+					end;
+				end;
+
+				if length(arrOption) == 0 then
+    			local strText = TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["NoCreature4Cast"];
+					TTH_GLOBAL.sign(strHero, strText);
+					return nil;
+				end;
+
+				TTH_COMMON.optionRadio(iPlayer, strHero, arrOption);
+			end;
+			function TTH_ARTI.implActive112(iPlayer, strHero, strCreatureId)
+				local iCreatureId = strCreatureId + 0;
+				local arrCreature4Hero = TTH_GLOBAL.getHeroCreatureInfo(strHero);
+    		local iCreatureNum = 0;
+				for iIndex = 0, 6 do
+					if arrCreature4Hero[iIndex]["Id"] == iCreatureId then
+						iCreatureNum = arrCreature4Hero[iIndex]["Count"];
+						break;
+					end;
+				end;
+				TTH_GLOBAL.replaceCreature4Hero(strHero, iCreatureId, iCreatureNum, TTH_TABLE_NCF_CREATURES[iCreatureId]["Pair"], iCreatureNum);
+  			local strPathMain ={
+  				TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Success"]
+    			;strPreCreatureName=TTH_TABLE_NCF_CREATURES[iCreatureId]["NAME"]
+    			,strPostCreatureName=TTH_TABLE_NCF_CREATURES[TTH_TABLE_NCF_CREATURES[iCreatureId]["Pair"]]["NAME"]
+    			,iCreatureNum=iCreatureNum
+  			};
+  			TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.MessageBox, strPathMain);
+  		end;
+
+		-- ARTIFACT_INHERITANCE 115 幸运护符
+			function TTH_ARTI.combatResult115(strHero)
+				TTH_MAIN.debug("TTH_ARTI.combatResult115", nil, strHero);
+
+				if TTH_VARI.arrBuilding["BUILDING_FORTUITOUS_SANCTUARY"] ~= nil
+					and length(TTH_VARI.arrBuilding["BUILDING_FORTUITOUS_SANCTUARY"]) > 0
+					and HasArtefact(strHero, ARTIFACT_INHERITANCE, 1) ~= nil then
+					MakeHeroInteractWithObject(strHero, TTH_VARI.arrBuilding["BUILDING_FORTUITOUS_SANCTUARY"][0]);
 				end;
 			end;
-			---------------------------------------------------------------------------------------------------------------------
-			-- by 牙姐
-			if H55_IsThisAIPlayer(player) ~= 1 then
-				if H55_CI_Inheritance[hero] ~= ci and GetSavedCombatArmyHero(ci, 1) == hero and HasArtefact(hero, ARTIFACT_INHERITANCE, 1) ~= nil then
-					if h55_FortuitousSanctuarys_Qty > 0 then
-						for i, obj in h55_FortuitousSanctuarys do
-							MakeHeroInteractWithObject(hero, obj);
-							H55_CI_Inheritance[hero] = ci;
+
+		-- ARTIFACT_DRACONIC 123 龙神胸甲
+			function TTH_ARTI.dealDaily123(iPlayer, strHero)
+				TTH_MAIN.debug("TTH_ARTI.dealDaily123", iPlayer, strHero);
+
+				if HasArtefact(strHero, ARTIFACT_DRACONIC, 1) ~= nil then
+					local iGrowth = 1;
+					local arrCreature4Hero = TTH_GLOBAL.getHeroCreatureInfo(strHero);
+					local iHeroRace = TTH_GLOBAL.getRace8Hero(strHero);
+					local bExist = TTH_ENUM.No;
+					for i = 0, 6 do
+						for j = 1, 3 do
+							if arrCreature4Hero[i]["Id"] == TTH_TABLE.Creature8RaceAndLevel[iHeroRace][7][j] then
+								TTH_GLOBAL.addCreature4Hero8Sign(strHero, arrCreature4Hero[i]["Id"], iGrowth, TTH_ENUM.AddCreature);
+								bExist = TTH_ENUM.Yes;
+								break;
+							end;
+						end;
+					end;
+					if bExist == TTH_ENUM.No then
+						TTH_GLOBAL.addCreature4Hero8Sign(strHero, TTH_TABLE.Creature8RaceAndLevel[iHeroRace][7][2], iGrowth, TTH_ENUM.AddCreature);
+					end;
+				end;
+			end;
+
+		-- ARTIFACT_CODEX 126 大法师之典
+			function TTH_ARTI.dealDaily126(iPlayer, strHero)
+				TTH_MAIN.debug("TTH_ARTI.dealDaily126", iPlayer, strHero);
+
+				if HasArtefact(strHero, ARTIFACT_CODEX, 1) ~= nil then
+					local iGrowth = 1;
+					TTH_GLOBAL.addCreature4Hero8Sign(strHero, CREATURE_PHOENIX, iGrowth, TTH_ENUM.AddCreature);
+				end;
+			end;
+
+	-- 技能
+		TTH_PERK = {};
+
+		-- HERO_SKILL_RECRUITMENT 028 募兵术
+			TTH_VARI.recordRecruitment = {};
+			function TTH_PERK.init028(iPlayer, strHero)
+				TTH_MAIN.debug("TTH_PERK.init028", iPlayer, strHero);
+
+				TTH_VARI.recordRecruitment[strHero] = {
+					["OperTimes"] = 1
+					, ["MaxOperTimes"] = 1
+				};
+			end;
+			function TTH_PERK.init0284Town(iPlayer, strHero, strTown)
+				if TTH_VARI.recordRecruitment[strTown] == nil then
+					TTH_VARI.recordRecruitment[strTown] = {
+						["HasRecruit"] = TTH_ENUM.Default
+					};
+				end;
+			end;
+			function TTH_PERK.active028(iPlayer, strHero, strTown)
+				TTH_COMMON.nextNavi(TTH_PATH.Perk[HERO_SKILL_RECRUITMENT]["Text"]);
+
+				local strTown = TTH_VARI.townSkillManage;
+				TTH_PERK.checkPreActive0284HasRecruit(iPlayer, strHero, strTown)
+			end;
+			function TTH_PERK.checkPreActive0284HasRecruit(iPlayer, strHero, strTown)
+				TTH_PERK.init0284Town(iPlayer, strHero, strTown);
+
+				if TTH_VARI.recordRecruitment[strTown]["HasRecruit"] == TTH_VARI.absoluteWeek then
+					local strText = TTH_PATH.Perk[HERO_SKILL_RECRUITMENT]["HasRecruit"];
+					TTH_GLOBAL.sign(strHero, strText);
+					return nil;
+				end;
+
+				TTH_PERK.checkPreActive0284NoDwelling(iPlayer, strHero, strTown);
+			end;
+			function TTH_PERK.checkPreActive0284NoDwelling(iPlayer, strHero, strTown)
+				local bHasDwelling = TTH_ENUM.No;
+				for iTier = 1, 7 do
+					if GetTownBuildingLevel(strTown, iTier + TOWN_BUILDING_DWELLING_1 - 1) >= 1 then
+						bHasDwelling = TTH_ENUM.Yes;
+						break;
+					end;
+				end;
+
+				if bHasDwelling == TTH_ENUM.No then
+					local strText = TTH_PATH.Perk[HERO_SKILL_RECRUITMENT]["NoDwelling"];
+					TTH_GLOBAL.sign(strHero, strText);
+					return nil;
+				end;
+
+				TTH_PERK.checkPreActive0284NotEnoughTimes(iPlayer, strHero, strTown);
+			end;
+			function TTH_PERK.checkPreActive0284NotEnoughTimes(iPlayer, strHero, strTown)
+				if TTH_VARI.recordRecruitment[strHero] == nil then
+					TTH_PERK.init028(iPlayer, strHero);
+				end;
+				local strText = TTH_PATH.Perk[HERO_SKILL_RECRUITMENT]["NotEnoughTimes"];
+    		if TTH_VARI.recordRecruitment[strHero]["OperTimes"] <= 0 then
+    			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+    				if TTH_MANAGE.getRemainOperTimes(strHero) <= 0 then
+		    			TTH_GLOBAL.sign(strHero, strText);
+	    				return nil;
+    				end;
+    			else
+	    			TTH_GLOBAL.sign(strHero, strText);
+    				return nil;
+	    		end;
+    		end;
+
+				TTH_PERK.confirmActive028(iPlayer, strHero, strTown);
+			end;
+			function TTH_PERK.confirmActive028(iPlayer, strHero, strTown)
+				local iTownRace = TTH_GLOBAL.getRace8Town(strTown);
+				local arrCreatureGrowth8Tier = {};
+				for iTier = 1, 7 do
+					if GetTownBuildingLevel(strTown, iTier + TOWN_BUILDING_DWELLING_1 - 1) >= 1 then
+						arrCreatureGrowth8Tier[iTier] = TTH_COMMON.floor(TTH_TABLE_NCF_CREATURES[TTH_TABLE.Creature8RaceAndLevel[iTownRace][iTier][1]]["GROWTH"] / 2);
+					else
+						arrCreatureGrowth8Tier[iTier] = 0;
+					end;
+				end;
+				local strPathMain={
+					TTH_PATH.Perk[HERO_SKILL_RECRUITMENT]["Confirm"]
+					;iCreatureNumberTier1=arrCreatureGrowth8Tier[1]
+					,iCreatureNumberTier2=arrCreatureGrowth8Tier[2]
+					,iCreatureNumberTier3=arrCreatureGrowth8Tier[3]
+					,iCreatureNumberTier4=arrCreatureGrowth8Tier[4]
+					,iCreatureNumberTier5=arrCreatureGrowth8Tier[5]
+					,iCreatureNumberTier6=arrCreatureGrowth8Tier[6]
+					,iCreatureNumberTier7=arrCreatureGrowth8Tier[7]
+				};
+				local strCallbackOk = "TTH_PERK.implActive028("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strTown)..")";
+				local strCallbackCancel = "TTH_COMMON.cancelOption()";
+				TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+			end;
+			function TTH_PERK.implActive028(iPlayer, strHero, strTown)
+    		if TTH_VARI.recordRecruitment[strHero]["OperTimes"] > 0 then
+    			TTH_VARI.recordRecruitment[strHero]["OperTimes"] = TTH_VARI.recordRecruitment[strHero]["OperTimes"] - 1;
+    		else
+    			TTH_MANAGE.useOperTimes(strHero);
+    		end;
+    		TTH_VARI.recordRecruitment[strTown]["HasRecruit"] = TTH_VARI.absoluteWeek;
+				local iTownRace = TTH_GLOBAL.getRace8Town(strTown);
+    		local arrCreatureGrowth8Tier = {};
+				for iTier = 1, 7 do
+					if GetTownBuildingLevel(strTown, iTier + TOWN_BUILDING_DWELLING_1 - 1) >= 1 then
+						arrCreatureGrowth8Tier[iTier] = TTH_COMMON.floor(TTH_TABLE_NCF_CREATURES[TTH_TABLE.Creature8RaceAndLevel[iTownRace][iTier][1]]["GROWTH"] / 2);
+					else
+						arrCreatureGrowth8Tier[iTier] = 0;
+					end;
+				end;
+				TTH_GLOBAL.updateTownDwellingCreature(strTown, arrCreatureGrowth8Tier);
+				TTH_GLOBAL.signHero4TownRecruit(strHero)
+			end;
+			function TTH_PERK.resetWeekly028(iPlayer, strHero)
+				TTH_MAIN.debug("TTH_PERK.resetWeekly028", iPlayer, strHero);
+
+				if TTH_VARI.recordRecruitment[strHero] == nil then
+					TTH_PERK.init028(iPlayer, strHero);
+				end;
+    		TTH_VARI.recordRecruitment[strHero]["OperTimes"] = TTH_VARI.recordRecruitment[strHero]["MaxOperTimes"];
+			end;
+
+		-- HERO_SKILL_ESTATES 029 理财术
+			TTH_FINAL.ESTATES_COEF = 0.1;
+			TTH_VARI.recordEstates = {};
+			TTH_TABLE.EstatesOption = {
+				[1] = {
+					["Id"] = 0.2
+					, ["Text"] = TTH_PATH.Perk[HERO_SKILL_ESTATES]["Coef20"]
+					, ["Callback"] = "TTH_PERK.confirmActive029"
+				}
+				, [2] = {
+					["Id"] = 0.5
+					, ["Text"] = TTH_PATH.Perk[HERO_SKILL_ESTATES]["Coef50"]
+					, ["Callback"] = "TTH_PERK.confirmActive029"
+				}
+				, [3] = {
+					["Id"] = 0.8
+					, ["Text"] = TTH_PATH.Perk[HERO_SKILL_ESTATES]["Coef80"]
+					, ["Callback"] = "TTH_PERK.confirmActive029"
+				}
+				, [4] = {
+					["Id"] = 1
+					, ["Text"] = TTH_PATH.Perk[HERO_SKILL_ESTATES]["Coef100"]
+					, ["Callback"] = "TTH_PERK.confirmActive029"
+				}
+			};
+			function TTH_PERK.init029(iPlayer, strHero)
+				TTH_MAIN.debug("TTH_PERK.init029", iPlayer, strHero);
+
+				TTH_VARI.recordEstates[strHero] = {
+					["EstatesGold"] = 0
+					, ["EstatesDay"] = 0
+					, ["OperTimes"] = 1
+					, ["MaxOperTimes"] = 1
+				};
+			end;
+			function TTH_PERK.active029(iPlayer, strHero)
+				TTH_COMMON.nextNavi(TTH_PATH.Perk[HERO_SKILL_ESTATES]["Text"]);
+
+				TTH_PERK.checkPreActive0294NotEnoughTimes(iPlayer, strHero)
+			end;
+			function TTH_PERK.checkPreActive0294NotEnoughTimes(iPlayer, strHero)
+				if TTH_VARI.recordEstates[strHero] == nil then
+					TTH_PERK.init029(iPlayer, strHero);
+				end;
+				local strText = TTH_PATH.Perk[HERO_SKILL_ESTATES]["NotEnoughTimes"];
+    		if TTH_VARI.recordEstates[strHero]["OperTimes"] <= 0 then
+    			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+    				if TTH_MANAGE.getRemainOperTimes(strHero) <= 0 then
+		    			TTH_GLOBAL.sign(strHero, strText);
+	    				return nil;
+    				end;
+    			else
+	    			TTH_GLOBAL.sign(strHero, strText);
+    				return nil;
+	    		end;
+    		end;
+
+				local strPathOption = TTH_PATH.Perk[HERO_SKILL_ESTATES]["OptionTips"];
+				TTH_COMMON.optionRadio(iPlayer, strHero, TTH_TABLE.EstatesOption, strPathOption);
+			end;
+			function TTH_PERK.confirmActive029(iPlayer, strHero, iCoef)
+				local iPercent = TTH_COMMON.round(iCoef * 100);
+				local iGold = GetPlayerResource(iPlayer, GOLD);
+				local iEstatesGold = TTH_COMMON.round(iGold * iCoef);
+				local iDuration = 7 + 1 - TTH_VARI.dayOfWeek;
+				local iExpectGold = TTH_PERK.calcExpectEstatesGold(iEstatesGold, iDuration);
+
+				local strPathMain={
+					TTH_PATH.Perk[HERO_SKILL_ESTATES]["Confirm"]
+					;iPercent=iPercent
+					,iGold=iGold
+					,iEstatesGold=iEstatesGold
+					,iDuration=iDuration
+					,iExpectGold=iExpectGold
+				};
+				local strCallbackOk = "TTH_PERK.implActive029("..iPlayer..","..TTH_COMMON.psp(strHero)..","..iCoef..")";
+				local strCallbackCancel = "TTH_COMMON.cancelOption()";
+				TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+			end;
+			function TTH_PERK.implActive029(iPlayer, strHero, iCoef)
+    		if TTH_VARI.recordEstates[strHero]["OperTimes"] > 0 then
+    			TTH_VARI.recordEstates[strHero]["OperTimes"] = TTH_VARI.recordEstates[strHero]["OperTimes"] - 1;
+    		else
+    			TTH_MANAGE.useOperTimes(strHero);
+    		end;
+
+    		local iGold = GetPlayerResource(iPlayer, GOLD);
+    		local iEstatesGold = TTH_COMMON.round(iGold * iCoef);
+    		TTH_GLOBAL.reduceResource(iPlayer, GOLD, iEstatesGold);
+    		if TTH_VARI.recordEstates[strHero]["EstatesGold"] == 0 then
+	    		TTH_VARI.recordEstates[strHero]["EstatesGold"] = iEstatesGold;
+	    		TTH_VARI.recordEstates[strHero]["EstatesDay"] = TTH_VARI.day;
+    		else
+    			TTH_VARI.recordEstates[strHero]["EstatesGold"] = TTH_VARI.recordEstates[strHero]["EstatesGold"] + iEstatesGold;
+    		end;
+    		local strPathMain={
+    			TTH_PATH.Perk[HERO_SKILL_ESTATES]["Success"]
+    			;iEstatesGold=iEstatesGold
+    		};
+    		TTH_GLOBAL.sign(strHero, strPathMain);
+			end;
+			function TTH_PERK.dealWeekly029(iPlayer, strHero)
+				TTH_MAIN.debug("TTH_PERK.dealWeekly029", iPlayer, strHero);
+
+				if TTH_VARI.recordEstates ~= nil
+					and length(TTH_VARI.recordEstates) > 0 then
+					local iCurrentDay = TTH_VARI.day;
+					for strHero, objEstates in TTH_VARI.recordEstates do
+						if objEstates["EstatesGold"] > 0 then
+							local iDuration = iCurrentDay - objEstates["EstatesDay"];
+							local iExpectGold = TTH_PERK.calcExpectEstatesGold(objEstates["EstatesGold"], iDuration);
+							objEstates["EstatesGold"] = 0;
+							objEstates["EstatesDay"] = 0;
+							TTH_GLOBAL.putSettleResource(iPlayer, GOLD, iExpectGold);
+							local strPathMain={
+								TTH_PATH.Perk[HERO_SKILL_ESTATES]["Repay"]
+								;iExpectGold=iExpectGold
+							};
+			    		TTH_GLOBAL.sign(strHero, strPathMain);
+						end;
+					end;
+				end;
+			end;
+			function TTH_PERK.resetWeekly029(iPlayer, strHero)
+				TTH_MAIN.debug("TTH_PERK.resetWeekly029", iPlayer, strHero);
+
+				if TTH_VARI.recordEstates[strHero] == nil then
+					TTH_PERK.init029(iPlayer, strHero);
+				end;
+    		TTH_VARI.recordEstates[strHero]["OperTimes"] = TTH_VARI.recordEstates[strHero]["MaxOperTimes"];
+			end;
+			function TTH_PERK.calcExpectEstatesGold(iEstatesGold, iDuration)
+				local iExpectEstatesGold = TTH_COMMON.round(iEstatesGold * (1 + TTH_FINAL.ESTATES_COEF * iDuration));
+				return iExpectEstatesGold;
+			end;
+
+		-- HERO_SKILL_FORTUNATE_ADVENTURER 033 资源富饶
+			TTH_VARI.recordFortunateAdventurer = {};
+			function TTH_PERK.init033(iPlayer, strHero)
+				TTH_MAIN.debug("TTH_PERK.init033", iPlayer, strHero);
+
+				TTH_VARI.recordFortunateAdventurer[strHero] = {
+					["OperTimes"] = 1
+					, ["MaxOperTimes"] = 1
+				};
+			end;
+			function TTH_PERK.active033(iPlayer, strHero)
+				TTH_COMMON.nextNavi(TTH_PATH.Perk[HERO_SKILL_FORTUNATE_ADVENTURER]["Text"]);
+
+				TTH_PERK.checkPreActive0334NotEnoughTimes(iPlayer, strHero)
+			end;
+			function TTH_PERK.checkPreActive0334NotEnoughTimes(iPlayer, strHero)
+				if TTH_VARI.recordFortunateAdventurer[strHero] == nil then
+					TTH_PERK.init033(iPlayer, strHero);
+				end;
+				local strText = TTH_PATH.Perk[HERO_SKILL_FORTUNATE_ADVENTURER]["NotEnoughTimes"];
+    		if TTH_VARI.recordFortunateAdventurer[strHero]["OperTimes"] <= 0 then
+    			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+    				if TTH_MANAGE.getRemainOperTimes(strHero) <= 0 then
+		    			TTH_GLOBAL.sign(strHero, strText);
+	    				return nil;
+    				end;
+    			else
+	    			TTH_GLOBAL.sign(strHero, strText);
+    				return nil;
+	    		end;
+    		end;
+
+				TTH_PERK.confirmActive033(iPlayer, strHero);
+			end;
+			function TTH_PERK.confirmActive033(iPlayer, strHero)
+    		local iHeroLevel = GetHeroLevel(strHero);
+    		local iChestLevel = TTH_COMMON.floor(sqrt(iHeroLevel));
+    		local iGold = 500 + iChestLevel * 500;
+    		local iExp = iChestLevel * 500;
+
+				local strPathMain={
+					TTH_PATH.Perk[HERO_SKILL_FORTUNATE_ADVENTURER]["Confirm"]
+					;iChestLevel=iChestLevel
+					,iGold=iGold
+					,iExp=iExp
+				};
+				local strCallbackOk = "TTH_PERK.implActive033("..iPlayer..","..TTH_COMMON.psp(strHero)..")";
+				local strCallbackCancel = "TTH_COMMON.cancelOption()";
+				TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+			end;
+			function TTH_PERK.implActive033(iPlayer, strHero, strTown)
+    		if TTH_VARI.recordFortunateAdventurer[strHero]["OperTimes"] > 0 then
+    			TTH_VARI.recordFortunateAdventurer[strHero]["OperTimes"] = TTH_VARI.recordFortunateAdventurer[strHero]["OperTimes"] - 1;
+    		else
+    			TTH_MANAGE.useOperTimes(strHero);
+    		end;
+    		ChangeHeroStat(strHero, STAT_MOVE_POINTS, -1 * TTH_FINAL.NUM_MAX);
+    		local iHeroLevel = GetHeroLevel(strHero);
+    		local iChestLevel = TTH_COMMON.floor(sqrt(iHeroLevel));
+    		local iPosX, iPosY, iPosZ = GetObjectPosition(strHero);
+    		CreateTreasure("", TTH_ENUM.TreasureChest, iChestLevel, iPosX, iPosY, iPosZ);
+				local strText = TTH_PATH.Perk[HERO_SKILL_FORTUNATE_ADVENTURER]["Success"];
+    		TTH_GLOBAL.sign(strHero, strText);
+			end;
+			function TTH_PERK.resetWeekly033(iPlayer, strHero)
+				TTH_MAIN.debug("TTH_PERK.resetWeekly033", iPlayer, strHero);
+
+				if TTH_VARI.recordFortunateAdventurer[strHero] == nil then
+					TTH_PERK.init033(iPlayer, strHero);
+				end;
+    		TTH_VARI.recordFortunateAdventurer[strHero]["OperTimes"] = TTH_VARI.recordFortunateAdventurer[strHero]["MaxOperTimes"];
+			end;
+
+		-- HERO_SKILL_DEATH_TREAD 099 死亡行军
+			TTH_VARI.recordDeathTread = {
+				["DefenceTown"] = {}
+				, ["Range"] = 18
+			};
+			function TTH_PERK.active099(iPlayer, strHero)
+				TTH_COMMON.nextNavi(TTH_PATH.Perk[HERO_SKILL_DEATH_TREAD]["Text"]);
+
+				TTH_PERK.checkPreactive0994NearByFoeTown(iPlayer, strHero);
+			end;
+			function TTH_PERK.checkPreactive0994NearByFoeTown(iPlayer, strHero)
+				local strNearByFoeTown = nil;
+				for i, strTown in TTH_VARI.arrTown do
+					if TTH_GLOBAL.getDistance(strHero, strTown) <= TTH_VARI.recordDeathTread["Range"] then
+						if GetObjectOwner(strTown) ~= iPlayer then
+							strNearByFoeTown = strTown;
 							break;
 						end;
 					end;
 				end;
+				if strNearByFoeTown == nil then
+    			local strText = TTH_PATH.Perk[HERO_SKILL_DEATH_TREAD]["NoFoeTownNearBy"];
+					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.MessageBox, strText);
+					return nil;
+				end;
+				TTH_PERK.confirmActive099(iPlayer, strHero, strNearByFoeTown);
+			end;
+			function TTH_PERK.confirmActive099(iPlayer, strHero, strTown)
+				local iPosX, iPosY, iPosZ = GetObjectPosition(strTown);
+				MoveCamera(iPosX, iPosY, iPosZ, 50, TTH_FINAL.PI/2, 1, 1, 1, 1);
+				sleep(2);
 
-				if hero == "Sovereign" and GetSavedCombatArmyHero(ci, 1) == "Sovereign" and H55_CI_Sovereign ~= ci then
-					print("---------------------------------------------------------------------");
-					print("H55 Sovereign Event begin");
+				QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
+					, {
+						TTH_PATH.Perk[HERO_SKILL_DEATH_TREAD]["Confirm"]
+						;iPosX=iPosX
+						,iPosY=iPosY
+						,iPosZ=TTH_PATH.Basic["PosZ"][iPosZ]
+					}
+					, "TTH_PERK.dealActive099("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strTown)..")"
+					, "TTH_COMMON.cancelOption()");
+			end;
+			function TTH_PERK.dealActive099(iPlayer, strHero, strTown)
+				TTH_VARI.recordDeathTread["DefenceTown"] = {};
+				TTH_VARI.recordDeathTread["DefenceTown"]["Hero"] = strHero;
+				TTH_VARI.recordDeathTread["DefenceTown"]["Town"] = strTown;
+				TTH_VARI.recordDeathTread["DefenceTown"]["CombatIndex"] = GetLastSavedCombatIndex();
+				MakeHeroInteractWithObject(strHero, strTown);
+			end;
+			function TTH_PERK.combatResult099(iPlayer, strHero, iCombatIndex)
+				TTH_MAIN.debug("TTH_PERK.combatResult099", iPlayer, strHero, iCombatIndex);
 
-					local i_level = GetHeroLevel(hero);
+				if TTH_VARI.recordDeathTread["DefenceTown"] ~= nil
+					and TTH_VARI.recordDeathTread["DefenceTown"]["CombatIndex"] ~= nil
+					and TTH_VARI.recordDeathTread["DefenceTown"]["CombatIndex"] + 1 == iCombatIndex
+					and TTH_VARI.recordDeathTread["DefenceTown"]["Hero"] == strHero
+					and GetObjectOwner(TTH_VARI.recordDeathTread["DefenceTown"]["Town"]) == iPlayer then
+					TTH_GLOBAL.teleHero2Point(iPlayer, strHero, TTH_VARI.recordDeathTread["DefenceTown"]["Town"]);
+					TTH_VARI.recordDeathTread["DefenceTown"]["CombatIndex"] = nil;
+				end;
+			end;
 
-					if h55_FontainOfFortunes_Qty > 0 then
-						for i, obj in h55_FontainOfFortunes do
-							MakeHeroInteractWithObject(hero, obj);
-							break;
-						end;
-					end;
-					if i_level >= 5 then
-						if h55_Temples_Qty > 0 then
-							for i, obj in h55_Temples do
-								MakeHeroInteractWithObject(hero, obj);
-								break;
-							end;
-						end;
-					end;
-					if i_level >= 9 then
-						if h55_FortuitousSanctuarys_Qty > 0 then
-							for i, obj in h55_FortuitousSanctuarys do
-								MakeHeroInteractWithObject(hero, obj);
-								break;
-							end;
-						end;
-					end;
-					if i_level >= 13 then
-						if h55_FontainOfYouths_Qty > 0 then
-							for i, obj in h55_FontainOfYouths do
-								MakeHeroInteractWithObject(hero, obj);
-								break;
-							end;
-						end;
-					end;
-					if i_level >= 17 then
-						if h55_FaerieRings_Qty > 0 then
-							for i, obj in h55_FaerieRings do
-								MakeHeroInteractWithObject(hero, obj);
-								break;
-							end;
-						end;
-					end;
-					if i_level >= 21 then
-						if h55_NomadsShamans_Qty > 0 then
-							for i, obj in h55_NomadsShamans do
-								MakeHeroInteractWithObject(hero, obj);
-								break;
-							end;
-						end;
-					end;
-					if i_level >= 25 then
-						if h55_RallyFlags_Qty > 0 then
-							for i, obj in h55_RallyFlags do
-								MakeHeroInteractWithObject(hero, obj);
-								break;
-							end;
-						end;
-					end;
-					if i_level >= 29 then
-						if h55_IdolOfFortunes_Qty > 0 then
-							for i, obj in h55_IdolOfFortunes do
-								MakeHeroInteractWithObject(hero, obj);
-								break;
-							end;
-						end;
-					end;
-					if i_level >= 33 then
-						if h55_MagicWells_Qty > 0 then
-							for i, obj in h55_MagicWells do
-								MakeHeroInteractWithObject(hero, obj);
-								break;
-							end;
-						end;
-					end;
-					if i_level >= 37 then
-						if h55_Oasises_Qty > 0 then
-							for i, obj in h55_Oasises do
-								MakeHeroInteractWithObject(hero, obj);
-								break;
-							end;
-						end;
-					end;
-					H55_CI_Sovereign = ci;
+	-- test
+		TTH_TEST = {};
+		function TTH_TEST.test10(iPlayer)
+			for i = WOOD, GOLD do
+				local x = 9999;
+				TTH_GLOBAL.increaseResource(iPlayer, i, x);
+				x = 0;
+			end;
+		end;
+		function TTH_TEST.test9(strHero)
+			TTH_VARI.arrMayor[strHero]["RecordPoint"] = TTH_VARI.arrMayor[strHero]["RecordPoint"] + 10000;
+		end;
+		function TTH_TEST.test7(strHero)
+			MakeHeroInteractWithObject(strHero, TTH_VARI.arrBuilding["BUILDING_MERMAIDS"][0]);
+		end;
+		function TTH_TEST.test6(iPlayer)
+			local strHero = GetPlayerHeroes(iPlayer)[0];
+			GiveArtefact(strHero, ARTIFACT_REINCARNATION);
+			GiveArtefact(strHero, ARTIFACT_ORDER_OF_CONSCRIPTION);
+			GiveHeroSkill(strHero, SKILL_LOGISTICS);
+			sleep(1);
+			GiveHeroSkill(strHero, SKILL_LOGISTICS);
+			sleep(1);
+			GiveHeroSkill(strHero, HERO_SKILL_SCOUTING);
+			sleep(1);
+			GiveHeroSkill(strHero, HERO_SKILL_DEATH_TREAD);
+			AddHeroCreatures(strHero, 8, 999);
+		end;
+		function TTH_TEST.test5(iPlayer)
+			local strHero = GetPlayerHeroes(iPlayer)[0];
+			GiveArtefact(strHero, ARTIFACT_LEGION_BASIC);
+			GiveArtefact(strHero, ARTIFACT_LEGION_ADVANCED);
+			GiveArtefact(strHero, ARTIFACT_LEGION_EXPERT);
+			GiveArtefact(strHero, ARTIFACT_ENDLESS_BAG_OF_GOLD);
+			GiveArtefact(strHero, ARTIFACT_CROWN_OF_LEADER);
 
-					print("H55 Sovereign Event end");
-					print("---------------------------------------------------------------------");
-				end
+			GiveArtefact(strHero, ARTIFACT_RES_BASIC);
+			GiveArtefact(strHero, ARTIFACT_RES_ADVANCED);
+			GiveArtefact(strHero, ARTIFACT_RES_EXPERT);
+			GiveArtefact(strHero, ARTIFACT_BAND_OF_CONJURER);
+			GiveArtefact(strHero, ARTIFACT_HORN_OF_PLENTY);
 
-				if GetSavedCombatArmyHero(ci, 1) == hero then
-					if HasArtefact(hero, ARTIFACT_REINCARNATION, 0) ~= nil and H55_CIReincarnation_newest[hero] == nil then
-						print("---------------------------------------------------------------------");
-						print("H55 Reincarnation Init begin");
-						H55_CIReincarnation[hero] = -1;
-						H55_CIReincarnation_newest[hero] = -1;
-						print("H55 Reincarnation Init end");
-						print("---------------------------------------------------------------------");
-					end;
-					if HasArtefact(hero, ARTIFACT_REINCARNATION, 1) ~= nil and H55_CIReincarnation_newest[hero] == nil then
-						print("---------------------------------------------------------------------");
-						print("H55 Reincarnation Init begin");
-						H55_CIReincarnation[hero] = -1;
-						H55_CIReincarnation_newest[hero] = -1;
-						print("H55 Reincarnation Init end");
-						print("---------------------------------------------------------------------");
-					end;
-					if H55_CIReincarnation_newest[hero] ~= nil and H55_CIReincarnation_newest[hero] ~= ci then
-						print("---------------------------------------------------------------------");
-						print("H55 Reincarnation Event begin");
-						H55_CIReincarnation_newest[hero] = ci;
-						print("H55 Reincarnation power is full");
-						print("H55 Reincarnation Event end");
-						print("---------------------------------------------------------------------");
+			GiveArtefact(strHero, ARTIFACT_PENDANT_OF_BLIND);
+			GiveArtefact(strHero, ARTIFACT_GEM_OF_PHANTOM);
+			GiveArtefact(strHero, ARTIFACT_ORDER_OF_CONSCRIPTION);
+			GiveArtefact(strHero, ARTIFACT_DRUM_OF_CHARGE);
+		end;
+		function TTH_TEST.test4(idBuilding)
+			UpgradeTownBuilding(GetObjectNamesByType('TOWN')[0], idBuilding, 1);
+		end;
+		function TTH_TEST.test3(iLevel)
+			TTH_TEST.test(GetObjectNamesByType('TOWN')[0], iLevel);
+		end;
+		function TTH_TEST.test2(strHero)
+			TTH_MANAGE.resetRemainOperTimes8Hero(strHero);
+			TTH.run();
+		end;
+		function TTH_TEST.test(strTown, iLevel)
+			local iRace = TTH_GLOBAL.getRace8Town(strTown);
+			local iTempRace = iRace + 1;
+			if iTempRace > TOWN_STRONGHOLD then
+				iTempRace = TOWN_HEAVEN;
+			end;
+			TransformTown(strTown, iTempRace);
+			sleep(1);
+			TransformTown(strTown, iRace);
+			sleep(1);
+			TTH_MANAGE.constructTown(strTown, iLevel);
+
+			TTH_GLOBAL.increaseResource(1, WOOD, 9999);
+			TTH_GLOBAL.increaseResource(1, ORE, 9999);
+			TTH_GLOBAL.increaseResource(1, MERCURY, 9999);
+			TTH_GLOBAL.increaseResource(1, CRYSTAL, 9999);
+			TTH_GLOBAL.increaseResource(1, SULFUR, 9999);
+			TTH_GLOBAL.increaseResource(1, GEM, 9999);
+			TTH_GLOBAL.increaseResource(1, GOLD, 9999999);
+		  -- local strPathMain = "/Text/Game/Scripts/TownManage/Main.txt";
+		  -- local strPathHeader = "/Text/Game/Scripts/TownManage/Header.txt";
+		  -- local strPathTest = "/Text/Game/Scripts/TownManage/Test.txt";
+		  -- local strPathTownInfo = "/Text/Game/Scripts/TownManage/TownInfo.txt";
+		  -- local strPathHeroInfo = "/Text/Game/Scripts/TownManage/HeroInfo.txt";
+		  -- local strPathFooter = "/Text/Game/Scripts/TownManage/Footer.txt";
+		  -- local strHeaderValue = 111;
+		  -- local strFooterValue1 = 222;
+		  -- local strFooterValue2 = "/Text/Game/Buildings/Heaven/TOWN_BUILDING_MARKETPLACE_2.txt";
+		  -- local strFooterValue3 = "/Text/Game/Buildings/Heaven/TOWN_BUILDING_FORT_1.txt";
+		  -- MessageBoxForPlayers(GetPlayerFilter(1)
+		  --   , {
+		  --     strPathMain
+		  --     ;strPathHeader={strPathHeader;strHeaderValue=strHeaderValue}
+		  --     ,strPathTest=strPathTest
+		  --     ,strPathTownInfo=strPathTownInfo
+		  --     ,strPathHeroInfo=strPathHeroInfo
+		  --     ,strPathFooter={
+		  --       strPathFooter
+		  --       ;strFooterValue1=strFooterValue1
+		  --       ,strFooterValue2=strFooterValue2
+		  --       ,strFooterValue3=strFooterValue3
+		  --     }
+		  --   }
+		  --   , nil);
+		end;
+
+-- 主程
+	TTH_MAIN = {};
+	TTH_VARI.mainSwitch = TTH_ENUM.Yes;
+
+	-- 初始化
+		function TTH_MAIN.init()
+			TTH_GLOBAL.initGameDifficulty(); -- 初始化游戏难度
+			TTH_GLOBAL.setExpCoef8GameDifficulty(); -- 初始化英雄经验系数
+			TTH_GLOBAL.initAdvTown(); -- 初始化城镇列表
+			TTH_GLOBAL.initAdvBuilding(); -- 初始化地图建筑
+			TTH_GLOBAL.resetMemoryMentorVisitor(); -- 初始化记忆导师的访问英雄信息
+
+			for iPlayer = PLAYER_1, PLAYER_8 do
+				TTH_GLOBAL.initAi(iPlayer); -- 配置文件: AI玩家初始作弊
+				TTH_GLOBAL.chooseStartGold(iPlayer); -- 玩家初始选择金币奖励时赠送2500金币
+				TTH_GLOBAL.chooseStartCreature(iPlayer); -- 配置文件: 人类玩家初始选择生物奖励时定制生物
+				TTH_GLOBAL.chooseStartArtifact(iPlayer); -- 配置文件: 人类玩家初始选择宝物奖励时定制宝物
+				TTH_GLOBAL.setStartResource(iPlayer); -- 配置文件: 人类玩家是否0资源开局
+				TTH_GLOBAL.triggerInitPlayerAddHero(iPlayer); -- 触发器: 玩家招募英雄
+				TTH_GLOBAL.triggerInitPlayerRemoveHero(iPlayer); --触发器: 玩家失去英雄
+				TTH_GLOBAL.initWeeklyEventCount(iPlayer); -- 初始化玩家周事件执行次数
+				TTH_GLOBAL.initDailyEventCount(iPlayer); -- 初始化玩家日事件执行次数
+				TTH_GLOBAL.initSettleResource(iPlayer); -- 初始化每日玩家资源
+				TTH_MANAGE.initConstructData4RecordPoint(iPlayer); -- 构造政绩加成的数据结构
+				TTH_ARTI.init1034Player(iPlayer); -- 初始化玩家的主城
+
+				local arrHero = GetPlayerHeroes(iPlayer);
+				for iIndexHero, strHero in arrHero do
+					TTH_GLOBAL.bindHeroCustomAbility4Hero(strHero); -- 触发器: 王国管理
+					TTH_GLOBAL.triggerInitHeroLevelUp(strHero); -- 触发器: 英雄升级
+					TTH_GLOBAL.setHeroCombatScript(strHero); -- 绑定英雄战场脚本
+					TTH_GLOBAL.initHero4Specialty(strHero); -- 初始生物特奖励生物
+					TTH_MANAGE.initMayor(strHero); -- 初始内政官信息
+					TTH_GLOBAL.setGameVar4HeroLevel(strHero); -- 将英雄等级记录到游戏全局参数
+					TTH_GLOBAL.giveHero4Attribute(strHero); -- 属性特属性奖励
+					TTH_GLOBAL.dealSkillBonus8Hero(strHero); -- 英雄初始技能效果实装
+					TTH_ARTI.init1034Hero(iPlayer, strHero); -- 赠送玩家初始英雄一个回城令
+
+					for iKey, objItem in TTH_TABLE.FuncTalent[TTH_ENUM.FuncInit] do
+						if iKey == strHero then
+							TTH_COMMON.parse(objItem[TTH_ENUM.FuncAlways], strHero);
+						end;
 					end;
 				end;
-				if H55_CIReincarnation_newest[hero] ~= nil then
-					if HasArtefact(hero, ARTIFACT_REINCARNATION, 1) ~= nil and H55_CIReincarnation_newest[hero] > H55_CIReincarnation[hero] then
-						print("---------------------------------------------------------------------");
-						print("H55 Reincarnation Event begin");
-						local type, count = H55_ArmyInfo(hero);
-						for i = 1, 7 do
-							for j = 1, 8 do
-								if type[0] == H55_Creatures[j][i][2] or type[0] == H55_Creatures[j][i][3] then
-									if type[0] == H55_Creatures[j][i][2] then
-										AddHeroCreatures(hero, H55_Creatures[j][i][3], count[0]);
-										sleep(1);
-										RemoveHeroCreatures(hero, H55_Creatures[j][i][2], count[0]);
-										H55_CIReincarnation[hero] = H55_CIReincarnation_newest[hero];
-										print("H55 Reincarnation power is empty");
-										break;
-									end
-									if type[0] == H55_Creatures[j][i][3] then
-										AddHeroCreatures(hero, H55_Creatures[j][i][2], count[0]);
-										sleep(1);
-										RemoveHeroCreatures(hero, H55_Creatures[j][i][3], count[0]);
-										H55_CIReincarnation[hero] = H55_CIReincarnation_newest[hero];
-										print("H55 Reincarnation power is empty");
-										break;
-									end
-								end
-							end
-						end
-						if H55_CIReincarnation_newest[hero] > H55_CIReincarnation[hero] then
-							print("H55 Reincarnation first creature can't be reincarnated");
-						end;
-						print("H55 Reincarnation Event end");
-						print("---------------------------------------------------------------------");
+			end;
+
+			TTH_MAIN.recordCalendar();
+			SetTrigger(NEW_DAY_TRIGGER, "TTH_MAIN.recordCalendar"); -- 新的一天 → 记录日期
+			startThread(TTH_MAIN.heartBeat); -- 后台轮询
+			startThread(TTH_MAIN.controller); -- 主程入口
+
+			SetTrigger(CUSTOM_ABILITY_TRIGGER, "TTH_MANAGE.customAbility"); -- 英雄自定义技能 → 王国管理
+			SetTrigger(COMBAT_RESULTS_TRIGGER, "TTH_TRIGGER.combatResults"); -- 战斗结束触发器
+		end;
+
+	-- 日历
+		-- 记录日历
+			function TTH_MAIN.recordCalendar()
+				TTH_MAIN.geneDebugInfo(GetDate(DAY));
+				TTH_MAIN.printDebugInfo(TTH_MAIN.listDebug[GetDate(DAY)]);
+
+				TTH_VARI.day = GetDate(DAY);
+				TTH_VARI.week = GetDate(WEEK);
+				TTH_VARI.month = GetDate(MONTH);
+				TTH_VARI.absoluteWeek = (TTH_VARI.month - 1) * 4 + TTH_VARI.week;
+				TTH_VARI.dayOfWeek = GetDate(DAY_OF_WEEK);
+			end;
+
+		-- 打印日历
+			function TTH_MAIN.printCalendar()
+				print("Month "..TTH_VARI.month);
+				print("Week "..TTH_VARI.week);
+				print("AbsoluteWeek "..TTH_VARI.absoluteWeek);
+				print("Day "..TTH_VARI.day);
+				print("Day of Week "..TTH_VARI.dayOfWeek);
+			end;
+
+	-- 设置轮询开关
+		function TTH_MAIN.setMainSwitchOn()
+			TTH_VARI.mainSwitch = TTH_ENUM.Yes;
+		end;
+		function TTH_MAIN.setMainSwitchOff()
+			TTH_VARI.mainSwitch = TTH_ENUM.No;
+		end;
+
+	-- Debug
+		TTH_MAIN.recordDebug = {};
+		TTH_MAIN.listDebug = {};
+
+		-- 记录debug信息
+			-- TTH_MAIN.debug(strFunctionName, iPlayer, strHero, arrParam...);
+			function TTH_MAIN.debug(...)
+				TTH_MAIN.recordDebug = {};
+				local iParamCount = arg["n"];
+				TTH_MAIN.recordDebug["RecordName"] = arg[1];
+				TTH_MAIN.recordDebug["Player"] = arg[2];
+				TTH_MAIN.recordDebug["Hero"] = arg[3];
+				if iParamCount > 3 then
+					for i = 4, iParamCount do
+							TTH_MAIN.recordDebug[i - 3] = arg[i];
 					end;
 				end;
+			end;
 
-				if hero == "Pelt" and GetSavedCombatArmyHero(ci, 1) == "Pelt" and H55_CINecromancy_Pelt ~= ci then
-					print("---------------------------------------------------------------------");
-					print("H55 Pelt Event begin");
-					print("H55 Pelt Event ci:"..ci);
-					print("H55 Pelt Event H55_CINecromancy_Pelt:"..H55_CINecromancy_Pelt);
-					local type = H55_ArmyInfoSimple(hero);
-					local i_race = H55_GetHeroRaceNum(hero);
-					local i_cannecromancylevel = H55_GetNecroSetCount(hero) + 1;
-					local i_creaturelevel = H55_GetNecroSetCount(hero) + 1;
-					local i_level = GetHeroLevel(hero);
-					local i_knowledge = GetHeroStat(hero,STAT_KNOWLEDGE);
-					local i_city = length(H55_GetPlayerTowns(player));
+		-- 打印debug信息
+			function TTH_MAIN.printDebugInfo(arrRecord)
+				if arrRecord ~= nil and length(arrRecord) > 0 then
+					print("TTH_MAIN crash info: ");
+					print("----------------------------------------");
+					for iIndexRecord, objItemRecord in arrRecord do
+						print("index: "..iIndexRecord);
+						for k, v in objItemRecord do
+							print("--key: "..k);
+							print("--value: ");
+							print(v);
+						end;
+					end;
+					print("----------------------------------------");
+				end;
+			end;
 
-					print("H55 Pelt Event CanNecromancyLevel:"..i_cannecromancylevel);
-					local i_ismummy = 0;
-					local i_isdk = 0;
-					if type[0] == 116 and i_cannecromancylevel >= 5 then
-						i_ismummy = 1;
-						i_creaturelevel = 5;
-					end
-					if type[0] == 90 and i_cannecromancylevel >= 6 then
-						i_isdk = 1;
-						i_creaturelevel = 6;
-					end
-					if i_ismummy == 0 and i_isdk == 0 then
-						for k = 1, 7 do
-							if type[0] == H55_Creatures[i_race][k][1] or type[0] == H55_Creatures[i_race][k][2] or type[0] == H55_Creatures[i_race][k][3] then
-								if i_cannecromancylevel >= k then
-									i_creaturelevel = k;
-								end
-								break;
-							end
-						end
-					end
-					print("H55 Pelt Event ChooseNecromancyLevel:"..i_creaturelevel);
+		-- 初始化debug信息
+			function TTH_MAIN.geneDebugInfo(iDay)
+				TTH_MAIN.listDebug[iDay] = {};
+			end;
 
-					H55_PowerNecromancy_Pelt = H55_PowerNecromancy_Pelt + H55_Round((30 * i_knowledge + 50 * i_city) * (1 + i_cannecromancylevel * 0.1));
-					print("H55 Pelt Event H55_PowerNecromancy_Pelt:"..H55_PowerNecromancy_Pelt);
+	-- 后台轮询
+		function TTH_MAIN.errorHookHeartBeat()
+			TTH_MAIN.listDebug[TTH_VARI.day] = TTH_COMMON.push(TTH_MAIN.listDebug[TTH_VARI.day], TTH_MAIN.recordDebug);
+			startThread(TTH_MAIN.heartBeat);
+			print("TTH_MAIN.heartBeat has crashed, reloading...");
+		end;
+		function TTH_MAIN.heartBeat()
+			errorHook(TTH_MAIN.errorHookHeartBeat);
 
-					if i_creaturelevel > 0 then
-						for i = 0, 6 do
-							for j = 1, 3 do
-								if type[i] == H55_Creatures[i_race][i_creaturelevel][j] then
-									local i_growth = H55_Floor(H55_PowerNecromancy_Pelt / H55_Creatures_Power[i_race][i_creaturelevel][j]);
-									H55_PowerNecromancy_Pelt = H55_PowerNecromancy_Pelt - i_growth * H55_Creatures_Power[i_race][i_creaturelevel][j];
-									print("H55 Pelt Event i_growth:"..i_growth);
-									if i_growth > 0 then
-										if i_ismummy == 1 then
-											AddHeroCreatures(hero, 116, i_growth);
-										elseif i_isdk == 1 then
-											AddHeroCreatures(hero, 90, i_growth);
-										else
-											AddHeroCreatures(hero, H55_Creatures[i_race][i_creaturelevel][j], i_growth);
-										end;
-										if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-											ShowFlyingSign({"/Text/Game/Scripts/Join.txt"; num = i_growth}, hero, player, 5)
-											sleep(8);
-										elseif H55_IsThisAIPlayer(player) ~= 1 then
-											sleep(2);
+			while TTH_VARI.mainSwitch == TTH_ENUM.Yes do
+				sleep(TTH_FINAL.INTERVAL);
+
+				for iPlayer = PLAYER_1, PLAYER_8 do
+					if GetPlayerState(iPlayer) == 1 then
+						if IsPlayerCurrent(iPlayer) then
+							local arrHero = GetPlayerHeroes(iPlayer);
+							if arrHero ~= nil then
+								for iIndex, strHero in arrHero do
+									TTH_GLOBAL.setGameVar4HeroArtifact(iPlayer, strHero); -- 保存全局参数，英雄携带宝物
+									TTH_GLOBAL.upgradeArtifactSetBonus8Hero(iPlayer, strHero); -- 宝物套装属性更新
+									TTH_GLOBAL.makeHeroNecro(iPlayer, strHero); -- 士气<-5 转化为亡灵巫师
+
+									if strHero == "Sandro" then
+										TTH_TALENT.dealSandro(iPlayer, strHero);
+									end;
+								end;
+
+								-- 若玩家是人类
+									if TTH_GLOBAL.isAi(iPlayer) ~= TTH_ENUM.Yes then
+										for iIndex, strHero in arrHero do
+											-- 英雄访问记忆导师后，英雄技能效果实装
+												if TTH_VARI.visitedMemoryMentorFlag == TTH_ENUM.Yes
+													and strHero == TTH_VARI.visitedMemoryMentorHero then
+													TTH_GLOBAL.resetMemoryMentorVisitor();
+													TTH_GLOBAL.upgradeSkillBonus8Hero(iPlayer, strHero);
+												end;
 										end;
 									end;
-									H55_CINecromancy_Pelt = ci;
-								end
-							end
-						end
-						if H55_CINecromancy_Pelt ~= ci then
-							local i_growth = H55_Floor(H55_PowerNecromancy_Pelt / H55_Creatures_Power[i_race][i_creaturelevel][1]);
-							print("H55 Pelt Event i_growth:"..i_growth);
-							H55_PowerNecromancy_Pelt = H55_PowerNecromancy_Pelt - i_growth * H55_Creatures_Power[i_race][i_creaturelevel][1];
-							if i_growth > 0 then
-								if i_ismummy == 1 then
-									AddHeroCreatures(hero, 116, i_growth);
-								elseif i_isdk == 1 then
-									AddHeroCreatures(hero, 90, i_growth);
-								else
-									AddHeroCreatures(hero, H55_Creatures[i_race][i_creaturelevel][1], i_growth);
-								end;
-								if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-									ShowFlyingSign({"/Text/Game/Scripts/Join.txt"; num = i_growth}, hero, player, 5)
-									sleep(8);
-								elseif H55_IsThisAIPlayer(player) ~= 1 then
-									sleep(2);
-								end;
-							end;
-							H55_CINecromancy_Pelt = ci;
-						end
-					end
-					print("H55 Pelt Event H55_PowerNecromancy_Pelt:"..H55_PowerNecromancy_Pelt);
-					print("H55 Pelt Event ci:"..ci);
-					print("H55 Pelt Event H55_CINecromancy_Pelt:"..H55_CINecromancy_Pelt);
-					print("H55 Pelt Event end");
-					print("---------------------------------------------------------------------");
-				end
-
-				if GetSavedCombatArmyHero(ci, 1) == hero and HasHeroSkill(hero, KNIGHT_FEAT_GRAIL_VISION) ~= nil then
-					if H55_CI_Grail_Last[hero] == nil or H55_CI_Grail_Last[hero] ~= ci then
-						H55_CI_Grail_Last[hero] = ci;
-					end;
-				end;
-
-				if contains(TTH_TABLE_HeroCustomAbility_CastCreature, hero) ~= nil and GetSavedCombatArmyHero(ci, 1) == hero then
-					if TTH_HeroCustomAbility_CI[hero] ~= ci then
-						TTH_HeroCustomAbility_CastCreature_GCD[hero] = TTH_HeroCustomAbility_CastCreature_GCD[hero] - 1;
-						print('Gcd-combatIndex:'..TTH_HeroCustomAbility_CastCreature_GCD[hero]);
-						TTH_HeroCustomAbility_CI[hero] = ci;
-					end;
-				end;
-
-				if hero == "Kyrre" and GetSavedCombatArmyHero(ci, 1) == "Kyrre" and H55_CI_Kyrre ~= ci then
-					local i_level = GetHeroLevel(hero);
-					ChangeHeroStat(hero, STAT_MOVE_POINTS, i_level * 10 * (1 + 0.5 * TTH_Monk_Move_Bonus(hero)));
-					H55_CI_Kyrre = ci;
-				end
-				if hero == "Hero2" and GetSavedCombatArmyHero(ci, 1) == "Hero2" and H55_CI_Hero2 ~= ci then
-					local i_level = GetHeroLevel(hero);
-					ChangeHeroStat(hero, STAT_MOVE_POINTS, i_level * 10 * (1 + 0.5 * TTH_Monk_Move_Bonus(hero)));
-					H55_CI_Hero2 = ci;
-				end
-				if hero == "Melodia" and GetSavedCombatArmyHero(ci, 1) == "Melodia" and H55_CI_Melodia ~= ci then
-					if H55_MelodiaReceived == 0 then
-						local i_four_leaf_clover = 0;
-						if HasArtefact(hero, ARTIFACT_FOUR_LEAF_CLOVER, 1) ~= nil then
-							i_four_leaf_clover = 1;
-						end
-						local i_tarot_deck = 0;
-						if HasArtefact(hero, ARTIFACT_TAROT_DECK, 1) ~= nil then
-							i_tarot_deck = 1;
-						end
-						local i_guardian_02 = 0;
-						if HasArtefact(hero, ARTIFACT_GUARDIAN_02, 1) ~= nil then
-							i_guardian_02 = 1;
-						end
-						local i_h55_getguardiansetcount = 0;
-						if H55_GetGuardianSetCount(hero) >= 4 then
-							i_h55_getguardiansetcount = 1;
-						end
-						local i_golden_horseshoe = 0;
-						if HasArtefact(hero, ARTIFACT_GOLDEN_HORSESHOE, 1) ~= nil then
-							i_golden_horseshoe = 2;
-						end
-						local i_crown_of_courage = 0;
-						if HasArtefact(hero, ARTIFACT_CROWN_OF_COURAGE, 1) ~= nil then
-							i_crown_of_courage = 2;
-						end
-						local i_angel_wings = 0;
-						if HasArtefact(hero, ARTIFACT_ANGEL_WINGS, 1) ~= nil then
-							i_angel_wings = 2;
-						end
-						local i_ranger_feat_forest_rage = 0;
-						if HasHeroSkill(hero, RANGER_FEAT_FOREST_RAGE) ~= nil then
-							i_ranger_feat_forest_rage = 1;
-						end
-						local i_luck = GetHeroSkillMastery(hero,SKILL_LUCK) + 1 + i_four_leaf_clover + i_tarot_deck + i_guardian_02 + i_h55_getguardiansetcount + i_golden_horseshoe + i_crown_of_courage + i_angel_wings + i_ranger_feat_forest_rage;
-						print("i_luck "..i_luck);
-						local i_ran10 = random(10);
-						print("i_ran10 "..i_ran10);
-						if i_luck > i_ran10 then
-							H55_MelodiaReceived = 1;
-							local i_level = GetHeroLevel(hero);
-							local i_gear = H55_Ceil(i_level / 4);
-							print("i_gear "..i_gear);
-							local i_ran = random(length(H55_Melodia_Artifacts[i_gear])) + 1;
-							print("i_ran "..i_ran);
-							GiveArtefact(hero, H55_Melodia_Artifacts[i_gear][i_ran], 0);
-							ShowFlyingSign({"/Text/Game/Scripts/Artefact.txt"}, hero, player, 5);
-							sleep(8);
-						end
-					end
-					H55_CI_Melodia = ci;
-				end
-			end
-		end;
-	end;
-
-	--  by 牙姐
-	-- Wulfstan
-	local strDay = GetDate(DAY);
-	local strHero = 'Wulfstan';
-	if contains(heroes, strHero) ~= nil then
-		if H55SMOD_Wulfstan[strDay] == nil then
-			H55SMOD_Wulfstan[strDay] = {};
-		end;
-		for i, town in alltowns do
-			if H55_IsThisAIPlayer(player) ~= 1 and GetObjectOwner(town) == player then
-				if H55SMOD_Wulfstan[strDay]['flag'] == nil and GetHeroStat(strHero, STAT_MOVE_POINTS) <= 200 and H55_GetDistance(strHero, town) <= H55_GetHeroMovement(strHero) * 2 / 100 then
-					H55SMOD_Wulfstan[strDay]['flag'] = 1;
-					H55_Move(strHero, H55_Round(H55_GetHeroMovement(strHero) * 0.5 * (1 + 0.5 * TTH_Monk_Move_Bonus(strHero))));
-					sleep(1);
-				end;
-			end;
-		end;
-	end;
-	-- end
-
-	-- by 牙姐 2018-9-7 13:21:22
-	-- 死亡行军 Death_Tread
-		if H55_IsThisAIPlayer(player) ~= 1 then
-			for indexHero, strHero in heroes do
-				if GetHeroStat(strHero, STAT_MOVE_POINTS) <= 200 and HasHeroSkill(strHero, NECROMANCER_FEAT_DEATH_TREAD) ~= nil then
-					if TTH_DEATH_TREAD[strDay] == nil then
-						TTH_DEATH_TREAD[strDay] = {};
-					end;
-					if TTH_DEATH_TREAD[strDay][strHero] == nil then
-						TTH_DEATH_TREAD[strDay][strHero] = {};
-					end;
-					for indexTown, strTown in alltowns do
-						if H55_GetDistance(strHero, strTown) <= 24 then
-							if GetObjectOwner(strTown) ~= player and TTH_DEATH_TREAD[strDay][strHero]['flag_foe'] == nil then
-								TTH_DEATH_TREAD[strDay][strHero]['flag_foe'] = 1;
-								H55_Move(strHero, H55_Round(H55_GetHeroMovement(strHero) * 0.12 * GetHeroSkillMastery(strHero, SKILL_LOGISTICS) * (1 + 0.5 * TTH_Monk_Move_Bonus(strHero))));
-								if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(strHero) == 0 then
-									ShowFlyingSign({"/Text/Game/Scripts/DeathTreadFoe.txt"}, strHero, player, 5);
-									sleep(8);
-								elseif H55_IsThisAIPlayer(player) ~= 1 then
-									sleep(2);
-								end;
-							end;
-							if GetObjectOwner(strTown) == player and TTH_DEATH_TREAD[strDay][strHero]['flag_me'] == nil then
-								TTH_DEATH_TREAD[strDay][strHero]['flag_me'] = 1;
-								H55_Move(strHero, H55_Round(H55_GetHeroMovement(strHero) * 0.12 * GetHeroSkillMastery(strHero, SKILL_LOGISTICS) * (1 + 0.5 * TTH_Monk_Move_Bonus(strHero))));
-								if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(strHero) == 0 then
-									ShowFlyingSign({"/Text/Game/Scripts/DeathTreadMe.txt"}, strHero, player, 5);
-									sleep(8);
-								elseif H55_IsThisAIPlayer(player) ~= 1 then
-									sleep(2);
-								end;
 							end;
 						end;
 					end;
 				end;
 			end;
 		end;
-	-- end
 
-	-- by 牙姐 2020-4-5 18:52:49
-	-- 娜瑞莎 士气
-		-- if heroes ~= nil then
-		-- 	local strHero = 'Ildar';
-		-- 	if contains(heroes, strHero) ~= nil then
-		-- 		local listArmyType = H55_ArmyInfoSimple(strHero);
-		-- 		local listRace = {};
-		-- 		for iArmyType = 0, 6 do
-		-- 			for iRace = 1, 8 do
-		-- 				for iLevel = 1, 7 do
-		-- 					for iType = 1, 3 do
-		-- 						if listArmyType[iArmyType] == H55_Creatures[iRace][iLevel][iType] then
-		-- 							if contains(listRace, iRace) == nil then
-		-- 								H55_Insert(listRace, iRace);
-		-- 							end;
-		-- 						end;
-		-- 					end;
-		-- 				end;
-		-- 			end;
-		-- 		end;
-		-- 		local iLenRace = length(listRace);
-		-- 		if TTH_Ildar_Race4Morale ~= iLenRace then
-		-- 			local iPlayer = GetObjectOwner(strHero);
-		-- 			ChangeHeroStat(strHero, STAT_MORALE, iLenRace - TTH_Ildar_Race4Morale);
-		-- 			if iLenRace - TTH_Ildar_Race4Morale > 0 then
-		-- 				ShowFlyingSign("/Text/Game/Scripts/Attribute/MoraleIncrease.txt", strHero, iPlayer, 5);
-		-- 			else
-		-- 				ShowFlyingSign("/Text/Game/Scripts/Attribute/MoraleReduce.txt", strHero, iPlayer, 5);
-		-- 			end;
-		-- 			TTH_Ildar_Race4Morale = iLenRace;
-		-- 		end;
-		-- 	end;
-		-- end;
-	-- end
-end;
-
-------------------------------------------------------------------------------------------------------------------------------------------------------
---DAILY EVENTS
-------------------------------------------------------------------------------------------------------------------------------------------------------
-
-function H55_AdjustGovernorDefense(hero,town)
-
-	------------------------------------------------------------------------------------------------------------------------------------------------
-	H55_DEBUG = {17,"GovDefense",0,hero};-----------------------------------------------------------------------------------------------------------
-	------------------------------------------------------------------------------------------------------------------------------------------------
-
-	if town == nil then
-		ChangeHeroStat(hero,STAT_DEFENCE,-H55_CastleDefenseOwners[hero]);
-		ChangeHeroStat(hero,STAT_SPELL_POWER,-H55_MageGuildBonusOwners[hero]);
-		ChangeHeroStat(hero,STAT_ATTACK,-H55_SpecialAttackOwners[hero]);
-		ChangeHeroStat(hero,STAT_KNOWLEDGE,-H55_SpecialKnowledgeOwners[hero]);
-		ChangeHeroStat(hero,STAT_SPELL_POWER,-H55_SpecialSpellPowerOwners[hero]);
-		ChangeHeroStat(hero,STAT_KNOWLEDGE,-H55_RunicShrineBonusOwners[hero]);
-		H55_CastleDefenseOwners[hero] = 0;
-		H55_MageGuildBonusOwners[hero] = 0;
-		H55_SpecialAttackOwners[hero] = 0;
-		H55_SpecialKnowledgeOwners[hero] = 0;
-		H55_SpecialSpellPowerOwners[hero] = 0;
-		H55_RunicShrineBonusOwners[hero] = 0;
-	else
-		local townrace = H55_GetTownRace(town)
-		if townrace == 8 then
-			local fort = GetTownBuildingLevel(town,TOWN_BUILDING_FORT);
-			local shrine = GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_1);
-			local hut = GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_3);
-			local pile = GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_4);
-			if pile == 1 then pile = 2 end;
-			if hut == 1 then hut = 2 end;
-			if fort > H55_CastleDefenseOwners[hero] then
-				ChangeHeroStat(hero,STAT_DEFENCE,(fort-H55_CastleDefenseOwners[hero]));
-				H55_CastleDefenseOwners[hero] = fort;
-			end;
-			if shrine > H55_RunicShrineBonusOwners[hero] then
-				ChangeHeroStat(hero,STAT_KNOWLEDGE,(shrine-H55_RunicShrineBonusOwners[hero]));
-				H55_RunicShrineBonusOwners[hero] = shrine;
-			end;
-			if pile > H55_SpecialAttackOwners[hero] then
-				ChangeHeroStat(hero,STAT_ATTACK,(pile-H55_SpecialAttackOwners[hero]));
-				H55_SpecialAttackOwners[hero] = pile;
-			end;
-			if hut > H55_SpecialSpellPowerOwners[hero] then
-				ChangeHeroStat(hero,STAT_SPELL_POWER,(hut-H55_SpecialSpellPowerOwners[hero]));
-				H55_SpecialSpellPowerOwners[hero] = hut;
-			end;
-		elseif townrace == 7 then
-			local fort = GetTownBuildingLevel(town,TOWN_BUILDING_FORT);
-			local shrine = GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_1);
-			local guild = GetTownBuildingLevel(town,TOWN_BUILDING_MAGIC_GUILD);
-			if fort > H55_CastleDefenseOwners[hero] then
-				ChangeHeroStat(hero,STAT_DEFENCE,(fort-H55_CastleDefenseOwners[hero]));
-				H55_CastleDefenseOwners[hero] = fort;
-			end;
-			if shrine > H55_RunicShrineBonusOwners[hero] then
-				ChangeHeroStat(hero,STAT_KNOWLEDGE,(shrine-H55_RunicShrineBonusOwners[hero]));
-				H55_RunicShrineBonusOwners[hero] = shrine;
-			end;
-			if guild > H55_MageGuildBonusOwners[hero] then
-				ChangeHeroStat(hero,STAT_SPELL_POWER,(guild-H55_MageGuildBonusOwners[hero]));
-				H55_MageGuildBonusOwners[hero] = guild;
-			end;
-		elseif townrace == 6 then
-			local fort = GetTownBuildingLevel(town,TOWN_BUILDING_FORT);
-			local altar = GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_1);
-			local guild = GetTownBuildingLevel(town,TOWN_BUILDING_MAGIC_GUILD);
-			if fort > H55_CastleDefenseOwners[hero] then
-				ChangeHeroStat(hero,STAT_DEFENCE,(fort-H55_CastleDefenseOwners[hero]));
-				H55_CastleDefenseOwners[hero] = fort;
-			end;
-			if altar > H55_SpecialAttackOwners[hero] then
-				ChangeHeroStat(hero,STAT_ATTACK,(altar-H55_SpecialAttackOwners[hero]));
-				H55_SpecialAttackOwners[hero] = altar;
-			end;
-			if guild > H55_MageGuildBonusOwners[hero] then
-				ChangeHeroStat(hero,STAT_SPELL_POWER,(guild-H55_MageGuildBonusOwners[hero]));
-				H55_MageGuildBonusOwners[hero] = guild;
-			end;
-		elseif townrace == 5 then
-			local fort = GetTownBuildingLevel(town,TOWN_BUILDING_FORT);
-			local altar = GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_1);
-			local guild = GetTownBuildingLevel(town,TOWN_BUILDING_MAGIC_GUILD);
-			if altar == 1 then altar = 2 end;
-			if fort > H55_CastleDefenseOwners[hero] then
-				ChangeHeroStat(hero,STAT_DEFENCE,(fort-H55_CastleDefenseOwners[hero]));
-				H55_CastleDefenseOwners[hero] = fort;
-			end;
-			if altar > H55_SpecialKnowledgeOwners[hero] then
-				ChangeHeroStat(hero,STAT_KNOWLEDGE,(altar-H55_SpecialKnowledgeOwners[hero]));
-				H55_SpecialKnowledgeOwners[hero] = altar;
-			end;
-			if guild > H55_MageGuildBonusOwners[hero] then
-				ChangeHeroStat(hero,STAT_SPELL_POWER,(guild-H55_MageGuildBonusOwners[hero]));
-				H55_MageGuildBonusOwners[hero] = guild;
-			end;
-		elseif townrace == 4 then
-			local fort = GetTownBuildingLevel(town,TOWN_BUILDING_FORT);
-			local altar = GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_1);
-			local guild = GetTownBuildingLevel(town,TOWN_BUILDING_MAGIC_GUILD);
-			if altar == 1 then altar = 2 end;
-			if fort > H55_CastleDefenseOwners[hero] then
-				ChangeHeroStat(hero,STAT_DEFENCE,(fort-H55_CastleDefenseOwners[hero]));
-				H55_CastleDefenseOwners[hero] = fort;
-			end;
-			if altar > H55_SpecialKnowledgeOwners[hero] then
-				ChangeHeroStat(hero,STAT_KNOWLEDGE,(altar-H55_SpecialKnowledgeOwners[hero]));
-				H55_SpecialKnowledgeOwners[hero] = altar;
-			end;
-			if guild > H55_MageGuildBonusOwners[hero] then
-				ChangeHeroStat(hero,STAT_SPELL_POWER,(guild-H55_MageGuildBonusOwners[hero]));
-				H55_MageGuildBonusOwners[hero] = guild;
-			end;
-		elseif townrace == 3 then
-			local fort = GetTownBuildingLevel(town,TOWN_BUILDING_FORT);
-			local altar = GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_5);
-			local guild = GetTownBuildingLevel(town,TOWN_BUILDING_MAGIC_GUILD);
-			if altar == 1 then altar = 2 end;
-			if fort > H55_CastleDefenseOwners[hero] then
-				ChangeHeroStat(hero,STAT_DEFENCE,(fort-H55_CastleDefenseOwners[hero]));
-				H55_CastleDefenseOwners[hero] = fort;
-			end;
-			if altar > H55_SpecialAttackOwners[hero] then
-				ChangeHeroStat(hero,STAT_ATTACK,(altar-H55_SpecialAttackOwners[hero]));
-				H55_SpecialAttackOwners[hero] = altar;
-			end;
-			if guild > H55_MageGuildBonusOwners[hero] then
-				ChangeHeroStat(hero,STAT_SPELL_POWER,(guild-H55_MageGuildBonusOwners[hero]));
-				H55_MageGuildBonusOwners[hero] = guild;
-			end;
-		elseif townrace == 2 then
-			local fort = GetTownBuildingLevel(town,TOWN_BUILDING_FORT);
-			local altar = GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_0);
-			local guild = GetTownBuildingLevel(town,TOWN_BUILDING_MAGIC_GUILD);
-			if fort > H55_CastleDefenseOwners[hero] then
-				ChangeHeroStat(hero,STAT_DEFENCE,(fort-H55_CastleDefenseOwners[hero]));
-				H55_CastleDefenseOwners[hero] = fort;
-			end;
-			if altar > H55_SpecialAttackOwners[hero] then
-				ChangeHeroStat(hero,STAT_ATTACK,(altar-H55_SpecialAttackOwners[hero]));
-				H55_SpecialAttackOwners[hero] = altar;
-			end;
-			if guild > H55_MageGuildBonusOwners[hero] then
-				ChangeHeroStat(hero,STAT_SPELL_POWER,(guild-H55_MageGuildBonusOwners[hero]));
-				H55_MageGuildBonusOwners[hero] = guild;
-			end;
-		else
-			local fort = GetTownBuildingLevel(town,TOWN_BUILDING_FORT);
-			local altar = GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_2);
-			local guild = GetTownBuildingLevel(town,TOWN_BUILDING_MAGIC_GUILD);
-			if altar == 1 then altar = 2 end;
-			if fort > H55_CastleDefenseOwners[hero] then
-				ChangeHeroStat(hero,STAT_DEFENCE,(fort-H55_CastleDefenseOwners[hero]));
-				H55_CastleDefenseOwners[hero] = fort;
-			end;
-			if altar > H55_SpecialAttackOwners[hero] then
-				ChangeHeroStat(hero,STAT_ATTACK,(altar-H55_SpecialAttackOwners[hero]));
-				H55_SpecialAttackOwners[hero] = altar;
-			end;
-			if guild > H55_MageGuildBonusOwners[hero] then
-				ChangeHeroStat(hero,STAT_SPELL_POWER,(guild-H55_MageGuildBonusOwners[hero]));
-				H55_MageGuildBonusOwners[hero] = guild;
-			end;
+	-- 主程入口
+		function TTH_MAIN.errorHookController()
+			TTH_MAIN.listDebug[TTH_VARI.day] = TTH_COMMON.push(TTH_MAIN.listDebug[TTH_VARI.day], TTH_MAIN.recordDebug);
+			startThread(TTH_MAIN.controller);
+			print("TTH_MAIN.controller has crashed, reloading...");
 		end;
-	end;
-end;
+		function TTH_MAIN.controller()
+			errorHook(TTH_MAIN.errorHookController);
 
-function H55_DailyEvents(player)
+			while TTH_VARI.mainSwitch == TTH_ENUM.Yes do
+				sleep(TTH_FINAL.INTERVAL);
 
-	------------------------------------------------------------------------------------------------------------------------------------------------
-	H55_DEBUG = {18,"Dwellings",player,""};---------------------------------------------------------------------------------------------------------
-	------------------------------------------------------------------------------------------------------------------------------------------------
-
-	local playerrace = H55_PlayerFactions[player];
-	local dwellingrace = H55_GetTownRaceID(playerrace);
-	local alltowns = GetObjectNamesByType("TOWN");
-	local strongholdtowns = GetObjectNamesByType("TOWN_STRONGHOLD");
-	local townsofrace = H55_GetAmountAlignedTowns(playerrace);
-
-	-- begin by 牙姐 2018-8-26 9:02:12
-	-- 军团金像
-	if H55_IsThisAIPlayer(player) ~= 1 then
-		for i, town in alltowns do
-			TTH_Func_TownBonus8EconomicsArti(town, player);
-		end;
-	end;
-	-- end
-
-	if H55_IsThisAIPlayer(player) == 1 and H55_TownConvEnabled == 1 then
-
-
-		local amountT1dwellings = length(GetObjectNamesByType(H55_T1DwellingTypes[playerrace]));
-		local amountT2dwellings = length(GetObjectNamesByType(H55_T2DwellingTypes[playerrace]));
-		local amountT3dwellings = length(GetObjectNamesByType(H55_T3DwellingTypes[playerrace]));
-		local amountT4dwellings = length(GetObjectNamesByType(H55_T4DwellingTypes[playerrace]));
-
-		local allT1dwellings = {};
-		local allT2dwellings = {};
-		local allT3dwellings = {};
-		local allT4dwellings = {};
-
-		for i=1,8 do
-			allT1dwellings[i] = GetObjectNamesByType(H55_T1DwellingTypes[i])
-			allT2dwellings[i] = GetObjectNamesByType(H55_T2DwellingTypes[i])
-			allT3dwellings[i] = GetObjectNamesByType(H55_T3DwellingTypes[i])
-			allT4dwellings[i] = GetObjectNamesByType(H55_T4DwellingTypes[i])
-		end;
-
-		if amountT1dwellings < H55_MaxDwellingsT1 then
-			for i=1,8 do
-				for j,dwelling in allT1dwellings[i] do
-					if GetObjectOwner(dwelling) == player and (H55_GetT1DwellingRace(dwelling) ~= playerrace)  then
-						ReplaceDwelling(dwelling,dwellingrace);
-						H55_AmountAIDwellingConversions = H55_AmountAIDwellingConversions+1;
-					end;
-				end;
-			end;
-		end;
-		if amountT2dwellings < H55_MaxDwellingsT2 then
-			for i=1,8 do
-				for j,dwelling in allT2dwellings[i] do
-					if GetObjectOwner(dwelling) == player and (H55_GetT2DwellingRace(dwelling) ~= playerrace)  then
-						ReplaceDwelling(dwelling,dwellingrace);
-						H55_AmountAIDwellingConversions = H55_AmountAIDwellingConversions+1;
-					end;
-				end;
-			end;
-		end;
-		if amountT3dwellings < H55_MaxDwellingsT3 then
-			for i=1,8 do
-				for j,dwelling in allT3dwellings[i] do
-					if GetObjectOwner(dwelling) == player and (H55_GetT3DwellingRace(dwelling) ~= playerrace) and contains(H55_UniqueDwellings,dwelling) == nil then
-						if H55_GetT3DwellingRace(dwelling) == 2 then
-							ReplaceDwelling(dwelling,dwellingrace);
-							if H55_GetT3DwellingRace(dwelling) == 2 and playerrace ~= 2 then H55_Insert(H55_UniqueDwellings,dwelling) end;
-						else
-							ReplaceDwelling(dwelling,dwellingrace);
-						end;
-						H55_AmountAIDwellingConversions = H55_AmountAIDwellingConversions+1;
-					end;
-				end;
-			end;
-		end;
-		if amountT4dwellings < H55_MaxDwellingsT4 then
-			for i=1,8 do
-				for j,dwelling in allT4dwellings[i] do
-					if GetObjectOwner(dwelling) == player and (H55_GetT4DwellingRace(dwelling) ~= playerrace) and contains(H55_UniqueDwellings,dwelling) == nil then
-						if H55_GetT4DwellingRace(dwelling) == 2 then
-							ReplaceDwelling(dwelling,dwellingrace);
-							if H55_GetT4DwellingRace(dwelling) == 2 and playerrace ~= 2 then H55_Insert(H55_UniqueDwellings,dwelling) end;
-						elseif H55_GetT4DwellingRace(dwelling) == 4 then
-							ReplaceDwelling(dwelling,dwellingrace);
-							if H55_GetT4DwellingRace(dwelling) == 4 and playerrace ~= 4 then H55_Insert(H55_UniqueDwellings,dwelling) end;
-						else
-							ReplaceDwelling(dwelling,dwellingrace);
-						end;
-						H55_AmountAIDwellingConversions = H55_AmountAIDwellingConversions+1;
-					end;
-				end;
-			end;
-		end;
-	end;
-
-	if H55_IsThisAIPlayer(player) == 1 then
-		for i, academy in (GetObjectNamesByType("TOWN_ACADEMY")) do
-			if GetObjectOwner(academy) == player then
-				DestroyTownBuildingToLevel(academy,TOWN_BUILDING_SPECIAL_3,0,0);
-			end;
-		end;
-		for i, dungeon in (GetObjectNamesByType("TOWN_DUNGEON")) do
-			if GetObjectOwner(dungeon) == player then
-				DestroyTownBuildingToLevel(dungeon,TOWN_BUILDING_SPECIAL_4,0,0);
-			end;
-		end;
-	else
-		for i, academy in (GetObjectNamesByType("TOWN_ACADEMY")) do
-			if GetObjectOwner(academy) == player then
-				SetTownBuildingLimitLevel(academy,TOWN_BUILDING_SPECIAL_3,1);
-				-- UpgradeTownBuilding(academy,TOWN_BUILDING_SPECIAL_3,1);
-			end;
-		end;
-		for i, dungeon in (GetObjectNamesByType("TOWN_DUNGEON")) do
-			if GetObjectOwner(dungeon) == player then
-				SetTownBuildingLimitLevel(dungeon,TOWN_BUILDING_SPECIAL_4,1);
-				-- UpgradeTownBuilding(dungeon,TOWN_BUILDING_SPECIAL_4,1);
-			end;
-		end;
-	end;
-
-	--Check if governors have died
-
-	-- if length(H55_Governors) > 0 then
-		-- for i,governor in H55_Governors do
-			-- if H55_Governors[i] == 1 then
-				-- if IsObjectExists(i) ~= 1 then
-					-- local town = H55_GovernorsWithTown[i];
-					-- H55_ResetConquestHero(i,town);
-				-- end;
-			-- end;
-		-- end;
-	-- end;
-
-	local heroes = GetPlayerHeroes(player);
-	--local payout = 0;
-
-	for i,hero in heroes do
-
-		------------------------------------------------------------------------------------------------------------------------------------------------
-		H55_DEBUG = {19,"GovExp",player,hero};----------------------------------------------------------------------------------------------------------
-		------------------------------------------------------------------------------------------------------------------------------------------------
-
-		if H55_IsThisAIPlayer(player) == 1 and H55_GovernanceEnabled == 1 and H55_Day >= 21 then
-			local level = GetHeroLevel(hero);
-			local amount = H55_Round(300+((1+(level/10))*(level*level)));
-			GiveExp(hero,amount);
-		end;
-		if H55_IsThisAIPlayer(player) ~= 1 and H55_Governors[hero] == 1 then
-			local town = H55_GovernorsWithTown[hero];
-			local herorace = H55_GetHeroRaceNum(hero)
-			local townrace = H55_GetTownRace(town)
-			local herolevel = GetHeroLevel(hero);
-			if IsObjectExists(hero) ~= 1 then
-				H55_ResetConquestHero(hero,town);
-			elseif GetObjectOwner(town) ~= player then
-				H55_ResetConquestHero(hero,town);
-			elseif townrace ~= herorace then
-				H55_ResetConquestHero(hero,town);
-			else
-				local movement = GetHeroStat(hero,STAT_MOVE_POINTS);
-				local movereduction1 = H55_Round(movement*0.25);
-				local movereduction2 = H55_Round(movement*0.50);
-				local movereduction3 = H55_Round(movement*0.75);
-				local distance = H55_GetDistance(hero,town);
-				local expgain = H55_GetHeroEnlightenmentStrength(hero);
-				local tavern = GetTownBuildingLevel(town,TOWN_BUILDING_TAVERN);
-				local marketplace = GetTownBuildingLevel(town,TOWN_BUILDING_MARKETPLACE);
-				local blacksmith = GetTownBuildingLevel(town,TOWN_BUILDING_BLACKSMITH);
-				local fort = GetTownBuildingLevel(town,TOWN_BUILDING_FORT);
-				local townhall = GetTownBuildingLevel(town,TOWN_BUILDING_TOWN_HALL);
-				local guild = GetTownBuildingLevel(town,TOWN_BUILDING_MAGIC_GUILD);
-				local shipyard = GetTownBuildingLevel(town,TOWN_BUILDING_SHIPYARD);
-				local dwelling1 = GetTownBuildingLevel(town,TOWN_BUILDING_DWELLING_1);
-				local dwelling2 = GetTownBuildingLevel(town,TOWN_BUILDING_DWELLING_2);
-				local dwelling3 = GetTownBuildingLevel(town,TOWN_BUILDING_DWELLING_3);
-				local dwelling4 = GetTownBuildingLevel(town,TOWN_BUILDING_DWELLING_4);
-				local dwelling5 = GetTownBuildingLevel(town,TOWN_BUILDING_DWELLING_5);
-				local dwelling6 = GetTownBuildingLevel(town,TOWN_BUILDING_DWELLING_6);
-				local dwelling7 = GetTownBuildingLevel(town,TOWN_BUILDING_DWELLING_7);
-				local grail = GetTownBuildingLevel(town,TOWN_BUILDING_GRAIL);
-				local special1 = 0;
-				local special2 = 0;
-				local special3 = 0;
-				local special4 = GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_4);
-				local special5 = 0;
-				if townrace ~= 1 and townrace ~= 2 and townrace ~= 3 then
-					special3 = GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_3);
-				end;
-				if townrace == 2 then
-					special1 = GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_0);
-				else
-					special1 = GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_1);
-				end;
-				if townrace == 6 then
-					special2 = GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_6);
-				else
-					special2 = GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_2);
-				end;
-				if townrace ~= 4 and townrace ~= 5 and townrace ~= 6 then
-					special5 = GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_5);
-				else
-					special5 = 0;
-				end;
-				local townvalue = tavern+marketplace+blacksmith+fort+townhall+guild+shipyard+dwelling1+dwelling2+dwelling3+dwelling4+dwelling5+dwelling6+dwelling7+grail+special1+special2+special3+special4+special5;
-
-				local experience = H55_Round(H55_GovernorExpCoef*(expgain* ( (townvalue*10)+((1+(herolevel/10))*(herolevel*herolevel)) ) ) );
-				if townhall == 4 then experience = experience+90 end;
-				if distance >= 50 and distance < 75 then
-					H55_AdjustGovernorDefense(hero,nil);
-					ChangeHeroStat(hero,STAT_MOVE_POINTS,-movereduction1);
-					if herolevel < 40 then
-						GiveExp(hero,(H55_Round(0.5*experience)));
-					end;
-					if H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign("/Text/Game/Scripts/TownPortal/TG_LittleFar.txt",hero,player,5) end;
-				elseif distance >= 75 and distance < 100 then
-					H55_AdjustGovernorDefense(hero,nil);
-					ChangeHeroStat(hero,STAT_MOVE_POINTS,-movereduction2);
-					if H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign("/Text/Game/Scripts/TownPortal/TG_Far.txt",hero,player,5) end;
-				elseif distance >= 100 then
-					H55_AdjustGovernorDefense(hero,nil);
-					ChangeHeroStat(hero,STAT_MOVE_POINTS,-movereduction3);
-					if H55_IsHeroInAnyTown(hero) == 0 then ShowFlyingSign("/Text/Game/Scripts/TownPortal/TG_Lost.txt",hero,player,5) end;
-				elseif distance < 50 and herolevel < 5 then
-					ChangeHeroStat(hero,STAT_MOVE_POINTS,-movereduction1);
-					H55_AdjustGovernorDefense(hero,town);
-					GiveExp(hero,experience);
-				else
-					H55_AdjustGovernorDefense(hero,town);
-					if herolevel < 40 then
-						GiveExp(hero,experience);
-					end;
-				end;
-			end;
-		end;
-
-		if strongholdtowns ~= nil then
-			local deficit = 0;
-			local mana = GetHeroStat(hero,STAT_MANA_POINTS);
-			local manatotal = 10 * GetHeroStat(hero,STAT_KNOWLEDGE);
-			if HasHeroSkill(hero,PERK_INTELLIGENCE) ~= nil then
-				manatotal = (H55_Round(1.5*manatotal))-1;
-			end;
-			if mana < manatotal then
-				deficit = manatotal-mana;
-				for i, town in strongholdtowns do
-					if (GetTownBuildingLevel(town,TOWN_BUILDING_SPECIAL_1) >= 1) and (H55_GetDistance(hero,town) <= 6) then
-						ChangeHeroStat(hero,STAT_MANA_POINTS,deficit);
-						--if H55_IsThisAIPlayer(player) ~= 1 and H55_GetDistance(hero,town) ~= 0 then
-							--ShowFlyingSign("/Text/Game/Scripts/Defense.txt",hero,player,5);
-						--end;
-					end;
-				end;
-			end;
-		end;
-
-		------------------------------------------------------------------------------------------------------------------------------------------------
-		H55_DEBUG = {20,"ArtDaily",player,hero};--------------------------------------------------------------------------------------------------------
-		------------------------------------------------------------------------------------------------------------------------------------------------
-
-		if (HasArtefact(hero,34,1) ~= nil) and (HasArtefact(hero,35,1) ~= nil) then
-			GiveExp(hero,(H55_Day*10));
-		end;
-
-		if hero == "Rissa" then
-			if H55_RissaReceived == 0 then
-				local s_hero = "Rissa";
-				local i_level = GetHeroLevel(s_hero);
-				local i_knowledge = GetHeroStat(s_hero, STAT_KNOWLEDGE);
-				local i_amount = 1 + H55_Round((i_level + 1.5 * i_knowledge) / 20);
-
-				H55_GlobalDailyGemPayout[player] = H55_GlobalDailyGemPayout[player] + i_amount;
-				if i_level >= 5 then
-					H55_GlobalDailyMercuryPayout[player] = H55_GlobalDailyMercuryPayout[player] + i_amount;
-				end;
-				if i_level >= 10 then
-					H55_GlobalDailyCrystalPayout[player] = H55_GlobalDailyCrystalPayout[player] + i_amount;
-				end;
-				if i_level >= 15 then
-					H55_GlobalDailySulphurPayout[player] = H55_GlobalDailySulphurPayout[player] + i_amount;
-				end;
-				if i_level >= 20 then
-					H55_GlobalDailyGoldPayout[player] = H55_GlobalDailyGoldPayout[player] + i_amount * 500;
-				end;
-				H55_RissaReceived = 1;
-			end;
-		end;
-
-		------------------------------------------------------------------------------------------------------------------------------------------------
-		H55_DEBUG = {20161123," by 牙姐 Draconic",player,hero};-------------------------------------------------------------------------------------------
-		------------------------------------------------------------------------------------------------------------------------------------------------
-		if (HasArtefact(hero,ARTIFACT_DRACONIC,1) ~= nil) then
-			local type = H55_ArmyInfoSimple(hero);
-			local growth = 1;
-			local race = H55_GetHeroRaceNum(hero);
-			for i = 0,6 do
-				if (type[i] == H55_Creatures[race][7][2]) and (H55_DraconicReceived[hero] ~= 1) then
-					AddHeroCreatures(hero,H55_Creatures[race][7][2],growth);
-					H55_DraconicReceived[hero] = 1;
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-						ShowFlyingSign({"/Text/Game/Scripts/Reinforcements.txt"; num=growth},hero,player,5);
-						sleep(8);
-					end;
-				elseif (type[i] == H55_Creatures[race][7][3]) and (H55_DraconicReceived[hero] ~= 1) then
-					AddHeroCreatures(hero,H55_Creatures[race][7][3],growth);
-					H55_DraconicReceived[hero] = 1;
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-						ShowFlyingSign({"/Text/Game/Scripts/Reinforcements.txt"; num=growth},hero,player,5);
-						sleep(8);
-					end;
-				elseif (type[i] == H55_Creatures[race][7][1]) and (H55_DraconicReceived[hero] ~= 1) then
-					AddHeroCreatures(hero,H55_Creatures[race][7][1],growth);
-					H55_DraconicReceived[hero] = 1;
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-						ShowFlyingSign({"/Text/Game/Scripts/Reinforcements.txt"; num=growth},hero,player,5);
-						sleep(8);
-					end;
-				end;
-			end;
-			if H55_DraconicReceived[hero] ~= 1 then
-				AddHeroCreatures(hero,H55_Creatures[race][7][2],growth);
-				H55_DraconicReceived[hero] = 1;
-				if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-					ShowFlyingSign({"/Text/Game/Scripts/Reinforcements.txt"; num=growth},hero,player,5);
-					sleep(8);
-				end;
-			end;
-		end;
-
-		------------------------------------------------------------------------------------------------------------------------------------------------
-		H55_DEBUG = {20170405," by 牙姐 ARTIFACT_CODEX",player,hero};-------------------------------------------------------------------------------------------
-		------------------------------------------------------------------------------------------------------------------------------------------------
-		if (HasArtefact(hero,ARTIFACT_CODEX,1) ~= nil) then
-			local type = H55_ArmyInfoSimple(hero);
-			local growth = 1;
-			if H55_PhoenixReceived[hero] ~= 1 then
-				AddHeroCreatures(hero,91,growth);
-				H55_PhoenixReceived[hero] = 1;
-				if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-					ShowFlyingSign({"/Text/Game/Scripts/Reinforcements.txt"; num=growth},hero,player,5);
-					sleep(8);
-				end;
-			end;
-		end;
-
-		------------------------------------------------------------------------------------------------------------------------------------------------
-		H55_DEBUG = {20170113," by 牙姐 Hangvul",player,hero};--------------------------------------------------------------------------------------------
-		------------------------------------------------------------------------------------------------------------------------------------------------
-		if (hero == "Hangvul") then
-			print("---------------------------------------------------------------------");
-			print("H55 Hangvul Event begin");
-			local type = H55_ArmyInfoSimple(hero);
-			local i_race = H55_GetHeroRaceNum(hero);
-			local i_level = GetHeroLevel(hero);
-			local i_defence = GetHeroStat(hero,STAT_KNOWLEDGE);
-			local i_city = length(H55_GetPlayerTowns(player));
-			local i_set = H55_GetDwarvenSetCount(hero);
-			if HasArtefact(hero, 2, 1) ~= nil then
-				i_set = i_set + 1;
-			end
-
-			local iLeaderHeroBonus = TTH_Func_LegionBonus2LeaderHero(hero);
-			print("LeaderHero level is "..iLeaderHeroBonus);
-
-			H55_Power_Hangvul = H55_Power_Hangvul + H55_Round((20 * i_level + 30 * i_defence + 50 * i_city) * (1 + (i_set * 0.2)) * iLeaderHeroBonus);
-			print("H55 Hangvul Event H55_Power_Hangvul:"..H55_Power_Hangvul);
-
-			if H55_Reset_Hangvul == 0 then
-				for i = 1, 7 do
-					for j = 1, 3 do
-						if H55_Reset_Hangvul == 0 and type[0] == H55_Creatures[i_race][i][j] then
-							local i_growth = H55_Floor(H55_Power_Hangvul / H55_Creatures_Power[i_race][i][j]);
-							H55_Power_Hangvul = H55_Power_Hangvul - i_growth * H55_Creatures_Power[i_race][i][j];
-							print("H55 Hangvul Event i_growth:"..i_growth);
-							if i_growth > 0 then
-								AddHeroCreatures(hero, H55_Creatures[i_race][i][j], i_growth);
-								if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-									ShowFlyingSign({"/Text/Game/Scripts/Join.txt"; num = i_growth}, hero, player, 5)
-									sleep(8);
-								elseif H55_IsThisAIPlayer(player) ~= 1 then
-									sleep(2);
+				for iPlayer = PLAYER_1, PLAYER_8 do
+					if GetPlayerState(iPlayer) == 1 then
+						if IsPlayerCurrent(iPlayer) then
+							-- 执行每周事件
+								if TTH_VARI.dayOfWeek == 1 then
+									if TTH_VARI.counterDealWeeklyEvent[iPlayer] < TTH_VARI.absoluteWeek then
+										TTH_VARI.counterDealWeeklyEvent[iPlayer] = TTH_VARI.absoluteWeek;
+										TTH_MAIN.dealWeekly(iPlayer);
+									end;
+									if TTH_VARI.counterResetWeeklyEvent[iPlayer] < TTH_VARI.absoluteWeek then
+										TTH_VARI.counterResetWeeklyEvent[iPlayer] = TTH_VARI.absoluteWeek;
+										TTH_MAIN.resetWeekly(iPlayer);
+									end;
 								end;
-							end;
-							H55_Reset_Hangvul = 1;
-						end
-					end
-				end
-			end
-			print("H55 Hangvul Event H55_Power_Hangvul:"..H55_Power_Hangvul);
-			print("H55 Hangvul Event end");
-			print("---------------------------------------------------------------------");
-		end;
-
-		------------------------------------------------------------------------------------------------------------------------------------------------
-		H55_DEBUG = {20170305," by 牙姐 Sylsai",player,hero};--------------------------------------------------------------------------------------------
-		------------------------------------------------------------------------------------------------------------------------------------------------
-		if (hero == "Sylsai") then
-			print("---------------------------------------------------------------------");
-			print("H55 Sylsai Event begin");
-			local type = H55_ArmyInfoSimple(hero);
-			local i_race = H55_GetHeroRaceNum(hero);
-			local i_level = GetHeroLevel(hero);
-			local i_attack = GetHeroStat(hero, STAT_KNOWLEDGE);
-			local i_city = length(H55_GetPlayerTowns(player));
-			local i_set = H55_GetRunicSetCount(hero);
-			if HasArtefact(hero, 2, 1) ~= nil then
-				i_set = i_set + 1;
-			end
-
-			local iLeaderHeroBonus = TTH_Func_LegionBonus2LeaderHero(hero);
-			print("LeaderHero level is "..iLeaderHeroBonus);
-
-			H55_Power_Sylsai = H55_Power_Sylsai + H55_Round((20 * i_level + 30 * i_attack + 50 * i_city) * (1 + (i_set * 0.2)) * iLeaderHeroBonus);
-			print("H55 Sylsai Event H55_Power_Sylsai:"..H55_Power_Sylsai);
-
-			if H55_Reset_Sylsai == 0 then
-				for i = 1, 7 do
-					for j = 1, 3 do
-						if H55_Reset_Sylsai == 0 and type[0] == H55_Creatures[i_race][i][j] then
-							local i_growth = H55_Floor(H55_Power_Sylsai / H55_Creatures_Power[i_race][i][j]);
-							H55_Power_Sylsai = H55_Power_Sylsai - i_growth * H55_Creatures_Power[i_race][i][j];
-							print("H55 Sylsai Event i_growth:"..i_growth);
-							if i_growth > 0 then
-								AddHeroCreatures(hero, H55_Creatures[i_race][i][j], i_growth);
-								if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-									ShowFlyingSign({"/Text/Game/Scripts/Join.txt"; num = i_growth}, hero, player, 5)
-									sleep(8);
-								elseif H55_IsThisAIPlayer(player) ~= 1 then
-									sleep(2);
+							-- 执行每日事件
+								if TTH_VARI.counterDealDailyEvent[iPlayer] < TTH_VARI.day then
+									TTH_VARI.counterDealDailyEvent[iPlayer] = TTH_VARI.day;
+									TTH_MAIN.dealDaily(iPlayer);
 								end;
-							end;
-							H55_Reset_Sylsai = 1;
-						end
-					end
-				end
-			end
-			print("H55 Sylsai Event H55_Power_Sylsai:"..H55_Power_Sylsai);
-			print("H55 Sylsai Event end");
-			print("---------------------------------------------------------------------");
-		end;
-
-		------------------------------------------------------------------------------------------------------------------------------------------------
-		H55_DEBUG = {20170113," by 牙姐 Kunyak",player,hero};--------------------------------------------------------------------------------------------
-		------------------------------------------------------------------------------------------------------------------------------------------------
-		if (hero == "Kunyak") then
-			print("---------------------------------------------------------------------");
-			print("H55 Kunyak Event begin");
-			local type = H55_ArmyInfoSimple(hero);
-			local i_race = H55_GetHeroRaceNum(hero);
-			local i_level = GetHeroLevel(hero);
-			local i_attack = GetHeroStat(hero, STAT_KNOWLEDGE);
-			local i_city = length(H55_GetPlayerTowns(player));
-			local i_set = H55_GetOgreSetCount(hero);
-			local b_defend_us_all = 1;
-			if HasHeroSkill(hero, HERO_SKILL_DEFEND_US_ALL) ~= nil then
-				b_defend_us_all = 1.5;
-			end;
-
-			local iLeaderHeroBonus = TTH_Func_LegionBonus2LeaderHero(hero);
-			print("LeaderHero level is "..iLeaderHeroBonus);
-
-			H55_Power_Kunyak = H55_Power_Kunyak + H55_Round((20 * i_level + 30 * i_attack + 50 * i_city) * (1 + (i_set * 0.2)) * b_defend_us_all * iLeaderHeroBonus);
-			print("H55 Kunyak Event H55_Power_Kunyak:"..H55_Power_Kunyak);
-
-			if H55_Reset_Kunyak == 0 then
-				for i = 1, 7 do
-					for j = 1, 3 do
-						if H55_Reset_Kunyak == 0 and type[0] == H55_Creatures[i_race][i][j] then
-							local i_growth = H55_Floor(H55_Power_Kunyak / H55_Creatures_Power[i_race][i][j]);
-							H55_Power_Kunyak = H55_Power_Kunyak - i_growth * H55_Creatures_Power[i_race][i][j];
-							print("H55 Kunyak Event i_growth:"..i_growth);
-							if i_growth > 0 then
-								AddHeroCreatures(hero, H55_Creatures[i_race][i][j], i_growth);
-								if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-									ShowFlyingSign({"/Text/Game/Scripts/Join.txt"; num = i_growth}, hero, player, 5)
-									sleep(8);
-								elseif H55_IsThisAIPlayer(player) ~= 1 then
-									sleep(2);
+								if TTH_VARI.counterResetDailyEvent[iPlayer] < TTH_VARI.day then
+									TTH_VARI.counterResetDailyEvent[iPlayer] = TTH_VARI.day;
+									TTH_MAIN.resetDaily(iPlayer);
 								end;
-							end;
-							H55_Reset_Kunyak = 1;
-						end
-					end
-				end
-			end
-			print("H55 Kunyak Event H55_Power_Kunyak:"..H55_Power_Kunyak);
-			print("H55 Kunyak Event end");
-			print("---------------------------------------------------------------------");
-		end;
-
-		------------------------------------------------------------------------------------------------------------------------------------------------
-		H55_DEBUG = {20170211," by 牙姐 Biara",player,hero};--------------------------------------------------------------------------------------------
-		------------------------------------------------------------------------------------------------------------------------------------------------
-		if (hero == "Biara") then
-			print("---------------------------------------------------------------------");
-			print("H55 Biara Event begin");
-			local type = H55_ArmyInfoSimple(hero);
-			local i_race = H55_GetHeroRaceNum(hero);
-			local i_level = GetHeroLevel(hero);
-			local i_knowledge = GetHeroStat(hero, STAT_KNOWLEDGE);
-			local i_city = length(H55_GetPlayerTowns(player));
-			local i_set = H55_GetInfernoSetCount(hero);
-
-			local iLeaderHeroBonus = TTH_Func_LegionBonus2LeaderHero(hero);
-			print("LeaderHero level is "..iLeaderHeroBonus);
-
-			H55_Power_Biara = H55_Power_Biara + H55_Round((20 * i_level + 30 * i_knowledge + 50 * i_city) * (1 + i_set * 0.5) * iLeaderHeroBonus);
-			print("H55 Biara Event H55_Power_Biara:"..H55_Power_Biara);
-
-			if H55_Reset_Biara == 0 then
-				for i = 1, 7 do
-					for j = 1, 3 do
-						if H55_Reset_Biara == 0 and type[0] == H55_Creatures[i_race][i][j] then
-							local i_growth = H55_Floor(H55_Power_Biara / H55_Creatures_Power[i_race][i][j]);
-							H55_Power_Biara = H55_Power_Biara - i_growth * H55_Creatures_Power[i_race][i][j];
-							print("H55 Biara Event i_growth:"..i_growth);
-							if i_growth > 0 then
-								AddHeroCreatures(hero, H55_Creatures[i_race][i][j], i_growth);
-								if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-									ShowFlyingSign({"/Text/Game/Scripts/Join.txt"; num = i_growth}, hero, player, 5)
-									sleep(8);
-								elseif H55_IsThisAIPlayer(player) ~= 1 then
-									sleep(2);
-								end;
-							end;
-							H55_Reset_Biara = 1;
-						end
-					end
-				end
-			end
-			print("H55 Biara Event H55_Power_Biara:"..H55_Power_Biara);
-			print("H55 Biara Event end");
-			print("---------------------------------------------------------------------");
-		end;
-
-		------------------------------------------------------------------------------------------------------------------------------------------------
-		H55_DEBUG = {20170211," by 牙姐 Calid2",player,hero};--------------------------------------------------------------------------------------------
-		------------------------------------------------------------------------------------------------------------------------------------------------
-		if (hero == "Calid2") then
-			print("---------------------------------------------------------------------");
-			print("H55 Calid2 Event begin");
-			local i_level = GetHeroLevel(hero);
-			local i_knowledge = GetHeroStat(hero, STAT_KNOWLEDGE);
-			local i_set = H55_GetVestmentSetCount(hero);
-			local i_exp = (i_knowledge * 75) * (1 + i_set * 0.5);
-
-			local heroes = GetPlayerHeroes(player);
-			for i, item_hero in heroes do
-				GiveExp(item_hero, i_exp);
-			end;
-
-			print("H55 Calid2 Event end");
-			print("---------------------------------------------------------------------");
-		end;
-
-		------------------------------------------------------------------------------------------------------------------------------------------------
-		H55_DEBUG = {20170131," by 牙姐 Hero9",player,hero};--------------------------------------------------------------------------------------------
-		------------------------------------------------------------------------------------------------------------------------------------------------
-		if (hero == "Hero9") then
-			print("---------------------------------------------------------------------");
-			print("H55 Hero9 Event begin");
-			local type = H55_ArmyInfoSimple(hero);
-			local i_level = GetHeroLevel(hero);
-			local i_growth = 1 + H55_Round(i_level / 2);
-			local b_defend_us_all = 1;
-			if HasHeroSkill(hero, HERO_SKILL_GOBLIN_SUPPORT) ~= nil then
-				b_defend_us_all = 2;
-			end;
-			if HasHeroSkill(hero, HERO_SKILL_DEFEND_US_ALL) ~= nil then
-				b_defend_us_all = 3;
-			end;
-			local b_legion_t1 = 1;
-			if HasArtefact(hero,ARTIFACT_LEGION_BASIC,0) ~= nil then
-				b_legion_t1 = 1.5;
-			end;
-			i_growth = H55_Round(i_growth * b_defend_us_all * b_legion_t1);
-			if H55_Reset_Hero9 == 0 then
-				if i_growth > 0 then
-					for i = 0, 6 do
-						if type[i] == 118 then
-							AddHeroCreatures(hero, 118, i_growth);
-							break;
-						elseif type[i] == 173 then
-							AddHeroCreatures(hero, 173, i_growth);
-							break;
-						elseif type[i] == 117 then
-							AddHeroCreatures(hero, 117, i_growth);
-							break;
-						end;
-					end;
-					if H55_IsThisAIPlayer(player) ~= 1 and H55_IsHeroInAnyTown(hero) == 0 then
-						ShowFlyingSign({"/Text/Game/Scripts/Join.txt"; num = i_growth}, hero, player, 5)
-						sleep(8);
-					elseif H55_IsThisAIPlayer(player) ~= 1 then
-						sleep(2);
-					end;
-				end;
-				H55_Reset_Hero9 = 1;
-			end
-			print("H55 Hero9 Event end");
-			print("---------------------------------------------------------------------");
-		end;
-
-		------------------------------------------------------------------------------------------------------------------------------------------------
-		H55_DEBUG = {21,"SkillsDaily",player,hero};-----------------------------------------------------------------------------------------------------
-		------------------------------------------------------------------------------------------------------------------------------------------------
-
-		-- if (HasHeroSkill(hero,WARLOCK_FEAT_PAYBACK) ~= nil) then
-		-- 	ChangeHeroStat(hero,STAT_MANA_POINTS,4);
-		-- end;
-		-- if (HasHeroSkill(hero,NECROMANCER_FEAT_LORD_OF_UNDEAD) ~= nil) then
-		-- 	local type,count = H55_ArmyInfo(hero);
-		-- 	local amount = 0;
-		-- 	local taxes = 0;
-		-- 	for i = 0,6 do
-		-- 		if (type[i] == 30) then
-		-- 			amount = amount + count[i]
-		-- 		elseif (type[i] ==152) then
-		-- 			amount = amount + count[i]
-		-- 		elseif (type[i] ==29) then
-		-- 			amount = amount + count[i]
-		-- 		end;
-		-- 	end;
-		-- 	if amount > 0 then
-		-- 		taxes = H55_Round(amount/2);
-		-- 		H55_GlobalDailyGoldPayout[player] = H55_GlobalDailyGoldPayout[player]+taxes;
-		-- 	end;
-		-- end;
-		if (HasHeroSkill(hero,HERO_SKILL_GOBLIN_SUPPORT) ~= nil) then
-			local type,count = H55_ArmyInfo(hero);
-			local amount = 0;
-			local taxes = 0;
-			for i = 0,6 do
-				if (type[i] == 118) then
-					amount = amount + count[i]
-				elseif (type[i] ==173) then
-					amount = amount + count[i]
-				elseif (type[i] ==117) then
-					amount = amount + count[i]
-				end;
-			end;
-			if amount > 0 then
-				taxes = H55_Round(amount/2);
-				H55_GlobalDailyGoldPayout[player] = H55_GlobalDailyGoldPayout[player]+taxes;
-			end;
-		end;
-		if (HasHeroSkill(hero,PERK_ESTATES) ~= nil) then
-			local amount = H55_Round(GetHeroStat(hero,STAT_KNOWLEDGE)*25);
-			H55_GlobalDailyGoldPayout[player] = H55_GlobalDailyGoldPayout[player]+amount;
-		end;
-		if (HasHeroSkill(hero,HERO_SKILL_DEFEND_US_ALL) ~= nil) and (GetHeroLevel(hero) >= 10)  and ((hero ~= "Azar") or (hero ~= "Kunyak") or (hero ~= "Hero9")) then
-			H55_DefendUsDaily(hero,player,122,175,121,1);
-		end;
-		if (HasHeroSkill(hero,WIZARD_FEAT_MARCH_OF_THE_MACHINES) ~= nil) and (GetHeroLevel(hero) >= 10) then
-			H55_DefendUsDaily(hero,player,62,161,61,1);
-		end;
-		if (HasHeroSkill(hero,WIZARD_FEAT_SPOILS_OF_WAR) ~= nil) and (GetHeroLevel(hero) >= 10) then
-			H55_DefendUsDaily(hero,player,16,131,15,2);
-		end;
-		-- if (HasHeroSkill(hero,HERO_SKILL_GOBLIN_SUPPORT) ~= nil) and (GetHeroLevel(hero) >= 10)  then
-			-- H55_DefendUsDaily(hero,player,118,173,117,3);
-		-- end;
-		if (HasHeroSkill(hero,DEMON_FEAT_DEMONIC_FLAME) ~= nil) and (GetHeroLevel(hero) >= 10) then
-			H55_DefendUsDaily(hero,player,93,166,92,2);
-		end;
-		-- if (HasHeroSkill(hero,RANGER_FEAT_FOREST_GUARD_EMBLEM) ~= nil) and (GetHeroLevel(hero) >= 10) then
-		-- 	H55_DefendUsDaily(hero,player,46,146,45,1);
-		-- end;
-		-- if (HasHeroSkill(hero,NECROMANCER_FEAT_HAUNT_MINE) ~= nil) and (GetHeroLevel(hero) >= 10) then
-			-- H55_DefendUsDaily(hero,player,34,154,33,1);
-		-- end;
-		if (HasHeroSkill(hero,KNIGHT_FEAT_GRAIL_VISION) ~= nil) then
-			local rndchoice = random(7);
-			local knowledge = GetHeroStat(hero,STAT_KNOWLEDGE);
-			local amount = 1;
-			if knowledge >= 20 then amount = 2 end;
-			if rndchoice == 0 then
-				H55_GlobalDailyWoodPayout[player] = H55_GlobalDailyWoodPayout[player]+amount;
-			elseif rndchoice == 1 then
-				H55_GlobalDailyOrePayout[player] = H55_GlobalDailyOrePayout[player]+amount;
-			elseif rndchoice == 2 then
-				H55_GlobalDailyMercuryPayout[player] = H55_GlobalDailyMercuryPayout[player]+amount;
-			elseif rndchoice == 3 then
-				H55_GlobalDailyCrystalPayout[player] = H55_GlobalDailyCrystalPayout[player]+amount;
-			elseif rndchoice == 4 then
-				H55_GlobalDailySulphurPayout[player] = H55_GlobalDailySulphurPayout[player]+amount;
-			elseif rndchoice == 5 then
-				H55_GlobalDailyGemPayout[player] = H55_GlobalDailyGemPayout[player]+amount;
-			else
-				H55_GlobalDailyGoldPayout[player] = H55_GlobalDailyGoldPayout[player]+amount;
-			end;
-		end;
-	end;
-
-	H55_DailyEventsCounter[player] = H55_DailyEventsCounter[player]+1;
-
-	if H55_IsThisAIPlayer(player) == 1 and H55_TownConvEnabled == 1 then
-		if townsofrace < H55_MaxTownsPerFaction then
-			for i,town in alltowns do
-				if GetObjectOwner(town) == player and (H55_GetTownRace(town) ~= playerrace) and (H55_IsAnyHeroInTown(town,player) == 0) then
-					H55_ConvertNowAI(town,player,playerrace);
-				end;
-			end;
-		end;
-	end;
-
-	if H55_IsThisAIPlayer(player) ~= 1 then
-		if H55_Switch_Bank_Restday == 0 then
-			H55_Switch_Bank_Restday = 1;
-
-			for i_wagon = 0, H55_WagonsQty - 1 do
-				local obj_wagon = H55_Wagons[i_wagon];
-				local i_restday = H55_GetBank_Restday(obj_wagon);
-				local i_type = 1;
-				if i_restday == 0 then
-					i_type = 0;
-				end;
-				if i_restday ~= 9999 and i_restday >= 0 then
-					-- print('i_restday: '..i_restday);
-					-- print('H55_BankTipsTextDay[i_restday + 1]: '..H55_BankTipsTextDay[i_restday + 1]);
-					OverrideObjectTooltipNameAndDescription(obj_wagon, H55_BankTipsTextType[i_type + 1], H55_BankTipsTextDay[i_restday + 1]);
-				end;
-			end;
-
-			for i_skeleton = 0, H55_SkeletonsQty - 1 do
-				local obj_skeleton = H55_Skeletons[i_skeleton];
-				local i_restday = H55_GetBank_Restday(obj_skeleton);
-				local i_type = 1;
-				if i_restday == 0 then
-					i_type = 0;
-				end;
-				if i_restday ~= 9999 and i_restday >= 0 then
-					-- print('i_restday: '..i_restday);
-					-- print('H55_BankTipsTextDay[i_restday + 1]: '..H55_BankTipsTextDay[i_restday + 1]);
-					OverrideObjectTooltipNameAndDescription(obj_skeleton, H55_BankTipsTextType[i_type + 1], H55_BankTipsTextDay[i_restday + 1]);
-				end;
-			end;
-
-			for i_crypt = 0, H55_CryptsQty - 1 do
-				local obj_crypt = H55_Crypts[i_crypt];
-				local i_restday = H55_GetBank_Restday(obj_crypt);
-				local i_type = 1;
-				if i_restday == 0 then
-					i_type = 0;
-				end;
-				if i_restday ~= 9999 and i_restday >= 0 then
-					-- print('i_restday: '..i_restday);
-					-- print('H55_BankTipsTextDay[i_restday + 1]: '..H55_BankTipsTextDay[i_restday + 1]);
-					OverrideObjectTooltipNameAndDescription(obj_crypt, H55_BankTipsTextType[i_type + 1], H55_BankTipsTextDay[i_restday + 1]);
-				end;
-			end;
-			for i_utopia = 0, H55_UtopiasQty - 1 do
-				local obj_utopia = H55_Utopias[i_utopia];
-				local i_restday = H55_GetBank_Restday(obj_utopia);
-				local i_type = 1;
-				if i_restday == 0 then
-					i_type = 0;
-				end;
-				if i_restday ~= 9999 and i_restday >= 0 then
-					-- print('i_restday: '..i_restday);
-					-- print('H55_BankTipsTextDay[i_restday + 1]: '..H55_BankTipsTextDay[i_restday + 1]);
-					OverrideObjectTooltipNameAndDescription(obj_utopia, H55_BankTipsTextType[i_type + 1], H55_BankTipsTextDay[i_restday + 1]);
-				end;
-			end;
-			for i_stonevault = 0, H55_StoneVaultsQty - 1 do
-				local obj_stonevault = H55_StoneVaults[i_stonevault];
-				local i_restday = H55_GetBank_Restday(obj_stonevault);
-				local i_type = 1;
-				if i_restday == 0 then
-					i_type = 0;
-				end;
-				if i_restday ~= 9999 and i_restday >= 0 then
-					-- print('i_restday: '..i_restday);
-					-- print('H55_BankTipsTextDay[i_restday + 1]: '..H55_BankTipsTextDay[i_restday + 1]);
-					OverrideObjectTooltipNameAndDescription(obj_stonevault, H55_BankTipsTextType[i_type + 1], H55_BankTipsTextDay[i_restday + 1]);
-				end;
-			end;
-			for i_dwarventreasure = 0, H55_DwarvenTreasuresQty - 1 do
-				local obj_dwarventreasure = H55_DwarvenTreasures[i_dwarventreasure];
-				local i_restday = H55_GetBank_Restday(obj_dwarventreasure);
-				local i_type = 1;
-				if i_restday == 0 then
-					i_type = 0;
-				end;
-				if i_restday ~= 9999 and i_restday >= 0 then
-					-- print('i_restday: '..i_restday);
-					-- print('H55_BankTipsTextDay[i_restday + 1]: '..H55_BankTipsTextDay[i_restday + 1]);
-					OverrideObjectTooltipNameAndDescription(obj_dwarventreasure, H55_BankTipsTextType[i_type + 1], H55_BankTipsTextDay[i_restday + 1]);
-				end;
-			end;
-			for i_stockpile = 0, H55_StockpilesQty - 1 do
-				local obj_stockpile = H55_Stockpiles[i_stockpile];
-				local i_restday = H55_GetBank_Restday(obj_stockpile);
-				local i_type = 1;
-				if i_restday == 0 then
-					i_type = 0;
-				end;
-				if i_restday ~= 9999 and i_restday >= 0 then
-					-- print('i_restday: '..i_restday);
-					-- print('H55_BankTipsTextDay[i_restday + 1]: '..H55_BankTipsTextDay[i_restday + 1]);
-					OverrideObjectTooltipNameAndDescription(obj_stockpile, H55_BankTipsTextType[i_type + 1], H55_BankTipsTextDay[i_restday + 1]);
-				end;
-			end;
-			for i_sunkentemple = 0, H55_SunkenTemplesQty - 1 do
-				local obj_sunkentemple = H55_SunkenTemples[i_sunkentemple];
-				local i_restday = H55_GetBank_Restday(obj_sunkentemple);
-				local i_type = 1;
-				if i_restday == 0 then
-					i_type = 0;
-				end;
-				if i_restday ~= 9999 and i_restday >= 0 then
-					-- print('i_restday: '..i_restday);
-					-- print('H55_BankTipsTextDay[i_restday + 1]: '..H55_BankTipsTextDay[i_restday + 1]);
-					OverrideObjectTooltipNameAndDescription(obj_sunkentemple, H55_BankTipsTextType[i_type + 1], H55_BankTipsTextDay[i_restday + 1]);
-				end;
-			end;
-			for i_witchtemple = 0, H55_WitchTemplesQty - 1 do
-				local obj_witchtemple = H55_WitchTemples[i_witchtemple];
-				local i_restday = H55_GetBank_Restday(obj_witchtemple);
-				local i_type = 1;
-				if i_restday == 0 then
-					i_type = 0;
-				end;
-				if i_restday ~= 9999 and i_restday >= 0 then
-					-- print('i_restday: '..i_restday);
-					-- print('H55_BankTipsTextDay[i_restday + 1]: '..H55_BankTipsTextDay[i_restday + 1]);
-					OverrideObjectTooltipNameAndDescription(obj_witchtemple, H55_BankTipsTextType[i_type + 1], H55_BankTipsTextDay[i_restday + 1]);
-				end;
-			end;
-			for i_magevault = 0, H55_MageVaultsQty - 1 do
-				local obj_magevault = H55_MageVaults[i_magevault];
-				local i_restday = H55_GetBank_Restday(obj_magevault);
-				local i_type = 1;
-				if i_restday == 0 then
-					i_type = 0;
-				end;
-				if i_restday ~= 9999 and i_restday >= 0 then
-					-- print('i_restday: '..i_restday);
-					-- print('H55_BankTipsTextDay[i_restday + 1]: '..H55_BankTipsTextDay[i_restday + 1]);
-					OverrideObjectTooltipNameAndDescription(obj_magevault, H55_BankTipsTextType[i_type + 1], H55_BankTipsTextDay[i_restday + 1]);
-				end;
-			end;
-			for i_thicket = 0, H55_ThicketsQty - 1 do
-				local obj_thicket = H55_Thickets[i_thicket];
-				local i_restday = H55_GetBank_Restday(obj_thicket);
-				local i_type = 1;
-				if i_restday == 0 then
-					i_type = 0;
-				end;
-				if i_restday ~= 9999 and i_restday >= 0 then
-					-- print('i_restday: '..i_restday);
-					-- print('H55_BankTipsTextDay[i_restday + 1]: '..H55_BankTipsTextDay[i_restday + 1]);
-					OverrideObjectTooltipNameAndDescription(obj_thicket, H55_BankTipsTextType[i_type + 1], H55_BankTipsTextDay[i_restday + 1]);
-				end;
-			end;
-			for i_pyramid = 0, H55_PyramidsQty - 1 do
-				local obj_pyramid = H55_Pyramids[i_pyramid];
-				local i_restday = H55_GetBank_Restday(obj_pyramid);
-				local i_type = 1;
-				if i_restday == 0 then
-					i_type = 0;
-				end;
-				if i_restday ~= 9999 and i_restday >= 0 then
-					-- print('i_restday: '..i_restday);
-					-- print('H55_BankTipsTextDay[i_restday + 1]: '..H55_BankTipsTextDay[i_restday + 1]);
-					OverrideObjectTooltipNameAndDescription(obj_pyramid, H55_BankTipsTextType[i_type + 1], H55_BankTipsTextDay[i_restday + 1]);
-				end;
-			end;
-			for i_orctunnel = 0, H55_OrcTunnelsQty - 1 do
-				local obj_orctunnel = H55_OrcTunnels[i_orctunnel];
-				local i_restday = H55_GetBank_Restday(obj_orctunnel);
-				local i_type = 1;
-				if i_restday == 0 then
-					i_type = 0;
-				end;
-				if i_restday ~= 9999 and i_restday >= 0 then
-					-- print('i_restday: '..i_restday);
-					-- print('H55_BankTipsTextDay[i_restday + 1]: '..H55_BankTipsTextDay[i_restday + 1]);
-					OverrideObjectTooltipNameAndDescription(obj_orctunnel, H55_BankTipsTextType[i_type + 1], H55_BankTipsTextDay[i_restday + 1]);
-				end;
-			end;
-			for i_unkempt = 0, H55_UnkemptsQty - 1 do
-				local obj_unkempt = H55_Unkempts[i_unkempt];
-				local i_restday = H55_GetBank_Restday(obj_unkempt);
-				local i_type = 1;
-				if i_restday == 0 then
-					i_type = 0;
-				end;
-				if i_restday ~= 9999 and i_restday >= 0 then
-					-- print('i_restday: '..i_restday);
-					-- print('H55_BankTipsTextDay[i_restday + 1]: '..H55_BankTipsTextDay[i_restday + 1]);
-					OverrideObjectTooltipNameAndDescription(obj_unkempt, H55_BankTipsTextType[i_type + 1], H55_BankTipsTextDay[i_restday + 1]);
-				end;
-			end;
-			for i_demolish = 0, H55_DemolishsQty - 1 do
-				local obj_demolish = H55_Demolishs[i_demolish];
-				local i_restday = H55_GetBank_Restday(obj_demolish);
-				local i_type = 1;
-				if i_restday == 0 then
-					i_type = 0;
-				end;
-				if i_restday ~= 9999 and i_restday >= 0 then
-					-- print('i_restday: '..i_restday);
-					-- print('H55_BankTipsTextDay[i_restday + 1]: '..H55_BankTipsTextDay[i_restday + 1]);
-					OverrideObjectTooltipNameAndDescription(obj_demolish, H55_BankTipsTextType[i_type + 1], H55_BankTipsTextDay[i_restday + 1]);
-				end;
-			end;
-			for i_demontower = 0, H55_DemonTowersQty - 1 do
-				local obj_demontower = H55_DemonTowers[i_demontower];
-				local i_restday = H55_GetBank_Restday(obj_demontower);
-				local i_type = 1;
-				if i_restday == 0 then
-					i_type = 0;
-				end;
-				if i_restday ~= 9999 and i_restday >= 0 then
-					-- print('i_restday: '..i_restday);
-					-- print('H55_BankTipsTextDay[i_restday + 1]: '..H55_BankTipsTextDay[i_restday + 1]);
-					OverrideObjectTooltipNameAndDescription(obj_demontower, H55_BankTipsTextType[i_type + 1], H55_BankTipsTextDay[i_restday + 1]);
-				end;
-			end;
-			for i_foresttower = 0, H55_ForestTowersQty - 1 do
-				local obj_foresttower = H55_ForestTowers[i_foresttower];
-				local i_restday = H55_GetBank_Restday(obj_foresttower);
-				local i_type = 1;
-				if i_restday == 0 then
-					i_type = 0;
-				end;
-				if i_restday ~= 9999 and i_restday >= 0 then
-					-- print('i_restday: '..i_restday);
-					-- print('H55_BankTipsTextDay[i_restday + 1]: '..H55_BankTipsTextDay[i_restday + 1]);
-					OverrideObjectTooltipNameAndDescription(obj_foresttower, H55_BankTipsTextType[i_type + 1], H55_BankTipsTextDay[i_restday + 1]);
-				end;
-			end;
-		end;
-	end;
-
-	if H55_IsThisAIPlayer(player) ~= 1 then
-		TTH_Func_MineBonus8ResArti(player);
-	end;
-
-	print("H55 Daily Event "..H55_DailyEventsCounter[player].." Finished");
-end;
-
-function H55_ResetDailyEvents(iPlayer)
-	local listHero = GetPlayerHeroes(iPlayer);
-
-	------------------------------------------------------------------------------------------------------------------------------------------------
-	H55_DEBUG = {20161123," by 牙姐 ResetDaily",0,""};-------------------------------------------------------------------------------------------------------------------
-	------------------------------------------------------------------------------------------------------------------------------------------------
-	H55_DraconicReceived = {};
-	H55_SentinelReceived = {};
-	H55_PhoenixReceived = {};
-	H55_BlackKnightReceived_Change = 0
-	H55_MummyReceived_Change = 0
-	H55_HeavenReceived_Change = 0;
-	H55_WolfReceived_Change = 0;
-	H55_Reset_Hangvul = 0;
-	H55_Reset_Sylsai = 0;
-	H55_Reset_Welygg = 0;
-	H55_Reset_Gelu = 0;
-	H55_Reset_Kunyak = 0;
-	H55_Reset_Biara = 0;
-	H55_Reset_Cyrus = 0;
-	H55_Reset_KujinMP = 0;
-	H55_Reset_Hero9 = 0;
-	H55_MelodiaReceived = 0;
-	H55_RissaReceived = 0;
-
-	H55_Switch_Bank_Restday = 0;
-
-	-- begin by 牙姐 2018-10-16 20:31:14
-	-- 每天恢复使用次数 转化生物
-	for iIndex, objItem in TTH_TABLE_HeroCustomAbility_Recovery do
-		ControlHeroCustomAbility(objItem, CUSTOM_ABILITY_3, CUSTOM_ABILITY_ENABLED);
-		print(objItem.." custom ability3 has been recovery");
-	end;
-	-- end
-
-	-- begin by 牙姐 2021-02-16 00:51:09
-	-- 每天减少1CD 转化生物
-	for iIndex, objItem in TTH_TABLE_HeroCustomAbility_CastCreature do
-		if TTH_HeroCustomAbility_CastCreature_GCD[objItem] ~= nil and TTH_HeroCustomAbility_CastCreature_GCD_Reduce8Daily[objItem] ~= H55_Day then
-			TTH_HeroCustomAbility_CastCreature_GCD_Reduce8Daily[objItem] = H55_Day;
-			TTH_HeroCustomAbility_CastCreature_GCD[objItem] = TTH_HeroCustomAbility_CastCreature_GCD[objItem] - 1;
-			print('Gcd-daily:'..TTH_HeroCustomAbility_CastCreature_GCD[objItem]);
-			print(objItem.." custom ability3 for cast-creature has been reduced");
-		end;
-	end;
-	-- end
-
-	-- begin by 牙姐 2020-04-15 21:12:40
-	-- 娜瑞莎若属于AI，则每天自动转换光暗形态
-	local listHero = GetPlayerHeroes(iPlayer);
-	if listHero ~= nil then
-		local strHero = 'Ildar';
-		if contains(listHero, strHero) ~= nil and H55_IsThisAIPlayer(iPlayer) == 1 then
-			TTH_HeroCustomAbility_Ildar_Callback(strHero);
-		end;
-	end;
-	-- end
-
-end;
-
-------------------------------------------------------------------------------------------------------------------------------------------------------
---TROUBLESHOOTING
-------------------------------------------------------------------------------------------------------------------------------------------------------
-
-function H55_UseNewDayTrigger()
-	H55_NewDayTrigger = 1;
-end;
-
-function H55_CrashProtection()
-	sleep(1);
-	local currentdate = GetDate(DAY);
-	sleep(1);
-	if H55_Switch ~= 0 then
-		if H55_Day < currentdate then
-			print("The H55 script engine has crashed, reloading...");
-			H55_AmountCrashes = H55_AmountCrashes+1;
-			H55_Switch = 1;
-			H55_DbgTxt = H55_DEBUG;
-			TTH_DEBUG.recordCrashInfo();
-			startThread(H55_ContinuesActivator);
-			--sleep(2)
-			print("The H55 script engine has been restarted!");
-		else
-			--print("H55 crash protection is active!");
-			print("H55 Player Configuration: "..H55_PlayerStatus[1]..H55_PlayerStatus[2]..H55_PlayerStatus[3]..H55_PlayerStatus[4]..H55_PlayerStatus[5]..H55_PlayerStatus[6]..H55_PlayerStatus[7]..H55_PlayerStatus[8].." - "..H55_GameMode.." - "..H55_CycleSpeed);
-			print("H55 Amount of Recovered Crashes: "..H55_AmountCrashes);
-			--print("Amount of AI Script Cycles: "..H55_AmountCyclesAI);
-			--print("H55 Amount of AI TownConversions: "..H55_AmountAIConversions);
-			--print("H55 Amount of AI DwellingConversions: "..H55_AmountAIDwellingConversions);
-			--print("H55 Amount of AI Bank Visits: "..H55_AmountAIBankVisits);
-		end;
-	else
-		print("H55 is switched off by the user")
-	end;
-	if H55_NewDayTrigger == 1 then
-		H55_TriggerDaily();
-	end;
-end;
-
-function H55_On()
-	print("reloading script engine..");
-	H55_Switch = 1;
-	startThread(H55_ContinuesActivator);
-	sleep(2);
-	print("The H55 script engine has been restarted!");
-end;
-
-function H55_OnSilent()
-	H55_Switch = 1;
-end;
-
-function H55_Off()
-	H55_Switch = 0;
-	print("The H55 script engine is shutdown!");
-end;
-
-function H55_WTF()
-	print("please wait, investigating...")
-	sleep(3);
-	local currentdate = GetDate(DAY);
-	sleep(7);
-	if H55_Day == currentdate then
-		print("H55 is running fine")
-	end;
-	if H55_Day < currentdate then
-		print("The H55 script engine has crashed, sorry for the inconvenience, trying to reload...");
-		H55_Switch = 1;
-		startThread(H55_ContinuesActivator);
-		sleep(2);
-		print("The H55 script engine has been restarted!");
-	end;
-end;
-
-function H55_TeamUpQuestion()
-	local status = H55_DetectTeamConfig()
-	local answering = 1
-	for id = 1,8 do
-		if IsPlayerCurrent(id) then
-			answering = id
-		end;
-	end;
-	if status == 1 then
-		QuestionBoxForPlayers(GetPlayerFilter(answering),"/Text/Game/Scripts/Teamquestion.txt","H55_TeamHumansvsAI","H55_NoTeams");
-	else
-		print("H55 Team up question skipped.");
-	end;
-	H55_AIStartSetting(answering);
-	TTH_Starting_ChooseArtifact(answering);
-	TTH_Starting_Resource(answering);
-	TTH_Init();
-end;
-
-function H55_ShowTimer()
-	print("Day of Week "..H55_Workday);
-	print("Day "..H55_Day);
-	print("Week "..H55_Week);
-	print("Month "..H55_Month);
-end;
-
-function H55_HasGovernor(player)
-	local heroes = GetPlayerHeroes(player);
-	local check = 0;
-	for i, hero in heroes do
-		if H55_Governors[hero] == 1 then
-			check = check+1;
-		end;
-	end;
-	return check
-end;
-
-------------------------------------------------------------------------------------------------------------------------------------------------------
---MAIN EVENT
-------------------------------------------------------------------------------------------------------------------------------------------------------
-
-function H55_ContinuesActivator()
-	while (H55_Switch == 1) do
-
-		H55_Day = GetDate(DAY);
-		H55_Week = GetDate(WEEK);
-		H55_Month = GetDate(MONTH);
-		H55_AbsoluteWeek = (H55_Month - 1) * 4 + H55_Week;
-		H55_Workday = GetDate(DAY_OF_WEEK);
-
-		sleep(H55_CycleSpeed);
-
-		for i = 1,8 do
-			if (GetPlayerState(i) == 1) then
-				if (IsPlayerCurrent(i)) and (H55_Workday == 1) and (H55_Day ~= 1) and (H55_WeeklyEventsDone[i] ~= 1) then
-					H55_SetGlobalWeeklyPayouts(i,0);
-					H55_WeeklyEvents(i);
-				else
-					H55_SetGlobalWeeklyPayouts(i,0);
-				end;
-				if (IsPlayerCurrent(i)) and (H55_Day ~= 1) and (H55_DailyEventsCounter[i] < H55_Day) then
-					H55_SetGlobalDailyPayouts(i,0);
-					H55_DailyEvents(i);
-					H55_ResetDailyEvents(i);
-					H55_PayoutThisPlayer(i);
-				end;
-				if (IsPlayerCurrent(i)) and H55_ChooseHero_Switch == 1 then
-					if H55_Day == 1 then
-						if H55_IsThisAIPlayer(i) ~= 1 then
-							H55_HireHero_Step1(i);
-						end;
-					end;
-					if H55_Day == 2 then
-						if H55_IsThisAIPlayer(i) ~= 1 then
-							H55_HireHero_Step2(i);
+							-- 结算玩家资源
+								TTH_GLOBAL.dealSettleResource(iPlayer); -- 结算
 						end;
 					end;
 				end;
-				if (IsPlayerCurrent(i)) and (H55_Workday == 2) then
-					H55_ResetWeeklyEvents(i);
-				end;
-				if (IsPlayerCurrent(i)) then
-					H55_ContinuesEvent(i);
-				end;
 			end;
 		end;
 
-		TTH_SetHeroLevelToGameVar();
-		TTH_SetHeroArtifactToGameVar();
-	end;
-end;
+	-- 每周轮询 每周开始前执行
+		function TTH_MAIN.dealWeekly(iPlayer)
+			TTH_MAIN.debug("TTH_MAIN.dealWeekly", iPlayer, nil);
 
--- begin  by 牙姐
--- function H55_Hero_Levelup(strHero)
--- 	sleep(1);
--- 	print(strHero);
--- end;
--- end
-------------------------------------------------------------------------------------------------------------------------------------------------------
---SCRIPT ACTIVATION
-------------------------------------------------------------------------------------------------------------------------------------------------------
+			-- 若玩家是人类
+				if TTH_GLOBAL.isAi(iPlayer) ~= TTH_ENUM.Yes then
+					-- 遍历玩家城镇
+						for i, strTown in TTH_VARI.arrTown do
+							if iPlayer == GetObjectOwner(strTown) then
+								TTH_MANAGE.bonusTownDwellingCreature8Mayor(strTown); -- 内政官每周城镇产量增加
+								TTH_ARTI.bonusTownDwellingCreature8Legion(strTown); -- 每周城镇生物周产结算
+							end;
+						end;
+				end;
 
-startThread(H55_DetectP1AI);
-startThread(H55_DetectP2AI);
-startThread(H55_DetectP3AI);
-startThread(H55_DetectP4AI);
-startThread(H55_DetectP5AI);
-startThread(H55_DetectP6AI);
-startThread(H55_DetectP7AI);
-startThread(H55_DetectP8AI);
-startThread(H55_DetectPlayerFactions);
-startThread(H55_DetectPlayerFactionsSecond);
-startThread(H55_UpdateGameMode);
-startThread(H55_UpdateTownQtyDifficulty);
+			-- 若玩家是AI
+				if TTH_GLOBAL.isAi(iPlayer) == TTH_ENUM.Yes then
+					TTH_AI.cheatAiWeekly(iPlayer); -- AI每周作弊 加金币 和 产量
+				end;
 
-doFile("/scripts/H55-AdvMap.lua");
+			-- 遍历玩家城镇
+				for i, strTown in TTH_VARI.arrTown do
+					if iPlayer == GetObjectOwner(strTown) then
+					end;
+				end;
 
-startThread(H55_TeamUpQuestion);
-startThread(H55_ContinuesActivator);
-Trigger(CUSTOM_ABILITY_TRIGGER,"TTH_HeroCustomAbility");
-Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
--- Trigger(HERO_LEVELUP_TRIGGER,"Ving","H55_Hero_Levelup");
+			-- 遍历玩家英雄
+				local arrHero = GetPlayerHeroes(iPlayer);
+				for i, strHero in arrHero do
+					-- 兵种特每周赠送生物 第一周不送
+						if TTH_VARI.absoluteWeek ~= 1 then
+							TTH_GLOBAL.giveHero4Specialty8Weekly(iPlayer, strHero);
+						end;
 
+					local arrHero = GetPlayerHeroes(iPlayer);
+					for i, strHero in arrHero do
+						for iKey, objItem in TTH_TABLE.FuncTalent[TTH_ENUM.FuncDealWeekly] do
+							if iKey == strHero then
+								TTH_COMMON.parse(objItem[TTH_ENUM.FuncAlways], iPlayer, strHero);
+							end;
+						end;
+						for iKey, objItem in TTH_TABLE.FuncArtifact[TTH_ENUM.FuncDealWeekly] do
+							if HasArtefact(strHero, iKey, objItem["NeedWear"]) then
+								TTH_COMMON.parse(objItem[TTH_ENUM.FuncAlways], iPlayer, strHero);
+							end;
+						end;
+						for iKey, objItem in TTH_TABLE.FuncPerk[TTH_ENUM.FuncDealWeekly] do
+							if HasHeroSkill(strHero, iKey) then
+								TTH_COMMON.parse(objItem[TTH_ENUM.FuncAlways], iPlayer, strHero);
+							end;
+						end;
+					end;
+				end;
 
-------------------------------------------------------------------------------------------------------------------------------------------------------
---APPENDIX
-------------------------------------------------------------------------------------------------------------------------------------------------------
+			TTH_GLOBAL.dealWeeklyBonusMine(iPlayer); -- 每周资源矿结算
+			TTH_MAIN.dealWeekly4Economic(iPlayer); -- 每周经济结算
 
--- by 牙姐 2018-8-11 21:12:04
--- begin 英雄接触野怪 触发器
+			print("Player-"..iPlayer.." dealWeekly-"..TTH_VARI.counterDealWeeklyEvent[iPlayer].." event finished");
+		end;
+
+		-- 每周经济结算
+			function TTH_MAIN.dealWeekly4Economic(iPlayer)
+				TTH_MAIN.debug("TTH_MAIN.dealWeekly4Economic", iPlayer, nil);
+
+				-- 神秘花园
+					for i, strBuildingName in TTH_VARI.arrBuilding["BUILDING_MYSTICAL_GARDEN"] do
+						if TTH_VARI.economicBuildingOwner["BUILDING_MYSTICAL_GARDEN"][strBuildingName] == iPlayer then
+							local iRan = random(2); -- 0,1
+							if iRan == 0 then
+								TTH_GLOBAL.putSettleResource(iPlayer, GOLD, 500);
+							else
+								TTH_GLOBAL.putSettleResource(iPlayer, GEM, 5);
+							end;
+						end;
+					end;
+
+				-- 矮人地穴
+					for i, strBuildingName in TTH_VARI.arrBuilding["BUILDING_WINDMILL"] do
+						if TTH_VARI.economicBuildingOwner["BUILDING_WINDMILL"][strBuildingName] == iPlayer then
+							local iRan = 0;
+							iRan = 1 + random(4); -- 1,2,3,4
+							TTH_GLOBAL.putSettleResource(iPlayer, MERCURY, iRan);
+							iRan = 1 + random(4); -- 1,2,3,4
+							TTH_GLOBAL.putSettleResource(iPlayer, CRYSTAL, iRan);
+							iRan = 1 + random(4); -- 1,2,3,4
+							TTH_GLOBAL.putSettleResource(iPlayer, SULFUR, iRan);
+							iRan = 1 + random(4); -- 1,2,3,4
+							TTH_GLOBAL.putSettleResource(iPlayer, GEM, iRan);
+						end;
+					end;
+
+				-- 风车
+					for i, strBuildingName in TTH_VARI.arrBuilding["BUILDING_WATER_WHEEL"] do
+						if TTH_VARI.economicBuildingOwner["BUILDING_WATER_WHEEL"][strBuildingName] == iPlayer then
+							TTH_GLOBAL.putSettleResource(iPlayer, GOLD, 1000);
+						end;
+					end;
+
+				-- 战争机械工厂
+					for i, strBuildingName in TTH_VARI.arrBuilding["BUILDING_WARMACHINE_FACTORY"] do
+						if TTH_VARI.economicBuildingOwner["BUILDING_WARMACHINE_FACTORY"][strBuildingName] == iPlayer then
+							local iRan = 0;
+							iRan = 2 + random(5); -- 2,3,4,5,6
+							TTH_GLOBAL.putSettleResource(iPlayer, WOOD, iRan);
+							iRan = 2 + random(5); -- 2,3,4,5,6
+							TTH_GLOBAL.putSettleResource(iPlayer, ORE, iRan);
+						end;
+					end;
+			end;
+
+	-- 每周重置
+		function TTH_MAIN.resetWeekly(iPlayer)
+			TTH_MAIN.debug("TTH_MAIN.resetWeekly", iPlayer, nil);
+
+			local arrHero = GetPlayerHeroes(iPlayer);
+			for i, strHero in arrHero do
+				for iKey, objItem in TTH_TABLE.FuncTalent[TTH_ENUM.FuncResetWeekly] do
+					if iKey == strHero then
+						TTH_COMMON.parse(objItem[TTH_ENUM.FuncAlways], iPlayer, strHero);
+					end;
+				end;
+				for iKey, objItem in TTH_TABLE.FuncArtifact[TTH_ENUM.FuncResetWeekly] do
+					if HasArtefact(strHero, iKey, objItem["NeedWear"]) then
+						TTH_COMMON.parse(objItem[TTH_ENUM.FuncAlways], iPlayer, strHero);
+					end;
+				end;
+				for iKey, objItem in TTH_TABLE.FuncPerk[TTH_ENUM.FuncResetWeekly] do
+					if HasHeroSkill(strHero, iKey) then
+						TTH_COMMON.parse(objItem[TTH_ENUM.FuncAlways], iPlayer, strHero);
+					end;
+				end;
+
+				TTH_MANAGE.resetOperTimes(strHero); -- 重置内政操作次数
+			end;
+
+			print("Player-"..iPlayer.." resetWeekly-"..TTH_VARI.counterResetWeeklyEvent[iPlayer].." event finished");
+		end;
+
+	-- 每日轮询 每日开始前执行
+		function TTH_MAIN.dealDaily(iPlayer)
+			TTH_MAIN.debug("TTH_MAIN.dealDaily", iPlayer, nil);
+
+			-- 若玩家是人类
+				if TTH_GLOBAL.isAi(iPlayer) ~= TTH_ENUM.Yes then
+					TTH_GLOBAL.hireHero(iPlayer); -- 玩家招募指定英雄<作弊>
+
+					-- 遍历玩家城镇
+						for i, strTown in TTH_VARI.arrTown do
+							if iPlayer == GetObjectOwner(strTown) then
+								TTH_ARTI.bonusTown8Economic(iPlayer, strTown); -- 每日城镇军团宝物经济结算
+							end;
+						end;
+
+					-- 遍历玩家英雄
+						local arrHero = GetPlayerHeroes(iPlayer);
+						for i, strHero in arrHero do
+							TTH_MANAGE.refreshDailyMayor(iPlayer, strHero); -- 每日刷新内政信息
+							TTH_MANAGE.giveDailyExp4Mayor(iPlayer, strHero); -- 每日内政官经验
+							TTH_MANAGE.giveDailyRecordPoint(iPlayer, strHero); -- 每日内政官政绩
+						end;
+
+					TTH_GLOBAL.refreshBankRestDay(iPlayer); -- :TODO 更新银行时间剩余时间
+				end;
+
+			-- 若玩家是AI
+				if TTH_GLOBAL.isAi(iPlayer) == TTH_ENUM.Yes then
+					TTH_AI.convertDwelling4Ai(iPlayer);
+					TTH_AI.convertTown4Ai(iPlayer);
+					TTH_AI.giveExp8Day4Ai(iPlayer);
+				end;
+
+			-- 遍历玩家城镇
+				for i, strTown in TTH_VARI.arrTown do
+					if iPlayer == GetObjectOwner(strTown) then
+						TTH_GLOBAL.checkArtifactMerchant(iPlayer, strTown); -- 地牢和学院的宝物商店
+					end;
+				end;
+
+			-- 遍历玩家英雄
+				local arrHero = GetPlayerHeroes(iPlayer);
+				for i, strHero in arrHero do
+					TTH_GLOBAL.recoveryManaNearByStrongholdTown(iPlayer, strHero); -- 据点城也可回复魔法值
+
+					local arrHero = GetPlayerHeroes(iPlayer);
+					for i, strHero in arrHero do
+						for iKey, objItem in TTH_TABLE.FuncTalent[TTH_ENUM.FuncDealDaily] do
+							if iKey == strHero then
+								TTH_COMMON.parse(objItem[TTH_ENUM.FuncAlways], iPlayer, strHero);
+							end;
+						end;
+						for iKey, objItem in TTH_TABLE.FuncArtifact[TTH_ENUM.FuncDealDaily] do
+							if HasArtefact(strHero, iKey, objItem["NeedWear"]) then
+								TTH_COMMON.parse(objItem[TTH_ENUM.FuncAlways], iPlayer, strHero);
+							end;
+						end;
+						for iKey, objItem in TTH_TABLE.FuncPerk[TTH_ENUM.FuncDealDaily] do
+							if HasHeroSkill(strHero, iKey) then
+								TTH_COMMON.parse(objItem[TTH_ENUM.FuncAlways], iPlayer, strHero);
+							end;
+						end;
+					end;
+				end;
+
+			print("Player-"..iPlayer.." dealDaily-"..TTH_VARI.counterDealDailyEvent[iPlayer].." event finished");
+		end;
+
+	-- 每日重置
+		function TTH_MAIN.resetDaily(iPlayer)
+			TTH_MAIN.debug("TTH_MAIN.resetDaily", iPlayer, nil);
+
+			local arrHero = GetPlayerHeroes(iPlayer);
+			for i, strHero in arrHero do
+				for iKey, objItem in TTH_TABLE.FuncTalent[TTH_ENUM.FuncResetDaily] do
+					if iKey == strHero then
+						TTH_COMMON.parse(objItem[TTH_ENUM.FuncAlways], iPlayer, strHero);
+					end;
+				end;
+				for iKey, objItem in TTH_TABLE.FuncArtifact[TTH_ENUM.FuncResetDaily] do
+					if HasArtefact(strHero, iKey, objItem["NeedWear"]) then
+						TTH_COMMON.parse(objItem[TTH_ENUM.FuncAlways], iPlayer, strHero);
+					end;
+				end;
+				for iKey, objItem in TTH_TABLE.FuncPerk[TTH_ENUM.FuncResetDaily] do
+					if HasHeroSkill(strHero, iKey) then
+						TTH_COMMON.parse(objItem[TTH_ENUM.FuncAlways], iPlayer, strHero);
+					end;
+				end;
+			end;
+
+			print("Player-"..iPlayer.." resetDaily-"..TTH_VARI.counterResetDailyEvent[iPlayer].." event finished");
+		end;
+
+	startThread(TTH_GLOBAL.detectPlayer1);
+	startThread(TTH_GLOBAL.detectPlayer2);
+	startThread(TTH_GLOBAL.detectPlayer3);
+	startThread(TTH_GLOBAL.detectPlayer4);
+	startThread(TTH_GLOBAL.detectPlayer5);
+	startThread(TTH_GLOBAL.detectPlayer6);
+	startThread(TTH_GLOBAL.detectPlayer7);
+	startThread(TTH_GLOBAL.detectPlayer8);
+	startThread(TTH_GLOBAL.detectPlayerFaction);
+	startThread(TTH_GLOBAL.detectPlayerFactionBak);
+
+	doFile("/scripts/H55-AdvMap.lua");
+
+	startThread(TTH_GLOBAL.questionTeam);
+	startThread(TTH_MAIN.init);
+
+-- 英雄接触野怪 触发器
 	TTH_FUNC_HERO_TOUCH_CREATURE = {};
 	TTH_LIST_HERO_TOUCH_CREATURE = {"Welygg", "Rolf", "Markal", "Berein"};
 	function TTH_FUNC_HERO_TOUCH_CREATURE.Welygg(strHero, strCreature)
@@ -8703,47 +10569,47 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 	end;
 	function TTH_FUNC_HERO_TOUCH_CREATURE.Rolf(strHero, strCreature)
 		TTH_HeroSpec_Courtier(strHero, strCreature);
-		local type, count = H55_MonsterInfo(strCreature);
+		local arrCreature4Object = TTH_GLOBAL.getObjectCreatureInfo(strCreature);
 		local iLevel = GetHeroLevel(strHero);
 		for i = 0, 6 do
-			if type[i] > 0 then
-				local iCount = H55_Round(count[i] * 0.005 * iLevel);
+			if arrCreature4Object[i]["Id"] > 0 then
+				local iCount = TTH_COMMON.round(arrCreature4Object[i]["Count"] * 0.005 * iLevel);
 				if iCount <= 1 then
 					iCount = 1;
 				end;
-				RemoveObjectCreatures(strCreature, type[i], iCount);
+				RemoveObjectCreatures(strCreature, arrCreature4Object[i]["Id"], iCount);
 			end;
 		end;
 	end;
 	function TTH_FUNC_HERO_TOUCH_CREATURE.Markal(strHero, strCreature)
 		TTH_HeroSpec_Courtier(strHero, strCreature);
-		local type, count = H55_MonsterInfo(strCreature);
+		local arrCreature4Object = TTH_GLOBAL.getObjectCreatureInfo(strCreature);
 		local iLevel = GetHeroLevel(strHero);
 		for i = 0, 6 do
-			if type[i] > 0 then
-				local iCount = H55_Round(count[i] * 0.0025 * iLevel);
+			if arrCreature4Object[i]["Id"] > 0 then
+				local iCount = TTH_COMMON.round(arrCreature4Object[i]["Count"] * 0.0025 * iLevel);
 				if iCount <= 1 then
 					iCount = 1;
 				end;
-				RemoveObjectCreatures(strCreature, type[i], iCount);
-				AddHeroCreatures(strHero, type[i], iCount);
+				RemoveObjectCreatures(strCreature, arrCreature4Object[i]["Id"], iCount);
+				AddHeroCreatures(strHero, arrCreature4Object[i]["Id"], iCount);
 			end;
 		end;
 	end;
 	function TTH_FUNC_HERO_TOUCH_CREATURE.Berein(strHero, strCreature)
 		TTH_HeroSpec_Courtier(strHero, strCreature);
-		local type, count = H55_MonsterInfo(strCreature);
+		local arrCreature4Object = TTH_GLOBAL.getObjectCreatureInfo(strCreature);
 		local iLevel = GetHeroLevel(strHero);
 		for i = 0, 6 do
-			if type[i] > 0 then
-				local iCount = H55_Round(count[i] * 0.0025 * iLevel);
+			if arrCreature4Object[i]["Id"] > 0 then
+				local iCount = TTH_COMMON.round(arrCreature4Object[i]["Count"] * 0.0025 * iLevel);
 				if iCount <= 1 then
 					iCount = 1;
 				end;
-				RemoveObjectCreatures(strCreature, type[i], iCount);
+				RemoveObjectCreatures(strCreature, arrCreature4Object[i]["Id"], iCount);
 				local iLenNecCreatures = length(List_Nec_AllCreatures);
 				for iIndexNecCreatures = 1, iLenNecCreatures do
-					if contains(List_Nec_AllCreatures[iIndexNecCreatures][1], type[i]) ~= nil then
+					if contains(List_Nec_AllCreatures[iIndexNecCreatures][1], arrCreature4Object[i]["Id"]) ~= nil then
 						AddHeroCreatures(strHero, List_Nec_AllCreatures[iIndexNecCreatures][2], iCount);
 					end;
 				end;
@@ -8755,7 +10621,7 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 	end;
 
 	function TTH_TRIGGER_HERO_TOUCH_CREATURE(strHero, strCreature)
-		if H55_IsThisAIPlayer(GetObjectOwner(strHero)) ~= 1 then
+		if TTH_GLOBAL.isAi(GetObjectOwner(strHero)) ~= 1 then
 			if IsObjectExists(strCreature) == not nil then
 				for i, itemHero in  TTH_LIST_HERO_TOUCH_CREATURE do
 					if IsHeroAlive(itemHero) == true   then
@@ -8778,7 +10644,7 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 		end;
 	end;
 
-	H55_TriggerToObjectType("CREATURE", OBJECT_TOUCH_TRIGGER, "TTH_TRIGGER_HERO_TOUCH_CREATURE", nil);
+	TTH_COMMON.setTrigger2ObjectType("CREATURE", OBJECT_TOUCH_TRIGGER, "TTH_TRIGGER_HERO_TOUCH_CREATURE", nil);
 
 	function TTH_UNITY_CONCAT(arr1, arr2)
 	  local retArr = {};
@@ -8826,3314 +10692,7 @@ Trigger(NEW_DAY_TRIGGER,"H55_CrashProtection");
 	end;
 	sleep(0.1);
 	startThread(TTH_FUNC_HERO_TOUCH__PORTAL_CREATURE);
--- end
 
--- begin 宝物合成
-  TTH_TABLE_ArtiCombine = {
-    ["DRAGONISH"] = {
-      ["ID"] = {
-        [0] = ARTIFACT_DRAGON_SCALE_ARMOR
-        , [1] = ARTIFACT_DRAGON_SCALE_SHIELD
-        , [2] = ARTIFACT_DRAGON_BONE_GRAVES
-        , [3] = ARTIFACT_DRAGON_WING_MANTLE
-        , [4] = ARTIFACT_DRAGON_TEETH_NECKLACE
-        , [5] = ARTIFACT_DRAGON_TALON_CROWN
-        , [6] = ARTIFACT_DRAGON_EYE_RING
-        , [7] = ARTIFACT_DRAGON_FLAME_TONGUE
-      }
-      , ["NAME"] = {
-        [0] = "/Text/Game/Artifacts/Dragon_scale_armor/Name.txt"
-        , [1] = "/Text/Game/Artifacts/DragonscaleShield/Name.txt"
-        , [2] = "/Text/Game/Artifacts/Dragon_bone_greaves/Name.txt"
-        , [3] = "/Text/Game/Artifacts/Dragon_wing_mantle/Name.txt"
-        , [4] = "/Text/Game/Artifacts/Dragon_teeth_necklace/Name.txt"
-        , [5] = "/Text/Game/Artifacts/Dragon_talon_crown/Name.txt"
-        , [6] = "/Text/Game/Artifacts/Dragon_eye_ring/Name.txt"
-        , [7] = "/Text/Game/Artifacts/Dragon_flame_tongue/Name.txt"
-      }
-      , ["COMBINE_ID"] = ARTIFACT_DRACONIC
-      , ["COMBINE_NAME"] = "/Text/Game/Artifacts/Draconic/Name.txt"
-    }
-    , ["DWARVEN"] = {
-      ["ID"] = {
-        [0] = ARTIFACT_DWARVEN_MITHRAL_CUIRASS
-        , [1] = ARTIFACT_DWARVEN_MITHRAL_GREAVES
-        , [2] = ARTIFACT_DWARVEN_MITHRAL_HELMET
-        , [3] = ARTIFACT_DWARVEN_MITHRAL_SHIELD
-      }
-      , ["NAME"] = {
-        [0] = "/Text/Game/Artifacts/Dwarven_mithral_cuirass/Name.txt"
-        , [1] = "/Text/Game/Artifacts/Dwarven_mithral_greaves/Name.txt"
-        , [2] = "/Text/Game/Artifacts/Dwarven_mithral_helmet/Name.txt"
-        , [3] = "/Text/Game/Artifacts/Dwarven_mithral_shield/Name.txt"
-      }
-      , ["COMBINE_ID"] = ARTIFACT_SENTINEL
-      , ["COMBINE_NAME"] = "/Text/Game/Artifacts/Sentinel/Name.txt"
-      , [3] = {
-        [STAT_ATTACK] = 0
-        , [STAT_DEFENCE] = 0
-        , [STAT_SPELL_POWER] = 2
-        , [STAT_KNOWLEDGE] = 2
-        , [STAT_LUCK] = 0
-        , [STAT_MORALE] = 0
-      }
-      , [4] = {
-        [STAT_ATTACK] = 0
-        , [STAT_DEFENCE] = 8
-        , [STAT_SPELL_POWER] = 0
-        , [STAT_KNOWLEDGE] = 0
-        , [STAT_LUCK] = 0
-        , [STAT_MORALE] = 0
-      }
-    }
-    , ["LIONS"] = {
-      ["ID"] = {
-        [0] = ARTIFACT_CROWN_OF_COURAGE
-        , [1] = ARTIFACT_LION_HIDE_CAPE
-        , [2] = ARTIFACT_NECKLACE_OF_BRAVERY
-      }
-      , [2] = {
-        [STAT_ATTACK] = 4
-        , [STAT_DEFENCE] = 0
-        , [STAT_SPELL_POWER] = 0
-        , [STAT_KNOWLEDGE] = 0
-        , [STAT_LUCK] = 0
-        , [STAT_MORALE] = 0
-      }
-    }
-    , ["MAGIS"] = {
-      ["ID"] = {
-        [0] = ARTIFACT_ROBE_OF_MAGI
-        , [1] = ARTIFACT_STAFF_OF_MAGI
-        , [2] = ARTIFACT_CROWN_OF_MAGI
-        , [3] = ARTIFACT_RING_OF_MAGI
-      }
-      , ["NAME"] = {
-        [0] = "/Text/Game/Artifacts/Robe_of_magi/Name.txt"
-        , [1] = "/Text/Game/Artifacts/Staff_of_magi/Name.txt"
-        , [2] = "/Text/Game/Artifacts/Crown_of_magi/Name.txt"
-        , [3] = "/Text/Game/Artifacts/Ring_of_magi/Name.txt"
-      }
-      , ["COMBINE_ID"] = ARTIFACT_EIGHTFOLD
-      , ["COMBINE_NAME"] = "/Text/Game/Artifacts/Eightfold/Name.txt"
-      , [3] = {
-        [STAT_ATTACK] = 0
-        , [STAT_DEFENCE] = 0
-        , [STAT_SPELL_POWER] = 6
-        , [STAT_KNOWLEDGE] = 0
-        , [STAT_LUCK] = 0
-        , [STAT_MORALE] = 0
-      }
-    }
-    , ["NECROMANCERS"] = {
-      ["ID"] = {
-        [0] = ARTIFACT_CLOAK_OF_MOURNING
-        , [1] = ARTIFACT_STAFF_OF_VEXINGS
-        , [2] = ARTIFACT_RING_OF_DEATH
-        , [3] = ARTIFACT_NECROMANCER_PENDANT
-      }
-      , ["NAME"] = {
-        [0] = "/Text/Game/Artifacts/Cloak_of_mourning/Name.txt"
-        , [1] = "/Text/Game/Artifacts/Staff_of_vexing/Name.txt"
-        , [2] = "/Text/Game/Artifacts/Ring_of_Death/Name.txt"
-        , [3] = "/Text/Game/Artifacts/Necromancer_Pendant/Name.txt"
-      }
-      , ["COMBINE_ID"] = ARTIFACT_CURSE_SHOULDER
-      , ["COMBINE_NAME"] = "/Text/Game/Artifacts/Curse_Shoulder/Name.txt"
-      , [3] = {
-        [STAT_ATTACK] = 0
-        , [STAT_DEFENCE] = 0
-        , [STAT_SPELL_POWER] = 3
-        , [STAT_KNOWLEDGE] = 3
-        , [STAT_LUCK] = 0
-        , [STAT_MORALE] = 0
-      }
-    }
-    , ["EDUCATIONAL"] = {
-      ["ID"] = {
-        [0] = ARTIFACT_HELM_OF_ENLIGHTMENT
-        , [1] = ARTIFACT_CHAIN_MAIL_OF_ENLIGHTMENT
-      }
-    }
-    , ["HUNTERS"] = {
-      ["ID"] = {
-        [0] = ARTIFACT_UNICORN_HORN_BOW
-        , [1] = ARTIFACT_TREEBORN_QUIVER
-      }
-    }
-    , ["OGRES"] = {
-      ["ID"] = {
-        [0] = ARTIFACT_OGRE_CLUB
-        , [1] = ARTIFACT_OGRE_SHIELD
-      }
-    }
-    , ["RUNIC"] = {
-      ["ID"] = {
-        [0] = ARTIFACT_RUNIC_WAR_AXE
-        , [1] = ARTIFACT_RUNIC_WAR_HARNESS
-      }
-    }
-    , ["DEMONIC"] = {
-      ["ID"] = {
-        [0] = ARTIFACT_PENDANT_OF_STARDUST
-        , [1] = ARTIFACT_HELM_OF_CHAOS
-      }
-    }
-    , ["MONK"] = {
-      ["ID"] = {
-        [0] = ARTIFACT_MONK_01
-        , [1] = ARTIFACT_MONK_02
-        , [2] = ARTIFACT_MONK_03
-        , [3] = ARTIFACT_MONK_04
-      }
-      , [3] = {
-        [STAT_ATTACK] = 0
-        , [STAT_DEFENCE] = 0
-        , [STAT_SPELL_POWER] = 3
-        , [STAT_KNOWLEDGE] = 3
-        , [STAT_LUCK] = 0
-        , [STAT_MORALE] = 0
-      }
-    }
-    , ["GUARDIAN"] = {
-      ["ID"] = {
-        [0] = ARTIFACT_GUARDIAN_01
-        , [1] = ARTIFACT_GUARDIAN_02
-        , [2] = ARTIFACT_GUARDIAN_03
-        , [3] = ARTIFACT_PLATE_MAIL_OF_STABILITY
-      }
-      , ["NAME"] = {
-        [0] = "/Text/Game/Artifacts/Guardian_Helmet/Name.txt"
-        , [1] = "/Text/Game/Artifacts/Guardian_Boots/Name.txt"
-        , [2] = "/Text/Game/Artifacts/Guardian_Shield/Name.txt"
-        , [3] = "/Text/Game/Artifacts/PlateMailOfStability/Name.txt"
-      }
-      , ["COMBINE_ID"] = ARTIFACT_ANGELIC_ALLIANCE
-      , ["COMBINE_NAME"] = "/Text/Game/Artifacts/Angelic_Alliance/Name.txt"
-      , [2] = {
-        [STAT_ATTACK] = 1
-        , [STAT_DEFENCE] = 1
-        , [STAT_SPELL_POWER] = 1
-        , [STAT_KNOWLEDGE] = 1
-        , [STAT_LUCK] = 0
-        , [STAT_MORALE] = 0
-      }
-      , [3] = {
-        [STAT_ATTACK] = 1
-        , [STAT_DEFENCE] = 1
-        , [STAT_SPELL_POWER] = 1
-        , [STAT_KNOWLEDGE] = 1
-        , [STAT_LUCK] = 0
-        , [STAT_MORALE] = 0
-      }
-      , [4] = {
-        [STAT_ATTACK] = 1
-        , [STAT_DEFENCE] = 1
-        , [STAT_SPELL_POWER] = 1
-        , [STAT_KNOWLEDGE] = 1
-        , [STAT_LUCK] = 0
-        , [STAT_MORALE] = 0
-      }
-    }
-    , ["ROOKIE"] = {
-      ["ID"] = {
-        [0] = ARTIFACT_SWORD_OF_RUINS
-        , [1] = ARTIFACT_BREASTPLATE_OF_PETRIFIED_WOOD
-        , [2] = ARTIFACT_SKULL_HELMET
-        , [3] = ARTIFACT_BUCKLER
-        , [4] = ARTIFACT_BOOTS_OF_INTERFERENCE
-      }
-      , ["NAME"] = {
-        [0] = "/Text/Game/Artifacts/SwordOfRuin/Name.txt"
-        , [1] = "/Text/Game/Artifacts/Breastplate_of_petrified_wood/Name.txt"
-        , [2] = "/Text/Game/Artifacts/Skull_Helmet/Name.txt"
-        , [3] = "/Text/Game/Artifacts/Buckler/Name.txt"
-        , [4] = "/Text/Game/Artifacts/Boots_of_interference/Name.txt"
-      }
-      , ["COMBINE_ID"] = ARTIFACT_PLATE_MAIL_OF_STABILITY
-      , ["COMBINE_NAME"] = "/Text/Game/Artifacts/PlateMailOfStability/Name.txt"
-      , [2] = {
-        [STAT_ATTACK] = 0
-        , [STAT_DEFENCE] = 1
-        , [STAT_SPELL_POWER] = 0
-        , [STAT_KNOWLEDGE] = 0
-        , [STAT_LUCK] = 0
-        , [STAT_MORALE] = 0
-      }
-      , [3] = {
-        [STAT_ATTACK] = 0
-        , [STAT_DEFENCE] = 0
-        , [STAT_SPELL_POWER] = 0
-        , [STAT_KNOWLEDGE] = 1
-        , [STAT_LUCK] = 0
-        , [STAT_MORALE] = 0
-      }
-      , [4] = {
-        [STAT_ATTACK] = 1
-        , [STAT_DEFENCE] = 0
-        , [STAT_SPELL_POWER] = 0
-        , [STAT_KNOWLEDGE] = 0
-        , [STAT_LUCK] = 0
-        , [STAT_MORALE] = 0
-      }
-      , [5] = {
-        [STAT_ATTACK] = 0
-        , [STAT_DEFENCE] = 0
-        , [STAT_SPELL_POWER] = 1
-        , [STAT_KNOWLEDGE] = 0
-        , [STAT_LUCK] = 0
-        , [STAT_MORALE] = 0
-      }
-    }
-    , ["ELEMENT"] = {
-      ["ID"] = {
-        [0] = ARTIFACT_TITANS_TRIDENT
-        , [1] = ARTIFACT_EVERCOLD_ICICLE
-        , [2] = ARTIFACT_PHOENIX_FEATHER_CAPE
-        , [3] = ARTIFACT_EARTHSLIDERS
-      }
-      , ["NAME"] = {
-        [0] = "/Text/Game/Artifacts/Titan`s_trident/Name.txt"
-        , [1] = "/Text/Game/Artifacts/Evercold_icicle/Name.txt"
-        , [2] = "/Text/Game/Artifacts/Phoenix_feather_cape/Name.txt"
-        , [3] = "/Text/Game/Artifacts/Earthsliders/Name.txt"
-      }
-      , ["COMBINE_ID"] = ARTIFACT_TOME_OF_DESTRUCTION
-      , ["COMBINE_NAME"] = "/Text/Game/Artifacts/Tome_of_Destruction/Name.txt"
-      , [2] = {
-        [STAT_ATTACK] = 0
-        , [STAT_DEFENCE] = 0
-        , [STAT_SPELL_POWER] = 2
-        , [STAT_KNOWLEDGE] = 0
-        , [STAT_LUCK] = 0
-        , [STAT_MORALE] = 0
-      }
-      , [4] = {
-        [STAT_ATTACK] = 0
-        , [STAT_DEFENCE] = 0
-        , [STAT_SPELL_POWER] = 0
-        , [STAT_KNOWLEDGE] = 2
-        , [STAT_LUCK] = 0
-        , [STAT_MORALE] = 0
-      }
-    }
-    , ["CODEX"] = {
-      ["ID"] = {
-        [0] = ARTIFACT_TOME_OF_DESTRUCTION
-        , [1] = ARTIFACT_TOME_OF_LIGHT_MAGIC
-        , [2] = ARTIFACT_TOME_OF_DARK_MAGIC
-        , [3] = ARTIFACT_TOME_OF_SUMMONING_MAGIC
-      }
-      , ["NAME"] = {
-        [0] = "/Text/Game/Artifacts/Tome_of_Destruction/Name.txt"
-        , [1] = "/Text/Game/Artifacts/Tome_of_Light_Magic/Name.txt"
-        , [2] = "/Text/Game/Artifacts/Tome_of_Dark_Magic/Name.txt"
-        , [3] = "/Text/Game/Artifacts/Tome_of_Summoning_Magic/Name.txt"
-      }
-      , ["COMBINE_ID"] = ARTIFACT_CODEX
-      , ["COMBINE_NAME"] = "/Text/Game/Artifacts/Codex/Name.txt"
-    }
-    , ["RESOURCE"] = {
-      ["ID"] = {
-        [0] = ARTIFACT_RES_BASIC
-        , [1] = ARTIFACT_RES_ADVANCED
-        , [2] = ARTIFACT_ENDLESS_SACK_OF_GOLD
-        , [3] = ARTIFACT_ENDLESS_BAG_OF_GOLD
-        , [4] = ARTIFACT_BAND_OF_CONJURER       
-      }
-      , ["NAME"] = {
-        [0] = "/Text/Game/Artifacts/ResBasic/Name.txt"
-        , [1] = "/Text/Game/Artifacts/ResAdvanced/Name.txt"
-        , [2] = "/Text/Game/Artifacts/EndlessSackOfGold/Name.txt"
-        , [3] = "/Text/Game/Artifacts/EndlessBagOfGold/Name.txt"
-        , [4] = "/Text/Game/Artifacts/BandOfConjurer/Name.txt"
-      }
-      , ["COMBINE_ID"] = ARTIFACT_HORN_OF_PLENTY
-      , ["COMBINE_NAME"] = "/Text/Game/Artifacts/Horn_Of_Plenty/Name.txt"
-    }
-    , ["GRAAL"] = {
-      ["ID"] = {
-        [0] = ARTIFACT_LEGION_BASIC
-        , [1] = ARTIFACT_LEGION_ADVANCED
-        , [2] = ARTIFACT_LEGION_EXPERT
-        , [3] = ARTIFACT_ENDLESS_SACK_OF_GOLD
-        , [4] = ARTIFACT_ENDLESS_BAG_OF_GOLD
-        , [5] = ARTIFACT_CROWN_OF_LEADER
-      }
-      , ["NAME"] = {
-        [0] = "/Text/Game/Artifacts/LegionBasic/Name.txt"
-        , [1] = "/Text/Game/Artifacts/LegionAdvanced/Name.txt"
-        , [2] = "/Text/Game/Artifacts/LegionExpert/Name.txt"
-        , [3] = "/Text/Game/Artifacts/EndlessSackOfGold/Name.txt"
-        , [4] = "/Text/Game/Artifacts/EndlessBagOfGold/Name.txt"
-        , [5] = "/Text/Game/Artifacts/CrownOfLeader/Name.txt"
-      }
-      , ["COMBINE_ID"] = ARTIFACT_GRAAL
-      , ["COMBINE_NAME"] = "/Text/Game/Artifacts/Graal/Name.txt"
-    }
-  };
--- end
-
--- by 牙姐 2018-9-7 13:00:48
--- begin 先知法衣属性加成
-	function TTH_Monk_Mana_Bonus(strHero)
-		local iCount = 0;
-		for indexId, iId in TTH_TABLE_ArtiCombine["MONK"]["ID"] do
-			if HasArtefact(strHero, iId, 1) ~= nil then
-				iCount = iCount + 1;
-			end;
-		end;
-		if HasArtefact(strHero, ARTIFACT_PENDANT_OF_STARDUST, 1) ~= nil then
-			iCount = iCount + 1;
-		end;
-		if iCount >= 2 then
-			return 1;
-		else
-			return 0;
-		end;
-	end;
-	function TTH_Monk_Move_Bonus(strHero)
-		local iCount = 0;
-		for indexId, iId in TTH_TABLE_ArtiCombine["MONK"]["ID"] do
-			if HasArtefact(strHero, iId, 1) ~= nil then
-				iCount = iCount + 1;
-			end;
-		end;
-		if HasArtefact(strHero, ARTIFACT_PENDANT_OF_STARDUST, 1) ~= nil then
-			iCount = iCount + 1;
-		end;
-		if iCount >= 4 then
-			return 1;
-		else
-			return 0;
-		end;
-	end;
--- end
-
--- by 牙姐 2018-8-22 18:33:39
--- begin 英雄套装属性加成
-	TTH_ARTIFACT_BONUS_HERO = {};
-	function TTH_Artifact_Bonus_Check(strHero)
-		local iPlayer = GetObjectOwner(strHero);
-		for indexSet, objSet in TTH_TABLE_ArtiCombine do
-			local iCount = 0;
-			for indexId, iId in objSet["ID"] do
-				if HasArtefact(strHero, iId, 1) ~= nil then
-					iCount = iCount + 1;
-				end;
-			end;
-			if HasArtefact(strHero, ARTIFACT_PENDANT_OF_STARDUST, 1) ~= nil then
-				iCount = iCount + 1;
-			end;
-			if TTH_ARTIFACT_BONUS_HERO[strHero] == nil then
-				TTH_ARTIFACT_BONUS_HERO[strHero] = {};
-			end;
-			if TTH_ARTIFACT_BONUS_HERO[strHero][indexSet] == nil then
-				TTH_ARTIFACT_BONUS_HERO[strHero][indexSet] = {};
-			end;
-			for i = 1, 8 do
-				if objSet[i] ~= nil then
-					if iCount >= i then
-						if TTH_ARTIFACT_BONUS_HERO[strHero][indexSet][i] == nil then
-							for indexStat, iNumStat in objSet[i] do
-								if iNumStat ~= 0 then
-									ChangeHeroStat(strHero, indexStat, iNumStat);
-								end;
-							end;
-							TTH_ARTIFACT_BONUS_HERO[strHero][indexSet][i] = 1;
-							TTH_ShowArtifactFlyingSign(strHero, iPlayer, 1);
-						end;
-					end;
-					if iCount < i then
-						if TTH_ARTIFACT_BONUS_HERO[strHero][indexSet][i] == 1 then
-							for indexStat, iNumStat in objSet[i] do
-								if iNumStat ~= 0 then
-									ChangeHeroStat(strHero, indexStat, iNumStat * -1);
-								end;
-							end;
-							TTH_ARTIFACT_BONUS_HERO[strHero][indexSet][i] = nil;
-							TTH_ShowArtifactFlyingSign(strHero, iPlayer, 0);
-						end;
-					end;
-				end;
-			end;
-		end;
-	end;
--- end
-
--- by 牙姐 2018-10-17 11:12:23
--- begin 套装属性获得及失去的飘字效果
-	function TTH_ShowArtifactFlyingSign(strHero, iPlayer, iShowType)
-		if H55_IsThisAIPlayer(iPlayer) ~= 1 and H55_IsHeroInAnyTown(strHero) == 0 then
-			if iShowType == 0 then
-				ShowFlyingSign("/Text/Game/Scripts/SetLost.txt",strHero,iPlayer,5);
-			else
-				ShowFlyingSign("/Text/Game/Scripts/SetBonus.txt",strHero,iPlayer,5);
-			end;
-			sleep(2);
-		end;
-	end;
--- end
-
--- begin 宝物管理
-	function TTH_Func_ArtiManage_Giveup(strHero)
-		TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_Giveup-begin', nil, strHero, strHero);
-		local iPlayer = GetObjectOwner(strHero);
-		print(strHero.." giveup ArtiManage");
-		MessageBoxForPlayers(GetPlayerFilter(iPlayer), "/Text/Game/Scripts/ArtiManage/MessageArtiManageGiveup.txt", nil);
-		TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_Giveup-end', nil, strHero);
-	end;
-
-	-- 军团宝物在城镇中生效（周结算，可累积）
-		function TTH_Func_TownBonus8LegionArti(strTown, iPlayer)
-			TTH_DEBUG.recordFuncInfo('TTH_Func_TownBonus8LegionArti-begin', iPlayer, nil, strTown, iPlayer);
-			if GetObjectOwner(strTown) == iPlayer and TTH_DATA_TownBonus8Arti[strTown] ~= nil then
-				local iTownRace = H55_GetTownRace(strTown);
-				if TTH_DATA_TownBonus8Arti[strTown][ARTIFACT_LEGION_BASIC] >= 1 then
-					if GetTownBuildingLevel(strTown, TOWN_BUILDING_DWELLING_1) >= 1 then
-						SetObjectDwellingCreatures(strTown, H55_Creatures[iTownRace][1][1], GetObjectDwellingCreatures(strTown, H55_Creatures[iTownRace][1][1]) + TTH_DATA_TownBonus8Arti[strTown][ARTIFACT_LEGION_BASIC] * 2);
-					end;
-					if GetTownBuildingLevel(strTown, TOWN_BUILDING_DWELLING_2) >= 1 then
-						SetObjectDwellingCreatures(strTown, H55_Creatures[iTownRace][2][1], GetObjectDwellingCreatures(strTown, H55_Creatures[iTownRace][2][1]) + TTH_DATA_TownBonus8Arti[strTown][ARTIFACT_LEGION_BASIC] * 2);
-					end;
-					if GetTownBuildingLevel(strTown, TOWN_BUILDING_DWELLING_3) >= 1 then
-						SetObjectDwellingCreatures(strTown, H55_Creatures[iTownRace][3][1], GetObjectDwellingCreatures(strTown, H55_Creatures[iTownRace][3][1]) + TTH_DATA_TownBonus8Arti[strTown][ARTIFACT_LEGION_BASIC] * 2);
-					end;
-				end;
-				if TTH_DATA_TownBonus8Arti[strTown][ARTIFACT_LEGION_ADVANCED] >= 1 then
-					if GetTownBuildingLevel(strTown, TOWN_BUILDING_DWELLING_1) >= 1 then
-						SetObjectDwellingCreatures(strTown, H55_Creatures[iTownRace][4][1], GetObjectDwellingCreatures(strTown, H55_Creatures[iTownRace][4][1]) + TTH_DATA_TownBonus8Arti[strTown][ARTIFACT_LEGION_ADVANCED]);
-					end;
-					if GetTownBuildingLevel(strTown, TOWN_BUILDING_DWELLING_2) >= 1 then
-						SetObjectDwellingCreatures(strTown, H55_Creatures[iTownRace][5][1], GetObjectDwellingCreatures(strTown, H55_Creatures[iTownRace][5][1]) + TTH_DATA_TownBonus8Arti[strTown][ARTIFACT_LEGION_ADVANCED]);
-					end;
-				end;
-				if TTH_DATA_TownBonus8Arti[strTown][ARTIFACT_LEGION_EXPERT] >= 1 then
-					if GetTownBuildingLevel(strTown, TOWN_BUILDING_DWELLING_1) >= 1 then
-						SetObjectDwellingCreatures(strTown, H55_Creatures[iTownRace][6][1], GetObjectDwellingCreatures(strTown, H55_Creatures[iTownRace][6][1]) + TTH_DATA_TownBonus8Arti[strTown][ARTIFACT_LEGION_EXPERT]);
-					end;
-					if GetTownBuildingLevel(strTown, TOWN_BUILDING_DWELLING_2) >= 1 then
-						SetObjectDwellingCreatures(strTown, H55_Creatures[iTownRace][7][1], GetObjectDwellingCreatures(strTown, H55_Creatures[iTownRace][7][1]) + TTH_DATA_TownBonus8Arti[strTown][ARTIFACT_LEGION_EXPERT]);
-					end;
-				end;
-			end;
-			TTH_DEBUG.recordFuncInfo('TTH_Func_TownBonus8LegionArti-end', iPlayer, nil);
-		end;	
-
-	-- 资源宝物在城镇中生效（日结算，不可累积）
-		function TTH_Func_TownBonus8EconomicsArti(strTown, iPlayer)
-			TTH_DEBUG.recordFuncInfo('TTH_Func_TownBonus8EconomicsArti-begin', iPlayer, nil, strTown, iPlayer);
-			if GetObjectOwner(strTown) == iPlayer and TTH_DATA_TownBonus8Arti[strTown] ~= nil and TTH_DATA_TownBonus8Arti[strTown][ARTIFACT_ENDLESS_BAG_OF_GOLD] ~= nil then
-				local iTownHall = GetTownBuildingLevel(strTown, TOWN_BUILDING_TOWN_HALL);
-				local iGrail = GetTownBuildingLevel(strTown, TOWN_BUILDING_GRAIL);
-				local iGold = 0;
-				if iTownHall == 1 then
-					iGold = 500;
-				elseif iTownHall == 2 then
-					iGold = 1000;
-				elseif iTownHall == 3 then
-					iGold = 2000;
-				elseif iTownHall == 4 then
-					iGold = 4000;
-				end
-				if iGrail > 0 then
-					iGold = iGold + 5000;
-				end;
-				H55_GlobalDailyGoldPayout[iPlayer] = H55_GlobalDailyGoldPayout[iPlayer] + iGold * 0.5;
-			end;
-			if GetObjectOwner(strTown) == iPlayer and TTH_DATA_TownBonus8Arti[strTown] ~= nil and TTH_DATA_TownBonus8Arti[strTown][ARTIFACT_HORN_OF_PLENTY] ~= nil then
-				H55_GlobalDailyWoodPayout[iPlayer] = H55_GlobalDailyWoodPayout[iPlayer] + 8;
-				H55_GlobalDailyOrePayout[iPlayer] = H55_GlobalDailyOrePayout[iPlayer] + 8;
-				H55_GlobalDailySulphurPayout[iPlayer] = H55_GlobalDailySulphurPayout[iPlayer] + 4;
-				H55_GlobalDailyGemPayout[iPlayer] = H55_GlobalDailyGemPayout[iPlayer] + 4;
-				H55_GlobalDailyMercuryPayout[iPlayer] = H55_GlobalDailyMercuryPayout[iPlayer] + 4;
-				H55_GlobalDailyCrystalPayout[iPlayer] = H55_GlobalDailyCrystalPayout[iPlayer] + 4;
-			end;
-			TTH_DEBUG.recordFuncInfo('TTH_Func_TownBonus8EconomicsArti-end', iPlayer, nil);
-		end;			
-
-	-- 资源宝物在资源矿中生效
-		function TTH_Func_MineBonus8ResArti(iParaPlayer)
-			TTH_DEBUG.recordFuncInfo('TTH_Func_MineBonus8ResArti-begin', iParaPlayer, nil, iParaPlayer);
-			for indexMine, objMine in TTH_MINE do
-				local iPlayer = GetObjectOwner(objMine["Id"]);
-				if iParaPlayer == iPlayer then
-					if objMine['BonusArti'] == ARTIFACT_RES_BASIC then
-						if objMine['MineType'] == WOOD then
-							H55_GlobalDailyWoodPayout[iPlayer] = H55_GlobalDailyWoodPayout[iPlayer] + 2 * objMine['BonusLevel'];
-						elseif objMine['MineType'] == ORE then
-							H55_GlobalDailyOrePayout[iPlayer] = H55_GlobalDailyOrePayout[iPlayer] + 2 * objMine['BonusLevel'];
-						end;
-					elseif objMine['BonusArti'] == ARTIFACT_RES_ADVANCED then
-						if objMine['MineType'] == MERCURY then
-							H55_GlobalDailyMercuryPayout[iPlayer] = H55_GlobalDailyMercuryPayout[iPlayer] + 1 * objMine['BonusLevel'];
-						elseif objMine['MineType'] == CRYSTAL then
-							H55_GlobalDailyCrystalPayout[iPlayer] = H55_GlobalDailyCrystalPayout[iPlayer] + 1 * objMine['BonusLevel'];
-						elseif objMine['MineType'] == SULFUR then
-							H55_GlobalDailySulphurPayout[iPlayer] = H55_GlobalDailySulphurPayout[iPlayer] + 1 * objMine['BonusLevel'];
-						elseif objMine['MineType'] == GEM then
-							H55_GlobalDailyGemPayout[iPlayer] = H55_GlobalDailyGemPayout[iPlayer] + 1 * objMine['BonusLevel'];
-						end;
-					elseif objMine['BonusArti'] == ARTIFACT_RES_EXPERT then
-						H55_GlobalDailyGoldPayout[iPlayer] = H55_GlobalDailyGoldPayout[iPlayer] + 1000 * objMine['BonusLevel'];
-					end;
-				end;
-			end;
-			TTH_DEBUG.recordFuncInfo('TTH_Func_MineBonus8ResArti-end', iParaPlayer, nil);
-		end;
-
-	function TTH_Func_ArtiManage(strPlayer, strHero)
-		local iPlayer = strPlayer * 1;
-		TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage-begin', iPlayer, strHero, strPlayer, strHero);
-		local arrGate = GetObjectNamesByType("TOWN");
-		local strTown = nil;
-		for i, strGate in arrGate do
-			if (GetObjectOwner(strGate) == iPlayer) and (IsHeroInTown(strHero, strGate, 1, 0) == not nil) then
-				strTown = strGate;
-				break;
-			end;
-		end;
-
-		-- 根据英雄是否在城镇门口，区分宝物管理大分类
-			if strTown ~= nil then
-				TTH_Func_ArtiManage_AtTownGate(strHero, strTown);
-			else
-				TTH_Func_ArtiManage_NotAtTownGate(strHero);
-			end;
-		TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage-end', iPlayer, strHero);
-	end;
-
-	-- 1.若英雄在城门口 strHero strTown
-		-- 1.1.军团之证（城镇加成）
-		-- 1.2.军团斗篷（城镇加成）
-		-- 1.3.军团之帜（城镇加成）
-		-- 1.4.军团金像（城镇加成）
-		-- 1.5.丰收之角（城镇加成）
-		TTH_DATA_TownBonus8Arti = {};
-		TTH_TABLE_ArtiManage_AtTownGateOption = {
-			[ARTIFACT_LEGION_BASIC] = {
-				["Arti"] = ARTIFACT_LEGION_BASIC
-				, ["Text"] = "/Text/Game/Artifacts/Legion_Basic/Name.txt"
-				, ["Effect"] = "/Text/Game/Artifacts/Legion_Basic/Effect.txt"
-				, ["FuncCb"] = "TTH_Func_ArtiManage_AtTownGate_LegionBasic"
-			}
-			, [ARTIFACT_LEGION_ADVANCED] = {
-				["Arti"] = ARTIFACT_LEGION_ADVANCED
-				, ["Text"] = "/Text/Game/Artifacts/Legion_Advanced/Name.txt"
-				, ["Effect"] = "/Text/Game/Artifacts/Legion_Advanced/Effect.txt"
-				, ["FuncCb"] = "TTH_Func_ArtiManage_AtTownGate_LegionAdvanced"
-			}
-			, [ARTIFACT_LEGION_EXPERT] = {
-				["Arti"] = ARTIFACT_LEGION_EXPERT
-				, ["Text"] = "/Text/Game/Artifacts/Legion_Expert/Name.txt"
-				, ["Effect"] = "/Text/Game/Artifacts/Legion_Expert/Effect.txt"
-				, ["FuncCb"] = "TTH_Func_ArtiManage_AtTownGate_LegionExpert"
-			}
-			, [ARTIFACT_ENDLESS_BAG_OF_GOLD] = {
-				["Arti"] = ARTIFACT_ENDLESS_BAG_OF_GOLD
-				, ["Text"] = "/Text/Game/Artifacts/Endless_Bag_Of_Gold/Name.txt"
-				, ["Effect"] = "/Text/Game/Artifacts/Endless_Bag_Of_Gold/Effect.txt"
-				, ["FuncCb"] = "TTH_Func_ArtiManage_AtTownGate_EndlessBagOfGold"
-			}
-			, [ARTIFACT_HORN_OF_PLENTY] = {
-				["Arti"] = ARTIFACT_HORN_OF_PLENTY
-				, ["Text"] = "/Text/Game/Artifacts/Horn_Of_Plenty/Name.txt"
-				, ["Effect"] = "/Text/Game/Artifacts/Horn_Of_Plenty/Effect.txt"
-				, ["FuncCb"] = "TTH_Func_ArtiManage_AtTownGate_HornOfPlenty"
-			}
-		}
-		function TTH_Func_ArtiManage_AtTownGate(strHero, strTown)
-			TTH_Func_ArtiManage_AtTownGateChosen(strHero, strTown, 1);
-		end;
-		function TTH_Func_ArtiManage_AtTownGateChosen(strHero, strTown, iChoose)
-			local iPlayer = GetObjectOwner(strHero);
-			TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_AtTownGateChosen-begin', iPlayer, strHero, strHero, strTown, iChoose);
-			local strText1 = TTH_TABLE_ArtiManage_AtTownGateOption[ARTIFACT_LEGION_BASIC]["Text"];
-			local strText2 = TTH_TABLE_ArtiManage_AtTownGateOption[ARTIFACT_LEGION_ADVANCED]["Text"];
-			local strText3 = TTH_TABLE_ArtiManage_AtTownGateOption[ARTIFACT_LEGION_EXPERT]["Text"];
-			local strText4 = TTH_TABLE_ArtiManage_AtTownGateOption[ARTIFACT_ENDLESS_BAG_OF_GOLD]["Text"];
-			local strText5 = TTH_TABLE_ArtiManage_AtTownGateOption[ARTIFACT_HORN_OF_PLENTY]["Text"];
-			local strFuncCb1 = TTH_TABLE_ArtiManage_AtTownGateOption[ARTIFACT_LEGION_BASIC]["FuncCb"];
-			local strFuncCb2 = TTH_TABLE_ArtiManage_AtTownGateOption[ARTIFACT_LEGION_ADVANCED]["FuncCb"];
-			local strFuncCb3 = TTH_TABLE_ArtiManage_AtTownGateOption[ARTIFACT_LEGION_EXPERT]["FuncCb"];
-			local strFuncCb4 = TTH_TABLE_ArtiManage_AtTownGateOption[ARTIFACT_ENDLESS_BAG_OF_GOLD]["FuncCb"];
-			local strFuncCb5 = TTH_TABLE_ArtiManage_AtTownGateOption[ARTIFACT_HORN_OF_PLENTY]["FuncCb"];
-			local strFuncCb = '';
-			if iChoose + 0 == 1 then
-				strFuncCb = strFuncCb1;
-			elseif iChoose + 0 == 2 then
-				strFuncCb = strFuncCb2;
-			elseif iChoose + 0 == 3 then
-				strFuncCb = strFuncCb3;
-			elseif iChoose + 0 == 4 then
-				strFuncCb = strFuncCb4;
-			elseif iChoose + 0 == 5 then
-				strFuncCb = strFuncCb5;
-			end;
-			if iChoose + 0 < 5 then
-				local iChooseNext = iChoose + 1;
-				QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
-					, {
-						"/Text/Game/Scripts/ArtiManage/AtTownGate/QuestionChooseType"..iChoose..".txt"
-						;strText1=strText1
-						,strText2=strText2
-						,strText3=strText3
-						,strText4=strText4
-						,strText5=strText5
-					}
-					, strFuncCb.."('"..strHero.."','"..strTown.."')"
-					, "TTH_Func_ArtiManage_AtTownGateChosen('"..strHero.."','"..strTown.."','"..iChooseNext.."')");
-			else
-				QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
-					, {
-						"/Text/Game/Scripts/ArtiManage/AtTownGate/QuestionChooseType"..iChoose..".txt"
-						;strText1=strText1
-						,strText2=strText2
-						,strText3=strText3
-						,strText4=strText4
-						,strText5=strText5
-					}
-					, strFuncCb.."('"..strHero.."','"..strTown.."')"
-					, "TTH_Func_ArtiManage_Giveup('"..strHero.."')");
-			end;
-			TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_AtTownGateChosen-end', iPlayer, strHero);
-		end;
-
-		-- 1.1~1.3.军团宝物（城镇加成）可累积
-			function TTH_Func_ArtiManage_AtTownGate_LegionBasic(strHero, strTown)
-				TTH_Func_ArtiManage_AtTownGate_LegionImpl(strHero, strTown, ARTIFACT_LEGION_BASIC);
-			end;
-			function TTH_Func_ArtiManage_AtTownGate_LegionAdvanced(strHero, strTown)
-				TTH_Func_ArtiManage_AtTownGate_LegionImpl(strHero, strTown, ARTIFACT_LEGION_ADVANCED);
-			end;
-			function TTH_Func_ArtiManage_AtTownGate_LegionExpert(strHero, strTown)
-				TTH_Func_ArtiManage_AtTownGate_LegionImpl(strHero, strTown, ARTIFACT_LEGION_EXPERT);
-			end;
-			function TTH_Func_ArtiManage_AtTownGate_LegionImpl(strHero, strTown, strChoose)
-				local iPlayer = GetObjectOwner(strHero);
-				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_AtTownGate_LegionImpl-begin', iPlayer, strHero, strHero, strTown, strChoose);
-				local iChoose = strChoose * 1;
-				local strText = TTH_TABLE_ArtiManage_AtTownGateOption[iChoose]["Text"];
-				local strEffect = TTH_TABLE_ArtiManage_AtTownGateOption[iChoose]["Effect"];
-				local iArti = TTH_TABLE_ArtiManage_AtTownGateOption[iChoose]["Arti"];
-				local iUsed = 0
-				if TTH_DATA_TownBonus8Arti[strTown] == nil or TTH_DATA_TownBonus8Arti[strTown][iArti] == nil then
-					iUsed = 0;
-				else
-					iUsed = TTH_DATA_TownBonus8Arti[strTown][iArti];
-				end;
-				local iBonus = 0;
-				if iArti == ARTIFACT_LEGION_BASIC then
-					iBonus = iUsed * 2;
-				else
-					iBonus = iUsed;
-				end;
-				if HasArtefact(strHero, iArti, 0) ~= nil then
-					QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
-						, {
-							"/Text/Game/Scripts/ArtiManage/AtTownGate/Legion/TTH_QB_BonusLegion_or_Giveup.txt"
-							;strText=strText
-							,strEffect=strEffect
-							,iUsed=iUsed
-							,iBonus=iBonus
-						}
-						, "TTH_Func_ArtiManage_AtTownGate_LegionTown_Deal('"..strHero.."','"..strTown.."','"..iChoose.."')"
-						, "TTH_Func_ArtiManage_Giveup('"..strHero.."')");
-				else
-					MessageBoxForPlayers(GetPlayerFilter(iPlayer)
-						, {
-							"/Text/Game/Scripts/ArtiManage/AtTownGate/MsgNoCorrespondArti.txt"
-							;strText=strText
-						}
-						, nil);
-				end;
-				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_AtTownGate_LegionImpl-end', iPlayer, strHero);
-			end;
-			function TTH_Func_ArtiManage_AtTownGate_LegionTown_Deal(strHero, strTown, strChoose)
-				local iPlayer = GetObjectOwner(strHero);
-				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_AtTownGate_LegionTown_Deal-begin', iPlayer, strHero, strHero, strTown, strChoose);
-				local iChoose = strChoose * 1;
-				local strText = TTH_TABLE_ArtiManage_AtTownGateOption[iChoose]["Text"];
-				local strEffect = TTH_TABLE_ArtiManage_AtTownGateOption[iChoose]["Effect"];
-				local iArti = TTH_TABLE_ArtiManage_AtTownGateOption[iChoose]["Arti"];
-				RemoveArtefact(strHero, iArti);
-				if TTH_DATA_TownBonus8Arti[strTown] == nil then
-					TTH_DATA_TownBonus8Arti[strTown] = {};
-				end;
-				if TTH_DATA_TownBonus8Arti[strTown][iArti] == nil then
-					TTH_DATA_TownBonus8Arti[strTown][iArti] = 1;
-				else
-					TTH_DATA_TownBonus8Arti[strTown][iArti] = TTH_DATA_TownBonus8Arti[strTown][iArti] + 1;
-				end;
-				local iUsed = TTH_DATA_TownBonus8Arti[strTown][iArti];
-				local iBonus = 0;
-				if iArti == ARTIFACT_LEGION_BASIC then
-					iBonus = iUsed * 2;
-				else
-					iBonus = iUsed;
-				end;
-				MessageBoxForPlayers(GetPlayerFilter(iPlayer)
-					, {
-						"/Text/Game/Scripts/ArtiManage/AtTownGate/Legion/TTH_MB_Success.txt"
-						;strText = strText
-						,strEffect = strEffect
-						,iUsed = iUsed
-						,iBonus = iBonus
-					}
-					, nil);
-				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_AtTownGate_LegionTown_Deal-end', iPlayer, strHero);
-			end;
-
-		-- 1.4.军团金像（城镇加成）不可累积
-		-- 1.5.丰收之角（城镇加成）不可累积
-			function TTH_Func_ArtiManage_AtTownGate_EndlessBagOfGold(strHero, strTown)
-				TTH_Func_ArtiManage_AtTownGate_EconomicsImpl(strHero, strTown, ARTIFACT_ENDLESS_BAG_OF_GOLD);
-			end;
-			function TTH_Func_ArtiManage_AtTownGate_HornOfPlenty(strHero, strTown)
-				TTH_Func_ArtiManage_AtTownGate_EconomicsImpl(strHero, strTown, ARTIFACT_HORN_OF_PLENTY);
-			end;
-			function TTH_Func_ArtiManage_AtTownGate_EconomicsImpl(strHero, strTown, iArtifactId)
-				local iPlayer = GetObjectOwner(strHero);
-				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_AtTownGate_EconomicsImpl-begin', iPlayer, strHero, strHero, strTown, iArtifactId);
-				local strText = TTH_TABLE_ArtiManage_AtTownGateOption[iArtifactId]["Text"];
-				local strEffect = TTH_TABLE_ArtiManage_AtTownGateOption[iArtifactId]["Effect"];
-				local iArti = TTH_TABLE_ArtiManage_AtTownGateOption[iArtifactId]["Arti"];
-				if HasArtefact(strHero, iArti, 0) ~= nil then
-					QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
-						, {
-							"/Text/Game/Scripts/ArtiManage/AtTownGate/Economics/TTH_QB_BonusEconomics_or_Giveup.txt"
-							;strText=strText
-							,strEffect=strEffect
-						}
-						,	"TTH_Func_ArtiManage_AtTownGate_EconomicsTown_Deal('"..strHero.."','"..strTown.."','"..iArtifactId.."')"
-						, nil);
-				else
-					MessageBoxForPlayers(GetPlayerFilter(iPlayer)
-						, {
-							"/Text/Game/Scripts/ArtiManage/AtTownGate/MsgNoCorrespondArti.txt"
-							;strText=strText
-						}
-						, nil);
-				end;
-				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_AtTownGate_EconomicsImpl-end', iPlayer, strHero);
-			end;
-			function TTH_Func_ArtiManage_AtTownGate_EconomicsTown_Deal(strHero, strTown, strArtifactId)
-				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_AtTownGate_EconomicsTown_Deal-begin', iPlayer, strHero, strHero, strTown, strArtifactId);
-				local iPlayer = GetObjectOwner(strHero);
-				local iArtifactId = strArtifactId + 0;
-				local strText = TTH_TABLE_ArtiManage_AtTownGateOption[iArtifactId]["Text"];
-				local strEffect = TTH_TABLE_ArtiManage_AtTownGateOption[iArtifactId]["Effect"];
-				RemoveArtefact(strHero, iArtifactId);
-				if TTH_DATA_TownBonus8Arti[strTown] == nil then
-					TTH_DATA_TownBonus8Arti[strTown] = {};
-				end;
-				TTH_DATA_TownBonus8Arti[strTown][iArtifactId] = 1;
-				MessageBoxForPlayers(GetPlayerFilter(iPlayer)
-					, {
-						"/Text/Game/Scripts/ArtiManage/AtTownGate/Economics/TTH_MB_Success.txt"
-						;strText = strText
-						,strEffect = strEffect
-					}
-					, nil);
-				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_AtTownGate_EconomicsTown_Deal-end', iPlayer, strHero);
-			end;
-
-	-- 2.若英雄不在城门口 strHero
-		-- 2.1.矮人十字镐（石木矿加成）
-		-- 2.2.育龙者的魔法盒（稀矿加成）
-		-- 2.3.无尽黄金麻袋（金矿加成）
-		-- 2.4.征兵令（消耗类）
-		-- 2.5.幻影宝石
-		-- 2.6.皇家遗物
-		TTH_DATA_MineBonus8Arti = {};
-		TTH_TABLE_ArtiManage_NotAtTownGateOption = {
-			[ARTIFACT_RES_BASIC] = {
-				["Arti"] = ARTIFACT_RES_BASIC
-				, ["Text"] = "/Text/Game/Artifacts/Res_Basic/Name.txt"
-				, ["Effect"] = "/Text/Game/Artifacts/Res_Basic/Effect.txt"
-				, ["FuncCb"] = "TTH_Func_ArtiManage_NotAtTownGate_ResBasic"
-			}
-			, [ARTIFACT_RES_ADVANCED] = {
-				["Arti"] = ARTIFACT_RES_ADVANCED
-				, ["Text"] = "/Text/Game/Artifacts/Res_Advanced/Name.txt"
-				, ["Effect"] = "/Text/Game/Artifacts/Res_Advanced/Effect.txt"
-				, ["FuncCb"] = "TTH_Func_ArtiManage_NotAtTownGate_ResAdvanced"
-			}
-			, [ARTIFACT_RES_EXPERT] = {
-				["Arti"] = ARTIFACT_RES_EXPERT
-				, ["Text"] = "/Text/Game/Artifacts/Res_Expert/Name.txt"
-				, ["Effect"] = "/Text/Game/Artifacts/Res_Expert/Effect.txt"
-				, ["FuncCb"] = "TTH_Func_ArtiManage_NotAtTownGate_ResExpert"
-			}
-			, [ARTIFACT_ORDER_OF_CONSCRIPTION] = {
-				["Arti"] = ARTIFACT_ORDER_OF_CONSCRIPTION
-				, ["Text"] = "/Text/Game/Artifacts/Order_Of_Conscription/Name.txt"
-				, ["Effect"] = "/Text/Game/Artifacts/Order_Of_Conscription/Effect.txt"
-				, ["FuncCb"] = "TTH_Func_ArtiManage_NotAtTownGate_OrderOfConscription"
-			}
-			, [ARTIFACT_GEM_OF_PHANTOM] = {
-				["Arti"] = ARTIFACT_GEM_OF_PHANTOM
-				, ["Text"] = "/Text/Game/Artifacts/Gem_Of_Phantom/Name.txt"
-				, ["Effect"] = "/Text/Game/Artifacts/Gem_Of_Phantom/Effect.txt"
-				, ["FuncCb"] = "TTH_Func_ArtiManage_NotAtTownGate_GemOfPhantom"
-			}
-			, [ARTIFACT_MASK_OF_DOPPELGANGER] = {
-				["Arti"] = ARTIFACT_MASK_OF_DOPPELGANGER
-				, ["Text"] = "/Text/Game/Artifacts/Mask_Of_Doppelganger/Name.txt"
-				, ["Effect"] = "/Text/Game/Artifacts/Mask_Of_Doppelganger/Effect.txt"
-				, ["FuncCb"] = "TTH_Func_ArtiManage_NotAtTownGate_MaskOfDoppelganger"
-			}
-		}
-		function TTH_Func_ArtiManage_NotAtTownGate(strHero)
-			TTH_Func_ArtiManage_NotAtTownGateChosen(strHero, 1);
-		end;
-		function TTH_Func_ArtiManage_NotAtTownGateChosen(strHero, iChoose)
-			local iPlayer = GetObjectOwner(strHero);
-			TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_NotAtTownGateChosen-begin', iPlayer, strHero, strHero, iChoose);
-			local strText1 = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_RES_BASIC]["Text"];
-			local strText2 = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_RES_ADVANCED]["Text"];
-			local strText3 = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_RES_EXPERT]["Text"];
-			local strText4 = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_ORDER_OF_CONSCRIPTION]["Text"];
-			local strText5 = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_GEM_OF_PHANTOM]["Text"];
-			local strText6 = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_MASK_OF_DOPPELGANGER]["Text"];
-			local strFuncCb1 = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_RES_BASIC]["FuncCb"];
-			local strFuncCb2 = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_RES_ADVANCED]["FuncCb"];
-			local strFuncCb3 = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_RES_EXPERT]["FuncCb"];
-			local strFuncCb4 = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_ORDER_OF_CONSCRIPTION]["FuncCb"];
-			local strFuncCb5 = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_GEM_OF_PHANTOM]["FuncCb"];
-			local strFuncCb6 = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_MASK_OF_DOPPELGANGER]["FuncCb"];
-			local strFuncCb = '';
-			if iChoose + 0 == 1 then
-				strFuncCb = strFuncCb1;
-			elseif iChoose + 0 == 2 then
-				strFuncCb = strFuncCb2;
-			elseif iChoose + 0 == 3 then
-				strFuncCb = strFuncCb3;
-			elseif iChoose + 0 == 4 then
-				strFuncCb = strFuncCb4;
-			elseif iChoose + 0 == 5 then
-				strFuncCb = strFuncCb5;
-			elseif iChoose + 0 == 6 then
-				strFuncCb = strFuncCb6;
-			end;
-			if iChoose + 0 < 6 then
-				local iChooseNext = iChoose + 1;
-				QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
-					, {
-						"/Text/Game/Scripts/ArtiManage/NotAtTownGate/QuestionChooseType"..iChoose..".txt"
-						;strText1=strText1
-						,strText2=strText2
-						,strText3=strText3
-						,strText4=strText4
-						,strText5=strText5
-						,strText6=strText6
-					}
-					, strFuncCb.."('"..strHero.."')"
-					, "TTH_Func_ArtiManage_NotAtTownGateChosen('"..strHero.."','"..iChooseNext.."')");
-			else
-				QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
-					, {
-						"/Text/Game/Scripts/ArtiManage/NotAtTownGate/QuestionChooseType"..iChoose..".txt"
-						;strText1=strText1
-						,strText2=strText2
-						,strText3=strText3
-						,strText4=strText4
-						,strText5=strText5
-						,strText6=strText6
-					}
-					, strFuncCb.."('"..strHero.."')"
-					, "TTH_Func_ArtiManage_Giveup('"..strHero.."')");
-			end;
-			TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_NotAtTownGateChosen-end', iPlayer, strHero);
-		end;
-
-		-- 2.1~2.3.资源宝物（资源矿加成）可累积
-			-- 地图所有矿生成集合
-	      TTH_MINE = {};
-	      function TTH_Func_InitMine()
-	      	TTH_Func_GeneMineBean("BUILDING_SAWMILL", WOOD, ARTIFACT_RES_BASIC);
-	      	TTH_Func_GeneMineBean("BUILDING_ORE_PIT", ORE, ARTIFACT_RES_BASIC);
-	      	TTH_Func_GeneMineBean("BUILDING_ALCHEMIST_LAB", MERCURY, ARTIFACT_RES_ADVANCED);
-	      	TTH_Func_GeneMineBean("BUILDING_CRYSTAL_CAVERN", CRYSTAL, ARTIFACT_RES_ADVANCED);
-	      	TTH_Func_GeneMineBean("BUILDING_SULFUR_DUNE", SULFUR, ARTIFACT_RES_ADVANCED);
-	      	TTH_Func_GeneMineBean("BUILDING_GEM_POND", GEM, ARTIFACT_RES_ADVANCED);
-	      	TTH_Func_GeneMineBean("BUILDING_GOLD_MINE", GOLD, ARTIFACT_RES_EXPERT);
-	      end;
-	      function TTH_Func_GeneMineBean(strMineType, enumMineType, idMineBonusArti)
-	      	local arrMine = GetObjectNamesByType(strMineType);
-	      	for indexMine, objMine in arrMine do
-	      	  TTH_MINE[objMine] = {};
-	      	  TTH_MINE[objMine]["Id"] = objMine;
-	      	  TTH_MINE[objMine]["MineType"] = enumMineType; 
-	      	  TTH_MINE[objMine]["BonusArti"] = idMineBonusArti; 
-	      	  TTH_MINE[objMine]["BonusUsed"] = 0; 
-	      	  TTH_MINE[objMine]["BonusLevel"] = 0; 
-	      	end;
-	      end;
-	      TTH_Func_InitMine();
-
-	    -- 资源宝物加成表
-	      TTH_TABLE_ARTIFACT_RES_BONUS = {
-	        ["ArtifactId"] = {
-	          [0] = ARTIFACT_RES_BASIC
-	          , [1] = ARTIFACT_RES_BASIC
-	          , [2] = ARTIFACT_RES_ADVANCED
-	          , [3] = ARTIFACT_RES_ADVANCED
-	          , [4] = ARTIFACT_RES_ADVANCED
-	          , [5] = ARTIFACT_RES_ADVANCED
-	          , [6] = ARTIFACT_RES_EXPERT
-	        }
-	        , ["Name"] = {
-	          [0] = "/Text/Game/Artifacts/Res_Basic/Name.txt"
-	          , [1] = "/Text/Game/Artifacts/Res_Basic/Name.txt"
-	          , [2] = "/Text/Game/Artifacts/Res_Advanced/Name.txt"
-	          , [3] = "/Text/Game/Artifacts/Res_Advanced/Name.txt"
-	          , [4] = "/Text/Game/Artifacts/Res_Advanced/Name.txt"
-	          , [5] = "/Text/Game/Artifacts/Res_Advanced/Name.txt"
-	          , [6] = "/Text/Game/Artifacts/Res_Expert/Name.txt"
-	        }
-	        , ["Desc"] = {
-	          [0] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Res_Wood.txt"
-	          , [1] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Res_Ore.txt"
-	          , [2] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Res_Mercury.txt"
-	          , [3] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Res_Crystal.txt"
-	          , [4] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Res_Sulphur.txt"
-	          , [5] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Res_Gem.txt"
-	          , [6] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Res_Gold.txt"
-	        }
-	        , ["Tooltip"] = {
-	          [0] = {
-	            [0] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Wood_0.txt"
-	            , [1] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Wood_1.txt"
-	            , [2] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Wood_2.txt"
-	            , [3] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Wood_3.txt"
-	            , [4] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Wood_4.txt"
-	          }
-	          , [1] = {
-	            [0] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Ore_0.txt"
-	            , [1] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Ore_1.txt"
-	            , [2] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Ore_2.txt"
-	            , [3] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Ore_3.txt"
-	            , [4] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Ore_4.txt"
-	          }
-	          , [2] = {
-	            [0] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Mercury_0.txt"
-	            , [1] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Mercury_1.txt"
-	            , [2] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Mercury_2.txt"
-	            , [3] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Mercury_3.txt"
-	            , [4] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Mercury_4.txt"
-	          }
-	          , [3] = {
-	            [0] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Crystal_0.txt"
-	            , [1] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Crystal_1.txt"
-	            , [2] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Crystal_2.txt"
-	            , [3] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Crystal_3.txt"
-	            , [4] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Crystal_4.txt"
-	          }
-	          , [4] = {
-	            [0] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Sulphur_0.txt"
-	            , [1] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Sulphur_1.txt"
-	            , [2] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Sulphur_2.txt"
-	            , [3] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Sulphur_3.txt"
-	            , [4] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Sulphur_4.txt"
-	          }
-	          , [5] = {
-	            [0] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Gem_0.txt"
-	            , [1] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Gem_1.txt"
-	            , [2] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Gem_2.txt"
-	            , [3] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Gem_3.txt"
-	            , [4] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Gem_4.txt"
-	          }
-	          , [6] = {
-	            [0] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Gold_0.txt"
-	            , [1] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Gold_1.txt"
-	            , [2] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Gold_2.txt"
-	            , [3] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Gold_3.txt"
-	            , [4] = "/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/Tooltip_Gold_4.txt"
-	          }
-	        }
-	      };
-
-			function TTH_Func_ArtiManage_NotAtTownGate_ResBasic(strHero)
-				TTH_Func_ArtiManage_NotAtTownGate_ResImpl(strHero, ARTIFACT_RES_BASIC);
-			end;
-			function TTH_Func_ArtiManage_NotAtTownGate_ResAdvanced(strHero)
-				TTH_Func_ArtiManage_NotAtTownGate_ResImpl(strHero, ARTIFACT_RES_ADVANCED);
-			end;
-			function TTH_Func_ArtiManage_NotAtTownGate_ResExpert(strHero)
-				TTH_Func_ArtiManage_NotAtTownGate_ResImpl(strHero, ARTIFACT_RES_EXPERT);
-			end;
-			function TTH_Func_ArtiManage_NotAtTownGate_ResImpl(strHero, strChoose)
-				local iPlayer = GetObjectOwner(strHero);
-				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_NotAtTownGate_ResImpl-begin', iPlayer, strHero, strHero, strChoose);
-				local iChoose = strChoose * 1;
-				local strText = TTH_TABLE_ArtiManage_NotAtTownGateOption[iChoose]["Text"];
-				local strEffect = TTH_TABLE_ArtiManage_NotAtTownGateOption[iChoose]["Effect"];
-				local iArti = TTH_TABLE_ArtiManage_NotAtTownGateOption[iChoose]["Arti"];
-				if HasArtefact(strHero, iArti, 0) ~= nil then
-					local bIsNearByMine = 0;
-					for indexMine, objMine in TTH_MINE do
-				    local strMineId = objMine["Id"];
-					  if GetObjectOwner(strMineId) == iPlayer and H55_GetDistance(strHero, strMineId) <= 5 and iArti == objMine["BonusArti"] then
-					  	bIsNearByMine = 1;
-					    local iBonusUsed = objMine["BonusUsed"];
-					    local iBonusLevel = objMine["BonusLevel"];
-					    local iMineType = objMine["MineType"];
-					    local iCurrentBonusLevel = iBonusLevel + 1;
-					    local iArtifactId = TTH_TABLE_ARTIFACT_RES_BONUS["ArtifactId"][iMineType];
-					    local strName = TTH_TABLE_ARTIFACT_RES_BONUS["Name"][iMineType];
-					    local strDesc = TTH_TABLE_ARTIFACT_RES_BONUS["Desc"][iMineType];
-					    QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
-					    	, {
-						    	"/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/TTH_QB_BonusMine_or_Giveup.txt"
-						    	;name=strName
-						    	,desc=strDesc
-						    	,used=iBonusUsed
-						    	,level=iCurrentBonusLevel
-						    }
-						    , "TTH_Func_ArtiManage_NotAtTownGate_ResDeal('"..strHero.."','"..strMineId.."','"..iArtifactId.."')"
-						    , "TTH_Func_ArtiManage_Giveup('"..strHero.."')");
-					    return 1;
-					  end;
-					end;
-					if bIsNearByMine == 0 then
-						MessageBoxForPlayers(GetPlayerFilter(iPlayer)
-							, {
-								"/Text/Game/Scripts/ArtiManage/NotAtTownGate/MsgNotNearByMine.txt"
-								;strText=strText
-							}
-							, nil);
-					end;
-				else
-					MessageBoxForPlayers(GetPlayerFilter(iPlayer)
-						, {
-							"/Text/Game/Scripts/ArtiManage/NotAtTownGate/MsgNoCorrespondArti.txt"
-							;strText=strText
-						}
-						, nil);
-				end;
-				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_NotAtTownGate_ResImpl-end', iPlayer, strHero);
-			end;
-			function TTH_Func_ArtiManage_NotAtTownGate_ResDeal(strHero, strMineId, strArtifactId)
-				local iPlayer = GetObjectOwner(strHero);
-				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_NotAtTownGate_ResDeal-begin', iPlayer, strHero, strHero, strMineId, strArtifactId);
-				local objMine = TTH_MINE[strMineId];
-				local iMineType = objMine["MineType"];
-				local iArtifactId = TTH_TABLE_ARTIFACT_RES_BONUS["ArtifactId"][iMineType];
-			  RemoveArtefact(strHero, iArtifactId);
-		    objMine['BonusUsed'] = objMine['BonusUsed'] + 1;
-		    local iUsed = objMine['BonusUsed'];
-		    if iUsed >= 1 and iUsed < 3 then
-		      objMine['BonusLevel'] = 1;
-		    elseif iUsed >= 3 and iUsed < 6 then
-		      objMine['BonusLevel'] = 2;
-		    elseif iUsed >= 6 and iUsed < 10 then
-		      objMine['BonusLevel'] = 3;
-		    elseif iUsed == 10 then
-		      objMine['BonusLevel'] = 4;
-		    end;
-			  local iBonusUsed = objMine["BonusUsed"];
-			  local iBonusLevel = objMine["BonusLevel"];
-			  local iCurrentBonusLevel = iBonusLevel + 1;
-			  local strName = TTH_TABLE_ARTIFACT_RES_BONUS["Name"][iMineType];
-			  local strDesc = TTH_TABLE_ARTIFACT_RES_BONUS["Desc"][iMineType];
-			  OverrideObjectTooltipNameAndDescription(strMineId, "", TTH_TABLE_ARTIFACT_RES_BONUS["Tooltip"][iMineType][objMine['BonusLevel']]);
-			  MessageBoxForPlayers(GetPlayerFilter(iPlayer)
-			  	, {
-				  	"/Text/Game/Scripts/ArtiManage/NotAtTownGate/MineBonus/TTH_MB_Success.txt"
-			    	;name=strName
-			    	,desc=strDesc
-			    	,used=iBonusUsed
-			    	,level=iCurrentBonusLevel
-			    }
-			    , nil);
-				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_NotAtTownGate_ResDeal-end', iPlayer, strHero);
-			end;
-
-		-- 2.4.征兵令（消耗类）→立刻获取当前第一格生物一周的产量
-			function TTH_Func_ArtiManage_NotAtTownGate_OrderOfConscription(strHero)
-				local iPlayer = GetObjectOwner(strHero);
-				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_NotAtTownGate_OrderOfConscription-begin', iPlayer, strHero, strHero);
-				local strText = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_ORDER_OF_CONSCRIPTION]["Text"];
-				local strEffect = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_ORDER_OF_CONSCRIPTION]["Effect"];
-				local iArti = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_ORDER_OF_CONSCRIPTION]["Arti"];
-				if HasArtefact(strHero, iArti, 0) ~= nil then
-					local listCreatureType = H55_ArmyInfoSimple(strHero);
-					local iCreatureId = listCreatureType[0];
-					local iGrowth = TTH_TABLE_NCF_CREATURES[iCreatureId]["GROWTH"];
-					local strName = TTH_TABLE_NCF_CREATURES[iCreatureId]["NAME"];
-					QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
-						, {
-							"/Text/Game/Scripts/ArtiManage/NotAtTownGate/OrderOfConscription/TTH_QB_UseOrderOfConscription_or_Close.txt"
-							;strCreatureName=strName
-							,strArtiName=strText
-							,iCreatureNumber=iGrowth
-						}
-						,	"TTH_Func_ArtiManage_NotAtTownGate_OrderOfConscription_Deal('"..strHero.."','"..iArti.."','"..iCreatureId.."','"..iGrowth.."')"
-			    	, nil);
-				else
-					MessageBoxForPlayers(GetPlayerFilter(iPlayer)
-						, {
-							"/Text/Game/Scripts/ArtiManage/NotAtTownGate/MsgNoCorrespondArti.txt"
-							;strText=strText
-						}
-						, nil);
-				end;
-				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_NotAtTownGate_OrderOfConscription-end', iPlayer, strHero);
-			end;
-			function TTH_Func_ArtiManage_NotAtTownGate_OrderOfConscription_Deal(strHero, strArtifactId, strCreatureId, strGrowth)
-				local iPlayer = GetObjectOwner(strHero);
-				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_NotAtTownGate_OrderOfConscription-begin', iPlayer, strHero, strHero, strArtifactId, strCreatureId, strGrowth);
-				local iArtifactId = strArtifactId + 0;
-				local iCreatureId = strCreatureId + 0;
-				local iGrowth = strGrowth + 0;
-			  RemoveArtefact(strHero, iArtifactId);
-				AddHeroCreatures(strHero, iCreatureId, iGrowth);
-				ShowFlyingSign({"/Text/Game/Scripts/Join.txt"; num = iGrowth}, strHero, iPlayer, 5);
-				sleep(4);
-				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_NotAtTownGate_OrderOfConscription-end', iPlayer, strHero);
-			end;
-		
-		-- 2.5.幻影宝石
-			TTH_DATA_GemOfPhantom = {};
-			function TTH_Func_ArtiManage_NotAtTownGate_GemOfPhantom(strHero)
-				local iPlayer = GetObjectOwner(strHero);
-				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_NotAtTownGate_GemOfPhantom-begin', iPlayer, strHero, strHero);
-				local strText = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_GEM_OF_PHANTOM]["Text"];
-				local strEffect = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_GEM_OF_PHANTOM]["Effect"];
-				local iArti = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_GEM_OF_PHANTOM]["Arti"];
-
-				if HasArtefact(strHero, iArti, 1) ~= nil then
-					if TTH_DATA_GemOfPhantom[iPlayer] == nil then
-						TTH_DATA_GemOfPhantom[iPlayer] = {};
-					end;
-					if TTH_DATA_GemOfPhantom[iPlayer][H55_Day] ~= nil then
-						local iRecordCreatureId = TTH_DATA_GemOfPhantom[iPlayer]["CreatureId"];
-						local strRecordCreatureName = TTH_TABLE_NCF_CREATURES[iRecordCreatureId]["NAME"];
-						local iRecordCreatureNum = TTH_DATA_GemOfPhantom[iPlayer]["CreatureNum"];
-						MessageBoxForPlayers(GetPlayerFilter(iPlayer)
-							, {
-								"/Text/Game/Scripts/ArtiManage/NotAtTownGate/GemOfPhantom/TTH_MB_HasUsedToday.txt"
-								;strText=strText
-								,strRecordCreatureName=strRecordCreatureName
-								,iRecordCreatureNum=iRecordCreatureNum
-							}
-							, nil);
-						return 0;
-					end;
-					local iPreRecordCreatureId = TTH_DATA_GemOfPhantom[iPlayer]["CreatureId"];
-					local strPreRecordCreatureName = "";
-					if iPreRecordCreatureId ~= nil then
-						strPreRecordCreatureName = TTH_TABLE_NCF_CREATURES[iPreRecordCreatureId]["NAME"];
-					end;
-					local iPreRecordCreatureNum = TTH_DATA_GemOfPhantom[iPlayer]["CreatureNum"];
-					local listSlotCreatureId = {};
-					local listSlotCreatureNum = {};
-					listSlotCreatureId, listSlotCreatureNum = H55_ArmyInfo(strHero);
-					local iLenSlotCreature = length(listSlotCreatureId);
-					local iSlotCreatureId = listSlotCreatureId[0];
-					local iSlotCreatureNum = listSlotCreatureNum[0];
-					if iLenSlotCreature == 1 then
-						iSlotCreatureNum = iSlotCreatureNum - 1;
-					end;
-					local strSlotCreatureName = TTH_TABLE_NCF_CREATURES[iSlotCreatureId]["NAME"];
-					local iPostRecordCreatureId = 0;
-					local strPostRecordCreatureName = "";
-					local iPostRecordCreatureNum = 0;
-					if iPreRecordCreatureId == iSlotCreatureId then
-						iPostRecordCreatureId = iPreRecordCreatureId;
-						strPostRecordCreatureName = strPreRecordCreatureName;
-						iPostRecordCreatureNum = iPreRecordCreatureNum + iSlotCreatureNum;
-					else
-						iPostRecordCreatureId = iSlotCreatureId;
-						strPostRecordCreatureName = strSlotCreatureName;
-						iPostRecordCreatureNum = iSlotCreatureNum;
-					end;
-					QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
-						, {
-							"/Text/Game/Scripts/ArtiManage/NotAtTownGate/GemOfPhantom/TTH_QB_Use_or_Close.txt"
-							;strPreRecordCreatureName=strPreRecordCreatureName
-							,iPreRecordCreatureNum=iPreRecordCreatureNum
-							,strSlotCreatureName=strSlotCreatureName
-							,iSlotCreatureNum=iSlotCreatureNum
-							,strPostRecordCreatureName=strPostRecordCreatureName
-							,iPostRecordCreatureNum=iPostRecordCreatureNum
-						}
-						, "TTH_Func_ArtiManage_NotAtTownGate_GemOfPhantom_Deal('"..strHero.."','"..iSlotCreatureId.."','"..iSlotCreatureNum.."','"..iPostRecordCreatureId.."','"..iPostRecordCreatureNum.."')"
-						, nil);
-				else
-					MessageBoxForPlayers(GetPlayerFilter(iPlayer)
-						, {
-							"/Text/Game/Scripts/ArtiManage/NotAtTownGate/MsgNoCorrespondArti.txt"
-							;strText=strText
-						}
-						, nil);
-				end;
-				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_NotAtTownGate_GemOfPhantom-end', iPlayer, strHero);
-			end;
-			function TTH_Func_ArtiManage_NotAtTownGate_GemOfPhantom_Deal(strHero, strSlotCreatureId, strSlotCreatureNum, strPostRecordCreatureId, strPostRecordCreatureNum)
-				local iPlayer = GetObjectOwner(strHero);
-				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_NotAtTownGate_GemOfPhantom_Deal-begin', iPlayer, strHero, strHero, strSlotCreatureId, strSlotCreatureNum, strPostRecordCreatureId, strPostRecordCreatureNum);
-				local iSlotCreatureId = strSlotCreatureId + 0;
-				local iSlotCreatureNum = strSlotCreatureNum + 0;
-				local iPostRecordCreatureId = strPostRecordCreatureId + 0;
-				local iPostRecordCreatureNum = strPostRecordCreatureNum + 0;
-				local strRecordCreatureName = TTH_TABLE_NCF_CREATURES[iPostRecordCreatureId]["NAME"];
-				local iRecordCreatureNum = iPostRecordCreatureNum;
-				RemoveHeroCreatures(strHero, iSlotCreatureId, iSlotCreatureNum);
-				TTH_DATA_GemOfPhantom[iPlayer]["CreatureId"] = iPostRecordCreatureId;
-				TTH_DATA_GemOfPhantom[iPlayer]["CreatureNum"] = iPostRecordCreatureNum;
-				TTH_DATA_GemOfPhantom[iPlayer][H55_Day] = 1;
-				MessageBoxForPlayers(GetPlayerFilter(iPlayer)
-					, {
-						"/Text/Game/Scripts/ArtiManage/NotAtTownGate/GemOfPhantom/TTH_MB_Success.txt"
-						;strRecordCreatureName=strRecordCreatureName
-						,iRecordCreatureNum=iRecordCreatureNum
-					}
-					, nil);
-				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_NotAtTownGate_GemOfPhantom_Deal-end', iPlayer, strHero);
-			end;
-
-		-- 2.6.皇家遗物
-			function TTH_Func_ArtiManage_NotAtTownGate_MaskOfDoppelganger(strHero)
-				local iPlayer = GetObjectOwner(strHero);
-				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_NotAtTownGate_MaskOfDoppelganger-begin', iPlayer, strHero, strHero);
-				local strText = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_MASK_OF_DOPPELGANGER]["Text"];
-				local strEffect = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_MASK_OF_DOPPELGANGER]["Effect"];
-				local iArti = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_MASK_OF_DOPPELGANGER]["Arti"];
-
-				if HasArtefact(strHero, iArti, 0) ~= nil then
-					local iExp = 500 * 1000;
-					QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
-						, {
-							"/Text/Game/Scripts/ArtiManage/NotAtTownGate/MaskOfDoppelganger/TTH_QB_Use_or_Close.txt"
-							;strText=strText
-							,iExp=iExp
-						}
-						, "TTH_Func_ArtiManage_NotAtTownGate_MaskOfDoppelganger_Deal('"..strHero.."')"
-						, nil);
-				else
-					MessageBoxForPlayers(GetPlayerFilter(iPlayer)
-						, {
-							"/Text/Game/Scripts/ArtiManage/NotAtTownGate/MsgNoCorrespondArti.txt"
-							;strText=strText
-						}
-						, nil);
-				end;
-				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_NotAtTownGate_MaskOfDoppelganger-end', iPlayer, strHero);
-			end;
-			function TTH_Func_ArtiManage_NotAtTownGate_MaskOfDoppelganger_Deal(strHero)
-				local iPlayer = GetObjectOwner(strHero);
-				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_NotAtTownGate_MaskOfDoppelganger_Deal-begin', iPlayer, strHero, strHero);
-				local strText = TTH_TABLE_ArtiManage_NotAtTownGateOption[ARTIFACT_MASK_OF_DOPPELGANGER]["Text"];
-				local iExp = 500 * 1000;
-        RemoveArtefact(strHero, ARTIFACT_MASK_OF_DOPPELGANGER);
-        GiveExp(strHero, iExp);
-				MessageBoxForPlayers(GetPlayerFilter(iPlayer)
-					, {
-						"/Text/Game/Scripts/ArtiManage/NotAtTownGate/MaskOfDoppelganger/TTH_MB_Success.txt"
-						;strText=strText
-						,iExp=iExp
-					}
-					, nil);
-				TTH_DEBUG.recordFuncInfo('TTH_Func_ArtiManage_NotAtTownGate_MaskOfDoppelganger_Deal-end', iPlayer, strHero);
-			end;
--- end
-
--- by 牙姐 2018-9-12 17:52:38
--- begin 开局选择宝物
-	TTH_ARTIFACT_STARTING = {
-		[0] = ARTIFACT_RES_BASIC
-		, [1] = ARTIFACT_LEGION_BASIC
-		, [2] = ARTIFACT_SWORD_OF_RUINS
-		, [3] = ARTIFACT_BREASTPLATE_OF_PETRIFIED_WOOD
-		, [4] = ARTIFACT_SKULL_HELMET
-		, [5] = ARTIFACT_WISPERING_RING
-		, [6] = ARTIFACT_BEGINNER_MAGIC_STICK
-		, [7] = ARTIFACT_EDGE_OF_BALANCE
-		, [8] = ARTIFACT_STEADFAST
-		, [9] = ARTIFACT_BUCKLER
-		, [10] = ARTIFACT_FOUR_LEAF_CLOVER
-		, [11] = ARTIFACT_GOLDEN_SEXTANT
-		, [12] = ARTIFACT_CROWN_OF_MANY_EYES
-		, [13] = ARTIFACT_RING_OF_LIGHTING_PROTECTION
-		, [14] = ARTIFACT_BOOTS_OF_INTERFERENCE
-		, [15] = ARTIFACT_RIGID_MANTLE
-		, [16] = ARTIFACT_BEARHIDE_WRAPS
-		, [17] = ARTIFACT_RING_OF_UNSUMMONING
-		, [18] = ARTIFACT_RES_ADVANCED
-		, [19] = ARTIFACT_LEGION_ADVANCED		
-		, [20] = ARTIFACT_ORDER_OF_CONSCRIPTION
-		, [21] = ARTIFACT_TITANS_TRIDENT
-		, [22] = ARTIFACT_RING_OF_LIFE
-		, [23] = ARTIFACT_EVERCOLD_ICICLE
-		, [24] = ARTIFACT_ENDLESS_SACK_OF_GOLD
-		, [25] = ARTIFACT_PHOENIX_FEATHER_CAPE
-		, [26] = ARTIFACT_VALORIOUS_ARMOR
-		, [27] = ARTIFACT_EARTHSLIDERS
-		, [28] = ARTIFACT_TAROT_DECK
-		, [29] = ARTIFACT_REINCARNATION
-		, [30] = ARTIFACT_WEREWOLF_CLAW_NECKLACE
-		, [31] = ARTIFACT_CROWN_OF_LEADER
-		, [32] = ARTIFACT_NECKLACE_OF_BRAVERY
-		, [33] = ARTIFACT_LION_HIDE_CAPE
-		, [34] = ARTIFACT_HELM_OF_ENLIGHTMENT
-		, [35] = ARTIFACT_CHAIN_MAIL_OF_ENLIGHTMENT
-		, [36] = ARTIFACT_RING_OF_DEATH
-		, [37] = ARTIFACT_RUNIC_WAR_AXE
-		, [38] = ARTIFACT_RUNIC_WAR_HARNESS
-		, [39] = ARTIFACT_TREEBORN_QUIVER
-		, [40] = ARTIFACT_MONK_01
-		, [41] = ARTIFACT_MONK_02
-		, [42] = ARTIFACT_MONK_03
-		, [43] = ARTIFACT_MONK_04
-	};
-	function TTH_Starting_ChooseArtifact(iPlayer)
-		if H55_ChooseArtifact_Switch == 1 and  contains(TTH_ARTIFACT_STARTING, H55_ChooseArtifact_ID) ~= nil then
-			if (GetPlayerState(iPlayer) == 1) then
-				for indexArtifact, objArtifact in TTH_ARTIFACT_STARTING do
-					local arrHero = GetPlayerHeroes(iPlayer);
-					for indexHero, strHero in arrHero do
-						if HasArtefact(strHero, objArtifact, 0) ~= nil or HasArtefact(strHero, objArtifact, 1) ~= nil then
-							RemoveArtefact(strHero, objArtifact);
-							GiveArtefact(strHero, H55_ChooseArtifact_ID);
-							print("Chosen artifact has been given");
-							return nil;
-						end;
-					end;
-				end;
-			end;
-		end;
-	end;
-	function TTH_Starting_Resource(iPlayer)
-		if H55_PlayerStartResource == 0 then
-			if (GetPlayerState(iPlayer) == 1) then
-				SetPlayerResource(iPlayer, 0, 0);
-				SetPlayerResource(iPlayer, 1, 0);
-				SetPlayerResource(iPlayer, 2, 0);
-				SetPlayerResource(iPlayer, 3, 0);
-				SetPlayerResource(iPlayer, 4, 0);
-				SetPlayerResource(iPlayer, 5, 0);
-				SetPlayerResource(iPlayer, 6, 0);
-				print("Player's resource has been token");
-				return nil;
-			end;
-		end;
-	end;
-	function TTH_Init()
-		SetGameVar('H55SMOD_Var_Ability_Ildar', 'light');
-		H55SMOD_HeroAbility['Ildar'] = 'light';
-	end;
--- end
-
--- by 牙姐 2018-10-16 16:28:58
--- begin 英雄自定义主动技能1~3
-	function TTH_HeroCustomAbility1(strHero)
-		print("press the button TTH_HeroCustomAbility1");
-	end;
-	function TTH_HeroCustomAbility2(strHero)
-		print("press the button TTH_HeroCustomAbility2");
-	end;
-	function TTH_HeroCustomAbility3(strHero)
-		if contains(TTH_TABLE_HeroCustomAbility_CastCreature, strHero) ~= nil then
-			TTH_HeroCustomAbility_CastCreature(strHero);
-		end;
-		if strHero == "Sheltem" then
-			TTH_HeroCustomAbility_Sheltem(strHero);
-		end;
-		if strHero == "Nathaniel" then
-			TTH_HeroCustomAbility_Nathaniel(strHero);
-		end;
-		if strHero == "Maahir" then
-			TTH_HeroCustomAbility_Maahir(strHero);
-		end;
-		if strHero == "Straker" then
-			TTH_HeroCustomAbility_Straker(strHero);
-		end;
-		if strHero == "Ildar" then
-			TTH_HeroCustomAbility_Ildar(strHero);
-		end;
-		if strHero == "Crag" then
-			TTH_HeroCustomAbility_Crag(strHero);
-		end;
-		if strHero == "Cyrus" then
-			TTH_HeroCustomAbility_Cyrus(strHero);
-		end;
-	end;
-
-	function TTH_HeroCustomAbility(strHero, CUSTOM_ABILITY_ID)
-		if CUSTOM_ABILITY_ID == CUSTOM_ABILITY_4 then
-			TTH_FunctionManagement(strHero)
-		elseif CUSTOM_ABILITY_ID == CUSTOM_ABILITY_3 then
-			TTH_HeroCustomAbility3(strHero);
-		elseif CUSTOM_ABILITY_ID == CUSTOM_ABILITY_2 then
-			TTH_HeroCustomAbility2(strHero);
-		elseif CUSTOM_ABILITY_ID == CUSTOM_ABILITY_1 then
-			TTH_HeroCustomAbility1(strHero);
-		end;
-	end;
--- end
-
--- by 牙姐 2018-10-16 19:04:34
--- begin 转化生物技能
-	function TTH_COMMIN_CAST_CREATURE(strHero, iTypeBefore, iCountBefore, iTypeAfter, iCountAfter)
-		local type, count = H55_ArmyInfo(strHero);
-		if count[6] == 0 then
-			AddHeroCreatures(strHero, iTypeAfter, iCountAfter);
-			sleep(1);
-			RemoveHeroCreatures(strHero, iTypeBefore, iCountBefore);
-			sleep(1);
-		else
-			RemoveHeroCreatures(strHero, iTypeBefore, iCountBefore);
-			sleep(1);
-			AddHeroCreatures(strHero, iTypeAfter, iCountAfter);
-			sleep(1);
-		end;
-	end;
-
-	function TTH_HeroCustomAbility_CastCreature(strHero)
-		print("---------------------------------------------------------------------");
-		print("TTH "..strHero.." Event begin");
-
-		local iPlayer = GetObjectOwner(strHero);
-		local iType, iCount = H55_ArmyInfo(strHero);
-		local iHeroLevel = GetHeroLevel(strHero);
-
-		-- 英雄主动技能是否在CD中
-		if TTH_HeroCustomAbility_CastCreature_GCD[strHero] > 0 then
-			MessageBoxForPlayers(GetPlayerFilter(iPlayer), {"/Text/Game/Scripts/HeroCustomAbility/CastCreatureWithoutGCD.txt";iGcd=TTH_HeroCustomAbility_CastCreature_GCD[strHero]}, "" ,"");
-			print(strHero.." custom ability3 not as expected GCD");
-		-- 若可使用，则进入转化流程
-		else
-			-- 获取玩家资源
-			local arrResPlayer = {};
-			arrResPlayer[WOOD] = GetPlayerResource(iPlayer, WOOD);
-			arrResPlayer[ORE] = GetPlayerResource(iPlayer, ORE);
-			arrResPlayer[MERCURY] = GetPlayerResource(iPlayer, MERCURY);
-			arrResPlayer[CRYSTAL] = GetPlayerResource(iPlayer, CRYSTAL);
-			arrResPlayer[SULFUR] = GetPlayerResource(iPlayer, SULFUR);
-			arrResPlayer[GEM] = GetPlayerResource(iPlayer, GEM);
-			arrResPlayer[GOLD] = GetPlayerResource(iPlayer, GOLD);
-
-			local iMatch = 0;
-			local arrCreatureNecessary = {};
-			-- 遍历转化表
-			for iIndex, objItem in TTH_TABLE_CastCreature[strHero]["CAST_MAP"] do
-				-- 若英雄等级满足要求
-				if iHeroLevel >= objItem["NECESSARY_HERO_LEVEL_MIN"] and iHeroLevel <= objItem["NECESSARY_HERO_LEVEL_MAX"] then
-					-- 若兵力槽1中的生物ID存在于转化表中
-					if iType[0] == objItem["BEFORE_CREATURE_ID"] then
-						iMatch = 1;
-						-- 根据 转化前后生物比例 计算 可转化生物数量
-						local iCountCreature8CastScaleCreature = H55_Floor(iCount[0] / objItem["CAST_SCALE_CREATURE"]);
-						-- 根据 英雄等级 计算 可转化生物数量（至少为1）
-						local iCountCreature8CastScaleHero = H55_Ceil(iHeroLevel / objItem["CAST_SCALE_HERO"]);
-						if iCountCreature8CastScaleHero < 1 then
-							iCountCreature8CastScaleHero = 1;
-						end;
-						-- 根据 玩家资源及转化单个生物消耗 计算 可转化生物数量
-						local arrRes = {};
-						for i = 0, 6 do
-							if objItem["RESOURCE"][i] == 0 then
-								arrRes[i] = TTH_NUM_MAX;
-							else
-								arrRes[i] = H55_Floor(arrResPlayer[i] / objItem["RESOURCE"][i]);
-							end;
-						end;
-						local iCountCreature8Resource = TTH_COMMON_MIN(arrRes);
-						-- 取3个转化生物数量的最小值，若>0，则进行转化，并扣除资源，包含关联转化
-						local iCountMinCreature = TTH_COMMON_MIN({iCountCreature8CastScaleCreature, iCountCreature8CastScaleHero, iCountCreature8Resource});
-						if iCountMinCreature > 0 then
-							-- 扣除资源
-							for i = 0, 6 do
-								if objItem["RESOURCE"][i] * iCountMinCreature > 0 then
-									SetPlayerResource(iPlayer, i, arrResPlayer[i] - objItem["RESOURCE"][i] * iCountMinCreature, strHero);
-								end;
-							end;
-
-							-- 重置转化CD
-							TTH_HeroCustomAbility_CastCreature_GCD[strHero] = TTH_TABLE_CastCreature[strHero]["GCD"];
-							print('Gcd-used:'..TTH_HeroCustomAbility_CastCreature_GCD[strHero]);
-
-							-- 执行转化并提示成功
-							TTH_COMMIN_CAST_CREATURE(strHero, iType[0], iCountMinCreature * objItem["CAST_SCALE_CREATURE"], objItem["AFTER_CREATURE_ID"], iCountMinCreature);
-							MessageBoxForPlayers(GetPlayerFilter(iPlayer), {
-								"/Text/Game/Scripts/HeroCustomAbility/CastCreatureSuccess.txt"
-								;strCreatureBefore=TTH_TABLE_NCF_CREATURES[iType[0]]["NAME"]
-								,strCreatureAfter=TTH_TABLE_NCF_CREATURES[objItem["AFTER_CREATURE_ID"]]["NAME"]
-								,wood=objItem["RESOURCE"][0]*iCountMinCreature
-								,ore=objItem["RESOURCE"][1]*iCountMinCreature
-								,mercury=objItem["RESOURCE"][2]*iCountMinCreature
-								,crystal=objItem["RESOURCE"][3]*iCountMinCreature
-								,sulfur=objItem["RESOURCE"][4]*iCountMinCreature
-								,gem=objItem["RESOURCE"][5]*iCountMinCreature
-								,gold=objItem["RESOURCE"][6]*iCountMinCreature
-								,iCountBeforeCreature=iCountCreature8CastScaleCreature
-								,iCountHeroLevel=iCountCreature8CastScaleHero
-								,iCountRec=iCountCreature8Resource
-								,iCountMin=iCountMinCreature
-							}, "" ,"");
-
-							-- 若存在关联转化，则免费转化
-							if objItem["LINK_CREATURE_ID"] ~= nil then
-								for i = 0, 6 do
-									for jIndex, jObjItem in objItem["LINK_CREATURE_ID"] do
-										if iType[i] == jObjItem then
-											TTH_COMMIN_CAST_CREATURE(strHero, iType[i], iCount[i], objItem["AFTER_CREATURE_ID"], iCount[i]);
-										end;
-									end;
-								end;
-							end;
-
-							print(strHero.." custom ability3 has been used");
-						-- 提示失败原因
-						else
-							if iCountCreature8Resource == 0 then
-								MessageBoxForPlayers(GetPlayerFilter(iPlayer), "/Text/Game/Scripts/HeroCustomAbility/CastCreatureFailure8Resource.txt", "" ,"");
-								print(strHero.." custom ability3 is failure by not enough resource");
-							elseif iCountCreature8CastScaleCreature == 0 then
-								MessageBoxForPlayers(GetPlayerFilter(iPlayer), "/Text/Game/Scripts/HeroCustomAbility/CastCreatureFailure8CastScaleCreature.txt", "" ,"");
-								print(strHero.." custom ability3 is failure by not enough creature");
-							end;
-						end;
-					-- 若不存在，则将转化表中的生物ID记录
-					else
-						arrCreatureNecessary[length(arrCreatureNecessary)] = objItem["BEFORE_CREATURE_ID"];
-					end;
-				end;
-			end;
-
-			-- 若兵力槽1中的生物ID不在所有满足要求的转化表中，则提示
-			if iMatch == 0 then
-				for i = 0, 19 do
-					if arrCreatureNecessary[i] == nil then
-						arrCreatureNecessary[i] = 0;
-					end;
-				end
-				MessageBoxForPlayers(GetPlayerFilter(iPlayer), {
-					"/Text/Game/Scripts/HeroCustomAbility/CastCreatureFailure8NotSuitableCreature.txt"
-					;strCreature0=TTH_TABLE_NCF_CREATURES[arrCreatureNecessary[0]]["NAME"]
-					,strCreature1=TTH_TABLE_NCF_CREATURES[arrCreatureNecessary[1]]["NAME"]
-					,strCreature2=TTH_TABLE_NCF_CREATURES[arrCreatureNecessary[2]]["NAME"]
-					,strCreature3=TTH_TABLE_NCF_CREATURES[arrCreatureNecessary[3]]["NAME"]
-					,strCreature4=TTH_TABLE_NCF_CREATURES[arrCreatureNecessary[4]]["NAME"]
-					,strCreature5=TTH_TABLE_NCF_CREATURES[arrCreatureNecessary[5]]["NAME"]
-					,strCreature6=TTH_TABLE_NCF_CREATURES[arrCreatureNecessary[6]]["NAME"]
-					,strCreature7=TTH_TABLE_NCF_CREATURES[arrCreatureNecessary[7]]["NAME"]
-					,strCreature8=TTH_TABLE_NCF_CREATURES[arrCreatureNecessary[8]]["NAME"]
-					,strCreature9=TTH_TABLE_NCF_CREATURES[arrCreatureNecessary[9]]["NAME"]
-					,strCreature10=TTH_TABLE_NCF_CREATURES[arrCreatureNecessary[10]]["NAME"]
-					,strCreature11=TTH_TABLE_NCF_CREATURES[arrCreatureNecessary[11]]["NAME"]
-					,strCreature12=TTH_TABLE_NCF_CREATURES[arrCreatureNecessary[12]]["NAME"]
-					,strCreature13=TTH_TABLE_NCF_CREATURES[arrCreatureNecessary[13]]["NAME"]
-					,strCreature14=TTH_TABLE_NCF_CREATURES[arrCreatureNecessary[14]]["NAME"]
-					,strCreature15=TTH_TABLE_NCF_CREATURES[arrCreatureNecessary[15]]["NAME"]
-					,strCreature16=TTH_TABLE_NCF_CREATURES[arrCreatureNecessary[16]]["NAME"]
-					,strCreature17=TTH_TABLE_NCF_CREATURES[arrCreatureNecessary[17]]["NAME"]
-					,strCreature18=TTH_TABLE_NCF_CREATURES[arrCreatureNecessary[18]]["NAME"]
-					,strCreature19=TTH_TABLE_NCF_CREATURES[arrCreatureNecessary[19]]["NAME"]
-				}, "" ,"");
-				print(strHero.." custom ability3 is failure by not suitable creature");
-			end;
-		end;
-
-		print("TTH "..strHero.." Event end");
-		print("---------------------------------------------------------------------");
-	end;
--- end
-
--- by 牙姐 2018-10-17 11:14:47
--- begin 谢尔坦属性转化技能
-	function TTH_HeroCustomAbility_Sheltem(strHero)
-		print("---------------------------------------------------------------------");
-		print("TTH "..strHero.." Event begin");
-		local iPlayer = GetObjectOwner(strHero);
-		local iSpellPower = GetHeroStat(strHero, STAT_SPELL_POWER);
-		local iKnowledge = GetHeroStat(strHero, STAT_KNOWLEDGE);
-		local iChangeSpellPower = H55_Floor(iSpellPower / 2);
-		local iChangeKnowledge = H55_Floor(iKnowledge / 2);
-		QuestionBoxForPlayers(GetPlayerFilter(iPlayer), {
-			"/Text/Game/Scripts/HeroCustomAbility/Inferno_Sheltem.txt"
-			;iSpellPower=iSpellPower
-			,iKnowledge=iKnowledge
-			,iChangeSpellPower=iChangeSpellPower
-			,iChangeKnowledge=iChangeKnowledge
-		}, "TTH_HeroCustomAbility_Sheltem_Callback('"..strHero.."','0')" ,"TTH_HeroCustomAbility_Sheltem_Callback('"..strHero.."','1')");
-		ControlHeroCustomAbility(strHero, CUSTOM_ABILITY_3, CUSTOM_ABILITY_DISABLED);
-		print(strHero.." custom ability3 has been used");
-		print("TTH "..strHero.." Event end");
-		print("---------------------------------------------------------------------");
-	end;
-	function TTH_HeroCustomAbility_Sheltem_Callback(strHero, strStat)
-		if strStat == "0" then
-			local iSpellPower = GetHeroStat(strHero, STAT_SPELL_POWER);
-			local iChangeSpellPower = H55_Floor(iSpellPower / 2);
-			if iChangeSpellPower > 0 then
-				ChangeHeroStat(strHero, STAT_SPELL_POWER, iChangeSpellPower * -1);
-				ChangeHeroStat(strHero, STAT_KNOWLEDGE, iChangeSpellPower * 1);
-			end;
-		elseif strStat == "1" then
-			local iKnowledge = GetHeroStat(strHero, STAT_KNOWLEDGE);
-			local iChangeKnowledge = H55_Floor(iKnowledge / 2);
-			if iChangeKnowledge > 0 then
-				ChangeHeroStat(strHero, STAT_KNOWLEDGE, iChangeKnowledge * -1);
-				ChangeHeroStat(strHero, STAT_SPELL_POWER, iChangeKnowledge * 1);
-			end;
-		end;
-	end;
--- end
-
--- by 牙姐 2018-10-22 19:08:10
--- begin 埃兰妮额外建筑技能
-	TTH_TABLE_ExtraBuild_Nathaniel = {
-		["CONSUME"] = {
-			[0] = 1
-			, [1] = 2
-			, [2] = 106
-		}
-		, ["BUILDING"] = {
-			[0] = {
-				["ID"] = TOWN_BUILDING_TOWN_HALL
-				, ["LEVEL"] = 1
-				, ["NAME"] = "/Text/Game/Buildings/Heaven/TOWN_HALL_1.txt"
-				, ["ENABLE"] = 0
-				, ["RES"] = {
-					[WOOD] = 0
-					, [ORE] = 0
-					, [MERCURY] = 0
-					, [CRYSTAL] = 0
-					, [SULFUR] = 0
-					, [GEM] = 0
-					, [GOLD] = 0
-				}
-			}
-			, [1] = {
-				["ID"] = TOWN_BUILDING_TAVERN
-				, ["LEVEL"] = 1
-				, ["NAME"] = "/Text/Game/Buildings/Heaven/TOWN_BUILDING_TAVERN.txt"
-				, ["ENABLE"] = 1
-				, ["RES"] = {
-					[WOOD] = 5
-					, [ORE] = 0
-					, [MERCURY] = 0
-					, [CRYSTAL] = 0
-					, [SULFUR] = 0
-					, [GEM] = 0
-					, [GOLD] = 500
-				}
-			}
-			, [2] = {
-				["ID"] = TOWN_BUILDING_BLACKSMITH
-				, ["LEVEL"] = 1
-				, ["NAME"] = "/Text/Game/Buildings/Heaven/TOWN_BUILDING_BLACKSMITH.txt"
-				, ["ENABLE"] = 1
-				, ["RES"] = {
-					[WOOD] = 5
-					, [ORE] = 0
-					, [MERCURY] = 0
-					, [CRYSTAL] = 0
-					, [SULFUR] = 0
-					, [GEM] = 0
-					, [GOLD] = 1000
-				}
-			}
-			, [3] = {
-				["ID"] = TOWN_BUILDING_MARKETPLACE
-				, ["LEVEL"] = 1
-				, ["NAME"] = "/Text/Game/Buildings/Heaven/TOWN_BUILDING_MARKETPLACE_1.txt"
-				, ["ENABLE"] = 1
-				, ["RES"] = {
-					[WOOD] = 5
-					, [ORE] = 0
-					, [MERCURY] = 0
-					, [CRYSTAL] = 0
-					, [SULFUR] = 0
-					, [GEM] = 0
-					, [GOLD] = 500
-				}
-			}
-			, [4] = {
-				["ID"] = TOWN_BUILDING_DWELLING_1
-				, ["LEVEL"] = 1
-				, ["NAME"] = "/Text/Game/Buildings/Heaven/TOWN_BUILDING_DWELLING_1_1.txt"
-				, ["ENABLE"] = 1
-				, ["RES"] = {
-					[WOOD] = 0
-					, [ORE] = 0
-					, [MERCURY] = 0
-					, [CRYSTAL] = 0
-					, [SULFUR] = 0
-					, [GEM] = 0
-					, [GOLD] = 500
-				}
-			}
-			, [5] = {
-				["ID"] = TOWN_BUILDING_TOWN_HALL
-				, ["LEVEL"] = 2
-				, ["NAME"] = "/Text/Game/Buildings/Heaven/TOWN_HALL_2.txt"
-				, ["ENABLE"] = 1
-				, ["RES"] = {
-					[WOOD] = 0
-					, [ORE] = 0
-					, [MERCURY] = 0
-					, [CRYSTAL] = 0
-					, [SULFUR] = 0
-					, [GEM] = 0
-					, [GOLD] = 2000
-				}
-			}
-			, [6] = {
-				["ID"] = TOWN_BUILDING_DWELLING_2
-				, ["LEVEL"] = 1
-				, ["NAME"] = "/Text/Game/Buildings/Heaven/TOWN_BUILDING_DWELLING_2_1.txt"
-				, ["ENABLE"] = 1
-				, ["RES"] = {
-					[WOOD] = 0
-					, [ORE] = 10
-					, [MERCURY] = 0
-					, [CRYSTAL] = 0
-					, [SULFUR] = 0
-					, [GEM] = 0
-					, [GOLD] = 1200
-				}
-			}
-			, [7] = {
-				["ID"] = TOWN_BUILDING_DWELLING_3
-				, ["LEVEL"] = 1
-				, ["NAME"] = "/Text/Game/Buildings/Heaven/TOWN_BUILDING_DWELLING_3_1.txt"
-				, ["ENABLE"] = 1
-				, ["RES"] = {
-					[WOOD] = 10
-					, [ORE] = 10
-					, [MERCURY] = 0
-					, [CRYSTAL] = 0
-					, [SULFUR] = 0
-					, [GEM] = 0
-					, [GOLD] = 1500
-				}
-			}
-			, [8] = {
-				["ID"] = TOWN_BUILDING_MAGIC_GUILD
-				, ["LEVEL"] = 1
-				, ["NAME"] = "/Text/Game/Buildings/Heaven/TOWN_BUILDING_MAGIC_GUILD_1.txt"
-				, ["ENABLE"] = 1
-				, ["RES"] = {
-					[WOOD] = 5
-					, [ORE] = 5
-					, [MERCURY] = 0
-					, [CRYSTAL] = 0
-					, [SULFUR] = 0
-					, [GEM] = 0
-					, [GOLD] = 2000
-				}
-			}
-			, [9] = {
-				["ID"] = TOWN_BUILDING_HAVEN_FARMS
-				, ["LEVEL"] = 1
-				, ["NAME"] = "/Text/Game/Buildings/Heaven/TOWN_BUILDING_HAVEN_FARMS.txt"
-				, ["ENABLE"] = 1
-				, ["RES"] = {
-					[WOOD] = 0
-					, [ORE] = 0
-					, [MERCURY] = 0
-					, [CRYSTAL] = 0
-					, [SULFUR] = 0
-					, [GEM] = 0
-					, [GOLD] = 1000
-				}
-			}
-			, [10] = {
-				["ID"] = TOWN_BUILDING_MARKETPLACE
-				, ["LEVEL"] = 2
-				, ["NAME"] = "/Text/Game/Buildings/Heaven/TOWN_BUILDING_MARKETPLACE_2.txt"
-				, ["ENABLE"] = 1
-				, ["RES"] = {
-					[WOOD] = 0
-					, [ORE] = 5
-					, [MERCURY] = 0
-					, [CRYSTAL] = 0
-					, [SULFUR] = 0
-					, [GEM] = 0
-					, [GOLD] = 5000
-				}
-			}
-			, [11] = {
-				["ID"] = TOWN_BUILDING_DWELLING_1
-				, ["LEVEL"] = 2
-				, ["NAME"] = "/Text/Game/Buildings/Heaven/TOWN_BUILDING_DWELLING_1_2.txt"
-				, ["ENABLE"] = 1
-				, ["RES"] = {
-					[WOOD] = 0
-					, [ORE] = 0
-					, [MERCURY] = 0
-					, [CRYSTAL] = 0
-					, [SULFUR] = 0
-					, [GEM] = 0
-					, [GOLD] = 1500
-				}
-			}
-			, [12] = {
-				["ID"] = TOWN_BUILDING_FORT
-				, ["LEVEL"] = 1
-				, ["NAME"] = "/Text/Game/Buildings/Heaven/TOWN_BUILDING_FORT_1.txt"
-				, ["ENABLE"] = 1
-				, ["RES"] = {
-					[WOOD] = 5
-					, [ORE] = 5
-					, [MERCURY] = 0
-					, [CRYSTAL] = 0
-					, [SULFUR] = 0
-					, [GEM] = 0
-					, [GOLD] = 5000
-				}
-			}
-			, [13] = {
-				["ID"] = TOWN_BUILDING_DWELLING_4
-				, ["LEVEL"] = 1
-				, ["NAME"] = "/Text/Game/Buildings/Heaven/TOWN_BUILDING_DWELLING_4_1.txt"
-				, ["ENABLE"] = 1
-				, ["RES"] = {
-					[WOOD] = 10
-					, [ORE] = 10
-					, [MERCURY] = 5
-					, [CRYSTAL] = 0
-					, [SULFUR] = 0
-					, [GEM] = 0
-					, [GOLD] = 2500
-				}
-			}
-			, [14] = {
-				["ID"] = TOWN_BUILDING_HAVEN_TRAINING_GROUNDS
-				, ["LEVEL"] = 1
-				, ["NAME"] = "/Text/Game/Buildings/Heaven/TOWN_BUILDING_HAVEN_TRAINING_GROUNDS.txt"
-				, ["ENABLE"] = 1
-				, ["RES"] = {
-					[WOOD] = 10
-					, [ORE] = 5
-					, [MERCURY] = 0
-					, [CRYSTAL] = 0
-					, [SULFUR] = 5
-					, [GEM] = 0
-					, [GOLD] = 3500
-				}
-			}
-			, [15] = {
-				["ID"] = TOWN_BUILDING_DWELLING_2
-				, ["LEVEL"] = 2
-				, ["NAME"] = "/Text/Game/Buildings/Heaven/TOWN_BUILDING_DWELLING_2_2.txt"
-				, ["ENABLE"] = 1
-				, ["RES"] = {
-					[WOOD] = 5
-					, [ORE] = 5
-					, [MERCURY] = 0
-					, [CRYSTAL] = 0
-					, [SULFUR] = 0
-					, [GEM] = 0
-					, [GOLD] = 2700
-				}
-			}
-			, [16] = {
-				["ID"] = TOWN_BUILDING_DWELLING_3
-				, ["LEVEL"] = 2
-				, ["NAME"] = "/Text/Game/Buildings/Heaven/TOWN_BUILDING_DWELLING_3_2.txt"
-				, ["ENABLE"] = 1
-				, ["RES"] = {
-					[WOOD] = 5
-					, [ORE] = 5
-					, [MERCURY] = 0
-					, [CRYSTAL] = 0
-					, [SULFUR] = 0
-					, [GEM] = 0
-					, [GOLD] = 3000
-				}
-			}
-			, [17] = {
-				["ID"] = TOWN_BUILDING_MAGIC_GUILD
-				, ["LEVEL"] = 2
-				, ["NAME"] = "/Text/Game/Buildings/Heaven/TOWN_BUILDING_MAGIC_GUILD_2.txt"
-				, ["ENABLE"] = 1
-				, ["RES"] = {
-					[WOOD] = 5
-					, [ORE] = 5
-					, [MERCURY] = 1
-					, [CRYSTAL] = 1
-					, [SULFUR] = 1
-					, [GEM] = 1
-					, [GOLD] = 1000
-				}
-			}
-			, [18] = {
-				["ID"] = TOWN_BUILDING_TOWN_HALL
-				, ["LEVEL"] = 3
-				, ["NAME"] = "/Text/Game/Buildings/Heaven/TOWN_HALL_3.txt"
-				, ["ENABLE"] = 1
-				, ["RES"] = {
-					[WOOD] = 0
-					, [ORE] = 0
-					, [MERCURY] = 0
-					, [CRYSTAL] = 0
-					, [SULFUR] = 0
-					, [GEM] = 0
-					, [GOLD] = 5000
-				}
-			}
-			, [19] = {
-				["ID"] = TOWN_BUILDING_FORT
-				, ["LEVEL"] = 2
-				, ["NAME"] = "/Text/Game/Buildings/Heaven/TOWN_BUILDING_FORT_2.txt"
-				, ["ENABLE"] = 1
-				, ["RES"] = {
-					[WOOD] = 5
-					, [ORE] = 5
-					, [MERCURY] = 0
-					, [CRYSTAL] = 0
-					, [SULFUR] = 0
-					, [GEM] = 0
-					, [GOLD] = 3500
-				}
-			}
-			, [20] = {
-				["ID"] = TOWN_BUILDING_HAVEN_STABLE
-				, ["LEVEL"] = 1
-				, ["NAME"] = "/Text/Game/Buildings/Heaven/TOWN_BUILDING_HAVEN_STABLE.txt"
-				, ["ENABLE"] = 1
-				, ["RES"] = {
-					[WOOD] = 10
-					, [ORE] = 5
-					, [MERCURY] = 0
-					, [CRYSTAL] = 0
-					, [SULFUR] = 0
-					, [GEM] = 0
-					, [GOLD] = 2000
-				}
-			}
-			, [21] = {
-				["ID"] = TOWN_BUILDING_DWELLING_5
-				, ["LEVEL"] = 1
-				, ["NAME"] = "/Text/Game/Buildings/Heaven/TOWN_BUILDING_DWELLING_5_1.txt"
-				, ["ENABLE"] = 1
-				, ["RES"] = {
-					[WOOD] = 5
-					, [ORE] = 5
-					, [MERCURY] = 2
-					, [CRYSTAL] = 2
-					, [SULFUR] = 2
-					, [GEM] = 2
-					, [GOLD] = 3000
-				}
-			}
-			, [22] = {
-				["ID"] = TOWN_BUILDING_HAVEN_MONUMENT_TO_FALLEN_HEROES
-				, ["LEVEL"] = 1
-				, ["NAME"] = "/Text/Game/Buildings/Heaven/TOWN_BUILDING_HAVEN_MONUMENT_TO_FALLEN_HEROES.txt"
-				, ["ENABLE"] = 1
-				, ["RES"] = {
-					[WOOD] = 10
-					, [ORE] = 5
-					, [MERCURY] = 0
-					, [CRYSTAL] = 0
-					, [SULFUR] = 5
-					, [GEM] = 0
-					, [GOLD] = 5000
-				}
-			}
-			, [23] = {
-				["ID"] = TOWN_BUILDING_DWELLING_4
-				, ["LEVEL"] = 1
-				, ["NAME"] = "/Text/Game/Buildings/Heaven/TOWN_BUILDING_DWELLING_4_2.txt"
-				, ["ENABLE"] = 1
-				, ["RES"] = {
-					[WOOD] = 5
-					, [ORE] = 5
-					, [MERCURY] = 5
-					, [CRYSTAL] = 0
-					, [SULFUR] = 0
-					, [GEM] = 0
-					, [GOLD] = 4000
-				}
-			}
-			, [24] = {
-				["ID"] = TOWN_BUILDING_MAGIC_GUILD
-				, ["LEVEL"] = 3
-				, ["NAME"] = "/Text/Game/Buildings/Heaven/TOWN_BUILDING_MAGIC_GUILD_3.txt"
-				, ["ENABLE"] = 1
-				, ["RES"] = {
-					[WOOD] = 5
-					, [ORE] = 5
-					, [MERCURY] = 2
-					, [CRYSTAL] = 2
-					, [SULFUR] = 2
-					, [GEM] = 2
-					, [GOLD] = 1000
-				}
-			}
-			, [25] = {
-				["ID"] = TOWN_BUILDING_FORT
-				, ["LEVEL"] = 3
-				, ["NAME"] = "/Text/Game/Buildings/Heaven/TOWN_BUILDING_FORT_3.txt"
-				, ["ENABLE"] = 1
-				, ["RES"] = {
-					[WOOD] = 10
-					, [ORE] = 10
-					, [MERCURY] = 0
-					, [CRYSTAL] = 0
-					, [SULFUR] = 0
-					, [GEM] = 0
-					, [GOLD] = 5000
-				}
-			}
-			, [26] = {
-				["ID"] = TOWN_BUILDING_DWELLING_6
-				, ["LEVEL"] = 1
-				, ["NAME"] = "/Text/Game/Buildings/Heaven/TOWN_BUILDING_DWELLING_6_1.txt"
-				, ["ENABLE"] = 1
-				, ["RES"] = {
-					[WOOD] = 15
-					, [ORE] = 0
-					, [MERCURY] = 0
-					, [CRYSTAL] = 0
-					, [SULFUR] = 0
-					, [GEM] = 10
-					, [GOLD] = 6000
-				}
-			}
-			, [27] = {
-				["ID"] = TOWN_BUILDING_SHIPYARD
-				, ["LEVEL"] = 1
-				, ["NAME"] = "/Text/Game/Buildings/Heaven/TOWN_BUILDING_SHIPYARD.txt"
-				, ["ENABLE"] = 0
-				, ["RES"] = {
-					[WOOD] = 20
-					, [ORE] = 0
-					, [MERCURY] = 0
-					, [CRYSTAL] = 0
-					, [SULFUR] = 0
-					, [GEM] = 0
-					, [GOLD] = 2000
-				}
-			}
-			, [28] = {
-				["ID"] = TOWN_BUILDING_DWELLING_5
-				, ["LEVEL"] = 1
-				, ["NAME"] = "/Text/Game/Buildings/Heaven/TOWN_BUILDING_DWELLING_5_2.txt"
-				, ["ENABLE"] = 1
-				, ["RES"] = {
-					[WOOD] = 5
-					, [ORE] = 5
-					, [MERCURY] = 3
-					, [CRYSTAL] = 3
-					, [SULFUR] = 3
-					, [GEM] = 3
-					, [GOLD] = 8000
-				}
-			}
-			, [29] = {
-				["ID"] = TOWN_BUILDING_MAGIC_GUILD
-				, ["LEVEL"] = 4
-				, ["NAME"] = "/Text/Game/Buildings/Heaven/TOWN_BUILDING_MAGIC_GUILD_4.txt"
-				, ["ENABLE"] = 1
-				, ["RES"] = {
-					[WOOD] = 5
-					, [ORE] = 5
-					, [MERCURY] = 4
-					, [CRYSTAL] = 4
-					, [SULFUR] = 4
-					, [GEM] = 4
-					, [GOLD] = 1000
-				}
-			}
-			, [30] = {
-				["ID"] = TOWN_BUILDING_TOWN_HALL
-				, ["LEVEL"] = 4
-				, ["NAME"] = "/Text/Game/Buildings/Heaven/TOWN_HALL_4.txt"
-				, ["ENABLE"] = 0
-				, ["RES"] = {
-					[WOOD] = 0
-					, [ORE] = 0
-					, [MERCURY] = 0
-					, [CRYSTAL] = 0
-					, [SULFUR] = 0
-					, [GEM] = 0
-					, [GOLD] = 10000
-				}
-			}
-			, [31] = {
-				["ID"] = TOWN_BUILDING_DWELLING_7
-				, ["LEVEL"] = 1
-				, ["NAME"] = "/Text/Game/Buildings/Heaven/TOWN_BUILDING_DWELLING_7_1.txt"
-				, ["ENABLE"] = 1
-				, ["RES"] = {
-					[WOOD] = 0
-					, [ORE] = 15
-					, [MERCURY] = 0
-					, [CRYSTAL] = 15
-					, [SULFUR] = 0
-					, [GEM] = 0
-					, [GOLD] = 10000
-				}
-			}
-			, [32] = {
-				["ID"] = TOWN_BUILDING_DWELLING_6
-				, ["LEVEL"] = 1
-				, ["NAME"] = "/Text/Game/Buildings/Heaven/TOWN_BUILDING_DWELLING_6_2.txt"
-				, ["ENABLE"] = 1
-				, ["RES"] = {
-					[WOOD] = 15
-					, [ORE] = 0
-					, [MERCURY] = 0
-					, [CRYSTAL] = 0
-					, [SULFUR] = 0
-					, [GEM] = 10
-					, [GOLD] = 9000
-				}
-			}
-			, [33] = {
-				["ID"] = TOWN_BUILDING_MAGIC_GUILD
-				, ["LEVEL"] = 5
-				, ["NAME"] = "/Text/Game/Buildings/Heaven/TOWN_BUILDING_MAGIC_GUILD_5.txt"
-				, ["ENABLE"] = 1
-				, ["RES"] = {
-					[WOOD] = 5
-					, [ORE] = 5
-					, [MERCURY] = 6
-					, [CRYSTAL] = 6
-					, [SULFUR] = 6
-					, [GEM] = 6
-					, [GOLD] = 1000
-				}
-			}
-			, [34] = {
-				["ID"] = TOWN_BUILDING_DWELLING_7
-				, ["LEVEL"] = 1
-				, ["NAME"] = "/Text/Game/Buildings/Heaven/TOWN_BUILDING_DWELLING_7_2.txt"
-				, ["ENABLE"] = 1
-				, ["RES"] = {
-					[WOOD] = 0
-					, [ORE] = 15
-					, [MERCURY] = 0
-					, [CRYSTAL] = 20
-					, [SULFUR] = 0
-					, [GEM] = 0
-					, [GOLD] = 12000
-				}
-			}
-			, [35] = {
-				["ID"] = TOWN_BUILDING_GRAIL
-				, ["LEVEL"] = 1
-				, ["NAME"] = "/Text/Game/Buildings/Heaven/TOWN_BUILDING_GRAIL.txt"
-				, ["ENABLE"] = 1
-				, ["RES"] = {
-					[WOOD] = 0
-					, [ORE] = 0
-					, [MERCURY] = 0
-					, [CRYSTAL] = 0
-					, [SULFUR] = 0
-					, [GEM] = 0
-					, [GOLD] = 100000
-				}
-			}
-		}
-	};
-	function TTH_HeroCustomAbility_Nathaniel(strHero)
-		print("---------------------------------------------------------------------");
-		print("TTH "..strHero.." Event begin");
-		local iPlayer = GetObjectOwner(strHero);
-
-		-- 是否圣堂城城门口
-		local objTown = nil;
-		local arrTownHeaven = GetObjectNamesByType("TOWN_HEAVEN");
-		for iIndex, itemTown in arrTownHeaven do
-			if (IsHeroInTown(strHero, itemTown, 1, 0) == not nil) then
-				objTown = itemTown;
-				break;
-			end;
-		end;
-		if objTown == nil then
-			QuestionBoxForPlayers(GetPlayerFilter(iPlayer), "/Text/Game/Scripts/HeroCustomAbility/Nathaniel/FailureNotAtGate.txt", "" ,"");
-		else
-			-- 第一格兵是否对应兵种
-			local iType, iCount = H55_ArmyInfo(strHero);
-			local iMatch = 0;
-			local iCreatureId = 0;
-			local iCountCreature = 0;
-			for iIndex, objItem in TTH_TABLE_ExtraBuild_Nathaniel["CONSUME"] do
-				if iType[0] == objItem then
-					iMatch = 1;
-					iCreatureId = objItem;
-					iCountCreature = iCount[0];
-				end;
-			end;
-			if iMatch == 0 then
-				local i = 0;
-				local arrCreatureBefore = {};
-				for iIndex, objItem in TTH_TABLE_ExtraBuild_Nathaniel["CONSUME"] do
-					arrCreatureBefore[i] = objItem;
-					i = i + 1;
-				end;
-				for i = 0, 2 do
-					if arrCreatureBefore[i] == nil then
-						arrCreatureBefore[i] = 0;
-					end;
-				end
-				QuestionBoxForPlayers(GetPlayerFilter(iPlayer), {
-					"/Text/Game/Scripts/HeroCustomAbility/Nathaniel/FailureNotMatchCreature.txt"
-					;strCreature0=TTH_TABLE_NCF_CREATURES[arrCreatureBefore[0]]["NAME"]
-					,strCreature1=TTH_TABLE_NCF_CREATURES[arrCreatureBefore[1]]["NAME"]
-					,strCreature2=TTH_TABLE_NCF_CREATURES[arrCreatureBefore[2]]["NAME"]
-				}, "" ,"");
-			else
-				for jIndex = 0, 35 do
-					local objBuildInfo = TTH_TABLE_ExtraBuild_Nathaniel["BUILDING"][jIndex];
-					if objBuildInfo["ENABLE"] == 1 then
-						if GetTownBuildingLevel(objTown, objBuildInfo["ID"]) < objBuildInfo["LEVEL"] then
-							local objRes = objBuildInfo["RES"];
-							iCountCreatureNeedful = (objRes[WOOD] + objRes[ORE])
-								+ (objRes[MERCURY] + objRes[CRYSTAL] + objRes[SULFUR] + objRes[GEM]) * 2
-								+ H55_Round(objRes[GOLD] / 100);
-							-- 生物是否不够支出
-							local strBuildName = objBuildInfo["NAME"];
-							if iCountCreatureNeedful > iCountCreature then
-								QuestionBoxForPlayers(GetPlayerFilter(iPlayer), {
-									"/Text/Game/Scripts/HeroCustomAbility/Nathaniel/FailureNotEnoughCreature.txt"
-									;iCountCreatureNeedful=iCountCreatureNeedful
-									,iCountCreature=iCountCreature
-									,strBuildName=strBuildName
-								}, "" ,"");
-								return nil;
-							else
-								local strBuildName = objBuildInfo["NAME"];
-								QuestionBoxForPlayers(GetPlayerFilter(iPlayer), {
-									"/Text/Game/Scripts/HeroCustomAbility/Nathaniel/Success.txt"
-									;iCountCreatureNeedful=iCountCreatureNeedful
-									,iCountCreature=iCountCreature
-									,strBuildName=strBuildName
-								}, "TTH_HeroCustomAbility_Nathaniel_Callback('"..strHero.."','"..objTown.."','"..objBuildInfo["ID"].."','"..iCreatureId.."','"..iCountCreatureNeedful.."')" , "");
-								return nil;
-							end;
-						end;
-					end;
-				end;
-			end;
-		end;
-		print("TTH "..strHero.." Event end");
-		print("---------------------------------------------------------------------");
-	end;
-	function TTH_HeroCustomAbility_Nathaniel_Callback(strHero, objTown, iBuildId, iCreatureId, iCountCreatureNeedful)
-		RemoveHeroCreatures(strHero, iCreatureId * 1, iCountCreatureNeedful * 1);
-		print(iCountCreatureNeedful.." "..iCreatureId.." has been removed from "..strHero);
-		UpgradeTownBuilding(objTown, iBuildId * 1, 1);
-		print(iBuildId.." has been builded at "..objTown);
-		ControlHeroCustomAbility(strHero, CUSTOM_ABILITY_3, CUSTOM_ABILITY_DISABLED);
-		print(strHero.." custom ability3 has been used");
-	end;
--- end
-
--- by 牙姐 2019-05-18 13:03:56
--- begin 马希尔拉友方英雄技能
-	TTH_Maahir_Switch = 0;
-	function TTH_HeroCustomAbility_Maahir(strHero)
-		print("---------------------------------------------------------------------");
-		print("TTH "..strHero.." Event begin");
-
-		--基础参数
-			local iPlayer = GetObjectOwner(strHero);
-			local iHeroLevel = GetHeroLevel(strHero);
-			local arrCouldBePulledHero = {};
-		--魔法值小于20，弹出提示
-			if GetHeroStat(strHero, STAT_MANA_POINTS) < 20 then
-				MessageBoxForPlayers(GetPlayerFilter(iPlayer), "/Text/Game/Scripts/HeroCustomAbility/Maahir/NoMana.txt", "" ,"");
-				return nil;
-			end;
-		--在城门无法拉人，弹出提示
-			local arrGate = GetObjectNamesByType("TOWN");
-			local strTown = nil;
-			local iTownRace = 0;
-			for i, strGate in arrGate do
-				if (GetObjectOwner(strGate) == iPlayer) and (IsHeroInTown(strHero, strGate, 1, 0) == not nil) then
-					MessageBoxForPlayers(GetPlayerFilter(iPlayer), "/Text/Game/Scripts/HeroCustomAbility/Maahir/AtGate.txt", "" ,"");
-					return nil;
-				end;
-			end;
-		-- --没有等级符合的，弹出提示
-		-- 	local arrTempHero = GetPlayerHeroes(iPlayer);
-		-- 	if arrTempHero ~= nil then
-		-- 		for j, strTempHero in arrTempHero do
-		-- 			if strTempHero ~= strHero then
-		-- 				local iTempHeroLevel = GetHeroLevel(strTempHero);
-		-- 				if iTempHeroLevel <= iHeroLevel * 3 then
-		-- 					H55_Insert(arrCouldBePulledHero, strTempHero);
-		-- 				end;
-		-- 			end;
-		-- 		end;
-		-- 	end;
-		-- 	if length(arrCouldBePulledHero) == 0 then
-		-- 		MessageBoxForPlayers(GetPlayerFilter(iPlayer), "/Text/Game/Scripts/HeroCustomAbility/Maahir/NoSuitHero.txt", "" ,"");
-		-- 		return nil;
-		-- 	end;
-		--确认拉人，消耗20点魔法值，所有移动力，被拉英雄瞬移，主动技能今天使用
-			local arrCouldBePulledHero = GetPlayerHeroes(iPlayer);
-			TTH_Maahir_Switch = 0;
-			for i, strCouldBePulledHero in arrCouldBePulledHero do
-				if strCouldBePulledHero ~= strHero and TTH_Maahir_Switch == 0 then
-					local iPosX, iPosY, iPosZ = GetObjectPosition(strCouldBePulledHero);
-					MoveCamera(iPosX, iPosY, iPosZ, 50, H55_Pi / 2, 1, 1, 1, 1);
-					sleep(4);
-					QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
-					, {"/Text/Game/Scripts/HeroCustomAbility/Maahir/Choose.txt";strHero=TTH_TABLE_HeroName[strCouldBePulledHero]}
-					, "TTH_HeroCustomAbility_Maahir_Callback('"..strHero.."','"..strCouldBePulledHero.."')"
-					, "H55_EndSpinlock");
-					H55_Spinlock();
-				end;
-			end;
-		print("TTH "..strHero.." Event end");
-		print("---------------------------------------------------------------------");
-	end;
-	function TTH_HeroCustomAbility_Maahir_Callback(strHero, strCouldBePulledHero)
-		TTH_Maahir_Switch = 1;
-		local iPlayer = GetObjectOwner(strHero);
-		local iMovePoints = GetHeroStat(strHero, STAT_MOVE_POINTS);
-		ChangeHeroStat(strHero, STAT_MOVE_POINTS, iMovePoints * -1);
-		local iPosX, iPosY, iPosZ = GetObjectPosition(strHero);
-		ChangeHeroStat(strHero, STAT_MANA_POINTS, -20);
-		print("TTH Performing Pull..");
-		Play2DSoundForPlayers(GetPlayerFilter(iPlayer), H55_SndTPStart);
-		SetObjectPosition(strCouldBePulledHero, iPosX, iPosY, iPosZ);
-		H55_EndSpinlock();
-		sleep(8);
-		Play2DSoundForPlayers(GetPlayerFilter(iPlayer), H55_SndTPEnd);
-		ControlHeroCustomAbility(strHero, CUSTOM_ABILITY_3, CUSTOM_ABILITY_DISABLED);
-		print(strHero.." custom ability3 has been used");
-	end;
--- end
-
--- by 牙姐 2018-10-22 19:08:10
--- begin 奥森指定复活城镇技能
-	function TTH_HeroCustomAbility_Straker(strHero)
-		print("---------------------------------------------------------------------");
-		print("TTH "..strHero.." Event begin");
-		local iPlayer = GetObjectOwner(strHero);
-
-		-- 是否墓园城城门口
-		local objTown = nil;
-		local arrTownNec = GetObjectNamesByType("TOWN_NECROMANCY");
-		for iIndex, itemTown in arrTownNec do
-			if (IsHeroInTown(strHero, itemTown, 1, 0) == not nil) then
-				objTown = itemTown;
-				break;
-			end;
-		end;
-		if objTown == nil then
-			QuestionBoxForPlayers(GetPlayerFilter(iPlayer), "/Text/Game/Scripts/HeroCustomAbility/Straker/FailureNotAtGate.txt", "" ,"");
-		else
-			QuestionBoxForPlayers(GetPlayerFilter(iPlayer),	"/Text/Game/Scripts/HeroCustomAbility/Straker/Success.txt", "TTH_HeroCustomAbility_Straker_Callback('"..strHero.."','"..objTown.."')" , "");
-			return nil;
-		end;
-		print("TTH "..strHero.." Event end");
-		print("---------------------------------------------------------------------");
-	end;
-	function TTH_HeroCustomAbility_Straker_Callback(strHero, objTown)
-		H55_Town_Zombie_Straker = objTown
-		print(objTown.." has been appointed");
-		ControlHeroCustomAbility(strHero, CUSTOM_ABILITY_3, CUSTOM_ABILITY_DISABLED);
-		print(strHero.." custom ability3 has been used");
-	end;
--- end
-
--- by 牙姐 2018-10-22 19:08:10
--- begin 娜瑞莎转换光暗属性
-	function TTH_HeroCustomAbility_Ildar(strHero)
-		print("---------------------------------------------------------------------");
-		print("TTH "..strHero.." Event begin");
-		print(H55SMOD_HeroAbility['Ildar']);
-		local iPlayer = GetObjectOwner(strHero);
-		QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
-		, {"/Text/Game/Scripts/HeroCustomAbility/Ildar/ChooseLightOrDark.txt";strHeroAbilityStatus=TTH_TABLE_IldarAbilityStatus[H55SMOD_HeroAbility['Ildar']]}
-		, "TTH_HeroCustomAbility_Ildar_Callback()"
-		, "H55_EndSpinlock");
-		print("TTH "..strHero.." Event end");
-		print("---------------------------------------------------------------------");
-	end;
-	function TTH_HeroCustomAbility_Ildar_Callback(strHero)
-		if H55SMOD_HeroAbility['Ildar'] == 'light' then
-			SetGameVar('H55SMOD_Var_Ability_Ildar', 'dark');
-			H55SMOD_HeroAbility['Ildar'] = 'dark';
-		else
-			SetGameVar('H55SMOD_Var_Ability_Ildar', 'light');
-			H55SMOD_HeroAbility['Ildar'] = 'light';
-		end;
-		print(strHero.."'s ability status has been changed");
-	end;
--- end
-
--- by 牙姐 2020-04-17 12:35:02
--- begin 肯洛-哈格焚毁城镇技能
-	function TTH_HeroCustomAbility_Crag(strHero)
-		print("---------------------------------------------------------------------");
-		print("TTH "..strHero.." Event begin");
-		local iPlayer = GetObjectOwner(strHero);
-		-- 是否城镇门口
-		local objTown = nil;
-		local arrTown = GetObjectNamesByType("TOWN");
-		for iIndex, itemTown in arrTown do
-			if (IsHeroInTown(strHero, itemTown, 1, 0) == not nil) then
-				objTown = itemTown;
-				break;
-			end;
-		end;
-		if objTown == nil then
-			QuestionBoxForPlayers(GetPlayerFilter(iPlayer), "/Text/Game/Scripts/HeroCustomAbility/Crag/FailureNotAtGate.txt", "" ,"");
-		else
-			if TTH_IsTownBuildHall4(objTown) == 1 then
-				QuestionBoxForPlayers(GetPlayerFilter(iPlayer), "/Text/Game/Scripts/HeroCustomAbility/Crag/FailureTownHasBuildHall4.txt", "" ,"");
-			elseif TTH_IsTownBuildGrail(objTown) == 1 then
-				QuestionBoxForPlayers(GetPlayerFilter(iPlayer), "/Text/Game/Scripts/HeroCustomAbility/Crag/FailureTownHasBuildGrail.txt", "" ,"");
-			else
-				local iTownLevel = TTH_GetTownLevel(objTown);
-				local iHeroLevel = GetHeroLevel(strHero);
-				local iDestroyLevel = H55_Ceil(iHeroLevel / 5);
-				local iBasicNum = iHeroLevel / 12;
-				local iNormalRes = H55_Floor(iBasicNum * 4);
-				local iSpecialRes = H55_Floor(iBasicNum * 2);
-				local iGoldRes = H55_Floor(iBasicNum * 2000);
-				local iAttackStat = H55_Ceil(iBasicNum);
-				if iTownLevel > iDestroyLevel then
-					QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
-						, {"/Text/Game/Scripts/HeroCustomAbility/Crag/QtyDestroyTown.txt";iTownLevel=iTownLevel,iHeroLevel=iHeroLevel,iDestroyLevel=iDestroyLevel,iNormalRes=iNormalRes,iSpecialRes=iSpecialRes,iGoldRes=iGoldRes}
-						, "TTH_HeroCustomAbility_Crag_DestroyTown_Callback('"..strHero.."','"..objTown.."','"..iDestroyLevel.."')"
-						, "H55_EndSpinlock");
-				else
-					QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
-						, {"/Text/Game/Scripts/HeroCustomAbility/Crag/QtyRazeTown.txt";iTownLevel=iTownLevel,iNormalRes=iNormalRes,iSpecialRes=iSpecialRes,iGoldRes=iGoldRes,iAttackStat=iAttackStat}
-						, "TTH_HeroCustomAbility_Crag_RazeTown_Callback('"..strHero.."','"..objTown.."')"
-						, "H55_EndSpinlock");
-				end;
-			end;
-		end;
-		print("TTH "..strHero.." Event end");
-		print("---------------------------------------------------------------------");
-	end;
-	function TTH_HeroCustomAbility_Crag_DestroyTown_Callback(strHero, objTown, iDestroyLevel)
-		ControlHeroCustomAbility(strHero, CUSTOM_ABILITY_3, CUSTOM_ABILITY_DISABLED);
-		local iPlayer = GetObjectOwner(strHero);
-		local iHeroLevel = GetHeroLevel(strHero);
-		local iBasicNum = iHeroLevel / 12;
-		local iNormalRes = H55_Floor(iBasicNum * 4);
-		local iSpecialRes = H55_Floor(iBasicNum * 2);
-		local iGoldRes = H55_Floor(iBasicNum * 2000);
-		-- 拆毁城镇建筑-按等级
-		TTH_DestroyTownBuilding(objTown, iDestroyLevel);
-		ShowFlyingSign("/Text/Game/Scripts/HeroCustomAbility/Crag/DestroyTown.txt", strHero, iPlayer, 5);
-		print(objTown..'`s building has been destroied');
-		-- 获取资源
-		H55_TakeResourcesSilent(iPlayer, 0, -1 * iNormalRes);
-		H55_TakeResourcesSilent(iPlayer, 1, -1 * iNormalRes);
-		H55_TakeResourcesSilent(iPlayer, 2, -1 * iSpecialRes);
-		H55_TakeResourcesSilent(iPlayer, 3, -1 * iSpecialRes);
-		H55_TakeResourcesSilent(iPlayer, 4, -1 * iSpecialRes);
-		H55_TakeResourcesSilent(iPlayer, 5, -1 * iSpecialRes);
-		H55_TakeResourcesSilent(iPlayer, 6, -1 * iGoldRes);
-	end;
-	function TTH_HeroCustomAbility_Crag_RazeTown_Callback(strHero, objTown)
-		ControlHeroCustomAbility(strHero, CUSTOM_ABILITY_3, CUSTOM_ABILITY_DISABLED);
-		local iPlayer = GetObjectOwner(strHero);
-		local iHeroLevel = GetHeroLevel(strHero);
-		local iBasicNum = iHeroLevel / 12;
-		local iNormalRes = H55_Floor(iBasicNum * 4);
-		local iSpecialRes = H55_Floor(iBasicNum * 2);
-		local iGoldRes = H55_Floor(iBasicNum * 2000);
-		local iAttackStat = H55_Ceil(iBasicNum);
-		-- 摧毁城镇
-		RazeTown(objTown);
-		ShowFlyingSign("/Text/Game/Scripts/HeroCustomAbility/Crag/RazeTown.txt", strHero, iPlayer, 5);
-		print(objTown..' has been razed');
-		-- 获取资源
-		H55_TakeResourcesSilent(iPlayer, 0, -1 * iNormalRes);
-		H55_TakeResourcesSilent(iPlayer, 1, -1 * iNormalRes);
-		H55_TakeResourcesSilent(iPlayer, 2, -1 * iSpecialRes);
-		H55_TakeResourcesSilent(iPlayer, 3, -1 * iSpecialRes);
-		H55_TakeResourcesSilent(iPlayer, 4, -1 * iSpecialRes);
-		H55_TakeResourcesSilent(iPlayer, 5, -1 * iSpecialRes);
-		H55_TakeResourcesSilent(iPlayer, 6, -1 * iGoldRes);
-		-- 英雄提升攻击
-		ChangeHeroStat(strHero, STAT_ATTACK, iAttackStat);
-		ShowFlyingSign("/Text/Game/Scripts/Attack.txt", strHero, iPlayer, 5);
-		print(strHero..'`s attack has been increased');
-		-- 英雄提升等级
-		LevelUpHero(strHero);
-		print(strHero..'level up');
-	end;
--- end
-
--- by 牙姐 2018-10-17 11:14:47
--- begin 赛勒斯机械转化技能
-	TTH_TABLE_Cyrus_CastMechanicalCreature = {
-		[1] = {
-			["ID"] = CREATURE_FIRE_MECHANICAL
-			, ["RESOURCE"] = {
-				[WOOD] = 2
-				, [ORE] = 0
-				, [MERCURY] = 0
-				, [CRYSTAL] = 0
-				, [SULFUR] = 1
-				, [GEM] = 0
-				, [GOLD] = 0
-			}
-		}
-		, [2] = {
-			["ID"] = CREATURE_WATER_MECHANICAL
-			, ["RESOURCE"] = {
-				[WOOD] = 1
-				, [ORE] = 1
-				, [MERCURY] = 1
-				, [CRYSTAL] = 0
-				, [SULFUR] = 0
-				, [GEM] = 0
-				, [GOLD] = 0
-			}
-		}
-		, [3] = {
-			["ID"] = CREATURE_EARTH_MECHANICAL
-			, ["RESOURCE"] = {
-				[WOOD] = 0
-				, [ORE] = 2
-				, [MERCURY] = 0
-				, [CRYSTAL] = 0
-				, [SULFUR] = 0
-				, [GEM] = 1
-				, [GOLD] = 0
-			}
-		}
-		, [4] = {
-			["ID"] = CREATURE_AIR_MECHANICAL
-			, ["RESOURCE"] = {
-				[WOOD] = 1
-				, [ORE] = 1
-				, [MERCURY] = 0
-				, [CRYSTAL] = 1
-				, [SULFUR] = 0
-				, [GEM] = 0
-				, [GOLD] = 0
-			}
-		}
-		, [5] = {
-			["ID"] = CREATURE_PHOENIX_MECHANICAL
-			, ["RESOURCE"] = {
-				[WOOD] = 0
-				, [ORE] = 0
-				, [MERCURY] = 2
-				, [CRYSTAL] = 2
-				, [SULFUR] = 2
-				, [GEM] = 2
-				, [GOLD] = 0
-			}
-		}
-	}
-	function TTH_HeroCustomAbility_Cyrus(strHero)
-		TTH_HeroCustomAbility_Cyrus_ChooseElement(strHero, 1);
-	end;
-	function TTH_HeroCustomAbility_Cyrus_ChooseElement(strHero, iElement)
-		local iPlayer = GetObjectOwner(strHero);
-		if iElement + 0 <= 3 then
-			local iElementNext = iElement + 1;
-			QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
-				, "/Text/Game/Scripts/HeroCustomAbility/Cyrus/ChooseElement"..iElement..".txt"
-				, "TTH_HeroCustomAbility_Cyrus_CastElement('"..strHero.."','"..iElement.."')"
-				, "TTH_HeroCustomAbility_Cyrus_ChooseElement('"..strHero.."','"..iElementNext.."')");
-		else
-			QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
-				, "/Text/Game/Scripts/HeroCustomAbility/Cyrus/ChooseElement"..iElement..".txt"
-				, "TTH_HeroCustomAbility_Cyrus_CastElement('"..strHero.."','"..iElement.."')"
-				, "TTH_HeroCustomAbility_Cyrus_ChoosePhoenix('"..strHero.."')");
-		end;
-	end;
-	function TTH_HeroCustomAbility_Cyrus_ChoosePhoenix(strHero)
-		local iPlayer = GetObjectOwner(strHero);
-		QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
-			, "/Text/Game/Scripts/HeroCustomAbility/Cyrus/ChoosePhoenix.txt"
-			, "TTH_HeroCustomAbility_Cyrus_CastPhoenix('"..strHero.."')" ,"TTH_HeroCustomAbility_Cyrus_CastGiveup('"..strHero.."')");
-	end;
-	function TTH_HeroCustomAbility_Cyrus_CastElement(strHero, iElement)
-		local iPlayer = GetObjectOwner(strHero);
-		local iHeroLevel = GetHeroLevel(strHero);
-		iElement = iElement + 0;
-		-- 获取玩家资源
-		local arrResPlayer = {};
-		arrResPlayer[WOOD] = GetPlayerResource(iPlayer, WOOD);
-		arrResPlayer[ORE] = GetPlayerResource(iPlayer, ORE);
-		arrResPlayer[MERCURY] = GetPlayerResource(iPlayer, MERCURY);
-		arrResPlayer[CRYSTAL] = GetPlayerResource(iPlayer, CRYSTAL);
-		arrResPlayer[SULFUR] = GetPlayerResource(iPlayer, SULFUR);
-		arrResPlayer[GEM] = GetPlayerResource(iPlayer, GEM);
-		arrResPlayer[GOLD] = GetPlayerResource(iPlayer, GOLD);
-
-		local objItem = TTH_TABLE_Cyrus_CastMechanicalCreature[iElement];
-		-- 根据 玩家资源及转化单个生物消耗 计算 可转化生物数量
-		local arrRes = {};
-		for i = 0, 6 do
-			if objItem["RESOURCE"][i] == 0 then
-				arrRes[i] = TTH_NUM_MAX;
-			else
-				arrRes[i] = H55_Floor(arrResPlayer[i] / objItem["RESOURCE"][i]);
-			end;
-		end;
-		local iCountCreature8Resource = TTH_COMMON_MIN(arrRes);
-		if iCountCreature8Resource == 0 then
-			MessageBoxForPlayers(GetPlayerFilter(iPlayer), "/Text/Game/Scripts/HeroCustomAbility/CastCreatureFailure8Resource.txt", "" ,"");
-			return nil;
-		end;
-		-- 根据 英雄等级 计算 可转化生物数量（至少为1）
-		local iCountCreature8CastScaleHero = H55_Ceil(iHeroLevel / 4);
-		if iCountCreature8CastScaleHero < 1 then
-			iCountCreature8CastScaleHero = 1;
-		end;
-		-- 取2个转化生物数量的最小值，若>0，则询问是否进行转化
-		local iCountMinCreature = TTH_COMMON_MIN({iCountCreature8CastScaleHero, iCountCreature8Resource});
-		if iCountMinCreature > 0 then
-			QuestionBoxForPlayers(GetPlayerFilter(iPlayer), {
-				"/Text/Game/Scripts/HeroCustomAbility/Cyrus/CastElement.txt"
-				;strCreatureAfter=TTH_TABLE_NCF_CREATURES[objItem["ID"]]["NAME"]
-				,wood=objItem["RESOURCE"][WOOD]*iCountMinCreature
-				,ore=objItem["RESOURCE"][ORE]*iCountMinCreature
-				,mercury=objItem["RESOURCE"][MERCURY]*iCountMinCreature
-				,crystal=objItem["RESOURCE"][CRYSTAL]*iCountMinCreature
-				,sulfur=objItem["RESOURCE"][SULFUR]*iCountMinCreature
-				,gem=objItem["RESOURCE"][GEM]*iCountMinCreature
-				,gold=objItem["RESOURCE"][GOLD]*iCountMinCreature
-				,iCountHeroLevel=iCountCreature8CastScaleHero
-				,iCountResource=iCountCreature8Resource
-				,iCountMin=iCountMinCreature
-			}
-			, "TTH_HeroCustomAbility_Cyrus_CastSuccess('"..strHero.."','"..iElement.."','"..iCountMinCreature.."')"
-			, "TTH_HeroCustomAbility_Cyrus_CastGiveup('"..strHero.."')");
-		end;
-	end;
-	function TTH_HeroCustomAbility_Cyrus_CastPhoenix(strHero)
-		local iPlayer = GetObjectOwner(strHero);
-		local iType, iCount = H55_ArmyInfo(strHero);
-		local iHeroLevel = GetHeroLevel(strHero);
-		local iElement = 5;
-		-- 获取玩家资源
-		local arrResPlayer = {};
-		arrResPlayer[WOOD] = GetPlayerResource(iPlayer, WOOD);
-		arrResPlayer[ORE] = GetPlayerResource(iPlayer, ORE);
-		arrResPlayer[MERCURY] = GetPlayerResource(iPlayer, MERCURY);
-		arrResPlayer[CRYSTAL] = GetPlayerResource(iPlayer, CRYSTAL);
-		arrResPlayer[SULFUR] = GetPlayerResource(iPlayer, SULFUR);
-		arrResPlayer[GEM] = GetPlayerResource(iPlayer, GEM);
-		arrResPlayer[GOLD] = GetPlayerResource(iPlayer, GOLD);
-
-		local objItem = TTH_TABLE_Cyrus_CastMechanicalCreature[iElement];
-		-- 根据 转化前后生物比例 计算 可转化生物数量
-		local arrCreature = {};
-		arrCreature[1] = 0;
-		arrCreature[2] = 0;
-		arrCreature[3] = 0;
-		arrCreature[4] = 0;
-		for i = 0, 6 do
-			for j = 1, 4 do
-				if TTH_TABLE_Cyrus_CastMechanicalCreature[j]["ID"] == iType[i] then
-					arrCreature[j] = iCount[i];
-				end;
-			end;
-		end;
-		local iCountCreature8CastScaleCreature = TTH_COMMON_MIN(arrCreature);
-		if iCountCreature8CastScaleCreature == nil or iCountCreature8CastScaleCreature == 0 then
-			MessageBoxForPlayers(GetPlayerFilter(iPlayer), "/Text/Game/Scripts/HeroCustomAbility/CastCreatureFailure8CastScaleCreature.txt", "" ,"");
-			return nil;
-		end;
-
-		-- 根据 玩家资源及转化单个生物消耗 计算 可转化生物数量
-		local arrRes = {};
-		for i = 0, 6 do
-			if objItem["RESOURCE"][i] == 0 then
-				arrRes[i] = TTH_NUM_MAX;
-			else
-				arrRes[i] = H55_Floor(arrResPlayer[i] / objItem["RESOURCE"][i]);
-			end;
-		end;
-		local iCountCreature8Resource = TTH_COMMON_MIN(arrRes);
-		if iCountCreature8Resource == 0 then
-			MessageBoxForPlayers(GetPlayerFilter(iPlayer), "/Text/Game/Scripts/HeroCustomAbility/CastCreatureFailure8Resource.txt", "" ,"");
-			return nil;
-		end;
-		-- 根据 英雄等级 计算 可转化生物数量（至少为1）
-		local iCountCreature8CastScaleHero = H55_Ceil(iHeroLevel / 7);
-		if iCountCreature8CastScaleHero < 1 then
-			iCountCreature8CastScaleHero = 1;
-		end;
-		-- 取3个转化生物数量的最小值，若>0，则询问是否进行转化
-		local iCountMinCreature = TTH_COMMON_MIN({iCountCreature8CastScaleCreature, iCountCreature8CastScaleHero, iCountCreature8Resource});
-		if iCountMinCreature > 0 then
-			QuestionBoxForPlayers(GetPlayerFilter(iPlayer), {
-				"/Text/Game/Scripts/HeroCustomAbility/Cyrus/CastPhoenix.txt"
-				;strCreatureAfter=TTH_TABLE_NCF_CREATURES[objItem["ID"]]["NAME"]
-				,wood=objItem["RESOURCE"][WOOD]*iCountMinCreature
-				,ore=objItem["RESOURCE"][ORE]*iCountMinCreature
-				,mercury=objItem["RESOURCE"][MERCURY]*iCountMinCreature
-				,crystal=objItem["RESOURCE"][CRYSTAL]*iCountMinCreature
-				,sulfur=objItem["RESOURCE"][SULFUR]*iCountMinCreature
-				,gem=objItem["RESOURCE"][GEM]*iCountMinCreature
-				,gold=objItem["RESOURCE"][GOLD]*iCountMinCreature
-				,iCountBeforeCreature=iCountCreature8CastScaleCreature
-				,iCountResource=iCountCreature8Resource
-				,iCountHeroLevel=iCountCreature8CastScaleHero
-				,iCountMin=iCountMinCreature
-			}
-			, "TTH_HeroCustomAbility_Cyrus_CastSuccess('"..strHero.."','"..iElement.."','"..iCountMinCreature.."')"
-			, "TTH_HeroCustomAbility_Cyrus_CastGiveup('"..strHero.."')");
-		end;
-	end;
-	function TTH_HeroCustomAbility_Cyrus_CastSuccess(strHero, iElement, iCastCount)
-		local iPlayer = GetObjectOwner(strHero);
-		local iHeroLevel = GetHeroLevel(strHero);
-		iElement = iElement + 0;
-		local objItem = TTH_TABLE_Cyrus_CastMechanicalCreature[iElement];
-		-- 获取玩家资源
-		local arrResPlayer = {};
-		arrResPlayer[WOOD] = GetPlayerResource(iPlayer, WOOD);
-		arrResPlayer[ORE] = GetPlayerResource(iPlayer, ORE);
-		arrResPlayer[MERCURY] = GetPlayerResource(iPlayer, MERCURY);
-		arrResPlayer[CRYSTAL] = GetPlayerResource(iPlayer, CRYSTAL);
-		arrResPlayer[SULFUR] = GetPlayerResource(iPlayer, SULFUR);
-		arrResPlayer[GEM] = GetPlayerResource(iPlayer, GEM);
-		arrResPlayer[GOLD] = GetPlayerResource(iPlayer, GOLD);
-
-		local iCountMinCreature = iCastCount + 0;
-
-		-- 扣除资源
-		for i = 0, 6 do
-			if objItem["RESOURCE"][i] * iCountMinCreature > 0 then
-				SetPlayerResource(iPlayer, i, arrResPlayer[i] - objItem["RESOURCE"][i] * iCountMinCreature, strHero);
-			end;
-		end;
-
-		if iElement > 4 then
-			RemoveHeroCreatures(strHero, TTH_TABLE_Cyrus_CastMechanicalCreature[1]["ID"], iCountMinCreature);
-			RemoveHeroCreatures(strHero, TTH_TABLE_Cyrus_CastMechanicalCreature[2]["ID"], iCountMinCreature);
-			RemoveHeroCreatures(strHero, TTH_TABLE_Cyrus_CastMechanicalCreature[3]["ID"], iCountMinCreature);
-			RemoveHeroCreatures(strHero, TTH_TABLE_Cyrus_CastMechanicalCreature[4]["ID"], iCountMinCreature);
-		end;
-		-- 给予生物
-		AddHeroCreatures(strHero, objItem["ID"], iCountMinCreature);
-
-		local strCastCreatureAfter = TTH_TABLE_NCF_CREATURES[objItem["ID"]]["NAME"];
-		-- 英雄主动技能标记为已使用
-		ControlHeroCustomAbility(strHero, CUSTOM_ABILITY_3, CUSTOM_ABILITY_DISABLED);
-		MessageBoxForPlayers(GetPlayerFilter(iPlayer), {
-			"/Text/Game/Scripts/HeroCustomAbility/Cyrus/CastSuccess.txt"
-			;iCastCount=iCountMinCreature
-			,strCastCreatureAfter=strCastCreatureAfter
-		}, "", "");
-	end;
-	function TTH_HeroCustomAbility_Cyrus_CastGiveup(strHero)
-		local iPlayer = GetObjectOwner(strHero);
-		MessageBoxForPlayers(GetPlayerFilter(iPlayer), "/Text/Game/Scripts/HeroCustomAbility/Cyrus/CastGiveup.txt", "", "");
-	end;
--- end
-
--- by 牙姐 2020-04-17 12:55:21
--- begin 获取当前城镇信息
-	-- 获取当前城镇是否建造国会
-	function TTH_IsTownBuildHall4(objTown)
-		local iTownHall = GetTownBuildingLevel(objTown, TOWN_BUILDING_TOWN_HALL);
-		if iTownHall == 4 then
-			return 1;
-		else
-			return nil;
-		end;
-	end;
-	-- 获取当前城镇是否建造奇迹
-	function TTH_IsTownBuildGrail(objTown)
-		local iGrail = GetTownBuildingLevel(objTown, TOWN_BUILDING_GRAIL);
-		if iGrail == 1 then
-			return 1;
-		else
-			return nil;
-		end;
-	end;
-	-- 拆毁城镇建筑-按等级
-	listTownBuildingHeaven = {TOWN_BUILDING_SPECIAL_5, TOWN_BUILDING_SPECIAL_4, TOWN_BUILDING_SPECIAL_2, TOWN_BUILDING_SPECIAL_1};
-	listTownBuildingPreserve = {TOWN_BUILDING_SPECIAL_5, TOWN_BUILDING_SPECIAL_4, TOWN_BUILDING_SPECIAL_2, TOWN_BUILDING_SPECIAL_0};
-	listTownBuildingInferno = {TOWN_BUILDING_SPECIAL_5, TOWN_BUILDING_SPECIAL_4, TOWN_BUILDING_SPECIAL_2, TOWN_BUILDING_SPECIAL_1};
-	listTownBuildingNecromancy = {TOWN_BUILDING_SPECIAL_4, TOWN_BUILDING_SPECIAL_3, TOWN_BUILDING_SPECIAL_2, TOWN_BUILDING_SPECIAL_1};
-	listTownBuildingAcademy = {TOWN_BUILDING_SPECIAL_4, TOWN_BUILDING_SPECIAL_3, TOWN_BUILDING_SPECIAL_2, TOWN_BUILDING_SPECIAL_1};
-	listTownBuildingDungeon = {TOWN_BUILDING_SPECIAL_6, TOWN_BUILDING_SPECIAL_4, TOWN_BUILDING_SPECIAL_3, TOWN_BUILDING_SPECIAL_1};
-	listTownBuildingFortress = {TOWN_BUILDING_SPECIAL_5, TOWN_BUILDING_SPECIAL_4, TOWN_BUILDING_SPECIAL_3, TOWN_BUILDING_SPECIAL_2, TOWN_BUILDING_SPECIAL_1};
-	listTownBuildingStronghold = {TOWN_BUILDING_SPECIAL_5, TOWN_BUILDING_SPECIAL_4, TOWN_BUILDING_SPECIAL_3, TOWN_BUILDING_SPECIAL_2, TOWN_BUILDING_SPECIAL_1};
-	listTownBuilding = {TOWN_BUILDING_DWELLING_7, TOWN_BUILDING_DWELLING_6, TOWN_BUILDING_DWELLING_5, TOWN_BUILDING_DWELLING_4, TOWN_BUILDING_DWELLING_3, TOWN_BUILDING_DWELLING_2, TOWN_BUILDING_DWELLING_1, TOWN_BUILDING_MAGIC_GUILD, TOWN_BUILDING_TOWN_HALL, TOWN_BUILDING_FORT, TOWN_BUILDING_GRAIL, TOWN_BUILDING_SHIPYARD, TOWN_BUILDING_BLACKSMITH, TOWN_BUILDING_MARKETPLACE, TOWN_BUILDING_TAVERN};
-	function TTH_DestroyTownBuilding(objTown, strDestroyLevel)
-		local iTownRace = H55_GetTownRace(objTown);
-		local listTownBuildingRace = {};
-		if iTownRace == 1 then
-			listTownBuildingRace = listTownBuildingHeaven;
-		elseif iTownRace == 2 then
-			listTownBuildingRace = listTownBuildingPreserve;
-		elseif iTownRace == 3 then
-			listTownBuildingRace = listTownBuildingInferno;
-		elseif iTownRace == 4 then
-			listTownBuildingRace = listTownBuildingNecromancy;
-		elseif iTownRace == 5 then
-			listTownBuildingRace = listTownBuildingAcademy;
-		elseif iTownRace == 6 then
-			listTownBuildingRace = listTownBuildingDungeon;
-		elseif iTownRace == 7 then
-			listTownBuildingRace = listTownBuildingFortress;
-		elseif iTownRace == 8 then
-			listTownBuildingRace = listTownBuildingStronghold;
-		end;
-		local iDestroyLevel = strDestroyLevel * 1;
-		if iDestroyLevel > 0 then
-			for i, objTownBuildingRace in listTownBuildingRace do
-				local iLevel = GetTownBuildingLevel(objTown, objTownBuildingRace);
-				if iLevel > 0 then
-					if iDestroyLevel > iLevel then
-						DestroyTownBuildingToLevel(objTown, objTownBuildingRace, 0, 1);
-						iDestroyLevel = iDestroyLevel - iLevel;
-					else
-						DestroyTownBuildingToLevel(objTown, objTownBuildingRace, iLevel - iDestroyLevel, 1);
-						iDestroyLevel = 0;
-					end;
-				end;
-				if iDestroyLevel == 0 then
-					break;
-				end;
-			end;
-		end;
-		if iDestroyLevel > 0 then
-			for i, objTownBuilding in listTownBuilding do
-				local iLevel = GetTownBuildingLevel(objTown, objTownBuilding);
-				if iLevel > 0 then
-					if iDestroyLevel > iLevel then
-						DestroyTownBuildingToLevel(objTown, objTownBuilding, 0, 1);
-						iDestroyLevel = iDestroyLevel - iLevel;
-					else
-						DestroyTownBuildingToLevel(objTown, objTownBuilding, iLevel - iDestroyLevel, 1);
-						iDestroyLevel = 0;
-					end;
-				end;
-				if iDestroyLevel == 0 then
-					break;
-				end;
-			end;
-		end;
-	end;
-	-- 获取当前城镇总等级
-	function TTH_GetTownLevel(objTown)
-		local iTownRace = H55_GetTownRace(objTown);
-		local iTavern = GetTownBuildingLevel(objTown, TOWN_BUILDING_TAVERN);
-		local iMarketplace = GetTownBuildingLevel(objTown, TOWN_BUILDING_MARKETPLACE);
-		local iBlacksmith = GetTownBuildingLevel(objTown, TOWN_BUILDING_BLACKSMITH);
-		local iFort = GetTownBuildingLevel(objTown, TOWN_BUILDING_FORT);
-		local iTownHall = GetTownBuildingLevel(objTown, TOWN_BUILDING_TOWN_HALL);
-		local iDwelling1 = GetTownBuildingLevel(objTown, TOWN_BUILDING_DWELLING_1);
-		local iDwelling2 = GetTownBuildingLevel(objTown, TOWN_BUILDING_DWELLING_2);
-		local iDwelling3 = GetTownBuildingLevel(objTown, TOWN_BUILDING_DWELLING_3);
-		local iDwelling4 = GetTownBuildingLevel(objTown, TOWN_BUILDING_DWELLING_4);
-		local iDwelling5 = GetTownBuildingLevel(objTown, TOWN_BUILDING_DWELLING_5);
-		local iDwelling6 = GetTownBuildingLevel(objTown, TOWN_BUILDING_DWELLING_6);
-		local iDwelling7 = GetTownBuildingLevel(objTown, TOWN_BUILDING_DWELLING_7);
-		local iShipyard = GetTownBuildingLevel(objTown, TOWN_BUILDING_SHIPYARD);
-		local iGuild = GetTownBuildingLevel(objTown, TOWN_BUILDING_MAGIC_GUILD);
-		local iGrail = GetTownBuildingLevel(objTown, TOWN_BUILDING_GRAIL);
-		local iSpecial1 = 0;
-		local iSpecial2 = 0;
-		local iSpecial3 = 0;
-		local iSpecial4 = GetTownBuildingLevel(objTown, TOWN_BUILDING_SPECIAL_4);
-		local iSpecial5 = 0;
-		if iTownRace ~= 1 and iTownRace ~= 2 and iTownRace ~= 3 then
-			iSpecial3 = GetTownBuildingLevel(objTown, TOWN_BUILDING_SPECIAL_3);
-		end;
-		if iTownRace == 2 then
-			iSpecial1 = GetTownBuildingLevel(objTown, TOWN_BUILDING_SPECIAL_0);
-		else
-			iSpecial1 = GetTownBuildingLevel(objTown, TOWN_BUILDING_SPECIAL_1);
-		end;
-		if iTownRace == 6 then
-			iSpecial2 = GetTownBuildingLevel(objTown, TOWN_BUILDING_SPECIAL_6);
-		else
-			iSpecial2 = GetTownBuildingLevel(objTown, TOWN_BUILDING_SPECIAL_2);
-		end;
-		if iTownRace ~= 4 and iTownRace ~= 5 and iTownRace ~= 6 then
-			iSpecial5 = GetTownBuildingLevel(objTown, TOWN_BUILDING_SPECIAL_5);
-		else
-			iSpecial5 = 0;
-		end;
-
-		local iTownLevel = iTavern + iMarketplace + iBlacksmith + iFort + iTownHall + iShipyard + iGuild + iGrail
-			+ iDwelling1 + iDwelling2 + iDwelling3 + iDwelling4 + iDwelling5 + iDwelling6 + iDwelling7
-			+ iSpecial1 + iSpecial2 + iSpecial3 + iSpecial4 + iSpecial5;
-		return iTownLevel;
-	end;
--- end
-
--- by 牙姐 2019-02-23 23:30:53
--- begin 解决AI占领玩家城镇购买宝物BUG
-	function TTH_SolveAIBuyArtifact()
-		local ListTownAcademy = GetObjectNamesByType("TOWN_ACADEMY");
-		local ListTownDungeon = GetObjectNamesByType("TOWN_DUNGEON");
-		if length(ListTownAcademy) ~= 0 then
-			for i, town in ListTownAcademy do
-				DestroyTownBuildingToLevel(town, 19, 0, 0);
-			end;
-		end;
-		if length(ListTownDungeon) ~= 0 then
-			for i, town in ListTownDungeon do
-				DestroyTownBuildingToLevel(town, 20, 0, 0);
-			end;
-		end;
-	end;
-	function TTH_Fix_A()
-		TTH_SolveAIBuyArtifact();
-	end;
--- end
-
--- by 牙姐 2019-04-17 23:09:03
--- begin 将当前游戏中的出场英雄等级记录到全局参数中
-	function TTH_SetHeroLevelToGameVar()
-		local arrHero = {};
-		for i = 1, 8 do
-			local arrTempHero = GetPlayerHeroes(i);
-			if arrTempHero ~= nil then
-				for j, strHero in arrTempHero do
-					H55_Insert(arrHero, strHero);
-				end;
-			end;
-		end;
-		for iIndexHero = 1, length(H55SMOD_Heroes) do
-			local strHero = H55SMOD_Heroes[iIndexHero];
-			if contains(arrHero, strHero) ~= nil then
-				if H55SMOD_HeroLevel[strHero] ~= GetHeroLevel(strHero) then
-					SetGameVar('H55SMOD_Var_Level_'..strHero, GetHeroLevel(strHero));
-					-- begin 娜瑞莎升级加咒力或知识
-					-- if strHero == 'Ildar' then
-					-- 	print('Ildar');
-					-- 	local iLenLevel = 0;
-					-- 	if H55SMOD_HeroLevel[strHero] == nil then
-					-- 		iLenLevel = GetHeroLevel(strHero);
-					-- 	else
-					-- 		iLenLevel = GetHeroLevel(strHero) - H55SMOD_HeroLevel[strHero];
-					-- 	end;
-					-- 	print('iLenLevel'..iLenLevel);
-					-- 	for i = 1, iLenLevel do
-					-- 		local iStatRandom = random(2);
-					-- 		local iPlayer = GetObjectOwner(strHero);
-					-- 		if iStatRandom == 0 then
-					-- 			ChangeHeroStat(strHero, STAT_SPELL_POWER, 1);
-					-- 			ShowFlyingSign("/Text/Game/Scripts/Spellpower.txt", strHero, iPlayer, 5);
-					-- 		else
-					-- 			ChangeHeroStat(strHero, STAT_KNOWLEDGE, 1);
-					-- 			ShowFlyingSign("/Text/Game/Scripts/Knowledge.txt", strHero, iPlayer, 5);
-					-- 		end;
-					-- 	end;
-					-- end;
-					-- end
-					H55SMOD_HeroLevel[strHero] = GetHeroLevel(strHero);
-				end;
-			else
-				SetGameVar('H55SMOD_Var_Level_'..strHero, '');
-			end;
-		end;
-	end;
--- end
-
--- by 牙姐 2021-02-23 03:47:40
--- begin 宝物战场效果 全局参数
-	TTH_ARTIFACT_EFFECT_COMBAT = {
-		[0] = ARTIFACT_ANGELIC_ALLIANCE
-		, [1] = ARTIFACT_CURSE_SHOULDER
-		, [2] = ARTIFACT_SENTINEL
-		, [3] = ARTIFACT_EIGHTFOLD
-		, [4] = ARTIFACT_MOONBLADE
-		, [5] = ARTIFACT_BAND_OF_CONJURER
-	};
-	TTH_SKILL_EFFECT_COMBAT = {
-		[0] = HERO_SKILL_WEAKENING_STRIKE
-		, [1] = HERO_SKILL_ELITE_CASTERS
-		, [2] = HERO_SKILL_MYSTICISM
-		, [3] = HERO_SKILL_PRAYER
-	};
-	function TTH_SetHeroArtifactToGameVar()
-		local arrHero = {};
-		for i = 1, 8 do
-			local arrTempHero = GetPlayerHeroes(i);
-			if arrTempHero ~= nil then
-				for j, strHero in arrTempHero do
-					H55_Insert(arrHero, strHero);
-				end;
-			end;
-		end;
-		for iIndexHero, strHero in H55SMOD_Heroes do
-			if contains(arrHero, strHero) ~= nil then
-				for iIndexArtifact, objArtifact in TTH_ARTIFACT_EFFECT_COMBAT do
-					local strKey = 'TTH_Artifact_Effect_Combat_'..strHero..'_'..objArtifact;
-					if HasArtefact(strHero, objArtifact, 1) ~= nil then
-						SetGameVar(strKey, 1);
-					else
-						SetGameVar(strKey, 0);
-					end;
-				end;
-				for iIndexSkill, objSkill in TTH_SKILL_EFFECT_COMBAT do
-					local strKey = 'TTH_Skill_Effect_Combat_'..strHero..'_'..objSkill;
-					if HasHeroSkill(strHero, objSkill) ~= nil then
-						SetGameVar(strKey, 1);
-					else
-						SetGameVar(strKey, 0);
-					end;
-				end;
-			else
-				for iIndexArtifact, objArtifact in TTH_ARTIFACT_EFFECT_COMBAT do
-					local strKey = 'TTH_Artifact_Effect_Combat_'..strHero..'_'..objArtifact;
-					SetGameVar(strKey, 0);
-				end;
-				for iIndexSkill, objSkill in TTH_SKILL_EFFECT_COMBAT do
-					local strKey = 'TTH_Skill_Effect_Combat_'..strHero..'_'..objSkill;
-					SetGameVar(strKey, 0);
-				end;
-			end;
-		end;
-	end;
--- end
-
--- by 牙姐 2021-03-06 02:41:16
--- begin 根据英雄技能赠送魔法相关
-	function TTH_GiveMagic8Skill(strHero, iPlayer, objItem)
-		if KnowHeroSpell(strHero, objItem["MAGIC"]["ID"]) == nil then
-			local bCheck = 1;
-			if length(objItem["SKILL_MASTERY"]) > 0 then
-				for iIndexMastery, objMastery in objItem["SKILL_MASTERY"] do
-					if GetHeroSkillMastery(strHero, objMastery["MASTERY"]) < objMastery["LEVEL"] then
-						bCheck = 0;
-						break;
-					end;
-				end;
-			end;
-			if length(objItem["SKILL_PERK"]) > 0 then
-				for iIndexPerk, objPerk in objItem["SKILL_PERK"] do
-					if HasHeroSkill(strHero, objPerk) == nil then
-						bCheck = 0;
-						break;
-					end;
-				end;
-			end;
-			if bCheck == 1 then
-				TeachHeroSpell(strHero, objItem["MAGIC"]["ID"]);
-				if H55_IsThisAIPlayer(iPlayer) ~= 1 and H55_IsHeroInAnyTown(strHero) == 0 then
-					ShowFlyingSign({"/Text/Game/Scripts/Learnspell.txt";name=objItem["MAGIC"]["NAME"]},strHero,iPlayer,7);
-					sleep(4);
-				end;
-			end;
-		end;
-	end;
--- end
-
--- by 牙姐 2021-09-07 01:48:23
--- begin 战地指挥官
-	function TTH_DealHeroSkillForestGuardEmblem(strHero, iPlayer)
-		local arrType = H55_ArmyInfoSimple(strHero);
-		local iRace = H55_GetHeroRaceNum(strHero);
-		local bHasFound = 0;
-	  for i = 0, 6 do
-			if bHasFound == 1 then break end;
-	    for j = 2, 3 do
-				if bHasFound == 1 then break end;
-        if arrType[i] == H55_Creatures[iRace][2][j] then
-					local iGrowth = TTH_TABLE_NCF_CREATURES[H55_Creatures[iRace][2][j]]["GROWTH"];
-					AddHeroCreatures(strHero, H55_Creatures[iRace][2][j], iGrowth);
-					if H55_IsThisAIPlayer(iPlayer) ~= 1 and H55_IsHeroInAnyTown(strHero) == 0 then
-					  ShowFlyingSign({"/Text/Game/Scripts/Join.txt"; num = iGrowth}, strHero, iPlayer, 5)
-					  sleep(8);
-					elseif H55_IsThisAIPlayer(iPlayer) ~= 1 then
-					  sleep(2);
-					end;
-					bHasFound = 1;
-        end;
-	    end;
-	  end;
-	  if bHasFound == 0 then
-			local iGrowth = TTH_TABLE_NCF_CREATURES[H55_Creatures[iRace][2][3]]["GROWTH"];
-			AddHeroCreatures(strHero, H55_Creatures[iRace][2][3], iGrowth);
-			if H55_IsThisAIPlayer(iPlayer) ~= 1 and H55_IsHeroInAnyTown(strHero) == 0 then
-			  ShowFlyingSign({"/Text/Game/Scripts/Join.txt"; num = iGrowth}, strHero, iPlayer, 5)
-			  sleep(8);
-			elseif H55_IsThisAIPlayer(iPlayer) ~= 1 then
-			  sleep(2);
-			end;
-	  end;
-	  local iCountWarDancer = H55_Floor((H55_AbsoluteWeek + 1) / 2) * 10;
-	  RemoveHeroCreatures(strHero, 46, iCountWarDancer);
-	end;
--- end
-
--- by 牙姐 2021-09-08 15:07:12
--- begin 查看魔法塔魔法
-	function TTH_Scanner()
-		local iPlayer = 1;
-		for i = 1, 8 do
-			if IsPlayerCurrent(i) then
-				iPlayer = i;
-			end;
-		end;
-		local arrTown = GetObjectNamesByType("TOWN");
-		for iIndex, itemTown in arrTown do
-			if GetObjectOwner(itemTown) == iPlayer and H55_IsThisAIPlayer(iPlayer) ~= 1 then
-				UpgradeTownBuilding(itemTown, TOWN_BUILDING_MAGIC_GUILD, 1);
-				UpgradeTownBuilding(itemTown, TOWN_BUILDING_MAGIC_GUILD, 1);
-				UpgradeTownBuilding(itemTown, TOWN_BUILDING_MAGIC_GUILD, 1);
-				UpgradeTownBuilding(itemTown, TOWN_BUILDING_MAGIC_GUILD, 1);
-				UpgradeTownBuilding(itemTown, TOWN_BUILDING_MAGIC_GUILD, 1);
-			end;
-		end;
-	end;
--- end
-
--- begin 获取英雄所属玩家ID
-	function TTH_Func_GetObjectOwner(strHero)
-		local iPlayer = 0;
-		for i = 1, 8 do
-			local arrHero = GetPlayerHeroes(i);
-			if contains(arrHero, strHero) ~= nil then
-				iPlayer = i;
-				return iPlayer;
-			end;
-		end;
-	end;
--- end
-
--- begin 闪耀坠饰 ARTIFACT_PENDANT_OF_BLIND
-	function TTH_Func_PendantOfBlind(strHero)
-		local iPlayer = TTH_Func_GetObjectOwner(strHero);
-		TTH_DEBUG.recordFuncInfo('TTH_Func_PendantOfBlind-begin', iPlayer, strHero, strHero);
-		if HasArtefact(strHero, ARTIFACT_PENDANT_OF_BLIND, 1) ~= nil then
-			if TTH_Data_TeachSpell_PendantOfBlind[strHero] == nil then
-				if KnowHeroSpell(strHero, TTH_TABLE_SPELL["SPELL_BLIND"]["ID"]) == nil then
-					TeachHeroSpell(strHero, TTH_TABLE_SPELL["SPELL_BLIND"]["ID"]);
-					TTH_Data_TeachSpell_PendantOfBlind[strHero] = 1;
-					if H55_IsThisAIPlayer(iPlayer) ~= 1 and H55_IsHeroInAnyTown(strHero) == 0 then 
-						ShowFlyingSign({"/Text/Game/Scripts/Learnspell.txt";name=TTH_TABLE_SPELL["SPELL_BLIND"]["NAME"]}, strHero, iPlayer, 7);
-						sleep(4);
-					end;
-				end;
-			end;
-		end;
-		if HasArtefact(strHero, ARTIFACT_PENDANT_OF_BLIND, 1) ~= nil then
-			if TTH_Data_GameVar_PendantOfBlind[strHero] ~= 1 then
-				SetGameVar('TTH_Artifact_Effect_Combat_'..strHero..'_'..ARTIFACT_PENDANT_OF_BLIND, 1);
-				TTH_Data_GameVar_PendantOfBlind[strHero] = 1;
-			end;
-		else
-			if TTH_Data_GameVar_PendantOfBlind[strHero] ~= 0 then
-				SetGameVar('TTH_Artifact_Effect_Combat_'..strHero..'_'..ARTIFACT_PENDANT_OF_BLIND, 0);
-				TTH_Data_GameVar_PendantOfBlind[strHero] = 0;
-			end;
-		end;
-		TTH_DEBUG.recordFuncInfo('TTH_Func_PendantOfBlind-end', iPlayer, strHero);
-	end;
--- end
-
--- begin 冲锋战鼓 ARTIFACT_DRUM_OF_CHARGE
-	function TTH_Func_DrumOfCharge(strHero)
-		TTH_DEBUG.recordFuncInfo('TTH_Func_DrumOfCharge-begin', nil, strHero, strHero);
-		if HasArtefact(strHero, ARTIFACT_DRUM_OF_CHARGE, 1) ~= nil then
-			if TTH_Data_GameVar_DrumOfCharge[strHero] ~= 1 then
-				SetGameVar('TTH_Artifact_Effect_Combat_'..strHero..'_'..ARTIFACT_DRUM_OF_CHARGE, 1);
-				TTH_Data_GameVar_DrumOfCharge[strHero] = 1;
-			end;
-		else
-			if TTH_Data_GameVar_DrumOfCharge[strHero] ~= 0 then
-				SetGameVar('TTH_Artifact_Effect_Combat_'..strHero..'_'..ARTIFACT_DRUM_OF_CHARGE, 0);
-				TTH_Data_GameVar_DrumOfCharge[strHero] = 0;
-			end;
-		end;
-		TTH_DEBUG.recordFuncInfo('TTH_Func_DrumOfCharge-end', nil, strHero);
-	end;
--- end
-
--- begin 幻影宝石 ARTIFACT_GEM_OF_PHANTOM
-	function TTH_Func_GemOfPhantom(strHero)
-		local iPlayer = TTH_Func_GetObjectOwner(strHero);
-		TTH_DEBUG.recordFuncInfo('TTH_Func_GemOfPhantom-begin', iPlayer, strHero, strHero);
-		if HasArtefact(strHero, ARTIFACT_GEM_OF_PHANTOM, 1) ~= nil then
-			if TTH_DATA_GemOfPhantom[iPlayer] ~= nil and TTH_DATA_GemOfPhantom[iPlayer]["CreatureId"] ~= nil and TTH_DATA_GemOfPhantom[iPlayer]["CreatureId"] >= 0 then
-				local iPostRecordCreatureId = TTH_DATA_GemOfPhantom[iPlayer]["CreatureId"];
-				local iPostRecordCreatureNum = TTH_DATA_GemOfPhantom[iPlayer]["CreatureNum"];
-				local iCurrentValue = iPostRecordCreatureId + iPostRecordCreatureNum * 1000;
-				if TTH_Data_GameVar_GemOfPhantom[strHero] ~= iCurrentValue then
-					SetGameVar('TTH_Artifact_Effect_Combat_'..strHero..'_'..ARTIFACT_GEM_OF_PHANTOM, iCurrentValue);
-					TTH_Data_GameVar_GemOfPhantom[strHero] = iCurrentValue;
-				end;
-			end;
-		else
-			if TTH_Data_GameVar_GemOfPhantom[strHero] ~= 0 then
-				SetGameVar('TTH_Artifact_Effect_Combat_'..strHero..'_'..ARTIFACT_GEM_OF_PHANTOM, 0);
-				TTH_Data_GameVar_GemOfPhantom[strHero] = 0;
-			end;
-		end;
-		TTH_DEBUG.recordFuncInfo('TTH_Func_GemOfPhantom-end', iPlayer, strHero);
-	end;
--- end
-
--- begin 军团宝物对领袖特加成
-  function TTH_Func_LegionBonus2LeaderHero(strHero)
-		TTH_DEBUG.recordFuncInfo('TTH_Func_LegionBonus2LeaderHero-begin', nil, strHero, strHero);
-  	local iLegionCount = 0;
-  	if HasArtefact(strHero, ARTIFACT_LEGION_BASIC, 0) ~= nil then
-  		iLegionCount = iLegionCount + 1;
-  	end;
-  	if HasArtefact(strHero, ARTIFACT_LEGION_ADVANCED, 0) ~= nil then
-  		iLegionCount = iLegionCount + 1;
-  	end;
-  	if HasArtefact(strHero, ARTIFACT_LEGION_EXPERT, 0) ~= nil then
-  		iLegionCount = iLegionCount + 1;
-  	end;
-  	local iLeaderHeroBonus = 1;
-  	if iLegionCount == 1 then
-  		iLeaderHeroBonus = 1.25;
-  	elseif iLegionCount == 2 then
-  		iLeaderHeroBonus = 1.5;
-  	elseif iLegionCount == 3 then
-  		iLeaderHeroBonus = 2;
-  	end;
-		TTH_DEBUG.recordFuncInfo('TTH_Func_LegionBonus2LeaderHero-end', nil, strHero);
-  	return iLeaderHeroBonus;
-  end;
--- end
-
--- begin 测试新版本宝物
-	function tth_test1(iPlayer)
-		local strHero = GetPlayerHeroes(iPlayer)[0];
-		GiveArtefact(strHero, ARTIFACT_LEGION_BASIC);
-		GiveArtefact(strHero, ARTIFACT_LEGION_ADVANCED);
-		GiveArtefact(strHero, ARTIFACT_LEGION_EXPERT);
-		GiveArtefact(strHero, ARTIFACT_ENDLESS_BAG_OF_GOLD);
-		GiveArtefact(strHero, ARTIFACT_CROWN_OF_LEADER);
-
-		GiveArtefact(strHero, ARTIFACT_RES_BASIC);
-		GiveArtefact(strHero, ARTIFACT_RES_ADVANCED);
-		GiveArtefact(strHero, ARTIFACT_RES_EXPERT);
-		GiveArtefact(strHero, ARTIFACT_BAND_OF_CONJURER);
-		GiveArtefact(strHero, ARTIFACT_HORN_OF_PLENTY);
-
-		GiveArtefact(strHero, ARTIFACT_PENDANT_OF_BLIND);
-		GiveArtefact(strHero, ARTIFACT_GEM_OF_PHANTOM);
-		GiveArtefact(strHero, ARTIFACT_ORDER_OF_CONSCRIPTION);
-		GiveArtefact(strHero, ARTIFACT_DRUM_OF_CHARGE);
-	end;
--- end
-
-SetTrigger(COMBAT_RESULTS_TRIGGER, "TTH_TRIGGER_CombatResults"); 
-function TTH_TRIGGER_CombatResults(iCombatIndex) 
-	TTH_TRIGGER_CombatResults_LoseCreature(iCombatIndex);
-	TTH_TRIGGER_CombatResults_ReviveCreature(iCombatIndex);
-end;
-
-
-function TTH_TRIGGER_CombatResults_LoseCreature(iCombatIndex)
-	print('TTH_TRIGGER_CombatResults_LoseCreature:'..'inside');
-end;
-
-function TTH_TRIGGER_CombatResults_ReviveCreature(iCombatIndex)
-	print('TTH_TRIGGER_CombatResults_ReviveCreature:'..'inside');
-end;
-
-doFile("/scripts/TTH_MOD_CombatResults_LoseCreature.lua");
-doFile("/scripts/TTH_MOD_CombatResults_ReviveCreature.lua");
+-- 模块加载
+	doFile("/scripts/mod/TTH_MOD_CombatResults4LoseCreature.lua");
+	doFile("/scripts/mod/TTH_MOD_CombatResults4ReviveCreature.lua");

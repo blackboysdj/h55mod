@@ -35,7 +35,7 @@
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_AVENGER</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Preserve55/Forest_Guardian/Name.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Preserve/Metlirn/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Preserve55/Forest_Guardian/Description.txt"/>
 	<SpecializationIcon href="/Textures/HeroScreen/Specializations/Preserve/Forest_Guardian.xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Preserve/Preserve_Anwen_128x128.(Texture).xdb#xpointer(/Texture)"/>

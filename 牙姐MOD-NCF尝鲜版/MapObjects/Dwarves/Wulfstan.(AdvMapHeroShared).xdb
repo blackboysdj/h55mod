@@ -35,7 +35,7 @@
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_TRAINING</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Fortress55/Border_Guard/Name.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Fortress/Wulfstan/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Fortress55/Border_Guard/Description.txt"/>
 	<SpecializationIcon href="/UI/H5A1/Icons/Abilites/Heroes_Abillites/128x128/Border_Guard.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/UI/H5A1/Icons/Heroes/Portrets128x128/Wulfstan.(Texture).xdb#xpointer(/Texture)"/>

@@ -37,7 +37,7 @@
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_DEMONIC_RAGE</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Stronghold55/SlaveMaster/Name.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Stronghold/Quroq/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Stronghold55/SlaveMaster/Description.txt"/>
 	<SpecializationIcon href="/UI/H5A2/Icons/City_Buildings/SlaveMarket.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/UI/H5A2/Icons/Heroes/Portrets128x128/Stronghold_Quroq.(Texture).xdb#xpointer(/Texture)"/>

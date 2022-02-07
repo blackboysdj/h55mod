@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CreatureVisual>
+	<CreatureNameFileRef href="/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_929/Name.txt"/>
+	<CreatureAbilitiesFileRef href="/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_929/Abilities.txt"/>
+	<DescriptionFileRef href="/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_929/Desc.txt"/>
+	<Icon/>
+	<Icon32/>
+	<Icon64/>
+	<Icon128 href="/Characters/Creatures/Neutral/Ulem/Ulem_128x128.(Texture).xdb#xpointer(/Texture)"/>
+	<AnimCharacter href="/Characters/Creatures/Neutral/Ulem/Ulem.(Character).xdb#xpointer(/Character)"/>
+	<DeadCharacte/>
+	<AnimShot href="/Characters/Creatures/Neutral/Ulem/Ulem.(Shot).xdb#xpointer(/Shot)"/>
+	<SummoningEffect/>
+	<DamageEffect href="/GameMechanics/CreatureDamage/Flesh_and_Blood.xdb#xpointer(/CreatureDamage)"/>
+	<TeleportingMove>
+		<Use>false</Use>
+		<StartEffect/>
+		<FinishEffect/>
+	</TeleportingMove>
+	<Win3DView/>
+	<MountPoint>
+		<x>0</x>
+		<y>0.0284883</y>
+		<z>1.12069</z>
+	</MountPoint>
+	<MountBone>Chest</MountBone>
+</CreatureVisual>

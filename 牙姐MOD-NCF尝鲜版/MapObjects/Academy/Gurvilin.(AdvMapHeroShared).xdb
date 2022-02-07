@@ -35,7 +35,7 @@
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_LIGHT_MAGIC</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Academy55/MagicMaster/Name.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Academy/Gurvilin/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Academy55/MagicMaster/Description.txt"/>
 	<SpecializationIcon href="/Textures/HeroScreen/Perks/Learning_Scholar.xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Academy/Academy_Gurvilin_128x128.(Texture).xdb#xpointer(/Texture)"/>

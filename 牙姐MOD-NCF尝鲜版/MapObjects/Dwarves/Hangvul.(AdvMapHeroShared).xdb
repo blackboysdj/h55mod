@@ -37,7 +37,7 @@
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_TRAINING</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Fortress55/ResistanceLeader/Name.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Fortress/Hangvul/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Fortress55/ResistanceLeader/Description.txt"/>
 	<SpecializationIcon href="/Textures/Heroes_Abillites/Dwarves55/ResistanceLeader.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/UI/H5A1/Icons/Heroes/Portrets128x128/Hangvul.(Texture).xdb#xpointer(/Texture)"/>

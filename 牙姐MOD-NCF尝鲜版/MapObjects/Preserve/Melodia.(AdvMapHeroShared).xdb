@@ -35,7 +35,7 @@
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_DEFENCE</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Preserve55/GodOfLuck/Name.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Preserve/Melodia/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Preserve55/GodOfLuck/Description.txt"/>
 	<SpecializationIcon href="/Textures/HeroScreen/Skills/Luck_3.xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Preserve/Preserve_Melodia_128x128.(Texture).xdb#xpointer(/Texture)"/>

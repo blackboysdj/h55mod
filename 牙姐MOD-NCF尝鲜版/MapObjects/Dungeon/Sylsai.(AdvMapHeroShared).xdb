@@ -35,7 +35,7 @@
 		<Mastery>MASTERY_ADVANCED</Mastery>
 		<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Dungeon55/DungeonMaster/Name.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Dungeon/Sylsai/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Dungeon55/DungeonMaster/Description.txt"/>
 	<SpecializationIcon href="/Textures/Interface/CombatArena/Faces/Dungeon/ico_Chaoshydra_128.xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Dungeon/Dungeon_Sylsai_128x128.(Texture).xdb#xpointer(/Texture)"/>

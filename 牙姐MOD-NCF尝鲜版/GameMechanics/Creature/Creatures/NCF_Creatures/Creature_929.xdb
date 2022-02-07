@@ -1,47 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Creature>
-	<AttackSkill>1</AttackSkill>
-	<DefenceSkill>1</DefenceSkill>
-	<Shots>0</Shots>
-	<MinDamage>1</MinDamage>
-	<MaxDamage>1</MaxDamage>
-	<Speed>1</Speed>
-	<Initiative>1</Initiative>
+	<AttackSkill>12</AttackSkill>
+	<DefenceSkill>10</DefenceSkill>
+	<Shots>6</Shots>
+	<MinDamage>7</MinDamage>
+	<MaxDamage>7</MaxDamage>
+	<Speed>4</Speed>
+	<Initiative>10</Initiative>
 	<Flying>false</Flying>
-	<Health>1</Health>
-	<KnownSpells/>
-	<SpellPoints>0</SpellPoints>
+	<Health>30</Health>
+	<KnownSpells>
+		<Item>
+			<Spell>SPELL_MASS_CURSE</Spell>
+			<Mastery>MASTERY_ADVANCED</Mastery>
+		</Item>
+		<Item>
+			<Spell>SPELL_MASS_DISRUPTING_RAY</Spell>
+			<Mastery>MASTERY_ADVANCED</Mastery>
+		</Item>
+		<Item>
+			<Spell>SPELL_MASS_SLOW</Spell>
+			<Mastery>MASTERY_ADVANCED</Mastery>
+		</Item>
+		<Item>
+			<Spell>SPELL_MASS_FORGETFULNESS</Spell>
+			<Mastery>MASTERY_ADVANCED</Mastery>
+		</Item>
+		<Item>
+			<Spell>SPELL_MASS_PLAGUE</Spell>
+			<Mastery>MASTERY_ADVANCED</Mastery>
+		</Item>
+		<Item>
+			<Spell>SPELL_MASS_WEAKNESS</Spell>
+			<Mastery>MASTERY_ADVANCED</Mastery>
+		</Item>
+		<Item>
+			<Spell>SPELL_MASS_BLESS</Spell>
+			<Mastery>MASTERY_ADVANCED</Mastery>
+		</Item>
+		<Item>
+			<Spell>SPELL_MASS_DISPEL</Spell>
+			<Mastery>MASTERY_ADVANCED</Mastery>
+		</Item>
+		<Item>
+			<Spell>SPELL_MASS_STONESKIN</Spell>
+			<Mastery>MASTERY_ADVANCED</Mastery>
+		</Item>
+		<Item>
+			<Spell>SPELL_MASS_DEFLECT_ARROWS</Spell>
+			<Mastery>MASTERY_ADVANCED</Mastery>
+		</Item>
+		<Item>
+			<Spell>SPELL_MASS_BLOODLUST</Spell>
+			<Mastery>MASTERY_ADVANCED</Mastery>
+		</Item>
+		<Item>
+			<Spell>SPELL_MASS_HASTE</Spell>
+			<Mastery>MASTERY_ADVANCED</Mastery>
+		</Item>
+	</KnownSpells>
+	<SpellPoints>12</SpellPoints>
 	<SpellPoints1>0</SpellPoints1>
 	<SpellPoints2>0</SpellPoints2>
-	<Exp>1</Exp>
-	<Power>1</Power>
+	<Exp>90</Exp>
+	<Power>963</Power>
 	<TimeToCommand>10</TimeToCommand>
-	<CreatureTier>1</CreatureTier>
-	<Upgrade>false</Upgrade>
+	<CreatureTier>6</CreatureTier>
+	<Upgrade>true</Upgrade>
 	<PairCreature>CREATURE_UNKNOWN</PairCreature>
-	<CreatureTown>TOWN_NO_TYPE</CreatureTown>
+	<CreatureTown>TOWN_ACADEMY</CreatureTown>
 	<MagicElement>
-		<First>ELEMENT_NONE</First>
-		<Second>ELEMENT_NONE</Second>
+		<First>ELEMENT_FIRE</First>
+		<Second>ELEMENT_EARTH</Second>
 	</MagicElement>
-	<WeeklyGrowth>0</WeeklyGrowth>
+	<WeeklyGrowth>4</WeeklyGrowth>
 	<Cost>
 		<Wood>0</Wood>
 		<Ore>0</Ore>
 		<Mercury>0</Mercury>
 		<Crystal>0</Crystal>
 		<Sulfur>0</Sulfur>
-		<Gem>0</Gem>
-		<Gold>0</Gold>
+		<Gem>1</Gem>
+		<Gold>1200</Gold>
 	</Cost>
 	<SubjectOfRandomGeneration>true</SubjectOfRandomGeneration>
-	<MonsterShared/>
+	<MonsterShared href="/MapObjects/Neutral/Ulem.(AdvMapMonsterShared).xdb#xpointer(/AdvMapMonsterShared)"/>
 	<CombatSize>1</CombatSize>
 	<PatternAttack/>
 	<flybySequence/>
-	<Visual href="/GameMechanics/CreatureVisual/Creatures/Neutrals/SnowApe.xdb#xpointer(/CreatureVisual)"/>
-	<Range>0</Range>
-	<BaseCreature>CREATURE_UNKNOWN</BaseCreature>
+	<Visual href="/GameMechanics/CreatureVisual/Creatures/NCF_Creatures/Creature_929.xdb#xpointer(/CreatureVisual)"/>
+	<Range>-1</Range>
+	<BaseCreature>CREATURE_MAGI</BaseCreature>
 	<Upgrades/>
-	<Abilities/>
+	<Abilities>
+		<Item>ABILITY_NO_RANGE_PENALTY</Item>
+		<Item>ABILITY_MAGIC_ATTACK</Item>
+		<Item>ABILITY_ENERGY_CHANNEL</Item>
+		<Item>ABILITY_ELDRITCH_AURA</Item>
+		<Item>ABILITY_IMMUNITY_TO_MIND_CONTROL</Item>
+	</Abilities>
 </Creature>

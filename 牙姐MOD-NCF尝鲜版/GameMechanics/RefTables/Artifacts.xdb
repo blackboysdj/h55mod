@@ -785,7 +785,7 @@
 				<Type>ARTF_CLASS_MINOR</Type>
 				<Slot>INVENTORY</Slot>
 				<Icon href="/Textures/HeroScreen/Artifacts/LegionT1.xdb#xpointer(/Texture)"/>
-				<CostOfGold>9000</CostOfGold>
+				<CostOfGold>1</CostOfGold>
 				<AIValue>3000</AIValue>
 				<CanBeGeneratedToSell>true</CanBeGeneratedToSell>
 				<HeroStatsModif>
@@ -3174,6 +3174,1731 @@
 				<ArtifactShared href="/MapObjects/Artifacts/H5A2/BeautyPrincess.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
 				<AvailableForPresets>true</AvailableForPresets>
 				<PresetPrice>-1</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_PIRATE01</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Pirate_01/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Pirate_01/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_RELIC</Type>
+				<Slot>HEAD</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/Pirate01.xdb#xpointer(/Texture)"/>
+				<CostOfGold>28000</CostOfGold>
+				<AIValue>9300</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>7</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/Pirate01.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_PIRATE02</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Pirate_02/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Pirate_02/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MINOR</Type>
+				<Slot>CHEST</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/Pirate02.xdb#xpointer(/Texture)"/>
+				<CostOfGold>12000</CostOfGold>
+				<AIValue>4000</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>1</Attack>
+					<Defence>1</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/Pirate02.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_PIRATE03</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Pirate_03/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Pirate_03/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MINOR</Type>
+				<Slot>FINGER</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/Pirate03.xdb#xpointer(/Texture)"/>
+				<CostOfGold>8000</CostOfGold>
+				<AIValue>3800</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/Pirate03.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_PIRATE04</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Pirate_04/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Pirate_04/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MINOR</Type>
+				<Slot>SECONDARY</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/Pirate04.xdb#xpointer(/Texture)"/>
+				<CostOfGold>8000</CostOfGold>
+				<AIValue>3800</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>1</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/Pirate04.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_PIRATE05</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Pirate_05/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Pirate_05/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MINOR</Type>
+				<Slot>FEET</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/Pirate05.xdb#xpointer(/Texture)"/>
+				<CostOfGold>12000</CostOfGold>
+				<AIValue>4000</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/Pirate05.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_PIRATE06</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Pirate_06/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Pirate_06/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MINOR</Type>
+				<Slot>NECK</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/Pirate06.xdb#xpointer(/Texture)"/>
+				<CostOfGold>12000</CostOfGold>
+				<AIValue>4000</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>1</Morale>
+					<Luck>1</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/Pirate06.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_MEDICAL01</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Medical_01/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Medical_01/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_RELIC</Type>
+				<Slot>SECONDARY</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/Medical01.xdb#xpointer(/Texture)"/>
+				<CostOfGold>28000</CostOfGold>
+				<AIValue>9300</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/Medical01.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_MEDICAL02</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Medical_02/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Medical_02/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_RELIC</Type>
+				<Slot>PRIMARY</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/Medical02.xdb#xpointer(/Texture)"/>
+				<CostOfGold>32000</CostOfGold>
+				<AIValue>11000</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>1</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/Medical02.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_MEDICAL03</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Medical_03/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Medical_03/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MINOR</Type>
+				<Slot>MISCSLOT1</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/Medical03.xdb#xpointer(/Texture)"/>
+				<CostOfGold>0</CostOfGold>
+				<AIValue>0</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/Medical03.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_MEDICAL04</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Medical_04/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Medical_04/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MINOR</Type>
+				<Slot>MISCSLOT1</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/Medical04.xdb#xpointer(/Texture)"/>
+				<CostOfGold>12000</CostOfGold>
+				<AIValue>4000</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/Medical04.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_POTION01</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Potion_01/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Potion_01/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MINOR</Type>
+				<Slot>MISCSLOT1</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/Potion01.xdb#xpointer(/Texture)"/>
+				<CostOfGold>8000</CostOfGold>
+				<AIValue>3800</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/Potion01.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_POTION02</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Potion_02/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Potion_02/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MAJOR</Type>
+				<Slot>MISCSLOT1</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/Potion02.xdb#xpointer(/Texture)"/>
+				<CostOfGold>16000</CostOfGold>
+				<AIValue>5300</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/Potion02.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_POTION03</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Potion_03/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Potion_03/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_RELIC</Type>
+				<Slot>MISCSLOT1</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/Potion03.xdb#xpointer(/Texture)"/>
+				<CostOfGold>28000</CostOfGold>
+				<AIValue>9000</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/Potion03.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_BOOK_A1</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Book_A1/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Book_A1/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MINOR</Type>
+				<Slot>INVENTORY</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/BookA1.xdb#xpointer(/Texture)"/>
+				<CostOfGold>8000</CostOfGold>
+				<AIValue>3800</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/BookA1.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_BOOK_A2</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Book_A2/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Book_A2/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MINOR</Type>
+				<Slot>INVENTORY</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/BookA2.xdb#xpointer(/Texture)"/>
+				<CostOfGold>8000</CostOfGold>
+				<AIValue>3800</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/BookA2.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_BOOK_A3</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Book_A3/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Book_A3/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MAJOR</Type>
+				<Slot>INVENTORY</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/BookA3.xdb#xpointer(/Texture)"/>
+				<CostOfGold>16000</CostOfGold>
+				<AIValue>5300</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/BookA3.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_BOOK_A4</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Book_A4/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Book_A4/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MAJOR</Type>
+				<Slot>INVENTORY</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/BookA4.xdb#xpointer(/Texture)"/>
+				<CostOfGold>16000</CostOfGold>
+				<AIValue>5300</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/BookA4.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_BOOK_D1</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Book_D1/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Book_D1/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MINOR</Type>
+				<Slot>INVENTORY</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/BookD1.xdb#xpointer(/Texture)"/>
+				<CostOfGold>8000</CostOfGold>
+				<AIValue>3800</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/BookD1.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_BOOK_D2</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Book_D2/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Book_D2/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MINOR</Type>
+				<Slot>INVENTORY</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/BookD2.xdb#xpointer(/Texture)"/>
+				<CostOfGold>8000</CostOfGold>
+				<AIValue>3800</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/BookD2.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_BOOK_D3</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Book_D3/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Book_D3/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MAJOR</Type>
+				<Slot>INVENTORY</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/BookD3.xdb#xpointer(/Texture)"/>
+				<CostOfGold>16000</CostOfGold>
+				<AIValue>5300</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/BookD3.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_BOOK_D4</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Book_D4/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Book_D4/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MAJOR</Type>
+				<Slot>INVENTORY</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/BookD4.xdb#xpointer(/Texture)"/>
+				<CostOfGold>16000</CostOfGold>
+				<AIValue>5300</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/BookD4.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_BOOK_S1</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Book_S1/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Book_S1/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MINOR</Type>
+				<Slot>INVENTORY</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/BookS1.xdb#xpointer(/Texture)"/>
+				<CostOfGold>8000</CostOfGold>
+				<AIValue>2000</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/BookS1.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_BOOK_S2</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Book_S2/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Book_S2/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MINOR</Type>
+				<Slot>INVENTORY</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/BookS2.xdb#xpointer(/Texture)"/>
+				<CostOfGold>8000</CostOfGold>
+				<AIValue>3800</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/BookS2.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_BOOK_S3</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Book_S3/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Book_S3/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MAJOR</Type>
+				<Slot>INVENTORY</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/BookS3.xdb#xpointer(/Texture)"/>
+				<CostOfGold>16000</CostOfGold>
+				<AIValue>5300</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/BookS3.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_BOOK_S4</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Book_S4/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Book_S4/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MAJOR</Type>
+				<Slot>INVENTORY</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/BookS4.xdb#xpointer(/Texture)"/>
+				<CostOfGold>16000</CostOfGold>
+				<AIValue>5300</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/BookS4.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_BOOK_K1</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Book_K1/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Book_K1/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MINOR</Type>
+				<Slot>INVENTORY</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/BookK1.xdb#xpointer(/Texture)"/>
+				<CostOfGold>8000</CostOfGold>
+				<AIValue>3800</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/BookK1.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_BOOK_K2</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Book_K2/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Book_K2/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MINOR</Type>
+				<Slot>INVENTORY</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/BookK2.xdb#xpointer(/Texture)"/>
+				<CostOfGold>8000</CostOfGold>
+				<AIValue>3800</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/BookK2.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_BOOK_K3</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Book_K3/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Book_K3/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MAJOR</Type>
+				<Slot>INVENTORY</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/BookK3.xdb#xpointer(/Texture)"/>
+				<CostOfGold>16000</CostOfGold>
+				<AIValue>5300</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/BookK3.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_BOOK_K4</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Book_K4/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Book_K4/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MAJOR</Type>
+				<Slot>INVENTORY</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/BookK4.xdb#xpointer(/Texture)"/>
+				<CostOfGold>16000</CostOfGold>
+				<AIValue>5300</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/BookK4.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_BOOK_R1</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Book_R1/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Book_R1/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_RELIC</Type>
+				<Slot>INVENTORY</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/BookR1.xdb#xpointer(/Texture)"/>
+				<CostOfGold>28000</CostOfGold>
+				<AIValue>9300</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/BookR1.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_BOOK_R2</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Book_R2/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Book_R2/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_RELIC</Type>
+				<Slot>INVENTORY</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/BookR2.xdb#xpointer(/Texture)"/>
+				<CostOfGold>28000</CostOfGold>
+				<AIValue>9300</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/BookR2.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_BOOK_R3</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Book_R3/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Book_R3/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_RELIC</Type>
+				<Slot>INVENTORY</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/BookR3.xdb#xpointer(/Texture)"/>
+				<CostOfGold>28000</CostOfGold>
+				<AIValue>9300</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/BookR3.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_SHANTIRI_01</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Shantiri_01/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Shantiri_01/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MAJOR</Type>
+				<Slot>INVENTORY</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/Shantiri01.xdb#xpointer(/Texture)"/>
+				<CostOfGold>16000</CostOfGold>
+				<AIValue>5300</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/Shantiri01.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_SHANTIRI_02</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Shantiri_02/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Shantiri_02/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MAJOR</Type>
+				<Slot>INVENTORY</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/Shantiri02.xdb#xpointer(/Texture)"/>
+				<CostOfGold>16000</CostOfGold>
+				<AIValue>5300</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/Shantiri02.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_SHANTIRI_03</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Shantiri_03/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Shantiri_03/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MAJOR</Type>
+				<Slot>INVENTORY</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/Shantiri03.xdb#xpointer(/Texture)"/>
+				<CostOfGold>16000</CostOfGold>
+				<AIValue>5300</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/Shantiri03.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_SHANTIRI_04</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Shantiri_04/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Shantiri_04/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MAJOR</Type>
+				<Slot>INVENTORY</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/Shantiri04.xdb#xpointer(/Texture)"/>
+				<CostOfGold>16000</CostOfGold>
+				<AIValue>5300</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/Shantiri04.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_SHANTIRI_05</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Shantiri_05/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Shantiri_05/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_RELIC</Type>
+				<Slot>MISCSLOT1</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/Shantiri05.xdb#xpointer(/Texture)"/>
+				<CostOfGold>80000</CostOfGold>
+				<AIValue>26000</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>6</Knowledge>
+					<SpellPower>6</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/Shantiri05.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_UPG_AR1</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Upg_AR1/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Upg_AR1/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MAJOR</Type>
+				<Slot>SHOULDERS</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/UpgAR1.xdb#xpointer(/Texture)"/>
+				<CostOfGold>16000</CostOfGold>
+				<AIValue>5300</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/UpgAR1.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_UPG_AR2</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Upg_AR2/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Upg_AR2/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MAJOR</Type>
+				<Slot>CHEST</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/UpgAR2.xdb#xpointer(/Texture)"/>
+				<CostOfGold>24000</CostOfGold>
+				<AIValue>8000</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>7</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/UpgAR2.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_UPG_AR3</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Upg_AR3/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Upg_AR3/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MINOR</Type>
+				<Slot>SECONDARY</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/UpgAR3.xdb#xpointer(/Texture)"/>
+				<CostOfGold>12000</CostOfGold>
+				<AIValue>4000</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>2</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/UpgAR3.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_UPG_HM1</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Upg_HM1/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Upg_HM1/Description.txt"/>
+				<Model href="/_(Model)/Artefacts/H5A2/MaskOfDoppelganger.xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_RELIC</Type>
+				<Slot>HEAD</Slot>
+				<Icon href="/UI/H5A2/Icons/Artifacts/Mask_of_Doppelganger.(Texture).xdb#xpointer(/Texture)"/>
+				<CostOfGold>32000</CostOfGold>
+				<AIValue>11000</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>8</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>-1</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/UpgHM1.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_UPG_HM2</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Upg_HM2/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Upg_HM2/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_RELIC</Type>
+				<Slot>HEAD</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/UpgHM2.xdb#xpointer(/Texture)"/>
+				<CostOfGold>80000</CostOfGold>
+				<AIValue>26000</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>12</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/UpgHM2.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_UPG_HM3</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Upg_HM3/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Upg_HM3/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_RELIC</Type>
+				<Slot>FINGER</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/UpgHM3.xdb#xpointer(/Texture)"/>
+				<CostOfGold>36000</CostOfGold>
+				<AIValue>12000</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/UpgHM3.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_UPG_ST1</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Upg_ST1/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Upg_ST1/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MAJOR</Type>
+				<Slot>PRIMARY</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/UpgST1.xdb#xpointer(/Texture)"/>
+				<CostOfGold>24000</CostOfGold>
+				<AIValue>8000</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>7</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/UpgST1.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_UPG_ST2</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Upg_ST2/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Upg_ST2/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MAJOR</Type>
+				<Slot>PRIMARY</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/UpgST2.xdb#xpointer(/Texture)"/>
+				<CostOfGold>24000</CostOfGold>
+				<AIValue>8000</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>5</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/UpgST2.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_UPG_ST3</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Upg_ST3/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Upg_ST3/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MINOR</Type>
+				<Slot>MISCSLOT1</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/UpgST3.xdb#xpointer(/Texture)"/>
+				<CostOfGold>12000</CostOfGold>
+				<AIValue>4000</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>4</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/UpgST3.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_UPG_SW1</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Upg_SW1/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Upg_SW1/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MINOR</Type>
+				<Slot>NECK</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/UpgSW1.xdb#xpointer(/Texture)"/>
+				<CostOfGold>8000</CostOfGold>
+				<AIValue>3800</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>3</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/UpgSW1.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_UPG_SW2</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Upg_SW2/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Upg_SW2/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_RELIC</Type>
+				<Slot>NECK</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/UpgSW2.xdb#xpointer(/Texture)"/>
+				<CostOfGold>28000</CostOfGold>
+				<AIValue>9300</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>1</Attack>
+					<Defence>1</Defence>
+					<Knowledge>1</Knowledge>
+					<SpellPower>1</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/UpgSW2.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_UPG_SW3</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Upg_SW3/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Upg_SW3/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MINOR</Type>
+				<Slot>NECK</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/UpgSW3.xdb#xpointer(/Texture)"/>
+				<CostOfGold>12000</CostOfGold>
+				<AIValue>4000</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/UpgSW3.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_FIZBIN</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Fizbin/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Fizbin/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MINOR</Type>
+				<Slot>NECK</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/Fizbin.xdb#xpointer(/Texture)"/>
+				<CostOfGold>-22222</CostOfGold>
+				<AIValue>0</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>1</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/Fizbin.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_FORGING</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Forging/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Forging/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MINOR</Type>
+				<Slot>HEAD</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/Forging.xdb#xpointer(/Texture)"/>
+				<CostOfGold>-22222</CostOfGold>
+				<AIValue>0</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>1</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/Forging.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_URGASH_01</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Urgash_01/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Urgash_01/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_RELIC</Type>
+				<Slot>PRIMARY</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/Urgash01.xdb#xpointer(/Texture)"/>
+				<CostOfGold>32000</CostOfGold>
+				<AIValue>11000</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>8</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>-1</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/Urgash01.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_URGASH_02</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Urgash_02/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Urgash_02/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_RELIC</Type>
+				<Slot>PRIMARY</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/Urgash02.xdb#xpointer(/Texture)"/>
+				<CostOfGold>32000</CostOfGold>
+				<AIValue>11000</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>8</SpellPower>
+					<Morale>-1</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/Urgash02.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_ELRATH_01</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Elrath_01/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Elrath_01/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MAJOR</Type>
+				<Slot>FINGER</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/Ring_of_Haste.xdb#xpointer(/Texture)"/>
+				<CostOfGold>16000</CostOfGold>
+				<AIValue>5300</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>1</Knowledge>
+					<SpellPower>1</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/Elrath01.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_ELRATH_02</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Elrath_02/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Elrath_02/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MAJOR</Type>
+				<Slot>INVENTORY</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/Elrath02.xdb#xpointer(/Texture)"/>
+				<CostOfGold>24000</CostOfGold>
+				<AIValue>8000</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/Elrath02.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_GOVERNOR_01</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Governor_01/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Governor_01/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MAJOR</Type>
+				<Slot>MISCSLOT1</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/Governor01.xdb#xpointer(/Texture)"/>
+				<CostOfGold>20000</CostOfGold>
+				<AIValue>6600</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>3</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/Governor01.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_GOVERNOR_02</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Governor_02/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Governor_02/Description.txt"/>
+				<Model href="/_(Model)/Artefacts/H5A2/HornOfPlenty.xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_RELIC</Type>
+				<Slot>MISCSLOT1</Slot>
+				<Icon href="/UI/H5A2/Icons/Artifacts/Horn_of_Plenty.(Texture).xdb#xpointer(/Texture)"/>
+				<CostOfGold>64000</CostOfGold>
+				<AIValue>21000</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>6</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/Governor02.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_GEAR_01</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Gear_01/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Gear_01/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_RELIC</Type>
+				<Slot>FINGER</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/Gear01.xdb#xpointer(/Texture)"/>
+				<CostOfGold>96000</CostOfGold>
+				<AIValue>32000</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>4</Attack>
+					<Defence>4</Defence>
+					<Knowledge>4</Knowledge>
+					<SpellPower>4</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/Gear01.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_GEAR_02</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Gear_02/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Gear_02/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MAJOR</Type>
+				<Slot>MISCSLOT1</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/Gear02.xdb#xpointer(/Texture)"/>
+				<CostOfGold>24000</CostOfGold>
+				<AIValue>8000</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/Gear02.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_GEAR_03</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Gear_03/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Gear_03/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MINOR</Type>
+				<Slot>CHEST</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/Gear03.xdb#xpointer(/Texture)"/>
+				<CostOfGold>8000</CostOfGold>
+				<AIValue>3800</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/Gear03.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_GEAR_04</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Gear_04/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Gear_04/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_RELIC</Type>
+				<Slot>CHEST</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/Gear04.xdb#xpointer(/Texture)"/>
+				<CostOfGold>32000</CostOfGold>
+				<AIValue>11000</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>8</SpellPower>
+					<Morale>0</Morale>
+					<Luck>-1</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/Gear04.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_GEAR_05</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Gear_05/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Gear_05/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MINOR</Type>
+				<Slot>CHEST</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/Gear05.xdb#xpointer(/Texture)"/>
+				<CostOfGold>8000</CostOfGold>
+				<AIValue>3800</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>3</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/Gear05.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_GEAR_06</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Gear_06/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Gear_06/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MAJOR</Type>
+				<Slot>SHOULDERS</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/Gear06.xdb#xpointer(/Texture)"/>
+				<CostOfGold>20000</CostOfGold>
+				<AIValue>6600</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>2</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>2</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/Gear06.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_GEAR_07</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Gear_07/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Gear_07/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MINOR</Type>
+				<Slot>INVENTORY</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/Gear07.xdb#xpointer(/Texture)"/>
+				<CostOfGold>8000</CostOfGold>
+				<AIValue>3800</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/Gear07.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_GEAR_08</ID>
+			<obj>
+				<NameFileRef href="/Text/Game/Artifacts/Gear_08/Name.txt"/>
+				<DescriptionFileRef href="/Text/Game/Artifacts/Gear_08/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_RELIC</Type>
+				<Slot>MISCSLOT1</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/Gear08.xdb#xpointer(/Texture)"/>
+				<CostOfGold>64000</CostOfGold>
+				<AIValue>21000</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>3</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/Gear08.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_ORB_AIR</ID>
+			<obj>
+				<NameFileRef href="/Text/TTH/Artifact/192-OrbAir/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/192-OrbAir/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MAJOR</Type>
+				<Slot>MISCSLOT1</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/192-OrbAir.xdb#xpointer(/Texture)"/>
+				<CostOfGold>24000</CostOfGold>
+				<AIValue>8000</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/192-OrbAir.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_ORB_EARTH</ID>
+			<obj>
+				<NameFileRef href="/Text/TTH/Artifact/193-OrbEarth/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/193-OrbEarth/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MAJOR</Type>
+				<Slot>MISCSLOT1</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/193-OrbEarth.xdb#xpointer(/Texture)"/>
+				<CostOfGold>24000</CostOfGold>
+				<AIValue>8000</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/193-OrbEarth.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_ORB_FIRE</ID>
+			<obj>
+				<NameFileRef href="/Text/TTH/Artifact/194-OrbFire/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/194-OrbFire/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MAJOR</Type>
+				<Slot>MISCSLOT1</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/194-OrbFire.xdb#xpointer(/Texture)"/>
+				<CostOfGold>24000</CostOfGold>
+				<AIValue>8000</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/194-OrbFire.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
+			</obj>
+		</Item>
+		<Item>
+			<ID>ARTIFACT_ORB_WATER</ID>
+			<obj>
+				<NameFileRef href="/Text/TTH/Artifact/195-OrbWater/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/195-OrbWater/Description.txt"/>
+				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
+				<Type>ARTF_CLASS_MAJOR</Type>
+				<Slot>MISCSLOT1</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/195-OrbWater.xdb#xpointer(/Texture)"/>
+				<CostOfGold>24000</CostOfGold>
+				<AIValue>8000</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
+				<HeroStatsModif>
+					<Attack>0</Attack>
+					<Defence>0</Defence>
+					<Knowledge>0</Knowledge>
+					<SpellPower>0</SpellPower>
+					<Morale>0</Morale>
+					<Luck>0</Luck>
+				</HeroStatsModif>
+				<ArtifactShared href="/MapObjects/Artifacts/195-OrbWater.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<AvailableForPresets>true</AvailableForPresets>
+				<PresetPrice>0</PresetPrice>
 			</obj>
 		</Item>
 	</objects>

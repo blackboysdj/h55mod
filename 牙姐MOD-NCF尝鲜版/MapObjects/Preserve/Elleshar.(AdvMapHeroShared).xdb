@@ -35,7 +35,7 @@
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_LEARNING</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Preserve55/Talented_Warrior/Name.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Preserve/Elleshar/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Preserve55/Talented_Warrior/Description.txt"/>
 	<SpecializationIcon href="/Textures/HeroScreen/Specializations/Preserve/Talented_Warrior.xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Preserve/Preserve_Vinrael_128x128.(Texture).xdb#xpointer(/Texture)"/>

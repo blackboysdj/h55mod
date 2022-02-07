@@ -28,7 +28,7 @@
 	<AdventureSoundEffect/>
 	<RazedStatic/>
 	<Icon128/>
-	<InternalName>Saint Isabell</InternalName>
+	<InternalName>SaintIsabell</InternalName>
 	<Class>HERO_CLASS_PALADIN</Class>
 	<Specialization>HERO_SPEC_CHOSEN_BY_GODS</Specialization>
 	<PrimarySkill>

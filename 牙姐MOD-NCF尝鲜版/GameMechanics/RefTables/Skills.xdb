@@ -2012,11 +2012,11 @@
 				</Texture>
 				<CommonTexture/>
 				<NameFileRef>
-					<Item href="/Text/Game/Skills/Common/Leadership/Recruitment/Name.txt"/>
+					<Item href="/Text/TTH/Skills/Leadership/028-Recruitment/Name.txt"/>
 				</NameFileRef>
 				<CommonNameFileRef href=""/>
 				<DescriptionFileRef>
-					<Item href="/Text/Game/Skills/Common/Leadership/Recruitment/Description.txt"/>
+					<Item href="/Text/TTH/Skills/Leadership/028-Recruitment/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
 				<SkillType>SKILLTYPE_STANDART_PERK</SkillType>
@@ -2078,11 +2078,11 @@
 				</Texture>
 				<CommonTexture/>
 				<NameFileRef>
-					<Item href="/Text/Game/Skills/Common/Leadership/Estates/Name.txt"/>
+					<Item href="/Text/TTH/Skills/Leadership/029-Estates/Name.txt"/>
 				</NameFileRef>
 				<CommonNameFileRef href=""/>
 				<DescriptionFileRef>
-					<Item href="/Text/Game/Skills/Common/Leadership/Estates/Description.txt"/>
+					<Item href="/Text/TTH/Skills/Leadership/029-Estates/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
 				<SkillType>SKILLTYPE_STANDART_PERK</SkillType>
@@ -2479,11 +2479,11 @@
 				</Texture>
 				<CommonTexture/>
 				<NameFileRef>
-					<Item href="/Text/Game/Skills/Common/Luck/FortunateAdventurer/Name.txt"/>
+					<Item href="/Text/TTH/Skills/Luck/033-FortunateAdventurer/Name.txt"/>
 				</NameFileRef>
 				<CommonNameFileRef href=""/>
 				<DescriptionFileRef>
-					<Item href="/Text/Game/Skills/Common/Luck/FortunateAdventurer/Description.txt"/>
+					<Item href="/Text/TTH/Skills/Luck/033-FortunateAdventurer/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
 				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
@@ -9655,11 +9655,11 @@
 				</Texture>
 				<CommonTexture/>
 				<NameFileRef>
-					<Item href="/Text/Game/Skills/Common/Logistics/DeathTread/Name.txt"/>
+					<Item href="/Text/TTH/Skills/Logistics/099-DeathTread/Name.txt"/>
 				</NameFileRef>
 				<CommonNameFileRef href=""/>
 				<DescriptionFileRef>
-					<Item href="/Text/Game/Skills/Common/Logistics/DeathTread/Description.txt"/>
+					<Item href="/Text/TTH/Skills/Logistics/099-DeathTread/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
 				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>

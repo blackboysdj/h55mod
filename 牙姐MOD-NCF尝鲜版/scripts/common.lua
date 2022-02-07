@@ -40,7 +40,7 @@ MAX_MANA = 1000;
 
 H55SMOD_HavenHeroes = {
     'Nathaniel', 'Orrin', 'Mardigo', 'Ving', 'Sarge', 'Isabell', 'Christian', 'RedHeavenHero02', 'RedHeavenHero05', 'Brem'
-    , 'Nicolai', 'GodricMP', 'Alaric', 'Axel', 'Saint Isabell', 'Maeve', 'RedHeavenHero06', 'Jeddite'
+    , 'Nicolai', 'GodricMP', 'Alaric', 'Axel', 'SaintIsabell', 'Maeve', 'RedHeavenHero06', 'Jeddite'
     , 'RedHeavenHero03', 'Orlando', 'Markal'
 };
 H55SMOD_SylvanHeroes = {
@@ -79,7 +79,7 @@ H55SMOD_StrongholdHeroes = {
 
 H55SMOD_Heroes = {
     'Nathaniel', 'Orrin', 'Mardigo', 'Ving', 'Sarge', 'Isabell', 'Christian', 'RedHeavenHero02', 'RedHeavenHero05', 'Brem'
-    , 'Nicolai', 'GodricMP', 'Alaric', 'Axel', 'Saint Isabell', 'Maeve', 'RedHeavenHero06', 'Jeddite'
+    , 'Nicolai', 'GodricMP', 'Alaric', 'Axel', 'SaintIsabell', 'Maeve', 'RedHeavenHero06', 'Jeddite'
     , 'RedHeavenHero03', 'Orlando', 'Markal'
     , 'Metlirn', 'Ossir', 'Nadaur', 'Linaas', 'Heam', 'Gelu', 'Arniel', 'Kyrre'
     , 'Gillion', 'Itil', 'Melodia', 'Jenova', 'Mephala', 'Gem'
@@ -1845,6 +1845,7 @@ end;
     CREATURE_927 = 927
     CREATURE_928 = 928
     CREATURE_929 = 929
+    CREATURE_Enchanter = 929;
     CREATURE_FIRE_MECHANICAL = 930
     CREATURE_WATER_MECHANICAL = 931
     CREATURE_EARTH_MECHANICAL = 932
@@ -1866,7 +1867,7 @@ end;
     CREATURE_947 = 947
     CREATURE_948 = 948
     CREATURE_949 = 949
-    CREATURE_Nikolay_Skill = 950
+    CREATURE_Straker_Skill = 950
     CREATURE_Itil_Druid = 951
     CREATURE_Itil_Unicorn = 952
     CREATURE_Jeddite_Skill = 953

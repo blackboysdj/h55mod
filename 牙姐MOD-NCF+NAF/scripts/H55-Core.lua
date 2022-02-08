@@ -128,19 +128,19 @@ doFile("/scripts/H55-Settings.lua");
 					local arrNew = {};
 					for k, v in arr do
 						if k ~= index then
-							TTH_COMMON.push(arrNew, {[k] = v});
+							arrNew[k] = v;
 						end;
 					end
 			    return arrNew;
 				end;
-				function TTH_COMMON.remove8Value(arr, value) -- :TODO
+				function TTH_COMMON.remove8Value(arr, value)
 					if arr == nil then
 						arr = {};
 					end;
 					local arrNew = {};
 					for k, v in arr do
 						if v ~= value then
-							TTH_COMMON.push(arrNew, {[k] = v});
+							TTH_COMMON.push(arrNew, v);
 						end;
 					end
 			    return arrNew;
@@ -635,7 +635,8 @@ doFile("/scripts/H55-Settings.lua");
 							if GetObjectOwner(strTown) == iPlayer
 								and iTownRace ~= iPlayerRace
 								and TTH_GLOBAL.isGarrisonHasHero(iPlayer, strTown) == 0 then
-								local iCalcValue, iCalcLevel, objTown = TTH_MANAGE.calcTownValue(strTown); -- :TODO objTown
+								local objTown = TTH_MANAGE.analysisTownBuildLevel(strTown);
+								local iCalcValue, iCalcLevel, objTown = TTH_MANAGE.calcTownValue(objTown);
 								TransformTown(strTown, iPlayerRace);
 								sleep(1);
 								TTH_MANAGE.rebuildTownBuilding(strTown, iPlayerRace, objTown);
@@ -1195,13 +1196,13 @@ doFile("/scripts/H55-Settings.lua");
 					end;
 					if H55_AICheats == 1 then
 						if TTH_VARI.playerStatus[iPlayer] == 1 then
+							if H55_AISetBonus_Tear == 1 then
+								TTH_GLOBAL.giveTear(iPlayer);
+								print("Tear has been given!");
+							end;
 							local arrHero = GetPlayerHeroes(iPlayer);
 							for iIndexHero, strHero in arrHero do
 								SetHeroLootable(strHero, nil); -- AI的第一个英雄的宝物不会掉落
-								if H55_AISetBonus_Tear == 1 then
-									TTH_GLOBAL.giveTear(strHero);
-									print("Tear has been given!");
-								end;
 								if H55_AISetBonus_Travel == 1 then
 									TTH_GLOBAL.giveTravel(strHero);
 									print("Travel has been given!");
@@ -1239,12 +1240,12 @@ doFile("/scripts/H55-Settings.lua");
 					end;
 					if H55_PlayerCheats == 1 then
 						if TTH_VARI.playerStatus[iPlayer] == 0 then
+							if H55_PlayerSetBonus_Tear == 1 then
+								TTH_GLOBAL.giveTear(iPlayer);
+								print("Tear has been given!");
+							end;
 							local arrHero = GetPlayerHeroes(iPlayer);
 							for iIndexHero, strHero in arrHero do
-								if H55_PlayerSetBonus_Tear == 1 then
-									TTH_GLOBAL.giveTear(strHero);
-									print("Tear has been given!");
-								end;
 								if H55_PlayerSetBonus_Travel == 1 then
 									TTH_GLOBAL.giveTravel(strHero);
 									print("Travel has been given!");
@@ -1287,8 +1288,14 @@ doFile("/scripts/H55-Settings.lua");
 						end;
 					end;
 				end;
-				function TTH_GLOBAL.giveTear(strHero)
-					GiveArtefact(strHero, 53);
+				function TTH_GLOBAL.giveTear(iPlayer)
+					for i, strTown in TTH_VARI.arrTown do
+						if GetObjectOwner(strTown) == iPlayer then
+							if GetTownBuildingLevel(strTown, TOWN_BUILDING_GRAIL) == 0 then
+								UpgradeTownBuilding(strTown, TOWN_BUILDING_GRAIL, 1);
+							end;
+						end;
+					end;
 				end;
 				function TTH_GLOBAL.giveSet(strHero)
 					local enumHeroClass = TTH_TABLE.Hero[strHero]["Class"];
@@ -4689,6 +4696,9 @@ doFile("/scripts/H55-Settings.lua");
 								TTH_MANAGE.unbindTown2Hero(strHero, strTown);
 							else
 								bIsMayor = TTH_ENUM.Yes;
+								local objAnalysisTown = TTH_MANAGE.analysisTownBuildLevel(strTown);
+								local iTownValue = TTH_MANAGE.calcTownValue(objAnalysisTown);
+								TTH_MANAGE.bindTown2Hero(strHero, strTown, iTownValue);
 							end;
 						end
 					end;
@@ -5620,11 +5630,29 @@ doFile("/scripts/H55-Settings.lua");
 
 			-- 根据玩家获取已经设立了传送点的城镇列表 0: 没有; arrTown: 有
 				function TTH_MANAGE.listTeleportTown(iPlayer)
-					local arrTown = GetObjectNamesByType("TOWN");
 					local arrTeleportTown = {};
-					for iIndexTown, strTown in arrTown do
-						if GetObjectOwner(strTown) == iPlayer and TTH_VARI.teleport8Town[strTown] == 1 then
-							TTH_COMMON.push(arrTeleportTown, strTown);
+					for iIndexTown, strTown in TTH_VARI.arrTown do
+						if GetObjectOwner(strTown) == iPlayer then
+							local iTownRace = TTH_GLOBAL.getRace8Town(strTown);
+							local bEnoughMagic = 0;
+							if iTownRace == TOWN_STRONGHOLD then
+								if GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_1) == 3
+									and GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_3) == 1 then
+									bEnoughMagic = 1;
+								end;
+							elseif iTownRace == TOWN_INFERNO then
+								if GetTownBuildingLevel(strTown, TOWN_BUILDING_MAGIC_GUILD) >= 1
+									and GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_1) == 1 then
+									bEnoughMagic = 1;
+								end;
+							else
+								if GetTownBuildingLevel(strTown, TOWN_BUILDING_MAGIC_GUILD) == 5 then
+									bEnoughMagic = 1;
+								end;
+							end;
+							if bEnoughMagic == 1 then
+								TTH_COMMON.push(arrTeleportTown, strTown);
+							end;
 						end;
 					end
 					return arrTeleportTown;
@@ -6049,7 +6077,6 @@ doFile("/scripts/H55-Settings.lua");
 				TTH_ENUM.AssumeMayor = 2; -- 成为内政官
 				TTH_ENUM.StepDownMayor = 3; -- 解职内政官
 				TTH_ENUM.BuildStructure = 4; -- 建造建筑
-				TTH_ENUM.SetUpTeleport = 5; -- 设立传送点
 				TTH_ENUM.Teleport2AppointTown = 1; -- 定点回城
 				TTH_ENUM.Teleport2NearByTown = 2; -- 近点回城
 
@@ -6085,11 +6112,6 @@ doFile("/scripts/H55-Settings.lua");
 							["Id"] = TTH_ENUM.BuildStructure
 							, ["Text"] = TTH_TABLE.KingManagePath["TownManage"]["BuildStructure"]["Text"]
 							, ["Callback"] = "TTH_MANAGE.dealBuildStructure"
-						}
-						, [5] = {
-							["Id"] = TTH_ENUM.SetUpTeleport
-							, ["Text"] = TTH_TABLE.KingManagePath["TownManage"]["SetUpTeleport"]["Text"]
-							, ["Callback"] = "TTH_MANAGE.dealSetUpTeleport"
 						}
 					};
 					TTH_VARI.townName4TownManage = "";
@@ -6602,172 +6624,12 @@ doFile("/scripts/H55-Settings.lua");
 									TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.MessageBox, strPathMain);
 							end;
 
-					-- 设立传送点
-						-- 入口
-							function TTH_MANAGE.dealSetUpTeleport(iPlayer, strHero)
-								TTH_COMMON.nextNavi(TTH_TABLE.KingManagePath["TownManage"]["SetUpTeleport"]["Text"]);
-
-								local strTown = TTH_VARI.townName4TownManage;
-								TTH_MANAGE.checkPreSetUpTeleport4Mayor(iPlayer, strHero, strTown);
-							end;
-
-						-- 前置查验
-							-- 当前英雄是否为该城镇的内政官
-								function TTH_MANAGE.checkPreSetUpTeleport4Mayor(iPlayer, strHero, strTown)
-									if TTH_VARI.arrMayor[strHero]["Town"][strTown] == nil then
-										local strText = TTH_TABLE.KingManagePath["TownManage"]["SetUpTeleport"]["NotMatchHero"]["Text"];
-										TTH_GLOBAL.sign(strHero, strText);
-										return nil;
-									end;
-									TTH_MANAGE.checkPreSetUpTeleport4Exist(iPlayer, strHero, strTown);
-								end;
-
-							-- 当前城镇的传送点是否已设立
-								function TTH_MANAGE.checkPreSetUpTeleport4Exist(iPlayer, strHero, strTown)
-									if TTH_MANAGE.isExistTeleport(strTown) ~= nil then
-										local strText = TTH_TABLE.KingManagePath["TownManage"]["SetUpTeleport"]["Exist"]["Text"];
-										TTH_GLOBAL.sign(strHero, strText);
-										return nil;
-									end;
-									TTH_MANAGE.checkPreSetUpTeleport4MagicLevel(iPlayer, strHero, strTown);
-								end;
-
-							-- 当前城镇是否有足够的魔法等级
-								function TTH_MANAGE.checkPreSetUpTeleport4MagicLevel(iPlayer, strHero, strTown)
-									local iTownRace = TTH_GLOBAL.getRace8Town(strTown);
-									local bEnoughMagic = 0;
-									if iTownRace == TOWN_STRONGHOLD then
-										if GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_1) == 3
-											and GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_3) == 1 then
-											bEnoughMagic = 1;
-										end;
-									elseif iTownRace == TOWN_INFERNO then
-										if GetTownBuildingLevel(strTown, TOWN_BUILDING_MAGIC_GUILD) >= 1
-											and GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_1) == 1 then
-											bEnoughMagic = 1;
-										end;
-									else
-										if GetTownBuildingLevel(strTown, TOWN_BUILDING_MAGIC_GUILD) == 5 then
-											bEnoughMagic = 1;
-										end;
-									end;
-									if bEnoughMagic == 0 then
-										local strText = TTH_TABLE.KingManagePath["TownManage"]["SetUpTeleport"]["NotEnoughMagic"]["Text"];
-										TTH_GLOBAL.sign(strHero, strText);
-										return nil;
-									end;
-									TTH_MANAGE.checkPreSetUpTeleport4Res(iPlayer, strHero, strTown);
-								end;
-
-							-- 是否有足够的资源设立传送点，普矿: 10; 稀矿: 5; 金币: 5000
-								function TTH_MANAGE.checkPreSetUpTeleport4Res(iPlayer, strHero, strTown)
-									local iUnitRes = 5;
-									local iCountWood = iUnitRes * 2;
-									local iCountOre = iUnitRes * 2;
-									local iCountMercury = iUnitRes * 1;
-									local iCountCrystal = iUnitRes * 1;
-									local iCountSulphur = iUnitRes * 1;
-									local iCountGem = iUnitRes * 1;
-									local iCountGold = iUnitRes * 1000;
-
-									if iCountWood > GetPlayerResource(iPlayer, WOOD)
-										or iCountOre > GetPlayerResource(iPlayer, ORE)
-										or iCountMercury > GetPlayerResource(iPlayer, MERCURY)
-										or iCountCrystal > GetPlayerResource(iPlayer, CRYSTAL)
-										or iCountSulphur > GetPlayerResource(iPlayer, SULFUR)
-										or iCountGem > GetPlayerResource(iPlayer, GEM)
-										or iCountGold > GetPlayerResource(iPlayer, GOLD) then
-										local strText = TTH_TABLE.KingManagePath["TownManage"]["SetUpTeleport"]["NotEnoughRes"]["Text"];
-										TTH_GLOBAL.sign(strHero, strText);
-										return nil;
-									end;
-
-									TTH_MANAGE.checkPreSetUpTeleport4OperTimes(iPlayer, strHero, strTown);
-								end;
-
-							-- 当前英雄是否有足够的内政操作次数
-								function TTH_MANAGE.checkPreSetUpTeleport4OperTimes(iPlayer, strHero, strTown)
-									local iRemainOperTimes = TTH_MANAGE.getRemainOperTimes(strHero);
-									if iRemainOperTimes <= 0 then
-										local strText = TTH_TABLE.KingManagePath["TownManage"]["SetUpTeleport"]["NoOperTimes"]["Text"];
-										TTH_GLOBAL.sign(strHero, strText);
-										return nil;
-									end;
-									TTH_MANAGE.confirmSetUpTeleport(iPlayer, strHero, strTown);
-								end;
-
-							-- 已满足条件，询问是否设立传送点
-								function TTH_MANAGE.confirmSetUpTeleport(iPlayer, strHero, strTown)
-									local iUnitRes = 5;
-									local iCountWood = iUnitRes * 2;
-									local iCountOre = iUnitRes * 2;
-									local iCountMercury = iUnitRes * 1;
-									local iCountCrystal = iUnitRes * 1;
-									local iCountSulphur = iUnitRes * 1;
-									local iCountGem = iUnitRes * 1;
-									local iCountGold = iUnitRes * 1000;
-
-									local strPathMain = {
-										TTH_TABLE.KingManagePath["TownManage"]["SetUpTeleport"]["ConfirmSetUp"]["Text"]
-										;iCountWood=iCountWood
-										,iCountOre=iCountOre
-										,iCountMercury=iCountMercury
-										,iCountCrystal=iCountCrystal
-										,iCountSulphur=iCountSulphur
-										,iCountGem=iCountGem
-										,iCountGold=iCountGold
-									};
-									local strCallbackOk = "TTH_MANAGE.implSetUpTeleport("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strTown)..")";
-									local strCallbackCancel = "TTH_COMMON.cancelOption()";
-									TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
-								end;
-
-						-- 执行设立
-							function TTH_MANAGE.implSetUpTeleport(iPlayer, strHero, strTown, iIndexBuilding)
-								local iTownRace = TTH_GLOBAL.getRace8Town(strTown);
-								local objBuilding = TTH_TABLE.TownBuilding[iTownRace][iIndexBuilding];
-
-								-- 设立流程
-									-- 扣除资源
-										local iUnitRes = 5;
-										local iCountWood = iUnitRes * 2;
-										local iCountOre = iUnitRes * 2;
-										local iCountMercury = iUnitRes * 1;
-										local iCountCrystal = iUnitRes * 1;
-										local iCountSulphur = iUnitRes * 1;
-										local iCountGem = iUnitRes * 1;
-										local iCountGold = iUnitRes * 1000;
-
-										TTH_GLOBAL.reduceResource(iPlayer, WOOD, iCountWood);
-										TTH_GLOBAL.reduceResource(iPlayer, ORE, iCountOre);
-										TTH_GLOBAL.reduceResource(iPlayer, MERCURY, iCountMercury);
-										TTH_GLOBAL.reduceResource(iPlayer, CRYSTAL, iCountCrystal);
-										TTH_GLOBAL.reduceResource(iPlayer, SULFUR, iCountSulphur);
-										TTH_GLOBAL.reduceResource(iPlayer, GEM, iCountGem);
-										TTH_GLOBAL.reduceResource(iPlayer, GOLD, iCountGold);
-
-									-- 扣除内政操作次数
-										TTH_MANAGE.useOperTimes(strHero);
-
-									-- 执行设立
-										TTH_MANAGE.setUpTeleport2AppointTown(strTown);
-
-								-- 执行成功
-									local strPathMain = TTH_TABLE.KingManagePath["TownManage"]["SetUpTeleport"]["SetUpSuccess"]["Text"];
-									TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.MessageBox, strPathMain);
-							end;
-
 				-- 英雄不在城门口
 					TTH_TABLE.TownManageNotAtGateOption = {
 						[1] = {
 							["Id"] = TTH_ENUM.Teleport2AppointTown
 							, ["Text"] = TTH_TABLE.KingManagePath["TownManage"]["Teleport2AppointTown"]["Text"]
 							, ["Callback"] = "TTH_MANAGE.dealTeleport2AppointTown"
-						}
-						, [2] = {
-							["Id"] = TTH_ENUM.Teleport2NearByTown
-							, ["Text"] = TTH_TABLE.KingManagePath["TownManage"]["Teleport2NearByTown"]["Text"]
-							, ["Callback"] = "TTH_MANAGE.dealTeleport2NearByTown"
 						}
 					};
 					function TTH_MANAGE.dealTownManageNotAtGate(iPlayer, strHero)
@@ -6822,11 +6684,13 @@ doFile("/scripts/H55-Settings.lua");
 									local strCallback = "TTH_MANAGE.cameraTeleport2AppointTown4Town";
 									for iIndexTown, strTown in TTH_VARI.arrTeleportTown do
 										local iTownRace = TTH_GLOBAL.getRace8Town(strTown);
-										arrTeleportRaceOption[i] = {
-											["Id"] = iTownRace
-											, ["Text"] = TTH_PATH.Race[iTownRace]
-											, ["Callback"] = strCallback
-										};
+										if TTH_VARI.arrTeleportTown8Race[iTownRace] == nil then
+											arrTeleportRaceOption[i] = {
+												["Id"] = iTownRace
+												, ["Text"] = TTH_PATH.Race[iTownRace]
+												, ["Callback"] = strCallback
+											};
+										end;
 										TTH_VARI.arrTeleportTown8Race[iTownRace] = TTH_COMMON.push(TTH_VARI.arrTeleportTown8Race[iTownRace], strTown);
 										i = i + 1;
 									end;
@@ -6912,6 +6776,9 @@ doFile("/scripts/H55-Settings.lua");
 
 										-- 传送状态: 关闭
 											TTH_VARI.bTownManageTeleportTown4TeleportStatus = TTH_ENUM.TownManageTeleportTown4TeleportEnd;
+											local iPosX, iPosY, iPosZ = GetObjectPosition(strHero);
+											MoveCamera(iPosX, iPosY, iPosZ, 50, TTH_FINAL.PI/2, 1, 1, 1, 1);
+											sleep(2);
 
 										return nil;
 									end;
@@ -6929,6 +6796,9 @@ doFile("/scripts/H55-Settings.lua");
 
 										-- 传送状态: 关闭
 											TTH_VARI.bTownManageTeleportTown4TeleportStatus = TTH_ENUM.TownManageTeleportTown4TeleportEnd;
+											local iPosX, iPosY, iPosZ = GetObjectPosition(strHero);
+											MoveCamera(iPosX, iPosY, iPosZ, 50, TTH_FINAL.PI/2, 1, 1, 1, 1);
+											sleep(2);
 
 										return nil;
 									end;
@@ -6965,6 +6835,9 @@ doFile("/scripts/H55-Settings.lua");
 
 										-- 传送状态: 关闭
 											TTH_VARI.bTownManageTeleportTown4TeleportStatus = TTH_ENUM.TownManageTeleportTown4TeleportEnd;
+											local iPosX, iPosY, iPosZ = GetObjectPosition(strHero);
+											MoveCamera(iPosX, iPosY, iPosZ, 50, TTH_FINAL.PI/2, 1, 1, 1, 1);
+											sleep(2);
 
 										return nil;
 									end;
@@ -6982,6 +6855,9 @@ doFile("/scripts/H55-Settings.lua");
 
 										-- 传送状态: 关闭
 											TTH_VARI.bTownManageTeleportTown4TeleportStatus = TTH_ENUM.TownManageTeleportTown4TeleportEnd;
+											local iPosX, iPosY, iPosZ = GetObjectPosition(strHero);
+											MoveCamera(iPosX, iPosY, iPosZ, 50, TTH_FINAL.PI/2, 1, 1, 1, 1);
+											sleep(2);
 
 										return nil;
 									end;
@@ -7021,276 +6897,6 @@ doFile("/scripts/H55-Settings.lua");
 
 										TTH_GLOBAL.teleHero2Point(iPlayer, strHero, strTown);
 								end;
-
-					-- 近点回城
-						-- 参数
-							TTH_VARI.arrNearByTown = {}; -- 玩家城镇列表
-							TTH_VARI.objNearByTown = nil; -- 最近城镇对象
-
-							TTH_ENUM.TownManageTeleport2NearByTown8Res = 1;
-							TTH_ENUM.TownManageTeleport2NearByTown8Mana = 2;
-							TTH_ENUM.TownManageTeleport2NearByTown8Gold = 1;
-							TTH_ENUM.TownManageTeleport2NearByTown8Move = 2;
-							TTH_VARI.teleport2NearByTownChosenResOrMana = 1;
-							TTH_VARI.teleport2NearByTownChosenGoldOrMove = 1;
-							TTH_VARI.teleport2NearByTownUnitRes = 2;
-							TTH_VARI.teleport2NearByTownLimitMana = 5;
-							TTH_VARI.teleport2NearByTownLimitMove = 50;
-
-						-- 入口
-							function TTH_MANAGE.dealTeleport2NearByTown(iPlayer, strHero)
-								TTH_COMMON.nextNavi(TTH_TABLE.KingManagePath["TownManage"]["Teleport2NearByTown"]["Text"]);
-
-								TTH_MANAGE.checkPreTeleport2NearByTown4HeroLevel(iPlayer, strHero);
-							end;
-
-						-- 前置查验
-							-- 当前英雄等级是否达到20级
-								function TTH_MANAGE.checkPreTeleport2NearByTown4HeroLevel(iPlayer, strHero)
-									TTH_VARI.arrNearByTown = TTH_GLOBAL.listTown8Player(iPlayer);
-									if GetHeroLevel(strHero) < 20 then
-										local strText = TTH_TABLE.KingManagePath["TownManage"]["Teleport2NearByTown"]["NotEnoughHeroLevel"]["Text"];
-										TTH_GLOBAL.sign(strHero, strText);
-										return nil;
-									end;
-
-									TTH_MANAGE.checkPreTeleport2NearByTown4HasTown(iPlayer, strHero);
-								end;
-
-							-- 己方是否有城镇
-								function TTH_MANAGE.checkPreTeleport2NearByTown4HasTown(iPlayer, strHero)
-									TTH_VARI.arrNearByTown = TTH_GLOBAL.listTown8Player(iPlayer);
-									if TTH_VARI.arrNearByTown == nil or length(TTH_VARI.arrNearByTown) == 0 then
-										local strText = TTH_TABLE.KingManagePath["TownManage"]["Teleport2NearByTown"]["NoTown"]["Text"];
-										TTH_GLOBAL.sign(strHero, strText);
-										return nil;
-									end;
-
-									TTH_MANAGE.confirmPreTeleport2NearByTown4Town(iPlayer, strHero);
-								end;
-
-							-- 询问是否传送到该城镇
-								function TTH_MANAGE.confirmPreTeleport2NearByTown4Town(iPlayer, strHero)
-									local arrTown = TTH_VARI.arrNearByTown;
-									local arrCompareTown = {};
-									local strKey = "Distance";
-									local iPosHeroX, iPosHeroY, iPosHeroZ = GetObjectPosition(strHero);
-									for iIndexTown, strTown in arrTown do
-										local iValue = TTH_GLOBAL.getDistance(strHero, strTown, 1);
-										arrCompareTown[strTown] = {
-											["Id"] = strTown
-											, [strKey] = iValue
-										};
-									end
-									local objNearByTown = TTH_COMMON.min8key(arrCompareTown, strKey);
-									TTH_VARI.strNearByTown = objNearByTown["Id"];
-
-									local iManaPoint = GetHeroStat(strHero, STAT_MANA_POINTS);
-									local iMovePoint = GetHeroStat(strHero, STAT_MOVE_POINTS);
-
-									-- 传送状态: 开启
-										TTH_VARI.bTownManageTeleportTown4TeleportStatus = TTH_ENUM.TownManageTeleportTown4TeleportStart;
-
-									if TTH_VARI.bTownManageTeleportTown4TeleportStatus == TTH_ENUM.TownManageTeleportTown4TeleportStart then
-										-- 视角定位
-											local iPosX, iPosY, iPosZ = GetObjectPosition(TTH_VARI.strNearByTown);
-											MoveCamera(iPosX, iPosY, iPosZ, 50, TTH_FINAL.PI/2, 1, 1, 1, 1);
-											sleep(2);
-
-										local strPathMain = {
-											TTH_TABLE.KingManagePath["TownManage"]["Teleport2NearByTown"]["ConfirmTown"]["Text"]
-											;iPosX=iPosX
-											,iPosY=iPosY
-											,iPosZ=TTH_PATH.Basic["PosZ"][iPosZ]
-											,iManaPoint=iManaPoint
-											,iMovePoint=iMovePoint
-										};
-										local strCallbackOk = "TTH_MANAGE.checkPreTeleport2NearByTown4GarrisonHero("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(TTH_VARI.strNearByTown)..")";
-										local strCallbackCancel = "TTH_COMMON.wakeup()";
-										TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
-									end;
-								end;
-
-							-- 确认内城是否有英雄
-								function TTH_MANAGE.checkPreTeleport2NearByTown4GarrisonHero(iPlayer, strHero, strTown)
-									if TTH_GLOBAL.isGarrisonHasHero(iPlayer, strTown) == 1 then
-										local strText = TTH_TABLE.KingManagePath["TownManage"]["Teleport2NearByTown"]["HeroInGarrison"]["Text"];
-										TTH_GLOBAL.sign(strHero, strText);
-
-										-- 传送状态: 关闭
-											TTH_VARI.bTownManageTeleportTown4TeleportStatus = TTH_ENUM.TownManageTeleportTown4TeleportEnd;
-
-										return nil;
-									end;
-									TTH_MANAGE.checkPreTeleport2NearByTown4HasTeleport(iPlayer, strHero, strTown);
-								end;
-
-							-- 该城镇是否已设立传送点
-								function TTH_MANAGE.checkPreTeleport2NearByTown4HasTeleport(iPlayer, strHero, strTown)
-									if TTH_MANAGE.isExistTeleport(strTown) == 1 then
-										local strText = TTH_TABLE.KingManagePath["TownManage"]["Teleport2NearByTown"]["HasTeleport"]["Text"];
-										TTH_GLOBAL.sign(strHero, strText);
-
-										TTH_MANAGE.implTeleport2NearByTown(iPlayer, strHero);
-									else
-										local iManaPoint = GetHeroStat(strHero, STAT_MANA_POINTS);
-										local iMovePoint = GetHeroStat(strHero, STAT_MOVE_POINTS);
-										local iPosX, iPosY, iPosZ = GetObjectPosition(TTH_VARI.strNearByTown);
-										local strPathMain = {
-											TTH_TABLE.KingManagePath["TownManage"]["Teleport2NearByTown"]["NoTeleport"]["Text"]
-											;iPosX=iPosX
-											,iPosY=iPosY
-											,iPosZ=TTH_PATH.Basic["PosZ"][iPosZ]
-											,iManaPoint=iManaPoint
-											,iMovePoint=iMovePoint
-										};
-										TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.MessageBox, strPathMain);
-
-										TTH_MANAGE.checkPreTeleport2NearByTown4ResOrMana(iPlayer, strHero);
-									end;
-								end;
-
-							-- 玩家选择消耗资源or魔法值
-								TTH_TABLE.TownManageTeleport2NearByTown4ResOrManaOption = {
-									[1] = {
-										["Id"] = TTH_ENUM.TownManageTeleport2NearByTown8Res
-										, ["Text"] = TTH_TABLE.KingManagePath["TownManage"]["Teleport2NearByTown"]["ResTip"]["Text"]
-										, ["Callback"] = "TTH_MANAGE.checkPreTeleport2NearByTown4Res"
-									}
-									, [2] = {
-										["Id"] = TTH_ENUM.TownManageTeleport2NearByTown8Mana
-										, ["Text"] = TTH_TABLE.KingManagePath["TownManage"]["Teleport2NearByTown"]["ManaTip"]["Text"]
-										, ["Callback"] = "TTH_MANAGE.checkPreTeleport2NearByTown4Mana"
-									}
-								};
-								function TTH_MANAGE.checkPreTeleport2NearByTown4ResOrMana(iPlayer, strHero)
-									TTH_COMMON.optionRadio(iPlayer, strHero, TTH_TABLE.TownManageTeleport2NearByTown4ResOrManaOption);
-								end;
-
-							-- 是否有足够的资源
-								function TTH_MANAGE.checkPreTeleport2NearByTown4Res(iPlayer, strHero)
-									TTH_VARI.teleport2NearByTownChosenResOrMana = TTH_ENUM.TownManageTeleport2NearByTown8Res;
-									local iCountMercury = TTH_VARI.teleport2NearByTownUnitRes * 1;
-									local iCountCrystal = TTH_VARI.teleport2NearByTownUnitRes * 1;
-									local iCountSulphur = TTH_VARI.teleport2NearByTownUnitRes * 1;
-									local iCountGem = TTH_VARI.teleport2NearByTownUnitRes * 1;
-									if iCountMercury > GetPlayerResource(iPlayer, MERCURY)
-										or iCountCrystal > GetPlayerResource(iPlayer, CRYSTAL)
-										or iCountSulphur > GetPlayerResource(iPlayer, SULFUR)
-										or iCountGem > GetPlayerResource(iPlayer, GEM) then
-										local strText = TTH_TABLE.KingManagePath["TownManage"]["Teleport2NearByTown"]["NotEnoughRes"]["Text"];
-										TTH_GLOBAL.sign(strHero, strText);
-
-										-- 传送状态: 关闭
-											TTH_VARI.bTownManageTeleportTown4TeleportStatus = TTH_ENUM.TownManageTeleportTown4TeleportEnd;
-
-										return nil;
-									end;
-
-									TTH_MANAGE.checkPreTeleport2NearByTown4GoldOrMove(iPlayer, strHero);
-								end;
-
-							-- 是否有足够的魔法值
-								function TTH_MANAGE.checkPreTeleport2NearByTown4Mana(iPlayer, strHero)
-									TTH_VARI.teleport2NearByTownChosenResOrMana = TTH_ENUM.TownManageTeleport2NearByTown8Mana;
-									local iManaPoint = GetHeroStat(strHero, STAT_MANA_POINTS);
-									if iManaPoint < TTH_VARI.teleport2NearByTownLimitMana then
-										local strText = TTH_TABLE.KingManagePath["TownManage"]["Teleport2NearByTown"]["NotEnoughMana"]["Text"];
-										TTH_GLOBAL.sign(strHero, strText);
-
-										-- 传送状态: 关闭
-											TTH_VARI.bTownManageTeleportTown4TeleportStatus = TTH_ENUM.TownManageTeleportTown4TeleportEnd;
-
-										return nil;
-									end;
-
-									TTH_MANAGE.checkPreTeleport2NearByTown4GoldOrMove(iPlayer, strHero);
-								end;
-
-							-- 玩家选择消耗金币or移动力
-								TTH_TABLE.TownManageTeleport2NearByTown4GoldOrMoveOption = {
-									[1] = {
-										["Id"] = TTH_ENUM.TownManageTeleport2NearByTown8Gold
-										, ["Text"] = TTH_TABLE.KingManagePath["TownManage"]["Teleport2NearByTown"]["GoldTip"]["Text"]
-										, ["Callback"] = "TTH_MANAGE.checkPreTeleport2NearByTown4Gold"
-									}
-									, [2] = {
-										["Id"] = TTH_ENUM.TownManageTeleport2NearByTown8Move
-										, ["Text"] = TTH_TABLE.KingManagePath["TownManage"]["Teleport2NearByTown"]["MoveTip"]["Text"]
-										, ["Callback"] = "TTH_MANAGE.checkPreTeleport2NearByTown4Move"
-									}
-								};
-								function TTH_MANAGE.checkPreTeleport2NearByTown4GoldOrMove(iPlayer, strHero)
-									TTH_COMMON.optionRadio(iPlayer, strHero, TTH_TABLE.TownManageTeleport2NearByTown4GoldOrMoveOption);
-								end;
-
-							-- 是否有足够的金币
-								function TTH_MANAGE.checkPreTeleport2NearByTown4Gold(iPlayer, strHero)
-									TTH_VARI.teleport2NearByTownChosenGoldOrMove = TTH_ENUM.TownManageTeleport2NearByTown8Gold;
-
-									local iCountGold = TTH_VARI.teleport2NearByTownUnitRes * 1000;
-									if iCountGold > GetPlayerResource(iPlayer, GOLD) then
-										local strText = TTH_TABLE.KingManagePath["TownManage"]["Teleport2NearByTown"]["NotEnoughGold"]["Text"];
-										TTH_GLOBAL.sign(strHero, strText);
-
-										-- 传送状态: 关闭
-											TTH_VARI.bTownManageTeleportTown4TeleportStatus = TTH_ENUM.TownManageTeleportTown4TeleportEnd;
-
-										return nil;
-									end;
-
-									TTH_MANAGE.implTeleport2NearByTown(iPlayer, strHero);
-								end;
-
-							-- 是否有足够的移动力
-								function TTH_MANAGE.checkPreTeleport2NearByTown4Move(iPlayer, strHero)
-									TTH_VARI.teleport2NearByTownChosenGoldOrMove = TTH_ENUM.TownManageTeleport2NearByTown8Move;
-									local iMovePoint = GetHeroStat(strHero, STAT_MOVE_POINTS);
-									if iMovePoint < TTH_VARI.teleport2NearByTownLimitMove then
-										local strText = TTH_TABLE.KingManagePath["TownManage"]["Teleport2NearByTown"]["NotEnoughMove"]["Text"];
-										TTH_GLOBAL.sign(strHero, strText);
-
-										-- 传送状态: 关闭
-											TTH_VARI.bTownManageTeleportTown4TeleportStatus = TTH_ENUM.TownManageTeleportTown4TeleportEnd;
-
-										return nil;
-									end;
-
-									TTH_MANAGE.implTeleport2NearByTown(iPlayer, strHero);
-								end;
-
-						-- 执行定点回城
-							function TTH_MANAGE.implTeleport2NearByTown(iPlayer, strHero)
-								local strTown = TTH_VARI.strNearByTown;
-
-								-- 扣除资源/魔法值/金币/移动力
-									if TTH_VARI.teleport2NearByTownChosenResOrMana == TTH_ENUM.TownManageTeleport2NearByTown8Res then
-										local iCountMercury = TTH_VARI.teleport2NearByTownUnitRes * 1;
-										local iCountCrystal = TTH_VARI.teleport2NearByTownUnitRes * 1;
-										local iCountSulphur = TTH_VARI.teleport2NearByTownUnitRes * 1;
-										local iCountGem = TTH_VARI.teleport2NearByTownUnitRes * 1;
-										TTH_GLOBAL.reduceResource(iPlayer, MERCURY, iCountMercury);
-										TTH_GLOBAL.reduceResource(iPlayer, CRYSTAL, iCountCrystal);
-										TTH_GLOBAL.reduceResource(iPlayer, SULFUR, iCountSulphur);
-										TTH_GLOBAL.reduceResource(iPlayer, GEM, iCountGem);
-									else
-										local iManaPoint = GetHeroStat(strHero, STAT_MANA_POINTS);
-										ChangeHeroStat(strHero, STAT_MANA_POINTS, -1 * TTH_COMMON.round(0.5 * iManaPoint));
-									end;
-									if TTH_VARI.teleport2NearByTownChosenGoldOrMove == TTH_ENUM.TownManageTeleport2NearByTown8Gold then
-										local iCountGold = TTH_VARI.teleport2NearByTownUnitRes * 1000;
-										TTH_GLOBAL.reduceResource(iPlayer, GOLD, iCountGold);
-									else
-										local iMovePoint = GetHeroStat(strHero, STAT_MOVE_POINTS);
-										ChangeHeroStat(strHero, STAT_MOVE_POINTS, -1 * TTH_COMMON.round(0.5 * iMovePoint));
-									end;
-
-								-- 执行传送
-									-- 传送状态: 关闭
-										TTH_VARI.bTownManageTeleportTown4TeleportStatus = TTH_ENUM.TownManageTeleportTown4TeleportEnd;
-
-									TTH_GLOBAL.teleHero2Point(iPlayer, strHero, strTown);
-							end;
 
 			-- 政绩管理
 				TTH_ENUM.CurrentOperTimes = 1; -- 本周内政操作次数+1
@@ -8002,6 +7608,9 @@ doFile("/scripts/H55-Settings.lua");
 					if strHeroIsher == strHero then
 						local iHeroLevel = GetHeroLevel(strHero)
 						iCoef = 1 - (0.2 + iHeroLevel * 0.01);
+					end;
+					if iCoef < 0 then
+						iCoef = 0;
 					end;
 					return iCoef;
 				end;
@@ -8718,10 +8327,12 @@ doFile("/scripts/H55-Settings.lua");
   						arrCreatureGrowth8Tier[iTier] = TTH_COMMON.round(iHeroLevel / TTH_TABLE.Coef8Mayor4TownDwellingCreature[iTier]);
   					end;
       			local arrTown = TTH_MANAGE.listMayorTown8Hero(strHero);
-      			for i, strTown in arrTown do
-    					TTH_GLOBAL.updateTownDwellingCreature(strTown, arrCreatureGrowth8Tier);
-      			end;
-      			TTH_GLOBAL.signHero4TownRecruit(strHero);
+      			if arrTown ~= nil and length(arrTown) > 0 then
+	      			for i, strTown in arrTown do
+	    					TTH_GLOBAL.updateTownDwellingCreature(strTown, arrCreatureGrowth8Tier);
+	      			end;
+	      			TTH_GLOBAL.signHero4TownRecruit(strHero);
+	      		end;
       		end;
       	end;
 
@@ -8870,7 +8481,6 @@ doFile("/scripts/H55-Settings.lua");
 					for i, strOutpost in arrOutpost do
 						if GetObjectOwner(strOutpost) ~= iPlayer then
 							TTH_VARI.talent[strHero]["Outpost"] = TTH_COMMON.remove8Value(TTH_VARI.talent[strHero]["Outpost"], strOutpost);
-							-- :TODO 希尔塞
       				OverrideObjectTooltipNameAndDescription(strOutpost, TTH_PATH.Talent[strHero]["TitleCapture"], TTH_PATH.Talent[strHero]["DescCapture"]);
 						end;
 					end
@@ -8999,7 +8609,6 @@ doFile("/scripts/H55-Settings.lua");
 						local iGoblinCount = 0;
 						for strTown, objTown in arrTown do
 							local arrCreature4Object = TTH_GLOBAL.getObjectCreatureInfo(strTown);
-							local iLevel = GetHeroLevel(strHero);
 							for iSlot = 0, 6 do
 								if arrCreature4Object[iSlot]["Id"] == CREATURE_GOBLIN
 									or arrCreature4Object[iSlot]["Id"] == CREATURE_GOBLIN_TRAPPER
@@ -9009,7 +8618,6 @@ doFile("/scripts/H55-Settings.lua");
 							end;
 						end;
 						local arrCreature4Object = TTH_GLOBAL.getHeroCreatureInfo(strHero);
-						local iLevel = GetHeroLevel(strHero);
 						for iSlot = 0, 6 do
 							if arrCreature4Object[iSlot]["Id"] == CREATURE_GOBLIN
 								or arrCreature4Object[iSlot]["Id"] == CREATURE_GOBLIN_TRAPPER
@@ -9769,17 +9377,10 @@ doFile("/scripts/H55-Settings.lua");
 				if TTH_VARI.recordEstates[strHero] == nil then
 					TTH_PERK.init029(iPlayer, strHero);
 				end;
-				local strText = TTH_PATH.Perk[HERO_SKILL_ESTATES]["NotEnoughTimes"];
     		if TTH_VARI.recordEstates[strHero]["OperTimes"] <= 0 then
-    			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
-    				if TTH_MANAGE.getRemainOperTimes(strHero) <= 0 then
-		    			TTH_GLOBAL.sign(strHero, strText);
-	    				return nil;
-    				end;
-    			else
-	    			TTH_GLOBAL.sign(strHero, strText);
-    				return nil;
-	    		end;
+					local strText = TTH_PATH.Perk[HERO_SKILL_ESTATES]["NotEnoughTimes"];
+					TTH_GLOBAL.sign(strHero, strText);
+					return nil;
     		end;
 
 				local strPathOption = TTH_PATH.Perk[HERO_SKILL_ESTATES]["OptionTips"];
@@ -9807,8 +9408,6 @@ doFile("/scripts/H55-Settings.lua");
 			function TTH_PERK.implActive029(iPlayer, strHero, iCoef)
     		if TTH_VARI.recordEstates[strHero]["OperTimes"] > 0 then
     			TTH_VARI.recordEstates[strHero]["OperTimes"] = TTH_VARI.recordEstates[strHero]["OperTimes"] - 1;
-    		else
-    			TTH_MANAGE.useOperTimes(strHero);
     		end;
 
     		local iGold = GetPlayerResource(iPlayer, GOLD);
@@ -9934,6 +9533,60 @@ doFile("/scripts/H55-Settings.lua");
     		TTH_VARI.recordFortunateAdventurer[strHero]["OperTimes"] = TTH_VARI.recordFortunateAdventurer[strHero]["MaxOperTimes"];
 			end;
 
+		-- HERO_SKILL_TOUGHNESS 039 活力无限
+			TTH_VARI.recordToughness = {};
+			function TTH_PERK.init039(iPlayer, strHero)
+				TTH_MAIN.debug("TTH_PERK.init039", iPlayer, strHero);
+
+				TTH_VARI.recordToughness[strHero] = {
+					["OperTimes"] = 1
+					, ["MaxOperTimes"] = 1
+				};
+			end;
+			function TTH_PERK.active039(iPlayer, strHero)
+				TTH_COMMON.nextNavi(TTH_PATH.Perk[HERO_SKILL_TOUGHNESS]["Text"]);
+
+				TTH_PERK.checkPreActive0394NoBuildingOnAdvMap(iPlayer, strHero)
+			end;
+			function TTH_PERK.checkPreActive0394NoBuildingOnAdvMap(iPlayer, strHero)
+				if TTH_VARI.recordToughness[strHero] == nil then
+					TTH_PERK.init039(iPlayer, strHero);
+				end;
+    		if length(TTH_VARI.arrBuilding["BUILDING_NOMADS_SHAMAN"]) <= 0 then
+					local strText = TTH_PATH.Perk[HERO_SKILL_TOUGHNESS]["NoBuildingOnAdvMap"];
+					TTH_GLOBAL.sign(strHero, strText);
+					return nil;
+    		end;
+
+				TTH_PERK.checkPreActive0394NotEnoughTimes(iPlayer, strHero);
+			end;
+			function TTH_PERK.checkPreActive0394NotEnoughTimes(iPlayer, strHero)
+				if TTH_VARI.recordToughness[strHero] == nil then
+					TTH_PERK.init039(iPlayer, strHero);
+				end;
+    		if TTH_VARI.recordToughness[strHero]["OperTimes"] <= 0 then
+					local strText = TTH_PATH.Perk[HERO_SKILL_TOUGHNESS]["NotEnoughTimes"];
+					TTH_GLOBAL.sign(strHero, strText);
+					return nil;
+    		end;
+
+				TTH_PERK.implActive039(iPlayer, strHero);
+			end;
+			function TTH_PERK.implActive039(iPlayer, strHero)
+    		if TTH_VARI.recordToughness[strHero]["OperTimes"] > 0 then
+    			TTH_VARI.recordToughness[strHero]["OperTimes"] = TTH_VARI.recordToughness[strHero]["OperTimes"] - 1;
+    		end;
+    		MakeHeroInteractWithObject(strHero, TTH_VARI.arrBuilding["BUILDING_NOMADS_SHAMAN"][0]);
+			end;
+			function TTH_PERK.resetDaily039(iPlayer, strHero)
+				TTH_MAIN.debug("TTH_PERK.resetDaily039", iPlayer, strHero);
+
+				if TTH_VARI.recordToughness[strHero] == nil then
+					TTH_PERK.init039(iPlayer, strHero);
+				end;
+    		TTH_VARI.recordToughness[strHero]["OperTimes"] = TTH_VARI.recordToughness[strHero]["MaxOperTimes"];
+			end;
+
 		-- HERO_SKILL_DEATH_TREAD 099 死亡行军
 			TTH_VARI.recordDeathTread = {
 				["DefenceTown"] = {}
@@ -9966,15 +9619,15 @@ doFile("/scripts/H55-Settings.lua");
 				MoveCamera(iPosX, iPosY, iPosZ, 50, TTH_FINAL.PI/2, 1, 1, 1, 1);
 				sleep(2);
 
-				QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
-					, {
-						TTH_PATH.Perk[HERO_SKILL_DEATH_TREAD]["Confirm"]
-						;iPosX=iPosX
-						,iPosY=iPosY
-						,iPosZ=TTH_PATH.Basic["PosZ"][iPosZ]
-					}
-					, "TTH_PERK.dealActive099("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strTown)..")"
-					, "TTH_COMMON.cancelOption()");
+				local strPathMain = {
+					TTH_PATH.Perk[HERO_SKILL_DEATH_TREAD]["Confirm"]
+					;iPosX=iPosX
+					,iPosY=iPosY
+					,iPosZ=TTH_PATH.Basic["PosZ"][iPosZ]
+				};
+				local strCallbackOk = "TTH_PERK.dealActive099("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strTown)..")";
+				local strCallbackCancel = "TTH_COMMON.cancelOption()";
+				TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
 			end;
 			function TTH_PERK.dealActive099(iPlayer, strHero, strTown)
 				TTH_VARI.recordDeathTread["DefenceTown"] = {};
@@ -9996,8 +9649,80 @@ doFile("/scripts/H55-Settings.lua");
 				end;
 			end;
 
+		-- HERO_SKILL_SNATCH 168 攫取
+			TTH_VARI.recordSnatch = {};
+			function TTH_PERK.init168(iPlayer, strHero)
+				TTH_MAIN.debug("TTH_PERK.init168", iPlayer, strHero);
+
+				TTH_VARI.recordSnatch[strHero] = {
+					["OperTimes"] = 1
+					, ["MaxOperTimes"] = 1
+				};
+			end;
+			function TTH_PERK.active168(iPlayer, strHero, strTown)
+				TTH_COMMON.nextNavi(TTH_PATH.Perk[HERO_SKILL_SNATCH]["Text"]);
+
+				TTH_PERK.checkPreActive1684NotEnoughTimes(iPlayer, strHero, strTown)
+			end;
+			function TTH_PERK.checkPreActive1684NotEnoughTimes(iPlayer, strHero, strTown)
+				if TTH_VARI.recordSnatch[strHero] == nil then
+					TTH_PERK.init168(iPlayer, strHero);
+				end;
+				local strText = TTH_PATH.Perk[HERO_SKILL_SNATCH]["NotEnoughTimes"];
+    		if TTH_VARI.recordSnatch[strHero]["OperTimes"] <= 0 then
+    			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+    				if TTH_MANAGE.getRemainOperTimes(strHero) <= 0 then
+		    			TTH_GLOBAL.sign(strHero, strText);
+	    				return nil;
+    				end;
+    			else
+	    			TTH_GLOBAL.sign(strHero, strText);
+    				return nil;
+	    		end;
+    		end;
+
+				TTH_PERK.implActive168(iPlayer, strHero);
+			end;
+			function TTH_PERK.implActive168(iPlayer, strHero)
+    		if TTH_VARI.recordSnatch[strHero]["OperTimes"] > 0 then
+    			TTH_VARI.recordSnatch[strHero]["OperTimes"] = TTH_VARI.recordSnatch[strHero]["OperTimes"] - 1;
+    		else
+    			TTH_MANAGE.useOperTimes(strHero);
+    		end;
+    		local iPosX, iPosY, iPosZ = GetObjectPosition(strHero);
+    		CreateTreasure("", TTH_ENUM.TreasureCamp, 1, iPosX, iPosY, iPosZ);
+
+				local strText = TTH_PATH.Perk[HERO_SKILL_SNATCH]["Success"];
+				TTH_GLOBAL.sign(strHero, strText);
+			end;
+			function TTH_PERK.resetWeekly168(iPlayer, strHero)
+				TTH_MAIN.debug("TTH_PERK.resetWeekly168", iPlayer, strHero);
+
+				if TTH_VARI.recordSnatch[strHero] == nil then
+					TTH_PERK.init168(iPlayer, strHero);
+				end;
+    		TTH_VARI.recordSnatch[strHero]["OperTimes"] = TTH_VARI.recordSnatch[strHero]["MaxOperTimes"];
+			end;
+
 	-- test
 		TTH_TEST = {};
+		function TTH_TEST.test11()
+			local arrTest = {
+				[0] = "test1"
+				, [1] = "test2"
+				, [2] = "test3"
+				, [3] = "test4"
+				, [4] = "test5"
+			};
+			local arrPostTest = TTH_COMMON.remove8Key(arrTest, 2)
+			for key, value in arrPostTest do
+				print('key: ')
+				print(key)
+				print('value: ')
+				print(value)
+			end
+			print(arrPostTest)
+		end;
 		function TTH_TEST.test10(iPlayer)
 			for i = WOOD, GOLD do
 				local x = 9999;
@@ -10347,22 +10072,19 @@ doFile("/scripts/H55-Settings.lua");
 							TTH_GLOBAL.giveHero4Specialty8Weekly(iPlayer, strHero);
 						end;
 
-					local arrHero = GetPlayerHeroes(iPlayer);
-					for i, strHero in arrHero do
-						for iKey, objItem in TTH_TABLE.FuncTalent[TTH_ENUM.FuncDealWeekly] do
-							if iKey == strHero then
-								TTH_COMMON.parse(objItem[TTH_ENUM.FuncAlways], iPlayer, strHero);
-							end;
+					for iKey, objItem in TTH_TABLE.FuncTalent[TTH_ENUM.FuncDealWeekly] do
+						if iKey == strHero then
+							TTH_COMMON.parse(objItem[TTH_ENUM.FuncAlways], iPlayer, strHero);
 						end;
-						for iKey, objItem in TTH_TABLE.FuncArtifact[TTH_ENUM.FuncDealWeekly] do
-							if HasArtefact(strHero, iKey, objItem["NeedWear"]) then
-								TTH_COMMON.parse(objItem[TTH_ENUM.FuncAlways], iPlayer, strHero);
-							end;
+					end;
+					for iKey, objItem in TTH_TABLE.FuncArtifact[TTH_ENUM.FuncDealWeekly] do
+						if HasArtefact(strHero, iKey, objItem["NeedWear"]) then
+							TTH_COMMON.parse(objItem[TTH_ENUM.FuncAlways], iPlayer, strHero);
 						end;
-						for iKey, objItem in TTH_TABLE.FuncPerk[TTH_ENUM.FuncDealWeekly] do
-							if HasHeroSkill(strHero, iKey) then
-								TTH_COMMON.parse(objItem[TTH_ENUM.FuncAlways], iPlayer, strHero);
-							end;
+					end;
+					for iKey, objItem in TTH_TABLE.FuncPerk[TTH_ENUM.FuncDealWeekly] do
+						if HasHeroSkill(strHero, iKey) then
+							TTH_COMMON.parse(objItem[TTH_ENUM.FuncAlways], iPlayer, strHero);
 						end;
 					end;
 				end;
@@ -10496,22 +10218,19 @@ doFile("/scripts/H55-Settings.lua");
 				for i, strHero in arrHero do
 					TTH_GLOBAL.recoveryManaNearByStrongholdTown(iPlayer, strHero); -- 据点城也可回复魔法值
 
-					local arrHero = GetPlayerHeroes(iPlayer);
-					for i, strHero in arrHero do
-						for iKey, objItem in TTH_TABLE.FuncTalent[TTH_ENUM.FuncDealDaily] do
-							if iKey == strHero then
-								TTH_COMMON.parse(objItem[TTH_ENUM.FuncAlways], iPlayer, strHero);
-							end;
+					for iKey, objItem in TTH_TABLE.FuncTalent[TTH_ENUM.FuncDealDaily] do
+						if iKey == strHero then
+							TTH_COMMON.parse(objItem[TTH_ENUM.FuncAlways], iPlayer, strHero);
 						end;
-						for iKey, objItem in TTH_TABLE.FuncArtifact[TTH_ENUM.FuncDealDaily] do
-							if HasArtefact(strHero, iKey, objItem["NeedWear"]) then
-								TTH_COMMON.parse(objItem[TTH_ENUM.FuncAlways], iPlayer, strHero);
-							end;
+					end;
+					for iKey, objItem in TTH_TABLE.FuncArtifact[TTH_ENUM.FuncDealDaily] do
+						if HasArtefact(strHero, iKey, objItem["NeedWear"]) then
+							TTH_COMMON.parse(objItem[TTH_ENUM.FuncAlways], iPlayer, strHero);
 						end;
-						for iKey, objItem in TTH_TABLE.FuncPerk[TTH_ENUM.FuncDealDaily] do
-							if HasHeroSkill(strHero, iKey) then
-								TTH_COMMON.parse(objItem[TTH_ENUM.FuncAlways], iPlayer, strHero);
-							end;
+					end;
+					for iKey, objItem in TTH_TABLE.FuncPerk[TTH_ENUM.FuncDealDaily] do
+						if HasHeroSkill(strHero, iKey) then
+							TTH_COMMON.parse(objItem[TTH_ENUM.FuncAlways], iPlayer, strHero);
 						end;
 					end;
 				end;

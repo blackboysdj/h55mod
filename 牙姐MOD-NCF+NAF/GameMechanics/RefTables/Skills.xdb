@@ -3016,11 +3016,11 @@
 				</Texture>
 				<CommonTexture/>
 				<NameFileRef>
-					<Item href="/Text/Game/Skills/Common/Defence/Toughness/Name.txt"/>
+					<Item href="/Text/TTH/Skills/Defence/039-Toughness/Name.txt"/>
 				</NameFileRef>
 				<CommonNameFileRef href=""/>
 				<DescriptionFileRef>
-					<Item href="/Text/Game/Skills/Common/Defence/Toughness/Description.txt"/>
+					<Item href="/Text/TTH/Skills/Defence/039-Toughness/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
 				<SkillType>SKILLTYPE_STANDART_PERK</SkillType>
@@ -19728,11 +19728,11 @@
 				</Texture>
 				<CommonTexture/>
 				<NameFileRef>
-					<Item href="/Text/Game/Skills/Common/Logistics/Snatch/Name.txt"/>
+					<Item href="/Text/TTH/Skills/Logistics/168-Snatch/Name.txt"/>
 				</NameFileRef>
 				<CommonNameFileRef href=""/>
 				<DescriptionFileRef>
-					<Item href="/Text/Game/Skills/Common/Logistics/Snatch/Description.txt"/>
+					<Item href="/Text/TTH/Skills/Logistics/168-Snatch/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
 				<SkillType>SKILLTYPE_STANDART_PERK</SkillType>

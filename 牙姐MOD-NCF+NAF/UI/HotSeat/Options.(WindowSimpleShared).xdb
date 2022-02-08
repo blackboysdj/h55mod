@@ -8,11 +8,6 @@
 		<Item href="EE_lookahead_Block.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<Item href="EE_mercenaries_Block.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<Item href="EE_discount_Block.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="EE_eightskills_Filter.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="EE_eightskills_FilterView.(WindowTextView).xdb#xpointer(/WindowTextView)"/>
-		<Item href="/UI/CustomGameCreate/EE_taxes_Filter.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/CustomGameCreate/EE_eightskills_Filter.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/CustomGameCreate/EE_artefacts_Filter.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>		
 	</Children>
 	<Background href="/UI/CustomGameCreate/RightBg.(BackgroundSimpleTexture).xdb#xpointer(/BackgroundSimpleTexture)"/>
 	<Foreground/>

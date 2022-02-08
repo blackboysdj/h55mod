@@ -2850,3 +2850,49 @@
           3.2.4.1.地狱-卡利德: 每天获得的内政经验*1.5，英雄50码范围内的其它英雄，战斗胜利后额外获得经验值，数值同卡利德的每天可获得的内政经验
           3.2.4.2.
 
+22.主动相关
+  1.入口: 在战略地图上点击魔法书→王国管理→技能管理
+  2.天赋: 英雄初始的天赋
+  3.技能: 英雄学会的技能
+  4.宝物: 英雄携带的宝物
+  5.所有主动类的天赋/技能/宝物初始都有一次使用次数
+  6.术语:
+    6.1.耗x: 该天赋/技能/宝物可主动使用，每次使用消耗x次主动使用的次数
+    6.2.周/日回x: 每周/日恢复x次主动使用的次数
+    6.3.内替: 可用【内政操作次数】代替
+
+23.技能
+  理财术 029-Estates
+    <left><color=7F38EC>被动特效:
+    <body_bright>1) 每天上缴 <color=yellow>500<body_bright> 单位<color=0099FF>黄金
+    <color=orange>主动特效<color_default>（耗1/周回1）:
+    <body_bright>1) 可在<color=0099FF>城镇<body_bright>中选择部分金币进行理财<color_default>（档位: 20%/50%/80%/100%）
+    <body_bright>2) 理财的金币立刻扣除，下周一理财结束，每理财一天获得10%收益
+  募兵术 028-Recruitment
+    <left><color=7F38EC>被动特效:
+    <body_bright>1) 每周结束时若英雄在城内，则1/2/3级生物产量分别增加3/2/1
+    <color=orange>主动特效<color_default>（耗1/周回1/内替）:
+    <body_bright>1) 增加当前城镇<color=yellow>【可招募生物】<color_default>（数值为: 50%基础周产，向下取整）
+  资源富饶 033-FortunateAdventurer
+    <left><color=7F38EC>被动特效:
+    <body_bright>1) 拾取的<color=0099FF>资源<body_bright>增加5%~25%
+    <body_bright>1) 拾取的<color=0099FF>宝箱<body_bright>金币选项增加 <color=yellow>500
+    <color=orange>主动特效<color_default>（耗1/日回1/内替）:
+    <body_bright>1) 可在<color=0099FF>非城门<body_bright>发掘宝箱<color_default>（等级为: 英雄等级，开平方，向下取整，每级增加宝箱500金币/500经验）
+  活力无限 039-Toughness
+    <left><color=7F38EC>被动特效:
+    <body_bright>1) 己方生物<color=0099FF>生命值<body_bright>+<color=yellow>3
+    <color=orange>主动特效<color_default>（耗1/日回1）:
+    <body_bright>1) 己方生物<color=0099FF>生命值<body_bright>+<color=yellow>10%<color_default>（同访问地母神祠效果）
+  死亡行军 099-DeathTread
+    <left><color=7F38EC>被动特效:
+    <body_bright>1) <color=0099FF>攻城战中<body_bright>己方生物<color=0099FF>移动力+4
+    <color=orange>主动特效<color_default>（耗0）:
+    <body_bright>1) 与<color=0099FF>敌方城镇<body_bright>的距离小于 <color=yellow>18<body_bright> 时可直接突袭该城镇
+  攫取 168-Snatch
+    <left><color=7F38EC>被动特效:
+    <body_bright>1) <color=0099FF>战略地图<body_bright>上所有交互不消耗<color=0099FF>移动力
+    <body_bright>2) <color=yellow>【上下船】<body_bright>只消耗少量<color=0099FF>移动力
+    <body_bright>3) <color=yellow>【战败后】<body_bright>当天招募时不消耗所有<color=0099FF>移动力
+    <color=orange>主动特效<color_default>（耗1/周回1/内替）:
+    <body_bright>1) 可在<color=0099FF>非城门<body_bright>生起营火

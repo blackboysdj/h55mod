@@ -12259,12 +12259,25 @@
 				TTH_PATH.Perk[HERO_SKILL_FORTUNATE_ADVENTURER]["NotEnoughTimes"] = TTH_PATH.Perk[HERO_SKILL_FORTUNATE_ADVENTURER]["Pre"].."NotEnoughTimes.txt";
 				TTH_PATH.Perk[HERO_SKILL_FORTUNATE_ADVENTURER]["Confirm"] = TTH_PATH.Perk[HERO_SKILL_FORTUNATE_ADVENTURER]["Pre"].."Confirm.txt";
 				TTH_PATH.Perk[HERO_SKILL_FORTUNATE_ADVENTURER]["Success"] = TTH_PATH.Perk[HERO_SKILL_FORTUNATE_ADVENTURER]["Pre"].."Success.txt";
+			-- HERO_SKILL_TOUGHNESS 039 活力无限
+				TTH_PATH.Perk[HERO_SKILL_TOUGHNESS] = {};
+				TTH_PATH.Perk[HERO_SKILL_TOUGHNESS]["Pre"] = TTH_PATH.Perk["Pre"] .."039/";
+				TTH_PATH.Perk[HERO_SKILL_TOUGHNESS]["Text"] = TTH_PATH.Perk[HERO_SKILL_TOUGHNESS]["Pre"].."Text.txt";
+				TTH_PATH.Perk[HERO_SKILL_TOUGHNESS]["NotEnoughTimes"] = TTH_PATH.Perk[HERO_SKILL_TOUGHNESS]["Pre"].."NotEnoughTimes.txt";
+				TTH_PATH.Perk[HERO_SKILL_TOUGHNESS]["NoBuildingOnAdvMap"] = TTH_PATH.Perk[HERO_SKILL_TOUGHNESS]["Pre"].."NoBuildingOnAdvMap.txt";
 			-- HERO_SKILL_DEATH_TREAD 099 死亡行军
 				TTH_PATH.Perk[HERO_SKILL_DEATH_TREAD] = {};
 				TTH_PATH.Perk[HERO_SKILL_DEATH_TREAD]["Pre"] = TTH_PATH.Perk["Pre"] .."099/";
 				TTH_PATH.Perk[HERO_SKILL_DEATH_TREAD]["Text"] = TTH_PATH.Perk[HERO_SKILL_DEATH_TREAD]["Pre"].."Text.txt";
 				TTH_PATH.Perk[HERO_SKILL_DEATH_TREAD]["NoFoeTownNearBy"] = TTH_PATH.Perk[HERO_SKILL_DEATH_TREAD]["Pre"].."NoFoeTownNearBy.txt";
 				TTH_PATH.Perk[HERO_SKILL_DEATH_TREAD]["Confirm"] = TTH_PATH.Perk[HERO_SKILL_DEATH_TREAD]["Pre"].."Confirm.txt";
+			-- HERO_SKILL_SNATCH 168 攫取
+				TTH_PATH.Perk[HERO_SKILL_SNATCH] = {};
+				TTH_PATH.Perk[HERO_SKILL_SNATCH]["Pre"] = TTH_PATH.Perk["Pre"] .."168/";
+				TTH_PATH.Perk[HERO_SKILL_SNATCH]["Text"] = TTH_PATH.Perk[HERO_SKILL_SNATCH]["Pre"].."Text.txt";
+				TTH_PATH.Perk[HERO_SKILL_SNATCH]["NotEnoughTimes"] = TTH_PATH.Perk[HERO_SKILL_SNATCH]["Pre"].."NotEnoughTimes.txt";
+				TTH_PATH.Perk[HERO_SKILL_SNATCH]["Confirm"] = TTH_PATH.Perk[HERO_SKILL_SNATCH]["Pre"].."Confirm.txt";
+				TTH_PATH.Perk[HERO_SKILL_SNATCH]["Success"] = TTH_PATH.Perk[HERO_SKILL_SNATCH]["Pre"].."Success.txt";
 
 	-- 数据表
 		TTH_TABLE = {};
@@ -12604,9 +12617,18 @@
 						["Text"] = TTH_PATH.Perk[HERO_SKILL_FORTUNATE_ADVENTURER]["Text"]
 						, [TTH_ENUM.FuncNotAtGate] = "TTH_PERK.active033"
 					}
+					, [HERO_SKILL_TOUGHNESS] = {
+						["Text"] = TTH_PATH.Perk[HERO_SKILL_TOUGHNESS]["Text"]
+						, [TTH_ENUM.FuncAtGate] = "TTH_PERK.active039"
+						, [TTH_ENUM.FuncNotAtGate] = "TTH_PERK.active039"
+					}
 					, [HERO_SKILL_DEATH_TREAD] = {
 						["Text"] = TTH_PATH.Perk[HERO_SKILL_DEATH_TREAD]["Text"]
 						, [TTH_ENUM.FuncNotAtGate] = "TTH_PERK.active099"
+					}
+					, [HERO_SKILL_SNATCH] = {
+						["Text"] = TTH_PATH.Perk[HERO_SKILL_SNATCH]["Text"]
+						, [TTH_ENUM.FuncNotAtGate] = "TTH_PERK.active168"
 					}
 				}
 				, [TTH_ENUM.FuncLevelUp] = {
@@ -12635,6 +12657,9 @@
 				, [TTH_ENUM.FuncDealDaily] = {
 				}
 				, [TTH_ENUM.FuncResetDaily] = {
+					[HERO_SKILL_TOUGHNESS] = {
+						[TTH_ENUM.FuncAlways] = "TTH_PERK.resetDaily039"
+					}
 				}
 			};
 

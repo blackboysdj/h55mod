@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WindowTextView>
+	<ClassTypeID>285694860</ClassTypeID>
+	<Shared href="/UI/CombatResults/Default.(WindowTextViewShared).xdb#xpointer(/WindowTextViewShared)"/>
+	<Name>Version</Name>
+	<TooltipFileRef href=""/>
+	<Visible>true</Visible>
+	<Priority>0</Priority>
+	<GameMessageReactions/>
+	<Placement>
+		<Position>
+			<First>
+				<x>34</x>
+				<y>560</y>
+			</First>
+			<Second>true</Second>
+		</Position>
+		<VerAllign>
+			<First>EPA_LOW_END</First>
+			<Second>false</Second>
+		</VerAllign>
+		<HorAllign>
+			<First>EPA_LOW_END</First>
+			<Second>false</Second>
+		</HorAllign>
+		<Size>
+			<First>
+				<x>500</x>
+				<y>30</y>
+			</First>
+			<Second>true</Second>
+		</Size>
+		<LowerMargin>
+			<First>
+				<x>0</x>
+				<y>0</y>
+			</First>
+			<Second>false</Second>
+		</LowerMargin>
+		<UpperMargin>
+			<First>
+				<x>0</x>
+				<y>0</y>
+			</First>
+			<Second>false</Second>
+		</UpperMargin>
+	</Placement>
+	<Enabled>true</Enabled>
+	<TextString/>
+	<relatedTexts/>
+	<relatedTextures/>
+	<Flags>
+		<SuperActive>false</SuperActive>
+	</Flags>
+	<TextFileRef href="Version.txt"/>
+	<ResizeOnTextSet>true</ResizeOnTextSet>
+	<TextFormat/>
+</WindowTextView>

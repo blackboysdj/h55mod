@@ -12120,8 +12120,8 @@
 				TTH_PATH.Talent["Sylsai"] = {};
 				TTH_PATH.Talent["Sylsai"]["Pre"] = TTH_PATH.Talent["Pre"].."062/";
 				TTH_PATH.Talent["Sylsai"]["Text"] = TTH_PATH.Talent["Sylsai"]["Pre"].."Text.txt";
-				TTH_PATH.Talent["Sylsai"]["NoSuitableCreature"] = TTH_PATH.Talent["Sylsai"]["Pre"].."NoSuitableCreature.txt";
-				TTH_PATH.Talent["Sylsai"]["ConfirmActive"] = TTH_PATH.Talent["Sylsai"]["Pre"].."ConfirmActive.txt";
+				TTH_PATH.Talent["Sylsai"]["ConfirmActiveInit"] = TTH_PATH.Talent["Sylsai"]["Pre"].."ConfirmActiveInit.txt";
+				TTH_PATH.Talent["Sylsai"]["ConfirmActiveChange"] = TTH_PATH.Talent["Sylsai"]["Pre"].."ConfirmActiveChange.txt";
 				TTH_PATH.Talent["Sylsai"]["SuccessActive"] = TTH_PATH.Talent["Sylsai"]["Pre"].."SuccessActive.txt";
 				TTH_PATH.Talent["Sylsai"]["NoAppointCreature"] = TTH_PATH.Talent["Sylsai"]["Pre"].."NoAppointCreature.txt";
 				TTH_PATH.Talent["Sylsai"]["NotEnoughOperTimes"] = TTH_PATH.Talent["Sylsai"]["Pre"].."NotEnoughOperTimes.txt";

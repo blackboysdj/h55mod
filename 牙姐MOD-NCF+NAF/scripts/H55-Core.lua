@@ -7789,49 +7789,13 @@ doFile("/scripts/H55-Settings.lua");
       	function TTH_TALENT.activeSylsai(iPlayer, strHero)
 					TTH_COMMON.nextNavi(TTH_PATH.Talent["Sylsai"]["Text"]);
 
-      		TTH_TALENT.checkPreActiveSylsai4SuitableCreature(iPlayer, strHero);
-      	end;
-      	function TTH_TALENT.checkPreActiveSylsai4SuitableCreature(iPlayer, strHero)
-					local arrCreature4Hero = TTH_GLOBAL.getHeroCreatureInfo(strHero);
-      		local arrOption = {};
-      		local i = 1;
-					for iIndex = 0, 6 do
-						if arrCreature4Hero[iIndex]["Count"] > 0 then
-							local iCreatureId = arrCreature4Hero[iIndex]["Id"];
-							local bIsMatch = TTH_ENUM.No;
-							for iTier = 1, 7 do
-								for jType = 1, 3 do
-									local iDungeonCreatureId = TTH_TABLE.Creature8RaceAndLevel[TOWN_DUNGEON][iTier][jType];
-									if iCreatureId == iDungeonCreatureId then
-										bIsMatch = TTH_ENUM.Yes;
-									end;
-								end;
-							end;
-							if bIsMatch == TTH_ENUM.No then
-								arrOption[i] = {
-									["Id"] = iCreatureId
-									, ["Text"] = TTH_TABLE_NCF_CREATURES[iCreatureId]["NAME"]
-									, ["Callback"] = "TTH_TALENT.checkPreActiveSylsai4OperTimes"
-								};
-								i = i + 1;
-							end;
-						end;
+					if TTH_VARI.talent[strHero]["AppointCreature"] == CREATURE_UNKNOWN then
+						TTH_TALENT.radioActiveSylsai4DiplomacyCreature(iPlayer, strHero);
+					else
+      			TTH_TALENT.checkPreActiveSylsai4OperTimes(iPlayer, strHero);
 					end;
-
-					if length(arrOption) == 0 then
-						local strText = TTH_PATH.Talent[strHero]["NoSuitableCreature"];
-			    	TTH_GLOBAL.sign(strHero, strText);
-						return nil;
-					end;
-
-					TTH_COMMON.optionRadio(iPlayer, strHero, arrOption);
       	end;
-      	function TTH_TALENT.checkPreActiveSylsai4OperTimes(iPlayer, strHero, iCreatureId)
-      		if TTH_VARI.talent[strHero]["AppointCreature"] == CREATURE_UNKNOWN then
-      			TTH_TALENT.implActiveSylsai(iPlayer, strHero, iCreatureId);
-      			return nil;
-      		end;
-
+      	function TTH_TALENT.checkPreActiveSylsai4OperTimes(iPlayer, strHero)
       		if TTH_VARI.talent[strHero]["CurrentTimes"] <= 0 then
       			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
       				if TTH_MANAGE.getRemainOperTimes(strHero) <= 0 then
@@ -7844,25 +7808,46 @@ doFile("/scripts/H55-Settings.lua");
 		    		end;
       		end;
 
-					TTH_TALENT.confirmActiveSylsai(iPlayer, strHero, iCreatureId);
+					TTH_TALENT.radioActiveSylsai4DiplomacyCreature(iPlayer, strHero);
+      	end;
+      	function TTH_TALENT.radioActiveSylsai4DiplomacyCreature(iPlayer, strHero)
+					local arrCreature4Hero = TTH_GLOBAL.getHeroCreatureInfo(strHero);
+      		local arrOption = {};
+      		local i = 1;
+					for iIndex = 0, 6 do
+						if arrCreature4Hero[iIndex]["Count"] > 0 then
+							local iCreatureId = arrCreature4Hero[iIndex]["Id"];
+							arrOption[i] = {
+								["Id"] = iCreatureId
+								, ["Text"] = TTH_TABLE_NCF_CREATURES[iCreatureId]["NAME"]
+								, ["Callback"] = "TTH_TALENT.confirmActiveSylsai"
+							};
+							i = i + 1;
+						end;
+					end;
+
+					TTH_COMMON.optionRadio(iPlayer, strHero, arrOption);
       	end;
       	function TTH_TALENT.confirmActiveSylsai(iPlayer, strHero, iCreatureId)
-      		local iPreCreatureId = TTH_VARI.talent[strHero]["AppointCreature"];
-      		local strPreCreatureName = TTH_TABLE_NCF_CREATURES[iPreCreatureId]["NAME"];
-      		local iPostCreatureId = iCreatureId;
-      		local strPostCreatureName = TTH_TABLE_NCF_CREATURES[iPostCreatureId]["NAME"];
-      		local bIsChange = TTH_ENUM.Yes;
+      		local strPathConfirm = TTH_PATH.Talent[strHero]["ConfirmActiveInit"];
+      		local strPreCreatureName = "";
+      		if TTH_VARI.talent[strHero]["AppointCreature"] ~= CREATURE_UNKNOWN then
+      			strPathConfirm = TTH_PATH.Talent[strHero]["ConfirmActiveChange"];
+      			local iPreCreatureId = TTH_VARI.talent[strHero]["AppointCreature"];
+	      		strPreCreatureName = TTH_TABLE_NCF_CREATURES[iPreCreatureId]["NAME"];
+	      	end;
+      		local strPostCreatureName = TTH_TABLE_NCF_CREATURES[iCreatureId]["NAME"];
     			local strPathMain = {
-    				TTH_PATH.Talent[strHero]["ConfirmActive"]
+    				strPathConfirm
     		    ;strPreCreatureName=strPreCreatureName
     				,strPostCreatureName=strPostCreatureName
     			};
-    			local strCallbackOk = "TTH_TALENT.implActiveSylsai("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(iPostCreatureId)..","..bIsChange..")";
+    			local strCallbackOk = "TTH_TALENT.implActiveSylsai("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(iCreatureId)..")";
     			local strCallbackCancel = "TTH_COMMON.cancelOption()";
     			TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
       	end;
-      	function TTH_TALENT.implActiveSylsai(iPlayer, strHero, iCreatureId, bIsChange)
-      		if bIsChange == TTH_ENUM.Yes then
+      	function TTH_TALENT.implActiveSylsai(iPlayer, strHero, iCreatureId)
+      		if TTH_VARI.talent[strHero]["AppointCreature"] ~= CREATURE_UNKNOWN then
 	      		if TTH_VARI.talent[strHero]["CurrentTimes"] > 0 then
 	    				TTH_VARI.talent[strHero]["CurrentTimes"] = TTH_VARI.talent[strHero]["CurrentTimes"] - 1;
 			    	else
@@ -8048,7 +8033,7 @@ doFile("/scripts/H55-Settings.lua");
 						return nil;
 					end;
 
-					TTH_TALENT.checkPreActiveNikolay4TowmRace(iPlayer, strHero, strTown);
+					TTH_TALENT.confirmActiveNikolay(iPlayer, strHero, strTown);
 				end;
 				function TTH_TALENT.confirmActiveNikolay(iPlayer, strHero, strTown)
 					local strPathMain = {

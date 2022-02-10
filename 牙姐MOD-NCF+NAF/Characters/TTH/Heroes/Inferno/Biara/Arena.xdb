@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AnimSet ObjectRecordID="1000138">
+	<animations>
+		<Item>
+			<Kind>death</Kind>
+			<Anim href="Death.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>happy</Kind>
+			<Anim href="Happy.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>idle00</Kind>
+			<Anim href="Idle00.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>move</Kind>
+			<Anim href="Move.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>rangeattack</Kind>
+			<Anim href="Rangeattack.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>stir00</Kind>
+			<Anim href="Stir00.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>cast</Kind>
+			<Anim href="Cast.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>attack00</Kind>
+			<Anim href="Attack00.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>specability</Kind>
+			<Anim href="Specability.(BasicSkelAnim).xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+	</animations>
+	<ExpSrcScene href="/models/Heroes/Biara/Biara.mb"/>
+	<ExpSrcClipFolder href="/Animations/Heroes/Biara/Clip/"/>
+	<ExpRootTransform>Global</ExpRootTransform>
+</AnimSet>

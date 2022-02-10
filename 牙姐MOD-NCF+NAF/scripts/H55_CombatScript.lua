@@ -3052,17 +3052,17 @@ doFile('/scripts/combat-startup.lua')
 									local arrPositionArea3, objMaxPositionArea3 = TTHCS_GLOBAL.getDenseArea(arrUnit4Check, 3);
 									-- local arrPositionArea4, objMaxPositionArea4 = TTHCS_GLOBAL.getDenseArea(arrUnit4Check, 4);
 									if objMaxPositionArea3 ~= nil then
-										startThread(Thread_Command_UnitCastAreaSpell, itemUnitLastSummon["strUnitName"], SPELL_FIREBALL, objMaxPositionArea3["PosX"], objMaxPositionArea3["PosY"]);
+										startThread(Thread_Command_UnitCastAreaSpell, itemUnitLastSummon["strUnitName"], SPELL_FIREBALL, objMaxPositionArea3["PosX"], objMaxPositionArea3["PosY"], 1);
 									end;
 								end;
 								if itemUnitLastSummon['iUnitType'] == CREATURE_BALOR then
 									local arrPositionArea3, objMaxPositionArea3 = TTHCS_GLOBAL.getDenseArea(arrUnit4Check, 3);
 									local arrPositionArea4, objMaxPositionArea4 = TTHCS_GLOBAL.getDenseArea(arrUnit4Check, 4);
 									if objMaxPositionArea3 ~= nil then
-										startThread(Thread_Command_UnitCastAreaSpell, itemUnitLastSummon["strUnitName"], SPELL_FIREBALL, objMaxPositionArea3["PosX"], objMaxPositionArea3["PosY"]);
+										startThread(Thread_Command_UnitCastAreaSpell, itemUnitLastSummon["strUnitName"], SPELL_FIREBALL, objMaxPositionArea3["PosX"], objMaxPositionArea3["PosY"], 1);
 									end;
 									if objMaxPositionArea4 ~= nil then
-										startThread(Thread_Command_UnitCastAreaSpell, itemUnitLastSummon["strUnitName"], SPELL_METEOR_SHOWER, objMaxPositionArea4["PosX"], objMaxPositionArea4["PosY"]);
+										startThread(Thread_Command_UnitCastAreaSpell, itemUnitLastSummon["strUnitName"], SPELL_METEOR_SHOWER, objMaxPositionArea4["PosX"], objMaxPositionArea4["PosY"], 1);
 									end;
 								end;
 								if itemUnitLastSummon['iUnitType'] == CREATURE_PIT_SPAWN then

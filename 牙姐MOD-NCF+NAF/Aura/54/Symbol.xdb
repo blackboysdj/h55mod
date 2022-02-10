@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Model ObjectRecordID="1002705">
+	<Materials>
+		<Item href="Symbol-Symbol_lambert.(Material).xdb#xpointer(/Material)"/>
+	</Materials>
+	<Skeleton/>
+	<Geometry href="Symbol-geom.xdb#xpointer(/Geometry)"/>
+	<Animations/>
+	<WindPower>1</WindPower>
+</Model>

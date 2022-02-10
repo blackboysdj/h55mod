@@ -4533,8 +4533,6 @@ doFile("/scripts/H55-Settings.lua");
 		TTH_VARI.arrMayor = {}; -- 内政关系表
 		TTH_VARI.arrDefeatMayor = {}; --战败表
 
-		TTH_VARI.teleport8Town = {};
-
 		-- getter/setter/is
 			-- 获取城镇的内政官 nil: 无; strHero: 有
 				function TTH_MANAGE.getMayor8Town(strTown)
@@ -5635,46 +5633,35 @@ doFile("/scripts/H55-Settings.lua");
 					end;
 				end;
 
-		-- 传送点
-			-- 设立传送点
-				function TTH_MANAGE.setUpTeleport2AppointTown(strTown)
-					TTH_VARI.teleport8Town[strTown] = 1;
-				end;
-
-			-- 获取该城镇传送点是否已经设立 nil: 未设立; 1: 已设立
-				function TTH_MANAGE.isExistTeleport(strTown)
-					return TTH_VARI.teleport8Town[strTown];
-				end;
-
-			-- 根据玩家获取已经设立了传送点的城镇列表 0: 没有; arrTown: 有
-				function TTH_MANAGE.listTeleportTown(iPlayer)
-					local arrTeleportTown = {};
-					for iIndexTown, strTown in TTH_VARI.arrTown do
-						if GetObjectOwner(strTown) == iPlayer then
-							local iTownRace = TTH_GLOBAL.getRace8Town(strTown);
-							local bEnoughMagic = 0;
-							if iTownRace == TOWN_STRONGHOLD then
-								if GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_1) == 3
-									and GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_3) == 1 then
-									bEnoughMagic = 1;
-								end;
-							elseif iTownRace == TOWN_INFERNO then
-								if GetTownBuildingLevel(strTown, TOWN_BUILDING_MAGIC_GUILD) >= 1
-									and GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_1) == 1 then
-									bEnoughMagic = 1;
-								end;
-							else
-								if GetTownBuildingLevel(strTown, TOWN_BUILDING_MAGIC_GUILD) == 5 then
-									bEnoughMagic = 1;
-								end;
+		-- 根据玩家获取已经可定点传送的城镇列表 0: 没有; arrTown: 有
+			function TTH_MANAGE.listTeleportTown(iPlayer)
+				local arrTeleportTown = {};
+				for iIndexTown, strTown in TTH_VARI.arrTown do
+					if GetObjectOwner(strTown) == iPlayer then
+						local iTownRace = TTH_GLOBAL.getRace8Town(strTown);
+						local bEnoughMagic = 0;
+						if iTownRace == TOWN_STRONGHOLD then
+							if GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_1) == 3
+								and GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_3) == 1 then
+								bEnoughMagic = 1;
 							end;
-							if bEnoughMagic == 1 then
-								TTH_COMMON.push(arrTeleportTown, strTown);
+						elseif iTownRace == TOWN_INFERNO then
+							if GetTownBuildingLevel(strTown, TOWN_BUILDING_MAGIC_GUILD) >= 1
+								and GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_1) == 1 then
+								bEnoughMagic = 1;
+							end;
+						else
+							if GetTownBuildingLevel(strTown, TOWN_BUILDING_MAGIC_GUILD) == 5 then
+								bEnoughMagic = 1;
 							end;
 						end;
-					end
-					return arrTeleportTown;
-				end;
+						if bEnoughMagic == 1 then
+							TTH_COMMON.push(arrTeleportTown, strTown);
+						end;
+					end;
+				end
+				return arrTeleportTown;
+			end;
 
 		TTH_ENUM.KingManage = 0; -- 王国管理
 		TTH_ENUM.ShowInfo = 1; -- 信息查询
@@ -7048,6 +7035,7 @@ doFile("/scripts/H55-Settings.lua");
 							TTH_GLOBAL.dealRecoveryMove4Winner(iPlayerWinner, strHeroWinner); -- 战斗胜利后移动力恢复
 
 						TTH_TALENT.combatResultNikolay(iPlayerWinner, strHeroWinner, iCombatIndex); -- 尼科莱
+						TTH_TALENT.combatResultCalid2(iPlayerWinner, strHeroWinner, iCombatIndex); -- 卡利德
 						TTH_VISIT.combatResultMermaids(iPlayerWinner, strHeroWinner, iCombatIndex); -- 先知小屋
 
 						for iKey, objItem in TTH_TABLE.FuncTalent[TTH_ENUM.FuncCombatResult] do
@@ -8338,6 +8326,27 @@ doFile("/scripts/H55-Settings.lua");
 	      		end;
       		end;
       	end;
+
+			-- Calid2 115 卡利德
+				function TTH_TALENT.combatResultCalid2(iPlayer, strHero, iCombatIndex)
+					TTH_MAIN.debug("TTH_TALENT.combatResultCalid2", iPlayer, strHero, iCombatIndex);
+
+					local strHeroCalid2 = "Calid2";
+      		local bInArea = TTH_ENUM.No;
+      		if strHero == strHeroCalid2 then
+      			bInArea = TTH_ENUM.Yes;
+      		else
+	      		if contains(GetPlayerHeroes(iPlayer), strHeroCalid2) ~= nil
+	      			and TTH_GLOBAL.getDistance(strHero, strHeroCalid2) <= TTH_MANAGE.getTerritoryRadius(iPlayer) then
+	      			bInArea = TTH_ENUM.Yes;
+	      		end;
+      		end;
+      		if bInArea == TTH_ENUM.Yes then
+      			local iExp = TTH_MANAGE.calcDailyExp4Mayor(strHeroCalid2);
+      			iExp = iExp * TTH_GLOBAL.coefExp8Enlightment(strHero);
+      			GiveExp(strHero, TTH_COMMON.round(iExp));
+      		end;
+				end;
 
       -- Sheltem 116 谢尔坦
       	function TTH_TALENT.initSheltem(strHero)

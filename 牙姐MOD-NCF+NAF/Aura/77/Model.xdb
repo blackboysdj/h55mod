@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Model ObjectRecordID="1002704">
+	<Materials>
+		<Item href="Symbol-Symbol_lambert.(Material).xdb#xpointer(/Material)"/>
+	</Materials>
+	<Skeleton/>
+	<Geometry href="#n:inline(Geometry)" id="item_c5104d96-4ced-4554-b7d3-b1c0f1452827">
+		<Geometry ObjectRecordID="6879">
+			<SrcName href="/models/Heroes/Knight/Path/KnightSymbol.mb"/>
+			<uid>CB46EEFC-2132-49C2-97AA-86F282C212A3</uid>
+			<RootMesh>Symbol</RootMesh>
+			<RootJoint/>
+			<Size>
+				<x>6</x>
+				<y>6</y>
+				<z>0</z>
+			</Size>
+			<Center>
+				<x>0</x>
+				<y>0</y>
+				<z>0.5</z>
+			</Center>
+			<BestFitPoint>
+				<x>0</x>
+				<y>0</y>
+				<z>0.5</z>
+			</BestFitPoint>
+			<Dir>
+				<x>0</x>
+				<y>0</y>
+				<z>0</z>
+				<w>0</w>
+			</Dir>
+			<AIGeometry/>
+			<NumMeshes>1</NumMeshes>
+			<MaterialQuantities>
+				<Item>1</Item>
+			</MaterialQuantities>
+			<MeshNames>
+				<Item>SymbolShape</Item>
+			</MeshNames>
+			<MeshAnimated/>
+			<MeshWindAffected/>
+		</Geometry>
+	</Geometry>
+	<Animations/>
+	<WindPower>1</WindPower>
+</Model>

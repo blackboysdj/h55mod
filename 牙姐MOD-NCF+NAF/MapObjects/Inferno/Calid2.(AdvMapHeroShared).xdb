@@ -36,9 +36,9 @@
 		<SkillID>HERO_SKILL_SORCERY</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Inferno/Calid2/Text.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Inferno55/Exp/Description.txt"/>
-	<SpecializationIcon href="/UI/H5A1/Icons/Abilites/Heroes_Abillites/128x128/Mentoring.(Texture).xdb#xpointer(/Texture)"/>
-	<FaceTexture href="/Textures/Icons/Heroes/Inferno/Inferno_Calid2_128x128.(Texture).xdb#xpointer(/Texture)"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Inferno/Calid2/Description.txt"/>
+	<SpecializationIcon href="/Textures/TTH/Heroes/Inferno/Calid2/Talent64.(Texture).xdb#xpointer(/Texture)"/>
+	<FaceTexture href="/Textures/TTH/Heroes/Inferno/Calid2/Face128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>
 	<HeroCharacterArena href="/Characters/Heroes/Biara.(Character).xdb#xpointer(/Character)"/>
 	<HeroCharacterArenaMelee/>

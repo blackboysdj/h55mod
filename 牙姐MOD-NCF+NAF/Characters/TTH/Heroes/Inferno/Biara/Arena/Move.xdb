@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BasicSkelAnim ObjectRecordID="1000713">
+	<SrcName href="/models/Heroes/Biara/Biara.mb"/>
+	<uid>CA910BAB-A147-4457-B47E-C01BF454EF83</uid>
+	<ExpSrcClip href="/Animations/Heroes/Biara/Clip/Succubus.move.ma"/>
+	<ExpRootTransform>Global</ExpRootTransform>
+	<ExpFrameFirst>0</ExpFrameFirst>
+	<ExpFrameLast>0</ExpFrameLast>
+	<ExpSettingsFile href="/H:/Tools/MayaExportSettings/settings_character_anim.ges"/>
+	<MovementSpeed>5.26125</MovementSpeed>
+	<SpeedFactor>1</SpeedFactor>
+	<Sound href="/Sounds/_(Sound)/Heroes/Biara/Move.xdb#xpointer(/Sound)"/>
+	<Effect href="/Effects/_(Effect)/Characters/Heroes/Biara/idle00.(Effect).xdb#xpointer(/Effect)"/>
+	<SpeedLineFallTime>250</SpeedLineFallTime>
+	<SpeedLineMaterial/>
+</BasicSkelAnim>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BasicSkelAnim>
+	<SrcName href="/models/Heroes/Biara/Biara.mb"/>
+	<uid>004C5CA7-1A3E-4B9B-82BC-0A4474BFF55B</uid>
+	<ExpSrcClip href="/Animations/Heroes/Biara/Clip/Succubus.specability.ma"/>
+	<ExpRootTransform>Global</ExpRootTransform>
+	<ExpFrameFirst>0</ExpFrameFirst>
+	<ExpFrameLast>0</ExpFrameLast>
+	<ExpSettingsFile href=""/>
+	<MovementSpeed>0</MovementSpeed>
+	<SpeedFactor>1</SpeedFactor>
+	<Sound href="/Sounds/_(Sound)/Heroes/Biara/Cast.xdb#xpointer(/Sound)"/>
+	<Effect href="/Effects/_(Effect)/Characters/Heroes/Biara/cast.(Effect).xdb#xpointer(/Effect)"/>
+	<SpeedLineFallTime>250</SpeedLineFallTime>
+	<SpeedLineMaterial/>
+</BasicSkelAnim>

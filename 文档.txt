@@ -45,6 +45,7 @@ ShowFlyingSign
   <color=yellow>【内政操作次数】
   <color=yellow>【管辖城镇配额】
   <color=yellow>【野外生物招募点】
+  【玩家领地半径】
 
 颜色
   默认亮 <body_bright>

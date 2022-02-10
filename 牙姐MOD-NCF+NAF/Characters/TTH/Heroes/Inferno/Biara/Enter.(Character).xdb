@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Character ObjectRecordID="1000154">
+	<Model href="Main.xdb#xpointer(/Model)"/>
+	<ArenaAnimSet href="Arena.xdb#xpointer(/AnimSet)"/>
+	<AdvMapAnimSet href="Arena.xdb#xpointer(/AdvMapAnimSet)"/>
+	<ColourModels>
+		<Item href="Main.xdb#xpointer(/Model)"/>
+		<Item href="Color/Red.xdb#xpointer(/Model)"/>
+		<Item href="Color/Blue.xdb#xpointer(/Model)"/>
+		<Item href="Color/Green.xdb#xpointer(/Model)"/>
+		<Item href="Color/Yellow.xdb#xpointer(/Model)"/>
+		<Item href="Color/Orange.xdb#xpointer(/Model)"/>
+		<Item href="Color/Teal.xdb#xpointer(/Model)"/>
+		<Item href="Color/Purple.xdb#xpointer(/Model)"/>
+		<Item href="Color/Tan.xdb#xpointer(/Model)"/>
+	</ColourModels>
+</Character>

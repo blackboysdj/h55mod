@@ -38,10 +38,10 @@
 		<SkillID>HERO_SKILL_SORCERY</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Inferno/Biara/Text.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Inferno55/InfernoLeader/Description.txt"/>
-	<SpecializationIcon href="/Textures/HeroScreen/Specializations/Inferno/Flagbearer_of_Darkness.xdb#xpointer(/Texture)"/>
-	<FaceTexture href="/Textures/Icons/Heroes/Inferno/Inferno_Biara_128x128.(Texture).xdb#xpointer(/Texture)"/>
-	<FaceTextureSmall/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Inferno/Biara/Description.txt"/>
+	<SpecializationIcon href="/Textures/TTH/Heroes/Inferno/Biara/Talent64.(Texture).xdb#xpointer(/Texture)"/>
+	<FaceTexture href="/Textures/TTH/Heroes/Inferno/Biara/Face128.(Texture).xdb#xpointer(/Texture)"/>
+	<FaceTextureSmall href="/Textures/TTH/Heroes/Inferno/Biara/Face64.(Texture).xdb#xpointer(/Texture)"/>
 	<HeroCharacterArena href="/Characters/Heroes/Biara.(Character).xdb#xpointer(/Character)"/>
 	<HeroCharacterArenaMelee/>
 	<HeroCharacterAdventure href="/Characters/Heroes/Biara_LOD.(Character).xdb#xpointer(/Character)"/>

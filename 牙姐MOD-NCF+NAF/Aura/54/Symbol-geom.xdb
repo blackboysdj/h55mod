@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Geometry ObjectRecordID="1003168">
+	<SrcName href="/models/Heroes/Ranger/Path/symbol.mb"/>
+	<uid>56134498-2702-48F5-B458-BBAF65C1DCEE</uid>
+	<RootMesh>Symbol</RootMesh>
+	<RootJoint/>
+	<Size>
+		<x>6</x>
+		<y>6</y>
+		<z>0</z>
+	</Size>
+	<Center>
+		<x>0</x>
+		<y>0</y>
+		<z>0.5</z>
+	</Center>
+	<BestFitPoint>
+		<x>0</x>
+		<y>0</y>
+		<z>0.5</z>
+	</BestFitPoint>
+	<Dir>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+		<w>0</w>
+	</Dir>
+	<AIGeometry/>
+	<NumMeshes>1</NumMeshes>
+	<MaterialQuantities>
+		<Item>1</Item>
+	</MaterialQuantities>
+	<MeshNames>
+		<Item>SymbolShape</Item>
+	</MeshNames>
+	<MeshAnimated/>
+	<MeshWindAffected/>
+</Geometry>

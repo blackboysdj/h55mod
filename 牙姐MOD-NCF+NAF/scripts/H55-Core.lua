@@ -1168,9 +1168,11 @@ doFile("/scripts/H55-Settings.lua");
 			-- 初始化日询事件的次数 by 玩家
 				TTH_VARI.counterDealDailyEvent = {};
 				TTH_VARI.counterResetDailyEvent = {};
+				TTH_VARI.counterDealSettleResource = {};
 				function TTH_GLOBAL.initDailyEventCount(iPlayer)
 					TTH_VARI.counterDealDailyEvent[iPlayer] = 0;
 					TTH_VARI.counterResetDailyEvent[iPlayer] = 0;
+					TTH_VARI.counterDealSettleResource[iPlayer] = 0;
 				end;
 
 			-- 初始化周询事件的次数 by 玩家
@@ -2244,6 +2246,8 @@ doFile("/scripts/H55-Settings.lua");
 						TTH_GLOBAL.increaseResource(iPlayer, i, TTH_VARI.settleResource[iPlayer][i]);
 						TTH_VARI.settleResource[iPlayer][i] = 0;
 					end;
+
+					print("Player-"..iPlayer.." dealSettleResource-"..TTH_VARI.counterDealSettleResource[iPlayer].." event finished");
 				end;
 
 		-- 设置英雄的战场脚本
@@ -3130,6 +3134,17 @@ doFile("/scripts/H55-Settings.lua");
 							, [STAT_MORALE] = 0
 						}
 					}
+					, [HERO_SKILL_DARK_REVELATION] = { -- 黑暗启示
+						["HeroLevel"] = 1
+						, ["Stat"] = {
+							[STAT_ATTACK] = 0
+							, [STAT_DEFENCE] = 0
+							, [STAT_SPELL_POWER] = 0
+							, [STAT_KNOWLEDGE] = 2
+							, [STAT_LUCK] = 0
+							, [STAT_MORALE] = 0
+						}
+					}
 					, [HERO_SKILL_BARBARIAN_DARK_REVELATION] = { -- 黑暗启示
 						["HeroLevel"] = 1
 						, ["Stat"] = {
@@ -3836,6 +3851,9 @@ doFile("/scripts/H55-Settings.lua");
 				function TTH_VISIT.confirmEconomicBuilding4Human(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback)
 					if TTH_VARI.economicBuildingOwner[strBuildingType][strBuildingName] == iPlayer then
 						ShowFlyingSign(TTH_PATH.Visit["Economic"]["HasCapture"], strHero, iPlayer, 5);
+						if strBuildingType == "BUILDING_WARMACHINE_FACTORY" then
+							TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
+						end;
 						return nil;
 					end;
 					QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
@@ -5093,12 +5111,12 @@ doFile("/scripts/H55-Settings.lua");
 
 			-- 获取内政操作次数（重置值）（基础值）
 				function TTH_MANAGE.getDefaultOperTimes(strHero)
-					local iLevel = GetHeroLevel(strHero);
+					local iHeroLevel = GetHeroLevel(strHero);
 					local iStep = 15;
 					if strHero == "Hangvul" then
 						iStep = 10;
 					end;
-					local iTimes = TTH_COMMON.floor(iLevel / iStep) + 1;
+					local iTimes = TTH_COMMON.floor(iHeroLevel / iStep) + 1;
 					return iTimes;
 				end;
 
@@ -5160,12 +5178,12 @@ doFile("/scripts/H55-Settings.lua");
 
 			-- 获取英雄可管辖城镇的配额（基础值）
 				function TTH_MANAGE.getDefaultAbilityQuota(strHero)
-					local iLevel = GetHeroLevel(strHero);
+					local iHeroLevel = GetHeroLevel(strHero);
 					local iStep = 15;
 					if strHero == "Hangvul" then
 						iStep = 10;
 					end;
-					local iQuota = TTH_COMMON.floor(iLevel / iStep) + 1;
+					local iQuota = TTH_COMMON.floor(iHeroLevel / iStep) + 1;
 					return iQuota;
 				end;
 
@@ -8294,7 +8312,7 @@ doFile("/scripts/H55-Settings.lua");
         	local iHeroLevel = GetHeroLevel(strHero);
         	for strBuilding, objItem in TTH_VARI.talent["Sovereign"]["Building8Level"] do
         		if length(TTH_VARI.arrBuilding[strBuilding]) > 0
-        			and iLevel >= objItem["Level"] then
+        			and iHeroLevel >= objItem["Level"] then
         			MakeHeroInteractWithObject(strHero, TTH_VARI.arrBuilding[strBuilding][0]);
         		end;
         	end
@@ -10016,7 +10034,10 @@ doFile("/scripts/H55-Settings.lua");
 									TTH_MAIN.resetDaily(iPlayer);
 								end;
 							-- 结算玩家资源
-								TTH_GLOBAL.dealSettleResource(iPlayer); -- 结算
+								if TTH_VARI.counterDealSettleResource[iPlayer] < TTH_VARI.day then
+									TTH_VARI.counterDealSettleResource[iPlayer] = TTH_VARI.day;
+									TTH_GLOBAL.dealSettleResource(iPlayer); -- 结算
+								end;
 						end;
 					end;
 				end;

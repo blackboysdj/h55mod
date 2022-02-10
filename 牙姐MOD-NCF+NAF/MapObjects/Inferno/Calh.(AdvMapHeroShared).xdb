@@ -35,7 +35,7 @@
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_OFFENCE</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Inferno55/LordGating/Name.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Inferno/Calh/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Inferno55/LordGating/Description.txt"/>
 	<SpecializationIcon href="/Textures/SpecialAbilities/Balor_Summoning.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Inferno/Inferno_Aidan_128x128.(Texture).xdb#xpointer(/Texture)"/>

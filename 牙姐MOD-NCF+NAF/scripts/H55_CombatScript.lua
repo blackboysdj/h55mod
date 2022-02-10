@@ -723,8 +723,8 @@ doFile('/scripts/combat-startup.lua')
 						local iHeroLevel = H55SMOD_HeroLevel[GetHeroName(GetHero(iSide))];
 						Thread_Command_SummonCreature(iSide, idSummonElemental, iHeroLevel * 1, iPositionX, iPositionY);
 						combatSetPause(nil);
-					end;			
-				end;			
+					end;
+				end;
 			end;
 			H55SMOD_Start['Artifact'][ARTIFACT_BAND_OF_CONJURER]['function'] = Events_Start_Implement_ARTIFACT_BAND_OF_CONJURER;
 
@@ -741,8 +741,8 @@ doFile('/scripts/combat-startup.lua')
 						print(itemCreatureSnapshotInit['strUnitName']..'\'s atb has been increase to 1.25');
 						setATB(itemCreatureSnapshotInit['strUnitName'], 1.25);
 						combatSetPause(nil);
-					end;			
-				end;			
+					end;
+				end;
 			end;
 			H55SMOD_Start['Artifact'][ARTIFACT_DRUM_OF_CHARGE]['function'] = Events_Start_Implement_ARTIFACT_DRUM_OF_CHARGE;
 
@@ -776,8 +776,8 @@ doFile('/scripts/combat-startup.lua')
 						H55SMOD_Start['Artifact'][ARTIFACT_GEM_OF_PHANTOM]['strUnitName'] = itemCreatureGemOfPhantom;
 						H55SMOD_Start['Artifact'][ARTIFACT_GEM_OF_PHANTOM]['iSide'] = iSide;
 						combatSetPause(nil);
-					end;			
-				end;			
+					end;
+				end;
 			end;
 			H55SMOD_Start['Artifact'][ARTIFACT_GEM_OF_PHANTOM]['function']['summon'] = Events_Start_Implement_ARTIFACT_GEM_OF_PHANTOM_SUMMON;
 			function Events_Start_Implement_ARTIFACT_GEM_OF_PHANTOM_MOVE(iSide, itemUnitLast)
@@ -793,7 +793,7 @@ doFile('/scripts/combat-startup.lua')
 					else
 						H55SMOD_Start['Artifact'][ARTIFACT_GEM_OF_PHANTOM]['existTurn'] = H55SMOD_Start['Artifact'][ARTIFACT_GEM_OF_PHANTOM]['existTurn'] - 1;
 					end;
-				end;		
+				end;
 			end;
 			H55SMOD_Start['Artifact'][ARTIFACT_GEM_OF_PHANTOM]['function']['move'] = Events_Start_Implement_ARTIFACT_GEM_OF_PHANTOM_MOVE;
 
@@ -809,8 +809,8 @@ doFile('/scripts/combat-startup.lua')
 						local iMysticismMana = h55_ceil(iCurrentMana * 0.2);
 						SetUnitManaPoints(idHero, iCurrentMana + iMysticismMana);
 						print(idHero.." get "..iMysticismMana.." mana by [Mysticism]");
-					end;	
-				end;	
+					end;
+				end;
 			end;
 			H55SMOD_Start['Skill'][HERO_SKILL_MYSTICISM]['function'] = Events_Start_Implement_Skill_Mysticism;
 
@@ -1542,7 +1542,6 @@ doFile('/scripts/combat-startup.lua')
 						-- Academy
 							H55SMOD_MiddlewareListener['Davius']['function']['kill']('Davius', iSide, itemUnitLast, listCreaturesLastDeath);
 						-- Inferno
-							H55SMOD_MiddlewareListener['Calh']['function']('Calh', iSide, itemUnitLast, listCreaturesLastDeath);
 							H55SMOD_MiddlewareListener['Ash']['function']['creature']('Ash', iSide, itemUnitLast, listCreaturesLastDeath);
 						-- Necropolis
 							H55SMOD_MiddlewareListener['Gles']['function']('Gles', iSide, itemUnitLast, listCreaturesLastDeath);
@@ -1580,6 +1579,7 @@ doFile('/scripts/combat-startup.lua')
 						-- Academy
 							H55SMOD_MiddlewareListener['Zehir']['function']('Zehir', iSide, itemUnitLast, listCreaturesLastSummon);
 						-- Inferno
+							H55SMOD_MiddlewareListener['Calh']['function']('Calh', iSide, itemUnitLast, listCreaturesLastSummon);
 							H55SMOD_MiddlewareListener['Malustar']['function']('Malustar', iSide, itemUnitLast, listCreaturesLastSummon);
 						-- Necropolis
 						-- Fortress
@@ -2032,7 +2032,7 @@ doFile('/scripts/combat-startup.lua')
 						-- Fortress
 						-- Dungeon
 						-- Stronghold
-						
+
 						-- Artifact
 							H55SMOD_Start['Artifact'][ARTIFACT_GEM_OF_PHANTOM]['function']['move'](iSide, itemUnitLast);
 					end;
@@ -2442,7 +2442,7 @@ doFile('/scripts/combat-startup.lua')
 				end;
 			end;
 			H55SMOD_MiddlewareListener['RedHeavenHero05']['function']['after'] = Events_MiddlewareListener_Implement_RedHeavenHero05_After;
-		
+
 		-- GodricMP
 			H55SMOD_MiddlewareListener['GodricMP'] = {};
 			H55SMOD_MiddlewareListener['GodricMP']['flag'] = ENUM_STAGE.ONCE.UNEXECUTE;
@@ -3032,6 +3032,61 @@ doFile('/scripts/combat-startup.lua')
 			H55SMOD_MiddlewareListener['Minasli']['function']['consume'] = Events_MiddlewareListener_Implement_Minasli_Consume;
 
 	-- Inferno
+		-- Calh
+			H55SMOD_MiddlewareListener['Calh'] = {};
+			function Events_MiddlewareListener_Implement_Calh(strHero, iSide, itemUnitLast, listCreaturesLastSummon)
+				if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero then
+					if listCreaturesLastSummon ~= nil and length(listCreaturesLastSummon) > 0 then
+						local iLenUnitLastSummon = length(listCreaturesLastSummon);
+						combatSetPause(1);
+						for iIndexUnitLastSummon = 0, iLenUnitLastSummon - 1 do
+							local itemUnitLastSummon = listCreaturesLastSummon[iIndexUnitLastSummon];
+							if itemUnitLastSummon['iUnitType'] == CREATURE_PIT_FIEND
+								or itemUnitLastSummon['iUnitType'] == CREATURE_BALOR
+								or itemUnitLastSummon['iUnitType'] == CREATURE_PIT_SPAWN
+							then
+								local arrCreature4Check = GetCreatures(getSide(iSide, 1));
+								local arrWarMachine4Check = GetWarMachines(getSide(iSide, 1));
+								local arrUnit4Check = TTHCS_COMMON.concat(arrCreature4Check, arrWarMachine4Check);
+								if itemUnitLastSummon['iUnitType'] == CREATURE_PIT_FIEND then
+									local arrPositionArea3, objMaxPositionArea3 = TTHCS_GLOBAL.getDenseArea(arrUnit4Check, 3);
+									-- local arrPositionArea4, objMaxPositionArea4 = TTHCS_GLOBAL.getDenseArea(arrUnit4Check, 4);
+									if objMaxPositionArea3 ~= nil then
+										startThread(Thread_Command_UnitCastAreaSpell, itemUnitLastSummon["strUnitName"], SPELL_FIREBALL, objMaxPositionArea3["PosX"], objMaxPositionArea3["PosY"]);
+									end;
+								end;
+								if itemUnitLastSummon['iUnitType'] == CREATURE_BALOR then
+									local arrPositionArea3, objMaxPositionArea3 = TTHCS_GLOBAL.getDenseArea(arrUnit4Check, 3);
+									local arrPositionArea4, objMaxPositionArea4 = TTHCS_GLOBAL.getDenseArea(arrUnit4Check, 4);
+									if objMaxPositionArea3 ~= nil then
+										startThread(Thread_Command_UnitCastAreaSpell, itemUnitLastSummon["strUnitName"], SPELL_FIREBALL, objMaxPositionArea3["PosX"], objMaxPositionArea3["PosY"]);
+									end;
+									if objMaxPositionArea4 ~= nil then
+										startThread(Thread_Command_UnitCastAreaSpell, itemUnitLastSummon["strUnitName"], SPELL_METEOR_SHOWER, objMaxPositionArea4["PosX"], objMaxPositionArea4["PosY"]);
+									end;
+								end;
+								if itemUnitLastSummon['iUnitType'] == CREATURE_PIT_SPAWN then
+									local arrUnitName = TTHCS_GLOBAL.listUnitInArea(itemUnitLastSummon["strUnitName"], 1, iSide);
+									for i, strUnitName in arrUnitName do
+										if IsCombatUnit(itemUnitLastSummon["strUnitName"]) ~= nil then
+											if GetCreatureNumber(itemUnitLastSummon["strUnitName"]) > 0 then
+												startThread(Thread_Command_UnitAttackAimed, itemUnitLastSummon['strUnitName'], strUnitName);
+												print(itemUnitLastSummon['strUnitName'].." attack to "..strUnitName);
+												sleep(300);
+											else
+												startThread(Thread_Command_RemoveCombatUnit, iSide, itemUnitLastSummon['strUnitName']);
+											end;
+										end;
+									end;
+								end;
+							end;
+						end;
+						combatSetPause(nil);
+					end;
+				end;
+			end;
+			H55SMOD_MiddlewareListener['Calh']['function'] = Events_MiddlewareListener_Implement_Calh;
+
 		-- Malustar
 			H55SMOD_MiddlewareListener['Malustar'] = {};
 			function Events_MiddlewareListener_Implement_Malustar(strHero, iSide, itemUnitLast, listCreaturesLastSummon)
@@ -3101,39 +3156,6 @@ doFile('/scripts/combat-startup.lua')
 				end;
 			end;
 			H55SMOD_MiddlewareListener['Ash']['function']['hero'] = Events_MiddlewareListener_Implement_Ash_Hero;
-
-		-- Calh
-			H55SMOD_MiddlewareListener['Calh'] = {};
-			H55SMOD_MiddlewareListener['Calh']['flag'] = ENUM_STAGE.ONCE.UNEXECUTE;
-			function Events_MiddlewareListener_Implement_Calh(strHero, iSide, itemUnitLast, listCreaturesLastDeath)
-				if GetHero(getSide(iSide, 1)) ~= nil and GetHeroName(GetHero(getSide(iSide, 1))) == strHero then
-					if H55SMOD_MiddlewareListener[strHero]['flag'] == ENUM_STAGE.ONCE.UNEXECUTE then
-						local itemHero = geneUnitStatus(GetHero(getSide(iSide, 1)));
-						if listCreaturesLastDeath ~= nil and length(listCreaturesLastDeath) > 0 then
-							local itemCreatureDeath = geneUnitStatus(listCreaturesLastDeath[0]['strUnitName']);
-							if IsCombatUnit(itemCreatureDeath['strUnitName']) ~= nil and itemCreatureDeath['iUnitNumber'] == 0 then
-								local iCallNumber = h55_floor(itemHero['iMana'] / 30);
-								if iCallNumber > 0 then
-									combatSetPause(1);
-									if iCallNumber >= H55SMOD_HeroLevel[strHero] * 1 then
-										Thread_Command_AddCreature(getSide(iSide, 1), CREATURE_BALOR, H55SMOD_HeroLevel[strHero] * 1, itemCreatureDeath['iPositionX'], itemCreatureDeath['iPositionY']);
-										SetUnitManaPoints(itemHero['strUnitName'], itemHero['iMana'] - H55SMOD_HeroLevel[strHero] * 30);
-									else
-										Thread_Command_AddCreature(getSide(iSide, 1), CREATURE_BALOR, iCallNumber, itemCreatureDeath['iPositionX'], itemCreatureDeath['iPositionY']);
-										SetUnitManaPoints(itemHero['strUnitName'], itemHero['iMana'] - iCallNumber * 30);
-									end;
-									Thread_Command_RemoveCombatUnit_Uncheck(itemCreatureDeath['strUnitName']);
-									H55SMOD_MiddlewareListener[strHero]['flag'] = ENUM_STAGE.ONCE.EXECUTED;
-									sleep(20);
-									print(itemHero['strUnitName'].." summon BALOR");
-									combatSetPause(nil);
-								end;
-							end;
-						end;
-					end;
-				end;
-			end;
-			H55SMOD_MiddlewareListener['Calh']['function'] = Events_MiddlewareListener_Implement_Calh;
 
 		-- Zydar
 			H55SMOD_MiddlewareListener['Zydar'] = {};

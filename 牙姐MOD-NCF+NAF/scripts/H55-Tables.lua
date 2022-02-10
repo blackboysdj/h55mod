@@ -20017,6 +20017,13 @@
 							, ["Race"] = TOWN_INFERNO
 							, ["Class"] = TTH_ENUM.GateKeeper
 							, ["Group"] = TTH_ENUM.GroupBalanceNotNec
+							, ["Specialty"] = {
+								[1] = {
+									["CreatureId"] = CREATURE_PIT_FIEND
+									, ["Stat"] = STAT_KNOWLEDGE
+									, ["ArtifactId"] = ARTIFACT_LEGION_EXPERT
+								}
+							}
 						}
 						, ["Calid"] = {
 							["Id"] = 100

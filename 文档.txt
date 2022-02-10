@@ -2,7 +2,7 @@
   YaHei Consolas Hybr
   DejaVu Sans Mono
   ********_homm homm********
-
+ShowFlyingSign
 新版本调整
   乌尔夫斯坦边境哨塔数量在信息管理→个人里面显示
   额外的政绩总加成，下周才生效

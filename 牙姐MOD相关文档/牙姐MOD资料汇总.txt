@@ -1464,15 +1464,19 @@
   地狱
     恶魔领主GATE_KEEPER
       艾丹
-        Calh
-        初级进攻, 战术部署, 初级启蒙
-        帐篷
-        领主召唤
-          每当战场上有生物阵亡英雄会消耗【英雄等级*30】点魔法值召唤【英雄等级*1】数量的深渊领主
-            1.战后保留
-            2.尸体消失
-            3.导致战斗结束的阵亡不生效
-            4.每场战斗生效一次
+        <left><body_bright>英雄: <color=ff0033>艾丹
+        <body_bright>职业: <color=yellow>恶魔领主
+        <body_bright>控制台名: <color=yellow>Calh
+        <body_bright>初始技能: <color=yellow>初级进攻+战术部署+初级启蒙
+        <body_bright>战争机械: <color=yellow>帐篷
+        <body_bright>生物特长: <color=0099FF>深渊恶魔<color_default> （种族: 地狱）
+        <body_bright>英雄天赋: <color=ff0033>深渊领主
+        <color=7F38EC>战场特效:
+        <body_bright>1) 每当有新的<color=0099FF>深渊恶魔<color=yellow>【加入战场后】<body_bright>会对<color=0099FF>敌方生物密集区<body_bright>施放<color=yellow>【火球术】
+        <body_bright>2) 每当有新的<color=0099FF>深渊领主<color=yellow>【加入战场后】<body_bright>会对<color=0099FF>敌方生物密集区<body_bright>施放<color=yellow>【火球术】【流星火雨】
+        <body_bright>3) 每当有新的<color=0099FF>深渊魔裔<color=yellow>【加入战场后】<body_bright>会立刻攻击<color=0099FF>周围敌方生物
+        <color=orange>内政官特效:
+        <body_bright>1) <color=yellow>【所辖城镇】<color=0099FF>深渊恶魔<body_bright>周产按英雄<color=0099FF>等级+知识<body_bright>加成
       格劳尔
         Calid
         初级进攻, 战争狂人, 初级领导
@@ -2840,7 +2844,7 @@
 23.技能
   理财术 029-Estates
     <left><color=7F38EC>被动特效:
-    <body_bright>1) 每天上缴 <color=yellow>500<body_bright> 单位<color=0099FF>黄金
+    <body_bright>1) 每天上缴 <color=yellow>250<body_bright> 单位<color=0099FF>黄金
     <color=orange>主动特效<color_default>（耗1/周回1）:
     <body_bright>1) 可在<color=0099FF>城镇<body_bright>中选择部分金币进行理财<color_default>（档位: 20%/50%/80%/100%）
     <body_bright>2) 理财的金币立刻扣除，下周一理财结束，每理财一天获得10%收益

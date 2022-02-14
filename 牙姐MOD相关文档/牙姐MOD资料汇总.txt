@@ -11,6 +11,7 @@
              → 魔法师奖励
              → 黑暗启示
     学士     → 法力提升   → 良师益友
+             → 励精图治
   进攻
     战术部署 → 怒火中烧
     箭术     → 寒铁之刃
@@ -62,13 +63,14 @@
              → 法师印记（学院3职业）
     干扰     → 魔法抑制
     神秘训练 → 精炼魔力
-             ↘魔力再生
+             → 魔力再生
   反击
     复仇打击 → 虚弱打击 → 无敌冲锋（除圣堂3职业）
              → 无敌冲锋（圣堂3职业）
              → 无敌冲锋（酋长）
              ↗
     极度痛击 → 咒骂印记
+             → 众志成城
     强力打击 → 眩晕打击
   穿透
     法术强效 → 元素视觉（地牢术士）
@@ -1463,20 +1465,6 @@
               死亡阴云 ABILITY_DEATH_CLOUD
   地狱
     恶魔领主GATE_KEEPER
-      艾丹
-        <left><body_bright>英雄: <color=ff0033>艾丹
-        <body_bright>职业: <color=yellow>恶魔领主
-        <body_bright>控制台名: <color=yellow>Calh
-        <body_bright>初始技能: <color=yellow>初级进攻+战术部署+初级启蒙
-        <body_bright>战争机械: <color=yellow>帐篷
-        <body_bright>生物特长: <color=0099FF>深渊恶魔<color_default> （种族: 地狱）
-        <body_bright>英雄天赋: <color=ff0033>深渊领主
-        <color=7F38EC>战场特效:
-        <body_bright>1) 每当有新的<color=0099FF>深渊恶魔<color=yellow>【加入战场后】<body_bright>会对<color=0099FF>敌方生物密集区<body_bright>施放<color=yellow>【火球术】
-        <body_bright>2) 每当有新的<color=0099FF>深渊领主<color=yellow>【加入战场后】<body_bright>会对<color=0099FF>敌方生物密集区<body_bright>施放<color=yellow>【火球术】【流星火雨】
-        <body_bright>3) 每当有新的<color=0099FF>深渊魔裔<color=yellow>【加入战场后】<body_bright>会立刻攻击<color=0099FF>周围敌方生物
-        <color=orange>内政官特效:
-        <body_bright>1) <color=yellow>【所辖城镇】<color=0099FF>深渊恶魔<body_bright>周产按英雄<color=0099FF>等级+知识<body_bright>加成
       格劳尔
         Calid
         初级进攻, 战争狂人, 初级领导
@@ -1521,6 +1509,20 @@
             战斗开始可选择直接攻击【合理目标】一次
             英雄主动攻击额外触发【斩首剑】及【屠杀者之刃】（每队生物只触发一次）
     门禁守卫DEMON_LORD
+      艾丹
+        <left><body_bright>英雄: <color=ff0033>艾丹
+        <body_bright>职业: <color=yellow>门禁守卫
+        <body_bright>控制台名: <color=yellow>Calh
+        <body_bright>初始技能: <color=yellow>初级异界门+初级进攻+战术部署
+        <body_bright>战争机械: <color=yellow>帐篷
+        <body_bright>生物特长: <color=0099FF>深渊恶魔<color_default> （种族: 地狱）
+        <body_bright>英雄天赋: <color=ff0033>深渊领主
+        <color=7F38EC>战场特效:
+        <body_bright>1) 每当有新的<color=0099FF>深渊恶魔<color=yellow>【加入战场后】<body_bright>会对<color=0099FF>敌方生物密集区<body_bright>施放<color=yellow>【火球术】
+        <body_bright>2) 每当有新的<color=0099FF>深渊领主<color=yellow>【加入战场后】<body_bright>会对<color=0099FF>敌方生物密集区<body_bright>施放<color=yellow>【火球术】【流星火雨】
+        <body_bright>3) 每当有新的<color=0099FF>深渊魔裔<color=yellow>【加入战场后】<body_bright>会立刻攻击<color=0099FF>周围敌方生物
+        <color=orange>内政官特效:
+        <body_bright>1) <color=yellow>【所辖城镇】<color=0099FF>深渊恶魔<body_bright>周产按英雄<color=0099FF>等级+知识<body_bright>加成
       阿莱斯特
         Efion
         初级异界门, 初级黑暗, 心智大师

@@ -1092,8 +1092,8 @@
 	H55_Wizards = {"Rissa","Razzak","Sufi","Cyrus","Maahir","Timerkhan","Tan"};
 	H55_Elementalists = {"Emilia","Nur","Astral","Zehir","Faiz","Josephine"};
 
-	H55_Demonlords = {"Calh","Calid","Deleb","Jazaz","Marder","Orlando2"};
-	H55_Gatekeepers = {"Efion","Grok","Malustar","Nymus","Oddrema","Sovereign","Agrael"};
+	H55_Demonlords = {"Calid","Deleb","Jazaz","Marder","Orlando2"};
+	H55_Gatekeepers = {"Calh","Efion","Grok","Malustar","Nymus","Oddrema","Sovereign","Agrael"};
 	H55_Sorcerers = {"Ash","Biara","Calid2","Sheltem","Zydar"};
 
 	H55_DeathKnights = {"Archilus","Berein","Gles","Nikolay","Straker","Tamika","Xerxon","Karissa"};
@@ -20011,20 +20011,6 @@
 						}
 				-- TOWN_INFERNO
 					-- GateKeeper
-						, ["Calh"] = {
-							["Id"] = 99
-							, ["Text"] = "/Text/Game/Heroes/TTH_ALL/Calh/name.txt"
-							, ["Race"] = TOWN_INFERNO
-							, ["Class"] = TTH_ENUM.GateKeeper
-							, ["Group"] = TTH_ENUM.GroupBalanceNotNec
-							, ["Specialty"] = {
-								[1] = {
-									["CreatureId"] = CREATURE_PIT_FIEND
-									, ["Stat"] = STAT_KNOWLEDGE
-									, ["ArtifactId"] = ARTIFACT_LEGION_EXPERT
-								}
-							}
-						}
 						, ["Calid"] = {
 							["Id"] = 100
 							, ["Text"] = "/Text/Game/Heroes/TTH_ALL/Calid/name.txt"
@@ -20068,6 +20054,20 @@
 							, ["Group"] = TTH_ENUM.GroupBalanceNotNec
 						}
 					-- DemonLord
+						, ["Calh"] = {
+							["Id"] = 99
+							, ["Text"] = "/Text/Game/Heroes/TTH_ALL/Calh/name.txt"
+							, ["Race"] = TOWN_INFERNO
+							, ["Class"] = TTH_ENUM.DemonLord
+							, ["Group"] = TTH_ENUM.GroupMight
+							, ["Specialty"] = {
+								[1] = {
+									["CreatureId"] = CREATURE_PIT_FIEND
+									, ["Stat"] = STAT_KNOWLEDGE
+									, ["ArtifactId"] = ARTIFACT_LEGION_EXPERT
+								}
+							}
+						}
 						, ["Efion"] = {
 							["Id"] = 105
 							, ["Text"] = "/Text/Game/Heroes/TTH_ALL/Efion/name.txt"

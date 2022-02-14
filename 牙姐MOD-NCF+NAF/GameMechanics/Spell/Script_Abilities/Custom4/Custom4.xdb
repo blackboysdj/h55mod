@@ -2,7 +2,7 @@
 <Spell>
 	<NameFileRef href="/Text/Game/Scripts/HeroCustomAbility/HeroCustomAbility4Name.txt"/>
 	<LongDescriptionFileRef href="/Text/Game/Scripts/HeroCustomAbility/HeroCustomAbility4Desc.txt"/>
-	<Texture href="/Textures/MyTownPortal/Spell_MyTownPortal.xdb#xpointer(/Texture)"/>
+	<Texture href="/Textures/HeroCustomAbility/HeroCustomAbility4.xdb#xpointer(/Texture)"/>
 	<EffectTexture/>
 	<SpellBookPredictions/>
 	<CombatLogTexts/>
@@ -31,6 +31,7 @@
 		<Item href="TownPortalStart.(SpellVisual).xdb#xpointer(/SpellVisual)"/>
 		<Item href="TownPortalEnd.(SpellVisual).xdb#xpointer(/SpellVisual)"/>
 	</visuals>
+	<visuals/>
 	<PresetPrice>-1</PresetPrice>
 	<AvailableForPresets>false</AvailableForPresets>
 </Spell>

@@ -3,13 +3,127 @@
   DejaVu Sans Mono
   ********_homm homm********
 ShowFlyingSign
+
 新版本调整
+  幽魂矿井主动使用
   乌尔夫斯坦边境哨塔数量在信息管理→个人里面显示
   额外的政绩总加成，下周才生效
   募兵按基础生物产量+增产建筑（生物产量需要校对，狂战士应该是6+4，现在是10）
-  希尔塞调整
-  幽魂矿井主动使用
-  地牢领主增加职业技能
+  增强据点初始城建
+  魔力再生: 下场战斗中英雄每次行动前回复5点魔法值 耗1/周回/内替
+  外交术: 老马的技能改为主动给外交术
+
+exe修改
+# - Added artifact ID 166 to increase HP by 2
+# - Added artifact ID 124 to increase HP by 6
+# - Added artifact ID 169 to increase HP by 4
+# - Added artifact ID 175 to reduce enemy morale by 1
+# - Added artifact ID 129 to reduce enemy morale by 1
+# - Added artifact ID 164 to reduce enemy morale by 1
+# - Changed artifact ID 63 to reduce enemy luck from 2 to 1
+# - Added artifact ID 175  to reduce enemy luck by 1
+# - Added artifact ID 73   to reduce enemy luck by 2
+# - Added artifact ID 164  to reduce enemy luck by 1
+# - 无名英雄甲25%
+# - 魔抗战靴15%
+# - 173 10%
+# - 174 5%
+
+
+<Obstacles>
+  <MinSmallObstacles>2</MinSmallObstacles>
+  <MaxSmallObstacles>12</MaxSmallObstacles>
+  <MinBigObstacles>2</MinBigObstacles>
+  <MaxBigObstacles>4</MaxBigObstacles>
+  <MinMixedObstacles>2</MinMixedObstacles>
+  <MaxMixedObstacles>8</MaxMixedObstacles>
+  <ObstaclesMaxArea>32</ObstaclesMaxArea>
+  <FreeLines>6</FreeLines>
+</Obstacles>
+
+-- RC15宝物
+  Draconic: Grants friendly creatures Immunity to Armageddon
+  Elrath_01: Grants friendly creatures Immunity to Curse of the Netherworld
+  Orb_01: +33% Damage to Air Spells
+  Orb_02: +33% Damage to Earth Spells
+  Orb_03: +33% Damage to Fire Spells
+  Orb_04: +33% Damage to Frost Spells
+  Pirate_03: -1 Morale to enemy creatures
+  Sentinel: +6HP
+  Upg_AR1: 减敌方生物1士气1幸运
+  Upg_AR3: +2HP
+  Upg_HM2: Immunity to Hypnotize
+  Upg_HM3: +4HP
+  Upg_SW1: 5%魔抗
+  Upg_SW2: 10%魔抗
+  Upg_SW3: 减敌方生物1士气1幸运
+
+
+
+统治学
+  1.领导术重置而来
+  2.基础统治学: 己方生物士气+1，英雄领地范围+20
+  3.高级统治学: 己方生物士气+1，英雄可管辖城镇配额+1
+  4.专家统治学: 己方生物士气+1，英雄周内政操作次数上限+1
+  5.新技能:
+    5.1.励精图治: +每天100%经验和政绩获得（HERO_SKILL_DISGUISE_AND_RECKON 后勤→潜行猎手）
+    5.2.众志成城: 守城时英雄对敌方生物造成战损时，所有箭塔会对其进行齐射并立刻行动
+  6.在有国会的城门学习，需要5000金币
+
+领导
+  募兵术   → 战地指挥官
+           ↘
+             外交术
+           ↗
+  理财术   → 励精图治
+  众志成城 → 守护天使
+后勤
+  侦察术 → 传送突袭
+         → 死亡行军
+  探路术 → 战争之路
+         → 敏捷光环
+  攫取   → 杉提瑞之触
+         → 战争掠劫
+进攻
+  战术部署 → 怒火中烧
+  箭术     → 寒铁之刃
+  战争狂人 → 报偿
+           ↘
+             入神
+           ↗
+  神圣指引 → 速度能量
+机械
+  急救帐篷 → 瘟疫帐篷
+  弹道学   → 硫磺烟雨
+  弹射学   → 三箭连射
+           → 燃烧箭
+  人造荣耀 → 符文机械
+
+未实装的技能
+  HERO_SKILL_NAVIGATION 回到今天开始的位置
+  HERO_SKILL_SEAL_OF_PROTECTION 防御→抵抗力
+  HERO_SKILL_FIRE_PROTECTION 光明→御火术
+  HERO_SKILL_CHILLING_BONES 防御→冰冷之骨
+  HERO_SKILL_SUN_FIRE 破坏→魔力爆发
+  HERO_SKILL_LUCK_OF_THE_BARBARIAN 幸运→野蛮人的幸运
+  HERO_SKILL_EXPERT_TRAINER 反击→训练专家
+
+使用率低的技能
+
+可主动使用的技能
+  外交术
+  宝物学者 随机消耗一件宝物→获得制宝等级点数的各类稀矿
+
+[0] = defender-townbuilding-0-WALL
+[1] = defender-townbuilding-1-WALL
+[2] = defender-townbuilding-2-WALL
+[3] = defender-townbuilding-3-WALL
+[4] = defender-townbuilding-4-LEFT_TOWER
+[5] = defender-townbuilding-5-RIGHT_TOWER
+[6] = defender-townbuilding-6-GATE
+[7] = defender-townbuilding-7-BIG_TOWER
+[8] = defender-townbuilding-8-MOAT
+
 
 <.*?>
 
@@ -157,39 +271,6 @@ NCF生物
   BUILDING_LAKE_OF_SCARLET_SWAN
 
   consoleCmd
-
-  -- RC15宝物
-    Draconic: Grants friendly creatures Immunity to Armageddon
-    Elrath_01: Grants friendly creatures Immunity to Curse of the Netherworld
-    Orb_01: +33% Damage to Air Spells
-    Orb_02: +33% Damage to Earth Spells
-    Orb_03: +33% Damage to Fire Spells
-    Orb_04: +33% Damage to Frost Spells
-    Pirate_03: -1 Morale to enemy creatures
-    Sentinel: +6HP
-    Upg_AR1: 减敌方生物1士气1幸运
-    Upg_AR3: +2HP
-    Upg_HM2: Immunity to Hypnotize
-    Upg_HM3: +4HP
-    Upg_SW1: 5%魔抗
-    Upg_SW2: 10%魔抗
-    Upg_SW3: 减敌方生物1士气1幸运
-
-未实装的技能
-  HERO_SKILL_NAVIGATION 回到今天开始的位置
-  HERO_SKILL_FIRE_PROTECTION
-  HERO_SKILL_CHILLING_BONES
-  HERO_SKILL_DISGUISE_AND_RECKON
-  HERO_SKILL_SUN_FIRE
-  HERO_SKILL_SEAL_OF_PROTECTION
-  HERO_SKILL_LUCK_OF_THE_BARBARIAN
-  HERO_SKILL_EXPERT_TRAINER
-
-使用率低的技能
-
-可主动使用的技能
-  外交术
-  宝物学者 随机消耗一件宝物→获得制宝等级点数的各类稀矿
 
 机械坐标
   进攻小场
@@ -422,8 +503,8 @@ NCF生物
   ※大量新英雄特长※新英雄技能※新特效宝物※新组合神器※新战场特技※新生物特技※野怪带中立英雄支援
 
 直播相关
-  英雄无敌5-神遗大陆（测试）
-  英雄：尤佛瑞汀+乌尔夫斯坦
+  英雄无敌5-神力之遗-艾丹登场特效
+  英雄：艾丹+卡利德
   板子：7AI结盟+3倍增兵+眼泪+天使联盟+诅咒斗篷+龙神胸甲+初始技能+终极技能
   8技能/过夜快/战场特技/主动天赋/主动技能/主动宝物/格鲁/德肯/宝物合成
   https://www.douyu.com/h55

@@ -27,7 +27,10 @@
 	<Target>TARGET_FRIEND</Target>
 	<Element>ELEMENT_NONE</Element>
 	<DamageIsElemental>true</DamageIsElemental>
-	<visuals/>
+	<visuals>
+		<Item href="TownPortalStart.(SpellVisual).xdb#xpointer(/SpellVisual)"/>
+		<Item href="TownPortalEnd.(SpellVisual).xdb#xpointer(/SpellVisual)"/>
+	</visuals>
 	<PresetPrice>-1</PresetPrice>
 	<AvailableForPresets>false</AvailableForPresets>
 </Spell>

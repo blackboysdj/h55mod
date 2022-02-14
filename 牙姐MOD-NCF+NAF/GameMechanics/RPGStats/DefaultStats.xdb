@@ -1896,7 +1896,7 @@
 				<SetAfire_DamageMultiplier>0.33</SetAfire_DamageMultiplier>
 				<SetAfire_DamageDurationInRounds>3</SetAfire_DamageDurationInRounds>
 				<ShrugDarkness_EnemySpellpowerMultiplier>0.5</ShrugDarkness_EnemySpellpowerMultiplier>
-				<RunicArmor_SpellpowerBonus>10</RunicArmor_SpellpowerBonus>
+				<RunicArmor_SpellpowerBonus>4</RunicArmor_SpellpowerBonus>
 				<RunicMachines_InitiativeBonus>3</RunicMachines_InitiativeBonus>
 				<Mentoring_ExpPecentToGiveToVisitor>0.25</Mentoring_ExpPecentToGiveToVisitor>
 				<Empathy_ATBAffectionOnMorale>0.1</Empathy_ATBAffectionOnMorale>

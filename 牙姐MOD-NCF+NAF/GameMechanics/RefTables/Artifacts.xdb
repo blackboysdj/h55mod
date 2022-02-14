@@ -479,8 +479,8 @@
 		<Item>
 			<ID>BOOTS_OF_INTERFERENCE</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Boots_of_interference/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Boots_of_interference/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/27-BootsOfInterference/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/27-BootsOfInterference/Description.txt"/>
 				<Model href="/_(Model)/Artefacts/Boots_of_Interference.xdb#xpointer(/Model)"/>
 				<Type>ARTF_CLASS_MINOR</Type>
 				<Slot>FEET</Slot>
@@ -579,8 +579,8 @@
 		<Item>
 			<ID>TITANS_TRIDENT</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Titan`s_trident/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Titan`s_trident/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/5-TitansTrident/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/5-TitansTrident/Description.txt"/>
 				<Model/>
 				<Type>ARTF_CLASS_MINOR</Type>
 				<Slot>PRIMARY</Slot>
@@ -629,8 +629,8 @@
 		<Item>
 			<ID>EVERCOLD_ICICLE</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Evercold_icicle/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Evercold_icicle/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/18-EvercoldIcicle/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/18-EvercoldIcicle/Description.txt"/>
 				<Model/>
 				<Type>ARTF_CLASS_MINOR</Type>
 				<Slot>NECK</Slot>
@@ -679,8 +679,8 @@
 		<Item>
 			<ID>PHOENIX_FEATHER_CAPE</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Phoenix_feather_cape/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Phoenix_feather_cape/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/32-PhoenixFeatherCape/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/32-PhoenixFeatherCape/Description.txt"/>
 				<Model/>
 				<Type>ARTF_CLASS_MINOR</Type>
 				<Slot>SHOULDERS</Slot>
@@ -729,8 +729,8 @@
 		<Item>
 			<ID>ARTIFACT_EARTHSLIDERS</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Earthsliders/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Earthsliders/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/61-EarthSliders/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/61-EarthSliders/Description.txt"/>
 				<Model/>
 				<Type>ARTF_CLASS_MINOR</Type>
 				<Slot>FEET</Slot>
@@ -1529,8 +1529,8 @@
 		<Item>
 			<ID>ARTIFACT_JINXING_BAND</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Jinxing_Band/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Jinxing_Band/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/73-JinxingBand/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/73-JinxingBand/Description.txt"/>
 				<Model/>
 				<Type>ARTF_CLASS_MAJOR</Type>
 				<Slot>FINGER</Slot>
@@ -1544,7 +1544,7 @@
 					<Knowledge>0</Knowledge>
 					<SpellPower>0</SpellPower>
 					<Morale>0</Morale>
-					<Luck>0</Luck>
+					<Luck>2</Luck>
 				</HeroStatsModif>
 				<ArtifactShared href="/MapObjects/Artifacts/Jinxing_Band.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
 				<AvailableForPresets>true</AvailableForPresets>
@@ -1579,8 +1579,8 @@
 		<Item>
 			<ID>ARTIFACT_RING_OF_THE_SHADOWBRAND</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Ring_of_the_Shadowbrand/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Ring_of_the_Shadowbrand/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/63-RingOfTheShadowbrand/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/63-RingOfTheShadowbrand/Description.txt"/>
 				<Model href="/_(Model)/Artefacts/Dragon_Eye_Ring.(Model).xdb#xpointer(/Model)"/>
 				<Type>ARTF_CLASS_MAJOR</Type>
 				<Slot>FINGER</Slot>
@@ -2329,8 +2329,8 @@
 		<Item>
 			<ID>PLATE_MAIL_OF_STABILITY</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/PlateMailOfStability/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/PlateMailOfStability/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/13-PlateMailOfStability/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/13-PlateMailOfStability/Description.txt"/>
 				<Model href="/_(Model)/Artefacts/Plate_Mail_of_Stability.(Model).xdb#xpointer(/Model)"/>
 				<Type>ARTF_CLASS_RELIC</Type>
 				<Slot>CHEST</Slot>
@@ -2929,8 +2929,8 @@
 		<Item>
 			<ID>ARTIFACT_DRACONIC</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Draconic/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Draconic/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/123-Draconic/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/123-Draconic/Description.txt"/>
 				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
 				<Type>ARTF_CLASS_RELIC</Type>
 				<Slot>CHEST</Slot>
@@ -2954,8 +2954,8 @@
 		<Item>
 			<ID>ARTIFACT_SENTINEL</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Sentinel/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Sentinel/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/124-Sentinel/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/124-Sentinel/Description.txt"/>
 				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
 				<Type>ARTF_CLASS_RELIC</Type>
 				<Slot>SECONDARY</Slot>

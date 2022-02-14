@@ -270,6 +270,7 @@
 		<Item href="/UI/Doc/SkillWheel/Skills/Enlightenment/PerkButtonX.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="/UI/Doc/SkillWheel/Skills/Enlightenment/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="/UI/Doc/SkillWheel/Skills/Enlightenment/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="/UI/Doc/SkillWheel/Skills/Enlightenment/PerkButtonX3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 
 		<Item href="/UI/Doc/SkillWheel/Skills/Enlightenment/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<Item href="/UI/Doc/SkillWheel/Skills/Enlightenment/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
@@ -283,6 +284,7 @@
 		<Item href="/UI/Doc/SkillWheel/Skills/Enlightenment/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<Item href="/UI/Doc/SkillWheel/Skills/Enlightenment/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<Item href="/UI/Doc/SkillWheel/Skills/Enlightenment/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="/UI/Doc/SkillWheel/Skills/Enlightenment/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 
 	<!-- 进攻 -->
 		<Item href="/UI/Doc/SkillWheel/Skills/Offense/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
@@ -568,7 +570,7 @@
 		<Item href="/UI/Doc/SkillWheel/Skills/Training/PerkButton9.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="/UI/Doc/SkillWheel/Skills/Training/PerkButtonX.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="/UI/Doc/SkillWheel/Skills/Training/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Training/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
+		<Item href="/UI/Doc/SkillWheel/Skills/Training/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Training/PerkButtonX3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
 
 		<Item href="/UI/Doc/SkillWheel/Skills/Training/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
@@ -582,7 +584,7 @@
 		<Item href="/UI/Doc/SkillWheel/Skills/Training/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<Item href="/UI/Doc/SkillWheel/Skills/Training/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<Item href="/UI/Doc/SkillWheel/Skills/Training/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Training/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<Item href="/UI/Doc/SkillWheel/Skills/Training/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Training/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
 
 	<!-- 穿透 -->

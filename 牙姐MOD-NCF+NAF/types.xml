@@ -2573,7 +2573,7 @@
 				<Item>ARTIFACT_BAND_OF_CONJURER</Item>
 				<Item>ARTIFACT_EARTHSLIDERS</Item>
 				<Item>ARTIFACT_RIGID_MANTLE</Item>
-				<Item>ARTIFACT_JINXING_BAND</Item>
+				<Item>ARTIFACT_RING_OF_THE_SHADOWBRAND</Item>
 				<Item>ARTIFACT_BONESTUDDED_LEATHER</Item>
 				<Item>ARTIFACT_WISPERING_RING</Item>
 				<Item>ARTIFACT_HELM_OF_CHAOS</Item>
@@ -2583,7 +2583,7 @@
 				<Item>ARTIFACT_RING_OF_DEATH</Item>
 				<Item>ARTIFACT_NECROMANCER_PENDANT</Item>
 				<Item>ARTIFACT_FREIDA</Item>
-				<Item>ARTIFACT_RING_OF_THE_SHADOWBRAND</Item>
+				<Item>ARTIFACT_JINXING_BAND</Item>
 				<Item>ARTIFACT_OGRE_CLUB</Item>
 				<Item>ARTIFACT_OGRE_SHIELD</Item>
 				<Item>ARTIFACT_TOME_OF_DESTRUCTION</Item>
@@ -18224,7 +18224,7 @@
 					<Value>62</Value>
 				</Item>
 				<Item>
-					<Name>ARTIFACT_JINXING_BAND</Name>
+					<Name>ARTIFACT_RING_OF_THE_SHADOWBRAND</Name>
 					<Value>63</Value>
 				</Item>
 				<Item>
@@ -18264,7 +18264,7 @@
 					<Value>72</Value>
 				</Item>
 				<Item>
-					<Name>ARTIFACT_RING_OF_THE_SHADOWBRAND</Name>
+					<Name>ARTIFACT_JINXING_BAND</Name>
 					<Value>73</Value>
 				</Item>
 				<Item>

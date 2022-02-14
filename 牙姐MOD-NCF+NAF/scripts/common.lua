@@ -35,6 +35,8 @@ HERO_SKILL_BARBARIAN_WEAKENING_STRIKE = 209;
 HERO_SKILL_ELITE_CASTERS = 148;
 HERO_SKILL_MYSTICISM = 40;
 HERO_SKILL_PRAYER = 56;
+HERO_SKILL_SEAL_OF_PROTECTION = 131;
+HERO_SKILL_TRIPLE_CATAPULT = 88;
 
 MAX_MANA = 1000;
 
@@ -127,6 +129,8 @@ TTH_SKILL_EFFECT_COMBAT = {
     , [1] = HERO_SKILL_ELITE_CASTERS
     , [2] = HERO_SKILL_MYSTICISM
     , [3] = HERO_SKILL_PRAYER
+    , [4] = HERO_SKILL_SEAL_OF_PROTECTION
+    , [5] = HERO_SKILL_TRIPLE_CATAPULT
 };
 TTH_SKILL_EFFECT_COMBAT_ONCE = {
 };
@@ -2532,6 +2536,13 @@ end;
     -- 是否
       TTHCS_ENUM.No = 0;
       TTHCS_ENUM.Yes = 1;
+    -- 战场建筑类型
+      TTHCS_ENUM.TownBuildingWall = 1;
+      TTHCS_ENUM.TownBuildingGate = 2;
+      TTHCS_ENUM.TownBuildingLeftTower = 3;
+      TTHCS_ENUM.TownBuildingBigTower = 4;
+      TTHCS_ENUM.TownBuildingMoat = 5;
+      TTHCS_ENUM.TownBuildingRightTower = 6;
 
   TTHCS_TABLE = {};
     -- 战场大小
@@ -11164,5 +11175,19 @@ end;
         end;
         return arrUnitName;
       end;
+
+TTHCS_PATH = {};
+TTHCS_PATH["Talent"] = {};
+TTHCS_PATH["Talent"]["Calh"] = {};
+TTHCS_PATH["Talent"]["Calh"]["EffectFireBall"] = "/Text/TTH/Heroes/Specializations/Inferno/Calh/Combat/EffectFireBall.txt";
+TTHCS_PATH["Talent"]["Calh"]["EffectMeteorShower"] = "/Text/TTH/Heroes/Specializations/Inferno/Calh/Combat/EffectMeteorShower.txt";
+TTHCS_PATH["Talent"]["Calh"]["EffectMelee"] = "/Text/TTH/Heroes/Specializations/Inferno/Calh/Combat/EffectMelee.txt";
+
+TTHCS_PATH["Perk"] = {};
+TTHCS_PATH["Perk"][HERO_SKILL_SEAL_OF_PROTECTION] = {};
+TTHCS_PATH["Perk"][HERO_SKILL_SEAL_OF_PROTECTION]["Effect"] = "/Text/TTH/Skills/Training/131-SealOfProtection/Combat/Effect.txt";
+
+TTHCS_PATH["Perk"][HERO_SKILL_TRIPLE_CATAPULT] = {};
+TTHCS_PATH["Perk"][HERO_SKILL_TRIPLE_CATAPULT]["Effect"] = "/Text/TTH/Skills/WarMachines/88-TripleCatapult/Combat/Effect.txt";
 
 function close_file(fileName) end

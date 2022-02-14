@@ -104,9 +104,6 @@ H55_MentorBoostVisitors = {};
 		H55_Skeletons = GetObjectNamesByType("BUILDING_SKELETON");
 		H55_SkeletonsQty = length(H55_Skeletons);
 	-- 宝屋
-		H55_BankLastVisit = {};
-		H55_BankPlayerLastVisit = {{},{},{},{},{},{},{},{}};
-		H55_BankCurrentPlayerVisit = {};
 		H55_MPCurrentPlayerVisit = {};
 		H55_MineCurrentPlayerVisit = {};
 		H55_PrisonRewardAmount = {20,16,12,8,6,4,2};
@@ -373,12 +370,12 @@ function H55_SphinxVisit(hero,sphinx)
 	local player = GetObjectOwner(hero);
 	if H55_SphinxVisited[sphinx][hero] ~= 1 then
 		if H55_SphinxExp[hero] == nil then
-			GiveExp(hero,5000);
+			TTH_GLOBAL.giveExp(hero,5000);
 			H55_SphinxExp[hero] = 5000;
 			H55_SphinxVisited[sphinx][hero] = 1;
 			MarkObjectAsVisited(sphinx,hero);
 		else
-			GiveExp(hero,(H55_SphinxExp[hero]+5000));
+			TTH_GLOBAL.giveExp(hero,(H55_SphinxExp[hero]+5000));
 			H55_SphinxExp[hero] = (H55_SphinxExp[hero]+5000);
 			H55_SphinxVisited[sphinx][hero] = 1;
 			MarkObjectAsVisited(sphinx,hero);
@@ -1035,44 +1032,9 @@ function H55_WitchRefuse02(hero)
 end;
 
 ----------------------------------------------------------------------------------------------------------------------------------------------
---BANKS
-----------------------------------------------------------------------------------------------------------------------------------------------
-
-function H55_GetBankDifMultiplier()
-	return H55_BanksDifficulty;
-end;
-
-function H55_GetLastVisited(bank)
-	local day = GetDate(DAY);
-	local result = 9999;
-	if H55_BankLastVisit[bank] ~= nil then
-		result = (day - H55_BankLastVisit[bank])
-	end;
-	return result
-end;
-
-function H55_GetBank_Restday(bank)
-	local day = GetDate(DAY);
-	local result = 9999;
-	if H55_BankLastVisit[bank] ~= nil then
-		result = 14 - (day - H55_BankLastVisit[bank])
-	end;
-	return result
-end;
-
-function H55_GetPlayerLastVisited(player,bank)
-	local day = GetDate(DAY);
-	local result = 9999;
-	if H55_BankPlayerLastVisit[player][bank] ~= nil then
-		result = (day - H55_BankPlayerLastVisit[player][bank]);
-	end;
-	return result
-end;
-
-----------------------------------------------------------------------------------------------------------------------------------------------
 --JUNK
 ----------------------------------------------------------------------------------------------------------------------------------------------
-
+TTH_VARI.filterBankVisit = {};
 function H55_WagonVisit(strHero, objBank)
 	local iPlayer = GetObjectOwner(strHero);
 	if H55_GetLastVisited(objBank) > 6 and H55_GetPlayerLastVisited(iPlayer, objBank) > 13 then
@@ -1085,6 +1047,16 @@ function H55_WagonVisit(strHero, objBank)
 			SetObjectEnabled(objBank, nil);
 			TTH_BankWinAI(strHero, 1);
 		else
+			if TTH_VARI.filterBankVisit[strHero] ~= nil
+				and TTH_VARI.filterBankVisit[strHero][objBank] == TTH_VARI.day then
+				print("repeat visit");
+				return nil;
+			end;
+			if TTH_VARI.filterBankVisit[strHero] == nil then
+				TTH_VARI.filterBankVisit[strHero] = {};
+			end;
+			TTH_VARI.filterBankVisit[strHero][objBank] = TTH_VARI.day;
+
 			local strCallbackWin = "TTH_WagonWin";
 
 			StartCombat(strHero, nil, 3
@@ -1112,6 +1084,16 @@ function H55_SkeletonVisit(strHero, objBank)
 			SetObjectEnabled(objBank, nil);
 			TTH_BankWinAI(strHero, 1);
 		else
+			if TTH_VARI.filterBankVisit[strHero] ~= nil
+				and TTH_VARI.filterBankVisit[strHero][objBank] == TTH_VARI.day then
+				print("repeat visit");
+				return nil;
+			end;
+			if TTH_VARI.filterBankVisit[strHero] == nil then
+				TTH_VARI.filterBankVisit[strHero] = {};
+			end;
+			TTH_VARI.filterBankVisit[strHero][objBank] = TTH_VARI.day;
+
 			local strCallbackWin = "TTH_SkeletonWin";
 
 			StartCombat(strHero, nil, 3
@@ -1209,6 +1191,16 @@ function TTH_BankCombatByRaceNotMine(strHero, objBank, iFaction, strCallbackVisi
 			SetObjectEnabled(objBank, nil);
 			TTH_BankWinAI(strHero, 1);
 		else
+			if TTH_VARI.filterBankVisit[strHero] ~= nil
+				and TTH_VARI.filterBankVisit[strHero][objBank] == TTH_VARI.day then
+				print("repeat visit");
+				return nil;
+			end;
+			if TTH_VARI.filterBankVisit[strHero] == nil then
+				TTH_VARI.filterBankVisit[strHero] = {};
+			end;
+			TTH_VARI.filterBankVisit[strHero][objBank] = TTH_VARI.day;
+
 			local iMonthScale = TTH_VARI.month;
 			local iWeekScale = TTH_VARI.absoluteWeek;
 			local iRandom = TTH_VARI.absoluteWeek;
@@ -1405,6 +1397,16 @@ function TTH_BankCombatByNoRace(strHero, objBank, strBuildingName, strCallbackVi
 			SetObjectEnabled(objBank, nil);
 			TTH_BankWinAI(strHero, 1);
 		else
+			if TTH_VARI.filterBankVisit[strHero] ~= nil
+				and TTH_VARI.filterBankVisit[strHero][objBank] == TTH_VARI.day then
+				print("repeat visit");
+				return nil;
+			end;
+			if TTH_VARI.filterBankVisit[strHero] == nil then
+				TTH_VARI.filterBankVisit[strHero] = {};
+			end;
+			TTH_VARI.filterBankVisit[strHero][objBank] = TTH_VARI.day;
+
 			local iMonthScale = TTH_VARI.month + 1;
 			if strBuildingName == "BUILDING_CYCLOPS_STOCKPILE" then
 				iMonthScale = TTH_VARI.month;
@@ -1896,7 +1898,7 @@ end;
 		local iPlayer = GetObjectOwner(strHero);
 		local iScale = TTH_Reward_Step(strHero);
 		local iExp = TTH_COMMON.round(2000 * iScale);
-		GiveExp(strHero, iExp);
+		TTH_GLOBAL.giveExp(strHero, iExp);
 		if TTH_GLOBAL.isAi(iPlayer) ~= TTH_ENUM.Yes then
 			ShowFlyingSign({"/Text/Game/Scripts/BankReward/RewardExp/GetExp.txt";iExp=iExp}, strHero, iPlayer, 5);
 			return nil;
@@ -2415,7 +2417,7 @@ function H55_GrailTouch(s_hero, grail)
 				local i_exp = 500;
 				local i_level = GetHeroLevel(s_hero);
 				i_exp = i_exp * i_level;
-				GiveExp(s_hero, i_exp);
+				TTH_GLOBAL.giveExp(s_hero, i_exp);
 				-- ShowFlyingSign({"/Text/Game/Scripts/Grail/GrailTouch4Exp.txt";exp=i_exp},s_hero,player,5) sleep(4);
 			end;
 			local i_rest = 0;

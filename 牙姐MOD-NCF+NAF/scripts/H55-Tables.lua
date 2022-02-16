@@ -1963,18 +1963,17 @@
 		, [2] = {
 			[0] = ARTIFACT_RES_ADVANCED
 			, [1] = ARTIFACT_LEGION_BASIC
-			, [2] = ARTIFACT_ORDER_OF_CONSCRIPTION
-			, [3] = ARTIFACT_TITANS_TRIDENT
-			, [4] = ARTIFACT_RING_OF_LIFE
-			, [5] = ARTIFACT_EVERCOLD_ICICLE
-			, [6] = ARTIFACT_ENDLESS_SACK_OF_GOLD
-			, [7] = ARTIFACT_PHOENIX_FEATHER_CAPE
-			, [8] = ARTIFACT_VALORIOUS_ARMOR
-			, [9] = ARTIFACT_EARTHSLIDERS
-			, [10] = ARTIFACT_TAROT_DECK
-			, [11] = ARTIFACT_REINCARNATION
-			, [12] = ARTIFACT_WEREWOLF_CLAW_NECKLACE
-			, [13] = ARTIFACT_CROWN_OF_LEADER
+			, [2] = ARTIFACT_TITANS_TRIDENT
+			, [3] = ARTIFACT_RING_OF_LIFE
+			, [4] = ARTIFACT_EVERCOLD_ICICLE
+			, [5] = ARTIFACT_ENDLESS_SACK_OF_GOLD
+			, [6] = ARTIFACT_PHOENIX_FEATHER_CAPE
+			, [7] = ARTIFACT_VALORIOUS_ARMOR
+			, [8] = ARTIFACT_EARTHSLIDERS
+			, [9] = ARTIFACT_TAROT_DECK
+			, [10] = ARTIFACT_REINCARNATION
+			, [11] = ARTIFACT_WEREWOLF_CLAW_NECKLACE
+			, [12] = ARTIFACT_CROWN_OF_LEADER
 		}
 		, [3] = {
 			[0] = ARTIFACT_NECKLACE_OF_BRAVERY
@@ -2095,30 +2094,29 @@
 		, [17] = ARTIFACT_RING_OF_UNSUMMONING
 		, [18] = ARTIFACT_RES_ADVANCED
 		, [19] = ARTIFACT_LEGION_ADVANCED
-		, [20] = ARTIFACT_ORDER_OF_CONSCRIPTION
-		, [21] = ARTIFACT_TITANS_TRIDENT
-		, [22] = ARTIFACT_RING_OF_LIFE
-		, [23] = ARTIFACT_EVERCOLD_ICICLE
-		, [24] = ARTIFACT_ENDLESS_SACK_OF_GOLD
-		, [25] = ARTIFACT_PHOENIX_FEATHER_CAPE
-		, [26] = ARTIFACT_VALORIOUS_ARMOR
-		, [27] = ARTIFACT_EARTHSLIDERS
-		, [28] = ARTIFACT_TAROT_DECK
-		, [29] = ARTIFACT_REINCARNATION
-		, [30] = ARTIFACT_WEREWOLF_CLAW_NECKLACE
-		, [31] = ARTIFACT_CROWN_OF_LEADER
-		, [32] = ARTIFACT_NECKLACE_OF_BRAVERY
-		, [33] = ARTIFACT_LION_HIDE_CAPE
-		, [34] = ARTIFACT_HELM_OF_ENLIGHTMENT
-		, [35] = ARTIFACT_CHAIN_MAIL_OF_ENLIGHTMENT
-		, [36] = ARTIFACT_RING_OF_DEATH
-		, [37] = ARTIFACT_RUNIC_WAR_AXE
-		, [38] = ARTIFACT_RUNIC_WAR_HARNESS
-		, [39] = ARTIFACT_TREEBORN_QUIVER
-		, [40] = ARTIFACT_MONK_01
-		, [41] = ARTIFACT_MONK_02
-		, [42] = ARTIFACT_MONK_03
-		, [43] = ARTIFACT_MONK_04
+		, [20] = ARTIFACT_TITANS_TRIDENT
+		, [21] = ARTIFACT_RING_OF_LIFE
+		, [22] = ARTIFACT_EVERCOLD_ICICLE
+		, [23] = ARTIFACT_ENDLESS_SACK_OF_GOLD
+		, [24] = ARTIFACT_PHOENIX_FEATHER_CAPE
+		, [25] = ARTIFACT_VALORIOUS_ARMOR
+		, [26] = ARTIFACT_EARTHSLIDERS
+		, [27] = ARTIFACT_TAROT_DECK
+		, [28] = ARTIFACT_REINCARNATION
+		, [29] = ARTIFACT_WEREWOLF_CLAW_NECKLACE
+		, [30] = ARTIFACT_CROWN_OF_LEADER
+		, [31] = ARTIFACT_NECKLACE_OF_BRAVERY
+		, [32] = ARTIFACT_LION_HIDE_CAPE
+		, [33] = ARTIFACT_HELM_OF_ENLIGHTMENT
+		, [34] = ARTIFACT_CHAIN_MAIL_OF_ENLIGHTMENT
+		, [35] = ARTIFACT_RING_OF_DEATH
+		, [36] = ARTIFACT_RUNIC_WAR_AXE
+		, [37] = ARTIFACT_RUNIC_WAR_HARNESS
+		, [38] = ARTIFACT_TREEBORN_QUIVER
+		, [39] = ARTIFACT_MONK_01
+		, [40] = ARTIFACT_MONK_02
+		, [41] = ARTIFACT_MONK_03
+		, [42] = ARTIFACT_MONK_04
 	};
 
 -- 所有法术列表
@@ -12049,6 +12047,7 @@
 			TTH_PATH.FlyingSign["SignHero4TownJoin"] = "/Text/Game/Scripts/TTH_Path/FlyingSign/SignHero4TownJoin.txt";
 			TTH_PATH.FlyingSign["AddCreature2Hero"] = "/Text/Game/Scripts/TTH_Path/FlyingSign/AddCreature2Hero.txt";
 			TTH_PATH.FlyingSign["CastCreature2Hero"] = "/Text/Game/Scripts/TTH_Path/FlyingSign/CastCreature2Hero.txt";
+			TTH_PATH.FlyingSign["ReviveCreature2Hero"] = "/Text/Game/Scripts/TTH_Path/FlyingSign/ReviveCreature2Hero.txt";
 			TTH_PATH.FlyingSign["RecoveryMaxMove2Hero"] = "/Text/Game/Scripts/TTH_Path/FlyingSign/RecoveryMaxMana2Hero.txt";
 			TTH_PATH.FlyingSign["RecoveryMaxMove2Hero"] = "/Text/Game/Scripts/TTH_Path/FlyingSign/RecoveryMaxMana2Hero.txt";
 
@@ -12181,12 +12180,35 @@
 				TTH_PATH.Artifact[ARTIFACT_GEM_OF_PHANTOM]["ConfirmActive"] = TTH_PATH.Artifact[ARTIFACT_GEM_OF_PHANTOM]["Pre"].."ConfirmActive.txt";
 				TTH_PATH.Artifact[ARTIFACT_GEM_OF_PHANTOM]["SuccessActive"] = TTH_PATH.Artifact[ARTIFACT_GEM_OF_PHANTOM]["Pre"].."SuccessActive.txt";
 
-			-- ARTIFACT_ORDER_OF_CONSCRIPTION 103 回城令
-				TTH_PATH.Artifact[ARTIFACT_ORDER_OF_CONSCRIPTION] = {};
-				TTH_PATH.Artifact[ARTIFACT_ORDER_OF_CONSCRIPTION]["Pre"] = TTH_PATH.Artifact["Pre"].."103/";
-				TTH_PATH.Artifact[ARTIFACT_ORDER_OF_CONSCRIPTION]["Text"] = TTH_PATH.Artifact[ARTIFACT_ORDER_OF_CONSCRIPTION]["Pre"].."Text.txt";
-				TTH_PATH.Artifact[ARTIFACT_ORDER_OF_CONSCRIPTION]["HasLostTown"] = TTH_PATH.Artifact[ARTIFACT_ORDER_OF_CONSCRIPTION]["Pre"].."HasLostTown.txt";
-				TTH_PATH.Artifact[ARTIFACT_ORDER_OF_CONSCRIPTION]["Confirm"] = TTH_PATH.Artifact[ARTIFACT_ORDER_OF_CONSCRIPTION]["Pre"].."Confirm.txt";
+			-- ARTIFACT_DIMENSION_DOOR 103 回城令
+				TTH_PATH.Artifact[ARTIFACT_DIMENSION_DOOR] = {};
+				TTH_PATH.Artifact[ARTIFACT_DIMENSION_DOOR]["Pre"] = TTH_PATH.Artifact["Pre"].."103/";
+				TTH_PATH.Artifact[ARTIFACT_DIMENSION_DOOR]["Text"] = TTH_PATH.Artifact[ARTIFACT_DIMENSION_DOOR]["Pre"].."Text.txt";
+				TTH_PATH.Artifact[ARTIFACT_DIMENSION_DOOR]["HasLostTown"] = TTH_PATH.Artifact[ARTIFACT_DIMENSION_DOOR]["Pre"].."HasLostTown.txt";
+				TTH_PATH.Artifact[ARTIFACT_DIMENSION_DOOR]["Confirm"] = TTH_PATH.Artifact[ARTIFACT_DIMENSION_DOOR]["Pre"].."Confirm.txt";
+
+			-- ARTIFACT_POTION_MANA 137 魔力药水
+			-- ARTIFACT_POTION_ENERGY 138 能量药水
+			-- ARTIFACT_POTION_REVIVE 139 复活药水
+				TTH_PATH.Artifact["Potion"] = {};
+				TTH_PATH.Artifact["Potion"]["Pre"] = TTH_PATH.Artifact["Pre"].."Potion/";
+				TTH_PATH.Artifact["Potion"]["NotEnoughTimes"] = TTH_PATH.Artifact["Potion"]["Pre"].."NotEnoughTimes.txt";
+				TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_MANA] = {};
+				TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_MANA]["Pre"] = TTH_PATH.Artifact["Potion"]["Pre"].."137-PotionMana/";
+				TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_MANA]["Text"] = TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_MANA]["Pre"].."Text.txt";
+				TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_MANA]["Confirm"] = TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_MANA]["Pre"].."Confirm.txt";
+				TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_MANA]["Success"] = TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_MANA]["Pre"].."Success.txt";
+				TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_ENERGY] = {};
+				TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_ENERGY]["Pre"] = TTH_PATH.Artifact["Potion"]["Pre"].."138-PotionEnergy/";
+				TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_ENERGY]["Text"] = TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_ENERGY]["Pre"].."Text.txt";
+				TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_ENERGY]["Confirm"] = TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_ENERGY]["Pre"].."Confirm.txt";
+				TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_ENERGY]["Success"] = TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_ENERGY]["Pre"].."Success.txt";
+				TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_REVIVE] = {};
+				TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_REVIVE]["Pre"] = TTH_PATH.Artifact["Potion"]["Pre"].."139-PotionRevive/";
+				TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_REVIVE]["Text"] = TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_REVIVE]["Pre"].."Text.txt";
+				TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_REVIVE]["NoLastCombat"] = TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_REVIVE]["Pre"].."NoLastCombat.txt";
+				TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_REVIVE]["Confirm"] = TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_REVIVE]["Pre"].."Confirm.txt";
+				TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_REVIVE]["Success"] = TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_REVIVE]["Pre"].."Success.txt";
 
 			-- ARTIFACT_REINCARNATION 112 轮回之戒
 				TTH_PATH.Artifact[ARTIFACT_REINCARNATION] = {};
@@ -12528,10 +12550,28 @@
 				[TTH_ENUM.FuncInit] = {
 				}
 				, [TTH_ENUM.FuncActive] = {
-					[ARTIFACT_ORDER_OF_CONSCRIPTION] = {
-						["Text"] = TTH_PATH.Artifact[ARTIFACT_ORDER_OF_CONSCRIPTION]["Text"]
+					[ARTIFACT_DIMENSION_DOOR] = {
+						["Text"] = TTH_PATH.Artifact[ARTIFACT_DIMENSION_DOOR]["Text"]
 						, ["NeedWear"] = TTH_ENUM.No
 						, [TTH_ENUM.FuncNotAtGate] = "TTH_ARTI.active103"
+					}
+					, [ARTIFACT_POTION_MANA] = {
+						["Text"] = TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_MANA]["Text"]
+						, ["NeedWear"] = TTH_ENUM.No
+						, [TTH_ENUM.FuncAtGate] = "TTH_ARTI.active137"
+						, [TTH_ENUM.FuncNotAtGate] = "TTH_ARTI.active137"
+					}
+					, [ARTIFACT_POTION_ENERGY] = {
+						["Text"] = TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_ENERGY]["Text"]
+						, ["NeedWear"] = TTH_ENUM.No
+						, [TTH_ENUM.FuncAtGate] = "TTH_ARTI.active138"
+						, [TTH_ENUM.FuncNotAtGate] = "TTH_ARTI.active138"
+					}
+					, [ARTIFACT_POTION_REVIVE] = {
+						["Text"] = TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_REVIVE]["Text"]
+						, ["NeedWear"] = TTH_ENUM.No
+						, [TTH_ENUM.FuncAtGate] = "TTH_ARTI.active139"
+						, [TTH_ENUM.FuncNotAtGate] = "TTH_ARTI.active139"
 					}
 					, [ARTIFACT_REINCARNATION] = {
 						["Text"] = TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Text"]
@@ -18168,10 +18208,6 @@
 					["Id"] = ARTIFACT_HORN_OF_PLENTY
 					, ["Text"] = "/Text/Game/Artifacts/Horn_Of_Plenty/Name.txt"
 				}
-				, [ARTIFACT_ORDER_OF_CONSCRIPTION] = {
-					["Id"] = ARTIFACT_ORDER_OF_CONSCRIPTION
-					, ["Text"] = "/Text/Game/Artifacts/Order_Of_Conscription/Name.txt"
-				}
 				, [ARTIFACT_MASK_OF_DOPPELGANGER] = {
 					["Id"] = ARTIFACT_MASK_OF_DOPPELGANGER
 					, ["Text"] = "/Text/Game/Artifacts/Mask_Of_Doppelganger/Name.txt"
@@ -18195,6 +18231,22 @@
 				, [ARTIFACT_ORB_WATER] = {
 					["Id"] = ARTIFACT_ORB_WATER
 					, ["Text"] = "/Text/TTH/Artifact/195-OrbWater/Text.txt"
+				}
+				, [ARTIFACT_DIMENSION_DOOR] = {
+					["Id"] = ARTIFACT_DIMENSION_DOOR
+					, ["Text"] = "/Text/TTH/Artifact/103-DimensionDoor/Text.txt"
+				}
+				, [ARTIFACT_POTION_MANA] = {
+					["Id"] = ARTIFACT_POTION_MANA
+					, ["Text"] = "/Text/TTH/Artifact/137-PotionMana/Text.txt"
+				}
+				, [ARTIFACT_POTION_ENERGY] = {
+					["Id"] = ARTIFACT_POTION_ENERGY
+					, ["Text"] = "/Text/TTH/Artifact/138-PotionEnergy/Text.txt"
+				}
+				, [ARTIFACT_POTION_REVIVE] = {
+					["Id"] = ARTIFACT_POTION_REVIVE
+					, ["Text"] = "/Text/TTH/Artifact/139-PotionRevive/Text.txt"
 				}
 			}
 

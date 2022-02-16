@@ -2223,7 +2223,8 @@ doFile('/scripts/combat-startup.lua')
 			H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_TRIPLE_CATAPULT] = {};
 			function Events_MiddlewareListener_Implement_Skill_TripleCatapult(iSide, itemUnitDeath)
 				if GetHero(iSide) ~= nil then
-					if TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_TRIPLE_CATAPULT] == 1 then
+					if TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_TRIPLE_CATAPULT] == 1
+						and IsBuilding(itemUnitDeath) ~= nil then
 						local listCreatures = GetCreatures(iSide);
 						for i, strCreatureName in listCreatures do
 							local objCreature = geneUnitStatus(strCreatureName);

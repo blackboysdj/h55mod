@@ -2613,7 +2613,7 @@
 				<Item>ARTIFACT_RES_CRYSTAL</Item>
 				<Item>ARTIFACT_PENDANT_OF_BLIND</Item>
 				<Item>ARTIFACT_GEM_OF_PHANTOM</Item>	
-				<Item>ARTIFACT_ORDER_OF_CONSCRIPTION</Item>
+				<Item>ARTIFACT_DIMENSION_DOOR</Item>
 				<Item>ARTIFACT_LEGION_BASIC</Item>
 				<Item>ARTIFACT_LEGION_T3</Item>
 				<Item>ARTIFACT_DRUM_OF_CHARGE</Item>
@@ -2647,9 +2647,9 @@
 				<Item>ARTIFACT_MEDICAL02</Item>
 				<Item>ARTIFACT_MEDICAL03</Item>	
 				<Item>ARTIFACT_MEDICAL04</Item>	
-				<Item>ARTIFACT_POTION01</Item>	
-				<Item>ARTIFACT_POTION02</Item>
-				<Item>ARTIFACT_POTION03</Item>		
+				<Item>ARTIFACT_POTION_MANA</Item>	
+				<Item>ARTIFACT_POTION_ENERGY</Item>
+				<Item>ARTIFACT_POTION_REVIVE</Item>		
 				<Item>ARTIFACT_BOOK_A1</Item>	
 				<Item>ARTIFACT_BOOK_A2</Item>	
 				<Item>ARTIFACT_BOOK_A3</Item>	
@@ -18384,7 +18384,7 @@
 					<Value>102</Value>
 				</Item>	
 				<Item>
-					<Name>ARTIFACT_ORDER_OF_CONSCRIPTION</Name>
+					<Name>ARTIFACT_DIMENSION_DOOR</Name>
 					<Value>103</Value>
 				</Item>	
 				<Item>
@@ -18520,15 +18520,15 @@
 					<Value>136</Value>
 				</Item>			
 				<Item>
-					<Name>ARTIFACT_POTION01</Name>
+					<Name>ARTIFACT_POTION_MANA</Name>
 					<Value>137</Value>
 				</Item>		
 				<Item>
-					<Name>ARTIFACT_POTION02</Name>
+					<Name>ARTIFACT_POTION_ENERGY</Name>
 					<Value>138</Value>
 				</Item>	
 				<Item>
-					<Name>ARTIFACT_POTION03</Name>
+					<Name>ARTIFACT_POTION_REVIVE</Name>
 					<Value>139</Value>
 				</Item>	
 				<Item>

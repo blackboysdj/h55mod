@@ -11799,6 +11799,15 @@
 		TTH_ENUM.TreasureSeaFloater = 11; -- 漂浮物
 		TTH_ENUM.TreasureSeaPeasant = 13; -- 海上难民
 
+  	TTH_ENUM.DirectionNorth = 1;
+  	TTH_ENUM.DirectionEast = 2;
+  	TTH_ENUM.DirectionSouth = 3;
+  	TTH_ENUM.DirectionWest = 4;
+  	TTH_ENUM.RotateNorth = 0;
+  	TTH_ENUM.RotateEast = 270;
+  	TTH_ENUM.RotateSouth = 180;
+  	TTH_ENUM.RotateWest = 90;
+
 		-- 转化类型
 			TTH_ENUM.Cast = 1;
 			TTH_ENUM.Training = 2;
@@ -11927,6 +11936,12 @@
 				[GROUND] = "/Text/Game/Scripts/TTH_Path/Basic/PosZ/Aboveground.txt"
 				, [UNDERGROUND] = "/Text/Game/Scripts/TTH_Path/Basic/PosZ/Underground.txt"
 			};
+
+		TTH_PATH.Direction = {};
+			TTH_PATH.Direction[TTH_ENUM.DirectionNorth] = "/Text/Game/Scripts/TTH_Path/Direction/North.txt";
+			TTH_PATH.Direction[TTH_ENUM.DirectionEast] = "/Text/Game/Scripts/TTH_Path/Direction/East.txt";
+			TTH_PATH.Direction[TTH_ENUM.DirectionSouth] = "/Text/Game/Scripts/TTH_Path/Direction/South.txt";
+			TTH_PATH.Direction[TTH_ENUM.DirectionWest] = "/Text/Game/Scripts/TTH_Path/Direction/West.txt";
 
 		TTH_PATH.CastCreatureType = {
 			[TTH_ENUM.Cast] = "/Text/Game/Scripts/TTH_Path/CastCreatureType/Cast.txt"
@@ -12115,6 +12130,29 @@
 				TTH_PATH.Talent["Maahir"]["NotEnoughMana"] = TTH_PATH.Talent["Maahir"]["Pre"].."NotEnoughMana.txt";
 				TTH_PATH.Talent["Maahir"]["NotSuitableHero"] = TTH_PATH.Talent["Maahir"]["Pre"].."NotSuitableHero.txt";
 				TTH_PATH.Talent["Maahir"]["Success"] = TTH_PATH.Talent["Maahir"]["Pre"].."Success.txt";
+			-- Menel 060 基特拉
+				TTH_PATH.Talent["Menel"] = {};
+				TTH_PATH.Talent["Menel"]["Pre"] = TTH_PATH.Talent["Pre"].."060/";
+				TTH_PATH.Talent["Menel"]["Active"] = {};
+				TTH_PATH.Talent["Menel"]["Active"]["Pre"] = TTH_PATH.Talent["Menel"]["Pre"].."Active/";
+				TTH_PATH.Talent["Menel"]["Active"]["Text"] = TTH_PATH.Talent["Menel"]["Active"]["Pre"].."Text.txt";
+				TTH_PATH.Talent["Menel"]["Active"]["NotMayor"] = TTH_PATH.Talent["Menel"]["Active"]["Pre"].."NotMayor.txt";
+				TTH_PATH.Talent["Menel"]["Active"]["NotEnoughQuota"] = TTH_PATH.Talent["Menel"]["Active"]["Pre"].."NotEnoughQuota.txt";
+				TTH_PATH.Talent["Menel"]["Active"]["Tips"] = TTH_PATH.Talent["Menel"]["Active"]["Pre"].."Tips.txt";
+				TTH_PATH.Talent["Menel"]["Active"]["NegetivePlace"] = TTH_PATH.Talent["Menel"]["Active"]["Pre"].."NegetivePlace.txt";
+				TTH_PATH.Talent["Menel"]["Active"]["Success"] = TTH_PATH.Talent["Menel"]["Active"]["Pre"].."Success.txt";
+				TTH_PATH.Talent["Menel"]["Active"]["Title"] = TTH_PATH.Talent["Menel"]["Active"]["Pre"].."Title.txt";
+				TTH_PATH.Talent["Menel"]["Active"]["Desc"] = TTH_PATH.Talent["Menel"]["Active"]["Pre"].."Desc.txt";
+				TTH_PATH.Talent["Menel"]["Visit"] = {};
+				TTH_PATH.Talent["Menel"]["Visit"]["Pre"] = TTH_PATH.Talent["Menel"]["Pre"].."Visit/";
+				TTH_PATH.Talent["Menel"]["Visit"]["Text"] = TTH_PATH.Talent["Menel"]["Visit"]["Pre"].."Text.txt";
+				TTH_PATH.Talent["Menel"]["Visit"]["NotEnoughOperTimes"] = TTH_PATH.Talent["Menel"]["Visit"]["Pre"].."NotEnoughOperTimes.txt";
+				TTH_PATH.Talent["Menel"]["Visit"]["Confirm"] = TTH_PATH.Talent["Menel"]["Visit"]["Pre"].."Confirm.txt";
+				TTH_PATH.Talent["Menel"]["Visit"]["Success"] = TTH_PATH.Talent["Menel"]["Visit"]["Pre"].."Success.txt";
+				TTH_PATH.Talent["Menel"]["Daily"] = {};
+				TTH_PATH.Talent["Menel"]["Daily"]["Pre"] = TTH_PATH.Talent["Menel"]["Pre"].."Daily/";
+				TTH_PATH.Talent["Menel"]["Daily"]["TitleCapture"] = TTH_PATH.Talent["Menel"]["Daily"]["Pre"].."TitleCapture.txt";
+				TTH_PATH.Talent["Menel"]["Daily"]["DescCapture"] = TTH_PATH.Talent["Menel"]["Daily"]["Pre"].."DescCapture.txt";
 			-- Sylsai 062 希尔塞
 				TTH_PATH.Talent["Sylsai"] = {};
 				TTH_PATH.Talent["Sylsai"]["Pre"] = TTH_PATH.Talent["Pre"].."062/";
@@ -12340,6 +12378,9 @@
 					, ["Melodia"] = {
 						[TTH_ENUM.FuncAlways] = "TTH_TALENT.initMelodia"
 					}
+					, ["Menel"] = {
+						[TTH_ENUM.FuncAlways] = "TTH_TALENT.initMenel"
+					}
 					, ["Sylsai"] = {
 						[TTH_ENUM.FuncAlways] = "TTH_TALENT.initSylsai"
 					}
@@ -12418,6 +12459,11 @@
 						, [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeMelodia"
 						, [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeMelodia"
 					}
+					, ["Menel"] = {
+						["Text"] = TTH_PATH.Talent["Menel"]["Active"]["Text"]
+						, [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeMenel"
+						, [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeMenel"
+					}
 					, ["Sylsai"] = {
 						["Text"] = TTH_PATH.Talent["Sylsai"]["Text"]
 						, [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeSylsai"
@@ -12491,6 +12537,9 @@
 					, ["Melodia"] = {
 						[TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyMelodia"
 					}
+					, ["Menel"] = {
+						[TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyMenel"
+					}
 					, ["Sylsai"] = {
 						[TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklySylsai"
 					}
@@ -12502,7 +12551,10 @@
 					}
 				}
 				, [TTH_ENUM.FuncDealDaily] = {
-					["Sylsai"] = {
+					["Menel"] = {
+						[TTH_ENUM.FuncAlways] = "TTH_TALENT.dealDailyMenel"
+					}
+					, ["Sylsai"] = {
 						[TTH_ENUM.FuncAlways] = "TTH_TALENT.dealDailySylsai"
 					}
 					, ["Biara"] = {

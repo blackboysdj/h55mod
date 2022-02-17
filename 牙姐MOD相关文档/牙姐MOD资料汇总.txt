@@ -1110,12 +1110,22 @@
         血腥少女
           英雄所带领的血腥少女及升级形态增加【英雄等级/2 (向上取整)】点攻防
       基特拉
-        Menel
-        高级领导, 初级防御, 敏捷光环
-        帐篷
-        奴隶监工
-          英雄所带领的牛头怪及升级形态增加【英雄等级/2 (向上取整)】点攻防
-          英雄所带领的牛头怪及升级形态【移动】到我方生物（非牛头怪及升级形态）周围时可再次行动
+        <left><body_bright>英雄: <color=ff0033>基特拉
+        <body_bright>职业: <color=yellow>地牢领主
+        <body_bright>控制台名: <color=yellow>Menel
+        <body_bright>初始技能: <color=yellow>高级领导+敏捷光环/初级防御
+        <body_bright>战争机械: <color=yellow>帐篷
+        <body_bright>生物特长: <color=0099FF>牛头怪<color_default> （种族: 地牢）
+        <body_bright>英雄天赋: <color=ff0033>高阶领主
+        <color=7F38EC>被动特效:
+        <body_bright>1) <color=0099FF>牛头怪<body_bright>增加<color=0099FF>攻击/防御<color_default>（数值为: 英雄等级/2 向上取整）
+        <color=7F38EC>战场特效:
+        <body_bright>1) <color=0099FF>牛头怪<color=yellow>【移动】<body_bright>到我方生物<color_default>（非牛头怪）<body_bright>周围时可再次<color=yellow>【行动】
+        <color=7F38EC>主动特效<color_default>（耗1/周回1/内替）:
+        <body_bright>1) 英雄可重置<color=yellow>【私人领地】<color_default>（领地内可招募生物将被重置）
+        <color=7F38EC>内政官特效:
+        <body_bright>1) 英雄可建立<color=yellow>【私人领地】<color_default>（被同族内政官视为【所辖城镇】）
+        <body_bright>2) 英雄每管辖一座城镇可建立一座<color=yellow>【私人领地】
       索戈尔
         Ferigl
         高级领导, 初级进攻, 战术部署
@@ -1155,13 +1165,17 @@
         黑手
           英雄所带领的密探及升级形态增加【英雄等级/2 (向上取整)】点攻防
       埃莉娜
-        Eruina
-        高级后勤, 初级进攻, 箭术
-        弹药车
-        魔法神箭
-        女巫会长
-          英雄所带领的暗影巫女及暗影女族长，在英雄使用单体杀伤魔法命中目标时有【10%+英雄等级*2%】几率对其射击一次
-          英雄魔法只对单一敌方生物造成战损时，会对其额外施放一次【寒冰激射】
+        <left><body_bright>英雄: <color=ff0033>埃莉娜
+        <body_bright>职业: <color=yellow>刺客
+        <body_bright>控制台名: <color=yellow>Eruina
+        <body_bright>初始技能: <color=yellow>高级后勤/初级进攻+箭术
+        <body_bright>战争机械: <color=yellow>弹药车
+        <body_bright>初始魔法: <color=yellow>魔法神箭
+        <body_bright>生物特长: <color=0099FF>暗影巫女<color_default> （种族: 地牢）
+        <body_bright>英雄天赋: <color=ff0033>女巫会长
+        <color=7F38EC>战场特效:
+        <body_bright>1) <color=yellow>【英雄单体魔法命中目标时】<color=0099FF>暗影巫女<body_bright>有几率对其射击一次<color_default>（数值为: 30%+英雄等级*1%）
+        <body_bright>2) <color=yellow>【英雄魔法只对单一敌方生物造成战损时】<body_bright>会对其额外施放一次<color=yellow>【寒冰激射】
       莱托兹
         Dalom
         初级后勤, 高级黑暗, 痛苦大师

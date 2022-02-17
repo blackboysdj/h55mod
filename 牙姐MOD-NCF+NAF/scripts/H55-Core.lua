@@ -2614,6 +2614,9 @@ doFile("/scripts/H55-Settings.lua");
 						TTH_COMMON.push(arrDistance, TTH_GLOBAL.getDistance(strHero, strTown));
 					end
 
+					local arrDistanceMenel = TTH_TALENT.getDistance4Hero2NearestMayorTown8Menel(iPlayer, strHero);
+					arrDistance = TTH_COMMON.concat(arrDistance, arrDistanceMenel);
+
 					local arrDistanceWulfstan = TTH_TALENT.getDistance4Hero2NearestMayorTown8Wulfstan(iPlayer, strHero);
 					arrDistance = TTH_COMMON.concat(arrDistance, arrDistanceWulfstan);
 
@@ -5095,10 +5098,12 @@ doFile("/scripts/H55-Settings.lua");
 							end;
 						end
 						local bIsExpeditionWulfstan = TTH_TALENT.checkExpedition8Wulfstan(iPlayer, strHero);
-						local bIsExpeditionNikolay = TTH_TALENT.checkExpeditionNikolay(iPlayer, strHero);
+						local bIsExpeditionNikolay = TTH_TALENT.checkExpedition8Nikolay(iPlayer, strHero);
+						local bIsExpeditionMenel = TTH_TALENT.checkExpedition8Menel(iPlayer, strHero);
 						if bIsExpedition == TTH_ENUM.No
 							or bIsExpeditionWulfstan == TTH_ENUM.No
 							or bIsExpeditionNikolay == TTH_ENUM.No
+							or bIsExpeditionMenel == TTH_ENUM.No
 							then
 							bIsExpedition = TTH_ENUM.No;
 						end;
@@ -5122,10 +5127,12 @@ doFile("/scripts/H55-Settings.lua");
 							end;
 						end
 						local bIsExpeditionWulfstan = TTH_TALENT.checkExpedition8Wulfstan(iPlayer, strHero);
-						local bIsExpeditionNikolay = TTH_TALENT.checkExpeditionNikolay(iPlayer, strHero);
+						local bIsExpeditionNikolay = TTH_TALENT.checkExpedition8Nikolay(iPlayer, strHero);
+						local bIsExpeditionMenel = TTH_TALENT.checkExpedition8Menel(iPlayer, strHero);
 						if bIsExpedition == TTH_ENUM.No
 							or bIsExpeditionWulfstan == TTH_ENUM.No
 							or bIsExpeditionNikolay == TTH_ENUM.No
+							or bIsExpeditionMenel == TTH_ENUM.No
 							then
 							bIsExpedition = TTH_ENUM.No;
 						end;
@@ -8006,6 +8013,223 @@ doFile("/scripts/H55-Settings.lua");
       	end;
 
 		-- Dungeon
+			-- Menel 060 基特拉
+      	TTH_TABLE.DirectionOption = {
+      		[1] = {
+      			["Id"] = TTH_ENUM.DirectionNorth
+      			, ["Text"] = TTH_PATH.Direction[TTH_ENUM.DirectionNorth]
+      			, ["Callback"] = "TTH_TALENT.threadActiveMenel"
+      			, ["Rotate"] = TTH_ENUM.RotateNorth
+      		}
+      		, [2] = {
+      			["Id"] = TTH_ENUM.DirectionEast
+      			, ["Text"] = TTH_PATH.Direction[TTH_ENUM.DirectionEast]
+      			, ["Callback"] = "TTH_TALENT.threadActiveMenel"
+      			, ["Rotate"] = TTH_ENUM.RotateEast
+      		}
+      		, [3] = {
+      			["Id"] = TTH_ENUM.DirectionSouth
+      			, ["Text"] = TTH_PATH.Direction[TTH_ENUM.DirectionSouth]
+      			, ["Callback"] = "TTH_TALENT.threadActiveMenel"
+      			, ["Rotate"] = TTH_ENUM.RotateSouth
+      		}
+      		, [4] = {
+      			["Id"] = TTH_ENUM.DirectionWest
+      			, ["Text"] = TTH_PATH.Direction[TTH_ENUM.DirectionWest]
+      			, ["Callback"] = "TTH_TALENT.threadActiveMenel"
+      			, ["Rotate"] = TTH_ENUM.RotateWest
+      		}
+      	};
+      	function TTH_TALENT.initMenel(strHero)
+					TTH_MAIN.debug("TTH_TALENT.initMenel", nil, strHero);
+
+      		TTH_VARI.talent[strHero] = {
+						["CurrentTimes"] = 1
+						, ["MaxTimes"] = 1
+						, ["Manor"] = {}
+						, ["Index"] = 0;
+					};
+      	end;
+      	function TTH_TALENT.activeMenel(iPlayer, strHero)
+					TTH_COMMON.nextNavi(TTH_PATH.Talent[strHero]["Active"]["Text"]);
+
+    			TTH_TALENT.checkPreActiveMenel4IsMayor(iPlayer, strHero);
+      	end;
+      	function TTH_TALENT.checkPreActiveMenel4IsMayor(iPlayer, strHero)
+    			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.No then
+    				local strText = TTH_PATH.Talent[strHero]["Active"]["NotMayor"];
+	    			TTH_GLOBAL.sign(strHero, strText);
+    				return nil;
+      		end;
+
+      		TTH_TALENT.checkPreActiveMenel4AbilityQuota(iPlayer, strHero);
+      	end;
+      	function TTH_TALENT.checkPreActiveMenel4AbilityQuota(iPlayer, strHero)
+      		local iAlreadyManor = length(TTH_VARI.talent[strHero]["Manor"]);
+      		local iAlreadyMayor, arrMayorTown = TTH_MANAGE.getAlreadyMayorInfo(strHero);
+      		if iAlreadyManor >= iAlreadyMayor then
+    				local strText = TTH_PATH.Talent[strHero]["Active"]["NotEnoughQuota"];
+	    			TTH_GLOBAL.sign(strHero, strText);
+    				return nil;
+      		end;
+
+      		local strText = TTH_PATH.Talent[strHero]["Active"]["Tips"];
+      		TTH_COMMON.optionRadio(iPlayer, strHero, TTH_TABLE.DirectionOption, strText);
+      	end;
+      	function TTH_TALENT.checkPreActiveMenel4NegetivePlace()
+  				local strText = TTH_PATH.Talent["Menel"]["Active"]["NegetivePlace"];
+    			TTH_GLOBAL.sign("Menel", strText);
+  				return nil;
+      	end;
+      	TTH_VARI.threadActiveMenel = {};
+      	function TTH_TALENT.threadActiveMenel(iPlayer, strHero, iDirectionId)
+      		TTH_VARI.threadActiveMenel = {
+      			["Player"] = iPlayer
+      			, ["Hero"] = strHero
+      			, ["DirectionId"] = iDirectionId
+      		};
+      		startThread(TTH_TALENT.implActiveMenel);
+      	end;
+      	function TTH_TALENT.implActiveMenel()
+      		errorHook(TTH_TALENT.checkPreActiveMenel4NegetivePlace);
+
+      		local iPlayer = TTH_VARI.threadActiveMenel["Player"];
+      		local strHero = TTH_VARI.threadActiveMenel["Hero"];
+      		local iDirectionId = TTH_VARI.threadActiveMenel["DirectionId"];
+
+      		TTH_VARI.talent[strHero]["Index"] = TTH_VARI.talent[strHero]["Index"] + 1;
+      		local iIndexManor = TTH_VARI.talent[strHero]["Index"];
+      		local iHeroRace = TTH_GLOBAL.getRace8Hero(strHero);
+      		local iPosX, iPosY, iPosZ = GetObjectPosition(strHero);
+      		if iDirectionId == TTH_ENUM.DirectionNorth then
+      			iPosY = iPosY + 3;
+      		elseif iDirectionId == TTH_ENUM.DirectionEast then
+      			iPosX = iPosX + 3;
+      		elseif iDirectionId == TTH_ENUM.DirectionSouth then
+      			iPosY = iPosY - 4;
+      		elseif iDirectionId == TTH_ENUM.DirectionWest then
+      			iPosX = iPosX - 4;
+      		end;
+      		local strBuildingName = strHero.."-"..iIndexManor;
+      		CreateDwelling(strBuildingName, iHeroRace, 8, iPlayer, iPosX, iPosY, iPosZ, TTH_TABLE.DirectionOption[iDirectionId]["Rotate"]);
+      		sleep(1);
+      		OverrideObjectTooltipNameAndDescription(strBuildingName, TTH_PATH.Talent[strHero]["Active"]["Title"], TTH_PATH.Talent[strHero]["Active"]["Desc"]);
+      		TTH_VARI.talent[strHero]["Manor"] = TTH_COMMON.push(TTH_VARI.talent[strHero]["Manor"], strBuildingName);
+      		SetTrigger(OBJECT_TOUCH_TRIGGER, strBuildingName, "TTH_TALENT.visitDwellingMenel");
+      		SetObjectEnabled(strBuildingName, nil);
+  				local strText = TTH_PATH.Talent[strHero]["Active"]["Success"];
+    			TTH_GLOBAL.sign(strHero, strText);
+      	end;
+      	function TTH_TALENT.visitDwellingMenel(strHero, strBuildingName)
+					local funcCallback = "TTH_TALENT.visitDwellingMenel";
+      		if strHero == "Menel" then
+						TTH_COMMON.initNavi(TTH_PATH.Talent[strHero]["Visit"]["Text"]);
+
+						local iPlayer = TTH_GLOBAL.GetObjectOwner(strHero);
+						TTH_TALENT.checkPreVisitDwellingMenel4OperTimes(iPlayer, strHero, strBuildingName, funcCallback);
+					else
+						TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
+					end;
+				end;
+				function TTH_TALENT.checkPreVisitDwellingMenel4OperTimes(iPlayer, strHero, strBuildingName, funcCallback)
+      		if TTH_VARI.talent[strHero]["CurrentTimes"] <= 0 then
+      			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+      				if TTH_MANAGE.getRemainOperTimes(strHero) <= 0 then
+      					local strText = TTH_PATH.Talent[strHero]["Visit"]["NotEnoughOperTimes"];
+			    			TTH_GLOBAL.sign(strHero, strText);
+
+			    			TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
+		    				return nil;
+      				end;
+      			else
+    					local strText = TTH_PATH.Talent[strHero]["Visit"]["NotEnoughOperTimes"];
+		    			TTH_GLOBAL.sign(strHero, strText);
+
+		    			TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
+	    				return nil;
+		    		end;
+      		end;
+
+      		TTH_TALENT.confirmVisitDwellingMenel(iPlayer, strHero, strBuildingName, funcCallback);
+				end;
+				function TTH_TALENT.confirmVisitDwellingMenel(iPlayer, strHero, strBuildingName, funcCallback)
+					local strText = TTH_PATH.Talent[strHero]["Visit"]["Confirm"];
+					local strCallbackOk = "TTH_TALENT.implVisitDwellingMenel("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strBuildingName)..")";
+					local strCallbackCancel = "TTH_VISIT.visitBuildingWithoutScript("..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strBuildingName)..","..TTH_COMMON.psp(funcCallback)..")";
+					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strText, strCallbackOk, strCallbackCancel);
+				end;
+				function TTH_TALENT.implVisitDwellingMenel(iPlayer, strHero, strBuildingName)
+      		if TTH_VARI.talent[strHero]["CurrentTimes"] > 0 then
+    				TTH_VARI.talent[strHero]["CurrentTimes"] = TTH_VARI.talent[strHero]["CurrentTimes"] - 1;
+		    	else
+      			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+		    			TTH_MANAGE.useOperTimes(strHero);
+		    		end;
+      		end;
+
+      		local iPosX, iPosY, iPosZ = GetObjectPosition(strBuildingName);
+      		Play3DSoundForPlayers(GetPlayerFilter(iPlayer), H55_SndCrash, iPosX, iPosY, iPosZ);
+      		local iHeroRace = TTH_GLOBAL.getRace8Hero(strHero);
+      		ReplaceDwelling(strBuildingName, iHeroRace);
+      		OverrideObjectTooltipNameAndDescription(strBuildingName, TTH_PATH.Talent[strHero]["Active"]["Title"], TTH_PATH.Talent[strHero]["Active"]["Desc"]);
+
+					local strText = TTH_PATH.Talent[strHero]["Visit"]["Success"];
+					TTH_GLOBAL.sign(strHero, strText);
+				end;
+      	function TTH_TALENT.resetWeeklyMenel(iPlayer, strHero)
+      		TTH_MAIN.debug("TTH_TALENT.resetWeeklyMenel", iPlayer, strHero);
+
+      		TTH_VARI.talent[strHero]["CurrentTimes"] = TTH_VARI.talent[strHero]["MaxTimes"];
+      	end;
+				function TTH_TALENT.dealDailyMenel(iPlayer, strHero)
+					TTH_MAIN.debug("TTH_TALENT.dealDailyMenel", iPlayer, strHero);
+
+					local arrManor = TTH_VARI.talent[strHero]["Manor"];
+					for i, strManor in arrManor do
+						if GetObjectOwner(strManor) ~= iPlayer then
+							TTH_VARI.talent[strHero]["Manor"] = TTH_COMMON.remove8Value(TTH_VARI.talent[strHero]["Manor"], strManor);
+      				OverrideObjectTooltipNameAndDescription(strManor, TTH_PATH.Talent[strHero]["Daily"]["TitleCapture"], TTH_PATH.Talent[strHero]["Daily"]["DescCapture"]);
+						end;
+					end
+				end;
+      	function TTH_TALENT.checkExpedition8Menel(iPlayer, strHero)
+      		TTH_MAIN.debug("TTH_TALENT.checkExpedition8Menel", iPlayer, strHero);
+
+      		local bIsExpedition = TTH_ENUM.Yes;
+      		if strHero == "Menel" then
+      			bIsExpedition = TTH_ENUM.No;
+      		else
+	      		if TTH_GLOBAL.getRace8Hero(strHero) == TOWN_DUNGEON
+	      			and TTH_VARI.talent["Menel"] ~= nil then
+		      		local arrDwelling = TTH_VARI.talent["Menel"]["Manor"];
+		      		for i, strDwellingName in arrDwelling do
+		      			if TTH_GLOBAL.getDistance(strHero, strDwellingName) <= TTH_MANAGE.getTerritoryRadius(iPlayer) then
+		      				bIsExpedition = TTH_ENUM.No;
+		      				break;
+		      			end;
+		      		end;
+	      		end;
+      		end;
+      		return bIsExpedition;
+      	end;
+      	function TTH_TALENT.getDistance4Hero2NearestMayorTown8Menel(iPlayer, strHero)
+      		TTH_MAIN.debug("TTH_TALENT.getDistance4Hero2NearestMayorTown8Menel", iPlayer, strHero);
+
+      		local arrDistance = {};
+      		if strHero == "Menel" then
+      			arrDistance = {0};
+      		else
+	      		if TTH_GLOBAL.getRace8Hero(strHero) == TOWN_DUNGEON
+	      			and TTH_VARI.talent["Menel"] ~= nil then
+	      			local arrDwelling = TTH_VARI.talent["Menel"]["Manor"];
+	      			for i, strDwellingName in arrDwelling do
+	      				TTH_COMMON.push(arrDistance, TTH_GLOBAL.getDistance(strHero, strDwellingName));
+	      			end
+	      		end;
+      		end;
+      		return arrDistance;
+      	end;
+
 			-- Sylsai 062 希尔塞
       	function TTH_TALENT.initSylsai(strHero)
 					TTH_MAIN.debug("TTH_TALENT.initSylsai", nil, strHero);
@@ -8311,8 +8535,8 @@ doFile("/scripts/H55-Settings.lua");
 					end;
 					TTH_GLOBAL.signHero4TownRecruit(strHero);
 				end;
-      	function TTH_TALENT.checkExpeditionNikolay(iPlayer, strHero)
-      		TTH_MAIN.debug("TTH_TALENT.checkExpeditionNikolay", iPlayer, strHero);
+      	function TTH_TALENT.checkExpedition8Nikolay(iPlayer, strHero)
+      		TTH_MAIN.debug("TTH_TALENT.checkExpedition8Nikolay", iPlayer, strHero);
 
       		local bIsExpedition = TTH_ENUM.Yes;
       		local strHeroNikolay = "Nikolay";
@@ -8817,7 +9041,7 @@ doFile("/scripts/H55-Settings.lua");
 	      			and TTH_VARI.talent["Wulfstan"] ~= nil then
 	      			local arrDwelling = TTH_VARI.talent["Wulfstan"]["Outpost"];
 	      			for i, strDwellingName in arrDwelling do
-	      				TTH_COMMON.push(arrDistance, TTH_GLOBAL.getDistance(strHero, "Wulfstan"));
+	      				TTH_COMMON.push(arrDistance, TTH_GLOBAL.getDistance(strHero, strDwellingName));
 	      			end
 	      		end;
       		end;
@@ -9808,8 +10032,9 @@ doFile("/scripts/H55-Settings.lua");
 				if TTH_VARI.recordEstates ~= nil
 					and length(TTH_VARI.recordEstates) > 0 then
 					local iCurrentDay = TTH_VARI.day;
-					for strHero, objEstates in TTH_VARI.recordEstates do
-						if objEstates["EstatesGold"] > 0 then
+					for strEstateHero, objEstates in TTH_VARI.recordEstates do
+						if strEstateHero == strHero
+							and objEstates["EstatesGold"] > 0 then
 							local iDuration = iCurrentDay - objEstates["EstatesDay"];
 							local iExpectGold = TTH_PERK.calcExpectEstatesGold(objEstates["EstatesGold"], iDuration);
 							objEstates["EstatesGold"] = 0;

@@ -11190,4 +11190,12 @@ TTHCS_PATH["Perk"][HERO_SKILL_SEAL_OF_PROTECTION]["Effect"] = "/Text/TTH/Skills/
 TTHCS_PATH["Perk"][HERO_SKILL_TRIPLE_CATAPULT] = {};
 TTHCS_PATH["Perk"][HERO_SKILL_TRIPLE_CATAPULT]["Effect"] = "/Text/TTH/Skills/WarMachines/88-TripleCatapult/Combat/Effect.txt";
 
+TTHCS_PATH["Artifact"] = {};
+TTHCS_PATH["Artifact"][ARTIFACT_ANGELIC_ALLIANCE] = {};
+TTHCS_PATH["Artifact"][ARTIFACT_ANGELIC_ALLIANCE]["Effect"] = "/Text/TTH/Artifact/68-AngelicAlliance/Combat/Effect.txt";
+TTHCS_PATH["Artifact"][ARTIFACT_SENTINEL] = {};
+TTHCS_PATH["Artifact"][ARTIFACT_SENTINEL]["Effect"] = "/Text/TTH/Artifact/124-Sentinel/Combat/Effect.txt";
+TTHCS_PATH["Artifact"][ARTIFACT_CURSE_SHOULDER] = {};
+TTHCS_PATH["Artifact"][ARTIFACT_CURSE_SHOULDER]["Effect"] = "/Text/TTH/Artifact/114-CurseShoulder/Combat/Effect.txt";
+
 function close_file(fileName) end

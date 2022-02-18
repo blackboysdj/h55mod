@@ -2637,12 +2637,12 @@
 				<Item>ARTIFACT_SENTINEL</Item>
 				<Item>ARTIFACT_EIGHTFOLD</Item>
 				<Item>ARTIFACT_CODEX</Item>
-				<Item>ARTIFACT_PIRATE01</Item>
-				<Item>ARTIFACT_PIRATE02</Item>
-				<Item>ARTIFACT_PIRATE03</Item>
-				<Item>ARTIFACT_PIRATE04</Item>
-				<Item>ARTIFACT_PIRATE05</Item>	
-				<Item>ARTIFACT_PIRATE06</Item>		
+				<Item>ARTIFACT_PIRATE_HAT</Item>
+				<Item>ARTIFACT_PIRATE_VEST</Item>
+				<Item>ARTIFACT_PIRATE_RING</Item>
+				<Item>ARTIFACT_PIRATE_HOOK</Item>
+				<Item>ARTIFACT_PIRATE_BOOTS</Item>	
+				<Item>ARTIFACT_PIRATE_CHARM</Item>		
 				<Item>ARTIFACT_MEDICAL01</Item>	
 				<Item>ARTIFACT_MEDICAL02</Item>
 				<Item>ARTIFACT_MEDICAL03</Item>	
@@ -2674,25 +2674,25 @@
 				<Item>ARTIFACT_SHANTIRI_03</Item>	
 				<Item>ARTIFACT_SHANTIRI_04</Item>	
 				<Item>ARTIFACT_SHANTIRI_05</Item>	
-				<Item>ARTIFACT_UPG_AR1</Item>	
+				<Item>ARTIFACT_CLOAK_OF_MALASSA</Item>	
 				<Item>ARTIFACT_UPG_AR2</Item>
-				<Item>ARTIFACT_UPG_AR3</Item>	
+				<Item>ARTIFACT_SHIELD_OF_WOLF_DUCHY</Item>	
 				<Item>ARTIFACT_UPG_HM1</Item>	
-				<Item>ARTIFACT_UPG_HM2</Item>
-				<Item>ARTIFACT_UPG_HM3</Item>
+				<Item>ARTIFACT_HELMET_OF_HEAVENLY_ENLIGHTENMENT</Item>
+				<Item>ARTIFACT_RING_OF_HOLY_GRIFFIN</Item>
 				<Item>ARTIFACT_UPG_ST1</Item>
 				<Item>ARTIFACT_UPG_ST2</Item>
 				<Item>ARTIFACT_UPG_ST3</Item>
-				<Item>ARTIFACT_UPG_SW1</Item>	
-				<Item>ARTIFACT_UPG_SW2</Item>
-				<Item>ARTIFACT_UPG_SW3</Item>
+				<Item>ARTIFACT_BADGE_OF_SUN_CROSS</Item>	
+				<Item>ARTIFACT_PENDANT_OF_INTERFERENCE</Item>
+				<Item>ARTIFACT_SPIRIT_OF_OPPRESSION</Item>
 				<Item>ARTIFACT_FIZBIN</Item>
 				<Item>ARTIFACT_FORGING</Item>				
 				<Item>ARTIFACT_URGASH_01</Item>	
 				<Item>ARTIFACT_URGASH_02</Item>
-				<Item>ARTIFACT_ELRATH_01</Item>		
+				<Item>ARTIFACT_RING_OF_FORGOTTEN</Item>		
 				<Item>ARTIFACT_ELRATH_02</Item>	
-				<Item>ARTIFACT_GOVERNOR_01</Item>
+				<Item>ARTIFACT_QUILL_OF_MAYOR</Item>
 				<Item>ARTIFACT_GOVERNOR_02</Item>				
 				<Item>ARTIFACT_GEAR_01</Item>
 				<Item>ARTIFACT_GEAR_02</Item>
@@ -18480,27 +18480,27 @@
 					<Value>126</Value>
 				</Item>	
 				<Item>
-					<Name>ARTIFACT_PIRATE01</Name>
+					<Name>ARTIFACT_PIRATE_HAT</Name>
 					<Value>127</Value>
 				</Item>	
 				<Item>
-					<Name>ARTIFACT_PIRATE02</Name>
+					<Name>ARTIFACT_PIRATE_VEST</Name>
 					<Value>128</Value>
 				</Item>	
 				<Item>
-					<Name>ARTIFACT_PIRATE03</Name>
+					<Name>ARTIFACT_PIRATE_RING</Name>
 					<Value>129</Value>
 				</Item>	
 				<Item>
-					<Name>ARTIFACT_PIRATE04</Name>
+					<Name>ARTIFACT_PIRATE_HOOK</Name>
 					<Value>130</Value>
 				</Item>	
 				<Item>
-					<Name>ARTIFACT_PIRATE05</Name>
+					<Name>ARTIFACT_PIRATE_BOOTS</Name>
 					<Value>131</Value>
 				</Item>	
 				<Item>
-					<Name>ARTIFACT_PIRATE06</Name>
+					<Name>ARTIFACT_PIRATE_CHARM</Name>
 					<Value>132</Value>
 				</Item>	
 				<Item>
@@ -18628,7 +18628,7 @@
 					<Value>163</Value>
 				</Item>	
 				<Item>
-					<Name>ARTIFACT_UPG_AR1</Name>
+					<Name>ARTIFACT_CLOAK_OF_MALASSA</Name>
 					<Value>164</Value>
 				</Item>	
 				<Item>
@@ -18636,7 +18636,7 @@
 					<Value>165</Value>
 				</Item>
 				<Item>
-					<Name>ARTIFACT_UPG_AR3</Name>
+					<Name>ARTIFACT_SHIELD_OF_WOLF_DUCHY</Name>
 					<Value>166</Value>
 				</Item>	
 				<Item>
@@ -18644,11 +18644,11 @@
 					<Value>167</Value>
 				</Item>
 				<Item>
-					<Name>ARTIFACT_UPG_HM2</Name>
+					<Name>ARTIFACT_HELMET_OF_HEAVENLY_ENLIGHTENMENT</Name>
 					<Value>168</Value>
 				</Item>
 				<Item>
-					<Name>ARTIFACT_UPG_HM3</Name>
+					<Name>ARTIFACT_RING_OF_HOLY_GRIFFIN</Name>
 					<Value>169</Value>
 				</Item>
 				<Item>
@@ -18664,15 +18664,15 @@
 					<Value>172</Value>
 				</Item>
 				<Item>
-					<Name>ARTIFACT_UPG_SW1</Name>
+					<Name>ARTIFACT_BADGE_OF_SUN_CROSS</Name>
 					<Value>173</Value>
 				</Item>
 				<Item>
-					<Name>ARTIFACT_UPG_SW2</Name>
+					<Name>ARTIFACT_PENDANT_OF_INTERFERENCE</Name>
 					<Value>174</Value>
 				</Item>
 				<Item>
-					<Name>ARTIFACT_UPG_SW3</Name>
+					<Name>ARTIFACT_SPIRIT_OF_OPPRESSION</Name>
 					<Value>175</Value>
 				</Item>	
 				<Item>
@@ -18692,7 +18692,7 @@
 					<Value>179</Value>
 				</Item>				
 				<Item>
-					<Name>ARTIFACT_ELRATH_01</Name>
+					<Name>ARTIFACT_RING_OF_FORGOTTEN</Name>
 					<Value>180</Value>
 				</Item>		
 				<Item>
@@ -18700,7 +18700,7 @@
 					<Value>181</Value>
 				</Item>	
 				<Item>
-					<Name>ARTIFACT_GOVERNOR_01</Name>
+					<Name>ARTIFACT_QUILL_OF_MAYOR</Name>
 					<Value>182</Value>
 				</Item>	
 				<Item>

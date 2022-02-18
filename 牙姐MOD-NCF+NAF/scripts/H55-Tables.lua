@@ -1471,133 +1471,6 @@
 	H55_Fire02fx = "/Effects/_(Effect)/Towns/Inferno/DemonGate.xdb#xpointer(/Effect)";
 	H55_Glowfx = "/Effects/_(Effect)/Environment/Inferno/Hellpikes/Hellpikes4x4_3.xdb#xpointer(/Effect)";
 
--- Spells
-	H55_SpellsL1 = {
-		SPELL_SLOW,
-		SPELL_SORROW,
-		SPELL_CURSE,
-		SPELL_MAGIC_ARROW,
-		SPELL_STONE_SPIKES,
-		SPELL_BLESS,
-		SPELL_HASTE,
-		SPELL_MAGIC_FIST,
-		SPELL_WASP_SWARM
-	}; --amount is 9
-
-	H55_SpellsTextL1 = {
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_SLOW.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_SORROW.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_CURSE.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_MAGIC_ARROW.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_STONE_SPIKES.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_BLESS.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_HASTE.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_MAGIC_FIST.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_WASP_SWARM.txt"
-	};
-
-	H55_SpellsL2 = {
-		SPELL_PLAGUE,
-		SPELL_DISRUPTING_RAY,
-		SPELL_ICE_BOLT,
-		SPELL_LIGHTNING_BOLT,
-		SPELL_DISPEL,
-		SPELL_STONESKIN,
-		SPELL_ARCANE_CRYSTAL,
-		SPELL_LAND_MINE,
-		SPELL_ANIMATE_DEAD
-	}; --amount is 9
-
-	H55_SpellsTextL2 = {
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_PLAGUE.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_DISRUPTING_RAY.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_ICE_BOLT.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_LIGHTNING_BOLT.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_DISPEL.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_STONESKIN.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_ARCANE_CRYSTAL.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_LAND_MINE.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_ANIMATE_DEAD.txt"
-	};
-
-	H55_SpellsL3  = {
-		SPELL_WEAKNESS,
-		SPELL_FORGETFULNESS,
-		SPELL_BERSERK,
-		SPELL_FROST_RING,
-		SPELL_FIREBALL,
-		SPELL_DEFLECT_ARROWS,
-		SPELL_BLOODLUST,
-		SPELL_REGENERATION,
-		SPELL_BLADE_BARRIER,
-		SPELL_EARTHQUAKE,
-		SPELL_SUMMON_ELEMENTALS
-	}; --amount is 11
-
-	H55_SpellsTextL3 = {
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_WEAKNESS.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_FORGETFULNESS.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_BERSERK.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_FROST_RING.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_FIREBALL.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_DEFLECT_ARROWS.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_BLOODLUST.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_REGENERATION.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_BLADE_BARRIER.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_EARTHQUAKE.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_SUMMON_ELEMENTALS.txt"
-	};
-
-	H55_SpellsL4  = {
-		SPELL_BLIND,
-		SPELL_UNHOLY_WORD,
-		SPELL_CHAIN_LIGHTNING,
-		SPELL_METEOR_SHOWER,
-		SPELL_ANTI_MAGIC,
-		SPELL_TELEPORT,
-		SPELL_HOLY_WORD,
-		SPELL_FIREWALL,
-		SPELL_PHANTOM,
-		SPELL_SUMMON_HIVE
-	}; --amount is 10
-
-	H55_SpellsTextL4 = {
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_BLIND.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_UNHOLY_WORD.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_CHAIN_LIGHTNING.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_METEOR_SHOWER.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_ANTI_MAGIC.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_TELEPORT.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_HOLY_WORD.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_FIREWALL.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_PHANTOM.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_SUMMON_HIVE.txt"
-	};
-
-	H55_SpellsL5  = {
-		SPELL_HYPNOTIZE,
-		SPELL_VAMPIRISM,
-		SPELL_ARMAGEDDON,
-		SPELL_DEEP_FREEZE,
-		SPELL_IMPLOSION,
-		SPELL_DIVINE_VENGEANCE,
-		SPELL_RESURRECT,
-		SPELL_CELESTIAL_SHIELD,
-		SPELL_CONJURE_PHOENIX
-	}; --amount is 9
-
-	H55_SpellsTextL5 = {
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_HYPNOTIZE.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_VAMPIRISM.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_ARMAGEDDON.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_DEEP_FREEZE.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_IMPLOSION.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_DIVINE_VENGEANCE.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_RESURRECT.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_CELESTIAL_SHIELD.txt",
-		"/Text/Game/Scripts/Spells/spell_name_SPELL_CONJURE_PHOENIX.txt"
-	};
-
 -- Witch Huts
 	H55_WitchMightB = { --Death Knight,Overlord,Demon Lord
 		SKILL_LOGISTICS,
@@ -1864,81 +1737,6 @@
 		[5] = "/Text/Game/Scripts/Summon/Gem.txt"
 	};
 
--- 先知小屋
-	H55_MermaidSwaps = {
-		--Shatter
-			{
-				  {ARTIFACT_RING_OF_UNSUMMONING,HERO_SKILL_SHATTER_SUMMONING_MAGIC,"Text/Game/Artifacts/Ring_Of_Unsummoning/Name.txt","Text/Game/Scripts/Seer/Shattersummoning.txt"}
-				, {ARTIFACT_RING_OF_DEATH,HERO_SKILL_SHATTER_LIGHT_MAGIC,"Text/Game/Artifacts/Ring_of_Death/Name.txt","Text/Game/Scripts/Seer/Shatterlight.txt"}
-				, {ARTIFACT_ICEBERG_SHIELD,HERO_SKILL_SHATTER_DESTRUCTIVE_MAGIC,"Text/Game/Artifacts/Iceberg_shield/Name.txt","Text/Game/Scripts/Seer/Shatterdestructive.txt"}
-				, {ARTIFACT_RING_OF_LIGHTING_PROTECTION,HERO_SKILL_SHATTER_DESTRUCTIVE_MAGIC,"Text/Game/Artifacts/Ring_of_lightning_protection/Name.txt","Text/Game/Scripts/Seer/Shatterdestructive.txt"}
-				, {ARTIFACT_DRAGON_FLAME_TONGUE,HERO_SKILL_SHATTER_DESTRUCTIVE_MAGIC,"Text/Game/Artifacts/Dragon_flame_tongue/Name.txt","Text/Game/Scripts/Seer/Shatterdestructive.txt"}
-				, {ARTIFACT_RIGID_MANTLE,HERO_SKILL_SHATTER_DESTRUCTIVE_MAGIC,"Text/Game/Artifacts/Rigid_Mantle/Name.txt","Text/Game/Scripts/Seer/Shatterdestructive.txt"}
-				, {ARTIFACT_DWARVEN_SMITHY_HUMMER,HERO_SKILL_SHATTER_DESTRUCTIVE_MAGIC,"Text/Game/Artifacts/Dwarven_Smithy_Hammer/Name.txt","Text/Game/Scripts/Seer/Shatterdestructive.txt"}
-				, {ARTIFACT_BEARHIDE_WRAPS,HERO_SKILL_SHATTER_DESTRUCTIVE_MAGIC,"Text/Game/Artifacts/Bearhide_Wraps/name.txt","Text/Game/Scripts/Seer/Shatterdestructive.txt"}
-				, {ARTIFACT_DWARVEN_MITHRAL_CUIRASS,HERO_SKILL_SHATTER_DESTRUCTIVE_MAGIC,"Text/Game/Artifacts/Dwarven_mithral_cuirass/Name.txt","Text/Game/Scripts/Seer/Shatterdestructive.txt"}
-				, {ARTIFACT_DWARVEN_MITHRAL_GREAVES,HERO_SKILL_SHATTER_DARK_MAGIC,"Text/Game/Artifacts/Dwarven_mithral_helmet/Name.txt","Text/Game/Scripts/Seer/Shatterdark.txt"}
-				, {ARTIFACT_DWARVEN_MITHRAL_HELMET,HERO_SKILL_SHATTER_DARK_MAGIC,"Text/Game/Artifacts/Dwarven_mithral_greaves/Name.txt","Text/Game/Scripts/Seer/Shatterdark.txt"}
-				, {ARTIFACT_DWARVEN_MITHRAL_SHIELD,HERO_SKILL_SHATTER_DARK_MAGIC,"Text/Game/Artifacts/Dwarven_mithral_shield/Name.txt","Text/Game/Scripts/Seer/Shatterdark.txt"}
-			}
-		--Normal
-			,{
-				  {ARTIFACT_BOOTS_OF_SWIFTNESS,WARLOCK_FEAT_FAST_AND_FURIOUS,"Text/Game/Artifacts/Boots_of_Swiftness/Name.txt","Text/Game/Skills/Common/Leadership/FastAndFurious/Name.txt"}
-				, {ARTIFACT_RING_OF_LIFE,PERK_TOUGHNESS,"Text/Game/Artifacts/RingOfLife/Name.txt","Text/Game/Skills/Common/Defence/Toughness/Name.txt"}
-				, {ARTIFACT_TREEBORN_QUIVER,PERK_ARCHERY,"Text/Game/Artifacts/Treeborn_Quiver/Name.txt","Text/Game/Skills/Common/Offence/Archery/Name.txt"}
-				, {ARTIFACT_UNICORN_HORN_BOW,PERK_ARCHERY,"Text/Game/Artifacts/UnicornHornBow/Name.txt","Text/Game/Skills/Common/Offence/Archery/Name.txt"}
-				, {ARTIFACT_JINXING_BAND,NECROMANCER_FEAT_DEAD_LUCK,"Text/Game/Artifacts/Jinxing_Band/Name.txt","Text/Game/Skills/Common/Luck/DeadLuck/Name.txt"}
-				, {ARTIFACT_RING_OF_CELERITY,KNIGHT_FEAT_ENCOURAGE,"Text/Game/Artifacts/Ring_of_Celerity/Name.txt","Text/Game/Spells/Hero_Special_Abilities/Encourage/Name.txt"}
-				, {ARTIFACT_MONK_03,HERO_SKILL_PATH_OF_WAR,"Text/Game/Artifacts/Monk_03/Name.txt","Text/Game/Skills/Common/Logistics/PathOfWar/Name.txt"}
-				, {ARTIFACT_WAYFARER_BOOTS,PERK_PATHFINDING,"Text/Game/Artifacts/Wayfarer_boots/Name.txt","Text/Game/Skills/Common/Logistics/Pathfinding/Name.txt"}
-				, {ARTIFACT_BOOTS_OF_LEVITATION,PERK_NAVIGATION,"Text/Game/Artifacts/Boots_of_levitation/Name.txt","Text/Game/Skills/Common/Logistics/Navigation/Name.txt"}
-				, {ARTIFACT_WEREWOLF_CLAW_NECKLACE,PERK_FRENZY,"Text/Game/Artifacts/Werewolf_claw_necklace/Name.txt","Text/Game/Skills/Common/Offence/Frenzy/Name.txt"}
-				, {ARTIFACT_CROWN_OF_MANY_EYES,PERK_SCOUTING,"Text/Game/Artifacts/Crown_of_many_eyes/Name.txt","Text/Game/Skills/Common/Logistics/Scouting/Name.txt"}
-				, {ARTIFACT_CROWN_OF_LEADER,PERK_DIPLOMACY,"Text/Game/Artifacts/Crown_Of_Leader/Name.txt","Text/Game/Skills/Common/Leadership/Diplomacy/Name.txt"}
-			}
-		--Special
-			,{
-				  {
-				  	  {ARTIFACT_PEDANT_OF_MASTERY,SKILL_TRAINING,"Text/Game/Artifacts/Pedant_of_mastery/Name.txt","Text/Game/Scripts/Seer/Training.txt"}
-				  	, {ARTIFACT_PEDANT_OF_MASTERY,SKILL_GATING,"Text/Game/Artifacts/Pedant_of_mastery/Name.txt","Text/Game/Scripts/Seer/Gating.txt"}
-				  	, {ARTIFACT_PEDANT_OF_MASTERY,SKILL_NECROMANCY,"Text/Game/Artifacts/Pedant_of_mastery/Name.txt","Text/Game/Scripts/Seer/Necromancy.txt"}
-				  	, {ARTIFACT_PEDANT_OF_MASTERY,SKILL_AVENGER,"Text/Game/Artifacts/Pedant_of_mastery/Name.txt","Text/Game/Scripts/Seer/Avenger.txt"}
-				  	, {ARTIFACT_PEDANT_OF_MASTERY,SKILL_ARTIFICIER,"Text/Game/Artifacts/Pedant_of_mastery/Name.txt","Text/Game/Scripts/Seer/Artificier.txt"}
-				  	, {ARTIFACT_PEDANT_OF_MASTERY,SKILL_INVOCATION,"Text/Game/Artifacts/Pedant_of_mastery/Name.txt","Text/Game/Scripts/Seer/Invocation.txt"}
-				  	, {ARTIFACT_PEDANT_OF_MASTERY,HERO_SKILL_RUNELORE,"Text/Game/Artifacts/Pedant_of_mastery/Name.txt","Text/Game/Scripts/Seer/Runelore.txt"}
-				  	, {ARTIFACT_PEDANT_OF_MASTERY,HERO_SKILL_DEMONIC_RAGE,"Text/Game/Artifacts/Pedant_of_mastery/Name.txt","Text/Game/Scripts/Seer/Bloodrage.txt"}
-				}
-				, {
-					  {ARTIFACT_RING_OF_MAGI,PERK_ARCANE_TRAINING,"Text/Game/Artifacts/Ring_of_magi/Name.txt","Text/Game/Skills/Common/Sorcery/ArcaneTraining/Name.txt"}
-					, {ARTIFACT_RING_OF_MAGI,HERO_SKILL_VOICE_TRAINING,"Text/Game/Artifacts/Ring_of_magi/Name.txt","Text/Game/Skills/BarbarianSpec/Voice/VoiceTraining/Name.txt"}
-				}
-				, {
-					  {ARTIFACT_BOOK_OF_POWER,PERK_WISDOM,"Text/Game/Artifacts/Book_Of_Power/Name.txt","Text/Game/Skills/Common/Sorcery/Wisdom/Name.txt"}
-					, {ARTIFACT_BOOK_OF_POWER,HERO_SKILL_VOICE_OF_RAGE,"Text/Game/Artifacts/Book_Of_Power/Name.txt","Text/Game/Skills/BarbarianSpec/Voice/VoiceOfRage/Name.txt"}
-				}
-				, {
-					  {ARTIFACT_HELM_OF_ENLIGHTMENT,PERK_INTELLIGENCE,"Text/Game/Artifacts/Helm_of_enlightenment/Name.txt","Text/Game/Skills/Common/Learning/Intelligence/Name.txt"}
-					, {ARTIFACT_HELM_OF_ENLIGHTMENT,HERO_SKILL_BARBARIAN_INTELLIGENCE,"Text/Game/Artifacts/Helm_of_enlightenment/Name.txt","Text/Game/Skills/BarbarianSpec/Learning/WarcryLearning/Name.txt"}
-				}
-				, {
-					  {ARTIFACT_CHAIN_MAIL_OF_ENLIGHTMENT,SKILL_LEARNING,"Text/Game/Artifacts/Chain_mail_of_enlightenment/Name.txt","Text/Game/Scripts/Seer/Enlightment.txt"}
-					, {ARTIFACT_CHAIN_MAIL_OF_ENLIGHTMENT,HERO_SKILL_BARBARIAN_LEARNING,"Text/Game/Artifacts/Chain_mail_of_enlightenment/Name.txt","Text/Game/Scripts/Seer/Learning.txt"}
-				}
-			}
-		--Magic
-			,{
-				  {ARTIFACT_TOME_OF_DESTRUCTION,SKILL_DESTRUCTIVE_MAGIC,"Text/Game/Artifacts/Tome_of_Destruction/Name.txt","Text/Game/Scripts/Seer/Destructivemagic.txt"}
-				, {ARTIFACT_TOME_OF_LIGHT_MAGIC,SKILL_LIGHT_MAGIC,"Text/Game/Artifacts/Tome_of_Light_Magic/Name.txt","Text/Game/Scripts/Seer/Lightmagic.txt"}
-				, {ARTIFACT_TOME_OF_DARK_MAGIC,SKILL_DARK_MAGIC,"Text/Game/Artifacts/Tome_of_Dark_Magic/Name.txt","Text/Game/Scripts/Seer/Darkmagic.txt"}
-				, {ARTIFACT_TOME_OF_SUMMONING_MAGIC,SKILL_SUMMONING_MAGIC,"Text/Game/Artifacts/Tome_of_Summoning_Magic/Name.txt","Text/Game/Scripts/Seer/Summoningmagic.txt"}
-				, {ARTIFACT_TITANS_TRIDENT,PERK_MASTER_OF_LIGHTNINGS,"Text/Game/Artifacts/Titan`s_trident/Name.txt","Text/Game/Skills/Common/DestructiveMagic/MasterOfLightnings/Name.txt"}
-				, {ARTIFACT_EVERCOLD_ICICLE,PERK_MASTER_OF_ICE,"Text/Game/Artifacts/Evercold_icicle/Name.txt","Text/Game/Skills/Common/DestructiveMagic/MasterOfIce/Name.txt"}
-				, {ARTIFACT_PHOENIX_FEATHER_CAPE,PERK_MASTER_OF_FIRE,"Text/Game/Artifacts/Phoenix_feather_cape/Name.txt","Text/Game/Skills/Common/DestructiveMagic/MasterOfFire/Name.txt"}
-				, {ARTIFACT_EARTHSLIDERS,WARLOCK_FEAT_SECRETS_OF_DESTRUCTION,"Text/Game/Artifacts/Earthsliders/Name.txt","Text/Game/Skills/Common/DestructiveMagic/SecretsOfDestruction/Name.txt"}
-				, {ARTIFACT_BAND_OF_CONJURER,PERK_MASTER_OF_CREATURES,"Text/Game/Artifacts/Band_of_Conjurer/Name.txt","Text/Game/Skills/Common/SummoningMagic/MasterOfCreatures/Name.txt"}
-			}
-	};
-
 -- 所有宝物列表
 	TTH_TABLE_Artifacts = {
 		[1] = {
@@ -1974,6 +1772,7 @@
 			, [10] = ARTIFACT_REINCARNATION
 			, [11] = ARTIFACT_WEREWOLF_CLAW_NECKLACE
 			, [12] = ARTIFACT_CROWN_OF_LEADER
+			, [13] = ARTIFACT_SPIRIT_OF_OPPRESSION
 		}
 		, [3] = {
 			[0] = ARTIFACT_NECKLACE_OF_BRAVERY
@@ -1988,6 +1787,12 @@
 			, [9] = ARTIFACT_MONK_02
 			, [10] = ARTIFACT_MONK_03
 			, [11] = ARTIFACT_MONK_04
+			, [12] = ARTIFACT_PIRATE_HAT
+			, [13] = ARTIFACT_PIRATE_VEST
+			, [14] = ARTIFACT_PIRATE_RING
+			, [15] = ARTIFACT_PIRATE_HOOK
+			, [16] = ARTIFACT_PIRATE_BOOTS
+			, [17] = ARTIFACT_PIRATE_CHARM
 		}
 		, [4] = {
 			[0] = ARTIFACT_LEGION_ADVANCED
@@ -2011,6 +1816,11 @@
 			, [18] = ARTIFACT_RING_OF_THE_SHADOWBRAND
 			, [19] = ARTIFACT_DWARVEN_SMITHY_HUMMER
 			, [20] = ARTIFACT_BOOK_OF_POWER
+			, [21] = ARTIFACT_SHIELD_OF_WOLF_DUCHY
+			, [22] = ARTIFACT_RING_OF_FORGOTTEN
+			, [23] = ARTIFACT_PENDANT_OF_INTERFERENCE
+			, [24] = ARTIFACT_BADGE_OF_SUN_CROSS
+			, [25] = ARTIFACT_QUILL_OF_MAYOR
 		}
 		, [5] = {
 			[0] = ARTIFACT_CROWN_OF_COURAGE
@@ -2057,6 +1867,9 @@
 			, [18] = ARTIFACT_TOME_OF_SUMMONING_MAGIC
 			, [19] = ARTIFACT_RING_OF_MACHINE_AFFINITY
 			, [20] = ARTIFACT_PENDANT_OF_STARDUST
+			, [21] = ARTIFACT_RING_OF_HOLY_GRIFFIN
+			, [22] = ARTIFACT_HELMET_OF_HEAVENLY_ENLIGHTENMENT
+			, [23] = ARTIFACT_CLOAK_OF_MALASSA
 		}
 		, [7] = {
 			[0] = ARTIFACT_ANGELIC_ALLIANCE
@@ -2105,18 +1918,25 @@
 		, [28] = ARTIFACT_REINCARNATION
 		, [29] = ARTIFACT_WEREWOLF_CLAW_NECKLACE
 		, [30] = ARTIFACT_CROWN_OF_LEADER
-		, [31] = ARTIFACT_NECKLACE_OF_BRAVERY
-		, [32] = ARTIFACT_LION_HIDE_CAPE
-		, [33] = ARTIFACT_HELM_OF_ENLIGHTMENT
-		, [34] = ARTIFACT_CHAIN_MAIL_OF_ENLIGHTMENT
-		, [35] = ARTIFACT_RING_OF_DEATH
-		, [36] = ARTIFACT_RUNIC_WAR_AXE
-		, [37] = ARTIFACT_RUNIC_WAR_HARNESS
-		, [38] = ARTIFACT_TREEBORN_QUIVER
-		, [39] = ARTIFACT_MONK_01
-		, [40] = ARTIFACT_MONK_02
-		, [41] = ARTIFACT_MONK_03
-		, [42] = ARTIFACT_MONK_04
+		, [31] = ARTIFACT_SPIRIT_OF_OPPRESSION
+		, [32] = ARTIFACT_NECKLACE_OF_BRAVERY
+		, [33] = ARTIFACT_LION_HIDE_CAPE
+		, [34] = ARTIFACT_HELM_OF_ENLIGHTMENT
+		, [35] = ARTIFACT_CHAIN_MAIL_OF_ENLIGHTMENT
+		, [36] = ARTIFACT_RING_OF_DEATH
+		, [37] = ARTIFACT_RUNIC_WAR_AXE
+		, [38] = ARTIFACT_RUNIC_WAR_HARNESS
+		, [39] = ARTIFACT_TREEBORN_QUIVER
+		, [40] = ARTIFACT_MONK_01
+		, [41] = ARTIFACT_MONK_02
+		, [42] = ARTIFACT_MONK_03
+		, [43] = ARTIFACT_MONK_04
+		, [44] = ARTIFACT_PIRATE_HAT
+		, [45] = ARTIFACT_PIRATE_VEST
+		, [46] = ARTIFACT_PIRATE_RING
+		, [47] = ARTIFACT_PIRATE_HOOK
+		, [48] = ARTIFACT_PIRATE_BOOTS
+		, [49] = ARTIFACT_PIRATE_CHARM
 	};
 
 -- 所有法术列表
@@ -11921,6 +11741,7 @@
 			TTH_ENUM.SET_GUARDIAN = 12
 			TTH_ENUM.SET_ROOKIE = 13
 			TTH_ENUM.SET_ELEMENT = 14
+			TTH_ENUM.SET_PIRATE = 15
 
 	-- 文本路径
 		TTH_PATH = {};
@@ -12287,6 +12108,13 @@
 				TTH_PATH.Artifact["Economic"][ARTIFACT_HORN_OF_PLENTY]["Text"] = TTH_PATH.Artifact["Economic"][ARTIFACT_HORN_OF_PLENTY]["Pre"].."Text.txt";
 				TTH_PATH.Artifact["Economic"][ARTIFACT_HORN_OF_PLENTY]["Confirm"] = TTH_PATH.Artifact["Economic"][ARTIFACT_HORN_OF_PLENTY]["Pre"].."Confirm.txt";
 				TTH_PATH.Artifact["Economic"][ARTIFACT_HORN_OF_PLENTY]["Success"] = TTH_PATH.Artifact["Economic"][ARTIFACT_HORN_OF_PLENTY]["Pre"].."Success.txt";
+
+			-- ARTIFACT_QUILL_OF_MAYOR 182 执政官羽饰
+				TTH_PATH.Artifact[ARTIFACT_QUILL_OF_MAYOR] = {};
+				TTH_PATH.Artifact[ARTIFACT_QUILL_OF_MAYOR]["Pre"] = TTH_PATH.Artifact["Pre"].."182/";
+				TTH_PATH.Artifact[ARTIFACT_QUILL_OF_MAYOR]["Text"] = TTH_PATH.Artifact[ARTIFACT_QUILL_OF_MAYOR]["Pre"].."Text.txt";
+				TTH_PATH.Artifact[ARTIFACT_QUILL_OF_MAYOR]["Confirm"] = TTH_PATH.Artifact[ARTIFACT_QUILL_OF_MAYOR]["Pre"].."Confirm.txt";
+				TTH_PATH.Artifact[ARTIFACT_QUILL_OF_MAYOR]["Success"] = TTH_PATH.Artifact[ARTIFACT_QUILL_OF_MAYOR]["Pre"].."Success.txt";
 
 		TTH_PATH.Perk = {};
 		TTH_PATH.Perk["Pre"] = TTH_PATH.FuncPre.."Perk/";
@@ -12666,6 +12494,12 @@
 						, ["NeedWear"] = TTH_ENUM.Yes
 						, [TTH_ENUM.FuncAtGate] = "TTH_ARTI.active102"
 						, [TTH_ENUM.FuncNotAtGate] = "TTH_ARTI.active102"
+					}
+					, [ARTIFACT_QUILL_OF_MAYOR] = {
+						["Text"] = TTH_PATH.Artifact[ARTIFACT_QUILL_OF_MAYOR]["Text"]
+						, ["NeedWear"] = TTH_ENUM.No
+						, [TTH_ENUM.FuncAtGate] = "TTH_ARTI.active182"
+						, [TTH_ENUM.FuncNotAtGate] = "TTH_ARTI.active182"
 					}
 				}
 				, [TTH_ENUM.FuncLevelUp] = {}
@@ -18300,6 +18134,10 @@
 					["Id"] = ARTIFACT_POTION_REVIVE
 					, ["Text"] = "/Text/TTH/Artifact/139-PotionRevive/Text.txt"
 				}
+				, [ARTIFACT_QUILL_OF_MAYOR] = {
+					["Id"] = ARTIFACT_QUILL_OF_MAYOR
+					, ["Text"] = "/Text/TTH/Artifact/182-QuillOfMayor/Text.txt"
+				}
 			}
 
 		-- 宝物套装属性
@@ -18419,7 +18257,7 @@
 			  }
 			  , [TTH_ENUM.SET_DEMONIC] = {
 			    ["Component"] = {
-			      [0] = ARTIFACT_PENDANT_OF_STARDUST
+			      [0] = ARTIFACT_NIGHTMARISH_RING
 			      , [1] = ARTIFACT_HELM_OF_CHAOS
 			    }
 			  }
@@ -18539,6 +18377,34 @@
 			        , [STAT_DEFENCE] = 0
 			        , [STAT_SPELL_POWER] = 0
 			        , [STAT_KNOWLEDGE] = 2
+			        , [STAT_LUCK] = 0
+			        , [STAT_MORALE] = 0
+			      }
+			    }
+			  }
+			  , [TTH_ENUM.SET_PIRATE] = {
+			    ["Component"] = {
+			      [0] = ARTIFACT_PIRATE_HAT
+			      , [1] = ARTIFACT_PIRATE_VEST
+			      , [2] = ARTIFACT_PIRATE_RING
+			      , [3] = ARTIFACT_PIRATE_HOOK
+			      , [4] = ARTIFACT_PIRATE_BOOTS
+			      , [5] = ARTIFACT_PIRATE_CHARM
+			    }
+			    , ["SetBonus"] = {
+			      [2] = {
+			        [STAT_ATTACK] = 2
+			        , [STAT_DEFENCE] = 0
+			        , [STAT_SPELL_POWER] = 0
+			        , [STAT_KNOWLEDGE] = 0
+			        , [STAT_LUCK] = 0
+			        , [STAT_MORALE] = 0
+			      }
+			      , [4] = {
+			        [STAT_ATTACK] = 2
+			        , [STAT_DEFENCE] = 0
+			        , [STAT_SPELL_POWER] = 0
+			        , [STAT_KNOWLEDGE] = 0
 			        , [STAT_LUCK] = 0
 			        , [STAT_MORALE] = 0
 			      }
@@ -20621,4 +20487,19 @@
 							, ["Class"] = TTH_ENUM.Barbarian
 							, ["Group"] = TTH_ENUM.GroupBarbarian
 						}
+			};
+
+		-- 元素魔法
+			TTH_TABLE.ElementMagic = {
+			  SPELL_MAGIC_ARROW
+			  , SPELL_MAGIC_FIST
+			  , SPELL_LIGHTNING_BOLT
+			  , SPELL_ICE_BOLT
+			  , SPELL_FIREBALL
+			  , SPELL_FROST_RING
+			  , SPELL_CHAIN_LIGHTNING
+			  , SPELL_METEOR_SHOWER
+			  , SPELL_IMPLOSION
+			  , SPELL_ARMAGEDDON
+			  , SPELL_STONE_SPIKES
 			};

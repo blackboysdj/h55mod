@@ -602,19 +602,15 @@ doFile('/scripts/combat-startup.lua')
 		function Events_Start_Artifact_Implement_Angelic_Alliance(iSide)
 			local pos = BattleLargeCenterPos[getBattleSize()];
 			local itemCreatureCaster = Thread_Command_SummonCreature(iSide, CREATURE_EMPIRE, 1, pos['x'], pos['y']);
-			sleep(100);
-			-- startThread(Thread_Command_UnitCastGlobalSpell, itemCreatureCaster, SPELL_MASS_BLESS, 0);
-			-- print("ARTIFACT_ANGELIC_ALLIANCE casted SPELL_MASS_BLESS");
-			-- sleep(100);
-			startThread(Thread_Command_UnitCastGlobalSpell, itemCreatureCaster, SPELL_MASS_HASTE, 0);
+			ShowFlyingSign(TTHCS_PATH["Artifact"][ARTIFACT_ANGELIC_ALLIANCE]["Effect"], itemCreatureCaster, 5);
+			startThread(Thread_Command_UnitCastGlobalSpell_WithoutMana, itemCreatureCaster, SPELL_MASS_HASTE);
 			print("ARTIFACT_ANGELIC_ALLIANCE casted SPELL_MASS_HASTE");
-			sleep(100);
-			startThread(Thread_Command_UnitCastGlobalSpell, itemCreatureCaster, SPELL_MASS_BLESS, 0);
+			startThread(Thread_Command_UnitCastGlobalSpell_WithoutMana, itemCreatureCaster, SPELL_MASS_BLESS);
 			print("ARTIFACT_ANGELIC_ALLIANCE casted SPELL_MASS_BLESS");
 			sleep(100);
-			startThread(Thread_Command_RemoveCombatUnit, iSide, itemCreatureCaster);
+			startThread(Thread_Command_RemoveCombatUnit_Uncheck, itemCreatureCaster);
+			repeat sleep(1); until IsCombatUnit(itemCreatureCaster) == nil;
 			print("CREATURE_EMPIRE has left");
-			sleep(100);
 		end;
 		H55SMOD_Start['Artifact'][ARTIFACT_ANGELIC_ALLIANCE] = {
 			[ENUM_SIDE.ATTACKER] = {
@@ -629,16 +625,15 @@ doFile('/scripts/combat-startup.lua')
 		function Events_Start_Artifact_Implement_Sentinel(iSide)
 			local pos = BattleLargeCenterPos[getBattleSize()];
 			local itemCreatureCaster = Thread_Command_SummonCreature(iSide, CREATURE_EMPIRE, 1, pos['x'], pos['y']);
-			sleep(100);
-			startThread(Thread_Command_UnitCastGlobalSpell, itemCreatureCaster, SPELL_MASS_STONESKIN, 0);
+			ShowFlyingSign(TTHCS_PATH["Artifact"][ARTIFACT_SENTINEL]["Effect"], itemCreatureCaster, 5);
+			startThread(Thread_Command_UnitCastGlobalSpell_WithoutMana, itemCreatureCaster, SPELL_MASS_STONESKIN);
 			print("ARTIFACT_SENTINEL casted SPELL_MASS_STONESKIN");
-			sleep(100);
-			startThread(Thread_Command_UnitCastGlobalSpell, itemCreatureCaster, SPELL_MASS_BLOODLUST, 0);
+			startThread(Thread_Command_UnitCastGlobalSpell_WithoutMana, itemCreatureCaster, SPELL_MASS_BLOODLUST);
 			print("ARTIFACT_SENTINEL casted SPELL_MASS_BLOODLUST");
 			sleep(100);
-			startThread(Thread_Command_RemoveCombatUnit, iSide, itemCreatureCaster);
+			startThread(Thread_Command_RemoveCombatUnit_Uncheck, itemCreatureCaster);
+			repeat sleep(1); until IsCombatUnit(itemCreatureCaster) == nil;
 			print("CREATURE_EMPIRE has left");
-			sleep(100);
 		end;
 		H55SMOD_Start['Artifact'][ARTIFACT_SENTINEL] = {
 			[ENUM_SIDE.ATTACKER] = {
@@ -653,19 +648,15 @@ doFile('/scripts/combat-startup.lua')
 		function Events_Start_Artifact_Implement_Curse_Shoulder(iSide)
 			local pos = BattleLargeCenterPos[getBattleSize()];
 			local itemCreatureCaster = Thread_Command_SummonCreature(iSide, CREATURE_DARK_CHAMPION, 1, pos['x'], pos['y']);
-			sleep(100);
-			-- startThread(Thread_Command_UnitCastGlobalSpell, itemCreatureCaster, SPELL_MASS_CURSE, 0);
-			-- print("ARTIFACT_ANGELIC_ALLIANCE casted SPELL_MASS_CURSE");
-			-- sleep(100);
-			startThread(Thread_Command_UnitCastGlobalSpell, itemCreatureCaster, SPELL_MASS_SLOW, 0);
+			ShowFlyingSign(TTHCS_PATH["Artifact"][ARTIFACT_CURSE_SHOULDER]["Effect"], itemCreatureCaster, 5);
+			startThread(Thread_Command_UnitCastGlobalSpell_WithoutMana, itemCreatureCaster, SPELL_MASS_SLOW);
 			print("ARTIFACT_ANGELIC_ALLIANCE casted SPELL_MASS_SLOW");
-			sleep(100);
-			startThread(Thread_Command_UnitCastGlobalSpell, itemCreatureCaster, SPELL_MASS_WEAKNESS, 0);
+			startThread(Thread_Command_UnitCastGlobalSpell_WithoutMana, itemCreatureCaster, SPELL_MASS_WEAKNESS);
 			print("ARTIFACT_ANGELIC_ALLIANCE casted SPELL_MASS_WEAKNESS");
 			sleep(100);
-			startThread(Thread_Command_RemoveCombatUnit, iSide, itemCreatureCaster);
+			startThread(Thread_Command_RemoveCombatUnit_Uncheck, itemCreatureCaster);
+			repeat sleep(1); until IsCombatUnit(itemCreatureCaster) == nil;
 			print("CREATURE_DARK_CHAMPION has left");
-			sleep(100);
 		end;
 		H55SMOD_Start['Artifact'][ARTIFACT_CURSE_SHOULDER] = {
 			[ENUM_SIDE.ATTACKER] = {

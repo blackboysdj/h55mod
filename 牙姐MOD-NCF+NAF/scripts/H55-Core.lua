@@ -2873,6 +2873,87 @@ doFile("/scripts/H55-Settings.lua");
 						return iRecovery;
 					end;
 
+			-- 获得额外经验
+				-- 执行
+					function TTH_GLOBAL.dealGainExp4Winner(iPlayer, strHero)
+						TTH_MAIN.debug("TTH_GLOBAL.dealGainExp4Winner", iPlayer, strHero);
+
+						local iExp = TTH_GLOBAL.calcGainExp4Winner(strHero);
+						if iExp > 0 then
+							TTH_GLOBAL.giveExp(strHero, iExp);
+						end;
+					end;
+				-- 计算
+					function TTH_GLOBAL.calcGainExp4Winner(strHero)
+						local iExp = 0;
+						if HasArtefact(strHero, ARTIFACT_PIRATE_HAT, 1) then
+							iExp = iExp + 200;
+						end;
+						if HasArtefact(strHero, ARTIFACT_PIRATE_RING, 1) then
+							iExp = iExp + 200;
+						end;
+						if TTH_GLOBAL.isBonus8PirateExp(strHero) == TTH_ENUM.Enable then
+							iExp = iExp  * 1.5;
+						end;
+						return iExp;
+					end;
+
+			-- 获得额外金币
+				-- 执行
+					function TTH_GLOBAL.dealGainGold4Winner(iPlayer, strHero)
+						TTH_MAIN.debug("TTH_GLOBAL.dealGainGold4Winner", iPlayer, strHero);
+
+						local iGold = TTH_GLOBAL.calcGainGold4Winner(strHero);
+						if iGold > 0 then
+							TTH_GLOBAL.increaseResource(iPlayer, GOLD, iGold, strHero);
+						end;
+					end;
+				-- 计算
+					function TTH_GLOBAL.calcGainGold4Winner(strHero)
+						local iGold = 0;
+						if HasArtefact(strHero, ARTIFACT_PIRATE_CHARM, 1) then
+							iGold = iGold + 200;
+						end;
+						if TTH_GLOBAL.isBonus8PirateGold(strHero) == TTH_ENUM.Enable then
+							iGold = iGold  * 1.5;
+						end;
+						return iGold;
+					end;
+
+			-- 获得额外资源
+				-- 执行
+					function TTH_GLOBAL.dealGainRes4Winner(iPlayer, strHero)
+						TTH_MAIN.debug("TTH_GLOBAL.dealGainRes4Winner", iPlayer, strHero);
+
+						local arrRes = TTH_GLOBAL.calcGainRes4Winner(strHero);
+						for enumRes, iRes in arrRes do
+							if iRes > 0 then
+								TTH_GLOBAL.increaseResource(iPlayer, enumRes, iRes, strHero);
+							end;
+						end;
+					end;
+				-- 计算
+					function TTH_GLOBAL.calcGainRes4Winner(strHero)
+						local arrRes = {
+							[WOOD] = 0
+							, [ORE] = 0
+							, [MERCURY] = 0
+							, [CRYSTAL] = 0
+							, [SULFUR] = 0
+							, [GEM] = 0
+						};
+						if HasArtefact(strHero, ARTIFACT_PIRATE_HOOK, 1) then
+							local enumRes = random(GEM);
+							arrRes[enumRes] = 1;
+						end;
+						if TTH_GLOBAL.isBonus8PirateRes(strHero) == TTH_ENUM.Enable then
+							for enumRes = WOOD, GEM do
+								arrRes[enumRes] = arrRes[enumRes] + 1;
+							end;
+						end;
+						return arrRes;
+					end;
+
 		-- 宝物套装属性
 			TTH_VARI.artifactSetBonus8Hero = {};
 
@@ -2924,6 +3005,34 @@ doFile("/scripts/H55-Settings.lua");
 					function TTH_GLOBAL.isBonus8MonkMove(strHero)
 						local bBonusEnable = TTH_ENUM.Unable;
 						if TTH_GLOBAL.getSetComponentCount(strHero, TTH_ENUM.SET_MONK) >= 4 then
+							bBonusEnable = TTH_ENUM.Enable;
+						end;
+						return bBonusEnable;
+					end;
+
+			-- 掠夺者
+				-- 3件套50%战后额外经验加成
+					function TTH_GLOBAL.isBonus8PirateExp(strHero)
+						local bBonusEnable = TTH_ENUM.Unable;
+						if TTH_GLOBAL.getSetComponentCount(strHero, TTH_ENUM.SET_PIRATE) >= 3 then
+							bBonusEnable = TTH_ENUM.Enable;
+						end;
+						return bBonusEnable;
+					end;
+
+				-- 5件套50%战后额外金币加成
+					function TTH_GLOBAL.isBonus8PirateGold(strHero)
+						local bBonusEnable = TTH_ENUM.Unable;
+						if TTH_GLOBAL.getSetComponentCount(strHero, TTH_ENUM.SET_PIRATE) >= 5 then
+							bBonusEnable = TTH_ENUM.Enable;
+						end;
+						return bBonusEnable;
+					end;
+
+				-- 6件套50%战后额外资源加成
+					function TTH_GLOBAL.isBonus8PirateRes(strHero)
+						local bBonusEnable = TTH_ENUM.Unable;
+						if TTH_GLOBAL.getSetComponentCount(strHero, TTH_ENUM.SET_PIRATE) >= 6 then
 							bBonusEnable = TTH_ENUM.Enable;
 						end;
 						return bBonusEnable;
@@ -3528,6 +3637,17 @@ doFile("/scripts/H55-Settings.lua");
 				return iCount;
 			end;
 
+		-- 获取英雄已学会元素魔法数量
+			function TTH_GLOBAL.countHeroKnowElementSpell(strHero)
+				local iCount = 0;
+				for i, iMagicId in TTH_TABLE.ElementMagic do
+					if KnowHeroSpell(strHero, iMagicId) ~= nil then
+						iCount = iCount + 1;
+					end;
+				end;
+				return iCount;
+			end;
+
 		-- 特殊
 			-- 士气<-5 转化为亡灵巫师
 				TTH_VARI.semiNecro = {};
@@ -3797,7 +3917,7 @@ doFile("/scripts/H55-Settings.lua");
 					local iCountDwelling2 = length(TTH_GLOBAL.listDwelling8Player(iPlayer, 2));
 					local iCountDwelling3 = length(TTH_GLOBAL.listDwelling8Player(iPlayer, 3));
 					local iCountDwelling4 = length(TTH_GLOBAL.listDwelling8Player(iPlayer, 4));
-					local iExtraOperTimes = TTH_MANAGE.getExtraOperTimes(iPlayer);
+					local iExtraOperTimes = TTH_MANAGE.getExtraOperTimes8Player(iPlayer);
 					local iExtraAbilityQuota = TTH_MANAGE.getExtraAbilityQuota(iPlayer);
 					local iDefaultTerritoryRadius = TTH_MANAGE.getDefaultTerritoryRadius(iPlayer);
 					local iExtraTerritoryRadius = TTH_MANAGE.getExtraTerritoryRadius(iPlayer);
@@ -5190,7 +5310,9 @@ doFile("/scripts/H55-Settings.lua");
 			-- 获取内政操作次数（重置值）
 				function TTH_MANAGE.getOperTimes(strHero)
 					local iPlayer = TTH_GLOBAL.GetObjectOwner(strHero);
-					local iTimes = TTH_MANAGE.getDefaultOperTimes(strHero) + TTH_MANAGE.getExtraOperTimes(iPlayer);
+					local iTimes = TTH_MANAGE.getDefaultOperTimes(strHero)
+						+ TTH_MANAGE.getExtraOperTimes8Hero(strHero)
+						+ TTH_MANAGE.getExtraOperTimes8Player(iPlayer);
 					return iTimes;
 				end;
 
@@ -5205,8 +5327,17 @@ doFile("/scripts/H55-Settings.lua");
 					return iTimes;
 				end;
 
+			-- 获取内政操作次数（重置值）（对英雄加成的额外值）
+				function TTH_MANAGE.getExtraOperTimes8Hero(strHero)
+					local iTimes = 0;
+					if TTH_VARI.recordQuillOfMayor[strHero] ~= nil then
+						iTimes = TTH_VARI.recordQuillOfMayor[strHero];
+					end;
+					return iTimes;
+				end;
+
 			-- 获取内政操作次数（重置值）（通过政绩加成的额外值）
-				function TTH_MANAGE.getExtraOperTimes(iPlayer)
+				function TTH_MANAGE.getExtraOperTimes8Player(iPlayer)
 					local iTimes = TTH_VARI.arrRecordPoint[iPlayer]["OperTimes"];
 					return iTimes;
 				end;
@@ -5224,6 +5355,14 @@ doFile("/scripts/H55-Settings.lua");
 						iTimes = objMayor["Oper"]["MaxTimes"] - objMayor["Oper"]["UsedTimes"];
 					end;
 					return iTimes;
+				end;
+
+			-- 增加本周内政操作次数最大值
+				function TTH_MANAGE.addWeeklyOperTimes(strHero, iTimes)
+					local objMayor = TTH_VARI.arrMayor[strHero];
+					if objMayor ~= nil then
+						objMayor["Oper"]["MaxTimes"] = objMayor["Oper"]["MaxTimes"] + 1;
+					end;
 				end;
 
 			-- 重置内政操作次数
@@ -7264,6 +7403,9 @@ doFile("/scripts/H55-Settings.lua");
 						-- 通用
 							TTH_GLOBAL.dealRecoveryMana4Winner(iPlayerWinner, strHeroWinner); -- 战斗胜利后魔法值恢复
 							TTH_GLOBAL.dealRecoveryMove4Winner(iPlayerWinner, strHeroWinner); -- 战斗胜利后移动力恢复
+							TTH_GLOBAL.dealGainExp4Winner(iPlayerWinner, strHeroWinner); -- 战斗胜利后获得经验值
+							TTH_GLOBAL.dealGainGold4Winner(iPlayerWinner, strHeroWinner); -- 战斗胜利后获得金币
+							TTH_GLOBAL.dealGainRes4Winner(iPlayerWinner, strHeroWinner); -- 战斗胜利后资源
 
 						TTH_TALENT.combatResultNikolay(iPlayerWinner, strHeroWinner, iCombatIndex); -- 尼科莱
 						TTH_TALENT.combatResultCalid2(iPlayerWinner, strHeroWinner, iCombatIndex); -- 卡利德
@@ -9808,6 +9950,61 @@ doFile("/scripts/H55-Settings.lua");
 				end;
 			end;
 
+		-- ARTIFACT_CLOAK_OF_MALASSA 164 玛拉萨的斗篷
+			TTH_VARI.artifact[ARTIFACT_CLOAK_OF_MALASSA] = {};
+			function TTH_ARTI.deal164(iPlayer, strHero)
+				TTH_MAIN.debug("TTH_ARTI.deal164", iPlayer, strHero);
+
+				if TTH_VARI.artifact[ARTIFACT_CLOAK_OF_MALASSA][strHero] == nil then
+					TTH_VARI.artifact[ARTIFACT_CLOAK_OF_MALASSA][strHero] = 0;
+				end;
+				if HasArtefact(strHero, ARTIFACT_CLOAK_OF_MALASSA, 1) ~= nil then
+					local iCountMagic = TTH_GLOBAL.countHeroKnowElementSpell(strHero);
+					if iCountMagic > TTH_VARI.artifact[ARTIFACT_CLOAK_OF_MALASSA][strHero] then
+						local iStatBonusNumber = iCountMagic - TTH_VARI.artifact[ARTIFACT_CLOAK_OF_MALASSA][strHero];
+						TTH_GLOBAL.signChangeHeroStat(strHero, STAT_SPELL_POWER, iStatBonusNumber);
+						TTH_VARI.artifact[ARTIFACT_CLOAK_OF_MALASSA][strHero] = iCountMagic;
+					end;
+				else
+					if TTH_VARI.artifact[ARTIFACT_CLOAK_OF_MALASSA][strHero] > 0 then
+						local iStatBonusNumber = -1 * TTH_VARI.artifact[ARTIFACT_CLOAK_OF_MALASSA][strHero];
+						TTH_GLOBAL.signChangeHeroStat(strHero, STAT_SPELL_POWER, iStatBonusNumber);
+						TTH_VARI.artifact[ARTIFACT_CLOAK_OF_MALASSA][strHero] = 0;
+					end;
+				end;
+			end;
+
+		-- ARTIFACT_QUILL_OF_MAYOR 182 执政官羽饰
+			TTH_VARI.recordQuillOfMayor = {};
+			function TTH_ARTI.active182(iPlayer, strHero)
+				TTH_COMMON.nextNavi(TTH_PATH.Artifact[ARTIFACT_QUILL_OF_MAYOR]["Text"]);
+
+				TTH_ARTI.confirmActive182(iPlayer, strHero)
+			end;
+			function TTH_ARTI.confirmActive182(iPlayer, strHero)
+				local strArtifactName = TTH_TABLE.Artifact[ARTIFACT_QUILL_OF_MAYOR]["Text"];
+
+				local strPathMain={
+					TTH_PATH.Artifact[ARTIFACT_QUILL_OF_MAYOR]["Confirm"]
+					;strArtifactName=strArtifactName
+				};
+				local strCallbackOk = "TTH_ARTI.implActive103("..iPlayer..","..TTH_COMMON.psp(strHero)..")";
+				local strCallbackCancel = "TTH_COMMON.cancelOption()";
+				TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+			end;
+			function TTH_ARTI.implActive103(iPlayer, strHero, strTown)
+				RemoveArtefact(strHero, ARTIFACT_QUILL_OF_MAYOR);
+				if TTH_VARI.recordQuillOfMayor[strHero] == nil then
+					TTH_VARI.recordQuillOfMayor[strHero] = 0;
+				end;
+				TTH_VARI.recordQuillOfMayor[strHero] = TTH_VARI.recordQuillOfMayor[strHero] + 1;
+				local strText = TTH_PATH.Artifact[ARTIFACT_QUILL_OF_MAYOR]["Success"];
+  			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+  				TTH_MANAGE.addWeeklyOperTimes(strHero, 1);
+    		end;
+				TTH_GLOBAL.sign(strHero, strText);
+			end;
+
 	-- 技能
 		TTH_PERK = {};
 
@@ -10321,11 +10518,31 @@ doFile("/scripts/H55-Settings.lua");
 	-- test
 		TTH_TEST = {};
 		function TTH_TEST.test12()
-			local strHero = 'Orrin';
-			GiveArtefact(strHero, ARTIFACT_DIMENSION_DOOR);
-			GiveArtefact(strHero, ARTIFACT_POTION_MANA);
-			GiveArtefact(strHero, ARTIFACT_POTION_ENERGY);
-			GiveArtefact(strHero, ARTIFACT_POTION_REVIVE);
+			local strHero = GetPlayerHeroes(1)[0];
+			-- GiveArtefact(strHero, ARTIFACT_DIMENSION_DOOR);
+			-- GiveArtefact(strHero, ARTIFACT_POTION_MANA);
+			-- GiveArtefact(strHero, ARTIFACT_POTION_ENERGY);
+			-- GiveArtefact(strHero, ARTIFACT_POTION_REVIVE);
+
+			-- GiveArtefact(strHero, ARTIFACT_PIRATE_HAT);
+			-- GiveArtefact(strHero, ARTIFACT_PIRATE_VEST);
+			-- GiveArtefact(strHero, ARTIFACT_PIRATE_RING);
+			-- GiveArtefact(strHero, ARTIFACT_PIRATE_HOOK);
+			-- GiveArtefact(strHero, ARTIFACT_PIRATE_BOOTS);
+			-- GiveArtefact(strHero, ARTIFACT_PIRATE_CHARM);
+
+			-- GiveArtefact(strHero, ARTIFACT_SHIELD_OF_WOLF_DUCHY);
+			-- GiveArtefact(strHero, ARTIFACT_RING_OF_HOLY_GRIFFIN);
+			-- GiveArtefact(strHero, ARTIFACT_CLOAK_OF_MALASSA);
+			-- GiveArtefact(strHero, ARTIFACT_SPIRIT_OF_OPPRESSION);
+			-- GiveArtefact(strHero, ARTIFACT_BADGE_OF_SUN_CROSS);
+			-- GiveArtefact(strHero, ARTIFACT_PENDANT_OF_INTERFERENCE);
+			-- GiveArtefact(strHero, ARTIFACT_HELMET_OF_HEAVENLY_ENLIGHTENMENT);
+			-- GiveArtefact(strHero, ARTIFACT_RING_OF_FORGOTTEN);
+
+			-- CreateArtifact("", ARTIFACT_SHIELD_OF_WOLF_DUCHY, 77, 191, 0);
+			GiveArtefact(strHero, ARTIFACT_QUILL_OF_MAYOR);
+			CreateArtifact("", ARTIFACT_QUILL_OF_MAYOR, 77, 191, 0);
 		end;
 		function TTH_TEST.test11(iLevel)
 			TTH_TEST.test(GetObjectNamesByType("TOWN")[0], iLevel)
@@ -10577,11 +10794,6 @@ doFile("/scripts/H55-Settings.lua");
 								for iIndex, strHero in arrHero do
 									TTH_GLOBAL.setGameVar4HeroArtifact(iPlayer, strHero); -- 保存全局参数，英雄携带宝物
 									TTH_GLOBAL.upgradeArtifactSetBonus8Hero(iPlayer, strHero); -- 宝物套装属性更新
-									TTH_GLOBAL.makeHeroNecro(iPlayer, strHero); -- 士气<-5 转化为亡灵巫师
-
-									if strHero == "Sandro" then
-										TTH_TALENT.dealSandro(iPlayer, strHero);
-									end;
 								end;
 
 								-- 若玩家是人类
@@ -10593,6 +10805,14 @@ doFile("/scripts/H55-Settings.lua");
 													TTH_GLOBAL.resetMemoryMentorVisitor();
 													TTH_GLOBAL.upgradeSkillBonus8Hero(iPlayer, strHero);
 												end;
+
+											TTH_ARTI.deal164(iPlayer, strHero); -- 玛拉萨的斗篷
+
+											if strHero == "Sandro" then
+												TTH_TALENT.dealSandro(iPlayer, strHero);
+											end;
+
+											TTH_GLOBAL.makeHeroNecro(iPlayer, strHero); -- 士气<-5 转化为亡灵巫师
 										end;
 									end;
 							end;

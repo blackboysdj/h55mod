@@ -5939,6 +5939,9 @@ doFile("/scripts/H55-Settings.lua");
 			}
 			, ["TownManage"] = {
 				["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage.txt"
+				, ["NotAtGate"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/NotAtGate.txt"
+				}
 				, ["ConvertTown"] = {
 					["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/ConvertTown.txt"
 					, ["HasMayor"] = {
@@ -6079,8 +6082,14 @@ doFile("/scripts/H55-Settings.lua");
 					, ["ConfirmExist"] = {
 						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/BuyConsume/ConfirmExist.txt"
 					}
-					, ["Success"] = {
-						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/BuyConsume/Success.txt"
+					, ["IsFull"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/BuyConsume/IsFull.txt"
+					}
+					, ["SuccessBuy"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/BuyConsume/SuccessBuy.txt"
+					}
+					, ["SuccessSupply"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/TownManage/BuyConsume/SuccessSupply.txt"
 					}
 				}
 			}
@@ -6270,6 +6279,9 @@ doFile("/scripts/H55-Settings.lua");
 					local strTown = TTH_GLOBAL.isHeroAtTownGate(strHero);
 					if strTown ~= nil then
 						TTH_MANAGE.dealTownManageAtGate(iPlayer, strHero, strTown);
+					else
+						local strText = TTH_TABLE.KingManagePath["TownManage"]["NotAtGate"]["Text"];
+						TTH_GLOBAL.sign(strHero, strText);
 					end;
 				end;
 
@@ -6824,14 +6836,14 @@ doFile("/scripts/H55-Settings.lua");
 						}
 						, [2] = {
 							["ArtifactId"] = ARTIFACT_POTION_MANA
-							, ["Cost"] = 10000
-							, ["WeekStep"] = 1000
+							, ["Cost"] = 6000
+							, ["WeekStep"] = 600
 							, ["MaxTimes"] = 3
 						}
 						, [3] = {
 							["ArtifactId"] = ARTIFACT_POTION_ENERGY
-							, ["Cost"] = 10000
-							, ["WeekStep"] = 1000
+							, ["Cost"] = 8000
+							, ["WeekStep"] = 800
 							, ["MaxTimes"] = 3
 						}
 						, [4] = {
@@ -6949,21 +6961,29 @@ doFile("/scripts/H55-Settings.lua");
 					-- 购买药水
 						function TTH_MANAGE.dealPotion(iPlayer, strHero, iPotionId)
 							local objBuy = TTH_TABLE.BuyConsumeInfo[iPotionId];
+							local iMaxTimes = objBuy["MaxTimes"];
 							local iArtifactId = objBuy["ArtifactId"];
-							local iRemainTimes = 3;
+							local iRemainTimes = 0;
 							local strTemplate = TTH_TABLE.KingManagePath["TownManage"]["BuyConsume"]["ConfirmNotExist"]["Text"];
-							if HasArtefact(strHero, objBuy["ArtifactId"], 0) ~= nil then
-								if TTH_VARI.recordPotion[iPotionId] ~= nil
-									and TTH_VARI.recordPotion[iPotionId][strHero] ~= nil then
-									iRemainTimes = TTH_VARI.recordPotion[iPotionId][strHero]["RemainTimes"];
+							if HasArtefact(strHero, iArtifactId, 0) ~= nil then
+								if TTH_VARI.recordPotion[iArtifactId] ~= nil
+									and TTH_VARI.recordPotion[iArtifactId][strHero] ~= nil then
+									if TTH_VARI.recordPotion[iArtifactId][strHero]["RemainTimes"] == 3 then
+										local strPathMain = {
+											TTH_TABLE.KingManagePath["TownManage"]["BuyConsume"]["IsFull"]["Text"]
+											;strArtifactName=TTH_TABLE.Artifact[iArtifactId]["Text"]
+										};
+										TTH_GLOBAL.sign(strHero, strPathMain);
+										return nil;
+									end;
+									iRemainTimes = TTH_VARI.recordPotion[iArtifactId][strHero]["RemainTimes"];
 									strTemplate = TTH_TABLE.KingManagePath["TownManage"]["BuyConsume"]["ConfirmExist"]["Text"];
 								end;
 							end;
-							local iMaxTimes = objBuy["MaxTimes"];
-							local iCost = TTH_COMMON.round(iRemainTimes / iMaxTimes * (objBuy["Cost"] + (TTH_VARI.absoluteWeek - 1) * objBuy["WeekStep"]));
+							local iCost = TTH_COMMON.round((iMaxTimes - iRemainTimes) / iMaxTimes * (objBuy["Cost"] + (TTH_VARI.absoluteWeek - 1) * objBuy["WeekStep"]));
 							local strPathMain = {
 								strTemplate
-								;strArtifactName=TTH_TABLE.Artifact[objBuy["ArtifactId"]]["Text"]
+								;strArtifactName=TTH_TABLE.Artifact[iArtifactId]["Text"]
 								,iRemainTimes=iRemainTimes
 								,iMaxTimes=iMaxTimes
 								,iCost=iCost
@@ -6984,23 +7004,18 @@ doFile("/scripts/H55-Settings.lua");
 						function TTH_MANAGE.implPotion(iPlayer, strHero, iPotionId, iCost)
 							local objBuy = TTH_TABLE.BuyConsumeInfo[iPotionId];
 							local iArtifactId = objBuy["ArtifactId"];
-							local iRemainTimes = 3;
-							if HasArtefact(strHero, objBuy["ArtifactId"], 0) ~= nil then
-								if TTH_VARI.recordPotion[iArtifactId] ~= nil
-									and TTH_VARI.recordPotion[iArtifactId][strHero] ~= nil then
-									iRemainTimes = TTH_VARI.recordPotion[iArtifactId][strHero]["RemainTimes"];
-								end;
-							end;
-							local iMaxTimes = objBuy["MaxTimes"];
 							TTH_GLOBAL.reduceResource(iPlayer, GOLD, iCost);
-							if HasArtefact(strHero, ARTIFACT_INHERITANCE, 0) ~= nil then
-								TTH_ARTI.resetTimesPotion(strHero, iPotionId);
+							local strTemplate = "";
+							if HasArtefact(strHero, iArtifactId, 0) ~= nil then
+								TTH_ARTI.resetTimesPotion(iPlayer, strHero, iPotionId);
+								strTemplate = TTH_TABLE.KingManagePath["TownManage"]["BuyConsume"]["SuccessSupply"]["Text"];
 							else
-								GiveArtefact(strHero, objBuy["ArtifactId"], 1);
+								GiveArtefact(strHero, iArtifactId, 1);
 								TTH_ARTI.initPotion(iPlayer, strHero, iPotionId);
+								strTemplate = TTH_TABLE.KingManagePath["TownManage"]["BuyConsume"]["SuccessBuy"]["Text"];
 							end;
 							local strPathMain = {
-								TTH_TABLE.KingManagePath["TownManage"]["BuyConsume"]["Success"]["Text"]
+								strTemplate
 								;strArtifactName=TTH_TABLE.Artifact[iArtifactId]["Text"]
 							};
 							TTH_GLOBAL.sign(strHero, strPathMain);
@@ -9298,6 +9313,14 @@ doFile("/scripts/H55-Settings.lua");
 						["RemainTimes"] = iMaxTimes
 					};
 				end;
+			end;
+			function TTH_ARTI.resetTimesPotion(iPlayer, strHero, iPotionId)
+				local objBuy = TTH_TABLE.BuyConsumeInfo[iPotionId];
+				local iArtifactId = objBuy["ArtifactId"];
+				local iMaxTimes = objBuy["MaxTimes"];
+				TTH_VARI.recordPotion[iArtifactId][strHero] = {
+					["RemainTimes"] = iMaxTimes
+				};
 			end;
 			-- ARTIFACT_POTION_MANA 137 魔力药水
 				function TTH_ARTI.active137(iPlayer, strHero)

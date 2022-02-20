@@ -7926,6 +7926,11 @@ doFile("/scripts/H55-Settings.lua");
       		local strText = TTH_PATH.Talent[strHero]["Success"]
     			TTH_GLOBAL.sign(strHero, strText);
     		end;
+      	function TTH_TALENT.resetWeeklyRedHeavenHero06(iPlayer, strHero)
+      		TTH_MAIN.debug("TTH_TALENT.resetWeeklyRedHeavenHero06", iPlayer, strHero);
+
+      		TTH_VARI.talent[strHero]["CurrentTimes"] = TTH_VARI.talent[strHero]["MaxTimes"];
+      	end;
 
 		-- Preserve
 			-- :TODO Kyrre 凯琳

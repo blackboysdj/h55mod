@@ -12399,6 +12399,9 @@
 					["Nathaniel"] = {
 						[TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyNathaniel"
 					}
+					, ["RedHeavenHero06"] = {
+						[TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyRedHeavenHero06"
+					}
 					, ["Rissa"] = {
 						[TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyRissa"
 					}

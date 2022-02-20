@@ -9497,6 +9497,7 @@ doFile("/scripts/H55-Settings.lua");
 				if TTH_VARI.recordPotion[iArtifactId][strHero] == nil then
 					TTH_VARI.recordPotion[iArtifactId][strHero] = {
 						["RemainTimes"] = iMaxTimes
+						, ["Day"] = 0
 					};
 				end;
 			end;
@@ -9504,9 +9505,7 @@ doFile("/scripts/H55-Settings.lua");
 				local objBuy = TTH_TABLE.BuyConsumeInfo[iPotionId];
 				local iArtifactId = objBuy["ArtifactId"];
 				local iMaxTimes = objBuy["MaxTimes"];
-				TTH_VARI.recordPotion[iArtifactId][strHero] = {
-					["RemainTimes"] = iMaxTimes
-				};
+				TTH_VARI.recordPotion[iArtifactId][strHero]["RemainTimes"] = iMaxTimes;
 			end;
 			-- ARTIFACT_POTION_MANA 137 魔力药水
 				function TTH_ARTI.active137(iPlayer, strHero)
@@ -9518,6 +9517,15 @@ doFile("/scripts/H55-Settings.lua");
 				function TTH_ARTI.checkPreActive1374RemainTimes(iPlayer, strHero)
 					if TTH_VARI.recordPotion[ARTIFACT_POTION_MANA][strHero]["RemainTimes"] <= 0 then
 						local strText = TTH_PATH.Artifact["Potion"]["NotEnoughTimes"];
+						TTH_GLOBAL.sign(strHero, strText);
+						return nil;
+					end;
+
+					TTH_ARTI.checkPreActive1374HasUsedToday(iPlayer, strHero);
+				end;
+				function TTH_ARTI.checkPreActive1374HasUsedToday(iPlayer, strHero)
+					if TTH_VARI.recordPotion[ARTIFACT_POTION_MANA][strHero]["Day"] == TTH_VARI.day then
+						local strText = TTH_PATH.Artifact["Potion"]["HasUsedToday"];
 						TTH_GLOBAL.sign(strHero, strText);
 						return nil;
 					end;
@@ -9542,6 +9550,7 @@ doFile("/scripts/H55-Settings.lua");
 				end;
 				function TTH_ARTI.implActive137(iPlayer, strHero)
 					TTH_VARI.recordPotion[ARTIFACT_POTION_MANA][strHero]["RemainTimes"] = TTH_VARI.recordPotion[ARTIFACT_POTION_MANA][strHero]["RemainTimes"] - 1;
+					TTH_VARI.recordPotion[ARTIFACT_POTION_MANA][strHero]["Day"] = TTH_VARI.day;
 					ChangeHeroStat(strHero, STAT_MANA_POINTS, TTH_FINAL.NUM_MAX);
 					local strText = TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_MANA]["Success"];
 					TTH_GLOBAL.sign(strHero, strText);
@@ -9556,6 +9565,15 @@ doFile("/scripts/H55-Settings.lua");
 				function TTH_ARTI.checkPreActive1384RemainTimes(iPlayer, strHero)
 					if TTH_VARI.recordPotion[ARTIFACT_POTION_ENERGY][strHero]["RemainTimes"] <= 0 then
 						local strText = TTH_PATH.Artifact["Potion"]["NotEnoughTimes"];
+						TTH_GLOBAL.sign(strHero, strText);
+						return nil;
+					end;
+
+					TTH_ARTI.checkPreActive1384HasUsedToday(iPlayer, strHero);
+				end;
+				function TTH_ARTI.checkPreActive1384HasUsedToday(iPlayer, strHero)
+					if TTH_VARI.recordPotion[ARTIFACT_POTION_ENERGY][strHero]["Day"] == TTH_VARI.day then
+						local strText = TTH_PATH.Artifact["Potion"]["HasUsedToday"];
 						TTH_GLOBAL.sign(strHero, strText);
 						return nil;
 					end;
@@ -9580,6 +9598,7 @@ doFile("/scripts/H55-Settings.lua");
 				end;
 				function TTH_ARTI.implActive138(iPlayer, strHero)
 					TTH_VARI.recordPotion[ARTIFACT_POTION_ENERGY][strHero]["RemainTimes"] = TTH_VARI.recordPotion[ARTIFACT_POTION_ENERGY][strHero]["RemainTimes"] - 1;
+					TTH_VARI.recordPotion[ARTIFACT_POTION_ENERGY][strHero]["Day"] = TTH_VARI.day;
 					ChangeHeroStat(strHero, STAT_MOVE_POINTS, TTH_FINAL.NUM_MAX);
 					local strText = TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_ENERGY]["Success"];
 					TTH_GLOBAL.sign(strHero, strText);
@@ -9611,6 +9630,15 @@ doFile("/scripts/H55-Settings.lua");
 
 					TTH_ARTI.confirmActive139(iPlayer, strHero);
 				end;
+				function TTH_ARTI.checkPreActive1394HasUsedToday(iPlayer, strHero)
+					if TTH_VARI.recordPotion[ARTIFACT_POTION_REVIVE][strHero]["Day"] == TTH_VARI.day then
+						local strText = TTH_PATH.Artifact["Potion"]["HasUsedToday"];
+						TTH_GLOBAL.sign(strHero, strText);
+						return nil;
+					end;
+
+					TTH_ARTI.confirmActive139(iPlayer, strHero);
+				end;
 				function TTH_ARTI.confirmActive139(iPlayer, strHero)
 					local iArtifactId = ARTIFACT_POTION_REVIVE;
 					local strArtifactName = TTH_TABLE.Artifact[iArtifactId]["Text"];
@@ -9629,6 +9657,7 @@ doFile("/scripts/H55-Settings.lua");
 				end;
 				function TTH_ARTI.implActive139(iPlayer, strHero)
 					TTH_VARI.recordPotion[ARTIFACT_POTION_REVIVE][strHero]["RemainTimes"] = TTH_VARI.recordPotion[ARTIFACT_POTION_REVIVE][strHero]["RemainTimes"] - 1;
+					TTH_VARI.recordPotion[ARTIFACT_POTION_REVIVE][strHero]["Day"] = TTH_VARI.day;
 					local iCoef = 0.3 + GetHeroStat(strHero, STAT_KNOWLEDGE) * 0.01;
 					local iCombatIndex = TTH_VARI.combatIndex;
 					local iCountStacksWinner = GetSavedCombatArmyCreaturesCount(iCombatIndex, 1);
@@ -10877,21 +10906,9 @@ doFile("/scripts/H55-Settings.lua");
 	-- test
 		TTH_TEST = {};
 		function TTH_TEST.test13()
-			local arr1 = {
-				[0] = 111
-				, [1] = 222
-			}
-			local arr2 = {
-				[0] = 333
-				, [1] = 444
-				, [2] = 555
-			}
-			local arrPost = TTH_COMMON.concat(arr1, arr2)
-			print(arrPost)
-			local arrPost1 = TTH_COMMON.concat(arr1, nil)
-			print(arrPost1)
-			local arrPost2 = TTH_COMMON.concat(nil, arr2)
-			print(arrPost2)
+			ExecConsoleCommand("enable_cheats")
+			ExecConsoleCommand("add_skill 30")
+
 		end;
 		function TTH_TEST.test12()
 			local strHero = GetPlayerHeroes(1)[0];

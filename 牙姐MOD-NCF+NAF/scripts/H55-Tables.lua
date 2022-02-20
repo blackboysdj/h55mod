@@ -12070,6 +12070,7 @@
 				TTH_PATH.Artifact["Potion"] = {};
 				TTH_PATH.Artifact["Potion"]["Pre"] = TTH_PATH.Artifact["Pre"].."Potion/";
 				TTH_PATH.Artifact["Potion"]["NotEnoughTimes"] = TTH_PATH.Artifact["Potion"]["Pre"].."NotEnoughTimes.txt";
+				TTH_PATH.Artifact["Potion"]["HasUsedToday"] = TTH_PATH.Artifact["Potion"]["Pre"].."HasUsedToday.txt";
 				TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_MANA] = {};
 				TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_MANA]["Pre"] = TTH_PATH.Artifact["Potion"]["Pre"].."137-PotionMana/";
 				TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_MANA]["Text"] = TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_MANA]["Pre"].."Text.txt";

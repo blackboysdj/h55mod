@@ -6,13 +6,6 @@ ShowFlyingSign
 
 新版本调整
   幽魂矿井主动使用
-  外交术主动使用
-
-
-    按等级+3计算，英雄领地范围+20
-    按等级+3计算，英雄可管辖城镇配额+1
-    按等级+3计算，英雄周内政操作次数上限+1
-
   乌尔夫斯坦边境哨塔数量在信息管理→个人里面显示
   额外的政绩总加成，下周才生效
   募兵按基础生物产量+增产建筑（生物产量需要校对，狂战士应该是6+4，现在是10）
@@ -105,6 +98,19 @@ exe修改
 <body_bright>1) <color=0099FF>铁魔像<body_bright>被攻击减员后会恢复生命值<color_default>（数值为: 当前数量*5）
 <color=orange>内政官特效:
 <body_bright>1) 通过内政<color=yellow>【建造建筑】<body_bright>按百分比减少资源消耗<color_default>（数值为: 0.2+英雄等级*0.01）
+
+EPA_LOW_END
+ERA_CENTER
+EPA_MARGIN
+EPA_HIGH_END
+
+
+EPA_LOW_END
+ERA_CENTER
+EPA_MARGIN
+EPA_HIGH_END
+ERA_LOW_END
+EPA_CENTER
 
 术语
   <left>

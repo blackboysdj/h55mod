@@ -30,13 +30,13 @@
 	<Icon128/>
 	<InternalName>Berein</InternalName>
 	<Class>HERO_CLASS_DEATHKNIGHT</Class>
-	<Specialization/>
+	<Specialization>HERO_SPEC_COURTIER</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_NECROMANCY</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Necropolis55/Heir_of_Undeath/Name.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Necropolis55/Heir_of_Undeath/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Necromancy/078-Berein/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Necromancy/078-Berein/Description.txt"/>
 	<SpecializationIcon href="/Textures/HeroScreen/Specializations/Necropolis/Heir_of_Undeath.xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Necropolis/Necropolis_Markal_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall href="/Textures/Icons/Heroes/Necropolis/Necropolis_Markal_128x128_64.(Texture).xdb#xpointer(/Texture)"/>

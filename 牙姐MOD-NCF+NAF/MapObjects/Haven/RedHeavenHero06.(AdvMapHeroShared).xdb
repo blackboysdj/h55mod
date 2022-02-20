@@ -35,8 +35,8 @@
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_LIGHT_MAGIC</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Haven55/Resource/Name.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Haven55/Resource/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Heaven/017-RedHeavenHero06/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Heaven/017-RedHeavenHero06/Description.txt"/>
 	<SpecializationIcon href="/Textures/Interface/MessageBox/rGems.xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/UI/H5A2/Icons/Heroes/Portrets128x128/RedHeaven_Gabrielle.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>
@@ -60,7 +60,7 @@
 			</Item>
 		</skills>
 		<perkIDs>
-			<Item>HERO_SKILL_RECRUITMENT</Item>
+			<Item>HERO_SKILL_ESTATES</Item>
 		</perkIDs>
 		<spellIDs>
 			<Item>SPELL_STONESKIN</Item>

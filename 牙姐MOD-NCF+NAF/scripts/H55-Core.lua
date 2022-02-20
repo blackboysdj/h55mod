@@ -150,17 +150,18 @@ doFile("/scripts/H55-Settings.lua");
 				function TTH_COMMON.concat(arr1, arr2)
 				  local retArr = {};
 				  if arr1 ~= nil then
-					  local lenArr1 = length(arr1);
+				  	local lenArr1 = length(arr1);
 					  for i = 0, lenArr1 - 1 do
 					  	retArr[i] = arr1[i];
 					  end
-					  if arr2 ~= nil then
-						  local lenArr2 = length(arr2);
-					    for i = (lenArr1), (lenArr1 + lenArr2 - 1) do
-					      retArr[i] = arr2[i - lenArr1];
-					    end;
-				    end;
 				  end;
+			  	local lenRetArr = length(retArr);
+		  	  if arr2 ~= nil then
+		  		  local lenArr2 = length(arr2);
+		  	    for i = lenRetArr, lenRetArr + lenArr2 - 1 do
+		  	      retArr[i] = arr2[i - lenRetArr];
+		  	    end;
+		      end;
 					return retArr;
 				end;
 
@@ -2675,6 +2676,18 @@ doFile("/scripts/H55-Settings.lua");
 					return iPower;
 				end;
 
+			-- 获取对象当前战力
+				function TTH_GLOBAL.getPower8Object(strHero)
+					local arrCreature4Object = TTH_GLOBAL.getObjectCreatureInfo(strHero);
+					local iPower = 0;
+					for i = 0, 6 do
+						if arrCreature4Object[i]["Id"] ~= 0 then
+							iPower = iPower + TTH_TABLE_NCF_CREATURES[arrCreature4Object[i]["Id"]]["POWER"] * arrCreature4Object[i]["Count"];
+						end;
+					end;
+					return iPower;
+				end;
+
 		-- 全局参数
 			-- 保存英雄等级到游戏全局参数中
 				function TTH_GLOBAL.setGameVar4HeroLevel(strHero)
@@ -4202,6 +4215,7 @@ doFile("/scripts/H55-Settings.lua");
 
 			-- 是否携带对应资源宝物
 				function TTH_VISIT.checkPreMineBuilding4Human(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback)
+					TTH_TALENT.visitMineRedHeavenHero06(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback);
 					local iArtifactId = TTH_TABLE.MineBuilding[strBuildingType]["ArtifactId"];
 					if HasArtefact(strHero, iArtifactId, 0) ~= nil then
 						TTH_VISIT.confirmMineBuilding4Human(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback);
@@ -7756,7 +7770,7 @@ doFile("/scripts/H55-Settings.lua");
 			end;
 
 		-- Heaven
-      -- Nathaniel 埃兰妮 001
+      -- Nathaniel 001 埃兰妮
       	function TTH_TALENT.initNathaniel(strHero)
 					TTH_MAIN.debug("TTH_TALENT.initNathaniel", nil, strHero);
 
@@ -7857,6 +7871,61 @@ doFile("/scripts/H55-Settings.lua");
 					end;
 					return iTownValue;
       	end;
+
+      -- RedHeavenHero06 17 加布里埃尔
+      	function TTH_TALENT.initRedHeavenHero06(strHero)
+					TTH_MAIN.debug("TTH_TALENT.initRedHeavenHero06", nil, strHero);
+
+      		TTH_VARI.talent[strHero] = {
+						["CurrentTimes"] = 1
+						, ["MaxTimes"] = 1
+					};
+      	end;
+      	function TTH_TALENT.visitMineRedHeavenHero06(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback)
+    			TTH_COMMON.initNavi(TTH_PATH.Talent[strHero]["Text"]);
+
+      		TTH_TALENT.checkPreActiveRedHeavenHero064Times(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback)
+      	end;
+      	function TTH_TALENT.checkPreActiveRedHeavenHero064Times(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback)
+      		if TTH_VARI.talent[strHero]["CurrentTimes"] <= 0 then
+      			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+      				if TTH_MANAGE.getRemainOperTimes(strHero) <= 0 then
+			    			TTH_GLOBAL.sign(strHero, TTH_PATH.Talent[strHero]["NotEnoughTimes"]);
+		    				return nil;
+      				end;
+      			else
+		    			TTH_GLOBAL.sign(strHero, TTH_PATH.Talent[strHero]["NotEnoughTimes"]);
+	    				return nil;
+		    		end;
+      		end;
+
+      		TTH_TALENT.confirmVisitMineRedHeavenHero06(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback);
+      	end;
+    		function TTH_TALENT.confirmVisitMineRedHeavenHero06(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback)
+    			local strBuildingText = TTH_PATH.Mine[strBuildingType];
+    			local objBuilding = TTH_VARI.arrMineBuilding[strBuildingName];
+    			local iBonusLevel = objBuilding["BonusLevel"];
+    			local strPathMain = {
+    				TTH_PATH.Talent[strHero]["Confirm"]
+    				;strBuildingText=strBuildingText
+    				,iBonusLevel=iBonusLevel
+    			};
+    			local strCallbackOk = "TTH_TALENT.implVisitMineRedHeavenHero06("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strBuildingName)..","..TTH_COMMON.psp(strBuildingType)..","..TTH_COMMON.psp(funcCallback)..")";
+    			local strCallbackCancel = "TTH_COMMON.cancelOption()";
+    			TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+    		end;
+    		function TTH_TALENT.implVisitMineRedHeavenHero06(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback)
+      		if TTH_VARI.talent[strHero]["CurrentTimes"] > 0 then
+    				TTH_VARI.talent[strHero]["CurrentTimes"] = TTH_VARI.talent[strHero]["CurrentTimes"] - 1;
+		    	else
+      			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+		    			TTH_MANAGE.useOperTimes(strHero);
+		    		end;
+      		end;
+    			TTH_VARI.arrMineBuilding[strBuildingName]["BonusLevel"] = TTH_VARI.arrMineBuilding[strBuildingName]["BonusLevel"] + 1;
+      		local strText = TTH_PATH.Talent[strHero]["Success"]
+    			TTH_GLOBAL.sign(strHero, strText);
+    		end;
 
 		-- Preserve
 			-- :TODO Kyrre 凯琳
@@ -9026,6 +9095,123 @@ doFile("/scripts/H55-Settings.lua");
       	end;
 
 		-- Fortress
+			-- Rolf 132 洛尔夫
+				TTH_VARI.recordDiplomacy = {};
+				function TTH_TALENT.initRolf(iPlayer, strHero)
+					if TTH_VARI.talent[strHero] == nil then
+						TTH_VARI.talent[strHero] = {
+							["OperTimes"] = 1
+							, ["MaxOperTimes"] = 1
+						};
+					end;
+				end;
+				function TTH_TALENT.activeRolf(iPlayer, strHero)
+					TTH_COMMON.nextNavi(TTH_PATH.Talent[strHero]["Text"]);
+
+					TTH_TALENT.initRolf(iPlayer, strHero);
+					TTH_TALENT.checkPreActiveRolf4NotEnoughTimes(iPlayer, strHero);
+				end;
+				function TTH_TALENT.checkPreActiveRolf4NotEnoughTimes(iPlayer, strHero)
+					local strText = TTH_PATH.Talent[strHero]["NotEnoughTimes"];
+	    		if TTH_VARI.talent[strHero]["OperTimes"] <= 0 then
+	    			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+	    				if TTH_MANAGE.getRemainOperTimes(strHero) <= 0 then
+			    			TTH_GLOBAL.sign(strHero, strText);
+		    				return nil;
+	    				end;
+	    			else
+		    			TTH_GLOBAL.sign(strHero, strText);
+	    				return nil;
+		    		end;
+	    		end;
+
+					TTH_TALENT.checkPreActiveRolf4SuitableCreature(iPlayer, strHero);
+				end;
+				function TTH_TALENT.checkPreActiveRolf4SuitableCreature(iPlayer, strHero)
+					local arrOptionCreature = {};
+					local arrCreature = GetObjectNamesByType("CREATURE");
+					local i = 1;
+					for iIndexCreature, strCreatureStack in arrCreature do
+						if TTH_GLOBAL.getDistance(strHero, strCreatureStack) <= 5 then
+							local iPosX, iPosY, iPosZ = GetObjectPosition(strCreatureStack);
+							arrOptionCreature[i] = {
+								["Id"] = strCreatureStack
+								, ["Text"] = {
+										TTH_PATH.Talent[strHero]["OptionTemplate"]
+										;iPosX=iPosX
+										,iPosY=iPosY
+									}
+								, ["Callback"] = "TTH_TALENT.confirmActiveRolf"
+							};
+							i = i + 1;
+						end;
+					end;
+					if length(arrOptionCreature) <= 0 then
+						local strText = TTH_PATH.Talent[strHero]["NoSuitableCreature"];
+						TTH_GLOBAL.sign(strHero, strText);
+						return nil;
+					end;
+
+					local strPathOption = TTH_PATH.Talent[strHero]["RadioTips"];
+					TTH_COMMON.optionRadio(iPlayer, strHero, arrOptionCreature, strPathOption);
+				end;
+				function TTH_TALENT.confirmActiveRolf(iPlayer, strHero, strCreatureStack)
+					local arrTemplateCreature = {"", "", "", "", "", "", ""};
+					local strTemplateCreature = TTH_PATH.Talent[strHero]["TemplateCreature"];
+					local arrCreatureSlot = TTH_GLOBAL.getObjectCreatureInfo(strCreatureStack);
+					local iHeroLevel = GetHeroLevel(strHero);
+					local iCoef = 0.1 + iHeroLevel * 0.02;
+					for iSlot = 0, 6 do
+						if arrCreatureSlot[iSlot]["Id"] > 0 then
+							local iSlotCount = TTH_COMMON.round(iCoef * arrCreatureSlot[iSlot]["Count"]);
+							arrTemplateCreature[iSlot] = {
+								strTemplateCreature
+								;strCreatureName=TTH_TABLE_NCF_CREATURES[arrCreatureSlot[iSlot]["Id"]]["NAME"]
+								,iCreatureCount=iSlotCount
+							};
+						end;
+					end;
+
+					local strPathMain = {
+						TTH_PATH.Talent[strHero]["Confirm"]
+						;strTemplateCreature0=arrTemplateCreature[0]
+						,strTemplateCreature1=arrTemplateCreature[1]
+						,strTemplateCreature2=arrTemplateCreature[2]
+						,strTemplateCreature3=arrTemplateCreature[3]
+						,strTemplateCreature4=arrTemplateCreature[4]
+						,strTemplateCreature5=arrTemplateCreature[5]
+						,strTemplateCreature6=arrTemplateCreature[6]
+					};
+					local strCallbackOk = "TTH_TALENT.implActiveRolf("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strCreatureStack)..")";
+					local strCallbackCancel = "TTH_COMMON.cancelOption()";
+					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+				end;
+				function TTH_TALENT.implActiveRolf(iPlayer, strHero, strCreatureStack)
+	    		if TTH_VARI.talent[strHero]["OperTimes"] > 0 then
+	    			TTH_VARI.talent[strHero]["OperTimes"] = TTH_VARI.talent[strHero]["OperTimes"] - 1;
+	    		else
+	    			TTH_MANAGE.useOperTimes(strHero);
+	    		end;
+	    		local arrCreatureSlot = TTH_GLOBAL.getObjectCreatureInfo(strCreatureStack);
+	    		local iHeroLevel = GetHeroLevel(strHero);
+	    		local iCoef = 0.1 + iHeroLevel * 0.02;
+	    		for iSlot = 0, 6 do
+	    			local iCreatureId = arrCreatureSlot[iSlot]["Id"];
+	    			if iCreatureId > 0 then
+	    				local iSlotCount = TTH_COMMON.round(iCoef * arrCreatureSlot[iSlot]["Count"]);
+	    				RemoveObjectCreatures(strCreatureStack, iCreatureId, iSlotCount);
+	    			end;
+	    		end;
+	    		local strText = TTH_PATH.Talent[strHero]["Success"];
+	    		TTH_GLOBAL.sign(strHero, strText);
+				end;
+				function TTH_TALENT.resetWeeklyRolf(iPlayer, strHero)
+					TTH_MAIN.debug("TTH_TALENT.resetWeeklyRolf", iPlayer, strHero);
+
+					TTH_TALENT.initRolf(iPlayer, strHero);
+	    		TTH_VARI.talent[strHero]["OperTimes"] = TTH_VARI.talent[strHero]["MaxOperTimes"];
+				end;
+
 			-- Ufretin 133 尤佛瑞汀
       	function TTH_TALENT.initUfretin(strHero)
 					TTH_MAIN.debug("TTH_TALENT.initUfretin", nil, strHero);
@@ -10011,11 +10197,11 @@ doFile("/scripts/H55-Settings.lua");
 					TTH_PATH.Artifact[ARTIFACT_QUILL_OF_MAYOR]["Confirm"]
 					;strArtifactName=strArtifactName
 				};
-				local strCallbackOk = "TTH_ARTI.implActive103("..iPlayer..","..TTH_COMMON.psp(strHero)..")";
+				local strCallbackOk = "TTH_ARTI.implActive182("..iPlayer..","..TTH_COMMON.psp(strHero)..")";
 				local strCallbackCancel = "TTH_COMMON.cancelOption()";
 				TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
 			end;
-			function TTH_ARTI.implActive103(iPlayer, strHero, strTown)
+			function TTH_ARTI.implActive182(iPlayer, strHero, strTown)
 				RemoveArtefact(strHero, ARTIFACT_QUILL_OF_MAYOR);
 				if TTH_VARI.recordQuillOfMayor[strHero] == nil then
 					TTH_VARI.recordQuillOfMayor[strHero] = 0;
@@ -10212,7 +10398,7 @@ doFile("/scripts/H55-Settings.lua");
 				local iGold = GetPlayerResource(iPlayer, GOLD);
 				local iEstatesGold = TTH_COMMON.round(iGold * iCoef);
 				local iDuration = 7 + 1 - TTH_VARI.dayOfWeek;
-				local iExpectGold = TTH_PERK.calcExpectEstatesGold(iEstatesGold, iDuration);
+				local iExpectGold = TTH_PERK.calcExpectEstatesGold(strHero, iEstatesGold, iDuration);
 
 				local strPathMain={
 					TTH_PATH.Perk[HERO_SKILL_ESTATES]["Confirm"]
@@ -10256,7 +10442,7 @@ doFile("/scripts/H55-Settings.lua");
 						if strEstateHero == strHero
 							and objEstates["EstatesGold"] > 0 then
 							local iDuration = iCurrentDay - objEstates["EstatesDay"];
-							local iExpectGold = TTH_PERK.calcExpectEstatesGold(objEstates["EstatesGold"], iDuration);
+							local iExpectGold = TTH_PERK.calcExpectEstatesGold(strHero, objEstates["EstatesGold"], iDuration);
 							objEstates["EstatesGold"] = 0;
 							objEstates["EstatesDay"] = 0;
 							TTH_GLOBAL.putSettleResource(iPlayer, GOLD, iExpectGold);
@@ -10277,12 +10463,162 @@ doFile("/scripts/H55-Settings.lua");
 				end;
     		TTH_VARI.recordEstates[strHero]["OperTimes"] = TTH_VARI.recordEstates[strHero]["MaxOperTimes"];
 			end;
-			function TTH_PERK.calcExpectEstatesGold(iEstatesGold, iDuration)
+			function TTH_PERK.calcExpectEstatesGold(strHero, iEstatesGold, iDuration)
 				local iExpectEstatesGold = TTH_COMMON.round(iEstatesGold * (1 + TTH_FINAL.ESTATES_COEF * iDuration));
-				if iExpectEstatesGold > iEstatesGold + TTH_FINAL.ESTATES_MAX then
-					iExpectEstatesGold = iEstatesGold + TTH_FINAL.ESTATES_MAX
+				local strHeroJenova = "Jenova";
+				if strHero == strHeroJenova then
+					iExpectEstatesGold = TTH_COMMON.round(iEstatesGold * (1 + TTH_FINAL.ESTATES_COEF * 1.5 * iDuration));
+				end;
+				if strHero == strHeroJenova then
+					if iExpectEstatesGold > iEstatesGold + TTH_FINAL.ESTATES_MAX * 1.5 then
+						iExpectEstatesGold = iEstatesGold + TTH_FINAL.ESTATES_MAX * 1.5
+					end;
+				else
+					if iExpectEstatesGold > iEstatesGold + TTH_FINAL.ESTATES_MAX then
+						iExpectEstatesGold = iEstatesGold + TTH_FINAL.ESTATES_MAX
+					end;
 				end;
 				return iExpectEstatesGold;
+			end;
+
+		-- HERO_SKILL_DIPLOMACY 030 外交术
+			TTH_VARI.recordDiplomacy = {};
+			function TTH_PERK.init030(iPlayer, strHero)
+				if TTH_VARI.recordDiplomacy[strHero] == nil then
+					TTH_VARI.recordDiplomacy[strHero] = {
+						["OperTimes"] = 1
+						, ["MaxOperTimes"] = 1
+					};
+				end;
+			end;
+			function TTH_PERK.active030(iPlayer, strHero)
+				TTH_COMMON.nextNavi(TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Text"]);
+
+				TTH_PERK.init030(iPlayer, strHero);
+				TTH_PERK.checkPreActive0304NotEnoughTimes(iPlayer, strHero);
+			end;
+			function TTH_PERK.checkPreActive0304NotEnoughTimes(iPlayer, strHero)
+				local strText = TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["NotEnoughTimes"];
+    		if TTH_VARI.recordDiplomacy[strHero]["OperTimes"] <= 0 then
+    			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+    				if TTH_MANAGE.getRemainOperTimes(strHero) <= 0 then
+		    			TTH_GLOBAL.sign(strHero, strText);
+	    				return nil;
+    				end;
+    			else
+	    			TTH_GLOBAL.sign(strHero, strText);
+    				return nil;
+	    		end;
+    		end;
+
+				TTH_PERK.checkPreActive0304SuitableCreature(iPlayer, strHero);
+			end;
+			function TTH_PERK.checkPreActive0304SuitableCreature(iPlayer, strHero)
+				local arrOptionCreature = {};
+				local arrCreature = GetObjectNamesByType("CREATURE");
+				local i = 1;
+				for iIndexCreature, strCreatureStack in arrCreature do
+					if TTH_GLOBAL.getDistance(strHero, strCreatureStack) <= 5 then
+						local iPosX, iPosY, iPosZ = GetObjectPosition(strCreatureStack);
+						arrOptionCreature[i] = {
+							["Id"] = strCreatureStack
+							, ["Text"] = {
+									TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["OptionTemplate"]
+									;iPosX=iPosX
+									,iPosY=iPosY
+								}
+							, ["Callback"] = "TTH_PERK.confirmActive030"
+						};
+						i = i + 1;
+					end;
+				end;
+				if length(arrOptionCreature) <= 0 then
+					local strText = TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["NoSuitableCreature"];
+					TTH_GLOBAL.sign(strHero, strText);
+					return nil;
+				end;
+
+				local strPathOption = TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["RadioTips"];
+				TTH_COMMON.optionRadio(iPlayer, strHero, arrOptionCreature, strPathOption);
+			end;
+			function TTH_PERK.confirmActive030(iPlayer, strHero, strCreatureStack)
+				local arrTemplateCreature = {"", "", "", "", "", "", ""};
+				local strTemplateCreature = TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["TemplateCreature"];
+				local arrCreatureSlot = TTH_GLOBAL.getObjectCreatureInfo(strCreatureStack);
+				local iCount = 1;
+				local strHeroMarkal = "Markal";
+				if strHero == strHeroMarkal then
+					iCount = 2;
+				end;
+				for iSlot = 0, 6 do
+					if arrCreatureSlot[iSlot]["Id"] > 0 then
+						local iSlotCount = iCount;
+						if arrCreatureSlot[iSlot]["Count"] < iSlotCount then
+							iSlotCount = arrCreatureSlot[iSlot]["Count"];
+						end;
+						arrTemplateCreature[iSlot] = {
+							strTemplateCreature
+							;strCreatureName=TTH_TABLE_NCF_CREATURES[arrCreatureSlot[iSlot]["Id"]]["NAME"]
+							,iCreatureCount=iSlotCount
+						};
+					end;
+				end;
+
+				local strPathMain = {
+					TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Confirm"]
+					;strTemplateCreature0=arrTemplateCreature[0]
+					,strTemplateCreature1=arrTemplateCreature[1]
+					,strTemplateCreature2=arrTemplateCreature[2]
+					,strTemplateCreature3=arrTemplateCreature[3]
+					,strTemplateCreature4=arrTemplateCreature[4]
+					,strTemplateCreature5=arrTemplateCreature[5]
+					,strTemplateCreature6=arrTemplateCreature[6]
+				};
+				local strCallbackOk = "TTH_PERK.implActive030("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strCreatureStack)..")";
+				local strCallbackCancel = "TTH_COMMON.cancelOption()";
+				TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+			end;
+			function TTH_PERK.implActive030(iPlayer, strHero, strCreatureStack)
+    		if TTH_VARI.recordDiplomacy[strHero]["OperTimes"] > 0 then
+    			TTH_VARI.recordDiplomacy[strHero]["OperTimes"] = TTH_VARI.recordDiplomacy[strHero]["OperTimes"] - 1;
+    		else
+    			TTH_MANAGE.useOperTimes(strHero);
+    		end;
+    		local arrCreatureSlot = TTH_GLOBAL.getObjectCreatureInfo(strCreatureStack);
+    		local iCount = 1;
+    		local strHeroMarkal = "Markal";
+    		local strHeroBerein = "Berein";
+    		if strHero == strHeroMarkal then
+    			iCount = 2;
+    		end;
+    		for iSlot = 0, 6 do
+    			if arrCreatureSlot[iSlot]["Id"] > 0 then
+    				local iSlotCount = iCount;
+    				if arrCreatureSlot[iSlot]["Count"] < iSlotCount then
+    					iSlotCount = arrCreatureSlot[iSlot]["Count"];
+    				end;
+    				local iCreatureId = arrCreatureSlot[iSlot]["Id"];
+						RemoveObjectCreatures(strCreatureStack, iCreatureId, iSlotCount);
+						if strHero == strHeroBerein then
+							local iLenNecCreatures = length(List_Nec_AllCreatures);
+							for iIndexNecCreatures = 1, iLenNecCreatures do
+								if contains(List_Nec_AllCreatures[iIndexNecCreatures][1], iCreatureId) ~= nil then
+									iCreatureId = List_Nec_AllCreatures[iIndexNecCreatures][2];
+								end;
+							end;
+						end;
+    				TTH_GLOBAL.addCreature4Hero8Sign(strHero, iCreatureId, iSlotCount, TTH_ENUM.AddCreature);
+    			end;
+    		end;
+    		SetMonsterCourageAndMood(strCreatureStack, iPlayer, MONSTER_COURAGE_CAN_FLEE_JOIN, MONSTER_MOOD_AGGRESSIVE);
+    		sleep(0.1);
+    		MakeHeroInteractWithObject(strHero, strCreatureStack);
+			end;
+			function TTH_PERK.resetWeekly030(iPlayer, strHero)
+				TTH_MAIN.debug("TTH_PERK.resetWeekly030", iPlayer, strHero);
+
+				TTH_PERK.init030(iPlayer, strHero);
+    		TTH_VARI.recordDiplomacy[strHero]["OperTimes"] = TTH_VARI.recordDiplomacy[strHero]["MaxOperTimes"];
 			end;
 
 		-- HERO_SKILL_FORTUNATE_ADVENTURER 033 资源富饶
@@ -10540,6 +10876,23 @@ doFile("/scripts/H55-Settings.lua");
 
 	-- test
 		TTH_TEST = {};
+		function TTH_TEST.test13()
+			local arr1 = {
+				[0] = 111
+				, [1] = 222
+			}
+			local arr2 = {
+				[0] = 333
+				, [1] = 444
+				, [2] = 555
+			}
+			local arrPost = TTH_COMMON.concat(arr1, arr2)
+			print(arrPost)
+			local arrPost1 = TTH_COMMON.concat(arr1, nil)
+			print(arrPost1)
+			local arrPost2 = TTH_COMMON.concat(nil, arr2)
+			print(arrPost2)
+		end;
 		function TTH_TEST.test12()
 			local strHero = GetPlayerHeroes(1)[0];
 			-- GiveArtefact(strHero, ARTIFACT_DIMENSION_DOOR);
@@ -10622,7 +10975,7 @@ doFile("/scripts/H55-Settings.lua");
 			TTH_TEST.test(GetObjectNamesByType('TOWN')[0], iLevel);
 		end;
 		function TTH_TEST.test2(strHero)
-			TTH_MANAGE.resetRemainOperTimes8Hero(strHero);
+			TTH_MANAGE.resetOperTimes(strHero);
 			TTH.run();
 		end;
 		function TTH_TEST.test(strTown, iLevel)
@@ -11133,138 +11486,6 @@ doFile("/scripts/H55-Settings.lua");
 
 	startThread(TTH_GLOBAL.questionTeam);
 	startThread(TTH_MAIN.init);
-
--- 英雄接触野怪 触发器
-	TTH_FUNC_HERO_TOUCH_CREATURE = {};
-	TTH_LIST_HERO_TOUCH_CREATURE = {"Welygg", "Rolf", "Markal", "Berein"};
-	function TTH_FUNC_HERO_TOUCH_CREATURE.Welygg(strHero, strCreature)
-		TTH_HeroSpec_Courtier(strHero, strCreature);
-	end;
-	function TTH_FUNC_HERO_TOUCH_CREATURE.Rolf(strHero, strCreature)
-		TTH_HeroSpec_Courtier(strHero, strCreature);
-		local arrCreature4Object = TTH_GLOBAL.getObjectCreatureInfo(strCreature);
-		local iLevel = GetHeroLevel(strHero);
-		for i = 0, 6 do
-			if arrCreature4Object[i]["Id"] > 0 then
-				local iCount = TTH_COMMON.round(arrCreature4Object[i]["Count"] * 0.005 * iLevel);
-				if iCount <= 1 then
-					iCount = 1;
-				end;
-				RemoveObjectCreatures(strCreature, arrCreature4Object[i]["Id"], iCount);
-			end;
-		end;
-	end;
-	function TTH_FUNC_HERO_TOUCH_CREATURE.Markal(strHero, strCreature)
-		TTH_HeroSpec_Courtier(strHero, strCreature);
-		local arrCreature4Object = TTH_GLOBAL.getObjectCreatureInfo(strCreature);
-		local iLevel = GetHeroLevel(strHero);
-		for i = 0, 6 do
-			if arrCreature4Object[i]["Id"] > 0 then
-				local iCount = TTH_COMMON.round(arrCreature4Object[i]["Count"] * 0.0025 * iLevel);
-				if iCount <= 1 then
-					iCount = 1;
-				end;
-				RemoveObjectCreatures(strCreature, arrCreature4Object[i]["Id"], iCount);
-				AddHeroCreatures(strHero, arrCreature4Object[i]["Id"], iCount);
-			end;
-		end;
-	end;
-	function TTH_FUNC_HERO_TOUCH_CREATURE.Berein(strHero, strCreature)
-		TTH_HeroSpec_Courtier(strHero, strCreature);
-		local arrCreature4Object = TTH_GLOBAL.getObjectCreatureInfo(strCreature);
-		local iLevel = GetHeroLevel(strHero);
-		for i = 0, 6 do
-			if arrCreature4Object[i]["Id"] > 0 then
-				local iCount = TTH_COMMON.round(arrCreature4Object[i]["Count"] * 0.0025 * iLevel);
-				if iCount <= 1 then
-					iCount = 1;
-				end;
-				RemoveObjectCreatures(strCreature, arrCreature4Object[i]["Id"], iCount);
-				local iLenNecCreatures = length(List_Nec_AllCreatures);
-				for iIndexNecCreatures = 1, iLenNecCreatures do
-					if contains(List_Nec_AllCreatures[iIndexNecCreatures][1], arrCreature4Object[i]["Id"]) ~= nil then
-						AddHeroCreatures(strHero, List_Nec_AllCreatures[iIndexNecCreatures][2], iCount);
-					end;
-				end;
-			end;
-		end;
-	end;
-	function TTH_HeroSpec_Courtier(strHero, strCreature)
-		SetMonsterCourageAndMood(strCreature, GetObjectOwner(strHero), MONSTER_COURAGE_CAN_FLEE_JOIN, MONSTER_MOOD_AGGRESSIVE);
-	end;
-
-	function TTH_TRIGGER_HERO_TOUCH_CREATURE(strHero, strCreature)
-		if TTH_GLOBAL.isAi(GetObjectOwner(strHero)) ~= 1 then
-			if IsObjectExists(strCreature) == not nil then
-				for i, itemHero in  TTH_LIST_HERO_TOUCH_CREATURE do
-					if IsHeroAlive(itemHero) == true   then
-						if (strHero == itemHero) then
-							TTH_FUNC_HERO_TOUCH_CREATURE[itemHero](strHero, strCreature);
-							break;
-						end;
-					end;
-				end;
-				Trigger(OBJECT_TOUCH_TRIGGER, strCreature, nil);
-				SetObjectEnabled(strCreature, true);
-				sleep(0.1);
-				MakeHeroInteractWithObject(strHero, strCreature);
-				Trigger(OBJECT_TOUCH_TRIGGER, strCreature, "TTH_TRIGGER_HERO_TOUCH_CREATURE");
-			end;
-		else
-			SetObjectEnabled(strCreature, true);
-			sleep(0.1);
-			MakeHeroInteractWithObject(strHero, strCreature);
-		end;
-	end;
-
-	TTH_COMMON.setTrigger2ObjectType("CREATURE", OBJECT_TOUCH_TRIGGER, "TTH_TRIGGER_HERO_TOUCH_CREATURE", nil);
-
-	function TTH_UNITY_CONCAT(arr1, arr2)
-	  local retArr = {};
-	  if arr1 ~= nil and length(arr1) ~= 0 then
-		  local lenArr1 = length(arr1);
-		  for i = 0, lenArr1 - 1 do
-		  	retArr[i] = arr1[i];
-		  end
-		  if arr2 ~= nil and length(arr2) ~= 0 then
-			  local lenArr2 = length(arr2);
-		    for i = (lenArr1), (lenArr1 + lenArr2 - 1) do
-		      retArr[i] = arr2[i - lenArr1];
-		    end;
-	    end;
-	  end;
-		return retArr;
-	end;
-
-	TTH_NAMES_OBJECTS = {};
-	TTH_NAMES_OBJECTS.ALL_CREATURES = GetObjectNamesByType("CREATURE");
-
-	-- 解决双向传送门失效问题
-	function TTH_FUNC_HERO_TOUCH__PORTAL_CREATURE()
-		local arrObjectPortal = TTH_UNITY_CONCAT(GetObjectNamesByType("MONOLITH"),GetObjectNamesByType("SUBTERRA_GATE"));
-		if arrObjectPortal ~= nil then
-			for j, itemObjectPortal in arrObjectPortal do
-				for i, itemObjectCreature in TTH_NAMES_OBJECTS.ALL_CREATURES do
-					if (itemObjectPortal ~= nil and itemObjectCreature ~= nil) then
-						local xP, yP, zP = GetObjectPosition(itemObjectPortal);
-						local xC, yC, zC = GetObjectPosition(itemObjectCreature);
-						if zP == zC then
-							local dx = sqrt((xP - xC) * (xP - xC));
-							local dy = sqrt((yP - yC) * (yP - yC));
-							if ((dx <= 3) and (dy <= 3)) then
-								TTH_NAMES_OBJECTS.ALL_CREATURES[i] = nil;
-								SetObjectEnabled(itemObjectCreature, true);
-								-- startThread(Trigger, "TTH", OBJECT_TOUCH_TRIGGER, itemObjectCreature, nil);
-								Trigger(OBJECT_TOUCH_TRIGGER, itemObjectCreature, nil);
-							end;
-						end;
-					end;
-				end;
-			end;
-		end;
-	end;
-	sleep(0.1);
-	startThread(TTH_FUNC_HERO_TOUCH__PORTAL_CREATURE);
 
 -- 模块加载
 	doFile("/scripts/mod/TTH_MOD_CombatResults4LoseCreature.lua");

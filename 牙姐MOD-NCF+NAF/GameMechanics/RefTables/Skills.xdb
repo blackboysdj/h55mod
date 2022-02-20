@@ -2144,11 +2144,11 @@
 				</Texture>
 				<CommonTexture/>
 				<NameFileRef>
-					<Item href="/Text/Game/Skills/Common/Leadership/Diplomacy/Name.txt"/>
+				  <Item href="/Text/TTH/Skills/Leadership/030-Diplomacy/Name.txt"/>
 				</NameFileRef>
 				<CommonNameFileRef href=""/>
 				<DescriptionFileRef>
-					<Item href="/Text/Game/Skills/Common/Leadership/Diplomacy/Description.txt"/>
+				  <Item href="/Text/TTH/Skills/Leadership/030-Diplomacy/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
 				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
@@ -2160,132 +2160,154 @@
 						<Class>HERO_CLASS_KNIGHT</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_ESTATES</Item>
+							<Item>HERO_SKILL_ENCOURAGE</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_ESTATES</Item>
+							<Item>HERO_SKILL_ENCOURAGE</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_ESTATES</Item>
+							<Item>HERO_SKILL_ENCOURAGE</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_RANGER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_ESTATES</Item>
+							<Item>HERO_SKILL_ENCOURAGE</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_WARDEN</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_ESTATES</Item>
+							<Item>HERO_SKILL_ENCOURAGE</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_ENCHANTER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_ESTATES</Item>
+							<Item>HERO_SKILL_ENCOURAGE</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_SORCERER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_ESTATES</Item>
+							<Item>HERO_SKILL_ENCOURAGE</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_GATE_KEEPER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_ESTATES</Item>
+							<Item>HERO_SKILL_ENCOURAGE</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_FLAMEKEEPERA</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_ESTATES</Item>
+							<Item>HERO_SKILL_ENCOURAGE</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_ENGINEER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_ESTATES</Item>
+							<Item>HERO_SKILL_ENCOURAGE</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_NECROMANCER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_ESTATES</Item>
+							<Item>HERO_SKILL_ENCOURAGE</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_REAVER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_ESTATES</Item>
+							<Item>HERO_SKILL_ENCOURAGE</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_WARLOCK</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_ESTATES</Item>
+							<Item>HERO_SKILL_ENCOURAGE</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_BEASTMASTER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_ESTATES</Item>
+							<Item>HERO_SKILL_ENCOURAGE</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_GUILDMASTER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_ESTATES</Item>
+							<Item>HERO_SKILL_ENCOURAGE</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_SEER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_ESTATES</Item>
+							<Item>HERO_SKILL_ENCOURAGE</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_WIZARD</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_ESTATES</Item>
+							<Item>HERO_SKILL_ENCOURAGE</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_ELEMENTALIST</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_ESTATES</Item>
+							<Item>HERO_SKILL_ENCOURAGE</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_DEMON_LORD</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_ESTATES</Item>
+							<Item>HERO_SKILL_ENCOURAGE</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_DEATHKNIGHT</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_ESTATES</Item>
+							<Item>HERO_SKILL_ENCOURAGE</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_RUNEMAGE</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_ESTATES</Item>
+							<Item>HERO_SKILL_ENCOURAGE</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_BARBARIAN</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_ESTATES</Item>
+							<Item>HERO_SKILL_ENCOURAGE</Item>
 						</dependenciesIDs>
 					</Item>
 				</SkillPrerequisites>

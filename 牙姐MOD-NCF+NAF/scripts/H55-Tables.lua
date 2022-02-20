@@ -11920,6 +11920,13 @@
 				TTH_PATH.Talent["Nathaniel"]["ConfirmActive"] = TTH_PATH.Talent["Nathaniel"]["Pre"].."ConfirmActive.txt";
 				TTH_PATH.Talent["Nathaniel"]["LoseCreature"] = TTH_PATH.Talent["Nathaniel"]["Pre"].."LoseCreature.txt";
 				TTH_PATH.Talent["Nathaniel"]["Success"] = TTH_PATH.Talent["Nathaniel"]["Pre"].."Success.txt";
+			-- RedHeavenHero06 17 加布里埃尔
+				TTH_PATH.Talent["RedHeavenHero06"] = {};
+				TTH_PATH.Talent["RedHeavenHero06"]["Pre"] = TTH_PATH.Talent["Pre"].."017/";
+				TTH_PATH.Talent["RedHeavenHero06"]["Text"] = TTH_PATH.Talent["RedHeavenHero06"]["Pre"].."Text.txt";
+				TTH_PATH.Talent["RedHeavenHero06"]["NotEnoughTimes"] = TTH_PATH.Talent["RedHeavenHero06"]["Pre"].."NotEnoughTimes.txt";
+				TTH_PATH.Talent["RedHeavenHero06"]["Confirm"] = TTH_PATH.Talent["RedHeavenHero06"]["Pre"].."Confirm.txt";
+				TTH_PATH.Talent["RedHeavenHero06"]["Success"] = TTH_PATH.Talent["RedHeavenHero06"]["Pre"].."Success.txt";
 			-- Melodia 032 马洛迪亚
 				TTH_PATH.Talent["Melodia"] = {};
 				TTH_PATH.Talent["Melodia"]["Pre"] = TTH_PATH.Talent["Pre"].."032/";
@@ -12009,6 +12016,17 @@
 				TTH_PATH.Talent["Sheltem"]["Confirm"] = TTH_PATH.Talent["Sheltem"]["Pre"].."Confirm.txt";
 				TTH_PATH.Talent["Sheltem"]["K2P"] = TTH_PATH.Talent["Sheltem"]["Pre"].."K2P.txt";
 				TTH_PATH.Talent["Sheltem"]["P2K"] = TTH_PATH.Talent["Sheltem"]["Pre"].."P2K.txt";
+			-- Rolf 132 洛尔夫
+				TTH_PATH.Talent["Rolf"] = {};
+				TTH_PATH.Talent["Rolf"]["Pre"] = TTH_PATH.Talent["Pre"] .."132-Rolf/";
+				TTH_PATH.Talent["Rolf"]["Text"] = TTH_PATH.Talent["Rolf"]["Pre"].."Text.txt";
+				TTH_PATH.Talent["Rolf"]["NotEnoughTimes"] = TTH_PATH.Talent["Rolf"]["Pre"].."NotEnoughTimes.txt";
+				TTH_PATH.Talent["Rolf"]["NoSuitableCreature"] = TTH_PATH.Talent["Rolf"]["Pre"].."NoSuitableCreature.txt";
+				TTH_PATH.Talent["Rolf"]["Confirm"] = TTH_PATH.Talent["Rolf"]["Pre"].."Confirm.txt";
+				TTH_PATH.Talent["Rolf"]["Success"] = TTH_PATH.Talent["Rolf"]["Pre"].."Success.txt";
+				TTH_PATH.Talent["Rolf"]["RadioTips"] = TTH_PATH.Talent["Rolf"]["Pre"].."RadioTips.txt";
+				TTH_PATH.Talent["Rolf"]["OptionTemplate"] = TTH_PATH.Talent["Rolf"]["Pre"].."OptionTemplate.txt";
+				TTH_PATH.Talent["Rolf"]["TemplateCreature"] = TTH_PATH.Talent["Rolf"]["Pre"].."TemplateCreature.txt";
 			-- Wulfstan 134 乌尔夫斯坦
 				TTH_PATH.Talent["Wulfstan"] = {};
 				TTH_PATH.Talent["Wulfstan"]["Pre"] = TTH_PATH.Talent["Pre"].."134/";
@@ -12140,6 +12158,16 @@
 				TTH_PATH.Perk[HERO_SKILL_ESTATES]["Confirm"] = TTH_PATH.Perk[HERO_SKILL_ESTATES]["Pre"].."Confirm.txt";
 				TTH_PATH.Perk[HERO_SKILL_ESTATES]["Success"] = TTH_PATH.Perk[HERO_SKILL_ESTATES]["Pre"].."Success.txt";
 				TTH_PATH.Perk[HERO_SKILL_ESTATES]["Repay"] = TTH_PATH.Perk[HERO_SKILL_ESTATES]["Pre"].."Repay.txt";
+			-- HERO_SKILL_DIPLOMACY 030 外交术
+				TTH_PATH.Perk[HERO_SKILL_DIPLOMACY] = {};
+				TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Pre"] = TTH_PATH.Perk["Pre"] .."030/";
+				TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Text"] = TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Pre"].."Text.txt";
+				TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["NotEnoughTimes"] = TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Pre"].."NotEnoughTimes.txt";
+				TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["NoSuitableCreature"] = TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Pre"].."NoSuitableCreature.txt";
+				TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Confirm"] = TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Pre"].."Confirm.txt";
+				TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["RadioTips"] = TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Pre"].."RadioTips.txt";
+				TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["OptionTemplate"] = TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Pre"].."OptionTemplate.txt";
+				TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["TemplateCreature"] = TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Pre"].."TemplateCreature.txt";
 			-- HERO_SKILL_FORTUNATE_ADVENTURER 033 资源富饶
 				TTH_PATH.Perk[HERO_SKILL_FORTUNATE_ADVENTURER] = {};
 				TTH_PATH.Perk[HERO_SKILL_FORTUNATE_ADVENTURER]["Pre"] = TTH_PATH.Perk["Pre"] .."033/";
@@ -12227,8 +12255,14 @@
 					, ["Wulfstan"] = {
 						[TTH_ENUM.FuncAlways] = "TTH_TALENT.initWulfstan"
 					}
-					, ["Nikolay"] = {
-						[TTH_ENUM.FuncAlways] = "TTH_TALENT.initNikolay"
+					, ["RedHeavenHero06"] = {
+						[TTH_ENUM.FuncAlways] = "TTH_TALENT.initRedHeavenHero06"
+					}
+					, ["Melodia"] = {
+						[TTH_ENUM.FuncAlways] = "TTH_TALENT.initMelodia"
+					}
+					, ["Rolf"] = {
+						[TTH_ENUM.FuncAlways] = "TTH_TALENT.initRolf"
 					}
 				}
 				, [TTH_ENUM.FuncActive] = {
@@ -12315,6 +12349,11 @@
 						, [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeSheltem"
 						, [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeSheltem"
 					}
+					, ["Rolf"] = {
+						["Text"] = TTH_PATH.Talent["Rolf"]["Text"]
+						, [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeRolf"
+						, [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeRolf"
+					}
 				}
 				, [TTH_ENUM.FuncLevelUp] = {
 					["Vinrael"] = {
@@ -12376,6 +12415,9 @@
 					}
 					, ["Wulfstan"] = {
 						[TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyWulfstan"
+					}
+					, ["Rolf"] = {
+						[TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyRolf"
 					}
 				}
 				, [TTH_ENUM.FuncDealDaily] = {
@@ -12539,6 +12581,11 @@
 						["Text"] = TTH_PATH.Perk[HERO_SKILL_ESTATES]["Text"]
 						, [TTH_ENUM.FuncAtGate] = "TTH_PERK.active029"
 					}
+					, [HERO_SKILL_DIPLOMACY] = {
+						["Text"] = TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Text"]
+						, [TTH_ENUM.FuncAtGate] = "TTH_PERK.active030"
+						, [TTH_ENUM.FuncNotAtGate] = "TTH_PERK.active030"
+					}
 					, [HERO_SKILL_FORTUNATE_ADVENTURER] = {
 						["Text"] = TTH_PATH.Perk[HERO_SKILL_FORTUNATE_ADVENTURER]["Text"]
 						, [TTH_ENUM.FuncNotAtGate] = "TTH_PERK.active033"
@@ -12575,6 +12622,9 @@
 					}
 					, [HERO_SKILL_ESTATES] = {
 						[TTH_ENUM.FuncAlways] = "TTH_PERK.resetWeekly029"
+					}
+					, [HERO_SKILL_DIPLOMACY] = {
+						[TTH_ENUM.FuncAlways] = "TTH_PERK.resetWeekly030"
 					}
 					, [HERO_SKILL_FORTUNATE_ADVENTURER] = {
 						[TTH_ENUM.FuncAlways] = "TTH_PERK.resetWeekly033"

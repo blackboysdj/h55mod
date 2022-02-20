@@ -1150,12 +1150,12 @@ function TTH_SkeletonWin(strHero, result)
 			local iRanIndexArtiPool = random(iLenArtiPool);
 			GiveArtefact(strHero, arrArtiPool[iRanIndexArtiPool]);
 		elseif iHeroRace == TOWN_FORTRESS then
-			local arrArtiPool = TTH_UNITY_CONCAT(TTH_TABLE_Artifacts[1], TTH_TABLE_SkeletonReward4Fortress);
+			local arrArtiPool = TTH_COMMON.concat(TTH_TABLE_Artifacts[1], TTH_TABLE_SkeletonReward4Fortress);
 			local iLenArtiPool = length(arrArtiPool);
 			local iRanIndexArtiPool = random(iLenArtiPool);
 			GiveArtefact(strHero, arrArtiPool[iRanIndexArtiPool]);
 		else
-			local arrArtiPool = TTH_UNITY_CONCAT(TTH_TABLE_Artifacts[1], TTH_TABLE_SkeletonReward4Other);
+			local arrArtiPool = TTH_COMMON.concat(TTH_TABLE_Artifacts[1], TTH_TABLE_SkeletonReward4Other);
 			local iLenArtiPool = length(arrArtiPool);
 			local iRanIndexArtiPool = random(iLenArtiPool);
 			GiveArtefact(strHero, arrArtiPool[iRanIndexArtiPool]);
@@ -1987,7 +1987,7 @@ end;
 -- begin 【杉提瑞圆盘】试炼相关
 	TTH_Arr_Shantiri = GetObjectNamesByType("BUILDING_EYE_OF_MAGI");
 	TTH_Arr_Obelisk = GetObjectNamesByType("BUILDING_LAKE_OF_SCARLET_SWAN");
-	TTH_Arr_Long_Shantiri = TTH_UNITY_CONCAT(TTH_Arr_Shantiri, TTH_Arr_Obelisk);
+	TTH_Arr_Long_Shantiri = TTH_COMMON.concat(TTH_Arr_Shantiri, TTH_Arr_Obelisk);
 	-- 玩家是否访问过 【杉提瑞圆盘】
 	TTH_Map_HasPlayerVisitedShantiri = {};
 	-- 玩家访问 【杉提瑞圆盘】 的数量

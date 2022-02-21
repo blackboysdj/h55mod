@@ -11983,12 +11983,13 @@
 				TTH_PATH.Talent["Menel"]["Daily"]["DescCapture"] = TTH_PATH.Talent["Menel"]["Daily"]["Pre"].."DescCapture.txt";
 			-- Sylsai 062 希尔塞
 				TTH_PATH.Talent["Sylsai"] = {};
-				TTH_PATH.Talent["Sylsai"]["Pre"] = TTH_PATH.Talent["Pre"].."062/";
+				TTH_PATH.Talent["Sylsai"]["Pre"] = TTH_PATH.Talent["Pre"].."062-Sylsai/";
 				TTH_PATH.Talent["Sylsai"]["Text"] = TTH_PATH.Talent["Sylsai"]["Pre"].."Text.txt";
 				TTH_PATH.Talent["Sylsai"]["ConfirmActiveInit"] = TTH_PATH.Talent["Sylsai"]["Pre"].."ConfirmActiveInit.txt";
 				TTH_PATH.Talent["Sylsai"]["ConfirmActiveChange"] = TTH_PATH.Talent["Sylsai"]["Pre"].."ConfirmActiveChange.txt";
 				TTH_PATH.Talent["Sylsai"]["SuccessActive"] = TTH_PATH.Talent["Sylsai"]["Pre"].."SuccessActive.txt";
 				TTH_PATH.Talent["Sylsai"]["NoAppointCreature"] = TTH_PATH.Talent["Sylsai"]["Pre"].."NoAppointCreature.txt";
+				TTH_PATH.Talent["Sylsai"]["NotEnoughGold"] = TTH_PATH.Talent["Sylsai"]["Pre"].."NotEnoughGold.txt";
 				TTH_PATH.Talent["Sylsai"]["NotEnoughOperTimes"] = TTH_PATH.Talent["Sylsai"]["Pre"].."NotEnoughOperTimes.txt";
 				TTH_PATH.Talent["Sylsai"]["ConfirmVisitDwelling"] = TTH_PATH.Talent["Sylsai"]["Pre"].."ConfirmVisitDwelling.txt";
 				TTH_PATH.Talent["Sylsai"]["SuccessVisitDwelling"] = TTH_PATH.Talent["Sylsai"]["Pre"].."SuccessVisitDwelling.txt";
@@ -12188,6 +12189,20 @@
 				TTH_PATH.Perk[HERO_SKILL_DEATH_TREAD]["Text"] = TTH_PATH.Perk[HERO_SKILL_DEATH_TREAD]["Pre"].."Text.txt";
 				TTH_PATH.Perk[HERO_SKILL_DEATH_TREAD]["NoFoeTownNearBy"] = TTH_PATH.Perk[HERO_SKILL_DEATH_TREAD]["Pre"].."NoFoeTownNearBy.txt";
 				TTH_PATH.Perk[HERO_SKILL_DEATH_TREAD]["Confirm"] = TTH_PATH.Perk[HERO_SKILL_DEATH_TREAD]["Pre"].."Confirm.txt";
+			-- HERO_SKILL_HAUNT_MINE 110 幽魂矿井
+				TTH_PATH.Perk[HERO_SKILL_HAUNT_MINE] = {};
+				TTH_PATH.Perk[HERO_SKILL_HAUNT_MINE]["Pre"] = TTH_PATH.Perk["Pre"] .."110-HauntMine/";
+				TTH_PATH.Perk[HERO_SKILL_HAUNT_MINE]["Text"] = TTH_PATH.Perk[HERO_SKILL_HAUNT_MINE]["Pre"].."Text.txt";
+				TTH_PATH.Perk[HERO_SKILL_HAUNT_MINE]["NotEnoughTimes"] = TTH_PATH.Perk[HERO_SKILL_HAUNT_MINE]["Pre"].."NotEnoughTimes.txt";
+				TTH_PATH.Perk[HERO_SKILL_HAUNT_MINE]["OptionTemplate"] = TTH_PATH.Perk[HERO_SKILL_HAUNT_MINE]["Pre"].."OptionTemplate.txt";
+				TTH_PATH.Perk[HERO_SKILL_HAUNT_MINE]["NoSuitableMine"] = TTH_PATH.Perk[HERO_SKILL_HAUNT_MINE]["Pre"].."NoSuitableMine.txt";
+				TTH_PATH.Perk[HERO_SKILL_HAUNT_MINE]["RadioTips"] = TTH_PATH.Perk[HERO_SKILL_HAUNT_MINE]["Pre"].."RadioTips.txt";
+				TTH_PATH.Perk[HERO_SKILL_HAUNT_MINE]["NoSuitableCreature"] = TTH_PATH.Perk[HERO_SKILL_HAUNT_MINE]["Pre"].."NoSuitableCreature.txt";
+				TTH_PATH.Perk[HERO_SKILL_HAUNT_MINE]["TemplateCreature"] = TTH_PATH.Perk[HERO_SKILL_HAUNT_MINE]["Pre"].."TemplateCreature.txt";
+				TTH_PATH.Perk[HERO_SKILL_HAUNT_MINE]["Confirm"] = TTH_PATH.Perk[HERO_SKILL_HAUNT_MINE]["Pre"].."Confirm.txt";
+				TTH_PATH.Perk[HERO_SKILL_HAUNT_MINE]["TemplateCreature"] = TTH_PATH.Perk[HERO_SKILL_HAUNT_MINE]["Pre"].."TemplateCreature.txt";
+				TTH_PATH.Perk[HERO_SKILL_HAUNT_MINE]["TemplateReduceCreature"] = TTH_PATH.Perk[HERO_SKILL_HAUNT_MINE]["Pre"].."TemplateReduceCreature.txt";
+				TTH_PATH.Perk[HERO_SKILL_HAUNT_MINE]["Success"] = TTH_PATH.Perk[HERO_SKILL_HAUNT_MINE]["Pre"].."Success.txt";
 			-- HERO_SKILL_SNATCH 168 攫取
 				TTH_PATH.Perk[HERO_SKILL_SNATCH] = {};
 				TTH_PATH.Perk[HERO_SKILL_SNATCH]["Pre"] = TTH_PATH.Perk["Pre"] .."168/";
@@ -12603,6 +12618,10 @@
 						["Text"] = TTH_PATH.Perk[HERO_SKILL_DEATH_TREAD]["Text"]
 						, [TTH_ENUM.FuncNotAtGate] = "TTH_PERK.active099"
 					}
+					, [HERO_SKILL_HAUNT_MINE] = {
+						["Text"] = TTH_PATH.Perk[HERO_SKILL_HAUNT_MINE]["Text"]
+						, [TTH_ENUM.FuncNotAtGate] = "TTH_PERK.active110"
+					}
 					, [HERO_SKILL_SNATCH] = {
 						["Text"] = TTH_PATH.Perk[HERO_SKILL_SNATCH]["Text"]
 						, [TTH_ENUM.FuncNotAtGate] = "TTH_PERK.active168"
@@ -12632,6 +12651,12 @@
 					}
 					, [HERO_SKILL_FORTUNATE_ADVENTURER] = {
 						[TTH_ENUM.FuncAlways] = "TTH_PERK.resetWeekly033"
+					}
+					, [HERO_SKILL_HAUNT_MINE] = {
+						[TTH_ENUM.FuncAlways] = "TTH_PERK.resetWeekly110"
+					}
+					, [HERO_SKILL_SNATCH] = {
+						[TTH_ENUM.FuncAlways] = "TTH_PERK.resetWeekly168"
 					}
 				}
 				, [TTH_ENUM.FuncDealDaily] = {

@@ -1848,7 +1848,7 @@ end;
   CREATURE_927 = 927
   CREATURE_928 = 928
   CREATURE_929 = 929
-  CREATURE_Enchanter = 929;
+  CREATURE_ENCHANTER = 929;
   CREATURE_930 = 930
   CREATURE_FIRE_MECHANICAL = 930
   CREATURE_931 = 931
@@ -2533,9 +2533,11 @@ end;
     -- 战场大小
       TTHCS_ENUM.BattleEffectFieldSmall = 1;
       TTHCS_ENUM.BattleEffectFieldBig = 2;
+
     -- 是否
       TTHCS_ENUM.No = 0;
       TTHCS_ENUM.Yes = 1;
+
     -- 战场建筑类型
       TTHCS_ENUM.TownBuildingWall = 1;
       TTHCS_ENUM.TownBuildingGate = 2;
@@ -2543,6 +2545,18 @@ end;
       TTHCS_ENUM.TownBuildingBigTower = 4;
       TTHCS_ENUM.TownBuildingMoat = 5;
       TTHCS_ENUM.TownBuildingRightTower = 6;
+
+    -- 施法类型
+      TTHCS_ENUM.Global = 1;
+      TTHCS_ENUM.Area = 2;
+
+    -- 施法对象
+      TTHCS_ENUM.Friend = 1;
+      TTHCS_ENUM.Hostile = 2;
+
+    -- 计算对象
+      TTHCS_ENUM.Magic = 1;
+      TTHCS_ENUM.Creature = 2;
 
   TTHCS_TABLE = {};
     -- 战场大小
@@ -10930,6 +10944,75 @@ end;
         }
       };
 
+    -- 魔幻法师施放魔法
+      TTHCS_TABLE.EnchanterMagic = {
+        [1] = {
+          ["Id"] = SPELL_MASS_BLESS
+          , ["Type"] = TTHCS_ENUM.Global
+          , ["Target"] = TTHCS_ENUM.Friend
+        }
+        , [2] = {
+          ["Id"] = SPELL_MASS_CURSE
+          , ["Type"] = TTHCS_ENUM.Global
+          , ["Target"] = TTHCS_ENUM.Hostile
+        }
+        , [3] = {
+          ["Id"] = SPELL_MASS_HASTE
+          , ["Type"] = TTHCS_ENUM.Global
+          , ["Target"] = TTHCS_ENUM.Friend
+        }
+        , [4] = {
+          ["Id"] = SPELL_MASS_SLOW
+          , ["Type"] = TTHCS_ENUM.Global
+          , ["Target"] = TTHCS_ENUM.Hostile
+        }
+        , [5] = {
+          ["Id"] = SPELL_MASS_BLOODLUST
+          , ["Type"] = TTHCS_ENUM.Global
+          , ["Target"] = TTHCS_ENUM.Friend
+        }
+        , [6] = {
+          ["Id"] = SPELL_MASS_WEAKNESS
+          , ["Type"] = TTHCS_ENUM.Global
+          , ["Target"] = TTHCS_ENUM.Hostile
+        }
+        , [7] = {
+          ["Id"] = SPELL_MASS_STONESKIN
+          , ["Type"] = TTHCS_ENUM.Global
+          , ["Target"] = TTHCS_ENUM.Friend
+        }
+        , [8] = {
+          ["Id"] = SPELL_MASS_DISRUPTING_RAY
+          , ["Type"] = TTHCS_ENUM.Area
+          , ["Area"] = 4
+          , ["Target"] = TTHCS_ENUM.Hostile
+        }
+        , [9] = {
+          ["Id"] = SPELL_MASS_DEFLECT_ARROWS
+          , ["Type"] = TTHCS_ENUM.Global
+          , ["Area"] = 4
+          , ["Target"] = TTHCS_ENUM.Friend
+        }
+        , [10] = {
+          ["Id"] = SPELL_MASS_FORGETFULNESS
+          , ["Type"] = TTHCS_ENUM.Area
+          , ["Area"] = 4
+          , ["Target"] = TTHCS_ENUM.Hostile
+        }
+        , [11] = {
+          ["Id"] = SPELL_MASS_DISPEL
+          , ["Type"] = TTHCS_ENUM.Area
+          , ["Area"] = 4
+          , ["Target"] = TTHCS_ENUM.Friend
+        }
+        , [12] = {
+          ["Id"] = SPELL_MASS_PLAGUE
+          , ["Type"] = TTHCS_ENUM.Area
+          , ["Area"] = 4
+          , ["Target"] = TTHCS_ENUM.Hostile
+        }
+      };
+
   TTHCS_COMMON = {};
     -- 向下取整
       function TTHCS_COMMON.floor(n)
@@ -11057,14 +11140,25 @@ end;
     -- 计算给定坐标的影响坐标区域
       -- 参数: iAreaSize, iPosX, iPosY
       -- 返回值: arrPosition
-      function TTHCS_COMMON.calcEffectArea(iAreaSize, iPosX, iPosY)
+      function TTHCS_COMMON.calcEffectArea(iAreaSize, iPosX, iPosY, enumEffectType)
         local arrPosition = {};
-        for x = iPosX - TTHCS_COMMON.ceil((iAreaSize - 1) / 2), iPosX + TTHCS_COMMON.floor((iAreaSize - 1) / 2) do
-          for y = iPosY - TTHCS_COMMON.ceil((iAreaSize - 1) / 2), iPosY + TTHCS_COMMON.floor((iAreaSize - 1) / 2) do
-            arrPosition[length(arrPosition)] = {
-              ["PosX"] = x
-              , ["PosY"] = y
-            };
+        if enumEffectType == TTHCS_ENUM.Magic then
+          for x = iPosX - TTHCS_COMMON.floor((iAreaSize - 1) / 2), iPosX + TTHCS_COMMON.ceil((iAreaSize - 1) / 2) do
+            for y = iPosY - TTHCS_COMMON.floor((iAreaSize - 1) / 2), iPosY + TTHCS_COMMON.ceil((iAreaSize - 1) / 2) do
+              arrPosition[length(arrPosition)] = {
+                ["PosX"] = x
+                , ["PosY"] = y
+              };
+            end;
+          end;
+        elseif enumEffectType == TTHCS_ENUM.Creature then
+          for x = iPosX - TTHCS_COMMON.ceil((iAreaSize - 1) / 2), iPosX + TTHCS_COMMON.floor((iAreaSize - 1) / 2) do
+            for y = iPosY - TTHCS_COMMON.ceil((iAreaSize - 1) / 2), iPosY + TTHCS_COMMON.floor((iAreaSize - 1) / 2) do
+              arrPosition[length(arrPosition)] = {
+                ["PosX"] = x
+                , ["PosY"] = y
+              };
+            end;
           end;
         end;
         return arrPosition;
@@ -11101,7 +11195,7 @@ end;
         local arrPosition = {};
         for x = TTHCS_TABLE.BattleEffectField[enumBattleFieldSize]["PosX"]["Min"], TTHCS_TABLE.BattleEffectField[enumBattleFieldSize]["PosX"]["Max"] do
           for y = TTHCS_TABLE.BattleEffectField[enumBattleFieldSize]["PosY"]["Min"], TTHCS_TABLE.BattleEffectField[enumBattleFieldSize]["PosY"]["Max"] do
-            local arrEffectPosition = TTHCS_COMMON.calcEffectArea(iAreaSize, x, y);
+            local arrEffectPosition = TTHCS_COMMON.calcEffectArea(iAreaSize, x, y, TTHCS_ENUM.Magic);
             for k, itemEffectPosition in arrEffectPosition do
               local iEffectPosX = itemEffectPosition["PosX"];
               local iEffectPosY = itemEffectPosition["PosY"];
@@ -11162,7 +11256,7 @@ end;
         local arrCreature4Check = GetCreatures(getSide(iSide, 1));
         local arrWarMachine4Check = GetWarMachines(getSide(iSide, 1));
         local arrUnit4Check = TTHCS_COMMON.concat(arrCreature4Check, arrWarMachine4Check);
-        local arrEffectPosition = TTHCS_COMMON.calcEffectArea(iUnitCombatSize + 1 + iAreaSize, objUnit["PosX"], objUnit["PosY"]);
+        local arrEffectPosition = TTHCS_COMMON.calcEffectArea(iUnitCombatSize + 1 + iAreaSize, objUnit["PosX"], objUnit["PosY"], TTHCS_ENUM.Creature);
         for k, itemEffectPosition in arrEffectPosition do
           local iEffectPosX = itemEffectPosition["PosX"];
           local iEffectPosY = itemEffectPosition["PosY"];
@@ -11176,26 +11270,26 @@ end;
         return arrUnitName;
       end;
 
-TTHCS_PATH = {};
-TTHCS_PATH["Talent"] = {};
-TTHCS_PATH["Talent"]["Calh"] = {};
-TTHCS_PATH["Talent"]["Calh"]["EffectFireBall"] = "/Text/TTH/Heroes/Specializations/Inferno/Calh/Combat/EffectFireBall.txt";
-TTHCS_PATH["Talent"]["Calh"]["EffectMeteorShower"] = "/Text/TTH/Heroes/Specializations/Inferno/Calh/Combat/EffectMeteorShower.txt";
-TTHCS_PATH["Talent"]["Calh"]["EffectMelee"] = "/Text/TTH/Heroes/Specializations/Inferno/Calh/Combat/EffectMelee.txt";
+  TTHCS_PATH = {};
+    TTHCS_PATH["Talent"] = {};
+      TTHCS_PATH["Talent"]["Calh"] = {};
+      TTHCS_PATH["Talent"]["Calh"]["EffectFireBall"] = "/Text/TTH/Heroes/Specializations/Inferno/Calh/Combat/EffectFireBall.txt";
+      TTHCS_PATH["Talent"]["Calh"]["EffectMeteorShower"] = "/Text/TTH/Heroes/Specializations/Inferno/Calh/Combat/EffectMeteorShower.txt";
+      TTHCS_PATH["Talent"]["Calh"]["EffectMelee"] = "/Text/TTH/Heroes/Specializations/Inferno/Calh/Combat/EffectMelee.txt";
 
-TTHCS_PATH["Perk"] = {};
-TTHCS_PATH["Perk"][HERO_SKILL_SEAL_OF_PROTECTION] = {};
-TTHCS_PATH["Perk"][HERO_SKILL_SEAL_OF_PROTECTION]["Effect"] = "/Text/TTH/Skills/Training/131-SealOfProtection/Combat/Effect.txt";
+    TTHCS_PATH["Perk"] = {};
+      TTHCS_PATH["Perk"][HERO_SKILL_SEAL_OF_PROTECTION] = {};
+      TTHCS_PATH["Perk"][HERO_SKILL_SEAL_OF_PROTECTION]["Effect"] = "/Text/TTH/Skills/Training/131-SealOfProtection/Combat/Effect.txt";
 
-TTHCS_PATH["Perk"][HERO_SKILL_TRIPLE_CATAPULT] = {};
-TTHCS_PATH["Perk"][HERO_SKILL_TRIPLE_CATAPULT]["Effect"] = "/Text/TTH/Skills/WarMachines/88-TripleCatapult/Combat/Effect.txt";
+      TTHCS_PATH["Perk"][HERO_SKILL_TRIPLE_CATAPULT] = {};
+      TTHCS_PATH["Perk"][HERO_SKILL_TRIPLE_CATAPULT]["Effect"] = "/Text/TTH/Skills/WarMachines/88-TripleCatapult/Combat/Effect.txt";
 
-TTHCS_PATH["Artifact"] = {};
-TTHCS_PATH["Artifact"][ARTIFACT_ANGELIC_ALLIANCE] = {};
-TTHCS_PATH["Artifact"][ARTIFACT_ANGELIC_ALLIANCE]["Effect"] = "/Text/TTH/Artifact/68-AngelicAlliance/Combat/Effect.txt";
-TTHCS_PATH["Artifact"][ARTIFACT_SENTINEL] = {};
-TTHCS_PATH["Artifact"][ARTIFACT_SENTINEL]["Effect"] = "/Text/TTH/Artifact/124-Sentinel/Combat/Effect.txt";
-TTHCS_PATH["Artifact"][ARTIFACT_CURSE_SHOULDER] = {};
-TTHCS_PATH["Artifact"][ARTIFACT_CURSE_SHOULDER]["Effect"] = "/Text/TTH/Artifact/114-CurseShoulder/Combat/Effect.txt";
+    TTHCS_PATH["Artifact"] = {};
+      TTHCS_PATH["Artifact"][ARTIFACT_ANGELIC_ALLIANCE] = {};
+      TTHCS_PATH["Artifact"][ARTIFACT_ANGELIC_ALLIANCE]["Effect"] = "/Text/TTH/Artifact/68-AngelicAlliance/Combat/Effect.txt";
+      TTHCS_PATH["Artifact"][ARTIFACT_SENTINEL] = {};
+      TTHCS_PATH["Artifact"][ARTIFACT_SENTINEL]["Effect"] = "/Text/TTH/Artifact/124-Sentinel/Combat/Effect.txt";
+      TTHCS_PATH["Artifact"][ARTIFACT_CURSE_SHOULDER] = {};
+      TTHCS_PATH["Artifact"][ARTIFACT_CURSE_SHOULDER]["Effect"] = "/Text/TTH/Artifact/114-CurseShoulder/Combat/Effect.txt";
 
 function close_file(fileName) end

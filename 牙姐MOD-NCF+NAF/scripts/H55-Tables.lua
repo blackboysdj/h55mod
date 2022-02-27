@@ -939,7 +939,7 @@
 	CREATURE_927 = 927;
 	CREATURE_928 = 928;
 	CREATURE_929 = 929;
-	CREATURE_Enchanter = 929;
+	CREATURE_ENCHANTER = 929;
 	CREATURE_930 = 930;
 	CREATURE_931 = 931;
 	CREATURE_932 = 932;
@@ -12072,6 +12072,7 @@
 				TTH_PATH.Artifact["Potion"]["Pre"] = TTH_PATH.Artifact["Pre"].."Potion/";
 				TTH_PATH.Artifact["Potion"]["NotEnoughTimes"] = TTH_PATH.Artifact["Potion"]["Pre"].."NotEnoughTimes.txt";
 				TTH_PATH.Artifact["Potion"]["HasUsedToday"] = TTH_PATH.Artifact["Potion"]["Pre"].."HasUsedToday.txt";
+				TTH_PATH.Artifact["Potion"]["HasUsedCombatIndex"] = TTH_PATH.Artifact["Potion"]["Pre"].."HasUsedCombatIndex.txt";
 				TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_MANA] = {};
 				TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_MANA]["Pre"] = TTH_PATH.Artifact["Potion"]["Pre"].."137-PotionMana/";
 				TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_MANA]["Text"] = TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_MANA]["Pre"].."Text.txt";
@@ -18785,7 +18786,7 @@
 					, ["PreCreature"] = {
 						[CREATURE_PRIEST] = {
 							["Scale"] = 1
-							, ["PostCreatureId"] = CREATURE_Enchanter
+							, ["PostCreatureId"] = CREATURE_ENCHANTER
 							, ["MaxGcd"] = 6
 							, ["HeroStep"] = 6
 							, ["Res"] = {
@@ -18800,7 +18801,7 @@
 						}
 						, [CREATURE_CLERIC] = {
 							["Scale"] = 1
-							, ["PostCreatureId"] = CREATURE_Enchanter
+							, ["PostCreatureId"] = CREATURE_ENCHANTER
 							, ["MaxGcd"] = 6
 							, ["HeroStep"] = 6
 							, ["Res"] = {
@@ -18815,7 +18816,7 @@
 						}
 						, [CREATURE_ZEALOT] = {
 							["Scale"] = 1
-							, ["PostCreatureId"] = CREATURE_Enchanter
+							, ["PostCreatureId"] = CREATURE_ENCHANTER
 							, ["MaxGcd"] = 6
 							, ["HeroStep"] = 6
 							, ["Res"] = {
@@ -18830,7 +18831,7 @@
 						}
 						, [CREATURE_RUNE_MAGE] = {
 							["Scale"] = 1
-							, ["PostCreatureId"] = CREATURE_Enchanter
+							, ["PostCreatureId"] = CREATURE_ENCHANTER
 							, ["MaxGcd"] = 6
 							, ["HeroStep"] = 6
 							, ["Res"] = {
@@ -18845,7 +18846,7 @@
 						}
 						, [CREATURE_FLAME_MAGE] = {
 							["Scale"] = 1
-							, ["PostCreatureId"] = CREATURE_Enchanter
+							, ["PostCreatureId"] = CREATURE_ENCHANTER
 							, ["MaxGcd"] = 6
 							, ["HeroStep"] = 6
 							, ["Res"] = {
@@ -18860,7 +18861,7 @@
 						}
 						, [CREATURE_FLAME_KEEPER] = {
 							["Scale"] = 1
-							, ["PostCreatureId"] = CREATURE_Enchanter
+							, ["PostCreatureId"] = CREATURE_ENCHANTER
 							, ["MaxGcd"] = 6
 							, ["HeroStep"] = 6
 							, ["Res"] = {
@@ -18875,7 +18876,7 @@
 						}
 						, [CREATURE_MAGI] = {
 							["Scale"] = 1
-							, ["PostCreatureId"] = CREATURE_Enchanter
+							, ["PostCreatureId"] = CREATURE_ENCHANTER
 							, ["MaxGcd"] = 6
 							, ["HeroStep"] = 6
 							, ["Res"] = {
@@ -18890,7 +18891,7 @@
 						}
 						, [CREATURE_ARCH_MAGI] = {
 							["Scale"] = 1
-							, ["PostCreatureId"] = CREATURE_Enchanter
+							, ["PostCreatureId"] = CREATURE_ENCHANTER
 							, ["MaxGcd"] = 6
 							, ["HeroStep"] = 6
 							, ["Res"] = {
@@ -18905,7 +18906,7 @@
 						}
 						, [CREATURE_COMBAT_MAGE] = {
 							["Scale"] = 1
-							, ["PostCreatureId"] = CREATURE_Enchanter
+							, ["PostCreatureId"] = CREATURE_ENCHANTER
 							, ["MaxGcd"] = 6
 							, ["HeroStep"] = 6
 							, ["Res"] = {
@@ -19568,7 +19569,7 @@
 							, ["Group"] = TTH_ENUM.GroupMight
 							, ["Specialty"] = {
 								[1] = {
-									["CreatureId"] = CREATURE_Enchanter
+									["CreatureId"] = CREATURE_ENCHANTER
 									, ["Stat"] = STAT_KNOWLEDGE
 									, ["ArtifactId"] = ARTIFACT_LEGION_EXPERT
 								}

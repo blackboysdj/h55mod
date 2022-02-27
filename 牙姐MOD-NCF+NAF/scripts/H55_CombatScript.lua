@@ -1749,6 +1749,7 @@ doFile('/scripts/combat-startup.lua')
 							H55SMOD_MiddlewareListener['Hero8']['function']['active']('Hero8', iSide, itemUnit);
 						-- Creature
 							H55SMOD_MiddlewareListener['LightAngel']['function']('LightAngel', iSide, itemUnit);
+							H55SMOD_MiddlewareListener['Enchanter']['function']('Enchanter', iSide, itemUnit);
 					end;
 				end;
 
@@ -2723,12 +2724,12 @@ doFile('/scripts/combat-startup.lua')
 			H55SMOD_MiddlewareListener['Gurvilin'] = {};
 			H55SMOD_MiddlewareListener['Gurvilin']['function'] = {};
 			function Events_MiddlewareListener_Implement_Gurvilin_Creature(strHero, iSide, itemUnitLast, itemUnitLoss, iLossManaPoints)
-				if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero and itemUnitLoss['iSide'] == iSide and itemUnitLoss['iUnitType'] == CREATURE_Enchanter then
+				if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero and itemUnitLoss['iSide'] == iSide and itemUnitLoss['iUnitType'] == CREATURE_ENCHANTER then
 					local itemHero = geneUnitStatus(GetHero(iSide));
 					local iDiffMana = 2; --h55_ceil(iLossManaPoints * (0.1 + 0.01 * H55SMOD_HeroLevel[strHero]));
 					local iBeforeMana = GetUnitManaPoints(itemHero['strUnitName']);
 					local iCurrentMana = iBeforeMana + iDiffMana;
-			        SetUnitManaPoints(itemHero['strUnitName'], iCurrentMana);
+			    SetUnitManaPoints(itemHero['strUnitName'], iCurrentMana);
 					print(itemHero['strUnitName'].." remain "..iDiffMana.." mana");
 				end;
 			end;
@@ -3115,13 +3116,13 @@ doFile('/scripts/combat-startup.lua')
 								end;
 								if itemUnitLastSummon['iUnitType'] == CREATURE_BALOR then
 									local arrPositionArea3, objMaxPositionArea3 = TTHCS_GLOBAL.getDenseArea(arrUnit4Check, 3);
-									local arrPositionArea4, objMaxPositionArea4 = TTHCS_GLOBAL.getDenseArea(arrUnit4Check, 4);
+									local arrPositionArea5, objMaxPositionArea5 = TTHCS_GLOBAL.getDenseArea(arrUnit4Check, 5);
 									if objMaxPositionArea3 ~= nil then
 										startThread(Thread_Command_UnitCastAreaSpell, itemUnitLastSummon["strUnitName"], SPELL_FIREBALL, objMaxPositionArea3["PosX"], objMaxPositionArea3["PosY"], 1);
 										ShowFlyingSign(TTHCS_PATH["Talent"]["Calh"]["EffectFireBall"], itemUnitLastSummon["strUnitName"], 5);
 									end;
-									if objMaxPositionArea4 ~= nil then
-										startThread(Thread_Command_UnitCastAreaSpell, itemUnitLastSummon["strUnitName"], SPELL_METEOR_SHOWER, objMaxPositionArea4["PosX"], objMaxPositionArea4["PosY"], 1);
+									if objMaxPositionArea5 ~= nil then
+										startThread(Thread_Command_UnitCastAreaSpell, itemUnitLastSummon["strUnitName"], SPELL_METEOR_SHOWER, objMaxPositionArea5["PosX"], objMaxPositionArea5["PosY"], 1);
 										ShowFlyingSign(TTHCS_PATH["Talent"]["Calh"]["EffectMeteorShower"], itemUnitLastSummon["strUnitName"], 5);
 									end;
 								end;
@@ -3130,10 +3131,12 @@ doFile('/scripts/combat-startup.lua')
 									for i, strUnitName in arrUnitName do
 										if IsCombatUnit(itemUnitLastSummon["strUnitName"]) ~= nil then
 											if GetCreatureNumber(itemUnitLastSummon["strUnitName"]) > 0 then
-												startThread(Thread_Command_UnitAttackAimed, itemUnitLastSummon['strUnitName'], strUnitName);
-												print(itemUnitLastSummon['strUnitName'].." attack to "..strUnitName);
-												ShowFlyingSign(TTHCS_PATH["Talent"]["Calh"]["EffectMelee"], itemUnitLastSummon["strUnitName"]);
-												sleep(300);
+												if IsCombatUnit(strUnitName) ~= nil and GetCreatureNumber(strUnitName) > 0 then
+													startThread(Thread_Command_UnitAttackAimed, itemUnitLastSummon['strUnitName'], strUnitName);
+													print(itemUnitLastSummon['strUnitName'].." attack to "..strUnitName);
+													ShowFlyingSign(TTHCS_PATH["Talent"]["Calh"]["EffectMelee"], itemUnitLastSummon["strUnitName"]);
+													sleep(300);
+												end;
 											else
 												startThread(Thread_Command_RemoveCombatUnit, iSide, itemUnitLastSummon['strUnitName']);
 											end;
@@ -4562,15 +4565,54 @@ doFile('/scripts/combat-startup.lua')
 			end;
 			H55SMOD_MiddlewareListener['Kraal']['function'] = Events_MiddlewareListener_Implement_Kraal;
 
-	-- Creature
-		-- LightAngel
-			H55SMOD_MiddlewareListener['LightAngel'] = {};
-			function Events_MiddlewareListener_Implement_LightAngel(strHero, iSide, itemUnit)
-				if GetHero(iSide) ~= nil and contains(List_LightAngel_Creatures, itemUnit['iUnitType']) ~= nil then
-					SetUnitManaPoints(itemUnit['strUnitName'], GetUnitManaPoints(itemUnit['strUnitName']) + 1);
+-- 生物
+	-- LightAngel
+		H55SMOD_MiddlewareListener['LightAngel'] = {};
+		function Events_MiddlewareListener_Implement_LightAngel(strHero, iSide, itemUnit)
+			if GetHero(iSide) ~= nil and contains(List_LightAngel_Creatures, itemUnit['iUnitType']) ~= nil then
+				SetUnitManaPoints(itemUnit['strUnitName'], GetUnitManaPoints(itemUnit['strUnitName']) + 1);
+			end;
+		end;
+		H55SMOD_MiddlewareListener['LightAngel']['function'] = Events_MiddlewareListener_Implement_LightAngel;
+
+	-- CREATURE_ENCHANTER 魔幻法师
+		H55SMOD_MiddlewareListener['Enchanter'] = {};
+		H55SMOD_MiddlewareListener['Enchanter']['MagicIndex'] = 1;
+		function Events_MiddlewareListener_Implement_Enchanter(strHero, iSide, itemUnit)
+			if itemUnit['iUnitType'] == CREATURE_ENCHANTER and itemUnit['iSide'] == iSide then
+				if IsCombatUnit(itemUnit['strUnitName']) ~= nil and itemUnit['iUnitNumber'] > 0 then
+					combatSetPause(1);
+					local iMagicIndex = H55SMOD_MiddlewareListener['Enchanter']['MagicIndex'];
+					local objMagicId = TTHCS_TABLE.EnchanterMagic[iMagicIndex];
+					local iMagicId = objMagicId["Id"];
+					local enumMagicType = objMagicId["Type"];
+					if enumMagicType == TTHCS_ENUM.Global then
+						startThread(Thread_Command_UnitCastGlobalSpell, itemUnit['strUnitName'], iMagicId, 1);
+					elseif enumMagicType == TTHCS_ENUM.Area then
+						local enumTarget = objMagicId["Target"];
+						if enumTarget == TTHCS_ENUM.Friend then
+							local arrCreature4Check = GetCreatures(iSide);
+							local arrPositionArea4, objMaxPositionArea4 = TTHCS_GLOBAL.getDenseArea(arrCreature4Check, 4);
+							startThread(Thread_Command_UnitCastAreaSpell, itemUnit["strUnitName"], iMagicId, objMaxPositionArea4["PosX"], objMaxPositionArea4["PosY"], 1);
+						elseif enumTarget == TTHCS_ENUM.Hostile then
+							local arrCreature4Check = GetCreatures(getSide(iSide, 1));
+							local arrPositionArea4, objMaxPositionArea4 = TTHCS_GLOBAL.getDenseArea(arrCreature4Check, 4);
+							startThread(Thread_Command_UnitCastAreaSpell, itemUnit["strUnitName"], iMagicId, objMaxPositionArea4["PosX"], objMaxPositionArea4["PosY"], 1);
+						end;
+					end;
+					sleep(20);
+					H55SMOD_MiddlewareListener['Enchanter']['MagicIndex'] = H55SMOD_MiddlewareListener['Enchanter']['MagicIndex'] + 1;
+					if H55SMOD_MiddlewareListener['Enchanter']['MagicIndex'] > 12 then
+						H55SMOD_MiddlewareListener['Enchanter']['MagicIndex'] = 1;
+					end;
+					itemUnit['iAtb'] = 1.25;
+					push(ListUnitSetATB, itemUnit);
+					print(itemUnit['strUnitName'].." cast "..iMagicId);
+					combatSetPause(nil);
 				end;
 			end;
-			H55SMOD_MiddlewareListener['LightAngel']['function'] = Events_MiddlewareListener_Implement_LightAngel;
+		end;
+		H55SMOD_MiddlewareListener['Enchanter']['function'] = Events_MiddlewareListener_Implement_Enchanter;
 
 -- 系统接口
 	function AttackerHeroMove(heroName)

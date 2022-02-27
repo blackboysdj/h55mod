@@ -7163,6 +7163,15 @@ doFile("/scripts/H55-Settings.lua");
 				TTH_VARI.teleport2AppointTownLimitMana = 5;
 				TTH_VARI.teleport2AppointTownLimitMove = 50;
 
+			-- 传送状态: 开启
+				function TTH_MANAGE.startStatusTeleport2AppointTown()
+					TTH_VARI.bTownManageTeleportTown4TeleportStatus = TTH_ENUM.TownManageTeleportTown4TeleportStart;
+				end;
+			-- 传送状态: 关闭
+				function TTH_MANAGE.endStatusTeleport2AppointTown()
+					TTH_VARI.bTownManageTeleportTown4TeleportStatus = TTH_ENUM.TownManageTeleportTown4TeleportEnd;
+				end;
+
 			-- 入口
 				function TTH_MANAGE.dealTeleport2AppointTown(strHero)
 					TTH_COMMON.initNavi(TTH_TABLE.KingManagePath["TownManage"]["Teleport2AppointTown"]["Text"]);
@@ -7214,9 +7223,7 @@ doFile("/scripts/H55-Settings.lua");
 						local iManaPoint = GetHeroStat(strHero, STAT_MANA_POINTS);
 						local iMovePoint = GetHeroStat(strHero, STAT_MOVE_POINTS);
 
-						-- 传送状态: 开启
-							TTH_VARI.bTownManageTeleportTown4TeleportStatus = TTH_ENUM.TownManageTeleportTown4TeleportStart;
-
+						TTH_MANAGE.startStatusTeleport2AppointTown();
 						for iIndexTown, strTown in arrTown do
 							if TTH_VARI.bTownManageTeleportTown4TeleportStatus == TTH_ENUM.TownManageTeleportTown4TeleportStart then
 								-- 视角定位
@@ -7235,19 +7242,19 @@ doFile("/scripts/H55-Settings.lua");
 								local strCallbackOk = "TTH_MANAGE.checkPreTeleport2AppointTown4GarrisonHero("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strTown)..")";
 								local strCallbackCancel = "TTH_COMMON.wakeup()";
 								TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+								TTH_COMMON.sleep();
 							end;
 						end;
 					end;
+
 
 				-- 确认内城是否有英雄
 					function TTH_MANAGE.checkPreTeleport2AppointTown4GarrisonHero(iPlayer, strHero, strTown)
 						if TTH_GLOBAL.isGarrisonHasHero(iPlayer, strTown) == 1 then
 							local strText = TTH_TABLE.KingManagePath["TownManage"]["Teleport2AppointTown"]["HeroInGarrison"]["Text"];
 							TTH_GLOBAL.sign(strHero, strText);
-
-							-- 传送状态: 关闭
-								TTH_VARI.bTownManageTeleportTown4TeleportStatus = TTH_ENUM.TownManageTeleportTown4TeleportEnd;
-
+							TTH_MANAGE.endStatusTeleport2AppointTown();
+							TTH_COMMON.wakeup();
 							return nil;
 						end;
 						TTH_VARI.teleportTown = strTown;
@@ -7285,11 +7292,11 @@ doFile("/scripts/H55-Settings.lua");
 							local strText = TTH_TABLE.KingManagePath["TownManage"]["Teleport2AppointTown"]["NotEnoughRes"]["Text"];
 							TTH_GLOBAL.sign(strHero, strText);
 
-							-- 传送状态: 关闭
-								TTH_VARI.bTownManageTeleportTown4TeleportStatus = TTH_ENUM.TownManageTeleportTown4TeleportEnd;
-								local iPosX, iPosY, iPosZ = GetObjectPosition(strHero);
-								MoveCamera(iPosX, iPosY, iPosZ, 50, TTH_FINAL.PI/2, 1, 1, 1, 1);
-								sleep(2);
+							TTH_MANAGE.endStatusTeleport2AppointTown();
+							TTH_COMMON.wakeup();
+							local iPosX, iPosY, iPosZ = GetObjectPosition(strHero);
+							MoveCamera(iPosX, iPosY, iPosZ, 50, TTH_FINAL.PI/2, 1, 1, 1, 1);
+							sleep(2);
 
 							return nil;
 						end;
@@ -7305,11 +7312,11 @@ doFile("/scripts/H55-Settings.lua");
 							local strText = TTH_TABLE.KingManagePath["TownManage"]["Teleport2AppointTown"]["NotEnoughMana"]["Text"];
 							TTH_GLOBAL.sign(strHero, strText);
 
-							-- 传送状态: 关闭
-								TTH_VARI.bTownManageTeleportTown4TeleportStatus = TTH_ENUM.TownManageTeleportTown4TeleportEnd;
-								local iPosX, iPosY, iPosZ = GetObjectPosition(strHero);
-								MoveCamera(iPosX, iPosY, iPosZ, 50, TTH_FINAL.PI/2, 1, 1, 1, 1);
-								sleep(2);
+							TTH_MANAGE.endStatusTeleport2AppointTown();
+							TTH_COMMON.wakeup();
+							local iPosX, iPosY, iPosZ = GetObjectPosition(strHero);
+							MoveCamera(iPosX, iPosY, iPosZ, 50, TTH_FINAL.PI/2, 1, 1, 1, 1);
+							sleep(2);
 
 							return nil;
 						end;
@@ -7344,11 +7351,11 @@ doFile("/scripts/H55-Settings.lua");
 							local strText = TTH_TABLE.KingManagePath["TownManage"]["Teleport2AppointTown"]["NotEnoughGold"]["Text"];
 							TTH_GLOBAL.sign(strHero, strText);
 
-							-- 传送状态: 关闭
-								TTH_VARI.bTownManageTeleportTown4TeleportStatus = TTH_ENUM.TownManageTeleportTown4TeleportEnd;
-								local iPosX, iPosY, iPosZ = GetObjectPosition(strHero);
-								MoveCamera(iPosX, iPosY, iPosZ, 50, TTH_FINAL.PI/2, 1, 1, 1, 1);
-								sleep(2);
+							TTH_MANAGE.endStatusTeleport2AppointTown();
+							TTH_COMMON.wakeup();
+							local iPosX, iPosY, iPosZ = GetObjectPosition(strHero);
+							MoveCamera(iPosX, iPosY, iPosZ, 50, TTH_FINAL.PI/2, 1, 1, 1, 1);
+							sleep(2);
 
 							return nil;
 						end;
@@ -7364,11 +7371,11 @@ doFile("/scripts/H55-Settings.lua");
 							local strText = TTH_TABLE.KingManagePath["TownManage"]["Teleport2AppointTown"]["NotEnoughMove"]["Text"];
 							TTH_GLOBAL.sign(strHero, strText);
 
-							-- 传送状态: 关闭
-								TTH_VARI.bTownManageTeleportTown4TeleportStatus = TTH_ENUM.TownManageTeleportTown4TeleportEnd;
-								local iPosX, iPosY, iPosZ = GetObjectPosition(strHero);
-								MoveCamera(iPosX, iPosY, iPosZ, 50, TTH_FINAL.PI/2, 1, 1, 1, 1);
-								sleep(2);
+							TTH_MANAGE.endStatusTeleport2AppointTown();
+							TTH_COMMON.wakeup();
+							local iPosX, iPosY, iPosZ = GetObjectPosition(strHero);
+							MoveCamera(iPosX, iPosY, iPosZ, 50, TTH_FINAL.PI/2, 1, 1, 1, 1);
+							sleep(2);
 
 							return nil;
 						end;
@@ -7403,9 +7410,7 @@ doFile("/scripts/H55-Settings.lua");
 							end;
 
 						-- 执行传送
-							-- 传送状态: 关闭
-								TTH_VARI.bTownManageTeleportTown4TeleportStatus = TTH_ENUM.TownManageTeleportTown4TeleportEnd;
-
+							TTH_MANAGE.endStatusTeleport2AppointTown();
 							TTH_GLOBAL.teleHero2Point(iPlayer, strHero, strTown);
 					end;
 
@@ -9523,6 +9528,7 @@ doFile("/scripts/H55-Settings.lua");
 					TTH_VARI.recordPotion[iArtifactId][strHero] = {
 						["RemainTimes"] = iMaxTimes
 						, ["Day"] = 0
+						, ["CombatIndex"] = -1
 					};
 				end;
 			end;
@@ -9581,6 +9587,7 @@ doFile("/scripts/H55-Settings.lua");
 					TTH_GLOBAL.sign(strHero, strText);
 				end;
 			-- ARTIFACT_POTION_ENERGY 138 能量药水
+				TTH_FINAL.POTION_ENERGY_RECOVERY = 1500;
 				function TTH_ARTI.active138(iPlayer, strHero)
 					TTH_COMMON.nextNavi(TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_ENERGY]["Text"]);
 
@@ -9624,7 +9631,7 @@ doFile("/scripts/H55-Settings.lua");
 				function TTH_ARTI.implActive138(iPlayer, strHero)
 					TTH_VARI.recordPotion[ARTIFACT_POTION_ENERGY][strHero]["RemainTimes"] = TTH_VARI.recordPotion[ARTIFACT_POTION_ENERGY][strHero]["RemainTimes"] - 1;
 					TTH_VARI.recordPotion[ARTIFACT_POTION_ENERGY][strHero]["Day"] = TTH_VARI.day;
-					ChangeHeroStat(strHero, STAT_MOVE_POINTS, TTH_FINAL.NUM_MAX);
+					ChangeHeroStat(strHero, STAT_MOVE_POINTS, TTH_FINAL.POTION_ENERGY_RECOVERY);
 					local strText = TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_ENERGY]["Success"];
 					TTH_GLOBAL.sign(strHero, strText);
 				end;
@@ -9653,11 +9660,11 @@ doFile("/scripts/H55-Settings.lua");
 						return nil;
 					end;
 
-					TTH_ARTI.confirmActive139(iPlayer, strHero);
+					TTH_ARTI.checkPreActive1394HasUsedCombatIndex(iPlayer, strHero);
 				end;
-				function TTH_ARTI.checkPreActive1394HasUsedToday(iPlayer, strHero)
-					if TTH_VARI.recordPotion[ARTIFACT_POTION_REVIVE][strHero]["Day"] == TTH_VARI.day then
-						local strText = TTH_PATH.Artifact["Potion"]["HasUsedToday"];
+				function TTH_ARTI.checkPreActive1394HasUsedCombatIndex(iPlayer, strHero)
+					if TTH_VARI.recordPotion[ARTIFACT_POTION_REVIVE][strHero]["CombatIndex"] == TTH_VARI.combatIndex then
+						local strText = TTH_PATH.Artifact["Potion"]["HasUsedCombatIndex"];
 						TTH_GLOBAL.sign(strHero, strText);
 						return nil;
 					end;
@@ -9682,8 +9689,11 @@ doFile("/scripts/H55-Settings.lua");
 				end;
 				function TTH_ARTI.implActive139(iPlayer, strHero)
 					TTH_VARI.recordPotion[ARTIFACT_POTION_REVIVE][strHero]["RemainTimes"] = TTH_VARI.recordPotion[ARTIFACT_POTION_REVIVE][strHero]["RemainTimes"] - 1;
-					TTH_VARI.recordPotion[ARTIFACT_POTION_REVIVE][strHero]["Day"] = TTH_VARI.day;
+					TTH_VARI.recordPotion[ARTIFACT_POTION_REVIVE][strHero]["CombatIndex"] = TTH_VARI.combatIndex;
 					local iCoef = 0.3 + GetHeroStat(strHero, STAT_KNOWLEDGE) * 0.01;
+					if iCoef > 1 then
+						iCoef = 1;
+					end;
 					local iCombatIndex = TTH_VARI.combatIndex;
 					local iCountStacksWinner = GetSavedCombatArmyCreaturesCount(iCombatIndex, 1);
 					for i = 0, iCountStacksWinner - 1 do
@@ -11023,7 +11033,6 @@ doFile("/scripts/H55-Settings.lua");
 				TTH_PERK.init110(iPlayer, strHero);
     		TTH_VARI.recordDiplomacy[strHero]["OperTimes"] = TTH_VARI.recordDiplomacy[strHero]["MaxOperTimes"];
 			end;
-
 
 		-- HERO_SKILL_DISGUISE_AND_RECKON 112 励精图治
 			function TTH_PERK.dealDaily099(iPlayer, strHero)

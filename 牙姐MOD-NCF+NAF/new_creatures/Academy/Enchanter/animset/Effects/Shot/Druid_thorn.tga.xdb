@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Texture ObjectRecordID="4811">
+	<SrcName href="/Effects/Textures/Spells/Druid_thorn.tga"/>
+	<DestName href="Druid_thorn.tga.dds"/>
+	<Type>REGULAR</Type>
+	<ConversionType>CONVERT_ORDINARY</ConversionType>
+	<AddrType>CLAMP</AddrType>
+	<Format>TF_DXT3</Format>
+	<Width>64</Width>
+	<Height>64</Height>
+	<MappingSize>0</MappingSize>
+	<NMips>0</NMips>
+	<Gain>0</Gain>
+	<AverageColor>2068961280</AverageColor>
+	<InstantLoad>false</InstantLoad>
+	<IsDXT>true</IsDXT>
+	<FlipY>false</FlipY>
+	<StandardExport>true</StandardExport>
+	<UseS3TC>false</UseS3TC>
+</Texture>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Model ObjectRecordID="7320">
+	<Materials>
+		<Item href="#n:inline(Material)" id="item_e3411966-605c-4946-bd36-f9f3384eab0f">
+			<Material ObjectRecordID="17535">
+				<Texture href="TeleportHole.xdb#xpointer(/Texture)"/>
+				<Bump/>
+				<SpecFactor>0</SpecFactor>
+				<SpecColor>
+					<x>0</x>
+					<y>0</y>
+					<z>0</z>
+				</SpecColor>
+				<Gloss/>
+				<MetalMirror>0</MetalMirror>
+				<DielMirror>0</DielMirror>
+				<Mirror/>
+				<CastShadow>false</CastShadow>
+				<ReceiveShadow>true</ReceiveShadow>
+				<Priority>0</Priority>
+				<TranslucentColor>
+					<x>0</x>
+					<y>0</y>
+					<z>0</z>
+				</TranslucentColor>
+				<FloatParam>0</FloatParam>
+				<DetailTexture/>
+				<DetailScale>5</DetailScale>
+				<ProjectOnTerrain>false</ProjectOnTerrain>
+				<LightingMode>L_NORMAL</LightingMode>
+				<DynamicMode>DM_DONT_CARE</DynamicMode>
+				<Is2Sided>false</Is2Sided>
+				<Effect>M_GENERIC</Effect>
+				<AlphaMode>AM_ALPHA_TEST</AlphaMode>
+				<AffectedByFog>true</AffectedByFog>
+				<AddPlaced>false</AddPlaced>
+				<IgnoreZBuffer>false</IgnoreZBuffer>
+				<BackFaceCastShadow>false</BackFaceCastShadow>
+			</Material>
+		</Item>
+		<Item href="#n:inline(Material)" id="item_ea860197-8c95-49d0-a3e1-5162f52ee64a">
+			<Material ObjectRecordID="17536">
+				<Texture href="PlagueHoleGlowNoADD.tga.xdb#xpointer(/Texture)"/>
+				<Bump/>
+				<SpecFactor>0</SpecFactor>
+				<SpecColor>
+					<x>0</x>
+					<y>0</y>
+					<z>0</z>
+				</SpecColor>
+				<Gloss/>
+				<MetalMirror>0</MetalMirror>
+				<DielMirror>0</DielMirror>
+				<Mirror/>
+				<CastShadow>false</CastShadow>
+				<ReceiveShadow>true</ReceiveShadow>
+				<Priority>0</Priority>
+				<TranslucentColor>
+					<x>0</x>
+					<y>0</y>
+					<z>0</z>
+				</TranslucentColor>
+				<FloatParam>0</FloatParam>
+				<DetailTexture/>
+				<DetailScale>5</DetailScale>
+				<ProjectOnTerrain>false</ProjectOnTerrain>
+				<LightingMode>L_SELFILLUM</LightingMode>
+				<DynamicMode>DM_DONT_CARE</DynamicMode>
+				<Is2Sided>false</Is2Sided>
+				<Effect>M_GENERIC</Effect>
+				<AlphaMode>AM_TRANSPARENT</AlphaMode>
+				<AffectedByFog>true</AffectedByFog>
+				<AddPlaced>true</AddPlaced>
+				<IgnoreZBuffer>false</IgnoreZBuffer>
+				<BackFaceCastShadow>false</BackFaceCastShadow>
+			</Material>
+		</Item>
+		<Item href="#n:inline(Material)" id="item_c56c5112-6adb-4f88-8e24-7d016072135c">
+			<Material ObjectRecordID="17538">
+				<Texture href="Wave05NoADD.tga.xdb#xpointer(/Texture)"/>
+				<Bump/>
+				<SpecFactor>0</SpecFactor>
+				<SpecColor>
+					<x>0</x>
+					<y>0</y>
+					<z>0</z>
+				</SpecColor>
+				<Gloss/>
+				<MetalMirror>0</MetalMirror>
+				<DielMirror>0</DielMirror>
+				<Mirror/>
+				<CastShadow>false</CastShadow>
+				<ReceiveShadow>true</ReceiveShadow>
+				<Priority>0</Priority>
+				<TranslucentColor>
+					<x>0</x>
+					<y>0</y>
+					<z>0</z>
+				</TranslucentColor>
+				<FloatParam>0</FloatParam>
+				<DetailTexture/>
+				<DetailScale>5</DetailScale>
+				<ProjectOnTerrain>false</ProjectOnTerrain>
+				<LightingMode>L_SELFILLUM</LightingMode>
+				<DynamicMode>DM_DONT_CARE</DynamicMode>
+				<Is2Sided>false</Is2Sided>
+				<Effect>M_GENERIC</Effect>
+				<AlphaMode>AM_TRANSPARENT</AlphaMode>
+				<AffectedByFog>true</AffectedByFog>
+				<AddPlaced>true</AddPlaced>
+				<IgnoreZBuffer>false</IgnoreZBuffer>
+				<BackFaceCastShadow>false</BackFaceCastShadow>
+			</Material>
+		</Item>
+	</Materials>
+	<Skeleton href="#n:inline(Skeleton)" id="item_2e3135d2-e74c-4769-b40b-caa7be6edc9e">
+		<Skeleton ObjectRecordID="1341">
+			<SrcName href="/Effects/Spells/Plague.mb"/>
+			<RootJoint>Global</RootJoint>
+			<MSRFormat>true</MSRFormat>
+			<Animations/>
+			<uid>B59A7F37-D845-4882-ADB4-00D845D33428</uid>
+		</Skeleton>
+	</Skeleton>
+	<Geometry href="#n:inline(Geometry)" id="item_5afabcb6-0a84-4d51-9c4a-397924e9479e">
+		<Geometry ObjectRecordID="6518">
+			<SrcName href="/Effects/Spells/Plague.mb"/>
+			<uid>D26E1E84-8E56-4C40-8E05-A330EDF1427E</uid>
+			<RootMesh>Global</RootMesh>
+			<RootJoint>Global</RootJoint>
+			<Size>
+				<x>2.5</x>
+				<y>2.5</y>
+				<z>2.51607</z>
+			</Size>
+			<Center>
+				<x>0</x>
+				<y>0</y>
+				<z>0.141964</z>
+			</Center>
+			<BestFitPoint>
+				<x>0.0869672</x>
+				<y>0.00388104</y>
+				<z>1.4</z>
+			</BestFitPoint>
+			<Dir>
+				<x>0</x>
+				<y>0</y>
+				<z>0</z>
+				<w>0</w>
+			</Dir>
+			<AIGeometry/>
+			<NumMeshes>6</NumMeshes>
+			<MaterialQuantities>
+				<Item>1</Item>
+				<Item>1</Item>
+				<Item>0</Item>
+				<Item>1</Item>
+				<Item>0</Item>
+				<Item>0</Item>
+			</MaterialQuantities>
+			<MeshNames>
+				<Item>HoleShape</Item>
+				<Item>GlowShape</Item>
+				<Item>RayShape</Item>
+				<Item>WaveShape</Item>
+				<Item>SkullShape</Item>
+				<Item>JawShape</Item>
+			</MeshNames>
+			<MeshAnimated/>
+			<MeshWindAffected/>
+		</Geometry>
+	</Geometry>
+	<Animations/>
+	<WindPower>1</WindPower>
+</Model>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightInstance ObjectRecordID="1000082">
+	<Light href="/Characters/Hits/ColdHit.(AnimLight).xdb#xpointer(/AnimLight)"/>
+	<Position>
+		<x>0</x>
+		<y>-2</y>
+		<z>1.5</z>
+	</Position>
+	<Rotation>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+		<w>1</w>
+	</Rotation>
+	<Scale>10</Scale>
+	<Speed>1</Speed>
+	<Offset>1.4</Offset>
+	<EndCycle>0</EndCycle>
+	<CycleCount>1</CycleCount>
+	<GlueToBone>0</GlueToBone>
+</LightInstance>

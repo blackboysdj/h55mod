@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Effect>
+	<Instances/>
+	<Lights/>
+	<Models>
+		<Item href="Neck.(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item href="head.(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item href="stuff.(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item/>
+	</Models>
+	<WindAffected>false</WindAffected>
+	<WindPower>1</WindPower>
+	<Duration>2.5</Duration>
+</Effect>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Effect ObjectRecordID="291">
+	<Instances>
+		<Item href="#n:inline(ParticleInstance)" id="item_7cb5e75e-a51f-4170-bb10-ee6b5f72f335">
+			<ParticleInstance ObjectRecordID="341">
+				<SrcName/>
+				<Light>L_NORMAL</Light>
+				<Particle href="#n:inline(Particle)" id="item_a0e5b6a4-7e5e-49fc-b424-e2685046634e">
+					<Particle ObjectRecordID="119">
+						<SrcName href="/Effects/Spells/MagicFist.mb"/>
+						<ExportPrefix>Sparks</ExportPrefix>
+						<WrapSize>
+							<x>0</x>
+							<y>0</y>
+						</WrapSize>
+						<Bound>20a12cbed83fa5be59542a40a149e540d25673407b0f7b40da5c9440</Bound>
+						<PerParticleFog>false</PerParticleFog>
+						<uid>F61860B6-144A-43D2-AB8E-0BF1048EC293</uid>
+					</Particle>
+				</Particle>
+				<Position>
+					<x>0</x>
+					<y>-2</y>
+					<z>0</z>
+				</Position>
+				<Rotation>
+					<x>0</x>
+					<y>0</y>
+					<z>0</z>
+					<w>1</w>
+				</Rotation>
+				<Scale>1</Scale>
+				<Speed>1</Speed>
+				<Offset>0</Offset>
+				<EndCycle>2.5</EndCycle>
+				<CycleCount>1</CycleCount>
+				<Pivot>
+					<x>0</x>
+					<y>0</y>
+				</Pivot>
+				<Textures>
+					<Item/>
+					<Item/>
+					<Item/>
+					<Item/>
+					<Item/>
+					<Item/>
+					<Item/>
+					<Item/>
+					<Item/>
+					<Item/>
+					<Item href="/Textures/Effects/_Various/Glow07.xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/Effects/_Various/Glow05.xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/Effects/_Various/Smoke03.xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/Effects/_Various/SparkMagenta.xdb#xpointer(/Texture)"/>
+				</Textures>
+				<IsCrown>false</IsCrown>
+				<Static>P_STATIC</Static>
+				<DoesCastShadow>false</DoesCastShadow>
+				<GlueToBone>0</GlueToBone>
+				<GlueToNamedBone/>
+				<LeaveParticlesWhereStarted>false</LeaveParticlesWhereStarted>
+				<Priority>0</Priority>
+			</ParticleInstance>
+		</Item>
+	</Instances>
+	<Lights/>
+	<Models>
+		<Item href="Neck.(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item href="head.(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item href="stuff.(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item/>
+		<Item href="#n:inline(ModelInstance)" id="item_96a9fc88-f9ef-4bda-936f-8cf7dcb59ead">
+			<ModelInstance ObjectRecordID="18">
+				<Model href="/_(Model)/Effects/Spells/MagicFist_hand.(Model).xdb#xpointer(/Model)"/>
+				<SkelAnim href="/_(BasicSkelAnim)/Effects/Spells/MagicFist_hand.(BasicSkelAnim).xdb#xpointer(/BasicSkelAnim)"/>
+				<Position>
+					<x>-0.5</x>
+					<y>-2</y>
+					<z>2.5</z>
+				</Position>
+				<Rotation>
+					<x>0</x>
+					<y>0</y>
+					<z>0</z>
+					<w>1</w>
+				</Rotation>
+				<Scale>1</Scale>
+				<Offset>0</Offset>
+				<CycleLength>0</CycleLength>
+				<CycleCount>1</CycleCount>
+				<GlueToBone>0</GlueToBone>
+				<GlueToNamedBone/>
+			</ModelInstance>
+		</Item>
+		<Item href="#n:inline(ModelInstance)" id="item_80d9f757-3628-4f62-8b28-8e9fce3c68b2">
+			<ModelInstance ObjectRecordID="19">
+				<Model href="/_(Model)/Effects/Spells/MagicFist_waves.(Model).xdb#xpointer(/Model)"/>
+				<SkelAnim href="/_(BasicSkelAnim)/Effects/Spells/MagicFist_waves.(BasicSkelAnim).xdb#xpointer(/BasicSkelAnim)"/>
+				<Position>
+					<x>0</x>
+					<y>-2</y>
+					<z>0</z>
+				</Position>
+				<Rotation>
+					<x>0</x>
+					<y>0</y>
+					<z>0</z>
+					<w>1</w>
+				</Rotation>
+				<Scale>1</Scale>
+				<Offset>0</Offset>
+				<CycleLength>0</CycleLength>
+				<CycleCount>1</CycleCount>
+				<GlueToBone>0</GlueToBone>
+				<GlueToNamedBone/>
+			</ModelInstance>
+		</Item>
+	</Models>
+	<WindAffected>false</WindAffected>
+	<WindPower>1</WindPower>
+	<Duration>2.5</Duration>
+</Effect>

@@ -1,0 +1,1 @@
+Advice: Type your geometry and skeleton codenames here, in order to easily remember which codename refers to which geometry or skeleton of specific creature.

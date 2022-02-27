@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BasicSkelAnim>
+	<SrcName href="/H5A2/Heroes/Arantir/Arantir_Unmounted/Arantir.mb"/>
+	<uid>7BE64D38-5CA4-4E2A-B5A1-88C4E92B6C3C</uid>
+	<ExpSrcClip href="/H5A2/Heroes/Arantir/Animations/Unmounted/Clip/Arantir_Character.speech_orator.ma"/>
+	<ExpRootTransform>Global</ExpRootTransform>
+	<ExpFrameFirst>0</ExpFrameFirst>
+	<ExpFrameLast>0</ExpFrameLast>
+	<ExpSettingsFile href=""/>
+	<MovementSpeed>0</MovementSpeed>
+	<SpeedFactor>1</SpeedFactor>
+	<Sound href="/Sounds/_(Sound)/Heroes/DS/A2/Arantir_DS_U/cast.(Sound).xdb#xpointer(/Sound)"/>
+	<Effect href="Effects/idle.(Effect).xdb#xpointer(/Effect)"/>
+	<SpeedLineFallTime>250</SpeedLineFallTime>
+	<SpeedLineMaterial/>
+</BasicSkelAnim>

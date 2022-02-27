@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ParticleInstance ObjectRecordID="965">
+	<SrcName/>
+	<Light>L_NORMAL</Light>
+	<Particle href="#n:inline(Particle)" id="item_6be59f6b-1652-433b-a2bd-41753974a94c">
+		<Particle ObjectRecordID="527">
+			<SrcName href="/Effects/Characters/PRESERVE/Druid/RangeAttack.mb"/>
+			<ExportPrefix>Shot</ExportPrefix>
+			<WrapSize>
+				<x>0</x>
+				<y>0</y>
+			</WrapSize>
+			<Bound>406623bda32f0ec014e3b53ffdc52041d305b740c06bbe40f265b740</Bound>
+			<PerParticleFog>false</PerParticleFog>
+			<uid>99EC0653-AB8C-4D3E-93D5-A70B14CA2330</uid>
+		</Particle>
+	</Particle>
+	<Position>
+		<x>-0.2</x>
+		<y>-0.5</y>
+		<z>0.15</z>
+	</Position>
+	<Rotation>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+		<w>1</w>
+	</Rotation>
+	<Scale>0.8</Scale>
+	<Speed>1.7</Speed>
+	<Offset>-0.5</Offset>
+	<EndCycle>3.5</EndCycle>
+	<CycleCount>1</CycleCount>
+	<Pivot>
+		<x>0</x>
+		<y>0</y>
+	</Pivot>
+	<Textures>
+		<Item/>
+		<Item/>
+		<Item href="/Textures/Effects/_Various/Glow11_Violet.xdb#xpointer(/Texture)"/>
+		<Item href="/Textures/Effects/_Various/Glow11_Violet.xdb#xpointer(/Texture)"/>
+		<Item href="/Textures/Effects/_Various/SparkWhite02.(Texture).xdb#xpointer(/Texture)"/>
+		<Item href="/Textures/Effects/_Various/Glow11_Violet.xdb#xpointer(/Texture)"/>
+	</Textures>
+	<IsCrown>false</IsCrown>
+	<Static>P_STATIC</Static>
+	<DoesCastShadow>false</DoesCastShadow>
+	<GlueToBone>0</GlueToBone>
+	<GlueToNamedBone/>
+	<LeaveParticlesWhereStarted>false</LeaveParticlesWhereStarted>
+	<Priority>0</Priority>
+</ParticleInstance>

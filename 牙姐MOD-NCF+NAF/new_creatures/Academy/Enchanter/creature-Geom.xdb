@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Geometry>
+	<SrcName href="/Abbot.mb"/>
+	<uid>95FF68E3-AF3C-4905-B097-9FC38C7BB493</uid>
+	<RootMesh/>
+	<RootJoint>Global</RootJoint>
+	<Size>
+		<x>1.88922</x>
+		<y>0.679594</y>
+		<z>2.30645</z>
+	</Size>
+	<Center>
+		<x>-0.486853</x>
+		<y>-0.0121185</y>
+		<z>0.974149</z>
+	</Center>
+	<BestFitPoint>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+	</BestFitPoint>
+	<Dir>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+		<w>0</w>
+	</Dir>
+	<AIGeometry/>
+	<NumMeshes>1</NumMeshes>
+	<MaterialQuantities>
+		<Item>1</Item>
+	</MaterialQuantities>
+	<MeshNames>
+		<Item>polySurfaceShape1</Item>
+	</MeshNames>
+	<MeshAnimated/>
+	<MeshWindAffected/>
+</Geometry>

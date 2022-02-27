@@ -84,11 +84,11 @@
 		<Gold>1200</Gold>
 	</Cost>
 	<SubjectOfRandomGeneration>true</SubjectOfRandomGeneration>
-	<MonsterShared href="/MapObjects/Neutral/Ulem.(AdvMapMonsterShared).xdb#xpointer(/AdvMapMonsterShared)"/>
+	<MonsterShared href="/new_creatures/Academy/Enchanter/creature.(AdvMapMonsterShared).xdb#xpointer(/AdvMapMonsterShared)"/>
 	<CombatSize>1</CombatSize>
 	<PatternAttack/>
 	<flybySequence/>
-	<Visual href="/GameMechanics/CreatureVisual/Creatures/NCF_Creatures/Creature_929.xdb#xpointer(/CreatureVisual)"/>
+	<Visual href="/new_creatures/Academy/Enchanter/creature.(CreatureVisual).xdb#xpointer(/CreatureVisual)"/>
 	<Range>-1</Range>
 	<BaseCreature>CREATURE_MAGI</BaseCreature>
 	<Upgrades/>

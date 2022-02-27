@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ParticleInstance ObjectRecordID="578">
+	<SrcName/>
+	<Light>L_NORMAL</Light>
+	<Particle href="/Effects/_(Particle)/Spells/CelestialShield_ring.xdb#xpointer(/Particle)"/>
+	<Position>
+		<x>-0.16</x>
+		<y>-1.4</y>
+		<z>1.38</z>
+	</Position>
+	<Rotation>
+		<x>0.7</x>
+		<y>0</y>
+		<z>0</z>
+		<w>0.7</w>
+	</Rotation>
+	<Scale>0.1</Scale>
+	<Speed>1</Speed>
+	<Offset>-2</Offset>
+	<EndCycle>6</EndCycle>
+	<CycleCount>1</CycleCount>
+	<Pivot>
+		<x>0</x>
+		<y>0</y>
+	</Pivot>
+	<Textures>
+		<Item href="/Textures/Effects/_Various/SparkGreen00.xdb#xpointer(/Texture)"/>
+		<Item href="/Textures/Effects/_Various/SparkGreen00.xdb#xpointer(/Texture)"/>
+		<Item href="/Textures/Effects/_Various/SparkGreen00.xdb#xpointer(/Texture)"/>
+		<Item href="/Textures/Effects/_Various/SparkGreen00.xdb#xpointer(/Texture)"/>
+		<Item href="/Textures/Effects/_Various/SparkGreen00.xdb#xpointer(/Texture)"/>
+		<Item href="/Textures/Effects/_Various/SparkGreen00.xdb#xpointer(/Texture)"/>
+		<Item href="/Textures/Effects/_Various/SparkGreen00.xdb#xpointer(/Texture)"/>
+		<Item href="/Textures/Effects/_Various/SparkGreen00.xdb#xpointer(/Texture)"/>
+		<Item href="/Textures/Effects/_Various/SparkGreen00.xdb#xpointer(/Texture)"/>
+		<Item href="/Textures/Effects/_Various/SparkGreen00.xdb#xpointer(/Texture)"/>
+		<Item href="/Textures/Effects/_Various/SparkGreen00.xdb#xpointer(/Texture)"/>
+		<Item href="/Textures/Effects/_Various/Glow02_Green.(Texture).xdb#xpointer(/Texture)"/>
+		<Item/>
+		<Item/>
+		<Item/>
+		<Item/>
+		<Item/>
+		<Item/>
+		<Item/>
+	</Textures>
+	<IsCrown>false</IsCrown>
+	<Static>P_STATIC</Static>
+	<DoesCastShadow>false</DoesCastShadow>
+	<GlueToBone>0</GlueToBone>
+	<GlueToNamedBone/>
+	<LeaveParticlesWhereStarted>false</LeaveParticlesWhereStarted>
+	<Priority>0</Priority>
+</ParticleInstance>

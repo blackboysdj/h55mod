@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Geometry>
+	<SrcName href="/Stuff.mb"/>
+	<uid>DA0E9368-E213-4086-B300-C628AC44C100</uid>
+	<RootMesh/>
+	<RootJoint>Stuff2</RootJoint>
+	<Size>
+		<x>0.178419</x>
+		<y>0.199733</y>
+		<z>1.3879</z>
+	</Size>
+	<Center>
+		<x>-0.00281927</x>
+		<y>-0.00208635</y>
+		<z>-0.141591</z>
+	</Center>
+	<BestFitPoint>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+	</BestFitPoint>
+	<Dir>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+		<w>0</w>
+	</Dir>
+	<AIGeometry/>
+	<NumMeshes>1</NumMeshes>
+	<MaterialQuantities>
+		<Item>1</Item>
+	</MaterialQuantities>
+	<MeshNames>
+		<Item>StuffShape2</Item>
+	</MeshNames>
+	<MeshAnimated/>
+	<MeshWindAffected/>
+</Geometry>

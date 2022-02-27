@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModelInstance ObjectRecordID="214">
+	<Model href="Shot.(Model).xdb#xpointer(/Model)"/>
+	<SkelAnim href="Shot.(BasicSkelAnim).xdb#xpointer(/BasicSkelAnim)"/>
+	<Position>
+		<x>-0.2</x>
+		<y>-0.5</y>
+		<z>0.15</z>
+	</Position>
+	<Rotation>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+		<w>1</w>
+	</Rotation>
+	<Scale>0.8</Scale>
+	<Offset>-0.5</Offset>
+	<CycleLength>0</CycleLength>
+	<CycleCount>1</CycleCount>
+	<GlueToBone>0</GlueToBone>
+	<GlueToNamedBone/>
+</ModelInstance>

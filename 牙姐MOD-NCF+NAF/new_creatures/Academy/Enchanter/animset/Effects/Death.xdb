@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Effect ObjectRecordID="547">
+	<Instances>
+		<Item href="#n:inline(ParticleInstance)" id="item_926702de-67b7-4959-9b2d-3429b4b4e034">
+			<ParticleInstance ObjectRecordID="737">
+				<SrcName/>
+				<Light>L_NORMAL</Light>
+				<Particle href="UnholyWord_hit.xdb#xpointer(/Particle)"/>
+				<Position>
+					<x>0</x>
+					<y>0</y>
+					<z>0.2</z>
+				</Position>
+				<Rotation>
+					<x>0</x>
+					<y>0</y>
+					<z>0</z>
+					<w>1</w>
+				</Rotation>
+				<Scale>1.4</Scale>
+				<Speed>1</Speed>
+				<Offset>0</Offset>
+				<EndCycle>3</EndCycle>
+				<CycleCount>1</CycleCount>
+				<Pivot>
+					<x>0</x>
+					<y>0</y>
+				</Pivot>
+				<Textures>
+					<Item/>
+					<Item href="/Textures/Effects/_Various/SparkWhite.xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/Effects/_Various/SparkWhite.xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/Effects/_Various/SparkWhite.xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/Effects/_Various/SparkWhite.xdb#xpointer(/Texture)"/>
+					<Item/>
+					<Item href="/Textures/Effects/_Various/SparkWhite.xdb#xpointer(/Texture)"/>
+					<Item/>
+					<Item/>
+					<Item/>
+					<Item/>
+					<Item href="/Textures/Effects/_Various/SparkWhite.xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/Effects/_Various/SparkWhite.xdb#xpointer(/Texture)"/>
+					<Item/>
+					<Item href="/Textures/Effects/_Various/SparkWhite.xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/Effects/_Various/SparkWhite.xdb#xpointer(/Texture)"/>
+					<Item/>
+					<Item/>
+					<Item/>
+					<Item/>
+					<Item/>
+					<Item/>
+					<Item/>
+					<Item/>
+					<Item/>
+					<Item/>
+					<Item/>
+				</Textures>
+				<IsCrown>false</IsCrown>
+				<Static>P_STATIC</Static>
+				<DoesCastShadow>false</DoesCastShadow>
+				<GlueToBone>0</GlueToBone>
+				<GlueToNamedBone/>
+				<LeaveParticlesWhereStarted>false</LeaveParticlesWhereStarted>
+				<Priority>0</Priority>
+			</ParticleInstance>
+		</Item>
+	</Instances>
+	<Lights/>
+	<Models>
+		<Item href="Neck.(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item href="head.(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item href="stuff.(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+	</Models>
+	<WindAffected>false</WindAffected>
+	<WindPower>1</WindPower>
+	<Duration>2.5</Duration>
+</Effect>

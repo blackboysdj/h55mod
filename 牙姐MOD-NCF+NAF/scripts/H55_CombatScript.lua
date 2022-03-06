@@ -479,18 +479,17 @@ doFile('/scripts/combat-startup.lua')
 			local iLenCreaturesTarget = length(listCreaturesTarget);
 			local itemCreatureCaster = nil;
 			for iIndexCreaturesTarget = 0, iLenCreaturesTarget - 1 do
-				if IsCombatUnit(listCreaturesTarget[iIndexCreaturesTarget]) ~= nil and GetCreatureNumber(listCreaturesTarget[iIndexCreaturesTarget]) > 0 then
-					repeat sleep(1); until itemCreatureCaster == nil or (itemCreatureCaster ~= nil and IsCombatUnit(itemCreatureCaster) == nil);
-					itemCreatureCaster = Thread_Command_SummonCreature(iSide, CREATURE_EMPIRE, H55SMOD_HeroLevel[strHero], pos['x'], pos['y']);
-					if itemCreatureCaster ~= nil and IsCombatUnit(itemCreatureCaster) ~= nil then
-						startThread(Thread_Command_UnitCastAimedSpell, itemCreatureCaster, SPELL_CELESTIAL_SHIELD, listCreaturesTarget[iIndexCreaturesTarget], 0);
-						sleep(20);
-						startThread(Thread_Command_RemoveCombatUnit, iSide, itemCreatureCaster);
-						sleep(20);
+				local itemCreatureTarget = listCreaturesTarget[iIndexCreaturesTarget];
+				if IsCombatUnit(itemCreatureTarget) ~= nil and GetCreatureNumber(itemCreatureTarget) > 0 then
+					itemCreatureCaster = Thread_Command_SummonCreature(iSide, CREATURE_CHERUBIN, H55SMOD_HeroLevel[strHero], pos['x'], pos['y']);
+					if IsCombatUnit(itemCreatureCaster) ~= nil and GetCreatureNumber(itemCreatureCaster) > 0 then
+						Thread_Command_UnitCastAimedSpell_IgnoreMana(itemCreatureCaster, SPELL_CELESTIAL_SHIELD, itemCreatureTarget);
+						Thread_Command_RemoveCombatUnit(iSide, itemCreatureCaster);
+						itemCreatureCaster = nil;
 					end;
 				end;
 			end;
-			print("CREATURE_EMPIRE casted SPELL_CELESTIAL_SHIELD");
+			print("CREATURE_CHERUBIN casted SPELL_CELESTIAL_SHIELD");
 		end;
 		H55SMOD_Start['Tazar']['function'] = Events_Start_Implement_Tazar;
 
@@ -502,14 +501,14 @@ doFile('/scripts/combat-startup.lua')
 			local listCreaturesTarget = GetCreatures(iSide);
 			local iLenCreaturesTarget = length(listCreaturesTarget);
 			local itemCreatureCaster = nil;
-			itemCreatureCaster = Thread_Command_SummonCreature(iSide, CREATURE_EMPIRE, H55SMOD_HeroLevel[strHero], pos['x'], pos['y']);
+			itemCreatureCaster = Thread_Command_SummonCreature(iSide, CREATURE_CHERUBIN, H55SMOD_HeroLevel[strHero], pos['x'], pos['y']);
 			if itemCreatureCaster ~= nil and IsCombatUnit(itemCreatureCaster) ~= nil then
-				startThread(Thread_Command_UnitCastGlobalSpell, itemCreatureCaster, SPELL_MASS_DEFLECT_ARROWS, 0);
+				startThread(Thread_Command_UnitCastGlobalSpell_IgnoreMana, itemCreatureCaster, SPELL_MASS_DEFLECT_ARROWS, 0);
 				sleep(20);
 				startThread(Thread_Command_RemoveCombatUnit, iSide, itemCreatureCaster);
 				sleep(20);
 			end;
-			print("CREATURE_EMPIRE casted SPELL_MASS_DEFLECT_ARROWS");
+			print("CREATURE_CHERUBIN casted SPELL_MASS_DEFLECT_ARROWS");
 		end;
 		H55SMOD_Start['Nicolai']['function'] = Events_Start_Implement_Nicolai;
 
@@ -601,16 +600,16 @@ doFile('/scripts/combat-startup.lua')
 		-- ARTIFACT_ANGELIC_ALLIANCE
 		function Events_Start_Artifact_Implement_Angelic_Alliance(iSide)
 			local pos = BattleLargeCenterPos[getBattleSize()];
-			local itemCreatureCaster = Thread_Command_SummonCreature(iSide, CREATURE_EMPIRE, 1, pos['x'], pos['y']);
+			local itemCreatureCaster = Thread_Command_SummonCreature(iSide, CREATURE_CHERUBIN, 1, pos['x'], pos['y']);
 			ShowFlyingSign(TTHCS_PATH["Artifact"][ARTIFACT_ANGELIC_ALLIANCE]["Effect"], itemCreatureCaster, 5);
-			startThread(Thread_Command_UnitCastGlobalSpell_WithoutMana, itemCreatureCaster, SPELL_MASS_HASTE);
+			startThread(Thread_Command_UnitCastGlobalSpell_IgnoreMana, itemCreatureCaster, SPELL_MASS_HASTE);
 			print("ARTIFACT_ANGELIC_ALLIANCE casted SPELL_MASS_HASTE");
-			startThread(Thread_Command_UnitCastGlobalSpell_WithoutMana, itemCreatureCaster, SPELL_MASS_BLESS);
+			startThread(Thread_Command_UnitCastGlobalSpell_IgnoreMana, itemCreatureCaster, SPELL_MASS_BLESS);
 			print("ARTIFACT_ANGELIC_ALLIANCE casted SPELL_MASS_BLESS");
 			sleep(100);
 			startThread(Thread_Command_RemoveCombatUnit_Uncheck, itemCreatureCaster);
 			repeat sleep(1); until IsCombatUnit(itemCreatureCaster) == nil;
-			print("CREATURE_EMPIRE has left");
+			print("CREATURE_CHERUBIN has left");
 		end;
 		H55SMOD_Start['Artifact'][ARTIFACT_ANGELIC_ALLIANCE] = {
 			[ENUM_SIDE.ATTACKER] = {
@@ -624,16 +623,16 @@ doFile('/scripts/combat-startup.lua')
 		-- ARTIFACT_SENTINEL
 		function Events_Start_Artifact_Implement_Sentinel(iSide)
 			local pos = BattleLargeCenterPos[getBattleSize()];
-			local itemCreatureCaster = Thread_Command_SummonCreature(iSide, CREATURE_EMPIRE, 1, pos['x'], pos['y']);
+			local itemCreatureCaster = Thread_Command_SummonCreature(iSide, CREATURE_CHERUBIN, 1, pos['x'], pos['y']);
 			ShowFlyingSign(TTHCS_PATH["Artifact"][ARTIFACT_SENTINEL]["Effect"], itemCreatureCaster, 5);
-			startThread(Thread_Command_UnitCastGlobalSpell_WithoutMana, itemCreatureCaster, SPELL_MASS_STONESKIN);
+			startThread(Thread_Command_UnitCastGlobalSpell_IgnoreMana, itemCreatureCaster, SPELL_MASS_STONESKIN);
 			print("ARTIFACT_SENTINEL casted SPELL_MASS_STONESKIN");
-			startThread(Thread_Command_UnitCastGlobalSpell_WithoutMana, itemCreatureCaster, SPELL_MASS_BLOODLUST);
+			startThread(Thread_Command_UnitCastGlobalSpell_IgnoreMana, itemCreatureCaster, SPELL_MASS_BLOODLUST);
 			print("ARTIFACT_SENTINEL casted SPELL_MASS_BLOODLUST");
 			sleep(100);
 			startThread(Thread_Command_RemoveCombatUnit_Uncheck, itemCreatureCaster);
 			repeat sleep(1); until IsCombatUnit(itemCreatureCaster) == nil;
-			print("CREATURE_EMPIRE has left");
+			print("CREATURE_CHERUBIN has left");
 		end;
 		H55SMOD_Start['Artifact'][ARTIFACT_SENTINEL] = {
 			[ENUM_SIDE.ATTACKER] = {
@@ -647,16 +646,16 @@ doFile('/scripts/combat-startup.lua')
 		-- ARTIFACT_CURSE_SHOULDER
 		function Events_Start_Artifact_Implement_Curse_Shoulder(iSide)
 			local pos = BattleLargeCenterPos[getBattleSize()];
-			local itemCreatureCaster = Thread_Command_SummonCreature(iSide, CREATURE_DARK_CHAMPION, 1, pos['x'], pos['y']);
+			local itemCreatureCaster = Thread_Command_SummonCreature(iSide, CREATURE_DRAGON_KNIGHT, 1, pos['x'], pos['y']);
 			ShowFlyingSign(TTHCS_PATH["Artifact"][ARTIFACT_CURSE_SHOULDER]["Effect"], itemCreatureCaster, 5);
-			startThread(Thread_Command_UnitCastGlobalSpell_WithoutMana, itemCreatureCaster, SPELL_MASS_SLOW);
+			startThread(Thread_Command_UnitCastGlobalSpell_IgnoreMana, itemCreatureCaster, SPELL_MASS_SLOW);
 			print("ARTIFACT_ANGELIC_ALLIANCE casted SPELL_MASS_SLOW");
-			startThread(Thread_Command_UnitCastGlobalSpell_WithoutMana, itemCreatureCaster, SPELL_MASS_WEAKNESS);
+			startThread(Thread_Command_UnitCastGlobalSpell_IgnoreMana, itemCreatureCaster, SPELL_MASS_WEAKNESS);
 			print("ARTIFACT_ANGELIC_ALLIANCE casted SPELL_MASS_WEAKNESS");
 			sleep(100);
 			startThread(Thread_Command_RemoveCombatUnit_Uncheck, itemCreatureCaster);
 			repeat sleep(1); until IsCombatUnit(itemCreatureCaster) == nil;
-			print("CREATURE_DARK_CHAMPION has left");
+			print("CREATURE_DRAGON_KNIGHT has left");
 		end;
 		H55SMOD_Start['Artifact'][ARTIFACT_CURSE_SHOULDER] = {
 			[ENUM_SIDE.ATTACKER] = {
@@ -805,6 +804,42 @@ doFile('/scripts/combat-startup.lua')
 			end;
 			H55SMOD_Start['Skill'][HERO_SKILL_MYSTICISM]['function'] = Events_Start_Implement_Skill_Mysticism;
 
+		-- HERO_SKILL_GUARDIAN_ANGEL 078 天神降临
+			H55SMOD_Start['Skill'][HERO_SKILL_GUARDIAN_ANGEL] = {};
+			function Events_Start_Implement_Skill_GuardianAngel()
+				for iSide = ENUM_SIDE.ATTACKER, ENUM_SIDE.DEFENDER do
+					if GetHero(iSide) ~= nil
+						and TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_GUARDIAN_ANGEL] ~= nil
+						and TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_GUARDIAN_ANGEL] > 0 then
+						local iCreatureId = TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_GUARDIAN_ANGEL];
+						local iBattleSize = getBattleSize();
+						local iPositionX = 0;
+						local iPositionY = 1;
+						if iBattleSize == 0 then
+					    if iSide == ENUM_SIDE.ATTACKER then
+  							iPositionX = 6;
+  						else
+  							iPositionX = 10;
+  						end;
+							iPositionY = 6;
+						else
+					    if iSide == ENUM_SIDE.ATTACKER then
+  							iPositionX = 6;
+  						else
+  							iPositionX = 12;
+  						end;
+							iPositionY = 8;
+						end;
+						local iHeroLevel = H55SMOD_HeroLevel[GetHeroName(GetHero(iSide))];
+						local iCreatureCount = 1 + h55_floor(iHeroLevel / 10);
+						local strCreatureFall = Thread_Command_SummonCreature(iSide, iCreatureId, iCreatureCount, iPositionX, iPositionY);
+						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_GUARDIAN_ANGEL]["Effect"], strCreatureFall, 5);
+						print(strCreatureFall.." falls on the combat by [GuardianAngel]");
+					end;
+				end;
+			end;
+			H55SMOD_Start['Skill'][HERO_SKILL_GUARDIAN_ANGEL]['function'] = Events_Start_Implement_Skill_GuardianAngel;
+
 	function Events_Start()
 		combatSetPause(1);
 		Events_Init();
@@ -929,8 +964,8 @@ doFile('/scripts/combat-startup.lua')
 				for indexSkill, objSkill in TTH_SKILL_EFFECT_COMBAT do
 					local strKey = TTH_FINAL.GAMEVAR_COMBAT_SKILL..strHero..'_'..objSkill;
 					local strValue = GetGameVar(strKey);
-					if strValue ~= nil and strValue ~= '' and strValue * 1 == 1 then
-						TTH_SKILL_EFFECT_COMBAT_HERO[iSide][objSkill] = 1;
+					if strValue ~= nil and strValue ~= '' and strValue + 0 > 0 then
+						TTH_SKILL_EFFECT_COMBAT_HERO[iSide][objSkill] = strValue + 0;
 					end;
 				end;
 			end;
@@ -1007,6 +1042,7 @@ doFile('/scripts/combat-startup.lua')
 
 		-- 后置技能特效
 		H55SMOD_Start['Skill'][HERO_SKILL_MYSTICISM]['function']();
+		H55SMOD_Start['Skill'][HERO_SKILL_GUARDIAN_ANGEL]['function']();
 	end;
 
 -- 监听: 单位触发接口
@@ -1750,6 +1786,8 @@ doFile('/scripts/combat-startup.lua')
 						-- Creature
 							H55SMOD_MiddlewareListener['LightAngel']['function']('LightAngel', iSide, itemUnit);
 							H55SMOD_MiddlewareListener['Enchanter']['function']('Enchanter', iSide, itemUnit);
+							H55SMOD_MiddlewareListener['Cherubin']['function']('Cherubin', iSide, itemUnit);
+							H55SMOD_MiddlewareListener['DragonKnight']['function']('DragonKnight', iSide, itemUnit);
 					end;
 				end;
 
@@ -4613,6 +4651,58 @@ doFile('/scripts/combat-startup.lua')
 			end;
 		end;
 		H55SMOD_MiddlewareListener['Enchanter']['function'] = Events_MiddlewareListener_Implement_Enchanter;
+
+	-- CREATURE_CHERUBIN 神圣守护者
+		H55SMOD_MiddlewareListener['Cherubin'] = {};
+		H55SMOD_MiddlewareListener['Cherubin']['MagicIndex'] = 1;
+		function Events_MiddlewareListener_Implement_Cherubin(strHero, iSide, itemUnit)
+			if (itemUnit['iUnitType'] == CREATURE_CHERUBIN or itemUnit['iUnitType'] == CREATURE_CHERUBIN_LESS)
+				and itemUnit['iSide'] == iSide then
+				if IsCombatUnit(itemUnit['strUnitName']) ~= nil and itemUnit['iUnitNumber'] > 0 then
+					combatSetPause(1);
+					local iMagicIndex = H55SMOD_MiddlewareListener['Cherubin']['MagicIndex'];
+					local objMagicId = TTHCS_TABLE.CherubinMagic[iMagicIndex];
+					local iMagicId = objMagicId["Id"];
+					local enumMagicType = objMagicId["Type"];
+					Thread_Command_UnitCastGlobalSpell_IgnoreMana(itemUnit['strUnitName'], iMagicId);
+					H55SMOD_MiddlewareListener['Cherubin']['MagicIndex'] = H55SMOD_MiddlewareListener['Cherubin']['MagicIndex'] + 1;
+					if H55SMOD_MiddlewareListener['Cherubin']['MagicIndex'] > 3 then
+						H55SMOD_MiddlewareListener['Cherubin']['MagicIndex'] = 1;
+					end;
+					itemUnit['iAtb'] = 1.25;
+					push(ListUnitSetATB, itemUnit);
+					print(itemUnit['strUnitName'].." cast "..iMagicId);
+					combatSetPause(nil);
+				end;
+			end;
+		end;
+		H55SMOD_MiddlewareListener['Cherubin']['function'] = Events_MiddlewareListener_Implement_Cherubin;
+
+	-- CREATURE_DRAGON_KNIGHT 暗黑龙骑士
+		H55SMOD_MiddlewareListener['DragonKnight'] = {};
+		H55SMOD_MiddlewareListener['DragonKnight']['MagicIndex'] = 1;
+		function Events_MiddlewareListener_Implement_DragonKnight(strHero, iSide, itemUnit)
+			if (itemUnit['iUnitType'] == CREATURE_DRAGON_KNIGHT or itemUnit['iUnitType'] == CREATURE_DRAGON_KNIGHT_LESS)
+				and itemUnit['iSide'] == iSide then
+				if IsCombatUnit(itemUnit['strUnitName']) ~= nil and itemUnit['iUnitNumber'] > 0 then
+					combatSetPause(1);
+					local iMagicIndex = H55SMOD_MiddlewareListener['DragonKnight']['MagicIndex'];
+					local objMagicId = TTHCS_TABLE.DragonKnightMagic[iMagicIndex];
+					local iMagicId = objMagicId["Id"];
+					local enumMagicType = objMagicId["Type"];
+					Thread_Command_UnitCastGlobalSpell_IgnoreMana(itemUnit['strUnitName'], iMagicId);
+					H55SMOD_MiddlewareListener['DragonKnight']['MagicIndex'] = H55SMOD_MiddlewareListener['DragonKnight']['MagicIndex'] + 1;
+					if H55SMOD_MiddlewareListener['DragonKnight']['MagicIndex'] > 3 then
+						H55SMOD_MiddlewareListener['DragonKnight']['MagicIndex'] = 1;
+					end;
+					itemUnit['iAtb'] = 1.25;
+					push(ListUnitSetATB, itemUnit);
+					print(itemUnit['strUnitName'].." cast "..iMagicId);
+					combatSetPause(nil);
+				end;
+			end;
+		end;
+		H55SMOD_MiddlewareListener['DragonKnight']['function'] = Events_MiddlewareListener_Implement_DragonKnight;
 
 -- 系统接口
 	function AttackerHeroMove(heroName)

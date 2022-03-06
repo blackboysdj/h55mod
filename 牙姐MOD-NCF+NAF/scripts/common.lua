@@ -37,6 +37,7 @@ HERO_SKILL_MYSTICISM = 40;
 HERO_SKILL_PRAYER = 56;
 HERO_SKILL_SEAL_OF_PROTECTION = 131;
 HERO_SKILL_TRIPLE_CATAPULT = 88;
+HERO_SKILL_GUARDIAN_ANGEL = 78;
 
 MAX_MANA = 1000;
 
@@ -131,6 +132,7 @@ TTH_SKILL_EFFECT_COMBAT = {
     , [3] = HERO_SKILL_PRAYER
     , [4] = HERO_SKILL_SEAL_OF_PROTECTION
     , [5] = HERO_SKILL_TRIPLE_CATAPULT
+    , [6] = HERO_SKILL_GUARDIAN_ANGEL
 };
 TTH_SKILL_EFFECT_COMBAT_ONCE = {
 };
@@ -270,6 +272,15 @@ end;
 function Thread_Command_UnitCastGlobalSpell_WithoutMana(caster, spell_id)
     UnitCastGlobalSpell(caster, spell_id);
 end;
+function Thread_Command_UnitCastGlobalSpell_IgnoreMana(caster, spell_id)
+    local iCurrentMana = GetUnitManaPoints(caster);
+    SetUnitManaPoints(caster, 1000);
+    repeat sleep(1); until GetUnitManaPoints(caster) >= 1000;
+    UnitCastGlobalSpell(caster, spell_id);
+    repeat sleep(1); until GetUnitManaPoints(caster) < 1000;
+    SetUnitManaPoints(caster, iCurrentMana);
+    repeat sleep(1); until GetUnitManaPoints(caster) == iCurrentMana;
+end;
 function Thread_Command_UnitCastAreaSpell(caster, spell_id, x, y, ishero)
     if ishero == 1 then
         local i_currect_mana = GetUnitManaPoints(caster);
@@ -291,11 +302,19 @@ function Thread_Command_UnitCastAimedSpell(caster, spell_id, target, ishero)
         repeat sleep(1); until GetUnitManaPoints(caster) > 100;
         UnitCastAimedSpell(caster, spell_id, target);
         repeat sleep(1); until GetUnitManaPoints(caster) < 1000;
-        SetUnitManaPoints(caster, 1);
+        SetUnitManaPoints(caster, iCurrentMana);
     end
 end;
 function Thread_Command_UnitCastAimedSpell_WithoutMana(caster, spell_id, target)
     UnitCastAimedSpell(caster, spell_id, target);
+end;
+function Thread_Command_UnitCastAimedSpell_IgnoreMana(caster, spell_id, target)
+    local iCurrentMana = GetUnitManaPoints(caster);
+    SetUnitManaPoints(caster, 1000);
+    repeat sleep(1); until GetUnitManaPoints(caster) >= 1000;
+    UnitCastAimedSpell(caster, spell_id, target);
+    repeat sleep(1); until GetUnitManaPoints(caster) < 1000;
+    SetUnitManaPoints(caster, 1);
 end;
 function Thread_Command_UnitAttackAimed(caster, target)
     AttackCombatUnit(caster, target);
@@ -1099,10 +1118,10 @@ end;
   CREATURE_WYVERN_PAOKAI = 178
   CREATURE_CYCLOP_BLOODEYED = 179
   CREATURE_180 = 180
-  CREATURE_181 = 181
-  CREATURE_182 = 182
-  CREATURE_183 = 183
-  CREATURE_184 = 184
+  CREATURE_CHERUBIN = 181
+  CREATURE_CHERUBIN_LESS = 182
+  CREATURE_DRAGON_KNIGHT = 183
+  CREATURE_DRAGON_KNIGHT_LESS = 184
   CREATURE_185 = 185
   CREATURE_186 = 186
   CREATURE_187 = 187
@@ -1887,9 +1906,7 @@ end;
   CREATURE_954 = 954
   CREATURE_Orlando2 = 955
   CREATURE_955 = 955
-  CREATURE_EMPIRE = 956
   CREATURE_956 = 956
-  CREATURE_DARK_CHAMPION = 957
   CREATURE_957 = 957
   CREATURE_958 = 958
   CREATURE_959 = 959
@@ -4391,36 +4408,36 @@ end;
           , ["CombatSize"] = 1
         }
         , [181] = {
-          ["ID"] = CREATURE_181
-          , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_181/Name.txt"
-          , ["GROWTH"] = 1
-          , ["TIER"] = 1
-          , ["POWER"] = 0
-          , ["CombatSize"] = 1
+            ["ID"] = CREATURE_CHERUBIN
+            , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_181/Name.txt"
+            , ["GROWTH"] = 1
+            , ["TIER"] = 8
+            , ["POWER"] = 20000
+            , ["CombatSize"] = 2
         }
         , [182] = {
-          ["ID"] = CREATURE_182
-          , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_182/Name.txt"
-          , ["GROWTH"] = 1
-          , ["TIER"] = 1
-          , ["POWER"] = 0
-          , ["CombatSize"] = 1
+            ["ID"] = CREATURE_CHERUBIN_LESS
+            , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_182/Name.txt"
+            , ["GROWTH"] = 1
+            , ["TIER"] = 8
+            , ["POWER"] = 20000
+            , ["CombatSize"] = 2
         }
         , [183] = {
-          ["ID"] = CREATURE_183
-          , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_183/Name.txt"
-          , ["GROWTH"] = 1
-          , ["TIER"] = 1
-          , ["POWER"] = 0
-          , ["CombatSize"] = 1
+            ["ID"] = CREATURE_DRAGON_KNIGHT
+            , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_183/Name.txt"
+            , ["GROWTH"] = 1
+            , ["TIER"] = 8
+            , ["POWER"] = 20000
+            , ["CombatSize"] = 2
         }
         , [184] = {
-          ["ID"] = CREATURE_184
-          , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_184/Name.txt"
-          , ["GROWTH"] = 1
-          , ["TIER"] = 1
-          , ["POWER"] = 0
-          , ["CombatSize"] = 1
+            ["ID"] = CREATURE_DRAGON_KNIGHT_LESS
+            , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_184/Name.txt"
+            , ["GROWTH"] = 1
+            , ["TIER"] = 8
+            , ["POWER"] = 20000
+            , ["CombatSize"] = 2
         }
         , [185] = {
           ["ID"] = CREATURE_185
@@ -10591,20 +10608,20 @@ end;
           , ["CombatSize"] = 1
         }
         , [956] = {
-          ["ID"] = CREATURE_EMPIRE
+          ["ID"] = CREATURE_956
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_956/Name.txt"
           , ["GROWTH"] = 1
-          , ["TIER"] = 8
-          , ["POWER"] = 10000
-          , ["CombatSize"] = 2
+          , ["TIER"] = 1
+          , ["POWER"] = 0
+          , ["CombatSize"] = 1
         }
         , [957] = {
-          ["ID"] = CREATURE_DARK_CHAMPION
+          ["ID"] = CREATURE_957
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_957/Name.txt"
           , ["GROWTH"] = 1
-          , ["TIER"] = 8
-          , ["POWER"] = 10000
-          , ["CombatSize"] = 2
+          , ["TIER"] = 1
+          , ["POWER"] = 0
+          , ["CombatSize"] = 1
         }
         , [958] = {
           ["ID"] = CREATURE_958
@@ -11013,6 +11030,44 @@ end;
         }
       };
 
+    -- 神圣守护者施放魔法
+      TTHCS_TABLE.CherubinMagic = {
+        [1] = {
+          ["Id"] = SPELL_MASS_BLESS
+          , ["Type"] = TTHCS_ENUM.Global
+          , ["Target"] = TTHCS_ENUM.Friend
+        }
+        , [2] = {
+          ["Id"] = SPELL_MASS_HASTE
+          , ["Type"] = TTHCS_ENUM.Global
+          , ["Target"] = TTHCS_ENUM.Friend
+        }
+        , [3] = {
+          ["Id"] = SPELL_MASS_BLOODLUST
+          , ["Type"] = TTHCS_ENUM.Global
+          , ["Target"] = TTHCS_ENUM.Friend
+        }
+      };
+
+    -- 暗黑龙骑士施放魔法
+      TTHCS_TABLE.DragonKnightMagic = {
+        [1] = {
+          ["Id"] = SPELL_MASS_CURSE
+          , ["Type"] = TTHCS_ENUM.Global
+          , ["Target"] = TTHCS_ENUM.Hostile
+        }
+        , [2] = {
+          ["Id"] = SPELL_MASS_SLOW
+          , ["Type"] = TTHCS_ENUM.Global
+          , ["Target"] = TTHCS_ENUM.Hostile
+        }
+        , [3] = {
+          ["Id"] = SPELL_MASS_WEAKNESS
+          , ["Type"] = TTHCS_ENUM.Global
+          , ["Target"] = TTHCS_ENUM.Hostile
+        }
+      };
+
   TTHCS_COMMON = {};
     -- 向下取整
       function TTHCS_COMMON.floor(n)
@@ -11282,7 +11337,10 @@ end;
       TTHCS_PATH["Perk"][HERO_SKILL_SEAL_OF_PROTECTION]["Effect"] = "/Text/TTH/Skills/Training/131-SealOfProtection/Combat/Effect.txt";
 
       TTHCS_PATH["Perk"][HERO_SKILL_TRIPLE_CATAPULT] = {};
-      TTHCS_PATH["Perk"][HERO_SKILL_TRIPLE_CATAPULT]["Effect"] = "/Text/TTH/Skills/WarMachines/88-TripleCatapult/Combat/Effect.txt";
+      TTHCS_PATH["Perk"][HERO_SKILL_TRIPLE_CATAPULT]["Effect"] = "/Text/TTH/Skills/WarMachines/088-TripleCatapult/Combat/Effect.txt";
+
+      TTHCS_PATH["Perk"][HERO_SKILL_GUARDIAN_ANGEL] = {};
+      TTHCS_PATH["Perk"][HERO_SKILL_GUARDIAN_ANGEL]["Effect"] = "/Text/TTH/Skills/Leadership/078-GuardianAngel/Combat/Effect.txt";
 
     TTHCS_PATH["Artifact"] = {};
       TTHCS_PATH["Artifact"][ARTIFACT_ANGELIC_ALLIANCE] = {};

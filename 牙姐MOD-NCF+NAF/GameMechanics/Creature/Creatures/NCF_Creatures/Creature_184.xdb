@@ -1,47 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Creature>
-	<AttackSkill>1</AttackSkill>
-	<DefenceSkill>1</DefenceSkill>
+	<AttackSkill>90</AttackSkill>
+	<DefenceSkill>75</DefenceSkill>
 	<Shots>0</Shots>
-	<MinDamage>1</MinDamage>
-	<MaxDamage>1</MaxDamage>
-	<Speed>1</Speed>
-	<Initiative>1</Initiative>
-	<Flying>false</Flying>
-	<Health>1</Health>
-	<KnownSpells/>
-	<SpellPoints>0</SpellPoints>
+	<MinDamage>40</MinDamage>
+	<MaxDamage>120</MaxDamage>
+	<Speed>9</Speed>
+	<Initiative>18</Initiative>
+	<Flying>true</Flying>
+	<Health>1800</Health>
+	<KnownSpells>
+		<Item>
+			<Spell>SPELL_MASS_CURSE</Spell>
+			<Mastery>MASTERY_ADVANCED</Mastery>
+		</Item>
+		<Item>
+			<Spell>SPELL_MASS_SLOW</Spell>
+			<Mastery>MASTERY_ADVANCED</Mastery>
+		</Item>
+		<Item>
+			<Spell>SPELL_MASS_WEAKNESS</Spell>
+			<Mastery>MASTERY_ADVANCED</Mastery>
+		</Item>
+	</KnownSpells>
+	<SpellPoints>1</SpellPoints>
 	<SpellPoints1>0</SpellPoints1>
 	<SpellPoints2>0</SpellPoints2>
-	<Exp>1</Exp>
-	<Power>1</Power>
+	<Exp>1200</Exp>
+	<Power>20000</Power>
 	<TimeToCommand>10</TimeToCommand>
-	<CreatureTier>1</CreatureTier>
-	<Upgrade>false</Upgrade>
+	<CreatureTier>8</CreatureTier>
+	<Upgrade>true</Upgrade>
 	<PairCreature>CREATURE_UNKNOWN</PairCreature>
 	<CreatureTown>TOWN_NO_TYPE</CreatureTown>
 	<MagicElement>
-		<First>ELEMENT_NONE</First>
-		<Second>ELEMENT_NONE</Second>
+		<First>ELEMENT_EARTH</First>
+		<Second>ELEMENT_WATER</Second>
 	</MagicElement>
-	<WeeklyGrowth>0</WeeklyGrowth>
+	<WeeklyGrowth>1</WeeklyGrowth>
 	<Cost>
 		<Wood>0</Wood>
 		<Ore>0</Ore>
-		<Mercury>0</Mercury>
+		<Mercury>2</Mercury>
 		<Crystal>0</Crystal>
-		<Sulfur>0</Sulfur>
+		<Sulfur>2</Sulfur>
 		<Gem>0</Gem>
-		<Gold>0</Gold>
+		<Gold>20000</Gold>
 	</Cost>
 	<SubjectOfRandomGeneration>true</SubjectOfRandomGeneration>
-	<MonsterShared/>
-	<CombatSize>1</CombatSize>
-	<PatternAttack/>
+	<MonsterShared href="/MapObjects/Neutral/Dragon_Knight.(AdvMapMonsterShared).xdb#xpointer(/AdvMapMonsterShared)"/>
+	<CombatSize>2</CombatSize>
+	<PatternAttack href="/GameMechanics/Creature/Creatures/Dungeon/Deep_Dragon_Pattern.xdb#xpointer(/PatternAttack)"/>
 	<flybySequence/>
-	<Visual href="/GameMechanics/CreatureVisual/Creatures/Neutrals/SnowApe.xdb#xpointer(/CreatureVisual)"/>
+	<Visual href="/GameMechanics/CreatureVisual/Creatures/Neutrals/Dragon_Knight_Less.xdb#xpointer(/CreatureVisual)"/>
 	<Range>0</Range>
 	<BaseCreature>CREATURE_UNKNOWN</BaseCreature>
 	<Upgrades/>
-	<Abilities/>
+	<Abilities>
+		<Item>ABILITY_UNDEAD</Item>
+		<Item>ABILITY_FRIGHTFUL_PRESENCE</Item>
+		<Item>ABILITY_CRYSTAL_SCALES</Item>
+		<Item>ABILITY_IMMUNITY_TO_MAGIC</Item>
+		<Item>ABILITY_FIRE_BREATH</Item>
+		<Item>ABILITY_DEADLY_STRIKE</Item>
+		<Item>ABILITY_DOUBLE_ATTACK</Item>
+	</Abilities>
 </Creature>

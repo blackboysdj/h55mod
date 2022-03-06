@@ -6492,11 +6492,11 @@
 				</Texture>
 				<CommonTexture/>
 				<NameFileRef>
-					<Item href="/Text/Game/Skills/Common/LightMagic/GuardianAngel/Name.txt"/>
+				  <Item href="/Text/TTH/Skills/Leadership/078-GuardianAngel/Name.txt"/>
 				</NameFileRef>
 				<CommonNameFileRef href=""/>
 				<DescriptionFileRef>
-					<Item href="/Text/Game/Skills/Common/LightMagic/GuardianAngel/Description.txt"/>
+				  <Item href="/Text/TTH/Skills/Leadership/078-GuardianAngel/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
 				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
@@ -6884,11 +6884,11 @@
 				</Texture>
 				<CommonTexture/>
 				<NameFileRef>
-					<Item href="/Text/Game/Skills/New/TouchOfShantiri/Name.txt"/>
+				  <Item href="/Text/TTH/Skills/Logistics/080-Shantiri/Name.txt"/>
 				</NameFileRef>
 				<CommonNameFileRef href=""/>
 				<DescriptionFileRef>
-					<Item href="/Text/Game/Skills/New/TouchOfShantiri/Description.txt"/>
+				  <Item href="/Text/TTH/Skills/Logistics/080-Shantiri/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
 				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
@@ -8347,11 +8347,11 @@
 				</Texture>
 				<CommonTexture/>
 				<NameFileRef>
-				  <Item href="/Text/TTH/Skills/WarMachines/88-TripleCatapult/Name.txt"/>
+				  <Item href="/Text/TTH/Skills/WarMachines/088-TripleCatapult/Name.txt"/>
 				</NameFileRef>
 				<CommonNameFileRef href=""/>
 				<DescriptionFileRef>
-				  <Item href="/Text/TTH/Skills/WarMachines/88-TripleCatapult/Description.txt"/>
+				  <Item href="/Text/TTH/Skills/WarMachines/088-TripleCatapult/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
 				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
@@ -25135,7 +25135,7 @@
 					<Item>
 						<Class>HERO_CLASS_BARBARIAN</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_MIGHTY_VOICE</Item>
+							<Item>HERO_SKILL_VOICE_OF_RAGE</Item>
 						</dependenciesIDs>
 					</Item>
 				</SkillPrerequisites>

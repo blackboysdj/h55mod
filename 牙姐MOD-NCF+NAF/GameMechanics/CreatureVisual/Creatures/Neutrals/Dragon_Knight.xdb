@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CreatureVisual>
-	<CreatureNameFileRef href="/Text/Game/Creatures/Neutrals/Dragon_Knight/name.txt"/>
+	<CreatureNameFileRef href="/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_183/Name.txt"/>
 	<CreatureAbilitiesFileRef/>
-	<DescriptionFileRef href="/Text/Game/Creatures/Neutrals/Dragon_Knight/desc.txt"/>
+	<DescriptionFileRef href="/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_183/Description.txt"/>
 	<Icon/>
 	<Icon32/>
 	<Icon64/>

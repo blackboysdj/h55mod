@@ -794,20 +794,25 @@ doFile("/scripts/H55-Settings.lua");
 
 		-- 获取英雄最大移动力
 			function TTH_GLOBAL.getMaxMove8Hero(strHero)
-				local iMovePoint = 2500;
-				if (HasHeroSkill(strHero, SKILL_LOGISTICS) ~= nil) then
-					if (GetHeroSkillMastery(strHero, SKILL_LOGISTICS) == 1) then
-						iMovePoint = 2749;
-					elseif (GetHeroSkillMastery(strHero, SKILL_LOGISTICS) == 2) then
-						iMovePoint = 2999;
-					elseif (GetHeroSkillMastery(strHero, SKILL_LOGISTICS) == 3) then
-						iMovePoint = 3249;
-					end;
+				local iMovePoint = 2750;
+				local iCoef4Logistics = 1 + 0.1 * GetHeroSkillMastery(strHero, SKILL_LOGISTICS);
+				local iCoefBootsOfSpeed = 1;
+				if HasArtefact(strHero, ARTIFACT_BOOTS_OF_SPEED, 1) ~= nil then
+					iCoefBootsOfSpeed = 1.25;
 				end;
-				if (HasArtefact(strHero, ARTIFACT_BOOTS_OF_SPEED, 1) ~= nil) then
-					iMovePoint = TTH_COMMON.round(iMovePoint * 1.25);
-				end;
+				iMovePoint = TTH_COMMON.round(iMovePoint * iCoef4Logistics * iCoefBootsOfSpeed);
 				return iMovePoint;
+			end;
+
+		-- 获取英雄最大魔法值
+			function TTH_GLOBAL.getMaxMana8Hero(strHero)
+				local iKnowledge = GetHeroStat(strHero, STAT_KNOWLEDGE);
+				local iMaxMana = 10 * iKnowledge;
+				if HasHeroSkill(strHero, HERO_SKILL_INTELLIGENCE) ~= nil
+					or HasHeroSkill(strHero, HERO_SKILL_BARBARIAN_INTELLIGENCE) ~= nil then
+					iMaxMana = 15 * iKnowledge;
+				end;
+				return iMaxMana;
 			end;
 
 		-- 获取两个单位间的距离
@@ -1181,6 +1186,14 @@ doFile("/scripts/H55-Settings.lua");
 
 						-- 先知小屋
 							TTH_COMMON.setTrigger2ObjectType("BUILDING_MERMAIDS", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitMermaids", nil);
+
+						-- 初始化 杉提瑞圆盘和方尖碑
+							TTH_VARI.arrBuilding["BUILDING_EYE_OF_MAGI"] = GetObjectNamesByType("BUILDING_EYE_OF_MAGI");
+							TTH_VARI.arrBuilding["BUILDING_LAKE_OF_SCARLET_SWAN"] = GetObjectNamesByType("BUILDING_LAKE_OF_SCARLET_SWAN");
+							TTH_VARI.arrBuilding["BUILDING_SHANTIRI"] = TTH_COMMON.concat(TTH_VARI.arrBuilding["BUILDING_EYE_OF_MAGI"], TTH_VARI.arrBuilding["BUILDING_LAKE_OF_SCARLET_SWAN"]);
+							TTH_GLOBAL.initShantiri();
+							TTH_COMMON.setTrigger2ObjectType("BUILDING_EYE_OF_MAGI", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitShantiri", nil);
+							TTH_COMMON.setTrigger2ObjectType("BUILDING_LAKE_OF_SCARLET_SWAN", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitShantiri", nil);
 				end;
 
 			-- 初始化日询事件的次数 by 玩家
@@ -1361,13 +1374,13 @@ doFile("/scripts/H55-Settings.lua");
 						GiveArtefact(strHero, ARTIFACT_ANGELIC_ALLIANCE);
 						GiveArtefact(strHero, 124);
 					end;
-					if enumHeroClass == TTH_ENUM.Druid then
+					if enumHeroClass == TTH_ENUM.Enchanter then
 						GiveArtefact(strHero, 126);
 						GiveArtefact(strHero, 34);
 						GiveArtefact(strHero, 35);
 					end;
 
-					if enumHeroClass == TTH_ENUM.Seer then
+					if enumHeroClass == TTH_ENUM.GuildMaster then
 						GiveArtefact(strHero, 31);
 						GiveArtefact(strHero, 16);
 						GiveArtefact(strHero, 11);
@@ -1381,7 +1394,7 @@ doFile("/scripts/H55-Settings.lua");
 						GiveArtefact(strHero, 47);
 						GiveArtefact(strHero, 79);
 					end;
-					if enumHeroClass == TTH_ENUM.Elementalist then
+					if enumHeroClass == TTH_ENUM.ElementAlist then
 						GiveArtefact(strHero, 44);
 						GiveArtefact(strHero, 45);
 						GiveArtefact(strHero, 46);
@@ -1389,12 +1402,12 @@ doFile("/scripts/H55-Settings.lua");
 						GiveArtefact(strHero, 76);
 					end;
 
-					if enumHeroClass == TTH_ENUM.Demonlord then
+					if enumHeroClass == TTH_ENUM.DemonLord then
 						GiveArtefact(strHero, 23);
 						GiveArtefact(strHero, 66);
 						GiveArtefact(strHero, ARTIFACT_ANGELIC_ALLIANCE);
 					end;
-					if enumHeroClass == TTH_ENUM.Gatekeeper then
+					if enumHeroClass == TTH_ENUM.GateKeeper then
 						GiveArtefact(strHero, 48);
 						GiveArtefact(strHero, 49);
 						GiveArtefact(strHero, 50);
@@ -1408,7 +1421,7 @@ doFile("/scripts/H55-Settings.lua");
 						GiveArtefact(strHero, 119);
 					end;
 
-					if enumHeroClass == TTH_ENUM.Deathknight then
+					if enumHeroClass == TTH_ENUM.DeathKnight then
 						GiveArtefact(strHero, 124);
 						GiveArtefact(strHero, 38);
 						GiveArtefact(strHero, 42);
@@ -1445,7 +1458,7 @@ doFile("/scripts/H55-Settings.lua");
 						GiveArtefact(strHero, 50);
 						GiveArtefact(strHero, 51);
 					end;
-					if enumHeroClass == TTH_ENUM.Flamekeeper then
+					if enumHeroClass == TTH_ENUM.Flamekeepera then
 						GiveArtefact(strHero, 85);
 						GiveArtefact(strHero, 48);
 						GiveArtefact(strHero, 49);
@@ -1453,13 +1466,13 @@ doFile("/scripts/H55-Settings.lua");
 						GiveArtefact(strHero, 51);
 					end;
 
-					if enumHeroClass == TTH_ENUM.Overlord then
+					if enumHeroClass == TTH_ENUM.BeastMaster then
 						GiveArtefact(strHero, ARTIFACT_ANGELIC_ALLIANCE);
 						GiveArtefact(strHero, 31);
 						GiveArtefact(strHero, 16);
 						GiveArtefact(strHero, 11);
 					end;
-					if enumHeroClass == TTH_ENUM.Assassin then
+					if enumHeroClass == TTH_ENUM.Seer then
 						GiveArtefact(strHero, 42);
 						GiveArtefact(strHero, 36);
 						GiveArtefact(strHero, 37);
@@ -1523,12 +1536,12 @@ doFile("/scripts/H55-Settings.lua");
 						GiveHeroSkill(strHero, 5);
 						GiveHeroSkill(strHero, 195);
 					end;
-					if enumHeroClass == TTH_ENUM.Druid then
+					if enumHeroClass == TTH_ENUM.Enchanter then
 						GiveHeroSkill(strHero, 8);
 						GiveHeroSkill(strHero, 203);
 					end;
 
-					if enumHeroClass == TTH_ENUM.Seer then
+					if enumHeroClass == TTH_ENUM.GuildMaster then
 						GiveHeroSkill(strHero, 4);
 						GiveHeroSkill(strHero, 191);
 					end;
@@ -1536,16 +1549,16 @@ doFile("/scripts/H55-Settings.lua");
 						GiveHeroSkill(strHero, 8);
 						GiveHeroSkill(strHero, 3);
 					end;
-					if enumHeroClass == TTH_ENUM.Elementalist then
+					if enumHeroClass == TTH_ENUM.ElementAlist then
 						GiveHeroSkill(strHero, 8);
 						GiveHeroSkill(strHero, 18);
 					end;
 
-					if enumHeroClass == TTH_ENUM.Demonlord then
+					if enumHeroClass == TTH_ENUM.DemonLord then
 						GiveHeroSkill(strHero, 4);
 						GiveHeroSkill(strHero, 199);
 					end;
-					if enumHeroClass == TTH_ENUM.Gatekeeper then
+					if enumHeroClass == TTH_ENUM.GateKeeper then
 						GiveHeroSkill(strHero, 5);
 						GiveHeroSkill(strHero, 203);
 					end;
@@ -1554,7 +1567,7 @@ doFile("/scripts/H55-Settings.lua");
 						GiveHeroSkill(strHero, 18);
 					end;
 
-					if enumHeroClass == TTH_ENUM.Deathknight then
+					if enumHeroClass == TTH_ENUM.DeathKnight then
 						GiveHeroSkill(strHero, 10);
 						GiveHeroSkill(strHero, 199);
 					end;
@@ -1575,16 +1588,16 @@ doFile("/scripts/H55-Settings.lua");
 						GiveHeroSkill(strHero, 8);
 						GiveHeroSkill(strHero, 3);
 					end;
-					if enumHeroClass == TTH_ENUM.Flamekeeper then
+					if enumHeroClass == TTH_ENUM.Flamekeepera then
 						GiveHeroSkill(strHero, 2);
 						GiveHeroSkill(strHero, 203);
 					end;
 
-					if enumHeroClass == TTH_ENUM.Overlord then
+					if enumHeroClass == TTH_ENUM.BeastMaster then
 						GiveHeroSkill(strHero, 6);
 						GiveHeroSkill(strHero, 191);
 					end;
-					if enumHeroClass == TTH_ENUM.Assassin then
+					if enumHeroClass == TTH_ENUM.Seer then
 						GiveHeroSkill(strHero, 6);
 						GiveHeroSkill(strHero, 199);
 					end;
@@ -1701,7 +1714,7 @@ doFile("/scripts/H55-Settings.lua");
 						sleep(1);
 						GiveHeroSkill(strHero, 124);
 					end;
-					if enumHeroClass == TTH_ENUM.Druid then
+					if enumHeroClass == TTH_ENUM.Enchanter then
 						GiveHeroSkill(strHero, 5);
 						GiveHeroSkill(strHero, 5);
 						GiveHeroSkill(strHero, 5);
@@ -1722,7 +1735,7 @@ doFile("/scripts/H55-Settings.lua");
 						GiveHeroSkill(strHero, 124);
 					end;
 
-					if enumHeroClass == TTH_ENUM.Seer then
+					if enumHeroClass == TTH_ENUM.GuildMaster then
 						GiveHeroSkill(strHero, 8);
 						GiveHeroSkill(strHero, 8);
 						GiveHeroSkill(strHero, 8);
@@ -1762,7 +1775,7 @@ doFile("/scripts/H55-Settings.lua");
 						sleep(1);
 						GiveHeroSkill(strHero, 137);
 					end;
-					if enumHeroClass == TTH_ENUM.Elementalist then
+					if enumHeroClass == TTH_ENUM.ElementAlist then
 						GiveHeroSkill(strHero, HERO_SKILL_DESTRUCTIVE_MAGIC);
 						GiveHeroSkill(strHero, HERO_SKILL_DESTRUCTIVE_MAGIC);
 						GiveHeroSkill(strHero, HERO_SKILL_DESTRUCTIVE_MAGIC);
@@ -1786,7 +1799,7 @@ doFile("/scripts/H55-Settings.lua");
 						GiveHeroSkill(strHero, HERO_SKILL_ABSOLUTE_WIZARDY);
 					end;
 
-					if enumHeroClass == TTH_ENUM.Demonlord then
+					if enumHeroClass == TTH_ENUM.DemonLord then
 						GiveHeroSkill(strHero, 14);
 						GiveHeroSkill(strHero, 14);
 						GiveHeroSkill(strHero, 14);
@@ -1803,7 +1816,7 @@ doFile("/scripts/H55-Settings.lua");
 						sleep(1);
 						GiveHeroSkill(strHero, 98);
 					end;
-					if enumHeroClass == TTH_ENUM.Gatekeeper then
+					if enumHeroClass == TTH_ENUM.GateKeeper then
 						GiveHeroSkill(strHero, 14);
 						GiveHeroSkill(strHero, 14);
 						GiveHeroSkill(strHero, 14);
@@ -1838,7 +1851,7 @@ doFile("/scripts/H55-Settings.lua");
 						GiveHeroSkill(strHero, 98);
 					end;
 
-					if enumHeroClass == TTH_ENUM.Deathknight then
+					if enumHeroClass == TTH_ENUM.DeathKnight then
 						GiveHeroSkill(strHero, 15);
 						GiveHeroSkill(strHero, 15);
 						GiveHeroSkill(strHero, 10);
@@ -1918,7 +1931,7 @@ doFile("/scripts/H55-Settings.lua");
 						sleep(1);
 						GiveHeroSkill(strHero, 167);
 					end;
-					if enumHeroClass == TTH_ENUM.Flamekeeper then
+					if enumHeroClass == TTH_ENUM.Flamekeepera then
 						GiveHeroSkill(strHero, 7);
 						GiveHeroSkill(strHero, 7);
 						GiveHeroSkill(strHero, 7);
@@ -1939,7 +1952,7 @@ doFile("/scripts/H55-Settings.lua");
 						GiveHeroSkill(strHero, 167);
 					end;
 
-					if enumHeroClass == TTH_ENUM.Overlord then
+					if enumHeroClass == TTH_ENUM.BeastMaster then
 						GiveHeroSkill(strHero, 9);
 						GiveHeroSkill(strHero, 9);
 						GiveHeroSkill(strHero, 9);
@@ -1959,7 +1972,7 @@ doFile("/scripts/H55-Settings.lua");
 						sleep(1);
 						GiveHeroSkill(strHero, 150);
 					end;
-					if enumHeroClass == TTH_ENUM.Assassin then
+					if enumHeroClass == TTH_ENUM.Seer then
 						GiveHeroSkill(strHero, 9);
 						GiveHeroSkill(strHero, 9);
 						GiveHeroSkill(strHero, 9);
@@ -4511,8 +4524,10 @@ doFile("/scripts/H55-Settings.lua");
 				TTH_COMMON.initNavi(TTH_PATH.Visit["Mermaids"]["Text"]);
 
 				MarkObjectAsVisited(strBuildingName, strHero);
+				local funcCallback = "TTH_VISIT.visitMermaids";
 				local iPlayer = GetObjectOwner(strHero);
 				if TTH_GLOBAL.isAi(iPlayer) == TTH_ENUM.Yes then
+					TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
 				else
 					TTH_VISIT.checkPreVisitMermaids4LockDate(iPlayer, strHero, strBuildingName);
 				end;
@@ -4738,6 +4753,697 @@ doFile("/scripts/H55-Settings.lua");
 						}
 					};
 					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.MessageBox, strPathMain);
+				end;
+
+		-- 杉提瑞圆盘/方尖碑
+			TTH_ENUM.TrialCourage = 1;
+			TTH_ENUM.TrialMight = 2;
+			TTH_ENUM.TrialWisdom = 3;
+			TTH_VARI.recordTrial = {};
+			TTH_TABLE.ShantiriTrialTypeOption = {
+				[1] = {
+					["Id"] = TTH_ENUM.TrialCourage
+					, ["Text"] = TTH_PATH.Visit["Shantiri"]["Courage"]["Option"]
+					, ["Callback"] = "TTH_VISIT.visitShantiri2TrialCourage"
+					, ["Power"] = 10000
+					, ["StatBonus"] = 1
+				}
+				, [2] = {
+					["Id"] = TTH_ENUM.TrialMight
+					, ["Text"] = TTH_PATH.Visit["Shantiri"]["Might"]["Option"]
+					, ["Callback"] = "TTH_VISIT.visitShantiri2TrialMight"
+					, ["Power"] = 30000
+				}
+				, [3] = {
+					["Id"] = TTH_ENUM.TrialWisdom
+					, ["Text"] = TTH_PATH.Visit["Shantiri"]["Wisdom"]["Option"]
+					, ["Callback"] = "TTH_VISIT.visitShantiri2TrialWisdom"
+					, ["Power"] = 50000
+				}
+			};
+			function TTH_GLOBAL.initShantiri(iPlayer, strHero)
+				if TTH_VARI.recordTrial[strHero] == nil then
+					TTH_VARI.recordTrial[strHero] = {
+						[TTH_ENUM.TrialCourage] = TTH_ENUM.No
+						, [TTH_ENUM.TrialMight] = TTH_ENUM.No
+						, [TTH_ENUM.TrialWisdom] = TTH_ENUM.No
+					}
+				end;
+			end;
+			function TTH_GLOBAL.initTrial()
+				for i, strShantiriName in TTH_VARI.arrBuilding["BUILDING_SHANTIRI"] do
+					for iPlayer = PLAYER_1, PLAYER_8 do
+						if TTH_GLOBAL.isAi(iPlayer) == TTH_ENUM.Yes then
+							SetAIPlayerAttractor(strShantiriName, iPlayer, -1);
+						end;
+					end;
+				end;
+			end;
+			function TTH_VISIT.visitShantiri(strHero, strBuildingName)
+				TTH_COMMON.initNavi(TTH_PATH.Visit["Shantiri"]["Text"]);
+
+				local funcCallback = "TTH_VISIT.visitShantiri";
+				MarkObjectAsVisited(strBuildingName, strHero);
+				local iPlayer = GetObjectOwner(strHero);
+				if TTH_GLOBAL.isAi(iPlayer) == TTH_ENUM.Yes then
+					TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
+				else
+					TTH_VISIT.radioShantiri4TrialType(iPlayer, strHero, strBuildingName);
+				end;
+			end;
+			function TTH_VISIT.radioShantiri4TrialType(iPlayer, strHero, strBuildingName)
+				TTH_COMMON.optionRadio(iPlayer, strHero, TTH_TABLE.ShantiriTrialTypeOption, TTH_PATH.Visit["Shantiri"]["RadioTips"]);
+			end;
+			-- 勇气试炼
+				function TTH_VISIT.visitShantiri2TrialCourage(iPlayer, strHero)
+					TTH_VISIT.checkPreVisitShantiri2TrialCourage4HasComplete(iPlayer, strHero);
+				end;
+				function TTH_VISIT.checkPreVisitShantiri2TrialCourage4HasComplete(iPlayer, strHero)
+					TTH_GLOBAL.initShantiri(iPlayer, strHero);
+					if TTH_VARI.recordTrial[strHero][TTH_ENUM.TrialCourage] == TTH_ENUM.Yes then
+						local strPathMain = {
+							TTH_PATH.Visit["Shantiri"]["HasComplete"]
+							;strTrialType=TTH_PATH.Visit["Shantiri"]["Courage"]["Text"]
+						}
+						TTH_GLOBAL.sign(strHero, strPathMain);
+						return nil;
+					end;
+
+					TTH_VISIT.checkPreVisitShantiri2TrialCourage4Power(iPlayer, strHero);
+				end;
+				function TTH_VISIT.checkPreVisitShantiri2TrialCourage4Power(iPlayer, strHero)
+					if TTH_GLOBAL.getPower8Hero(strHero) < TTH_TABLE.ShantiriTrialTypeOption[TTH_ENUM.TrialCourage]["Power"] then
+						local strPathMain = {
+							TTH_PATH.Visit["Shantiri"]["NotEnoughPower"]
+							;strTrialType=TTH_PATH.Visit["Shantiri"]["Courage"]["Text"]
+							,iPower=TTH_TABLE.ShantiriTrialTypeOption[TTH_ENUM.TrialCourage]["Power"]
+						}
+						TTH_GLOBAL.sign(strHero, strPathMain);
+						return nil;
+					end;
+
+					TTH_VISIT.confirmVisitShantiri2TrialCourage(iPlayer, strHero);
+				end;
+				function TTH_VISIT.confirmVisitShantiri2TrialCourage(iPlayer, strHero)
+					local strText = TTH_PATH.Visit["Shantiri"]["Courage"]["Confirm"];
+					local strCallbackOk = "TTH_VISIT.implVisitShantiri2TrialCourage("..iPlayer..","..TTH_COMMON.psp(strHero)..")";
+					local strCallbackCancel = "TTH_COMMON.cancelOption()";
+					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strText, strCallbackOk, strCallbackCancel);
+				end;
+				function TTH_VISIT.implVisitShantiri2TrialCourage(iPlayer, strHero)
+					local strCallbackWin = "TTH_VISIT.winVisitShantiri2TrialCourage";
+					local strPathCombatLink = TTH_PATH.Visit["Shantiri"]["CombatLink"];
+					local arrCreature4Hero = TTH_GLOBAL.getHeroCreatureInfo(strHero);
+					local iLenArrCreatureType = 0;
+					for i = 0, length(arrCreature4Hero) - 1 do
+						if arrCreature4Hero[i]["Id"] == 0 then
+							iLenArrCreatureType = i;
+							break;
+						end;
+					end;
+					local strEnemyHero = nil;
+					local iCoef = TTH_GLOBAL.getGameDifficulty();
+					local iHeroRace = TTH_GLOBAL.getRace8Hero(strHero);
+					local iCreatureId = CREATURE_UNKNOWN;
+		  		if iHeroRace == TOWN_HEAVEN
+		  			or iHeroRace == TOWN_PRESERVE
+		  			or iHeroRace == TOWN_ACADEMY
+		  			or iHeroRace == TOWN_FORTRESS then
+		  			iCreatureId = CREATURE_CHERUBIN;
+		  		elseif iHeroRace == TOWN_DUNGEON
+		  			or iHeroRace == TOWN_NECROMANCY
+		  			or iHeroRace == TOWN_INFERNO
+		  			or iHeroRace == TOWN_STRONGHOLD then
+		  			iCreatureId = CREATURE_DRAGON_KNIGHT;
+					end;
+					if iLenArrCreatureType == 1 then
+						StartCombat(strHero, strEnemyHero, 2
+							, iCreatureId, 1 * iCoef
+							, arrCreature4Hero[0]["Id"], arrCreature4Hero[0]["Count"] * iCoef
+							, nil
+							, strCallbackWin
+							, strPathCombatLink
+							, 1);
+					elseif iLenArrCreatureType == 2 then
+						StartCombat(strHero, strEnemyHero, 3
+							, iCreatureId, 1 * iCoef
+							, arrCreature4Hero[0]["Id"], arrCreature4Hero[0]["Count"] * iCoef
+							, arrCreature4Hero[1]["Id"], arrCreature4Hero[1]["Count"] * iCoef
+							, nil
+							, strCallbackWin
+							, strPathCombatLink
+							, 1);
+					elseif iLenArrCreatureType == 3 then
+						StartCombat(strHero, strEnemyHero, 4
+							, iCreatureId, 1 * iCoef
+							, arrCreature4Hero[0]["Id"], arrCreature4Hero[0]["Count"] * iCoef
+							, arrCreature4Hero[1]["Id"], arrCreature4Hero[1]["Count"] * iCoef
+							, arrCreature4Hero[2]["Id"], arrCreature4Hero[2]["Count"] * iCoef
+							, nil
+							, strCallbackWin
+							, strPathCombatLink
+							, 1);
+					elseif iLenArrCreatureType == 4 then
+						StartCombat(strHero, strEnemyHero, 5
+							, iCreatureId, 1 * iCoef
+							, arrCreature4Hero[0]["Id"], arrCreature4Hero[0]["Count"] * iCoef
+							, arrCreature4Hero[1]["Id"], arrCreature4Hero[1]["Count"] * iCoef
+							, arrCreature4Hero[2]["Id"], arrCreature4Hero[2]["Count"] * iCoef
+							, arrCreature4Hero[3]["Id"], arrCreature4Hero[3]["Count"] * iCoef
+							, nil
+							, strCallbackWin
+							, strPathCombatLink
+							, 1);
+					elseif iLenArrCreatureType == 5 then
+						StartCombat(strHero, strEnemyHero, 6
+							, iCreatureId, 1 * iCoef
+							, arrCreature4Hero[0]["Id"], arrCreature4Hero[0]["Count"] * iCoef
+							, arrCreature4Hero[1]["Id"], arrCreature4Hero[1]["Count"] * iCoef
+							, arrCreature4Hero[2]["Id"], arrCreature4Hero[2]["Count"] * iCoef
+							, arrCreature4Hero[3]["Id"], arrCreature4Hero[3]["Count"] * iCoef
+							, arrCreature4Hero[4]["Id"], arrCreature4Hero[4]["Count"] * iCoef
+							, nil
+							, strCallbackWin
+							, strPathCombatLink
+							, 1);
+					else
+						StartCombat(strHero, strEnemyHero, 7
+							, iCreatureId, 1 * iCoef
+							, arrCreature4Hero[0]["Id"], arrCreature4Hero[0]["Count"] * iCoef
+							, arrCreature4Hero[1]["Id"], arrCreature4Hero[1]["Count"] * iCoef
+							, arrCreature4Hero[2]["Id"], arrCreature4Hero[2]["Count"] * iCoef
+							, arrCreature4Hero[3]["Id"], arrCreature4Hero[3]["Count"] * iCoef
+							, arrCreature4Hero[4]["Id"], arrCreature4Hero[4]["Count"] * iCoef
+							, arrCreature4Hero[5]["Id"], arrCreature4Hero[5]["Count"] * iCoef
+							, nil
+							, strCallbackWin
+							, strPathCombatLink
+							, 1);
+					end;
+				end;
+				function TTH_VISIT.winVisitShantiri2TrialCourage(strHero, objResult)
+					local iPlayer = GetObjectOwner(strHero);
+					if objResult ~= nil then
+						TTH_VARI.recordTrial[strHero][TTH_ENUM.TrialCourage] = TTH_ENUM.Yes;
+						TTH_GLOBAL.signChangeHeroStat(strHero, STAT_ATTACK, TTH_TABLE.ShantiriTrialTypeOption[TTH_ENUM.TrialCourage]["StatBonus"]);
+						sleep(1);
+						TTH_GLOBAL.signChangeHeroStat(strHero, STAT_DEFENCE, TTH_TABLE.ShantiriTrialTypeOption[TTH_ENUM.TrialCourage]["StatBonus"]);
+						sleep(1);
+						TTH_GLOBAL.signChangeHeroStat(strHero, STAT_SPELL_POWER, TTH_TABLE.ShantiriTrialTypeOption[TTH_ENUM.TrialCourage]["StatBonus"]);
+						sleep(1);
+						TTH_GLOBAL.signChangeHeroStat(strHero, STAT_KNOWLEDGE, TTH_TABLE.ShantiriTrialTypeOption[TTH_ENUM.TrialCourage]["StatBonus"]);
+						sleep(1);
+						local strPathMain = {
+							TTH_PATH.Visit["Shantiri"]["Success"]
+							;strTrialType=TTH_PATH.Visit["Shantiri"]["Courage"]["Text"]
+						}
+						TTH_GLOBAL.sign(strHero, strPathMain);
+					end;
+				end;
+			-- 力量试炼
+				TTH_VARI.recordTrialMight = {};
+				function TTH_VISIT.initVisitShantiri2TrialMight(iPlayer, strHero)
+					if TTH_VARI.recordTrialMight[strHero] == nil then
+						TTH_VARI.recordTrialMight[strHero] = {
+							["Mastery"] = 0
+							, ["Perk"] = 0
+						}
+					end;
+				end;
+				function TTH_VISIT.visitShantiri2TrialMight(iPlayer, strHero)
+					TTH_VISIT.initVisitShantiri2TrialMight(iPlayer, strHero);
+					TTH_VISIT.checkPreVisitShantiri2TrialMight4HasComplete(iPlayer, strHero);
+				end;
+				function TTH_VISIT.checkPreVisitShantiri2TrialMight4HasComplete(iPlayer, strHero)
+					TTH_GLOBAL.initShantiri(iPlayer, strHero);
+					if TTH_VARI.recordTrial[strHero][TTH_ENUM.TrialMight] == TTH_ENUM.Yes then
+						local strPathMain = {
+							TTH_PATH.Visit["Shantiri"]["HasComplete"]
+							;strTrialType=TTH_PATH.Visit["Shantiri"]["Might"]["Text"]
+						}
+						TTH_GLOBAL.sign(strHero, strPathMain);
+						return nil;
+					end;
+
+					TTH_VISIT.checkPreVisitShantiri2TrialMight4Power(iPlayer, strHero);
+				end;
+				function TTH_VISIT.checkPreVisitShantiri2TrialMight4Power(iPlayer, strHero)
+					if TTH_GLOBAL.getPower8Hero(strHero) < TTH_TABLE.ShantiriTrialTypeOption[TTH_ENUM.TrialMight]["Power"] then
+						local strPathMain = {
+							TTH_PATH.Visit["Shantiri"]["NotEnoughPower"]
+							;strTrialType=TTH_PATH.Visit["Shantiri"]["Might"]["Text"]
+							,iPower=TTH_TABLE.ShantiriTrialTypeOption[TTH_ENUM.TrialMight]["Power"]
+						}
+						TTH_GLOBAL.sign(strHero, strPathMain);
+						return nil;
+					end;
+
+					TTH_VISIT.radioVisitShantiri2TrialMight4Mastery(iPlayer, strHero);
+				end;
+				function TTH_VISIT.radioVisitShantiri2TrialMight4Mastery(iPlayer, strHero)
+					local arrMasteryOption = {};
+					local i = 1;
+					local iCountMastery = 0;
+					local enumHeroClass = TTH_TABLE.Hero[strHero]["Class"];
+					for iMasteryId, objMastery in TTH_TABLE.Mastery do
+						if GetHeroSkillMastery(strHero, iMasteryId) > 0 then
+							iCountMastery = iCountMastery + 1;
+						end;
+					end;
+					for iMasteryId, objMastery in TTH_TABLE.Mastery do
+						if objMastery["Class"] == nil
+							or (
+								objMastery["Class"] ~= nil
+								and contains(objMastery["Class"], enumHeroClass) ~= nil
+							) then
+							if (
+									GetHeroSkillMastery(strHero, iMasteryId) == 0
+									and iCountMastery < 7
+								)
+								or (
+									GetHeroSkillMastery(strHero, iMasteryId) > 0
+									and GetHeroSkillMastery(strHero, iMasteryId) <= 2
+								)
+								then
+								arrMasteryOption[i] = {
+									["Id"] = iMasteryId
+									, ["Text"] = objMastery["Text"]
+									, ["Callback"] = "TTH_VISIT.radioVisitShantiri2TrialMight4Perk"
+								};
+								i = i + 1;
+							end;
+						end;
+					end;
+
+					if arrMasteryOption == nil
+						or length(arrMasteryOption) == 0 then
+						local strText = TTH_PATH.Visit["Shantiri"]["Might"]["NotOptionMastery"]
+						TTH_GLOBAL.sign(strHero, strText);
+						return nil;
+					end;
+					TTH_COMMON.optionRadio(iPlayer, strHero, arrMasteryOption, TTH_PATH.Visit["Shantiri"]["Might"]["RadioTipsMastery"]);
+				end;
+				function TTH_VISIT.radioVisitShantiri2TrialMight4Perk(iPlayer, strHero, iMasteryId)
+					TTH_VARI.recordTrialMight[strHero]["Mastery"] = iMasteryId;
+					local arrPerkOption = {};
+					local i = 1;
+					local enumHeroClass = TTH_TABLE.Hero[strHero]["Class"];
+					for iPerkId, objPerk in TTH_TABLE.Mastery[iMasteryId]["Perk"] do
+						if HasHeroSkill(strHero, iPerkId) == nil then
+							if objPerk["Depend"] == nil then
+								arrPerkOption[i] = {
+									["Id"] = iPerkId
+									, ["Text"] = objPerk["Text"]
+									, ["Callback"] = "TTH_VISIT.confirmVisitShantiri2TrialMight"
+								};
+								i = i + 1;
+							else
+								if objPerk["DependType"] == TTH_ENUM.Simple then
+									local bCheckDepend = TTH_ENUM.Yes;
+									for iIndex, iDependPerkId in objPerk["Depend"] do
+										if HasHeroSkill(strHero, iDependPerkId) == nil then
+											bCheckDepend = TTH_ENUM.No;
+											break;
+										end;
+									end
+									if bCheckDepend == TTH_ENUM.Yes then
+										arrPerkOption[i] = {
+											["Id"] = iPerkId
+											, ["Text"] = objPerk["Text"]
+											, ["Callback"] = "TTH_VISIT.confirmVisitShantiri2TrialMight"
+										};
+										i = i + 1;
+									end;
+								elseif objPerk["DependType"] == TTH_ENUM.Complicated then
+									local bInclude = TTH_ENUM.No;
+									for iIndexInclude, objInclude in objPerk["Include"] do
+										if contains(objInclude["Class"], enumHeroClass) ~= nil then
+											bInclude = TTH_ENUM.Yes;
+											local bCheckDepend = TTH_ENUM.Yes;
+											for iIndex, iDependPerkId in objInclude["Depend"] do
+												if HasHeroSkill(strHero, iDependPerkId) == nil then
+													bCheckDepend = TTH_ENUM.No;
+													break;
+												end;
+											end
+											if bCheckDepend == TTH_ENUM.Yes then
+												arrPerkOption[i] = {
+													["Id"] = iPerkId
+													, ["Text"] = objPerk["Text"]
+													, ["Callback"] = "TTH_VISIT.confirmVisitShantiri2TrialMight"
+												};
+												i = i + 1;
+											end;
+										end;
+									end
+									if bInclude == TTH_ENUM.No then
+										local bCheckDepend = TTH_ENUM.Yes;
+										for iIndex, iDependPerkId in objPerk["Depend"] do
+											if HasHeroSkill(strHero, iDependPerkId) == nil then
+												bCheckDepend = TTH_ENUM.No;
+												break;
+											end;
+										end
+										if bCheckDepend == TTH_ENUM.Yes then
+											arrPerkOption[i] = {
+												["Id"] = iPerkId
+												, ["Text"] = objPerk["Text"]
+												, ["Callback"] = "TTH_VISIT.confirmVisitShantiri2TrialMight"
+											};
+											i = i + 1;
+										end;
+									end;
+								end;
+							end;
+						end;
+					end;
+
+					if arrPerkOption == nil
+						or length(arrPerkOption) == 0 then
+						local strText = TTH_PATH.Visit["Shantiri"]["Might"]["NotOptionPerk"]
+						TTH_GLOBAL.sign(strHero, strText);
+						return nil;
+					end;
+					TTH_COMMON.optionRadio(iPlayer, strHero, arrPerkOption, TTH_PATH.Visit["Shantiri"]["Might"]["RadioTipsPerk"]);
+				end;
+				function TTH_VISIT.confirmVisitShantiri2TrialMight(iPlayer, strHero, iPerkId)
+					TTH_VARI.recordTrialMight[strHero]["Perk"] = iPerkId;
+					local objMastery = TTH_TABLE.Mastery[TTH_VARI.recordTrialMight[strHero]["Mastery"]];
+					local objPerk = objMastery["Perk"][TTH_VARI.recordTrialMight[strHero]["Perk"]];
+					local strPathMain = {
+						TTH_PATH.Visit["Shantiri"]["Might"]["Confirm"]
+						;strMasteryName=objMastery["Text"]
+						,strPerkName=objPerk["Text"]
+					};
+					local strCallbackOk = "TTH_VISIT.implVisitShantiri2TrialMight("..iPlayer..","..TTH_COMMON.psp(strHero)..")";
+					local strCallbackCancel = "TTH_COMMON.cancelOption()";
+					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+				end;
+				function TTH_VISIT.implVisitShantiri2TrialMight(iPlayer, strHero)
+					local strCallbackWin = "TTH_VISIT.winVisitShantiri2TrialMight";
+					local strPathCombatLink = TTH_PATH.Visit["Shantiri"]["CombatLink"];
+					local iPower = TTH_GLOBAL.getPower8Hero(strHero);
+					local iHeroLevel = GetHeroLevel(strHero);
+
+					local strEnemyHero = nil;
+					local iCoef = TTH_COMMON.round(sqrt(TTH_GLOBAL.getGameDifficulty()) * sqrt(iHeroLevel) * iPower / 10000);
+					local iHeroRace = TTH_GLOBAL.getRace8Hero(strHero);
+		  		if iHeroRace == TOWN_HEAVEN
+		  			or iHeroRace == TOWN_FORTRESS then
+						StartCombat(strHero, strEnemyHero, 7
+							, CREATURE_DRAGON_KNIGHT, 1 * iCoef
+							, CREATURE_GHOST, TTH_TABLE_NCF_CREATURES[CREATURE_GHOST]["GROWTH"] * iCoef
+							, CREATURE_VAMPIRE_LORD, TTH_TABLE_NCF_CREATURES[CREATURE_VAMPIRE_LORD]["GROWTH"] * iCoef
+							, CREATURE_NOSFERATU, TTH_TABLE_NCF_CREATURES[CREATURE_NOSFERATU]["GROWTH"] * iCoef
+							, CREATURE_DEMILICH, TTH_TABLE_NCF_CREATURES[CREATURE_DEMILICH]["GROWTH"] * iCoef
+							, CREATURE_MUMMY, TTH_TABLE_NCF_CREATURES[CREATURE_MUMMY]["GROWTH"] * iCoef
+							, CREATURE_DEATH_KNIGHT, TTH_TABLE_NCF_CREATURES[CREATURE_DEATH_KNIGHT]["GROWTH"] * iCoef
+							, nil
+							, strCallbackWin
+							, strPathCombatLink
+							, 1);
+		  		elseif iHeroRace == TOWN_PRESERVE
+		  			or iHeroRace == TOWN_ACADEMY then
+						StartCombat(strHero, strEnemyHero, 7
+							, CREATURE_DRAGON_KNIGHT, 1 * iCoef
+							, CREATURE_QUASIT, TTH_TABLE_NCF_CREATURES[CREATURE_QUASIT]["GROWTH"] * iCoef
+							, CREATURE_FIREBREATHER_HOUND, TTH_TABLE_NCF_CREATURES[CREATURE_FIREBREATHER_HOUND]["GROWTH"] * iCoef
+							, CREATURE_INFERNAL_SUCCUBUS, TTH_TABLE_NCF_CREATURES[CREATURE_INFERNAL_SUCCUBUS]["GROWTH"] * iCoef
+							, CREATURE_BALOR, TTH_TABLE_NCF_CREATURES[CREATURE_BALOR]["GROWTH"] * iCoef
+							, CREATURE_BLACK_DRAGON, TTH_TABLE_NCF_CREATURES[CREATURE_BLACK_DRAGON]["GROWTH"] * iCoef
+							, CREATURE_RED_DRAGON, TTH_TABLE_NCF_CREATURES[CREATURE_RED_DRAGON]["GROWTH"] * iCoef
+							, nil
+							, strCallbackWin
+							, strPathCombatLink
+							, 1);
+		  		elseif iHeroRace == TOWN_DUNGEON
+		  			or iHeroRace == TOWN_INFERNO then
+						StartCombat(strHero, strEnemyHero, 7
+							, CREATURE_CHERUBIN, 1 * iCoef
+							, CREATURE_OBSIDIAN_GOLEM, TTH_TABLE_NCF_CREATURES[CREATURE_OBSIDIAN_GOLEM]["GROWTH"] * iCoef
+							, CREATURE_SHARP_SHOOTER, TTH_TABLE_NCF_CREATURES[CREATURE_SHARP_SHOOTER]["GROWTH"] * iCoef
+							, CREATURE_DRUID_ELDER, TTH_TABLE_NCF_CREATURES[CREATURE_DRUID_ELDER]["GROWTH"] * iCoef
+							, CREATURE_WAR_UNICORN, TTH_TABLE_NCF_CREATURES[CREATURE_WAR_UNICORN]["GROWTH"] * iCoef
+							, CREATURE_RAINBOW_DRAGON, TTH_TABLE_NCF_CREATURES[CREATURE_RAINBOW_DRAGON]["GROWTH"] * iCoef
+							, CREATURE_TITAN, TTH_TABLE_NCF_CREATURES[CREATURE_TITAN]["GROWTH"] * iCoef
+							, nil
+							, strCallbackWin
+							, strPathCombatLink
+							, 1);
+		  		elseif iHeroRace == TOWN_NECROMANCY
+		  			or iHeroRace == TOWN_STRONGHOLD then
+						StartCombat(strHero, strEnemyHero, 7
+							, CREATURE_CHERUBIN, 1 * iCoef
+							, CREATURE_BATTLE_GRIFFIN, TTH_TABLE_NCF_CREATURES[CREATURE_BATTLE_GRIFFIN]["GROWTH"] * iCoef
+							, CREATURE_FLAME_MAGE, TTH_TABLE_NCF_CREATURES[CREATURE_FLAME_MAGE]["GROWTH"] * iCoef
+							, CREATURE_PALADIN, TTH_TABLE_NCF_CREATURES[CREATURE_PALADIN]["GROWTH"] * iCoef
+							, CREATURE_THUNDER_THANE, TTH_TABLE_NCF_CREATURES[CREATURE_THUNDER_THANE]["GROWTH"] * iCoef
+							, CREATURE_MAGMA_DRAGON, TTH_TABLE_NCF_CREATURES[CREATURE_MAGMA_DRAGON]["GROWTH"] * iCoef
+							, CREATURE_SERAPH, TTH_TABLE_NCF_CREATURES[CREATURE_SERAPH]["GROWTH"] * iCoef
+							, nil
+							, strCallbackWin
+							, strPathCombatLink
+							, 1);
+					end;
+				end;
+				function TTH_VISIT.winVisitShantiri2TrialMight(strHero, objResult)
+					local iPlayer = GetObjectOwner(strHero);
+					if objResult ~= nil then
+						TTH_VARI.recordTrial[strHero][TTH_ENUM.TrialMight] = TTH_ENUM.Yes;
+						GiveHeroSkill(strHero, TTH_VARI.recordTrialMight[strHero]["Mastery"]);
+						sleep(1);
+						GiveHeroSkill(strHero, TTH_VARI.recordTrialMight[strHero]["Perk"]);
+						sleep(1);
+						TTH_GLOBAL.dealSkillBonus8Hero(strHero); -- 英雄技能效果实装
+						local strPathMain = {
+							TTH_PATH.Visit["Shantiri"]["Success"]
+							;strTrialType=TTH_PATH.Visit["Shantiri"]["Might"]["Text"]
+						}
+						TTH_GLOBAL.sign(strHero, strPathMain);
+					end;
+				end;
+			-- 智慧试炼
+				TTH_VARI.recordTrialWisdom = {};
+				function TTH_VISIT.initVisitShantiri2TrialWisdom(iPlayer, strHero)
+					if TTH_VARI.recordTrialWisdom[strHero] == nil then
+						TTH_VARI.recordTrialWisdom[strHero] = {
+							["Mastery"] = 0
+							, ["Perk"] = 0
+						}
+					end;
+				end;
+				function TTH_VISIT.visitShantiri2TrialWisdom(iPlayer, strHero)
+					TTH_VISIT.initVisitShantiri2TrialWisdom(iPlayer, strHero);
+					TTH_VISIT.checkPreVisitShantiri2TrialWisdom4HasComplete(iPlayer, strHero);
+				end;
+				function TTH_VISIT.checkPreVisitShantiri2TrialWisdom4HasComplete(iPlayer, strHero)
+					TTH_GLOBAL.initShantiri(iPlayer, strHero);
+					if TTH_VARI.recordTrial[strHero][TTH_ENUM.TrialWisdom] == TTH_ENUM.Yes then
+						local strPathMain = {
+							TTH_PATH.Visit["Shantiri"]["HasComplete"]
+							;strTrialType=TTH_PATH.Visit["Shantiri"]["Wisdom"]["Text"]
+						}
+						TTH_GLOBAL.sign(strHero, strPathMain);
+						return nil;
+					end;
+
+					TTH_VISIT.checkPreVisitShantiri2TrialWisdom4HasArtefact(iPlayer, strHero);
+				end;
+				function TTH_VISIT.checkPreVisitShantiri2TrialWisdom4HasArtefact(iPlayer, strHero)
+					if HasArtefact(strHero, ARTIFACT_PEDANT_OF_MASTERY, 0) == nil then
+						local strPathMain = {
+							TTH_PATH.Visit["Shantiri"]["Wisdom"]["HasNoArtifact"]
+							;strTrialType=TTH_PATH.Visit["Shantiri"]["Wisdom"]["Text"]
+						}
+						TTH_GLOBAL.sign(strHero, strPathMain);
+						return nil;
+					end;
+
+					TTH_VISIT.checkPreVisitShantiri2TrialWisdom4Power(iPlayer, strHero);
+				end;
+				function TTH_VISIT.checkPreVisitShantiri2TrialWisdom4Power(iPlayer, strHero)
+					if TTH_GLOBAL.getPower8Hero(strHero) < TTH_TABLE.ShantiriTrialTypeOption[TTH_ENUM.TrialWisdom]["Power"] then
+						local strPathMain = {
+							TTH_PATH.Visit["Shantiri"]["NotEnoughPower"]
+							;strTrialType=TTH_PATH.Visit["Shantiri"]["Wisdom"]["Text"]
+							,iPower=TTH_TABLE.ShantiriTrialTypeOption[TTH_ENUM.TrialWisdom]["Power"]
+						}
+						TTH_GLOBAL.sign(strHero, strPathMain);
+						return nil;
+					end;
+
+					TTH_VISIT.radioVisitShantiri2TrialWisdom4Mastery(iPlayer, strHero);
+				end;
+				function TTH_VISIT.radioVisitShantiri2TrialWisdom4Mastery(iPlayer, strHero)
+					local arrMasteryOption = {};
+					local i = 1;
+					local enumHeroClass = TTH_TABLE.Hero[strHero]["Class"];
+					for iMasteryId, objMastery in TTH_TABLE.Mastery do
+						if objMastery["Class"] == nil
+							or (
+								objMastery["Class"] ~= nil
+								and contains(objMastery["Class"], enumHeroClass) ~= nil
+							) then
+							if GetHeroSkillMastery(strHero, iMasteryId) == 3 then
+								local iPerkCount = 0;
+								for iPerkId, objPerk in TTH_TABLE.Mastery[iMasteryId]["Perk"] do
+									if HasHeroSkill(strHero, iPerkId) ~= nil then
+										iPerkCount = iPerkCount + 1;
+									end;
+								end;
+								if iPerkCount == 3 then
+									arrMasteryOption[i] = {
+										["Id"] = iMasteryId
+										, ["Text"] = objMastery["Text"]
+										, ["Callback"] = "TTH_VISIT.radioVisitShantiri2TrialWisdom4Perk"
+									};
+									i = i + 1;
+								end;
+							end;
+						end;
+					end;
+
+					if arrMasteryOption == nil
+						or length(arrMasteryOption) == 0 then
+						local strText = TTH_PATH.Visit["Shantiri"]["Wisdom"]["NotOptionMastery"]
+						TTH_GLOBAL.sign(strHero, strText);
+						return nil;
+					end;
+					TTH_COMMON.optionRadio(iPlayer, strHero, arrMasteryOption, TTH_PATH.Visit["Shantiri"]["Wisdom"]["RadioTipsMastery"]);
+				end;
+				function TTH_VISIT.radioVisitShantiri2TrialWisdom4Perk(iPlayer, strHero, iMasteryId)
+					TTH_VARI.recordTrialWisdom[strHero]["Mastery"] = iMasteryId;
+					local arrPerkOption = {};
+					local i = 1;
+					local enumHeroClass = TTH_TABLE.Hero[strHero]["Class"];
+					for iPerkId, objPerk in TTH_TABLE.Mastery[iMasteryId]["Perk"] do
+						if HasHeroSkill(strHero, iPerkId) == nil then
+							if objPerk["Depend"] == nil then
+								arrPerkOption[i] = {
+									["Id"] = iPerkId
+									, ["Text"] = objPerk["Text"]
+									, ["Callback"] = "TTH_VISIT.confirmVisitShantiri2TrialWisdom"
+								};
+								i = i + 1;
+							else
+								if objPerk["DependType"] == TTH_ENUM.Simple then
+									local bCheckDepend = TTH_ENUM.Yes;
+									for iIndex, iDependPerkId in objPerk["Depend"] do
+										if HasHeroSkill(strHero, iDependPerkId) == nil then
+											bCheckDepend = TTH_ENUM.No;
+											break;
+										end;
+									end
+									if bCheckDepend == TTH_ENUM.Yes then
+										arrPerkOption[i] = {
+											["Id"] = iPerkId
+											, ["Text"] = objPerk["Text"]
+											, ["Callback"] = "TTH_VISIT.confirmVisitShantiri2TrialWisdom"
+										};
+										i = i + 1;
+									end;
+								elseif objPerk["DependType"] == TTH_ENUM.Complicated then
+									local bInclude = TTH_ENUM.No;
+									for iIndexInclude, objInclude in objPerk["Include"] do
+										if contains(objInclude["Class"], enumHeroClass) ~= nil then
+											bInclude = TTH_ENUM.Yes;
+											local bCheckDepend = TTH_ENUM.Yes;
+											for iIndex, iDependPerkId in objInclude["Depend"] do
+												if HasHeroSkill(strHero, iDependPerkId) == nil then
+													bCheckDepend = TTH_ENUM.No;
+													break;
+												end;
+											end
+											if bCheckDepend == TTH_ENUM.Yes then
+												arrPerkOption[i] = {
+													["Id"] = iPerkId
+													, ["Text"] = objPerk["Text"]
+													, ["Callback"] = "TTH_VISIT.confirmVisitShantiri2TrialWisdom"
+												};
+												i = i + 1;
+											end;
+										end;
+									end
+									if bInclude == TTH_ENUM.No then
+										local bCheckDepend = TTH_ENUM.Yes;
+										for iIndex, iDependPerkId in objPerk["Depend"] do
+											if HasHeroSkill(strHero, iDependPerkId) == nil then
+												bCheckDepend = TTH_ENUM.No;
+												break;
+											end;
+										end
+										if bCheckDepend == TTH_ENUM.Yes then
+											arrPerkOption[i] = {
+												["Id"] = iPerkId
+												, ["Text"] = objPerk["Text"]
+												, ["Callback"] = "TTH_VISIT.confirmVisitShantiri2TrialWisdom"
+											};
+											i = i + 1;
+										end;
+									end;
+								end;
+							end;
+						end;
+					end;
+
+					if arrPerkOption == nil
+						or length(arrPerkOption) == 0 then
+						local strText = TTH_PATH.Visit["Shantiri"]["Wisdom"]["NotOptionPerk"]
+						TTH_GLOBAL.sign(strHero, strText);
+						return nil;
+					end;
+					TTH_COMMON.optionRadio(iPlayer, strHero, arrPerkOption, TTH_PATH.Visit["Shantiri"]["Wisdom"]["RadioTipsPerk"]);
+				end;
+				function TTH_VISIT.confirmVisitShantiri2TrialWisdom(iPlayer, strHero, iPerkId)
+					TTH_VARI.recordTrialWisdom[strHero]["Perk"] = iPerkId;
+					local objMastery = TTH_TABLE.Mastery[TTH_VARI.recordTrialWisdom[strHero]["Mastery"]];
+					local objPerk = objMastery["Perk"][TTH_VARI.recordTrialWisdom[strHero]["Perk"]];
+					local strPathMain = {
+						TTH_PATH.Visit["Shantiri"]["Wisdom"]["Confirm"]
+						;strMasteryName=objMastery["Text"]
+						,strPerkName=objPerk["Text"]
+					};
+					local strCallbackOk = "TTH_VISIT.implVisitShantiri2TrialWisdom("..iPlayer..","..TTH_COMMON.psp(strHero)..")";
+					local strCallbackCancel = "TTH_COMMON.cancelOption()";
+					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+				end;
+				function TTH_VISIT.implVisitShantiri2TrialWisdom(iPlayer, strHero)
+					local strCallbackWin = "TTH_VISIT.winVisitShantiri2TrialWisdom";
+					local strPathCombatLink = TTH_PATH.Visit["Shantiri"]["CombatLink"];
+					local iPower = TTH_GLOBAL.getPower8Hero(strHero);
+					local iHeroLevel = GetHeroLevel(strHero);
+
+					local strEnemyHero = nil;
+					local iCoef = TTH_COMMON.round(TTH_GLOBAL.getGameDifficulty() * sqrt(iHeroLevel) * iPower / 10000);
+					local iHeroRace = TTH_GLOBAL.getRace8Hero(strHero);
+					StartCombat(strHero, strEnemyHero, 7
+						, CREATURE_DRAGON_KNIGHT, 1 * iCoef
+						, CREATURE_CHERUBIN, 1 * iCoef
+						, CREATURE_QUASIT, TTH_TABLE_NCF_CREATURES[CREATURE_QUASIT]["GROWTH"] * iCoef
+						, CREATURE_SNOW_APE, TTH_TABLE_NCF_CREATURES[CREATURE_SNOW_APE]["GROWTH"] * iCoef
+						, CREATURE_ENCHANTER, TTH_TABLE_NCF_CREATURES[CREATURE_ENCHANTER]["GROWTH"] * iCoef
+						, CREATURE_PHOENIX_MECHANICAL, TTH_TABLE_NCF_CREATURES[CREATURE_PHOENIX_MECHANICAL]["GROWTH"] * iCoef
+						, CREATURE_Itil_Unicorn, TTH_TABLE_NCF_CREATURES[CREATURE_DEMILICH]["GROWTH"] * iCoef
+						, nil
+						, strCallbackWin
+						, strPathCombatLink
+						, 1);
+				end;
+				function TTH_VISIT.winVisitShantiri2TrialWisdom(strHero, objResult)
+					local iPlayer = GetObjectOwner(strHero);
+					if objResult ~= nil then
+						TTH_VARI.recordTrial[strHero][TTH_ENUM.TrialWisdom] = TTH_ENUM.Yes;
+						ExecConsoleCommand("enable_cheats")
+						ExecConsoleCommand("add_skill "..TTH_VARI.recordTrialWisdom[strHero]["Perk"]);
+						RemoveArtefact(strHero, ARTIFACT_PEDANT_OF_MASTERY);
+						sleep(1);
+						TTH_GLOBAL.dealSkillBonus8Hero(strHero); -- 英雄技能效果实装
+						local strPathMain = {
+							TTH_PATH.Visit["Shantiri"]["Success"]
+							;strTrialType=TTH_PATH.Visit["Shantiri"]["Wisdom"]["Text"]
+						}
+						TTH_GLOBAL.sign(strHero, strPathMain);
+					end;
 				end;
 
 	-- manage
@@ -9126,7 +9832,6 @@ doFile("/scripts/H55-Settings.lua");
 
 		-- Fortress
 			-- Rolf 132 洛尔夫
-				TTH_VARI.recordDiplomacy = {};
 				function TTH_TALENT.initRolf(iPlayer, strHero)
 					if TTH_VARI.talent[strHero] == nil then
 						TTH_VARI.talent[strHero] = {
@@ -10199,11 +10904,13 @@ doFile("/scripts/H55-Settings.lua");
 					local iHeroRace = TTH_GLOBAL.getRace8Hero(strHero);
 					local bExist = TTH_ENUM.No;
 					for i = 0, 6 do
+						if bExist == TTH_ENUM.Yes then
+							break;
+						end;
 						for j = 1, 3 do
 							if arrCreature4Hero[i]["Id"] == TTH_TABLE.Creature8RaceAndLevel[iHeroRace][7][j] then
 								TTH_GLOBAL.addCreature4Hero8Sign(strHero, arrCreature4Hero[i]["Id"], iGrowth, TTH_ENUM.AddCreature);
 								bExist = TTH_ENUM.Yes;
-								break;
 							end;
 						end;
 					end;
@@ -10817,6 +11524,224 @@ doFile("/scripts/H55-Settings.lua");
     		TTH_VARI.recordToughness[strHero]["OperTimes"] = TTH_VARI.recordToughness[strHero]["MaxOperTimes"];
 			end;
 
+		-- HERO_SKILL_GUARDIAN_ANGEL 078 天神降临
+			TTH_VARI.recordGuardianAngel = {};
+			function TTH_PERK.init078(iPlayer, strHero)
+				TTH_MAIN.debug("TTH_PERK.init078", iPlayer, strHero);
+
+				TTH_VARI.recordGuardianAngel[strHero] = {
+					["OperTimes"] = 1
+					, ["MaxOperTimes"] = 1
+					, ["Status"] = TTH_ENUM.No
+				};
+			end;
+			function TTH_PERK.active078(iPlayer, strHero)
+				TTH_COMMON.nextNavi(TTH_PATH.Perk[HERO_SKILL_GUARDIAN_ANGEL]["Text"]);
+
+				TTH_PERK.checkPreActive0784NotEnoughTimes(iPlayer, strHero)
+			end;
+			function TTH_PERK.checkPreActive0784NotEnoughTimes(iPlayer, strHero)
+				if TTH_VARI.recordGuardianAngel[strHero] == nil then
+					TTH_PERK.init078(iPlayer, strHero);
+				end;
+				local strText = TTH_PATH.Perk[HERO_SKILL_GUARDIAN_ANGEL]["NotEnoughTimes"];
+    		if TTH_VARI.recordGuardianAngel[strHero]["OperTimes"] <= 0 then
+    			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+    				if TTH_MANAGE.getRemainOperTimes(strHero) <= 0 then
+		    			TTH_GLOBAL.sign(strHero, strText);
+	    				return nil;
+    				end;
+    			else
+	    			TTH_GLOBAL.sign(strHero, strText);
+    				return nil;
+	    		end;
+    		end;
+
+				TTH_PERK.confirmActive078(iPlayer, strHero);
+			end;
+			function TTH_PERK.confirmActive078(iPlayer, strHero)
+    		local iHeroLevel = GetHeroLevel(strHero);
+    		local iCreatureCount = 1 + TTH_COMMON.floor(iHeroLevel / 10);
+    		local iHeroRace = TTH_GLOBAL.getRace8Hero(strHero);
+    		local iCreatureId = 0;
+    		if iHeroRace == TOWN_HEAVEN
+    			or iHeroRace == TOWN_PRESERVE
+    			or iHeroRace == TOWN_ACADEMY
+    			or iHeroRace == TOWN_FORTRESS then
+    			iCreatureId = CREATURE_CHERUBIN_LESS;
+    		elseif iHeroRace == TOWN_DUNGEON
+    			or iHeroRace == TOWN_NECROMANCY
+    			or iHeroRace == TOWN_INFERNO
+    			or iHeroRace == TOWN_STRONGHOLD then
+    			iCreatureId = CREATURE_DRAGON_KNIGHT_LESS;
+  			end;
+  			local strCreatureName = TTH_TABLE_NCF_CREATURES[iCreatureId]["NAME"];
+
+				local strPathMain={
+					TTH_PATH.Perk[HERO_SKILL_GUARDIAN_ANGEL]["Confirm"]
+					;strCreatureName=strCreatureName
+					,iCreatureCount=iCreatureCount
+				};
+				local strCallbackOk = "TTH_PERK.implActive078("..iPlayer..","..TTH_COMMON.psp(strHero)..","..iCreatureId..")";
+				local strCallbackCancel = "TTH_COMMON.cancelOption()";
+				TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+			end;
+			function TTH_PERK.implActive078(iPlayer, strHero, iCreatureId)
+    		if TTH_VARI.recordGuardianAngel[strHero]["OperTimes"] > 0 then
+    			TTH_VARI.recordGuardianAngel[strHero]["OperTimes"] = TTH_VARI.recordGuardianAngel[strHero]["OperTimes"] - 1;
+    		else
+    			TTH_MANAGE.useOperTimes(strHero);
+    		end;
+    		TTH_PERK.enableActive078(iPlayer, strHero, iCreatureId);
+				local strText = TTH_PATH.Perk[HERO_SKILL_GUARDIAN_ANGEL]["Success"];
+    		TTH_GLOBAL.sign(strHero, strText);
+			end;
+			function TTH_PERK.combatResult078(iPlayer, strHero, iCombatIndex)
+				TTH_MAIN.debug("TTH_PERK.combatResult078", iPlayer, strHero, iCombatIndex);
+
+				TTH_PERK.disableActive078(iPlayer, strHero);
+			end;
+			function TTH_PERK.resetWeekly078(iPlayer, strHero)
+				TTH_MAIN.debug("TTH_PERK.resetWeekly078", iPlayer, strHero);
+
+				if TTH_VARI.recordGuardianAngel[strHero] == nil then
+					TTH_PERK.init078(iPlayer, strHero);
+				end;
+    		TTH_VARI.recordGuardianAngel[strHero]["OperTimes"] = TTH_VARI.recordGuardianAngel[strHero]["MaxOperTimes"];
+			end;
+			function TTH_PERK.resetDaily078(iPlayer, strHero)
+				TTH_MAIN.debug("TTH_PERK.resetDaily078", iPlayer, strHero);
+
+				if TTH_GLOBAL.isAi(iPlayer) == TTH_ENUM.Yes then
+					if TTH_VARI.recordGuardianAngel[strHero] == nil then
+						TTH_PERK.init078(iPlayer, strHero);
+					end;
+    			local iHeroRace = TTH_GLOBAL.getRace8Hero(strHero);
+	    		local iCreatureId = 0;
+		  		if iHeroRace == TOWN_HEAVEN
+		  			or iHeroRace == TOWN_PRESERVE
+		  			or iHeroRace == TOWN_ACADEMY
+		  			or iHeroRace == TOWN_FORTRESS then
+		  			iCreatureId = CREATURE_CHERUBIN_LESS;
+		  		elseif iHeroRace == TOWN_DUNGEON
+		  			or iHeroRace == TOWN_NECROMANCY
+		  			or iHeroRace == TOWN_INFERNO
+		  			or iHeroRace == TOWN_STRONGHOLD then
+		  			iCreatureId = CREATURE_DRAGON_KNIGHT_LESS;
+					end;
+					TTH_PERK.enableActive078(iPlayer, strHero, iCreatureId);
+				end;
+			end;
+			function TTH_PERK.enableActive078(iPlayer, strHero, iCreatureId)
+				TTH_VARI.recordGuardianAngel[strHero]["Status"] = TTH_ENUM.Yes;
+				local strKey = TTH_FINAL.GAMEVAR_COMBAT_SKILL..strHero..'_'..HERO_SKILL_GUARDIAN_ANGEL;
+				SetGameVar(strKey, iCreatureId);
+			end;
+			function TTH_PERK.disableActive078(iPlayer, strHero)
+				if TTH_VARI.recordGuardianAngel[strHero]["Status"] == TTH_ENUM.Yes then
+					TTH_VARI.recordGuardianAngel[strHero]["Status"] = TTH_ENUM.No;
+					local strKey = TTH_FINAL.GAMEVAR_COMBAT_SKILL..strHero..'_'..HERO_SKILL_GUARDIAN_ANGEL;
+					SetGameVar(strKey, 0);
+				end;
+			end;
+
+		-- HERO_SKILL_GRAIL_VISION 080 杉提瑞之触
+			TTH_VARI.recordShantiri = {};
+			TTH_FINAL.SHANTIRI_EXP = 100;
+			TTH_FINAL.SHANTIRI_RECOVERY = 0.25;
+			function TTH_PERK.init080(iPlayer, strHero)
+				if TTH_VARI.recordShantiri[strHero] == nil then
+					TTH_VARI.recordShantiri[strHero] = {
+						["CombatIndexTouch"] = -1
+						, ["CombatIndexLast"] = -1
+						, ["HasTouchCount"] = 0
+						, ["HasTouchBuilding"] = {}
+					};
+				end;
+			end;
+			function TTH_PERK.active080(iPlayer, strHero)
+				TTH_COMMON.nextNavi(TTH_PATH.Perk[HERO_SKILL_GRAIL_VISION]["Text"]);
+
+				TTH_PERK.init080(iPlayer, strHero);
+				TTH_PERK.checkPreActive0804SuitableShantiri(iPlayer, strHero);
+			end;
+			function TTH_PERK.checkPreActive0804SuitableShantiri(iPlayer, strHero)
+				local arrOptionShantiri = {};
+				local i = 1;
+				for iIndex, strShantiri in TTH_VARI.arrBuilding["BUILDING_SHANTIRI"] do
+					if TTH_GLOBAL.getDistance(strHero, strShantiri) <= 5 then
+						local iPosX, iPosY, iPosZ = GetObjectPosition(strShantiri);
+						arrOptionShantiri[i] = {
+							["Id"] = strShantiri
+							, ["Text"] = {
+									TTH_PATH.Perk[HERO_SKILL_GRAIL_VISION]["OptionTemplate"]
+									;iPosX=iPosX
+									,iPosY=iPosY
+								}
+							, ["Callback"] = "TTH_PERK.implActive080"
+						};
+						i = i + 1;
+					end;
+				end;
+				if length(arrOptionShantiri) <= 0 then
+					local strText = TTH_PATH.Perk[HERO_SKILL_GRAIL_VISION]["NoSuitableShantiri"];
+					TTH_GLOBAL.sign(strHero, strText);
+					return nil;
+				end;
+
+				local strPathOption = TTH_PATH.Perk[HERO_SKILL_GRAIL_VISION]["RadioTips"];
+				TTH_COMMON.optionRadio(iPlayer, strHero, arrOptionShantiri, strPathOption);
+			end;
+			function TTH_PERK.implActive080(iPlayer, strHero, strShantiri)
+				if contains(TTH_VARI.recordShantiri[strHero]["HasTouchBuilding"], strShantiri) == nil then
+					TTH_VARI.recordShantiri[strHero]["HasTouchBuilding"] = TTH_COMMON.push(TTH_VARI.recordShantiri[strHero]["HasTouchBuilding"], strShantiri);
+					TTH_VARI.recordShantiri[strHero]["HasTouchCount"] = TTH_VARI.recordShantiri[strHero]["HasTouchCount"] + 1;
+					local strPathMain = {
+						TTH_PATH.Perk[HERO_SKILL_GRAIL_VISION]["Touch"]
+						;iTouchCount=TTH_VARI.recordShantiri[strHero]["HasTouchCount"]
+					};
+					TTH_GLOBAL.sign(strHero, strPathMain);
+					sleep(1);
+				end;
+				if TTH_VARI.recordShantiri[strHero]["CombatIndexTouch"] == TTH_VARI.recordShantiri[strHero]["CombatIndexLast"] then
+					local strText = TTH_PATH.Perk[HERO_SKILL_GRAIL_VISION]["NotEnoughCombat"];
+					TTH_GLOBAL.sign(strHero, strText);
+				else
+					TTH_VARI.recordShantiri[strHero]["CombatIndexTouch"] = TTH_VARI.recordShantiri[strHero]["CombatIndexLast"];
+					local iHeroLevel = GetHeroLevel(strHero);
+					local iExp = iHeroLevel * TTH_VARI.recordShantiri[strHero]["HasTouchCount"] * TTH_FINAL.SHANTIRI_EXP;
+					if TTH_GLOBAL.isBonus8PirateExp(strHero) == TTH_ENUM.Enable then
+						iExp = TTH_COMMON.round(iExp * 1.5);
+					end;
+					local iMovePoint = TTH_COMMON.round(TTH_GLOBAL.getMaxMove8Hero(strHero) * TTH_FINAL.SHANTIRI_RECOVERY);
+					if TTH_GLOBAL.isBonus8MonkMove(strHero) == TTH_ENUM.Enable then
+						iMovePoint = TTH_COMMON.round(iMovePoint * 1.5);
+					end;
+					local iManaPoint = TTH_COMMON.round(TTH_GLOBAL.getMaxMana8Hero(strHero) * TTH_FINAL.SHANTIRI_RECOVERY);
+					if TTH_GLOBAL.isBonus8MonkMana(strHero) == TTH_ENUM.Enable then
+						iManaPoint = TTH_COMMON.round(iManaPoint * 1.5);
+					end;
+					print("iExp: ");
+					print(iExp);
+					print("iMovePoint: ");
+					print(iMovePoint);
+					print("iManaPoint: ");
+					print(iManaPoint);
+					TTH_GLOBAL.giveExp(strHero, iExp);
+					ChangeHeroStat(strHero, STAT_MOVE_POINTS, iMovePoint);
+					ChangeHeroStat(strHero, STAT_MANA_POINTS, iManaPoint);
+
+	    		local strText = TTH_PATH.Perk[HERO_SKILL_GRAIL_VISION]["Recovery"];
+	    		TTH_GLOBAL.sign(strHero, strText);
+				end;
+			end;
+			function TTH_PERK.combatResult080(iPlayer, strHero, iCombatIndex)
+				TTH_MAIN.debug("TTH_PERK.combatResult080", iPlayer, strHero, iCombatIndex);
+
+				TTH_PERK.init080(iPlayer, strHero);
+				TTH_VARI.recordShantiri[strHero]["CombatIndexLast"] = iCombatIndex;
+			end;
+
 		-- HERO_SKILL_DEATH_TREAD 099 死亡行军
 			TTH_VARI.recordDeathTread = {
 				["DefenceTown"] = {}
@@ -10883,9 +11808,9 @@ doFile("/scripts/H55-Settings.lua");
 			TTH_VARI.recordHauntMine = {};
 			TTH_FINAL.HAUNTMINE_NUMBER = 5;
 			function TTH_PERK.init110(iPlayer, strHero)
-				if TTH_VARI.recordDiplomacy[strHero] == nil then
+				if TTH_VARI.recordHauntMine[strHero] == nil then
 					local iTimes = 1;
-					TTH_VARI.recordDiplomacy[strHero] = {
+					TTH_VARI.recordHauntMine[strHero] = {
 						["OperTimes"] = iTimes
 						, ["MaxOperTimes"] = iTimes
 					};
@@ -10899,7 +11824,7 @@ doFile("/scripts/H55-Settings.lua");
 			end;
 			function TTH_PERK.checkPreActive1104NotEnoughTimes(iPlayer, strHero)
 				local strText = TTH_PATH.Perk[HERO_SKILL_HAUNT_MINE]["NotEnoughTimes"];
-    		if TTH_VARI.recordDiplomacy[strHero]["OperTimes"] <= 0 then
+    		if TTH_VARI.recordHauntMine[strHero]["OperTimes"] <= 0 then
     			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
     				if TTH_MANAGE.getRemainOperTimes(strHero) <= 0 then
 		    			TTH_GLOBAL.sign(strHero, strText);
@@ -11001,8 +11926,8 @@ doFile("/scripts/H55-Settings.lua");
 				TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
 			end;
 			function TTH_PERK.implActive110(iPlayer, strHero, strMineName)
-    		if TTH_VARI.recordDiplomacy[strHero]["OperTimes"] > 0 then
-    			TTH_VARI.recordDiplomacy[strHero]["OperTimes"] = TTH_VARI.recordDiplomacy[strHero]["OperTimes"] - 1;
+    		if TTH_VARI.recordHauntMine[strHero]["OperTimes"] > 0 then
+    			TTH_VARI.recordHauntMine[strHero]["OperTimes"] = TTH_VARI.recordHauntMine[strHero]["OperTimes"] - 1;
     		else
     			TTH_MANAGE.useOperTimes(strHero);
     		end;
@@ -11031,7 +11956,7 @@ doFile("/scripts/H55-Settings.lua");
 				TTH_MAIN.debug("TTH_PERK.resetWeekly110", iPlayer, strHero);
 
 				TTH_PERK.init110(iPlayer, strHero);
-    		TTH_VARI.recordDiplomacy[strHero]["OperTimes"] = TTH_VARI.recordDiplomacy[strHero]["MaxOperTimes"];
+    		TTH_VARI.recordHauntMine[strHero]["OperTimes"] = TTH_VARI.recordHauntMine[strHero]["MaxOperTimes"];
 			end;
 
 		-- HERO_SKILL_DISGUISE_AND_RECKON 112 励精图治
@@ -11100,10 +12025,36 @@ doFile("/scripts/H55-Settings.lua");
 
 	-- test
 		TTH_TEST = {};
-		function TTH_TEST.test13()
+		function TTH_TEST.test16(iPlayer)
+			local strHero = GetPlayerHeroes(iPlayer)[0];
+			AddHeroCreatures(strHero, 12, 9999)
+			GiveArtefact(strHero, 15);
+			sleep(1)
+			for iIndex, strShantiri in TTH_VARI.arrBuilding["BUILDING_SHANTIRI"] do
+				local iX, iY, iZ = GetObjectPosition(strShantiri);
+				OpenCircleFog(iX, iY, iZ, 5, iPlayer);
+			end;
 			ExecConsoleCommand("enable_cheats")
-			ExecConsoleCommand("add_skill 30")
-
+		end;
+		function TTH_TEST.test15(iPlayer)
+			local strHero = GetPlayerHeroes(iPlayer)[0];
+			GiveHeroSkill(strHero, 4);
+			sleep(1)
+			GiveHeroSkill(strHero, 4);
+			sleep(1)
+			GiveHeroSkill(strHero, 75);
+			sleep(1)
+			GiveHeroSkill(strHero, 78);
+		end;
+		function TTH_TEST.test14(iPlayer)
+			local strHero = GetPlayerHeroes(iPlayer)[0];
+			AddHeroCreatures(strHero, 181, 1)
+			AddHeroCreatures(strHero, 182, 1)
+			AddHeroCreatures(strHero, 183, 1)
+			AddHeroCreatures(strHero, 184, 1)
+			GiveArtefact(strHero, 68);
+			GiveArtefact(strHero, 124);
+			GiveArtefact(strHero, 114);
 		end;
 		function TTH_TEST.test12()
 			local strHero = GetPlayerHeroes(1)[0];

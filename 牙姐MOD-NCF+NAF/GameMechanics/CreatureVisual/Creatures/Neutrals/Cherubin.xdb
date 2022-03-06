@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CreatureVisual>
-	<CreatureNameFileRef href="/Text/Game/Creatures/chaostheory/Cherubin/name.txt"/>
+	<CreatureNameFileRef href="/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_181/Name.txt"/>
 	<CreatureAbilitiesFileRef/>
-	<DescriptionFileRef href="/Text/Game/Creatures/chaostheory/Cherubin/description.txt"/>
+	<DescriptionFileRef href="/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_181/Description.txt"/>
 	<Icon/>
 	<Icon32/>
 	<Icon64 href="/UI/H5A1/Icons/Creatures/Neutrals/Cherubin/FallenAngel64.xdb#xpointer(/Texture)"/>

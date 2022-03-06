@@ -2010,8 +2010,6 @@ end;
 	-- 【杉提瑞圆盘】玩家
 	function TTH_Trigger_VisitShantiri(strHero, objShantiri)
 		local iPlayer = GetObjectOwner(strHero);
-		-- 杉提瑞之触
-		H55_GrailTouch(strHero, objShantiri);
 
 		-- 标记【杉提瑞圆盘】已被玩家访问的数量
 		if TTH_Map_FlagPlayerVisitedShantiri[iPlayer] == nil then
@@ -2387,71 +2385,6 @@ end;
 		return TTH_TABLE_HeroTrialSkill_Hero;
 	end;
 -- end
-
--- 杉提瑞之触
-function H55_GrailTouch(s_hero, grail)
-	local player = GetObjectOwner(s_hero);
-	if TTH_GLOBAL.isAi(player) ~= 1 then
-		if HasHeroSkill(s_hero, KNIGHT_FEAT_GRAIL_VISION) ~= nil then
-			-- 第一次访问显示地图上所有【杉提瑞圆盘】
-			if TTH_Map_HasPlayerVisitedShantiri[player] == nil then
-				TTH_Map_HasPlayerVisitedShantiri[player] = 1;
-				for iIndexShantiri, objShantiri in TTH_Arr_Long_Shantiri do
-					local iX, iY, iZ = GetObjectPosition(objShantiri);
-					OpenCircleFog(iX, iY, iZ, 5, player);
-				end;
-			end;
-
-			local i_get = 0;
-			if H55_Touch_Grail[s_hero] == nil then
-				H55_Touch_Grail[s_hero] = {};
-				H55_Touch_Grail[s_hero][grail] = 1;
-				i_get = 1;
-			else
-				if H55_Touch_Grail[s_hero][grail] == nil then
-					H55_Touch_Grail[s_hero][grail] = 1;
-					i_get = 1;
-				end;
-			end;
-			if i_get == 1 then
-				local i_exp = 500;
-				local i_level = GetHeroLevel(s_hero);
-				i_exp = i_exp * i_level;
-				TTH_GLOBAL.giveExp(s_hero, i_exp);
-				-- ShowFlyingSign({"/Text/Game/Scripts/Grail/GrailTouch4Exp.txt";exp=i_exp},s_hero,player,5) sleep(4);
-			end;
-			local i_rest = 0;
-			local ci = GetLastSavedCombatIndex();
-			if H55_CI_Grail[s_hero] == nil then
-				H55_CI_Grail[s_hero] = -1;
-				i_rest = 1;
-			end;
-			if H55_CI_Grail[s_hero] ~= H55_CI_Grail_Last[s_hero] then
-				H55_CI_Grail[s_hero] = H55_CI_Grail_Last[s_hero];
-				i_rest = 1;
-			end;
-			if i_rest == 1 then
-				local i_movement = TTH_COMMON.round(H55_GetHeroMovement(s_hero) * .4 * (1 + 0.5 * TTH_Monk_Move_Bonus(s_hero)));
-				ChangeHeroStat(s_hero, STAT_MOVE_POINTS, i_movement);
-
-				local i_mana = GetHeroStat(s_hero, STAT_MANA_POINTS);
-				local i_knowledge = GetHeroStat(s_hero, STAT_KNOWLEDGE);
-				local i_mana_total = 10 * i_knowledge;
-				if HasHeroSkill(s_hero, PERK_INTELLIGENCE) ~= nil then
-					i_mana_total = 15 * i_knowledge;
-				end;
-				local i_remain_mana = TTH_COMMON.round(i_mana_total * .4 * (1 + 0.5 * TTH_Monk_Mana_Bonus(s_hero)));
-				if i_remain_mana > i_mana_total - i_mana then
-					ChangeHeroStat(s_hero, STAT_MANA_POINTS, i_mana_total - i_mana);
-				else
-					ChangeHeroStat(s_hero, STAT_MANA_POINTS, i_remain_mana);
-				end;
-
-				ShowFlyingSign({"/Text/Game/Scripts/Grail/GrailTouch4Rest.txt";},s_hero,player,5) sleep(4);
-			end;
-		end;
-	end;
-end;
 
 -- begin 宝物商店访问触发器
 	function TTH_Test_GiveComponentArtifact2Hero(iPlayer)

@@ -52,7 +52,7 @@ H55SMOD_SylvanHeroes = {
     , 'Elleshar', 'Ildar', 'Vaniel', 'Vinrael', 'Diraya'
 };
 H55SMOD_AcademyHeroes = {
-    'Havez', 'Minasli', 'Isher', 'Davius', 'Gurvilin'
+    'Havez', 'Minasli', 'Isher', 'Davius', 'Dracon'
     , 'Rissa', 'Razzak', 'Sufi', 'Cyrus', 'Maahir', 'Timerkhan', 'Tan'
     , 'Emilia', 'Nur', 'Astral', 'Zehir', 'Faiz', 'Josephine'
 };
@@ -87,7 +87,7 @@ H55SMOD_Heroes = {
     , 'Metlirn', 'Ossir', 'Nadaur', 'Linaas', 'Heam', 'Gelu', 'Arniel', 'Kyrre'
     , 'Gillion', 'Itil', 'Melodia', 'Jenova', 'Mephala', 'Gem'
     , 'Elleshar', 'Ildar', 'Vaniel', 'Vinrael', 'Diraya'
-    , 'Havez', 'Minasli', 'Isher', 'Davius', 'Gurvilin'
+    , 'Havez', 'Minasli', 'Isher', 'Davius', 'Dracon'
     , 'Rissa', 'Razzak', 'Sufi', 'Cyrus', 'Maahir', 'Timerkhan', 'Tan'
     , 'Emilia', 'Nur', 'Astral', 'Zehir', 'Faiz', 'Josephine'
     , 'Calh', 'Calid', 'Deleb', 'Jazaz', 'Marder', 'Orlando2'
@@ -1123,8 +1123,11 @@ end;
   CREATURE_DRAGON_KNIGHT = 183
   CREATURE_DRAGON_KNIGHT_LESS = 184
   CREATURE_185 = 185
+  CREATURE_ENCHANTER_ACADEMY = 185;
   CREATURE_186 = 186
+  CREATURE_ENCHANTER_NEUTRAL = 186;
   CREATURE_187 = 187
+  CREATURE_ENCHANTER_CASTER = 187;
   CREATURE_188 = 188
   CREATURE_189 = 189
   CREATURE_190 = 190
@@ -1867,7 +1870,6 @@ end;
   CREATURE_927 = 927
   CREATURE_928 = 928
   CREATURE_929 = 929
-  CREATURE_ENCHANTER = 929;
   CREATURE_930 = 930
   CREATURE_FIRE_MECHANICAL = 930
   CREATURE_931 = 931
@@ -4440,27 +4442,27 @@ end;
             , ["CombatSize"] = 2
         }
         , [185] = {
-          ["ID"] = CREATURE_185
-          , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_185/Name.txt"
-          , ["GROWTH"] = 1
-          , ["TIER"] = 1
-          , ["POWER"] = 0
-          , ["CombatSize"] = 1
+            ["ID"] = CREATURE_ENCHANTER_ACADEMY
+            , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_185/Name.txt"
+            , ["GROWTH"] = 2
+            , ["TIER"] = 6
+            , ["POWER"] = 1798
+            , ["CombatSize"] = 1
         }
         , [186] = {
-          ["ID"] = CREATURE_186
-          , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_186/Name.txt"
-          , ["GROWTH"] = 1
-          , ["TIER"] = 1
-          , ["POWER"] = 0
-          , ["CombatSize"] = 1
+            ["ID"] = CREATURE_ENCHANTER_NEUTRAL
+            , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_186/Name.txt"
+            , ["GROWTH"] = 2
+            , ["TIER"] = 6
+            , ["POWER"] = 1798
+            , ["CombatSize"] = 1
         }
         , [187] = {
           ["ID"] = CREATURE_187
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_187/Name.txt"
-          , ["GROWTH"] = 1
-          , ["TIER"] = 1
-          , ["POWER"] = 0
+          , ["GROWTH"] = 2
+          , ["TIER"] = 6
+          , ["POWER"] = 1798
           , ["CombatSize"] = 1
         }
         , [188] = {
@@ -11332,6 +11334,9 @@ end;
       TTHCS_PATH["Talent"]["Calh"]["EffectMeteorShower"] = "/Text/TTH/Heroes/Specializations/Inferno/Calh/Combat/EffectMeteorShower.txt";
       TTHCS_PATH["Talent"]["Calh"]["EffectMelee"] = "/Text/TTH/Heroes/Specializations/Inferno/Calh/Combat/EffectMelee.txt";
 
+      TTHCS_PATH["Talent"]["Dracon"] = {};
+      TTHCS_PATH["Talent"]["Dracon"]["EffectStart"] = "/Text/TTH/Heroes/Specializations/Academy/Dracon/Combat/EffectStart.txt";
+
     TTHCS_PATH["Perk"] = {};
       TTHCS_PATH["Perk"][HERO_SKILL_SEAL_OF_PROTECTION] = {};
       TTHCS_PATH["Perk"][HERO_SKILL_SEAL_OF_PROTECTION]["Effect"] = "/Text/TTH/Skills/Training/131-SealOfProtection/Combat/Effect.txt";
@@ -11349,5 +11354,12 @@ end;
       TTHCS_PATH["Artifact"][ARTIFACT_SENTINEL]["Effect"] = "/Text/TTH/Artifact/124-Sentinel/Combat/Effect.txt";
       TTHCS_PATH["Artifact"][ARTIFACT_CURSE_SHOULDER] = {};
       TTHCS_PATH["Artifact"][ARTIFACT_CURSE_SHOULDER]["Effect"] = "/Text/TTH/Artifact/114-CurseShoulder/Combat/Effect.txt";
+
+    TTHCS_PATH["Creature"] = {};
+      TTHCS_PATH["Creature"]["Enchanter"] = {};
+      TTHCS_PATH["Creature"]["Enchanter"]["Effect1"] = "/Text/TTH/Creature/Enchanter/Combat/Effect1.txt";
+      TTHCS_PATH["Creature"]["Enchanter"]["Effect2"] = "/Text/TTH/Creature/Enchanter/Combat/Effect2.txt";
+      TTHCS_PATH["Creature"]["Enchanter"]["Effect3"] = "/Text/TTH/Creature/Enchanter/Combat/Effect3.txt";
+      TTHCS_PATH["Creature"]["Enchanter"]["EffectConsume"] = "/Text/TTH/Creature/Enchanter/Combat/EffectConsume.txt";
 
 function close_file(fileName) end

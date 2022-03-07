@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CreatureVisual>
-	<CreatureNameFileRef href="/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_929/Name.txt"/>
-	<CreatureAbilitiesFileRef href="/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_929/Abilities.txt"/>
-	<DescriptionFileRef href="/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_929/Desc.txt"/>
+	<CreatureNameFileRef href="/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_185/Name.txt"/>
+	<CreatureAbilitiesFileRef href="/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_185/Abilities.txt"/>
+	<DescriptionFileRef href="/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_185/Desc.txt"/>
 	<Icon/>
 	<Icon32/>
 	<Icon64/>

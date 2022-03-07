@@ -268,35 +268,50 @@ doFile('/scripts/combat-startup.lua')
 		end;
 		H55SMOD_Start['Maeve']['function'] = Events_Start_Implement_Maeve;
 
-	-- Gurvilin
-		-- H55SMOD_Start['Gurvilin'] = {};
-		-- H55SMOD_Start['Gurvilin']['flag'] = ENUM_STAGE.ONCE.UNEXECUTE;
-		-- function Events_Start_Implement_Gurvilin(strHero, iSide, isReverse)
-		-- 	local iPositionXCaster = -1;
-		-- 	if iSide == ENUM_SIDE.ATTACKER then
-		-- 		iPositionXCaster = 2;
-		-- 	else
-		-- 		iPositionXCaster = 13;
-		-- 	end;
-		-- 	for iIndexSide = ENUM_SIDE.ATTACKER, ENUM_SIDE.DEFENDER do
-		-- 		local listCreaturesTarget = GetCreatures(iIndexSide);
-		-- 		local iLenCreaturesTarget = length(listCreaturesTarget);
-		-- 		local itemCreatureCaster = nil;
-		-- 		for iIndexCreaturesTarget = 0, iLenCreaturesTarget - 1 do
-		-- 			if IsCombatUnit(listCreaturesTarget[iIndexCreaturesTarget]) ~= nil and GetCreatureNumber(listCreaturesTarget[iIndexCreaturesTarget]) > 0 then
-		-- 				repeat sleep(1); until itemCreatureCaster == nil or (itemCreatureCaster ~= nil and IsCombatUnit(itemCreatureCaster) == nil);
-		-- 				itemCreatureCaster = Thread_Command_AddCreature(iSide, CREATURE_MASTER_GENIE, H55SMOD_HeroLevel[strHero] * 1, iPositionXCaster, 1);
-		-- 				if itemCreatureCaster ~= nil and IsCombatUnit(itemCreatureCaster) ~= nil then
-		-- 					startThread(Thread_Command_UnitCastAimedSpell_WithoutMana, itemCreatureCaster, SPELL_ABILITY_RANDOM_CAST_DARK_LIGHT, listCreaturesTarget[iIndexCreaturesTarget]);
-		-- 					sleep(20);
-		-- 					startThread(Thread_Command_RemoveCombatUnit, iSide, itemCreatureCaster);
-		-- 					sleep(20);
-		-- 				end;
-		-- 			end;
-		-- 		end;
-		-- 	end;
-		-- end;
-		-- H55SMOD_Start['Gurvilin']['function'] = Events_Start_Implement_Gurvilin;
+	-- Dracon
+		H55SMOD_Start['Dracon'] = {};
+		H55SMOD_Start['Dracon']['flag'] = ENUM_STAGE.ONCE.UNEXECUTE;
+		function Events_Start_Implement_Dracon(strHero, iSide, isReverse)
+			local iPosX = 2;
+			local iPosY = 1;
+			if iSide == ENUM_SIDE.DEFENDER then
+				iPosX = 13;
+			end;
+			local bExistEnchanter = 0;
+			local arrCreature4Hero = GetCreatures(iSide);
+			for i, strUnitName in arrCreature4Hero do
+				if GetCreatureType(strUnitName) == CREATURE_ENCHANTER_ACADEMY then
+					bExistEnchanter = 1;
+					local itemCreature = geneUnitStatus(strUnitName);
+					iPosX = itemCreature['iPositionX'];
+					iPosY = itemCreature['iPositionY'];
+					break;
+				end;
+			end
+			if bExistEnchanter == 1 then
+				local itemCreatureCaster = Thread_Command_SummonCreature(iSide, CREATURE_ENCHANTER_CASTER, 1, iPosX, iPosY);
+				ShowFlyingSign(TTHCS_PATH["Talent"]["Dracon"]["EffectStart"], itemCreatureCaster, 5);
+				for iIndexSide = ENUM_SIDE.ATTACKER, ENUM_SIDE.DEFENDER do
+					local listCreaturesTarget = GetCreatures(iIndexSide);
+					local iLenCreaturesTarget = length(listCreaturesTarget);
+					for iIndexCreaturesTarget = 0, iLenCreaturesTarget - 1 do
+						if IsCombatUnit(listCreaturesTarget[iIndexCreaturesTarget]) ~= nil
+							and GetCreatureNumber(listCreaturesTarget[iIndexCreaturesTarget]) > 0
+							and listCreaturesTarget[iIndexCreaturesTarget] ~= itemCreatureCaster then
+							if IsCombatUnit(itemCreatureCaster) ~= nil and GetCreatureNumber(itemCreatureCaster) > 0 then
+								startThread(Thread_Command_UnitCastAimedSpell_WithoutMana, itemCreatureCaster, SPELL_ABILITY_RANDOM_CAST_DARK_LIGHT, listCreaturesTarget[iIndexCreaturesTarget]);
+								sleep(20);
+							end;
+						end;
+					end;
+				end;
+				if IsCombatUnit(itemCreatureCaster) ~= nil and GetCreatureNumber(itemCreatureCaster) > 0 then
+					startThread(Thread_Command_RemoveCombatUnit, iSide, itemCreatureCaster);
+					sleep(20);
+				end;
+			end;
+		end;
+		H55SMOD_Start['Dracon']['function'] = Events_Start_Implement_Dracon;
 
 	-- Josephine
 		H55SMOD_Start['Josephine'] = {};
@@ -1024,7 +1039,7 @@ doFile('/scripts/combat-startup.lua')
 		-- 后置英雄特效
 		-- Events_Start_Interface('Maeve', 0);
 
-		-- Events_Start_Interface('Gurvilin', 1);
+		Events_Start_Interface('Dracon', 1);
 		Events_Start_Interface('Josephine', 1);
 
 		-- Events_Start_Interface('Efion', 1);
@@ -1348,7 +1363,7 @@ doFile('/scripts/combat-startup.lua')
 									-- Haven
 									-- Sylvan
 									-- Academy
-										H55SMOD_MiddlewareListener['Gurvilin']['function']['creature']('Gurvilin', iSide, itemUnitLast, ObjSnapshotLastTurn['Creatures'][iSide][iIndexCreaturesLast], iLossManaPoints);
+										H55SMOD_MiddlewareListener['Dracon']['function']['creature']('Dracon', iSide, itemUnitLast, ObjSnapshotLastTurn['Creatures'][iSide][iIndexCreaturesLast], iLossManaPoints);
 									-- Inferno
 									-- Necropolis
 										H55SMOD_MiddlewareListener['Thant']['function']['creature']('Thant', iSide, itemUnitLast, ObjSnapshotLastTurn['Creatures'][iSide][iIndexCreaturesLast], iLossManaPoints);
@@ -1357,6 +1372,8 @@ doFile('/scripts/combat-startup.lua')
 									-- Fortress
 									-- Dungeon
 									-- Stronghold
+									-- Creature
+										H55SMOD_MiddlewareListener['Enchanter']['function']['charge'](GetHero(iSide), iSide, itemUnitLast);
 								end;
 							end;
 						end;
@@ -1785,7 +1802,7 @@ doFile('/scripts/combat-startup.lua')
 							H55SMOD_MiddlewareListener['Hero8']['function']['active']('Hero8', iSide, itemUnit);
 						-- Creature
 							H55SMOD_MiddlewareListener['LightAngel']['function']('LightAngel', iSide, itemUnit);
-							H55SMOD_MiddlewareListener['Enchanter']['function']('Enchanter', iSide, itemUnit);
+							H55SMOD_MiddlewareListener['Enchanter']['function']['consume']('Enchanter', iSide, itemUnit);
 							H55SMOD_MiddlewareListener['Cherubin']['function']('Cherubin', iSide, itemUnit);
 							H55SMOD_MiddlewareListener['DragonKnight']['function']('DragonKnight', iSide, itemUnit);
 					end;
@@ -2758,11 +2775,11 @@ doFile('/scripts/combat-startup.lua')
 			end;
 			H55SMOD_MiddlewareListener['Davius']['function']['kill'] = Events_MiddlewareListener_Implement_Davius_Kill;
 
-		-- Gurvilin
-			H55SMOD_MiddlewareListener['Gurvilin'] = {};
-			H55SMOD_MiddlewareListener['Gurvilin']['function'] = {};
-			function Events_MiddlewareListener_Implement_Gurvilin_Creature(strHero, iSide, itemUnitLast, itemUnitLoss, iLossManaPoints)
-				if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero and itemUnitLoss['iSide'] == iSide and itemUnitLoss['iUnitType'] == CREATURE_ENCHANTER then
+		-- Dracon
+			H55SMOD_MiddlewareListener['Dracon'] = {};
+			H55SMOD_MiddlewareListener['Dracon']['function'] = {};
+			function Events_MiddlewareListener_Implement_Dracon_Creature(strHero, iSide, itemUnitLast, itemUnitLoss, iLossManaPoints)
+				if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero and itemUnitLoss['iSide'] == iSide and itemUnitLoss['iUnitType'] == CREATURE_ENCHANTER_ACADEMY then
 					local itemHero = geneUnitStatus(GetHero(iSide));
 					local iDiffMana = 2; --h55_ceil(iLossManaPoints * (0.1 + 0.01 * H55SMOD_HeroLevel[strHero]));
 					local iBeforeMana = GetUnitManaPoints(itemHero['strUnitName']);
@@ -2771,7 +2788,7 @@ doFile('/scripts/combat-startup.lua')
 					print(itemHero['strUnitName'].." remain "..iDiffMana.." mana");
 				end;
 			end;
-			H55SMOD_MiddlewareListener['Gurvilin']['function']['creature'] = Events_MiddlewareListener_Implement_Gurvilin_Creature;
+			H55SMOD_MiddlewareListener['Dracon']['function']['creature'] = Events_MiddlewareListener_Implement_Dracon_Creature;
 
 		-- Emilia
 			H55SMOD_MiddlewareListener['Emilia'] = {};
@@ -4615,42 +4632,63 @@ doFile('/scripts/combat-startup.lua')
 
 	-- CREATURE_ENCHANTER 魔幻法师
 		H55SMOD_MiddlewareListener['Enchanter'] = {};
-		H55SMOD_MiddlewareListener['Enchanter']['MagicIndex'] = 1;
-		function Events_MiddlewareListener_Implement_Enchanter(strHero, iSide, itemUnit)
-			if itemUnit['iUnitType'] == CREATURE_ENCHANTER and itemUnit['iSide'] == iSide then
+		H55SMOD_MiddlewareListener['Enchanter']['function'] = {};
+		H55SMOD_MiddlewareListener['Enchanter']['record'] = {};
+		function Events_MiddlewareListener_Implement_Enchanter_Charge(strHero, iSide, itemUnit)
+			if (itemUnit['iUnitType'] == CREATURE_ENCHANTER_ACADEMY or itemUnit['iUnitType'] == CREATURE_ENCHANTER_NEUTRAL)
+				and itemUnit['iSide'] == iSide then
 				if IsCombatUnit(itemUnit['strUnitName']) ~= nil and itemUnit['iUnitNumber'] > 0 then
-					combatSetPause(1);
-					local iMagicIndex = H55SMOD_MiddlewareListener['Enchanter']['MagicIndex'];
-					local objMagicId = TTHCS_TABLE.EnchanterMagic[iMagicIndex];
-					local iMagicId = objMagicId["Id"];
-					local enumMagicType = objMagicId["Type"];
-					if enumMagicType == TTHCS_ENUM.Global then
-						startThread(Thread_Command_UnitCastGlobalSpell, itemUnit['strUnitName'], iMagicId, 1);
-					elseif enumMagicType == TTHCS_ENUM.Area then
-						local enumTarget = objMagicId["Target"];
-						if enumTarget == TTHCS_ENUM.Friend then
-							local arrCreature4Check = GetCreatures(iSide);
-							local arrPositionArea4, objMaxPositionArea4 = TTHCS_GLOBAL.getDenseArea(arrCreature4Check, 4);
-							startThread(Thread_Command_UnitCastAreaSpell, itemUnit["strUnitName"], iMagicId, objMaxPositionArea4["PosX"], objMaxPositionArea4["PosY"], 1);
-						elseif enumTarget == TTHCS_ENUM.Hostile then
-							local arrCreature4Check = GetCreatures(getSide(iSide, 1));
-							local arrPositionArea4, objMaxPositionArea4 = TTHCS_GLOBAL.getDenseArea(arrCreature4Check, 4);
-							startThread(Thread_Command_UnitCastAreaSpell, itemUnit["strUnitName"], iMagicId, objMaxPositionArea4["PosX"], objMaxPositionArea4["PosY"], 1);
-						end;
+					if H55SMOD_MiddlewareListener['Enchanter']['record'][itemUnit['strUnitName']] == nil then
+						H55SMOD_MiddlewareListener['Enchanter']['record'][itemUnit['strUnitName']] = 0;
 					end;
-					sleep(20);
-					H55SMOD_MiddlewareListener['Enchanter']['MagicIndex'] = H55SMOD_MiddlewareListener['Enchanter']['MagicIndex'] + 1;
-					if H55SMOD_MiddlewareListener['Enchanter']['MagicIndex'] > 12 then
-						H55SMOD_MiddlewareListener['Enchanter']['MagicIndex'] = 1;
+					H55SMOD_MiddlewareListener['Enchanter']['record'][itemUnit['strUnitName']] = H55SMOD_MiddlewareListener['Enchanter']['record'][itemUnit['strUnitName']] + 1;
+					if H55SMOD_MiddlewareListener['Enchanter']['record'][itemUnit['strUnitName']]  == 1 then
+						ShowFlyingSign(TTHCS_PATH["Creature"]["Enchanter"]["Effect1"], itemUnit['strUnitName'], 5);
+					elseif H55SMOD_MiddlewareListener['Enchanter']['record'][itemUnit['strUnitName']]  == 2 then
+						ShowFlyingSign(TTHCS_PATH["Creature"]["Enchanter"]["Effect2"], itemUnit['strUnitName'], 5);
+					elseif H55SMOD_MiddlewareListener['Enchanter']['record'][itemUnit['strUnitName']]  >= 3 then
+						ShowFlyingSign(TTHCS_PATH["Creature"]["Enchanter"]["Effect3"], itemUnit['strUnitName'], 5);
 					end;
-					itemUnit['iAtb'] = 1.25;
-					push(ListUnitSetATB, itemUnit);
-					print(itemUnit['strUnitName'].." cast "..iMagicId);
-					combatSetPause(nil);
 				end;
 			end;
 		end;
-		H55SMOD_MiddlewareListener['Enchanter']['function'] = Events_MiddlewareListener_Implement_Enchanter;
+		H55SMOD_MiddlewareListener['Enchanter']['function']['charge'] = Events_MiddlewareListener_Implement_Enchanter_Charge;
+		function Events_MiddlewareListener_Implement_Enchanter_Consume(strHero, iSide, itemUnit)
+			if (itemUnit['iUnitType'] == CREATURE_ENCHANTER_ACADEMY or itemUnit['iUnitType'] == CREATURE_ENCHANTER_NEUTRAL)
+				and itemUnit['iSide'] == iSide then
+				if IsCombatUnit(itemUnit['strUnitName']) ~= nil and itemUnit['iUnitNumber'] > 0 then
+					if H55SMOD_MiddlewareListener['Enchanter']['record'][itemUnit['strUnitName']] == nil then
+						H55SMOD_MiddlewareListener['Enchanter']['record'][itemUnit['strUnitName']] = 0;
+					end;
+					if H55SMOD_MiddlewareListener['Enchanter']['record'][itemUnit['strUnitName']]  >= 3 then
+						H55SMOD_MiddlewareListener['Enchanter']['record'][itemUnit['strUnitName']] = 0;
+						combatSetPause(1);
+						local itemCreatureCaster = Thread_Command_SummonCreature(iSide, CREATURE_ENCHANTER_CASTER, 1, itemUnit['iPositionX'], itemUnit['iPositionY']);
+						ShowFlyingSign(TTHCS_PATH["Creature"]["Enchanter"]["EffectConsume"], itemCreatureCaster, 5);
+						for iIndexSide = ENUM_SIDE.ATTACKER, ENUM_SIDE.DEFENDER do
+							local listCreaturesTarget = GetCreatures(iIndexSide);
+							local iLenCreaturesTarget = length(listCreaturesTarget);
+							for iIndexCreaturesTarget = 0, iLenCreaturesTarget - 1 do
+								if IsCombatUnit(listCreaturesTarget[iIndexCreaturesTarget]) ~= nil
+									and GetCreatureNumber(listCreaturesTarget[iIndexCreaturesTarget]) > 0
+									and listCreaturesTarget[iIndexCreaturesTarget] ~= itemCreatureCaster then
+									if IsCombatUnit(itemCreatureCaster) ~= nil and GetCreatureNumber(itemCreatureCaster) > 0 then
+										startThread(Thread_Command_UnitCastAimedSpell_WithoutMana, itemCreatureCaster, SPELL_ABILITY_RANDOM_CAST_DARK_LIGHT, listCreaturesTarget[iIndexCreaturesTarget]);
+										sleep(20);
+									end;
+								end;
+							end;
+						end;
+						if IsCombatUnit(itemCreatureCaster) ~= nil and GetCreatureNumber(itemCreatureCaster) > 0 then
+							startThread(Thread_Command_RemoveCombatUnit, iSide, itemCreatureCaster);
+							sleep(20);
+						end;
+						combatSetPause(nil);
+					end;
+				end;
+			end;
+		end;
+		H55SMOD_MiddlewareListener['Enchanter']['function']['consume'] = Events_MiddlewareListener_Implement_Enchanter_Consume;
 
 	-- CREATURE_CHERUBIN 神圣守护者
 		H55SMOD_MiddlewareListener['Cherubin'] = {};

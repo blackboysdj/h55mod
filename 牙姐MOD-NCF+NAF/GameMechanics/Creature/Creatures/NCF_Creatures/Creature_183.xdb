@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Creature>
-	<AttackSkill>60</AttackSkill>
-	<DefenceSkill>50</DefenceSkill>
+	<AttackSkill>90</AttackSkill>
+	<DefenceSkill>75</DefenceSkill>
 	<Shots>0</Shots>
-	<MinDamage>27</MinDamage>
-	<MaxDamage>80</MaxDamage>
+	<MinDamage>40</MinDamage>
+	<MaxDamage>120</MaxDamage>
 	<Speed>9</Speed>
-	<Initiative>12</Initiative>
+	<Initiative>18</Initiative>
 	<Flying>true</Flying>
-	<Health>1200</Health>
+	<Health>1800</Health>
 	<KnownSpells>
 		<Item>
 			<Spell>SPELL_MASS_CURSE</Spell>

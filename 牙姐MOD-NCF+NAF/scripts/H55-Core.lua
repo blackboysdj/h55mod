@@ -2627,15 +2627,23 @@ doFile("/scripts/H55-Settings.lua");
 					for strTown, objTown in arrTown do
 						TTH_COMMON.push(arrDistance, TTH_GLOBAL.getDistance(strHero, strTown));
 					end
+					print('arrDistance: ')
+					print(arrDistance)
 
 					local arrDistanceMenel = TTH_TALENT.getDistance4Hero2NearestMayorTown8Menel(iPlayer, strHero);
 					arrDistance = TTH_COMMON.concat(arrDistance, arrDistanceMenel);
+					print('arrDistance: ')
+					print(arrDistance)
 
 					local arrDistanceWulfstan = TTH_TALENT.getDistance4Hero2NearestMayorTown8Wulfstan(iPlayer, strHero);
 					arrDistance = TTH_COMMON.concat(arrDistance, arrDistanceWulfstan);
+					print('arrDistance: ')
+					print(arrDistance)
 
 					local iDistanceNikolay = TTH_TALENT.getDistance4Hero2NearestMayorTown8Nikolay(iPlayer, strHero);
 					arrDistance = TTH_COMMON.push(arrDistance, iDistanceNikolay);
+					print('arrDistance: ')
+					print(arrDistance)
 
 					local iMinDistance = TTH_COMMON.min(arrDistance);
 					return iMinDistance;
@@ -5421,7 +5429,7 @@ doFile("/scripts/H55-Settings.lua");
 						, CREATURE_CHERUBIN, 1 * iCoef
 						, CREATURE_QUASIT, TTH_TABLE_NCF_CREATURES[CREATURE_QUASIT]["GROWTH"] * iCoef
 						, CREATURE_SNOW_APE, TTH_TABLE_NCF_CREATURES[CREATURE_SNOW_APE]["GROWTH"] * iCoef
-						, CREATURE_ENCHANTER, TTH_TABLE_NCF_CREATURES[CREATURE_ENCHANTER]["GROWTH"] * iCoef
+						, CREATURE_ENCHANTER_NEUTRAL, TTH_TABLE_NCF_CREATURES[CREATURE_ENCHANTER_NEUTRAL]["GROWTH"] * iCoef
 						, CREATURE_PHOENIX_MECHANICAL, TTH_TABLE_NCF_CREATURES[CREATURE_PHOENIX_MECHANICAL]["GROWTH"] * iCoef
 						, CREATURE_Itil_Unicorn, TTH_TABLE_NCF_CREATURES[CREATURE_DEMILICH]["GROWTH"] * iCoef
 						, nil
@@ -9160,17 +9168,15 @@ doFile("/scripts/H55-Settings.lua");
       	function TTH_TALENT.getDistance4Hero2NearestMayorTown8Menel(iPlayer, strHero)
       		TTH_MAIN.debug("TTH_TALENT.getDistance4Hero2NearestMayorTown8Menel", iPlayer, strHero);
 
+      		local strMenel = "Menel";
       		local arrDistance = {};
-      		if strHero == "Menel" then
-      			arrDistance = {0};
-      		else
-	      		if TTH_GLOBAL.getRace8Hero(strHero) == TOWN_DUNGEON
-	      			and TTH_VARI.talent["Menel"] ~= nil then
-	      			local arrDwelling = TTH_VARI.talent["Menel"]["Manor"];
-	      			for i, strDwellingName in arrDwelling do
-	      				TTH_COMMON.push(arrDistance, TTH_GLOBAL.getDistance(strHero, strDwellingName));
-	      			end
-	      		end;
+      		if TTH_VARI.talent[strMenel] ~= nil
+	      		and contains(GetPlayerHeroes(iPlayer), strMenel) ~= nil
+      			and TTH_GLOBAL.getRace8Hero(strHero) == TOWN_DUNGEON then
+      			local arrDwelling = TTH_VARI.talent["Menel"]["Manor"];
+      			for i, strDwellingName in arrDwelling do
+      				TTH_COMMON.push(arrDistance, TTH_GLOBAL.getDistance(strHero, strDwellingName));
+      			end
       		end;
       		return arrDistance;
       	end;
@@ -10111,17 +10117,15 @@ doFile("/scripts/H55-Settings.lua");
       	function TTH_TALENT.getDistance4Hero2NearestMayorTown8Wulfstan(iPlayer, strHero)
       		TTH_MAIN.debug("TTH_TALENT.getDistance4Hero2NearestMayorTown8Wulfstan", iPlayer, strHero);
 
+      		local strWulfstan = "Wulfstan";
       		local arrDistance = {};
-      		if strHero == "Wulfstan" then
-      			arrDistance = {0};
-      		else
-	      		if TTH_GLOBAL.getRace8Hero(strHero) == TOWN_FORTRESS
-	      			and TTH_VARI.talent["Wulfstan"] ~= nil then
-	      			local arrDwelling = TTH_VARI.talent["Wulfstan"]["Outpost"];
-	      			for i, strDwellingName in arrDwelling do
-	      				TTH_COMMON.push(arrDistance, TTH_GLOBAL.getDistance(strHero, strDwellingName));
-	      			end
-	      		end;
+      		if TTH_VARI.talent[strWulfstan] ~= nil
+	      		and contains(GetPlayerHeroes(iPlayer), strWulfstan) ~= nil
+      			and TTH_GLOBAL.getRace8Hero(strHero) == TOWN_FORTRESS then
+      			local arrDwelling = TTH_VARI.talent["Wulfstan"]["Outpost"];
+      			for i, strDwellingName in arrDwelling do
+      				TTH_COMMON.push(arrDistance, TTH_GLOBAL.getDistance(strHero, strDwellingName));
+      			end
       		end;
       		return arrDistance;
       	end;

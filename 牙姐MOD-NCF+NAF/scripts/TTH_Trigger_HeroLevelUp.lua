@@ -130,8 +130,8 @@ end;
 function TTH_TRIGGER.heroLevelUpDavius()
 	TTH_TRIGGER.heroLevelUp("Davius");
 end;
-function TTH_TRIGGER.heroLevelUpGurvilin()
-	TTH_TRIGGER.heroLevelUp("Gurvilin");
+function TTH_TRIGGER.heroLevelUpDracon()
+	TTH_TRIGGER.heroLevelUp("Dracon");
 end;
 function TTH_TRIGGER.heroLevelUpRissa()
 	TTH_TRIGGER.heroLevelUp("Rissa");

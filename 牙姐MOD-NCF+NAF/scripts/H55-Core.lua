@@ -9837,6 +9837,233 @@ doFile("/scripts/H55-Settings.lua");
       	end;
 
 		-- Fortress
+			-- Una 128 英伽
+				TTH_TABLE.UnaRune = {
+					[249] = { -- 冲锋符文
+						["Id"] = SPELL_RUNE_OF_CHARGE
+						, ["Level"] = 1
+						, ["ConfirmText"] = TTH_PATH.Talent["Una"]["ConfirmRune"][SPELL_RUNE_OF_CHARGE]
+						, ["Reward"] = {
+							["Type"] = TTH_ENUM.Skill
+							, ["Value"] = {
+								[1] = HERO_SKILL_LEADERSHIP
+								, [2] = HERO_SKILL_ENCOURAGE
+							}
+						}
+					}
+					, [250] = { -- 狂暴符文
+						["Id"] = SPELL_RUNE_OF_BERSERKING
+						, ["Level"] = 1
+						, ["ConfirmText"] = TTH_PATH.Talent["Una"]["ConfirmRune"][SPELL_RUNE_OF_BERSERKING]
+						, ["Reward"] = {
+							["Type"] = TTH_ENUM.Skill
+							, ["Value"] = {
+								[1] = HERO_SKILL_OFFENCE
+								, [2] = HERO_SKILL_FRENZY
+							}
+						}
+					}
+					, [252] = { -- 驱魔符文
+						["Id"] = SPELL_RUNE_OF_EXORCISM
+						, ["Level"] = 2
+						, ["ConfirmText"] = TTH_PATH.Talent["Una"]["ConfirmRune"][SPELL_RUNE_OF_EXORCISM]
+						, ["Reward"] = {
+							["Type"] = TTH_ENUM.Spell
+							, ["Value"] = {
+								[1] = SPELL_MASS_DISPEL
+							}
+						}
+					}
+					, [253] = { -- 元素免疫符文
+						["Id"] = SPELL_RUNE_OF_ELEMENTAL_IMMUNITY
+						, ["Level"] = 2
+						, ["ConfirmText"] = TTH_PATH.Talent["Una"]["ConfirmRune"][SPELL_RUNE_OF_ELEMENTAL_IMMUNITY]
+						, ["Reward"] = {
+							["Type"] = TTH_ENUM.Spell
+							, ["Value"] = {
+								[1] = SPELL_ANTI_MAGIC
+							}
+						}
+					}
+					, [251] = { -- 魔控符文
+						["Id"] = SPELL_RUNE_OF_MAGIC_CONTROL
+						, ["Level"] = 3
+						, ["ConfirmText"] = TTH_PATH.Talent["Una"]["ConfirmRune"][SPELL_RUNE_OF_MAGIC_CONTROL]
+						, ["Reward"] = {
+							["Type"] = TTH_ENUM.Skill
+							, ["Value"] = {
+								[1] = HERO_SKILL_LIGHT_MAGIC
+								, [2] = HERO_SKILL_MASTER_OF_BLESSING
+							}
+						}
+					}
+					, [254] = { -- 雷鸣符文
+						["Id"] = SPELL_RUNE_OF_STUNNING
+						, ["Level"] = 3
+						, ["ConfirmText"] = TTH_PATH.Talent["Una"]["ConfirmRune"][SPELL_RUNE_OF_STUNNING]
+						, ["Reward"] = {
+							["Type"] = TTH_ENUM.Skill
+							, ["Value"] = {
+								[1] = HERO_SKILL_DESTRUCTIVE_MAGIC
+								, [2] = HERO_SKILL_MASTER_OF_LIGHTNINGS
+							}
+						}
+					}
+					, [256] = { -- 空灵符文
+						["Id"] = SPELL_RUNE_OF_ETHEREALNESS
+						, ["Level"] = 4
+						, ["ConfirmText"] = TTH_PATH.Talent["Una"]["ConfirmRune"][SPELL_RUNE_OF_ETHEREALNESS]
+						, ["Reward"] = {
+							["Type"] = TTH_ENUM.Skill
+							, ["Value"] = {
+								[1] = HERO_SKILL_DEFENCE
+								, [2] = HERO_SKILL_EVASION
+							}
+						}
+					}
+					, [257] = { -- 复活符文
+						["Id"] = SPELL_RUNE_OF_REVIVE
+						, ["Level"] = 4
+						, ["ConfirmText"] = TTH_PATH.Talent["Una"]["ConfirmRune"][SPELL_RUNE_OF_REVIVE]
+						, ["Reward"] = {
+							["Type"] = TTH_ENUM.Spell
+							, ["Value"] = {
+								[1] = SPELL_REGENERATION
+							}
+						}
+					}
+					, [255] = { -- 暴怒符文
+						["Id"] = SPELL_RUNE_OF_BATTLERAGE
+						, ["Level"] = 5
+						, ["ConfirmText"] = TTH_PATH.Talent["Una"]["ConfirmRune"][SPELL_RUNE_OF_BATTLERAGE]
+						, ["Reward"] = {
+							["Type"] = TTH_ENUM.Skill
+							, ["Value"] = {
+								[1] = HERO_SKILL_DARK_MAGIC
+								, [2] = HERO_SKILL_MASTER_OF_MIND
+							}
+						}
+					}
+					, [258] = { -- 龙形符文
+						["Id"] = SPELL_RUNE_OF_DRAGONFORM
+						, ["Level"] = 5
+						, ["ConfirmText"] = TTH_PATH.Talent["Una"]["ConfirmRune"][SPELL_RUNE_OF_DRAGONFORM]
+						, ["Reward"] = {
+							["Type"] = TTH_ENUM.Stat
+							, ["Value"] = {
+								[STAT_ATTACK] = 2
+								, [STAT_DEFENCE] = 2
+								, [STAT_SPELL_POWER] = 2
+								, [STAT_KNOWLEDGE] = 2
+							}
+						}
+					}
+				};
+				function TTH_TALENT.initUna(iPlayer, strHero)
+					if TTH_VARI.talent[strHero] == nil then
+						TTH_VARI.talent[strHero] = {
+							["OperTimes"] = 1
+							, ["MaxOperTimes"] = 1
+							, ["Rune"] = {
+								[1] = TTH_ENUM.No
+								, [2] = TTH_ENUM.No
+								, [3] = TTH_ENUM.No
+								, [4] = TTH_ENUM.No
+								, [5] = TTH_ENUM.No
+							}
+						};
+					end;
+				end;
+				function TTH_TALENT.activeUna(iPlayer, strHero)
+					TTH_COMMON.nextNavi(TTH_PATH.Talent[strHero]["Text"]);
+
+					TTH_TALENT.initUna(iPlayer, strHero);
+					TTH_TALENT.checkPreActiveUna4NotEnoughTimes(iPlayer, strHero);
+				end;
+				function TTH_TALENT.checkPreActiveUna4NotEnoughTimes(iPlayer, strHero)
+					local strText = TTH_PATH.Talent[strHero]["NotEnoughTimes"];
+					if TTH_VARI.talent[strHero]["OperTimes"] <= 0 then
+						if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+							if TTH_MANAGE.getRemainOperTimes(strHero) <= 0 then
+			    			TTH_GLOBAL.sign(strHero, strText);
+			  				return nil;
+							end;
+						else
+			  			TTH_GLOBAL.sign(strHero, strText);
+							return nil;
+			  		end;
+					end;
+
+					TTH_TALENT.checkPreActiveUna4SuitableRune(iPlayer, strHero);
+				end;
+				function TTH_TALENT.checkPreActiveUna4SuitableRune(iPlayer, strHero)
+					local arrOptionRune = {};
+					local i = 1;
+					for iRuneId, objRune in TTH_TABLE.UnaRune do
+						if TTH_VARI.talent[strHero]["Rune"][objRune["Level"]] == TTH_ENUM.No then
+							if KnowHeroSpell(strHero, iRuneId) ~= nil then
+								arrOptionRune[i] = {
+									["Id"] = iRuneId
+									, ["Text"] = TTH_TABLE.Rune[iRuneId]["Text"]
+									, ["Callback"] = "TTH_TALENT.confirmActiveUna"
+								};
+								i = i + 1;
+							end;
+						end;
+					end;
+					if length(arrOptionRune) <= 0 then
+						local strText = TTH_PATH.Talent[strHero]["NoSuitableRune"];
+						TTH_GLOBAL.sign(strHero, strText);
+						return nil;
+					end;
+
+					local strPathOption = TTH_PATH.Talent[strHero]["RadioTips"];
+					TTH_COMMON.optionRadio(iPlayer, strHero, arrOptionRune, strPathOption);
+				end;
+				function TTH_TALENT.confirmActiveUna(iPlayer, strHero, iRuneId)
+					local strText = TTH_TABLE.UnaRune[iRuneId]["ConfirmText"];
+					local strCallbackOk = "TTH_TALENT.implActiveUna("..iPlayer..","..TTH_COMMON.psp(strHero)..","..iRuneId..")";
+					local strCallbackCancel = "TTH_COMMON.cancelOption()";
+					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strText, strCallbackOk, strCallbackCancel);
+				end;
+				function TTH_TALENT.implActiveUna(iPlayer, strHero, iRuneId)
+					if TTH_VARI.talent[strHero]["OperTimes"] > 0 then
+						TTH_VARI.talent[strHero]["OperTimes"] = TTH_VARI.talent[strHero]["OperTimes"] - 1;
+					else
+						TTH_MANAGE.useOperTimes(strHero);
+					end;
+					TTH_VARI.talent[strHero]["Rune"][TTH_TABLE.UnaRune[iRuneId]["Level"]] = TTH_ENUM.Yes; -- 标记该等级符文已解析
+					local enumType = TTH_TABLE.UnaRune[iRuneId]["Reward"]["Type"];
+					local arrRewardValue = TTH_TABLE.UnaRune[iRuneId]["Reward"]["Value"];
+					if enumType == TTH_ENUM.Skill then
+						for iIndex, iSkillId in arrRewardValue do
+							GiveHeroSkill(strHero, iSkillId);
+							sleep(1);
+						end;
+					elseif enumType == TTH_ENUM.Spell then
+						for iIndex, iSpellId in arrRewardValue do
+							TeachHeroSpell(strHero, iSpellId);
+							local strText = {
+								"/Text/Game/Scripts/Learnspell.txt"
+								;name=TTH_TABLE_SPELL[iSpellId]["NAME"]
+							};
+							TTH_GLOBAL.sign(strHero, strText);
+						end;
+					elseif enumType == TTH_ENUM.Stat then
+						for iStatId, iStatValue in arrRewardValue do
+							TTH_GLOBAL.signChangeHeroStat(strHero, iStatId, iStatValue);
+						end;
+					end;
+					local strText = TTH_PATH.Talent[strHero]["Success"];
+					TTH_GLOBAL.sign(strHero, strText);
+				end;
+				function TTH_TALENT.resetWeeklyUna(iPlayer, strHero)
+					TTH_MAIN.debug("TTH_TALENT.resetWeeklyUna", iPlayer, strHero);
+
+					TTH_TALENT.initUna(iPlayer, strHero);
+					TTH_VARI.talent[strHero]["OperTimes"] = TTH_VARI.talent[strHero]["MaxOperTimes"];
+				end;
+
 			-- Rolf 132 洛尔夫
 				function TTH_TALENT.initRolf(iPlayer, strHero)
 					if TTH_VARI.talent[strHero] == nil then
@@ -12029,6 +12256,19 @@ doFile("/scripts/H55-Settings.lua");
 
 	-- test
 		TTH_TEST = {};
+		function TTH_TEST.test17(iPlayer)
+			local strHero = GetPlayerHeroes(iPlayer)[0];
+			TeachHeroSpell(strHero, SPELL_RUNE_OF_CHARGE);
+			TeachHeroSpell(strHero, SPELL_RUNE_OF_BERSERKING);
+			TeachHeroSpell(strHero, SPELL_RUNE_OF_EXORCISM);
+			TeachHeroSpell(strHero, SPELL_RUNE_OF_ELEMENTAL_IMMUNITY);
+			TeachHeroSpell(strHero, SPELL_RUNE_OF_MAGIC_CONTROL);
+			TeachHeroSpell(strHero, SPELL_RUNE_OF_STUNNING);
+			TeachHeroSpell(strHero, SPELL_RUNE_OF_ETHEREALNESS);
+			TeachHeroSpell(strHero, SPELL_RUNE_OF_REVIVE);
+			TeachHeroSpell(strHero, SPELL_RUNE_OF_BATTLERAGE);
+			TeachHeroSpell(strHero, SPELL_RUNE_OF_DRAGONFORM);
+		end;
 		function TTH_TEST.test16(iPlayer)
 			local strHero = GetPlayerHeroes(iPlayer)[0];
 			AddHeroCreatures(strHero, 12, 9999)

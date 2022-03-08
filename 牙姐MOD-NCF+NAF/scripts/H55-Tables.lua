@@ -1976,6 +1976,12 @@
 			, ["LEVEL"] = 3
 			, ["ELEMENT"] = "LIGHT"
 		}
+    , [SPELL_MASS_DISPEL] = {
+      ["ID"] = SPELL_MASS_DISPEL
+      , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_MASS_DISPEL.txt"
+      , ["LEVEL"] = 3
+      , ["ELEMENT"] = "LIGHT"
+    }
 		, [SPELL_ANTI_MAGIC] = {
 			["ID"] = SPELL_ANTI_MAGIC
 			, ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_ANTI_MAGIC.txt"
@@ -10240,7 +10246,9 @@
 		TTH_ENUM.Artifact = 2;
 		TTH_ENUM.Skill = 3;
 		TTH_ENUM.Mastery = 31;
-		TTH_ENUM.Perk = 32;
+    TTH_ENUM.Perk = 32;
+    TTH_ENUM.Spell = 4;
+		TTH_ENUM.Stat = 5;
 
 		TTH_ENUM.TreasureNone = -1;
 		TTH_ENUM.TreasureWood = 6;
@@ -10686,6 +10694,26 @@
 				TTH_PATH.Talent["Sheltem"]["Confirm"] = TTH_PATH.Talent["Sheltem"]["Pre"].."Confirm.txt";
 				TTH_PATH.Talent["Sheltem"]["K2P"] = TTH_PATH.Talent["Sheltem"]["Pre"].."K2P.txt";
 				TTH_PATH.Talent["Sheltem"]["P2K"] = TTH_PATH.Talent["Sheltem"]["Pre"].."P2K.txt";
+      -- Una 128 英伽
+        TTH_PATH.Talent["Una"] = {};
+        TTH_PATH.Talent["Una"]["Pre"] = TTH_PATH.Talent["Pre"] .."128-Una/";
+        TTH_PATH.Talent["Una"]["Text"] = TTH_PATH.Talent["Una"]["Pre"].."Text.txt";
+        TTH_PATH.Talent["Una"]["NotEnoughTimes"] = TTH_PATH.Talent["Una"]["Pre"].."NotEnoughTimes.txt";
+        TTH_PATH.Talent["Una"]["NoSuitableRune"] = TTH_PATH.Talent["Una"]["Pre"].."NoSuitableRune.txt";
+        TTH_PATH.Talent["Una"]["Success"] = TTH_PATH.Talent["Una"]["Pre"].."Success.txt";
+        TTH_PATH.Talent["Una"]["RadioTips"] = TTH_PATH.Talent["Una"]["Pre"].."RadioTips.txt";
+        TTH_PATH.Talent["Una"]["ConfirmRune"] = {};
+        TTH_PATH.Talent["Una"]["ConfirmRune"]["Pre"] = TTH_PATH.Talent["Una"]["Pre"].."ConfirmRune/";
+        TTH_PATH.Talent["Una"]["ConfirmRune"][SPELL_RUNE_OF_CHARGE] = TTH_PATH.Talent["Una"]["ConfirmRune"]["Pre"].."249-Charge.txt";
+        TTH_PATH.Talent["Una"]["ConfirmRune"][SPELL_RUNE_OF_BERSERKING] = TTH_PATH.Talent["Una"]["ConfirmRune"]["Pre"].."250-Berserking.txt";
+        TTH_PATH.Talent["Una"]["ConfirmRune"][SPELL_RUNE_OF_MAGIC_CONTROL] = TTH_PATH.Talent["Una"]["ConfirmRune"]["Pre"].."251-MagicControl.txt";
+        TTH_PATH.Talent["Una"]["ConfirmRune"][SPELL_RUNE_OF_EXORCISM] = TTH_PATH.Talent["Una"]["ConfirmRune"]["Pre"].."252-Exorcism.txt";
+        TTH_PATH.Talent["Una"]["ConfirmRune"][SPELL_RUNE_OF_ELEMENTAL_IMMUNITY] = TTH_PATH.Talent["Una"]["ConfirmRune"]["Pre"].."253-ElementalImmunity.txt";
+        TTH_PATH.Talent["Una"]["ConfirmRune"][SPELL_RUNE_OF_STUNNING] = TTH_PATH.Talent["Una"]["ConfirmRune"]["Pre"].."254-Stunning.txt";
+        TTH_PATH.Talent["Una"]["ConfirmRune"][SPELL_RUNE_OF_BATTLERAGE] = TTH_PATH.Talent["Una"]["ConfirmRune"]["Pre"].."255-Battlerage.txt";
+        TTH_PATH.Talent["Una"]["ConfirmRune"][SPELL_RUNE_OF_ETHEREALNESS] = TTH_PATH.Talent["Una"]["ConfirmRune"]["Pre"].."256-Etherealness.txt";
+        TTH_PATH.Talent["Una"]["ConfirmRune"][SPELL_RUNE_OF_REVIVE] = TTH_PATH.Talent["Una"]["ConfirmRune"]["Pre"].."257-Revive.txt";
+        TTH_PATH.Talent["Una"]["ConfirmRune"][SPELL_RUNE_OF_DRAGONFORM] = TTH_PATH.Talent["Una"]["ConfirmRune"]["Pre"].."258-Dragonform.txt";
 			-- Rolf 132 洛尔夫
 				TTH_PATH.Talent["Rolf"] = {};
 				TTH_PATH.Talent["Rolf"]["Pre"] = TTH_PATH.Talent["Pre"] .."132-Rolf/";
@@ -10967,6 +10995,9 @@
 					, ["Rolf"] = {
 						[TTH_ENUM.FuncAlways] = "TTH_TALENT.initRolf"
 					}
+          , ["Una"] = {
+            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initUna"
+          }
 				}
 				, [TTH_ENUM.FuncActive] = {
 					["Nathaniel"] = {
@@ -11057,6 +11088,11 @@
 						, [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeRolf"
 						, [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeRolf"
 					}
+          , ["Una"] = {
+            ["Text"] = TTH_PATH.Talent["Una"]["Text"]
+            , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeUna"
+            , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeUna"
+          }
 				}
 				, [TTH_ENUM.FuncLevelUp] = {
 					["Vinrael"] = {
@@ -11125,6 +11161,9 @@
 					, ["Rolf"] = {
 						[TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyRolf"
 					}
+          , ["Una"] = {
+            [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyUna"
+          }
 				}
 				, [TTH_ENUM.FuncDealDaily] = {
 					["Menel"] = {
@@ -20894,3 +20933,47 @@
 						}
 					}
 			};
+
+    -- 符文
+      TTH_TABLE.Rune = {
+        [249] = {
+          ["Id"] = SPELL_RUNE_OF_CHARGE
+          , ["Text"] = "/Text/TTH/Rune/249-Charge/Text.txt"
+        }
+        , [250] = {
+          ["Id"] = SPELL_RUNE_OF_BERSERKING
+          , ["Text"] = "/Text/TTH/Rune/250-Berserking/Text.txt"
+        }
+        , [251] = {
+          ["Id"] = SPELL_RUNE_OF_MAGIC_CONTROL
+          , ["Text"] = "/Text/TTH/Rune/251-MagicControl/Text.txt"
+        }
+        , [252] = {
+          ["Id"] = SPELL_RUNE_OF_EXORCISM
+          , ["Text"] = "/Text/TTH/Rune/252-Exorcism/Text.txt"
+        }
+        , [253] = {
+          ["Id"] = SPELL_RUNE_OF_ELEMENTAL_IMMUNITY
+          , ["Text"] = "/Text/TTH/Rune/253-ElementalImmunity/Text.txt"
+        }
+        , [254] = {
+          ["Id"] = SPELL_RUNE_OF_STUNNING
+          , ["Text"] = "/Text/TTH/Rune/254-Stunning/Text.txt"
+        }
+        , [255] = {
+          ["Id"] = SPELL_RUNE_OF_BATTLERAGE
+          , ["Text"] = "/Text/TTH/Rune/255-Battlerage/Text.txt"
+        }
+        , [256] = {
+          ["Id"] = SPELL_RUNE_OF_ETHEREALNESS
+          , ["Text"] = "/Text/TTH/Rune/256-Etherealness/Text.txt"
+        }
+        , [257] = {
+          ["Id"] = SPELL_RUNE_OF_REVIVE
+          , ["Text"] = "/Text/TTH/Rune/257-Revive/Text.txt"
+        }
+        , [258] = {
+          ["Id"] = SPELL_RUNE_OF_DRAGONFORM
+          , ["Text"] = "/Text/TTH/Rune/258-Dragonform/Text.txt"
+        }
+      };

@@ -1825,6 +1825,7 @@ end;
 			ShowFlyingSign({"/Text/Game/Scripts/BankReward/RewardSpell/TemplateNoMore.txt";name=TTH_TABLE_SPELL_TYPE[strType]["NAME"][iIndex]}, strHero, iPlayer, 5);
 			TTH_Reward_Exp(strHero);
 		end;
+		TTH_Reward_Exp(strHero);
 	end;
 -- 宝物奖励: random(100 + 绝对周数 - 1) + 周宝屋胜利次数 - 1 0/64/96/112/120/124/126
 	function TTH_Reward_Artifact(strHero, iRewardParam)
@@ -1888,10 +1889,6 @@ end;
 		local iScale = TTH_Reward_Step(strHero);
 		local iExp = TTH_COMMON.round(2000 * iScale);
 		TTH_GLOBAL.giveExp(strHero, iExp);
-		if TTH_GLOBAL.isAi(iPlayer) ~= TTH_ENUM.Yes then
-			ShowFlyingSign({"/Text/Game/Scripts/BankReward/RewardExp/GetExp.txt";iExp=iExp}, strHero, iPlayer, 5);
-			return nil;
-		end;
 	end;
 
 -- 宝屋加属性通用方法

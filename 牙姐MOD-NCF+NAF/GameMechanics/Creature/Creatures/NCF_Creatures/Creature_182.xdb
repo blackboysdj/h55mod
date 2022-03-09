@@ -8,7 +8,7 @@
 	<Speed>9</Speed>
 	<Initiative>12</Initiative>
 	<Flying>true</Flying>
-	<Health>600</Health>
+	<Health>300</Health>
 	<KnownSpells>
 		<Item>
 			<Spell>SPELL_MASS_BLESS</Spell>

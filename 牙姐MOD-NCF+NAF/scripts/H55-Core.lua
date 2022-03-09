@@ -4872,29 +4872,15 @@ doFile("/scripts/H55-Settings.lua");
 					local strEnemyHero = nil;
 					local iCoef = TTH_GLOBAL.getGameDifficulty();
 					local iHeroRace = TTH_GLOBAL.getRace8Hero(strHero);
-					local iCreatureId = CREATURE_UNKNOWN;
-		  		if iHeroRace == TOWN_HEAVEN
-		  			or iHeroRace == TOWN_PRESERVE
-		  			or iHeroRace == TOWN_ACADEMY
-		  			or iHeroRace == TOWN_FORTRESS then
-		  			iCreatureId = CREATURE_CHERUBIN;
-		  		elseif iHeroRace == TOWN_DUNGEON
-		  			or iHeroRace == TOWN_NECROMANCY
-		  			or iHeroRace == TOWN_INFERNO
-		  			or iHeroRace == TOWN_STRONGHOLD then
-		  			iCreatureId = CREATURE_DRAGON_KNIGHT;
-					end;
 					if iLenArrCreatureType == 1 then
-						StartCombat(strHero, strEnemyHero, 2
-							, iCreatureId, 1 * iCoef
+						StartCombat(strHero, strEnemyHero, 1
 							, arrCreature4Hero[0]["Id"], arrCreature4Hero[0]["Count"] * iCoef
 							, nil
 							, strCallbackWin
 							, strPathCombatLink
 							, 1);
 					elseif iLenArrCreatureType == 2 then
-						StartCombat(strHero, strEnemyHero, 3
-							, iCreatureId, 1 * iCoef
+						StartCombat(strHero, strEnemyHero, 2
 							, arrCreature4Hero[0]["Id"], arrCreature4Hero[0]["Count"] * iCoef
 							, arrCreature4Hero[1]["Id"], arrCreature4Hero[1]["Count"] * iCoef
 							, nil
@@ -4902,8 +4888,7 @@ doFile("/scripts/H55-Settings.lua");
 							, strPathCombatLink
 							, 1);
 					elseif iLenArrCreatureType == 3 then
-						StartCombat(strHero, strEnemyHero, 4
-							, iCreatureId, 1 * iCoef
+						StartCombat(strHero, strEnemyHero, 3
 							, arrCreature4Hero[0]["Id"], arrCreature4Hero[0]["Count"] * iCoef
 							, arrCreature4Hero[1]["Id"], arrCreature4Hero[1]["Count"] * iCoef
 							, arrCreature4Hero[2]["Id"], arrCreature4Hero[2]["Count"] * iCoef
@@ -4912,8 +4897,7 @@ doFile("/scripts/H55-Settings.lua");
 							, strPathCombatLink
 							, 1);
 					elseif iLenArrCreatureType == 4 then
-						StartCombat(strHero, strEnemyHero, 5
-							, iCreatureId, 1 * iCoef
+						StartCombat(strHero, strEnemyHero, 4
 							, arrCreature4Hero[0]["Id"], arrCreature4Hero[0]["Count"] * iCoef
 							, arrCreature4Hero[1]["Id"], arrCreature4Hero[1]["Count"] * iCoef
 							, arrCreature4Hero[2]["Id"], arrCreature4Hero[2]["Count"] * iCoef
@@ -4923,8 +4907,7 @@ doFile("/scripts/H55-Settings.lua");
 							, strPathCombatLink
 							, 1);
 					elseif iLenArrCreatureType == 5 then
-						StartCombat(strHero, strEnemyHero, 6
-							, iCreatureId, 1 * iCoef
+						StartCombat(strHero, strEnemyHero, 5
 							, arrCreature4Hero[0]["Id"], arrCreature4Hero[0]["Count"] * iCoef
 							, arrCreature4Hero[1]["Id"], arrCreature4Hero[1]["Count"] * iCoef
 							, arrCreature4Hero[2]["Id"], arrCreature4Hero[2]["Count"] * iCoef
@@ -4934,15 +4917,27 @@ doFile("/scripts/H55-Settings.lua");
 							, strCallbackWin
 							, strPathCombatLink
 							, 1);
-					else
-						StartCombat(strHero, strEnemyHero, 7
-							, iCreatureId, 1 * iCoef
+					elseif iLenArrCreatureType == 6 then
+						StartCombat(strHero, strEnemyHero, 6
 							, arrCreature4Hero[0]["Id"], arrCreature4Hero[0]["Count"] * iCoef
 							, arrCreature4Hero[1]["Id"], arrCreature4Hero[1]["Count"] * iCoef
 							, arrCreature4Hero[2]["Id"], arrCreature4Hero[2]["Count"] * iCoef
 							, arrCreature4Hero[3]["Id"], arrCreature4Hero[3]["Count"] * iCoef
 							, arrCreature4Hero[4]["Id"], arrCreature4Hero[4]["Count"] * iCoef
 							, arrCreature4Hero[5]["Id"], arrCreature4Hero[5]["Count"] * iCoef
+							, nil
+							, strCallbackWin
+							, strPathCombatLink
+							, 1);
+					else
+						StartCombat(strHero, strEnemyHero, 7
+							, arrCreature4Hero[0]["Id"], arrCreature4Hero[0]["Count"] * iCoef
+							, arrCreature4Hero[1]["Id"], arrCreature4Hero[1]["Count"] * iCoef
+							, arrCreature4Hero[2]["Id"], arrCreature4Hero[2]["Count"] * iCoef
+							, arrCreature4Hero[3]["Id"], arrCreature4Hero[3]["Count"] * iCoef
+							, arrCreature4Hero[4]["Id"], arrCreature4Hero[4]["Count"] * iCoef
+							, arrCreature4Hero[5]["Id"], arrCreature4Hero[5]["Count"] * iCoef
+							, arrCreature4Hero[6]["Id"], arrCreature4Hero[6]["Count"] * iCoef
 							, nil
 							, strCallbackWin
 							, strPathCombatLink
@@ -5154,60 +5149,34 @@ doFile("/scripts/H55-Settings.lua");
 					local iHeroLevel = GetHeroLevel(strHero);
 
 					local strEnemyHero = nil;
-					local iCoef = TTH_COMMON.round(sqrt(TTH_GLOBAL.getGameDifficulty()) * sqrt(iHeroLevel) * iPower / 10000);
-					local iHeroRace = TTH_GLOBAL.getRace8Hero(strHero);
-		  		if iHeroRace == TOWN_HEAVEN
-		  			or iHeroRace == TOWN_FORTRESS then
+					local iCoef = TTH_COMMON.round(sqrt(TTH_GLOBAL.getGameDifficulty()) * sqrt(iHeroLevel));
+					local iCoefMagic = TTH_COMMON.round(sqrt(TTH_GLOBAL.getGameDifficulty()) * sqrt(iHeroLevel) * 1.5);
+					local iHeroGroup = TTH_TABLE.Hero[strHero]["Group"];
+		  		if iHeroGroup == GroupMight
+		  			or iHeroRace == GroupBalanceNotNec
+		  			or iHeroRace == GroupBalanceNec
+		  			or iHeroRace == GroupBarbarian then
 						StartCombat(strHero, strEnemyHero, 7
-							, CREATURE_DRAGON_KNIGHT, 1 * iCoef
-							, CREATURE_GHOST, TTH_TABLE_NCF_CREATURES[CREATURE_GHOST]["GROWTH"] * iCoef
-							, CREATURE_VAMPIRE_LORD, TTH_TABLE_NCF_CREATURES[CREATURE_VAMPIRE_LORD]["GROWTH"] * iCoef
-							, CREATURE_NOSFERATU, TTH_TABLE_NCF_CREATURES[CREATURE_NOSFERATU]["GROWTH"] * iCoef
-							, CREATURE_DEMILICH, TTH_TABLE_NCF_CREATURES[CREATURE_DEMILICH]["GROWTH"] * iCoef
-							, CREATURE_MUMMY, TTH_TABLE_NCF_CREATURES[CREATURE_MUMMY]["GROWTH"] * iCoef
-							, CREATURE_DEATH_KNIGHT, TTH_TABLE_NCF_CREATURES[CREATURE_DEATH_KNIGHT]["GROWTH"] * iCoef
-							, nil
-							, strCallbackWin
-							, strPathCombatLink
-							, 1);
-		  		elseif iHeroRace == TOWN_PRESERVE
-		  			or iHeroRace == TOWN_ACADEMY then
-						StartCombat(strHero, strEnemyHero, 7
-							, CREATURE_DRAGON_KNIGHT, 1 * iCoef
-							, CREATURE_QUASIT, TTH_TABLE_NCF_CREATURES[CREATURE_QUASIT]["GROWTH"] * iCoef
-							, CREATURE_FIREBREATHER_HOUND, TTH_TABLE_NCF_CREATURES[CREATURE_FIREBREATHER_HOUND]["GROWTH"] * iCoef
-							, CREATURE_INFERNAL_SUCCUBUS, TTH_TABLE_NCF_CREATURES[CREATURE_INFERNAL_SUCCUBUS]["GROWTH"] * iCoef
-							, CREATURE_BALOR, TTH_TABLE_NCF_CREATURES[CREATURE_BALOR]["GROWTH"] * iCoef
-							, CREATURE_BLACK_DRAGON, TTH_TABLE_NCF_CREATURES[CREATURE_BLACK_DRAGON]["GROWTH"] * iCoef
-							, CREATURE_RED_DRAGON, TTH_TABLE_NCF_CREATURES[CREATURE_RED_DRAGON]["GROWTH"] * iCoef
-							, nil
-							, strCallbackWin
-							, strPathCombatLink
-							, 1);
-		  		elseif iHeroRace == TOWN_DUNGEON
-		  			or iHeroRace == TOWN_INFERNO then
-						StartCombat(strHero, strEnemyHero, 7
-							, CREATURE_CHERUBIN, 1 * iCoef
-							, CREATURE_OBSIDIAN_GOLEM, TTH_TABLE_NCF_CREATURES[CREATURE_OBSIDIAN_GOLEM]["GROWTH"] * iCoef
-							, CREATURE_SHARP_SHOOTER, TTH_TABLE_NCF_CREATURES[CREATURE_SHARP_SHOOTER]["GROWTH"] * iCoef
-							, CREATURE_DRUID_ELDER, TTH_TABLE_NCF_CREATURES[CREATURE_DRUID_ELDER]["GROWTH"] * iCoef
-							, CREATURE_WAR_UNICORN, TTH_TABLE_NCF_CREATURES[CREATURE_WAR_UNICORN]["GROWTH"] * iCoef
+							, CREATURE_CHERUBIN, 1
 							, CREATURE_RAINBOW_DRAGON, TTH_TABLE_NCF_CREATURES[CREATURE_RAINBOW_DRAGON]["GROWTH"] * iCoef
-							, CREATURE_TITAN, TTH_TABLE_NCF_CREATURES[CREATURE_TITAN]["GROWTH"] * iCoef
-							, nil
-							, strCallbackWin
-							, strPathCombatLink
-							, 1);
-		  		elseif iHeroRace == TOWN_NECROMANCY
-		  			or iHeroRace == TOWN_STRONGHOLD then
-						StartCombat(strHero, strEnemyHero, 7
-							, CREATURE_CHERUBIN, 1 * iCoef
 							, CREATURE_BATTLE_GRIFFIN, TTH_TABLE_NCF_CREATURES[CREATURE_BATTLE_GRIFFIN]["GROWTH"] * iCoef
 							, CREATURE_FLAME_MAGE, TTH_TABLE_NCF_CREATURES[CREATURE_FLAME_MAGE]["GROWTH"] * iCoef
-							, CREATURE_PALADIN, TTH_TABLE_NCF_CREATURES[CREATURE_PALADIN]["GROWTH"] * iCoef
 							, CREATURE_THUNDER_THANE, TTH_TABLE_NCF_CREATURES[CREATURE_THUNDER_THANE]["GROWTH"] * iCoef
-							, CREATURE_MAGMA_DRAGON, TTH_TABLE_NCF_CREATURES[CREATURE_MAGMA_DRAGON]["GROWTH"] * iCoef
-							, CREATURE_SERAPH, TTH_TABLE_NCF_CREATURES[CREATURE_SERAPH]["GROWTH"] * iCoef
+							, CREATURE_STORM_LORD, TTH_TABLE_NCF_CREATURES[CREATURE_STORM_LORD]["GROWTH"] * iCoef
+							, CREATURE_OBSIDIAN_GARGOYLE, TTH_TABLE_NCF_CREATURES[CREATURE_OBSIDIAN_GARGOYLE]["GROWTH"] * iCoef
+							, nil
+							, strCallbackWin
+							, strPathCombatLink
+							, 1);
+		  		elseif iHeroGroup == GroupMagic then
+						StartCombat(strHero, strEnemyHero, 7
+							, CREATURE_DRAGON_KNIGHT, 1
+							, CREATURE_QUASIT, TTH_TABLE_NCF_CREATURES[CREATURE_QUASIT]["GROWTH"] * iCoefMagic
+							, CREATURE_FIREBREATHER_HOUND, TTH_TABLE_NCF_CREATURES[CREATURE_FIREBREATHER_HOUND]["GROWTH"] * iCoefMagic
+							, CREATURE_INFERNAL_SUCCUBUS, TTH_TABLE_NCF_CREATURES[CREATURE_INFERNAL_SUCCUBUS]["GROWTH"] * iCoefMagic
+							, CREATURE_BALOR, TTH_TABLE_NCF_CREATURES[CREATURE_BALOR]["GROWTH"] * iCoefMagic
+							, CREATURE_BLACK_DRAGON, TTH_TABLE_NCF_CREATURES[CREATURE_BLACK_DRAGON]["GROWTH"] * iCoefMagic
+							, CREATURE_RED_DRAGON, TTH_TABLE_NCF_CREATURES[CREATURE_RED_DRAGON]["GROWTH"] * iCoefMagic
 							, nil
 							, strCallbackWin
 							, strPathCombatLink
@@ -5422,11 +5391,12 @@ doFile("/scripts/H55-Settings.lua");
 					local iHeroLevel = GetHeroLevel(strHero);
 
 					local strEnemyHero = nil;
-					local iCoef = TTH_COMMON.round(TTH_GLOBAL.getGameDifficulty() * sqrt(iHeroLevel) * iPower / 10000);
+					local iCoefBoss = TTH_COMMON.round(sqrt(TTH_GLOBAL.getGameDifficulty()) * sqrt(iHeroLevel));
+					local iCoef = TTH_COMMON.round(sqrt(TTH_GLOBAL.getGameDifficulty()) * sqrt(iHeroLevel) * iPower / 50000);
 					local iHeroRace = TTH_GLOBAL.getRace8Hero(strHero);
 					StartCombat(strHero, strEnemyHero, 7
-						, CREATURE_DRAGON_KNIGHT, 1 * iCoef
-						, CREATURE_CHERUBIN, 1 * iCoef
+						, CREATURE_DRAGON_KNIGHT, 1 * iCoefBoss
+						, CREATURE_CHERUBIN, 1 * iCoefBoss
 						, CREATURE_QUASIT, TTH_TABLE_NCF_CREATURES[CREATURE_QUASIT]["GROWTH"] * iCoef
 						, CREATURE_SNOW_APE, TTH_TABLE_NCF_CREATURES[CREATURE_SNOW_APE]["GROWTH"] * iCoef
 						, CREATURE_ENCHANTER_NEUTRAL, TTH_TABLE_NCF_CREATURES[CREATURE_ENCHANTER_NEUTRAL]["GROWTH"] * iCoef
@@ -12258,16 +12228,36 @@ doFile("/scripts/H55-Settings.lua");
 		TTH_TEST = {};
 		function TTH_TEST.test17(iPlayer)
 			local strHero = GetPlayerHeroes(iPlayer)[0];
-			TeachHeroSpell(strHero, SPELL_RUNE_OF_CHARGE);
-			TeachHeroSpell(strHero, SPELL_RUNE_OF_BERSERKING);
-			TeachHeroSpell(strHero, SPELL_RUNE_OF_EXORCISM);
-			TeachHeroSpell(strHero, SPELL_RUNE_OF_ELEMENTAL_IMMUNITY);
-			TeachHeroSpell(strHero, SPELL_RUNE_OF_MAGIC_CONTROL);
-			TeachHeroSpell(strHero, SPELL_RUNE_OF_STUNNING);
-			TeachHeroSpell(strHero, SPELL_RUNE_OF_ETHEREALNESS);
-			TeachHeroSpell(strHero, SPELL_RUNE_OF_REVIVE);
-			TeachHeroSpell(strHero, SPELL_RUNE_OF_BATTLERAGE);
-			TeachHeroSpell(strHero, SPELL_RUNE_OF_DRAGONFORM);
+			GiveHeroSkill(strHero, HERO_SKILL_WAR_MACHINES);
+			sleep(1)
+			GiveHeroSkill(strHero, HERO_SKILL_WAR_MACHINES);
+			sleep(1)
+			GiveHeroSkill(strHero, HERO_SKILL_WAR_MACHINES);
+			sleep(1)
+			GiveHeroSkill(strHero, HERO_SKILL_FIRST_AID);
+			sleep(1)
+			GiveHeroSkill(strHero, HERO_SKILL_BALLISTA);
+			sleep(1)
+			GiveHeroSkill(strHero, HERO_SKILL_WILDFIRE);
+			sleep(1)
+			GiveHeroSkill(strHero, HERO_SKILL_LEADERSHIP);
+			sleep(1)
+			GiveHeroSkill(strHero, HERO_SKILL_LEADERSHIP);
+			sleep(1)
+			GiveHeroSkill(strHero, HERO_SKILL_ENCOURAGE);
+			sleep(1)
+			GiveHeroSkill(strHero, HERO_SKILL_GUARDIAN_ANGEL);
+			sleep(1)
+			AddHeroCreatures(strHero, 1, 3)
+			AddHeroCreatures(strHero, 4, 200)
+			AddHeroCreatures(strHero, 10, 12)
+			AddHeroCreatures(strHero, 110, 12)
+			AddHeroCreatures(strHero, 12, 8)
+			for iIndex, strShantiri in TTH_VARI.arrBuilding["BUILDING_SHANTIRI"] do
+				local iX, iY, iZ = GetObjectPosition(strShantiri);
+				OpenCircleFog(iX, iY, iZ, 5, iPlayer);
+			end;
+			ExecConsoleCommand("enable_cheats")
 		end;
 		function TTH_TEST.test16(iPlayer)
 			local strHero = GetPlayerHeroes(iPlayer)[0];

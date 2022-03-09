@@ -6,9 +6,9 @@
 	<MinDamage>40</MinDamage>
 	<MaxDamage>120</MaxDamage>
 	<Speed>9</Speed>
-	<Initiative>18</Initiative>
+	<Initiative>12</Initiative>
 	<Flying>true</Flying>
-	<Health>1800</Health>
+	<Health>1200</Health>
 	<KnownSpells>
 		<Item>
 			<Spell>SPELL_MASS_CURSE</Spell>

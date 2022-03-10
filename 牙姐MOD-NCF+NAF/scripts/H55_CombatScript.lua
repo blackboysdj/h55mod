@@ -1450,6 +1450,7 @@ doFile('/scripts/combat-startup.lua')
 							-- Haven
 							-- Sylvan
 							-- Academy
+								H55SMOD_MiddlewareListener['Dracon']['function']['charge']('Dracon', iSide, itemUnitLast, listCreaturesBeEffected, listCreaturesDeath);
 								-- H55SMOD_MiddlewareListener['Nur']['function']['creature']('Nur', iSide, itemUnitLast, listCreaturesBeEffected, listCreaturesDeath);
 							-- Inferno
 							-- Necropolis
@@ -2789,6 +2790,24 @@ doFile('/scripts/combat-startup.lua')
 				end;
 			end;
 			H55SMOD_MiddlewareListener['Dracon']['function']['creature'] = Events_MiddlewareListener_Implement_Dracon_Creature;
+			function Events_MiddlewareListener_Implement_Dracon_Charge(strHero, iSide, itemUnitLast, listCreaturesBeEffected, listCreaturesDeath)
+				if GetHero(getSide(iSide, 1)) ~= nil and GetHeroName(GetHero(getSide(iSide, 1))) == strHero	and itemUnitLast['iUnitType'] == CREATURE_ENCHANTER_ACADEMY then
+					if IsCombatUnit(itemUnitLast['strUnitName']) ~= nil and itemUnitLast['iUnitNumber'] > 0 then
+						if H55SMOD_MiddlewareListener['Enchanter']['record'][itemUnitLast['strUnitName']] == nil then
+							H55SMOD_MiddlewareListener['Enchanter']['record'][itemUnitLast['strUnitName']] = 0;
+						end;
+						H55SMOD_MiddlewareListener['Enchanter']['record'][itemUnitLast['strUnitName']] = H55SMOD_MiddlewareListener['Enchanter']['record'][itemUnitLast['strUnitName']] + 1;
+						if H55SMOD_MiddlewareListener['Enchanter']['record'][itemUnitLast['strUnitName']]  == 1 then
+							ShowFlyingSign(TTHCS_PATH["Creature"]["Enchanter"]["Effect1"], itemUnitLast['strUnitName'], 5);
+						elseif H55SMOD_MiddlewareListener['Enchanter']['record'][itemUnitLast['strUnitName']]  == 2 then
+							ShowFlyingSign(TTHCS_PATH["Creature"]["Enchanter"]["Effect2"], itemUnitLast['strUnitName'], 5);
+						elseif H55SMOD_MiddlewareListener['Enchanter']['record'][itemUnitLast['strUnitName']]  >= 3 then
+							ShowFlyingSign(TTHCS_PATH["Creature"]["Enchanter"]["Effect3"], itemUnitLast['strUnitName'], 5);
+						end;
+					end;
+				end;
+			end;
+			H55SMOD_MiddlewareListener['Dracon']['function']['charge'] = Events_MiddlewareListener_Implement_Dracon_Charge;
 
 		-- Emilia
 			H55SMOD_MiddlewareListener['Emilia'] = {};

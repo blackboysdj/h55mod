@@ -1272,13 +1272,13 @@ doFile("/scripts/H55-Settings.lua");
 									TTH_GLOBAL.givePhoenix(strHero);
 									print("Phoenix has been given!");
 								end;
-								if H55_AISkillBonusBasic == 1 then
-									TTH_GLOBAL.teachSkillBasic(strHero);
-									print("BasicSkill has been teached!");
-								end;
 								if H55_AISkillBonusAbsolute == 1 then
 									TTH_GLOBAL.teachSkillAbsolute(strHero);
 									print("AbsoluteSkill has been teached!");
+								end;
+								if H55_AISkillBonusBasic == 1 then
+									TTH_GLOBAL.teachSkillBasic(strHero);
+									print("BasicSkill has been teached!");
 								end;
 							end;
 						end;
@@ -1315,13 +1315,13 @@ doFile("/scripts/H55-Settings.lua");
 									TTH_GLOBAL.givePhoenix(strHero);
 									print("Phoenix has been given!");
 								end;
-								if H55_PlayerSkillBonusBasic == 1 then
-									TTH_GLOBAL.teachSkillBasic(strHero);
-									print("BasicSkill has been teached!");
-								end;
 								if H55_PlayerSkillBonusAbsolute == 1 then
 									TTH_GLOBAL.teachSkillAbsolute(strHero);
 									print("AbsoluteSkill has been teached!");
+								end;
+								if H55_PlayerSkillBonusBasic == 1 then
+									TTH_GLOBAL.teachSkillBasic(strHero);
+									print("BasicSkill has been teached!");
 								end;
 							end;
 						end;
@@ -1521,7 +1521,7 @@ doFile("/scripts/H55-Settings.lua");
 					end;
 					if enumHeroClass == TTH_ENUM.Paladin then
 						GiveHeroSkill(strHero, 4);
-						GiveHeroSkill(strHero, 195);
+						GiveHeroSkill(strHero, HERO_SKILL_GUARDIAN_ANGEL);
 					end;
 					if enumHeroClass == TTH_ENUM.Heretic then
 						GiveHeroSkill(strHero, 8);

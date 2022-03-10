@@ -85,5 +85,6 @@
 		<Item>ABILITY_MAGIC_ATTACK</Item>
 		<Item>ABILITY_ENERGY_CHANNEL</Item>
 		<Item>ABILITY_IMMUNITY_TO_MIND_CONTROL</Item>
+		<Item>ABILITY_ELDRITCH_AURA</Item>
 	</Abilities>
 </Creature>

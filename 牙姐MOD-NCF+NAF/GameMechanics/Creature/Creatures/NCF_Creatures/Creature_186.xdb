@@ -46,6 +46,10 @@
 			<Spell>SPELL_DISPEL</Spell>
 			<Mastery>MASTERY_ADVANCED</Mastery>
 		</Item>
+		<Item>
+			<Spell>SPELL_CELESTIAL_SHIELD</Spell>
+			<Mastery>MASTERY_ADVANCED</Mastery>
+		</Item>
 	</KnownSpells>
 	<SpellPoints>25</SpellPoints>
 	<SpellPoints1>0</SpellPoints1>

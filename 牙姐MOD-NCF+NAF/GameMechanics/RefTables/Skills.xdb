@@ -7276,150 +7276,29 @@
 				</Texture>
 				<CommonTexture/>
 				<NameFileRef>
-					<Item href="/Text/Game/Skills/Common/DestructiveMagic/AncientSmithy/Name.txt"/>
+				  <Item href="/Text/TTH/Skills/Offence/082-AncientSmithy/Name.txt"/>
 				</NameFileRef>
 				<CommonNameFileRef href=""/>
 				<DescriptionFileRef>
-					<Item href="/Text/Game/Skills/Common/DestructiveMagic/AncientSmithy/Description.txt"/>
+				  <Item href="/Text/TTH/Skills/Offence/082-AncientSmithy/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
 				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
 				<HeroClass>HERO_CLASS_NONE</HeroClass>
 				<spellBuffs>
-					<Item>SPELL_SKILL_ANCIENT_SMITHY</Item>
+					<Item>SPELL_RUNE_OF_BERSERKING</Item>
+					<Item>SPELL_RUNE_OF_BERSERKING</Item>
+					<Item>SPELL_RUNE_OF_BERSERKING</Item>
 				</spellBuffs>
 				<BasicSkillID>HERO_SKILL_OFFENCE</BasicSkillID>
 				<SkillPrerequisites>
 					<Item>
-						<Class>HERO_CLASS_KNIGHT</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_TACTICS</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_PALADIN</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_TACTICS</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_HERETIC</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_TACTICS</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_RANGER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_TACTICS</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_WARDEN</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_TACTICS</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_ENCHANTER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_TACTICS</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_SORCERER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_TACTICS</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_GATE_KEEPER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_TACTICS</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_FLAMEKEEPERA</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_TACTICS</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_ENGINEER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_TACTICS</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_NECROMANCER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_TACTICS</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_REAVER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_TACTICS</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_WARLOCK</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_TACTICS</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
 						<Class>HERO_CLASS_BEASTMASTER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_TACTICS</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_GUILDMASTER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_TACTICS</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_SEER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_TACTICS</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_WIZARD</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_TACTICS</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_ELEMENTALIST</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_TACTICS</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_DEMON_LORD</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_TACTICS</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_DEATHKNIGHT</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_TACTICS</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_RUNEMAGE</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_TACTICS</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_BARBARIAN</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_TACTICS</Item>
+							<Item>HERO_SKILL_FRENZY</Item>
+							<Item>HERO_SKILL_ENCOURAGE</Item>
+							<Item>HERO_SKILL_LUCKY_STRIKE</Item>
 						</dependenciesIDs>
 					</Item>
 				</SkillPrerequisites>
@@ -10425,16 +10304,18 @@
 				</Texture>
 				<CommonTexture/>
 				<NameFileRef>
-					<Item href="/Text/Game/Skills/Common/Offence/ChillingSteel/Name.txt"/>
+				  <Item href="/Text/TTH/Skills/Offence/104-ChillingSteel/Name.txt"/>
 				</NameFileRef>
 				<CommonNameFileRef href=""/>
 				<DescriptionFileRef>
-					<Item href="/Text/Game/Skills/Common/Offence/ChillingSteel/Description.txt"/>
+				  <Item href="/Text/TTH/Skills/Offence/104-ChillingSteel/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
 				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
 				<HeroClass>HERO_CLASS_NONE</HeroClass>
-				<spellBuffs/>
+				<spellBuffs>
+					<Item>SPELL_RUNE_OF_STUNNING</Item>
+				</spellBuffs>
 				<BasicSkillID>HERO_SKILL_OFFENCE</BasicSkillID>
 				<SkillPrerequisites>
 					<Item>
@@ -16614,127 +16495,127 @@
 					<Item>
 						<Class>HERO_CLASS_KNIGHT</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_FRENZY</Item>
+							<Item>HERO_SKILL_TACTICS</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_FRENZY</Item>
+							<Item>HERO_SKILL_TACTICS</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_FRENZY</Item>
+							<Item>HERO_SKILL_TACTICS</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_RANGER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_FRENZY</Item>
+							<Item>HERO_SKILL_TACTICS</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_WARDEN</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_FRENZY</Item>
+							<Item>HERO_SKILL_TACTICS</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_ENCHANTER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_FRENZY</Item>
+							<Item>HERO_SKILL_TACTICS</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_SORCERER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_FRENZY</Item>
+							<Item>HERO_SKILL_TACTICS</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_GATE_KEEPER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_FRENZY</Item>
+							<Item>HERO_SKILL_TACTICS</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_FLAMEKEEPERA</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_FRENZY</Item>
+							<Item>HERO_SKILL_TACTICS</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_ENGINEER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_FRENZY</Item>
+							<Item>HERO_SKILL_TACTICS</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_NECROMANCER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_FRENZY</Item>
+							<Item>HERO_SKILL_TACTICS</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_REAVER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_FRENZY</Item>
+							<Item>HERO_SKILL_TACTICS</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_WARLOCK</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_FRENZY</Item>
+							<Item>HERO_SKILL_TACTICS</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_BEASTMASTER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_FRENZY</Item>
+							<Item>HERO_SKILL_TACTICS</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_GUILDMASTER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_FRENZY</Item>
+							<Item>HERO_SKILL_TACTICS</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_SEER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_FRENZY</Item>
+							<Item>HERO_SKILL_TACTICS</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_WIZARD</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_FRENZY</Item>
+							<Item>HERO_SKILL_TACTICS</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_ELEMENTALIST</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_FRENZY</Item>
+							<Item>HERO_SKILL_TACTICS</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_DEMON_LORD</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_FRENZY</Item>
+							<Item>HERO_SKILL_TACTICS</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_DEATHKNIGHT</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_FRENZY</Item>
+							<Item>HERO_SKILL_TACTICS</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_RUNEMAGE</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_FRENZY</Item>
+							<Item>HERO_SKILL_TACTICS</Item>
 						</dependenciesIDs>
 					</Item>
 				</SkillPrerequisites>

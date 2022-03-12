@@ -32,7 +32,7 @@
 	<Class>HERO_CLASS_BEASTMASTER</Class>
 	<Specialization>HERO_SPEC_COURTIER</Specialization>
 	<PrimarySkill>
-		<Mastery>MASTERY_ADVANCED</Mastery>
+		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Dungeon/063-Welygg/Text.txt"/>

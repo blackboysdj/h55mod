@@ -55,7 +55,6 @@
 		<Knowledge>1</Knowledge>
 		<skills/>
 		<perkIDs>
-			<Item>HERO_SKILL_RECRUITMENT</Item>
 			<Item>HERO_SKILL_DIPLOMACY</Item>
 		</perkIDs>
 		<spellIDs/>

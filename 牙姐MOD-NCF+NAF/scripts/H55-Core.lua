@@ -8937,7 +8937,7 @@ doFile("/scripts/H55-Settings.lua");
 
 		-- Dungeon
 			-- Menel 060 基特拉
-      	TTH_TABLE.DirectionOption = {
+      	TTH_TABLE.MenelDirectionOption = {
       		[1] = {
       			["Id"] = TTH_ENUM.DirectionNorth
       			, ["Text"] = TTH_PATH.Direction[TTH_ENUM.DirectionNorth]
@@ -8963,13 +8963,42 @@ doFile("/scripts/H55-Settings.lua");
       			, ["Rotate"] = TTH_ENUM.RotateWest
       		}
       	};
+      	TTH_TABLE.MenelDwellingLevelOption = {
+      		[1] = {
+      			["Id"] = 1
+      			, ["Text"] = TTH_PATH.Talent["Menel"]["Building"]["BattleAcademy"]
+      			, ["Callback"] = "TTH_TALENT.checkPreActiveMenel4Res"
+      			, ["CostGold"] = 1000
+      			, ["Level"] = 1
+      		}
+      		, [2] = {
+      			["Id"] = 2
+      			, ["Text"] = TTH_PATH.Talent["Menel"]["Building"]["ShadowStone"]
+      			, ["Callback"] = "TTH_TALENT.checkPreActiveMenel4Res"
+      			, ["CostGold"] = 1000
+      			, ["Level"] = 2
+      		}
+      		, [3] = {
+      			["Id"] = 3
+      			, ["Text"] = TTH_PATH.Talent["Menel"]["Building"]["Maze"]
+      			, ["Callback"] = "TTH_TALENT.checkPreActiveMenel4Res"
+      			, ["CostGold"] = 1000
+      			, ["Level"] = 3
+      		}
+      		, [4] = {
+      			["Id"] = 4
+      			, ["Text"] = TTH_PATH.Talent["Menel"]["Building"]["DungeonMilitaryPost"]
+      			, ["Callback"] = "TTH_TALENT.checkPreActiveMenel4Res"
+      			, ["CostGold"] = 10000
+      			, ["Level"] = 8
+      		}
+      	};
+      	TTH_VARI.threadActiveMenel = {};
       	function TTH_TALENT.initMenel(strHero)
 					TTH_MAIN.debug("TTH_TALENT.initMenel", nil, strHero);
 
       		TTH_VARI.talent[strHero] = {
-						["CurrentTimes"] = 1
-						, ["MaxTimes"] = 1
-						, ["Manor"] = {}
+						["Manor"] = {}
 						, ["Index"] = 0;
 					};
       	end;
@@ -8996,21 +9025,35 @@ doFile("/scripts/H55-Settings.lua");
     				return nil;
       		end;
 
-      		local strText = TTH_PATH.Talent[strHero]["Active"]["Tips"];
-      		TTH_COMMON.optionRadio(iPlayer, strHero, TTH_TABLE.DirectionOption, strText);
+      		local strText = TTH_PATH.Talent[strHero]["Active"]["TipsDwellingLevel"];
+      		TTH_COMMON.optionRadio(iPlayer, strHero, TTH_TABLE.MenelDwellingLevelOption, strText);
+      	end;
+      	function TTH_TALENT.checkPreActiveMenel4Res(iPlayer, strHero, iDwellingId)
+      		local iCost = TTH_TABLE.MenelDwellingLevelOption[iDwellingId]["CostGold"];
+      		if GetPlayerResource(iPlayer, GOLD) < iCost then
+						local strPathMain = {
+							TTH_PATH.Talent[strHero]["Active"]["NotEnoughRes"]
+					    ;iCost=iCost
+						};
+						TTH_GLOBAL.sign(strHero, strPathMain);
+						return nil;
+					end;
+
+					TTH_VARI.threadActiveMenel = {
+						["Player"] = iPlayer
+						, ["Hero"] = strHero
+						, ["DwellingId"] = iDwellingId
+					};
+      		local strText = TTH_PATH.Talent[strHero]["Active"]["TipsDirection"];
+      		TTH_COMMON.optionRadio(iPlayer, strHero, TTH_TABLE.MenelDirectionOption, strText);
       	end;
       	function TTH_TALENT.checkPreActiveMenel4NegetivePlace()
   				local strText = TTH_PATH.Talent["Menel"]["Active"]["NegetivePlace"];
     			TTH_GLOBAL.sign("Menel", strText);
   				return nil;
       	end;
-      	TTH_VARI.threadActiveMenel = {};
       	function TTH_TALENT.threadActiveMenel(iPlayer, strHero, iDirectionId)
-      		TTH_VARI.threadActiveMenel = {
-      			["Player"] = iPlayer
-      			, ["Hero"] = strHero
-      			, ["DirectionId"] = iDirectionId
-      		};
+      		TTH_VARI.threadActiveMenel["DirectionId"] = iDirectionId;
       		startThread(TTH_TALENT.implActiveMenel);
       	end;
       	function TTH_TALENT.implActiveMenel()
@@ -9018,6 +9061,9 @@ doFile("/scripts/H55-Settings.lua");
 
       		local iPlayer = TTH_VARI.threadActiveMenel["Player"];
       		local strHero = TTH_VARI.threadActiveMenel["Hero"];
+      		local iDwellingId = TTH_VARI.threadActiveMenel["DwellingId"];
+      		local iDwellingLevel = TTH_TABLE.MenelDwellingLevelOption[iDwellingId]["Level"];
+      		local iCostGold = TTH_TABLE.MenelDwellingLevelOption[iDwellingId]["CostGold"];
       		local iDirectionId = TTH_VARI.threadActiveMenel["DirectionId"];
 
       		TTH_VARI.talent[strHero]["Index"] = TTH_VARI.talent[strHero]["Index"] + 1;
@@ -9034,75 +9080,13 @@ doFile("/scripts/H55-Settings.lua");
       			iPosX = iPosX - 4;
       		end;
       		local strBuildingName = strHero.."-"..iIndexManor;
-      		CreateDwelling(strBuildingName, iHeroRace, 8, iPlayer, iPosX, iPosY, iPosZ, TTH_TABLE.DirectionOption[iDirectionId]["Rotate"]);
+      		CreateDwelling(strBuildingName, iHeroRace, iDwellingLevel, iPlayer, iPosX, iPosY, iPosZ, TTH_TABLE.MenelDirectionOption[iDirectionId]["Rotate"]);
       		sleep(1);
       		OverrideObjectTooltipNameAndDescription(strBuildingName, TTH_PATH.Talent[strHero]["Active"]["Title"], TTH_PATH.Talent[strHero]["Active"]["Desc"]);
+      		TTH_GLOBAL.reduceResource(iPlayer, GOLD, iCostGold);
       		TTH_VARI.talent[strHero]["Manor"] = TTH_COMMON.push(TTH_VARI.talent[strHero]["Manor"], strBuildingName);
-      		SetTrigger(OBJECT_TOUCH_TRIGGER, strBuildingName, "TTH_TALENT.visitDwellingMenel");
-      		SetObjectEnabled(strBuildingName, nil);
   				local strText = TTH_PATH.Talent[strHero]["Active"]["Success"];
     			TTH_GLOBAL.sign(strHero, strText);
-      	end;
-      	function TTH_TALENT.visitDwellingMenel(strHero, strBuildingName)
-					local funcCallback = "TTH_TALENT.visitDwellingMenel";
-      		if strHero == "Menel" then
-						TTH_COMMON.initNavi(TTH_PATH.Talent[strHero]["Visit"]["Text"]);
-
-						local iPlayer = TTH_GLOBAL.GetObjectOwner(strHero);
-						TTH_TALENT.checkPreVisitDwellingMenel4OperTimes(iPlayer, strHero, strBuildingName, funcCallback);
-					else
-						TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
-					end;
-				end;
-				function TTH_TALENT.checkPreVisitDwellingMenel4OperTimes(iPlayer, strHero, strBuildingName, funcCallback)
-      		if TTH_VARI.talent[strHero]["CurrentTimes"] <= 0 then
-      			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
-      				if TTH_MANAGE.getRemainOperTimes(strHero) <= 0 then
-      					local strText = TTH_PATH.Talent[strHero]["Visit"]["NotEnoughOperTimes"];
-			    			TTH_GLOBAL.sign(strHero, strText);
-
-			    			TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
-		    				return nil;
-      				end;
-      			else
-    					local strText = TTH_PATH.Talent[strHero]["Visit"]["NotEnoughOperTimes"];
-		    			TTH_GLOBAL.sign(strHero, strText);
-
-		    			TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
-	    				return nil;
-		    		end;
-      		end;
-
-      		TTH_TALENT.confirmVisitDwellingMenel(iPlayer, strHero, strBuildingName, funcCallback);
-				end;
-				function TTH_TALENT.confirmVisitDwellingMenel(iPlayer, strHero, strBuildingName, funcCallback)
-					local strText = TTH_PATH.Talent[strHero]["Visit"]["Confirm"];
-					local strCallbackOk = "TTH_TALENT.implVisitDwellingMenel("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strBuildingName)..")";
-					local strCallbackCancel = "TTH_VISIT.visitBuildingWithoutScript("..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strBuildingName)..","..TTH_COMMON.psp(funcCallback)..")";
-					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strText, strCallbackOk, strCallbackCancel);
-				end;
-				function TTH_TALENT.implVisitDwellingMenel(iPlayer, strHero, strBuildingName)
-      		if TTH_VARI.talent[strHero]["CurrentTimes"] > 0 then
-    				TTH_VARI.talent[strHero]["CurrentTimes"] = TTH_VARI.talent[strHero]["CurrentTimes"] - 1;
-		    	else
-      			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
-		    			TTH_MANAGE.useOperTimes(strHero);
-		    		end;
-      		end;
-
-      		local iPosX, iPosY, iPosZ = GetObjectPosition(strBuildingName);
-      		Play3DSoundForPlayers(GetPlayerFilter(iPlayer), H55_SndCrash, iPosX, iPosY, iPosZ);
-      		local iHeroRace = TTH_GLOBAL.getRace8Hero(strHero);
-      		ReplaceDwelling(strBuildingName, iHeroRace);
-      		OverrideObjectTooltipNameAndDescription(strBuildingName, TTH_PATH.Talent[strHero]["Active"]["Title"], TTH_PATH.Talent[strHero]["Active"]["Desc"]);
-
-					local strText = TTH_PATH.Talent[strHero]["Visit"]["Success"];
-					TTH_GLOBAL.sign(strHero, strText);
-				end;
-      	function TTH_TALENT.resetWeeklyMenel(iPlayer, strHero)
-      		TTH_MAIN.debug("TTH_TALENT.resetWeeklyMenel", iPlayer, strHero);
-
-      		TTH_VARI.talent[strHero]["CurrentTimes"] = TTH_VARI.talent[strHero]["MaxTimes"];
       	end;
 				function TTH_TALENT.dealDailyMenel(iPlayer, strHero)
 					TTH_MAIN.debug("TTH_TALENT.dealDailyMenel", iPlayer, strHero);
@@ -12226,6 +12210,53 @@ doFile("/scripts/H55-Settings.lua");
 
 	-- test
 		TTH_TEST = {};
+		function TTH_TEST.test21(iPlayer)
+			local strHero = GetPlayerHeroes(iPlayer)[0];
+			GiveHeroSkill(strHero, HERO_SKILL_OFFENCE);
+			sleep(1)
+			GiveHeroSkill(strHero, HERO_SKILL_OFFENCE);
+			sleep(2)
+			GiveHeroSkill(strHero, HERO_SKILL_ARCHERY);
+			sleep(1)
+			GiveHeroSkill(strHero, HERO_SKILL_CHILLING_STEEL);
+			sleep(1)
+		end;
+		function TTH_TEST.test20(iPlayer)
+			local strHero = GetPlayerHeroes(iPlayer)[0];
+			GiveHeroSkill(strHero, HERO_SKILL_OFFENCE);
+			sleep(1)
+			GiveHeroSkill(strHero, HERO_SKILL_OFFENCE);
+			sleep(2)
+			GiveHeroSkill(strHero, HERO_SKILL_TACTICS);
+			sleep(1)
+			GiveHeroSkill(strHero, HERO_SKILL_ANCIENT_SMITHY);
+			sleep(1)
+		end;
+		function TTH_TEST.test19(iPlayer)
+			local strHero = GetPlayerHeroes(iPlayer)[0];
+			GiveHeroSkill(strHero, HERO_SKILL_WAR_MACHINES);
+			sleep(1)
+			GiveHeroSkill(strHero, HERO_SKILL_WAR_MACHINES);
+			sleep(1)
+			GiveHeroSkill(strHero, HERO_SKILL_WAR_MACHINES);
+			sleep(2)
+			GiveHeroSkill(strHero, HERO_SKILL_BALLISTA);
+			sleep(1)
+			GiveHeroSkill(strHero, HERO_SKILL_TRIPLE_BALLISTA);
+			sleep(1)
+			GiveHeroSkill(strHero, HERO_SKILL_RUNIC_MACHINES);
+			sleep(1)
+		end;
+		function TTH_TEST.test18(iPlayer)
+			local strHero = GetPlayerHeroes(iPlayer)[0];
+			GiveHeroSkill(strHero, HERO_SKILL_DEFENCE);
+			sleep(1)
+			GiveHeroSkill(strHero, HERO_SKILL_DEFENCE);
+			sleep(1)
+			GiveHeroSkill(strHero, HERO_SKILL_PROTECTION);
+			sleep(1)
+			GiveHeroSkill(strHero, HERO_SKILL_MAGIC_CUSHION);
+		end;
 		function TTH_TEST.test17(iPlayer)
 			local strHero = GetPlayerHeroes(iPlayer)[0];
 			GiveHeroSkill(strHero, HERO_SKILL_WAR_MACHINES);

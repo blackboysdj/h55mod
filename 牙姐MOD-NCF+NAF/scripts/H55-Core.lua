@@ -1953,24 +1953,21 @@ doFile("/scripts/H55-Settings.lua");
 					end;
 
 					if enumHeroClass == TTH_ENUM.BeastMaster then
-						GiveHeroSkill(strHero, 9);
-						GiveHeroSkill(strHero, 9);
-						GiveHeroSkill(strHero, 9);
-						GiveHeroSkill(strHero, 18);
-						GiveHeroSkill(strHero, 18);
-						GiveHeroSkill(strHero, 18);
+						GiveHeroSkill(strHero, HERO_SKILL_LEADERSHIP);
+						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
+						GiveHeroSkill(strHero, HERO_SKILL_OFFENCE);
+						GiveHeroSkill(strHero, HERO_SKILL_OFFENCE);
+						GiveHeroSkill(strHero, HERO_SKILL_OFFENCE);
 						sleep(1);
-						GiveHeroSkill(strHero, 43);
+						GiveHeroSkill(strHero, HERO_SKILL_ENCOURAGE);
 						sleep(1);
-						GiveHeroSkill(strHero, 44);
+						GiveHeroSkill(strHero, HERO_SKILL_LUCKY_STRIKE);
 						sleep(1);
-						GiveHeroSkill(strHero, 45);
+						GiveHeroSkill(strHero, HERO_SKILL_TACTICS);
 						sleep(1);
-						GiveHeroSkill(strHero, 70);
+						GiveHeroSkill(strHero, HERO_SKILL_FRENZY);
 						sleep(1);
-						GiveHeroSkill(strHero, 72);
-						sleep(1);
-						GiveHeroSkill(strHero, 150);
+						GiveHeroSkill(strHero, HERO_SKILL_ANCIENT_SMITHY);
 					end;
 					if enumHeroClass == TTH_ENUM.Seer then
 						GiveHeroSkill(strHero, 9);

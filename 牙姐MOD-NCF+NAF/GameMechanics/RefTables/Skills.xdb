@@ -10573,16 +10573,18 @@
 				</Texture>
 				<CommonTexture/>
 				<NameFileRef>
-					<Item href="/Text/Game/Skills/Common/Sorcery/SpellproofBones/Name.txt"/>
+				  <Item href="/Text/TTH/Skills/Defence/106-SpellproofBones/Name.txt"/>
 				</NameFileRef>
 				<CommonNameFileRef href=""/>
 				<DescriptionFileRef>
-					<Item href="/Text/Game/Skills/Common/Sorcery/SpellproofBones/Description.txt"/>
+				  <Item href="/Text/TTH/Skills/Defence/106-SpellproofBones/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
 				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
 				<HeroClass>HERO_CLASS_NONE</HeroClass>
-				<spellBuffs/>
+				<spellBuffs>
+					<Item>SPELL_REGENERATION</Item>
+				</spellBuffs>
 				<BasicSkillID>HERO_SKILL_DEFENCE</BasicSkillID>
 				<SkillPrerequisites>
 					<Item>
@@ -14728,16 +14730,20 @@
 				</Texture>
 				<CommonTexture/>
 				<NameFileRef>
-					<Item href="/Text/Game/Skills/Common/DestructiveMagic/MagicCushion/Name.txt"/>
+				  <Item href="/Text/TTH/Skills/Defence/133-MagicCushion/Name.txt"/>
 				</NameFileRef>
 				<CommonNameFileRef href=""/>
 				<DescriptionFileRef>
-					<Item href="/Text/Game/Skills/Common/DestructiveMagic/MagicCushion/Description.txt"/>
+				  <Item href="/Text/TTH/Skills/Defence/133-MagicCushion/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
 				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
 				<HeroClass>HERO_CLASS_NONE</HeroClass>
-				<spellBuffs/>
+				<spellBuffs>
+					<Item>SPELL_VAMPIRISM</Item>
+					<Item>SPELL_VAMPIRISM</Item>
+					<Item>SPELL_VAMPIRISM</Item>
+				</spellBuffs>
 				<BasicSkillID>HERO_SKILL_DEFENCE</BasicSkillID>
 				<SkillPrerequisites>
 					<Item>

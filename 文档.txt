@@ -17,6 +17,11 @@ ShowFlyingSign
   募兵按基础生物产量+增产建筑（生物产量需要校对，狂战士应该是6+4，现在是10）
   魔力再生: 下场战斗中英雄每次行动前回复3点魔法值 耗1/周回/内替
 
+  SKILLTYPE_SKILL
+  SKILLTYPE_DISABLED
+  SKILLTYPE_STANDART_PERK
+  SKILLTYPE_SPECIAL_PERK
+
 exe修改
 # - Added artifact ID 166 to increase HP by 2
 # - Added artifact ID 124 to increase HP by 6
@@ -516,14 +521,14 @@ NCF生物
   8技能/过夜快/战场特技/主动天赋/主动技能/主动宝物/格鲁/德肯/宝物合成
 
 直播相关
-  英雄无敌5神力之遗: 德肯与他的魔幻法师
+  rtmp://live-push.bilivideo.com/live-bvc/
   板子：7AI结盟+3倍增兵+眼泪+哨兵之盾+诅咒斗篷+龙神胸甲+初始技能+终极技能
   8技能/过夜快/战场特技/主动天赋/主动技能/主动宝物/格鲁/德肯/宝物合成
   https://www.douyu.com/h55
   http://live.bilibili.com/3234260
   QQ群241244439
 
-你们的支持就是牙姐的动力，谢谢大家，进群下载游戏：241244439
+你们的支持就是牙姐的动力，谢谢大家，加主播下载游戏：2302978672
 ※8技能※过夜快※城镇转换※内政官※定点回城※女巫双技能※
 ※新英雄天赋※新英雄技能※新特效宝物※
 ※新组合神器※新战场特技※新生物特技※

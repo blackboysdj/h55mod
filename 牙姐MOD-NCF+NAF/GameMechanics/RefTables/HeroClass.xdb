@@ -1512,10 +1512,10 @@
 					</Item>
 				</SkillsProbs>
 				<AttributeProbs>
-					<OffenceProb>30</OffenceProb>
-					<DefenceProb>20</DefenceProb>
-					<SpellpowerProb>20</SpellpowerProb>
-					<KnowledgeProb>30</KnowledgeProb>
+					<OffenceProb>40</OffenceProb>
+					<DefenceProb>25</DefenceProb>
+					<SpellpowerProb>15</SpellpowerProb>
+					<KnowledgeProb>20</KnowledgeProb>
 				</AttributeProbs>
 				<PreferredSpellsFromSpellShop>
 					<Item>SPELL_BERSERK</Item>

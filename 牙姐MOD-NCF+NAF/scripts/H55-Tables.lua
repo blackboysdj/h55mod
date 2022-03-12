@@ -19636,7 +19636,7 @@
                 ["Id"] = HERO_SKILL_PROTECTION
                 , ["Text"] = "/Text/TTH/Skills/Defence/037-Protection/Name.txt"
               }
-              , [106] = { -- 骸骨保护
+              , [106] = { -- 骸骨防护
                 ["Id"] = HERO_SKILL_SPELLPROOF_BONES
                 , ["Text"] = "/Text/TTH/Skills/Defence/106-SpellproofBones/Name.txt"
                 , ["DependType"] = TTH_ENUM.Simple
@@ -19644,7 +19644,7 @@
                   [1] = HERO_SKILL_PROTECTION
                 }
               }
-              , [133] = { -- 魔力衰竭
+              , [133] = { -- 魔力转化
                 ["Id"] = HERO_SKILL_MAGIC_CUSHION
                 , ["Text"] = "/Text/TTH/Skills/Defence/133-MagicCushion/Name.txt"
                 , ["DependType"] = TTH_ENUM.Simple

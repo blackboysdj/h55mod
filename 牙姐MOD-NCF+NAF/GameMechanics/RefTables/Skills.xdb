@@ -10583,7 +10583,9 @@
 				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
 				<HeroClass>HERO_CLASS_NONE</HeroClass>
 				<spellBuffs>
-					<Item>SPELL_REGENERATION</Item>
+					<Item>SPELL_VAMPIRISM</Item>
+					<Item>SPELL_VAMPIRISM</Item>
+					<Item>SPELL_VAMPIRISM</Item>
 				</spellBuffs>
 				<BasicSkillID>HERO_SKILL_DEFENCE</BasicSkillID>
 				<SkillPrerequisites>
@@ -14740,9 +14742,7 @@
 				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
 				<HeroClass>HERO_CLASS_NONE</HeroClass>
 				<spellBuffs>
-					<Item>SPELL_VAMPIRISM</Item>
-					<Item>SPELL_VAMPIRISM</Item>
-					<Item>SPELL_VAMPIRISM</Item>
+					<Item>SPELL_REGENERATION</Item>
 				</spellBuffs>
 				<BasicSkillID>HERO_SKILL_DEFENCE</BasicSkillID>
 				<SkillPrerequisites>

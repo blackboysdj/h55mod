@@ -12207,7 +12207,7 @@ doFile("/scripts/H55-Settings.lua");
 
 	-- test
 		TTH_TEST = {};
-		function TTH_TEST.test22(iPlayer)
+		function TTH_TEST.test23(iPlayer)
 			local strHero = GetPlayerHeroes(iPlayer)[0];
 			GiveHeroSkill(strHero, HERO_SKILL_DEFENCE);
 			sleep(1)
@@ -12218,6 +12218,22 @@ doFile("/scripts/H55-Settings.lua");
 			GiveHeroSkill(strHero, HERO_SKILL_PROTECTION);
 			sleep(1)
 			GiveHeroSkill(strHero, HERO_SKILL_SPELLPROOF_BONES);
+			sleep(1)
+			-- GiveHeroSkill(strHero, HERO_SKILL_MAGIC_CUSHION);
+			ExecConsoleCommand("enable_cheats")
+			ExecConsoleCommand("add_all_spells")
+		end;
+		function TTH_TEST.test22(iPlayer)
+			local strHero = GetPlayerHeroes(iPlayer)[0];
+			GiveHeroSkill(strHero, HERO_SKILL_DEFENCE);
+			sleep(1)
+			GiveHeroSkill(strHero, HERO_SKILL_DEFENCE);
+			sleep(1)
+			GiveHeroSkill(strHero, HERO_SKILL_DEFENCE);
+			sleep(1)
+			GiveHeroSkill(strHero, HERO_SKILL_PROTECTION);
+			sleep(1)
+			-- GiveHeroSkill(strHero, HERO_SKILL_SPELLPROOF_BONES);
 			sleep(1)
 			GiveHeroSkill(strHero, HERO_SKILL_MAGIC_CUSHION);
 			ExecConsoleCommand("enable_cheats")

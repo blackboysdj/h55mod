@@ -10340,7 +10340,7 @@ doFile("/scripts/H55-Settings.lua");
 								iGoblinCount = iGoblinCount + arrCreature4Object[iSlot]["Count"];
 							end;
 						end;
-						iTownValue = TTH_COMMON.round(iGoblinCount / 20);
+						iTownValue = TTH_COMMON.round(iGoblinCount / 3);
 					end;
 					return iTownValue;
       	end;

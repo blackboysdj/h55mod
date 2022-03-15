@@ -2624,23 +2624,18 @@ doFile("/scripts/H55-Settings.lua");
 					for strTown, objTown in arrTown do
 						TTH_COMMON.push(arrDistance, TTH_GLOBAL.getDistance(strHero, strTown));
 					end
-					print('arrDistance: ')
-					print(arrDistance)
 
 					local arrDistanceMenel = TTH_TALENT.getDistance4Hero2NearestMayorTown8Menel(iPlayer, strHero);
 					arrDistance = TTH_COMMON.concat(arrDistance, arrDistanceMenel);
-					print('arrDistance: ')
-					print(arrDistance)
 
 					local arrDistanceWulfstan = TTH_TALENT.getDistance4Hero2NearestMayorTown8Wulfstan(iPlayer, strHero);
 					arrDistance = TTH_COMMON.concat(arrDistance, arrDistanceWulfstan);
-					print('arrDistance: ')
-					print(arrDistance)
 
 					local iDistanceNikolay = TTH_TALENT.getDistance4Hero2NearestMayorTown8Nikolay(iPlayer, strHero);
 					arrDistance = TTH_COMMON.push(arrDistance, iDistanceNikolay);
-					print('arrDistance: ')
-					print(arrDistance)
+
+					local arrDistance182 = TTH_PERK.getDistance4Hero2NearestMayorTown8182(iPlayer, strHero);
+					arrDistance = TTH_COMMON.concat(arrDistance, arrDistance182);
 
 					local iMinDistance = TTH_COMMON.min(arrDistance);
 					return iMinDistance;
@@ -5466,7 +5461,7 @@ doFile("/scripts/H55-Settings.lua");
 					end;
 					iTotalTownValue = iTotalTownValue + TTH_TALENT.calcTownValueIsabell(strMayor, arrTown);
 					iTotalTownValue = iTotalTownValue + TTH_TALENT.calcTownValueElleshar(strMayor, arrTown);
-					iTotalTownValue = iTotalTownValue + TTH_TALENT.calcTownValueHero9(strMayor, arrTown);
+					iTotalTownValue = iTotalTownValue + TTH_TALENT.calcTownValueKunyak(strMayor, arrTown);
 					return iTotalTownValue;
 				end;
 
@@ -5918,10 +5913,12 @@ doFile("/scripts/H55-Settings.lua");
 						local bIsExpeditionWulfstan = TTH_TALENT.checkExpedition8Wulfstan(iPlayer, strHero);
 						local bIsExpeditionNikolay = TTH_TALENT.checkExpedition8Nikolay(iPlayer, strHero);
 						local bIsExpeditionMenel = TTH_TALENT.checkExpedition8Menel(iPlayer, strHero);
+						local bIsExpedition182 = TTH_PERK.checkExpedition8182(iPlayer, strHero);
 						if bIsExpedition == TTH_ENUM.No
 							or bIsExpeditionWulfstan == TTH_ENUM.No
 							or bIsExpeditionNikolay == TTH_ENUM.No
 							or bIsExpeditionMenel == TTH_ENUM.No
+							or bIsExpedition182 == TTH_ENUM.No
 							then
 							bIsExpedition = TTH_ENUM.No;
 						end;
@@ -8996,7 +8993,7 @@ doFile("/scripts/H55-Settings.lua");
 
       		TTH_VARI.talent[strHero] = {
 						["Manor"] = {}
-						, ["Index"] = 0;
+						, ["Index"] = 0
 					};
       	end;
       	function TTH_TALENT.activeMenel(iPlayer, strHero)
@@ -9133,7 +9130,7 @@ doFile("/scripts/H55-Settings.lua");
       	end;
 
 			-- Sylsai 062 希尔塞
-			TTH_FINAL.SYLSAI_COST = 5000;
+				TTH_FINAL.SYLSAI_COST = 5000;
       	function TTH_TALENT.initSylsai(strHero)
 					TTH_MAIN.debug("TTH_TALENT.initSylsai", nil, strHero);
 
@@ -10319,29 +10316,27 @@ doFile("/scripts/H55-Settings.lua");
 					return iRecovery;
 				end;
 
-      -- Hero9 135 科尔汉
-      	function TTH_TALENT.calcTownValueHero9(strHero, arrTown)
-					TTH_MAIN.debug("TTH_TALENT.calcTownValueHero9", nil, strHero, arrTown);
+      -- Kunyak 148 库恩亚克
+      	function TTH_TALENT.calcTownValueKunyak(strHero, arrTown)
+					TTH_MAIN.debug("TTH_TALENT.calcTownValueKunyak", nil, strHero, arrTown);
 
 					local iTownValue = 0;
-					local strHeroHero9 = "Hero9";
-					if strHero == strHeroHero9 then
+					local strHeroKunyak = "Kunyak";
+					if strHero == strHeroKunyak then
 						local iGoblinCount = 0;
 						for strTown, objTown in arrTown do
 							local arrCreature4Object = TTH_GLOBAL.getObjectCreatureInfo(strTown);
 							for iSlot = 0, 6 do
-								if arrCreature4Object[iSlot]["Id"] == CREATURE_GOBLIN
-									or arrCreature4Object[iSlot]["Id"] == CREATURE_GOBLIN_TRAPPER
-									or arrCreature4Object[iSlot]["Id"] == CREATURE_GOBLIN_DEFILER then
+								if arrCreature4Object[iSlot]["Count"] > 0
+									and contains(TTH_TABLE.StrongholdCreature, arrCreature4Object[iSlot]["Id"]) ~= nil then
 									iGoblinCount = iGoblinCount + arrCreature4Object[iSlot]["Count"];
 								end;
 							end;
 						end;
 						local arrCreature4Object = TTH_GLOBAL.getHeroCreatureInfo(strHero);
 						for iSlot = 0, 6 do
-							if arrCreature4Object[iSlot]["Id"] == CREATURE_GOBLIN
-								or arrCreature4Object[iSlot]["Id"] == CREATURE_GOBLIN_TRAPPER
-								or arrCreature4Object[iSlot]["Id"] == CREATURE_GOBLIN_DEFILER then
+							if arrCreature4Object[iSlot]["Count"] > 0
+								and contains(TTH_TABLE.StrongholdCreature, arrCreature4Object[iSlot]["Id"]) ~= nil then
 								iGoblinCount = iGoblinCount + arrCreature4Object[iSlot]["Count"];
 							end;
 						end;
@@ -12205,8 +12200,367 @@ doFile("/scripts/H55-Settings.lua");
     		TTH_VARI.recordSnatch[strHero]["OperTimes"] = TTH_VARI.recordSnatch[strHero]["MaxOperTimes"];
 			end;
 
+		-- HERO_SKILL_DEFEND_US_ALL 181 全体保卫
+			TTH_VARI.recordDefendUsAll = {};
+			TTH_FINAL.DEFEND_US_ALL_SCALE = 10;
+			TTH_TABLE.CreatureOption181 = {
+				[1] = {
+					["Id"] = 1
+					, ["CreatureId"] = CREATURE_GOBLIN
+					, ["Text"] = TTH_TABLE_NCF_CREATURES[CREATURE_GOBLIN]["NAME"]
+					, ["Callback"] = "TTH_PERK.comfirmActive181"
+					, ["Scale"] = 1.5
+				}
+				, [2] = {
+					["Id"] = 2
+					, ["CreatureId"] = CREATURE_CENTAUR
+					, ["Text"] = TTH_TABLE_NCF_CREATURES[CREATURE_CENTAUR]["NAME"]
+					, ["Callback"] = "TTH_PERK.comfirmActive181"
+					, ["Scale"] = 2
+				}
+				, [3] = {
+					["Id"] = 3
+					, ["CreatureId"] = CREATURE_ORC_WARRIOR
+					, ["Text"] = TTH_TABLE_NCF_CREATURES[CREATURE_ORC_WARRIOR]["NAME"]
+					, ["Callback"] = "TTH_PERK.comfirmActive181"
+					, ["Scale"] = 3
+				}
+				, [4] = {
+					["Id"] = 4
+					, ["CreatureId"] = CREATURE_SHAMAN
+					, ["Text"] = TTH_TABLE_NCF_CREATURES[CREATURE_SHAMAN]["NAME"]
+					, ["Callback"] = "TTH_PERK.comfirmActive181"
+					, ["Scale"] = 4
+				}
+				, [5] = {
+					["Id"] = 5
+					, ["CreatureId"] = CREATURE_ORCCHIEF_BUTCHER
+					, ["Text"] = TTH_TABLE_NCF_CREATURES[CREATURE_ORCCHIEF_BUTCHER]["NAME"]
+					, ["Callback"] = "TTH_PERK.comfirmActive181"
+					, ["Scale"] = 6
+				}
+				, [6] = {
+					["Id"] = 6
+					, ["CreatureId"] = CREATURE_WYVERN
+					, ["Text"] = TTH_TABLE_NCF_CREATURES[CREATURE_WYVERN]["NAME"]
+					, ["Callback"] = "TTH_PERK.comfirmActive181"
+					, ["Scale"] = 8
+				}
+				, [7] = {
+					["Id"] = 7
+					, ["CreatureId"] = CREATURE_CYCLOP
+					, ["Text"] = TTH_TABLE_NCF_CREATURES[CREATURE_CYCLOP]["NAME"]
+					, ["Callback"] = "TTH_PERK.comfirmActive181"
+					, ["Scale"] = 12
+				}
+				, [8] = {
+					["Id"] = 8
+					, ["CreatureId"] = CREATURE_WOLF
+					, ["Text"] = TTH_TABLE_NCF_CREATURES[CREATURE_WOLF]["NAME"]
+					, ["Callback"] = "TTH_PERK.comfirmActive181"
+					, ["Scale"] = 4
+				}
+			};
+			function TTH_PERK.init181(iPlayer, strHero)
+				TTH_MAIN.debug("TTH_PERK.init181", iPlayer, strHero);
+
+				if TTH_VARI.recordDefendUsAll[strHero] == nil then
+					TTH_VARI.recordDefendUsAll[strHero] = {
+						["OperTimes"] = 1
+						, ["MaxOperTimes"] = 1
+					};
+				end;
+			end;
+			function TTH_PERK.active181(iPlayer, strHero)
+				TTH_COMMON.nextNavi(TTH_PATH.Perk[HERO_SKILL_DEFEND_US_ALL]["Text"]);
+
+				TTH_PERK.init181(iPlayer, strHero);
+				TTH_PERK.checkPreActive1814NotEnoughTimes(iPlayer, strHero)
+			end;
+			function TTH_PERK.checkPreActive1814NotEnoughTimes(iPlayer, strHero)
+    		if TTH_VARI.recordDefendUsAll[strHero]["OperTimes"] <= 0 then
+					local strText = TTH_PATH.Perk[HERO_SKILL_DEFEND_US_ALL]["NotEnoughTimes"];
+					TTH_GLOBAL.sign(strHero, strText);
+					return nil;
+    		end;
+
+    		TTH_PERK.radioActive1814Creature(iPlayer, strHero)
+			end;
+			function TTH_PERK.radioActive1814Creature(iPlayer, strHero)
+    		local arrOption = {};
+    		local i = 1;
+				local iLevel = 4;
+				if TTH_GLOBAL.getSetComponentCount(strHero, TTH_ENUM.SET_OGRES) == 1 then
+				  iLevel = 6;
+				elseif TTH_GLOBAL.getSetComponentCount(strHero, TTH_ENUM.SET_OGRES) >= 2 then
+				  iLevel = 7;
+				end;
+    		for iIndex, objOption in TTH_TABLE.CreatureOption181 do
+    			local iCreatureId = objOption["CreatureId"];
+    			local iOptionCreatureLevel = TTH_TABLE_NCF_CREATURES[iCreatureId]["TIER"];
+    			if iOptionCreatureLevel <= iLevel then
+    				arrOption[i] = objOption;
+    				i = i + 1;
+    			end;
+    		end
+    		local strText = TTH_PATH.Perk[HERO_SKILL_DEFEND_US_ALL]["TipsCreature"];
+    		TTH_COMMON.optionRadio(iPlayer, strHero, arrOption, strText);
+			end;
+    	function TTH_PERK.comfirmActive181(iPlayer, strHero, iIndexId)
+    		local iPostCreatureId = TTH_TABLE.CreatureOption181[iIndexId]["CreatureId"];
+    		local strCreatureNameGoblin = TTH_TABLE_NCF_CREATURES[CREATURE_GOBLIN]["NAME"];
+    		local iCreatureNumberGoblin = 0;
+				local arrCreature4Hero = TTH_GLOBAL.getHeroCreatureInfo(strHero);
+				for iIndex = 0, 6 do
+					if arrCreature4Hero[iIndex]["Count"] > 0 then
+						if arrCreature4Hero[iIndex]["Id"] == CREATURE_GOBLIN
+							or arrCreature4Hero[iIndex]["Id"] == CREATURE_GOBLIN_TRAPPER
+							or arrCreature4Hero[iIndex]["Id"] == CREATURE_GOBLIN_DEFILER then
+							iCreatureNumberGoblin = iCreatureNumberGoblin + arrCreature4Hero[iIndex]["Count"];
+						end;
+					end;
+				end;
+    		local strPostCreatureName = TTH_TABLE_NCF_CREATURES[iPostCreatureId]["NAME"];
+				local iPostCreatureNumber = TTH_COMMON.round(iCreatureNumberGoblin / TTH_FINAL.DEFEND_US_ALL_SCALE / TTH_TABLE.CreatureOption181[iIndexId]["Scale"]);
+				if iPostCreatureNumber < 1 then
+					iPostCreatureNumber = 1;
+				end;
+
+    		local iLevel = 4;
+    		if TTH_GLOBAL.getSetComponentCount(strHero, TTH_ENUM.SET_OGRES) == 1 then
+    		  iLevel = 6;
+    		elseif TTH_GLOBAL.getSetComponentCount(strHero, TTH_ENUM.SET_OGRES) >= 2 then
+    		  iLevel = 7;
+    		end;
+				local arrArtifactNameExist = {};
+				local arrArtifactNameNotExist = {};
+				for i = 0, 1 do
+					local iComponentId = TTH_TABLE.ArtifactSetBonus[TTH_ENUM.SET_OGRES]["Component"][i];
+					if HasArtefact(strHero, iComponentId, 1) ~= nil then
+					  arrArtifactNameExist[i + 1] = TTH_TABLE.Artifact[iComponentId]["Text"];
+					  arrArtifactNameNotExist[i + 1] = "";
+					else
+					  arrArtifactNameExist[i + 1] = "";
+					  arrArtifactNameNotExist[i + 1] = TTH_TABLE.Artifact[iComponentId]["Text"];
+					end;
+				end;
+				local strPathMain = {
+  				TTH_PATH.Perk[HERO_SKILL_DEFEND_US_ALL]["Confirm"]
+    			;strCreatureNameGoblin=strCreatureNameGoblin
+    			,iCreatureNumberGoblin=iCreatureNumberGoblin
+    			,strPostCreatureName=strPostCreatureName
+    			,iPostCreatureNumber=iPostCreatureNumber
+    			,iLevel=iLevel
+    			,strArtifactNameExist1=arrArtifactNameExist[1]
+    			,strArtifactNameNotExist1=arrArtifactNameNotExist[1]
+    			,strArtifactNameExist2=arrArtifactNameExist[2]
+    			,strArtifactNameNotExist2=arrArtifactNameNotExist[2]
+    		};
+  			local strCallbackOk = "TTH_PERK.implActive181("..iPlayer..","..TTH_COMMON.psp(strHero)..","..iPostCreatureId..","..iPostCreatureNumber..")";
+  			local strCallbackCancel = "TTH_COMMON.cancelOption()";
+  			TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+    	end;
+			function TTH_PERK.implActive181(iPlayer, strHero, iPostCreatureId, iPostCreatureNumber)
+    		if TTH_VARI.recordDefendUsAll[strHero]["OperTimes"] > 0 then
+    			TTH_VARI.recordDefendUsAll[strHero]["OperTimes"] = TTH_VARI.recordDefendUsAll[strHero]["OperTimes"] - 1;
+    		end;
+    		TTH_GLOBAL.addCreature4Hero8Sign(strHero, iPostCreatureId, iPostCreatureNumber, TTH_ENUM.AddCreature);
+			end;
+			function TTH_PERK.resetWeekly181(iPlayer, strHero)
+				TTH_MAIN.debug("TTH_PERK.resetWeekly181", iPlayer, strHero);
+
+				if TTH_VARI.recordDefendUsAll[strHero] == nil then
+					TTH_PERK.init181(iPlayer, strHero);
+				end;
+				local strHeroKunyak = "Kunyak";
+				if strHero == strHeroKunyak then
+	    		TTH_VARI.recordDefendUsAll[strHero]["OperTimes"] = TTH_VARI.recordDefendUsAll[strHero]["MaxOperTimes"];
+				end;
+			end;
+
+		-- HERO_SKILL_GOBLIN_SUPPORT 182 地精支援
+			TTH_VARI.recordHero182 = {};
+			TTH_VARI.recordPlayer182 = {};
+    	TTH_VARI.threadActive182 = {};
+			TTH_TABLE.DirectionOption182 = {
+				[1] = {
+					["Id"] = TTH_ENUM.DirectionNorth
+					, ["Text"] = TTH_PATH.Direction[TTH_ENUM.DirectionNorth]
+					, ["Callback"] = "TTH_PERK.threadActive182"
+					, ["Rotate"] = TTH_ENUM.RotateNorth
+				}
+				, [2] = {
+					["Id"] = TTH_ENUM.DirectionEast
+					, ["Text"] = TTH_PATH.Direction[TTH_ENUM.DirectionEast]
+					, ["Callback"] = "TTH_PERK.threadActive182"
+					, ["Rotate"] = TTH_ENUM.RotateEast
+				}
+				, [3] = {
+					["Id"] = TTH_ENUM.DirectionSouth
+					, ["Text"] = TTH_PATH.Direction[TTH_ENUM.DirectionSouth]
+					, ["Callback"] = "TTH_PERK.threadActive182"
+					, ["Rotate"] = TTH_ENUM.RotateSouth
+				}
+				, [4] = {
+					["Id"] = TTH_ENUM.DirectionWest
+					, ["Text"] = TTH_PATH.Direction[TTH_ENUM.DirectionWest]
+					, ["Callback"] = "TTH_PERK.threadActive182"
+					, ["Rotate"] = TTH_ENUM.RotateWest
+				}
+			};
+			function TTH_PERK.init182(iPlayer, strHero)
+				TTH_MAIN.debug("TTH_PERK.init182", iPlayer, strHero);
+
+				if TTH_VARI.recordHero182[strHero] == nil then
+					local iMaxBuilding = 1;
+					local strHeroHero9 = "Hero9";
+					if strHero == strHeroHero9 then
+						iMaxBuilding = 2;
+					end;
+					TTH_VARI.recordHero182[strHero] = {
+						["HasBuilding"] = 0
+						, ["MaxBuilding"] = iMaxBuilding
+					};
+				end;
+				if TTH_VARI.recordPlayer182[iPlayer] == nil then
+					TTH_VARI.recordPlayer182[iPlayer] = {
+						["Support"] = {}
+						, ["Index"] = 0
+					};
+				end;
+			end;
+			function TTH_PERK.active182(iPlayer, strHero, strTown)
+				TTH_COMMON.nextNavi(TTH_PATH.Perk[HERO_SKILL_GOBLIN_SUPPORT]["Text"]);
+
+				TTH_PERK.init182(iPlayer, strHero);
+				TTH_PERK.checkPreActive1824HasBuilding(iPlayer, strHero)
+			end;
+			function TTH_PERK.checkPreActive1824HasBuilding(iPlayer, strHero)
+				if TTH_VARI.recordHero182[strHero]["HasBuilding"] >= TTH_VARI.recordHero182[strHero]["MaxBuilding"] then
+					local strText = TTH_PATH.Perk[HERO_SKILL_GOBLIN_SUPPORT]["HasBuilding"];
+					TTH_GLOBAL.sign(strHero, strText);
+					return nil;
+				end;
+
+				local strText = TTH_PATH.Perk[HERO_SKILL_GOBLIN_SUPPORT]["TipsDirection"];
+				TTH_COMMON.optionRadio(iPlayer, strHero, TTH_TABLE.DirectionOption182, strText);
+			end;
+    	function TTH_PERK.checkPreActive1824NegetivePlace()
+				local strHero = TTH_VARI.threadActive182["Hero"];
+				local strText = TTH_PATH.Perk[HERO_SKILL_GOBLIN_SUPPORT]["NegetivePlace"];
+  			TTH_GLOBAL.sign(strHero, strText);
+				return nil;
+    	end;
+    	function TTH_PERK.threadActive182(iPlayer, strHero, iDirectionId)
+    		TTH_VARI.threadActive182 = {
+    			["Player"] = iPlayer
+    			, ["Hero"] = strHero
+    			, ["DirectionId"] = iDirectionId
+    		};
+    		startThread(TTH_PERK.implActive182);
+    	end;
+    	function TTH_PERK.implActive182()
+    		errorHook(TTH_PERK.checkPreActive1824NegetivePlace);
+
+    		local iPlayer = TTH_VARI.threadActive182["Player"];
+    		local strHero = TTH_VARI.threadActive182["Hero"];
+    		local iDirectionId = TTH_VARI.threadActive182["DirectionId"];
+
+    		local iIndexBuilding = TTH_VARI.recordHero182[strHero]["HasBuilding"];
+    		local iHeroRace = TTH_GLOBAL.getRace8Hero(strHero);
+    		local iPosX, iPosY, iPosZ = GetObjectPosition(strHero);
+    		if iDirectionId == TTH_ENUM.DirectionNorth then
+    			iPosY = iPosY + 3;
+    		elseif iDirectionId == TTH_ENUM.DirectionEast then
+    			iPosX = iPosX + 3;
+    		elseif iDirectionId == TTH_ENUM.DirectionSouth then
+    			iPosY = iPosY - 4;
+    		elseif iDirectionId == TTH_ENUM.DirectionWest then
+    			iPosX = iPosX - 4;
+    		end;
+    		local strBuildingName = strHero.."-"..iIndexBuilding;
+    		CreateDwelling(strBuildingName, iHeroRace, 1, iPlayer, iPosX, iPosY, iPosZ, TTH_TABLE.DirectionOption182[iDirectionId]["Rotate"]);
+    		sleep(1);
+    		TTH_VARI.recordHero182[strHero]["HasBuilding"] = TTH_VARI.recordHero182[strHero]["HasBuilding"] + 1;
+    		TTH_VARI.recordPlayer182[iPlayer]["Support"] = TTH_COMMON.push(TTH_VARI.recordPlayer182[iPlayer]["Support"], strBuildingName);
+				local strText = TTH_PATH.Perk[HERO_SKILL_GOBLIN_SUPPORT]["Success"];
+  			TTH_GLOBAL.sign(strHero, strText);
+    	end;
+			function TTH_PERK.dealDaily182(iPlayer, strHero)
+				TTH_MAIN.debug("TTH_PERK.dealDaily182", iPlayer, strHero);
+
+				TTH_PERK.init182(iPlayer, strHero);
+				local arrSupport = TTH_VARI.recordPlayer182[iPlayer]["Support"];
+				for i, strSupport in arrSupport do
+					if GetObjectOwner(strSupport) ~= iPlayer then
+						TTH_VARI.recordPlayer182[iPlayer]["Support"] = TTH_COMMON.remove8Value(TTH_VARI.recordPlayer182[iPlayer]["Support"], strSupport);
+					end;
+				end
+			end;
+    	function TTH_PERK.checkExpedition8182(iPlayer, strHero)
+    		TTH_MAIN.debug("TTH_PERK.checkExpedition8182", iPlayer, strHero);
+
+    		local bIsExpedition = TTH_ENUM.Yes;
+    		if TTH_GLOBAL.getRace8Hero(strHero) == TOWN_STRONGHOLD
+    			and TTH_VARI.recordPlayer182[iPlayer] ~= nil then
+      		local arrDwelling = TTH_VARI.recordPlayer182[iPlayer]["Support"];
+      		for i, strDwellingName in arrDwelling do
+      			if TTH_GLOBAL.getDistance(strHero, strDwellingName) <= TTH_MANAGE.getTerritoryRadius(iPlayer) then
+      				bIsExpedition = TTH_ENUM.No;
+      				break;
+      			end;
+      		end;
+    		end;
+    		return bIsExpedition;
+    	end;
+    	function TTH_PERK.getDistance4Hero2NearestMayorTown8182(iPlayer, strHero)
+    		TTH_MAIN.debug("TTH_PERK.getDistance4Hero2NearestMayorTown8182", iPlayer, strHero);
+
+    		local arrDistance = {};
+    		if TTH_VARI.recordPlayer182[iPlayer] ~= nil
+    			and TTH_GLOBAL.getRace8Hero(strHero) == TOWN_STRONGHOLD then
+    			local arrDwelling = TTH_VARI.recordPlayer182[iPlayer]["Support"];
+    			for i, strDwellingName in arrDwelling do
+    				TTH_COMMON.push(arrDistance, TTH_GLOBAL.getDistance(strHero, strDwellingName));
+    			end
+    		end;
+    		return arrDistance;
+    	end;
+
 	-- test
 		TTH_TEST = {};
+		function TTH_TEST.test25(iPlayer)
+			local strHero = GetPlayerHeroes(iPlayer)[0];
+			GiveHeroSkill(strHero, HERO_SKILL_BARBARIAN_LEARNING);
+			sleep(1)
+			GiveHeroSkill(strHero, HERO_SKILL_BARBARIAN_LEARNING);
+			sleep(1)
+			GiveHeroSkill(strHero, HERO_SKILL_BARBARIAN_LEARNING);
+			sleep(1)
+			GiveHeroSkill(strHero, HERO_SKILL_BODYBUILDING);
+			sleep(1)
+			AddHeroCreatures(strHero, 179, 10)
+		end;
+		function TTH_TEST.test24(iPlayer)
+			local strHero = GetPlayerHeroes(iPlayer)[0];
+			GiveHeroSkill(strHero, HERO_SKILL_DEMONIC_RAGE);
+			sleep(1)
+			GiveHeroSkill(strHero, HERO_SKILL_DEMONIC_RAGE);
+			sleep(1)
+			GiveHeroSkill(strHero, HERO_SKILL_DEMONIC_RAGE);
+			sleep(1)
+			GiveHeroSkill(strHero, HERO_SKILL_GOBLIN_SUPPORT);
+			sleep(1)
+			GiveHeroSkill(strHero, HERO_SKILL_DEFEND_US_ALL);
+			sleep(1)
+			GiveArtefact(strHero, ARTIFACT_OGRE_CLUB);
+			sleep(1)
+			GiveArtefact(strHero, ARTIFACT_OGRE_SHIELD);
+			sleep(1)
+			-- GiveHeroSkill(strHero, HERO_SKILL_MAGIC_CUSHION);
+			ExecConsoleCommand("enable_cheats")
+			ExecConsoleCommand("add_all_spells")
+		end;
 		function TTH_TEST.test23(iPlayer)
 			local strHero = GetPlayerHeroes(iPlayer)[0];
 			GiveHeroSkill(strHero, HERO_SKILL_DEFENCE);

@@ -10588,7 +10588,6 @@
         TTH_PATH.Talent["Cast"]["Hero"]["Adelaide"] = TTH_PATH.Talent["Cast"]["Hero"]["Pre"].."Adelaide.txt";
         TTH_PATH.Talent["Cast"]["Hero"]["Thant"] = TTH_PATH.Talent["Cast"]["Hero"]["Pre"].."Thant.txt";
         TTH_PATH.Talent["Cast"]["Hero"]["Archilus"] = TTH_PATH.Talent["Cast"]["Hero"]["Pre"].."Archilus.txt";
-        TTH_PATH.Talent["Cast"]["Hero"]["Azar"] = TTH_PATH.Talent["Cast"]["Hero"]["Pre"].."Azar.txt";
       -- Nathaniel 001 埃兰妮
         TTH_PATH.Talent["Nathaniel"] = {};
         TTH_PATH.Talent["Nathaniel"]["Pre"] = TTH_PATH.Talent["Pre"].."001/";
@@ -10927,6 +10926,21 @@
         TTH_PATH.Perk[HERO_SKILL_SNATCH]["NotEnoughTimes"] = TTH_PATH.Perk[HERO_SKILL_SNATCH]["Pre"].."NotEnoughTimes.txt";
         TTH_PATH.Perk[HERO_SKILL_SNATCH]["Confirm"] = TTH_PATH.Perk[HERO_SKILL_SNATCH]["Pre"].."Confirm.txt";
         TTH_PATH.Perk[HERO_SKILL_SNATCH]["Success"] = TTH_PATH.Perk[HERO_SKILL_SNATCH]["Pre"].."Success.txt";
+      -- HERO_SKILL_DEFEND_US_ALL 181 全体保卫
+        TTH_PATH.Perk[HERO_SKILL_DEFEND_US_ALL] = {};
+        TTH_PATH.Perk[HERO_SKILL_DEFEND_US_ALL]["Pre"] = TTH_PATH.Perk["Pre"] .."181-DefendUsAll/";
+        TTH_PATH.Perk[HERO_SKILL_DEFEND_US_ALL]["Text"] = TTH_PATH.Perk[HERO_SKILL_DEFEND_US_ALL]["Pre"].."Text.txt";
+        TTH_PATH.Perk[HERO_SKILL_DEFEND_US_ALL]["NotEnoughTimes"] = TTH_PATH.Perk[HERO_SKILL_DEFEND_US_ALL]["Pre"].."NotEnoughTimes.txt";
+        TTH_PATH.Perk[HERO_SKILL_DEFEND_US_ALL]["TipsCreature"] = TTH_PATH.Perk[HERO_SKILL_DEFEND_US_ALL]["Pre"].."TipsCreature.txt";
+        TTH_PATH.Perk[HERO_SKILL_DEFEND_US_ALL]["Confirm"] = TTH_PATH.Perk[HERO_SKILL_DEFEND_US_ALL]["Pre"].."Confirm.txt";
+      -- HERO_SKILL_GOBLIN_SUPPORT 182 地精支援
+        TTH_PATH.Perk[HERO_SKILL_GOBLIN_SUPPORT] = {};
+        TTH_PATH.Perk[HERO_SKILL_GOBLIN_SUPPORT]["Pre"] = TTH_PATH.Perk["Pre"] .."182-GoblinSupport/";
+        TTH_PATH.Perk[HERO_SKILL_GOBLIN_SUPPORT]["Text"] = TTH_PATH.Perk[HERO_SKILL_GOBLIN_SUPPORT]["Pre"].."Text.txt";
+        TTH_PATH.Perk[HERO_SKILL_GOBLIN_SUPPORT]["HasBuilding"] = TTH_PATH.Perk[HERO_SKILL_GOBLIN_SUPPORT]["Pre"].."HasBuilding.txt";
+        TTH_PATH.Perk[HERO_SKILL_GOBLIN_SUPPORT]["TipsDirection"] = TTH_PATH.Perk[HERO_SKILL_GOBLIN_SUPPORT]["Pre"].."TipsDirection.txt";
+        TTH_PATH.Perk[HERO_SKILL_GOBLIN_SUPPORT]["NegetivePlace"] = TTH_PATH.Perk[HERO_SKILL_GOBLIN_SUPPORT]["Pre"].."NegetivePlace.txt";
+        TTH_PATH.Perk[HERO_SKILL_GOBLIN_SUPPORT]["Success"] = TTH_PATH.Perk[HERO_SKILL_GOBLIN_SUPPORT]["Pre"].."Success.txt";
 
   -- 数据表
     TTH_TABLE = {};
@@ -10953,9 +10967,6 @@
             [TTH_ENUM.FuncAlways] = "TTH_TALENT.initCastCreature"
           }
           , ["Archilus"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initCastCreature"
-          }
-          , ["Azar"] = {
             [TTH_ENUM.FuncAlways] = "TTH_TALENT.initCastCreature"
           }
           , ["Ildar"] = {
@@ -11037,11 +11048,6 @@
             , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeCastCreature"
             , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeCastCreature"
           }
-          , ["Azar"] = {
-            ["Text"] = TTH_PATH.Talent["Cast"]["Hero"]["Azar"]
-            , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeCastCreature"
-            , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeCastCreature"
-          }
           , ["Ildar"] = {
             ["Text"] = TTH_PATH.Talent["Ildar"]["Text"]
             , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeIldar"
@@ -11120,9 +11126,6 @@
           , ["Archilus"] = {
             [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultCastCreature"
           }
-          , ["Azar"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultCastCreature"
-          }
           , ["Pelt"] = {
             [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultPelt"
           }
@@ -11198,9 +11201,6 @@
             [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailyCastCreature"
           }
           , ["Archilus"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailyCastCreature"
-          }
-          , ["Azar"] = {
             [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailyCastCreature"
           }
           , ["Maahir"] = {
@@ -11360,6 +11360,15 @@
             ["Text"] = TTH_PATH.Perk[HERO_SKILL_GRAIL_VISION]["Text"]
             , [TTH_ENUM.FuncNotAtGate] = "TTH_PERK.active080"
           }
+          , [HERO_SKILL_GOBLIN_SUPPORT] = {
+            ["Text"] = TTH_PATH.Perk[HERO_SKILL_GOBLIN_SUPPORT]["Text"]
+            , [TTH_ENUM.FuncNotAtGate] = "TTH_PERK.active182"
+          }
+          , [HERO_SKILL_DEFEND_US_ALL] = {
+            ["Text"] = TTH_PATH.Perk[HERO_SKILL_DEFEND_US_ALL]["Text"]
+            , [TTH_ENUM.FuncAtGate] = "TTH_PERK.active181"
+            , [TTH_ENUM.FuncNotAtGate] = "TTH_PERK.active181"
+          }
         }
         , [TTH_ENUM.FuncLevelUp] = {
         }
@@ -11401,8 +11410,14 @@
           , [HERO_SKILL_GUARDIAN_ANGEL] = {
             [TTH_ENUM.FuncAlways] = "TTH_PERK.resetWeekly078"
           }
+          , [HERO_SKILL_DEFEND_US_ALL] = {
+            [TTH_ENUM.FuncAlways] = "TTH_PERK.resetWeekly181"
+          }
         }
         , [TTH_ENUM.FuncDealDaily] = {
+          [HERO_SKILL_GOBLIN_SUPPORT] = {
+            [TTH_ENUM.FuncAlways] = "TTH_PERK.dealDaily182"
+          }
         }
         , [TTH_ENUM.FuncResetDaily] = {
           [HERO_SKILL_TOUGHNESS] = {
@@ -16963,6 +16978,14 @@
           ["Id"] = ARTIFACT_QUILL_OF_MAYOR
           , ["Text"] = "/Text/TTH/Artifact/182-QuillOfMayor/Text.txt"
         }
+        , [ARTIFACT_OGRE_CLUB] = {
+          ["Id"] = ARTIFACT_OGRE_CLUB
+          , ["Text"] = "/Text/TTH/Artifact/74-OgreClub/Text.txt"
+        }
+        , [ARTIFACT_OGRE_SHIELD] = {
+          ["Id"] = ARTIFACT_OGRE_SHIELD
+          , ["Text"] = "/Text/TTH/Artifact/75-OgreShield/Text.txt"
+        }
       }
 
     -- 宝物套装属性
@@ -17311,6 +17334,32 @@
           , [6] = {127, 128, 178}
           , [7] = {129, 130, 179}
         }
+      };
+
+    -- 据点生物
+      TTH_TABLE.StrongholdCreature = {
+        CREATURE_GOBLIN
+        , CREATURE_GOBLIN_TRAPPER
+        , CREATURE_GOBLIN_DEFILER
+        , CREATURE_CENTAUR
+        , CREATURE_CENTAUR_NOMAD
+        , CREATURE_CENTAUR_MARADEUR
+        , CREATURE_ORC_WARRIOR
+        , CREATURE_ORC_SLAYER
+        , CREATURE_ORC_WARMONGER
+        , CREATURE_SHAMAN
+        , CREATURE_SHAMAN_WITCH
+        , CREATURE_SHAMAN_HAG
+        , CREATURE_ORCCHIEF_BUTCHER
+        , CREATURE_ORCCHIEF_EXECUTIONER
+        , CREATURE_ORCCHIEF_CHIEFTAIN
+        , CREATURE_WYVERN
+        , CREATURE_WYVERN_POISONOUS
+        , CREATURE_WYVERN_PAOKAI
+        , CREATURE_CYCLOP
+        , CREATURE_CYCLOP_UNTAMED
+        , CREATURE_CYCLOP_BLOODEYED
+        , CREATURE_WOLF
       };
 
     -- 宝屋类型名称
@@ -17812,56 +17861,6 @@
                 , [SULFUR] = 0
                 , [GEM] = 0
                 , [GOLD] = 1200
-              }
-            }
-          }
-        }
-        , ["Azar"] = {
-          ["CastType"] = TTH_ENUM.Reproduce
-          , ["PreCreature"] = {
-            [CREATURE_GOBLIN] = {
-              ["Scale"] = 5
-              , ["PostCreatureId"] = CREATURE_WOLF
-              , ["MaxGcd"] = 6
-              , ["HeroStep"] = 6
-              , ["Res"] = {
-                [WOOD] = 0
-                , [ORE] = 0
-                , [MERCURY] = 0
-                , [CRYSTAL] = 0
-                , [SULFUR] = 0
-                , [GEM] = 0
-                , [GOLD] = 600
-              }
-            }
-            , [CREATURE_GOBLIN_TRAPPER] = {
-              ["Scale"] = 5
-              , ["PostCreatureId"] = CREATURE_WOLF
-              , ["MaxGcd"] = 6
-              , ["HeroStep"] = 6
-              , ["Res"] = {
-                [WOOD] = 0
-                , [ORE] = 0
-                , [MERCURY] = 0
-                , [CRYSTAL] = 0
-                , [SULFUR] = 0
-                , [GEM] = 0
-                , [GOLD] = 600
-              }
-            }
-            , [CREATURE_GOBLIN_DEFILER] = {
-              ["Scale"] = 5
-              , ["PostCreatureId"] = CREATURE_WOLF
-              , ["MaxGcd"] = 6
-              , ["HeroStep"] = 6
-              , ["Res"] = {
-                [WOOD] = 0
-                , [ORE] = 0
-                , [MERCURY] = 0
-                , [CRYSTAL] = 0
-                , [SULFUR] = 0
-                , [GEM] = 0
-                , [GOLD] = 600
               }
             }
           }
@@ -20682,14 +20681,14 @@
               , [212] = { -- 智慧学
                 ["Id"] = HERO_SKILL_BARBARIAN_INTELLIGENCE
                 , ["Text"] = "/Text/TTH/Skills/BarbarianLearning/212-BarbarianIntelligence/Name.txt"
-                , ["DependType"] = TTH_ENUM.Simple
-                , ["Depend"] = {
-                  [1] = HERO_SKILL_WARCRY_LEARNING
-                }
               }
               , [186] = { -- 耐力
                 ["Id"] = HERO_SKILL_BODYBUILDING
                 , ["Text"] = "/Text/TTH/Skills/BarbarianLearning/186-Bodybuilding/Name.txt"
+                , ["DependType"] = TTH_ENUM.Simple
+                , ["Depend"] = {
+                  [1] = HERO_SKILL_BARBARIAN_INTELLIGENCE
+                }
               }
             }
           }

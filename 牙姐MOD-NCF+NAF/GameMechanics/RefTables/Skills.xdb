@@ -21429,11 +21429,11 @@
 				</Texture>
 				<CommonTexture/>
 				<NameFileRef>
-					<Item href="/Text/Game/Skills/Common/Defence/DefendUsAll/Name.txt"/>
+				  <Item href="/Text/TTH/Skills/DemonicRage/181-DefendUsAll/Name.txt"/>
 				</NameFileRef>
 				<CommonNameFileRef href=""/>
 				<DescriptionFileRef>
-					<Item href="/Text/Game/Skills/Common/Defence/DefendUsAll/Description.txt"/>
+				  <Item href="/Text/TTH/Skills/DemonicRage/181-DefendUsAll/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
 				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
@@ -21502,11 +21502,11 @@
 				</Texture>
 				<CommonTexture/>
 				<NameFileRef>
-					<Item href="/Text/Game/Skills/Common/WarMachines/GoblinSupport/Name.txt"/>
+				  <Item href="/Text/TTH/Skills/DemonicRage/182-GoblinSupport/Name.txt"/>
 				</NameFileRef>
 				<CommonNameFileRef href=""/>
 				<DescriptionFileRef>
-					<Item href="/Text/Game/Skills/Common/WarMachines/GoblinSupport/Description.txt"/>
+				  <Item href="/Text/TTH/Skills/DemonicRage/182-GoblinSupport/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
 				<SkillType>SKILLTYPE_STANDART_PERK</SkillType>
@@ -21772,18 +21772,27 @@
 				</Texture>
 				<CommonTexture/>
 				<NameFileRef>
-					<Item href="/Text/Game/Skills/BarbarianSpec/Learning/Bodybuilding/Name.txt"/>
+				  <Item href="/Text/TTH/Skills/BarbarianLearning/186-Bodybuilding/Name.txt"/>
 				</NameFileRef>
 				<CommonNameFileRef href=""/>
 				<DescriptionFileRef>
-					<Item href="/Text/Game/Skills/BarbarianSpec/Learning/Bodybuilding/Description.txt"/>
+				  <Item href="/Text/TTH/Skills/BarbarianLearning/186-Bodybuilding/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
-				<SkillType>SKILLTYPE_STANDART_PERK</SkillType>
+				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
 				<HeroClass>HERO_CLASS_NONE</HeroClass>
-				<spellBuffs/>
+				<spellBuffs>
+					<Item>SPELL_ABILITY_BEAR_ROAR</Item>
+				</spellBuffs>
 				<BasicSkillID>HERO_SKILL_BARBARIAN_LEARNING</BasicSkillID>
-				<SkillPrerequisites/>
+        <SkillPrerequisites>
+          <Item>
+            <Class>HERO_CLASS_BARBARIAN</Class>
+            <dependenciesIDs>
+              <Item>HERO_SKILL_BARBARIAN_INTELLIGENCE</Item>
+            </dependenciesIDs>
+          </Item>
+        </SkillPrerequisites>
 				<AIRacesValues>
 					<Haven>
 						<CommanderValue>0</CommanderValue>
@@ -24465,7 +24474,7 @@
 					<Item href="/Text/Game/Skills/Common/Learning/Intelligence/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
-				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
+				<SkillType>SKILLTYPE_STANDART_PERK</SkillType>
 				<HeroClass>HERO_CLASS_NONE</HeroClass>
 				<spellBuffs>
 					<Item>SPELL_NONE</Item>
@@ -24473,14 +24482,7 @@
 					<Item>SPELL_NONE</Item>
 				</spellBuffs>
 				<BasicSkillID>HERO_SKILL_BARBARIAN_LEARNING</BasicSkillID>
-				<SkillPrerequisites>
-					<Item>
-						<Class>HERO_CLASS_BARBARIAN</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_WARCRY_LEARNING</Item>
-						</dependenciesIDs>
-					</Item>
-				</SkillPrerequisites>
+				<SkillPrerequisites/>
 				<AIRacesValues>
 					<Haven>
 						<CommanderValue>0</CommanderValue>

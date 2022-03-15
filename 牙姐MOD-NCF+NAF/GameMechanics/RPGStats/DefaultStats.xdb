@@ -1909,8 +1909,8 @@
 				<StunningBlow_ATBDrop>0.2</StunningBlow_ATBDrop>
 				<DefendUsAll_CreatureToCount>CREATURE_ORC_WARRIOR</DefendUsAll_CreatureToCount>
 				<DefendUsAll_CreatureCountMultiplier>0</DefendUsAll_CreatureCountMultiplier>
-				<GoblinSupport_GoblinsIncomePerDay>3</GoblinSupport_GoblinsIncomePerDay>
-				<Bodybuilding_HPBonusPercent>10</Bodybuilding_HPBonusPercent>
+				<GoblinSupport_GoblinsIncomePerDay>0</GoblinSupport_GoblinsIncomePerDay>
+				<Bodybuilding_HPBonusPercent>0</Bodybuilding_HPBonusPercent>
 				<VoiceTraining_WarcryCostDiscount>0.2</VoiceTraining_WarcryCostDiscount>
 				<DeathToNonexistent_DamageToSummonsMult>3</DeathToNonexistent_DamageToSummonsMult>
 				<MightyVoice_HeroLevelBonus>5</MightyVoice_HeroLevelBonus>

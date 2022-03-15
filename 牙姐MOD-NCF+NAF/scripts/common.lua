@@ -11057,16 +11057,38 @@ end;
           ["Id"] = SPELL_MASS_CURSE
           , ["Type"] = TTHCS_ENUM.Global
           , ["Target"] = TTHCS_ENUM.Hostile
+          , ["Immune"] = {
+            CREATURE_DRAGON_KNIGHT
+            , CREATURE_DRAGON_KNIGHT_LESS
+            , CREATURE_BLACK_DRAGON
+            , CREATURE_OBSIDIAN_GOLEM
+          }
         }
         , [2] = {
           ["Id"] = SPELL_MASS_SLOW
           , ["Type"] = TTHCS_ENUM.Global
           , ["Target"] = TTHCS_ENUM.Hostile
+          , ["Immune"] = {
+            CREATURE_DRAGON_KNIGHT
+            , CREATURE_DRAGON_KNIGHT_LESS
+            , CREATURE_BLACK_DRAGON
+            , CREATURE_OBSIDIAN_GOLEM
+            , CREATURE_ANGER_TREANT
+            , CREATURE_IRON_GOLEM
+            , CREATURE_STEEL_GOLEM
+          }
         }
         , [3] = {
           ["Id"] = SPELL_MASS_WEAKNESS
           , ["Type"] = TTHCS_ENUM.Global
           , ["Target"] = TTHCS_ENUM.Hostile
+          , ["Immune"] = {
+            CREATURE_DRAGON_KNIGHT
+            , CREATURE_DRAGON_KNIGHT_LESS
+            , CREATURE_BLACK_DRAGON
+            , CREATURE_OBSIDIAN_GOLEM
+            , CREATURE_BLOOD_WITCH_2
+          }
         }
       };
 
@@ -11336,6 +11358,9 @@ end;
 
       TTHCS_PATH["Talent"]["Dracon"] = {};
       TTHCS_PATH["Talent"]["Dracon"]["EffectStart"] = "/Text/TTH/Heroes/Specializations/Academy/Dracon/Combat/EffectStart.txt";
+
+      TTHCS_PATH["Talent"]["Hero9"] = {};
+      TTHCS_PATH["Talent"]["Hero9"]["Effect"] = "/Text/TTH/Heroes/Specializations/Stronghold/Hero9/Combat/Effect.txt";
 
     TTHCS_PATH["Perk"] = {};
       TTHCS_PATH["Perk"][HERO_SKILL_SEAL_OF_PROTECTION] = {};

@@ -2029,8 +2029,8 @@
 		<Item>
 			<ID>ARTIFACT_OGRE_CLUB</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Ogre_Club/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Ogre_Club/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/74-OgreClub/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/74-OgreClub/Description.txt"/>
 				<Model href="/_(Model)/Artefacts/H5Addon1/OgreClub.xdb#xpointer(/Model)"/>
 				<Type>ARTF_CLASS_MAJOR</Type>
 				<Slot>PRIMARY</Slot>
@@ -2054,8 +2054,8 @@
 		<Item>
 			<ID>ARTIFACT_OGRE_SHIELD</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Ogre_Shield/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Ogre_Shield/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/75-OgreShield/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/75-OgreShield/Description.txt"/>
 				<Model href="/_(Model)/Artefacts/H5Addon1/OgreShield.xdb#xpointer(/Model)"/>
 				<Type>ARTF_CLASS_MAJOR</Type>
 				<Slot>SECONDARY</Slot>

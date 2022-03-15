@@ -1472,6 +1472,7 @@ doFile('/scripts/combat-startup.lua')
 								H55SMOD_MiddlewareListener['Egil']['function']['creature']('Egil', iSide, itemUnitLast, listCreaturesBeEffected);
 							-- Dungeon
 							-- Stronghold
+								H55SMOD_MiddlewareListener['Hero9']['function']('Hero9', iSide, itemUnitLast, listCreaturesBeEffected);
 						end;
 
 						-- 单队
@@ -4639,6 +4640,30 @@ doFile('/scripts/combat-startup.lua')
 			end;
 			H55SMOD_MiddlewareListener['Kraal']['function'] = Events_MiddlewareListener_Implement_Kraal;
 
+		-- Hero9
+			H55SMOD_MiddlewareListener['Hero9'] = {};
+			function Events_MiddlewareListener_Implement_Hero9(strHero, iSide, itemUnitLast, listCreaturesBeEffected)
+				if GetHero(getSide(iSide, 1)) ~= nil
+					and GetHeroName(GetHero(getSide(iSide, 1))) == strHero
+					and itemUnitLast['iSide'] == getSide(iSide, 1) then
+					if itemUnitLast['iUnitType'] == CREATURE_GOBLIN
+						or itemUnitLast['iUnitType'] == CREATURE_GOBLIN_TRAPPER
+						or itemUnitLast['iUnitType'] == CREATURE_GOBLIN_DEFILER then
+						combatSetPause(1);
+						local arrUnitName = TTHCS_GLOBAL.listUnitInArea(itemUnitLast["strUnitName"], 1, getSide(iSide, 1));
+						if length(arrUnitName) == 0
+							and IsCombatUnit(itemUnitLast["strUnitName"]) ~= nil
+							and GetCreatureNumber(itemUnitLast["strUnitName"]) > 0 then
+							itemUnitLast['iAtb'] = 1.25;
+							push(ListUnitSetATB, itemUnitLast);
+							ShowFlyingSign(TTHCS_PATH["Talent"]["Hero9"]["Effect"], itemUnitLast['strUnitName'], 5);
+						end;
+						combatSetPause(nil);
+					end;
+				end;
+			end;
+			H55SMOD_MiddlewareListener['Hero9']['function'] = Events_MiddlewareListener_Implement_Hero9;
+
 -- 生物
 	-- LightAngel
 		H55SMOD_MiddlewareListener['LightAngel'] = {};
@@ -4747,7 +4772,19 @@ doFile('/scripts/combat-startup.lua')
 					local objMagicId = TTHCS_TABLE.DragonKnightMagic[iMagicIndex];
 					local iMagicId = objMagicId["Id"];
 					local enumMagicType = objMagicId["Type"];
-					Thread_Command_UnitCastGlobalSpell_IgnoreMana(itemUnit['strUnitName'], iMagicId);
+					local arrImmuneCreature = objMagicId["Immune"];
+
+					local listCreaturesTarget = GetCreatures(getSide(iSide, 1));
+					local iLenCreaturesTarget = length(listCreaturesTarget);
+					local iLenImmune = 0;
+					for iIndexCreaturesTarget = 0, iLenCreaturesTarget - 1 do
+						if contains(arrImmuneCreature, GetCreatureType(listCreaturesTarget[iIndexCreaturesTarget])) ~= nil then
+							iLenImmune = iLenImmune + 1;
+						end;
+					end;
+					if iLenCreaturesTarget > iLenImmune and iLenCreaturesTarget > 0 then
+						Thread_Command_UnitCastGlobalSpell_IgnoreMana(itemUnit['strUnitName'], iMagicId);
+					end;
 					H55SMOD_MiddlewareListener['DragonKnight']['MagicIndex'] = H55SMOD_MiddlewareListener['DragonKnight']['MagicIndex'] + 1;
 					if H55SMOD_MiddlewareListener['DragonKnight']['MagicIndex'] > 3 then
 						H55SMOD_MiddlewareListener['DragonKnight']['MagicIndex'] = 1;

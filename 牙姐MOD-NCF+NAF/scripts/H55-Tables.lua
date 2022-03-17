@@ -10229,6 +10229,7 @@
     TTH_FINAL.PI = 3.1416;
 
     TTH_FINAL.GAMEVAR_COMBAT_ARTIFACT = "TTH_Artifact_Effect_Combat_";
+    TTH_FINAL.GAMEVAR_COMBAT_ARTIFACTSET = "TTH_ArtifactSet_Effect_Combat_";
     TTH_FINAL.GAMEVAR_COMBAT_SKILL = "TTH_Skill_Effect_Combat_";
 
     TTH_FINAL.MILITARY_EXPEDITION = 1000;
@@ -11011,6 +11012,9 @@
           , ["Una"] = {
             [TTH_ENUM.FuncAlways] = "TTH_TALENT.initUna"
           }
+          , ["Quroq"] = {
+            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initQuroq"
+          }
         }
         , [TTH_ENUM.FuncActive] = {
           ["Nathaniel"] = {
@@ -11182,6 +11186,12 @@
           }
           , ["Wulfstan"] = {
             [TTH_ENUM.FuncAlways] = "TTH_TALENT.dealDailyWulfstan"
+          }
+          , ["Hero9"] = {
+            [TTH_ENUM.FuncAlways] = "TTH_TALENT.dealDailyHero9"
+          }
+          , ["Quroq"] = {
+            [TTH_ENUM.FuncAlways] = "TTH_TALENT.dealDailyQuroq"
           }
         }
         , [TTH_ENUM.FuncResetDaily] = {
@@ -17095,6 +17105,9 @@
           ["Component"] = {
             [0] = ARTIFACT_OGRE_CLUB
             , [1] = ARTIFACT_OGRE_SHIELD
+          }
+          , ["GiveMagic"] = {
+            [2] = SPELL_WARCRY_CALL_OF_BLOOD
           }
         }
         , [TTH_ENUM.SET_RUNIC] = {

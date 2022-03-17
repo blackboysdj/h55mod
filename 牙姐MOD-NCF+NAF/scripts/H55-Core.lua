@@ -2744,6 +2744,31 @@ doFile("/scripts/H55-Settings.lua");
 						SetGameVar(strKey, 0);
 					end;
 				end;
+				TTH_TABLE.CombatArtifactSet = {
+					[1] = {
+						["Id"] = TTH_ENUM.SET_OGRES
+						, ["Count"] = 2
+					}
+				};
+				function TTH_GLOBAL.setGameVar4HeroArtifactSet(iPlayer, strHero)
+					TTH_MAIN.debug("TTH_GLOBAL.setGameVar4HeroArtifactSet", iPlayer, strHero);
+
+					for i, objArtifactSet in TTH_TABLE.CombatArtifactSet do
+						local strKey = TTH_FINAL.GAMEVAR_COMBAT_ARTIFACTSET..strHero..'_'..objArtifactSet["Id"]..'_'..objArtifactSet["Count"];
+						local iCount = TTH_GLOBAL.getSetComponentCount(strHero, objArtifactSet["Id"]); -- 统计套装件数（含星尘坠饰）
+						if iCount > 0 then
+							SetGameVar(strKey, iCount);
+						else
+							SetGameVar(strKey, 0);
+						end;
+					end;
+				end;
+				function TTH_GLOBAL.removeGameVar4HeroArtifactSet(strHero)
+					for i, objArtifactSet in TTH_TABLE.CombatArtifactSet do
+						local strKey = TTH_FINAL.GAMEVAR_COMBAT_ARTIFACTSET..strHero..'_'..objArtifactSet["Id"]..'_'..objArtifactSet["Count"];
+						SetGameVar(strKey, 0);
+					end;
+				end;
 
 			-- 保存英雄技能到游戏全局参数中
 				TTH_TABLE.CombatSkill = {
@@ -2992,8 +3017,10 @@ doFile("/scripts/H55-Settings.lua");
 	          end;
 	        end;
 		      -- 计算 星尘坠饰
-		        if HasArtefact(strHero, ARTIFACT_PENDANT_OF_STARDUST, 1) ~= nil then
-		          iCount = iCount + 1;
+		        if iCount > 0 then
+			        if HasArtefact(strHero, ARTIFACT_PENDANT_OF_STARDUST, 1) ~= nil then
+			          iCount = iCount + 1;
+			        end;
 		        end;
 		      return iCount;
 				end;
@@ -3106,6 +3133,47 @@ doFile("/scripts/H55-Settings.lua");
 						              end;
 						              TTH_VARI.artifactSetBonus8Hero[strHero][iSetId][i] = nil;
 						              TTH_GLOBAL.showArtifactSetFlyingSign(strHero, iPlayer, 0);
+						            end;
+						          end;
+						        end;
+						      end;
+					      end;
+				    end;
+				  end;
+				end;
+
+			-- 套装送魔法
+				TTH_VARI.artifactGiveMagic8Hero = {};
+				function TTH_GLOBAL.upgradeArtifactGiveMagic8Hero(iPlayer, strHero)
+					TTH_MAIN.debug("TTH_GLOBAL.upgradeArtifactGiveMagic8Hero", nil, strHero);
+
+				  if TTH_GLOBAL.isHeroAtGarrison(strHero) == 0 then
+				    local iPlayer = GetObjectOwner(strHero);
+				    for iSetId, objSet in TTH_TABLE.ArtifactSetBonus do
+				      local iCount = TTH_GLOBAL.getSetComponentCount(strHero, iSetId); -- 统计套装件数（含星尘坠饰）
+
+				      -- 初始化套装魔法奖励在存储空间 by 英雄
+				        if TTH_VARI.artifactGiveMagic8Hero[strHero] == nil then
+				          TTH_VARI.artifactGiveMagic8Hero[strHero] = {};
+				        end;
+				        if TTH_VARI.artifactGiveMagic8Hero[strHero][iSetId] == nil then
+				          TTH_VARI.artifactGiveMagic8Hero[strHero][iSetId] = {};
+				        end;
+
+				      -- 查验有几件套装组件，并随之赠送魔法
+					      if objSet["GiveMagic"] ~= nil then
+					      	local objGiveMagic = objSet["GiveMagic"];
+						      for i = 1, 8 do
+						        if objGiveMagic[i] ~= nil then
+						          if iCount >= i then
+						            if TTH_VARI.artifactGiveMagic8Hero[strHero][iSetId][i] == nil then
+						              TTH_VARI.artifactGiveMagic8Hero[strHero][iSetId][i] = 1;
+						              TeachHeroSpell(strHero, objGiveMagic[i]);
+						              local strText = {
+						              	"/Text/Game/Scripts/Learnspell.txt"
+						              	;name=TTH_TABLE_SPELL[objGiveMagic[i]]["NAME"]
+						              };
+						              TTH_GLOBAL.sign(strHero, strText);
 						            end;
 						          end;
 						        end;
@@ -8227,6 +8295,7 @@ doFile("/scripts/H55-Settings.lua");
 				local strHeroWinner = TTH_VARI.heroWinner8PlayerRemove;
 
 				TTH_GLOBAL.removeGameVar4HeroArtifact(strHero);
+				TTH_GLOBAL.removeGameVar4HeroArtifactSet(strHero);
 				TTH_GLOBAL.removeGameVar4HeroSkill(strHero);
 			end;
 
@@ -10343,6 +10412,62 @@ doFile("/scripts/H55-Settings.lua");
 						iTownValue = TTH_COMMON.round(iGoblinCount / 3);
 					end;
 					return iTownValue;
+      	end;
+
+      -- Hero9 135 科尔汉
+				function TTH_TALENT.dealDailyHero9(iPlayer, strHero)
+					TTH_MAIN.debug("TTH_TALENT.dealDailyHero9", iPlayer, strHero);
+
+	    		local iCreatureId = CREATURE_GOBLIN;
+					local arrCreature4Hero = TTH_GLOBAL.getHeroCreatureInfo(strHero);
+					for iIndex = 0, 6 do
+						if arrCreature4Hero[iIndex]["Count"] > 0 then
+							if arrCreature4Hero[iIndex]["Id"] == CREATURE_GOBLIN_TRAPPER
+								or arrCreature4Hero[iIndex]["Id"] == CREATURE_GOBLIN_DEFILER then
+								iCreatureId = arrCreature4Hero[iIndex]["Id"];
+								break;
+							end;
+						end;
+					end;
+	    		local iCreatureNumber = 1;
+					for iIndex = 0, 6 do
+						if arrCreature4Hero[iIndex]["Count"] > 0 then
+							if arrCreature4Hero[iIndex]["Id"] == CREATURE_GOBLIN
+								or arrCreature4Hero[iIndex]["Id"] == CREATURE_GOBLIN_TRAPPER
+								or arrCreature4Hero[iIndex]["Id"] == CREATURE_GOBLIN_DEFILER then
+								iCreatureNumber = iCreatureNumber + arrCreature4Hero[iIndex]["Count"];
+							end;
+						end;
+					end;
+	    		TTH_GLOBAL.addCreature4Hero8Sign(strHero, iCreatureId, 1, TTH_ENUM.AddCreature);
+	    		TTH_GLOBAL.putSettleResource(iPlayer, GOLD, iCreatureNumber);
+				end;
+
+			-- Quroq 150 魁洛克
+      	function TTH_TALENT.initQuroq(strHero)
+					TTH_MAIN.debug("TTH_TALENT.initQuroq", nil, strHero);
+
+					TTH_VARI.talent[strHero] = {
+						["TownLevel"] = 0
+					};
+      	end;
+      	function TTH_TALENT.dealDailyQuroq(iPlayer, strHero)
+					TTH_MAIN.debug("TTH_TALENT.dealDailyQuroq", iPlayer, strHero);
+
+      		if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+	      		local arrTown = TTH_MANAGE.listMayorTown8Hero(strHero);
+	      		local iTownLevel = 0;
+	      		for i, strTown in arrTown do
+		      		local objTown = TTH_MANAGE.analysisTownBuildLevel(strTown);
+		      		local iTownBuildingTotalLevel = TTH_MANAGE.calcTownBuildingTotalLevel(objTown);
+		      		iTownLevel = iTownLevel + iTownBuildingTotalLevel;
+	      		end
+	      		local iDiff = iTownLevel - TTH_VARI.talent[strHero]["TownLevel"];
+	      		if iDiff > 0 then
+	      			TTH_VARI.talent[strHero]["TownLevel"] = iTownLevel;
+	    				TTH_GLOBAL.putSettleResource(iPlayer, GOLD, iDiff * 500);
+	      		end;
+	      	end;
       	end;
 
 	-- 宝物
@@ -12529,6 +12654,12 @@ doFile("/scripts/H55-Settings.lua");
 
 	-- test
 		TTH_TEST = {};
+		function TTH_TEST.test26(iPlayer)
+			local strHero = GetPlayerHeroes(iPlayer)[0];
+			GiveArtefact(strHero, ARTIFACT_OGRE_CLUB);
+			GiveArtefact(strHero, ARTIFACT_OGRE_SHIELD);
+			GiveArtefact(strHero, ARTIFACT_PENDANT_OF_STARDUST);
+		end;
 		function TTH_TEST.test25(iPlayer)
 			local strHero = GetPlayerHeroes(iPlayer)[0];
 			GiveHeroSkill(strHero, HERO_SKILL_BARBARIAN_LEARNING);
@@ -12980,7 +13111,9 @@ doFile("/scripts/H55-Settings.lua");
 							if arrHero ~= nil then
 								for iIndex, strHero in arrHero do
 									TTH_GLOBAL.setGameVar4HeroArtifact(iPlayer, strHero); -- 保存全局参数，英雄携带宝物
+									TTH_GLOBAL.setGameVar4HeroArtifactSet(iPlayer, strHero); -- 保存全局参数，英雄携带宝物套装
 									TTH_GLOBAL.upgradeArtifactSetBonus8Hero(iPlayer, strHero); -- 宝物套装属性更新
+									TTH_GLOBAL.upgradeArtifactGiveMagic8Hero(iPlayer, strHero); -- 宝物套装赠送魔法
 								end;
 
 								-- 若玩家是人类

@@ -125,6 +125,10 @@ TTH_ARTIFACT_EFFECT_COMBAT_HERO = {
     [0] = {}
     , [1] = {}
 };
+TTH_ARTIFACTSET_EFFECT_COMBAT_HERO = {
+    [0] = {}
+    , [1] = {}
+};
 TTH_SKILL_EFFECT_COMBAT = {
     [0] = HERO_SKILL_WEAKENING_STRIKE
     , [1] = HERO_SKILL_ELITE_CASTERS
@@ -2576,6 +2580,25 @@ end;
     -- 计算对象
       TTHCS_ENUM.Magic = 1;
       TTHCS_ENUM.Creature = 2;
+
+    -- 套装
+      TTHCS_ENUM.SET_CUSTOM = 0
+      TTHCS_ENUM.SET_DRAGONISH = 1
+      TTHCS_ENUM.SET_DWARVEN = 2
+      TTHCS_ENUM.SET_LIONS = 3
+      TTHCS_ENUM.SET_MAGIS = 4
+      TTHCS_ENUM.SET_NECROMANCERS = 5
+      TTHCS_ENUM.SET_NECROMANCERS_PELT = 51
+      TTHCS_ENUM.SET_EDUCATIONAL = 6
+      TTHCS_ENUM.SET_HUNTERS = 7
+      TTHCS_ENUM.SET_OGRES = 8
+      TTHCS_ENUM.SET_RUNIC = 9
+      TTHCS_ENUM.SET_DEMONIC = 10
+      TTHCS_ENUM.SET_MONK = 11
+      TTHCS_ENUM.SET_GUARDIAN = 12
+      TTHCS_ENUM.SET_ROOKIE = 13
+      TTHCS_ENUM.SET_ELEMENT = 14
+      TTHCS_ENUM.SET_PIRATE = 15
 
   TTHCS_TABLE = {};
     -- 战场大小
@@ -11092,6 +11115,32 @@ end;
         }
       };
 
+    -- 据点生物
+      TTHCS_TABLE.StrongholdCreature = {
+        CREATURE_GOBLIN
+        , CREATURE_GOBLIN_TRAPPER
+        , CREATURE_GOBLIN_DEFILER
+        , CREATURE_CENTAUR
+        , CREATURE_CENTAUR_NOMAD
+        , CREATURE_CENTAUR_MARADEUR
+        , CREATURE_ORC_WARRIOR
+        , CREATURE_ORC_SLAYER
+        , CREATURE_ORC_WARMONGER
+        , CREATURE_SHAMAN
+        , CREATURE_SHAMAN_WITCH
+        , CREATURE_SHAMAN_HAG
+        , CREATURE_ORCCHIEF_BUTCHER
+        , CREATURE_ORCCHIEF_EXECUTIONER
+        , CREATURE_ORCCHIEF_CHIEFTAIN
+        , CREATURE_WYVERN
+        , CREATURE_WYVERN_POISONOUS
+        , CREATURE_WYVERN_PAOKAI
+        , CREATURE_CYCLOP
+        , CREATURE_CYCLOP_UNTAMED
+        , CREATURE_CYCLOP_BLOODEYED
+        , CREATURE_WOLF
+      };
+
   TTHCS_COMMON = {};
     -- 向下取整
       function TTHCS_COMMON.floor(n)
@@ -11360,7 +11409,7 @@ end;
       TTHCS_PATH["Talent"]["Dracon"]["EffectStart"] = "/Text/TTH/Heroes/Specializations/Academy/Dracon/Combat/EffectStart.txt";
 
       TTHCS_PATH["Talent"]["Hero9"] = {};
-      TTHCS_PATH["Talent"]["Hero9"]["Effect"] = "/Text/TTH/Heroes/Specializations/Stronghold/Hero9/Combat/Effect.txt";
+      TTHCS_PATH["Talent"]["Hero9"]["Effect"] = "/Text/TTH/Heroes/Specializations/Stronghold/135-Hero9/Combat/Effect.txt";
 
     TTHCS_PATH["Perk"] = {};
       TTHCS_PATH["Perk"][HERO_SKILL_SEAL_OF_PROTECTION] = {};
@@ -11380,11 +11429,24 @@ end;
       TTHCS_PATH["Artifact"][ARTIFACT_CURSE_SHOULDER] = {};
       TTHCS_PATH["Artifact"][ARTIFACT_CURSE_SHOULDER]["Effect"] = "/Text/TTH/Artifact/114-CurseShoulder/Combat/Effect.txt";
 
+    TTHCS_PATH["ArtifactSet"] = {};
+      TTHCS_PATH["ArtifactSet"][TTHCS_ENUM.SET_OGRES.."_"..2] = {};
+      TTHCS_PATH["ArtifactSet"][TTHCS_ENUM.SET_OGRES.."_"..2]["Effect"] = "/Text/TTH/ArtifactSet/8-Ogres/Combat/Effect2.txt";
+
     TTHCS_PATH["Creature"] = {};
       TTHCS_PATH["Creature"]["Enchanter"] = {};
       TTHCS_PATH["Creature"]["Enchanter"]["Effect1"] = "/Text/TTH/Creature/Enchanter/Combat/Effect1.txt";
       TTHCS_PATH["Creature"]["Enchanter"]["Effect2"] = "/Text/TTH/Creature/Enchanter/Combat/Effect2.txt";
       TTHCS_PATH["Creature"]["Enchanter"]["Effect3"] = "/Text/TTH/Creature/Enchanter/Combat/Effect3.txt";
       TTHCS_PATH["Creature"]["Enchanter"]["EffectConsume"] = "/Text/TTH/Creature/Enchanter/Combat/EffectConsume.txt";
+
+
+
+TTH_ARTIFACTSET_EFFECT_COMBAT = {
+  [1] = {
+      ["Id"] = TTHCS_ENUM.SET_OGRES
+      , ["Count"] = 2
+  }
+};
 
 function close_file(fileName) end

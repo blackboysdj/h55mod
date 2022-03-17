@@ -73,6 +73,7 @@ doFile('/scripts/combat-startup.lua')
 -- 常量
 	TTH_FINAL = {};
 	TTH_FINAL.GAMEVAR_COMBAT_ARTIFACT = "TTH_Artifact_Effect_Combat_";
+	TTH_FINAL.GAMEVAR_COMBAT_ARTIFACTSET = "TTH_ArtifactSet_Effect_Combat_";
 	TTH_FINAL.GAMEVAR_COMBAT_SKILL = "TTH_Skill_Effect_Combat_";
 
 -- 枚举
@@ -1015,6 +1016,13 @@ doFile('/scripts/combat-startup.lua')
 						TTH_ARTIFACT_EFFECT_COMBAT_HERO[iSide][objArtifact] = strValue + 0;
 					end;
 				end;
+				for indexArtifactSet, objArtifactSet in TTH_ARTIFACTSET_EFFECT_COMBAT do
+					local strKey = TTH_FINAL.GAMEVAR_COMBAT_ARTIFACTSET..strHero..'_'..objArtifactSet["Id"]..'_'..objArtifactSet["Count"];
+					local strValue = GetGameVar(strKey);
+					if strValue ~= nil and strValue ~= '' and strValue + 0 > 0 then
+						TTH_ARTIFACTSET_EFFECT_COMBAT_HERO[iSide][objArtifactSet["Id"]..'_'..objArtifactSet["Count"]] = strValue + 0;
+					end;
+				end;
 			end;
 		end;
 	end;
@@ -1494,6 +1502,8 @@ doFile('/scripts/combat-startup.lua')
 								-- Skill
 									H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_WEAKENING_STRIKE]['function'](getSide(iSide, 1), itemUnitLast, listCreaturesBeEffected);
 									H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_SEAL_OF_PROTECTION]['function'](getSide(iSide, 1), itemUnitLast, listCreaturesBeEffected);
+								-- Skill
+									H55SMOD_MiddlewareListener["ArtifactSet"][TTHCS_ENUM.SET_OGRES.."_"..2]["function"](getSide(iSide, 1), itemUnitLast, listCreaturesBeEffected);
 							end;
 
 							-- Haven
@@ -2149,6 +2159,42 @@ doFile('/scripts/combat-startup.lua')
 			end;
 		end;
 		H55SMOD_MiddlewareListener['Artifact'][ARTIFACT_PENDANT_OF_BLIND]['function'] = Events_MiddlewareListener_Implement_Artifact_PendantOfBlind;
+
+-- 组合宝物
+	H55SMOD_MiddlewareListener["ArtifactSet"] = {};
+
+	-- 宝物套装-力量武器 英雄普攻造成战损后自动释放一次随机血之召唤
+		H55SMOD_MiddlewareListener["ArtifactSet"][TTHCS_ENUM.SET_OGRES.."_"..2] = {};
+		function Events_MiddlewareListener_Implement_ArtifactSet_SetOgres(iSide, itemUnitLast, listCreaturesBeEffected)
+			if GetHero(iSide) ~= nil and itemUnitLast["strUnitName"] == GetHero(iSide) then
+				if TTH_ARTIFACTSET_EFFECT_COMBAT_HERO[iSide][TTHCS_ENUM.SET_OGRES.."_"..2] ~= nil
+					and TTH_ARTIFACTSET_EFFECT_COMBAT_HERO[iSide][TTHCS_ENUM.SET_OGRES.."_"..2] >= 2 then
+					combatSetPause(1);
+					local listCreaturesTarget = GetCreatures(iSide);
+					local iLenCreaturesTarget = length(listCreaturesTarget);
+					local arrStrongholdCreature = {};
+					for iIndexCreaturesTarget = 0, iLenCreaturesTarget - 1 do
+						local itemCreature = geneUnitStatus(listCreaturesTarget[iIndexCreaturesTarget]);
+						if IsCombatUnit(itemCreature["strUnitName"]) ~= nil
+							and itemCreature["iUnitNumber"] > 0
+							and contains(TTHCS_TABLE.StrongholdCreature, itemCreature["iUnitType"]) ~= nil then
+							arrStrongholdCreature = push(arrStrongholdCreature, itemCreature["strUnitName"]);
+						end;
+					end;
+					local iLenStrongholdCreature = length(arrStrongholdCreature);
+					local iIndexCreature = tth_mod(I_TIMER, iLenStrongholdCreature);
+					local strCreatureName = arrStrongholdCreature[iIndexCreature];
+					startThread(Thread_Command_UnitCastAimedSpell, GetHero(iSide), SPELL_WARCRY_CALL_OF_BLOOD, strCreatureName, 1);
+					ShowFlyingSign(TTHCS_PATH["ArtifactSet"][TTHCS_ENUM.SET_OGRES.."_"..2]["Effect"], strCreatureName, 5);
+					local itemHero = geneUnitStatus(GetHero(iSide));
+					itemHero["iAtb"] = 0.4;
+					push(ListUnitSetATB, itemHero);
+					sleep(20);
+					combatSetPause(nil);
+				end;
+			end;
+		end;
+		H55SMOD_MiddlewareListener["ArtifactSet"][TTHCS_ENUM.SET_OGRES.."_"..2]["function"] = Events_MiddlewareListener_Implement_ArtifactSet_SetOgres;
 
 -- 技能
 	H55SMOD_MiddlewareListener['Skill'] = {};

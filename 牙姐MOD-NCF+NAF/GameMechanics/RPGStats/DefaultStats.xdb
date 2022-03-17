@@ -510,9 +510,7 @@
 									<IntParam>0</IntParam>
 									<FloatParam>0</FloatParam>
 									<Spells/>
-									<Abilities>
-										<Item>ABILITY_TREACHERY</Item>
-									</Abilities>
+									<Abilities/>
 								</Item>
 								<Item>
 									<Type>DEMON_RAGE_BONUS_DEFENCE</Type>

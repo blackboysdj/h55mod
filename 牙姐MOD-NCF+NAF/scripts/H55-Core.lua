@@ -4929,6 +4929,11 @@ doFile("/scripts/H55-Settings.lua");
 							break;
 						end;
 					end;
+					for i = 0, iLenArrCreatureType - 1 do
+						if arrCreature4Hero[i]["Id"] == CREATURE_GOBLIN then
+							arrCreature4Hero[i]["Id"] = CREATURE_GOBLIN_TRAPPER;
+						end;
+					end;
 					local strEnemyHero = nil;
 					local iCoef = TTH_GLOBAL.getGameDifficulty();
 					local iHeroRace = TTH_GLOBAL.getRace8Hero(strHero);

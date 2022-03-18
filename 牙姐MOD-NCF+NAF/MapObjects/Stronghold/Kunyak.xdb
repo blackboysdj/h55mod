@@ -58,7 +58,7 @@
 		<skills>
 			<Item>
 				<Mastery>MASTERY_BASIC</Mastery>
-				<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
+				<SkillID>HERO_SKILL_BARBARIAN_LEARNING</SkillID>
 			</Item>
 		</skills>
 		<perkIDs>

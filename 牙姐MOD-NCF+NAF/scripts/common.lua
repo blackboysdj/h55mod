@@ -306,7 +306,7 @@ function Thread_Command_UnitCastAimedSpell(caster, spell_id, target, ishero)
         repeat sleep(1); until GetUnitManaPoints(caster) > 100;
         UnitCastAimedSpell(caster, spell_id, target);
         repeat sleep(1); until GetUnitManaPoints(caster) < 1000;
-        SetUnitManaPoints(caster, iCurrentMana);
+        SetUnitManaPoints(caster, 1);
     end
 end;
 function Thread_Command_UnitCastAimedSpell_WithoutMana(caster, spell_id, target)

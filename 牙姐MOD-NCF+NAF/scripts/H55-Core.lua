@@ -5,6 +5,13 @@
 doFile("/scripts/H55-Settings.lua");
 
 -- TTH环境
+	-- 赞助
+		TTH_SUPPORT = {};
+
+		-- 寒卿娜瑞莎
+			function TTH_SUPPORT.dealIldar(iPlayer, strHero)
+			end;
+
 	-- 变量
 		TTH_VARI = {};
 
@@ -452,11 +459,15 @@ doFile("/scripts/H55-Settings.lua");
 				for i = TOWN_HEAVEN, TOWN_STRONGHOLD do
 					AllowPlayerTavernRace(iPlayer, i, TTH_ENUM.No);
 				end
+				local strHireHero = H55_ChooseHero_Name;
+				if contains(GetPlayerHeroes(iPlayer), strHireHero) ~= nil and H55_ChooseHero_Name2 ~= "" then
+					strHireHero = H55_ChooseHero_Name2;
+				end;
 				for i = PLAYER_1, PLAYER_8 do
 					if i == iPlayer then
-						AllowPlayerTavernHero(i, H55_ChooseHero_Name, TTH_ENUM.Yes);
+						AllowPlayerTavernHero(i, strHireHero, TTH_ENUM.Yes);
 					else
-						AllowPlayerTavernHero(i, H55_ChooseHero_Name, TTH_ENUM.No);
+						AllowPlayerTavernHero(i, strHireHero, TTH_ENUM.No);
 					end;
 				end;
 			end;
@@ -517,6 +528,11 @@ doFile("/scripts/H55-Settings.lua");
 						if iGameDifficulty == 2 then fCoef = 1.2 end;
 						if iGameDifficulty == 1 then fCoef = 1 end;
 						return fCoef;
+					end;
+					function TTH_AI.getTrialCoef8GameDifficulty()
+						local iCoef = TTH_GLOBAL.getGameDifficulty();
+						if iCoef == 0 then iCoef = 1 end;
+						return iCoef;
 					end;
 
 				-- 游戏时间
@@ -4922,7 +4938,7 @@ doFile("/scripts/H55-Settings.lua");
 					local strCallbackWin = "TTH_VISIT.winVisitShantiri2TrialCourage";
 					local strPathCombatLink = TTH_PATH.Visit["Shantiri"]["CombatLink"];
 					local arrCreature4Hero = TTH_GLOBAL.getHeroCreatureInfo(strHero);
-					local iLenArrCreatureType = 0;
+					local iLenArrCreatureType = 7;
 					for i = 0, length(arrCreature4Hero) - 1 do
 						if arrCreature4Hero[i]["Id"] == 0 then
 							iLenArrCreatureType = i;
@@ -4935,7 +4951,7 @@ doFile("/scripts/H55-Settings.lua");
 						end;
 					end;
 					local strEnemyHero = nil;
-					local iCoef = TTH_GLOBAL.getGameDifficulty();
+					local iCoef = TTH_AI.getTrialCoef8GameDifficulty();
 					local iHeroRace = TTH_GLOBAL.getRace8Hero(strHero);
 					if iLenArrCreatureType == 1 then
 						StartCombat(strHero, strEnemyHero, 1
@@ -5214,8 +5230,8 @@ doFile("/scripts/H55-Settings.lua");
 					local iHeroLevel = GetHeroLevel(strHero);
 
 					local strEnemyHero = nil;
-					local iCoef = TTH_COMMON.round(sqrt(TTH_GLOBAL.getGameDifficulty()) * sqrt(iHeroLevel));
-					local iCoefMagic = TTH_COMMON.round(sqrt(TTH_GLOBAL.getGameDifficulty()) * sqrt(iHeroLevel) * 1.5);
+					local iCoef = TTH_COMMON.round(sqrt(TTH_AI.getTrialCoef8GameDifficulty()) * sqrt(iHeroLevel));
+					local iCoefMagic = TTH_COMMON.round(sqrt(TTH_AI.getTrialCoef8GameDifficulty()) * sqrt(iHeroLevel) * 1.5);
 					local iHeroGroup = TTH_TABLE.Hero[strHero]["Group"];
 		  		if iHeroGroup == GroupMight
 		  			or iHeroRace == GroupBalanceNotNec
@@ -5456,8 +5472,8 @@ doFile("/scripts/H55-Settings.lua");
 					local iHeroLevel = GetHeroLevel(strHero);
 
 					local strEnemyHero = nil;
-					local iCoefBoss = TTH_COMMON.round(sqrt(TTH_GLOBAL.getGameDifficulty()) * sqrt(iHeroLevel));
-					local iCoef = TTH_COMMON.round(sqrt(TTH_GLOBAL.getGameDifficulty()) * sqrt(iHeroLevel) * iPower / 50000);
+					local iCoefBoss = TTH_COMMON.round(sqrt(TTH_AI.getTrialCoef8GameDifficulty()) * sqrt(iHeroLevel));
+					local iCoef = TTH_COMMON.round(sqrt(TTH_AI.getTrialCoef8GameDifficulty()) * sqrt(iHeroLevel) * iPower / 50000);
 					local iHeroRace = TTH_GLOBAL.getRace8Hero(strHero);
 					StartCombat(strHero, strEnemyHero, 7
 						, CREATURE_DRAGON_KNIGHT, 1 * iCoefBoss
@@ -12818,7 +12834,13 @@ doFile("/scripts/H55-Settings.lua");
 				local iX, iY, iZ = GetObjectPosition(strShantiri);
 				OpenCircleFog(iX, iY, iZ, 5, iPlayer);
 			end;
-			ExecConsoleCommand("enable_cheats")
+			-- ExecConsoleCommand("enable_cheats")
+			StartCombat(strHero, nil, 1
+				, 0, 1
+				, nil
+				, nil
+				, TTH_PATH.Visit["Shantiri"]["CombatLink"]
+				, 1);
 		end;
 		function TTH_TEST.test15(iPlayer)
 			local strHero = GetPlayerHeroes(iPlayer)[0];
@@ -13119,6 +13141,7 @@ doFile("/scripts/H55-Settings.lua");
 									TTH_GLOBAL.setGameVar4HeroArtifactSet(iPlayer, strHero); -- 保存全局参数，英雄携带宝物套装
 									TTH_GLOBAL.upgradeArtifactSetBonus8Hero(iPlayer, strHero); -- 宝物套装属性更新
 									TTH_GLOBAL.upgradeArtifactGiveMagic8Hero(iPlayer, strHero); -- 宝物套装赠送魔法
+									TTH_SUPPORT.dealIldar(iPlayer, strHero); -- 寒卿娜瑞莎
 								end;
 
 								-- 若玩家是人类
@@ -13439,3 +13462,4 @@ doFile("/scripts/H55-Settings.lua");
 -- 模块加载
 	doFile("/scripts/mod/TTH_MOD_CombatResults4LoseCreature.lua");
 	doFile("/scripts/mod/TTH_MOD_CombatResults4ReviveCreature.lua");
+	doFile("/scripts/support/hanqing-core.lua");

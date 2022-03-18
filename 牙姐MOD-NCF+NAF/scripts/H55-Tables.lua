@@ -20152,6 +20152,14 @@
                 ["Id"] = HERO_SKILL_POWER_OF_BLOOD
                 , ["Text"] = "/Text/TTH/Skills/DemonicRage/184-PowerOfBlood/Name.txt"
               }
+              , [182] = { -- 地精支援
+                ["Id"] = HERO_SKILL_GOBLIN_SUPPORT
+                , ["Text"] = "/Text/TTH/Skills/DemonicRage/182-GoblinSupport/Name.txt"
+                , ["DependType"] = TTH_ENUM.Simple
+                , ["Depend"] = {
+                  [1] = HERO_SKILL_POWER_OF_BLOOD
+                }
+              }
               , [174] = { -- 血统记忆
                 ["Id"] = HERO_SKILL_MEMORY_OF_OUR_BLOOD
                 , ["Text"] = "/Text/TTH/Skills/DemonicRage/174-MemoryOfOurBlood/Name.txt"
@@ -20162,18 +20170,6 @@
                 , ["DependType"] = TTH_ENUM.Simple
                 , ["Depend"] = {
                   [1] = HERO_SKILL_MEMORY_OF_OUR_BLOOD
-                }
-              }
-              , [182] = { -- 地精支援
-                ["Id"] = HERO_SKILL_GOBLIN_SUPPORT
-                , ["Text"] = "/Text/TTH/Skills/DemonicRage/182-GoblinSupport/Name.txt"
-              }
-              , [181] = { -- 全体保卫
-                ["Id"] = HERO_SKILL_DEFEND_US_ALL
-                , ["Text"] = "/Text/TTH/Skills/DemonicRage/181-DefendUsAll/Name.txt"
-                , ["DependType"] = TTH_ENUM.Simple
-                , ["Depend"] = {
-                  [1] = HERO_SKILL_GOBLIN_SUPPORT
                 }
               }
             }
@@ -20694,13 +20690,21 @@
               , [212] = { -- 智慧学
                 ["Id"] = HERO_SKILL_BARBARIAN_INTELLIGENCE
                 , ["Text"] = "/Text/TTH/Skills/BarbarianLearning/212-BarbarianIntelligence/Name.txt"
+                , ["DependType"] = TTH_ENUM.Simple
+                , ["Depend"] = {
+                  [1] = HERO_SKILL_WARCRY_LEARNING
+                }
               }
               , [186] = { -- 耐力
                 ["Id"] = HERO_SKILL_BODYBUILDING
                 , ["Text"] = "/Text/TTH/Skills/BarbarianLearning/186-Bodybuilding/Name.txt"
+              }
+              , [181] = { -- 全体保卫
+                ["Id"] = HERO_SKILL_DEFEND_US_ALL
+                , ["Text"] = "/Text/TTH/Skills/DemonicRage/181-DefendUsAll/Name.txt"
                 , ["DependType"] = TTH_ENUM.Simple
                 , ["Depend"] = {
-                  [1] = HERO_SKILL_BARBARIAN_INTELLIGENCE
+                  [1] = HERO_SKILL_BODYBUILDING
                 }
               }
             }

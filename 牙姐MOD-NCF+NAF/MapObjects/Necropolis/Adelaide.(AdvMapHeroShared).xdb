@@ -35,8 +35,8 @@
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_NECROMANCY</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Necropolis55/Freezing_Field/Name.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Necropolis55/Freezing_Field/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Necromancy/098-Adelaide/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Necromancy/098-Adelaide/Description.txt"/>
 	<SpecializationIcon href="/Textures/SpellBook______2618/Spells/Spell_FrostRing.xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Necropolis/Necropolis_Adelaide_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>

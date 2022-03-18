@@ -1099,6 +1099,7 @@ doFile('/scripts/combat-startup.lua')
 			print(itemUnit["strUnitName"].." death");
 			-- Skill
 				H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_TRIPLE_CATAPULT]['function'](getSide(itemUnit["iSide"], 1), itemUnit);
+			H55SMOD_MiddlewareListener['Adelaide']['function']['hero']('Adelaide', itemUnit["iSide"], itemUnit);
 		elseif iType == ENUM_BASICLISTENER.MOVE then
 			local itemUnitLast = nil;
 			if length(ListUnitTriggerMiddlewareListener) > 0 then
@@ -1605,7 +1606,6 @@ doFile('/scripts/combat-startup.lua')
 							H55SMOD_MiddlewareListener['Gles']['function']('Gles', iSide, itemUnitLast, listCreaturesLastDeath);
 							H55SMOD_MiddlewareListener['Giovanni']['function']['creature']('Giovanni', iSide, itemUnitLast, listCreaturesLastDeath, listCreaturesBeEffected);
 							H55SMOD_MiddlewareListener['Vidomina']['function']('Vidomina', iSide, itemUnitLast, listCreaturesLastDeath);
-							-- H55SMOD_MiddlewareListener['Adelaide']['function']['hero']('Adelaide', iSide, itemUnitLast, listCreaturesLastDeath);
 						-- Fortress
 							H55SMOD_MiddlewareListener['Bersy']['function']('Bersy', iSide, itemUnitLast, listCreaturesLastDeath);
 						-- Dungeon
@@ -3755,31 +3755,7 @@ doFile('/scripts/combat-startup.lua')
 				end;
 			end;
 			H55SMOD_MiddlewareListener['Adelaide']['function']['creature'] = Events_MiddlewareListener_Implement_Adelaide_Creature;
-			function Events_MiddlewareListener_Implement_Adelaide_Hero(strHero, iSide, itemUnitLast, listCreaturesLastDeath)
-				if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero then
-					local iLenCreaturesLastDeath = length(listCreaturesLastDeath);
-					for iIndexCreaturesLastDeath = 0, iLenCreaturesLastDeath - 1 do
-						local itemCreaturesLastDeath = geneUnitStatus(listCreaturesLastDeath[iIndexCreaturesLastDeath]['strUnitName']);
-						if IsCombatUnit(itemCreaturesLastDeath['strUnitName']) ~= nil and itemCreaturesLastDeath['iUnitNumber'] == 0 and itemCreaturesLastDeath['iUnitType'] == CREATURE_935 then
-							if H55SMOD_MiddlewareListener[strHero]['flag'][itemCreaturesLastDeath['strUnitName']] == nil then
-								combatSetPause(1);
-								H55SMOD_MiddlewareListener[strHero]['flag'][itemCreaturesLastDeath['strUnitName']] = 1;
-
-								local iLenCreaturesInit = length(ObjSnapshotInit['Creatures'][iSide]);
-								for iIndexCreaturesInit = 0, iLenCreaturesInit - 1 do
-									if ObjSnapshotInit['Creatures'][iSide][iIndexCreaturesInit]['strUnitName'] == itemCreaturesLastDeath['strUnitName'] then
-										Thread_Command_RemoveCombatUnit_Uncheck(itemCreaturesLastDeath['strUnitName']);
-										sleep(20);
-										Thread_Command_AddCreature(iSide, itemCreaturesLastDeath['iUnitType'], ObjSnapshotInit['Creatures'][iSide][iIndexCreaturesInit]['iUnitNumber'], itemCreaturesLastDeath['iPositionX'], itemCreaturesLastDeath['iPositionY']);
-										sleep(50);
-										print(itemCreaturesLastDeath['strUnitName'].." has rebirth");
-									end;
-								end
-								combatSetPause(nil);
-							end;
-						end;
-					end;
-				end;
+			function Events_MiddlewareListener_Implement_Adelaide_Hero(strHero, iSide, itemUnit)
 			end;
 			H55SMOD_MiddlewareListener['Adelaide']['function']['hero'] = Events_MiddlewareListener_Implement_Adelaide_Hero;
 
@@ -4784,7 +4760,7 @@ doFile('/scripts/combat-startup.lua')
 		H55SMOD_MiddlewareListener['Cherubin'] = {};
 		H55SMOD_MiddlewareListener['Cherubin']['MagicIndex'] = 1;
 		function Events_MiddlewareListener_Implement_Cherubin(strHero, iSide, itemUnit)
-			if (itemUnit['iUnitType'] == CREATURE_CHERUBIN or itemUnit['iUnitType'] == CREATURE_CHERUBIN_LESS)
+			if itemUnit['iUnitType'] == CREATURE_CHERUBIN
 				and itemUnit['iSide'] == iSide then
 				if IsCombatUnit(itemUnit['strUnitName']) ~= nil and itemUnit['iUnitNumber'] > 0 then
 					combatSetPause(1);
@@ -4810,7 +4786,7 @@ doFile('/scripts/combat-startup.lua')
 		H55SMOD_MiddlewareListener['DragonKnight'] = {};
 		H55SMOD_MiddlewareListener['DragonKnight']['MagicIndex'] = 1;
 		function Events_MiddlewareListener_Implement_DragonKnight(strHero, iSide, itemUnit)
-			if (itemUnit['iUnitType'] == CREATURE_DRAGON_KNIGHT or itemUnit['iUnitType'] == CREATURE_DRAGON_KNIGHT_LESS)
+			if itemUnit['iUnitType'] == CREATURE_DRAGON_KNIGHT
 				and itemUnit['iSide'] == iSide then
 				if IsCombatUnit(itemUnit['strUnitName']) ~= nil and itemUnit['iUnitNumber'] > 0 then
 					combatSetPause(1);
@@ -4910,6 +4886,7 @@ doFile('/scripts/combat-startup.lua')
 print("All functions started");
 
 
+doFile("/scripts/support/hanqing-combat.lua");
 
 
 

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Creature>
-	<AttackSkill>50</AttackSkill>
-	<DefenceSkill>60</DefenceSkill>
+	<AttackSkill>31</AttackSkill>
+	<DefenceSkill>31</DefenceSkill>
 	<Shots>0</Shots>
-	<MinDamage>60</MinDamage>
-	<MaxDamage>60</MaxDamage>
-	<Speed>9</Speed>
-	<Initiative>12</Initiative>
+	<MinDamage>50</MinDamage>
+	<MaxDamage>50</MaxDamage>
+	<Speed>8</Speed>
+	<Initiative>11</Initiative>
 	<Flying>true</Flying>
-	<Health>300</Health>
+	<Health>220</Health>
 	<KnownSpells>
 		<Item>
 			<Spell>SPELL_MASS_BLESS</Spell>
@@ -23,7 +23,7 @@
 			<Mastery>MASTERY_ADVANCED</Mastery>
 		</Item>
 	</KnownSpells>
-	<SpellPoints>1</SpellPoints>
+	<SpellPoints>25</SpellPoints>
 	<SpellPoints1>0</SpellPoints1>
 	<SpellPoints2>0</SpellPoints2>
 	<Exp>1200</Exp>
@@ -62,7 +62,6 @@
 		<Item>ABILITY_CRYSTAL_SCALES</Item>
 		<Item>ABILITY_LARGE_SHIELD</Item>
 		<Item>ABILITY_SHIELD_OTHER</Item>
-		<Item>ABILITY_AURA_OF_MAGIC_RESISTANCE</Item>
 		<Item>ABILITY_IMMUNITY_TO_MIND_CONTROL</Item>
 		<Item>ABILITY_ARMORED</Item>
 		<Item>ABILITY_BOND_OF_LIGHT</Item>

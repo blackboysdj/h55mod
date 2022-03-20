@@ -459,15 +459,13 @@ doFile("/scripts/H55-Settings.lua");
 				for i = TOWN_HEAVEN, TOWN_STRONGHOLD do
 					AllowPlayerTavernRace(iPlayer, i, TTH_ENUM.No);
 				end
-				local strHireHero = H55_ChooseHero_Name;
-				if contains(GetPlayerHeroes(iPlayer), strHireHero) ~= nil and H55_ChooseHero_Name2 ~= "" then
-					strHireHero = H55_ChooseHero_Name2;
-				end;
-				for i = PLAYER_1, PLAYER_8 do
-					if i == iPlayer then
-						AllowPlayerTavernHero(i, strHireHero, TTH_ENUM.Yes);
-					else
-						AllowPlayerTavernHero(i, strHireHero, TTH_ENUM.No);
+				if H55_ChooseHero_Name ~= "" and contains(GetPlayerHeroes(iPlayer), H55_ChooseHero_Name) == nil then
+					for i = PLAYER_1, PLAYER_8 do
+						if i == iPlayer then
+							AllowPlayerTavernHero(i, H55_ChooseHero_Name, TTH_ENUM.Yes);
+						else
+							AllowPlayerTavernHero(i, H55_ChooseHero_Name, TTH_ENUM.No);
+						end;
 					end;
 				end;
 			end;
@@ -12680,6 +12678,7 @@ doFile("/scripts/H55-Settings.lua");
 			GiveArtefact(strHero, ARTIFACT_OGRE_CLUB);
 			GiveArtefact(strHero, ARTIFACT_OGRE_SHIELD);
 			GiveArtefact(strHero, ARTIFACT_PENDANT_OF_STARDUST);
+			TeachHeroSpell(strHero, SPELL_WARCRY_CALL_OF_BLOOD);
 		end;
 		function TTH_TEST.test25(iPlayer)
 			local strHero = GetPlayerHeroes(iPlayer)[0];

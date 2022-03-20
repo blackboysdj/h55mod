@@ -1255,6 +1255,8 @@ doFile('/scripts/combat-startup.lua')
 								H55SMOD_MiddlewareListener['Gottai']['function']('Gottai', iSide, itemUnitLast, iLossManaPoints);
 							-- Common
 								H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_ELITE_CASTERS]['function'](iSide, itemUnitLast, iLossManaPoints);
+							-- ArtifactSet
+								H55SMOD_MiddlewareListener["ArtifactSet"][TTHCS_ENUM.SET_OGRES.."_"..2]["function"](iSide, itemUnitLast, TTHCS_ENUM.Voice);
 
 							if itemUnitLast['iSide'] == iSide and itemUnitLast['iUnitCategory'] == ENUM_CATEGORY.HERO then
 								H55SMOD_MiddlewareListener['Artifact'][ARTIFACT_EIGHTFOLD]['function'](itemUnitLast, iSide);
@@ -1503,8 +1505,8 @@ doFile('/scripts/combat-startup.lua')
 								-- Skill
 									H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_WEAKENING_STRIKE]['function'](getSide(iSide, 1), itemUnitLast, listCreaturesBeEffected);
 									H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_SEAL_OF_PROTECTION]['function'](getSide(iSide, 1), itemUnitLast, listCreaturesBeEffected);
-								-- Skill
-									H55SMOD_MiddlewareListener["ArtifactSet"][TTHCS_ENUM.SET_OGRES.."_"..2]["function"](getSide(iSide, 1), itemUnitLast, listCreaturesBeEffected);
+								-- ArtifactSet
+									H55SMOD_MiddlewareListener["ArtifactSet"][TTHCS_ENUM.SET_OGRES.."_"..2]["function"](getSide(iSide, 1), itemUnitLast, TTHCS_ENUM.Combat);
 							end;
 
 							-- Haven
@@ -2165,7 +2167,7 @@ doFile('/scripts/combat-startup.lua')
 
 	-- 宝物套装-力量武器 英雄普攻造成战损后自动释放一次随机血之召唤
 		H55SMOD_MiddlewareListener["ArtifactSet"][TTHCS_ENUM.SET_OGRES.."_"..2] = {};
-		function Events_MiddlewareListener_Implement_ArtifactSet_SetOgres(iSide, itemUnitLast, listCreaturesBeEffected)
+		function Events_MiddlewareListener_Implement_ArtifactSet_SetOgres(iSide, itemUnitLast, enumType)
 			if GetHero(iSide) ~= nil and itemUnitLast["strUnitName"] == GetHero(iSide) then
 				if TTH_ARTIFACTSET_EFFECT_COMBAT_HERO[iSide][TTHCS_ENUM.SET_OGRES.."_"..2] ~= nil
 					and TTH_ARTIFACTSET_EFFECT_COMBAT_HERO[iSide][TTHCS_ENUM.SET_OGRES.."_"..2] >= 2 then
@@ -2187,8 +2189,10 @@ doFile('/scripts/combat-startup.lua')
 					startThread(Thread_Command_UnitCastAimedSpell, GetHero(iSide), SPELL_WARCRY_CALL_OF_BLOOD, strCreatureName, 1);
 					ShowFlyingSign(TTHCS_PATH["ArtifactSet"][TTHCS_ENUM.SET_OGRES.."_"..2]["Effect"], strCreatureName, 5);
 					local itemHero = geneUnitStatus(GetHero(iSide));
-					itemHero["iAtb"] = 0.4;
-					push(ListUnitSetATB, itemHero);
+					if enumType == TTHCS_ENUM.Combat then
+						itemHero["iAtb"] = 0.4;
+						push(ListUnitSetATB, itemHero);
+					end;
 					sleep(20);
 					combatSetPause(nil);
 				end;

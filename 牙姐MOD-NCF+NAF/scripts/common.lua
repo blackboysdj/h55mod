@@ -38,6 +38,8 @@ HERO_SKILL_PRAYER = 56;
 HERO_SKILL_SEAL_OF_PROTECTION = 131;
 HERO_SKILL_TRIPLE_CATAPULT = 88;
 HERO_SKILL_GUARDIAN_ANGEL = 78;
+HERO_SKILL_PARIAH = 83;
+HERO_SKILL_TWILIGHT = 109;
 
 MAX_MANA = 1000;
 
@@ -137,6 +139,8 @@ TTH_SKILL_EFFECT_COMBAT = {
     , [4] = HERO_SKILL_SEAL_OF_PROTECTION
     , [5] = HERO_SKILL_TRIPLE_CATAPULT
     , [6] = HERO_SKILL_GUARDIAN_ANGEL
+    , [7] = HERO_SKILL_PARIAH
+    , [8] = HERO_SKILL_TWILIGHT
 };
 TTH_SKILL_EFFECT_COMBAT_ONCE = {
 };
@@ -11415,6 +11419,9 @@ end;
       TTHCS_PATH["Talent"]["Hero9"] = {};
       TTHCS_PATH["Talent"]["Hero9"]["Effect"] = "/Text/TTH/Heroes/Specializations/Stronghold/135-Hero9/Combat/Effect.txt";
 
+      TTHCS_PATH["Talent"]["Hero4"] = {};
+      TTHCS_PATH["Talent"]["Hero4"]["Effect"] = "/Text/TTH/Heroes/Specializations/Stronghold/139-Hero4/Combat/Effect.txt";
+
     TTHCS_PATH["Perk"] = {};
       TTHCS_PATH["Perk"][HERO_SKILL_SEAL_OF_PROTECTION] = {};
       TTHCS_PATH["Perk"][HERO_SKILL_SEAL_OF_PROTECTION]["Effect"] = "/Text/TTH/Skills/Training/131-SealOfProtection/Combat/Effect.txt";
@@ -11424,6 +11431,10 @@ end;
 
       TTHCS_PATH["Perk"][HERO_SKILL_GUARDIAN_ANGEL] = {};
       TTHCS_PATH["Perk"][HERO_SKILL_GUARDIAN_ANGEL]["Effect"] = "/Text/TTH/Skills/Leadership/078-GuardianAngel/Combat/Effect.txt";
+      TTHCS_PATH["Perk"][HERO_SKILL_PARIAH] = {};
+      TTHCS_PATH["Perk"][HERO_SKILL_PARIAH]["Effect"] = "/Text/TTH/Skills/DarkMagic/083-Pariah/Combat/Effect.txt";
+      TTHCS_PATH["Perk"][HERO_SKILL_TWILIGHT] = {};
+      TTHCS_PATH["Perk"][HERO_SKILL_TWILIGHT]["Effect"] = "/Text/TTH/Skills/LightMagic/109-Twilight/Combat/Effect.txt";
 
     TTHCS_PATH["Artifact"] = {};
       TTHCS_PATH["Artifact"][ARTIFACT_ANGELIC_ALLIANCE] = {};

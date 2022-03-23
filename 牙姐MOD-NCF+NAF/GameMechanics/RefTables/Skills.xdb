@@ -5845,132 +5845,154 @@
 						<Class>HERO_CLASS_KNIGHT</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_RANGER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_WARDEN</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_ENCHANTER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_SORCERER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_GATE_KEEPER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_FLAMEKEEPERA</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_ENGINEER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_NECROMANCER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_REAVER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_WARLOCK</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_BEASTMASTER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_GUILDMASTER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_SEER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_WIZARD</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_ELEMENTALIST</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_DEMON_LORD</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_DEATHKNIGHT</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_RUNEMAGE</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_BARBARIAN</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 				</SkillPrerequisites>
@@ -7297,8 +7319,8 @@
 						<dependenciesIDs>
 							<Item>HERO_SKILL_TACTICS</Item>
 							<Item>HERO_SKILL_FRENZY</Item>
-							<Item>HERO_SKILL_ENCOURAGE</Item>
-							<Item>HERO_SKILL_LUCKY_STRIKE</Item>
+							<Item>HERO_SKILL_FAST_AND_FURIOUS</Item>
+							<Item>HERO_SKILL_ELVEN_LUCK</Item>
 						</dependenciesIDs>
 					</Item>
 				</SkillPrerequisites>
@@ -7356,11 +7378,11 @@
 				</Texture>
 				<CommonTexture/>
 				<NameFileRef>
-					<Item href="/Text/Game/Skills/Common/DarkMagic/Pariah/Name.txt"/>
+					<Item href="/Text/TTH/Skills/DarkMagic/083-Pariah/Name.txt"/>
 				</NameFileRef>
 				<CommonNameFileRef href=""/>
 				<DescriptionFileRef>
-					<Item href="/Text/Game/Skills/Common/DarkMagic/Pariah/Description.txt"/>
+					<Item href="/Text/TTH/Skills/DarkMagic/083-Pariah/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
 				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
@@ -8242,132 +8264,154 @@
 						<Class>HERO_CLASS_KNIGHT</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_RANGER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_WARDEN</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_ENCHANTER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_SORCERER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_GATE_KEEPER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_FLAMEKEEPERA</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_ENGINEER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_NECROMANCER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_REAVER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_WARLOCK</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_BEASTMASTER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_GUILDMASTER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_SEER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_WIZARD</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_ELEMENTALIST</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_DEMON_LORD</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_DEATHKNIGHT</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_RUNEMAGE</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_BARBARIAN</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 				</SkillPrerequisites>
@@ -9771,132 +9815,154 @@
 						<Class>HERO_CLASS_KNIGHT</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_FIRST_AID</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_FIRST_AID</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_FIRST_AID</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_RANGER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_FIRST_AID</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_WARDEN</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_FIRST_AID</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_ENCHANTER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_FIRST_AID</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_SORCERER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_FIRST_AID</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_GATE_KEEPER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_FIRST_AID</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_FLAMEKEEPERA</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_FIRST_AID</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_ENGINEER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_FIRST_AID</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_NECROMANCER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_FIRST_AID</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_REAVER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_FIRST_AID</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_WARLOCK</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_FIRST_AID</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_BEASTMASTER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_FIRST_AID</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_GUILDMASTER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_FIRST_AID</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_SEER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_FIRST_AID</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_WIZARD</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_FIRST_AID</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_ELEMENTALIST</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_FIRST_AID</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_DEMON_LORD</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_FIRST_AID</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_DEATHKNIGHT</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_FIRST_AID</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_RUNEMAGE</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_FIRST_AID</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_BARBARIAN</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_FIRST_AID</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 				</SkillPrerequisites>
@@ -11054,11 +11120,11 @@
 				</Texture>
 				<CommonTexture/>
 				<NameFileRef>
-					<Item href="/Text/Game/Skills/Common/LightMagic/Twilight/Name.txt"/>
+					<Item href="/Text/TTH/Skills/LightMagic/109-Twilight/Name.txt"/>
 				</NameFileRef>
 				<CommonNameFileRef href=""/>
 				<DescriptionFileRef>
-					<Item href="/Text/Game/Skills/Common/LightMagic/Twilight/Description.txt"/>
+					<Item href="/Text/TTH/Skills/LightMagic/109-Twilight/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
 				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
@@ -14151,138 +14217,138 @@
 				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
 				<HeroClass>HERO_CLASS_NONE</HeroClass>
 				<spellBuffs/>
-				<BasicSkillID>HERO_SKILL_WAR_MACHINES</BasicSkillID>
+				<BasicSkillID>HERO_SKILL_OFFENCE</BasicSkillID>
 				<SkillPrerequisites>
 					<Item>
 						<Class>HERO_CLASS_KNIGHT</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_ARCHERY</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_ARCHERY</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_ARCHERY</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_RANGER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_ARCHERY</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_WARDEN</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_ARCHERY</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_ENCHANTER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_ARCHERY</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_SORCERER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_ARCHERY</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_GATE_KEEPER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_ARCHERY</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_FLAMEKEEPERA</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_ARCHERY</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_ENGINEER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_ARCHERY</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_NECROMANCER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_ARCHERY</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_REAVER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_ARCHERY</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_WARLOCK</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_ARCHERY</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_BEASTMASTER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_ARCHERY</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_GUILDMASTER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_ARCHERY</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_SEER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_ARCHERY</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_WIZARD</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_ARCHERY</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_ELEMENTALIST</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_ARCHERY</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_DEMON_LORD</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_ARCHERY</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_DEATHKNIGHT</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_ARCHERY</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_RUNEMAGE</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_ARCHERY</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_BARBARIAN</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_ARCHERY</Item>
 						</dependenciesIDs>
 					</Item>
 				</SkillPrerequisites>
@@ -18261,144 +18327,11 @@
 					<Item href="/Text/Game/Skills/Common/WarMachines/RunicMachines/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
-				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
+				<SkillType>SKILLTYPE_STANDART_PERK</SkillType>
 				<HeroClass>HERO_CLASS_NONE</HeroClass>
 				<spellBuffs/>
 				<BasicSkillID>HERO_SKILL_WAR_MACHINES</BasicSkillID>
-				<SkillPrerequisites>
-					<Item>
-						<Class>HERO_CLASS_KNIGHT</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_PALADIN</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_HERETIC</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_RANGER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_WARDEN</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_ENCHANTER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_SORCERER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_GATE_KEEPER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_FLAMEKEEPERA</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_ENGINEER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_NECROMANCER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_REAVER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_WARLOCK</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_BEASTMASTER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_GUILDMASTER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_SEER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_WIZARD</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_ELEMENTALIST</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_DEMON_LORD</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_DEATHKNIGHT</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_RUNEMAGE</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_BARBARIAN</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_BALLISTA</Item>
-						</dependenciesIDs>
-					</Item>
-				</SkillPrerequisites>
+				<SkillPrerequisites/>
 				<AIRacesValues>
 					<Haven>
 						<CommanderValue>1000</CommanderValue>

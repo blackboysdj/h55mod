@@ -856,6 +856,78 @@ doFile('/scripts/combat-startup.lua')
 			end;
 			H55SMOD_Start['Skill'][HERO_SKILL_GUARDIAN_ANGEL]['function'] = Events_Start_Implement_Skill_GuardianAngel;
 
+		-- HERO_SKILL_PARIAH 083 堕落骑士
+			H55SMOD_Start['Skill'][HERO_SKILL_PARIAH] = {};
+			function Events_Start_Implement_Skill_Pariah()
+				for iSide = ENUM_SIDE.ATTACKER, ENUM_SIDE.DEFENDER do
+					if GetHero(iSide) ~= nil
+						and TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_PARIAH] ~= nil
+						and TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_PARIAH] > 0 then
+						local iCreatureId = TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_PARIAH];
+						local iBattleSize = getBattleSize();
+						local iPositionX = 0;
+						local iPositionY = 1;
+						if iBattleSize == 0 then
+					    if iSide == ENUM_SIDE.ATTACKER then
+  							iPositionX = 6;
+  						else
+  							iPositionX = 10;
+  						end;
+							iPositionY = 6;
+						else
+					    if iSide == ENUM_SIDE.ATTACKER then
+  							iPositionX = 6;
+  						else
+  							iPositionX = 12;
+  						end;
+							iPositionY = 8;
+						end;
+						local iHeroLevel = H55SMOD_HeroLevel[GetHeroName(GetHero(iSide))];
+						local iCreatureCount = 1 + h55_floor(iHeroLevel / 10);
+						local strCreatureFall = Thread_Command_SummonCreature(iSide, iCreatureId, iCreatureCount, iPositionX, iPositionY);
+						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_PARIAH]["Effect"], strCreatureFall, 5);
+						print(strCreatureFall.." falls on the combat by [Pariah]");
+					end;
+				end;
+			end;
+			H55SMOD_Start['Skill'][HERO_SKILL_PARIAH]['function'] = Events_Start_Implement_Skill_Pariah;
+
+		-- HERO_SKILL_TWILIGHT 109 微光黎明
+			H55SMOD_Start['Skill'][HERO_SKILL_TWILIGHT] = {};
+			function Events_Start_Implement_Skill_Twilight()
+				for iSide = ENUM_SIDE.ATTACKER, ENUM_SIDE.DEFENDER do
+					if GetHero(iSide) ~= nil
+						and TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_TWILIGHT] ~= nil
+						and TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_TWILIGHT] > 0 then
+						local iCreatureId = TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_TWILIGHT];
+						local iBattleSize = getBattleSize();
+						local iPositionX = 0;
+						local iPositionY = 1;
+						if iBattleSize == 0 then
+					    if iSide == ENUM_SIDE.ATTACKER then
+  							iPositionX = 6;
+  						else
+  							iPositionX = 10;
+  						end;
+							iPositionY = 6;
+						else
+					    if iSide == ENUM_SIDE.ATTACKER then
+  							iPositionX = 6;
+  						else
+  							iPositionX = 12;
+  						end;
+							iPositionY = 8;
+						end;
+						local iHeroLevel = H55SMOD_HeroLevel[GetHeroName(GetHero(iSide))];
+						local iCreatureCount = 1 + h55_floor(iHeroLevel / 10);
+						local strCreatureFall = Thread_Command_SummonCreature(iSide, iCreatureId, iCreatureCount, iPositionX, iPositionY);
+						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_TWILIGHT]["Effect"], strCreatureFall, 5);
+						print(strCreatureFall.." falls on the combat by [Twilight]");
+					end;
+				end;
+			end;
+			H55SMOD_Start['Skill'][HERO_SKILL_TWILIGHT]['function'] = Events_Start_Implement_Skill_Twilight;
+
 	function Events_Start()
 		combatSetPause(1);
 		Events_Init();
@@ -1065,7 +1137,9 @@ doFile('/scripts/combat-startup.lua')
 
 		-- 后置技能特效
 		H55SMOD_Start['Skill'][HERO_SKILL_MYSTICISM]['function']();
-		H55SMOD_Start['Skill'][HERO_SKILL_GUARDIAN_ANGEL]['function']();
+		-- H55SMOD_Start['Skill'][HERO_SKILL_GUARDIAN_ANGEL]['function']();
+		H55SMOD_Start['Skill'][HERO_SKILL_PARIAH]['function']();
+		H55SMOD_Start['Skill'][HERO_SKILL_TWILIGHT]['function']();
 	end;
 
 -- 监听: 单位触发接口
@@ -1714,6 +1788,7 @@ doFile('/scripts/combat-startup.lua')
 											-- Stronghold
 												H55SMOD_MiddlewareListener['Shiva']['function']('Shiva', iSide, itemUnitLast, itemUnitRager);
 												H55SMOD_MiddlewareListener['Zouleika']['function']('Zouleika', iSide, itemUnitLast, itemUnitRager);
+												H55SMOD_MiddlewareListener['Hero4']['function']('Hero4', iSide, itemUnitLast, itemUnitRager);
 										end;
 									end;
 								end;
@@ -4480,6 +4555,36 @@ doFile('/scripts/combat-startup.lua')
 				end;
 			end;
 			H55SMOD_MiddlewareListener['Zouleika']['function'] = Events_MiddlewareListener_Implement_Zouleika;
+
+		-- Hero4
+			H55SMOD_MiddlewareListener['Hero4'] = {};
+			function Events_MiddlewareListener_Implement_Hero4(strHero, iSide, itemUnitLast, itemUnitRager)
+				if GetHero(iSide) ~= nil
+					and GetHeroName(GetHero(iSide)) == strHero
+					and itemUnitLast['iUnitType'] == strHero
+					and itemUnitRager['iSide'] == iSide then
+					local listCreaturesTarget = GetCreatures(iSide);
+					local iLenCreaturesTarget = length(listCreaturesTarget);
+					for iIndexCreaturesTarget = 0, iLenCreaturesTarget - 1 do
+						local strCreatureTarget = listCreaturesTarget[iIndexCreaturesTarget];
+						local itemCreatureTarget = geneUnitStatus(strCreatureTarget);
+						if IsCombatUnit(strCreatureTarget) ~= nil
+							and GetCreatureNumber(strCreatureTarget) > 0
+							and (
+								itemCreatureTarget["iUnitType"] == CREATURE_ORCCHIEF_BUTCHER
+								or itemCreatureTarget["iUnitType"] == CREATURE_ORCCHIEF_EXECUTIONER
+								or itemCreatureTarget["iUnitType"] == CREATURE_ORCCHIEF_CHIEFTAIN
+							) then
+							itemCreatureTarget['iAtb'] = 1.25;
+							push(ListUnitSetATB, itemCreatureTarget);
+							print(itemCreatureTarget['strUnitName'].." move immediate..");
+							ShowFlyingSign(TTHCS_PATH["Talent"]["Hero4"]["Effect"], itemCreatureTarget['strUnitName'], 5);
+						end;
+					end;
+
+				end;
+			end;
+			H55SMOD_MiddlewareListener['Hero4']['function'] = Events_MiddlewareListener_Implement_Hero4;
 
 		-- Erika
 			H55SMOD_MiddlewareListener['Erika'] = {};

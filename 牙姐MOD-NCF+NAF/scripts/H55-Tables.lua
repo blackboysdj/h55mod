@@ -3809,9 +3809,9 @@
     , [113] = {
       ["ID"] = CREATURE_WOLF
       , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_113/Name.txt"
-      , ["GROWTH"] = 8
-      , ["TIER"] = 3
-      , ["POWER"] = 355
+      , ["GROWTH"] = 5
+      , ["TIER"] = 4
+      , ["POWER"] = 1020
     }
     , [114] = {
       ["ID"] = CREATURE_SNOW_APE
@@ -10551,6 +10551,12 @@
         TTH_PATH.Visit["Shantiri"]["Wisdom"]["Confirm"] = TTH_PATH.Visit["Shantiri"]["Wisdom"]["Pre"].."Confirm.txt";
         TTH_PATH.Visit["Shantiri"]["Wisdom"]["NotOptionMastery"] = TTH_PATH.Visit["Shantiri"]["Wisdom"]["Pre"].."NotOptionMastery.txt";
         TTH_PATH.Visit["Shantiri"]["Wisdom"]["NotOptionPerk"] = TTH_PATH.Visit["Shantiri"]["Wisdom"]["Pre"].."NotOptionPerk.txt";
+      TTH_PATH.Visit["Bank"] = {};
+        TTH_PATH.Visit["Bank"]["CombatLink"] = "/Arenas/CombatArena/FinalCombat/Bank_Bank.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)";
+        TTH_PATH.Visit["Bank"]["Pre"] = "/Text/Game/Scripts/TTH_Path/Visit/Bank/";
+        TTH_PATH.Visit["Bank"]["Normal"] = TTH_PATH.Visit["Bank"]["Pre"].."Normal.txt";
+        TTH_PATH.Visit["Bank"]["Adv"] = TTH_PATH.Visit["Bank"]["Pre"].."Adv.txt";
+        TTH_PATH.Visit["Bank"]["RadioTips"] = TTH_PATH.Visit["Bank"]["Pre"].."RadioTips.txt";
 
     TTH_PATH.Mayor = {};
       TTH_PATH.Mayor["BeginExpedition"] = "/Text/Game/Scripts/TTH_Path/Mayor/BeginExpedition.txt";
@@ -10739,6 +10745,15 @@
         TTH_PATH.Talent["Wulfstan"]["TitleCapture"] = TTH_PATH.Talent["Wulfstan"]["Pre"].."TitleCapture.txt";
         TTH_PATH.Talent["Wulfstan"]["Desc"] = TTH_PATH.Talent["Wulfstan"]["Pre"].."Desc.txt";
         TTH_PATH.Talent["Wulfstan"]["DescCapture"] = TTH_PATH.Talent["Wulfstan"]["Pre"].."DescCapture.txt";
+      -- Azar 138 艾扎-埃克
+        TTH_PATH.Talent["Azar"] = {};
+        TTH_PATH.Talent["Azar"]["Pre"] = TTH_PATH.Talent["Pre"].."138-Azar/";
+        TTH_PATH.Talent["Azar"]["NotEnoughOperTimes"] = TTH_PATH.Talent["Azar"]["Pre"].."NotEnoughOperTimes.txt";
+        TTH_PATH.Talent["Azar"]["NotEnoughGold"] = TTH_PATH.Talent["Azar"]["Pre"].."NotEnoughGold.txt";
+        TTH_PATH.Talent["Azar"]["ConfirmVisitDwelling"] = TTH_PATH.Talent["Azar"]["Pre"].."ConfirmVisitDwelling.txt";
+        TTH_PATH.Talent["Azar"]["SuccessVisitDwelling"] = TTH_PATH.Talent["Azar"]["Pre"].."SuccessVisitDwelling.txt";
+        TTH_PATH.Talent["Azar"]["Title"] = TTH_PATH.Talent["Azar"]["Pre"].."Title.txt";
+        TTH_PATH.Talent["Azar"]["Desc"] = TTH_PATH.Talent["Azar"]["Pre"].."Desc.txt";
 
     TTH_PATH.Artifact = {};
     TTH_PATH.Artifact["Pre"] = TTH_PATH.FuncPre.."Artifact/";
@@ -10883,13 +10898,20 @@
         TTH_PATH.Perk[HERO_SKILL_TOUGHNESS]["Text"] = TTH_PATH.Perk[HERO_SKILL_TOUGHNESS]["Pre"].."Text.txt";
         TTH_PATH.Perk[HERO_SKILL_TOUGHNESS]["NotEnoughTimes"] = TTH_PATH.Perk[HERO_SKILL_TOUGHNESS]["Pre"].."NotEnoughTimes.txt";
         TTH_PATH.Perk[HERO_SKILL_TOUGHNESS]["NoBuildingOnAdvMap"] = TTH_PATH.Perk[HERO_SKILL_TOUGHNESS]["Pre"].."NoBuildingOnAdvMap.txt";
-      -- HERO_SKILL_GUARDIAN_ANGEL 078 天神降临
-        TTH_PATH.Perk[HERO_SKILL_GUARDIAN_ANGEL] = {};
-        TTH_PATH.Perk[HERO_SKILL_GUARDIAN_ANGEL]["Pre"] = TTH_PATH.Perk["Pre"] .."078-GuardianAngel/";
-        TTH_PATH.Perk[HERO_SKILL_GUARDIAN_ANGEL]["Text"] = TTH_PATH.Perk[HERO_SKILL_GUARDIAN_ANGEL]["Pre"].."Text.txt";
-        TTH_PATH.Perk[HERO_SKILL_GUARDIAN_ANGEL]["NotEnoughTimes"] = TTH_PATH.Perk[HERO_SKILL_GUARDIAN_ANGEL]["Pre"].."NotEnoughTimes.txt";
-        TTH_PATH.Perk[HERO_SKILL_GUARDIAN_ANGEL]["Confirm"] = TTH_PATH.Perk[HERO_SKILL_GUARDIAN_ANGEL]["Pre"].."Confirm.txt";
-        TTH_PATH.Perk[HERO_SKILL_GUARDIAN_ANGEL]["Success"] = TTH_PATH.Perk[HERO_SKILL_GUARDIAN_ANGEL]["Pre"].."Success.txt";
+      -- HERO_SKILL_PARIAH 083 堕落骑士
+        TTH_PATH.Perk[HERO_SKILL_PARIAH] = {};
+        TTH_PATH.Perk[HERO_SKILL_PARIAH]["Pre"] = TTH_PATH.Perk["Pre"] .."083-Pariah/";
+        TTH_PATH.Perk[HERO_SKILL_PARIAH]["Text"] = TTH_PATH.Perk[HERO_SKILL_PARIAH]["Pre"].."Text.txt";
+        TTH_PATH.Perk[HERO_SKILL_PARIAH]["NotEnoughTimes"] = TTH_PATH.Perk[HERO_SKILL_PARIAH]["Pre"].."NotEnoughTimes.txt";
+        TTH_PATH.Perk[HERO_SKILL_PARIAH]["Confirm"] = TTH_PATH.Perk[HERO_SKILL_PARIAH]["Pre"].."Confirm.txt";
+        TTH_PATH.Perk[HERO_SKILL_PARIAH]["Success"] = TTH_PATH.Perk[HERO_SKILL_PARIAH]["Pre"].."Success.txt";
+      -- HERO_SKILL_TWILIGHT 109 微光黎明
+        TTH_PATH.Perk[HERO_SKILL_TWILIGHT] = {};
+        TTH_PATH.Perk[HERO_SKILL_TWILIGHT]["Pre"] = TTH_PATH.Perk["Pre"] .."109-Twilight/";
+        TTH_PATH.Perk[HERO_SKILL_TWILIGHT]["Text"] = TTH_PATH.Perk[HERO_SKILL_TWILIGHT]["Pre"].."Text.txt";
+        TTH_PATH.Perk[HERO_SKILL_TWILIGHT]["NotEnoughTimes"] = TTH_PATH.Perk[HERO_SKILL_TWILIGHT]["Pre"].."NotEnoughTimes.txt";
+        TTH_PATH.Perk[HERO_SKILL_TWILIGHT]["Confirm"] = TTH_PATH.Perk[HERO_SKILL_TWILIGHT]["Pre"].."Confirm.txt";
+        TTH_PATH.Perk[HERO_SKILL_TWILIGHT]["Success"] = TTH_PATH.Perk[HERO_SKILL_TWILIGHT]["Pre"].."Success.txt";
       -- HERO_SKILL_GRAIL_VISION 080 杉提瑞之触
         TTH_PATH.Perk[HERO_SKILL_GRAIL_VISION] = {};
         TTH_PATH.Perk[HERO_SKILL_GRAIL_VISION]["Pre"] = TTH_PATH.Perk["Pre"] .."080-Shantiri/";
@@ -10939,6 +10961,7 @@
         TTH_PATH.Perk[HERO_SKILL_GOBLIN_SUPPORT]["Pre"] = TTH_PATH.Perk["Pre"] .."182-GoblinSupport/";
         TTH_PATH.Perk[HERO_SKILL_GOBLIN_SUPPORT]["Text"] = TTH_PATH.Perk[HERO_SKILL_GOBLIN_SUPPORT]["Pre"].."Text.txt";
         TTH_PATH.Perk[HERO_SKILL_GOBLIN_SUPPORT]["HasBuilding"] = TTH_PATH.Perk[HERO_SKILL_GOBLIN_SUPPORT]["Pre"].."HasBuilding.txt";
+        TTH_PATH.Perk[HERO_SKILL_GOBLIN_SUPPORT]["NotEnoughGold"] = TTH_PATH.Perk[HERO_SKILL_GOBLIN_SUPPORT]["Pre"].."NotEnoughGold.txt";
         TTH_PATH.Perk[HERO_SKILL_GOBLIN_SUPPORT]["TipsDirection"] = TTH_PATH.Perk[HERO_SKILL_GOBLIN_SUPPORT]["Pre"].."TipsDirection.txt";
         TTH_PATH.Perk[HERO_SKILL_GOBLIN_SUPPORT]["NegetivePlace"] = TTH_PATH.Perk[HERO_SKILL_GOBLIN_SUPPORT]["Pre"].."NegetivePlace.txt";
         TTH_PATH.Perk[HERO_SKILL_GOBLIN_SUPPORT]["Success"] = TTH_PATH.Perk[HERO_SKILL_GOBLIN_SUPPORT]["Pre"].."Success.txt";
@@ -11014,6 +11037,9 @@
           }
           , ["Quroq"] = {
             [TTH_ENUM.FuncAlways] = "TTH_TALENT.initQuroq"
+          }
+          , ["Azar"] = {
+            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initAzar"
           }
         }
         , [TTH_ENUM.FuncActive] = {
@@ -11169,6 +11195,9 @@
           }
           , ["Una"] = {
             [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyUna"
+          }
+          , ["Azar"] = {
+            [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyAzar"
           }
         }
         , [TTH_ENUM.FuncDealDaily] = {
@@ -11361,10 +11390,15 @@
             ["Text"] = TTH_PATH.Perk[HERO_SKILL_SNATCH]["Text"]
             , [TTH_ENUM.FuncNotAtGate] = "TTH_PERK.active168"
           }
-          , [HERO_SKILL_GUARDIAN_ANGEL] = {
-            ["Text"] = TTH_PATH.Perk[HERO_SKILL_GUARDIAN_ANGEL]["Text"]
-            , [TTH_ENUM.FuncAtGate] = "TTH_PERK.active078"
-            , [TTH_ENUM.FuncNotAtGate] = "TTH_PERK.active078"
+          , [HERO_SKILL_PARIAH] = {
+            ["Text"] = TTH_PATH.Perk[HERO_SKILL_PARIAH]["Text"]
+            , [TTH_ENUM.FuncAtGate] = "TTH_PERK.active083"
+            , [TTH_ENUM.FuncNotAtGate] = "TTH_PERK.active083"
+          }
+          , [HERO_SKILL_TWILIGHT] = {
+            ["Text"] = TTH_PATH.Perk[HERO_SKILL_TWILIGHT]["Text"]
+            , [TTH_ENUM.FuncAtGate] = "TTH_PERK.active109"
+            , [TTH_ENUM.FuncNotAtGate] = "TTH_PERK.active109"
           }
           , [HERO_SKILL_GRAIL_VISION] = {
             ["Text"] = TTH_PATH.Perk[HERO_SKILL_GRAIL_VISION]["Text"]
@@ -11386,8 +11420,11 @@
           [HERO_SKILL_DEATH_TREAD] = {
             [TTH_ENUM.FuncAlways] = "TTH_PERK.combatResult099"
           }
-          , [HERO_SKILL_GUARDIAN_ANGEL] = {
-            [TTH_ENUM.FuncAlways] = "TTH_PERK.combatResult078"
+          , [HERO_SKILL_PARIAH] = {
+            [TTH_ENUM.FuncAlways] = "TTH_PERK.combatResult083"
+          }
+          , [HERO_SKILL_TWILIGHT] = {
+            [TTH_ENUM.FuncAlways] = "TTH_PERK.combatResult109"
           }
           , [HERO_SKILL_GRAIL_VISION] = {
             [TTH_ENUM.FuncAlways] = "TTH_PERK.combatResult080"
@@ -11417,8 +11454,11 @@
           , [HERO_SKILL_SNATCH] = {
             [TTH_ENUM.FuncAlways] = "TTH_PERK.resetWeekly168"
           }
-          , [HERO_SKILL_GUARDIAN_ANGEL] = {
-            [TTH_ENUM.FuncAlways] = "TTH_PERK.resetWeekly078"
+          , [HERO_SKILL_PARIAH] = {
+            [TTH_ENUM.FuncAlways] = "TTH_PERK.resetWeekly083"
+          }
+          , [HERO_SKILL_TWILIGHT] = {
+            [TTH_ENUM.FuncAlways] = "TTH_PERK.resetWeekly109"
           }
           , [HERO_SKILL_DEFEND_US_ALL] = {
             [TTH_ENUM.FuncAlways] = "TTH_PERK.resetWeekly181"
@@ -11433,8 +11473,11 @@
           [HERO_SKILL_TOUGHNESS] = {
             [TTH_ENUM.FuncAlways] = "TTH_PERK.resetDaily039"
           }
-          , [HERO_SKILL_GUARDIAN_ANGEL] = {
-            [TTH_ENUM.FuncAlways] = "TTH_PERK.resetDaily078"
+          , [HERO_SKILL_PARIAH] = {
+            [TTH_ENUM.FuncAlways] = "TTH_PERK.resetDaily083"
+          }
+          , [HERO_SKILL_TWILIGHT] = {
+            [TTH_ENUM.FuncAlways] = "TTH_PERK.resetDaily109"
           }
         }
       };
@@ -19407,7 +19450,11 @@
             ["Id"] = HERO_SKILL_WAR_MACHINES
             , ["Text"] = "/Text/TTH/Skills/WarMachines/Mastery/NameNone.txt"
             , ["Perk"] = {
-              [22] = { -- 急救帐篷
+              [156] = { -- 符文机械
+                ["Id"] = HERO_SKILL_RUNIC_MACHINES
+                , ["Text"] = "/Text/TTH/Skills/WarMachines/156-RunicMachines/Name.txt"
+              }
+              , [22] = { -- 急救帐篷
                 ["Id"] = HERO_SKILL_FIRST_AID
                 , ["Text"] = "/Text/TTH/Skills/WarMachines/022-FirstAid/Name.txt"
               }
@@ -19417,6 +19464,7 @@
                 , ["DependType"] = TTH_ENUM.Simple
                 , ["Depend"] = {
                   [1] = HERO_SKILL_FIRST_AID
+                  , [2] = HERO_SKILL_RUNIC_MACHINES
                 }
               }
               , [24] = { -- 弹道学
@@ -19429,6 +19477,7 @@
                 , ["DependType"] = TTH_ENUM.Simple
                 , ["Depend"] = {
                   [1] = HERO_SKILL_CATAPULT
+                  , [2] = HERO_SKILL_RUNIC_MACHINES
                 }
               }
               , [23] = { -- 弹射学
@@ -19441,22 +19490,7 @@
                 , ["DependType"] = TTH_ENUM.Simple
                 , ["Depend"] = {
                   [1] = HERO_SKILL_BALLISTA
-                }
-              }
-              , [156] = { -- 符文机械
-                ["Id"] = HERO_SKILL_RUNIC_MACHINES
-                , ["Text"] = "/Text/TTH/Skills/WarMachines/156-RunicMachines/Name.txt"
-                , ["DependType"] = TTH_ENUM.Simple
-                , ["Depend"] = {
-                  [1] = HERO_SKILL_BALLISTA
-                }
-              }
-              , [130] = { -- 燃烧箭
-                ["Id"] = HERO_SKILL_WILDFIRE
-                , ["Text"] = "/Text/TTH/Skills/WarMachines/130-Wildfire/Name.txt"
-                , ["DependType"] = TTH_ENUM.Simple
-                , ["Depend"] = {
-                  [1] = HERO_SKILL_BALLISTA
+                  , [2] = HERO_SKILL_RUNIC_MACHINES
                 }
               }
             }
@@ -19620,6 +19654,14 @@
               , [104] = { -- 寒铁之刃
                 ["Id"] = HERO_SKILL_CHILLING_STEEL
                 , ["Text"] = "/Text/TTH/Skills/Offence/104-ChillingSteel/Name.txt"
+                , ["DependType"] = TTH_ENUM.Simple
+                , ["Depend"] = {
+                  [1] = HERO_SKILL_ARCHERY
+                }
+              }
+              , [130] = { -- 燃烧箭
+                ["Id"] = HERO_SKILL_WILDFIRE
+                , ["Text"] = "/Text/TTH/Skills/Offence/130-Wildfire/Name.txt"
                 , ["DependType"] = TTH_ENUM.Simple
                 , ["Depend"] = {
                   [1] = HERO_SKILL_ARCHERY

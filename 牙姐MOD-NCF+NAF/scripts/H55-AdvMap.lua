@@ -1372,104 +1372,285 @@ function H55_AbandonedMineVisit(strHero, objBank)
 	TTH_BankCombatByRaceMine(strHero, objBank, iFaction, "H55_AbandonedMineVisit", "/Arenas/CombatArena/FinalCombat/Bank_Mine.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)");
 end;
 
--- by 牙姐 2018-9-27 23:31:27
--- begin 宝屋统一战斗方法-非8族
-function TTH_BankCombatByNoRace(strHero, objBank, strBuildingName, strCallbackVisit, strCombatLink)
-	local iPlayer = GetObjectOwner(strHero);
-	if H55_GetLastVisited(objBank) > 6 and H55_GetPlayerLastVisited(iPlayer, objBank) > 13 then
-		H55_BankCurrentPlayerVisit[iPlayer] = objBank;
-		if TTH_GLOBAL.isAi(iPlayer) == TTH_ENUM.Yes then
-			Trigger(OBJECT_TOUCH_TRIGGER, objBank, nil);
-			SetObjectEnabled(objBank, not nil);
-			MakeHeroInteractWithObject(strHero, objBank);
-			Trigger(OBJECT_TOUCH_TRIGGER, objBank, strCallbackVisit);
-			SetObjectEnabled(objBank, nil);
-			TTH_BankWinAI(strHero, 1);
+-- 宝屋统一战斗方法-非8族
+	TTH_TABLE.BankOption = {
+		[1] = {
+			["Id"] = 1
+			, ["Text"] = TTH_PATH.Visit["Bank"]["Normal"]
+			, ["Callback"] = "TTH_VISIT.visitBankNormal"
+		}
+		, [2] = {
+			["Id"] = 2
+			, ["Text"] = TTH_PATH.Visit["Bank"]["Adv"]
+			, ["Callback"] = "TTH_VISIT.visitBankAdv"
+		}
+	};
+	TTH_VARI.recordBank = {};
+	function TTH_BankCombatByNoRace(strHero, objBank, strBuildingName, strCallbackVisit, strCombatLink)
+		local iPlayer = GetObjectOwner(strHero);
+		if H55_GetLastVisited(objBank) > 6 and H55_GetPlayerLastVisited(iPlayer, objBank) > 13 then
+			H55_BankCurrentPlayerVisit[iPlayer] = objBank;
+			if TTH_GLOBAL.isAi(iPlayer) == TTH_ENUM.Yes then
+				Trigger(OBJECT_TOUCH_TRIGGER, objBank, nil);
+				SetObjectEnabled(objBank, not nil);
+				MakeHeroInteractWithObject(strHero, objBank);
+				Trigger(OBJECT_TOUCH_TRIGGER, objBank, strCallbackVisit);
+				SetObjectEnabled(objBank, nil);
+				TTH_BankWinAI(strHero, 1);
+			else
+				TTH_VARI.recordBank = {
+					["Bank"] = objBank
+					, ["BuildingName"] = strBuildingName
+					, ["CallbackVisit"] = strCallbackVisit
+					, ["CombatLink"] = strCombatLink
+				};
+				TTH_COMMON.optionRadio(iPlayer, strHero, TTH_TABLE.BankOption, TTH_PATH.Visit["Bank"]["RadioTips"]);
+			end;
 		else
-			if TTH_VARI.filterBankVisit[strHero] ~= nil
-				and TTH_VARI.filterBankVisit[strHero][objBank] == TTH_VARI.day then
-				print("repeat visit");
-				return nil;
+			if TTH_GLOBAL.isAi(iPlayer) ~= TTH_ENUM.Yes then
+				ShowFlyingSign("/Text/Game/Scripts/Banks/Already.txt", strHero, iPlayer, 5);
 			end;
-			if TTH_VARI.filterBankVisit[strHero] == nil then
-				TTH_VARI.filterBankVisit[strHero] = {};
-			end;
-			TTH_VARI.filterBankVisit[strHero][objBank] = TTH_VARI.day;
-
-			local iMonthScale = TTH_VARI.month + 1;
-			if strBuildingName == "BUILDING_CYCLOPS_STOCKPILE" then
-				iMonthScale = TTH_VARI.month;
-			end;
-			local iWeekScale = TTH_VARI.absoluteWeek;
-			local iRandom = TTH_VARI.absoluteWeek;
-			local iMultiplier = H55_GetBankDifMultiplier();
-			local strCallbackWin = "TTH_BankWinAdv";
-
-			local listIdCreature = {};
-			local listCountCreature = {};
-			local iLen = length(TTH_BankMonsterByNoRace[strBuildingName]["ID"]);
-			for i = 0, iLen - 1 do
-				listIdCreature[i] = TTH_BankMonsterByNoRace[strBuildingName]["ID"][i];
-				local iGrowth = TTH_BankMonsterByNoRace[strBuildingName]["GROWTH"][i];
-				listCountCreature[i] = random(iRandom * iGrowth) + TTH_COMMON.round(iMultiplier * iWeekScale * 2 * iMonthScale * iGrowth);
-			end
-
-			if strBuildingName == "BUILDING_CYCLOPS_STOCKPILE" and TTH_VARI.month == 1 then
-				iLen = iLen - 1;
-			end;
-			if iLen == 3 then
-				StartCombat(strHero, nil, 3
-					, listIdCreature[0], listCountCreature[0]
-					, listIdCreature[1], listCountCreature[1]
-					, listIdCreature[2], listCountCreature[2]
-					, nil, strCallbackWin, strCombatLink, 1);
-			elseif iLen == 4 then
-				StartCombat(strHero, nil, 4
-					, listIdCreature[0], listCountCreature[0]
-					, listIdCreature[1], listCountCreature[1]
-					, listIdCreature[2], listCountCreature[2]
-					, listIdCreature[3], listCountCreature[3]
-					, nil, strCallbackWin, strCombatLink, 1);
-			elseif iLen == 5 then
-				StartCombat(strHero, nil, 5
-					, listIdCreature[0], listCountCreature[0]
-					, listIdCreature[1], listCountCreature[1]
-					, listIdCreature[2], listCountCreature[2]
-					, listIdCreature[3], listCountCreature[3]
-					, listIdCreature[4], listCountCreature[4]
-					, nil, strCallbackWin, strCombatLink, 1);
-			elseif iLen == 6 then
-				StartCombat(strHero, nil, 6
-					, listIdCreature[0], listCountCreature[0]
-					, listIdCreature[1], listCountCreature[1]
-					, listIdCreature[2], listCountCreature[2]
-					, listIdCreature[3], listCountCreature[3]
-					, listIdCreature[4], listCountCreature[4]
-					, listIdCreature[5], listCountCreature[5]
-					, nil, strCallbackWin, strCombatLink, 1);
-			elseif iLen == 7 then
-				StartCombat(strHero, nil, 7
-					, listIdCreature[0], listCountCreature[0]
-					, listIdCreature[1], listCountCreature[1]
-					, listIdCreature[2], listCountCreature[2]
-					, listIdCreature[3], listCountCreature[3]
-					, listIdCreature[4], listCountCreature[4]
-					, listIdCreature[5], listCountCreature[5]
-					, listIdCreature[6], listCountCreature[6]
-					, nil, strCallbackWin, strCombatLink, 1);
-			end;
-		end;
-	else
-		if TTH_GLOBAL.isAi(iPlayer) ~= TTH_ENUM.Yes then
-			ShowFlyingSign("/Text/Game/Scripts/Banks/Already.txt", strHero, iPlayer, 5);
 		end;
 	end;
-end;
--- end
+	function TTH_VISIT.visitBankNormal(iPlayer, strHero)
+		local objBank = TTH_VARI.recordBank["Bank"];
+		local strBuildingName = TTH_VARI.recordBank["BuildingName"];
+		local strCallbackVisit = TTH_VARI.recordBank["CallbackVisit"];
+		local strCombatLink = TTH_VARI.recordBank["CombatLink"];
+		if TTH_VARI.filterBankVisit[strHero] ~= nil
+			and TTH_VARI.filterBankVisit[strHero][objBank] == TTH_VARI.day then
+			print("repeat visit");
+			return nil;
+		end;
+		if TTH_VARI.filterBankVisit[strHero] == nil then
+			TTH_VARI.filterBankVisit[strHero] = {};
+		end;
+		TTH_VARI.filterBankVisit[strHero][objBank] = TTH_VARI.day;
+
+		local iMonthScale = TTH_VARI.month + 1;
+		local iWeekScale = TTH_VARI.absoluteWeek;
+		local iRandom = TTH_VARI.absoluteWeek;
+		local iMultiplier = H55_GetBankDifMultiplier();
+		local strCallbackWin = "TTH_BankWinAdvNormal";
+
+		local listIdCreature = {};
+		local listCountCreature = {};
+		local iLen = length(TTH_BankMonsterByNoRace[strBuildingName]["ID"]);
+		for i = 0, iLen - 1 do
+			listIdCreature[i] = TTH_BankMonsterByNoRace[strBuildingName]["ID"][i];
+			local iGrowth = TTH_BankMonsterByNoRace[strBuildingName]["GROWTH"][i];
+			listCountCreature[i] = random(iRandom * iGrowth) + TTH_COMMON.round(iMultiplier * iWeekScale * 2 * iMonthScale * iGrowth);
+		end
+
+		if iLen == 3 then
+			StartCombat(strHero, nil, 3
+				, listIdCreature[0], listCountCreature[0]
+				, listIdCreature[1], listCountCreature[1]
+				, listIdCreature[2], listCountCreature[2]
+				, nil, strCallbackWin, strCombatLink, 1);
+		elseif iLen == 4 then
+			StartCombat(strHero, nil, 4
+				, listIdCreature[0], listCountCreature[0]
+				, listIdCreature[1], listCountCreature[1]
+				, listIdCreature[2], listCountCreature[2]
+				, listIdCreature[3], listCountCreature[3]
+				, nil, strCallbackWin, strCombatLink, 1);
+		elseif iLen == 5 then
+			StartCombat(strHero, nil, 5
+				, listIdCreature[0], listCountCreature[0]
+				, listIdCreature[1], listCountCreature[1]
+				, listIdCreature[2], listCountCreature[2]
+				, listIdCreature[3], listCountCreature[3]
+				, listIdCreature[4], listCountCreature[4]
+				, nil, strCallbackWin, strCombatLink, 1);
+		elseif iLen == 6 then
+			StartCombat(strHero, nil, 6
+				, listIdCreature[0], listCountCreature[0]
+				, listIdCreature[1], listCountCreature[1]
+				, listIdCreature[2], listCountCreature[2]
+				, listIdCreature[3], listCountCreature[3]
+				, listIdCreature[4], listCountCreature[4]
+				, listIdCreature[5], listCountCreature[5]
+				, nil, strCallbackWin, strCombatLink, 1);
+		elseif iLen == 7 then
+			StartCombat(strHero, nil, 7
+				, listIdCreature[0], listCountCreature[0]
+				, listIdCreature[1], listCountCreature[1]
+				, listIdCreature[2], listCountCreature[2]
+				, listIdCreature[3], listCountCreature[3]
+				, listIdCreature[4], listCountCreature[4]
+				, listIdCreature[5], listCountCreature[5]
+				, listIdCreature[6], listCountCreature[6]
+				, nil, strCallbackWin, strCombatLink, 1);
+		end;
+	end;
+	function TTH_VISIT.visitBankAdv(iPlayer, strHero)
+		local objBank = TTH_VARI.recordBank["Bank"];
+		local strBuildingName = TTH_VARI.recordBank["BuildingName"];
+		local strCallbackVisit = TTH_VARI.recordBank["CallbackVisit"];
+		local strCombatLink = TTH_VARI.recordBank["CombatLink"];
+		if TTH_VARI.filterBankVisit[strHero] ~= nil
+			and TTH_VARI.filterBankVisit[strHero][objBank] == TTH_VARI.day then
+			print("repeat visit");
+			return nil;
+		end;
+		if TTH_VARI.filterBankVisit[strHero] == nil then
+			TTH_VARI.filterBankVisit[strHero] = {};
+		end;
+		TTH_VARI.filterBankVisit[strHero][objBank] = TTH_VARI.day;
+
+		local iMonthScale = TTH_VARI.month + 1;
+		local iWeekScale = TTH_VARI.absoluteWeek;
+		local iRandom = TTH_VARI.absoluteWeek;
+		local iMultiplier = H55_GetBankDifMultiplier();
+		local strCallbackWin = "TTH_BankWinAdvAdv";
+
+		local listIdCreature = {};
+		local listCountCreature = {};
+		local iLen = length(TTH_BankMonsterByNoRace[strBuildingName]["ID"]);
+		for i = 0, iLen - 1 do
+			listIdCreature[i] = TTH_BankMonsterByNoRace[strBuildingName]["ID"][i];
+			local iGrowth = TTH_BankMonsterByNoRace[strBuildingName]["GROWTH"][i];
+			listCountCreature[i] = random(iRandom * iGrowth) + TTH_COMMON.round(iMultiplier * iWeekScale * 2 * iMonthScale * iGrowth);
+		end
+		local iCreatureNumber4God = 1 + TTH_COMMON.floor(GetHeroLevel(strHero) / 10);
+
+		if iLen == 3 then
+			StartCombat(strHero, nil, 3
+				, CREATURE_DRAGON_KNIGHT, iCreatureNumber4God
+				, CREATURE_CHERUBIN, iCreatureNumber4God
+				, listIdCreature[2], listCountCreature[2]
+				, nil, strCallbackWin, strCombatLink, 1);
+		elseif iLen == 4 then
+			StartCombat(strHero, nil, 4
+				, CREATURE_DRAGON_KNIGHT, iCreatureNumber4God
+				, CREATURE_CHERUBIN, iCreatureNumber4God
+				, listIdCreature[2], listCountCreature[2]
+				, listIdCreature[3], listCountCreature[3]
+				, nil, strCallbackWin, strCombatLink, 1);
+		elseif iLen == 5 then
+			StartCombat(strHero, nil, 5
+				, CREATURE_DRAGON_KNIGHT, iCreatureNumber4God
+				, CREATURE_CHERUBIN, iCreatureNumber4God
+				, listIdCreature[2], listCountCreature[2]
+				, listIdCreature[3], listCountCreature[3]
+				, listIdCreature[4], listCountCreature[4]
+				, nil, strCallbackWin, strCombatLink, 1);
+		elseif iLen == 6 then
+			StartCombat(strHero, nil, 6
+				, CREATURE_DRAGON_KNIGHT, iCreatureNumber4God
+				, CREATURE_CHERUBIN, iCreatureNumber4God
+				, listIdCreature[2], listCountCreature[2]
+				, listIdCreature[3], listCountCreature[3]
+				, listIdCreature[4], listCountCreature[4]
+				, listIdCreature[5], listCountCreature[5]
+				, nil, strCallbackWin, strCombatLink, 1);
+		elseif iLen == 7 then
+			StartCombat(strHero, nil, 7
+				, CREATURE_DRAGON_KNIGHT, iCreatureNumber4God
+				, CREATURE_CHERUBIN, iCreatureNumber4God
+				, listIdCreature[2], listCountCreature[2]
+				, listIdCreature[3], listCountCreature[3]
+				, listIdCreature[4], listCountCreature[4]
+				, listIdCreature[5], listCountCreature[5]
+				, listIdCreature[6], listCountCreature[6]
+				, nil, strCallbackWin, strCombatLink, 1);
+		end;
+	end;
+
+-- 宝屋统一战斗方法-非8族
+	function TTH_BankCombatByElement(strHero, objBank, strBuildingName, strCallbackVisit, strCombatLink)
+		local iPlayer = GetObjectOwner(strHero);
+		if H55_GetLastVisited(objBank) > 6 and H55_GetPlayerLastVisited(iPlayer, objBank) > 13 then
+			H55_BankCurrentPlayerVisit[iPlayer] = objBank;
+			if TTH_GLOBAL.isAi(iPlayer) == TTH_ENUM.Yes then
+				Trigger(OBJECT_TOUCH_TRIGGER, objBank, nil);
+				SetObjectEnabled(objBank, not nil);
+				MakeHeroInteractWithObject(strHero, objBank);
+				Trigger(OBJECT_TOUCH_TRIGGER, objBank, strCallbackVisit);
+				SetObjectEnabled(objBank, nil);
+				TTH_BankWinAI(strHero, 1);
+			else
+				if TTH_VARI.filterBankVisit[strHero] ~= nil
+					and TTH_VARI.filterBankVisit[strHero][objBank] == TTH_VARI.day then
+					print("repeat visit");
+					return nil;
+				end;
+				if TTH_VARI.filterBankVisit[strHero] == nil then
+					TTH_VARI.filterBankVisit[strHero] = {};
+				end;
+				TTH_VARI.filterBankVisit[strHero][objBank] = TTH_VARI.day;
+
+				local iMonthScale = TTH_VARI.month;
+				local iWeekScale = TTH_VARI.absoluteWeek;
+				local iRandom = TTH_VARI.absoluteWeek;
+				local iMultiplier = H55_GetBankDifMultiplier();
+				local strCallbackWin = "TTH_BankWinElement";
+
+				local listIdCreature = {};
+				local listCountCreature = {};
+				local iLen = length(TTH_BankMonsterByNoRace[strBuildingName]["ID"]);
+				for i = 0, iLen - 1 do
+					listIdCreature[i] = TTH_BankMonsterByNoRace[strBuildingName]["ID"][i];
+					local iGrowth = TTH_BankMonsterByNoRace[strBuildingName]["GROWTH"][i];
+					listCountCreature[i] = random(iRandom * iGrowth) + TTH_COMMON.round(iMultiplier * iWeekScale * 2 * iMonthScale * iGrowth);
+				end
+
+				if strBuildingName == "BUILDING_CYCLOPS_STOCKPILE" and TTH_VARI.month == 1 then
+					iLen = iLen - 1;
+				end;
+				if iLen == 3 then
+					StartCombat(strHero, nil, 3
+						, listIdCreature[0], listCountCreature[0]
+						, listIdCreature[1], listCountCreature[1]
+						, listIdCreature[2], listCountCreature[2]
+						, nil, strCallbackWin, strCombatLink, 1);
+				elseif iLen == 4 then
+					StartCombat(strHero, nil, 4
+						, listIdCreature[0], listCountCreature[0]
+						, listIdCreature[1], listCountCreature[1]
+						, listIdCreature[2], listCountCreature[2]
+						, listIdCreature[3], listCountCreature[3]
+						, nil, strCallbackWin, strCombatLink, 1);
+				elseif iLen == 5 then
+					StartCombat(strHero, nil, 5
+						, listIdCreature[0], listCountCreature[0]
+						, listIdCreature[1], listCountCreature[1]
+						, listIdCreature[2], listCountCreature[2]
+						, listIdCreature[3], listCountCreature[3]
+						, listIdCreature[4], listCountCreature[4]
+						, nil, strCallbackWin, strCombatLink, 1);
+				elseif iLen == 6 then
+					StartCombat(strHero, nil, 6
+						, listIdCreature[0], listCountCreature[0]
+						, listIdCreature[1], listCountCreature[1]
+						, listIdCreature[2], listCountCreature[2]
+						, listIdCreature[3], listCountCreature[3]
+						, listIdCreature[4], listCountCreature[4]
+						, listIdCreature[5], listCountCreature[5]
+						, nil, strCallbackWin, strCombatLink, 1);
+				elseif iLen == 7 then
+					StartCombat(strHero, nil, 7
+						, listIdCreature[0], listCountCreature[0]
+						, listIdCreature[1], listCountCreature[1]
+						, listIdCreature[2], listCountCreature[2]
+						, listIdCreature[3], listCountCreature[3]
+						, listIdCreature[4], listCountCreature[4]
+						, listIdCreature[5], listCountCreature[5]
+						, listIdCreature[6], listCountCreature[6]
+						, nil, strCallbackWin, strCombatLink, 1);
+				end;
+			end;
+		else
+			if TTH_GLOBAL.isAi(iPlayer) ~= TTH_ENUM.Yes then
+				ShowFlyingSign("/Text/Game/Scripts/Banks/Already.txt", strHero, iPlayer, 5);
+			end;
+		end;
+	end;
 
 function H55_StockpileVisit(strHero, objBank)
 	local strBuildingName = "BUILDING_CYCLOPS_STOCKPILE";
-	TTH_BankCombatByNoRace(strHero, objBank, strBuildingName, "H55_StockpileVisit", "/Arenas/CombatArena/FinalCombat/Bank_Stockpile.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)");
+	TTH_BankCombatByElement(strHero, objBank, strBuildingName, "H55_StockpileVisit", "/Arenas/CombatArena/FinalCombat/Bank_Stockpile.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)");
 end;
 
 function H55_UtopiaVisit(strHero, objBank)
@@ -1557,7 +1738,65 @@ end;
 
 -- by 牙姐 2018-9-30 13:56:42
 -- begin 高级宝屋胜利
-function TTH_BankWinAdv(strHero, result)
+function TTH_BankWinAdvNormal(strHero, result)
+	local iPlayer = GetObjectOwner(strHero);
+	if TTH_DATA_BankWinTimes[TTH_VARI.absoluteWeek] == nil then
+		TTH_DATA_BankWinTimes[TTH_VARI.absoluteWeek] = {};
+	end;
+	if TTH_DATA_BankWinTimes[TTH_VARI.absoluteWeek][iPlayer] == nil then
+		TTH_DATA_BankWinTimes[TTH_VARI.absoluteWeek][iPlayer] = 3;
+	else
+		TTH_DATA_BankWinTimes[TTH_VARI.absoluteWeek][iPlayer] = TTH_DATA_BankWinTimes[TTH_VARI.absoluteWeek][iPlayer] + 3;
+	end;
+	local objBank = H55_BankCurrentPlayerVisit[iPlayer];
+	local iDay = GetDate(DAY);
+	if result ~= nil then
+		TTH_BankReward(strHero);
+		TTH_BankReward(strHero);
+		H55_BankLastVisit[objBank] = iDay;
+		H55_BankPlayerLastVisit[iPlayer][objBank] = iDay;
+		MarkObjectAsVisited(objBank, strHero);
+	else
+		MarkObjectAsVisited(objBank, strHero);
+	end;
+end;
+function TTH_BankWinAdvAdv(strHero, result)
+	local iPlayer = GetObjectOwner(strHero);
+	if TTH_DATA_BankWinTimes[TTH_VARI.absoluteWeek] == nil then
+		TTH_DATA_BankWinTimes[TTH_VARI.absoluteWeek] = {};
+	end;
+	if TTH_DATA_BankWinTimes[TTH_VARI.absoluteWeek][iPlayer] == nil then
+		TTH_DATA_BankWinTimes[TTH_VARI.absoluteWeek][iPlayer] = 3;
+	else
+		TTH_DATA_BankWinTimes[TTH_VARI.absoluteWeek][iPlayer] = TTH_DATA_BankWinTimes[TTH_VARI.absoluteWeek][iPlayer] + 3;
+	end;
+	local objBank = H55_BankCurrentPlayerVisit[iPlayer];
+	local iDay = GetDate(DAY);
+	if result ~= nil then
+		TTH_BankReward(strHero);
+		TTH_BankReward(strHero);
+		TTH_BankRewardArtifact(strHero);
+		H55_BankLastVisit[objBank] = iDay;
+		H55_BankPlayerLastVisit[iPlayer][objBank] = iDay;
+		MarkObjectAsVisited(objBank, strHero);
+	else
+		MarkObjectAsVisited(objBank, strHero);
+	end;
+end;
+function TTH_BankRewardArtifact(strHero)
+	local iPlayer = GetObjectOwner(strHero);
+	for iLevel = 1, 6 do
+		local iLenArtifact = length(TTH_TABLE_Artifacts[iLevel]);
+		local iRandom = random(iLenArtifact);
+		local iArtifactId = TTH_TABLE_Artifacts[iLevel][iRandom];
+		GiveArtefact(strHero, iArtifactId);
+	end
+end;
+-- end
+
+-- by 牙姐 2018-9-30 13:56:42
+-- begin 高级宝屋胜利-元素
+function TTH_BankWinElement(strHero, result)
 	local iPlayer = GetObjectOwner(strHero);
 	if TTH_DATA_BankWinTimes[TTH_VARI.absoluteWeek] == nil then
 		TTH_DATA_BankWinTimes[TTH_VARI.absoluteWeek] = {};

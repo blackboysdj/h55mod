@@ -1968,6 +1968,8 @@ doFile("/scripts/H55-Settings.lua");
 
 					if enumHeroClass == TTH_ENUM.BeastMaster then
 						GiveHeroSkill(strHero, HERO_SKILL_LEADERSHIP);
+						GiveHeroSkill(strHero, HERO_SKILL_LEADERSHIP);
+						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
 						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
 						GiveHeroSkill(strHero, HERO_SKILL_OFFENCE);
 						GiveHeroSkill(strHero, HERO_SKILL_OFFENCE);
@@ -1975,7 +1977,11 @@ doFile("/scripts/H55-Settings.lua");
 						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_ENCOURAGE);
 						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_FAST_AND_FURIOUS);
+						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_LUCKY_STRIKE);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_ELVEN_LUCK);
 						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_TACTICS);
 						sleep(1);
@@ -3372,28 +3378,6 @@ doFile("/scripts/H55-Settings.lua");
 							, [STAT_MORALE] = 0
 						}
 					}
-					, [HERO_SKILL_TWILIGHT] = { -- 微光黎明
-						["HeroLevel"] = 30
-						, ["Stat"] = {
-							[STAT_ATTACK] = 0
-							, [STAT_DEFENCE] = 0
-							, [STAT_SPELL_POWER] = 3
-							, [STAT_KNOWLEDGE] = 0
-							, [STAT_LUCK] = 0
-							, [STAT_MORALE] = 0
-						}
-					}
-					, [HERO_SKILL_PARIAH] = { -- 堕落骑士
-						["HeroLevel"] = 30
-						, ["Stat"] = {
-							[STAT_ATTACK] = 0
-							, [STAT_DEFENCE] = 0
-							, [STAT_SPELL_POWER] = 5
-							, [STAT_KNOWLEDGE] = 0
-							, [STAT_LUCK] = -1
-							, [STAT_MORALE] = 0
-						}
-					}
 					, [HERO_SKILL_DARK_REVELATION] = { -- 黑暗启示
 						["HeroLevel"] = 1
 						, ["Stat"] = {
@@ -4413,6 +4397,10 @@ doFile("/scripts/H55-Settings.lua");
 											end;
 											if strHero == "Sylsai" then
 												TTH_TALENT.visitDwellingSylsai(iPlayer, strHero, strBuildingName, funcCallback);
+												return nil;
+											end;
+											if strHero == "Azar" then
+												TTH_TALENT.visitDwellingAzar(iPlayer, strHero, strBuildingName, funcCallback);
 												return nil;
 											end;
 										end;
@@ -9048,31 +9036,45 @@ doFile("/scripts/H55-Settings.lua");
       	TTH_TABLE.MenelDwellingLevelOption = {
       		[1] = {
       			["Id"] = 1
-      			, ["Text"] = TTH_PATH.Talent["Menel"]["Building"]["BattleAcademy"]
+      			, ["Text"] = TTH_TABLE_NCF_CREATURES[TTH_TABLE.Creature8RaceAndLevel[TOWN_DUNGEON][1][1]]["NAME"]
       			, ["Callback"] = "TTH_TALENT.checkPreActiveMenel4Res"
       			, ["CostGold"] = 1000
       			, ["Level"] = 1
       		}
       		, [2] = {
       			["Id"] = 2
-      			, ["Text"] = TTH_PATH.Talent["Menel"]["Building"]["ShadowStone"]
+      			, ["Text"] = TTH_TABLE_NCF_CREATURES[TTH_TABLE.Creature8RaceAndLevel[TOWN_DUNGEON][2][1]]["NAME"]
       			, ["Callback"] = "TTH_TALENT.checkPreActiveMenel4Res"
-      			, ["CostGold"] = 1000
+      			, ["CostGold"] = 2000
       			, ["Level"] = 2
       		}
       		, [3] = {
       			["Id"] = 3
-      			, ["Text"] = TTH_PATH.Talent["Menel"]["Building"]["Maze"]
+      			, ["Text"] = TTH_TABLE_NCF_CREATURES[TTH_TABLE.Creature8RaceAndLevel[TOWN_DUNGEON][3][1]]["NAME"]
       			, ["Callback"] = "TTH_TALENT.checkPreActiveMenel4Res"
-      			, ["CostGold"] = 1000
+      			, ["CostGold"] = 3000
       			, ["Level"] = 3
       		}
       		, [4] = {
       			["Id"] = 4
-      			, ["Text"] = TTH_PATH.Talent["Menel"]["Building"]["DungeonMilitaryPost"]
+      			, ["Text"] = TTH_TABLE_NCF_CREATURES[TTH_TABLE.Creature8RaceAndLevel[TOWN_DUNGEON][4][1]]["NAME"]
       			, ["Callback"] = "TTH_TALENT.checkPreActiveMenel4Res"
-      			, ["CostGold"] = 10000
-      			, ["Level"] = 8
+      			, ["CostGold"] = 4000
+      			, ["Level"] = 4
+      		}
+      		, [5] = {
+      			["Id"] = 5
+      			, ["Text"] = TTH_TABLE_NCF_CREATURES[TTH_TABLE.Creature8RaceAndLevel[TOWN_DUNGEON][5][1]]["NAME"]
+      			, ["Callback"] = "TTH_TALENT.checkPreActiveMenel4Res"
+      			, ["CostGold"] = 5000
+      			, ["Level"] = 5
+      		}
+      		, [6] = {
+      			["Id"] = 6
+      			, ["Text"] = TTH_TABLE_NCF_CREATURES[TTH_TABLE.Creature8RaceAndLevel[TOWN_DUNGEON][6][1]]["NAME"]
+      			, ["Callback"] = "TTH_TALENT.checkPreActiveMenel4Res"
+      			, ["CostGold"] = 6000
+      			, ["Level"] = 6
       		}
       	};
       	TTH_VARI.threadActiveMenel = {};
@@ -10489,6 +10491,97 @@ doFile("/scripts/H55-Settings.lua");
 	      	end;
       	end;
 
+			-- Azar 138 艾扎-埃克
+				TTH_FINAL.AZAR_COST = 5000;
+      	function TTH_TALENT.initAzar(strHero)
+					TTH_MAIN.debug("TTH_TALENT.initAzar", nil, strHero);
+
+      		TTH_VARI.talent[strHero] = {
+						["CurrentTimes"] = 1
+						, ["MaxTimes"] = 1
+						, ["WolfLair"] = {}
+					};
+      	end;
+				function TTH_TALENT.visitDwellingAzar(iPlayer, strHero, strBuildingName, funcCallback)
+					TTH_COMMON.nextNavi(TTH_PATH.Talent[strHero]["Text"]);
+
+					TTH_TALENT.checkPreVisitDwellingAzar4Times(iPlayer, strHero, strBuildingName, funcCallback);
+				end;
+				function TTH_TALENT.checkPreVisitDwellingAzar4Times(iPlayer, strHero, strBuildingName, funcCallback)
+      		if TTH_VARI.talent[strHero]["CurrentTimes"] <= 0 then
+      			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+      				if TTH_MANAGE.getRemainOperTimes(strHero) <= 0 then
+      					local strText = TTH_PATH.Talent[strHero]["NotEnoughOperTimes"];
+			    			TTH_GLOBAL.sign(strHero, strText);
+
+			    			TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
+		    				return nil;
+      				end;
+      			else
+    					local strText = TTH_PATH.Talent[strHero]["NotEnoughOperTimes"];
+		    			TTH_GLOBAL.sign(strHero, strText);
+
+		    			TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
+	    				return nil;
+		    		end;
+      		end;
+
+      		TTH_TALENT.checkPreVisitDwellingAzar4Gold(iPlayer, strHero, strBuildingName, funcCallback);
+				end;
+				function TTH_TALENT.checkPreVisitDwellingAzar4Gold(iPlayer, strHero, strBuildingName, funcCallback)
+					local iGold = length(TTH_VARI.talent[strHero]["WolfLair"]) * TTH_FINAL.AZAR_COST;
+      		if GetPlayerResource(iPlayer, GOLD) < iGold then
+      			local strPathMain = {
+							TTH_PATH.Talent[strHero]["NotEnoughGold"]
+					    ;iGold=iGold
+      			};
+	    			TTH_GLOBAL.sign(strHero, strPathMain);
+
+	    			TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
+    				return nil;
+      		end;
+
+      		TTH_TALENT.confirmVisitDwellingAzar(iPlayer, strHero, strBuildingName, funcCallback);
+				end;
+				function TTH_TALENT.confirmVisitDwellingAzar(iPlayer, strHero, strBuildingName, funcCallback)
+					local strCreatureName = TTH_TABLE_NCF_CREATURES[CREATURE_WOLF]["NAME"];
+
+					local strPathMain = {
+						TTH_PATH.Talent[strHero]["ConfirmVisitDwelling"]
+				    ;strCreatureName=strCreatureName
+					};
+					local strCallbackOk = "TTH_TALENT.implVisitDwellingAzar("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strBuildingName)..")";
+					local strCallbackCancel = "TTH_VISIT.visitBuildingWithoutScript("..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strBuildingName)..","..TTH_COMMON.psp(funcCallback)..")";
+					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+				end;
+				function TTH_TALENT.implVisitDwellingAzar(iPlayer, strHero, strBuildingName)
+      		if TTH_VARI.talent[strHero]["CurrentTimes"] > 0 then
+    				TTH_VARI.talent[strHero]["CurrentTimes"] = TTH_VARI.talent[strHero]["CurrentTimes"] - 1;
+		    	else
+      			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+		    			TTH_MANAGE.useOperTimes(strHero);
+		    		end;
+      		end;
+					TTH_GLOBAL.reduceResource(iPlayer, GOLD, length(TTH_VARI.talent[strHero]["WolfLair"]) * TTH_FINAL.AZAR_COST);
+
+      		local iPosX, iPosY, iPosZ = GetObjectPosition(strBuildingName);
+      		Play3DSoundForPlayers(GetPlayerFilter(iPlayer), H55_SndCrash, iPosX, iPosY, iPosZ);
+      		local iHeroRace = TTH_GLOBAL.getRace8Hero(strHero);
+
+      		if contains(TTH_VARI.talent[strHero]["WolfLair"], strBuildingName) == nil then
+						TTH_VARI.talent[strHero]["WolfLair"] = TTH_COMMON.push(TTH_VARI.talent[strHero]["WolfLair"], strBuildingName);
+					end;
+      		ReplaceDwelling(strBuildingName, iHeroRace, CREATURE_WOLF);
+      		OverrideObjectTooltipNameAndDescription(strBuildingName, TTH_PATH.Talent[strHero]["Title"], TTH_PATH.Talent[strHero]["Desc"]);
+					local strText = TTH_PATH.Talent[strHero]["SuccessVisitDwelling"];
+					TTH_GLOBAL.sign(strHero, strText);
+				end;
+      	function TTH_TALENT.resetWeeklyAzar(iPlayer, strHero)
+      		TTH_MAIN.debug("TTH_TALENT.resetWeeklyAzar", iPlayer, strHero);
+
+      		TTH_VARI.talent[strHero]["CurrentTimes"] = TTH_VARI.talent[strHero]["MaxTimes"];
+      	end;
+
 	-- 宝物
 		TTH_ARTI = {};
 
@@ -10717,8 +10810,8 @@ doFile("/scripts/H55-Settings.lua");
 					TTH_VARI.recordPotion[ARTIFACT_POTION_REVIVE][strHero]["RemainTimes"] = TTH_VARI.recordPotion[ARTIFACT_POTION_REVIVE][strHero]["RemainTimes"] - 1;
 					TTH_VARI.recordPotion[ARTIFACT_POTION_REVIVE][strHero]["CombatIndex"] = TTH_VARI.combatIndex;
 					local iCoef = 0.3 + GetHeroStat(strHero, STAT_KNOWLEDGE) * 0.01;
-					if iCoef > 1 then
-						iCoef = 1;
+					if iCoef > 0.5 then
+						iCoef = 0.5;
 					end;
 					local iCombatIndex = TTH_VARI.combatIndex;
 					local iCountStacksWinner = GetSavedCombatArmyCreaturesCount(iCombatIndex, 1);
@@ -11845,123 +11938,180 @@ doFile("/scripts/H55-Settings.lua");
     		TTH_VARI.recordToughness[strHero]["OperTimes"] = TTH_VARI.recordToughness[strHero]["MaxOperTimes"];
 			end;
 
-		-- HERO_SKILL_GUARDIAN_ANGEL 078 天神降临
+		-- HERO_SKILL_PARIAH 083 堕落骑士
 			TTH_VARI.recordGuardianAngel = {};
-			function TTH_PERK.init078(iPlayer, strHero)
-				TTH_MAIN.debug("TTH_PERK.init078", iPlayer, strHero);
+			function TTH_PERK.init083(iPlayer, strHero)
+				TTH_MAIN.debug("TTH_PERK.init083", iPlayer, strHero);
 
-				TTH_VARI.recordGuardianAngel[strHero] = {
-					["OperTimes"] = 1
-					, ["MaxOperTimes"] = 1
-					, ["Status"] = TTH_ENUM.No
-				};
-			end;
-			function TTH_PERK.active078(iPlayer, strHero)
-				TTH_COMMON.nextNavi(TTH_PATH.Perk[HERO_SKILL_GUARDIAN_ANGEL]["Text"]);
-
-				TTH_PERK.checkPreActive0784NotEnoughTimes(iPlayer, strHero)
-			end;
-			function TTH_PERK.checkPreActive0784NotEnoughTimes(iPlayer, strHero)
 				if TTH_VARI.recordGuardianAngel[strHero] == nil then
-					TTH_PERK.init078(iPlayer, strHero);
+					TTH_VARI.recordGuardianAngel[strHero] = {
+						["OperTimes"] = 1
+						, ["MaxOperTimes"] = 1
+						, ["Status"] = TTH_ENUM.No
+					};
 				end;
-				local strText = TTH_PATH.Perk[HERO_SKILL_GUARDIAN_ANGEL]["NotEnoughTimes"];
+			end;
+			function TTH_PERK.active083(iPlayer, strHero)
+				TTH_COMMON.nextNavi(TTH_PATH.Perk[HERO_SKILL_PARIAH]["Text"]);
+
+				TTH_PERK.init083(iPlayer, strHero);
+				TTH_PERK.checkPreActive0834NotEnoughTimes(iPlayer, strHero)
+			end;
+			function TTH_PERK.checkPreActive0834NotEnoughTimes(iPlayer, strHero)
+				if TTH_VARI.recordGuardianAngel[strHero] == nil then
+					TTH_PERK.init083(iPlayer, strHero);
+				end;
+				local strText = TTH_PATH.Perk[HERO_SKILL_PARIAH]["NotEnoughTimes"];
     		if TTH_VARI.recordGuardianAngel[strHero]["OperTimes"] <= 0 then
-    			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
-    				if TTH_MANAGE.getRemainOperTimes(strHero) <= 0 then
-		    			TTH_GLOBAL.sign(strHero, strText);
-	    				return nil;
-    				end;
-    			else
-	    			TTH_GLOBAL.sign(strHero, strText);
-    				return nil;
-	    		end;
+    			TTH_GLOBAL.sign(strHero, strText);
+  				return nil;
     		end;
 
-				TTH_PERK.confirmActive078(iPlayer, strHero);
+				TTH_PERK.confirmActive083(iPlayer, strHero);
 			end;
-			function TTH_PERK.confirmActive078(iPlayer, strHero)
+			function TTH_PERK.confirmActive083(iPlayer, strHero)
     		local iHeroLevel = GetHeroLevel(strHero);
     		local iCreatureCount = 1 + TTH_COMMON.floor(iHeroLevel / 10);
     		local iHeroRace = TTH_GLOBAL.getRace8Hero(strHero);
-    		local iCreatureId = 0;
-    		if iHeroRace == TOWN_HEAVEN
-    			or iHeroRace == TOWN_PRESERVE
-    			or iHeroRace == TOWN_ACADEMY
-    			or iHeroRace == TOWN_FORTRESS then
-    			iCreatureId = CREATURE_CHERUBIN_LESS;
-    		elseif iHeroRace == TOWN_DUNGEON
-    			or iHeroRace == TOWN_NECROMANCY
-    			or iHeroRace == TOWN_INFERNO
-    			or iHeroRace == TOWN_STRONGHOLD then
-    			iCreatureId = CREATURE_DRAGON_KNIGHT_LESS;
-  			end;
+    		local iCreatureId = CREATURE_DRAGON_KNIGHT_LESS;
   			local strCreatureName = TTH_TABLE_NCF_CREATURES[iCreatureId]["NAME"];
 
 				local strPathMain={
-					TTH_PATH.Perk[HERO_SKILL_GUARDIAN_ANGEL]["Confirm"]
+					TTH_PATH.Perk[HERO_SKILL_PARIAH]["Confirm"]
 					;strCreatureName=strCreatureName
 					,iCreatureCount=iCreatureCount
 				};
-				local strCallbackOk = "TTH_PERK.implActive078("..iPlayer..","..TTH_COMMON.psp(strHero)..","..iCreatureId..")";
+				local strCallbackOk = "TTH_PERK.implActive083("..iPlayer..","..TTH_COMMON.psp(strHero)..","..iCreatureId..")";
 				local strCallbackCancel = "TTH_COMMON.cancelOption()";
 				TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
 			end;
-			function TTH_PERK.implActive078(iPlayer, strHero, iCreatureId)
+			function TTH_PERK.implActive083(iPlayer, strHero, iCreatureId)
     		if TTH_VARI.recordGuardianAngel[strHero]["OperTimes"] > 0 then
     			TTH_VARI.recordGuardianAngel[strHero]["OperTimes"] = TTH_VARI.recordGuardianAngel[strHero]["OperTimes"] - 1;
-    		else
-    			TTH_MANAGE.useOperTimes(strHero);
     		end;
-    		TTH_PERK.enableActive078(iPlayer, strHero, iCreatureId);
-				local strText = TTH_PATH.Perk[HERO_SKILL_GUARDIAN_ANGEL]["Success"];
+    		TTH_PERK.enableActive083(iPlayer, strHero, iCreatureId);
+				local strText = TTH_PATH.Perk[HERO_SKILL_PARIAH]["Success"];
     		TTH_GLOBAL.sign(strHero, strText);
 			end;
-			function TTH_PERK.combatResult078(iPlayer, strHero, iCombatIndex)
-				TTH_MAIN.debug("TTH_PERK.combatResult078", iPlayer, strHero, iCombatIndex);
+			function TTH_PERK.combatResult083(iPlayer, strHero, iCombatIndex)
+				TTH_MAIN.debug("TTH_PERK.combatResult083", iPlayer, strHero, iCombatIndex);
 
-				TTH_PERK.disableActive078(iPlayer, strHero);
+				TTH_PERK.disableActive083(iPlayer, strHero);
 			end;
-			function TTH_PERK.resetWeekly078(iPlayer, strHero)
-				TTH_MAIN.debug("TTH_PERK.resetWeekly078", iPlayer, strHero);
+			function TTH_PERK.resetWeekly083(iPlayer, strHero)
+				TTH_MAIN.debug("TTH_PERK.resetWeekly083", iPlayer, strHero);
 
-				if TTH_VARI.recordGuardianAngel[strHero] == nil then
-					TTH_PERK.init078(iPlayer, strHero);
-				end;
+				TTH_PERK.init083(iPlayer, strHero);
     		TTH_VARI.recordGuardianAngel[strHero]["OperTimes"] = TTH_VARI.recordGuardianAngel[strHero]["MaxOperTimes"];
 			end;
-			function TTH_PERK.resetDaily078(iPlayer, strHero)
-				TTH_MAIN.debug("TTH_PERK.resetDaily078", iPlayer, strHero);
+			function TTH_PERK.resetDaily083(iPlayer, strHero)
+				TTH_MAIN.debug("TTH_PERK.resetDaily083", iPlayer, strHero);
 
 				if TTH_GLOBAL.isAi(iPlayer) == TTH_ENUM.Yes then
-					if TTH_VARI.recordGuardianAngel[strHero] == nil then
-						TTH_PERK.init078(iPlayer, strHero);
-					end;
+					TTH_PERK.init083(iPlayer, strHero);
     			local iHeroRace = TTH_GLOBAL.getRace8Hero(strHero);
-	    		local iCreatureId = 0;
-		  		if iHeroRace == TOWN_HEAVEN
-		  			or iHeroRace == TOWN_PRESERVE
-		  			or iHeroRace == TOWN_ACADEMY
-		  			or iHeroRace == TOWN_FORTRESS then
-		  			iCreatureId = CREATURE_CHERUBIN_LESS;
-		  		elseif iHeroRace == TOWN_DUNGEON
-		  			or iHeroRace == TOWN_NECROMANCY
-		  			or iHeroRace == TOWN_INFERNO
-		  			or iHeroRace == TOWN_STRONGHOLD then
-		  			iCreatureId = CREATURE_DRAGON_KNIGHT_LESS;
-					end;
-					TTH_PERK.enableActive078(iPlayer, strHero, iCreatureId);
+	    		local iCreatureId = CREATURE_DRAGON_KNIGHT_LESS;
+					TTH_PERK.enableActive083(iPlayer, strHero, iCreatureId);
 				end;
 			end;
-			function TTH_PERK.enableActive078(iPlayer, strHero, iCreatureId)
+			function TTH_PERK.enableActive083(iPlayer, strHero, iCreatureId)
 				TTH_VARI.recordGuardianAngel[strHero]["Status"] = TTH_ENUM.Yes;
-				local strKey = TTH_FINAL.GAMEVAR_COMBAT_SKILL..strHero..'_'..HERO_SKILL_GUARDIAN_ANGEL;
+				local strKey = TTH_FINAL.GAMEVAR_COMBAT_SKILL..strHero..'_'..HERO_SKILL_PARIAH;
 				SetGameVar(strKey, iCreatureId);
 			end;
-			function TTH_PERK.disableActive078(iPlayer, strHero)
+			function TTH_PERK.disableActive083(iPlayer, strHero)
 				if TTH_VARI.recordGuardianAngel[strHero]["Status"] == TTH_ENUM.Yes then
 					TTH_VARI.recordGuardianAngel[strHero]["Status"] = TTH_ENUM.No;
-					local strKey = TTH_FINAL.GAMEVAR_COMBAT_SKILL..strHero..'_'..HERO_SKILL_GUARDIAN_ANGEL;
+					local strKey = TTH_FINAL.GAMEVAR_COMBAT_SKILL..strHero..'_'..HERO_SKILL_PARIAH;
+					SetGameVar(strKey, 0);
+				end;
+			end;
+
+		-- HERO_SKILL_TWILIGHT 109 微光黎明
+			TTH_VARI.recordGuardianAngel = {};
+			function TTH_PERK.init109(iPlayer, strHero)
+				TTH_MAIN.debug("TTH_PERK.init109", iPlayer, strHero);
+
+				if TTH_VARI.recordGuardianAngel[strHero] == nil then
+					TTH_VARI.recordGuardianAngel[strHero] = {
+						["OperTimes"] = 1
+						, ["MaxOperTimes"] = 1
+						, ["Status"] = TTH_ENUM.No
+					};
+				end;
+			end;
+			function TTH_PERK.active109(iPlayer, strHero)
+				TTH_COMMON.nextNavi(TTH_PATH.Perk[HERO_SKILL_TWILIGHT]["Text"]);
+
+				TTH_PERK.init109(iPlayer, strHero);
+				TTH_PERK.checkPreActive1094NotEnoughTimes(iPlayer, strHero)
+			end;
+			function TTH_PERK.checkPreActive1094NotEnoughTimes(iPlayer, strHero)
+				if TTH_VARI.recordGuardianAngel[strHero] == nil then
+					TTH_PERK.init109(iPlayer, strHero);
+				end;
+				local strText = TTH_PATH.Perk[HERO_SKILL_TWILIGHT]["NotEnoughTimes"];
+    		if TTH_VARI.recordGuardianAngel[strHero]["OperTimes"] <= 0 then
+    			TTH_GLOBAL.sign(strHero, strText);
+  				return nil;
+    		end;
+
+				TTH_PERK.confirmActive109(iPlayer, strHero);
+			end;
+			function TTH_PERK.confirmActive109(iPlayer, strHero)
+    		local iHeroLevel = GetHeroLevel(strHero);
+    		local iCreatureCount = 1 + TTH_COMMON.floor(iHeroLevel / 10);
+    		local iHeroRace = TTH_GLOBAL.getRace8Hero(strHero);
+    		local iCreatureId = CREATURE_CHERUBIN_LESS;
+  			local strCreatureName = TTH_TABLE_NCF_CREATURES[iCreatureId]["NAME"];
+
+				local strPathMain={
+					TTH_PATH.Perk[HERO_SKILL_TWILIGHT]["Confirm"]
+					;strCreatureName=strCreatureName
+					,iCreatureCount=iCreatureCount
+				};
+				local strCallbackOk = "TTH_PERK.implActive109("..iPlayer..","..TTH_COMMON.psp(strHero)..","..iCreatureId..")";
+				local strCallbackCancel = "TTH_COMMON.cancelOption()";
+				TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+			end;
+			function TTH_PERK.implActive109(iPlayer, strHero, iCreatureId)
+    		if TTH_VARI.recordGuardianAngel[strHero]["OperTimes"] > 0 then
+    			TTH_VARI.recordGuardianAngel[strHero]["OperTimes"] = TTH_VARI.recordGuardianAngel[strHero]["OperTimes"] - 1;
+    		end;
+    		TTH_PERK.enableActive109(iPlayer, strHero, iCreatureId);
+				local strText = TTH_PATH.Perk[HERO_SKILL_TWILIGHT]["Success"];
+    		TTH_GLOBAL.sign(strHero, strText);
+			end;
+			function TTH_PERK.combatResult109(iPlayer, strHero, iCombatIndex)
+				TTH_MAIN.debug("TTH_PERK.combatResult109", iPlayer, strHero, iCombatIndex);
+
+				TTH_PERK.disableActive109(iPlayer, strHero);
+			end;
+			function TTH_PERK.resetWeekly109(iPlayer, strHero)
+				TTH_MAIN.debug("TTH_PERK.resetWeekly109", iPlayer, strHero);
+
+				TTH_PERK.init109(iPlayer, strHero);
+    		TTH_VARI.recordGuardianAngel[strHero]["OperTimes"] = TTH_VARI.recordGuardianAngel[strHero]["MaxOperTimes"];
+			end;
+			function TTH_PERK.resetDaily109(iPlayer, strHero)
+				TTH_MAIN.debug("TTH_PERK.resetDaily109", iPlayer, strHero);
+
+				if TTH_GLOBAL.isAi(iPlayer) == TTH_ENUM.Yes then
+					TTH_PERK.init109(iPlayer, strHero);
+    			local iHeroRace = TTH_GLOBAL.getRace8Hero(strHero);
+	    		local iCreatureId = CREATURE_CHERUBIN_LESS;
+					TTH_PERK.enableActive109(iPlayer, strHero, iCreatureId);
+				end;
+			end;
+			function TTH_PERK.enableActive109(iPlayer, strHero, iCreatureId)
+				TTH_VARI.recordGuardianAngel[strHero]["Status"] = TTH_ENUM.Yes;
+				local strKey = TTH_FINAL.GAMEVAR_COMBAT_SKILL..strHero..'_'..HERO_SKILL_TWILIGHT;
+				SetGameVar(strKey, iCreatureId);
+			end;
+			function TTH_PERK.disableActive109(iPlayer, strHero)
+				if TTH_VARI.recordGuardianAngel[strHero]["Status"] == TTH_ENUM.Yes then
+					TTH_VARI.recordGuardianAngel[strHero]["Status"] = TTH_ENUM.No;
+					local strKey = TTH_FINAL.GAMEVAR_COMBAT_SKILL..strHero..'_'..HERO_SKILL_TWILIGHT;
 					SetGameVar(strKey, 0);
 				end;
 			end;
@@ -12345,8 +12495,11 @@ doFile("/scripts/H55-Settings.lua");
 			end;
 
 		-- HERO_SKILL_DEFEND_US_ALL 181 全体保卫
-			TTH_VARI.recordDefendUsAll = {};
+			TTH_VARI.recordDefendUsAllHero = {};
+			TTH_VARI.recordDefendUsAllPlayer = {};
 			TTH_FINAL.DEFEND_US_ALL_SCALE = 10;
+			TTH_FINAL.DEFEND_US_ALL_ATTENUATION = 0.8;
+			TTH_FINAL.DEFEND_US_ALL_MIN = 0.4;
 			TTH_TABLE.CreatureOption181 = {
 				[1] = {
 					["Id"] = 1
@@ -12408,11 +12561,14 @@ doFile("/scripts/H55-Settings.lua");
 			function TTH_PERK.init181(iPlayer, strHero)
 				TTH_MAIN.debug("TTH_PERK.init181", iPlayer, strHero);
 
-				if TTH_VARI.recordDefendUsAll[strHero] == nil then
-					TTH_VARI.recordDefendUsAll[strHero] = {
+				if TTH_VARI.recordDefendUsAllHero[strHero] == nil then
+					TTH_VARI.recordDefendUsAllHero[strHero] = {
 						["OperTimes"] = 1
 						, ["MaxOperTimes"] = 1
 					};
+				end;
+				if TTH_VARI.recordDefendUsAllPlayer[iPlayer] == nil then
+					TTH_VARI.recordDefendUsAllPlayer[iPlayer] = 0;
 				end;
 			end;
 			function TTH_PERK.active181(iPlayer, strHero)
@@ -12422,7 +12578,7 @@ doFile("/scripts/H55-Settings.lua");
 				TTH_PERK.checkPreActive1814NotEnoughTimes(iPlayer, strHero)
 			end;
 			function TTH_PERK.checkPreActive1814NotEnoughTimes(iPlayer, strHero)
-    		if TTH_VARI.recordDefendUsAll[strHero]["OperTimes"] <= 0 then
+    		if TTH_VARI.recordDefendUsAllHero[strHero]["OperTimes"] <= 0 then
 					local strText = TTH_PATH.Perk[HERO_SKILL_DEFEND_US_ALL]["NotEnoughTimes"];
 					TTH_GLOBAL.sign(strHero, strText);
 					return nil;
@@ -12465,7 +12621,8 @@ doFile("/scripts/H55-Settings.lua");
 					end;
 				end;
     		local strPostCreatureName = TTH_TABLE_NCF_CREATURES[iPostCreatureId]["NAME"];
-				local iPostCreatureNumber = TTH_COMMON.round(iCreatureNumberGoblin / TTH_FINAL.DEFEND_US_ALL_SCALE / TTH_TABLE.CreatureOption181[iIndexId]["Scale"]);
+    		local iAttenuation = TTH_PERK.calcAttenuation1814Player(iPlayer, strHero);
+				local iPostCreatureNumber = TTH_COMMON.round(iCreatureNumberGoblin / TTH_FINAL.DEFEND_US_ALL_SCALE / TTH_TABLE.CreatureOption181[iIndexId]["Scale"] * iAttenuation);
 				if iPostCreatureNumber < 1 then
 					iPostCreatureNumber = 1;
 				end;
@@ -12505,50 +12662,70 @@ doFile("/scripts/H55-Settings.lua");
   			TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
     	end;
 			function TTH_PERK.implActive181(iPlayer, strHero, iPostCreatureId, iPostCreatureNumber)
-    		if TTH_VARI.recordDefendUsAll[strHero]["OperTimes"] > 0 then
-    			TTH_VARI.recordDefendUsAll[strHero]["OperTimes"] = TTH_VARI.recordDefendUsAll[strHero]["OperTimes"] - 1;
+    		if TTH_VARI.recordDefendUsAllHero[strHero]["OperTimes"] > 0 then
+    			TTH_VARI.recordDefendUsAllHero[strHero]["OperTimes"] = TTH_VARI.recordDefendUsAllHero[strHero]["OperTimes"] - 1;
     		end;
+    		TTH_VARI.recordDefendUsAllPlayer[iPlayer] = TTH_VARI.recordDefendUsAllPlayer[iPlayer] + 1;
     		TTH_GLOBAL.addCreature4Hero8Sign(strHero, iPostCreatureId, iPostCreatureNumber, TTH_ENUM.AddCreature);
 			end;
 			function TTH_PERK.resetWeekly181(iPlayer, strHero)
 				TTH_MAIN.debug("TTH_PERK.resetWeekly181", iPlayer, strHero);
 
-				if TTH_VARI.recordDefendUsAll[strHero] == nil then
+				if TTH_VARI.recordDefendUsAllHero[strHero] == nil then
 					TTH_PERK.init181(iPlayer, strHero);
 				end;
 				local strHeroKunyak = "Kunyak";
 				if strHero == strHeroKunyak then
-	    		TTH_VARI.recordDefendUsAll[strHero]["OperTimes"] = TTH_VARI.recordDefendUsAll[strHero]["MaxOperTimes"];
+	    		TTH_VARI.recordDefendUsAllHero[strHero]["OperTimes"] = TTH_VARI.recordDefendUsAllHero[strHero]["MaxOperTimes"];
 				end;
+			end;
+			function TTH_PERK.calcAttenuation1814Player(iPlayer, strHero)
+				local iAttenuation = 1;
+				print("TTH_VARI.recordDefendUsAllPlayer: ");
+				print(TTH_VARI.recordDefendUsAllPlayer[iPlayer]);
+				if TTH_VARI.recordDefendUsAllPlayer[iPlayer] > 0 then
+					for i = 1, TTH_VARI.recordDefendUsAllPlayer[iPlayer] do
+						iAttenuation = iAttenuation * TTH_FINAL.DEFEND_US_ALL_ATTENUATION;
+					end;
+				end;
+				print("iAttenuation: ");
+				print(iAttenuation);
+				if iAttenuation < TTH_FINAL.DEFEND_US_ALL_MIN then
+					iAttenuation = TTH_FINAL.DEFEND_US_ALL_MIN;
+				end;
+				print("iAttenuation: ");
+				print(iAttenuation);
+				return iAttenuation;
 			end;
 
 		-- HERO_SKILL_GOBLIN_SUPPORT 182 地精支援
 			TTH_VARI.recordHero182 = {};
 			TTH_VARI.recordPlayer182 = {};
     	TTH_VARI.threadActive182 = {};
+    	TTH_FINAL.GOBLIN_SUPPORT_COST = 5000;
 			TTH_TABLE.DirectionOption182 = {
 				[1] = {
 					["Id"] = TTH_ENUM.DirectionNorth
 					, ["Text"] = TTH_PATH.Direction[TTH_ENUM.DirectionNorth]
-					, ["Callback"] = "TTH_PERK.threadActive182"
+					, ["Callback"] = "TTH_PERK.checkPreActive1824Gold"
 					, ["Rotate"] = TTH_ENUM.RotateNorth
 				}
 				, [2] = {
 					["Id"] = TTH_ENUM.DirectionEast
 					, ["Text"] = TTH_PATH.Direction[TTH_ENUM.DirectionEast]
-					, ["Callback"] = "TTH_PERK.threadActive182"
+					, ["Callback"] = "TTH_PERK.checkPreActive1824Gold"
 					, ["Rotate"] = TTH_ENUM.RotateEast
 				}
 				, [3] = {
 					["Id"] = TTH_ENUM.DirectionSouth
 					, ["Text"] = TTH_PATH.Direction[TTH_ENUM.DirectionSouth]
-					, ["Callback"] = "TTH_PERK.threadActive182"
+					, ["Callback"] = "TTH_PERK.checkPreActive1824Gold"
 					, ["Rotate"] = TTH_ENUM.RotateSouth
 				}
 				, [4] = {
 					["Id"] = TTH_ENUM.DirectionWest
 					, ["Text"] = TTH_PATH.Direction[TTH_ENUM.DirectionWest]
-					, ["Callback"] = "TTH_PERK.threadActive182"
+					, ["Callback"] = "TTH_PERK.checkPreActive1824Gold"
 					, ["Rotate"] = TTH_ENUM.RotateWest
 				}
 			};
@@ -12589,6 +12766,19 @@ doFile("/scripts/H55-Settings.lua");
 				local strText = TTH_PATH.Perk[HERO_SKILL_GOBLIN_SUPPORT]["TipsDirection"];
 				TTH_COMMON.optionRadio(iPlayer, strHero, TTH_TABLE.DirectionOption182, strText);
 			end;
+			function TTH_PERK.checkPreActive1824Gold(iPlayer, strHero, iDirectionId)
+				local iGold = length(TTH_VARI.recordPlayer182[iPlayer]["Support"]) * TTH_FINAL.GOBLIN_SUPPORT_COST;
+    		if GetPlayerResource(iPlayer, GOLD) < iGold then
+    			local strPathMain = {
+						TTH_PATH.Perk[HERO_SKILL_GOBLIN_SUPPORT]["NotEnoughGold"]
+				    ;iGold=iGold
+    			};
+    			TTH_GLOBAL.sign(strHero, strPathMain);
+  				return nil;
+    		end;
+
+    		TTH_PERK.threadActive182(iPlayer, strHero, iDirectionId);
+			end;
     	function TTH_PERK.checkPreActive1824NegetivePlace()
 				local strHero = TTH_VARI.threadActive182["Hero"];
 				local strText = TTH_PATH.Perk[HERO_SKILL_GOBLIN_SUPPORT]["NegetivePlace"];
@@ -12625,6 +12815,8 @@ doFile("/scripts/H55-Settings.lua");
     		local strBuildingName = strHero.."-"..iIndexBuilding;
     		CreateDwelling(strBuildingName, iHeroRace, 1, iPlayer, iPosX, iPosY, iPosZ, TTH_TABLE.DirectionOption182[iDirectionId]["Rotate"]);
     		sleep(1);
+				local iGold = length(TTH_VARI.recordPlayer182[iPlayer]["Support"]) * TTH_FINAL.GOBLIN_SUPPORT_COST;
+    		TTH_GLOBAL.reduceResource(iPlayer, GOLD, iGold);
     		TTH_VARI.recordHero182[strHero]["HasBuilding"] = TTH_VARI.recordHero182[strHero]["HasBuilding"] + 1;
     		TTH_VARI.recordPlayer182[iPlayer]["Support"] = TTH_COMMON.push(TTH_VARI.recordPlayer182[iPlayer]["Support"], strBuildingName);
 				local strText = TTH_PATH.Perk[HERO_SKILL_GOBLIN_SUPPORT]["Success"];
@@ -12675,10 +12867,17 @@ doFile("/scripts/H55-Settings.lua");
 		TTH_TEST = {};
 		function TTH_TEST.test26(iPlayer)
 			local strHero = GetPlayerHeroes(iPlayer)[0];
+			GiveExp(strHero, 100000)
+			sleep(1)
+			ChangeHeroStat(strHero, STAT_KNOWLEDGE, 99);
+			sleep(1)
+			ChangeHeroStat(strHero, STAT_MANA_POINTS, TTH_FINAL.NUM_MAX);
+			AddHeroCreatures(strHero, CREATURE_ORCCHIEF_BUTCHER, 111)
+			AddHeroCreatures(strHero, CREATURE_ORCCHIEF_EXECUTIONER, 111)
+			AddHeroCreatures(strHero, CREATURE_ORCCHIEF_CHIEFTAIN, 111)
 			GiveArtefact(strHero, ARTIFACT_OGRE_CLUB);
 			GiveArtefact(strHero, ARTIFACT_OGRE_SHIELD);
 			GiveArtefact(strHero, ARTIFACT_PENDANT_OF_STARDUST);
-			TeachHeroSpell(strHero, SPELL_WARCRY_CALL_OF_BLOOD);
 		end;
 		function TTH_TEST.test25(iPlayer)
 			local strHero = GetPlayerHeroes(iPlayer)[0];

@@ -10554,6 +10554,7 @@
       TTH_PATH.Visit["Bank"] = {};
         TTH_PATH.Visit["Bank"]["CombatLink"] = "/Arenas/CombatArena/FinalCombat/Bank_Bank.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)";
         TTH_PATH.Visit["Bank"]["Pre"] = "/Text/Game/Scripts/TTH_Path/Visit/Bank/";
+        TTH_PATH.Visit["Bank"]["Text"] = TTH_PATH.Visit["Bank"]["Pre"].."Text.txt";
         TTH_PATH.Visit["Bank"]["Normal"] = TTH_PATH.Visit["Bank"]["Pre"].."Normal.txt";
         TTH_PATH.Visit["Bank"]["Adv"] = TTH_PATH.Visit["Bank"]["Pre"].."Adv.txt";
         TTH_PATH.Visit["Bank"]["RadioTips"] = TTH_PATH.Visit["Bank"]["Pre"].."RadioTips.txt";

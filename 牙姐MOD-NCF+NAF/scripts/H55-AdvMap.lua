@@ -1398,6 +1398,8 @@ end;
 				SetObjectEnabled(objBank, nil);
 				TTH_BankWinAI(strHero, 1);
 			else
+				TTH_COMMON.initNavi(TTH_PATH.Visit["Bank"]["Text"]);
+
 				TTH_VARI.recordBank = {
 					["Bank"] = objBank
 					, ["BuildingName"] = strBuildingName

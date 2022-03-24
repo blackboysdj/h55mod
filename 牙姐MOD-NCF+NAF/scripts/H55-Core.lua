@@ -1637,7 +1637,7 @@ doFile("/scripts/H55-Settings.lua");
 						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_ENCOURAGE);
 						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_FRENZY);
+						GiveHeroSkill(strHero, HERO_SKILL_TACTICS);
 						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_POWER_OF_HASTE);
 						sleep(1);
@@ -11940,6 +11940,7 @@ doFile("/scripts/H55-Settings.lua");
 
 		-- HERO_SKILL_PARIAH 083 堕落骑士
 			TTH_VARI.recordGuardianAngel = {};
+			TTH_VARI.recordPariah = {};
 			function TTH_PERK.init083(iPlayer, strHero)
 				TTH_MAIN.debug("TTH_PERK.init083", iPlayer, strHero);
 
@@ -11947,7 +11948,11 @@ doFile("/scripts/H55-Settings.lua");
 					TTH_VARI.recordGuardianAngel[strHero] = {
 						["OperTimes"] = 1
 						, ["MaxOperTimes"] = 1
-						, ["Status"] = TTH_ENUM.No
+					};
+				end;
+				if TTH_VARI.recordPariah[strHero] == nil then
+					TTH_VARI.recordPariah[strHero] = {
+						["Status"] = TTH_ENUM.No
 					};
 				end;
 			end;
@@ -11996,6 +12001,7 @@ doFile("/scripts/H55-Settings.lua");
 			function TTH_PERK.combatResult083(iPlayer, strHero, iCombatIndex)
 				TTH_MAIN.debug("TTH_PERK.combatResult083", iPlayer, strHero, iCombatIndex);
 
+				TTH_PERK.init083(iPlayer, strHero);
 				TTH_PERK.disableActive083(iPlayer, strHero);
 			end;
 			function TTH_PERK.resetWeekly083(iPlayer, strHero)
@@ -12015,20 +12021,20 @@ doFile("/scripts/H55-Settings.lua");
 				end;
 			end;
 			function TTH_PERK.enableActive083(iPlayer, strHero, iCreatureId)
-				TTH_VARI.recordGuardianAngel[strHero]["Status"] = TTH_ENUM.Yes;
+				TTH_VARI.recordPariah[strHero]["Status"] = TTH_ENUM.Yes;
 				local strKey = TTH_FINAL.GAMEVAR_COMBAT_SKILL..strHero..'_'..HERO_SKILL_PARIAH;
 				SetGameVar(strKey, iCreatureId);
 			end;
 			function TTH_PERK.disableActive083(iPlayer, strHero)
-				if TTH_VARI.recordGuardianAngel[strHero]["Status"] == TTH_ENUM.Yes then
-					TTH_VARI.recordGuardianAngel[strHero]["Status"] = TTH_ENUM.No;
+				if TTH_VARI.recordPariah[strHero]["Status"] == TTH_ENUM.Yes then
+					TTH_VARI.recordPariah[strHero]["Status"] = TTH_ENUM.No;
 					local strKey = TTH_FINAL.GAMEVAR_COMBAT_SKILL..strHero..'_'..HERO_SKILL_PARIAH;
 					SetGameVar(strKey, 0);
 				end;
 			end;
 
 		-- HERO_SKILL_TWILIGHT 109 微光黎明
-			TTH_VARI.recordGuardianAngel = {};
+			TTH_VARI.recordTwilight = {};
 			function TTH_PERK.init109(iPlayer, strHero)
 				TTH_MAIN.debug("TTH_PERK.init109", iPlayer, strHero);
 
@@ -12036,7 +12042,11 @@ doFile("/scripts/H55-Settings.lua");
 					TTH_VARI.recordGuardianAngel[strHero] = {
 						["OperTimes"] = 1
 						, ["MaxOperTimes"] = 1
-						, ["Status"] = TTH_ENUM.No
+					};
+				end;
+				if TTH_VARI.recordTwilight[strHero] == nil then
+					TTH_VARI.recordTwilight[strHero] = {
+						["Status"] = TTH_ENUM.No
 					};
 				end;
 			end;
@@ -12085,6 +12095,7 @@ doFile("/scripts/H55-Settings.lua");
 			function TTH_PERK.combatResult109(iPlayer, strHero, iCombatIndex)
 				TTH_MAIN.debug("TTH_PERK.combatResult109", iPlayer, strHero, iCombatIndex);
 
+				TTH_PERK.init109(iPlayer, strHero);
 				TTH_PERK.disableActive109(iPlayer, strHero);
 			end;
 			function TTH_PERK.resetWeekly109(iPlayer, strHero)
@@ -12104,13 +12115,13 @@ doFile("/scripts/H55-Settings.lua");
 				end;
 			end;
 			function TTH_PERK.enableActive109(iPlayer, strHero, iCreatureId)
-				TTH_VARI.recordGuardianAngel[strHero]["Status"] = TTH_ENUM.Yes;
+				TTH_VARI.recordTwilight[strHero]["Status"] = TTH_ENUM.Yes;
 				local strKey = TTH_FINAL.GAMEVAR_COMBAT_SKILL..strHero..'_'..HERO_SKILL_TWILIGHT;
 				SetGameVar(strKey, iCreatureId);
 			end;
 			function TTH_PERK.disableActive109(iPlayer, strHero)
-				if TTH_VARI.recordGuardianAngel[strHero]["Status"] == TTH_ENUM.Yes then
-					TTH_VARI.recordGuardianAngel[strHero]["Status"] = TTH_ENUM.No;
+				if TTH_VARI.recordTwilight[strHero]["Status"] == TTH_ENUM.Yes then
+					TTH_VARI.recordTwilight[strHero]["Status"] = TTH_ENUM.No;
 					local strKey = TTH_FINAL.GAMEVAR_COMBAT_SKILL..strHero..'_'..HERO_SKILL_TWILIGHT;
 					SetGameVar(strKey, 0);
 				end;

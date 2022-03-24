@@ -6115,6 +6115,10 @@ doFile("/scripts/H55-Settings.lua");
 			-- 永久增强英雄的内政操作次数
 				function TTH_MANAGE.buffExtraOperTimes(iPlayer)
 					TTH_VARI.arrRecordPoint[iPlayer]["OperTimes"] = TTH_VARI.arrRecordPoint[iPlayer]["OperTimes"] + 1;
+					local arrHero = GetPlayerHeroes(iPlayer);
+					for i, strHero in arrHero do
+						TTH_MANAGE.addWeeklyOperTimes(strHero, 1);
+					end
 				end;
 
 			-- 获取内政操作次数（剩余值）
@@ -6874,17 +6878,9 @@ doFile("/scripts/H55-Settings.lua");
 				, ["Success"] = {
 					["Text"] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/Success.txt"
 				}
-				, ["CurrentOperTimes"] = {
-					["Text"] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/CurrentOperTimes.txt"
-					, ["RewardText"] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/RewardCurrentOperTimes.txt"
-				}
-				, ["RecoveryMove"] = {
-					["Text"] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/RecoveryMove.txt"
-					, ["RewardText"] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/RewardRecoveryMove.txt"
-				}
-				, ["RecoveryMana"] = {
-					["Text"] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/RecoveryMana.txt"
-					, ["RewardText"] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/RewardRecoveryMana.txt"
+				, ["PotionMaxTimes"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/PotionMaxTimes.txt"
+					, ["RewardText"] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/RewardPotionMaxTimes.txt"
 				}
 				, ["MaxOperTimes"] = {
 					["Text"] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/MaxOperTimes.txt"
@@ -7597,6 +7593,7 @@ doFile("/scripts/H55-Settings.lua");
 					TTH_ENUM.PotionMana = 2; -- 法力药水
 					TTH_ENUM.PotionEnergy = 3; -- 能量药水
 					TTH_ENUM.PotionRevive = 4; -- 复活药水
+					TTH_FINAL.POTION_MAXTIMES = 3;
 
 					TTH_TABLE.BuyConsumeInfo = {
 						[1] = {
@@ -7608,19 +7605,16 @@ doFile("/scripts/H55-Settings.lua");
 							["ArtifactId"] = ARTIFACT_POTION_MANA
 							, ["Cost"] = 6000
 							, ["WeekStep"] = 600
-							, ["MaxTimes"] = 3
 						}
 						, [3] = {
 							["ArtifactId"] = ARTIFACT_POTION_ENERGY
 							, ["Cost"] = 8000
 							, ["WeekStep"] = 800
-							, ["MaxTimes"] = 3
 						}
 						, [4] = {
 							["ArtifactId"] = ARTIFACT_POTION_REVIVE
 							, ["Cost"] = 10000
 							, ["WeekStep"] = 1000
-							, ["MaxTimes"] = 3
 						}
 					};
 					TTH_TABLE.BuyConsumeOption = {
@@ -7731,14 +7725,14 @@ doFile("/scripts/H55-Settings.lua");
 					-- 购买药水
 						function TTH_MANAGE.dealPotion(iPlayer, strHero, iPotionId)
 							local objBuy = TTH_TABLE.BuyConsumeInfo[iPotionId];
-							local iMaxTimes = objBuy["MaxTimes"];
+							local iMaxTimes = TTH_FINAL.POTION_MAXTIMES;
 							local iArtifactId = objBuy["ArtifactId"];
 							local iRemainTimes = 0;
 							local strTemplate = TTH_TABLE.KingManagePath["TownManage"]["BuyConsume"]["ConfirmNotExist"]["Text"];
 							if HasArtefact(strHero, iArtifactId, 0) ~= nil then
 								if TTH_VARI.recordPotion[iArtifactId] ~= nil
 									and TTH_VARI.recordPotion[iArtifactId][strHero] ~= nil then
-									if TTH_VARI.recordPotion[iArtifactId][strHero]["RemainTimes"] == 3 then
+									if TTH_VARI.recordPotion[iArtifactId][strHero]["RemainTimes"] == iMaxTimes then
 										local strPathMain = {
 											TTH_TABLE.KingManagePath["TownManage"]["BuyConsume"]["IsFull"]["Text"]
 											;strArtifactName=TTH_TABLE.Artifact[iArtifactId]["Text"]
@@ -7791,55 +7785,44 @@ doFile("/scripts/H55-Settings.lua");
 							TTH_GLOBAL.sign(strHero, strPathMain);
 						end;
 
+					-- 药水存量上限+1
+						function TTH_MANAGE.buffExtraPotionMaxTimes(iPlayer)
+							TTH_FINAL.POTION_MAXTIMES = TTH_FINAL.POTION_MAXTIMES + 1;
+						end;
+
 			-- 政绩管理
-				TTH_ENUM.CurrentOperTimes = 1; -- 本周内政操作次数+1
-				TTH_ENUM.RecoveryMove = 2; -- 移动力回复满值
-				TTH_ENUM.RecoveryMana = 3; -- 魔法值回复满值
-				TTH_ENUM.MaxOperTimes = 4; -- 周内政操作次数上限+1
-				TTH_ENUM.AbilityQuota = 5; -- 可管辖城镇配额+1
-				TTH_ENUM.TerritoryRadius = 6; -- 领地范围+20
+				TTH_ENUM.PotionMaxTimes = 1; -- 药水存量上限+1
+				TTH_ENUM.MaxOperTimes = 2; -- 周内政操作次数上限+1
+				TTH_ENUM.AbilityQuota = 3; -- 可管辖城镇配额+1
+				TTH_ENUM.TerritoryRadius = 4; -- 领地范围+20
 
 				TTH_TABLE.ExchangeRecordOption = {
 					[1] = {
-						["Id"] = TTH_ENUM.CurrentOperTimes
-						, ["Text"] = TTH_TABLE.KingManagePath["ExchangeRecord"]["CurrentOperTimes"]["Text"]
+						["Id"] = TTH_ENUM.PotionMaxTimes
+						, ["Text"] = TTH_TABLE.KingManagePath["ExchangeRecord"]["PotionMaxTimes"]["Text"]
 						, ["Callback"] = "TTH_MANAGE.checkPreExchangeRecord4Point"
 						, ["Cost"] = 1000
-						, ["RewardText"] = TTH_TABLE.KingManagePath["ExchangeRecord"]["CurrentOperTimes"]["RewardText"]
+						, ["RewardText"] = TTH_TABLE.KingManagePath["ExchangeRecord"]["PotionMaxTimes"]["RewardText"]
 					}
 					, [2] = {
-						["Id"] = TTH_ENUM.RecoveryMove
-						, ["Text"] = TTH_TABLE.KingManagePath["ExchangeRecord"]["RecoveryMove"]["Text"]
-						, ["Callback"] = "TTH_MANAGE.checkPreExchangeRecord4Point"
-						, ["Cost"] = 1000
-						, ["RewardText"] = TTH_TABLE.KingManagePath["ExchangeRecord"]["RecoveryMove"]["RewardText"]
-					}
-					, [3] = {
-						["Id"] = TTH_ENUM.RecoveryMana
-						, ["Text"] = TTH_TABLE.KingManagePath["ExchangeRecord"]["RecoveryMana"]["Text"]
-						, ["Callback"] = "TTH_MANAGE.checkPreExchangeRecord4Point"
-						, ["Cost"] = 1000
-						, ["RewardText"] = TTH_TABLE.KingManagePath["ExchangeRecord"]["RecoveryMana"]["RewardText"]
-					}
-					, [4] = {
 						["Id"] = TTH_ENUM.MaxOperTimes
 						, ["Text"] = TTH_TABLE.KingManagePath["ExchangeRecord"]["MaxOperTimes"]["Text"]
 						, ["Callback"] = "TTH_MANAGE.checkPreExchangeRecord4Point"
-						, ["Cost"] = 10000
+						, ["Cost"] = 1000
 						, ["RewardText"] = TTH_TABLE.KingManagePath["ExchangeRecord"]["MaxOperTimes"]["RewardText"]
 					}
-					, [5] = {
+					, [3] = {
 						["Id"] = TTH_ENUM.AbilityQuota
 						, ["Text"] = TTH_TABLE.KingManagePath["ExchangeRecord"]["AbilityQuota"]["Text"]
 						, ["Callback"] = "TTH_MANAGE.checkPreExchangeRecord4Point"
-						, ["Cost"] = 10000
+						, ["Cost"] = 1000
 						, ["RewardText"] = TTH_TABLE.KingManagePath["ExchangeRecord"]["AbilityQuota"]["RewardText"]
 					}
-					, [6] = {
+					, [4] = {
 						["Id"] = TTH_ENUM.TerritoryRadius
 						, ["Text"] = TTH_TABLE.KingManagePath["ExchangeRecord"]["TerritoryRadius"]["Text"]
 						, ["Callback"] = "TTH_MANAGE.checkPreExchangeRecord4Point"
-						, ["Cost"] = 10000
+						, ["Cost"] = 1000
 						, ["RewardText"] = TTH_TABLE.KingManagePath["ExchangeRecord"]["TerritoryRadius"]["RewardText"]
 					}
 				};
@@ -7873,12 +7856,8 @@ doFile("/scripts/H55-Settings.lua");
 				-- 兑换
 					function TTH_MANAGE.implExchangeRecord(iPlayer, strHero, iType)
 						TTH_MANAGE.useRecordPoint(strHero, TTH_TABLE.ExchangeRecordOption[iType]["Cost"]);
-						if iType == TTH_ENUM.CurrentOperTimes then
-							TTH_MANAGE.addMaxOperTimes(strHero);
-						elseif iType == TTH_ENUM.RecoveryMove then
-							TTH_GLOBAL.recoveryMaxMove(strHero);
-						elseif iType == TTH_ENUM.RecoveryMana then
-							TTH_GLOBAL.recoveryMaxMana(strHero);
+						if iType == TTH_ENUM.PotionMaxTimes then
+							TTH_MANAGE.buffExtraPotionMaxTimes(iPlayer);
 						elseif iType == TTH_ENUM.MaxOperTimes then
 							TTH_MANAGE.buffExtraOperTimes(iPlayer);
 						elseif iType == TTH_ENUM.AbilityQuota then
@@ -10639,7 +10618,7 @@ doFile("/scripts/H55-Settings.lua");
 			function TTH_ARTI.initPotion(iPlayer, strHero, iPotionId)
 				local objBuy = TTH_TABLE.BuyConsumeInfo[iPotionId];
 				local iArtifactId = objBuy["ArtifactId"];
-				local iMaxTimes = objBuy["MaxTimes"];
+				local iMaxTimes = TTH_FINAL.POTION_MAXTIMES;
 				if TTH_VARI.recordPotion[iArtifactId] == nil then
 					TTH_VARI.recordPotion[iArtifactId] = {};
 				end;
@@ -10654,7 +10633,7 @@ doFile("/scripts/H55-Settings.lua");
 			function TTH_ARTI.resetTimesPotion(iPlayer, strHero, iPotionId)
 				local objBuy = TTH_TABLE.BuyConsumeInfo[iPotionId];
 				local iArtifactId = objBuy["ArtifactId"];
-				local iMaxTimes = objBuy["MaxTimes"];
+				local iMaxTimes = TTH_FINAL.POTION_MAXTIMES;
 				TTH_VARI.recordPotion[iArtifactId][strHero]["RemainTimes"] = iMaxTimes;
 			end;
 			-- ARTIFACT_POTION_MANA 137 魔力药水
@@ -10687,7 +10666,7 @@ doFile("/scripts/H55-Settings.lua");
 					local strArtifactName = TTH_TABLE.Artifact[iArtifactId]["Text"];
 					local iRemainTimes = TTH_VARI.recordPotion[iArtifactId][strHero]["RemainTimes"];
 					local objBuy = TTH_TABLE.BuyConsumeInfo[TTH_ENUM.PotionMana];
-					local iMaxTimes = objBuy["MaxTimes"];
+					local iMaxTimes = TTH_FINAL.POTION_MAXTIMES;
 					local strPathMain={
 						TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_MANA]["Confirm"]
 						;strArtifactName=strArtifactName
@@ -10736,7 +10715,7 @@ doFile("/scripts/H55-Settings.lua");
 					local strArtifactName = TTH_TABLE.Artifact[iArtifactId]["Text"];
 					local iRemainTimes = TTH_VARI.recordPotion[iArtifactId][strHero]["RemainTimes"];
 					local objBuy = TTH_TABLE.BuyConsumeInfo[TTH_ENUM.PotionEnergy];
-					local iMaxTimes = objBuy["MaxTimes"];
+					local iMaxTimes = TTH_FINAL.POTION_MAXTIMES;
 					local strPathMain={
 						TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_ENERGY]["Confirm"]
 						;strArtifactName=strArtifactName
@@ -10795,7 +10774,7 @@ doFile("/scripts/H55-Settings.lua");
 					local strArtifactName = TTH_TABLE.Artifact[iArtifactId]["Text"];
 					local iRemainTimes = TTH_VARI.recordPotion[iArtifactId][strHero]["RemainTimes"];
 					local objBuy = TTH_TABLE.BuyConsumeInfo[TTH_ENUM.PotionRevive];
-					local iMaxTimes = objBuy["MaxTimes"];
+					local iMaxTimes = TTH_FINAL.POTION_MAXTIMES;
 					local strPathMain={
 						TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_REVIVE]["Confirm"]
 						;strArtifactName=strArtifactName
@@ -13108,7 +13087,8 @@ doFile("/scripts/H55-Settings.lua");
 				x = 0;
 			end;
 		end;
-		function TTH_TEST.test9(strHero)
+		function TTH_TEST.test9(iPlayer)
+			local strHero = GetPlayerHeroes(iPlayer)[0];
 			TTH_VARI.arrMayor[strHero]["RecordPoint"] = TTH_VARI.arrMayor[strHero]["RecordPoint"] + 10000;
 		end;
 		function TTH_TEST.test7(strHero)

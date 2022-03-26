@@ -1867,8 +1867,7 @@
       , [19] = ARTIFACT_RING_OF_MACHINE_AFFINITY
       , [20] = ARTIFACT_PENDANT_OF_STARDUST
       , [21] = ARTIFACT_RING_OF_HOLY_GRIFFIN
-      , [22] = ARTIFACT_HELMET_OF_HEAVENLY_ENLIGHTENMENT
-      , [23] = ARTIFACT_CLOAK_OF_MALASSA
+      , [22] = ARTIFACT_CLOAK_OF_MALASSA
     }
     , [7] = {
       [0] = ARTIFACT_ANGELIC_ALLIANCE
@@ -1881,6 +1880,8 @@
       , [7] = ARTIFACT_SENTINEL
       , [8] = ARTIFACT_EIGHTFOLD
       , [9] = ARTIFACT_CODEX
+      , [10] = ARTIFACT_HELMET_OF_HEAVENLY_ENLIGHTENMENT
+      , [11] = ARTIFACT_BOOK_OF_MALASSA
     }
   };
 
@@ -10845,6 +10846,15 @@
         TTH_PATH.Artifact["Economic"][ARTIFACT_HORN_OF_PLENTY]["Confirm"] = TTH_PATH.Artifact["Economic"][ARTIFACT_HORN_OF_PLENTY]["Pre"].."Confirm.txt";
         TTH_PATH.Artifact["Economic"][ARTIFACT_HORN_OF_PLENTY]["Success"] = TTH_PATH.Artifact["Economic"][ARTIFACT_HORN_OF_PLENTY]["Pre"].."Success.txt";
 
+      -- ARTIFACT_BOOK_OF_MALASSA 147 玛拉萨之书
+        TTH_PATH.Artifact[ARTIFACT_BOOK_OF_MALASSA] = {};
+        TTH_PATH.Artifact[ARTIFACT_BOOK_OF_MALASSA]["Pre"] = TTH_PATH.Artifact["Pre"].."147/";
+        TTH_PATH.Artifact[ARTIFACT_BOOK_OF_MALASSA]["Text"] = TTH_PATH.Artifact[ARTIFACT_BOOK_OF_MALASSA]["Pre"].."Text.txt";
+        TTH_PATH.Artifact[ARTIFACT_BOOK_OF_MALASSA]["Unknow"] = TTH_PATH.Artifact[ARTIFACT_BOOK_OF_MALASSA]["Pre"].."Unknow.txt";
+        TTH_PATH.Artifact[ARTIFACT_BOOK_OF_MALASSA]["RadioTips"] = TTH_PATH.Artifact[ARTIFACT_BOOK_OF_MALASSA]["Pre"].."RadioTips.txt";
+        TTH_PATH.Artifact[ARTIFACT_BOOK_OF_MALASSA]["Cancel"] = TTH_PATH.Artifact[ARTIFACT_BOOK_OF_MALASSA]["Pre"].."Cancel.txt";
+        TTH_PATH.Artifact[ARTIFACT_BOOK_OF_MALASSA]["Success"] = TTH_PATH.Artifact[ARTIFACT_BOOK_OF_MALASSA]["Pre"].."Success.txt";
+
       -- ARTIFACT_QUILL_OF_MAYOR 182 执政官羽饰
         TTH_PATH.Artifact[ARTIFACT_QUILL_OF_MAYOR] = {};
         TTH_PATH.Artifact[ARTIFACT_QUILL_OF_MAYOR]["Pre"] = TTH_PATH.Artifact["Pre"].."182/";
@@ -11321,6 +11331,12 @@
             , [TTH_ENUM.FuncAtGate] = "TTH_ARTI.active102"
             , [TTH_ENUM.FuncNotAtGate] = "TTH_ARTI.active102"
           }
+          , [ARTIFACT_BOOK_OF_MALASSA] = {
+            ["Text"] = TTH_PATH.Artifact[ARTIFACT_BOOK_OF_MALASSA]["Text"]
+            , ["NeedWear"] = TTH_ENUM.Yes
+            , [TTH_ENUM.FuncAtGate] = "TTH_ARTI.active147"
+            , [TTH_ENUM.FuncNotAtGate] = "TTH_ARTI.active147"
+          }
           , [ARTIFACT_QUILL_OF_MAYOR] = {
             ["Text"] = TTH_PATH.Artifact[ARTIFACT_QUILL_OF_MAYOR]["Text"]
             , ["NeedWear"] = TTH_ENUM.No
@@ -11347,6 +11363,10 @@
           , [ARTIFACT_CODEX] = {
             ["NeedWear"] = TTH_ENUM.Yes
             , [TTH_ENUM.FuncAlways] = "TTH_ARTI.dealDaily126"
+          }
+          , [ARTIFACT_HELMET_OF_HEAVENLY_ENLIGHTENMENT] = {
+            ["NeedWear"] = TTH_ENUM.Yes
+            , [TTH_ENUM.FuncAlways] = "TTH_ARTI.dealDaily168"
           }
         }
         , [TTH_ENUM.FuncResetDaily] = {
@@ -17034,11 +17054,11 @@
         }
         , [ARTIFACT_OGRE_CLUB] = {
           ["Id"] = ARTIFACT_OGRE_CLUB
-          , ["Text"] = "/Text/TTH/Artifact/74-OgreClub/Text.txt"
+          , ["Text"] = "/Text/TTH/Artifact/074-OgreClub/Text.txt"
         }
         , [ARTIFACT_OGRE_SHIELD] = {
           ["Id"] = ARTIFACT_OGRE_SHIELD
-          , ["Text"] = "/Text/TTH/Artifact/75-OgreShield/Text.txt"
+          , ["Text"] = "/Text/TTH/Artifact/075-OgreShield/Text.txt"
         }
       }
 

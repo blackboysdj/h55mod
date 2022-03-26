@@ -1405,6 +1405,8 @@ doFile('/scripts/combat-startup.lua')
 								H55SMOD_MiddlewareListener['Eruina']['function']('Eruina', iSide, itemUnitLast, listCreaturesBeEffected, listCreaturesDeath);
 								H55SMOD_MiddlewareListener['Agbeth']['function']('Agbeth', iSide, itemUnitLast, listCreaturesBeEffected, listCreaturesDeath);
 							-- Stronghold
+							-- Artifact
+								H55SMOD_MiddlewareListener['Artifact'][ARTIFACT_BOOK_OF_MALASSA]['function'](iSide, itemUnitLast, listCreaturesBeEffected, listCreaturesDeath);
 						end;
 					end;
 				end;
@@ -2236,6 +2238,46 @@ doFile('/scripts/combat-startup.lua')
 			end;
 		end;
 		H55SMOD_MiddlewareListener['Artifact'][ARTIFACT_PENDANT_OF_BLIND]['function'] = Events_MiddlewareListener_Implement_Artifact_PendantOfBlind;
+	-- ARTIFACT_BOOK_OF_MALASSA 147 玛拉萨之书
+		H55SMOD_MiddlewareListener['Artifact'][ARTIFACT_BOOK_OF_MALASSA] = {};
+		function Events_MiddlewareListener_Implement_Artifact_BookOfMalassa(iSide, itemUnitLast, listCreaturesBeEffected, listCreaturesDeath)
+			local iSpellId = TTH_ARTIFACT_EFFECT_COMBAT_HERO[iSide][ARTIFACT_BOOK_OF_MALASSA];
+			if GetHero(iSide) == itemUnitLast['strUnitName'] and iSpellId ~= nil and iSpellId > 0 then
+				combatSetPause(1);
+				local bHasCast = TTHCS_ENUM.No;
+				if contains(TTHCS_TABLE.ElementMagicAimed, iSpellId) ~= nil then
+					if length(listCreaturesBeEffected) > 0 then
+						for i, objCreature in listCreaturesBeEffected do
+							if IsCombatUnit(objCreature["strUnitName"]) ~= nil and GetCreatureNumber(objCreature["strUnitName"]) > 0 then
+								startThread(Thread_Command_UnitCastAimedSpell_UseMana, itemUnitLast['strUnitName'], iSpellId, objCreature["strUnitName"]);
+								bHasCast = TTHCS_ENUM.Yes;
+								break;
+							end;
+						end;
+					end;
+				end;
+				if bHasCast == TTHCS_ENUM.No and contains(TTHCS_TABLE.ElementMagicArea, iSpellId) ~= nil then
+					if length(listCreaturesBeEffected) > 0 then
+						for i, objCreature in listCreaturesBeEffected do
+							if IsCombatUnit(objCreature["strUnitName"]) ~= nil and GetCreatureNumber(objCreature["strUnitName"]) > 0 then
+								startThread(Thread_Command_UnitCastAreaSpell_UseMana, itemUnitLast['strUnitName'], iSpellId, objCreature["iPositionX"], objCreature["iPositionY"]);
+								bHasCast = TTHCS_ENUM.Yes;
+								break;
+							end;
+						end;
+					end;
+					if bHasCast == TTHCS_ENUM.No and length(listCreaturesDeath) > 0 then
+						for i, objCreature in listCreaturesDeath do
+							startThread(Thread_Command_UnitCastAreaSpell_UseMana, itemUnitLast['strUnitName'], iSpellId, objCreature["iPositionX"], objCreature["iPositionY"]);
+							bHasCast = TTHCS_ENUM.Yes;
+							break;
+						end;
+					end;
+				end;
+				combatSetPause(nil);
+			end;
+		end;
+		H55SMOD_MiddlewareListener['Artifact'][ARTIFACT_BOOK_OF_MALASSA]['function'] = Events_MiddlewareListener_Implement_Artifact_BookOfMalassa;
 
 -- 组合宝物
 	H55SMOD_MiddlewareListener["ArtifactSet"] = {};

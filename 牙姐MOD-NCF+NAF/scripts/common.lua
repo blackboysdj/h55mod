@@ -29,6 +29,7 @@ ARTIFACT_BAND_OF_CONJURER = 60;
 ARTIFACT_PENDANT_OF_BLIND = 101
 ARTIFACT_GEM_OF_PHANTOM = 102
 ARTIFACT_DRUM_OF_CHARGE = 106
+ARTIFACT_BOOK_OF_MALASSA = 147;
 
 HERO_SKILL_WEAKENING_STRIKE = 95;
 HERO_SKILL_BARBARIAN_WEAKENING_STRIKE = 209;
@@ -117,6 +118,7 @@ TTH_ARTIFACT_EFFECT_COMBAT = {
     , [6] = ARTIFACT_PENDANT_OF_BLIND
     , [7] = ARTIFACT_GEM_OF_PHANTOM
     , [8] = ARTIFACT_DRUM_OF_CHARGE
+    , [9] = ARTIFACT_BOOK_OF_MALASSA
 };
 TTH_ARTIFACT_EFFECT_COMBAT_ONCE = {
     [0] = ARTIFACT_ANGELIC_ALLIANCE
@@ -299,6 +301,9 @@ function Thread_Command_UnitCastAreaSpell(caster, spell_id, x, y, ishero)
         UnitCastAreaSpell(caster, spell_id, x, y);
     end
 end;
+function Thread_Command_UnitCastAreaSpell_UseMana(caster, spell_id, x, y)
+    UnitCastAreaSpell(caster, spell_id, x, y);
+end;
 function Thread_Command_UnitCastAimedSpell(caster, spell_id, target, ishero)
     if ishero == 1 then
         local i_currect_mana = GetUnitManaPoints(caster);
@@ -312,6 +317,9 @@ function Thread_Command_UnitCastAimedSpell(caster, spell_id, target, ishero)
         repeat sleep(1); until GetUnitManaPoints(caster) < 1000;
         SetUnitManaPoints(caster, 1);
     end
+end;
+function Thread_Command_UnitCastAimedSpell_UseMana(caster, spell_id, target)
+    UnitCastAimedSpell(caster, spell_id, target);
 end;
 function Thread_Command_UnitCastAimedSpell_WithoutMana(caster, spell_id, target)
     UnitCastAimedSpell(caster, spell_id, target);
@@ -11148,6 +11156,23 @@ end;
         , CREATURE_CYCLOP_BLOODEYED
         , CREATURE_WOLF
       };
+
+    -- 元素魔法（目标）
+        TTHCS_TABLE.ElementMagicAimed = {
+          SPELL_MAGIC_ARROW
+          , SPELL_MAGIC_FIST
+          , SPELL_LIGHTNING_BOLT
+          , SPELL_ICE_BOLT
+          , SPELL_CHAIN_LIGHTNING
+          , SPELL_IMPLOSION
+        };
+    -- 元素魔法（范围）
+        TTHCS_TABLE.ElementMagicArea = {
+          SPELL_FIREBALL
+          , SPELL_FROST_RING
+          , SPELL_METEOR_SHOWER
+          , SPELL_STONE_SPIKES
+        };
 
   TTHCS_COMMON = {};
     -- 向下取整

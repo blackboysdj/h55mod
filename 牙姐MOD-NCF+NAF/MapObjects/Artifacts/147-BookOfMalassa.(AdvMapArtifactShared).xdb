@@ -32,5 +32,5 @@
 	<RazedStatic/>
 	<Icon128/>
 	<Type>ARTF_RANDOM_SPECIFIC</Type>
-	<ArtifactID>ARTIFACT_BOOK_D4</ArtifactID>
+	<ArtifactID>ARTIFACT_BOOK_OF_MALASSA</ArtifactID>
 </AdvMapArtifactShared>

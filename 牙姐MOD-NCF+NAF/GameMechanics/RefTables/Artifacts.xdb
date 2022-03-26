@@ -279,8 +279,8 @@
 		<Item>
 			<ID>ARTIFACT_BEGINNER_MAGIC_STICK</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Beginer_Magic_Stick/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Beginer_Magic_Stick/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/080-BeginnerMagicStick/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/080-BeginnerMagicStick/Description.txt"/>
 				<Model href="/_(Model)/Artefacts/H5Addon1/BeginersMagicStick.xdb#xpointer(/Model)"/>
 				<Type>ARTF_CLASS_MINOR</Type>
 				<Slot>PRIMARY</Slot>
@@ -304,8 +304,8 @@
 		<Item>
 			<ID>ARTIFACT_EDGE_OF_BALANCE</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Edge_Of_Balance/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Edge_Of_Balance/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/090-EdgeOfBalance/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/090-EdgeOfBalance/Description.txt"/>
 				<Model href="/_(Model)/Artefacts/H5A2/EdgeOfBalance.xdb#xpointer(/Model)"/>
 				<Type>ARTF_CLASS_MINOR</Type>
 				<Slot>PRIMARY</Slot>
@@ -329,8 +329,8 @@
 		<Item>
 			<ID>ARTIFACT_STEADFAST</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Steadfast/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Steadfast/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/110-Steadfast/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/110-Steadfast/Description.txt"/>
 				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
 				<Type>ARTF_CLASS_MINOR</Type>
 				<Slot>SECONDARY</Slot>
@@ -379,8 +379,8 @@
 		<Item>
 			<ID>FOUR_LEAF_CLOVER</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Four_leaf_clover/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Four_leaf_clover/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/008-FourLeafClover/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/008-FourLeafClover/Description.txt"/>
 				<Model/>
 				<Type>ARTF_CLASS_MINOR</Type>
 				<Slot>MISCSLOT1</Slot>
@@ -404,8 +404,8 @@
 		<Item>
 			<ID>GOLDEN_SEXTANT</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Golden_sextant/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Golden_sextant/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/010-GoldenSextant/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/010-GoldenSextant/Description.txt"/>
 				<Model/>
 				<Type>ARTF_CLASS_MINOR</Type>
 				<Slot>MISCSLOT1</Slot>
@@ -429,8 +429,8 @@
 		<Item>
 			<ID>CROWN_OF_MANY_EYES</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Crown_of_many_eyes/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Crown_of_many_eyes/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/012-CrownOfManyEyes/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/012-CrownOfManyEyes/Description.txt"/>
 				<Model/>
 				<Type>ARTF_CLASS_MINOR</Type>
 				<Slot>HEAD</Slot>
@@ -454,8 +454,8 @@
 		<Item>
 			<ID>RING_OF_LIGHTING_PROTECTION</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Ring_of_lightning_protection/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Ring_of_lightning_protection/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/020-RingOfLightingProtection/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/020-RingOfLightingProtection/Description.txt"/>
 				<Model href="/_(Model)/Artefacts/Ring_of_Lightning_Protection.(Model).xdb#xpointer(/Model)"/>
 				<Type>ARTF_CLASS_MINOR</Type>
 				<Slot>FINGER</Slot>
@@ -479,8 +479,8 @@
 		<Item>
 			<ID>BOOTS_OF_INTERFERENCE</ID>
 			<obj>
-				<NameFileRef href="/Text/TTH/Artifact/27-BootsOfInterference/Text.txt"/>
-				<DescriptionFileRef href="/Text/TTH/Artifact/27-BootsOfInterference/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/027-BootsOfInterference/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/027-BootsOfInterference/Description.txt"/>
 				<Model href="/_(Model)/Artefacts/Boots_of_Interference.xdb#xpointer(/Model)"/>
 				<Type>ARTF_CLASS_MINOR</Type>
 				<Slot>FEET</Slot>
@@ -504,8 +504,8 @@
 		<Item>
 			<ID>ARTIFACT_RIGID_MANTLE</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Rigid_Mantle/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Rigid_Mantle/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/062-RigidMantle/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/062-RigidMantle/Description.txt"/>
 				<Model/>
 				<Type>ARTF_CLASS_MINOR</Type>
 				<Slot>SHOULDERS</Slot>
@@ -529,8 +529,8 @@
 		<Item>
 			<ID>ARTIFACT_BEARHIDE_WRAPS</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Bearhide_Wraps/name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Bearhide_Wraps/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/084-BearhideWraps/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/084-BearhideWraps/Description.txt"/>
 				<Model href="/_(Model)/Artefacts/H5Addon1/BearhideWraps.xdb#xpointer(/Model)"/>
 				<Type>ARTF_CLASS_MINOR</Type>
 				<Slot>SHOULDERS</Slot>
@@ -579,8 +579,8 @@
 		<Item>
 			<ID>TITANS_TRIDENT</ID>
 			<obj>
-				<NameFileRef href="/Text/TTH/Artifact/5-TitansTrident/Text.txt"/>
-				<DescriptionFileRef href="/Text/TTH/Artifact/5-TitansTrident/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/005-TitansTrident/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/005-TitansTrident/Description.txt"/>
 				<Model/>
 				<Type>ARTF_CLASS_MINOR</Type>
 				<Slot>PRIMARY</Slot>
@@ -604,8 +604,8 @@
 		<Item>
 			<ID>RING_OF_LIFE</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/RingOfLife/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/RingOfLife/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/021-RingOfLife/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/021-RingOfLife/Description.txt"/>
 				<Model href="/_(Model)/Artefacts/Ring_of_Life.(Model).xdb#xpointer(/Model)"/>
 				<Type>ARTF_CLASS_MINOR</Type>
 				<Slot>FINGER</Slot>
@@ -629,8 +629,8 @@
 		<Item>
 			<ID>EVERCOLD_ICICLE</ID>
 			<obj>
-				<NameFileRef href="/Text/TTH/Artifact/18-EvercoldIcicle/Text.txt"/>
-				<DescriptionFileRef href="/Text/TTH/Artifact/18-EvercoldIcicle/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/018-EvercoldIcicle/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/018-EvercoldIcicle/Description.txt"/>
 				<Model/>
 				<Type>ARTF_CLASS_MINOR</Type>
 				<Slot>NECK</Slot>
@@ -679,8 +679,8 @@
 		<Item>
 			<ID>PHOENIX_FEATHER_CAPE</ID>
 			<obj>
-				<NameFileRef href="/Text/TTH/Artifact/32-PhoenixFeatherCape/Text.txt"/>
-				<DescriptionFileRef href="/Text/TTH/Artifact/32-PhoenixFeatherCape/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/032-PhoenixFeatherCape/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/032-PhoenixFeatherCape/Description.txt"/>
 				<Model/>
 				<Type>ARTF_CLASS_MINOR</Type>
 				<Slot>SHOULDERS</Slot>
@@ -704,8 +704,8 @@
 		<Item>
 			<ID>ARTIFACT_VALORIOUS_ARMOR</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Valorious_Armor/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Valorious_Armor/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/056-ValoriousArmor/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/056-ValoriousArmor/Description.txt"/>
 				<Model/>
 				<Type>ARTF_CLASS_MINOR</Type>
 				<Slot>CHEST</Slot>
@@ -729,8 +729,8 @@
 		<Item>
 			<ID>ARTIFACT_EARTHSLIDERS</ID>
 			<obj>
-				<NameFileRef href="/Text/TTH/Artifact/61-EarthSliders/Text.txt"/>
-				<DescriptionFileRef href="/Text/TTH/Artifact/61-EarthSliders/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/061-EarthSliders/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/061-EarthSliders/Description.txt"/>
 				<Model/>
 				<Type>ARTF_CLASS_MINOR</Type>
 				<Slot>FEET</Slot>
@@ -754,8 +754,8 @@
 		<Item>
 			<ID>ARTIFACT_TAROT_DECK</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Tarot_Deck/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Tarot_Deck/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/087-TarotDeck/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/087-TarotDeck/Description.txt"/>
 				<Model href="/_(Model)/Artefacts/H5Addon1/TarotDeck.xdb#xpointer(/Model)"/>
 				<Type>ARTF_CLASS_MINOR</Type>
 				<Slot>MISCSLOT1</Slot>
@@ -1279,8 +1279,8 @@
 		<Item>
 			<ID>GREAT_AXE_OF_GIANT_SLAYING</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Great_Axe_of_giant_slaying/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Great_Axe_of_giant_slaying/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/002-GreatAxeOfGiantSlaying/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/002-GreatAxeOfGiantSlaying/Description.txt"/>
 				<Model/>
 				<Type>ARTF_CLASS_MAJOR</Type>
 				<Slot>PRIMARY</Slot>
@@ -1304,8 +1304,8 @@
 		<Item>
 			<ID>ICEBERG_SHIELD</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Iceberg_shield/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Iceberg_shield/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/009-IcebergShield/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/009-IcebergShield/Description.txt"/>
 				<Model/>
 				<Type>ARTF_CLASS_MAJOR</Type>
 				<Slot>SECONDARY</Slot>
@@ -1379,8 +1379,8 @@
 		<Item>
 			<ID>NIGHTMARISH_RING</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Nightmarish_ring/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Nightmarish_ring/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/023-NightmarishRing/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/023-NightmarishRing/Description.txt"/>
 				<Model href="/_(Model)/Artefacts/Nightmarish_Ring.(Model).xdb#xpointer(/Model)"/>
 				<Type>ARTF_CLASS_MAJOR</Type>
 				<Slot>FINGER</Slot>
@@ -1504,8 +1504,8 @@
 		<Item>
 			<ID>ARTIFACT_BONESTUDDED_LEATHER</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Bonestudded_Leather/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Bonestudded_Leather/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/064-BonestuddedLeather/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/064-BonestuddedLeather/Description.txt"/>
 				<Model/>
 				<Type>ARTF_CLASS_MAJOR</Type>
 				<Slot>CHEST</Slot>
@@ -1529,8 +1529,8 @@
 		<Item>
 			<ID>ARTIFACT_JINXING_BAND</ID>
 			<obj>
-				<NameFileRef href="/Text/TTH/Artifact/73-JinxingBand/Text.txt"/>
-				<DescriptionFileRef href="/Text/TTH/Artifact/73-JinxingBand/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/063-JinxingBand/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/063-JinxingBand/Description.txt"/>
 				<Model/>
 				<Type>ARTF_CLASS_MAJOR</Type>
 				<Slot>FINGER</Slot>
@@ -1554,8 +1554,8 @@
 		<Item>
 			<ID>ARTIFACT_HELM_OF_CHAOS</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Helm_of_Chaos/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Helm_of_Chaos/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/066-HelmOfChaos/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/066-HelmOfChaos/Description.txt"/>
 				<Model/>
 				<Type>ARTF_CLASS_MAJOR</Type>
 				<Slot>HEAD</Slot>
@@ -1579,8 +1579,8 @@
 		<Item>
 			<ID>ARTIFACT_RING_OF_THE_SHADOWBRAND</ID>
 			<obj>
-				<NameFileRef href="/Text/TTH/Artifact/63-RingOfTheShadowbrand/Text.txt"/>
-				<DescriptionFileRef href="/Text/TTH/Artifact/63-RingOfTheShadowbrand/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/073-RingOfTheShadowbrand/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/073-RingOfTheShadowbrand/Description.txt"/>
 				<Model href="/_(Model)/Artefacts/Dragon_Eye_Ring.(Model).xdb#xpointer(/Model)"/>
 				<Type>ARTF_CLASS_MAJOR</Type>
 				<Slot>FINGER</Slot>
@@ -1604,8 +1604,8 @@
 		<Item>
 			<ID>ARTIFACT_DWARVEN_SMITHY_HUMMER</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Dwarven_Smithy_Hammer/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Dwarven_Smithy_Hammer/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/085-DwarvenSmithyHummer/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/085-DwarvenSmithyHummer/Description.txt"/>
 				<Model href="/_(Model)/Artefacts/H5Addon1/DwarvenSmythyHummer.xdb#xpointer(/Model)"/>
 				<Type>ARTF_CLASS_MAJOR</Type>
 				<Slot>PRIMARY</Slot>
@@ -1629,8 +1629,8 @@
 		<Item>
 			<ID>ARTIFACT_BOOK_OF_POWER</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Book_Of_Power/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Book_Of_Power/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/094-BookOfPower/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/094-BookOfPower/Description.txt"/>
 				<Model href="/_(Model)/Artefacts/H5A2/BookOfPower.xdb#xpointer(/Model)"/>
 				<Type>ARTF_CLASS_MAJOR</Type>
 				<Slot>MISCSLOT1</Slot>
@@ -2029,8 +2029,8 @@
 		<Item>
 			<ID>ARTIFACT_OGRE_CLUB</ID>
 			<obj>
-				<NameFileRef href="/Text/TTH/Artifact/74-OgreClub/Text.txt"/>
-				<DescriptionFileRef href="/Text/TTH/Artifact/74-OgreClub/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/074-OgreClub/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/074-OgreClub/Description.txt"/>
 				<Model href="/_(Model)/Artefacts/H5Addon1/OgreClub.xdb#xpointer(/Model)"/>
 				<Type>ARTF_CLASS_MAJOR</Type>
 				<Slot>PRIMARY</Slot>
@@ -2054,8 +2054,8 @@
 		<Item>
 			<ID>ARTIFACT_OGRE_SHIELD</ID>
 			<obj>
-				<NameFileRef href="/Text/TTH/Artifact/75-OgreShield/Text.txt"/>
-				<DescriptionFileRef href="/Text/TTH/Artifact/75-OgreShield/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/075-OgreShield/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/075-OgreShield/Description.txt"/>
 				<Model href="/_(Model)/Artefacts/H5Addon1/OgreShield.xdb#xpointer(/Model)"/>
 				<Type>ARTF_CLASS_MAJOR</Type>
 				<Slot>SECONDARY</Slot>
@@ -2154,8 +2154,8 @@
 		<Item>
 			<ID>ARTIFACT_GUARDIAN_03</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Guardian_Shield/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Guardian_Shield/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/122-Guardian03/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/122-Guardian03/Description.txt"/>
 				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
 				<Type>ARTF_CLASS_MAJOR</Type>
 				<Slot>SECONDARY</Slot>
@@ -2329,8 +2329,8 @@
 		<Item>
 			<ID>PLATE_MAIL_OF_STABILITY</ID>
 			<obj>
-				<NameFileRef href="/Text/TTH/Artifact/13-PlateMailOfStability/Text.txt"/>
-				<DescriptionFileRef href="/Text/TTH/Artifact/13-PlateMailOfStability/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/013-PlateMailOfStability/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/013-PlateMailOfStability/Description.txt"/>
 				<Model href="/_(Model)/Artefacts/Plate_Mail_of_Stability.(Model).xdb#xpointer(/Model)"/>
 				<Type>ARTF_CLASS_RELIC</Type>
 				<Slot>CHEST</Slot>
@@ -2754,8 +2754,8 @@
 		<Item>
 			<ID>ARTIFACT_INHERITANCE</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Inheritance/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Inheritance/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/115-Inheritance/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/115-Inheritance/Description.txt"/>
 				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
 				<Type>ARTF_CLASS_MAJOR</Type>
 				<Slot>MISCSLOT1</Slot>
@@ -2766,10 +2766,10 @@
 				<HeroStatsModif>
 					<Attack>0</Attack>
 					<Defence>0</Defence>
-					<Knowledge>0</Knowledge>
+					<Knowledge>2</Knowledge>
 					<SpellPower>0</SpellPower>
 					<Morale>0</Morale>
-					<Luck>0</Luck>
+					<Luck>2</Luck>
 				</HeroStatsModif>
 				<ArtifactShared href="/MapObjects/Artifacts/Life04.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
 				<AvailableForPresets>true</AvailableForPresets>
@@ -2779,8 +2779,8 @@
 		<Item>
 			<ID>ARTIFACT_ANGELIC_ALLIANCE</ID>
 			<obj>
-				<NameFileRef href="/Text/TTH/Artifact/68-AngelicAlliance/Text.txt"/>
-				<DescriptionFileRef href="/Text/TTH/Artifact/68-AngelicAlliance/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/068-AngelicAlliance/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/068-AngelicAlliance/Description.txt"/>
 				<Model/>
 				<Type>ARTF_CLASS_RELIC</Type>
 				<Slot>PRIMARY</Slot>
@@ -3677,16 +3677,16 @@
 			</obj>
 		</Item>
 		<Item>
-			<ID>ARTIFACT_BOOK_D4</ID>
+			<ID>ARTIFACT_BOOK_OF_MALASSA</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Book_D4/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Book_D4/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/147-BookOfMalassa/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/147-BookOfMalassa/Description.txt"/>
 				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
-				<Type>ARTF_CLASS_MAJOR</Type>
-				<Slot>INVENTORY</Slot>
-				<Icon href="/Textures/HeroScreen/Artifacts/BookD4.xdb#xpointer(/Texture)"/>
-				<CostOfGold>16000</CostOfGold>
-				<AIValue>5300</AIValue>
+				<Type>ARTF_CLASS_RELIC</Type>
+				<Slot>MISCSLOT1</Slot>
+				<Icon href="/Textures/HeroScreen/Artifacts/147-BookOfMalassa.xdb#xpointer(/Texture)"/>
+				<CostOfGold>150000</CostOfGold>
+				<AIValue>50000</AIValue>
 				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
 				<HeroStatsModif>
 					<Attack>0</Attack>
@@ -3696,7 +3696,7 @@
 					<Morale>0</Morale>
 					<Luck>0</Luck>
 				</HeroStatsModif>
-				<ArtifactShared href="/MapObjects/Artifacts/BookD4.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+				<ArtifactShared href="/MapObjects/Artifacts/147-BookOfMalassa.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
 				<AvailableForPresets>true</AvailableForPresets>
 				<PresetPrice>0</PresetPrice>
 			</obj>
@@ -4207,18 +4207,18 @@
 				<NameFileRef href="/Text/TTH/Artifact/168-HelmetOfHeavenlyEnlightenment/Text.txt"/>
 				<DescriptionFileRef href="/Text/TTH/Artifact/168-HelmetOfHeavenlyEnlightenment/Description.txt"/>
 				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
-				<Type>ARTF_CLASS_MAJOR</Type>
+				<Type>ARTF_CLASS_RELIC</Type>
 				<Slot>HEAD</Slot>
 				<Icon href="/Textures/HeroScreen/Artifacts/168-HelmetOfHeavenlyEnlightenment.xdb#xpointer(/Texture)"/>
-				<CostOfGold>30000</CostOfGold>
-				<AIValue>10000</AIValue>
-				<CanBeGeneratedToSell>true</CanBeGeneratedToSell>
+				<CostOfGold>150000</CostOfGold>
+				<AIValue>50000</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
 				<HeroStatsModif>
-					<Attack>0</Attack>
-					<Defence>0</Defence>
-					<Knowledge>2</Knowledge>
-					<SpellPower>2</SpellPower>
-					<Morale>0</Morale>
+					<Attack>4</Attack>
+					<Defence>4</Defence>
+					<Knowledge>4</Knowledge>
+					<SpellPower>4</SpellPower>
+					<Morale>1</Morale>
 					<Luck>0</Luck>
 				</HeroStatsModif>
 				<ArtifactShared href="/MapObjects/Artifacts/168-HelmetOfHeavenlyEnlightenment.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>

@@ -1171,6 +1171,10 @@ doFile("/scripts/H55-Settings.lua");
 						TTH_VARI.arrBuilding["BUILDING_MERMAIDS"] = GetObjectNamesByType("BUILDING_MERMAIDS");
 						TTH_GLOBAL.initMermaids();
 
+					-- 初始化 宝物商店
+						TTH_VARI.arrBuilding["BUILDING_BLACK_MARKET"] = GetObjectNamesByType("BUILDING_BLACK_MARKET");
+						TTH_GLOBAL.initBlackMarket();
+
 					-- 绑定建筑访问触发器
 						-- 可占领的经济建筑
 							TTH_COMMON.setTrigger2ObjectType("BUILDING_MYSTICAL_GARDEN", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitMysticalGarden", nil);
@@ -1201,11 +1205,14 @@ doFile("/scripts/H55-Settings.lua");
 						-- 先知小屋
 							TTH_COMMON.setTrigger2ObjectType("BUILDING_MERMAIDS", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitMermaids", nil);
 
+						-- 宝物商店
+							TTH_COMMON.setTrigger2ObjectType("BUILDING_BLACK_MARKET", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitBlackMarket", nil);
+
 						-- 初始化 杉提瑞圆盘和方尖碑
 							TTH_VARI.arrBuilding["BUILDING_EYE_OF_MAGI"] = GetObjectNamesByType("BUILDING_EYE_OF_MAGI");
 							TTH_VARI.arrBuilding["BUILDING_LAKE_OF_SCARLET_SWAN"] = GetObjectNamesByType("BUILDING_LAKE_OF_SCARLET_SWAN");
 							TTH_VARI.arrBuilding["BUILDING_SHANTIRI"] = TTH_COMMON.concat(TTH_VARI.arrBuilding["BUILDING_EYE_OF_MAGI"], TTH_VARI.arrBuilding["BUILDING_LAKE_OF_SCARLET_SWAN"]);
-							TTH_GLOBAL.initShantiri();
+							TTH_GLOBAL.initTrial();
 							TTH_COMMON.setTrigger2ObjectType("BUILDING_EYE_OF_MAGI", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitShantiri", nil);
 							TTH_COMMON.setTrigger2ObjectType("BUILDING_LAKE_OF_SCARLET_SWAN", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitShantiri", nil);
 				end;
@@ -2741,6 +2748,7 @@ doFile("/scripts/H55-Settings.lua");
 					, [6] = ARTIFACT_PENDANT_OF_BLIND
 					, [7] = ARTIFACT_DRUM_OF_CHARGE
 					, [8] = ARTIFACT_GEM_OF_PHANTOM
+					, [9] = ARTIFACT_BOOK_OF_MALASSA
 				};
 				function TTH_GLOBAL.setGameVar4HeroArtifact(iPlayer, strHero)
 					TTH_MAIN.debug("TTH_GLOBAL.setGameVar4HeroArtifact", iPlayer, strHero);
@@ -2751,6 +2759,9 @@ doFile("/scripts/H55-Settings.lua");
 							local iValue = 1;
 							if objArtifact == ARTIFACT_GEM_OF_PHANTOM then
 								iValue = TTH_ARTI.calcValue102(iPlayer, strHero);
+							end;
+							if objArtifact == ARTIFACT_BOOK_OF_MALASSA then
+								iValue = TTH_ARTI.calcValue147(iPlayer, strHero);
 							end;
 							SetGameVar(strKey, iValue);
 						else
@@ -4541,7 +4552,7 @@ doFile("/scripts/H55-Settings.lua");
 				for i, strMermaidsName in TTH_VARI.arrBuilding["BUILDING_MERMAIDS"] do
 					for iPlayer = PLAYER_1, PLAYER_8 do
 						if TTH_GLOBAL.isAi(iPlayer) == TTH_ENUM.Yes then
-							SetAIPlayerAttractor(strMermaidsName, iPlayer, -1);
+							SetAIPlayerAttractor(strMermaidsName, iPlayer, -1); -- AI访问优先级设为最低
 						end;
 					end;
 				end;
@@ -4825,6 +4836,25 @@ doFile("/scripts/H55-Settings.lua");
 					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.MessageBox, strPathMain);
 				end;
 
+		-- 宝物商店
+			function TTH_GLOBAL.initBlackMarket()
+				for i, strBlackMarketName in TTH_VARI.arrBuilding["BUILDING_BLACK_MARKET"] do
+					for iPlayer = PLAYER_1, PLAYER_8 do
+						if TTH_GLOBAL.isAi(iPlayer) == TTH_ENUM.Yes then
+							SetAIPlayerAttractor(strBlackMarketName, iPlayer, -1); -- AI访问优先级设为最低
+						end;
+					end;
+				end;
+			end;
+			function TTH_VISIT.visitBlackMarket(strHero, strBuildingName)
+				local iPlayer = GetObjectOwner(strHero);
+				if TTH_GLOBAL.isAi(iPlayer) == TTH_ENUM.Yes then
+					print("Blocked AI from visiting Artifact Merchant");
+				else
+					TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, "TTH_VISIT.visitBlackMarket");
+				end;
+			end;
+
 		-- 杉提瑞圆盘/方尖碑
 			TTH_ENUM.TrialCourage = 1;
 			TTH_ENUM.TrialMight = 2;
@@ -4864,7 +4894,7 @@ doFile("/scripts/H55-Settings.lua");
 				for i, strShantiriName in TTH_VARI.arrBuilding["BUILDING_SHANTIRI"] do
 					for iPlayer = PLAYER_1, PLAYER_8 do
 						if TTH_GLOBAL.isAi(iPlayer) == TTH_ENUM.Yes then
-							SetAIPlayerAttractor(strShantiriName, iPlayer, -1);
+							SetAIPlayerAttractor(strShantiriName, iPlayer, -1); -- AI访问优先级设为最低
 						end;
 					end;
 				end;
@@ -6668,6 +6698,7 @@ doFile("/scripts/H55-Settings.lua");
 		TTH_ENUM.SkillManage = 2; -- 技能管理
 		TTH_ENUM.TownManage = 3; -- 城镇管理
 		TTH_ENUM.ExchangeRecord = 4; -- 政绩管理
+		TTH_ENUM.CombineArtifact = 5; -- 宝物合成
 
 		TTH_TABLE.KingManagePath = {
 			["Widget"] = {
@@ -6895,6 +6926,18 @@ doFile("/scripts/H55-Settings.lua");
 					, ["RewardText"] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/RewardTerritoryRadius.txt"
 				}
 			}
+			, ["CombineArtifact"] = {
+				["Text"] = "/Text/Game/Scripts/TTH_KingManage/CombineArtifact.txt"
+				, ["HasNotOption"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/CombineArtifact/HasNotOption.txt"
+				}
+				, ["RadioTips"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/CombineArtifact/RadioTips.txt"
+				}
+				, ["Success"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/CombineArtifact/Success.txt"
+				}
+			}
 		};
 
 		-- 英雄主动技能4
@@ -6927,6 +6970,11 @@ doFile("/scripts/H55-Settings.lua");
 					["Id"] = TTH_ENUM.ExchangeRecord
 					, ["Text"] = TTH_TABLE.KingManagePath["ExchangeRecord"]["Text"]
 					, ["Callback"] = "TTH_MANAGE.dealExchangeRecord"
+				}
+				, [5] = {
+					["Id"] = TTH_ENUM.CombineArtifact
+					, ["Text"] = TTH_TABLE.KingManagePath["CombineArtifact"]["Text"]
+					, ["Callback"] = "TTH_MANAGE.dealCombineArtifact"
 				}
 			};
 			function TTH_MANAGE.kingManage(strHero)
@@ -7870,6 +7918,435 @@ doFile("/scripts/H55-Settings.lua");
 							TTH_TABLE.KingManagePath["ExchangeRecord"]["Success"]["Text"]
 							;iCost=TTH_TABLE.ExchangeRecordOption[iType]["Cost"]
 							,strReward=TTH_TABLE.ExchangeRecordOption[iType]["RewardText"]
+						};
+						TTH_GLOBAL.sign(strHero, strPathMain);
+					end;
+
+			-- 宝物合成
+				TTH_TABLE.CombineArtifact = {
+					[ARTIFACT_ANGELIC_ALLIANCE] = {
+						["Id"] = ARTIFACT_ANGELIC_ALLIANCE
+						, ["Text"] = "/Text/Game/Artifacts/Angelic_Alliance/Name.txt"
+						, ["Component"] = {
+							[ARTIFACT_GUARDIAN_01] = {
+								["Id"] = ARTIFACT_GUARDIAN_01
+								, ["Text"] = "/Text/Game/Artifacts/Guardian_Helmet/Name.txt"
+							}
+							, [ARTIFACT_GUARDIAN_02] = {
+								["Id"] = ARTIFACT_GUARDIAN_02
+								, ["Text"] = "/Text/Game/Artifacts/Guardian_Boots/Name.txt"
+							}
+							, [ARTIFACT_GUARDIAN_03] = {
+								["Id"] = ARTIFACT_GUARDIAN_03
+								, ["Text"] = "/Text/Game/Artifacts/Guardian_Shield/Name.txt"
+							}
+							, [ARTIFACT_PLATE_MAIL_OF_STABILITY] = {
+								["Id"] = ARTIFACT_PLATE_MAIL_OF_STABILITY
+								, ["Text"] = "/Text/Game/Artifacts/PlateMailOfStability/Name.txt"
+							}
+						}
+					}
+					, [ARTIFACT_GRAAL] = {
+						["Id"] = ARTIFACT_GRAAL
+						, ["Text"] = "/Text/Game/Artifacts/Graal/Name.txt"
+						, ["Component"] = {
+							[ARTIFACT_LEGION_BASIC] = {
+								["Id"] = ARTIFACT_LEGION_BASIC
+								, ["Text"] = "/Text/Game/Artifacts/Legion_Basic/Name.txt"
+							}
+							, [ARTIFACT_LEGION_ADVANCED] = {
+								["Id"] = ARTIFACT_LEGION_ADVANCED
+								, ["Text"] = "/Text/Game/Artifacts/Legion_Advanced/Name.txt"
+							}
+							, [ARTIFACT_LEGION_EXPERT] = {
+								["Id"] = ARTIFACT_LEGION_EXPERT
+								, ["Text"] = "/Text/Game/Artifacts/Legion_Expert/Name.txt"
+							}
+							, [ARTIFACT_ENDLESS_BAG_OF_GOLD] = {
+								["Id"] = ARTIFACT_ENDLESS_BAG_OF_GOLD
+								, ["Text"] = "/Text/Game/Artifacts/Endless_Bag_Of_Gold/Name.txt"
+							}
+							, [ARTIFACT_CROWN_OF_LEADER] = {
+								["Id"] = ARTIFACT_CROWN_OF_LEADER
+								, ["Text"] = "/Text/Game/Artifacts/Crown_Of_Leader/Name.txt"
+							}
+						}
+					}
+					, [ARTIFACT_HORN_OF_PLENTY] = {
+						["Id"] = ARTIFACT_HORN_OF_PLENTY
+						, ["Text"] = "/Text/Game/Artifacts/Horn_Of_Plenty/Name.txt"
+						, ["Component"] = {
+							[ARTIFACT_RES_BASIC] = {
+								["Id"] = ARTIFACT_RES_BASIC
+								, ["Text"] = "/Text/Game/Artifacts/Res_Basic/Name.txt"
+							}
+							, [ARTIFACT_RES_ADVANCED] = {
+								["Id"] = ARTIFACT_RES_ADVANCED
+								, ["Text"] = "/Text/Game/Artifacts/Res_Advanced/Name.txt"
+							}
+							, [ARTIFACT_RES_EXPERT] = {
+								["Id"] = ARTIFACT_RES_EXPERT
+								, ["Text"] = "/Text/Game/Artifacts/Res_Expert/Name.txt"
+							}
+							, [ARTIFACT_BAND_OF_CONJURER] = {
+								["Id"] = ARTIFACT_BAND_OF_CONJURER
+								, ["Text"] = "/Text/Game/Artifacts/Band_Of_Conjurer/Name.txt"
+							}
+						}
+					}
+					, [ARTIFACT_CURSE_SHOULDER] = {
+						["Id"] = ARTIFACT_CURSE_SHOULDER
+						, ["Text"] = "/Text/Game/Artifacts/Curse_Shoulder/Name.txt"
+						, ["Component"] = {
+							[ARTIFACT_CLOAK_OF_MOURNING] = {
+								["Id"] = ARTIFACT_CLOAK_OF_MOURNING
+								, ["Text"] = "/Text/Game/Artifacts/Cloak_of_mourning/Name.txt"
+							}
+							, [ARTIFACT_STAFF_OF_VEXINGS] = {
+								["Id"] = ARTIFACT_STAFF_OF_VEXINGS
+								, ["Text"] = "/Text/Game/Artifacts/Staff_of_vexing/Name.txt"
+							}
+							, [ARTIFACT_RING_OF_DEATH] = {
+								["Id"] = ARTIFACT_RING_OF_DEATH
+								, ["Text"] = "/Text/Game/Artifacts/Ring_of_Death/Name.txt"
+							}
+							, [ARTIFACT_NECROMANCER_PENDANT] = {
+								["Id"] = ARTIFACT_NECROMANCER_PENDANT
+								, ["Text"] = "/Text/Game/Artifacts/Necromancer_Pendant/Name.txt"
+							}
+						}
+					}
+					, [ARTIFACT_DRACONIC] = {
+						["Id"] = ARTIFACT_DRACONIC
+						, ["Text"] = "/Text/Game/Artifacts/Draconic/Name.txt"
+						, ["Component"] = {
+							[ARTIFACT_DRAGON_SCALE_ARMOR] = {
+								["Id"] = ARTIFACT_DRAGON_SCALE_ARMOR
+								, ["Text"] = "/Text/Game/Artifacts/Dragon_scale_armor/Name.txt"
+							}
+							, [ARTIFACT_DRAGON_SCALE_SHIELD] = {
+								["Id"] = ARTIFACT_DRAGON_SCALE_SHIELD
+								, ["Text"] = "/Text/Game/Artifacts/DragonscaleShield/Name.txt"
+							}
+							, [ARTIFACT_DRAGON_BONE_GRAVES] = {
+								["Id"] = ARTIFACT_DRAGON_BONE_GRAVES
+								, ["Text"] = "/Text/Game/Artifacts/Dragon_bone_greaves/Name.txt"
+							}
+							, [ARTIFACT_DRAGON_WING_MANTLE] = {
+								["Id"] = ARTIFACT_DRAGON_WING_MANTLE
+								, ["Text"] = "/Text/Game/Artifacts/Dragon_wing_mantle/Name.txt"
+							}
+							, [ARTIFACT_DRAGON_TEETH_NECKLACE] = {
+								["Id"] = ARTIFACT_DRAGON_TEETH_NECKLACE
+								, ["Text"] = "/Text/Game/Artifacts/Dragon_teeth_necklace/Name.txt"
+							}
+							, [ARTIFACT_DRAGON_TALON_CROWN] = {
+								["Id"] = ARTIFACT_DRAGON_TALON_CROWN
+								, ["Text"] = "/Text/Game/Artifacts/Dragon_talon_crown/Name.txt"
+							}
+							, [ARTIFACT_DRAGON_EYE_RING] = {
+								["Id"] = ARTIFACT_DRAGON_EYE_RING
+								, ["Text"] = "/Text/Game/Artifacts/Dragon_eye_ring/Name.txt"
+							}
+							, [ARTIFACT_DRAGON_FLAME_TONGUE] = {
+								["Id"] = ARTIFACT_DRAGON_FLAME_TONGUE
+								, ["Text"] = "/Text/Game/Artifacts/Dragon_flame_tongue/Name.txt"
+							}
+						}
+					}
+					, [ARTIFACT_SENTINEL] = {
+						["Id"] = ARTIFACT_SENTINEL
+						, ["Text"] = "/Text/Game/Artifacts/Sentinel/Name.txt"
+						, ["Component"] = {
+							[ARTIFACT_DWARVEN_MITHRAL_CUIRASS] = {
+								["Id"] = ARTIFACT_DWARVEN_MITHRAL_CUIRASS
+								, ["Text"] = "/Text/Game/Artifacts/Dwarven_mithral_cuirass/Name.txt"
+							}
+							, [ARTIFACT_DWARVEN_MITHRAL_GREAVES] = {
+								["Id"] = ARTIFACT_DWARVEN_MITHRAL_GREAVES
+								, ["Text"] = "/Text/Game/Artifacts/Dwarven_mithral_greaves/Name.txt"
+							}
+							, [ARTIFACT_DWARVEN_MITHRAL_HELMET] = {
+								["Id"] = ARTIFACT_DWARVEN_MITHRAL_HELMET
+								, ["Text"] = "/Text/Game/Artifacts/Dwarven_mithral_helmet/Name.txt"
+							}
+							, [ARTIFACT_DWARVEN_MITHRAL_SHIELD] = {
+								["Id"] = ARTIFACT_DWARVEN_MITHRAL_SHIELD
+								, ["Text"] = "/Text/Game/Artifacts/Dwarven_mithral_shield/Name.txt"
+							}
+						}
+					}
+					, [ARTIFACT_EIGHTFOLD] = {
+						["Id"] = ARTIFACT_EIGHTFOLD
+						, ["Text"] = "/Text/Game/Artifacts/Eightfold/Name.txt"
+						, ["Component"] = {
+							[ARTIFACT_ROBE_OF_MAGI] = {
+								["Id"] = ARTIFACT_ROBE_OF_MAGI
+								, ["Text"] = "/Text/Game/Artifacts/Robe_of_magi/Name.txt"
+							}
+							, [ARTIFACT_STAFF_OF_MAGI] = {
+								["Id"] = ARTIFACT_STAFF_OF_MAGI
+								, ["Text"] = "/Text/Game/Artifacts/Staff_of_magi/Name.txt"
+							}
+							, [ARTIFACT_CROWN_OF_MAGI] = {
+								["Id"] = ARTIFACT_CROWN_OF_MAGI
+								, ["Text"] = "/Text/Game/Artifacts/Crown_of_magi/Name.txt"
+							}
+							, [ARTIFACT_RING_OF_MAGI] = {
+								["Id"] = ARTIFACT_RING_OF_MAGI
+								, ["Text"] = "/Text/Game/Artifacts/Ring_of_magi/Name.txt"
+							}
+						}
+					}
+					, [ARTIFACT_CODEX] = {
+						["Id"] = ARTIFACT_CODEX
+						, ["Text"] = "/Text/Game/Artifacts/Codex/Name.txt"
+						, ["Component"] = {
+							[ARTIFACT_TOME_OF_DESTRUCTION] = {
+								["Id"] = ARTIFACT_TOME_OF_DESTRUCTION
+								, ["Text"] = "/Text/Game/Artifacts/Tome_of_Destruction/Name.txt"
+							}
+							, [ARTIFACT_TOME_OF_LIGHT_MAGIC] = {
+								["Id"] = ARTIFACT_TOME_OF_LIGHT_MAGIC
+								, ["Text"] = "/Text/Game/Artifacts/Tome_of_Light_Magic/Name.txt"
+							}
+							, [ARTIFACT_TOME_OF_DARK_MAGIC] = {
+								["Id"] = ARTIFACT_TOME_OF_DARK_MAGIC
+								, ["Text"] = "/Text/Game/Artifacts/Tome_of_Dark_Magic/Name.txt"
+							}
+							, [ARTIFACT_TOME_OF_SUMMONING_MAGIC] = {
+								["Id"] = ARTIFACT_TOME_OF_SUMMONING_MAGIC
+								, ["Text"] = "/Text/Game/Artifacts/Tome_of_Summoning_Magic/Name.txt"
+							}
+						}
+					}
+					, [ARTIFACT_PLATE_MAIL_OF_STABILITY] = {
+						["Id"] = ARTIFACT_PLATE_MAIL_OF_STABILITY
+						, ["Text"] = "/Text/Game/Artifacts/PlateMailOfStability/Name.txt"
+						, ["Component"] = {
+							[ARTIFACT_SWORD_OF_RUINS] = {
+								["Id"] = ARTIFACT_SWORD_OF_RUINS
+								, ["Text"] = "/Text/Game/Artifacts/SwordOfRuin/Name.txt"
+							}
+							, [ARTIFACT_BREASTPLATE_OF_PETRIFIED_WOOD] = {
+								["Id"] = ARTIFACT_BREASTPLATE_OF_PETRIFIED_WOOD
+								, ["Text"] = "/Text/Game/Artifacts/Breastplate_of_petrified_wood/Name.txt"
+							}
+							, [ARTIFACT_SKULL_HELMET] = {
+								["Id"] = ARTIFACT_SKULL_HELMET
+								, ["Text"] = "/Text/Game/Artifacts/Skull_Helmet/Name.txt"
+							}
+							, [ARTIFACT_BUCKLER] = {
+								["Id"] = ARTIFACT_BUCKLER
+								, ["Text"] = "/Text/Game/Artifacts/Buckler/Name.txt"
+							}
+							, [ARTIFACT_BOOTS_OF_INTERFERENCE] = {
+								["Id"] = ARTIFACT_BOOTS_OF_INTERFERENCE
+								, ["Text"] = "/Text/Game/Artifacts/Boots_of_interference/Name.txt"
+							}
+						}
+					}
+					, [ARTIFACT_TOME_OF_DESTRUCTION] = {
+						["Id"] = ARTIFACT_TOME_OF_DESTRUCTION
+						, ["Text"] = "/Text/Game/Artifacts/Tome_of_Destruction/Name.txt"
+						, ["Component"] = {
+							[ARTIFACT_TITANS_TRIDENT] = {
+								["Id"] = ARTIFACT_TITANS_TRIDENT
+								, ["Text"] = "/Text/Game/Artifacts/Titan`s_trident/Name.txt"
+							}
+							, [ARTIFACT_EVERCOLD_ICICLE] = {
+								["Id"] = ARTIFACT_EVERCOLD_ICICLE
+								, ["Text"] = "/Text/Game/Artifacts/Evercold_icicle/Name.txt"
+							}
+							, [ARTIFACT_PHOENIX_FEATHER_CAPE] = {
+								["Id"] = ARTIFACT_PHOENIX_FEATHER_CAPE
+								, ["Text"] = "/Text/Game/Artifacts/Phoenix_feather_cape/Name.txt"
+							}
+							, [ARTIFACT_EARTHSLIDERS] = {
+								["Id"] = ARTIFACT_EARTHSLIDERS
+								, ["Text"] = "/Text/Game/Artifacts/Earthsliders/Name.txt"
+							}
+						}
+					}
+					, [ARTIFACT_SHIELD_OF_WOLF_DUCHY] = {
+					  ["Id"] = ARTIFACT_SHIELD_OF_WOLF_DUCHY
+					  , ["Text"] = "/Text/TTH/Artifact/166-ShieldOfWolfDuchy/Text.txt"
+					  , ["Component"] = {
+					    [ARTIFACT_RING_OF_LIFE] = {
+					      ["Id"] = ARTIFACT_RING_OF_LIFE
+					      , ["Text"] = "/Text/TTH/Artifact/021-RingOfLife/Text.txt"
+					    }
+					    , [ARTIFACT_BEARHIDE_WRAPS] = {
+					      ["Id"] = ARTIFACT_BEARHIDE_WRAPS
+					      , ["Text"] = "/Text/TTH/Artifact/084-BearhideWraps/Text.txt"
+					    }
+					  }
+					}
+					, [ARTIFACT_GUARDIAN_03] = {
+					  ["Id"] = ARTIFACT_GUARDIAN_03
+					  , ["Text"] = "/Text/TTH/Artifact/122-Guardian03/Text.txt"
+					  , ["Component"] = {
+					    [ARTIFACT_ICEBERG_SHIELD] = {
+					      ["Id"] = ARTIFACT_ICEBERG_SHIELD
+					      , ["Text"] = "/Text/TTH/Artifact/009-IcebergShield/Text.txt"
+					    }
+					    , [ARTIFACT_DWARVEN_SMITHY_HUMMER] = {
+					      ["Id"] = ARTIFACT_DWARVEN_SMITHY_HUMMER
+					      , ["Text"] = "/Text/TTH/Artifact/085-DwarvenSmithyHummer/Text.txt"
+					    }
+					  }
+					}
+					, [ARTIFACT_INHERITANCE] = {
+					  ["Id"] = ARTIFACT_INHERITANCE
+					  , ["Text"] = "/Text/TTH/Artifact/115-Inheritance/Text.txt"
+					  , ["Component"] = {
+					    [ARTIFACT_FOUR_LEAF_CLOVER] = {
+					      ["Id"] = ARTIFACT_FOUR_LEAF_CLOVER
+					      , ["Text"] = "/Text/TTH/Artifact/008-FourLeafClover/Text.txt"
+					    }
+					    , [ARTIFACT_TAROT_DECK] = {
+					      ["Id"] = ARTIFACT_TAROT_DECK
+					      , ["Text"] = "/Text/TTH/Artifact/087-TarotDeck/Text.txt"
+					    }
+					    , [ARTIFACT_GOLDEN_SEXTANT] = {
+					      ["Id"] = ARTIFACT_GOLDEN_SEXTANT
+					      , ["Text"] = "/Text/TTH/Artifact/010-GoldenSextant/Text.txt"
+					    }
+					  }
+					}
+					, [ARTIFACT_PENDANT_OF_INTERFERENCE] = {
+					  ["Id"] = ARTIFACT_PENDANT_OF_INTERFERENCE
+					  , ["Text"] = "/Text/TTH/Artifact/174-PendantOfInterference/Text.txt"
+					  , ["Component"] = {
+					    [ARTIFACT_EDGE_OF_BALANCE] = {
+					      ["Id"] = ARTIFACT_EDGE_OF_BALANCE
+					      , ["Text"] = "/Text/TTH/Artifact/090-EdgeOfBalance/Text.txt"
+					    }
+					    , [ARTIFACT_RING_OF_LIGHTING_PROTECTION] = {
+					      ["Id"] = ARTIFACT_RING_OF_LIGHTING_PROTECTION
+					      , ["Text"] = "/Text/TTH/Artifact/020-RingOfLightingProtection/Text.txt"
+					    }
+					    , [ARTIFACT_SPIRIT_OF_OPPRESSION] = {
+					      ["Id"] = ARTIFACT_SPIRIT_OF_OPPRESSION
+					      , ["Text"] = "/Text/TTH/Artifact/175-SpiritOfOppression/Text.txt"
+					    }
+					  }
+					}
+					, [ARTIFACT_RING_OF_FORGOTTEN] = {
+					  ["Id"] = ARTIFACT_RING_OF_FORGOTTEN
+					  , ["Text"] = "/Text/TTH/Artifact/180-RingOfForgotten/Text.txt"
+					  , ["Component"] = {
+					    [ARTIFACT_BEGINNER_MAGIC_STICK] = {
+					      ["Id"] = ARTIFACT_BEGINNER_MAGIC_STICK
+					      , ["Text"] = "/Text/TTH/Artifact/080-BeginnerMagicStick/Text.txt"
+					    }
+					    , [ARTIFACT_RIGID_MANTLE] = {
+					      ["Id"] = ARTIFACT_RIGID_MANTLE
+					      , ["Text"] = "/Text/TTH/Artifact/062-RigidMantle/Text.txt"
+					    }
+					  }
+					}
+					, [ARTIFACT_HELMET_OF_HEAVENLY_ENLIGHTENMENT] = {
+					  ["Id"] = ARTIFACT_HELMET_OF_HEAVENLY_ENLIGHTENMENT
+					  , ["Text"] = "/Text/TTH/Artifact/168-HelmetOfHeavenlyEnlightenment/Text.txt"
+					  , ["Component"] = {
+					    [ARTIFACT_GREAT_AXE_OF_GIANT_SLAYING] = {
+					      ["Id"] = ARTIFACT_GREAT_AXE_OF_GIANT_SLAYING
+					      , ["Text"] = "/Text/TTH/Artifact/002-GreatAxeOfGiantSlaying/Text.txt"
+					    }
+					    , [ARTIFACT_CROWN_OF_MANY_EYES] = {
+					      ["Id"] = ARTIFACT_CROWN_OF_MANY_EYES
+					      , ["Text"] = "/Text/TTH/Artifact/012-CrownOfManyEyes/Text.txt"
+					    }
+					    , [ARTIFACT_VALORIOUS_ARMOR] = {
+					      ["Id"] = ARTIFACT_VALORIOUS_ARMOR
+					      , ["Text"] = "/Text/TTH/Artifact/056-ValoriousArmor/Text.txt"
+					    }
+					    , [ARTIFACT_STEADFAST] = {
+					      ["Id"] = ARTIFACT_STEADFAST
+					      , ["Text"] = "/Text/TTH/Artifact/110-Steadfast/Text.txt"
+					    }
+					  }
+					}
+					, [ARTIFACT_BOOK_OF_MALASSA] = {
+					  ["Id"] = ARTIFACT_BOOK_OF_MALASSA
+					  , ["Text"] = "/Text/TTH/Artifact/147-BookOfMalassa/Text.txt"
+					  , ["Component"] = {
+					    [ARTIFACT_JINXING_BAND] = {
+					      ["Id"] = ARTIFACT_JINXING_BAND
+					      , ["Text"] = "/Text/TTH/Artifact/063-JinxingBand/Text.txt"
+					    }
+					    , [ARTIFACT_BONESTUDDED_LEATHER] = {
+					      ["Id"] = ARTIFACT_BONESTUDDED_LEATHER
+					      , ["Text"] = "/Text/TTH/Artifact/064-BonestuddedLeather/Text.txt"
+					    }
+					    , [ARTIFACT_RING_OF_THE_SHADOWBRAND] = {
+					      ["Id"] = ARTIFACT_RING_OF_THE_SHADOWBRAND
+					      , ["Text"] = "/Text/TTH/Artifact/073-RingOfTheShadowbrand/Text.txt"
+					    }
+					    , [ARTIFACT_BOOK_OF_POWER] = {
+					      ["Id"] = ARTIFACT_BOOK_OF_POWER
+					      , ["Text"] = "/Text/TTH/Artifact/094-BookOfPower/Text.txt"
+					    }
+					    , [ARTIFACT_RING_OF_FORGOTTEN] = {
+					      ["Id"] = ARTIFACT_RING_OF_FORGOTTEN
+					      , ["Text"] = "/Text/TTH/Artifact/180-RingOfForgotten/Text.txt"
+					    }
+					  }
+					}
+				};
+
+				-- 入口
+					function TTH_MANAGE.dealCombineArtifact(iPlayer, strHero)
+						TTH_COMMON.nextNavi(TTH_TABLE.KingManagePath["CombineArtifact"]["Text"]);
+
+						TTH_MANAGE.checkPreCombineArtifact4Exist(iPlayer, strHero);
+					end;
+
+				-- 构造宝物合成选项
+					function TTH_MANAGE.checkPreCombineArtifact4Exist(iPlayer, strHero)
+						local i = 1;
+						local arrOption = {};
+						for iIndexComponent, objComponent in TTH_TABLE.CombineArtifact do
+							local iCountComponent = length(objComponent["Component"]);
+							local iCountHasArtifact = 0;
+							for iIndexArtifact, objArtifact in objComponent["Component"] do
+								if HasArtefact(strHero, objArtifact["Id"], 0) ~= nil then
+									iCountHasArtifact = iCountHasArtifact + 1;
+								end;
+							end;
+							if iCountComponent == iCountHasArtifact then
+								arrOption[i] = {
+									["Id"] = objComponent["Id"]
+									, ["Text"] = objComponent["Text"]
+									, ["Callback"] = "TTH_MANAGE.implCombineArtifact"
+								};
+								i = i + 1;
+							end;
+						end;
+
+						if length(arrOption) == 0 then
+							local strText = TTH_TABLE.KingManagePath["CombineArtifact"]["HasNotOption"]["Text"];
+			  			TTH_GLOBAL.sign(strHero, strText);
+							return nil;
+						end;
+
+						local strTextTips = TTH_TABLE.KingManagePath["CombineArtifact"]["RadioTips"]["Text"];
+						TTH_COMMON.optionRadio(iPlayer, strHero, arrOption, strTextTips);
+					end;
+
+				-- 合成
+					function TTH_MANAGE.implCombineArtifact(iPlayer, strHero, iArtifactId)
+						local objComponent = TTH_TABLE.CombineArtifact[iArtifactId];
+						local strArtifactName = objComponent["Text"];
+						for iIndexArtifact, objArtifact in objComponent["Component"] do
+							RemoveArtefact(strHero, objArtifact["Id"]);
+						end;
+						GiveArtefact(strHero, objComponent["Id"]);
+
+						local strPathMain = {
+							TTH_TABLE.KingManagePath["CombineArtifact"]["Success"]["Text"]
+							;strArtifactName=strArtifactName
 						};
 						TTH_GLOBAL.sign(strHero, strPathMain);
 					end;
@@ -11323,6 +11800,65 @@ doFile("/scripts/H55-Settings.lua");
 				end;
 			end;
 
+		-- ARTIFACT_BOOK_OF_MALASSA 147 玛拉萨之书
+			TTH_VARI.recordBookOfMalassa = {};
+			function TTH_ARTI.init147(iPlayer, strHero)
+				if TTH_VARI.recordBookOfMalassa[strHero] == nil then
+					TTH_VARI.recordBookOfMalassa[strHero] = 0;
+				end;
+			end;
+			function TTH_ARTI.active147(iPlayer, strHero)
+				TTH_COMMON.nextNavi(TTH_PATH.Artifact[ARTIFACT_BOOK_OF_MALASSA]["Text"]);
+
+				TTH_ARTI.init147(iPlayer, strHero);
+				TTH_ARTI.radio147(iPlayer, strHero);
+			end;
+			function TTH_ARTI.radio147(iPlayer, strHero)
+    		local arrOption = {};
+				local i = 1;
+				arrOption[i] = {
+					["Id"] = 0
+					, ["Text"] = TTH_PATH.Artifact[ARTIFACT_BOOK_OF_MALASSA]["Unknow"]
+					, ["Callback"] = "TTH_ARTI.implActive147"
+				};
+				i = i + 1;
+				for iIndex, iSpellId in TTH_TABLE.ElementMagic do
+					if KnowHeroSpell(strHero, iSpellId) ~= nil and iSpellId ~= SPELL_ARMAGEDDON then
+						arrOption[i] = {
+							["Id"] = iSpellId
+							, ["Text"] = TTH_TABLE_SPELL[iSpellId]["NAME"]
+							, ["Callback"] = "TTH_ARTI.implActive147"
+						};
+						i = i + 1;
+					end;
+				end;
+
+    		local strTextTips = TTH_PATH.Artifact[ARTIFACT_BOOK_OF_MALASSA]["RadioTips"];
+				TTH_COMMON.optionRadio(iPlayer, strHero, arrOption, strTextTips);
+			end;
+			function TTH_ARTI.implActive147(iPlayer, strHero, iSpellId)
+				local strKey = TTH_FINAL.GAMEVAR_COMBAT_ARTIFACT..strHero..'_'..ARTIFACT_BOOK_OF_MALASSA;
+				TTH_VARI.recordBookOfMalassa[strHero] = iSpellId;
+				SetGameVar(strKey, iSpellId);
+				if iSpellId == 0 then
+	  			local strText = TTH_PATH.Artifact[ARTIFACT_BOOK_OF_MALASSA]["Cancel"];
+	  			TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.MessageBox, strText);
+				else
+	  			local strPathMain = {
+	  				TTH_PATH.Artifact[ARTIFACT_BOOK_OF_MALASSA]["Success"]
+	    			;strSpellName=TTH_TABLE_SPELL[iSpellId]["NAME"]
+	  			};
+	  			TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.MessageBox, strPathMain);
+				end;
+  		end;
+			function TTH_ARTI.calcValue147(iPlayer, strHero)
+				local iValue = 0;
+				if TTH_VARI.recordBookOfMalassa[strHero] ~= nil then
+					iValue = TTH_VARI.recordBookOfMalassa[strHero];
+				end;
+				return iValue;
+  		end;
+
 		-- ARTIFACT_CLOAK_OF_MALASSA 164 玛拉萨的斗篷
 			TTH_VARI.artifact[ARTIFACT_CLOAK_OF_MALASSA] = {};
 			function TTH_ARTI.deal164(iPlayer, strHero)
@@ -11343,6 +11879,32 @@ doFile("/scripts/H55-Settings.lua");
 						local iStatBonusNumber = -1 * TTH_VARI.artifact[ARTIFACT_CLOAK_OF_MALASSA][strHero];
 						TTH_GLOBAL.signChangeHeroStat(strHero, STAT_SPELL_POWER, iStatBonusNumber);
 						TTH_VARI.artifact[ARTIFACT_CLOAK_OF_MALASSA][strHero] = 0;
+					end;
+				end;
+			end;
+
+		-- ARTIFACT_HELMET_OF_HEAVENLY_ENLIGHTENMENT 168 天启头盔
+			function TTH_ARTI.dealDaily168(iPlayer, strHero)
+				TTH_MAIN.debug("TTH_ARTI.dealDaily168", iPlayer, strHero);
+
+				if HasArtefact(strHero, ARTIFACT_HELMET_OF_HEAVENLY_ENLIGHTENMENT, 1) ~= nil then
+					local iGrowth = 1;
+					local arrCreature4Hero = TTH_GLOBAL.getHeroCreatureInfo(strHero);
+					local iHeroRace = TTH_GLOBAL.getRace8Hero(strHero);
+					local bExist = TTH_ENUM.No;
+					for i = 0, 6 do
+						if bExist == TTH_ENUM.Yes then
+							break;
+						end;
+						for j = 1, 3 do
+							if arrCreature4Hero[i]["Id"] == TTH_TABLE.Creature8RaceAndLevel[iHeroRace][6][j] then
+								TTH_GLOBAL.addCreature4Hero8Sign(strHero, arrCreature4Hero[i]["Id"], iGrowth, TTH_ENUM.AddCreature);
+								bExist = TTH_ENUM.Yes;
+							end;
+						end;
+					end;
+					if bExist == TTH_ENUM.No then
+						TTH_GLOBAL.addCreature4Hero8Sign(strHero, TTH_TABLE.Creature8RaceAndLevel[iHeroRace][6][2], iGrowth, TTH_ENUM.AddCreature);
 					end;
 				end;
 			end;
@@ -12855,288 +13417,129 @@ doFile("/scripts/H55-Settings.lua");
 
 	-- test
 		TTH_TEST = {};
-		function TTH_TEST.test26(iPlayer)
+		function TTH_TEST.test3(iPlayer)
 			local strHero = GetPlayerHeroes(iPlayer)[0];
-			GiveExp(strHero, 100000)
+			GiveArtefact(strHero, ARTIFACT_HELMET_OF_HEAVENLY_ENLIGHTENMENT);
+			GiveArtefact(strHero, ARTIFACT_BOOK_OF_MALASSA);
 			sleep(1)
 			ChangeHeroStat(strHero, STAT_KNOWLEDGE, 99);
 			sleep(1)
 			ChangeHeroStat(strHero, STAT_MANA_POINTS, TTH_FINAL.NUM_MAX);
-			AddHeroCreatures(strHero, CREATURE_ORCCHIEF_BUTCHER, 111)
-			AddHeroCreatures(strHero, CREATURE_ORCCHIEF_EXECUTIONER, 111)
-			AddHeroCreatures(strHero, CREATURE_ORCCHIEF_CHIEFTAIN, 111)
-			GiveArtefact(strHero, ARTIFACT_OGRE_CLUB);
-			GiveArtefact(strHero, ARTIFACT_OGRE_SHIELD);
-			GiveArtefact(strHero, ARTIFACT_PENDANT_OF_STARDUST);
+			ExecConsoleCommand("enable_cheats");
+			ExecConsoleCommand("add_all_spells");
 		end;
-		function TTH_TEST.test25(iPlayer)
+		function TTH_TEST.test2(iPlayer)
 			local strHero = GetPlayerHeroes(iPlayer)[0];
-			GiveHeroSkill(strHero, HERO_SKILL_BARBARIAN_LEARNING);
-			sleep(1)
-			GiveHeroSkill(strHero, HERO_SKILL_BARBARIAN_LEARNING);
-			sleep(1)
-			GiveHeroSkill(strHero, HERO_SKILL_BARBARIAN_LEARNING);
-			sleep(1)
-			GiveHeroSkill(strHero, HERO_SKILL_BODYBUILDING);
-			sleep(1)
-			AddHeroCreatures(strHero, 179, 10)
-		end;
-		function TTH_TEST.test24(iPlayer)
-			local strHero = GetPlayerHeroes(iPlayer)[0];
-			GiveHeroSkill(strHero, HERO_SKILL_DEMONIC_RAGE);
-			sleep(1)
-			GiveHeroSkill(strHero, HERO_SKILL_DEMONIC_RAGE);
-			sleep(1)
-			GiveHeroSkill(strHero, HERO_SKILL_DEMONIC_RAGE);
-			sleep(1)
-			GiveHeroSkill(strHero, HERO_SKILL_GOBLIN_SUPPORT);
-			sleep(1)
-			GiveHeroSkill(strHero, HERO_SKILL_DEFEND_US_ALL);
-			sleep(1)
-			GiveArtefact(strHero, ARTIFACT_OGRE_CLUB);
-			sleep(1)
-			GiveArtefact(strHero, ARTIFACT_OGRE_SHIELD);
-			sleep(1)
-			-- GiveHeroSkill(strHero, HERO_SKILL_MAGIC_CUSHION);
-			ExecConsoleCommand("enable_cheats")
-			ExecConsoleCommand("add_all_spells")
-		end;
-		function TTH_TEST.test23(iPlayer)
-			local strHero = GetPlayerHeroes(iPlayer)[0];
-			GiveHeroSkill(strHero, HERO_SKILL_DEFENCE);
-			sleep(1)
-			GiveHeroSkill(strHero, HERO_SKILL_DEFENCE);
-			sleep(1)
-			GiveHeroSkill(strHero, HERO_SKILL_DEFENCE);
-			sleep(1)
-			GiveHeroSkill(strHero, HERO_SKILL_PROTECTION);
-			sleep(1)
-			GiveHeroSkill(strHero, HERO_SKILL_SPELLPROOF_BONES);
-			sleep(1)
-			-- GiveHeroSkill(strHero, HERO_SKILL_MAGIC_CUSHION);
-			ExecConsoleCommand("enable_cheats")
-			ExecConsoleCommand("add_all_spells")
-		end;
-		function TTH_TEST.test22(iPlayer)
-			local strHero = GetPlayerHeroes(iPlayer)[0];
-			GiveHeroSkill(strHero, HERO_SKILL_DEFENCE);
-			sleep(1)
-			GiveHeroSkill(strHero, HERO_SKILL_DEFENCE);
-			sleep(1)
-			GiveHeroSkill(strHero, HERO_SKILL_DEFENCE);
-			sleep(1)
-			GiveHeroSkill(strHero, HERO_SKILL_PROTECTION);
-			sleep(1)
-			-- GiveHeroSkill(strHero, HERO_SKILL_SPELLPROOF_BONES);
-			sleep(1)
-			GiveHeroSkill(strHero, HERO_SKILL_MAGIC_CUSHION);
-			ExecConsoleCommand("enable_cheats")
-			ExecConsoleCommand("add_all_spells")
-		end;
-		function TTH_TEST.test21(iPlayer)
-			local strHero = GetPlayerHeroes(iPlayer)[0];
-			GiveHeroSkill(strHero, HERO_SKILL_OFFENCE);
-			sleep(1)
-			GiveHeroSkill(strHero, HERO_SKILL_OFFENCE);
-			sleep(2)
-			GiveHeroSkill(strHero, HERO_SKILL_ARCHERY);
-			sleep(1)
-			GiveHeroSkill(strHero, HERO_SKILL_CHILLING_STEEL);
-			sleep(1)
-		end;
-		function TTH_TEST.test20(iPlayer)
-			local strHero = GetPlayerHeroes(iPlayer)[0];
-			GiveHeroSkill(strHero, HERO_SKILL_OFFENCE);
-			sleep(1)
-			GiveHeroSkill(strHero, HERO_SKILL_OFFENCE);
-			sleep(2)
-			GiveHeroSkill(strHero, HERO_SKILL_TACTICS);
-			sleep(1)
-			GiveHeroSkill(strHero, HERO_SKILL_ANCIENT_SMITHY);
-			sleep(1)
-		end;
-		function TTH_TEST.test19(iPlayer)
-			local strHero = GetPlayerHeroes(iPlayer)[0];
-			GiveHeroSkill(strHero, HERO_SKILL_WAR_MACHINES);
-			sleep(1)
-			GiveHeroSkill(strHero, HERO_SKILL_WAR_MACHINES);
-			sleep(1)
-			GiveHeroSkill(strHero, HERO_SKILL_WAR_MACHINES);
-			sleep(2)
-			GiveHeroSkill(strHero, HERO_SKILL_BALLISTA);
-			sleep(1)
-			GiveHeroSkill(strHero, HERO_SKILL_TRIPLE_BALLISTA);
-			sleep(1)
-			GiveHeroSkill(strHero, HERO_SKILL_RUNIC_MACHINES);
-			sleep(1)
-		end;
-		function TTH_TEST.test18(iPlayer)
-			local strHero = GetPlayerHeroes(iPlayer)[0];
-			GiveHeroSkill(strHero, HERO_SKILL_DEFENCE);
-			sleep(1)
-			GiveHeroSkill(strHero, HERO_SKILL_DEFENCE);
-			sleep(1)
-			GiveHeroSkill(strHero, HERO_SKILL_PROTECTION);
-			sleep(1)
-			GiveHeroSkill(strHero, HERO_SKILL_MAGIC_CUSHION);
-		end;
-		function TTH_TEST.test17(iPlayer)
-			local strHero = GetPlayerHeroes(iPlayer)[0];
-			GiveHeroSkill(strHero, HERO_SKILL_WAR_MACHINES);
-			sleep(1)
-			GiveHeroSkill(strHero, HERO_SKILL_WAR_MACHINES);
-			sleep(1)
-			GiveHeroSkill(strHero, HERO_SKILL_WAR_MACHINES);
-			sleep(1)
-			GiveHeroSkill(strHero, HERO_SKILL_FIRST_AID);
-			sleep(1)
-			GiveHeroSkill(strHero, HERO_SKILL_BALLISTA);
-			sleep(1)
-			GiveHeroSkill(strHero, HERO_SKILL_WILDFIRE);
-			sleep(1)
-			GiveHeroSkill(strHero, HERO_SKILL_LEADERSHIP);
-			sleep(1)
-			GiveHeroSkill(strHero, HERO_SKILL_LEADERSHIP);
-			sleep(1)
-			GiveHeroSkill(strHero, HERO_SKILL_ENCOURAGE);
-			sleep(1)
-			GiveHeroSkill(strHero, HERO_SKILL_GUARDIAN_ANGEL);
-			sleep(1)
-			AddHeroCreatures(strHero, 1, 3)
-			AddHeroCreatures(strHero, 4, 200)
-			AddHeroCreatures(strHero, 10, 12)
-			AddHeroCreatures(strHero, 110, 12)
-			AddHeroCreatures(strHero, 12, 8)
-			for iIndex, strShantiri in TTH_VARI.arrBuilding["BUILDING_SHANTIRI"] do
-				local iX, iY, iZ = GetObjectPosition(strShantiri);
+
+			-- GiveArtefact(strHero, ARTIFACT_ANGELIC_ALLIANCE);
+			-- GiveArtefact(strHero, ARTIFACT_GUARDIAN_01);
+			-- GiveArtefact(strHero, ARTIFACT_GUARDIAN_02);
+			-- GiveArtefact(strHero, ARTIFACT_GUARDIAN_03);
+			-- GiveArtefact(strHero, ARTIFACT_PLATE_MAIL_OF_STABILITY);
+
+			-- GiveArtefact(strHero, ARTIFACT_GRAAL);
+			-- GiveArtefact(strHero, ARTIFACT_LEGION_BASIC);
+			-- GiveArtefact(strHero, ARTIFACT_LEGION_ADVANCED);
+			-- GiveArtefact(strHero, ARTIFACT_LEGION_EXPERT);
+			-- GiveArtefact(strHero, ARTIFACT_ENDLESS_BAG_OF_GOLD);
+			-- GiveArtefact(strHero, ARTIFACT_CROWN_OF_LEADER);
+
+			-- GiveArtefact(strHero, ARTIFACT_HORN_OF_PLENTY);
+			-- GiveArtefact(strHero, ARTIFACT_RES_BASIC);
+			-- GiveArtefact(strHero, ARTIFACT_RES_ADVANCED);
+			-- GiveArtefact(strHero, ARTIFACT_RES_EXPERT);
+			-- GiveArtefact(strHero, ARTIFACT_BAND_OF_CONJURER);
+
+			-- GiveArtefact(strHero, ARTIFACT_CURSE_SHOULDER);
+			-- GiveArtefact(strHero, ARTIFACT_CLOAK_OF_MOURNING);
+			-- GiveArtefact(strHero, ARTIFACT_STAFF_OF_VEXINGS);
+			-- GiveArtefact(strHero, ARTIFACT_RING_OF_DEATH);
+			-- GiveArtefact(strHero, ARTIFACT_NECROMANCER_PENDANT);
+
+			-- GiveArtefact(strHero, ARTIFACT_DRACONIC);
+			-- GiveArtefact(strHero, ARTIFACT_DRAGON_SCALE_ARMOR);
+			-- GiveArtefact(strHero, ARTIFACT_DRAGON_SCALE_SHIELD);
+			-- GiveArtefact(strHero, ARTIFACT_DRAGON_BONE_GRAVES);
+			-- GiveArtefact(strHero, ARTIFACT_DRAGON_WING_MANTLE);
+			-- GiveArtefact(strHero, ARTIFACT_DRAGON_TEETH_NECKLACE);
+			-- GiveArtefact(strHero, ARTIFACT_DRAGON_TALON_CROWN);
+			-- GiveArtefact(strHero, ARTIFACT_DRAGON_EYE_RING);
+			-- GiveArtefact(strHero, ARTIFACT_DRAGON_FLAME_TONGUE);
+
+			-- GiveArtefact(strHero, ARTIFACT_SENTINEL);
+			-- GiveArtefact(strHero, ARTIFACT_DWARVEN_MITHRAL_CUIRASS);
+			-- GiveArtefact(strHero, ARTIFACT_DWARVEN_MITHRAL_GREAVES);
+			-- GiveArtefact(strHero, ARTIFACT_DWARVEN_MITHRAL_HELMET);
+			-- GiveArtefact(strHero, ARTIFACT_DWARVEN_MITHRAL_SHIELD);
+
+			-- GiveArtefact(strHero, ARTIFACT_EIGHTFOLD);
+			-- GiveArtefact(strHero, ARTIFACT_ROBE_OF_MAGI);
+			-- GiveArtefact(strHero, ARTIFACT_STAFF_OF_MAGI);
+			-- GiveArtefact(strHero, ARTIFACT_CROWN_OF_MAGI);
+			-- GiveArtefact(strHero, ARTIFACT_RING_OF_MAGI);
+
+			-- GiveArtefact(strHero, ARTIFACT_CODEX);
+			-- GiveArtefact(strHero, ARTIFACT_TOME_OF_DESTRUCTION);
+			-- GiveArtefact(strHero, ARTIFACT_TOME_OF_LIGHT_MAGIC);
+			-- GiveArtefact(strHero, ARTIFACT_TOME_OF_DARK_MAGIC);
+			-- GiveArtefact(strHero, ARTIFACT_TOME_OF_SUMMONING_MAGIC);
+
+			-- GiveArtefact(strHero, ARTIFACT_PLATE_MAIL_OF_STABILITY);
+			-- GiveArtefact(strHero, ARTIFACT_SWORD_OF_RUINS);
+			-- GiveArtefact(strHero, ARTIFACT_BREASTPLATE_OF_PETRIFIED_WOOD);
+			-- GiveArtefact(strHero, ARTIFACT_SKULL_HELMET);
+			-- GiveArtefact(strHero, ARTIFACT_BUCKLER);
+			-- GiveArtefact(strHero, ARTIFACT_BOOTS_OF_INTERFERENCE);
+
+			-- GiveArtefact(strHero, ARTIFACT_TOME_OF_DESTRUCTION);
+			-- GiveArtefact(strHero, ARTIFACT_TITANS_TRIDENT);
+			-- GiveArtefact(strHero, ARTIFACT_EVERCOLD_ICICLE);
+			-- GiveArtefact(strHero, ARTIFACT_PHOENIX_FEATHER_CAPE);
+			-- GiveArtefact(strHero, ARTIFACT_EARTHSLIDERS);
+
+			GiveArtefact(strHero, ARTIFACT_SHIELD_OF_WOLF_DUCHY);
+			GiveArtefact(strHero, ARTIFACT_RING_OF_LIFE);
+			GiveArtefact(strHero, ARTIFACT_BEARHIDE_WRAPS);
+
+			GiveArtefact(strHero, ARTIFACT_GUARDIAN_03);
+			GiveArtefact(strHero, ARTIFACT_ICEBERG_SHIELD);
+			GiveArtefact(strHero, ARTIFACT_DWARVEN_SMITHY_HUMMER);
+
+			GiveArtefact(strHero, ARTIFACT_INHERITANCE);
+			GiveArtefact(strHero, ARTIFACT_FOUR_LEAF_CLOVER);
+			GiveArtefact(strHero, ARTIFACT_TAROT_DECK);
+			GiveArtefact(strHero, ARTIFACT_GOLDEN_SEXTANT);
+
+			GiveArtefact(strHero, ARTIFACT_PENDANT_OF_INTERFERENCE);
+			GiveArtefact(strHero, ARTIFACT_EDGE_OF_BALANCE);
+			GiveArtefact(strHero, ARTIFACT_RING_OF_LIGHTING_PROTECTION);
+			GiveArtefact(strHero, ARTIFACT_SPIRIT_OF_OPPRESSION);
+
+			GiveArtefact(strHero, ARTIFACT_RING_OF_FORGOTTEN);
+			GiveArtefact(strHero, ARTIFACT_BEGINNER_MAGIC_STICK);
+			GiveArtefact(strHero, ARTIFACT_RIGID_MANTLE);
+
+			GiveArtefact(strHero, ARTIFACT_HELMET_OF_HEAVENLY_ENLIGHTENMENT);
+			GiveArtefact(strHero, ARTIFACT_GREAT_AXE_OF_GIANT_SLAYING);
+			GiveArtefact(strHero, ARTIFACT_CROWN_OF_MANY_EYES);
+			GiveArtefact(strHero, ARTIFACT_VALORIOUS_ARMOR);
+			GiveArtefact(strHero, ARTIFACT_STEADFAST);
+
+			GiveArtefact(strHero, ARTIFACT_BOOK_OF_MALASSA);
+			GiveArtefact(strHero, ARTIFACT_JINXING_BAND);
+			GiveArtefact(strHero, ARTIFACT_BONESTUDDED_LEATHER);
+			GiveArtefact(strHero, ARTIFACT_RING_OF_THE_SHADOWBRAND);
+			GiveArtefact(strHero, ARTIFACT_BOOK_OF_POWER);
+			GiveArtefact(strHero, ARTIFACT_RING_OF_FORGOTTEN);
+
+			for iIndex, strBuildingName in TTH_VARI.arrBuilding["BUILDING_BLACK_MARKET"] do
+				local iX, iY, iZ = GetObjectPosition(strBuildingName);
 				OpenCircleFog(iX, iY, iZ, 5, iPlayer);
 			end;
-			ExecConsoleCommand("enable_cheats")
+			ExecConsoleCommand("enable_cheats");
 		end;
-		function TTH_TEST.test16(iPlayer)
-			local strHero = GetPlayerHeroes(iPlayer)[0];
-			AddHeroCreatures(strHero, 12, 9999)
-			GiveArtefact(strHero, 15);
-			sleep(1)
-			for iIndex, strShantiri in TTH_VARI.arrBuilding["BUILDING_SHANTIRI"] do
-				local iX, iY, iZ = GetObjectPosition(strShantiri);
-				OpenCircleFog(iX, iY, iZ, 5, iPlayer);
-			end;
-			-- ExecConsoleCommand("enable_cheats")
-			StartCombat(strHero, nil, 1
-				, 0, 1
-				, nil
-				, nil
-				, TTH_PATH.Visit["Shantiri"]["CombatLink"]
-				, 1);
-		end;
-		function TTH_TEST.test15(iPlayer)
-			local strHero = GetPlayerHeroes(iPlayer)[0];
-			GiveHeroSkill(strHero, 4);
-			sleep(1)
-			GiveHeroSkill(strHero, 4);
-			sleep(1)
-			GiveHeroSkill(strHero, 75);
-			sleep(1)
-			GiveHeroSkill(strHero, 78);
-		end;
-		function TTH_TEST.test14(iPlayer)
-			local strHero = GetPlayerHeroes(iPlayer)[0];
-			AddHeroCreatures(strHero, 181, 1)
-			AddHeroCreatures(strHero, 182, 1)
-			AddHeroCreatures(strHero, 183, 1)
-			AddHeroCreatures(strHero, 184, 1)
-			GiveArtefact(strHero, 68);
-			GiveArtefact(strHero, 124);
-			GiveArtefact(strHero, 114);
-		end;
-		function TTH_TEST.test12()
-			local strHero = GetPlayerHeroes(1)[0];
-			-- GiveArtefact(strHero, ARTIFACT_DIMENSION_DOOR);
-			-- GiveArtefact(strHero, ARTIFACT_POTION_MANA);
-			-- GiveArtefact(strHero, ARTIFACT_POTION_ENERGY);
-			-- GiveArtefact(strHero, ARTIFACT_POTION_REVIVE);
-
-			-- GiveArtefact(strHero, ARTIFACT_PIRATE_HAT);
-			-- GiveArtefact(strHero, ARTIFACT_PIRATE_VEST);
-			-- GiveArtefact(strHero, ARTIFACT_PIRATE_RING);
-			-- GiveArtefact(strHero, ARTIFACT_PIRATE_HOOK);
-			-- GiveArtefact(strHero, ARTIFACT_PIRATE_BOOTS);
-			-- GiveArtefact(strHero, ARTIFACT_PIRATE_CHARM);
-
-			-- GiveArtefact(strHero, ARTIFACT_SHIELD_OF_WOLF_DUCHY);
-			-- GiveArtefact(strHero, ARTIFACT_RING_OF_HOLY_GRIFFIN);
-			-- GiveArtefact(strHero, ARTIFACT_CLOAK_OF_MALASSA);
-			-- GiveArtefact(strHero, ARTIFACT_SPIRIT_OF_OPPRESSION);
-			-- GiveArtefact(strHero, ARTIFACT_BADGE_OF_SUN_CROSS);
-			-- GiveArtefact(strHero, ARTIFACT_PENDANT_OF_INTERFERENCE);
-			-- GiveArtefact(strHero, ARTIFACT_HELMET_OF_HEAVENLY_ENLIGHTENMENT);
-			-- GiveArtefact(strHero, ARTIFACT_RING_OF_FORGOTTEN);
-
-			-- CreateArtifact("", ARTIFACT_SHIELD_OF_WOLF_DUCHY, 77, 191, 0);
-			GiveArtefact(strHero, ARTIFACT_QUILL_OF_MAYOR);
-			CreateArtifact("", ARTIFACT_QUILL_OF_MAYOR, 77, 191, 0);
-		end;
-		function TTH_TEST.test11(iLevel)
-			TTH_TEST.test(GetObjectNamesByType("TOWN")[0], iLevel)
-		end;
-		function TTH_TEST.test10(iPlayer)
-			for i = WOOD, GOLD do
-				local x = 9999;
-				TTH_GLOBAL.increaseResource(iPlayer, i, x);
-				x = 0;
-			end;
-		end;
-		function TTH_TEST.test9(iPlayer)
-			local strHero = GetPlayerHeroes(iPlayer)[0];
-			TTH_VARI.arrMayor[strHero]["RecordPoint"] = TTH_VARI.arrMayor[strHero]["RecordPoint"] + 10000;
-		end;
-		function TTH_TEST.test7(strHero)
-			MakeHeroInteractWithObject(strHero, TTH_VARI.arrBuilding["BUILDING_MERMAIDS"][0]);
-		end;
-		function TTH_TEST.test6(iPlayer)
-			local strHero = GetPlayerHeroes(iPlayer)[0];
-			GiveArtefact(strHero, ARTIFACT_REINCARNATION);
-			GiveArtefact(strHero, ARTIFACT_DIMENSION_DOOR);
-			GiveHeroSkill(strHero, SKILL_LOGISTICS);
-			sleep(1);
-			GiveHeroSkill(strHero, SKILL_LOGISTICS);
-			sleep(1);
-			GiveHeroSkill(strHero, HERO_SKILL_SCOUTING);
-			sleep(1);
-			GiveHeroSkill(strHero, HERO_SKILL_DEATH_TREAD);
-			AddHeroCreatures(strHero, 8, 999);
-		end;
-		function TTH_TEST.test5(iPlayer)
-			local strHero = GetPlayerHeroes(iPlayer)[0];
-			GiveArtefact(strHero, ARTIFACT_LEGION_BASIC);
-			GiveArtefact(strHero, ARTIFACT_LEGION_ADVANCED);
-			GiveArtefact(strHero, ARTIFACT_LEGION_EXPERT);
-			GiveArtefact(strHero, ARTIFACT_ENDLESS_BAG_OF_GOLD);
-			GiveArtefact(strHero, ARTIFACT_CROWN_OF_LEADER);
-
-			GiveArtefact(strHero, ARTIFACT_RES_BASIC);
-			GiveArtefact(strHero, ARTIFACT_RES_ADVANCED);
-			GiveArtefact(strHero, ARTIFACT_RES_EXPERT);
-			GiveArtefact(strHero, ARTIFACT_BAND_OF_CONJURER);
-			GiveArtefact(strHero, ARTIFACT_HORN_OF_PLENTY);
-
-			GiveArtefact(strHero, ARTIFACT_PENDANT_OF_BLIND);
-			GiveArtefact(strHero, ARTIFACT_GEM_OF_PHANTOM);
-			GiveArtefact(strHero, ARTIFACT_DIMENSION_DOOR);
-			GiveArtefact(strHero, ARTIFACT_DRUM_OF_CHARGE);
-		end;
-		function TTH_TEST.test4(idBuilding)
-			UpgradeTownBuilding(GetObjectNamesByType('TOWN')[0], idBuilding, 1);
-		end;
-		function TTH_TEST.test3(iLevel)
-			TTH_TEST.test(GetObjectNamesByType('TOWN')[0], iLevel);
-		end;
-		function TTH_TEST.test2(strHero)
-			TTH_MANAGE.resetOperTimes(strHero);
-			TTH.run();
-		end;
-		function TTH_TEST.test(strTown, iLevel)
+		function TTH_TEST.test(iLevel)
+			local strTown = GetObjectNamesByType('TOWN')[0];
 			local iRace = TTH_GLOBAL.getRace8Town(strTown);
 			local iTempRace = iRace + 1;
 			if iTempRace > TOWN_STRONGHOLD then
@@ -13148,38 +13551,35 @@ doFile("/scripts/H55-Settings.lua");
 			sleep(1);
 			TTH_MANAGE.constructTown(strTown, iLevel);
 
-			TTH_GLOBAL.increaseResource(1, WOOD, 9999);
-			TTH_GLOBAL.increaseResource(1, ORE, 9999);
-			TTH_GLOBAL.increaseResource(1, MERCURY, 9999);
-			TTH_GLOBAL.increaseResource(1, CRYSTAL, 9999);
-			TTH_GLOBAL.increaseResource(1, SULFUR, 9999);
-			TTH_GLOBAL.increaseResource(1, GEM, 9999);
-			TTH_GLOBAL.increaseResource(1, GOLD, 9999999);
-		  -- local strPathMain = "/Text/Game/Scripts/TownManage/Main.txt";
-		  -- local strPathHeader = "/Text/Game/Scripts/TownManage/Header.txt";
-		  -- local strPathTest = "/Text/Game/Scripts/TownManage/Test.txt";
-		  -- local strPathTownInfo = "/Text/Game/Scripts/TownManage/TownInfo.txt";
-		  -- local strPathHeroInfo = "/Text/Game/Scripts/TownManage/HeroInfo.txt";
-		  -- local strPathFooter = "/Text/Game/Scripts/TownManage/Footer.txt";
-		  -- local strHeaderValue = 111;
-		  -- local strFooterValue1 = 222;
-		  -- local strFooterValue2 = "/Text/Game/Buildings/Heaven/TOWN_BUILDING_MARKETPLACE_2.txt";
-		  -- local strFooterValue3 = "/Text/Game/Buildings/Heaven/TOWN_BUILDING_FORT_1.txt";
-		  -- MessageBoxForPlayers(GetPlayerFilter(1)
-		  --   , {
-		  --     strPathMain
-		  --     ;strPathHeader={strPathHeader;strHeaderValue=strHeaderValue}
-		  --     ,strPathTest=strPathTest
-		  --     ,strPathTownInfo=strPathTownInfo
-		  --     ,strPathHeroInfo=strPathHeroInfo
-		  --     ,strPathFooter={
-		  --       strPathFooter
-		  --       ;strFooterValue1=strFooterValue1
-		  --       ,strFooterValue2=strFooterValue2
-		  --       ,strFooterValue3=strFooterValue3
-		  --     }
-		  --   }
-		  --   , nil);
+			-- GiveExp(strHero, 100000)
+			-- sleep(1)
+			-- ChangeHeroStat(strHero, STAT_KNOWLEDGE, 99);
+			-- sleep(1)
+			-- ChangeHeroStat(strHero, STAT_MANA_POINTS, TTH_FINAL.NUM_MAX);
+			-- AddHeroCreatures(strHero, CREATURE_ORCCHIEF_BUTCHER, 111)
+			-- AddHeroCreatures(strHero, CREATURE_ORCCHIEF_EXECUTIONER, 111)
+			-- AddHeroCreatures(strHero, CREATURE_ORCCHIEF_CHIEFTAIN, 111)
+			-- GiveArtefact(strHero, ARTIFACT_OGRE_CLUB);
+		 --  CreateArtifact("", ARTIFACT_QUILL_OF_MAYOR, 77, 191, 0);
+			-- ExecConsoleCommand("enable_cheats")
+			-- ExecConsoleCommand("add_all_spells")
+			-- for iIndex, strShantiri in TTH_VARI.arrBuilding["BUILDING_SHANTIRI"] do
+			-- 	local iX, iY, iZ = GetObjectPosition(strShantiri);
+			-- 	OpenCircleFog(iX, iY, iZ, 5, iPlayer);
+			-- end;
+			-- StartCombat(strHero, nil, 1
+			-- 	, 0, 1
+			-- 	, nil
+			-- 	, nil
+			-- 	, TTH_PATH.Visit["Shantiri"]["CombatLink"]
+			-- 	, 1);
+			-- for i = WOOD, GOLD do
+			-- 	local x = 9999;
+			-- 	TTH_GLOBAL.increaseResource(iPlayer, i, x);
+			-- 	x = 0;
+			-- end;
+			-- TTH_VARI.arrMayor[strHero]["RecordPoint"] = TTH_VARI.arrMayor[strHero]["RecordPoint"] + 10000;
+			-- MakeHeroInteractWithObject(strHero, TTH_VARI.arrBuilding["BUILDING_BLACK_MARKET"][0]);
 		end;
 
 -- 主程

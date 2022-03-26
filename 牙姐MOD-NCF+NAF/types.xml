@@ -2657,7 +2657,7 @@
 				<Item>ARTIFACT_BOOK_D1</Item>	
 				<Item>ARTIFACT_BOOK_D2</Item>	
 				<Item>ARTIFACT_BOOK_D3</Item>	
-				<Item>ARTIFACT_BOOK_D4</Item>	
+				<Item>ARTIFACT_BOOK_OF_MALASSA</Item>	
 				<Item>ARTIFACT_BOOK_S1</Item>	
 				<Item>ARTIFACT_BOOK_S2</Item>	
 				<Item>ARTIFACT_BOOK_S3</Item>	
@@ -18560,7 +18560,7 @@
 					<Value>146</Value>
 				</Item>
 				<Item>
-					<Name>ARTIFACT_BOOK_D4</Name>
+					<Name>ARTIFACT_BOOK_OF_MALASSA</Name>
 					<Value>147</Value>
 				</Item>				
 				<Item>

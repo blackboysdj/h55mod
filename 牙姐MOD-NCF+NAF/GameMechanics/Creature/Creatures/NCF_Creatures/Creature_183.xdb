@@ -63,6 +63,6 @@
 		<Item>ABILITY_IMMUNITY_TO_MAGIC</Item>
 		<Item>ABILITY_FIRE_BREATH</Item>
 		<Item>ABILITY_DEADLY_STRIKE</Item>
-		<Item>ABILITY_DOUBLE_ATTACK</Item>
+		<Item>ABILITY_BRUTALITY</Item>
 	</Abilities>
 </Creature>

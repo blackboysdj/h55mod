@@ -35,8 +35,8 @@
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Dungeon/Menel/Text.txt"/>
-	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Dungeon/Menel/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Dungeon/060-Menel/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Dungeon/060-Menel/Description.txt"/>
 	<SpecializationIcon href="/Textures/HeroScreen/Specializations/Dungeon/Slaveholder.xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Dungeon/Dungeon_Kythra_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>

@@ -44,7 +44,6 @@
 	<BaseCreature>CREATURE_UNKNOWN</BaseCreature>
 	<Upgrades/>
 	<Abilities>
-		<Item>ABILITY_AXE_OF_SLAUGHTER</Item>
 		<Item>ABILITY_VORPAL_SWORD</Item>
 	</Abilities>
 </Creature>

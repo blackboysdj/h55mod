@@ -41,6 +41,7 @@ HERO_SKILL_TRIPLE_CATAPULT = 88;
 HERO_SKILL_GUARDIAN_ANGEL = 78;
 HERO_SKILL_PARIAH = 83;
 HERO_SKILL_TWILIGHT = 109;
+HERO_SKILL_EXPLODING_CORPSES = 93;
 
 MAX_MANA = 1000;
 
@@ -143,6 +144,7 @@ TTH_SKILL_EFFECT_COMBAT = {
     , [6] = HERO_SKILL_GUARDIAN_ANGEL
     , [7] = HERO_SKILL_PARIAH
     , [8] = HERO_SKILL_TWILIGHT
+    , [9] = HERO_SKILL_EXPLODING_CORPSES
 };
 TTH_SKILL_EFFECT_COMBAT_ONCE = {
 };
@@ -11424,7 +11426,9 @@ end;
           for i, strUnitName in arrUnit4Check do
             local enumEffect = TTHCS_COMMON.isEffectUnit(strUnitName, iEffectPosX, iEffectPosY);
             if enumEffect == TTHCS_ENUM.Yes then
-              push(arrUnitName, strUnitName);
+              if contains(arrUnitName, strUnitName) == nil then
+                push(arrUnitName, strUnitName);
+              end;
             end;
           end;
         end;
@@ -11447,6 +11451,12 @@ end;
       TTHCS_PATH["Talent"]["Hero4"] = {};
       TTHCS_PATH["Talent"]["Hero4"]["Effect"] = "/Text/TTH/Heroes/Specializations/Stronghold/139-Hero4/Combat/Effect.txt";
 
+      TTHCS_PATH["Talent"]["Orlando2"] = {};
+      TTHCS_PATH["Talent"]["Orlando2"]["Effect"] = "/Text/TTH/Heroes/Specializations/Inferno/104-Orlando2/Combat/Effect.txt";
+
+      TTHCS_PATH["Talent"]["Gles"] = {};
+      TTHCS_PATH["Talent"]["Gles"]["Effect"] = "/Text/TTH/Heroes/Specializations/Necromancy/079-Gles/Combat/Effect.txt";
+
     TTHCS_PATH["Perk"] = {};
       TTHCS_PATH["Perk"][HERO_SKILL_SEAL_OF_PROTECTION] = {};
       TTHCS_PATH["Perk"][HERO_SKILL_SEAL_OF_PROTECTION]["Effect"] = "/Text/TTH/Skills/Training/131-SealOfProtection/Combat/Effect.txt";
@@ -11461,9 +11471,12 @@ end;
       TTHCS_PATH["Perk"][HERO_SKILL_TWILIGHT] = {};
       TTHCS_PATH["Perk"][HERO_SKILL_TWILIGHT]["Effect"] = "/Text/TTH/Skills/LightMagic/109-Twilight/Combat/Effect.txt";
 
+      TTHCS_PATH["Perk"][HERO_SKILL_EXPLODING_CORPSES] = {};
+      TTHCS_PATH["Perk"][HERO_SKILL_EXPLODING_CORPSES]["Effect"] = "/Text/TTH/Skills/Logistics/093-ExplodingCorpses/Combat/Effect.txt";
+
     TTHCS_PATH["Artifact"] = {};
       TTHCS_PATH["Artifact"][ARTIFACT_ANGELIC_ALLIANCE] = {};
-      TTHCS_PATH["Artifact"][ARTIFACT_ANGELIC_ALLIANCE]["Effect"] = "/Text/TTH/Artifact/68-AngelicAlliance/Combat/Effect.txt";
+      TTHCS_PATH["Artifact"][ARTIFACT_ANGELIC_ALLIANCE]["Effect"] = "/Text/TTH/Artifact/068-AngelicAlliance/Combat/Effect.txt";
       TTHCS_PATH["Artifact"][ARTIFACT_SENTINEL] = {};
       TTHCS_PATH["Artifact"][ARTIFACT_SENTINEL]["Effect"] = "/Text/TTH/Artifact/124-Sentinel/Combat/Effect.txt";
       TTHCS_PATH["Artifact"][ARTIFACT_CURSE_SHOULDER] = {};
@@ -11471,7 +11484,7 @@ end;
 
     TTHCS_PATH["ArtifactSet"] = {};
       TTHCS_PATH["ArtifactSet"][TTHCS_ENUM.SET_OGRES.."_"..2] = {};
-      TTHCS_PATH["ArtifactSet"][TTHCS_ENUM.SET_OGRES.."_"..2]["Effect"] = "/Text/TTH/ArtifactSet/8-Ogres/Combat/Effect2.txt";
+      TTHCS_PATH["ArtifactSet"][TTHCS_ENUM.SET_OGRES.."_"..2]["Effect"] = "/Text/TTH/ArtifactSet/008-Ogres/Combat/Effect2.txt";
 
     TTHCS_PATH["Creature"] = {};
       TTHCS_PATH["Creature"]["Enchanter"] = {};

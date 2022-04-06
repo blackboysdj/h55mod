@@ -252,9 +252,9 @@ doFile('/scripts/combat-startup.lua')
 					break;
 				end;
 			end;
-			if H55SMOD_Start[strHero]['value'] ~= nil then
-				setATB(H55SMOD_Start[strHero]['value'], 1.25);
-			end;
+			-- if H55SMOD_Start[strHero]['value'] ~= nil then
+			-- 	setATB(H55SMOD_Start[strHero]['value'], 1.25);
+			-- end;
 		end;
 		H55SMOD_Start['Sarge']['function'] = Events_Start_Implement_Sarge;
 
@@ -1635,6 +1635,7 @@ doFile('/scripts/combat-startup.lua')
 							-- Academy
 							-- Inferno
 							-- Necropolis
+								H55SMOD_MiddlewareListener['Gles']['function']('Gles', iSide, itemUnitLast, listCreaturesBeEffected);
 							-- Fortress
 							-- Dungeon
 							-- Stronghold
@@ -1681,7 +1682,6 @@ doFile('/scripts/combat-startup.lua')
 						-- Inferno
 							H55SMOD_MiddlewareListener['Ash']['function']['creature']('Ash', iSide, itemUnitLast, listCreaturesLastDeath);
 						-- Necropolis
-							H55SMOD_MiddlewareListener['Gles']['function']('Gles', iSide, itemUnitLast, listCreaturesLastDeath);
 							H55SMOD_MiddlewareListener['Giovanni']['function']['creature']('Giovanni', iSide, itemUnitLast, listCreaturesLastDeath, listCreaturesBeEffected);
 							H55SMOD_MiddlewareListener['Vidomina']['function']('Vidomina', iSide, itemUnitLast, listCreaturesLastDeath);
 						-- Fortress
@@ -1869,7 +1869,8 @@ doFile('/scripts/combat-startup.lua')
 						-- Dungeon
 						-- Stronghold
 							H55SMOD_MiddlewareListener['Mokka']['function']('Mokka', iSide, itemUnit);
-
+						-- Skill
+							H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_EXPLODING_CORPSES]['function']['charge'](iSide, itemUnit);
 					end;
 				end;
 
@@ -2060,6 +2061,9 @@ doFile('/scripts/combat-startup.lua')
 							-- Dungeon
 								H55SMOD_MiddlewareListener['Menel']['function']('Menel', iSide, itemUnitLast);
 							-- Stronghold
+						else
+							-- Skill
+								H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_EXPLODING_CORPSES]['function']['consume'](iSide, itemUnit, itemUnitLast, listCreaturesBeEffectedLimit, listCreaturesDeath);
 						end;
 
 						-- 上回合行动生物被击杀
@@ -2468,6 +2472,60 @@ doFile('/scripts/combat-startup.lua')
 				end;
 			end;
 			H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_TRIPLE_CATAPULT]['function'] = Events_MiddlewareListener_Implement_Skill_TripleCatapult;
+
+		-- 风暴突袭: 己方生物【造成战损后】英雄会对战损敌方生物及其周围的敌方生物各追加一发霹雳闪电并且英雄立刻行动（该特效在每两次英雄行动之间只能触发一次）
+			H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_EXPLODING_CORPSES] = {};
+			H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_EXPLODING_CORPSES]['flag'] = {};
+			H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_EXPLODING_CORPSES]['flag'][0] = 2;
+			H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_EXPLODING_CORPSES]['flag'][1] = 2;
+			H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_EXPLODING_CORPSES]['function'] = {};
+			function Events_MiddlewareListener_Implement_Skill_ExplodingCorpses_Consume(iSide, itemUnit, itemUnitLast, listCreaturesBeEffected, listCreaturesDeath)
+				if GetHero(iSide) ~= nil and itemUnitLast['iSide'] == iSide and TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_EXPLODING_CORPSES] == 1 then
+					if H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_EXPLODING_CORPSES]['flag'][iSide] >= 2 then
+						H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_EXPLODING_CORPSES]['flag'][iSide] = 0;
+						if itemUnit~= nil and itemUnit["strUnitName"] == GetHero(iSide) then
+							H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_EXPLODING_CORPSES]['flag'][iSide] = 1;
+						end;
+						local itemCreatureTarget = {};
+						if length(listCreaturesBeEffected) > 0 then
+							itemCreatureTarget = listCreaturesBeEffected[0];
+						elseif length(listCreaturesDeath) > 0 then
+							itemCreatureTarget = listCreaturesDeath[0];
+						end;
+						local arrUnitName = TTHCS_GLOBAL.listUnitInArea(itemCreatureTarget["strUnitName"], 1, iSide);
+						local strHeroName = GetHero(iSide);
+						if length(arrUnitName) > 0 then
+							ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_EXPLODING_CORPSES]["Effect"], strHeroName, 5);
+							combatSetPause(1);
+							local iCurrentManaPre = GetUnitManaPoints(strHeroName);
+							for i, strCreatureTarget in arrUnitName do
+								startThread(Thread_Command_UnitCastAimedSpell_UseMana, strHeroName, SPELL_LIGHTNING_BOLT, strCreatureTarget);
+								sleep(1);
+								SetUnitManaPoints(strHeroName, iCurrentManaPre);
+								local iCurrentManaPost = GetUnitManaPoints(strHeroName);
+								repeat sleep(1); until iCurrentManaPost >= iCurrentManaPre;
+							end;
+							combatSetPause(nil);
+						end;
+						local itemHero = geneUnitStatus(strHeroName);
+						itemHero['iAtb'] = 1.25;
+						push(ListUnitSetATB, itemHero);
+					end;
+				end;
+			end;
+			H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_EXPLODING_CORPSES]['function']['consume'] = Events_MiddlewareListener_Implement_Skill_ExplodingCorpses_Consume;
+			function Events_MiddlewareListener_Implement_Skill_ExplodingCorpses_Charge(iSide, itemUnit)
+				if GetHero(iSide) ~= nil and itemUnit['strUnitName'] == GetHero(iSide) then
+					if TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_EXPLODING_CORPSES] == 1 then
+						H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_EXPLODING_CORPSES]['flag'][iSide] = H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_EXPLODING_CORPSES]['flag'][iSide] + 1;
+						-- print("charge: "..H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_EXPLODING_CORPSES]['flag'][iSide]);
+						if H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_EXPLODING_CORPSES]['flag'][iSide] >= 2 then
+							print(itemUnit['strUnitName'].." recovery times for [ExplodingCorpses]");
+						end;
+					end;
+				end;
+			end;
+			H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_EXPLODING_CORPSES]['function']['charge'] = Events_MiddlewareListener_Implement_Skill_ExplodingCorpses_Charge;
 
 -- 英雄特长
 	-- Haven
@@ -3530,39 +3588,36 @@ doFile('/scripts/combat-startup.lua')
 
 		-- Orlando2
 			H55SMOD_MiddlewareListener['Orlando2'] = {};
-			H55SMOD_MiddlewareListener['Orlando2']['Target'] = {};
 			function Events_MiddlewareListener_Implement_Orlando2(strHero, iSide, itemUnitLast, listCreaturesBeEffected)
 				if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero	and itemUnitLast['strUnitName'] == GetHero(iSide) then
 					local itemCreatureEffected = listCreaturesBeEffected[0];
-					if contains(H55SMOD_MiddlewareListener['Orlando2']['Target'], itemCreatureEffected['strUnitName']) == nil then
-						combatSetPause(1);
+					combatSetPause(1);
 
-						push(H55SMOD_MiddlewareListener['Orlando2']['Target'], itemCreatureEffected['strUnitName']);
-						local iBattleSize = getBattleSize();
-						local iPositionX = 0;
-						local iPositionY = 1;
-						if iSide == ENUM_SIDE.ATTACKER then
-							iPositionX = 2;
+					local iBattleSize = getBattleSize();
+					local iPositionX = 0;
+					local iPositionY = 1;
+					if iSide == ENUM_SIDE.ATTACKER then
+						iPositionX = 2;
+					else
+						if iBattleSize == 0 then
+						    iPositionX = 13;
 						else
-							if iBattleSize == 0 then
-							    iPositionX = 13;
-							else
-							    iPositionX = 15;
-							end;
+						    iPositionX = 15;
 						end;
-
-						local strCreatureShooter = Thread_Command_AddCreature(iSide, CREATURE_Orlando2, 1, iPositionX, iPositionY);
-						if strCreatureShooter ~= nil then
-							local itemCreatureShooter = geneUnitStatus(strCreatureShooter);
-							startThread(Thread_Command_UnitShotAimed, itemCreatureShooter['strUnitName'], itemCreatureEffected['strUnitName']);
-							sleep(20);
-							startThread(Thread_Command_RemoveCombatUnit, iSide, itemCreatureShooter['strUnitName']);
-							sleep(20);
-							print(itemCreatureShooter['strUnitName'].." shoot to "..itemCreatureEffected['strUnitName']);
-						end;
-
-						combatSetPause(nil);
 					end;
+
+					local strCreatureShooter = Thread_Command_AddCreature(iSide, CREATURE_Orlando2, 1, iPositionX, iPositionY);
+					if strCreatureShooter ~= nil then
+						local itemCreatureShooter = geneUnitStatus(strCreatureShooter);
+						startThread(Thread_Command_UnitShotAimed, itemCreatureShooter['strUnitName'], itemCreatureEffected['strUnitName']);
+						sleep(20);
+						startThread(Thread_Command_RemoveCombatUnit, iSide, itemCreatureShooter['strUnitName']);
+						sleep(20);
+						print(itemCreatureShooter['strUnitName'].." shoot to "..itemCreatureEffected['strUnitName']);
+						ShowFlyingSign(TTHCS_PATH["Talent"]["Orlando2"]["Effect"], GetHero(iSide), 5);
+					end;
+
+					combatSetPause(nil);
 				end;
 			end;
 			H55SMOD_MiddlewareListener['Orlando2']['function'] = Events_MiddlewareListener_Implement_Orlando2;
@@ -3669,35 +3724,22 @@ doFile('/scripts/combat-startup.lua')
 
 		-- Gles
 			H55SMOD_MiddlewareListener['Gles'] = {};
-			H55SMOD_MiddlewareListener['Gles']['flag'] = {};
-			function Events_MiddlewareListener_Implement_Gles(strHero, iSide, itemUnitLast, listCreaturesLastDeath)
-				if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero then
-					local iBattleSize = getBattleSize();
-					local iBattleAllowMaxX = 0;
-					local iBattleAllowMaxY = 0;
-					if iBattleSize == 0 then
-					    iBattleAllowMaxX = 13;
-					    iBattleAllowMaxY = 10;
-					else
-					    iBattleAllowMaxX = 15;
-					    iBattleAllowMaxY = 14;
-					end;
-					local iLenCreaturesLastDeath = length(listCreaturesLastDeath);
-					for iIndexCreaturesLastDeath = 0, iLenCreaturesLastDeath - 1 do
-						local itemCreaturesLastDeath = geneUnitStatus(listCreaturesLastDeath[iIndexCreaturesLastDeath]['strUnitName']);
-						if IsCombatUnit(itemCreaturesLastDeath['strUnitName']) ~= nil and itemCreaturesLastDeath['iUnitNumber'] == 0 then
-							if H55SMOD_MiddlewareListener[strHero]['flag'][itemCreaturesLastDeath['strUnitName']] == nil then
+			function Events_MiddlewareListener_Implement_Gles(strHero, iSide, itemUnitLast, listCreaturesBeEffected)
+				if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero and iSide == GetUnitSide(itemUnitLast['strUnitName']) then
+					if itemUnitLast['iUnitType'] == WAR_MACHINE_FIRST_AID_TENT then
+						local iLenCreaturesBeEffected = length(listCreaturesBeEffected);
+						if iLenCreaturesBeEffected == 1 then
+							local itemCreaturesBeEffected = listCreaturesBeEffected[0];
+							if IsCombatUnit(itemCreaturesBeEffected['strUnitName']) ~= nil and itemCreaturesBeEffected['iUnitNumber'] > 0 then
 								combatSetPause(1);
-								H55SMOD_MiddlewareListener[strHero]['flag'][itemCreaturesLastDeath['strUnitName']] = 1;
-								local strCreatureCaster = Thread_Command_AddCreature(iSide, CREATURE_LICH_MASTER, H55SMOD_HeroLevel[strHero] * 1, iBattleAllowMaxX - itemCreaturesLastDeath['iPositionX'], iBattleAllowMaxY - itemCreaturesLastDeath['iPositionY']);
-								local itemCreatureCaster = geneUnitStatus(strCreatureCaster);
-								if IsCombatUnit(itemCreatureCaster['strUnitName']) ~= nil and itemCreatureCaster['iUnitNumber'] > 0 then
-									startThread(Thread_Command_UnitCastAimedSpell, itemCreatureCaster['strUnitName'], SPELL_ANIMATE_DEAD, itemCreaturesLastDeath['strUnitName'], 0);
-									sleep(50);
-									Thread_Command_RemoveCombatUnit_Uncheck(itemCreatureCaster['strUnitName']);
-									sleep(20);
-									print(itemCreatureCaster['strUnitName'].." cast ANIMATE_DEAD to "..itemCreaturesLastDeath['strUnitName']);
-								end;
+								local strHeroName = GetHero(iSide);
+								startThread(Thread_Command_UnitCastAimedSpell, strHeroName, SPELL_CELESTIAL_SHIELD, itemCreaturesBeEffected['strUnitName'], 1);
+								local itemHero = geneUnitStatus(strHeroName);
+								itemHero['iAtb'] = 1.25;
+								push(ListUnitSetATB, itemHero);
+								sleep(20);
+								print(strHeroName.." casted SPELL_CELESTIAL_SHIELD on "..itemCreaturesBeEffected['strUnitName']);
+								ShowFlyingSign(TTHCS_PATH["Talent"]["Gles"]["Effect"], itemCreaturesBeEffected["strUnitName"], 5);
 								combatSetPause(nil);
 							end;
 						end;
@@ -4919,7 +4961,8 @@ doFile('/scripts/combat-startup.lua')
 					local objMagicId = TTHCS_TABLE.CherubinMagic[iMagicIndex];
 					local iMagicId = objMagicId["Id"];
 					local enumMagicType = objMagicId["Type"];
-					Thread_Command_UnitCastGlobalSpell_IgnoreMana(itemUnit['strUnitName'], iMagicId);
+					startThread(Thread_Command_UnitCastGlobalSpell_IgnoreMana, itemUnit['strUnitName'], iMagicId);
+					-- sleep(10);
 					H55SMOD_MiddlewareListener['Cherubin']['MagicIndex'] = H55SMOD_MiddlewareListener['Cherubin']['MagicIndex'] + 1;
 					if H55SMOD_MiddlewareListener['Cherubin']['MagicIndex'] > 3 then
 						H55SMOD_MiddlewareListener['Cherubin']['MagicIndex'] = 1;
@@ -4956,8 +4999,10 @@ doFile('/scripts/combat-startup.lua')
 						end;
 					end;
 					if iLenCreaturesTarget > iLenImmune and iLenCreaturesTarget > 0 then
-						Thread_Command_UnitCastGlobalSpell_IgnoreMana(itemUnit['strUnitName'], iMagicId);
+						startThread(Thread_Command_UnitCastGlobalSpell_IgnoreMana, itemUnit['strUnitName'], iMagicId);
+						-- Thread_Command_UnitCastGlobalSpell_IgnoreMana(itemUnit['strUnitName'], iMagicId);
 					end;
+					-- sleep(10);
 					H55SMOD_MiddlewareListener['DragonKnight']['MagicIndex'] = H55SMOD_MiddlewareListener['DragonKnight']['MagicIndex'] + 1;
 					if H55SMOD_MiddlewareListener['DragonKnight']['MagicIndex'] > 3 then
 						H55SMOD_MiddlewareListener['DragonKnight']['MagicIndex'] = 1;

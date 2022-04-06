@@ -55,7 +55,5 @@
 	<Abilities>
 		<Item>ABILITY_IMMUNITY_TO_MIND_CONTROL</Item>
 		<Item>ABILITY_BERSERKER_RAGE</Item>
-		<Item>ABILITY_LIZARD_BITE</Item>
-		<Item>ABILITY_DASH</Item>
 	</Abilities>
 </Creature>

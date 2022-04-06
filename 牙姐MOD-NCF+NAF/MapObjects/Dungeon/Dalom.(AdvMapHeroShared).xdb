@@ -35,8 +35,8 @@
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_LOGISTICS</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Dungeon55/Poisoner/Name.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Dungeon55/Poisoner/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Dungeon/066-Dalom/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Dungeon/066-Dalom/Description.txt"/>
 	<SpecializationIcon href="/Textures/HeroScreen/Specializations/Dungeon/Poisoner.xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Dungeon/Dungeon_Lethos_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>
@@ -55,7 +55,7 @@
 		<Knowledge>1</Knowledge>
 		<skills>
 			<Item>
-				<Mastery>MASTERY_ADVANCED</Mastery>
+				<Mastery>MASTERY_BASIC</Mastery>
 				<SkillID>HERO_SKILL_DARK_MAGIC</SkillID>
 			</Item>
 		</skills>
@@ -64,7 +64,6 @@
 		</perkIDs>
 		<spellIDs>
 			<Item>SPELL_PLAGUE</Item>
-			<Item>SPELL_DISRUPTING_RAY</Item>
 		</spellIDs>
 		<Ballista>false</Ballista>
 		<FirstAidTent>true</FirstAidTent>

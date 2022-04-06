@@ -378,8 +378,8 @@
 				<LiquidFlameBreath_MaxDuration>2</LiquidFlameBreath_MaxDuration>
 				<PreparedPosition_DefenceBonus>5</PreparedPosition_DefenceBonus>
 				<BattleRage_InitiativeBonus>3</BattleRage_InitiativeBonus>
-				<BattleRage_AttackBonus>6</BattleRage_AttackBonus>
-				<BattleRage_EffectDuration>3</BattleRage_EffectDuration>
+				<BattleRage_AttackBonus>5</BattleRage_AttackBonus>
+				<BattleRage_EffectDuration>2</BattleRage_EffectDuration>
 				<FlameWave_WaveLength>5</FlameWave_WaveLength>
 				<FlameWave_ProcFactor>2.5</FlameWave_ProcFactor>
 				<FlameWave_WaveSpeed>15</FlameWave_WaveSpeed>

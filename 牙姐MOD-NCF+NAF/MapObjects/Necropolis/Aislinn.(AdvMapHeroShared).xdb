@@ -33,7 +33,7 @@
 	<Specialization>HERO_SPEC_REANIMATOR</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_DARK_MAGIC</SkillID>
+		<SkillID>HERO_SKILL_NECROMANCY</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Necropolis55/Hypnotist/Name.txt"/>
 	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Necropolis55/Hypnotist/Description.txt"/>

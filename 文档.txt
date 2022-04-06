@@ -4,23 +4,61 @@
   ********_homm homm********
 ShowFlyingSign
 
-112656
-155322
-199479
-140393
+implSkillBonus8Hero
+setGameVar4HeroSkill
 
-143348
-
-140818
-105961
-https://wly.battle.uqeegame.com/h5/?bid=22021904150528765&version=master&host=s8011.wly.lequ.com
 新版本调整
   死亡行军BUG
-
   乌尔夫斯坦边境哨塔数量在信息管理→个人里面显示
-  额外的政绩总加成，下周才生效
   募兵按基础生物产量+增产建筑（生物产量需要校对，狂战士应该是6+4，现在是10）
-  魔力再生: 下场战斗中英雄每次行动前回复3点魔法值 耗1/周回/内替
+  hero with name '7' is not exist
+  追猎者: 非我方城镇势力范围内，提高移动力
+  士气-5 亡巫功能提示选择
+  天使移动动作
+  内比罗斯: 敌方英雄无法逃跑
+  shantiri传送
+  熔毁宝物
+  宝物学者
+
+  维托利奥
+  伯权德
+  尼克莱
+  杰迪特
+  维拉利亚
+  奥兰多
+
+
+地精飞龙天地双王-纯享版-第8天500地精起飞
+地精飞龙天地双王-纯享版-天降神器机械引力指环
+地精飞龙天地双王-纯享版-自动刷宝屋飞龙王成型
+
+视频相关
+  7AI结盟+3倍增兵+眼泪+旅行者长靴+哨兵之盾+天使联盟+诅咒斗篷+大法师之书+龙神胸甲+初始技能+终极技能
+  你们的支持就是牙姐的动力，谢谢大家，进群下载游戏：241244439
+  过夜快※8技能※城镇转换※内政官※定点回城※女巫双技能
+  8技能/过夜快/战场特技/主动天赋/主动技能/主动宝物/格鲁/德肯/宝物合成
+
+直播相关
+  rtmp://live-push.bilivideo.com/live-bvc/
+  板子：7AI结盟+3倍增兵+眼泪+天使联盟+诅咒斗篷+龙神胸甲+初始技能+终极技能
+  8技能/过夜快/战场特技/主动天赋/主动技能/主动宝物/格鲁/德肯/宝物合成
+  https://www.douyu.com/h55
+  http://live.bilibili.com/3234260
+  QQ群241244439
+
+你们的支持就是牙姐的动力，谢谢大家，加UP下载游戏：2302978672
+※8技能※过夜快※城镇转换※内政官※定点回城※女巫双技能※
+※新英雄天赋※新英雄技能※新特效宝物※
+※新组合神器※新战场特技※新生物特技※
+※主动天赋/主动技能/主动宝物※
+※格鲁※德肯※宝物合成※野怪带中立英雄支援※
+
+课题：
+  6.众志成城 内政官一路守城上限（与咒骂进行伤害对比），反击，机械，防御
+  9.熔毁宝物 可选择宝物熔毁成指定资源
+  10.宝物学者 每周制造一件指定宝物（开局可随出来的宝物中选择）
+  11.地狱烈火 降低蓝耗 泽达技能调整
+
 
   SKILLTYPE_SKILL
   SKILLTYPE_DISABLED
@@ -28,51 +66,48 @@ https://wly.battle.uqeegame.com/h5/?bid=22021904150528765&version=master&host=s8
   SKILLTYPE_SPECIAL_PERK
 
 exe修改
-# - Added artifact ID 166 to increase HP by 2
-# - Added artifact ID 124 to increase HP by 6
-# - Added artifact ID 169 to increase HP by 4
-# - Added artifact ID 175 to reduce enemy morale by 1
-# - Added artifact ID 129 to reduce enemy morale by 1
-# - Added artifact ID 164 to reduce enemy morale by 1
-# - Changed artifact ID 63 to reduce enemy luck from 2 to 1
-# - Added artifact ID 175  to reduce enemy luck by 1
-# - Added artifact ID 73   to reduce enemy luck by 2
-# - Added artifact ID 164  to reduce enemy luck by 1
-# - 无名英雄甲25%
-# - 魔抗战靴15%
-# - 173 10%
-# - 174 5%
+  # - Added artifact ID 166 to increase HP by 2
+  # - Added artifact ID 124 to increase HP by 6
+  # - Added artifact ID 169 to increase HP by 4
+  # - Added artifact ID 175 to reduce enemy morale by 1
+  # - Added artifact ID 129 to reduce enemy morale by 1
+  # - Added artifact ID 164 to reduce enemy morale by 1
+  # - Changed artifact ID 63 to reduce enemy luck from 2 to 1
+  # - Added artifact ID 175  to reduce enemy luck by 1
+  # - Added artifact ID 73   to reduce enemy luck by 2
+  # - Added artifact ID 164  to reduce enemy luck by 1
+  # - 无名英雄甲25%
+  # - 魔抗战靴15%
+  # - 173 10%
+  # - 174 5%
 
-001-Logistics
-002-WarMachines
-003-Learning
-004-Leadership
-005-Luck
-006-Offence
-007-Defence
-008-Sorcery
-009-DestructiveMagic
-010-DarkMagic
-011-LightMagic
-012-SummoningMagic
-013-Training
-014-Gating
-015-Necromancy
-016-Avenger
-017-Artificier
-018-Invocation
-151-Runelore
-172-DemonicRage
-183-BarbarianLearning
-187-Voice
-191-ShatterDestructiveMagic
-195-ShatterDarkMagic
-199-ShatterLightMagic
-203-ShatterSummoningMagic
-
-HP
-Light_Perk
-001-Logistics-Perk
+技能
+  001-Logistics
+  002-WarMachines
+  003-Learning
+  004-Leadership
+  005-Luck
+  006-Offence
+  007-Defence
+  008-Sorcery
+  009-DestructiveMagic
+  010-DarkMagic
+  011-LightMagic
+  012-SummoningMagic
+  013-Training
+  014-Gating
+  015-Necromancy
+  016-Avenger
+  017-Artificier
+  018-Invocation
+  151-Runelore
+  172-DemonicRage
+  183-BarbarianLearning
+  187-Voice
+  191-ShatterDestructiveMagic
+  195-ShatterDarkMagic
+  199-ShatterLightMagic
+  203-ShatterSummoningMagic
 
 <Obstacles>
   <MinSmallObstacles>2</MinSmallObstacles>
@@ -85,37 +120,13 @@ Light_Perk
   <FreeLines>6</FreeLines>
 </Obstacles>
 
--- RC15宝物
-  Draconic: Grants friendly creatures Immunity to Armageddon
-  Elrath_01: Grants friendly creatures Immunity to Curse of the Netherworld
-  Orb_01: +33% Damage to Air Spells
-  Orb_02: +33% Damage to Earth Spells
-  Orb_03: +33% Damage to Fire Spells
-  Orb_04: +33% Damage to Frost Spells
-  Pirate_03: -1 Morale to enemy creatures
-  Sentinel: +6HP
-  Upg_AR1: 减敌方生物1士气1幸运
-  Upg_AR3: +2HP
-  Upg_HM2: Immunity to Hypnotize
-  Upg_HM3: +4HP
-  Upg_SW1: 5%魔抗
-  Upg_SW2: 10%魔抗
-  Upg_SW3: 减敌方生物1士气1幸运
-
 未实装的技能
   HERO_SKILL_NAVIGATION 回到今天开始的位置
-  HERO_SKILL_SEAL_OF_PROTECTION 防御→抵抗力
   HERO_SKILL_FIRE_PROTECTION 光明→御火术
   HERO_SKILL_CHILLING_BONES 防御→冰冷之骨
   HERO_SKILL_SUN_FIRE 破坏→魔力爆发
   HERO_SKILL_LUCK_OF_THE_BARBARIAN 幸运→野蛮人的幸运
   HERO_SKILL_EXPERT_TRAINER 反击→训练专家
-
-使用率低的技能
-
-可主动使用的技能
-  外交术
-  宝物学者 随机消耗一件宝物→获得制宝等级点数的各类稀矿
 
 [0] = defender-townbuilding-0-WALL
 [1] = defender-townbuilding-1-WALL
@@ -126,7 +137,6 @@ Light_Perk
 [6] = defender-townbuilding-6-GATE
 [7] = defender-townbuilding-7-BIG_TOWER
 [8] = defender-townbuilding-8-MOAT
-
 
 <.*?>
 
@@ -150,7 +160,6 @@ ERA_CENTER
 EPA_MARGIN
 EPA_HIGH_END
 
-
 EPA_LOW_END
 ERA_CENTER
 EPA_MARGIN
@@ -160,22 +169,9 @@ EPA_CENTER
 
 术语
   <left>
-
   <color=orange>主动特效<color_default>（耗1/日回1/内替）:
-
-  <color=0099FF>属性
-  <color=0099FF>生物
-  <color=0099FF>种族
-  <color=0099FF>资源
-  XX及升级形态
-  <color=yellow>
-  【天赋使用次数】
-  【技能使用次数】
-  【宝物使用次数】
-  <color=yellow>【内政操作次数】
-  <color=yellow>【管辖城镇配额】
-  <color=yellow>【野外生物招募点】
-  【玩家领地半径】
+  <color=0099FF>属性/生物/种族/资源
+  <color=yellow>【天赋使用次数】【技能使用次数】【宝物使用次数】【内政操作次数】【管辖城镇配额】【野外生物招募点】【玩家领地半径】
   回复魔法值
   恢复移动力
 
@@ -238,37 +234,15 @@ EPA_CENTER
   3.操作不要太快，前一个界面还没消失就点下一个
   4.如果是同一个地方频繁跳出，可能是你的有宝物商店的城被AI占了
 
-对话框
-  local strPathMain={
-  TTH_PATH.Artifact["Economic"]["HasBonus"]
-    ;strArtifactName=strArtifactName
-    ,strArtifactName=strArtifactName
-  };
-  TTH_GLOBAL.sign(strHero, strPathMain);
-  return nil;
-
-  local strPathMain={
-  TTH_PATH.Artifact["Economic"][ARTIFACT_ENDLESS_BAG_OF_GOLD]["Confirm"]
-    ;strArtifactName=strArtifactName
-    ,strArtifactName=strArtifactName
-  };
-  local strCallbackOk = "TTH_ARTI.implActive029("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strTown)..")";
-  local strCallbackCancel = "TTH_COMMON.cancelOption()";
-  TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
-
-  local strPathMain={
-  TTH_PATH.Artifact["Economic"][ARTIFACT_ENDLESS_BAG_OF_GOLD]["Confirm"]
-    ;strArtifactName=strArtifactName
-    ,strArtifactName=strArtifactName
-  };
-  TTH_GLOBAL.showDialog8Frame(iPlayer, strHero);
-
 NCF生物
   929 魔幻法师
 
 技能类型
+  SKILLTYPE_SKILL
   SKILLTYPE_STANDART_PERK
+  SKILLTYPE_CLASS_PERK
   SKILLTYPE_SPECIAL_PERK
+  SKILLTYPE_UINQUE_PERK
 
 宝物类型
   ARTF_CLASS_MINOR
@@ -429,26 +403,9 @@ NCF生物
     CreateMonster( monsterName, creatureID, creatureCount, x,y,floorID, moodID=1, courageID=2, rotation=0, doesNotGrow=0)
     -Now you can set whether the monster should grow.
 
-  2.Crashes
-  4.SetHeroLootable(hero,nil);
   5.城墙+D 魔法塔+P 职业建筑给非职业的加属性
   6.英雄类型→女巫小屋/银行/试炼
   7.邪教大师 是否施法生物 DEMON_FEAT_EXPLODING_CORPSES
-  8.守护天使 额外7级生物可以供招募 KNIGHT_FEAT_GUARDIAN_ANGEL
-  9.H55_GetAlignedTownsOwned 玩家有几个同该英雄种族相同的城镇
-  10.烈狱幻境 额外狗 H55_InfernalLoom
-  11.H55_ResetConquestHero 重置内政官英雄
-  12.H55_GetHeroEnlightenmentStrength 获取内政官英雄经验系数
-  13.H55_AdjustGovernorDefense 内政官建筑属性
-  14.H55_GetHeroEnlightenmentStrength 内政官经验
-  15.奥森 Straker 技能重做
-  16.先知小屋改为发布随机任务
-    1.杀怪
-    2.拥有N幢建筑
-    3.拥有N座城镇
-    4.生物
-    5.
-
 
   GetGameVar( name )
   SetGameVar( name, value )
@@ -482,63 +439,6 @@ NCF生物
 
   PERK_FORTUNATE_ADVENTURER 增加可占领经济建筑收益
 
-待开发
-  1.幽魂矿井 改动 偷矿
-  3.领袖特移除，分别设计新特技，内政相关
-    加布里埃尔: 每天获得一份水晶
-    杰诺娃: 每天额外250金币
-    山德鲁: 额外魔法习得
-    莎蒂娅: 重做
-    厄格特: 非我方城镇势力范围内，提高移动力
-  3.内政官改动
-    城门
-      内政
-        成为内政官
-        解职内政官
-        建造建筑
-      宝物
-        军团宝物
-        其它宝物
-      技能
-        英雄天赋
-        通用技能
-    非城门
-    内政
-      定点回城（5级塔，且建造了传送门的城镇）
-      解职内政官（双倍代价）
-    宝物
-      资源宝物
-      其它宝物
-    技能
-      英雄天赋
-      通用技能
-  4.士气-5 亡巫功能提示选择
-  5.天使移动动作
-  6.内比罗斯: 敌方英雄无法逃跑
-  7.shantiri传送
-
-新版老马-纯享版-
-
-视频相关
-  7AI结盟+3倍增兵+眼泪+旅行者长靴+哨兵之盾+天使联盟+诅咒斗篷+大法师之书+龙神胸甲+初始技能+终极技能
-  你们的支持就是牙姐的动力，谢谢大家，进群下载游戏：241244439
-  过夜快※8技能※城镇转换※内政官※定点回城※女巫双技能
-  8技能/过夜快/战场特技/主动天赋/主动技能/主动宝物/格鲁/德肯/宝物合成
-
-直播相关
-  rtmp://live-push.bilivideo.com/live-bvc/
-  板子：7AI结盟+3倍增兵+眼泪+天使联盟+诅咒斗篷+龙神胸甲+初始技能+终极技能
-  8技能/过夜快/战场特技/主动天赋/主动技能/主动宝物/格鲁/德肯/宝物合成
-  https://www.douyu.com/h55
-  http://live.bilibili.com/3234260
-  QQ群241244439
-
-你们的支持就是牙姐的动力，谢谢大家，加UP下载游戏：2302978672
-※8技能※过夜快※城镇转换※内政官※定点回城※女巫双技能※
-※新英雄天赋※新英雄技能※新特效宝物※
-※新组合神器※新战场特技※新生物特技※
-※主动天赋/主动技能/主动宝物※
-※格鲁※德肯※宝物合成※野怪带中立英雄支援※
 
   ffmpeg -ss 00:00:01 -t 12 -i 赛勒斯-10级技能-剪辑前2.mp4 -codec copy 赛勒斯-决战技能-剪辑后2.mp4
   ffmpeg -ss 00:08:18 -to 00:14:58 -i 赛勒斯-破口-剪辑前.mp4 -codec copy 赛勒斯-破口-剪辑后.mp4

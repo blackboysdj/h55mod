@@ -30,13 +30,13 @@
 	<Icon128 href="/Textures/Icons/Heroes/Dungeon/Dungeon_Shadya_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<InternalName>Kelodin</InternalName>
 	<Class>HERO_CLASS_SEER</Class>
-	<Specialization>HERO_SPEC_EVASIVE</Specialization>
+	<Specialization>HERO_SPEC_STORMCALLER</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_LOGISTICS</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Dungeon55/Evasive/Name.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Dungeon55/Evasive/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Dungeon/067-Kelodin/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Dungeon/067-Kelodin/Description.txt"/>
 	<SpecializationIcon href="/Textures/HeroScreen/Specializations/Dungeon/Evasive.xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Dungeon/Dungeon_Shadya_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>
@@ -55,15 +55,15 @@
 		<Knowledge>1</Knowledge>
 		<skills>
 			<Item>
-				<Mastery>MASTERY_ADVANCED</Mastery>
-				<SkillID>HERO_SKILL_DEFENCE</SkillID>
+				<Mastery>MASTERY_BASIC</Mastery>
+				<SkillID>HERO_SKILL_DESTRUCTIVE_MAGIC</SkillID>
 			</Item>
 		</skills>
 		<perkIDs>
-			<Item>HERO_SKILL_EVASION</Item>
+			<Item>HERO_SKILL_MASTER_OF_LIGHTNINGS</Item>
 		</perkIDs>
 		<spellIDs>
-			<Item>SPELL_DEFLECT_ARROWS</Item>
+			<Item>SPELL_LIGHTNING_BOLT</Item>
 		</spellIDs>
 		<Ballista>false</Ballista>
 		<FirstAidTent>true</FirstAidTent>

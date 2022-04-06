@@ -35,8 +35,8 @@
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_OFFENCE</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Inferno55/Offender/Name.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Inferno55/Offender/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Inferno/104-Orlando2/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Inferno/104-Orlando2/Description.txt"/>
 	<SpecializationIcon href="/Textures/HeroScreen/Perks/Gating_AbsoluteGating.xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/UI/H5A2/Icons/Heroes/Portrets128x128/Inferno_Nelech.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall href="/UI/H5A2/Icons/Heroes/Portrets128x128/Inferno_Nelech.(Texture).xdb#xpointer(/Texture)"/>

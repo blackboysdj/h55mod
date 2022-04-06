@@ -1199,9 +1199,6 @@ doFile("/scripts/H55-Settings.lua");
 								end;
 							end;
 
-						-- 记忆导师
-							TTH_COMMON.setTrigger2ObjectType("BUILDING_MEMORY_MENTOR", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitMemoryMentor", nil);
-
 						-- 先知小屋
 							TTH_COMMON.setTrigger2ObjectType("BUILDING_MERMAIDS", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitMermaids", nil);
 
@@ -1644,7 +1641,7 @@ doFile("/scripts/H55-Settings.lua");
 						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_ENCOURAGE);
 						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_TACTICS);
+						GiveHeroSkill(strHero, HERO_SKILL_FRENZY);
 						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_POWER_OF_HASTE);
 						sleep(1);
@@ -1684,7 +1681,7 @@ doFile("/scripts/H55-Settings.lua");
 						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_ENCOURAGE);
 						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_WISDOM);
+						GiveHeroSkill(strHero, HERO_SKILL_MYSTICISM);
 						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_INSIGHTS);
 						sleep(1);
@@ -1696,114 +1693,120 @@ doFile("/scripts/H55-Settings.lua");
 					end;
 
 					if enumHeroClass == TTH_ENUM.Ranger then
-						GiveHeroSkill(strHero, 5);
-						GiveHeroSkill(strHero, 5);
-						GiveHeroSkill(strHero, 5);
-						GiveHeroSkill(strHero, 16);
-						GiveHeroSkill(strHero, 16);
-						GiveHeroSkill(strHero, 6);
+						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
+						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
+						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
+						GiveHeroSkill(strHero, HERO_SKILL_AVENGER);
+						GiveHeroSkill(strHero, HERO_SKILL_AVENGER);
+						GiveHeroSkill(strHero, HERO_SKILL_OFFENCE);
 						sleep(1);
-						GiveHeroSkill(strHero, 32);
+						GiveHeroSkill(strHero, HERO_SKILL_LUCKY_STRIKE);
 						sleep(1);
-						GiveHeroSkill(strHero, 116);
+						GiveHeroSkill(strHero, HERO_SKILL_ELVEN_LUCK);
 						sleep(1);
-						GiveHeroSkill(strHero, 65);
+						GiveHeroSkill(strHero, HERO_SKILL_FOREST_RAGE);
 						sleep(1);
-						GiveHeroSkill(strHero, 117);
+						GiveHeroSkill(strHero, HERO_SKILL_SNIPE_DEAD);
 						sleep(1);
-						GiveHeroSkill(strHero, 36);
+						GiveHeroSkill(strHero, HERO_SKILL_FRENZY);
 						sleep(1);
-						GiveHeroSkill(strHero, 124);
+						GiveHeroSkill(strHero, HERO_SKILL_ABSOLUTE_LUCK);
 					end;
 					if enumHeroClass == TTH_ENUM.Warden then
-						GiveHeroSkill(strHero, 5);
-						GiveHeroSkill(strHero, 5);
-						GiveHeroSkill(strHero, 7);
-						GiveHeroSkill(strHero, 7);
-						GiveHeroSkill(strHero, 7);
-						GiveHeroSkill(strHero, 6);
+						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
+						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
+						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
+						GiveHeroSkill(strHero, HERO_SKILL_OFFENCE);
+						GiveHeroSkill(strHero, HERO_SKILL_OFFENCE);
+						GiveHeroSkill(strHero, HERO_SKILL_DEFENCE);
+						GiveHeroSkill(strHero, HERO_SKILL_DEFENCE);
 						sleep(1);
-						GiveHeroSkill(strHero, 31);
+						GiveHeroSkill(strHero, HERO_SKILL_RESISTANCE);
 						sleep(1);
-						GiveHeroSkill(strHero, 39);
+						GiveHeroSkill(strHero, HERO_SKILL_TACTICS);
 						sleep(1);
-						GiveHeroSkill(strHero, 77);
+						GiveHeroSkill(strHero, HERO_SKILL_OFFENSIVE_FORMATION);
 						sleep(1);
-						GiveHeroSkill(strHero, 171);
+						GiveHeroSkill(strHero, HERO_SKILL_EVASION);
 						sleep(1);
-						GiveHeroSkill(strHero, 34);
+						GiveHeroSkill(strHero, HERO_SKILL_DEFENSIVE_FORMATION);
 						sleep(1);
-						GiveHeroSkill(strHero, 124);
+						GiveHeroSkill(strHero, HERO_SKILL_ABSOLUTE_LUCK);
 					end;
 					if enumHeroClass == TTH_ENUM.Enchanter then
-						GiveHeroSkill(strHero, 5);
-						GiveHeroSkill(strHero, 5);
-						GiveHeroSkill(strHero, 5);
-						GiveHeroSkill(strHero, 8);
-						GiveHeroSkill(strHero, 8);
-						GiveHeroSkill(strHero, 11);
+						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
+						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
+						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
+						GiveHeroSkill(strHero, HERO_SKILL_SORCERY);
+						GiveHeroSkill(strHero, HERO_SKILL_SORCERY);
+						GiveHeroSkill(strHero, HERO_SKILL_LIGHT_MAGIC);
 						sleep(1);
-						GiveHeroSkill(strHero, 145);
+						GiveHeroSkill(strHero, HERO_SKILL_CHAOTIC_SPELLS);
 						sleep(1);
-						GiveHeroSkill(strHero, 142);
+						GiveHeroSkill(strHero, HERO_SKILL_LUCKY_SPELLS);
 						sleep(1);
-						GiveHeroSkill(strHero, 42);
+						GiveHeroSkill(strHero, HERO_SKILL_ARCANE_TRAINING);
 						sleep(1);
-						GiveHeroSkill(strHero, 148);
+						GiveHeroSkill(strHero, HERO_SKILL_ELITE_CASTERS);
 						sleep(1);
-						GiveHeroSkill(strHero, 51);
+						GiveHeroSkill(strHero, HERO_SKILL_MASTER_OF_WRATH);
 						sleep(1);
-						GiveHeroSkill(strHero, 124);
+						GiveHeroSkill(strHero, HERO_SKILL_ABSOLUTE_LUCK);
 					end;
 
 					if enumHeroClass == TTH_ENUM.GuildMaster then
-						GiveHeroSkill(strHero, 8);
-						GiveHeroSkill(strHero, 8);
-						GiveHeroSkill(strHero, 8);
-						GiveHeroSkill(strHero, 3);
-						GiveHeroSkill(strHero, 3);
-						GiveHeroSkill(strHero, 5);
+						GiveHeroSkill(strHero, HERO_SKILL_SORCERY);
+						GiveHeroSkill(strHero, HERO_SKILL_SORCERY);
+						GiveHeroSkill(strHero, HERO_SKILL_SORCERY);
+						GiveHeroSkill(strHero, HERO_SKILL_LEARNING);
+						GiveHeroSkill(strHero, HERO_SKILL_LEARNING);
+						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
 						sleep(1);
-						GiveHeroSkill(strHero, 41);
+						GiveHeroSkill(strHero, HERO_SKILL_MYSTICISM);
 						sleep(1);
-						GiveHeroSkill(strHero, 119);
+						GiveHeroSkill(strHero, HERO_SKILL_INSIGHTS);
 						sleep(1);
-						GiveHeroSkill(strHero, 27);
+						GiveHeroSkill(strHero, HERO_SKILL_EAGLE_EYE);
 						sleep(1);
-						GiveHeroSkill(strHero, 155);
+						GiveHeroSkill(strHero, HERO_SKILL_QUICKNESS_OF_MIND);
 						sleep(1);
-						GiveHeroSkill(strHero, 145);
+						GiveHeroSkill(strHero, HERO_SKILL_CHAOTIC_SPELLS);
 						sleep(1);
-						GiveHeroSkill(strHero, 137);
+						GiveHeroSkill(strHero, HERO_SKILL_ABSOLUTE_WIZARDY);
 					end;
 					if enumHeroClass == TTH_ENUM.Wizard then
-						GiveHeroSkill(strHero, 8);
-						GiveHeroSkill(strHero, 8);
-						GiveHeroSkill(strHero, 8);
-						GiveHeroSkill(strHero, 3);
-						GiveHeroSkill(strHero, 3);
-						GiveHeroSkill(strHero, 17);
+						GiveHeroSkill(strHero, HERO_SKILL_SORCERY);
+						GiveHeroSkill(strHero, HERO_SKILL_SORCERY);
+						GiveHeroSkill(strHero, HERO_SKILL_SORCERY);
+						GiveHeroSkill(strHero, HERO_SKILL_LEARNING);
+						GiveHeroSkill(strHero, HERO_SKILL_LEARNING);
+						GiveHeroSkill(strHero, HERO_SKILL_ARTIFICIER);
 						sleep(1);
-						GiveHeroSkill(strHero, 41);
+						GiveHeroSkill(strHero, HERO_SKILL_MYSTICISM);
 						sleep(1);
-						GiveHeroSkill(strHero, 67);
+						GiveHeroSkill(strHero, HERO_SKILL_MAGIC_BOND);
 						sleep(1);
-						GiveHeroSkill(strHero, 25);
+						GiveHeroSkill(strHero, HERO_SKILL_INTELLIGENCE);
 						sleep(1);
-						GiveHeroSkill(strHero, 79);
+						GiveHeroSkill(strHero, HERO_SKILL_STUDENT_AWARD);
 						sleep(1);
-						GiveHeroSkill(strHero, 69);
+						GiveHeroSkill(strHero, HERO_SKILL_MAGIC_MIRROR);
 						sleep(1);
-						GiveHeroSkill(strHero, 137);
+						GiveHeroSkill(strHero, HERO_SKILL_ABSOLUTE_WIZARDY);
 					end;
 					if enumHeroClass == TTH_ENUM.ElementAlist then
+						GiveHeroSkill(strHero, HERO_SKILL_SORCERY);
+						GiveHeroSkill(strHero, HERO_SKILL_SORCERY);
+						GiveHeroSkill(strHero, HERO_SKILL_SORCERY);
 						GiveHeroSkill(strHero, HERO_SKILL_DESTRUCTIVE_MAGIC);
 						GiveHeroSkill(strHero, HERO_SKILL_DESTRUCTIVE_MAGIC);
 						GiveHeroSkill(strHero, HERO_SKILL_DESTRUCTIVE_MAGIC);
 						GiveHeroSkill(strHero, HERO_SKILL_INVOCATION);
 						GiveHeroSkill(strHero, HERO_SKILL_INVOCATION);
-						GiveHeroSkill(strHero, HERO_SKILL_SORCERY);
-						GiveHeroSkill(strHero, HERO_SKILL_SORCERY);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_ARCANE_TRAINING);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_WISDOM);
 						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_MASTER_OF_ICE);
 						sleep(1);
@@ -1811,176 +1814,25 @@ doFile("/scripts/H55-Settings.lua");
 						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_MASTER_OF_LIGHTNINGS);
 						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_DARK_RITUAL);
-						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_CASTER_CERTIFICATE);
 						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_WISDOM);
+						GiveHeroSkill(strHero, HERO_SKILL_EMPOWERED_SPELLS);
 						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_ABSOLUTE_WIZARDY);
 					end;
 
-					if enumHeroClass == TTH_ENUM.DemonLord then
-						GiveHeroSkill(strHero, 14);
-						GiveHeroSkill(strHero, 14);
-						GiveHeroSkill(strHero, 14);
-						GiveHeroSkill(strHero, 1);
-						GiveHeroSkill(strHero, 1);
-						sleep(1);
-						GiveHeroSkill(strHero, 89);
-						sleep(1);
-						GiveHeroSkill(strHero, 86);
-						sleep(1);
-						GiveHeroSkill(strHero, 20);
-						sleep(1);
-						GiveHeroSkill(strHero, 138);
-						sleep(1);
-						GiveHeroSkill(strHero, 98);
-					end;
-					if enumHeroClass == TTH_ENUM.GateKeeper then
-						GiveHeroSkill(strHero, 14);
-						GiveHeroSkill(strHero, 14);
-						GiveHeroSkill(strHero, 14);
-						GiveHeroSkill(strHero, 1);
-						GiveHeroSkill(strHero, 1);
-						sleep(1);
-						GiveHeroSkill(strHero, 89);
-						sleep(1);
-						GiveHeroSkill(strHero, 86);
-						sleep(1);
-						GiveHeroSkill(strHero, 20);
-						sleep(1);
-						GiveHeroSkill(strHero, 138);
-						sleep(1);
-						GiveHeroSkill(strHero, 98);
-					end;
-					if enumHeroClass == TTH_ENUM.Sorcerer then
-						GiveHeroSkill(strHero, 14);
-						GiveHeroSkill(strHero, 14);
-						GiveHeroSkill(strHero, 14);
-						GiveHeroSkill(strHero, 1);
-						GiveHeroSkill(strHero, 1);
-						sleep(1);
-						GiveHeroSkill(strHero, 89);
-						sleep(1);
-						GiveHeroSkill(strHero, 86);
-						sleep(1);
-						GiveHeroSkill(strHero, 20);
-						sleep(1);
-						GiveHeroSkill(strHero, 138);
-						sleep(1);
-						GiveHeroSkill(strHero, 98);
-					end;
-
-					if enumHeroClass == TTH_ENUM.DeathKnight then
-						GiveHeroSkill(strHero, 15);
-						GiveHeroSkill(strHero, 15);
-						GiveHeroSkill(strHero, 10);
-						GiveHeroSkill(strHero, 10);
-						sleep(1);
-						GiveHeroSkill(strHero, 63);
-						sleep(1);
-						GiveHeroSkill(strHero, 48);
-						sleep(1);
-						GiveHeroSkill(strHero, 83);
-						sleep(1);
-						GiveHeroSkill(strHero, 111);
-					end;
-					if enumHeroClass == TTH_ENUM.Reaver then
-						GiveHeroSkill(strHero, 15);
-						GiveHeroSkill(strHero, 15);
-						GiveHeroSkill(strHero, 8);
-						GiveHeroSkill(strHero, 10);
-						sleep(1);
-						GiveHeroSkill(strHero, 63);
-						sleep(1);
-						GiveHeroSkill(strHero, 41);
-						sleep(1);
-						GiveHeroSkill(strHero, 47);
-						sleep(1);
-						GiveHeroSkill(strHero, 111);
-					end;
-					if enumHeroClass == TTH_ENUM.Necromancer then
-						GiveHeroSkill(strHero, 15);
-						GiveHeroSkill(strHero, 15);
-						GiveHeroSkill(strHero, 3);
-						GiveHeroSkill(strHero, 3);
-						sleep(1);
-						GiveHeroSkill(strHero, 63);
-						sleep(1);
-						GiveHeroSkill(strHero, 25);
-						sleep(1);
-						GiveHeroSkill(strHero, 140);
-						sleep(1);
-						GiveHeroSkill(strHero, 111);
-					end;
-
-					if enumHeroClass == TTH_ENUM.Engineer then
-						GiveHeroSkill(strHero, 7);
-						GiveHeroSkill(strHero, 7);
-						GiveHeroSkill(strHero, 5);
-						GiveHeroSkill(strHero, 5);
-						GiveHeroSkill(strHero, 151);
-						sleep(1);
-						GiveHeroSkill(strHero, 39);
-						sleep(1);
-						GiveHeroSkill(strHero, 31);
-						sleep(1);
-						GiveHeroSkill(strHero, 103);
-						sleep(1);
-						GiveHeroSkill(strHero, 161);
-						sleep(1);
-						GiveHeroSkill(strHero, 167);
-					end;
-					if enumHeroClass == TTH_ENUM.Runemage then
-						GiveHeroSkill(strHero, 7);
-						GiveHeroSkill(strHero, 7);
-						GiveHeroSkill(strHero, 5);
-						GiveHeroSkill(strHero, 5);
-						GiveHeroSkill(strHero, 11);
-						GiveHeroSkill(strHero, 11);
-						sleep(1);
-						GiveHeroSkill(strHero, 38);
-						sleep(1);
-						GiveHeroSkill(strHero, 31);
-						sleep(1);
-						GiveHeroSkill(strHero, 103);
-						sleep(1);
-						GiveHeroSkill(strHero, 49);
-						sleep(1);
-						GiveHeroSkill(strHero, 165);
-						sleep(1);
-						GiveHeroSkill(strHero, 167);
-					end;
-					if enumHeroClass == TTH_ENUM.Flamekeepera then
-						GiveHeroSkill(strHero, 7);
-						GiveHeroSkill(strHero, 7);
-						GiveHeroSkill(strHero, 7);
-						GiveHeroSkill(strHero, 5);
-						GiveHeroSkill(strHero, 5);
-						GiveHeroSkill(strHero, 13);
-						sleep(1);
-						GiveHeroSkill(strHero, 39);
-						sleep(1);
-						GiveHeroSkill(strHero, 77);
-						sleep(1);
-						GiveHeroSkill(strHero, 31);
-						sleep(1);
-						GiveHeroSkill(strHero, 103);
-						sleep(1);
-						GiveHeroSkill(strHero, 55);
-						sleep(1);
-						GiveHeroSkill(strHero, 167);
-					end;
-
 					if enumHeroClass == TTH_ENUM.BeastMaster then
+						GiveHeroSkill(strHero, HERO_SKILL_OFFENCE);
+						GiveHeroSkill(strHero, HERO_SKILL_OFFENCE);
+						GiveHeroSkill(strHero, HERO_SKILL_OFFENCE);
 						GiveHeroSkill(strHero, HERO_SKILL_LEADERSHIP);
 						GiveHeroSkill(strHero, HERO_SKILL_LEADERSHIP);
 						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
 						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
-						GiveHeroSkill(strHero, HERO_SKILL_OFFENCE);
-						GiveHeroSkill(strHero, HERO_SKILL_OFFENCE);
-						GiveHeroSkill(strHero, HERO_SKILL_OFFENCE);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_TACTICS);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_FRENZY);
 						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_ENCOURAGE);
 						sleep(1);
@@ -1990,72 +1842,239 @@ doFile("/scripts/H55-Settings.lua");
 						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_ELVEN_LUCK);
 						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_TACTICS);
-						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_FRENZY);
-						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_ANCIENT_SMITHY);
 					end;
 					if enumHeroClass == TTH_ENUM.Seer then
-						GiveHeroSkill(strHero, 9);
-						GiveHeroSkill(strHero, 9);
-						GiveHeroSkill(strHero, 9);
-						GiveHeroSkill(strHero, 18);
-						GiveHeroSkill(strHero, 18);
-						GiveHeroSkill(strHero, 18);
+						GiveHeroSkill(strHero, HERO_SKILL_LOGISTICS);
+						GiveHeroSkill(strHero, HERO_SKILL_LOGISTICS);
+						GiveHeroSkill(strHero, HERO_SKILL_LOGISTICS);
+						GiveHeroSkill(strHero, HERO_SKILL_DESTRUCTIVE_MAGIC);
+						GiveHeroSkill(strHero, HERO_SKILL_DESTRUCTIVE_MAGIC);
+						GiveHeroSkill(strHero, HERO_SKILL_OFFENCE);
+						GiveHeroSkill(strHero, HERO_SKILL_OFFENCE);
 						sleep(1);
-						GiveHeroSkill(strHero, 43);
+						GiveHeroSkill(strHero, HERO_SKILL_SCOUTING);
 						sleep(1);
-						GiveHeroSkill(strHero, 44);
+						GiveHeroSkill(strHero, HERO_SKILL_TELEPORT_ASSAULT);
 						sleep(1);
-						GiveHeroSkill(strHero, 45);
+						GiveHeroSkill(strHero, HERO_SKILL_MASTER_OF_LIGHTNINGS);
 						sleep(1);
-						GiveHeroSkill(strHero, 70);
+						GiveHeroSkill(strHero, HERO_SKILL_SECRETS_OF_DESTRUCTION);
 						sleep(1);
-						GiveHeroSkill(strHero, 72);
+						GiveHeroSkill(strHero, HERO_SKILL_FRENZY);
 						sleep(1);
-						GiveHeroSkill(strHero, 150);
+						GiveHeroSkill(strHero, HERO_SKILL_POWER_OF_HASTE);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_EXPLODING_CORPSES);
 					end;
 					if enumHeroClass == TTH_ENUM.Warlock then
-						GiveHeroSkill(strHero, 9);
-						GiveHeroSkill(strHero, 9);
-						GiveHeroSkill(strHero, 9);
-						GiveHeroSkill(strHero, 18);
-						GiveHeroSkill(strHero, 18);
-						GiveHeroSkill(strHero, 18);
+						GiveHeroSkill(strHero, HERO_SKILL_INVOCATION);
+						GiveHeroSkill(strHero, HERO_SKILL_INVOCATION);
+						GiveHeroSkill(strHero, HERO_SKILL_INVOCATION);
+						GiveHeroSkill(strHero, HERO_SKILL_DESTRUCTIVE_MAGIC);
+						GiveHeroSkill(strHero, HERO_SKILL_DESTRUCTIVE_MAGIC);
+						GiveHeroSkill(strHero, HERO_SKILL_DESTRUCTIVE_MAGIC);
 						sleep(1);
-						GiveHeroSkill(strHero, 43);
+						GiveHeroSkill(strHero, HERO_SKILL_CASTER_CERTIFICATE);
 						sleep(1);
-						GiveHeroSkill(strHero, 44);
+						GiveHeroSkill(strHero, HERO_SKILL_ELEMENTAL_VISION);
 						sleep(1);
-						GiveHeroSkill(strHero, 45);
+						GiveHeroSkill(strHero, HERO_SKILL_MASTER_OF_ICE);
 						sleep(1);
-						GiveHeroSkill(strHero, 70);
+						GiveHeroSkill(strHero, HERO_SKILL_MASTER_OF_FIRE);
 						sleep(1);
-						GiveHeroSkill(strHero, 72);
+						GiveHeroSkill(strHero, HERO_SKILL_MASTER_OF_LIGHTNINGS);
 						sleep(1);
-						GiveHeroSkill(strHero, 150);
+						GiveHeroSkill(strHero, HERO_SKILL_ABSOLUTE_CHAINS);
+					end;
+
+					if enumHeroClass == TTH_ENUM.DeathKnight then
+						GiveHeroSkill(strHero, HERO_SKILL_NECROMANCY);
+						GiveHeroSkill(strHero, HERO_SKILL_NECROMANCY);
+						GiveHeroSkill(strHero, HERO_SKILL_NECROMANCY);
+						GiveHeroSkill(strHero, HERO_SKILL_DARK_MAGIC);
+						GiveHeroSkill(strHero, HERO_SKILL_DARK_MAGIC);
+						GiveHeroSkill(strHero, HERO_SKILL_LOGISTICS);
+						GiveHeroSkill(strHero, HERO_SKILL_LOGISTICS);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_NO_REST_FOR_THE_WICKED);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_LORD_OF_UNDEAD);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_MASTER_OF_CURSES);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_SOIL_BURN);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_SNATCH);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_SPOILS_OF_WAR);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_ROAD_HOME);
+					end;
+					if enumHeroClass == TTH_ENUM.Reaver then
+						GiveHeroSkill(strHero, HERO_SKILL_NECROMANCY);
+						GiveHeroSkill(strHero, HERO_SKILL_NECROMANCY);
+						GiveHeroSkill(strHero, HERO_SKILL_SORCERY);
+						GiveHeroSkill(strHero, HERO_SKILL_DARK_MAGIC);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_DEATH_SCREAM);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_ARCANE_TRAINING);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_MASTER_OF_MIND);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_ABSOLUTE_FEAR);
+					end;
+					if enumHeroClass == TTH_ENUM.Necromancer then
+						GiveHeroSkill(strHero, HERO_SKILL_NECROMANCY);
+						GiveHeroSkill(strHero, HERO_SKILL_NECROMANCY);
+						GiveHeroSkill(strHero, HERO_SKILL_LEARNING);
+						GiveHeroSkill(strHero, HERO_SKILL_LEARNING);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_DEATH_SCREAM);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_INTELLIGENCE);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_DARK_REVELATION);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_ABSOLUTE_FEAR);
+					end;
+
+					if enumHeroClass == TTH_ENUM.DemonLord then
+						GiveHeroSkill(strHero, HERO_SKILL_GATING);
+						GiveHeroSkill(strHero, HERO_SKILL_GATING);
+						GiveHeroSkill(strHero, HERO_SKILL_GATING);
+						GiveHeroSkill(strHero, HERO_SKILL_LOGISTICS);
+						GiveHeroSkill(strHero, HERO_SKILL_LOGISTICS);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_GATING_MASTERY);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_QUICK_GATING);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_SCOUTING);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_TELEPORT_ASSAULT);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_ABSOLUTE_GATING);
+					end;
+					if enumHeroClass == TTH_ENUM.GateKeeper then
+						GiveHeroSkill(strHero, HERO_SKILL_GATING);
+						GiveHeroSkill(strHero, HERO_SKILL_GATING);
+						GiveHeroSkill(strHero, HERO_SKILL_GATING);
+						GiveHeroSkill(strHero, HERO_SKILL_LOGISTICS);
+						GiveHeroSkill(strHero, HERO_SKILL_LOGISTICS);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_GATING_MASTERY);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_QUICK_GATING);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_SCOUTING);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_TELEPORT_ASSAULT);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_ABSOLUTE_GATING);
+					end;
+					if enumHeroClass == TTH_ENUM.Sorcerer then
+						GiveHeroSkill(strHero, HERO_SKILL_GATING);
+						GiveHeroSkill(strHero, HERO_SKILL_GATING);
+						GiveHeroSkill(strHero, HERO_SKILL_GATING);
+						GiveHeroSkill(strHero, HERO_SKILL_LOGISTICS);
+						GiveHeroSkill(strHero, HERO_SKILL_LOGISTICS);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_GATING_MASTERY);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_QUICK_GATING);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_SCOUTING);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_TELEPORT_ASSAULT);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_ABSOLUTE_GATING);
+					end;
+
+					if enumHeroClass == TTH_ENUM.Engineer then
+						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
+						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
+						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
+						GiveHeroSkill(strHero, HERO_SKILL_WAR_MACHINES);
+						GiveHeroSkill(strHero, HERO_SKILL_DEFENCE);
+						GiveHeroSkill(strHero, HERO_SKILL_DEFENCE);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_RESISTANCE);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_DEAD_LUCK);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_RUNIC_MACHINES);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_EVASION);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_DEFENSIVE_FORMATION);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_ABSOLUTE_PROTECTION);
+					end;
+					if enumHeroClass == TTH_ENUM.Runemage then
+						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
+						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
+						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
+						GiveHeroSkill(strHero, HERO_SKILL_LIGHT_MAGIC);
+						GiveHeroSkill(strHero, HERO_SKILL_LIGHT_MAGIC);
+						GiveHeroSkill(strHero, HERO_SKILL_DEFENCE);
+						GiveHeroSkill(strHero, HERO_SKILL_DEFENCE);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_RESISTANCE);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_DEAD_LUCK);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_MASTER_OF_BLESSING);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_ETERNAL_LIGHT);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_PROTECTION);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_MAGIC_CUSHION);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_ABSOLUTE_PROTECTION);
+					end;
+					if enumHeroClass == TTH_ENUM.Flamekeepera then
+						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
+						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
+						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
+						GiveHeroSkill(strHero, HERO_SKILL_TRAINING);
+						GiveHeroSkill(strHero, HERO_SKILL_DEFENCE);
+						GiveHeroSkill(strHero, HERO_SKILL_DEFENCE);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_RESISTANCE);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_DEAD_LUCK);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_HOLY_CHARGE);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_TOUGHNESS);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_HOLD_GROUND);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_ABSOLUTE_PROTECTION);
 					end;
 
 					if enumHeroClass == TTH_ENUM.Barbarian then
-						GiveHeroSkill(strHero, 172);
-						GiveHeroSkill(strHero, 172);
-						GiveHeroSkill(strHero, 172);
-						GiveHeroSkill(strHero, 6);
-						GiveHeroSkill(strHero, 6);
-						GiveHeroSkill(strHero, 4);
+						GiveHeroSkill(strHero, HERO_SKILL_DEMONIC_RAGE);
+						GiveHeroSkill(strHero, HERO_SKILL_DEMONIC_RAGE);
+						GiveHeroSkill(strHero, HERO_SKILL_DEMONIC_RAGE);
+						GiveHeroSkill(strHero, HERO_SKILL_OFFENCE);
+						GiveHeroSkill(strHero, HERO_SKILL_OFFENCE);
+						GiveHeroSkill(strHero, HERO_SKILL_LEADERSHIP);
 						sleep(1);
-						GiveHeroSkill(strHero, 174);
+						GiveHeroSkill(strHero, HERO_SKILL_MEMORY_OF_OUR_BLOOD);
 						sleep(1);
-						GiveHeroSkill(strHero, 178);
+						GiveHeroSkill(strHero, HERO_SKILL_BATTLE_ELATION);
 						sleep(1);
-						GiveHeroSkill(strHero, 36);
+						GiveHeroSkill(strHero, HERO_SKILL_FRENZY);
 						sleep(1);
-						GiveHeroSkill(strHero, 76);
+						GiveHeroSkill(strHero, HERO_SKILL_RETRIBUTION);
 						sleep(1);
-						GiveHeroSkill(strHero, 75);
+						GiveHeroSkill(strHero, HERO_SKILL_ENCOURAGE);
 						sleep(1);
-						GiveHeroSkill(strHero, 176);
+						GiveHeroSkill(strHero, HERO_SKILL_ABSOLUTE_RAGE);
 					end;
 				end;
 
@@ -2369,14 +2388,8 @@ doFile("/scripts/H55-Settings.lua");
 								fBonus8Artifact = 1.5;
 							end;
 						end;
-						local fBonus8Perk = 1;
-						if objSpecialty["PerkId"] ~= nil then
-							if HasHeroSkill(strHero, objSpecialty["PerkId"]) ~= nil then
-								fBonus8Perk = 1.5;
-							end;
-						end;
 
-						local iWeeklyNumber = TTH_COMMON.round(iGrowth * (iHeroLevel + iHeroStat) / 40 * fBonus8Artifact * fBonus8Perk);
+						local iWeeklyNumber = TTH_COMMON.round(iGrowth * (iHeroLevel + iHeroStat) / 40 * fBonus8Artifact);
 						if iWeeklyNumber < 1 then
 							iWeeklyNumber = 1;
 						end;
@@ -2695,6 +2708,9 @@ doFile("/scripts/H55-Settings.lua");
 					if HasArtefact(strHero, ARTIFACT_ANGEL_WINGS, 1) ~= nil then
 						iLuck = iLuck + 2;
 					end;
+					if HasArtefact(strHero, ARTIFACT_INHERITANCE, 1) ~= nil then
+						iLuck = iLuck + 2;
+					end;
 					if GetHeroSkillMastery(strHero, SKILL_LUCK) ~= nil then
 						iLuck = iLuck + GetHeroSkillMastery(strHero, SKILL_LUCK);
 					end;
@@ -2812,6 +2828,11 @@ doFile("/scripts/H55-Settings.lua");
 					, [6] = HERO_SKILL_MASTER_OF_LIGHTNINGS
 					, [7] = HERO_SKILL_SEAL_OF_PROTECTION
 					, [8] = HERO_SKILL_TRIPLE_CATAPULT
+					, [9] = HERO_SKILL_EXPLODING_CORPSES
+				};
+				TTH_TABLE.CombatSkill2Special = {
+					[0] = HERO_SKILL_PARIAH
+					, [1] = HERO_SKILL_TWILIGHT
 				};
 				function TTH_GLOBAL.setGameVar4HeroSkill(strHero)
 					for iIndexSkill, objSkill in TTH_TABLE.CombatSkill do
@@ -2819,6 +2840,14 @@ doFile("/scripts/H55-Settings.lua");
 						if HasHeroSkill(strHero, objSkill) ~= nil then
 							SetGameVar(strKey, 1);
 						else
+							SetGameVar(strKey, 0);
+						end;
+					end;
+				end;
+				function TTH_GLOBAL.setGameVar4HeroSkill2Special(strHero)
+					for iIndexSkill, objSkill in TTH_TABLE.CombatSkill2Special do
+						local strKey = TTH_FINAL.GAMEVAR_COMBAT_SKILL..strHero..'_'..objSkill;
+						if HasHeroSkill(strHero, objSkill) == nil then
 							SetGameVar(strKey, 0);
 						end;
 					end;
@@ -3227,17 +3256,6 @@ doFile("/scripts/H55-Settings.lua");
 				end;
 
 		-- 英雄技能效果实装
-			TTH_VARI.threadUpgradeSkillBonus8Hero = "";
-			function TTH_GLOBAL.upgradeSkillBonus8Hero(iPlayer, strHero)
-				TTH_MAIN.debug("TTH_GLOBAL.upgradeSkillBonus8Hero", iPlayer, strHero);
-
-				TTH_VARI.threadUpgradeSkillBonus8Hero = strHero;
-				startThread(TTH_GLOBAL.threadUpgradeSkillBonus8Hero);
-			end;
-			function TTH_GLOBAL.threadUpgradeSkillBonus8Hero()
-				local strHero = TTH_VARI.threadUpgradeSkillBonus8Hero;
-				TTH_GLOBAL.implSkillBonus8Hero(strHero);
-			end;
 			function TTH_GLOBAL.dealSkillBonus8Hero(strHero)
 				TTH_MAIN.debug("TTH_GLOBAL.dealSkillBonus8Hero", nil, strHero);
 
@@ -3246,6 +3264,7 @@ doFile("/scripts/H55-Settings.lua");
 			function TTH_GLOBAL.implSkillBonus8Hero(strHero)
 				sleep(1);
 				TTH_GLOBAL.setGameVar4HeroSkill(strHero);
+				TTH_GLOBAL.setGameVar4HeroSkill2Special(strHero);
 				TTH_GLOBAL.giveMagic8Skill(strHero);
 				TTH_GLOBAL.giveMagic8Wisdom(strHero);
 				TTH_GLOBAL.giveAttribute8Skill(strHero);
@@ -3859,7 +3878,6 @@ doFile("/scripts/H55-Settings.lua");
 				-- <body_bright>英雄魔法值: <color=yellow><value=iManaPoint>
 				-- <body_bright>本周内政操作总次数: <color=yellow><value=iMaxOperTimes>
 				-- <body_bright>本周内政操作剩余次数: <color=yellow><value=iRemainOperTimes>
-				-- <body_bright>当前政绩: <color=yellow><value=iReportPoint>
 				function TTH_GLOBAL.geneWidgetHeroInfo(iPlayer, strHero)
 					local iHeroLevel = GetHeroLevel(strHero);
 					local iPower = TTH_GLOBAL.getPower8Hero(strHero);
@@ -3867,7 +3885,6 @@ doFile("/scripts/H55-Settings.lua");
 					local iManaPoint = GetHeroStat(strHero, STAT_MANA_POINTS);
 					local iMaxOperTimes = TTH_MANAGE.getOperTimes(strHero);
 					local iRemainOperTimes = TTH_MANAGE.getRemainOperTimes(strHero);
-					local iReportPoint = TTH_MANAGE.getRecordPoint(strHero);
 					local strPath = {
 						TTH_TABLE.KingManagePath["Widget"]["HeroInfo"]["Text"]
 						;iHeroLevel=iHeroLevel
@@ -3876,7 +3893,6 @@ doFile("/scripts/H55-Settings.lua");
 						,iManaPoint=iManaPoint
 						,iMaxOperTimes=iMaxOperTimes
 						,iRemainOperTimes=iRemainOperTimes
-						,iReportPoint=iReportPoint
 					};
 					return strPath;
 				end;
@@ -4003,6 +4019,8 @@ doFile("/scripts/H55-Settings.lua");
 				-- <body_bright>2级前哨: <color=yellow><value=iCountDwelling2> <body_bright>座
 				-- <body_bright>3级前哨: <color=yellow><value=iCountDwelling3> <body_bright>座
 				-- <body_bright>军事前哨: <color=yellow><value=iCountDwelling4> <body_bright>座
+				-- <body_bright>玩家当前政绩: <color=yellow><value=iReportPoint>
+				-- <body_bright>玩家每日获得政绩: <color=yellow><value=iReportPoint8Daily>
 				-- <body_bright>玩家每周额外内政操作次数: <color=yellow><value=iExtraOperTimes> <body_bright>次
 				-- <body_bright>玩家额外内政管辖城镇数: <color=yellow><value=iExtraAbilityQuota> <body_bright>座
 				-- <body_bright>玩家领地半径: <color=yellow><value=iDefaultTerritoryRadius> <body_bright>+ <color=green><value=iExtraTerritoryRadius>
@@ -4020,6 +4038,8 @@ doFile("/scripts/H55-Settings.lua");
 					local iCountDwelling2 = length(TTH_GLOBAL.listDwelling8Player(iPlayer, 2));
 					local iCountDwelling3 = length(TTH_GLOBAL.listDwelling8Player(iPlayer, 3));
 					local iCountDwelling4 = length(TTH_GLOBAL.listDwelling8Player(iPlayer, 4));
+					local iReportPoint = TTH_MANAGE.getRecordPoint(iPlayer);
+					local iReportPoint8Daily = TTH_MANAGE.calcDailyRecordPoint8Daily(iPlayer);
 					local iExtraOperTimes = TTH_MANAGE.getExtraOperTimes8Player(iPlayer);
 					local iExtraAbilityQuota = TTH_MANAGE.getExtraAbilityQuota(iPlayer);
 					local iDefaultTerritoryRadius = TTH_MANAGE.getDefaultTerritoryRadius(iPlayer);
@@ -4039,6 +4059,8 @@ doFile("/scripts/H55-Settings.lua");
 						,iCountDwelling2=iCountDwelling2
 						,iCountDwelling3=iCountDwelling3
 						,iCountDwelling4=iCountDwelling4
+						,iReportPoint=iReportPoint
+						,iReportPoint8Daily=iReportPoint8Daily
 						,iExtraOperTimes=iExtraOperTimes
 						,iExtraAbilityQuota=iExtraAbilityQuota
 						,iDefaultTerritoryRadius=iDefaultTerritoryRadius
@@ -4455,20 +4477,6 @@ doFile("/scripts/H55-Settings.lua");
 					Play3DSoundForPlayers(GetPlayerFilter(iPlayer), H55_SndCrash, iPosX, iPosY, iPosZ);
 					ReplaceDwelling(strBuildingName, iHeroRace);
 				end;
-
-		-- 记忆导师
-			function TTH_VISIT.visitMemoryMentor(strHero, strBuildingName)
-				TTH_GLOBAL.setMemoryMentorVisitor(strHero);
-				TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, "TTH_VISIT.visitMemoryMentor");
-			end;
-			function TTH_GLOBAL.setMemoryMentorVisitor(strHero)
-				TTH_VARI.visitedMemoryMentorFlag = TTH_ENUM.Yes;
-				TTH_VARI.visitedMemoryMentorHero = strHero;
-			end;
-			function TTH_GLOBAL.resetMemoryMentorVisitor()
-				TTH_VARI.visitedMemoryMentorFlag = TTH_ENUM.No;
-				TTH_VARI.visitedMemoryMentorHero = "";
-			end;
 
 		-- 先知小屋
 			TTH_ENUM.MermaidsKillCreature8Race = 0;
@@ -5571,9 +5579,9 @@ doFile("/scripts/H55-Settings.lua");
 				end;
 
 		-- 政绩
-			-- 获取英雄当前政绩
-				function TTH_MANAGE.getRecordPoint(strHero)
-					return TTH_VARI.arrMayor[strHero]["RecordPoint"];
+			-- 获取玩家当前政绩
+				function TTH_MANAGE.getRecordPoint(iPlayer)
+					return TTH_VARI.arrRecordPoint[iPlayer]["RecordPoint"];
 				end;
 
 			-- 计算英雄每日获得政绩
@@ -5588,6 +5596,16 @@ doFile("/scripts/H55-Settings.lua");
 					return iRecordPoint;
 				end;
 
+			-- 计算玩家每日获得政绩
+				function TTH_MANAGE.calcDailyRecordPoint8Daily(iPlayer)
+					local arrHero = GetPlayerHeroes(iPlayer);
+					local iRecordPoint = 0;
+					for i, strHero in arrHero do
+						iRecordPoint = iRecordPoint + TTH_MANAGE.calcDailyRecordPoint(strHero);
+					end
+					return iRecordPoint;
+				end;
+
 			-- 给予英雄每日政绩
 				function TTH_MANAGE.giveDailyRecordPoint(iPlayer, strHero)
 					TTH_MAIN.debug("TTH_MANAGE.giveDailyRecordPoint", iPlayer, strHero);
@@ -5596,14 +5614,15 @@ doFile("/scripts/H55-Settings.lua");
 					local iCoef = TTH_PERK.dealDaily099(iPlayer, strHero);
 					iRecordPoint = iRecordPoint * iCoef;
 					if iRecordPoint ~= 0 then
-						TTH_VARI.arrMayor[strHero]["RecordPoint"] = TTH_VARI.arrMayor[strHero]["RecordPoint"] + iRecordPoint;
+						TTH_VARI.arrRecordPoint[iPlayer]["RecordPoint"] = TTH_VARI.arrRecordPoint[iPlayer]["RecordPoint"] + iRecordPoint;
 					end;
 				end;
 
 			-- 英雄政绩兑换
-				function TTH_MANAGE.useRecordPoint(strHero, iRecordPoint)
+				function TTH_MANAGE.useRecordPoint(iPlayer, strHero, iRecordPoint)
 					if iRecordPoint ~= 0 then
-						TTH_VARI.arrMayor[strHero]["RecordPoint"] = TTH_VARI.arrMayor[strHero]["RecordPoint"] - iRecordPoint;
+						TTH_VARI.iExchangeRecordTimes[iPlayer] = TTH_VARI.iExchangeRecordTimes[iPlayer] + 1;
+						TTH_VARI.arrRecordPoint[iPlayer]["RecordPoint"] = TTH_VARI.arrRecordPoint[iPlayer]["RecordPoint"] - iRecordPoint;
 					end;
 				end;
 
@@ -5732,7 +5751,8 @@ doFile("/scripts/H55-Settings.lua");
 			-- 构造政绩加成的数据结构
 				function TTH_MANAGE.initConstructData4RecordPoint(iPlayer)
 					TTH_VARI.arrRecordPoint[iPlayer] = {
-					  ["OperTimes"] = 0
+					  ["RecordPoint"] = 0
+					  , ["OperTimes"] = 0
 					  , ["AbilityQuota"] = 0
 					  , ["TerritoryRadius"] = 0
 					};
@@ -5757,7 +5777,6 @@ doFile("/scripts/H55-Settings.lua");
 						["Status"] = TTH_ENUM.No
 						, ["Duration"] = 0
 					};
-					TTH_VARI.arrMayor[strHero]["RecordPoint"] = 0;
 				end;
 
 			-- 构造英雄已加成属性的数据结构
@@ -6656,6 +6675,14 @@ doFile("/scripts/H55-Settings.lua");
 					, ["Nymus"] = TOWN_BUILDING_SPECIAL_1
 					, ["Una"] = TOWN_BUILDING_SPECIAL_1
 					, ["Quroq"] = TOWN_BUILDING_SPECIAL_5
+
+					, ["Gillion"] = TOWN_BUILDING_DWELLING_2
+					, ["Razzak"] = TOWN_BUILDING_DWELLING_4
+					, ["Menel"] = TOWN_BUILDING_DWELLING_3
+					, ["Ferigl"] = TOWN_BUILDING_DWELLING_4
+					, ["Oddrema"] = TOWN_BUILDING_DWELLING_4
+					, ["Egil"] = TOWN_BUILDING_DWELLING_5
+					, ["Hero4"] = TOWN_BUILDING_DWELLING_5
 				}
 				function TTH_MANAGE.attachBuilding(iPlayer, strHero, strTown)
 					if TTH_TABLE.AttachBuilding[strHero] ~= nil then
@@ -6911,19 +6938,15 @@ doFile("/scripts/H55-Settings.lua");
 				}
 				, ["PotionMaxTimes"] = {
 					["Text"] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/PotionMaxTimes.txt"
-					, ["RewardText"] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/RewardPotionMaxTimes.txt"
 				}
 				, ["MaxOperTimes"] = {
 					["Text"] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/MaxOperTimes.txt"
-					, ["RewardText"] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/RewardMaxOperTimes.txt"
 				}
 				, ["AbilityQuota"] = {
 					["Text"] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/AbilityQuota.txt"
-					, ["RewardText"] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/RewardAbilityQuota.txt"
 				}
 				, ["TerritoryRadius"] = {
 					["Text"] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/TerritoryRadius.txt"
-					, ["RewardText"] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/RewardTerritoryRadius.txt"
 				}
 			}
 			, ["CombineArtifact"] = {
@@ -7844,55 +7867,78 @@ doFile("/scripts/H55-Settings.lua");
 				TTH_ENUM.AbilityQuota = 3; -- 可管辖城镇配额+1
 				TTH_ENUM.TerritoryRadius = 4; -- 领地范围+20
 
+				TTH_TABLE.ExchangeRecordCost = {
+					[1] = 800
+					, [2] = 1300
+					, [3] = 2100
+					, [4] = 3400
+					, [5] = 5500
+					, [6] = 8900
+					, [7] = 14400
+					, [8] = 19900
+				};
+
 				TTH_TABLE.ExchangeRecordOption = {
 					[1] = {
 						["Id"] = TTH_ENUM.PotionMaxTimes
 						, ["Text"] = TTH_TABLE.KingManagePath["ExchangeRecord"]["PotionMaxTimes"]["Text"]
 						, ["Callback"] = "TTH_MANAGE.checkPreExchangeRecord4Point"
-						, ["Cost"] = 1000
-						, ["RewardText"] = TTH_TABLE.KingManagePath["ExchangeRecord"]["PotionMaxTimes"]["RewardText"]
 					}
 					, [2] = {
 						["Id"] = TTH_ENUM.MaxOperTimes
 						, ["Text"] = TTH_TABLE.KingManagePath["ExchangeRecord"]["MaxOperTimes"]["Text"]
 						, ["Callback"] = "TTH_MANAGE.checkPreExchangeRecord4Point"
-						, ["Cost"] = 1000
-						, ["RewardText"] = TTH_TABLE.KingManagePath["ExchangeRecord"]["MaxOperTimes"]["RewardText"]
 					}
 					, [3] = {
 						["Id"] = TTH_ENUM.AbilityQuota
 						, ["Text"] = TTH_TABLE.KingManagePath["ExchangeRecord"]["AbilityQuota"]["Text"]
 						, ["Callback"] = "TTH_MANAGE.checkPreExchangeRecord4Point"
-						, ["Cost"] = 1000
-						, ["RewardText"] = TTH_TABLE.KingManagePath["ExchangeRecord"]["AbilityQuota"]["RewardText"]
 					}
 					, [4] = {
 						["Id"] = TTH_ENUM.TerritoryRadius
 						, ["Text"] = TTH_TABLE.KingManagePath["ExchangeRecord"]["TerritoryRadius"]["Text"]
 						, ["Callback"] = "TTH_MANAGE.checkPreExchangeRecord4Point"
-						, ["Cost"] = 1000
-						, ["RewardText"] = TTH_TABLE.KingManagePath["ExchangeRecord"]["TerritoryRadius"]["RewardText"]
 					}
 				};
+
+				TTH_VARI.iExchangeRecordTimes = {};
+
+				-- 计算当前玩家政绩花费
+					function TTH_MANAGE.calcExchangeRecordCost(iPlayer)
+						local iCost = 0;
+						if TTH_VARI.iExchangeRecordTimes[iPlayer] == nil then
+							TTH_VARI.iExchangeRecordTimes[iPlayer] = 0;
+							iCost = TTH_TABLE.ExchangeRecordCost[1];
+						else
+							local iTimes = TTH_VARI.iExchangeRecordTimes[iPlayer] + 1;
+							if iTimes >= length(TTH_TABLE.ExchangeRecordCost) then
+								iTimes = length(TTH_TABLE.ExchangeRecordCost);
+							end;
+							iCost = TTH_TABLE.ExchangeRecordCost[iTimes];
+						end;
+						return iCost;
+					end;
 
 				-- 入口
 					function TTH_MANAGE.dealExchangeRecord(iPlayer, strHero)
 						TTH_COMMON.nextNavi(TTH_TABLE.KingManagePath["ExchangeRecord"]["Text"]);
 
-						local iCurrentPoint = TTH_MANAGE.getRecordPoint(strHero);
-						local iDailyPoint = TTH_MANAGE.calcDailyRecordPoint(strHero);
+						local iCurrentPoint = TTH_MANAGE.getRecordPoint(iPlayer);
+						local iReportPoint8Daily = TTH_MANAGE.calcDailyRecordPoint8Daily(iPlayer);
+						local iCost = TTH_MANAGE.calcExchangeRecordCost(iPlayer);
 
 						local strPathMain = {
 							TTH_TABLE.KingManagePath["ExchangeRecord"]["ChooseOption"]["Text"]
 							;iCurrentPoint=iCurrentPoint
-							,iDailyPoint=iDailyPoint
+							,iReportPoint8Daily=iReportPoint8Daily
+							,iCost=iCost
 						};
 						TTH_COMMON.optionRadio(iPlayer, strHero, TTH_TABLE.ExchangeRecordOption, strPathMain);
 					end;
 
 				-- 是否有足够的政绩
 					function TTH_MANAGE.checkPreExchangeRecord4Point(iPlayer, strHero, iType)
-						if TTH_MANAGE.getRecordPoint(strHero) < TTH_TABLE.ExchangeRecordOption[iType]["Cost"] then
+						if TTH_MANAGE.getRecordPoint(iPlayer) < TTH_MANAGE.calcExchangeRecordCost(iPlayer) then
 							local strPath = TTH_TABLE.KingManagePath["ExchangeRecord"]["NotEnoughPoint"]["Text"];
 							TTH_GLOBAL.sign(strHero, strPath);
 							return nil;
@@ -7903,7 +7949,8 @@ doFile("/scripts/H55-Settings.lua");
 
 				-- 兑换
 					function TTH_MANAGE.implExchangeRecord(iPlayer, strHero, iType)
-						TTH_MANAGE.useRecordPoint(strHero, TTH_TABLE.ExchangeRecordOption[iType]["Cost"]);
+						local iCost = TTH_MANAGE.calcExchangeRecordCost(iPlayer);
+						TTH_MANAGE.useRecordPoint(iPlayer, strHero, iCost);
 						if iType == TTH_ENUM.PotionMaxTimes then
 							TTH_MANAGE.buffExtraPotionMaxTimes(iPlayer);
 						elseif iType == TTH_ENUM.MaxOperTimes then
@@ -7916,8 +7963,8 @@ doFile("/scripts/H55-Settings.lua");
 
 						local strPathMain = {
 							TTH_TABLE.KingManagePath["ExchangeRecord"]["Success"]["Text"]
-							;iCost=TTH_TABLE.ExchangeRecordOption[iType]["Cost"]
-							,strReward=TTH_TABLE.ExchangeRecordOption[iType]["RewardText"]
+							;iCost=iCost
+							,strReward=TTH_TABLE.ExchangeRecordOption[iType]["Text"]
 						};
 						TTH_GLOBAL.sign(strHero, strPathMain);
 					end;
@@ -9088,6 +9135,17 @@ doFile("/scripts/H55-Settings.lua");
 						iTownValue = length(arrTown) * 20;
 					end;
 					return iTownValue;
+      	end;
+
+      -- Brem 010 拉特格
+      	function TTH_TALENT.initBrem(strHero)
+					TTH_MAIN.debug("TTH_TALENT.initBrem", nil, strHero);
+
+					if TTH_VARI.talent[strHero] == nil then
+						TTH_VARI.talent[strHero] = TTH_ENUM.Yes;
+						local iPlayer = TTH_GLOBAL.GetObjectOwner(strHero);
+						TTH_MANAGE.buffExtraTerritoryRadius(iPlayer);
+					end;
       	end;
 
       -- RedHeavenHero06 017 加布里埃尔
@@ -11206,7 +11264,11 @@ doFile("/scripts/H55-Settings.lua");
 				function TTH_ARTI.implActive138(iPlayer, strHero)
 					TTH_VARI.recordPotion[ARTIFACT_POTION_ENERGY][strHero]["RemainTimes"] = TTH_VARI.recordPotion[ARTIFACT_POTION_ENERGY][strHero]["RemainTimes"] - 1;
 					TTH_VARI.recordPotion[ARTIFACT_POTION_ENERGY][strHero]["Day"] = TTH_VARI.day;
-					ChangeHeroStat(strHero, STAT_MOVE_POINTS, TTH_FINAL.POTION_ENERGY_RECOVERY);
+					if HasHeroSkill(strHero, HERO_SKILL_DARK_RITUAL) == nil then
+						ChangeHeroStat(strHero, STAT_MOVE_POINTS, TTH_FINAL.POTION_ENERGY_RECOVERY);
+					else
+						ChangeHeroStat(strHero, STAT_MOVE_POINTS, TTH_FINAL.POTION_ENERGY_RECOVERY * 2);
+					end;
 					local strText = TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_ENERGY]["Success"];
 					TTH_GLOBAL.sign(strHero, strText);
 				end;
@@ -11266,8 +11328,14 @@ doFile("/scripts/H55-Settings.lua");
 					TTH_VARI.recordPotion[ARTIFACT_POTION_REVIVE][strHero]["RemainTimes"] = TTH_VARI.recordPotion[ARTIFACT_POTION_REVIVE][strHero]["RemainTimes"] - 1;
 					TTH_VARI.recordPotion[ARTIFACT_POTION_REVIVE][strHero]["CombatIndex"] = TTH_VARI.combatIndex;
 					local iCoef = 0.3 + GetHeroStat(strHero, STAT_KNOWLEDGE) * 0.01;
-					if iCoef > 0.5 then
-						iCoef = 0.5;
+					if HasHeroSkill(strHero, HERO_SKILL_DARK_RITUAL) == nil then
+						if iCoef > 0.5 then
+							iCoef = 0.5;
+						end;
+					else
+						if iCoef > 0.75 then
+							iCoef = 0.75;
+						end;
 					end;
 					local iCombatIndex = TTH_VARI.combatIndex;
 					local iCountStacksWinner = GetSavedCombatArmyCreaturesCount(iCombatIndex, 1);
@@ -12016,9 +12084,13 @@ doFile("/scripts/H55-Settings.lua");
 			function TTH_PERK.confirmActive028(iPlayer, strHero, strTown)
 				local iTownRace = TTH_GLOBAL.getRace8Town(strTown);
 				local arrCreatureGrowth8Tier = {};
+				local iCoef = 1;
+				if HasArtefact(strHero, ARTIFACT_CROWN_OF_LEADER, 1) ~= nil then
+					iCoef = 1.5;
+				end;
 				for iTier = 1, 7 do
 					if GetTownBuildingLevel(strTown, iTier + TOWN_BUILDING_DWELLING_1 - 1) >= 1 then
-						arrCreatureGrowth8Tier[iTier] = TTH_COMMON.floor(TTH_TABLE_NCF_CREATURES[TTH_TABLE.Creature8RaceAndLevel[iTownRace][iTier][1]]["GROWTH"] / 2);
+						arrCreatureGrowth8Tier[iTier] = TTH_COMMON.floor(TTH_TABLE_NCF_CREATURES[TTH_TABLE.Creature8RaceAndLevel[iTownRace][iTier][1]]["GROWTH"] / 2 * iCoef);
 					else
 						arrCreatureGrowth8Tier[iTier] = 0;
 					end;
@@ -12190,18 +12262,22 @@ doFile("/scripts/H55-Settings.lua");
     		TTH_VARI.recordEstates[strHero]["OperTimes"] = TTH_VARI.recordEstates[strHero]["MaxOperTimes"];
 			end;
 			function TTH_PERK.calcExpectEstatesGold(strHero, iEstatesGold, iDuration)
-				local iExpectEstatesGold = TTH_COMMON.round(iEstatesGold * (1 + TTH_FINAL.ESTATES_COEF * iDuration));
+				local iCoef = 1;
+				if HasArtefact(strHero, ARTIFACT_CROWN_OF_LEADER, 1) ~= nil then
+					iCoef = 1.5;
+				end;
+				local iExpectEstatesGold = TTH_COMMON.round(iEstatesGold * (1 + TTH_FINAL.ESTATES_COEF * iCoef * iDuration));
 				local strHeroJenova = "Jenova";
 				if strHero == strHeroJenova then
-					iExpectEstatesGold = TTH_COMMON.round(iEstatesGold * (1 + TTH_FINAL.ESTATES_COEF * 1.5 * iDuration));
+					iExpectEstatesGold = TTH_COMMON.round(iEstatesGold * (1 + TTH_FINAL.ESTATES_COEF * iCoef * 1.5 * iDuration));
 				end;
 				if strHero == strHeroJenova then
-					if iExpectEstatesGold > iEstatesGold + TTH_FINAL.ESTATES_MAX * 1.5 then
-						iExpectEstatesGold = iEstatesGold + TTH_FINAL.ESTATES_MAX * 1.5
+					if iExpectEstatesGold > iEstatesGold + TTH_FINAL.ESTATES_MAX * iCoef * 1.5 then
+						iExpectEstatesGold = iEstatesGold + TTH_FINAL.ESTATES_MAX * iCoef * 1.5
 					end;
 				else
-					if iExpectEstatesGold > iEstatesGold + TTH_FINAL.ESTATES_MAX then
-						iExpectEstatesGold = iEstatesGold + TTH_FINAL.ESTATES_MAX
+					if iExpectEstatesGold > iEstatesGold + TTH_FINAL.ESTATES_MAX * iCoef then
+						iExpectEstatesGold = iEstatesGold + TTH_FINAL.ESTATES_MAX * iCoef
 					end;
 				end;
 				return iExpectEstatesGold;
@@ -12276,10 +12352,14 @@ doFile("/scripts/H55-Settings.lua");
 				local arrTemplateCreature = {"", "", "", "", "", "", ""};
 				local strTemplateCreature = TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["TemplateCreature"];
 				local arrCreatureSlot = TTH_GLOBAL.getObjectCreatureInfo(strCreatureStack);
-				local iCount = 1;
+				local iCoef = 1;
+				if HasArtefact(strHero, ARTIFACT_CROWN_OF_LEADER, 1) ~= nil then
+					iCoef = 1.5;
+				end;
+				local iCount = TTH_COMMON.round(1 * iCoef);
 				local strHeroMarkal = "Markal";
 				if strHero == strHeroMarkal then
-					iCount = 2;
+					iCount = TTH_COMMON.round(2 * iCoef);
 				end;
 				for iSlot = 0, 6 do
 					if arrCreatureSlot[iSlot]["Id"] > 0 then
@@ -12316,12 +12396,16 @@ doFile("/scripts/H55-Settings.lua");
     			TTH_MANAGE.useOperTimes(strHero);
     		end;
     		local arrCreatureSlot = TTH_GLOBAL.getObjectCreatureInfo(strCreatureStack);
-    		local iCount = 1;
+				local iCoef = 1;
+				if HasArtefact(strHero, ARTIFACT_CROWN_OF_LEADER, 1) ~= nil then
+					iCoef = 1.5;
+				end;
+				local iCount = TTH_COMMON.round(1 * iCoef);
     		local strHeroMarkal = "Markal";
     		local strHeroBerein = "Berein";
-    		if strHero == strHeroMarkal then
-    			iCount = 2;
-    		end;
+				if strHero == strHeroMarkal then
+					iCount = TTH_COMMON.round(2 * iCoef);
+				end;
     		for iSlot = 0, 6 do
     			if arrCreatureSlot[iSlot]["Id"] > 0 then
     				local iSlotCount = iCount;
@@ -13417,125 +13501,26 @@ doFile("/scripts/H55-Settings.lua");
 
 	-- test
 		TTH_TEST = {};
-		function TTH_TEST.test3(iPlayer)
-			local strHero = GetPlayerHeroes(iPlayer)[0];
-			GiveArtefact(strHero, ARTIFACT_HELMET_OF_HEAVENLY_ENLIGHTENMENT);
-			GiveArtefact(strHero, ARTIFACT_BOOK_OF_MALASSA);
-			sleep(1)
-			ChangeHeroStat(strHero, STAT_KNOWLEDGE, 99);
-			sleep(1)
-			ChangeHeroStat(strHero, STAT_MANA_POINTS, TTH_FINAL.NUM_MAX);
-			ExecConsoleCommand("enable_cheats");
-			ExecConsoleCommand("add_all_spells");
-		end;
 		function TTH_TEST.test2(iPlayer)
 			local strHero = GetPlayerHeroes(iPlayer)[0];
-
-			-- GiveArtefact(strHero, ARTIFACT_ANGELIC_ALLIANCE);
-			-- GiveArtefact(strHero, ARTIFACT_GUARDIAN_01);
-			-- GiveArtefact(strHero, ARTIFACT_GUARDIAN_02);
-			-- GiveArtefact(strHero, ARTIFACT_GUARDIAN_03);
-			-- GiveArtefact(strHero, ARTIFACT_PLATE_MAIL_OF_STABILITY);
-
-			-- GiveArtefact(strHero, ARTIFACT_GRAAL);
-			-- GiveArtefact(strHero, ARTIFACT_LEGION_BASIC);
-			-- GiveArtefact(strHero, ARTIFACT_LEGION_ADVANCED);
-			-- GiveArtefact(strHero, ARTIFACT_LEGION_EXPERT);
-			-- GiveArtefact(strHero, ARTIFACT_ENDLESS_BAG_OF_GOLD);
-			-- GiveArtefact(strHero, ARTIFACT_CROWN_OF_LEADER);
-
-			-- GiveArtefact(strHero, ARTIFACT_HORN_OF_PLENTY);
-			-- GiveArtefact(strHero, ARTIFACT_RES_BASIC);
-			-- GiveArtefact(strHero, ARTIFACT_RES_ADVANCED);
-			-- GiveArtefact(strHero, ARTIFACT_RES_EXPERT);
-			-- GiveArtefact(strHero, ARTIFACT_BAND_OF_CONJURER);
-
-			-- GiveArtefact(strHero, ARTIFACT_CURSE_SHOULDER);
-			-- GiveArtefact(strHero, ARTIFACT_CLOAK_OF_MOURNING);
-			-- GiveArtefact(strHero, ARTIFACT_STAFF_OF_VEXINGS);
-			-- GiveArtefact(strHero, ARTIFACT_RING_OF_DEATH);
-			-- GiveArtefact(strHero, ARTIFACT_NECROMANCER_PENDANT);
-
-			-- GiveArtefact(strHero, ARTIFACT_DRACONIC);
-			-- GiveArtefact(strHero, ARTIFACT_DRAGON_SCALE_ARMOR);
-			-- GiveArtefact(strHero, ARTIFACT_DRAGON_SCALE_SHIELD);
-			-- GiveArtefact(strHero, ARTIFACT_DRAGON_BONE_GRAVES);
-			-- GiveArtefact(strHero, ARTIFACT_DRAGON_WING_MANTLE);
-			-- GiveArtefact(strHero, ARTIFACT_DRAGON_TEETH_NECKLACE);
-			-- GiveArtefact(strHero, ARTIFACT_DRAGON_TALON_CROWN);
-			-- GiveArtefact(strHero, ARTIFACT_DRAGON_EYE_RING);
-			-- GiveArtefact(strHero, ARTIFACT_DRAGON_FLAME_TONGUE);
-
-			-- GiveArtefact(strHero, ARTIFACT_SENTINEL);
-			-- GiveArtefact(strHero, ARTIFACT_DWARVEN_MITHRAL_CUIRASS);
-			-- GiveArtefact(strHero, ARTIFACT_DWARVEN_MITHRAL_GREAVES);
-			-- GiveArtefact(strHero, ARTIFACT_DWARVEN_MITHRAL_HELMET);
-			-- GiveArtefact(strHero, ARTIFACT_DWARVEN_MITHRAL_SHIELD);
-
-			-- GiveArtefact(strHero, ARTIFACT_EIGHTFOLD);
-			-- GiveArtefact(strHero, ARTIFACT_ROBE_OF_MAGI);
-			-- GiveArtefact(strHero, ARTIFACT_STAFF_OF_MAGI);
-			-- GiveArtefact(strHero, ARTIFACT_CROWN_OF_MAGI);
-			-- GiveArtefact(strHero, ARTIFACT_RING_OF_MAGI);
-
-			-- GiveArtefact(strHero, ARTIFACT_CODEX);
-			-- GiveArtefact(strHero, ARTIFACT_TOME_OF_DESTRUCTION);
-			-- GiveArtefact(strHero, ARTIFACT_TOME_OF_LIGHT_MAGIC);
-			-- GiveArtefact(strHero, ARTIFACT_TOME_OF_DARK_MAGIC);
-			-- GiveArtefact(strHero, ARTIFACT_TOME_OF_SUMMONING_MAGIC);
-
-			-- GiveArtefact(strHero, ARTIFACT_PLATE_MAIL_OF_STABILITY);
-			-- GiveArtefact(strHero, ARTIFACT_SWORD_OF_RUINS);
-			-- GiveArtefact(strHero, ARTIFACT_BREASTPLATE_OF_PETRIFIED_WOOD);
-			-- GiveArtefact(strHero, ARTIFACT_SKULL_HELMET);
-			-- GiveArtefact(strHero, ARTIFACT_BUCKLER);
-			-- GiveArtefact(strHero, ARTIFACT_BOOTS_OF_INTERFERENCE);
-
-			-- GiveArtefact(strHero, ARTIFACT_TOME_OF_DESTRUCTION);
-			-- GiveArtefact(strHero, ARTIFACT_TITANS_TRIDENT);
-			-- GiveArtefact(strHero, ARTIFACT_EVERCOLD_ICICLE);
-			-- GiveArtefact(strHero, ARTIFACT_PHOENIX_FEATHER_CAPE);
-			-- GiveArtefact(strHero, ARTIFACT_EARTHSLIDERS);
-
-			GiveArtefact(strHero, ARTIFACT_SHIELD_OF_WOLF_DUCHY);
-			GiveArtefact(strHero, ARTIFACT_RING_OF_LIFE);
-			GiveArtefact(strHero, ARTIFACT_BEARHIDE_WRAPS);
-
-			GiveArtefact(strHero, ARTIFACT_GUARDIAN_03);
-			GiveArtefact(strHero, ARTIFACT_ICEBERG_SHIELD);
-			GiveArtefact(strHero, ARTIFACT_DWARVEN_SMITHY_HUMMER);
-
-			GiveArtefact(strHero, ARTIFACT_INHERITANCE);
-			GiveArtefact(strHero, ARTIFACT_FOUR_LEAF_CLOVER);
-			GiveArtefact(strHero, ARTIFACT_TAROT_DECK);
-			GiveArtefact(strHero, ARTIFACT_GOLDEN_SEXTANT);
-
-			GiveArtefact(strHero, ARTIFACT_PENDANT_OF_INTERFERENCE);
-			GiveArtefact(strHero, ARTIFACT_EDGE_OF_BALANCE);
-			GiveArtefact(strHero, ARTIFACT_RING_OF_LIGHTING_PROTECTION);
-			GiveArtefact(strHero, ARTIFACT_SPIRIT_OF_OPPRESSION);
-
-			GiveArtefact(strHero, ARTIFACT_RING_OF_FORGOTTEN);
-			GiveArtefact(strHero, ARTIFACT_BEGINNER_MAGIC_STICK);
-			GiveArtefact(strHero, ARTIFACT_RIGID_MANTLE);
-
-			GiveArtefact(strHero, ARTIFACT_HELMET_OF_HEAVENLY_ENLIGHTENMENT);
-			GiveArtefact(strHero, ARTIFACT_GREAT_AXE_OF_GIANT_SLAYING);
-			GiveArtefact(strHero, ARTIFACT_CROWN_OF_MANY_EYES);
-			GiveArtefact(strHero, ARTIFACT_VALORIOUS_ARMOR);
-			GiveArtefact(strHero, ARTIFACT_STEADFAST);
-
-			GiveArtefact(strHero, ARTIFACT_BOOK_OF_MALASSA);
-			GiveArtefact(strHero, ARTIFACT_JINXING_BAND);
-			GiveArtefact(strHero, ARTIFACT_BONESTUDDED_LEATHER);
-			GiveArtefact(strHero, ARTIFACT_RING_OF_THE_SHADOWBRAND);
-			GiveArtefact(strHero, ARTIFACT_BOOK_OF_POWER);
-			GiveArtefact(strHero, ARTIFACT_RING_OF_FORGOTTEN);
-
-			for iIndex, strBuildingName in TTH_VARI.arrBuilding["BUILDING_BLACK_MARKET"] do
-				local iX, iY, iZ = GetObjectPosition(strBuildingName);
+			GiveHeroSkill(strHero, HERO_SKILL_LIGHT_MAGIC);
+			sleep(1)
+			GiveHeroSkill(strHero, HERO_SKILL_LIGHT_MAGIC);
+			sleep(1)
+			GiveHeroSkill(strHero, HERO_SKILL_LIGHT_MAGIC);
+			sleep(1)
+			GiveHeroSkill(strHero, HERO_SKILL_SUMMONING_MAGIC);
+			sleep(1)
+			GiveHeroSkill(strHero, HERO_SKILL_SUMMONING_MAGIC);
+			sleep(1)
+			GiveHeroSkill(strHero, HERO_SKILL_HOLY_CHARGE);
+			sleep(1)
+			local arrBuilding = GetObjectNamesByType("BUILDING_MEMORY_MENTOR");
+			for iIndex, strBuilding in arrBuilding do
+				local iX, iY, iZ = GetObjectPosition(strBuilding);
 				OpenCircleFog(iX, iY, iZ, 5, iPlayer);
 			end;
+			TTH_VARI.arrRecordPoint[iPlayer]["RecordPoint"] = TTH_VARI.arrRecordPoint[iPlayer]["RecordPoint"] + 10000;
 			ExecConsoleCommand("enable_cheats");
 		end;
 		function TTH_TEST.test(iLevel)
@@ -13592,7 +13577,6 @@ doFile("/scripts/H55-Settings.lua");
 			TTH_GLOBAL.setExpCoef8GameDifficulty(); -- 初始化英雄经验系数
 			TTH_GLOBAL.initAdvTown(); -- 初始化城镇列表
 			TTH_GLOBAL.initAdvBuilding(); -- 初始化地图建筑
-			TTH_GLOBAL.resetMemoryMentorVisitor(); -- 初始化记忆导师的访问英雄信息
 
 			for iPlayer = PLAYER_1, PLAYER_8 do
 				TTH_GLOBAL.initAi(iPlayer); -- 配置文件: AI玩家初始作弊
@@ -13736,13 +13720,6 @@ doFile("/scripts/H55-Settings.lua");
 								-- 若玩家是人类
 									if TTH_GLOBAL.isAi(iPlayer) ~= TTH_ENUM.Yes then
 										for iIndex, strHero in arrHero do
-											-- 英雄访问记忆导师后，英雄技能效果实装
-												if TTH_VARI.visitedMemoryMentorFlag == TTH_ENUM.Yes
-													and strHero == TTH_VARI.visitedMemoryMentorHero then
-													TTH_GLOBAL.resetMemoryMentorVisitor();
-													TTH_GLOBAL.upgradeSkillBonus8Hero(iPlayer, strHero);
-												end;
-
 											TTH_ARTI.deal164(iPlayer, strHero); -- 玛拉萨的斗篷
 
 											if strHero == "Sandro" then

@@ -1229,14 +1229,14 @@
 		<Item>
 			<ID>ARTIFACT_CROWN_OF_LEADER</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Crown_Of_Leader/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Crown_Of_Leader/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/088-CrownOfLeader/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/088-CrownOfLeader/Description.txt"/>
 				<Model href="/_(Model)/Artefacts/H5A2/CrownOfLeader.xdb#xpointer(/Model)"/>
-				<Type>ARTF_CLASS_MINOR</Type>
+				<Type>ARTF_CLASS_MAJOR</Type>
 				<Slot>HEAD</Slot>
 				<Icon href="/UI/H5A2/Icons/Artifacts/Crown_of_Leader.(Texture).xdb#xpointer(/Texture)"/>
-				<CostOfGold>15000</CostOfGold>
-				<AIValue>5000</AIValue>
+				<CostOfGold>18000</CostOfGold>
+				<AIValue>6000</AIValue>
 				<CanBeGeneratedToSell>true</CanBeGeneratedToSell>
 				<HeroStatsModif>
 					<Attack>0</Attack>

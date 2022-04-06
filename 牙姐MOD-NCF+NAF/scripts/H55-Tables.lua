@@ -1770,8 +1770,7 @@
       , [9] = ARTIFACT_TAROT_DECK
       , [10] = ARTIFACT_REINCARNATION
       , [11] = ARTIFACT_WEREWOLF_CLAW_NECKLACE
-      , [12] = ARTIFACT_CROWN_OF_LEADER
-      , [13] = ARTIFACT_SPIRIT_OF_OPPRESSION
+      , [12] = ARTIFACT_SPIRIT_OF_OPPRESSION
     }
     , [3] = {
       [0] = ARTIFACT_NECKLACE_OF_BRAVERY
@@ -1820,6 +1819,7 @@
       , [23] = ARTIFACT_PENDANT_OF_INTERFERENCE
       , [24] = ARTIFACT_BADGE_OF_SUN_CROSS
       , [25] = ARTIFACT_QUILL_OF_MAYOR
+      , [26] = ARTIFACT_CROWN_OF_LEADER
     }
     , [5] = {
       [0] = ARTIFACT_CROWN_OF_COURAGE
@@ -1917,26 +1917,25 @@
     , [27] = ARTIFACT_TAROT_DECK
     , [28] = ARTIFACT_REINCARNATION
     , [29] = ARTIFACT_WEREWOLF_CLAW_NECKLACE
-    , [30] = ARTIFACT_CROWN_OF_LEADER
-    , [31] = ARTIFACT_SPIRIT_OF_OPPRESSION
-    , [32] = ARTIFACT_NECKLACE_OF_BRAVERY
-    , [33] = ARTIFACT_LION_HIDE_CAPE
-    , [34] = ARTIFACT_HELM_OF_ENLIGHTMENT
-    , [35] = ARTIFACT_CHAIN_MAIL_OF_ENLIGHTMENT
-    , [36] = ARTIFACT_RING_OF_DEATH
-    , [37] = ARTIFACT_RUNIC_WAR_AXE
-    , [38] = ARTIFACT_RUNIC_WAR_HARNESS
-    , [39] = ARTIFACT_TREEBORN_QUIVER
-    , [40] = ARTIFACT_MONK_01
-    , [41] = ARTIFACT_MONK_02
-    , [42] = ARTIFACT_MONK_03
-    , [43] = ARTIFACT_MONK_04
-    , [44] = ARTIFACT_PIRATE_HAT
-    , [45] = ARTIFACT_PIRATE_VEST
-    , [46] = ARTIFACT_PIRATE_RING
-    , [47] = ARTIFACT_PIRATE_HOOK
-    , [48] = ARTIFACT_PIRATE_BOOTS
-    , [49] = ARTIFACT_PIRATE_CHARM
+    , [30] = ARTIFACT_SPIRIT_OF_OPPRESSION
+    , [31] = ARTIFACT_NECKLACE_OF_BRAVERY
+    , [32] = ARTIFACT_LION_HIDE_CAPE
+    , [33] = ARTIFACT_HELM_OF_ENLIGHTMENT
+    , [34] = ARTIFACT_CHAIN_MAIL_OF_ENLIGHTMENT
+    , [35] = ARTIFACT_RING_OF_DEATH
+    , [36] = ARTIFACT_RUNIC_WAR_AXE
+    , [37] = ARTIFACT_RUNIC_WAR_HARNESS
+    , [38] = ARTIFACT_TREEBORN_QUIVER
+    , [39] = ARTIFACT_MONK_01
+    , [40] = ARTIFACT_MONK_02
+    , [41] = ARTIFACT_MONK_03
+    , [42] = ARTIFACT_MONK_04
+    , [43] = ARTIFACT_PIRATE_HAT
+    , [44] = ARTIFACT_PIRATE_VEST
+    , [45] = ARTIFACT_PIRATE_RING
+    , [46] = ARTIFACT_PIRATE_HOOK
+    , [47] = ARTIFACT_PIRATE_BOOTS
+    , [48] = ARTIFACT_PIRATE_CHARM
   };
 
 -- 所有法术列表
@@ -11052,6 +11051,9 @@
           , ["Azar"] = {
             [TTH_ENUM.FuncAlways] = "TTH_TALENT.initAzar"
           }
+          , ["Brem"] = {
+            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initBrem"
+          }
         }
         , [TTH_ENUM.FuncActive] = {
           ["Nathaniel"] = {
@@ -18176,7 +18178,6 @@
                   ["CreatureId"] = CREATURE_DRUID
                   , ["Stat"] = STAT_ATTACK
                   , ["ArtifactId"] = ARTIFACT_LEGION_ADVANCED
-                  , ["PerkId"] = HERO_SKILL_EXPLODING_CORPSES
                 }
               }
               , ["Attribute"] = {
@@ -18415,7 +18416,6 @@
                   ["CreatureId"] = CREATURE_MAGI
                   , ["Stat"] = STAT_KNOWLEDGE
                   , ["ArtifactId"] = ARTIFACT_LEGION_ADVANCED
-                  , ["PerkId"] = HERO_SKILL_EXPLODING_CORPSES
                 }
               }
             }
@@ -18592,7 +18592,6 @@
                   ["CreatureId"] = CREATURE_MATRON
                   , ["Stat"] = STAT_KNOWLEDGE
                   , ["ArtifactId"] = ARTIFACT_LEGION_EXPERT
-                  , ["PerkId"] = HERO_SKILL_EXPLODING_CORPSES
                 }
               }
             }
@@ -18854,7 +18853,6 @@
                   ["CreatureId"] = CREATURE_MUMMY
                   , ["Stat"] = STAT_KNOWLEDGE
                   , ["ArtifactId"] = ARTIFACT_LEGION_ADVANCED
-                  , ["PerkId"] = HERO_SKILL_EXPLODING_CORPSES
                 }
               }
             }
@@ -18876,7 +18874,6 @@
                   ["CreatureId"] = CREATURE_935
                   , ["Stat"] = STAT_KNOWLEDGE
                   , ["ArtifactId"] = ARTIFACT_LEGION_ADVANCED
-                  , ["PerkId"] = HERO_SKILL_EXPLODING_CORPSES
                 }
               }
             }
@@ -19112,7 +19109,6 @@
                   ["CreatureId"] = CREATURE_RUNE_MAGE
                   , ["Stat"] = STAT_KNOWLEDGE
                   , ["ArtifactId"] = ARTIFACT_LEGION_ADVANCED
-                  , ["PerkId"] = HERO_SKILL_EXPLODING_CORPSES
                 }
               }
             }
@@ -19211,7 +19207,6 @@
                   ["CreatureId"] = CREATURE_GOBLIN
                   , ["Stat"] = STAT_ATTACK
                   , ["ArtifactId"] = ARTIFACT_LEGION_BASIC
-                  , ["PerkId"] = HERO_SKILL_GOBLIN_SUPPORT
                 }
               }
             }
@@ -19226,7 +19221,6 @@
                   ["CreatureId"] = CREATURE_CENTAUR
                   , ["Stat"] = STAT_ATTACK
                   , ["ArtifactId"] = ARTIFACT_LEGION_BASIC
-                  , ["PerkId"] = HERO_SKILL_DEFEND_US_ALL
                 }
               }
             }
@@ -19241,7 +19235,6 @@
                   ["CreatureId"] = CREATURE_ORC_WARRIOR
                   , ["Stat"] = STAT_ATTACK
                   , ["ArtifactId"] = ARTIFACT_LEGION_BASIC
-                  , ["PerkId"] = HERO_SKILL_DEFEND_US_ALL
                 }
               }
             }
@@ -19256,7 +19249,6 @@
                   ["CreatureId"] = CREATURE_WOLF
                   , ["Stat"] = STAT_ATTACK
                   , ["ArtifactId"] = ARTIFACT_LEGION_ADVANCED
-                  , ["PerkId"] = HERO_SKILL_GOBLIN_SUPPORT
                 }
               }
             }
@@ -19271,7 +19263,6 @@
                   ["CreatureId"] = CREATURE_ORCCHIEF_BUTCHER
                   , ["Stat"] = STAT_ATTACK
                   , ["ArtifactId"] = ARTIFACT_LEGION_ADVANCED
-                  , ["PerkId"] = HERO_SKILL_DEFEND_US_ALL
                 }
               }
             }
@@ -19286,7 +19277,6 @@
                   ["CreatureId"] = CREATURE_WYVERN
                   , ["Stat"] = STAT_ATTACK
                   , ["ArtifactId"] = ARTIFACT_LEGION_EXPERT
-                  , ["PerkId"] = HERO_SKILL_DEFEND_US_ALL
                 }
               }
             }
@@ -19652,22 +19642,14 @@
                 ["Id"] = HERO_SKILL_TACTICS
                 , ["Text"] = "/Text/TTH/Skills/Offence/034-Tactics/Name.txt"
               }
-              , [143] = { -- 速度能量
-                ["Id"] = HERO_SKILL_POWER_OF_HASTE
-                , ["Text"] = "/Text/TTH/Skills/Offence/143-PowerOfHaste/Name.txt"
+              , [160] = { -- 攻击编队
+                ["Id"] = HERO_SKILL_OFFENSIVE_FORMATION
+                , ["Text"] = "/Text/TTH/Skills/Offence/160-OffensiveFormation/Name.txt"
                 , ["DependType"] = TTH_ENUM.Simple
                 , ["Depend"] = {
                   [1] = HERO_SKILL_TACTICS
                 }
               }
-              -- , [82] = { -- 怒火中烧
-              --   ["Id"] = HERO_SKILL_ANCIENT_SMITHY
-              --   , ["Text"] = "/Text/TTH/Skills/Offence/082-AncientSmithy/Name.txt"
-              --   , ["DependType"] = TTH_ENUM.Simple
-              --   , ["Depend"] = {
-              --     [1] = HERO_SKILL_TACTICS
-              --   }
-              -- }
               , [35] = { -- 箭术
                 ["Id"] = HERO_SKILL_ARCHERY
                 , ["Text"] = "/Text/TTH/Skills/Offence/035-Archery/Name.txt"
@@ -19695,6 +19677,14 @@
               , [76] = { -- 报偿
                 ["Id"] = HERO_SKILL_RETRIBUTION
                 , ["Text"] = "/Text/TTH/Skills/Offence/076-Retribution/Name.txt"
+                , ["DependType"] = TTH_ENUM.Simple
+                , ["Depend"] = {
+                  [1] = HERO_SKILL_FRENZY
+                }
+              }
+              , [143] = { -- 速度能量
+                ["Id"] = HERO_SKILL_POWER_OF_HASTE
+                , ["Text"] = "/Text/TTH/Skills/Offence/143-PowerOfHaste/Name.txt"
                 , ["DependType"] = TTH_ENUM.Simple
                 , ["Depend"] = {
                   [1] = HERO_SKILL_FRENZY
@@ -19731,13 +19721,12 @@
                 ["Id"] = HERO_SKILL_EVASION
                 , ["Text"] = "/Text/TTH/Skills/Defence/038-Evasion/Name.txt"
               }
-              , [118] = { -- 屹立不倒
-                ["Id"] = HERO_SKILL_LAST_STAND
-                , ["Text"] = "/Text/TTH/Skills/Defence/118-LastStand/Name.txt"
+              , [161] = { -- 防御编队
+                ["Id"] = HERO_SKILL_DEFENSIVE_FORMATION
+                , ["Text"] = "/Text/TTH/Skills/Defence/161-DefensiveFormation/Name.txt"
                 , ["DependType"] = TTH_ENUM.Simple
                 , ["Depend"] = {
                   [1] = HERO_SKILL_EVASION
-                  , [2] = HERO_SKILL_TOUGHNESS
                 }
               }
               , [39] = { -- 活力无限
@@ -19750,6 +19739,15 @@
                 , ["DependType"] = TTH_ENUM.Simple
                 , ["Depend"] = {
                   [1] = HERO_SKILL_TOUGHNESS
+                }
+              }
+              , [118] = { -- 屹立不倒
+                ["Id"] = HERO_SKILL_LAST_STAND
+                , ["Text"] = "/Text/TTH/Skills/Defence/118-LastStand/Name.txt"
+                , ["DependType"] = TTH_ENUM.Simple
+                , ["Depend"] = {
+                  [1] = HERO_SKILL_EVASION
+                  , [2] = HERO_SKILL_TOUGHNESS
                 }
               }
               , [171] = { -- 准备
@@ -19980,9 +19978,9 @@
               , TTH_ENUM.Warlock
             }
             , ["Perk"] = {
-              [70] = { -- 法术强效
-                ["Id"] = HERO_SKILL_EMPOWERED_SPELLS
-                , ["Text"] = "/Text/TTH/Skills/Invocation/070-EmpoweredSpells/Name.txt"
+              [81] = { -- 神秘精髓
+                ["Id"] = HERO_SKILL_CASTER_CERTIFICATE
+                , ["Text"] = "/Text/TTH/Skills/Invocation/081-CasterCertificate/Name.txt"
               }
               , [72] = { -- 元素视觉
                 ["Id"] = HERO_SKILL_ELEMENTAL_VISION
@@ -19994,7 +19992,7 @@
                       TTH_ENUM.Warlock
                     }
                     , ["Depend"] = {
-                      [1] = HERO_SKILL_EMPOWERED_SPELLS
+                      [1] = HERO_SKILL_CASTER_CERTIFICATE
                     }
                   }
                 }
@@ -20002,52 +20000,29 @@
                   [1] = HERO_SKILL_ELEMENTAL_VISION
                 }
               }
-              , [149] = { -- 驱魔咒语
-                ["Id"] = HERO_SKILL_ELEMENTAL_OVERKILL
-                , ["Text"] = "/Text/TTH/Skills/Invocation/149-ElementalOverkill/Name.txt"
-                , ["DependType"] = TTH_ENUM.Complicated
-                , ["Include"] = {
-                  [1] = {
-                    ["Class"] = {
-                      TTH_ENUM.Heretic
-                      , TTH_ENUM.Enchanter
-                      , TTH_ENUM.Wizard
-                      , TTH_ENUM.ElementAlist
-                      , TTH_ENUM.Sorcerer
-                      , TTH_ENUM.Necromancer
-                      , TTH_ENUM.Runemage
-                      , TTH_ENUM.Flamekeepera
-                      , TTH_ENUM.BeastMaster
-                      , TTH_ENUM.Seer
-                    }
-                    , ["Depend"] = {
-                      [1] = HERO_SKILL_EMPOWERED_SPELLS
-                    }
-                  }
-                }
-                , ["Depend"] = {
-                  [1] = HERO_SKILL_ELEMENTAL_OVERKILL
-                }
-              }
-              , [58] = { -- 食尸者
-                ["Id"] = HERO_SKILL_CONSUME_CORPSE
-                , ["Text"] = "/Text/TTH/Skills/Invocation/058-ConsumeCorpse/Name.txt"
-              }
-              , [93] = { -- 邪教大师
-                ["Id"] = HERO_SKILL_EXPLODING_CORPSES
-                , ["Text"] = "/Text/TTH/Skills/Invocation/093-ExplodingCorpses/Name.txt"
+              , [70] = { -- 法术强效
+                ["Id"] = HERO_SKILL_EMPOWERED_SPELLS
+                , ["Text"] = "/Text/TTH/Skills/Invocation/070-EmpoweredSpells/Name.txt"
                 , ["DependType"] = TTH_ENUM.Simple
                 , ["Depend"] = {
-                  [1] = HERO_SKILL_CONSUME_CORPSE
+                  [1] = HERO_SKILL_CASTER_CERTIFICATE
                 }
               }
               , [71] = { -- 黑暗仪式
                 ["Id"] = HERO_SKILL_DARK_RITUAL
                 , ["Text"] = "/Text/TTH/Skills/Invocation/071-DarkRitual/Name.txt"
               }
-              , [81] = { -- 神秘精髓
-                ["Id"] = HERO_SKILL_CASTER_CERTIFICATE
-                , ["Text"] = "/Text/TTH/Skills/Invocation/081-CasterCertificate/Name.txt"
+              , [149] = { -- 驱魔咒语
+                ["Id"] = HERO_SKILL_ELEMENTAL_OVERKILL
+                , ["Text"] = "/Text/TTH/Skills/Invocation/149-ElementalOverkill/Name.txt"
+                , ["DependType"] = TTH_ENUM.Simple
+                , ["Depend"] = {
+                  [1] = HERO_SKILL_DARK_RITUAL
+                }
+              }
+              , [58] = { -- 食尸者
+                ["Id"] = HERO_SKILL_CONSUME_CORPSE
+                , ["Text"] = "/Text/TTH/Skills/Invocation/058-ConsumeCorpse/Name.txt"
                 , ["DependType"] = TTH_ENUM.Simple
                 , ["Depend"] = {
                   [1] = HERO_SKILL_DARK_RITUAL
@@ -20081,24 +20056,17 @@
                 ["Id"] = HERO_SKILL_NO_REST_FOR_THE_WICKED
                 , ["Text"] = "/Text/TTH/Skills/Necromancy/062-NoRestForTheWicked/Name.txt"
               }
+              , [101] = { -- 丧尸之王
+                ["Id"] = HERO_SKILL_LORD_OF_UNDEAD
+                , ["Text"] = "/Text/TTH/Skills/Necromancy/101-LordOfUndead/Name.txt"
+              }
               , [108] = { -- 灵魂链接
                 ["Id"] = HERO_SKILL_SPIRIT_LINK
                 , ["Text"] = "/Text/TTH/Skills/Necromancy/108-SpiritLink/Name.txt"
                 , ["DependType"] = TTH_ENUM.Simple
                 , ["Depend"] = {
                   [1] = HERO_SKILL_NO_REST_FOR_THE_WICKED
-                }
-              }
-              , [101] = { -- 丧尸之王
-                ["Id"] = HERO_SKILL_LORD_OF_UNDEAD
-                , ["Text"] = "/Text/TTH/Skills/Necromancy/101-LordOfUndead/Name.txt"
-              }
-              , [73] = { -- 邪恶远征
-                ["Id"] = HERO_SKILL_ROAD_HOME
-                , ["Text"] = "/Text/TTH/Skills/Necromancy/073-RoadHome/Name.txt"
-                , ["DependType"] = TTH_ENUM.Simple
-                , ["Depend"] = {
-                  [1] = HERO_SKILL_LORD_OF_UNDEAD
+                  , [2] = HERO_SKILL_LORD_OF_UNDEAD
                 }
               }
             }
@@ -20157,19 +20125,7 @@
               , TTH_ENUM.Flamekeepera
             }
             , ["Perk"] = {
-              [161] = { -- 防御编队
-                ["Id"] = HERO_SKILL_DEFENSIVE_FORMATION
-                , ["Text"] = "/Text/TTH/Skills/Runelore/161-DefensiveFormation/Name.txt"
-              }
-              , [160] = { -- 攻击编队
-                ["Id"] = HERO_SKILL_OFFENSIVE_FORMATION
-                , ["Text"] = "/Text/TTH/Skills/Runelore/160-OffensiveFormation/Name.txt"
-                , ["DependType"] = TTH_ENUM.Simple
-                , ["Depend"] = {
-                  [1] = HERO_SKILL_DEFENSIVE_FORMATION
-                }
-              }
-              , [154] = { -- 精炼符文
+              [154] = { -- 精炼符文
                 ["Id"] = HERO_SKILL_FINE_RUNE
                 , ["Text"] = "/Text/TTH/Skills/Runelore/154-FineRune/Name.txt"
               }
@@ -20363,16 +20319,16 @@
               , TTH_ENUM.Warlock
             }
             , ["Perk"] = {
-              [41] = { -- 洞察魔力
-                ["Id"] = HERO_SKILL_WISDOM
-                , ["Text"] = "/Text/TTH/Skills/Sorcery/041-Wisdom/Name.txt"
+              [40] = { -- 魔力再生
+                ["Id"] = HERO_SKILL_MYSTICISM
+                , ["Text"] = "/Text/TTH/Skills/Sorcery/040-Mysticism/Name.txt"
               }
               , [119] = { -- 神秘光芒
                 ["Id"] = HERO_SKILL_INSIGHTS
                 , ["Text"] = "/Text/TTH/Skills/Sorcery/119-Insights/Name.txt"
                 , ["DependType"] = TTH_ENUM.Simple
                 , ["Depend"] = {
-                  [1] = HERO_SKILL_WISDOM
+                  [1] = HERO_SKILL_MYSTICISM
                 }
               }
               , [67] = { -- 法师印记
@@ -20387,7 +20343,7 @@
                       , TTH_ENUM.ElementAlist
                     }
                     , ["Depend"] = {
-                      [1] = HERO_SKILL_WISDOM
+                      [1] = HERO_SKILL_MYSTICISM
                     }
                   }
                   , [2] = {
@@ -20444,9 +20400,9 @@
                   [1] = HERO_SKILL_ARCANE_TRAINING
                 }
               }
-              , [40] = { -- 魔力再生
-                ["Id"] = HERO_SKILL_MYSTICISM
-                , ["Text"] = "/Text/TTH/Skills/Sorcery/040-Mysticism/Name.txt"
+              , [41] = { -- 洞察魔力
+                ["Id"] = HERO_SKILL_WISDOM
+                , ["Text"] = "/Text/TTH/Skills/Sorcery/041-Wisdom/Name.txt"
                 , ["DependType"] = TTH_ENUM.Simple
                 , ["Depend"] = {
                   [1] = HERO_SKILL_ARCANE_TRAINING

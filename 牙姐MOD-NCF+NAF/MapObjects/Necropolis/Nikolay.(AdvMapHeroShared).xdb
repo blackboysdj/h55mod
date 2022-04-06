@@ -35,8 +35,8 @@
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_NECROMANCY</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Necromancy/Nikolay/Text.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Necropolis55/NecLord/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Necromancy/080-Nikolay/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Necromancy/080-Nikolay/Description.txt"/>
 	<SpecializationIcon href="/Textures/HeroScreen/Specializations/Necropolis/Heir_of_Undeath.xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Necropolis/Necropolis_Nicolai_vampire_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall href="/Textures/Icons/Heroes/Necropolis/Necropolis_Nicolai_vampire_128x128_64.(Texture).xdb#xpointer(/Texture)"/>
@@ -60,7 +60,7 @@
 			</Item>
 		</skills>
 		<perkIDs>
-			<Item>HERO_SKILL_ROAD_HOME</Item>
+			<Item>HERO_SKILL_LORD_OF_UNDEAD</Item>
 		</perkIDs>
 		<spellIDs>
 			<Item>SPELL_ANIMATE_DEAD</Item>

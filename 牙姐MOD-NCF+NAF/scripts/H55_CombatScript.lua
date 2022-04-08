@@ -2502,8 +2502,7 @@ doFile('/scripts/combat-startup.lua')
 								startThread(Thread_Command_UnitCastAimedSpell_UseMana, strHeroName, SPELL_LIGHTNING_BOLT, strCreatureTarget);
 								sleep(1);
 								SetUnitManaPoints(strHeroName, iCurrentManaPre);
-								local iCurrentManaPost = GetUnitManaPoints(strHeroName);
-								repeat sleep(1); until iCurrentManaPost >= iCurrentManaPre;
+								repeat sleep(1); until GetUnitManaPoints(strHeroName) >= iCurrentManaPre;
 							end;
 							combatSetPause(nil);
 						end;

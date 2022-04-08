@@ -11,10 +11,6 @@
 	<Health>25</Health>
 	<KnownSpells>
 		<Item>
-			<Spell>SPELL_ABILITY_DASH</Spell>
-			<Mastery>MASTERY_ADVANCED</Mastery>
-		</Item>
-		<Item>
 			<Spell>SPELL_ABILITY_BERSERKER_RAGE</Spell>
 			<Mastery>MASTERY_BASIC</Mastery>
 		</Item>

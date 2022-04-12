@@ -42,6 +42,7 @@ HERO_SKILL_GUARDIAN_ANGEL = 78;
 HERO_SKILL_PARIAH = 83;
 HERO_SKILL_TWILIGHT = 109;
 HERO_SKILL_EXPLODING_CORPSES = 93;
+HERO_SKILL_FOREST_RAGE = 117;
 
 MAX_MANA = 1000;
 
@@ -145,6 +146,7 @@ TTH_SKILL_EFFECT_COMBAT = {
     , [7] = HERO_SKILL_PARIAH
     , [8] = HERO_SKILL_TWILIGHT
     , [9] = HERO_SKILL_EXPLODING_CORPSES
+    , [10] = HERO_SKILL_FOREST_RAGE
 };
 TTH_SKILL_EFFECT_COMBAT_ONCE = {
 };
@@ -2672,6 +2674,7 @@ end;
           , ["TIER"] = 0
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [1] = {
           ["ID"] = CREATURE_PEASANT
@@ -2680,6 +2683,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 41
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 2
             , [2] = 106
@@ -2692,6 +2696,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 72
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 106
         }
         , [3] = {
@@ -2701,6 +2706,7 @@ end;
           , ["TIER"] = 2
           , ["POWER"] = 140
           , ["CombatSize"] = 1
+          , ["Range"] = 1
           , ["Upgrade"] = {
             [1] = 4
             , [2] = 107
@@ -2713,6 +2719,7 @@ end;
           , ["TIER"] = 2
           , ["POWER"] = 199
           , ["CombatSize"] = 1
+          , ["Range"] = 1
           , ["Pair"] = 107
         }
         , [5] = {
@@ -2722,6 +2729,7 @@ end;
           , ["TIER"] = 3
           , ["POWER"] = 201
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 6
             , [2] = 108
@@ -2734,6 +2742,7 @@ end;
           , ["TIER"] = 3
           , ["POWER"] = 287
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 108
         }
         , [7] = {
@@ -2743,6 +2752,7 @@ end;
           , ["TIER"] = 4
           , ["POWER"] = 524
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 8
             , [2] = 109
@@ -2755,6 +2765,7 @@ end;
           , ["TIER"] = 4
           , ["POWER"] = 716
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 109
         }
         , [9] = {
@@ -2764,6 +2775,7 @@ end;
           , ["TIER"] = 5
           , ["POWER"] = 1086
           , ["CombatSize"] = 1
+          , ["Range"] = 1
           , ["Upgrade"] = {
             [1] = 10
             , [2] = 110
@@ -2776,6 +2788,7 @@ end;
           , ["TIER"] = 5
           , ["POWER"] = 1487
           , ["CombatSize"] = 1
+          , ["Range"] = 1
           , ["Pair"] = 110
         }
         , [11] = {
@@ -2785,6 +2798,7 @@ end;
           , ["TIER"] = 6
           , ["POWER"] = 2185
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 12
             , [2] = 111
@@ -2797,6 +2811,7 @@ end;
           , ["TIER"] = 6
           , ["POWER"] = 2520
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 111
         }
         , [13] = {
@@ -2806,6 +2821,7 @@ end;
           , ["TIER"] = 7
           , ["POWER"] = 4866
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 14
             , [2] = 112
@@ -2818,6 +2834,7 @@ end;
           , ["TIER"] = 7
           , ["POWER"] = 6153
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 112
         }
         , [15] = {
@@ -2827,6 +2844,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 78
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 16
             , [2] = 131
@@ -2839,6 +2857,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 127
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 131
         }
         , [17] = {
@@ -2848,6 +2867,7 @@ end;
           , ["TIER"] = 2
           , ["POWER"] = 106
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 18
             , [2] = 132
@@ -2860,6 +2880,7 @@ end;
           , ["TIER"] = 2
           , ["POWER"] = 150
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 132
         }
         , [19] = {
@@ -2869,6 +2890,7 @@ end;
           , ["TIER"] = 3
           , ["POWER"] = 259
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 20
             , [2] = 133
@@ -2881,6 +2903,7 @@ end;
           , ["TIER"] = 3
           , ["POWER"] = 370
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 133
         }
         , [21] = {
@@ -2890,6 +2913,7 @@ end;
           , ["TIER"] = 4
           , ["POWER"] = 511
           , ["CombatSize"] = 1
+          , ["Range"] = 1
           , ["Upgrade"] = {
             [1] = 22
             , [2] = 134
@@ -2902,6 +2926,7 @@ end;
           , ["TIER"] = 4
           , ["POWER"] = 694
           , ["CombatSize"] = 1
+          , ["Range"] = 1
           , ["Pair"] = 134
         }
         , [23] = {
@@ -2911,6 +2936,7 @@ end;
           , ["TIER"] = 5
           , ["POWER"] = 1069
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 24
             , [2] = 135
@@ -2923,6 +2949,7 @@ end;
           , ["TIER"] = 5
           , ["POWER"] = 1415
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 135
         }
         , [25] = {
@@ -2932,6 +2959,7 @@ end;
           , ["TIER"] = 6
           , ["POWER"] = 2102
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 26
             , [2] = 136
@@ -2944,6 +2972,7 @@ end;
           , ["TIER"] = 6
           , ["POWER"] = 2445
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 136
         }
         , [27] = {
@@ -2953,6 +2982,7 @@ end;
           , ["TIER"] = 7
           , ["POWER"] = 4868
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 28
             , [2] = 137
@@ -2965,6 +2995,7 @@ end;
           , ["TIER"] = 7
           , ["POWER"] = 6066
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 137
         }
         , [29] = {
@@ -2974,6 +3005,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 54
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 30
             , [2] = 152
@@ -2986,6 +3018,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 84
           , ["CombatSize"] = 1
+          , ["Range"] = 1
           , ["Pair"] = 152
         }
         , [31] = {
@@ -2995,6 +3028,7 @@ end;
           , ["TIER"] = 2
           , ["POWER"] = 105
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 32
             , [2] = 153
@@ -3007,6 +3041,7 @@ end;
           , ["TIER"] = 2
           , ["POWER"] = 150
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 153
         }
         , [33] = {
@@ -3016,6 +3051,7 @@ end;
           , ["TIER"] = 3
           , ["POWER"] = 232
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 34
             , [2] = 154
@@ -3028,6 +3064,7 @@ end;
           , ["TIER"] = 3
           , ["POWER"] = 327
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 154
         }
         , [35] = {
@@ -3037,6 +3074,7 @@ end;
           , ["TIER"] = 4
           , ["POWER"] = 518
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 36
             , [2] = 155
@@ -3049,6 +3087,7 @@ end;
           , ["TIER"] = 4
           , ["POWER"] = 739
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 155
         }
         , [37] = {
@@ -3058,6 +3097,7 @@ end;
           , ["TIER"] = 5
           , ["POWER"] = 1166
           , ["CombatSize"] = 2
+          , ["Range"] = 1
           , ["Upgrade"] = {
             [1] = 38
             , [2] = 156
@@ -3070,6 +3110,7 @@ end;
           , ["TIER"] = 5
           , ["POWER"] = 1539
           , ["CombatSize"] = 2
+          , ["Range"] = 1
           , ["Pair"] = 156
         }
         , [39] = {
@@ -3079,6 +3120,7 @@ end;
           , ["TIER"] = 6
           , ["POWER"] = 2204
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 40
             , [2] = 157
@@ -3091,6 +3133,7 @@ end;
           , ["TIER"] = 6
           , ["POWER"] = 2588
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 157
         }
         , [41] = {
@@ -3100,6 +3143,7 @@ end;
           , ["TIER"] = 7
           , ["POWER"] = 3174
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 42
             , [2] = 158
@@ -3112,6 +3156,7 @@ end;
           , ["TIER"] = 7
           , ["POWER"] = 3905
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 158
         }
         , [43] = {
@@ -3121,6 +3166,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 100
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 44
             , [2] = 145
@@ -3133,6 +3179,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 169
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 145
         }
         , [45] = {
@@ -3142,6 +3189,7 @@ end;
           , ["TIER"] = 2
           , ["POWER"] = 191
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 46
             , [2] = 146
@@ -3154,6 +3202,7 @@ end;
           , ["TIER"] = 2
           , ["POWER"] = 311
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 146
         }
         , [47] = {
@@ -3163,6 +3212,7 @@ end;
           , ["TIER"] = 3
           , ["POWER"] = 309
           , ["CombatSize"] = 1
+          , ["Range"] = 1
           , ["Upgrade"] = {
             [1] = 48
             , [2] = 147
@@ -3175,6 +3225,7 @@ end;
           , ["TIER"] = 3
           , ["POWER"] = 433
           , ["CombatSize"] = 1
+          , ["Range"] = 1
           , ["Pair"] = 147
         }
         , [49] = {
@@ -3184,6 +3235,7 @@ end;
           , ["TIER"] = 4
           , ["POWER"] = 635
           , ["CombatSize"] = 1
+          , ["Range"] = 1
           , ["Upgrade"] = {
             [1] = 50
             , [2] = 148
@@ -3196,6 +3248,7 @@ end;
           , ["TIER"] = 4
           , ["POWER"] = 846
           , ["CombatSize"] = 1
+          , ["Range"] = 1
           , ["Pair"] = 148
         }
         , [51] = {
@@ -3205,6 +3258,7 @@ end;
           , ["TIER"] = 5
           , ["POWER"] = 1072
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 52
             , [2] = 149
@@ -3217,6 +3271,7 @@ end;
           , ["TIER"] = 5
           , ["POWER"] = 1441
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 149
         }
         , [53] = {
@@ -3226,6 +3281,7 @@ end;
           , ["TIER"] = 6
           , ["POWER"] = 1717
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 54
             , [2] = 150
@@ -3238,6 +3294,7 @@ end;
           , ["TIER"] = 6
           , ["POWER"] = 1993
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 150
         }
         , [55] = {
@@ -3247,6 +3304,7 @@ end;
           , ["TIER"] = 7
           , ["POWER"] = 4942
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 55
             , [2] = 151
@@ -3259,6 +3317,7 @@ end;
           , ["TIER"] = 7
           , ["POWER"] = 6028
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 151
         }
         , [57] = {
@@ -3268,6 +3327,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 63
           , ["CombatSize"] = 1
+          , ["Range"] = 1
           , ["Upgrade"] = {
             [1] = 58
             , [2] = 159
@@ -3280,6 +3340,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 105
           , ["CombatSize"] = 1
+          , ["Range"] = 1
           , ["Pair"] = 159
         }
         , [59] = {
@@ -3289,6 +3350,7 @@ end;
           , ["TIER"] = 2
           , ["POWER"] = 113
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 60
             , [2] = 160
@@ -3301,6 +3363,7 @@ end;
           , ["TIER"] = 2
           , ["POWER"] = 172
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 160
         }
         , [61] = {
@@ -3310,6 +3373,7 @@ end;
           , ["TIER"] = 3
           , ["POWER"] = 243
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 62
             , [2] = 161
@@ -3322,6 +3386,7 @@ end;
           , ["TIER"] = 3
           , ["POWER"] = 357
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 161
         }
         , [63] = {
@@ -3331,6 +3396,7 @@ end;
           , ["TIER"] = 4
           , ["POWER"] = 498
           , ["CombatSize"] = 1
+          , ["Range"] = 1
           , ["Upgrade"] = {
             [1] = 64
             , [2] = 162
@@ -3343,6 +3409,7 @@ end;
           , ["TIER"] = 4
           , ["POWER"] = 643
           , ["CombatSize"] = 1
+          , ["Range"] = 1
           , ["Pair"] = 162
         }
         , [65] = {
@@ -3352,6 +3419,7 @@ end;
           , ["TIER"] = 5
           , ["POWER"] = 839
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 66
             , [2] = 163
@@ -3364,6 +3432,7 @@ end;
           , ["TIER"] = 5
           , ["POWER"] = 1126
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 163
         }
         , [67] = {
@@ -3373,6 +3442,7 @@ end;
           , ["TIER"] = 6
           , ["POWER"] = 2108
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 68
             , [2] = 164
@@ -3385,6 +3455,7 @@ end;
           , ["TIER"] = 6
           , ["POWER"] = 2535
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 164
         }
         , [69] = {
@@ -3394,6 +3465,7 @@ end;
           , ["TIER"] = 7
           , ["POWER"] = 4822
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 70
             , [2] = 165
@@ -3406,6 +3478,7 @@ end;
           , ["TIER"] = 7
           , ["POWER"] = 6095
           , ["CombatSize"] = 2
+          , ["Range"] = 1
           , ["Pair"] = 165
         }
         , [71] = {
@@ -3415,6 +3488,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 180
           , ["CombatSize"] = 1
+          , ["Range"] = 1
           , ["Upgrade"] = {
             [1] = 72
             , [2] = 138
@@ -3427,6 +3501,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 295
           , ["CombatSize"] = 1
+          , ["Range"] = 1
           , ["Pair"] = 138
         }
         , [73] = {
@@ -3436,6 +3511,7 @@ end;
           , ["TIER"] = 2
           , ["POWER"] = 333
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 74
             , [2] = 139
@@ -3448,6 +3524,7 @@ end;
           , ["TIER"] = 2
           , ["POWER"] = 484
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 139
         }
         , [75] = {
@@ -3457,6 +3534,7 @@ end;
           , ["TIER"] = 3
           , ["POWER"] = 342
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 76
             , [2] = 140
@@ -3469,6 +3547,7 @@ end;
           , ["TIER"] = 3
           , ["POWER"] = 474
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 140
         }
         , [77] = {
@@ -3478,6 +3557,7 @@ end;
           , ["TIER"] = 4
           , ["POWER"] = 598
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 78
             , [2] = 141
@@ -3490,6 +3570,7 @@ end;
           , ["TIER"] = 4
           , ["POWER"] = 812
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 141
         }
         , [79] = {
@@ -3499,6 +3580,7 @@ end;
           , ["TIER"] = 5
           , ["POWER"] = 968
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 80
             , [2] = 142
@@ -3511,6 +3593,7 @@ end;
           , ["TIER"] = 5
           , ["POWER"] = 1324
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 142
         }
         , [81] = {
@@ -3520,6 +3603,7 @@ end;
           , ["TIER"] = 6
           , ["POWER"] = 2193
           , ["CombatSize"] = 1
+          , ["Range"] = 1
           , ["Upgrade"] = {
             [1] = 82
             , [2] = 143
@@ -3532,6 +3616,7 @@ end;
           , ["TIER"] = 6
           , ["POWER"] = 2537
           , ["CombatSize"] = 1
+          , ["Range"] = 1
           , ["Pair"] = 143
         }
         , [83] = {
@@ -3541,6 +3626,7 @@ end;
           , ["TIER"] = 7
           , ["POWER"] = 5234
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 84
             , [2] = 144
@@ -3553,6 +3639,7 @@ end;
           , ["TIER"] = 7
           , ["POWER"] = 6443
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 144
         }
         , [85] = {
@@ -3562,6 +3649,7 @@ end;
           , ["TIER"] = 4
           , ["POWER"] = 829
           , ["CombatSize"] = 1
+          , ["Range"] = 1
         }
         , [86] = {
           ["ID"] = CREATURE_WATER_ELEMENTAL
@@ -3570,6 +3658,7 @@ end;
           , ["TIER"] = 4
           , ["POWER"] = 795
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [87] = {
           ["ID"] = CREATURE_EARTH_ELEMENTAL
@@ -3578,6 +3667,7 @@ end;
           , ["TIER"] = 4
           , ["POWER"] = 856
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [88] = {
           ["ID"] = CREATURE_AIR_ELEMENTAL
@@ -3586,6 +3676,7 @@ end;
           , ["TIER"] = 4
           , ["POWER"] = 813
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [89] = {
           ["ID"] = CREATURE_DEATH_KNIGHT
@@ -3595,6 +3686,7 @@ end;
           , ["TIER"] = 6
           , ["POWER"] = 2560
           , ["CombatSize"] = 2
+          , ["Range"] = 0
         }
         , [90] = {
           ["ID"] = CREATURE_DEATH_KNIGHT
@@ -3603,6 +3695,7 @@ end;
           , ["TIER"] = 6
           , ["POWER"] = 2560
           , ["CombatSize"] = 2
+          , ["Range"] = 0
         }
         , [91] = {
           ["ID"] = CREATURE_PHOENIX
@@ -3611,6 +3704,7 @@ end;
           , ["TIER"] = 7
           , ["POWER"] = 8576
           , ["CombatSize"] = 2
+          , ["Range"] = 0
         }
         , [92] = {
           ["ID"] = CREATURE_DEFENDER
@@ -3619,6 +3713,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 70
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 93
             , [2] = 166
@@ -3631,6 +3726,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 115
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 166
         }
         , [94] = {
@@ -3640,6 +3736,7 @@ end;
           , ["TIER"] = 2
           , ["POWER"] = 115
           , ["CombatSize"] = 1
+          , ["Range"] = 1
           , ["Upgrade"] = {
             [1] = 95
             , [2] = 167
@@ -3652,6 +3749,7 @@ end;
           , ["TIER"] = 2
           , ["POWER"] = 171
           , ["CombatSize"] = 1
+          , ["Range"] = 1
           , ["Pair"] = 167
         }
         , [96] = {
@@ -3661,6 +3759,7 @@ end;
           , ["TIER"] = 3
           , ["POWER"] = 318
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 97
             , [2] = 168
@@ -3673,6 +3772,7 @@ end;
           , ["TIER"] = 3
           , ["POWER"] = 436
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 168
         }
         , [98] = {
@@ -3682,6 +3782,7 @@ end;
           , ["TIER"] = 4
           , ["POWER"] = 304
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 99
             , [2] = 169
@@ -3694,6 +3795,7 @@ end;
           , ["TIER"] = 4
           , ["POWER"] = 420
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 169
         }
         , [100] = {
@@ -3703,6 +3805,7 @@ end;
           , ["TIER"] = 5
           , ["POWER"] = 932
           , ["CombatSize"] = 1
+          , ["Range"] = 1
           , ["Upgrade"] = {
             [1] = 101
             , [2] = 170
@@ -3715,6 +3818,7 @@ end;
           , ["TIER"] = 5
           , ["POWER"] = 1308
           , ["CombatSize"] = 1
+          , ["Range"] = 1
           , ["Pair"] = 170
         }
         , [102] = {
@@ -3724,6 +3828,7 @@ end;
           , ["TIER"] = 6
           , ["POWER"] = 2109
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 103
             , [2] = 171
@@ -3736,6 +3841,7 @@ end;
           , ["TIER"] = 6
           , ["POWER"] = 2477
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 171
         }
         , [104] = {
@@ -3745,6 +3851,7 @@ end;
           , ["TIER"] = 7
           , ["POWER"] = 4883
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 105
             , [2] = 172
@@ -3757,6 +3864,7 @@ end;
           , ["TIER"] = 7
           , ["POWER"] = 6100
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 172
         }
         , [106] = {
@@ -3766,6 +3874,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 72
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 2
         }
         , [107] = {
@@ -3775,6 +3884,7 @@ end;
           , ["TIER"] = 2
           , ["POWER"] = 203
           , ["CombatSize"] = 1
+          , ["Range"] = 1
           , ["Pair"] = 4
         }
         , [108] = {
@@ -3784,6 +3894,7 @@ end;
           , ["TIER"] = 3
           , ["POWER"] = 299
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 6
         }
         , [109] = {
@@ -3793,6 +3904,7 @@ end;
           , ["TIER"] = 4
           , ["POWER"] = 697
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 8
         }
         , [110] = {
@@ -3802,6 +3914,7 @@ end;
           , ["TIER"] = 5
           , ["POWER"] = 1523
           , ["CombatSize"] = 1
+          , ["Range"] = 1
           , ["Pair"] = 10
         }
         , [111] = {
@@ -3811,6 +3924,7 @@ end;
           , ["TIER"] = 6
           , ["POWER"] = 2520
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 12
         }
         , [112] = {
@@ -3820,6 +3934,7 @@ end;
           , ["TIER"] = 7
           , ["POWER"] = 6003
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 14
         }
         , [113] = {
@@ -3829,6 +3944,7 @@ end;
           , ["TIER"] = 3
           , ["POWER"] = 355
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [114] = {
           ["ID"] = CREATURE_SNOW_APE
@@ -3837,6 +3953,7 @@ end;
           , ["TIER"] = 6
           , ["POWER"] = 2000
           , ["CombatSize"] = 1
+          , ["Range"] = 1
         }
         , [115] = {
           ["ID"] = CREATURE_MANTICORE
@@ -3845,6 +3962,7 @@ end;
           , ["TIER"] = 6
           , ["POWER"] = 2523
           , ["CombatSize"] = 2
+          , ["Range"] = 0
         }
         , [116] = {
           ["ID"] = CREATURE_MUMMY
@@ -3853,6 +3971,7 @@ end;
           , ["TIER"] = 5
           , ["POWER"] = 1542
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [117] = {
           ["ID"] = CREATURE_GOBLIN
@@ -3861,6 +3980,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 42
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 118
             , [2] = 173
@@ -3873,6 +3993,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 69
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 173
         }
         , [119] = {
@@ -3882,6 +4003,7 @@ end;
           , ["TIER"] = 2
           , ["POWER"] = 121
           , ["CombatSize"] = 2
+          , ["Range"] = 1
           , ["Upgrade"] = {
             [1] = 120
             , [2] = 174
@@ -3894,6 +4016,7 @@ end;
           , ["TIER"] = 2
           , ["POWER"] = 174
           , ["CombatSize"] = 2
+          , ["Range"] = 1
           , ["Pair"] = 174
         }
         , [121] = {
@@ -3903,6 +4026,7 @@ end;
           , ["TIER"] = 3
           , ["POWER"] = 190
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 122
             , [2] = 175
@@ -3915,6 +4039,7 @@ end;
           , ["TIER"] = 3
           , ["POWER"] = 254
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 175
         }
         , [123] = {
@@ -3924,6 +4049,7 @@ end;
           , ["TIER"] = 4
           , ["POWER"] = 492
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 124
             , [2] = 176
@@ -3936,6 +4062,7 @@ end;
           , ["TIER"] = 4
           , ["POWER"] = 680
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 176
         }
         , [125] = {
@@ -3945,6 +4072,7 @@ end;
           , ["TIER"] = 5
           , ["POWER"] = 695
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 126
             , [2] = 177
@@ -3957,6 +4085,7 @@ end;
           , ["TIER"] = 5
           , ["POWER"] = 926
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 177
         }
         , [127] = {
@@ -3966,6 +4095,7 @@ end;
           , ["TIER"] = 6
           , ["POWER"] = 2058
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 128
             , [2] = 178
@@ -3978,6 +4108,7 @@ end;
           , ["TIER"] = 6
           , ["POWER"] = 2571
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 178
         }
         , [129] = {
@@ -3987,6 +4118,7 @@ end;
           , ["TIER"] = 7
           , ["POWER"] = 4790
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Upgrade"] = {
             [1] = 130
             , [2] = 179
@@ -3999,6 +4131,7 @@ end;
           , ["TIER"] = 7
           , ["POWER"] = 5937
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 179
         }
         , [131] = {
@@ -4008,6 +4141,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 124
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 16
         }
         , [132] = {
@@ -4017,6 +4151,7 @@ end;
           , ["TIER"] = 2
           , ["POWER"] = 149
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 18
         }
         , [133] = {
@@ -4026,6 +4161,7 @@ end;
           , ["TIER"] = 3
           , ["POWER"] = 368
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 20
         }
         , [134] = {
@@ -4035,6 +4171,7 @@ end;
           , ["TIER"] = 4
           , ["POWER"] = 680
           , ["CombatSize"] = 1
+          , ["Range"] = 1
           , ["Pair"] = 22
         }
         , [135] = {
@@ -4044,6 +4181,7 @@ end;
           , ["TIER"] = 5
           , ["POWER"] = 1434
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 24
         }
         , [136] = {
@@ -4053,6 +4191,7 @@ end;
           , ["TIER"] = 6
           , ["POWER"] = 2448
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 26
         }
         , [137] = {
@@ -4062,6 +4201,7 @@ end;
           , ["TIER"] = 7
           , ["POWER"] = 6060
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 28
         }
         , [138] = {
@@ -4071,6 +4211,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 290
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 72
         }
         , [139] = {
@@ -4080,6 +4221,7 @@ end;
           , ["TIER"] = 2
           , ["POWER"] = 477
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 74
         }
         , [140] = {
@@ -4089,6 +4231,7 @@ end;
           , ["TIER"] = 3
           , ["POWER"] = 488
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 76
         }
         , [141] = {
@@ -4098,6 +4241,7 @@ end;
           , ["TIER"] = 4
           , ["POWER"] = 833
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 78
         }
         , [142] = {
@@ -4107,6 +4251,7 @@ end;
           , ["TIER"] = 5
           , ["POWER"] = 1333
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 80
         }
         , [143] = {
@@ -4116,6 +4261,7 @@ end;
           , ["TIER"] = 6
           , ["POWER"] = 2622
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 82
         }
         , [144] = {
@@ -4125,6 +4271,7 @@ end;
           , ["TIER"] = 7
           , ["POWER"] = 6389
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 84
         }
         , [145] = {
@@ -4134,6 +4281,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 174
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 44
         }
         , [146] = {
@@ -4143,6 +4291,7 @@ end;
           , ["TIER"] = 2
           , ["POWER"] = 308
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 46
         }
         , [147] = {
@@ -4152,6 +4301,7 @@ end;
           , ["TIER"] = 3
           , ["POWER"] = 447
           , ["CombatSize"] = 1
+          , ["Range"] = 1
           , ["Pair"] = 48
         }
         , [148] = {
@@ -4161,6 +4311,7 @@ end;
           , ["TIER"] = 4
           , ["POWER"] = 862
           , ["CombatSize"] = 1
+          , ["Range"] = 1
           , ["Pair"] = 50
         }
         , [149] = {
@@ -4170,6 +4321,7 @@ end;
           , ["TIER"] = 5
           , ["POWER"] = 1457
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 52
         }
         , [150] = {
@@ -4179,6 +4331,7 @@ end;
           , ["TIER"] = 6
           , ["POWER"] = 2032
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 54
         }
         , [151] = {
@@ -4188,6 +4341,7 @@ end;
           , ["TIER"] = 7
           , ["POWER"] = 5905
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 56
         }
         , [152] = {
@@ -4197,6 +4351,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 30
         }
         , [153] = {
@@ -4206,6 +4361,7 @@ end;
           , ["TIER"] = 2
           , ["POWER"] = 145
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 32
         }
         , [154] = {
@@ -4215,6 +4371,7 @@ end;
           , ["TIER"] = 3
           , ["POWER"] = 331
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 34
         }
         , [155] = {
@@ -4224,6 +4381,7 @@ end;
           , ["TIER"] = 4
           , ["POWER"] = 757
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 36
         }
         , [156] = {
@@ -4233,6 +4391,7 @@ end;
           , ["TIER"] = 5
           , ["POWER"] = 1541
           , ["CombatSize"] = 2
+          , ["Range"] = 1
           , ["Pair"] = 38
         }
         , [157] = {
@@ -4242,6 +4401,7 @@ end;
           , ["TIER"] = 6
           , ["POWER"] = 2449
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 40
         }
         , [158] = {
@@ -4251,6 +4411,7 @@ end;
           , ["TIER"] = 7
           , ["POWER"] = 3872
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 42
         }
         , [159] = {
@@ -4260,6 +4421,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 105
           , ["CombatSize"] = 1
+          , ["Range"] = 1
           , ["Pair"] = 58
         }
         , [160] = {
@@ -4269,6 +4431,7 @@ end;
           , ["TIER"] = 2
           , ["POWER"] = 180
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 60
         }
         , [161] = {
@@ -4278,6 +4441,7 @@ end;
           , ["TIER"] = 3
           , ["POWER"] = 355
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 62
         }
         , [162] = {
@@ -4287,6 +4451,7 @@ end;
           , ["TIER"] = 4
           , ["POWER"] = 642
           , ["CombatSize"] = 1
+          , ["Range"] = 1
           , ["Pair"] = 64
         }
         , [163] = {
@@ -4296,6 +4461,7 @@ end;
           , ["TIER"] = 5
           , ["POWER"] = 1096
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 66
         }
         , [164] = {
@@ -4305,6 +4471,7 @@ end;
           , ["TIER"] = 6
           , ["POWER"] = 2581
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 68
         }
         , [165] = {
@@ -4314,6 +4481,7 @@ end;
           , ["TIER"] = 7
           , ["POWER"] = 6095
           , ["CombatSize"] = 2
+          , ["Range"] = 1
           , ["Pair"] = 70
         }
         , [166] = {
@@ -4323,6 +4491,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 113
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 93
         }
         , [167] = {
@@ -4332,6 +4501,7 @@ end;
           , ["TIER"] = 2
           , ["POWER"] = 171
           , ["CombatSize"] = 1
+          , ["Range"] = 1
           , ["Pair"] = 95
         }
         , [168] = {
@@ -4341,6 +4511,7 @@ end;
           , ["TIER"] = 3
           , ["POWER"] = 436
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 97
         }
         , [169] = {
@@ -4350,6 +4521,7 @@ end;
           , ["TIER"] = 4
           , ["POWER"] = 420
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 99
         }
         , [170] = {
@@ -4359,6 +4531,7 @@ end;
           , ["TIER"] = 5
           , ["POWER"] = 1329
           , ["CombatSize"] = 1
+          , ["Range"] = 1
           , ["Pair"] = 101
         }
         , [171] = {
@@ -4368,6 +4541,7 @@ end;
           , ["TIER"] = 6
           , ["POWER"] = 2437
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 103
         }
         , [172] = {
@@ -4377,6 +4551,7 @@ end;
           , ["TIER"] = 7
           , ["POWER"] = 6070
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 105
         }
         , [173] = {
@@ -4386,6 +4561,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 66
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 118
         }
         , [174] = {
@@ -4395,6 +4571,7 @@ end;
           , ["TIER"] = 2
           , ["POWER"] = 181
           , ["CombatSize"] = 2
+          , ["Range"] = 1
           , ["Pair"] = 120
         }
         , [175] = {
@@ -4404,6 +4581,7 @@ end;
           , ["TIER"] = 3
           , ["POWER"] = 265
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 122
         }
         , [176] = {
@@ -4413,6 +4591,7 @@ end;
           , ["TIER"] = 4
           , ["POWER"] = 692
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 124
         }
         , [177] = {
@@ -4422,6 +4601,7 @@ end;
           , ["TIER"] = 5
           , ["POWER"] = 895
           , ["CombatSize"] = 1
+          , ["Range"] = 0
           , ["Pair"] = 126
         }
         , [178] = {
@@ -4431,6 +4611,7 @@ end;
           , ["TIER"] = 6
           , ["POWER"] = 2572
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 128
         }
         , [179] = {
@@ -4440,6 +4621,7 @@ end;
           , ["TIER"] = 7
           , ["POWER"] = 5937
           , ["CombatSize"] = 2
+          , ["Range"] = 0
           , ["Pair"] = 130
         }
         , [180] = {
@@ -4449,6 +4631,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [181] = {
             ["ID"] = CREATURE_CHERUBIN
@@ -4457,6 +4640,7 @@ end;
             , ["TIER"] = 8
             , ["POWER"] = 20000
             , ["CombatSize"] = 2
+            , ["Range"] = 0
         }
         , [182] = {
             ["ID"] = CREATURE_CHERUBIN_LESS
@@ -4465,6 +4649,7 @@ end;
             , ["TIER"] = 8
             , ["POWER"] = 20000
             , ["CombatSize"] = 2
+            , ["Range"] = 0
         }
         , [183] = {
             ["ID"] = CREATURE_DRAGON_KNIGHT
@@ -4473,6 +4658,7 @@ end;
             , ["TIER"] = 8
             , ["POWER"] = 20000
             , ["CombatSize"] = 2
+            , ["Range"] = 0
         }
         , [184] = {
             ["ID"] = CREATURE_DRAGON_KNIGHT_LESS
@@ -4481,6 +4667,7 @@ end;
             , ["TIER"] = 8
             , ["POWER"] = 20000
             , ["CombatSize"] = 2
+            , ["Range"] = 0
         }
         , [185] = {
             ["ID"] = CREATURE_ENCHANTER_ACADEMY
@@ -4489,6 +4676,7 @@ end;
             , ["TIER"] = 6
             , ["POWER"] = 1798
             , ["CombatSize"] = 1
+            , ["Range"] = 1
         }
         , [186] = {
             ["ID"] = CREATURE_ENCHANTER_NEUTRAL
@@ -4497,6 +4685,7 @@ end;
             , ["TIER"] = 6
             , ["POWER"] = 1798
             , ["CombatSize"] = 1
+            , ["Range"] = 1
         }
         , [187] = {
           ["ID"] = CREATURE_187
@@ -4505,6 +4694,7 @@ end;
           , ["TIER"] = 6
           , ["POWER"] = 1798
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [188] = {
           ["ID"] = CREATURE_188
@@ -4513,6 +4703,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [189] = {
           ["ID"] = CREATURE_189
@@ -4521,6 +4712,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [190] = {
           ["ID"] = CREATURE_190
@@ -4529,6 +4721,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [191] = {
           ["ID"] = CREATURE_191
@@ -4537,6 +4730,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [192] = {
           ["ID"] = CREATURE_192
@@ -4545,6 +4739,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [193] = {
           ["ID"] = CREATURE_193
@@ -4553,6 +4748,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [194] = {
           ["ID"] = CREATURE_194
@@ -4561,6 +4757,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [195] = {
           ["ID"] = CREATURE_195
@@ -4569,6 +4766,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [196] = {
           ["ID"] = CREATURE_196
@@ -4577,6 +4775,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [197] = {
           ["ID"] = CREATURE_197
@@ -4585,6 +4784,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [198] = {
           ["ID"] = CREATURE_198
@@ -4593,6 +4793,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [199] = {
           ["ID"] = CREATURE_199
@@ -4601,6 +4802,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [200] = {
           ["ID"] = CREATURE_200
@@ -4609,6 +4811,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [201] = {
           ["ID"] = CREATURE_201
@@ -4617,6 +4820,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [202] = {
           ["ID"] = CREATURE_202
@@ -4625,6 +4829,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [203] = {
           ["ID"] = CREATURE_203
@@ -4633,6 +4838,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [204] = {
           ["ID"] = CREATURE_204
@@ -4641,6 +4847,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [205] = {
           ["ID"] = CREATURE_205
@@ -4649,6 +4856,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [206] = {
           ["ID"] = CREATURE_206
@@ -4657,6 +4865,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [207] = {
           ["ID"] = CREATURE_207
@@ -4665,6 +4874,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [208] = {
           ["ID"] = CREATURE_208
@@ -4673,6 +4883,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [209] = {
           ["ID"] = CREATURE_209
@@ -4681,6 +4892,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [210] = {
           ["ID"] = CREATURE_210
@@ -4689,6 +4901,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [211] = {
           ["ID"] = CREATURE_211
@@ -4697,6 +4910,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [212] = {
           ["ID"] = CREATURE_212
@@ -4705,6 +4919,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [213] = {
           ["ID"] = CREATURE_213
@@ -4713,6 +4928,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [214] = {
           ["ID"] = CREATURE_214
@@ -4721,6 +4937,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [215] = {
           ["ID"] = CREATURE_215
@@ -4729,6 +4946,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [216] = {
           ["ID"] = CREATURE_216
@@ -4737,6 +4955,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [217] = {
           ["ID"] = CREATURE_217
@@ -4745,6 +4964,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [218] = {
           ["ID"] = CREATURE_218
@@ -4753,6 +4973,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [219] = {
           ["ID"] = CREATURE_219
@@ -4761,6 +4982,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [220] = {
           ["ID"] = CREATURE_220
@@ -4769,6 +4991,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [221] = {
           ["ID"] = CREATURE_221
@@ -4777,6 +5000,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [222] = {
           ["ID"] = CREATURE_222
@@ -4785,6 +5009,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [223] = {
           ["ID"] = CREATURE_223
@@ -4793,6 +5018,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [224] = {
           ["ID"] = CREATURE_224
@@ -4801,6 +5027,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [225] = {
           ["ID"] = CREATURE_225
@@ -4809,6 +5036,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [226] = {
           ["ID"] = CREATURE_226
@@ -4817,6 +5045,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [227] = {
           ["ID"] = CREATURE_227
@@ -4825,6 +5054,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [228] = {
           ["ID"] = CREATURE_228
@@ -4833,6 +5063,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [229] = {
           ["ID"] = CREATURE_229
@@ -4841,6 +5072,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [230] = {
           ["ID"] = CREATURE_230
@@ -4849,6 +5081,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [231] = {
           ["ID"] = CREATURE_231
@@ -4857,6 +5090,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [232] = {
           ["ID"] = CREATURE_232
@@ -4865,6 +5099,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [233] = {
           ["ID"] = CREATURE_233
@@ -4873,6 +5108,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [234] = {
           ["ID"] = CREATURE_234
@@ -4881,6 +5117,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [235] = {
           ["ID"] = CREATURE_235
@@ -4889,6 +5126,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [236] = {
           ["ID"] = CREATURE_236
@@ -4897,6 +5135,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [237] = {
           ["ID"] = CREATURE_237
@@ -4905,6 +5144,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [238] = {
           ["ID"] = CREATURE_238
@@ -4913,6 +5153,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [239] = {
           ["ID"] = CREATURE_239
@@ -4921,6 +5162,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [240] = {
           ["ID"] = CREATURE_240
@@ -4929,6 +5171,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [241] = {
           ["ID"] = CREATURE_241
@@ -4937,6 +5180,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [242] = {
           ["ID"] = CREATURE_242
@@ -4945,6 +5189,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [243] = {
           ["ID"] = CREATURE_243
@@ -4953,6 +5198,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [244] = {
           ["ID"] = CREATURE_244
@@ -4961,6 +5207,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [245] = {
           ["ID"] = CREATURE_245
@@ -4969,6 +5216,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [246] = {
           ["ID"] = CREATURE_246
@@ -4977,6 +5225,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [247] = {
           ["ID"] = CREATURE_247
@@ -4985,6 +5234,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [248] = {
           ["ID"] = CREATURE_248
@@ -4993,6 +5243,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [249] = {
           ["ID"] = CREATURE_249
@@ -5001,6 +5252,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [250] = {
           ["ID"] = CREATURE_250
@@ -5009,6 +5261,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [251] = {
           ["ID"] = CREATURE_251
@@ -5017,6 +5270,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [252] = {
           ["ID"] = CREATURE_252
@@ -5025,6 +5279,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [253] = {
           ["ID"] = CREATURE_253
@@ -5033,6 +5288,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [254] = {
           ["ID"] = CREATURE_254
@@ -5041,6 +5297,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [255] = {
           ["ID"] = CREATURE_255
@@ -5049,6 +5306,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [256] = {
           ["ID"] = CREATURE_256
@@ -5057,6 +5315,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [257] = {
           ["ID"] = CREATURE_257
@@ -5065,6 +5324,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [258] = {
           ["ID"] = CREATURE_258
@@ -5073,6 +5333,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [259] = {
           ["ID"] = CREATURE_259
@@ -5081,6 +5342,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [260] = {
           ["ID"] = CREATURE_260
@@ -5089,6 +5351,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [261] = {
           ["ID"] = CREATURE_261
@@ -5097,6 +5360,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [262] = {
           ["ID"] = CREATURE_262
@@ -5105,6 +5369,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [263] = {
           ["ID"] = CREATURE_263
@@ -5113,6 +5378,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [264] = {
           ["ID"] = CREATURE_264
@@ -5121,6 +5387,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [265] = {
           ["ID"] = CREATURE_265
@@ -5129,6 +5396,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [266] = {
           ["ID"] = CREATURE_266
@@ -5137,6 +5405,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [267] = {
           ["ID"] = CREATURE_267
@@ -5145,6 +5414,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [268] = {
           ["ID"] = CREATURE_268
@@ -5153,6 +5423,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [269] = {
           ["ID"] = CREATURE_269
@@ -5161,6 +5432,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [270] = {
           ["ID"] = CREATURE_270
@@ -5169,6 +5441,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [271] = {
           ["ID"] = CREATURE_271
@@ -5177,6 +5450,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [272] = {
           ["ID"] = CREATURE_272
@@ -5185,6 +5459,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [273] = {
           ["ID"] = CREATURE_273
@@ -5193,6 +5468,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [274] = {
           ["ID"] = CREATURE_274
@@ -5201,6 +5477,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [275] = {
           ["ID"] = CREATURE_275
@@ -5209,6 +5486,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [276] = {
           ["ID"] = CREATURE_276
@@ -5217,6 +5495,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [277] = {
           ["ID"] = CREATURE_277
@@ -5225,6 +5504,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [278] = {
           ["ID"] = CREATURE_278
@@ -5233,6 +5513,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [279] = {
           ["ID"] = CREATURE_279
@@ -5241,6 +5522,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [280] = {
           ["ID"] = CREATURE_280
@@ -5249,6 +5531,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [281] = {
           ["ID"] = CREATURE_281
@@ -5257,6 +5540,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [282] = {
           ["ID"] = CREATURE_282
@@ -5265,6 +5549,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [283] = {
           ["ID"] = CREATURE_283
@@ -5273,6 +5558,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [284] = {
           ["ID"] = CREATURE_284
@@ -5281,6 +5567,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [285] = {
           ["ID"] = CREATURE_285
@@ -5289,6 +5576,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [286] = {
           ["ID"] = CREATURE_286
@@ -5297,6 +5585,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [287] = {
           ["ID"] = CREATURE_287
@@ -5305,6 +5594,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [288] = {
           ["ID"] = CREATURE_288
@@ -5313,6 +5603,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [289] = {
           ["ID"] = CREATURE_289
@@ -5321,6 +5612,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [290] = {
           ["ID"] = CREATURE_290
@@ -5329,6 +5621,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [291] = {
           ["ID"] = CREATURE_291
@@ -5337,6 +5630,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [292] = {
           ["ID"] = CREATURE_292
@@ -5345,6 +5639,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [293] = {
           ["ID"] = CREATURE_293
@@ -5353,6 +5648,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [294] = {
           ["ID"] = CREATURE_294
@@ -5361,6 +5657,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [295] = {
           ["ID"] = CREATURE_295
@@ -5369,6 +5666,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [296] = {
           ["ID"] = CREATURE_296
@@ -5377,6 +5675,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [297] = {
           ["ID"] = CREATURE_297
@@ -5385,6 +5684,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [298] = {
           ["ID"] = CREATURE_298
@@ -5393,6 +5693,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [299] = {
           ["ID"] = CREATURE_299
@@ -5401,6 +5702,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [300] = {
           ["ID"] = CREATURE_300
@@ -5409,6 +5711,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [301] = {
           ["ID"] = CREATURE_301
@@ -5417,6 +5720,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [302] = {
           ["ID"] = CREATURE_302
@@ -5425,6 +5729,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [303] = {
           ["ID"] = CREATURE_303
@@ -5433,6 +5738,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [304] = {
           ["ID"] = CREATURE_304
@@ -5441,6 +5747,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [305] = {
           ["ID"] = CREATURE_305
@@ -5449,6 +5756,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [306] = {
           ["ID"] = CREATURE_306
@@ -5457,6 +5765,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [307] = {
           ["ID"] = CREATURE_307
@@ -5465,6 +5774,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [308] = {
           ["ID"] = CREATURE_308
@@ -5473,6 +5783,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [309] = {
           ["ID"] = CREATURE_309
@@ -5481,6 +5792,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [310] = {
           ["ID"] = CREATURE_310
@@ -5489,6 +5801,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [311] = {
           ["ID"] = CREATURE_311
@@ -5497,6 +5810,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [312] = {
           ["ID"] = CREATURE_312
@@ -5505,6 +5819,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [313] = {
           ["ID"] = CREATURE_313
@@ -5513,6 +5828,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [314] = {
           ["ID"] = CREATURE_314
@@ -5521,6 +5837,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [315] = {
           ["ID"] = CREATURE_315
@@ -5529,6 +5846,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [316] = {
           ["ID"] = CREATURE_316
@@ -5537,6 +5855,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [317] = {
           ["ID"] = CREATURE_317
@@ -5545,6 +5864,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [318] = {
           ["ID"] = CREATURE_318
@@ -5553,6 +5873,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [319] = {
           ["ID"] = CREATURE_319
@@ -5561,6 +5882,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [320] = {
           ["ID"] = CREATURE_320
@@ -5569,6 +5891,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [321] = {
           ["ID"] = CREATURE_321
@@ -5577,6 +5900,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [322] = {
           ["ID"] = CREATURE_322
@@ -5585,6 +5909,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [323] = {
           ["ID"] = CREATURE_323
@@ -5593,6 +5918,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [324] = {
           ["ID"] = CREATURE_324
@@ -5601,6 +5927,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [325] = {
           ["ID"] = CREATURE_325
@@ -5609,6 +5936,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [326] = {
           ["ID"] = CREATURE_326
@@ -5617,6 +5945,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [327] = {
           ["ID"] = CREATURE_327
@@ -5625,6 +5954,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [328] = {
           ["ID"] = CREATURE_328
@@ -5633,6 +5963,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [329] = {
           ["ID"] = CREATURE_329
@@ -5641,6 +5972,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [330] = {
           ["ID"] = CREATURE_330
@@ -5649,6 +5981,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [331] = {
           ["ID"] = CREATURE_331
@@ -5657,6 +5990,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [332] = {
           ["ID"] = CREATURE_332
@@ -5665,6 +5999,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [333] = {
           ["ID"] = CREATURE_333
@@ -5673,6 +6008,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [334] = {
           ["ID"] = CREATURE_334
@@ -5681,6 +6017,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [335] = {
           ["ID"] = CREATURE_335
@@ -5689,6 +6026,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [336] = {
           ["ID"] = CREATURE_336
@@ -5697,6 +6035,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [337] = {
           ["ID"] = CREATURE_337
@@ -5705,6 +6044,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [338] = {
           ["ID"] = CREATURE_338
@@ -5713,6 +6053,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [339] = {
           ["ID"] = CREATURE_339
@@ -5721,6 +6062,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [340] = {
           ["ID"] = CREATURE_340
@@ -5729,6 +6071,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [341] = {
           ["ID"] = CREATURE_341
@@ -5737,6 +6080,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [342] = {
           ["ID"] = CREATURE_342
@@ -5745,6 +6089,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [343] = {
           ["ID"] = CREATURE_343
@@ -5753,6 +6098,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [344] = {
           ["ID"] = CREATURE_344
@@ -5761,6 +6107,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [345] = {
           ["ID"] = CREATURE_345
@@ -5769,6 +6116,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [346] = {
           ["ID"] = CREATURE_346
@@ -5777,6 +6125,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [347] = {
           ["ID"] = CREATURE_347
@@ -5785,6 +6134,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [348] = {
           ["ID"] = CREATURE_348
@@ -5793,6 +6143,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [349] = {
           ["ID"] = CREATURE_349
@@ -5801,6 +6152,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [350] = {
           ["ID"] = CREATURE_350
@@ -5809,6 +6161,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [351] = {
           ["ID"] = CREATURE_351
@@ -5817,6 +6170,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [352] = {
           ["ID"] = CREATURE_352
@@ -5825,6 +6179,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [353] = {
           ["ID"] = CREATURE_353
@@ -5833,6 +6188,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [354] = {
           ["ID"] = CREATURE_354
@@ -5841,6 +6197,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [355] = {
           ["ID"] = CREATURE_355
@@ -5849,6 +6206,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [356] = {
           ["ID"] = CREATURE_356
@@ -5857,6 +6215,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [357] = {
           ["ID"] = CREATURE_357
@@ -5865,6 +6224,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [358] = {
           ["ID"] = CREATURE_358
@@ -5873,6 +6233,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [359] = {
           ["ID"] = CREATURE_359
@@ -5881,6 +6242,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [360] = {
           ["ID"] = CREATURE_360
@@ -5889,6 +6251,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [361] = {
           ["ID"] = CREATURE_361
@@ -5897,6 +6260,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [362] = {
           ["ID"] = CREATURE_362
@@ -5905,6 +6269,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [363] = {
           ["ID"] = CREATURE_363
@@ -5913,6 +6278,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [364] = {
           ["ID"] = CREATURE_364
@@ -5921,6 +6287,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [365] = {
           ["ID"] = CREATURE_365
@@ -5929,6 +6296,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [366] = {
           ["ID"] = CREATURE_366
@@ -5937,6 +6305,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [367] = {
           ["ID"] = CREATURE_367
@@ -5945,6 +6314,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [368] = {
           ["ID"] = CREATURE_368
@@ -5953,6 +6323,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [369] = {
           ["ID"] = CREATURE_369
@@ -5961,6 +6332,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [370] = {
           ["ID"] = CREATURE_370
@@ -5969,6 +6341,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [371] = {
           ["ID"] = CREATURE_371
@@ -5977,6 +6350,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [372] = {
           ["ID"] = CREATURE_372
@@ -5985,6 +6359,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [373] = {
           ["ID"] = CREATURE_373
@@ -5993,6 +6368,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [374] = {
           ["ID"] = CREATURE_374
@@ -6001,6 +6377,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [375] = {
           ["ID"] = CREATURE_375
@@ -6009,6 +6386,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [376] = {
           ["ID"] = CREATURE_376
@@ -6017,6 +6395,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [377] = {
           ["ID"] = CREATURE_377
@@ -6025,6 +6404,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [378] = {
           ["ID"] = CREATURE_378
@@ -6033,6 +6413,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [379] = {
           ["ID"] = CREATURE_379
@@ -6041,6 +6422,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [380] = {
           ["ID"] = CREATURE_380
@@ -6049,6 +6431,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [381] = {
           ["ID"] = CREATURE_381
@@ -6057,6 +6440,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [382] = {
           ["ID"] = CREATURE_382
@@ -6065,6 +6449,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [383] = {
           ["ID"] = CREATURE_383
@@ -6073,6 +6458,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [384] = {
           ["ID"] = CREATURE_384
@@ -6081,6 +6467,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [385] = {
           ["ID"] = CREATURE_385
@@ -6089,6 +6476,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [386] = {
           ["ID"] = CREATURE_386
@@ -6097,6 +6485,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [387] = {
           ["ID"] = CREATURE_387
@@ -6105,6 +6494,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [388] = {
           ["ID"] = CREATURE_388
@@ -6113,6 +6503,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [389] = {
           ["ID"] = CREATURE_389
@@ -6121,6 +6512,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [390] = {
           ["ID"] = CREATURE_390
@@ -6129,6 +6521,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [391] = {
           ["ID"] = CREATURE_391
@@ -6137,6 +6530,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [392] = {
           ["ID"] = CREATURE_392
@@ -6145,6 +6539,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [393] = {
           ["ID"] = CREATURE_393
@@ -6153,6 +6548,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [394] = {
           ["ID"] = CREATURE_394
@@ -6161,6 +6557,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [395] = {
           ["ID"] = CREATURE_395
@@ -6169,6 +6566,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [396] = {
           ["ID"] = CREATURE_396
@@ -6177,6 +6575,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [397] = {
           ["ID"] = CREATURE_397
@@ -6185,6 +6584,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [398] = {
           ["ID"] = CREATURE_398
@@ -6193,6 +6593,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [399] = {
           ["ID"] = CREATURE_399
@@ -6201,6 +6602,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [400] = {
           ["ID"] = CREATURE_400
@@ -6209,6 +6611,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [401] = {
           ["ID"] = CREATURE_401
@@ -6217,6 +6620,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [402] = {
           ["ID"] = CREATURE_402
@@ -6225,6 +6629,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [403] = {
           ["ID"] = CREATURE_403
@@ -6233,6 +6638,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [404] = {
           ["ID"] = CREATURE_404
@@ -6241,6 +6647,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [405] = {
           ["ID"] = CREATURE_405
@@ -6249,6 +6656,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [406] = {
           ["ID"] = CREATURE_406
@@ -6257,6 +6665,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [407] = {
           ["ID"] = CREATURE_407
@@ -6265,6 +6674,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [408] = {
           ["ID"] = CREATURE_408
@@ -6273,6 +6683,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [409] = {
           ["ID"] = CREATURE_409
@@ -6281,6 +6692,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [410] = {
           ["ID"] = CREATURE_410
@@ -6289,6 +6701,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [411] = {
           ["ID"] = CREATURE_411
@@ -6297,6 +6710,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [412] = {
           ["ID"] = CREATURE_412
@@ -6305,6 +6719,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [413] = {
           ["ID"] = CREATURE_413
@@ -6313,6 +6728,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [414] = {
           ["ID"] = CREATURE_414
@@ -6321,6 +6737,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [415] = {
           ["ID"] = CREATURE_415
@@ -6329,6 +6746,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [416] = {
           ["ID"] = CREATURE_416
@@ -6337,6 +6755,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [417] = {
           ["ID"] = CREATURE_417
@@ -6345,6 +6764,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [418] = {
           ["ID"] = CREATURE_418
@@ -6353,6 +6773,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [419] = {
           ["ID"] = CREATURE_419
@@ -6361,6 +6782,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [420] = {
           ["ID"] = CREATURE_420
@@ -6369,6 +6791,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [421] = {
           ["ID"] = CREATURE_421
@@ -6377,6 +6800,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [422] = {
           ["ID"] = CREATURE_422
@@ -6385,6 +6809,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [423] = {
           ["ID"] = CREATURE_423
@@ -6393,6 +6818,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [424] = {
           ["ID"] = CREATURE_424
@@ -6401,6 +6827,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [425] = {
           ["ID"] = CREATURE_425
@@ -6409,6 +6836,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [426] = {
           ["ID"] = CREATURE_426
@@ -6417,6 +6845,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [427] = {
           ["ID"] = CREATURE_427
@@ -6425,6 +6854,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [428] = {
           ["ID"] = CREATURE_428
@@ -6433,6 +6863,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [429] = {
           ["ID"] = CREATURE_429
@@ -6441,6 +6872,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [430] = {
           ["ID"] = CREATURE_430
@@ -6449,6 +6881,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [431] = {
           ["ID"] = CREATURE_431
@@ -6457,6 +6890,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [432] = {
           ["ID"] = CREATURE_432
@@ -6465,6 +6899,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [433] = {
           ["ID"] = CREATURE_433
@@ -6473,6 +6908,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [434] = {
           ["ID"] = CREATURE_434
@@ -6481,6 +6917,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [435] = {
           ["ID"] = CREATURE_435
@@ -6489,6 +6926,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [436] = {
           ["ID"] = CREATURE_436
@@ -6497,6 +6935,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [437] = {
           ["ID"] = CREATURE_437
@@ -6505,6 +6944,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [438] = {
           ["ID"] = CREATURE_438
@@ -6513,6 +6953,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [439] = {
           ["ID"] = CREATURE_439
@@ -6521,6 +6962,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [440] = {
           ["ID"] = CREATURE_440
@@ -6529,6 +6971,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [441] = {
           ["ID"] = CREATURE_441
@@ -6537,6 +6980,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [442] = {
           ["ID"] = CREATURE_442
@@ -6545,6 +6989,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [443] = {
           ["ID"] = CREATURE_443
@@ -6553,6 +6998,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [444] = {
           ["ID"] = CREATURE_444
@@ -6561,6 +7007,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [445] = {
           ["ID"] = CREATURE_445
@@ -6569,6 +7016,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [446] = {
           ["ID"] = CREATURE_446
@@ -6577,6 +7025,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [447] = {
           ["ID"] = CREATURE_447
@@ -6585,6 +7034,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [448] = {
           ["ID"] = CREATURE_448
@@ -6593,6 +7043,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [449] = {
           ["ID"] = CREATURE_449
@@ -6601,6 +7052,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [450] = {
           ["ID"] = CREATURE_450
@@ -6609,6 +7061,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [451] = {
           ["ID"] = CREATURE_451
@@ -6617,6 +7070,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [452] = {
           ["ID"] = CREATURE_452
@@ -6625,6 +7079,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [453] = {
           ["ID"] = CREATURE_453
@@ -6633,6 +7088,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [454] = {
           ["ID"] = CREATURE_454
@@ -6641,6 +7097,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [455] = {
           ["ID"] = CREATURE_455
@@ -6649,6 +7106,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [456] = {
           ["ID"] = CREATURE_456
@@ -6657,6 +7115,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [457] = {
           ["ID"] = CREATURE_457
@@ -6665,6 +7124,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [458] = {
           ["ID"] = CREATURE_458
@@ -6673,6 +7133,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [459] = {
           ["ID"] = CREATURE_459
@@ -6681,6 +7142,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [460] = {
           ["ID"] = CREATURE_460
@@ -6689,6 +7151,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [461] = {
           ["ID"] = CREATURE_461
@@ -6697,6 +7160,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [462] = {
           ["ID"] = CREATURE_462
@@ -6705,6 +7169,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [463] = {
           ["ID"] = CREATURE_463
@@ -6713,6 +7178,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [464] = {
           ["ID"] = CREATURE_464
@@ -6721,6 +7187,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [465] = {
           ["ID"] = CREATURE_465
@@ -6729,6 +7196,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [466] = {
           ["ID"] = CREATURE_466
@@ -6737,6 +7205,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [467] = {
           ["ID"] = CREATURE_467
@@ -6745,6 +7214,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [468] = {
           ["ID"] = CREATURE_468
@@ -6753,6 +7223,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [469] = {
           ["ID"] = CREATURE_469
@@ -6761,6 +7232,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [470] = {
           ["ID"] = CREATURE_470
@@ -6769,6 +7241,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [471] = {
           ["ID"] = CREATURE_471
@@ -6777,6 +7250,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [472] = {
           ["ID"] = CREATURE_472
@@ -6785,6 +7259,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [473] = {
           ["ID"] = CREATURE_473
@@ -6793,6 +7268,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [474] = {
           ["ID"] = CREATURE_474
@@ -6801,6 +7277,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [475] = {
           ["ID"] = CREATURE_475
@@ -6809,6 +7286,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [476] = {
           ["ID"] = CREATURE_476
@@ -6817,6 +7295,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [477] = {
           ["ID"] = CREATURE_477
@@ -6825,6 +7304,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [478] = {
           ["ID"] = CREATURE_478
@@ -6833,6 +7313,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [479] = {
           ["ID"] = CREATURE_479
@@ -6841,6 +7322,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [480] = {
           ["ID"] = CREATURE_480
@@ -6849,6 +7331,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [481] = {
           ["ID"] = CREATURE_481
@@ -6857,6 +7340,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [482] = {
           ["ID"] = CREATURE_482
@@ -6865,6 +7349,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [483] = {
           ["ID"] = CREATURE_483
@@ -6873,6 +7358,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [484] = {
           ["ID"] = CREATURE_484
@@ -6881,6 +7367,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [485] = {
           ["ID"] = CREATURE_485
@@ -6889,6 +7376,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [486] = {
           ["ID"] = CREATURE_486
@@ -6897,6 +7385,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [487] = {
           ["ID"] = CREATURE_487
@@ -6905,6 +7394,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [488] = {
           ["ID"] = CREATURE_488
@@ -6913,6 +7403,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [489] = {
           ["ID"] = CREATURE_489
@@ -6921,6 +7412,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [490] = {
           ["ID"] = CREATURE_490
@@ -6929,6 +7421,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [491] = {
           ["ID"] = CREATURE_491
@@ -6937,6 +7430,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [492] = {
           ["ID"] = CREATURE_492
@@ -6945,6 +7439,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [493] = {
           ["ID"] = CREATURE_493
@@ -6953,6 +7448,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [494] = {
           ["ID"] = CREATURE_494
@@ -6961,6 +7457,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [495] = {
           ["ID"] = CREATURE_495
@@ -6969,6 +7466,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [496] = {
           ["ID"] = CREATURE_496
@@ -6977,6 +7475,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [497] = {
           ["ID"] = CREATURE_497
@@ -6985,6 +7484,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [498] = {
           ["ID"] = CREATURE_498
@@ -6993,6 +7493,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [499] = {
           ["ID"] = CREATURE_499
@@ -7001,6 +7502,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [500] = {
           ["ID"] = CREATURE_500
@@ -7009,6 +7511,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [501] = {
           ["ID"] = CREATURE_501
@@ -7017,6 +7520,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [502] = {
           ["ID"] = CREATURE_502
@@ -7025,6 +7529,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [503] = {
           ["ID"] = CREATURE_503
@@ -7033,6 +7538,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [504] = {
           ["ID"] = CREATURE_504
@@ -7041,6 +7547,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [505] = {
           ["ID"] = CREATURE_505
@@ -7049,6 +7556,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [506] = {
           ["ID"] = CREATURE_506
@@ -7057,6 +7565,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [507] = {
           ["ID"] = CREATURE_507
@@ -7065,6 +7574,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [508] = {
           ["ID"] = CREATURE_508
@@ -7073,6 +7583,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [509] = {
           ["ID"] = CREATURE_509
@@ -7081,6 +7592,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [510] = {
           ["ID"] = CREATURE_510
@@ -7089,6 +7601,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [511] = {
           ["ID"] = CREATURE_511
@@ -7097,6 +7610,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [512] = {
           ["ID"] = CREATURE_512
@@ -7105,6 +7619,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [513] = {
           ["ID"] = CREATURE_513
@@ -7113,6 +7628,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [514] = {
           ["ID"] = CREATURE_514
@@ -7121,6 +7637,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [515] = {
           ["ID"] = CREATURE_515
@@ -7129,6 +7646,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [516] = {
           ["ID"] = CREATURE_516
@@ -7137,6 +7655,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [517] = {
           ["ID"] = CREATURE_517
@@ -7145,6 +7664,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [518] = {
           ["ID"] = CREATURE_518
@@ -7153,6 +7673,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [519] = {
           ["ID"] = CREATURE_519
@@ -7161,6 +7682,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [520] = {
           ["ID"] = CREATURE_520
@@ -7169,6 +7691,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [521] = {
           ["ID"] = CREATURE_521
@@ -7177,6 +7700,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [522] = {
           ["ID"] = CREATURE_522
@@ -7185,6 +7709,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [523] = {
           ["ID"] = CREATURE_523
@@ -7193,6 +7718,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [524] = {
           ["ID"] = CREATURE_524
@@ -7201,6 +7727,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [525] = {
           ["ID"] = CREATURE_525
@@ -7209,6 +7736,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [526] = {
           ["ID"] = CREATURE_526
@@ -7217,6 +7745,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [527] = {
           ["ID"] = CREATURE_527
@@ -7225,6 +7754,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [528] = {
           ["ID"] = CREATURE_528
@@ -7233,6 +7763,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [529] = {
           ["ID"] = CREATURE_529
@@ -7241,6 +7772,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [530] = {
           ["ID"] = CREATURE_530
@@ -7249,6 +7781,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [531] = {
           ["ID"] = CREATURE_531
@@ -7257,6 +7790,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [532] = {
           ["ID"] = CREATURE_532
@@ -7265,6 +7799,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [533] = {
           ["ID"] = CREATURE_533
@@ -7273,6 +7808,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [534] = {
           ["ID"] = CREATURE_534
@@ -7281,6 +7817,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [535] = {
           ["ID"] = CREATURE_535
@@ -7289,6 +7826,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [536] = {
           ["ID"] = CREATURE_536
@@ -7297,6 +7835,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [537] = {
           ["ID"] = CREATURE_537
@@ -7305,6 +7844,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [538] = {
           ["ID"] = CREATURE_538
@@ -7313,6 +7853,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [539] = {
           ["ID"] = CREATURE_539
@@ -7321,6 +7862,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [540] = {
           ["ID"] = CREATURE_540
@@ -7329,6 +7871,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [541] = {
           ["ID"] = CREATURE_541
@@ -7337,6 +7880,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [542] = {
           ["ID"] = CREATURE_542
@@ -7345,6 +7889,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [543] = {
           ["ID"] = CREATURE_543
@@ -7353,6 +7898,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [544] = {
           ["ID"] = CREATURE_544
@@ -7361,6 +7907,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [545] = {
           ["ID"] = CREATURE_545
@@ -7369,6 +7916,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [546] = {
           ["ID"] = CREATURE_546
@@ -7377,6 +7925,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [547] = {
           ["ID"] = CREATURE_547
@@ -7385,6 +7934,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [548] = {
           ["ID"] = CREATURE_548
@@ -7393,6 +7943,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [549] = {
           ["ID"] = CREATURE_549
@@ -7401,6 +7952,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [550] = {
           ["ID"] = CREATURE_550
@@ -7409,6 +7961,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [551] = {
           ["ID"] = CREATURE_551
@@ -7417,6 +7970,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [552] = {
           ["ID"] = CREATURE_552
@@ -7425,6 +7979,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [553] = {
           ["ID"] = CREATURE_553
@@ -7433,6 +7988,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [554] = {
           ["ID"] = CREATURE_554
@@ -7441,6 +7997,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [555] = {
           ["ID"] = CREATURE_555
@@ -7449,6 +8006,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [556] = {
           ["ID"] = CREATURE_556
@@ -7457,6 +8015,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [557] = {
           ["ID"] = CREATURE_557
@@ -7465,6 +8024,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [558] = {
           ["ID"] = CREATURE_558
@@ -7473,6 +8033,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [559] = {
           ["ID"] = CREATURE_559
@@ -7481,6 +8042,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [560] = {
           ["ID"] = CREATURE_560
@@ -7489,6 +8051,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [561] = {
           ["ID"] = CREATURE_561
@@ -7497,6 +8060,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [562] = {
           ["ID"] = CREATURE_562
@@ -7505,6 +8069,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [563] = {
           ["ID"] = CREATURE_563
@@ -7513,6 +8078,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [564] = {
           ["ID"] = CREATURE_564
@@ -7521,6 +8087,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [565] = {
           ["ID"] = CREATURE_565
@@ -7529,6 +8096,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [566] = {
           ["ID"] = CREATURE_566
@@ -7537,6 +8105,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [567] = {
           ["ID"] = CREATURE_567
@@ -7545,6 +8114,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [568] = {
           ["ID"] = CREATURE_568
@@ -7553,6 +8123,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [569] = {
           ["ID"] = CREATURE_569
@@ -7561,6 +8132,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [570] = {
           ["ID"] = CREATURE_570
@@ -7569,6 +8141,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [571] = {
           ["ID"] = CREATURE_571
@@ -7577,6 +8150,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [572] = {
           ["ID"] = CREATURE_572
@@ -7585,6 +8159,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [573] = {
           ["ID"] = CREATURE_573
@@ -7593,6 +8168,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [574] = {
           ["ID"] = CREATURE_574
@@ -7601,6 +8177,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [575] = {
           ["ID"] = CREATURE_575
@@ -7609,6 +8186,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [576] = {
           ["ID"] = CREATURE_576
@@ -7617,6 +8195,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [577] = {
           ["ID"] = CREATURE_577
@@ -7625,6 +8204,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [578] = {
           ["ID"] = CREATURE_578
@@ -7633,6 +8213,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [579] = {
           ["ID"] = CREATURE_579
@@ -7641,6 +8222,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [580] = {
           ["ID"] = CREATURE_580
@@ -7649,6 +8231,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [581] = {
           ["ID"] = CREATURE_581
@@ -7657,6 +8240,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [582] = {
           ["ID"] = CREATURE_582
@@ -7665,6 +8249,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [583] = {
           ["ID"] = CREATURE_583
@@ -7673,6 +8258,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [584] = {
           ["ID"] = CREATURE_584
@@ -7681,6 +8267,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [585] = {
           ["ID"] = CREATURE_585
@@ -7689,6 +8276,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [586] = {
           ["ID"] = CREATURE_586
@@ -7697,6 +8285,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [587] = {
           ["ID"] = CREATURE_587
@@ -7705,6 +8294,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [588] = {
           ["ID"] = CREATURE_588
@@ -7713,6 +8303,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [589] = {
           ["ID"] = CREATURE_589
@@ -7721,6 +8312,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [590] = {
           ["ID"] = CREATURE_590
@@ -7729,6 +8321,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [591] = {
           ["ID"] = CREATURE_591
@@ -7737,6 +8330,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [592] = {
           ["ID"] = CREATURE_592
@@ -7745,6 +8339,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [593] = {
           ["ID"] = CREATURE_593
@@ -7753,6 +8348,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [594] = {
           ["ID"] = CREATURE_594
@@ -7761,6 +8357,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [595] = {
           ["ID"] = CREATURE_595
@@ -7769,6 +8366,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [596] = {
           ["ID"] = CREATURE_596
@@ -7777,6 +8375,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [597] = {
           ["ID"] = CREATURE_597
@@ -7785,6 +8384,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [598] = {
           ["ID"] = CREATURE_598
@@ -7793,6 +8393,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [599] = {
           ["ID"] = CREATURE_599
@@ -7801,6 +8402,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [600] = {
           ["ID"] = CREATURE_600
@@ -7809,6 +8411,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [601] = {
           ["ID"] = CREATURE_601
@@ -7817,6 +8420,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [602] = {
           ["ID"] = CREATURE_602
@@ -7825,6 +8429,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [603] = {
           ["ID"] = CREATURE_603
@@ -7833,6 +8438,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [604] = {
           ["ID"] = CREATURE_604
@@ -7841,6 +8447,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [605] = {
           ["ID"] = CREATURE_605
@@ -7849,6 +8456,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [606] = {
           ["ID"] = CREATURE_606
@@ -7857,6 +8465,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [607] = {
           ["ID"] = CREATURE_607
@@ -7865,6 +8474,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [608] = {
           ["ID"] = CREATURE_608
@@ -7873,6 +8483,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [609] = {
           ["ID"] = CREATURE_609
@@ -7881,6 +8492,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [610] = {
           ["ID"] = CREATURE_610
@@ -7889,6 +8501,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [611] = {
           ["ID"] = CREATURE_611
@@ -7897,6 +8510,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [612] = {
           ["ID"] = CREATURE_612
@@ -7905,6 +8519,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [613] = {
           ["ID"] = CREATURE_613
@@ -7913,6 +8528,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [614] = {
           ["ID"] = CREATURE_614
@@ -7921,6 +8537,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [615] = {
           ["ID"] = CREATURE_615
@@ -7929,6 +8546,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [616] = {
           ["ID"] = CREATURE_616
@@ -7937,6 +8555,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [617] = {
           ["ID"] = CREATURE_617
@@ -7945,6 +8564,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [618] = {
           ["ID"] = CREATURE_618
@@ -7953,6 +8573,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [619] = {
           ["ID"] = CREATURE_619
@@ -7961,6 +8582,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [620] = {
           ["ID"] = CREATURE_620
@@ -7969,6 +8591,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [621] = {
           ["ID"] = CREATURE_621
@@ -7977,6 +8600,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [622] = {
           ["ID"] = CREATURE_622
@@ -7985,6 +8609,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [623] = {
           ["ID"] = CREATURE_623
@@ -7993,6 +8618,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [624] = {
           ["ID"] = CREATURE_624
@@ -8001,6 +8627,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [625] = {
           ["ID"] = CREATURE_625
@@ -8009,6 +8636,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [626] = {
           ["ID"] = CREATURE_626
@@ -8017,6 +8645,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [627] = {
           ["ID"] = CREATURE_627
@@ -8025,6 +8654,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [628] = {
           ["ID"] = CREATURE_628
@@ -8033,6 +8663,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [629] = {
           ["ID"] = CREATURE_629
@@ -8041,6 +8672,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [630] = {
           ["ID"] = CREATURE_630
@@ -8049,6 +8681,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [631] = {
           ["ID"] = CREATURE_631
@@ -8057,6 +8690,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [632] = {
           ["ID"] = CREATURE_632
@@ -8065,6 +8699,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [633] = {
           ["ID"] = CREATURE_633
@@ -8073,6 +8708,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [634] = {
           ["ID"] = CREATURE_634
@@ -8081,6 +8717,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [635] = {
           ["ID"] = CREATURE_635
@@ -8089,6 +8726,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [636] = {
           ["ID"] = CREATURE_636
@@ -8097,6 +8735,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [637] = {
           ["ID"] = CREATURE_637
@@ -8105,6 +8744,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [638] = {
           ["ID"] = CREATURE_638
@@ -8113,6 +8753,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [639] = {
           ["ID"] = CREATURE_639
@@ -8121,6 +8762,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [640] = {
           ["ID"] = CREATURE_640
@@ -8129,6 +8771,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [641] = {
           ["ID"] = CREATURE_641
@@ -8137,6 +8780,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [642] = {
           ["ID"] = CREATURE_642
@@ -8145,6 +8789,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [643] = {
           ["ID"] = CREATURE_643
@@ -8153,6 +8798,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [644] = {
           ["ID"] = CREATURE_644
@@ -8161,6 +8807,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [645] = {
           ["ID"] = CREATURE_645
@@ -8169,6 +8816,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [646] = {
           ["ID"] = CREATURE_646
@@ -8177,6 +8825,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [647] = {
           ["ID"] = CREATURE_647
@@ -8185,6 +8834,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [648] = {
           ["ID"] = CREATURE_648
@@ -8193,6 +8843,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [649] = {
           ["ID"] = CREATURE_649
@@ -8201,6 +8852,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [650] = {
           ["ID"] = CREATURE_650
@@ -8209,6 +8861,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [651] = {
           ["ID"] = CREATURE_651
@@ -8217,6 +8870,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [652] = {
           ["ID"] = CREATURE_652
@@ -8225,6 +8879,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [653] = {
           ["ID"] = CREATURE_653
@@ -8233,6 +8888,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [654] = {
           ["ID"] = CREATURE_654
@@ -8241,6 +8897,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [655] = {
           ["ID"] = CREATURE_655
@@ -8249,6 +8906,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [656] = {
           ["ID"] = CREATURE_656
@@ -8257,6 +8915,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [657] = {
           ["ID"] = CREATURE_657
@@ -8265,6 +8924,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [658] = {
           ["ID"] = CREATURE_658
@@ -8273,6 +8933,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [659] = {
           ["ID"] = CREATURE_659
@@ -8281,6 +8942,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [660] = {
           ["ID"] = CREATURE_660
@@ -8289,6 +8951,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [661] = {
           ["ID"] = CREATURE_661
@@ -8297,6 +8960,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [662] = {
           ["ID"] = CREATURE_662
@@ -8305,6 +8969,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [663] = {
           ["ID"] = CREATURE_663
@@ -8313,6 +8978,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [664] = {
           ["ID"] = CREATURE_664
@@ -8321,6 +8987,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [665] = {
           ["ID"] = CREATURE_665
@@ -8329,6 +8996,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [666] = {
           ["ID"] = CREATURE_666
@@ -8337,6 +9005,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [667] = {
           ["ID"] = CREATURE_667
@@ -8345,6 +9014,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [668] = {
           ["ID"] = CREATURE_668
@@ -8353,6 +9023,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [669] = {
           ["ID"] = CREATURE_669
@@ -8361,6 +9032,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [670] = {
           ["ID"] = CREATURE_670
@@ -8369,6 +9041,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [671] = {
           ["ID"] = CREATURE_671
@@ -8377,6 +9050,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [672] = {
           ["ID"] = CREATURE_672
@@ -8385,6 +9059,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [673] = {
           ["ID"] = CREATURE_673
@@ -8393,6 +9068,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [674] = {
           ["ID"] = CREATURE_674
@@ -8401,6 +9077,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [675] = {
           ["ID"] = CREATURE_675
@@ -8409,6 +9086,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [676] = {
           ["ID"] = CREATURE_676
@@ -8417,6 +9095,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [677] = {
           ["ID"] = CREATURE_677
@@ -8425,6 +9104,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [678] = {
           ["ID"] = CREATURE_678
@@ -8433,6 +9113,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [679] = {
           ["ID"] = CREATURE_679
@@ -8441,6 +9122,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [680] = {
           ["ID"] = CREATURE_680
@@ -8449,6 +9131,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [681] = {
           ["ID"] = CREATURE_681
@@ -8457,6 +9140,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [682] = {
           ["ID"] = CREATURE_682
@@ -8465,6 +9149,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [683] = {
           ["ID"] = CREATURE_683
@@ -8473,6 +9158,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [684] = {
           ["ID"] = CREATURE_684
@@ -8481,6 +9167,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [685] = {
           ["ID"] = CREATURE_685
@@ -8489,6 +9176,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [686] = {
           ["ID"] = CREATURE_686
@@ -8497,6 +9185,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [687] = {
           ["ID"] = CREATURE_687
@@ -8505,6 +9194,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [688] = {
           ["ID"] = CREATURE_688
@@ -8513,6 +9203,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [689] = {
           ["ID"] = CREATURE_689
@@ -8521,6 +9212,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [690] = {
           ["ID"] = CREATURE_690
@@ -8529,6 +9221,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [691] = {
           ["ID"] = CREATURE_691
@@ -8537,6 +9230,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [692] = {
           ["ID"] = CREATURE_692
@@ -8545,6 +9239,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [693] = {
           ["ID"] = CREATURE_693
@@ -8553,6 +9248,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [694] = {
           ["ID"] = CREATURE_694
@@ -8561,6 +9257,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [695] = {
           ["ID"] = CREATURE_695
@@ -8569,6 +9266,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [696] = {
           ["ID"] = CREATURE_696
@@ -8577,6 +9275,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [697] = {
           ["ID"] = CREATURE_697
@@ -8585,6 +9284,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [698] = {
           ["ID"] = CREATURE_698
@@ -8593,6 +9293,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [699] = {
           ["ID"] = CREATURE_699
@@ -8601,6 +9302,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [700] = {
           ["ID"] = CREATURE_700
@@ -8609,6 +9311,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [701] = {
           ["ID"] = CREATURE_701
@@ -8617,6 +9320,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [702] = {
           ["ID"] = CREATURE_702
@@ -8625,6 +9329,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [703] = {
           ["ID"] = CREATURE_703
@@ -8633,6 +9338,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [704] = {
           ["ID"] = CREATURE_704
@@ -8641,6 +9347,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [705] = {
           ["ID"] = CREATURE_705
@@ -8649,6 +9356,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [706] = {
           ["ID"] = CREATURE_706
@@ -8657,6 +9365,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [707] = {
           ["ID"] = CREATURE_707
@@ -8665,6 +9374,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [708] = {
           ["ID"] = CREATURE_708
@@ -8673,6 +9383,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [709] = {
           ["ID"] = CREATURE_709
@@ -8681,6 +9392,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [710] = {
           ["ID"] = CREATURE_710
@@ -8689,6 +9401,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [711] = {
           ["ID"] = CREATURE_711
@@ -8697,6 +9410,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [712] = {
           ["ID"] = CREATURE_712
@@ -8705,6 +9419,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [713] = {
           ["ID"] = CREATURE_713
@@ -8713,6 +9428,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [714] = {
           ["ID"] = CREATURE_714
@@ -8721,6 +9437,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [715] = {
           ["ID"] = CREATURE_715
@@ -8729,6 +9446,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [716] = {
           ["ID"] = CREATURE_716
@@ -8737,6 +9455,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [717] = {
           ["ID"] = CREATURE_717
@@ -8745,6 +9464,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [718] = {
           ["ID"] = CREATURE_718
@@ -8753,6 +9473,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [719] = {
           ["ID"] = CREATURE_719
@@ -8761,6 +9482,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [720] = {
           ["ID"] = CREATURE_720
@@ -8769,6 +9491,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [721] = {
           ["ID"] = CREATURE_721
@@ -8777,6 +9500,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [722] = {
           ["ID"] = CREATURE_722
@@ -8785,6 +9509,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [723] = {
           ["ID"] = CREATURE_723
@@ -8793,6 +9518,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [724] = {
           ["ID"] = CREATURE_724
@@ -8801,6 +9527,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [725] = {
           ["ID"] = CREATURE_725
@@ -8809,6 +9536,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [726] = {
           ["ID"] = CREATURE_726
@@ -8817,6 +9545,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [727] = {
           ["ID"] = CREATURE_727
@@ -8825,6 +9554,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [728] = {
           ["ID"] = CREATURE_728
@@ -8833,6 +9563,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [729] = {
           ["ID"] = CREATURE_729
@@ -8841,6 +9572,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [730] = {
           ["ID"] = CREATURE_730
@@ -8849,6 +9581,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [731] = {
           ["ID"] = CREATURE_731
@@ -8857,6 +9590,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [732] = {
           ["ID"] = CREATURE_732
@@ -8865,6 +9599,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [733] = {
           ["ID"] = CREATURE_733
@@ -8873,6 +9608,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [734] = {
           ["ID"] = CREATURE_734
@@ -8881,6 +9617,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [735] = {
           ["ID"] = CREATURE_735
@@ -8889,6 +9626,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [736] = {
           ["ID"] = CREATURE_736
@@ -8897,6 +9635,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [737] = {
           ["ID"] = CREATURE_737
@@ -8905,6 +9644,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [738] = {
           ["ID"] = CREATURE_738
@@ -8913,6 +9653,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [739] = {
           ["ID"] = CREATURE_739
@@ -8921,6 +9662,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [740] = {
           ["ID"] = CREATURE_740
@@ -8929,6 +9671,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [741] = {
           ["ID"] = CREATURE_741
@@ -8937,6 +9680,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [742] = {
           ["ID"] = CREATURE_742
@@ -8945,6 +9689,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [743] = {
           ["ID"] = CREATURE_743
@@ -8953,6 +9698,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [744] = {
           ["ID"] = CREATURE_744
@@ -8961,6 +9707,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [745] = {
           ["ID"] = CREATURE_745
@@ -8969,6 +9716,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [746] = {
           ["ID"] = CREATURE_746
@@ -8977,6 +9725,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [747] = {
           ["ID"] = CREATURE_747
@@ -8985,6 +9734,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [748] = {
           ["ID"] = CREATURE_748
@@ -8993,6 +9743,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [749] = {
           ["ID"] = CREATURE_749
@@ -9001,6 +9752,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [750] = {
           ["ID"] = CREATURE_750
@@ -9009,6 +9761,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [751] = {
           ["ID"] = CREATURE_751
@@ -9017,6 +9770,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [752] = {
           ["ID"] = CREATURE_752
@@ -9025,6 +9779,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [753] = {
           ["ID"] = CREATURE_753
@@ -9033,6 +9788,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [754] = {
           ["ID"] = CREATURE_754
@@ -9041,6 +9797,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [755] = {
           ["ID"] = CREATURE_755
@@ -9049,6 +9806,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [756] = {
           ["ID"] = CREATURE_756
@@ -9057,6 +9815,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [757] = {
           ["ID"] = CREATURE_757
@@ -9065,6 +9824,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [758] = {
           ["ID"] = CREATURE_758
@@ -9073,6 +9833,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [759] = {
           ["ID"] = CREATURE_759
@@ -9081,6 +9842,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [760] = {
           ["ID"] = CREATURE_760
@@ -9089,6 +9851,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [761] = {
           ["ID"] = CREATURE_761
@@ -9097,6 +9860,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [762] = {
           ["ID"] = CREATURE_762
@@ -9105,6 +9869,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [763] = {
           ["ID"] = CREATURE_763
@@ -9113,6 +9878,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [764] = {
           ["ID"] = CREATURE_764
@@ -9121,6 +9887,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [765] = {
           ["ID"] = CREATURE_765
@@ -9129,6 +9896,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [766] = {
           ["ID"] = CREATURE_766
@@ -9137,6 +9905,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [767] = {
           ["ID"] = CREATURE_767
@@ -9145,6 +9914,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [768] = {
           ["ID"] = CREATURE_768
@@ -9153,6 +9923,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [769] = {
           ["ID"] = CREATURE_769
@@ -9161,6 +9932,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [770] = {
           ["ID"] = CREATURE_770
@@ -9169,6 +9941,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [771] = {
           ["ID"] = CREATURE_771
@@ -9177,6 +9950,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [772] = {
           ["ID"] = CREATURE_772
@@ -9185,6 +9959,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [773] = {
           ["ID"] = CREATURE_773
@@ -9193,6 +9968,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [774] = {
           ["ID"] = CREATURE_774
@@ -9201,6 +9977,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [775] = {
           ["ID"] = CREATURE_775
@@ -9209,6 +9986,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [776] = {
           ["ID"] = CREATURE_776
@@ -9217,6 +9995,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [777] = {
           ["ID"] = CREATURE_777
@@ -9225,6 +10004,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [778] = {
           ["ID"] = CREATURE_778
@@ -9233,6 +10013,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [779] = {
           ["ID"] = CREATURE_779
@@ -9241,6 +10022,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [780] = {
           ["ID"] = CREATURE_780
@@ -9249,6 +10031,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [781] = {
           ["ID"] = CREATURE_781
@@ -9257,6 +10040,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [782] = {
           ["ID"] = CREATURE_782
@@ -9265,6 +10049,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [783] = {
           ["ID"] = CREATURE_783
@@ -9273,6 +10058,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [784] = {
           ["ID"] = CREATURE_784
@@ -9281,6 +10067,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [785] = {
           ["ID"] = CREATURE_785
@@ -9289,6 +10076,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [786] = {
           ["ID"] = CREATURE_786
@@ -9297,6 +10085,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [787] = {
           ["ID"] = CREATURE_787
@@ -9305,6 +10094,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [788] = {
           ["ID"] = CREATURE_788
@@ -9313,6 +10103,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [789] = {
           ["ID"] = CREATURE_789
@@ -9321,6 +10112,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [790] = {
           ["ID"] = CREATURE_790
@@ -9329,6 +10121,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [791] = {
           ["ID"] = CREATURE_791
@@ -9337,6 +10130,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [792] = {
           ["ID"] = CREATURE_792
@@ -9345,6 +10139,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [793] = {
           ["ID"] = CREATURE_793
@@ -9353,6 +10148,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [794] = {
           ["ID"] = CREATURE_794
@@ -9361,6 +10157,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [795] = {
           ["ID"] = CREATURE_795
@@ -9369,6 +10166,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [796] = {
           ["ID"] = CREATURE_796
@@ -9377,6 +10175,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [797] = {
           ["ID"] = CREATURE_797
@@ -9385,6 +10184,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [798] = {
           ["ID"] = CREATURE_798
@@ -9393,6 +10193,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [799] = {
           ["ID"] = CREATURE_799
@@ -9401,6 +10202,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [800] = {
           ["ID"] = CREATURE_800
@@ -9409,6 +10211,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [801] = {
           ["ID"] = CREATURE_801
@@ -9417,6 +10220,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [802] = {
           ["ID"] = CREATURE_802
@@ -9425,6 +10229,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [803] = {
           ["ID"] = CREATURE_803
@@ -9433,6 +10238,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [804] = {
           ["ID"] = CREATURE_804
@@ -9441,6 +10247,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [805] = {
           ["ID"] = CREATURE_805
@@ -9449,6 +10256,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [806] = {
           ["ID"] = CREATURE_806
@@ -9457,6 +10265,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [807] = {
           ["ID"] = CREATURE_807
@@ -9465,6 +10274,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [808] = {
           ["ID"] = CREATURE_808
@@ -9473,6 +10283,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [809] = {
           ["ID"] = CREATURE_809
@@ -9481,6 +10292,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [810] = {
           ["ID"] = CREATURE_810
@@ -9489,6 +10301,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [811] = {
           ["ID"] = CREATURE_811
@@ -9497,6 +10310,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [812] = {
           ["ID"] = CREATURE_812
@@ -9505,6 +10319,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [813] = {
           ["ID"] = CREATURE_813
@@ -9513,6 +10328,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [814] = {
           ["ID"] = CREATURE_814
@@ -9521,6 +10337,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [815] = {
           ["ID"] = CREATURE_815
@@ -9529,6 +10346,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [816] = {
           ["ID"] = CREATURE_816
@@ -9537,6 +10355,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [817] = {
           ["ID"] = CREATURE_817
@@ -9545,6 +10364,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [818] = {
           ["ID"] = CREATURE_818
@@ -9553,6 +10373,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [819] = {
           ["ID"] = CREATURE_819
@@ -9561,6 +10382,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [820] = {
           ["ID"] = CREATURE_820
@@ -9569,6 +10391,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [821] = {
           ["ID"] = CREATURE_821
@@ -9577,6 +10400,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [822] = {
           ["ID"] = CREATURE_822
@@ -9585,6 +10409,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [823] = {
           ["ID"] = CREATURE_823
@@ -9593,6 +10418,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [824] = {
           ["ID"] = CREATURE_824
@@ -9601,6 +10427,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [825] = {
           ["ID"] = CREATURE_825
@@ -9609,6 +10436,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [826] = {
           ["ID"] = CREATURE_826
@@ -9617,6 +10445,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [827] = {
           ["ID"] = CREATURE_827
@@ -9625,6 +10454,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [828] = {
           ["ID"] = CREATURE_828
@@ -9633,6 +10463,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [829] = {
           ["ID"] = CREATURE_829
@@ -9641,6 +10472,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [830] = {
           ["ID"] = CREATURE_830
@@ -9649,6 +10481,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [831] = {
           ["ID"] = CREATURE_831
@@ -9657,6 +10490,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [832] = {
           ["ID"] = CREATURE_832
@@ -9665,6 +10499,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [833] = {
           ["ID"] = CREATURE_833
@@ -9673,6 +10508,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [834] = {
           ["ID"] = CREATURE_834
@@ -9681,6 +10517,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [835] = {
           ["ID"] = CREATURE_835
@@ -9689,6 +10526,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [836] = {
           ["ID"] = CREATURE_836
@@ -9697,6 +10535,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [837] = {
           ["ID"] = CREATURE_837
@@ -9705,6 +10544,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [838] = {
           ["ID"] = CREATURE_838
@@ -9713,6 +10553,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [839] = {
           ["ID"] = CREATURE_839
@@ -9721,6 +10562,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [840] = {
           ["ID"] = CREATURE_840
@@ -9729,6 +10571,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [841] = {
           ["ID"] = CREATURE_841
@@ -9737,6 +10580,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [842] = {
           ["ID"] = CREATURE_842
@@ -9745,6 +10589,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [843] = {
           ["ID"] = CREATURE_843
@@ -9753,6 +10598,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [844] = {
           ["ID"] = CREATURE_844
@@ -9761,6 +10607,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [845] = {
           ["ID"] = CREATURE_845
@@ -9769,6 +10616,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [846] = {
           ["ID"] = CREATURE_846
@@ -9777,6 +10625,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [847] = {
           ["ID"] = CREATURE_847
@@ -9785,6 +10634,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [848] = {
           ["ID"] = CREATURE_848
@@ -9793,6 +10643,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [849] = {
           ["ID"] = CREATURE_849
@@ -9801,6 +10652,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [850] = {
           ["ID"] = CREATURE_850
@@ -9809,6 +10661,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [851] = {
           ["ID"] = CREATURE_851
@@ -9817,6 +10670,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [852] = {
           ["ID"] = CREATURE_852
@@ -9825,6 +10679,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [853] = {
           ["ID"] = CREATURE_853
@@ -9833,6 +10688,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [854] = {
           ["ID"] = CREATURE_854
@@ -9841,6 +10697,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [855] = {
           ["ID"] = CREATURE_855
@@ -9849,6 +10706,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [856] = {
           ["ID"] = CREATURE_856
@@ -9857,6 +10715,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [857] = {
           ["ID"] = CREATURE_857
@@ -9865,6 +10724,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [858] = {
           ["ID"] = CREATURE_858
@@ -9873,6 +10733,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [859] = {
           ["ID"] = CREATURE_859
@@ -9881,6 +10742,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [860] = {
           ["ID"] = CREATURE_860
@@ -9889,6 +10751,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [861] = {
           ["ID"] = CREATURE_861
@@ -9897,6 +10760,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [862] = {
           ["ID"] = CREATURE_862
@@ -9905,6 +10769,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [863] = {
           ["ID"] = CREATURE_863
@@ -9913,6 +10778,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [864] = {
           ["ID"] = CREATURE_864
@@ -9921,6 +10787,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [865] = {
           ["ID"] = CREATURE_865
@@ -9929,6 +10796,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [866] = {
           ["ID"] = CREATURE_866
@@ -9937,6 +10805,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [867] = {
           ["ID"] = CREATURE_867
@@ -9945,6 +10814,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [868] = {
           ["ID"] = CREATURE_868
@@ -9953,6 +10823,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [869] = {
           ["ID"] = CREATURE_869
@@ -9961,6 +10832,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [870] = {
           ["ID"] = CREATURE_870
@@ -9969,6 +10841,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [871] = {
           ["ID"] = CREATURE_871
@@ -9977,6 +10850,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [872] = {
           ["ID"] = CREATURE_872
@@ -9985,6 +10859,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [873] = {
           ["ID"] = CREATURE_873
@@ -9993,6 +10868,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [874] = {
           ["ID"] = CREATURE_874
@@ -10001,6 +10877,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [875] = {
           ["ID"] = CREATURE_875
@@ -10009,6 +10886,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [876] = {
           ["ID"] = CREATURE_876
@@ -10017,6 +10895,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [877] = {
           ["ID"] = CREATURE_877
@@ -10025,6 +10904,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [878] = {
           ["ID"] = CREATURE_878
@@ -10033,6 +10913,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [879] = {
           ["ID"] = CREATURE_879
@@ -10041,6 +10922,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [880] = {
           ["ID"] = CREATURE_880
@@ -10049,6 +10931,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [881] = {
           ["ID"] = CREATURE_881
@@ -10057,6 +10940,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [882] = {
           ["ID"] = CREATURE_882
@@ -10065,6 +10949,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [883] = {
           ["ID"] = CREATURE_883
@@ -10073,6 +10958,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [884] = {
           ["ID"] = CREATURE_884
@@ -10081,6 +10967,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [885] = {
           ["ID"] = CREATURE_885
@@ -10089,6 +10976,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [886] = {
           ["ID"] = CREATURE_886
@@ -10097,6 +10985,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [887] = {
           ["ID"] = CREATURE_887
@@ -10105,6 +10994,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [888] = {
           ["ID"] = CREATURE_888
@@ -10113,6 +11003,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [889] = {
           ["ID"] = CREATURE_889
@@ -10121,6 +11012,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [890] = {
           ["ID"] = CREATURE_890
@@ -10129,6 +11021,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [891] = {
           ["ID"] = CREATURE_891
@@ -10137,6 +11030,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [892] = {
           ["ID"] = CREATURE_892
@@ -10145,6 +11039,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [893] = {
           ["ID"] = CREATURE_893
@@ -10153,6 +11048,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [894] = {
           ["ID"] = CREATURE_894
@@ -10161,6 +11057,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [895] = {
           ["ID"] = CREATURE_895
@@ -10169,6 +11066,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [896] = {
           ["ID"] = CREATURE_896
@@ -10177,6 +11075,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [897] = {
           ["ID"] = CREATURE_897
@@ -10185,6 +11084,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [898] = {
           ["ID"] = CREATURE_898
@@ -10193,6 +11093,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [899] = {
           ["ID"] = CREATURE_899
@@ -10201,6 +11102,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [900] = {
           ["ID"] = CREATURE_900
@@ -10209,6 +11111,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [901] = {
           ["ID"] = CREATURE_901
@@ -10217,6 +11120,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [902] = {
           ["ID"] = CREATURE_902
@@ -10225,6 +11129,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [903] = {
           ["ID"] = CREATURE_903
@@ -10233,6 +11138,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [904] = {
           ["ID"] = CREATURE_904
@@ -10241,6 +11147,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [905] = {
           ["ID"] = CREATURE_905
@@ -10249,6 +11156,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [906] = {
           ["ID"] = CREATURE_906
@@ -10257,6 +11165,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [907] = {
           ["ID"] = CREATURE_907
@@ -10265,6 +11174,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [908] = {
           ["ID"] = CREATURE_908
@@ -10273,6 +11183,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [909] = {
           ["ID"] = CREATURE_909
@@ -10281,6 +11192,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [910] = {
           ["ID"] = CREATURE_910
@@ -10289,6 +11201,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [911] = {
           ["ID"] = CREATURE_911
@@ -10297,6 +11210,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [912] = {
           ["ID"] = CREATURE_912
@@ -10305,6 +11219,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [913] = {
           ["ID"] = CREATURE_913
@@ -10313,6 +11228,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [914] = {
           ["ID"] = CREATURE_914
@@ -10321,6 +11237,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [915] = {
           ["ID"] = CREATURE_915
@@ -10329,6 +11246,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [916] = {
           ["ID"] = CREATURE_916
@@ -10337,6 +11255,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [917] = {
           ["ID"] = CREATURE_917
@@ -10345,6 +11264,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [918] = {
           ["ID"] = CREATURE_918
@@ -10353,6 +11273,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [919] = {
           ["ID"] = CREATURE_919
@@ -10361,6 +11282,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [920] = {
           ["ID"] = CREATURE_920
@@ -10369,6 +11291,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [921] = {
           ["ID"] = CREATURE_921
@@ -10377,6 +11300,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [922] = {
           ["ID"] = CREATURE_922
@@ -10385,6 +11309,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [923] = {
           ["ID"] = CREATURE_923
@@ -10393,6 +11318,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [924] = {
           ["ID"] = CREATURE_924
@@ -10401,6 +11327,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [925] = {
           ["ID"] = CREATURE_925
@@ -10409,6 +11336,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [926] = {
           ["ID"] = CREATURE_926
@@ -10417,6 +11345,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [927] = {
           ["ID"] = CREATURE_927
@@ -10425,6 +11354,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [928] = {
           ["ID"] = CREATURE_928
@@ -10433,6 +11363,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [929] = {
           ["ID"] = CREATURE_929
@@ -10441,6 +11372,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [930] = {
           ["ID"] = CREATURE_930
@@ -10449,6 +11381,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 829
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [931] = {
           ["ID"] = CREATURE_931
@@ -10457,6 +11390,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 795
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [932] = {
           ["ID"] = CREATURE_932
@@ -10465,6 +11399,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 856
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [933] = {
           ["ID"] = CREATURE_933
@@ -10473,6 +11408,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 813
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [934] = {
           ["ID"] = CREATURE_934
@@ -10481,6 +11417,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 8576
           , ["CombatSize"] = 2
+          , ["Range"] = 0
         }
         , [935] = {
           ["ID"] = CREATURE_935
@@ -10489,6 +11426,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [936] = {
           ["ID"] = CREATURE_936
@@ -10497,6 +11435,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [937] = {
           ["ID"] = CREATURE_937
@@ -10505,6 +11444,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [938] = {
           ["ID"] = CREATURE_938
@@ -10513,6 +11453,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [939] = {
           ["ID"] = CREATURE_939
@@ -10521,6 +11462,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [940] = {
           ["ID"] = CREATURE_940
@@ -10529,6 +11471,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [941] = {
           ["ID"] = CREATURE_941
@@ -10537,6 +11480,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [942] = {
           ["ID"] = CREATURE_942
@@ -10545,6 +11489,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [943] = {
           ["ID"] = CREATURE_943
@@ -10553,6 +11498,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [944] = {
           ["ID"] = CREATURE_944
@@ -10561,6 +11507,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [945] = {
           ["ID"] = CREATURE_945
@@ -10569,6 +11516,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [946] = {
           ["ID"] = CREATURE_946
@@ -10577,6 +11525,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [947] = {
           ["ID"] = CREATURE_947
@@ -10585,6 +11534,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [948] = {
           ["ID"] = CREATURE_948
@@ -10593,6 +11543,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [949] = {
           ["ID"] = CREATURE_949
@@ -10601,6 +11552,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [950] = {
           ["ID"] = CREATURE_950
@@ -10609,6 +11561,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [951] = {
           ["ID"] = CREATURE_951
@@ -10617,6 +11570,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [952] = {
           ["ID"] = CREATURE_952
@@ -10625,6 +11579,7 @@ end;
           , ["TIER"] = 5
           , ["POWER"] = 1457
           , ["CombatSize"] = 2
+          , ["Range"] = 0
         }
         , [953] = {
           ["ID"] = CREATURE_953
@@ -10633,6 +11588,7 @@ end;
           , ["TIER"] = 5
           , ["POWER"] = 1523
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [954] = {
           ["ID"] = CREATURE_954
@@ -10641,6 +11597,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [955] = {
           ["ID"] = CREATURE_Orlando2
@@ -10649,6 +11606,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [956] = {
           ["ID"] = CREATURE_956
@@ -10657,6 +11615,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [957] = {
           ["ID"] = CREATURE_957
@@ -10665,6 +11624,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [958] = {
           ["ID"] = CREATURE_958
@@ -10673,6 +11633,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [959] = {
           ["ID"] = CREATURE_959
@@ -10681,6 +11642,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [960] = {
           ["ID"] = CREATURE_960
@@ -10689,6 +11651,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [961] = {
           ["ID"] = CREATURE_961
@@ -10697,6 +11660,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [962] = {
           ["ID"] = CREATURE_962
@@ -10705,6 +11669,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [963] = {
           ["ID"] = CREATURE_963
@@ -10713,6 +11678,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [964] = {
           ["ID"] = CREATURE_964
@@ -10721,6 +11687,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [965] = {
           ["ID"] = CREATURE_965
@@ -10729,6 +11696,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [966] = {
           ["ID"] = CREATURE_966
@@ -10737,6 +11705,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [967] = {
           ["ID"] = CREATURE_967
@@ -10745,6 +11714,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [968] = {
           ["ID"] = CREATURE_968
@@ -10753,6 +11723,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [969] = {
           ["ID"] = CREATURE_969
@@ -10761,6 +11732,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [970] = {
           ["ID"] = CREATURE_970
@@ -10769,6 +11741,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [971] = {
           ["ID"] = CREATURE_971
@@ -10777,6 +11750,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [972] = {
           ["ID"] = CREATURE_972
@@ -10785,6 +11759,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [973] = {
           ["ID"] = CREATURE_973
@@ -10793,6 +11768,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [974] = {
           ["ID"] = CREATURE_974
@@ -10801,6 +11777,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [975] = {
           ["ID"] = CREATURE_975
@@ -10809,6 +11786,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [976] = {
           ["ID"] = CREATURE_976
@@ -10817,6 +11795,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [977] = {
           ["ID"] = CREATURE_977
@@ -10825,6 +11804,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [978] = {
           ["ID"] = CREATURE_978
@@ -10833,6 +11813,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [979] = {
           ["ID"] = CREATURE_979
@@ -10841,6 +11822,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [980] = {
           ["ID"] = CREATURE_980
@@ -10849,6 +11831,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [981] = {
           ["ID"] = CREATURE_981
@@ -10857,6 +11840,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [982] = {
           ["ID"] = CREATURE_982
@@ -10865,6 +11849,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [983] = {
           ["ID"] = CREATURE_983
@@ -10873,6 +11858,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [984] = {
           ["ID"] = CREATURE_984
@@ -10881,6 +11867,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [985] = {
           ["ID"] = CREATURE_985
@@ -10889,6 +11876,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [986] = {
           ["ID"] = CREATURE_986
@@ -10897,6 +11885,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [987] = {
           ["ID"] = CREATURE_987
@@ -10905,6 +11894,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [988] = {
           ["ID"] = CREATURE_988
@@ -10913,6 +11903,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [989] = {
           ["ID"] = CREATURE_989
@@ -10921,6 +11912,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [990] = {
           ["ID"] = CREATURE_990
@@ -10929,6 +11921,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [991] = {
           ["ID"] = CREATURE_991
@@ -10937,6 +11930,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [992] = {
           ["ID"] = CREATURE_992
@@ -10945,6 +11939,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [993] = {
           ["ID"] = CREATURE_993
@@ -10953,6 +11948,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [994] = {
           ["ID"] = CREATURE_994
@@ -10961,6 +11957,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [995] = {
           ["ID"] = CREATURE_995
@@ -10969,6 +11966,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [996] = {
           ["ID"] = CREATURE_996
@@ -10977,6 +11975,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [997] = {
           ["ID"] = CREATURE_997
@@ -10985,6 +11984,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [998] = {
           ["ID"] = CREATURE_998
@@ -10993,6 +11993,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
         , [999] = {
           ["ID"] = CREATURE_999
@@ -11001,6 +12002,7 @@ end;
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
+          , ["Range"] = 0
         }
       };
 
@@ -11473,6 +12475,9 @@ end;
 
       TTHCS_PATH["Perk"][HERO_SKILL_EXPLODING_CORPSES] = {};
       TTHCS_PATH["Perk"][HERO_SKILL_EXPLODING_CORPSES]["Effect"] = "/Text/TTH/Skills/Logistics/093-ExplodingCorpses/Combat/Effect.txt";
+
+      TTHCS_PATH["Perk"][HERO_SKILL_FOREST_RAGE] = {};
+      TTHCS_PATH["Perk"][HERO_SKILL_FOREST_RAGE]["Effect"] = "/Text/TTH/Skills/Avenger/117-ForestRage/Combat/Effect.txt";
 
     TTHCS_PATH["Artifact"] = {};
       TTHCS_PATH["Artifact"][ARTIFACT_ANGELIC_ALLIANCE] = {};

@@ -1205,6 +1205,9 @@ doFile("/scripts/H55-Settings.lua");
 						-- 宝物商店
 							TTH_COMMON.setTrigger2ObjectType("BUILDING_BLACK_MARKET", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitBlackMarket", nil);
 
+						-- 红木了望塔
+							TTH_COMMON.setTrigger2ObjectType("BUILDING_REDWOORD_OBSERVATORY", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitRedwoordObservatory", nil);
+
 						-- 初始化 杉提瑞圆盘和方尖碑
 							TTH_VARI.arrBuilding["BUILDING_EYE_OF_MAGI"] = GetObjectNamesByType("BUILDING_EYE_OF_MAGI");
 							TTH_VARI.arrBuilding["BUILDING_LAKE_OF_SCARLET_SWAN"] = GetObjectNamesByType("BUILDING_LAKE_OF_SCARLET_SWAN");
@@ -1693,24 +1696,24 @@ doFile("/scripts/H55-Settings.lua");
 					end;
 
 					if enumHeroClass == TTH_ENUM.Ranger then
-						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
-						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
-						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
 						GiveHeroSkill(strHero, HERO_SKILL_AVENGER);
 						GiveHeroSkill(strHero, HERO_SKILL_AVENGER);
 						GiveHeroSkill(strHero, HERO_SKILL_OFFENCE);
-						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_LUCKY_STRIKE);
-						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_ELVEN_LUCK);
-						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_FOREST_RAGE);
+						GiveHeroSkill(strHero, HERO_SKILL_OFFENCE);
+						GiveHeroSkill(strHero, HERO_SKILL_TRAINING);
+						GiveHeroSkill(strHero, HERO_SKILL_LOGISTICS);
 						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_SNIPE_DEAD);
 						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_FRENZY);
+						GiveHeroSkill(strHero, HERO_SKILL_ARCHERY);
 						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_ABSOLUTE_LUCK);
+						GiveHeroSkill(strHero, HERO_SKILL_CHILLING_STEEL);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_POWERFULL_BLOW);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_SCOUTING);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_FOREST_RAGE);
 					end;
 					if enumHeroClass == TTH_ENUM.Warden then
 						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
@@ -2671,6 +2674,9 @@ doFile("/scripts/H55-Settings.lua");
 					local arrDistanceWulfstan = TTH_TALENT.getDistance4Hero2NearestMayorTown8Wulfstan(iPlayer, strHero);
 					arrDistance = TTH_COMMON.concat(arrDistance, arrDistanceWulfstan);
 
+					local arrDistanceGillion = TTH_TALENT.getDistance4Hero2NearestMayorTown8Gillion(iPlayer, strHero);
+					arrDistance = TTH_COMMON.concat(arrDistance, arrDistanceGillion);
+
 					local iDistanceNikolay = TTH_TALENT.getDistance4Hero2NearestMayorTown8Nikolay(iPlayer, strHero);
 					arrDistance = TTH_COMMON.push(arrDistance, iDistanceNikolay);
 
@@ -2829,6 +2835,7 @@ doFile("/scripts/H55-Settings.lua");
 					, [7] = HERO_SKILL_SEAL_OF_PROTECTION
 					, [8] = HERO_SKILL_TRIPLE_CATAPULT
 					, [9] = HERO_SKILL_EXPLODING_CORPSES
+					, [10] = HERO_SKILL_FOREST_RAGE
 				};
 				TTH_TABLE.CombatSkill2Special = {
 					[0] = HERO_SKILL_PARIAH
@@ -2973,7 +2980,6 @@ doFile("/scripts/H55-Settings.lua");
 						if HasArtefact(strHero, ARTIFACT_MONK_03, 1) then
 							iRecovery = iRecovery + 350;
 						end;
-						iRecovery = iRecovery + TTH_TALENT.dealKyrre(strHero);
 						iRecovery = iRecovery + TTH_TALENT.dealHero2(strHero);
 						if TTH_GLOBAL.isBonus8MonkMove(strHero) == TTH_ENUM.Enable then
 							iRecovery = iRecovery  * 1.5;
@@ -4863,6 +4869,20 @@ doFile("/scripts/H55-Settings.lua");
 				end;
 			end;
 
+		-- 红木了望塔
+			function TTH_VISIT.visitRedwoordObservatory(strHero, strBuildingName)
+				local iPlayer = GetObjectOwner(strHero);
+				local funcCallback = "TTH_VISIT.visitRedwoordObservatory";
+				TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
+				if TTH_GLOBAL.isAi(iPlayer) ~= TTH_ENUM.Yes then
+					local iPlayer = GetObjectOwner(strHero);
+					if strHero == "Gillion" then
+						TTH_TALENT.visitRedwoordGillion(iPlayer, strHero, strBuildingName, funcCallback);
+						return nil;
+					end;
+				end;
+			end;
+
 		-- 杉提瑞圆盘/方尖碑
 			TTH_ENUM.TrialCourage = 1;
 			TTH_ENUM.TrialMight = 2;
@@ -5607,15 +5627,17 @@ doFile("/scripts/H55-Settings.lua");
 				end;
 
 			-- 给予英雄每日政绩
-				function TTH_MANAGE.giveDailyRecordPoint(iPlayer, strHero)
+				function TTH_MANAGE.giveDailyRecordPoint(iPlayer, strHero, iCoef)
 					TTH_MAIN.debug("TTH_MANAGE.giveDailyRecordPoint", iPlayer, strHero);
 
 					local iRecordPoint = TTH_MANAGE.calcDailyRecordPoint(strHero);
-					local iCoef = TTH_PERK.dealDaily099(iPlayer, strHero);
-					iRecordPoint = iRecordPoint * iCoef;
+					if iCoef ~= nil then
+						iRecordPoint = TTH_COMMON.round(iRecordPoint * iCoef);
+					end;
 					if iRecordPoint ~= 0 then
 						TTH_VARI.arrRecordPoint[iPlayer]["RecordPoint"] = TTH_VARI.arrRecordPoint[iPlayer]["RecordPoint"] + iRecordPoint;
 					end;
+					return iRecordPoint;
 				end;
 
 			-- 英雄政绩兑换
@@ -5665,8 +5687,6 @@ doFile("/scripts/H55-Settings.lua");
 					TTH_MAIN.debug("TTH_MANAGE.giveDailyExp4Mayor", iPlayer, strMayor);
 
 					local iExp = TTH_MANAGE.calcDailyExp4Mayor(strMayor);
-					local iCoef = TTH_PERK.dealDaily099(iPlayer, strMayor);
-					iExp = iExp * iCoef;
 					TTH_GLOBAL.giveExp(strMayor, iExp);
 				end;
 
@@ -6035,11 +6055,13 @@ doFile("/scripts/H55-Settings.lua");
 							end;
 						end
 						local bIsExpeditionWulfstan = TTH_TALENT.checkExpedition8Wulfstan(iPlayer, strHero);
+						local bIsExpeditionGillion = TTH_TALENT.checkExpedition8Gillion(iPlayer, strHero);
 						local bIsExpeditionNikolay = TTH_TALENT.checkExpedition8Nikolay(iPlayer, strHero);
 						local bIsExpeditionMenel = TTH_TALENT.checkExpedition8Menel(iPlayer, strHero);
 						local bIsExpedition182 = TTH_PERK.checkExpedition8182(iPlayer, strHero);
 						if bIsExpedition == TTH_ENUM.No
 							or bIsExpeditionWulfstan == TTH_ENUM.No
+							or bIsExpeditionGillion == TTH_ENUM.No
 							or bIsExpeditionNikolay == TTH_ENUM.No
 							or bIsExpeditionMenel == TTH_ENUM.No
 							or bIsExpedition182 == TTH_ENUM.No
@@ -6066,10 +6088,12 @@ doFile("/scripts/H55-Settings.lua");
 							end;
 						end
 						local bIsExpeditionWulfstan = TTH_TALENT.checkExpedition8Wulfstan(iPlayer, strHero);
+						local bIsExpeditionGillion = TTH_TALENT.checkExpedition8Gillion(iPlayer, strHero);
 						local bIsExpeditionNikolay = TTH_TALENT.checkExpedition8Nikolay(iPlayer, strHero);
 						local bIsExpeditionMenel = TTH_TALENT.checkExpedition8Menel(iPlayer, strHero);
 						if bIsExpedition == TTH_ENUM.No
 							or bIsExpeditionWulfstan == TTH_ENUM.No
+							or bIsExpeditionGillion == TTH_ENUM.No
 							or bIsExpeditionNikolay == TTH_ENUM.No
 							or bIsExpeditionMenel == TTH_ENUM.No
 							then
@@ -6107,10 +6131,10 @@ doFile("/scripts/H55-Settings.lua");
 					end;
 				end;
 
-			-- 获取英雄远征天数
+			-- 获取英雄远征状态
 				function TTH_MANAGE.getHeroExpeditionStatus(strHero)
-					local iDuration = TTH_VARI.arrMayor[strHero]["IsExpedition"]["Status"];
-					return iDuration;
+					local bStatus = TTH_VARI.arrMayor[strHero]["IsExpedition"]["Status"];
+					return bStatus;
 				end;
 
 			-- 获取英雄远征天数
@@ -9209,15 +9233,277 @@ doFile("/scripts/H55-Settings.lua");
       	end;
 
 		-- Preserve
-			-- :TODO Kyrre 凯琳
-				function TTH_TALENT.dealKyrre(strHero)
-					local iRecovery = 0;
-					if strHero == "Kyrre" then
-						local iHeroLevel = GetHeroLevel(strHero);
-						iRecovery = 10 * iHeroLevel;
+			-- Metlirn 022 安文
+				TTH_FINAL.METLIRN_REWARD = 100;
+				function TTH_TALENT.initMetlirn(iPlayer, strHero)
+					if TTH_VARI.talent[strHero] == nil then
+						TTH_VARI.talent[strHero] = {
+							["OperTimes"] = 1
+							, ["MaxOperTimes"] = 1
+							, ["Race"] = 0
+							, ["Level"] = 0
+							, ["Growth"] = 0
+							, ["Index"] = 1
+						};
 					end;
-					return iRecovery;
 				end;
+				function TTH_TALENT.activeMetlirn(iPlayer, strHero)
+					TTH_COMMON.nextNavi(TTH_PATH.Talent[strHero]["Text"]);
+
+					TTH_TALENT.initMetlirn(iPlayer, strHero);
+					TTH_TALENT.checkPreActiveMetlirn4NotEnoughTimes(iPlayer, strHero);
+				end;
+				function TTH_TALENT.checkPreActiveMetlirn4NotEnoughTimes(iPlayer, strHero)
+					local strText = TTH_PATH.Talent[strHero]["NotEnoughTimes"];
+					if TTH_VARI.talent[strHero]["OperTimes"] <= 0 then
+						if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+							if TTH_MANAGE.getRemainOperTimes(strHero) <= 0 then
+			    			TTH_GLOBAL.sign(strHero, strText);
+			  				return nil;
+							end;
+						else
+			  			TTH_GLOBAL.sign(strHero, strText);
+							return nil;
+			  		end;
+					end;
+
+					TTH_TALENT.radioActiveMetlirn4Race(iPlayer, strHero);
+				end;
+				function TTH_TALENT.radioActiveMetlirn4Race(iPlayer, strHero)
+					local arrOptionRace = {};
+					for iRace = TOWN_HEAVEN, TOWN_STRONGHOLD do
+						arrOptionRace[iRace + 1] = {
+							["Id"] = iRace
+							, ["Text"] = TTH_PATH.Race[iRace]
+							, ["Callback"] = "TTH_TALENT.radioActiveMetlirn4Level"
+						};
+					end;
+
+					local strPathOption = TTH_PATH.Talent[strHero]["RadioTipsRace"];
+					TTH_COMMON.optionRadio(iPlayer, strHero, arrOptionRace, strPathOption);
+				end;
+				function TTH_TALENT.radioActiveMetlirn4Level(iPlayer, strHero, iRace)
+					TTH_VARI.talent[strHero]["Race"] = iRace;
+					local arrOptionLevel = {};
+					for iLevel = 1, 7 do
+						local iCreatureId = TTH_TABLE.Creature8RaceAndLevel[iRace][iLevel][1];
+						arrOptionLevel[iLevel] = {
+							["Id"] = iLevel
+							, ["Text"] = TTH_TABLE_NCF_CREATURES[iCreatureId]["NAME"]
+							, ["Callback"] = "TTH_TALENT.radioActiveMetlirn4Growth"
+						};
+					end;
+
+					local strPathOption = TTH_PATH.Talent[strHero]["RadioTipsLevel"];
+					TTH_COMMON.optionRadio(iPlayer, strHero, arrOptionLevel, strPathOption);
+				end;
+				function TTH_TALENT.radioActiveMetlirn4Growth(iPlayer, strHero, iLevel)
+					TTH_VARI.talent[strHero]["Level"] = iLevel;
+					local arrOptionGrowth = {};
+					for iGrowth = 1, 7 do
+						arrOptionGrowth[iGrowth] = {
+							["Id"] = iGrowth
+							, ["Text"] = {
+								TTH_PATH.Talent[strHero]["OptionGrowthTemplate"]
+								;iGrowth=iGrowth
+							}
+							, ["Callback"] = "TTH_TALENT.confirmActiveMetlirn"
+						};
+					end;
+
+					local strPathOption = TTH_PATH.Talent[strHero]["RadioTipsGrowth"];
+					TTH_COMMON.optionRadio(iPlayer, strHero, arrOptionGrowth, strPathOption);
+				end;
+				function TTH_TALENT.confirmActiveMetlirn(iPlayer, strHero, iGrowth)
+					TTH_VARI.talent[strHero]["Growth"] = iGrowth;
+					local iRace = TTH_VARI.talent[strHero]["Race"];
+					local iLevel = TTH_VARI.talent[strHero]["Level"];
+					local iCreatureId = TTH_TABLE.Creature8RaceAndLevel[iRace][iLevel][1];
+					local strCreatureName = TTH_TABLE_NCF_CREATURES[iCreatureId]["NAME"];
+					local iCreatureNumber = TTH_TABLE_NCF_CREATURES[iCreatureId]["GROWTH"] * iGrowth;
+					local iReward = TTH_FINAL.METLIRN_REWARD * iLevel * iGrowth;
+					local strPathMain = {
+						TTH_PATH.Talent[strHero]["Confirm"]
+						;strCreatureName=strCreatureName
+						,iCreatureNumber=iCreatureNumber
+						,iReward=iReward
+					};
+					local strCallbackOk = "TTH_TALENT.implActiveMetlirn("..iPlayer..","..TTH_COMMON.psp(strHero)..")";
+					local strCallbackCancel = "TTH_COMMON.cancelOption()";
+					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+				end;
+				function TTH_TALENT.implActiveMetlirn(iPlayer, strHero)
+					if TTH_VARI.talent[strHero]["OperTimes"] > 0 then
+						TTH_VARI.talent[strHero]["OperTimes"] = TTH_VARI.talent[strHero]["OperTimes"] - 1;
+					else
+						TTH_MANAGE.useOperTimes(strHero);
+					end;
+
+					local iRace = TTH_VARI.talent[strHero]["Race"];
+					local iLevel = TTH_VARI.talent[strHero]["Level"];
+					local iGrowth = TTH_VARI.talent[strHero]["Growth"];
+					local iCreatureId = TTH_TABLE.Creature8RaceAndLevel[iRace][iLevel][1];
+					local iCreatureNumber = TTH_TABLE_NCF_CREATURES[iCreatureId]["GROWTH"] * iGrowth;
+					local strMonsterName = strHero.."-"..TTH_VARI.talent[strHero]["Index"];
+					TTH_VARI.talent[strHero]["Index"] = TTH_VARI.talent[strHero]["Index"] + 1;
+					local iPosX, iPosY, iPosZ = GetObjectPosition(strHero);
+					CreateMonster(strMonsterName, iCreatureId, iCreatureNumber, iPosX, iPosY, iPosZ, MONSTER_MOOD_WILD, MONSTER_COURAGE_ALWAYS_FIGHT, 0);
+					sleep(1);
+					MakeHeroInteractWithObject(strHero, strMonsterName);
+				end;
+  			function TTH_TALENT.combatResultMetlirn(iPlayer, strHero, iCombatIndex)
+  				TTH_MAIN.debug("TTH_TALENT.combatResultMetlirn", iPlayer, strHero, iCombatIndex);
+
+  				local strHeroMetlirn = "Metlirn";
+  				if strHero == strHeroMetlirn then
+  					local iLevel = TTH_VARI.talent[strHero]["Level"];
+						local iGrowth = TTH_VARI.talent[strHero]["Growth"];
+						if iLevel ~= 0 and iGrowth ~= 0 then
+							local iReward = TTH_FINAL.METLIRN_REWARD * iLevel * iGrowth;
+							TTH_GLOBAL.increaseResource(iPlayer, GOLD, iReward, strHero);
+							local strText = TTH_PATH.Talent[strHero]["Success"];
+							TTH_GLOBAL.sign(strHero, strText);
+							TTH_VARI.talent[strHero]["Race"] = 0;
+							TTH_VARI.talent[strHero]["Level"] = 0;
+							TTH_VARI.talent[strHero]["Growth"] = 0;
+	  				end;
+  				end;
+  			end;
+				function TTH_TALENT.resetWeeklyMetlirn(iPlayer, strHero)
+					TTH_MAIN.debug("TTH_TALENT.resetWeeklyMetlirn", iPlayer, strHero);
+
+					TTH_TALENT.initMetlirn(iPlayer, strHero);
+					TTH_VARI.talent[strHero]["OperTimes"] = TTH_VARI.talent[strHero]["MaxOperTimes"];
+				end;
+
+			-- Kyrre 029 凯琳
+  			function TTH_TALENT.combatResultKyrre(iPlayer, strHero, iCombatIndex)
+  				TTH_MAIN.debug("TTH_TALENT.combatResultKyrre", iPlayer, strHero, iCombatIndex);
+
+  				local strHeroKyrre = "Kyrre";
+  				if strHero == strHeroKyrre then
+  					if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes
+  						and TTH_MANAGE.getHeroExpeditionStatus(strHero) == TTH_ENUM.No then
+  						local iHeroLevel = GetHeroLevel(strHero);
+  						local iCoef = 0.2 + 0.01 * iHeroLevel;
+  						local iRecordPoint = TTH_MANAGE.giveDailyRecordPoint(iPlayer, strHero, iCoef);
+  						local strPathMain = {
+  							TTH_PATH.Talent["Kyrre"]["GainRecordPoint"]
+  							;iRecordPoint=iRecordPoint
+  						};
+  	    			TTH_GLOBAL.sign(strHero, strPathMain);
+  					end;
+  				end;
+  			end;
+
+			-- Gillion 030 吉尔里恩
+      	function TTH_TALENT.initGillion(strHero)
+					TTH_MAIN.debug("TTH_TALENT.initGillion", nil, strHero);
+
+					TTH_VARI.talent[strHero] = {
+						["BonusLevel"] = 0
+						, ["Redwoord"] = {}
+						, ["CurrentTimes"] = 1
+						, ["MaxTimes"] = 1
+					};
+      	end;
+				function TTH_TALENT.visitRedwoordGillion(iPlayer, strHero, strBuildingName, funcCallback)
+					TTH_COMMON.initNavi(TTH_PATH.Talent[strHero]["Text"]);
+
+					TTH_TALENT.checkPreVisitRedwoordGillion4Times(iPlayer, strHero, strBuildingName, funcCallback);
+				end;
+				function TTH_TALENT.checkPreVisitRedwoordGillion4Times(iPlayer, strHero, strBuildingName, funcCallback)
+      		if TTH_VARI.talent[strHero]["CurrentTimes"] <= 0 then
+      			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+      				if TTH_MANAGE.getRemainOperTimes(strHero) <= 0 then
+      					local strText = TTH_PATH.Talent[strHero]["NotEnoughTimes"];
+			    			TTH_GLOBAL.sign(strHero, strText);
+
+			    			TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
+		    				return nil;
+      				end;
+      			else
+    					local strText = TTH_PATH.Talent[strHero]["NotEnoughTimes"];
+		    			TTH_GLOBAL.sign(strHero, strText);
+
+		    			TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
+	    				return nil;
+		    		end;
+      		end;
+
+      		TTH_TALENT.checkPreVisitRedwoordGillion4HasRedwoord(iPlayer, strHero, strBuildingName, funcCallback);
+				end;
+				function TTH_TALENT.checkPreVisitRedwoordGillion4HasRedwoord(iPlayer, strHero, strBuildingName, funcCallback)
+      		if contains(TTH_VARI.talent[strHero]["Redwoord"], strBuildingName) ~= nil then
+	    			TTH_GLOBAL.sign(strHero, TTH_PATH.Talent[strHero]["HasRedwoord"]);
+
+		    		TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
+    				return nil;
+      		end;
+
+      		TTH_TALENT.confirmVisitRedwoordGillion(iPlayer, strHero, strBuildingName, funcCallback);
+				end;
+				function TTH_TALENT.confirmVisitRedwoordGillion(iPlayer, strHero, strBuildingName, funcCallback)
+					local strText = TTH_PATH.Talent[strHero]["ConfirmVisitRedwoord"];
+					local strCallbackOk = "TTH_TALENT.implVisitRedwoordGillion("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strBuildingName)..")";
+					local strCallbackCancel = "TTH_VISIT.visitBuildingWithoutScript("..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strBuildingName)..","..TTH_COMMON.psp(funcCallback)..")";
+					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strText, strCallbackOk, strCallbackCancel);
+				end;
+				function TTH_TALENT.implVisitRedwoordGillion(iPlayer, strHero, strBuildingName)
+      		if TTH_VARI.talent[strHero]["CurrentTimes"] > 0 then
+    				TTH_VARI.talent[strHero]["CurrentTimes"] = TTH_VARI.talent[strHero]["CurrentTimes"] - 1;
+		    	else
+      			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+		    			TTH_MANAGE.useOperTimes(strHero);
+		    		end;
+      		end;
+      		if contains(TTH_VARI.talent[strHero]["Redwoord"], strBuildingName) == nil then
+						TTH_VARI.talent[strHero]["Redwoord"] = TTH_COMMON.push(TTH_VARI.talent[strHero]["Redwoord"], strBuildingName);
+      		end;
+      		OverrideObjectTooltipNameAndDescription(strBuildingName, TTH_PATH.Talent[strHero]["Title"], TTH_PATH.Talent[strHero]["Desc"]);
+					local strText = TTH_PATH.Talent[strHero]["SuccessVisitRedwoord"];
+					TTH_GLOBAL.sign(strHero, strText);
+				end;
+      	function TTH_TALENT.resetWeeklyGillion(iPlayer, strHero)
+      		TTH_MAIN.debug("TTH_TALENT.resetWeeklyGillion", iPlayer, strHero);
+
+      		TTH_VARI.talent[strHero]["CurrentTimes"] = TTH_VARI.talent[strHero]["MaxTimes"];
+      	end;
+      	function TTH_TALENT.checkExpedition8Gillion(iPlayer, strHero)
+      		TTH_MAIN.debug("TTH_TALENT.checkExpedition8Gillion", iPlayer, strHero);
+
+      		local bIsExpedition = TTH_ENUM.Yes;
+      		if strHero == "Gillion" then
+      			bIsExpedition = TTH_ENUM.No;
+      		else
+	      		if TTH_GLOBAL.getRace8Hero(strHero) == TOWN_PRESERVE
+	      			and TTH_VARI.talent["Gillion"] ~= nil then
+		      		local arrRedwoord = TTH_VARI.talent["Gillion"]["Redwoord"];
+		      		for i, strRedwoordName in arrRedwoord do
+		      			if TTH_GLOBAL.getDistance(strHero, strRedwoordName) <= TTH_MANAGE.getTerritoryRadius(iPlayer) then
+		      				bIsExpedition = TTH_ENUM.No;
+		      				break;
+		      			end;
+		      		end;
+	      		end;
+      		end;
+      		return bIsExpedition;
+      	end;
+      	function TTH_TALENT.getDistance4Hero2NearestMayorTown8Gillion(iPlayer, strHero)
+      		TTH_MAIN.debug("TTH_TALENT.getDistance4Hero2NearestMayorTown8Gillion", iPlayer, strHero);
+
+      		local strGillion = "Gillion";
+      		local arrDistance = {};
+      		if TTH_VARI.talent[strGillion] ~= nil
+	      		and contains(GetPlayerHeroes(iPlayer), strGillion) ~= nil
+      			and TTH_GLOBAL.getRace8Hero(strHero) == TOWN_PRESERVE then
+      			local arrRedwoord = TTH_VARI.talent["Gillion"]["Redwoord"];
+      			for i, strRedwoordName in arrRedwoord do
+      				TTH_COMMON.push(arrDistance, TTH_GLOBAL.getDistance(strHero, strRedwoordName));
+      			end
+      		end;
+      		return arrDistance;
+      	end;
 
       -- Melodia 032 马洛迪亚
       	function TTH_TALENT.initMelodia(strHero)

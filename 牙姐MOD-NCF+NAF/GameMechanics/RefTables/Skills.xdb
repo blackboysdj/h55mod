@@ -12240,18 +12240,28 @@
 				</Texture>
 				<CommonTexture/>
 				<NameFileRef>
-					<Item href="/Text/Game/Skills/Common/Offence/ForestRage/Name.txt"/>
+				  <Item href="/Text/TTH/Skills/Avenger/117-ForestRage/Name.txt"/>
 				</NameFileRef>
 				<CommonNameFileRef href=""/>
 				<DescriptionFileRef>
-					<Item href="/Text/Game/Skills/Common/Offence/ForestRage/Description.txt"/>
+				  <Item href="/Text/TTH/Skills/Avenger/117-ForestRage/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
-				<SkillType>SKILLTYPE_STANDART_PERK</SkillType>
+				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
 				<HeroClass>HERO_CLASS_NONE</HeroClass>
 				<spellBuffs/>
 				<BasicSkillID>HERO_SKILL_AVENGER</BasicSkillID>
-				<SkillPrerequisites/>
+				<SkillPrerequisites>
+					<Item>
+						<Class>HERO_CLASS_RANGER</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_SNIPE_DEAD</Item>
+							<Item>HERO_SKILL_CHILLING_STEEL</Item>
+							<Item>HERO_SKILL_POWERFULL_BLOW</Item>
+							<Item>HERO_SKILL_SCOUTING</Item>
+						</dependenciesIDs>
+					</Item>
+				</SkillPrerequisites>
 				<AIRacesValues>
 					<Haven>
 						<CommanderValue>0</CommanderValue>
@@ -13381,9 +13391,8 @@
 						<Class>HERO_CLASS_RANGER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_ELVEN_LUCK</Item>
-							<Item>HERO_SKILL_SNIPE_DEAD</Item>
-							<Item>HERO_SKILL_FOREST_RAGE</Item>
-							<Item>HERO_SKILL_FRENZY</Item>
+							<Item>HERO_SKILL_CUNNING_OF_THE_WOODS</Item>
+							<Item>HERO_SKILL_RETRIBUTION</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>

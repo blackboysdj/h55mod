@@ -33,7 +33,7 @@
 	<Specialization>HERO_SPEC_BLADE_MASTER</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_AVENGER</SkillID>
+		<SkillID>HERO_SKILL_DEFENCE</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Preserve/030-Gillion/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Preserve/030-Gillion/Description.txt"/>
@@ -56,11 +56,11 @@
 		<skills>
 			<Item>
 				<Mastery>MASTERY_BASIC</Mastery>
-				<SkillID>HERO_SKILL_DEFENCE</SkillID>
+				<SkillID>HERO_SKILL_OFFENCE</SkillID>
 			</Item>
 		</skills>
 		<perkIDs>
-			<Item>HERO_SKILL_FOREST_RAGE</Item>
+			<Item>HERO_SKILL_TACTICS</Item>
 		</perkIDs>
 		<spellIDs/>
 		<Ballista>false</Ballista>

@@ -35,8 +35,8 @@
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_AVENGER</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Preserve55/Elven_Volley/Name.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Preserve55/Elven_Volley/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Preserve/026-Heam/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Preserve/026-Heam/Description.txt"/>
 	<SpecializationIcon href="/Textures/HeroScreen/Specializations/Preserve/Elven_Volley.xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Preserve/Preserve_Findan_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>
@@ -60,7 +60,7 @@
 			</Item>
 		</skills>
 		<perkIDs>
-			<Item>HERO_SKILL_FRENZY</Item>
+			<Item>HERO_SKILL_ARCHERY</Item>
 		</perkIDs>
 		<spellIDs/>
 		<Ballista>false</Ballista>

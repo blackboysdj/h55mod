@@ -14,11 +14,14 @@ setGameVar4HeroSkill
   hero with name '7' is not exist
   追猎者: 非我方城镇势力范围内，提高移动力
   士气-5 亡巫功能提示选择
-  天使移动动作
   内比罗斯: 敌方英雄无法逃跑
   shantiri传送
   熔毁宝物
   宝物学者
+
+  内政官在管辖城镇传送无消耗
+  马希尔传送无消耗
+  追猎者在城镇范围内战斗胜利获得额外政绩
 
   维托利奥
   伯权德
@@ -446,6 +449,8 @@ NCF生物
   ffmpeg -ss 00:00:01 -t 12 -i 赛勒斯-10级技能-剪辑前2.mp4 -codec copy 赛勒斯-决战技能-剪辑后2.mp4
   ffmpeg -ss 00:08:18 -to 00:14:58 -i 赛勒斯-破口-剪辑前.mp4 -codec copy 赛勒斯-破口-剪辑后.mp4
   ffmpeg -f concat -safe 0 -i filelist.txt -c copy 篷车的反杀.mp4
+  ffmpeg -i "1.mkv" -vcodec copy -acodec copy "1.mp4"
+
 
 公众号相关
   【英雄无敌5.5牙姐MOD】英雄前瞻--维托利奥

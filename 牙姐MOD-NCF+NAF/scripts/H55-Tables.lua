@@ -10611,6 +10611,32 @@
         TTH_PATH.Talent["RedHeavenHero06"]["NotEnoughTimes"] = TTH_PATH.Talent["RedHeavenHero06"]["Pre"].."NotEnoughTimes.txt";
         TTH_PATH.Talent["RedHeavenHero06"]["Confirm"] = TTH_PATH.Talent["RedHeavenHero06"]["Pre"].."Confirm.txt";
         TTH_PATH.Talent["RedHeavenHero06"]["Success"] = TTH_PATH.Talent["RedHeavenHero06"]["Pre"].."Success.txt";
+      -- Metlirn 022 安文
+        TTH_PATH.Talent["Metlirn"] = {};
+        TTH_PATH.Talent["Metlirn"]["Pre"] = TTH_PATH.Talent["Pre"].."022-Metlirn/";
+        TTH_PATH.Talent["Metlirn"]["Text"] = TTH_PATH.Talent["Metlirn"]["Pre"].."Text.txt";
+        TTH_PATH.Talent["Metlirn"]["NotEnoughTimes"] = TTH_PATH.Talent["Metlirn"]["Pre"].."NotEnoughTimes.txt";
+        TTH_PATH.Talent["Metlirn"]["RadioTipsRace"] = TTH_PATH.Talent["Metlirn"]["Pre"].."RadioTipsRace.txt";
+        TTH_PATH.Talent["Metlirn"]["RadioTipsLevel"] = TTH_PATH.Talent["Metlirn"]["Pre"].."RadioTipsLevel.txt";
+        TTH_PATH.Talent["Metlirn"]["OptionGrowthTemplate"] = TTH_PATH.Talent["Metlirn"]["Pre"].."OptionGrowthTemplate.txt";
+        TTH_PATH.Talent["Metlirn"]["RadioTipsGrowth"] = TTH_PATH.Talent["Metlirn"]["Pre"].."RadioTipsGrowth.txt";
+        TTH_PATH.Talent["Metlirn"]["Confirm"] = TTH_PATH.Talent["Metlirn"]["Pre"].."Confirm.txt";
+        TTH_PATH.Talent["Metlirn"]["Success"] = TTH_PATH.Talent["Metlirn"]["Pre"].."Success.txt";
+        TTH_PATH.Talent["Metlirn"]["CombatLink"] = "/Arenas/CombatArena/FinalCombat/Bank_Elf.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)";
+      -- Kyrre 029 凯琳
+        TTH_PATH.Talent["Kyrre"] = {};
+        TTH_PATH.Talent["Kyrre"]["Pre"] = TTH_PATH.Talent["Pre"].."029-Kyrre/";
+        TTH_PATH.Talent["Kyrre"]["GainRecordPoint"] = TTH_PATH.Talent["Kyrre"]["Pre"].."GainRecordPoint.txt";
+      -- Gillion 030 吉尔里恩
+        TTH_PATH.Talent["Gillion"] = {};
+        TTH_PATH.Talent["Gillion"]["Pre"] = TTH_PATH.Talent["Pre"].."030-Gillion/";
+        TTH_PATH.Talent["Gillion"]["Text"] = TTH_PATH.Talent["Gillion"]["Pre"].."Text.txt";
+        TTH_PATH.Talent["Gillion"]["NotEnoughTimes"] = TTH_PATH.Talent["Gillion"]["Pre"].."NotEnoughTimes.txt";
+        TTH_PATH.Talent["Gillion"]["HasRedwoord"] = TTH_PATH.Talent["Gillion"]["Pre"].."HasRedwoord.txt";
+        TTH_PATH.Talent["Gillion"]["ConfirmVisitRedwoord"] = TTH_PATH.Talent["Gillion"]["Pre"].."ConfirmVisitRedwoord.txt";
+        TTH_PATH.Talent["Gillion"]["SuccessVisitRedwoord"] = TTH_PATH.Talent["Gillion"]["Pre"].."SuccessVisitRedwoord.txt";
+        TTH_PATH.Talent["Gillion"]["Title"] = TTH_PATH.Talent["Gillion"]["Pre"].."Title.txt";
+        TTH_PATH.Talent["Gillion"]["Desc"] = TTH_PATH.Talent["Gillion"]["Pre"].."Desc.txt";
       -- Melodia 032 马洛迪亚
         TTH_PATH.Talent["Melodia"] = {};
         TTH_PATH.Talent["Melodia"]["Pre"] = TTH_PATH.Talent["Pre"].."032/";
@@ -11033,6 +11059,9 @@
           , ["Wulfstan"] = {
             [TTH_ENUM.FuncAlways] = "TTH_TALENT.initWulfstan"
           }
+          , ["Gillion"] = {
+            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initGillion"
+          }
           , ["RedHeavenHero06"] = {
             [TTH_ENUM.FuncAlways] = "TTH_TALENT.initRedHeavenHero06"
           }
@@ -11053,6 +11082,9 @@
           }
           , ["Brem"] = {
             [TTH_ENUM.FuncAlways] = "TTH_TALENT.initBrem"
+          }
+          , ["Metlirn"] = {
+            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initMetlirn"
           }
         }
         , [TTH_ENUM.FuncActive] = {
@@ -11144,6 +11176,11 @@
             , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeUna"
             , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeUna"
           }
+          , ["Metlirn"] = {
+            ["Text"] = TTH_PATH.Talent["Metlirn"]["Text"]
+            , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeMetlirn"
+            , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeMetlirn"
+          }
         }
         , [TTH_ENUM.FuncLevelUp] = {
           ["Vinrael"] = {
@@ -11175,6 +11212,12 @@
           , ["Sovereign"] = {
             [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultSovereign"
           }
+          , ["Kyrre"] = {
+            [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultKyrre"
+          }
+          , ["Metlirn"] = {
+            [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultMetlirn"
+          }
         }
         , [TTH_ENUM.FuncDealWeekly] = {
           ["Sylsai"] = {
@@ -11203,6 +11246,9 @@
           , ["Wulfstan"] = {
             [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyWulfstan"
           }
+          , ["Gillion"] = {
+            [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyGillion"
+          }
           , ["Rolf"] = {
             [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyRolf"
           }
@@ -11211,6 +11257,9 @@
           }
           , ["Azar"] = {
             [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyAzar"
+          }
+          , ["Metlirn"] = {
+            [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyMetlirn"
           }
         }
         , [TTH_ENUM.FuncDealDaily] = {
@@ -19874,11 +19923,7 @@
               , TTH_ENUM.Enchanter
             }
             , ["Perk"] = {
-              [117] = { -- 自然之怒
-                ["Id"] = HERO_SKILL_FOREST_RAGE
-                , ["Text"] = "/Text/TTH/Skills/Avenger/117-ForestRage/Name.txt"
-              }
-              , [66] = { -- 注魔之箭
+              [66] = { -- 注魔之箭
                 ["Id"] = HERO_SKILL_IMBUE_ARROW
                 , ["Text"] = "/Text/TTH/Skills/Avenger/066-ImbueArrow/Name.txt"
               }

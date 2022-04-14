@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AdvMapObjectLink>
-	<Link/>
+	<Link href="/MapObjects/Neutral/Eucharister.(AdvMapMonsterShared).xdb#xpointer(/AdvMapMonsterShared)"/>
 	<RndGroup/>
-	<IconFile/>
-	<HideInEditor>true</HideInEditor>
+	<IconFile>Icons\Creature_188.dds</IconFile>
+	<HideInEditor>false</HideInEditor>
 </AdvMapObjectLink>

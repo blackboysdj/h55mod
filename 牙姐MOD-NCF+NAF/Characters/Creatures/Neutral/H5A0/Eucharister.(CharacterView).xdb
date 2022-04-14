@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CharacterView>
+	<Model href="Eucharister.xdb#xpointer(/Model)"/>
+	<AnimSet href="/_(AnimSet)/Creatures/Haven/Cleric-arena.(AnimSet).xdb#xpointer(/AnimSet)"/>
+	<sequence/>
+	<Effect/>
+</CharacterView>

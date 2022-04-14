@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BasicSkelAnim ObjectRecordID="516">
+	<SrcName href="/models/Creatures/Castle/Champion.mb"/>
+	<uid>2EE652FF-E52C-4201-BF71-61E5C739A639</uid>
+	<ExpSrcClip href="/Animations/Creatures/Champion/Clip/Champion.attack00.ma"/>
+	<ExpRootTransform>Global</ExpRootTransform>
+	<ExpFrameFirst>0</ExpFrameFirst>
+	<ExpFrameLast>0</ExpFrameLast>
+	<ExpSettingsFile href="/H:/Tools/MayaExportSettings/settings_character_anim.ges"/>
+	<MovementSpeed>0</MovementSpeed>
+	<SpeedFactor>1</SpeedFactor>
+	<Sound href="/Sounds/Caldwellrange.xdb#xpointer(/Sound)"/>
+	<Effect href="range.(Effect).xdb#xpointer(/Effect)"/>
+	<SpeedLineFallTime>250</SpeedLineFallTime>
+	<SpeedLineMaterial/>
+</BasicSkelAnim>

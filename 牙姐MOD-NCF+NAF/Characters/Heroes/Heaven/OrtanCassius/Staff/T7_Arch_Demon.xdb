@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Model>
+	<Materials>
+		<Item href="/1.xdb#xpointer(/Material)"/>
+		<Item href="/1.xdb#xpointer(/Material)"/>
+		<Item href="/1.xdb#xpointer(/Material)"/>
+		<Item href="/1.xdb#xpointer(/Material)"/>
+		<Item href="T7_Arch_Demon-ArchDevil_axe_L.(Material).xdb#xpointer(/Material)"/>
+	</Materials>
+	<Skeleton href="/Characters/Creatures/Inferno/AlternativeUpgrade/T7_Arch_Demon-skel.xdb#xpointer(/Skeleton)"/>
+	<Geometry href="/Characters/Creatures/Inferno/AlternativeUpgrade/T7_Arch_Demon-geom.xdb#xpointer(/Geometry)"/>
+	<Animations/>
+	<WindPower>1</WindPower>
+</Model>

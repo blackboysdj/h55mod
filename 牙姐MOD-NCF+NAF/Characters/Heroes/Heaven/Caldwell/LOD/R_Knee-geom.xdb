@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Geometry>
+	<SrcName href="/R_Knee.mb"/>
+	<uid>F3DD45DE-5FE6-4D28-905C-C2543CC6E905</uid>
+	<RootMesh/>
+	<RootJoint>R_Knee</RootJoint>
+	<Size>
+		<x>0.24228</x>
+		<y>0.264223</y>
+		<z>0.360326</z>
+	</Size>
+	<Center>
+		<x>-0.00177</x>
+		<y>0.0254325</y>
+		<z>-0.013603</z>
+	</Center>
+	<BestFitPoint>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+	</BestFitPoint>
+	<Dir>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+		<w>0</w>
+	</Dir>
+	<AIGeometry/>
+	<NumMeshes>1</NumMeshes>
+	<MaterialQuantities>
+		<Item>1</Item>
+	</MaterialQuantities>
+	<MeshNames>
+		<Item>R_KneeShape</Item>
+	</MeshNames>
+	<MeshAnimated/>
+	<MeshWindAffected/>
+</Geometry>

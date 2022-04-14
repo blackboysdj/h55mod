@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Effect ObjectRecordID="1000513">
+	<Instances/>
+	<Lights/>
+	<Models>
+		<Item href="idle00.(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item href="idle01.(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item href="idle02.(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item href="idle03.(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item href="/Models/6/11/Horse/ArmorBack(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item href="/Models/6/11/Horse/FrontArmor(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item href="/Models/6/11/Horse/HHead(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+	</Models>
+	<WindAffected>false</WindAffected>
+	<WindPower>1</WindPower>
+	<Duration>0</Duration>
+</Effect>

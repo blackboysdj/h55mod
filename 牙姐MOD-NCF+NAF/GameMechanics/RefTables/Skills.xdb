@@ -2171,6 +2171,13 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_ESTATES</Item>
+							<Item>HERO_SKILL_ENCOURAGE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_ESTATES</Item>
@@ -2521,6 +2528,12 @@
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_LUCKY_STRIKE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_LUCKY_STRIKE</Item>
 						</dependenciesIDs>
@@ -3192,6 +3205,12 @@
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_ARCANE_TRAINING</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_ARCANE_TRAINING</Item>
 						</dependenciesIDs>
@@ -4318,6 +4337,14 @@
 				      </dependenciesIDs>
 				   </Item>
 				   <Item>
+				      <Class>HERO_CLASS_RETRIBUTION</Class>
+				      <dependenciesIDs>
+				         <Item>HERO_SKILL_ENCOURAGE</Item>
+				         <Item>HERO_SKILL_QUICKNESS_OF_MIND</Item>
+				         <Item>HERO_SKILL_ETERNAL_LIGHT</Item>
+				      </dependenciesIDs>
+				   </Item>
+				   <Item>
 				      <Class>HERO_CLASS_HERETIC</Class>
 				      <dependenciesIDs>
 				         <Item>HERO_SKILL_ENCOURAGE</Item>
@@ -4466,6 +4493,12 @@
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_DARK_RITUAL</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_DARK_RITUAL</Item>
 						</dependenciesIDs>
@@ -4727,6 +4760,12 @@
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_CRITICAL_STRIKE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_CRITICAL_STRIKE</Item>
 						</dependenciesIDs>
@@ -5365,6 +5404,12 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_INSIGHTS</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_INSIGHTS</Item>
@@ -5685,6 +5730,12 @@
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_CASTER_CERTIFICATE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_CASTER_CERTIFICATE</Item>
 						</dependenciesIDs>
@@ -6103,6 +6154,13 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_BALLISTA</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_BALLISTA</Item>
@@ -6388,6 +6446,12 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_FRENZY</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_FRENZY</Item>
@@ -6582,6 +6646,12 @@
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_TOUGHNESS</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_TOUGHNESS</Item>
 						</dependenciesIDs>
@@ -6786,6 +6856,12 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_ENCOURAGE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_ENCOURAGE</Item>
@@ -6985,6 +7061,12 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_INTELLIGENCE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_INTELLIGENCE</Item>
@@ -7173,6 +7255,12 @@
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_SNATCH</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_SNATCH</Item>
 						</dependenciesIDs>
@@ -7523,6 +7611,12 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_MASTER_OF_SICKNESS</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_MASTER_OF_SICKNESS</Item>
@@ -7711,6 +7805,12 @@
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_DETAIN_SUMMONING</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_DETAIN_SUMMONING</Item>
 						</dependenciesIDs>
@@ -7910,6 +8010,12 @@
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_HOLY_CHARGE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_HOLY_CHARGE</Item>
 						</dependenciesIDs>
@@ -8200,6 +8306,12 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_SCHOLAR</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_SCHOLAR</Item>
@@ -8389,6 +8501,13 @@
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_CATAPULT</Item>
 							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
@@ -9079,6 +9198,12 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_HOLY_CHARGE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_HOLY_CHARGE</Item>
@@ -9335,6 +9460,12 @@
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
 						</dependenciesIDs>
@@ -9621,6 +9752,12 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_SCOUTING</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_SCOUTING</Item>
@@ -9816,6 +9953,13 @@
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_FIRST_AID</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_FIRST_AID</Item>
 							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
@@ -10192,6 +10336,12 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_RESISTANCE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_RESISTANCE</Item>
@@ -10388,6 +10538,12 @@
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_ARCHERY</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_ARCHERY</Item>
 						</dependenciesIDs>
@@ -10664,6 +10820,12 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_PROTECTION</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_PROTECTION</Item>
@@ -10858,6 +11020,12 @@
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_MASTER_OF_ICE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_MASTER_OF_ICE</Item>
 						</dependenciesIDs>
@@ -11139,6 +11307,12 @@
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_MASTER_OF_ABJURATION</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_MASTER_OF_ABJURATION</Item>
 						</dependenciesIDs>
@@ -11499,6 +11673,12 @@
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_SCHOLAR</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_SCHOLAR</Item>
 						</dependenciesIDs>
@@ -11867,6 +12047,12 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_RECRUITMENT</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_RECRUITMENT</Item>
@@ -12061,6 +12247,12 @@
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_LUCKY_STRIKE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_LUCKY_STRIKE</Item>
 						</dependenciesIDs>
@@ -12343,6 +12535,13 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_EVASION</Item>
+							<Item>HERO_SKILL_TOUGHNESS</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_EVASION</Item>
@@ -12557,6 +12756,12 @@
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_MYSTICISM</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_MYSTICISM</Item>
 						</dependenciesIDs>
@@ -12821,6 +13026,12 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_MASTER_OF_CURSES</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_MASTER_OF_CURSES</Item>
@@ -13014,6 +13225,12 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_MASTER_OF_WRATH</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_MASTER_OF_WRATH</Item>
@@ -13202,6 +13419,12 @@
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_MASTER_OF_QUAKES</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_MASTER_OF_QUAKES</Item>
 						</dependenciesIDs>
@@ -13642,6 +13865,12 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_INTELLIGENCE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_INTELLIGENCE</Item>
@@ -13830,6 +14059,12 @@
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_ENCOURAGE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_ENCOURAGE</Item>
 						</dependenciesIDs>
@@ -14034,6 +14269,12 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_SNATCH</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_SNATCH</Item>
@@ -14228,6 +14469,12 @@
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_ARCHERY</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_ARCHERY</Item>
 						</dependenciesIDs>
@@ -14432,6 +14679,12 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_CRITICAL_STRIKE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_CRITICAL_STRIKE</Item>
@@ -14631,6 +14884,12 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_DISTRACT</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_DISTRACT</Item>
@@ -14821,6 +15080,12 @@
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_PROTECTION</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_PROTECTION</Item>
 						</dependenciesIDs>
@@ -15025,6 +15290,12 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_DETAIN_DARK</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_DETAIN_DARK</Item>
@@ -15224,6 +15495,12 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_DETAIN_LIGHT</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_DETAIN_LIGHT</Item>
@@ -15418,6 +15695,12 @@
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_DETAIN_SUMMONING</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_DETAIN_SUMMONING</Item>
 						</dependenciesIDs>
@@ -15715,6 +15998,12 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_SCOUTING</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_SCOUTING</Item>
@@ -15993,6 +16282,12 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_INTELLIGENCE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_INTELLIGENCE</Item>
@@ -16181,6 +16476,12 @@
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_ENCOURAGE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_ENCOURAGE</Item>
 						</dependenciesIDs>
@@ -16385,6 +16686,12 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_CHAOTIC_SPELLS</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_CHAOTIC_SPELLS</Item>
@@ -16578,6 +16885,12 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_FRENZY</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_FRENZY</Item>
@@ -16766,6 +17079,12 @@
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_TOUGHNESS</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_TOUGHNESS</Item>
 						</dependenciesIDs>
@@ -16994,6 +17313,12 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_MASTER_OF_LIGHTNINGS</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_MASTER_OF_LIGHTNINGS</Item>
@@ -17182,6 +17507,12 @@
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_MASTER_OF_MIND</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_MASTER_OF_MIND</Item>
 						</dependenciesIDs>
@@ -17380,6 +17711,12 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_ARCANE_TRAINING</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_ARCANE_TRAINING</Item>
@@ -17568,6 +17905,12 @@
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_DARK_RITUAL</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_DARK_RITUAL</Item>
 						</dependenciesIDs>
@@ -18153,6 +18496,12 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_EAGLE_EYE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_EAGLE_EYE</Item>
@@ -18565,6 +18914,12 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_RESISTANCE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_RESISTANCE</Item>
@@ -18766,6 +19121,12 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_TACTICS</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_TACTICS</Item>
@@ -18962,6 +19323,12 @@
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_EVASION</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_EVASION</Item>
 						</dependenciesIDs>
@@ -19232,6 +19599,12 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_MASTER_OF_FIRE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_MASTER_OF_FIRE</Item>
@@ -19420,6 +19793,12 @@
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_DETAIN_DARK</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_DETAIN_DARK</Item>
 						</dependenciesIDs>
@@ -19624,6 +20003,12 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_MASTER_OF_BLESSING</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_MASTER_OF_BLESSING</Item>
@@ -19812,6 +20197,12 @@
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_MASTER_OF_ANIMATION</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_MASTER_OF_ANIMATION</Item>
 						</dependenciesIDs>
@@ -20169,6 +20560,12 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_MASTER_OF_SECRETS</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_MASTER_OF_SECRETS</Item>
@@ -20362,6 +20759,12 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_ARTIFICIAL_GLORY</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_ARTIFICIAL_GLORY</Item>
@@ -20544,6 +20947,12 @@
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_HOLD_GROUND</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_HOLD_GROUND</Item>
 						</dependenciesIDs>
@@ -21096,6 +21505,12 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_PATHFINDING</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_PATHFINDING</Item>
@@ -21431,6 +21846,12 @@
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_POWERFULL_BLOW</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_POWERFULL_BLOW</Item>
 						</dependenciesIDs>
@@ -22402,6 +22823,12 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_WEAKEN_DESTRUCTIVE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_WEAKEN_DESTRUCTIVE</Item>
@@ -22800,6 +23227,12 @@
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_WEAKEN_DARK</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_WEAKEN_DARK</Item>
 						</dependenciesIDs>
@@ -23208,6 +23641,12 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_WEAKEN_LIGHT</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_WEAKEN_LIGHT</Item>
@@ -23611,6 +24050,12 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_WEAKEN_SUMMONING</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_WEAKEN_SUMMONING</Item>
@@ -23944,6 +24389,12 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_BARBARIAN_FOG_VEIL</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_BARBARIAN_FOG_VEIL</Item>
@@ -24143,6 +24594,12 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_BARBARIAN_SUN_FIRE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_BARBARIAN_SUN_FIRE</Item>
@@ -24337,6 +24794,12 @@
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_BARBARIAN_SOIL_BURN</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_BARBARIAN_SOIL_BURN</Item>
 						</dependenciesIDs>
@@ -24952,6 +25415,12 @@
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_BARBARIAN_STORM_WIND</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_BARBARIAN_STORM_WIND</Item>
 						</dependenciesIDs>

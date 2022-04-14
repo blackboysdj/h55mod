@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Texture ObjectRecordID="1143">
+	<SrcName href="/texture/Creatures/Castle/Paladin.tga"/>
+	<DestName href="Paladin.dds"/>
+	<Type>REGULAR</Type>
+	<ConversionType>CONVERT_ORDINARY</ConversionType>
+	<AddrType>WRAP</AddrType>
+	<Format>TF_DXT3</Format>
+	<Width>512</Width>
+	<Height>512</Height>
+	<MappingSize>0</MappingSize>
+	<NMips>0</NMips>
+	<Gain>0</Gain>
+	<AverageColor>-45005770</AverageColor>
+	<InstantLoad>false</InstantLoad>
+	<IsDXT>true</IsDXT>
+	<FlipY>false</FlipY>
+	<StandardExport>true</StandardExport>
+	<UseS3TC>false</UseS3TC>
+</Texture>

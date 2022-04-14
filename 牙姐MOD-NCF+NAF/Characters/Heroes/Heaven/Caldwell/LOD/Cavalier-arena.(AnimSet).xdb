@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AnimSet ObjectRecordID="29">
+	<animations>
+		<Item>
+			<Kind>idle00</Kind>
+			<Anim href="idle00.(BasicSkelAnim).xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>move</Kind>
+			<Anim href="move.(BasicSkelAnim).xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+	</animations>
+	<ExpSrcScene href="/models/Creatures/Castle/Champion.mb"/>
+	<ExpSrcClipFolder href="/Animations/Creatures/Champion/Clip/"/>
+	<ExpRootTransform>Global</ExpRootTransform>
+</AnimSet>

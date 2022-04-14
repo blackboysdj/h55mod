@@ -1377,6 +1377,12 @@ doFile("/scripts/H55-Settings.lua");
 						GiveArtefact(strHero, 50);
 						GiveArtefact(strHero, 51);
 					end;
+					if enumHeroClass == TTH_ENUM.Retribution then
+						GiveArtefact(strHero, 48);
+						GiveArtefact(strHero, 49);
+						GiveArtefact(strHero, 50);
+						GiveArtefact(strHero, 51);
+					end;
 					if enumHeroClass == TTH_ENUM.Heretic then
 						GiveArtefact(strHero, 55);
 						GiveArtefact(strHero, 33);
@@ -1544,6 +1550,10 @@ doFile("/scripts/H55-Settings.lua");
 						GiveHeroSkill(strHero, 4);
 						GiveHeroSkill(strHero, HERO_SKILL_GUARDIAN_ANGEL);
 					end;
+					if enumHeroClass == TTH_ENUM.Retribution then
+						GiveHeroSkill(strHero, 4);
+						GiveHeroSkill(strHero, HERO_SKILL_GUARDIAN_ANGEL);
+					end;
 					if enumHeroClass == TTH_ENUM.Heretic then
 						GiveHeroSkill(strHero, 8);
 						GiveHeroSkill(strHero, 199);
@@ -1655,6 +1665,26 @@ doFile("/scripts/H55-Settings.lua");
 						GiveHeroSkill(strHero, HERO_SKILL_PRAYER);
 					end;
 					if enumHeroClass == TTH_ENUM.Paladin then
+						GiveHeroSkill(strHero, HERO_SKILL_LEADERSHIP);
+						GiveHeroSkill(strHero, HERO_SKILL_LEADERSHIP);
+						GiveHeroSkill(strHero, HERO_SKILL_LEARNING);
+						GiveHeroSkill(strHero, HERO_SKILL_LEARNING);
+						GiveHeroSkill(strHero, HERO_SKILL_LIGHT_MAGIC);
+						GiveHeroSkill(strHero, HERO_SKILL_LIGHT_MAGIC);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_ENCOURAGE);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_EAGLE_EYE);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_QUICKNESS_OF_MIND);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_MASTER_OF_BLESSING);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_ETERNAL_LIGHT);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_PRAYER);
+					end;
+					if enumHeroClass == TTH_ENUM.Retribution then
 						GiveHeroSkill(strHero, HERO_SKILL_LEADERSHIP);
 						GiveHeroSkill(strHero, HERO_SKILL_LEADERSHIP);
 						GiveHeroSkill(strHero, HERO_SKILL_LEARNING);
@@ -6700,6 +6730,7 @@ doFile("/scripts/H55-Settings.lua");
 					, ["Una"] = TOWN_BUILDING_SPECIAL_1
 					, ["Quroq"] = TOWN_BUILDING_SPECIAL_5
 
+					, ["OrtanCassius"] = TOWN_BUILDING_DWELLING_5
 					, ["Gillion"] = TOWN_BUILDING_DWELLING_2
 					, ["Razzak"] = TOWN_BUILDING_DWELLING_4
 					, ["Menel"] = TOWN_BUILDING_DWELLING_3
@@ -13789,25 +13820,12 @@ doFile("/scripts/H55-Settings.lua");
 		TTH_TEST = {};
 		function TTH_TEST.test2(iPlayer)
 			local strHero = GetPlayerHeroes(iPlayer)[0];
+			AddHeroCreatures(strHero, 188, 10);
 			GiveHeroSkill(strHero, HERO_SKILL_LIGHT_MAGIC);
-			sleep(1)
 			GiveHeroSkill(strHero, HERO_SKILL_LIGHT_MAGIC);
-			sleep(1)
 			GiveHeroSkill(strHero, HERO_SKILL_LIGHT_MAGIC);
-			sleep(1)
-			GiveHeroSkill(strHero, HERO_SKILL_SUMMONING_MAGIC);
-			sleep(1)
-			GiveHeroSkill(strHero, HERO_SKILL_SUMMONING_MAGIC);
-			sleep(1)
-			GiveHeroSkill(strHero, HERO_SKILL_HOLY_CHARGE);
-			sleep(1)
-			local arrBuilding = GetObjectNamesByType("BUILDING_MEMORY_MENTOR");
-			for iIndex, strBuilding in arrBuilding do
-				local iX, iY, iZ = GetObjectPosition(strBuilding);
-				OpenCircleFog(iX, iY, iZ, 5, iPlayer);
-			end;
-			TTH_VARI.arrRecordPoint[iPlayer]["RecordPoint"] = TTH_VARI.arrRecordPoint[iPlayer]["RecordPoint"] + 10000;
-			ExecConsoleCommand("enable_cheats");
+			TeachHeroSpell(strHero, SPELL_REGENERATION);
+			ChangeHeroStat(strHero, STAT_MANA_POINTS, 1000);
 		end;
 		function TTH_TEST.test(iLevel)
 			local strTown = GetObjectNamesByType('TOWN')[0];

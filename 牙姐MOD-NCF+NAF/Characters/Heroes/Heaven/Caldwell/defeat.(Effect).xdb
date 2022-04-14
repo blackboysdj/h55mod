@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Effect ObjectRecordID="1000513">
+	<Instances>
+		<Item href="/Effects/_(ParticleInstance)/Spells/Bless.xdb#xpointer(/ParticleInstance)"/>
+		<Item href="/Effects/_(ParticleInstance)/Spells/Bless (2).xdb#xpointer(/ParticleInstance)"/>
+	</Instances>
+	<Lights>
+		<Item href="/Effects/_(Effect)/Spells/Bless.(LightInstance).xdb#xpointer(/LightInstance)"/>
+	</Lights>
+	<Models>
+		<Item href="#n:inline(ModelInstance)" id="item_1cca134c-19af-46df-b6d1-20fc76212f60">
+			<ModelInstance ObjectRecordID="6">
+				<Model href="/_(Model)/Effects/Spells/Bless.(Model).xdb#xpointer(/Model)"/>
+				<SkelAnim href="/_(BasicSkelAnim)/Effects/Spells/Bless.(BasicSkelAnim).xdb#xpointer(/BasicSkelAnim)"/>
+				<Position>
+					<x>0</x>
+					<y>0</y>
+					<z>0</z>
+				</Position>
+				<Rotation>
+					<x>0</x>
+					<y>0</y>
+					<z>0</z>
+					<w>1</w>
+				</Rotation>
+				<Scale>1.3</Scale>
+				<Offset>0</Offset>
+				<CycleLength>0</CycleLength>
+				<CycleCount>1</CycleCount>
+				<GlueToBone>0</GlueToBone>
+			</ModelInstance>
+		</Item>
+		<Item href="LOD/idle00.(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item href="LOD/idle01.(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item href="LOD/L_Knee(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item href="LOD/R_Knee(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item href="defeat.(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item href="weapon.(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+	</Models>
+	<WindAffected>false</WindAffected>
+	<WindPower>1</WindPower>
+	<Duration>0</Duration>
+</Effect>

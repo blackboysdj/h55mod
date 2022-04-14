@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Character ObjectRecordID="33">
+	<Model href="Paladin.(Model).xdb#xpointer(/Model)"/>
+	<ArenaAnimSet href="LOD/Cavalier-arena.(AnimSet).xdb#xpointer(/AnimSet)"/>
+	<AdvMapAnimSet href="LOD/Cavalier-arena.(AnimSet).xdb#xpointer(/AnimSet)"/>
+	<ColourModels/>
+</Character>

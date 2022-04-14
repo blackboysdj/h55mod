@@ -1,30 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Creature>
-	<AttackSkill>1</AttackSkill>
-	<DefenceSkill>1</DefenceSkill>
+	<AttackSkill>22</AttackSkill>
+	<DefenceSkill>18</DefenceSkill>
 	<Shots>0</Shots>
-	<MinDamage>1</MinDamage>
-	<MaxDamage>1</MaxDamage>
-	<Speed>1</Speed>
-	<Initiative>1</Initiative>
+	<MinDamage>15</MinDamage>
+	<MaxDamage>25</MaxDamage>
+	<Speed>6</Speed>
+	<Initiative>11</Initiative>
 	<Flying>false</Flying>
-	<Health>1</Health>
-	<KnownSpells/>
-	<SpellPoints>0</SpellPoints>
+	<Health>90</Health>
+	<KnownSpells>
+		<Item>
+			<Spell>SPELL_HOLY_WORD</Spell>
+			<Mastery>MASTERY_ADVANCED</Mastery>
+		</Item>
+		<Item>
+			<Spell>SPELL_ABILITY_LAY_HANDS</Spell>
+			<Mastery>MASTERY_ADVANCED</Mastery>
+		</Item>
+	</KnownSpells>
+	<SpellPoints>1</SpellPoints>
 	<SpellPoints1>0</SpellPoints1>
 	<SpellPoints2>0</SpellPoints2>
-	<Exp>1</Exp>
-	<Power>1</Power>
-	<TimeToCommand>10</TimeToCommand>
-	<CreatureTier>1</CreatureTier>
-	<Upgrade>false</Upgrade>
+	<Exp>160</Exp>
+	<Power>2235</Power>
+	<TimeToCommand>15</TimeToCommand>
+	<CreatureTier>6</CreatureTier>
+	<Upgrade>true</Upgrade>
 	<PairCreature>CREATURE_UNKNOWN</PairCreature>
-	<CreatureTown>TOWN_NO_TYPE</CreatureTown>
+	<CreatureTown>TOWN_HEAVEN</CreatureTown>
 	<MagicElement>
-		<First>ELEMENT_NONE</First>
+		<First>ELEMENT_WATER</First>
 		<Second>ELEMENT_NONE</Second>
 	</MagicElement>
-	<WeeklyGrowth>0</WeeklyGrowth>
+	<WeeklyGrowth>2</WeeklyGrowth>
 	<Cost>
 		<Wood>0</Wood>
 		<Ore>0</Ore>
@@ -32,16 +41,22 @@
 		<Crystal>0</Crystal>
 		<Sulfur>0</Sulfur>
 		<Gem>0</Gem>
-		<Gold>0</Gold>
+		<Gold>1550</Gold>
 	</Cost>
 	<SubjectOfRandomGeneration>true</SubjectOfRandomGeneration>
-	<MonsterShared/>
+	<MonsterShared href="/MapObjects/Neutral/Eucharister.(AdvMapMonsterShared).xdb#xpointer(/AdvMapMonsterShared)"/>
 	<CombatSize>1</CombatSize>
 	<PatternAttack/>
 	<flybySequence/>
-	<Visual href="/GameMechanics/CreatureVisual/Creatures/Neutrals/SnowApe.xdb#xpointer(/CreatureVisual)"/>
+	<Visual href="/GameMechanics/CreatureVisual/Creatures/NCF_Creatures/Creature_188.xdb#xpointer(/CreatureVisual)"/>
 	<Range>0</Range>
-	<BaseCreature>CREATURE_UNKNOWN</BaseCreature>
+	<BaseCreature>CREATURE_PRIEST</BaseCreature>
 	<Upgrades/>
-	<Abilities/>
+	<Abilities>
+		<Item>ABILITY_BOND_OF_LIGHT</Item>
+		<Item>ABILITY_PURGER</Item>
+		<Item>ABILITY_IMMUNITY_TO_MIND_CONTROL</Item>
+		<Item>ABILITY_LAY_HANDS</Item>
+		<Item>ABILITY_FIRE_PROOF_50</Item>
+	</Abilities>
 </Creature>

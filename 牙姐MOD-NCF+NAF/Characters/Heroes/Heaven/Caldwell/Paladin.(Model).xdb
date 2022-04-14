@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Model ObjectRecordID="2911">
+	<Materials>
+		<Item href="Paladin_horse.(Material).xdb#xpointer(/Material)"/>
+		<Item href="Paladin.(Material).xdb#xpointer(/Material)"/>
+		<Item href="Paladin_weapon.(Material).xdb#xpointer(/Material)"/>
+		<Item href="Paladin_weapon.(Material).xdb#xpointer(/Material)"/>
+	</Materials>
+	<Skeleton href="#n:inline(Skeleton)" id="item_7064144b-d00a-439d-8f3c-5f479cc8e3ba">
+		<Skeleton ObjectRecordID="1147">
+			<SrcName href="/models/Creatures/Castle/Paladin.mb"/>
+			<RootJoint>Global</RootJoint>
+			<MSRFormat>true</MSRFormat>
+			<Animations/>
+			<uid>487A43A8-4017-4498-AB26-7646588FFC7E</uid>
+		</Skeleton>
+	</Skeleton>
+	<Geometry href="#n:inline(Geometry)" id="item_5e0f951c-2184-4ceb-8e5a-a17e284cbba7">
+		<Geometry ObjectRecordID="6055">
+			<SrcName href="/models/Creatures/Castle/Paladin.mb"/>
+			<uid>EB795106-0F65-40B9-966B-F815712388B8</uid>
+			<RootMesh/>
+			<RootJoint>Global</RootJoint>
+			<Size>
+				<x>1.47361</x>
+				<y>3.23581</y>
+				<z>5.22057</z>
+			</Size>
+			<Center>
+				<x>-0.0472489</x>
+				<y>-0.317651</y>
+				<z>2.61028</z>
+			</Center>
+			<BestFitPoint>
+				<x>-0.63961</x>
+				<y>-0.701903</y>
+				<z>5.13794</z>
+			</BestFitPoint>
+			<Dir>
+				<x>0</x>
+				<y>0</y>
+				<z>0</z>
+				<w>0</w>
+			</Dir>
+			<AIGeometry href="/_(AIGeometry)/Creatures/Haven/Cavalier.(AIGeometry).xdb#xpointer(/AIGeometry)"/>
+			<NumMeshes>4</NumMeshes>
+			<MaterialQuantities>
+				<Item>1</Item>
+				<Item>1</Item>
+				<Item>1</Item>
+				<Item>1</Item>
+			</MaterialQuantities>
+			<MeshNames>
+				<Item>Horse_meshShape</Item>
+				<Item>Knight_meshShape</Item>
+				<Item>Spear_meshShape</Item>
+				<Item>Shield_meshShape</Item>
+			</MeshNames>
+			<MeshAnimated/>
+			<MeshWindAffected/>
+		</Geometry>
+	</Geometry>
+	<Animations/>
+	<WindPower>1</WindPower>
+</Model>

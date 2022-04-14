@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BasicSkelAnim ObjectRecordID="128">
+	<SrcName href="/models/Creatures/Castle/Champion.mb"/>
+	<uid>D1DB2F44-51EA-4DD6-ADFA-F8E3E22D1558</uid>
+	<ExpSrcClip href="/Animations/Creatures/Champion/Clip/Champion.idle00.ma"/>
+	<ExpRootTransform>Global</ExpRootTransform>
+	<ExpFrameFirst>0</ExpFrameFirst>
+	<ExpFrameLast>0</ExpFrameLast>
+	<ExpSettingsFile href=""/>
+	<MovementSpeed>0</MovementSpeed>
+	<SpeedFactor>1</SpeedFactor>
+	<Sound href="/Sounds/_(Sound)/Creatures/Haven/Paladin/paladin_idle00.xdb#xpointer(/Sound)"/>
+	<Effect href="idle00.(Effect).xdb#xpointer(/Effect)"/>
+	<SpeedLineFallTime>250</SpeedLineFallTime>
+	<SpeedLineMaterial/>
+</BasicSkelAnim>

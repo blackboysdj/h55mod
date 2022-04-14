@@ -21,6 +21,7 @@
 			or contains(H55_Demonlords,hero) ~= nil
 			or contains(H55_DeathKnights,hero) ~= nil then type = "MightB"
 		elseif contains(H55_Paladins,hero) ~= nil
+			or contains(H55_Retributions,hero) ~= nil
 			or contains(H55_Wardens,hero) ~= nil
 			or contains(H55_Gatekeepers,hero) ~= nil then type = "MindG"
 		elseif contains(H55_Reavers,hero) ~= nil
@@ -37,6 +38,7 @@
 		local strType = "";
 		if contains(H55_Knights, strHero) ~= nil
 			or contains(H55_Paladins, strHero) ~= nil
+			or contains(H55_Retributions, strHero) ~= nil
 			or contains(H55_Rangers, strHero) ~= nil
 			or contains(H55_Wardens, strHero) ~= nil
 			or contains(H55_Seers, strHero) ~= nil

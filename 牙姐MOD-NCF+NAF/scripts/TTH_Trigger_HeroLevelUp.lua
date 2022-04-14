@@ -49,8 +49,11 @@ end;
 function TTH_TRIGGER.heroLevelUpRedHeavenHero06()
 	TTH_TRIGGER.heroLevelUp("RedHeavenHero06");
 end;
-function TTH_TRIGGER.heroLevelUpJeddite()
-	TTH_TRIGGER.heroLevelUp("Jeddite");
+function TTH_TRIGGER.heroLevelUpCaldwell()
+	TTH_TRIGGER.heroLevelUp("Caldwell");
+end;
+function TTH_TRIGGER.heroLevelUpOrtanCassius()
+	TTH_TRIGGER.heroLevelUp("OrtanCassius");
 end;
 function TTH_TRIGGER.heroLevelUpRedHeavenHero03()
 	TTH_TRIGGER.heroLevelUp("RedHeavenHero03");
@@ -333,6 +336,9 @@ function TTH_TRIGGER.heroLevelUpAgrael()
 end;
 function TTH_TRIGGER.heroLevelUpZydar()
 	TTH_TRIGGER.heroLevelUp("Zydar");
+end;
+function TTH_TRIGGER.heroLevelUpJeddite()
+	TTH_TRIGGER.heroLevelUp("Jeddite");
 end;
 function TTH_TRIGGER.heroLevelUpAsh()
 	TTH_TRIGGER.heroLevelUp("Ash");

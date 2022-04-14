@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Model>
+	<Materials>
+		<Item href="/1.xdb#xpointer(/Material)"/>
+		<Item href="Godric_DS_U-Godric_main_L.(Material).xdb#xpointer(/Material)"/>
+		<Item href="/1.xdb#xpointer(/Material)"/>
+		<Item href="Godric_DS_U-Mouth_eyes_L.(Material).xdb#xpointer(/Material)"/>
+	</Materials>
+	<Skeleton href="/Characters/Heroes/DS/Godric_DS_U-skel.xdb#xpointer(/Skeleton)"/>
+	<Geometry href="/Characters/Heroes/DS/Godric_DS_U-geom.xdb#xpointer(/Geometry)"/>
+	<Animations/>
+	<WindPower>1</WindPower>
+</Model>

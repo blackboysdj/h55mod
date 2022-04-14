@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BasicSkelAnim ObjectRecordID="693">
+	<SrcName href="/models/Creatures/Castle/Champion.mb"/>
+	<uid>CBE04445-F0BA-41AD-B1C4-D0394CDBF9E5</uid>
+	<ExpSrcClip href="/Animations/Creatures/Champion/Clip/Champion.happy.ma"/>
+	<ExpRootTransform>Global</ExpRootTransform>
+	<ExpFrameFirst>0</ExpFrameFirst>
+	<ExpFrameLast>0</ExpFrameLast>
+	<ExpSettingsFile href=""/>
+	<MovementSpeed>0</MovementSpeed>
+	<SpeedFactor>1</SpeedFactor>
+	<Sound href="/Sounds/_(Sound)/Creatures/Haven/Paladin/champ_happy.xdb#xpointer(/Sound)"/>
+	<Effect href="happy.(Effect).xdb#xpointer(/Effect)"/>
+	<SpeedLineFallTime>250</SpeedLineFallTime>
+	<SpeedLineMaterial/>
+</BasicSkelAnim>

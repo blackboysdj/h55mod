@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModelInstance ObjectRecordID="1000172">
+	<Model href="Weapon/Godric_DS_U.xdb#xpointer(/Model)"/>
+	<SkelAnim />
+	<Position>
+		<x>0.55</x>
+		<y>-0.24</y>
+		<z>-1.22</z>
+	</Position>
+	<Rotation>
+		<x>-0.05</x>
+		<y>-0.13</y>
+		<z>0</z>
+		<w>1</w>
+	</Rotation>
+	<Scale>0.8</Scale>
+	<Offset>0</Offset>
+	<CycleLength>0</CycleLength>
+	<CycleCount>0</CycleCount>
+	<GlueToBone>1</GlueToBone>
+	<GlueToNamedBone>joint201</GlueToNamedBone>
+</ModelInstance>

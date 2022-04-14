@@ -48,7 +48,7 @@ MAX_MANA = 1000;
 
 H55SMOD_HavenHeroes = {
     'Nathaniel', 'Orrin', 'Mardigo', 'Ving', 'Sarge', 'Isabell', 'Christian', 'RedHeavenHero02', 'RedHeavenHero05', 'Brem'
-    , 'Nicolai', 'GodricMP', 'Alaric', 'Axel', 'SaintIsabell', 'Maeve', 'RedHeavenHero06', 'Jeddite'
+    , 'Nicolai', 'GodricMP', 'Alaric', 'Axel', 'SaintIsabell', 'Maeve', 'RedHeavenHero06', 'Caldwell', 'OrtanCassius'
     , 'RedHeavenHero03', 'Orlando', 'Markal'
 };
 H55SMOD_SylvanHeroes = {
@@ -63,11 +63,11 @@ H55SMOD_AcademyHeroes = {
 };
 H55SMOD_InfernoHeroes = {
     'Calh', 'Calid', 'Deleb', 'Jazaz', 'Marder', 'Orlando2'
-    , 'Efion', 'Grok', 'Malustar', 'Nymus', 'Oddrema', 'Sovereign', 'Agrael'
+    , 'Efion', 'Grok', 'Malustar', 'Nymus', 'Oddrema', 'Sovereign', 'Agrael', 'Jeddite'
     , 'Ash', 'Biara', 'Calid2', 'Sheltem', 'Zydar'
 };
 H55SMOD_NecropolisHeroes = {
-    'Archilus', 'Berein', 'Gles', 'Nikolay', 'Straker', 'Tamika', 'Xerxon'
+    'Archilus', 'Berein', 'Gles', 'Nikolay', 'Straker', 'Tamika', 'Xerxon', 'Karissa'
     , 'Aislinn', 'Effig', 'Giovanni', 'OrnellaNecro', 'Aberrar', 'Muscip'
     , 'Arantir', 'Nemor', 'Nimbus', 'Pelt', 'Sandro', 'Thant', 'Adelaide', 'Vidomina'
 };
@@ -82,12 +82,12 @@ H55SMOD_DungeonHeroes = {
     , 'Agbeth', 'Almegir', 'Inagost', 'Kastore', 'Raelag', 'Ranleth', 'Sephinroth'
 };
 H55SMOD_StrongholdHeroes = {
-    'Hero1', 'Hero2', 'Hero3', 'Hero4', 'Hero5', 'Hero6', 'Hero8', 'Hero9', 'Gottai', 'Crag', 'KujinMP', 'Hero7', 'Azar', 'Kraal', 'Kujin', 'Kunyak', 'Matewa', 'Quroq', 'Shiva', 'Mokka', 'Erika', 'Zouleika'
+    'Hero1', 'Hero2', 'Hero3', 'Hero4', 'Hero6', 'Hero8', 'Hero9', 'Gottai', 'Crag', 'KujinMP', 'Hero7', 'Azar', 'Kraal', 'Kunyak', 'Matewa', 'Quroq', 'Shiva', 'Mokka', 'Erika', 'Zouleika'
 };
 
 H55SMOD_Heroes = {
     'Nathaniel', 'Orrin', 'Mardigo', 'Ving', 'Sarge', 'Isabell', 'Christian', 'RedHeavenHero02', 'RedHeavenHero05', 'Brem'
-    , 'Nicolai', 'GodricMP', 'Alaric', 'Axel', 'SaintIsabell', 'Maeve', 'RedHeavenHero06', 'Jeddite'
+    , 'Nicolai', 'GodricMP', 'Alaric', 'Axel', 'SaintIsabell', 'Maeve', 'RedHeavenHero06', 'Caldwell', 'OrtanCassius'
     , 'RedHeavenHero03', 'Orlando', 'Markal'
     , 'Metlirn', 'Ossir', 'Nadaur', 'Linaas', 'Heam', 'Gelu', 'Arniel', 'Kyrre'
     , 'Gillion', 'Itil', 'Melodia', 'Jenova', 'Mephala', 'Gem'
@@ -96,9 +96,9 @@ H55SMOD_Heroes = {
     , 'Rissa', 'Razzak', 'Sufi', 'Cyrus', 'Maahir', 'Timerkhan', 'Tan'
     , 'Emilia', 'Nur', 'Astral', 'Zehir', 'Faiz', 'Josephine'
     , 'Calh', 'Calid', 'Deleb', 'Jazaz', 'Marder', 'Orlando2'
-    , 'Efion', 'Grok', 'Malustar', 'Nymus', 'Oddrema', 'Sovereign', 'Agrael'
+    , 'Efion', 'Grok', 'Malustar', 'Nymus', 'Oddrema', 'Sovereign', 'Agrael', 'Jeddite'
     , 'Ash', 'Biara', 'Calid2', 'Sheltem', 'Zydar'
-    , 'Archilus', 'Berein', 'Gles', 'Nikolay', 'Straker', 'Tamika', 'Xerxon'
+    , 'Archilus', 'Berein', 'Gles', 'Nikolay', 'Straker', 'Tamika', 'Xerxon', 'Karissa'
     , 'Aislinn', 'Effig', 'Giovanni', 'OrnellaNecro', 'Aberrar', 'Muscip'
     , 'Arantir', 'Nemor', 'Nimbus', 'Pelt', 'Sandro', 'Thant', 'Adelaide', 'Vidomina'
     , 'Bersy', 'Maximus', 'Skeggy', 'Tazar', 'Vilma'
@@ -107,7 +107,7 @@ H55SMOD_Heroes = {
     , 'Urunir', 'Menel', 'Ferigl', 'Sylsai', 'Welygg'
     , 'Ohtarig', 'Eruina', 'Dalom', 'Kelodin', 'Shadwyn', 'Thralsai'
     , 'Agbeth', 'Almegir', 'Inagost', 'Kastore', 'Raelag', 'Ranleth', 'Sephinroth'
-    , 'Hero1', 'Hero2', 'Hero3', 'Hero4', 'Hero5', 'Hero6', 'Hero8', 'Hero9', 'Gottai', 'Crag', 'KujinMP', 'Hero7', 'Azar', 'Kraal', 'Kujin', 'Kunyak', 'Matewa', 'Quroq', 'Shiva', 'Mokka', 'Erika', 'Zouleika'
+    , 'Hero1', 'Hero2', 'Hero3', 'Hero4', 'Hero6', 'Hero8', 'Hero9', 'Gottai', 'Crag', 'KujinMP', 'Hero7', 'Azar', 'Kraal', 'Kunyak', 'Matewa', 'Quroq', 'Shiva', 'Mokka', 'Erika', 'Zouleika'
 };
 
 TTH_ARTIFACT_EFFECT_COMBAT = {
@@ -328,6 +328,14 @@ end;
 function Thread_Command_UnitCastAimedSpell_WithoutMana(caster, spell_id, target)
     UnitCastAimedSpell(caster, spell_id, target);
 end;
+
+function ThreadUnitCastAimedSpell(strCaster, iSpellId, strTarget)
+    UnitCastAimedSpell(strCaster, iSpellId, strTarget);
+    if iSpellId == SPELL_ABILITY_LAY_HANDS then
+        ShowFlyingSign(TTHCS_PATH["Spell"][SPELL_ABILITY_LAY_HANDS]["Effect"], strCaster, 5);
+    end;
+end;
+
 function Thread_Command_UnitCastAimedSpell_IgnoreMana(caster, spell_id, target)
     local iCurrentMana = GetUnitManaPoints(caster);
     SetUnitManaPoints(caster, 1000);
@@ -1149,6 +1157,7 @@ end;
   CREATURE_187 = 187
   CREATURE_ENCHANTER_CASTER = 187;
   CREATURE_188 = 188
+  CREATURE_JUSTICAR = 188;
   CREATURE_189 = 189
   CREATURE_190 = 190
   CREATURE_191 = 191
@@ -1922,7 +1931,7 @@ end;
   CREATURE_951 = 951
   CREATURE_Itil_Unicorn = 952
   CREATURE_952 = 952
-  CREATURE_Jeddite_Skill = 953
+  CREATURE_Caldwell_Skill = 953
   CREATURE_953 = 953
   CREATURE_Nemor_Skill = 954
   CREATURE_954 = 954
@@ -11583,7 +11592,7 @@ end;
         }
         , [953] = {
           ["ID"] = CREATURE_953
-          , ["NAME"] = "/Text/Game/Creatures/Haven/Cleric_Jeddite.txt"
+          , ["NAME"] = "/Text/Game/Creatures/Haven/Cleric_Caldwell.txt"
           , ["GROWTH"] = 3
           , ["TIER"] = 5
           , ["POWER"] = 1523
@@ -12178,6 +12187,47 @@ end;
           , SPELL_STONE_SPIKES
         };
 
+    TTHCS_TABLE.JusticarTargetHero = {
+      'Calh', 'Calid', 'Deleb', 'Jazaz', 'Marder', 'Orlando2'
+      , 'Efion', 'Grok', 'Malustar', 'Nymus', 'Oddrema', 'Sovereign', 'Agrael', 'Jeddite'
+      , 'Ash', 'Biara', 'Calid2', 'Sheltem', 'Zydar'
+
+      , 'Archilus', 'Berein', 'Gles', 'Nikolay', 'Straker', 'Tamika', 'Xerxon', 'Karissa'
+      , 'Aislinn', 'Effig', 'Giovanni', 'OrnellaNecro', 'Aberrar', 'Muscip'
+      , 'Arantir', 'Nemor', 'Nimbus', 'Pelt', 'Sandro', 'Thant', 'Adelaide', 'Vidomina'
+
+      , 'Hero1', 'Hero2', 'Hero3', 'Hero4', 'Hero6', 'Hero8', 'Hero9'
+      , 'Gottai', 'Crag', 'KujinMP', 'Hero7', 'Azar', 'Kraal', 'Kunyak'
+      , 'Matewa', 'Quroq', 'Shiva', 'Mokka', 'Erika', 'Zouleika'
+    };
+    TTHCS_TABLE.JusticarTargetCreature = {
+        CREATURE_FAMILIAR, CREATURE_IMP, CREATURE_QUASIT
+        , CREATURE_DEMON, CREATURE_HORNED_DEMON, CREATURE_HORNED_LEAPER
+        , CREATURE_HELL_HOUND, CREATURE_CERBERI, CREATURE_FIREBREATHER_HOUND
+        , CREATURE_SUCCUBUS, CREATURE_INFERNAL_SUCCUBUS, CREATURE_SUCCUBUS_SEDUCER
+        , CREATURE_NIGHTMARE, CREATURE_FRIGHTFUL_NIGHTMARE, CREATURE_HELLMARE
+        , CREATURE_PIT_FIEND, CREATURE_BALOR, CREATURE_PIT_SPAWN
+        , CREATURE_DEVIL, CREATURE_ARCHDEVIL, CREATURE_ARCH_DEMON
+
+        , CREATURE_SKELETON, CREATURE_SKELETON_ARCHER, CREATURE_SKELETON_WARRIOR
+        , CREATURE_WALKING_DEAD, CREATURE_ZOMBIE, CREATURE_DISEASE_ZOMBIE
+        , CREATURE_MANES, CREATURE_GHOST, CREATURE_POLTERGEIST
+        , CREATURE_VAMPIRE, CREATURE_VAMPIRE_LORD, CREATURE_NOSFERATU
+        , CREATURE_LICH, CREATURE_DEMILICH, CREATURE_LICH_MASTER
+        , CREATURE_WIGHT, CREATURE_WRAITH, CREATURE_BANSHEE
+        , CREATURE_BONE_DRAGON, CREATURE_SHADOW_DRAGON, CREATURE_HORROR_DRAGON
+        , CREATURE_DEATH_KNIGHT, CREATURE_MUMMY, CREATURE_DRAGON_KNIGHT, CREATURE_DRAGON_KNIGHT_LESS
+
+        , CREATURE_GOBLIN, CREATURE_GOBLIN_TRAPPER, CREATURE_GOBLIN_DEFILER
+        , CREATURE_CENTAUR, CREATURE_CENTAUR_NOMAD, CREATURE_CENTAUR_MARADEUR
+        , CREATURE_ORC_WARRIOR, CREATURE_ORC_SLAYER, CREATURE_ORC_WARMONGER
+        , CREATURE_SHAMAN, CREATURE_SHAMAN_WITCH, CREATURE_SHAMAN_HAG
+        , CREATURE_ORCCHIEF_BUTCHER, CREATURE_ORCCHIEF_EXECUTIONER, CREATURE_ORCCHIEF_CHIEFTAIN
+        , CREATURE_WYVERN, CREATURE_WYVERN_POISONOUS, CREATURE_WYVERN_PAOKAI
+        , CREATURE_CYCLOP, CREATURE_CYCLOP_UNTAMED, CREATURE_CYCLOP_BLOODEYED
+        , CREATURE_WOLF
+    };
+
   TTHCS_COMMON = {};
     -- 向下取整
       function TTHCS_COMMON.floor(n)
@@ -12306,10 +12356,12 @@ end;
       -- 参数: iAreaSize, iPosX, iPosY
       -- 返回值: arrPosition
       function TTHCS_COMMON.calcEffectArea(iAreaSize, iPosX, iPosY, enumEffectType)
+        local iMagicXLeft = TTHCS_COMMON.floor((iAreaSize - 1) / 2);
+        local iMagicXRight = TTHCS_COMMON.ceil((iAreaSize - 1) / 2);
         local arrPosition = {};
         if enumEffectType == TTHCS_ENUM.Magic then
-          for x = iPosX - TTHCS_COMMON.floor((iAreaSize - 1) / 2), iPosX + TTHCS_COMMON.ceil((iAreaSize - 1) / 2) do
-            for y = iPosY - TTHCS_COMMON.floor((iAreaSize - 1) / 2), iPosY + TTHCS_COMMON.ceil((iAreaSize - 1) / 2) do
+          for x = iPosX - iMagicXLeft, iPosX + iMagicXRight do
+            for y = iPosY - iMagicXLeft, iPosY + iMagicXRight do
               arrPosition[length(arrPosition)] = {
                 ["PosX"] = x
                 , ["PosY"] = y
@@ -12317,8 +12369,8 @@ end;
             end;
           end;
         elseif enumEffectType == TTHCS_ENUM.Creature then
-          for x = iPosX - TTHCS_COMMON.ceil((iAreaSize - 1) / 2), iPosX + TTHCS_COMMON.floor((iAreaSize - 1) / 2) do
-            for y = iPosY - TTHCS_COMMON.ceil((iAreaSize - 1) / 2), iPosY + TTHCS_COMMON.floor((iAreaSize - 1) / 2) do
+          for x = iPosX - iMagicXRight, iPosX + iMagicXLeft do
+            for y = iPosY - iMagicXRight, iPosY + iMagicXLeft do
               arrPosition[length(arrPosition)] = {
                 ["PosX"] = x
                 , ["PosY"] = y
@@ -12341,8 +12393,10 @@ end;
         elseif objUnit["UnitCategory"] == ENUM_CATEGORY.WARMACHINE then
           iUnitCombatSize = TTHCS_TABLE.WarMachine[objUnit["UnitType"]]["CombatSize"];
         end;
-        for x = objUnit["PosX"] - TTHCS_COMMON.ceil((iUnitCombatSize - 1) / 2), objUnit["PosX"] + TTHCS_COMMON.floor((iUnitCombatSize - 1) / 2) do
-          for y = objUnit["PosY"] - TTHCS_COMMON.ceil((iUnitCombatSize - 1) / 2), objUnit["PosY"] + TTHCS_COMMON.floor((iUnitCombatSize - 1) / 2) do
+        local iMagicXLeft = TTHCS_COMMON.ceil((iUnitCombatSize - 1) / 2);
+        local iMagicXRight = TTHCS_COMMON.floor((iUnitCombatSize - 1) / 2);
+        for x = objUnit["PosX"] - iMagicXLeft, objUnit["PosX"] + iMagicXRight do
+          for y = objUnit["PosY"] - iMagicXLeft, objUnit["PosY"] + iMagicXRight do
             if x == iPosX and y == iPosY then
               enumEffect = TTHCS_ENUM.Yes;
               break;
@@ -12498,6 +12552,13 @@ end;
       TTHCS_PATH["Creature"]["Enchanter"]["Effect3"] = "/Text/TTH/Creature/Enchanter/Combat/Effect3.txt";
       TTHCS_PATH["Creature"]["Enchanter"]["EffectConsume"] = "/Text/TTH/Creature/Enchanter/Combat/EffectConsume.txt";
 
+      TTHCS_PATH["Creature"][CREATURE_JUSTICAR] = {};
+      TTHCS_PATH["Creature"][CREATURE_JUSTICAR]["EffectLayHands"] = "/Text/TTH/Creature/188-Justicar/Combat/EffectLayHands.txt";
+      TTHCS_PATH["Creature"][CREATURE_JUSTICAR]["EffectHolyWord"] = "/Text/TTH/Creature/188-Justicar/Combat/EffectHolyWord.txt";
+
+    TTHCS_PATH["Spell"] = {};
+      TTHCS_PATH["Spell"][SPELL_ABILITY_LAY_HANDS] = {};
+      TTHCS_PATH["Spell"][SPELL_ABILITY_LAY_HANDS]["Effect"] = "/Text/TTH/Spell/CreatureAbility/156-LayHands/Combat/Effect.txt";
 
 
 TTH_ARTIFACTSET_EFFECT_COMBAT = {

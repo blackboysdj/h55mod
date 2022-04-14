@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Effect ObjectRecordID="1000513">
+	<Instances>
+		<Item href="Castcast.(ParticleInstance).xdb#xpointer(/ParticleInstance)"/>
+	</Instances>
+	<Lights/>
+	<Models>
+		<Item href="LOD/idle00.(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item href="LOD/idle01.(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item href="LOD/L_Knee(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item href="LOD/R_Knee(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item href="buff.(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item href="weapon.(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+	</Models>
+	<WindAffected>false</WindAffected>
+	<WindPower>1</WindPower>
+	<Duration>0</Duration>
+</Effect>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BasicSkelAnim>
+	<SrcName href="/H5A1/Models/Heroes/Duncan/Duncan_Game_M.mb"/>
+	<uid>03D7A993-8BB7-4605-9EAC-8E4414AD57AB</uid>
+	<ExpSrcClip href="/H5A1/Animations/Heroes/Duncan/Clip/Knight.buff.ma"/>
+	<ExpRootTransform>Global</ExpRootTransform>
+	<ExpFrameFirst>0</ExpFrameFirst>
+	<ExpFrameLast>0</ExpFrameLast>
+	<ExpSettingsFile href="/H:/Tools/MayaExportSettings/settings_character_anim.ges"/>
+	<MovementSpeed>0</MovementSpeed>
+	<SpeedFactor>1</SpeedFactor>
+	<Sound href="/Sounds/HavenRange.xdb#xpointer(/Sound)"/>
+	<Effect href="buff.xdb#xpointer(/Effect)"/>
+	<SpeedLineFallTime>250</SpeedLineFallTime>
+	<SpeedLineMaterial/>
+</BasicSkelAnim>

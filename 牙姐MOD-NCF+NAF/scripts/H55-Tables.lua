@@ -1,1021 +1,7 @@
--- Creatures IDs
-  CREATURE_UNKNOWN = 0
-  CREATURE_PEASANT = 1
-  CREATURE_MILITIAMAN = 2
-  CREATURE_ARCHER = 3
-  CREATURE_MARKSMAN = 4
-  CREATURE_FOOTMAN = 5
-  CREATURE_SWORDSMAN = 6
-  CREATURE_GRIFFIN = 7
-  CREATURE_ROYAL_GRIFFIN = 8
-  CREATURE_PRIEST = 9
-  CREATURE_CLERIC = 10
-  CREATURE_CAVALIER = 11
-  CREATURE_PALADIN = 12
-  CREATURE_ANGEL = 13
-  CREATURE_ARCHANGEL = 14
-  CREATURE_FAMILIAR = 15
-  CREATURE_IMP = 16
-  CREATURE_DEMON = 17
-  CREATURE_HORNED_DEMON = 18
-  CREATURE_HELL_HOUND = 19
-  CREATURE_CERBERI = 20
-  CREATURE_SUCCUBUS = 21
-  CREATURE_INFERNAL_SUCCUBUS = 22
-  CREATURE_NIGHTMARE = 23
-  CREATURE_FRIGHTFUL_NIGHTMARE = 24
-  CREATURE_PIT_FIEND = 25
-  CREATURE_BALOR = 26
-  CREATURE_DEVIL = 27
-  CREATURE_ARCHDEVIL = 28
-  CREATURE_SKELETON = 29
-  CREATURE_SKELETON_ARCHER = 30
-  CREATURE_WALKING_DEAD = 31
-  CREATURE_ZOMBIE = 32
-  CREATURE_MANES = 33
-  CREATURE_GHOST = 34
-  CREATURE_VAMPIRE = 35
-  CREATURE_VAMPIRE_LORD = 36
-  CREATURE_LICH = 37
-  CREATURE_DEMILICH = 38
-  CREATURE_WIGHT = 39
-  CREATURE_WRAITH = 40
-  CREATURE_BONE_DRAGON = 41
-  CREATURE_SHADOW_DRAGON = 42
-  CREATURE_PIXIE = 43
-  CREATURE_SPRITE = 44
-  CREATURE_BLADE_JUGGLER = 45
-  CREATURE_WAR_DANCER = 46
-  CREATURE_WOOD_ELF = 47
-  CREATURE_GRAND_ELF = 48
-  CREATURE_DRUID = 49
-  CREATURE_DRUID_ELDER = 50
-  CREATURE_UNICORN = 51
-  CREATURE_WAR_UNICORN = 52
-  CREATURE_TREANT = 53
-  CREATURE_TREANT_GUARDIAN = 54
-  CREATURE_GREEN_DRAGON = 55
-  CREATURE_GOLD_DRAGON = 56
-  CREATURE_GREMLIN = 57
-  CREATURE_MASTER_GREMLIN = 58
-  CREATURE_STONE_GARGOYLE = 59
-  CREATURE_OBSIDIAN_GARGOYLE = 60
-  CREATURE_IRON_GOLEM = 61
-  CREATURE_STEEL_GOLEM = 62
-  CREATURE_MAGI = 63
-  CREATURE_ARCH_MAGI = 64
-  CREATURE_GENIE = 65
-  CREATURE_MASTER_GENIE = 66
-  CREATURE_RAKSHASA = 67
-  CREATURE_RAKSHASA_RUKH = 68
-  CREATURE_GIANT = 69
-  CREATURE_TITAN = 70
-  CREATURE_SCOUT = 71
-  CREATURE_ASSASSIN = 72
-  CREATURE_WITCH = 73
-  CREATURE_BLOOD_WITCH = 74
-  CREATURE_MINOTAUR = 75
-  CREATURE_MINOTAUR_KING = 76
-  CREATURE_RIDER = 77
-  CREATURE_RAVAGER = 78
-  CREATURE_HYDRA = 79
-  CREATURE_CHAOS_HYDRA = 80
-  CREATURE_MATRON = 81
-  CREATURE_MATRIARCH = 82
-  CREATURE_DEEP_DRAGON = 83
-  CREATURE_BLACK_DRAGON = 84
-  CREATURE_FIRE_ELEMENTAL = 85
-  CREATURE_WATER_ELEMENTAL = 86
-  CREATURE_EARTH_ELEMENTAL = 87
-  CREATURE_AIR_ELEMENTAL = 88
-  CREATURE_DEATH_KNIGHT = 90
-  CREATURE_PHOENIX = 91
-  CREATURE_DEFENDER = 92
-  CREATURE_STOUT_DEFENDER = 93
-  CREATURE_AXE_FIGHTER = 94
-  CREATURE_AXE_THROWER = 95
-  CREATURE_BEAR_RIDER = 96
-  CREATURE_BLACKBEAR_RIDER = 97
-  CREATURE_BROWLER = 98
-  CREATURE_BERSERKER = 99
-  CREATURE_RUNE_MAGE = 100
-  CREATURE_FLAME_MAGE = 101
-  CREATURE_THANE = 102
-  CREATURE_WARLORD = 103
-  CREATURE_FIRE_DRAGON = 104
-  CREATURE_MAGMA_DRAGON = 105
-  CREATURE_LANDLORD = 106
-  CREATURE_LONGBOWMAN = 107
-  CREATURE_VINDICATOR = 108
-  CREATURE_BATTLE_GRIFFIN = 109
-  CREATURE_ZEALOT = 110
-  CREATURE_CHAMPION = 111
-  CREATURE_SERAPH = 112
-  CREATURE_WOLF = 113
-  CREATURE_SNOW_APE = 114
-  CREATURE_MANTICORE = 115
-  CREATURE_MUMMY = 116
-  CREATURE_GOBLIN = 117
-  CREATURE_GOBLIN_TRAPPER = 118
-  CREATURE_CENTAUR = 119
-  CREATURE_CENTAUR_NOMAD = 120
-  CREATURE_ORC_WARRIOR = 121
-  CREATURE_ORC_SLAYER = 122
-  CREATURE_SHAMAN = 123
-  CREATURE_SHAMAN_WITCH = 124
-  CREATURE_ORCCHIEF_BUTCHER = 125
-  CREATURE_ORCCHIEF_EXECUTIONER = 126
-  CREATURE_WYVERN = 127
-  CREATURE_WYVERN_POISONOUS = 128
-  CREATURE_CYCLOP = 129
-  CREATURE_CYCLOP_UNTAMED = 130
-  CREATURE_QUASIT = 131
-  CREATURE_HORNED_LEAPER = 132
-  CREATURE_FIREBREATHER_HOUND = 133
-  CREATURE_SUCCUBUS_SEDUCER = 134
-  CREATURE_HELLMARE = 135
-  CREATURE_PIT_SPAWN = 136
-  CREATURE_ARCH_DEMON = 137
-  CREATURE_STALKER = 138
-  CREATURE_BLOOD_WITCH_2 = 139
-  CREATURE_MINOTAUR_CAPTAIN = 140
-  CREATURE_BLACK_RIDER = 141
-  CREATURE_ACIDIC_HYDRA = 142
-  CREATURE_SHADOW_MISTRESS = 143
-  CREATURE_RED_DRAGON = 144
-  CREATURE_DRYAD = 145
-  CREATURE_BLADE_SINGER = 146
-  CREATURE_SHARP_SHOOTER = 147
-  CREATURE_HIGH_DRUID = 148
-  CREATURE_WHITE_UNICORN = 149
-  CREATURE_ANGER_TREANT = 150
-  CREATURE_RAINBOW_DRAGON = 151
-  CREATURE_SKELETON_WARRIOR = 152
-  CREATURE_DISEASE_ZOMBIE = 153
-  CREATURE_POLTERGEIST = 154
-  CREATURE_NOSFERATU = 155
-  CREATURE_LICH_MASTER = 156
-  CREATURE_BANSHEE = 157
-  CREATURE_HORROR_DRAGON = 158
-  CREATURE_GREMLIN_SABOTEUR = 159
-  CREATURE_MARBLE_GARGOYLE = 160
-  CREATURE_OBSIDIAN_GOLEM = 161
-  CREATURE_COMBAT_MAGE = 162
-  CREATURE_DJINN_VIZIER = 163
-  CREATURE_RAKSHASA_KSHATRI = 164
-  CREATURE_STORM_LORD = 165
-  CREATURE_STONE_DEFENDER = 166
-  CREATURE_HARPOONER = 167
-  CREATURE_WHITE_BEAR_RIDER = 168
-  CREATURE_BATTLE_RAGER = 169
-  CREATURE_FLAME_KEEPER = 170
-  CREATURE_THUNDER_THANE = 171
-  CREATURE_LAVA_DRAGON = 172
-  CREATURE_GOBLIN_DEFILER = 173
-  CREATURE_CENTAUR_MARADEUR = 174
-  CREATURE_ORC_WARMONGER = 175
-  CREATURE_SHAMAN_HAG = 176
-  CREATURE_ORCCHIEF_CHIEFTAIN = 177
-  CREATURE_WYVERN_PAOKAI = 178
-  CREATURE_CYCLOP_BLOODEYED = 179
-  CREATURE_180 = 180
-  CREATURE_CHERUBIN = 181
-  CREATURE_CHERUBIN_LESS = 182
-  CREATURE_DRAGON_KNIGHT = 183
-  CREATURE_DRAGON_KNIGHT_LESS = 184
-  CREATURE_ENCHANTER_ACADEMY = 185
-  CREATURE_ENCHANTER_NEUTRAL = 186
-  CREATURE_ENCHANTER_CASTER = 187
-  CREATURE_188 = 188
-  CREATURE_189 = 189
-  CREATURE_190 = 190
-  CREATURE_191 = 191
-  CREATURE_192 = 192
-  CREATURE_193 = 193
-  CREATURE_194 = 194
-  CREATURE_195 = 195
-  CREATURE_196 = 196
-  CREATURE_197 = 197
-  CREATURE_198 = 198
-  CREATURE_199 = 199
-  CREATURE_200 = 200
-  CREATURE_201 = 201
-  CREATURE_202 = 202
-  CREATURE_203 = 203
-  CREATURE_204 = 204
-  CREATURE_205 = 205
-  CREATURE_206 = 206
-  CREATURE_207 = 207
-  CREATURE_208 = 208
-  CREATURE_209 = 209
-  CREATURE_210 = 210
-  CREATURE_211 = 211
-  CREATURE_212 = 212
-  CREATURE_213 = 213
-  CREATURE_214 = 214
-  CREATURE_215 = 215
-  CREATURE_216 = 216
-  CREATURE_217 = 217
-  CREATURE_218 = 218
-  CREATURE_219 = 219
-  CREATURE_220 = 220
-  CREATURE_221 = 221
-  CREATURE_222 = 222
-  CREATURE_223 = 223
-  CREATURE_224 = 224
-  CREATURE_225 = 225
-  CREATURE_226 = 226
-  CREATURE_227 = 227
-  CREATURE_228 = 228
-  CREATURE_229 = 229
-  CREATURE_230 = 230
-  CREATURE_231 = 231
-  CREATURE_232 = 232
-  CREATURE_233 = 233
-  CREATURE_234 = 234
-  CREATURE_235 = 235
-  CREATURE_236 = 236
-  CREATURE_237 = 237
-  CREATURE_238 = 238
-  CREATURE_239 = 239
-  CREATURE_240 = 240
-  CREATURE_241 = 241
-  CREATURE_242 = 242
-  CREATURE_243 = 243
-  CREATURE_244 = 244
-  CREATURE_245 = 245
-  CREATURE_246 = 246
-  CREATURE_247 = 247
-  CREATURE_248 = 248
-  CREATURE_249 = 249
-  CREATURE_250 = 250
-  CREATURE_251 = 251
-  CREATURE_252 = 252
-  CREATURE_253 = 253
-  CREATURE_254 = 254
-  CREATURE_255 = 255
-  CREATURE_256 = 256
-  CREATURE_257 = 257
-  CREATURE_258 = 258
-  CREATURE_259 = 259
-  CREATURE_260 = 260
-  CREATURE_261 = 261
-  CREATURE_262 = 262
-  CREATURE_263 = 263
-  CREATURE_264 = 264
-  CREATURE_265 = 265
-  CREATURE_266 = 266
-  CREATURE_267 = 267
-  CREATURE_268 = 268
-  CREATURE_269 = 269
-  CREATURE_270 = 270
-  CREATURE_271 = 271
-  CREATURE_272 = 272
-  CREATURE_273 = 273
-  CREATURE_274 = 274
-  CREATURE_275 = 275
-  CREATURE_276 = 276
-  CREATURE_277 = 277
-  CREATURE_278 = 278
-  CREATURE_279 = 279
-  CREATURE_280 = 280
-  CREATURE_281 = 281
-  CREATURE_282 = 282
-  CREATURE_283 = 283
-  CREATURE_284 = 284
-  CREATURE_285 = 285
-  CREATURE_286 = 286
-  CREATURE_287 = 287
-  CREATURE_288 = 288
-  CREATURE_289 = 289
-  CREATURE_290 = 290
-  CREATURE_291 = 291
-  CREATURE_292 = 292
-  CREATURE_293 = 293
-  CREATURE_294 = 294
-  CREATURE_295 = 295
-  CREATURE_296 = 296
-  CREATURE_297 = 297
-  CREATURE_298 = 298
-  CREATURE_299 = 299
-  CREATURE_300 = 300
-  CREATURE_301 = 301
-  CREATURE_302 = 302
-  CREATURE_303 = 303
-  CREATURE_304 = 304
-  CREATURE_305 = 305
-  CREATURE_306 = 306
-  CREATURE_307 = 307
-  CREATURE_308 = 308
-  CREATURE_309 = 309
-  CREATURE_310 = 310
-  CREATURE_311 = 311
-  CREATURE_312 = 312
-  CREATURE_313 = 313
-  CREATURE_314 = 314
-  CREATURE_315 = 315
-  CREATURE_316 = 316
-  CREATURE_317 = 317
-  CREATURE_318 = 318
-  CREATURE_319 = 319
-  CREATURE_320 = 320
-  CREATURE_321 = 321
-  CREATURE_322 = 322
-  CREATURE_323 = 323
-  CREATURE_324 = 324
-  CREATURE_325 = 325
-  CREATURE_326 = 326
-  CREATURE_327 = 327
-  CREATURE_328 = 328
-  CREATURE_329 = 329
-  CREATURE_330 = 330
-  CREATURE_331 = 331
-  CREATURE_332 = 332
-  CREATURE_333 = 333
-  CREATURE_334 = 334
-  CREATURE_335 = 335
-  CREATURE_336 = 336
-  CREATURE_337 = 337
-  CREATURE_338 = 338
-  CREATURE_339 = 339
-  CREATURE_340 = 340
-  CREATURE_341 = 341
-  CREATURE_342 = 342
-  CREATURE_343 = 343
-  CREATURE_344 = 344
-  CREATURE_345 = 345
-  CREATURE_346 = 346
-  CREATURE_347 = 347
-  CREATURE_348 = 348
-  CREATURE_349 = 349
-  CREATURE_350 = 350
-  CREATURE_351 = 351
-  CREATURE_352 = 352
-  CREATURE_353 = 353
-  CREATURE_354 = 354
-  CREATURE_355 = 355
-  CREATURE_356 = 356
-  CREATURE_357 = 357
-  CREATURE_358 = 358
-  CREATURE_359 = 359
-  CREATURE_360 = 360
-  CREATURE_361 = 361
-  CREATURE_362 = 362
-  CREATURE_363 = 363
-  CREATURE_364 = 364
-  CREATURE_365 = 365
-  CREATURE_366 = 366
-  CREATURE_367 = 367
-  CREATURE_368 = 368
-  CREATURE_369 = 369
-  CREATURE_370 = 370
-  CREATURE_371 = 371
-  CREATURE_372 = 372
-  CREATURE_373 = 373
-  CREATURE_374 = 374
-  CREATURE_375 = 375
-  CREATURE_376 = 376
-  CREATURE_377 = 377
-  CREATURE_378 = 378
-  CREATURE_379 = 379
-  CREATURE_380 = 380
-  CREATURE_381 = 381
-  CREATURE_382 = 382
-  CREATURE_383 = 383
-  CREATURE_384 = 384
-  CREATURE_385 = 385
-  CREATURE_386 = 386
-  CREATURE_387 = 387
-  CREATURE_388 = 388
-  CREATURE_389 = 389
-  CREATURE_390 = 390
-  CREATURE_391 = 391
-  CREATURE_392 = 392
-  CREATURE_393 = 393
-  CREATURE_394 = 394
-  CREATURE_395 = 395
-  CREATURE_396 = 396
-  CREATURE_397 = 397
-  CREATURE_398 = 398
-  CREATURE_399 = 399
-  CREATURE_400 = 400
-  CREATURE_401 = 401
-  CREATURE_402 = 402
-  CREATURE_403 = 403
-  CREATURE_404 = 404
-  CREATURE_405 = 405
-  CREATURE_406 = 406
-  CREATURE_407 = 407
-  CREATURE_408 = 408
-  CREATURE_409 = 409
-  CREATURE_410 = 410
-  CREATURE_411 = 411
-  CREATURE_412 = 412
-  CREATURE_413 = 413
-  CREATURE_414 = 414
-  CREATURE_415 = 415
-  CREATURE_416 = 416
-  CREATURE_417 = 417
-  CREATURE_418 = 418
-  CREATURE_419 = 419
-  CREATURE_420 = 420
-  CREATURE_421 = 421
-  CREATURE_422 = 422
-  CREATURE_423 = 423
-  CREATURE_424 = 424
-  CREATURE_425 = 425
-  CREATURE_426 = 426
-  CREATURE_427 = 427
-  CREATURE_428 = 428
-  CREATURE_429 = 429
-  CREATURE_430 = 430
-  CREATURE_431 = 431
-  CREATURE_432 = 432
-  CREATURE_433 = 433
-  CREATURE_434 = 434
-  CREATURE_435 = 435
-  CREATURE_436 = 436
-  CREATURE_437 = 437
-  CREATURE_438 = 438
-  CREATURE_439 = 439
-  CREATURE_440 = 440
-  CREATURE_441 = 441
-  CREATURE_442 = 442
-  CREATURE_443 = 443
-  CREATURE_444 = 444
-  CREATURE_445 = 445
-  CREATURE_446 = 446
-  CREATURE_447 = 447
-  CREATURE_448 = 448
-  CREATURE_449 = 449
-  CREATURE_450 = 450
-  CREATURE_451 = 451
-  CREATURE_452 = 452
-  CREATURE_453 = 453
-  CREATURE_454 = 454
-  CREATURE_455 = 455
-  CREATURE_456 = 456
-  CREATURE_457 = 457
-  CREATURE_458 = 458
-  CREATURE_459 = 459
-  CREATURE_460 = 460
-  CREATURE_461 = 461
-  CREATURE_462 = 462
-  CREATURE_463 = 463
-  CREATURE_464 = 464
-  CREATURE_465 = 465
-  CREATURE_466 = 466
-  CREATURE_467 = 467
-  CREATURE_468 = 468
-  CREATURE_469 = 469
-  CREATURE_470 = 470
-  CREATURE_471 = 471
-  CREATURE_472 = 472
-  CREATURE_473 = 473
-  CREATURE_474 = 474
-  CREATURE_475 = 475
-  CREATURE_476 = 476
-  CREATURE_477 = 477
-  CREATURE_478 = 478
-  CREATURE_479 = 479
-  CREATURE_480 = 480
-  CREATURE_481 = 481
-  CREATURE_482 = 482
-  CREATURE_483 = 483
-  CREATURE_484 = 484
-  CREATURE_485 = 485
-  CREATURE_486 = 486
-  CREATURE_487 = 487
-  CREATURE_488 = 488
-  CREATURE_489 = 489
-  CREATURE_490 = 490
-  CREATURE_491 = 491
-  CREATURE_492 = 492
-  CREATURE_493 = 493
-  CREATURE_494 = 494
-  CREATURE_495 = 495
-  CREATURE_496 = 496
-  CREATURE_497 = 497
-  CREATURE_498 = 498
-  CREATURE_499 = 499
-  CREATURE_500 = 500
-  CREATURE_501 = 501
-  CREATURE_502 = 502
-  CREATURE_503 = 503
-  CREATURE_504 = 504
-  CREATURE_505 = 505
-  CREATURE_506 = 506
-  CREATURE_507 = 507
-  CREATURE_508 = 508
-  CREATURE_509 = 509
-  CREATURE_510 = 510
-  CREATURE_511 = 511
-  CREATURE_512 = 512
-  CREATURE_513 = 513
-  CREATURE_514 = 514
-  CREATURE_515 = 515
-  CREATURE_516 = 516
-  CREATURE_517 = 517
-  CREATURE_518 = 518
-  CREATURE_519 = 519
-  CREATURE_520 = 520
-  CREATURE_521 = 521
-  CREATURE_522 = 522
-  CREATURE_523 = 523
-  CREATURE_524 = 524
-  CREATURE_525 = 525
-  CREATURE_526 = 526
-  CREATURE_527 = 527
-  CREATURE_528 = 528
-  CREATURE_529 = 529
-  CREATURE_530 = 530
-  CREATURE_531 = 531
-  CREATURE_532 = 532
-  CREATURE_533 = 533
-  CREATURE_534 = 534
-  CREATURE_535 = 535
-  CREATURE_536 = 536
-  CREATURE_537 = 537
-  CREATURE_538 = 538
-  CREATURE_539 = 539
-  CREATURE_540 = 540
-  CREATURE_541 = 541
-  CREATURE_542 = 542
-  CREATURE_543 = 543
-  CREATURE_544 = 544
-  CREATURE_545 = 545
-  CREATURE_546 = 546
-  CREATURE_547 = 547
-  CREATURE_548 = 548
-  CREATURE_549 = 549
-  CREATURE_550 = 550
-  CREATURE_551 = 551
-  CREATURE_552 = 552
-  CREATURE_553 = 553
-  CREATURE_554 = 554
-  CREATURE_555 = 555
-  CREATURE_556 = 556
-  CREATURE_557 = 557
-  CREATURE_558 = 558
-  CREATURE_559 = 559
-  CREATURE_560 = 560
-  CREATURE_561 = 561
-  CREATURE_562 = 562
-  CREATURE_563 = 563
-  CREATURE_564 = 564
-  CREATURE_565 = 565
-  CREATURE_566 = 566
-  CREATURE_567 = 567
-  CREATURE_568 = 568
-  CREATURE_569 = 569
-  CREATURE_570 = 570
-  CREATURE_571 = 571
-  CREATURE_572 = 572
-  CREATURE_573 = 573
-  CREATURE_574 = 574
-  CREATURE_575 = 575
-  CREATURE_576 = 576
-  CREATURE_577 = 577
-  CREATURE_578 = 578
-  CREATURE_579 = 579
-  CREATURE_580 = 580
-  CREATURE_581 = 581
-  CREATURE_582 = 582
-  CREATURE_583 = 583
-  CREATURE_584 = 584
-  CREATURE_585 = 585
-  CREATURE_586 = 586
-  CREATURE_587 = 587
-  CREATURE_588 = 588
-  CREATURE_589 = 589
-  CREATURE_590 = 590
-  CREATURE_591 = 591
-  CREATURE_592 = 592
-  CREATURE_593 = 593
-  CREATURE_594 = 594
-  CREATURE_595 = 595
-  CREATURE_596 = 596
-  CREATURE_597 = 597
-  CREATURE_598 = 598
-  CREATURE_599 = 599
-  CREATURE_600 = 600
-  CREATURE_601 = 601
-  CREATURE_602 = 602
-  CREATURE_603 = 603
-  CREATURE_604 = 604
-  CREATURE_605 = 605
-  CREATURE_606 = 606
-  CREATURE_607 = 607
-  CREATURE_608 = 608
-  CREATURE_609 = 609
-  CREATURE_610 = 610
-  CREATURE_611 = 611
-  CREATURE_612 = 612
-  CREATURE_613 = 613
-  CREATURE_614 = 614
-  CREATURE_615 = 615
-  CREATURE_616 = 616
-  CREATURE_617 = 617
-  CREATURE_618 = 618
-  CREATURE_619 = 619
-  CREATURE_620 = 620
-  CREATURE_621 = 621
-  CREATURE_622 = 622
-  CREATURE_623 = 623
-  CREATURE_624 = 624
-  CREATURE_625 = 625
-  CREATURE_626 = 626
-  CREATURE_627 = 627
-  CREATURE_628 = 628
-  CREATURE_629 = 629
-  CREATURE_630 = 630
-  CREATURE_631 = 631
-  CREATURE_632 = 632
-  CREATURE_633 = 633
-  CREATURE_634 = 634
-  CREATURE_635 = 635
-  CREATURE_636 = 636
-  CREATURE_637 = 637
-  CREATURE_638 = 638
-  CREATURE_639 = 639
-  CREATURE_640 = 640
-  CREATURE_641 = 641
-  CREATURE_642 = 642
-  CREATURE_643 = 643
-  CREATURE_644 = 644
-  CREATURE_645 = 645
-  CREATURE_646 = 646
-  CREATURE_647 = 647
-  CREATURE_648 = 648
-  CREATURE_649 = 649
-  CREATURE_650 = 650
-  CREATURE_651 = 651
-  CREATURE_652 = 652
-  CREATURE_653 = 653
-  CREATURE_654 = 654
-  CREATURE_655 = 655
-  CREATURE_656 = 656
-  CREATURE_657 = 657
-  CREATURE_658 = 658
-  CREATURE_659 = 659
-  CREATURE_660 = 660
-  CREATURE_661 = 661
-  CREATURE_662 = 662
-  CREATURE_663 = 663
-  CREATURE_664 = 664
-  CREATURE_665 = 665
-  CREATURE_666 = 666
-  CREATURE_667 = 667
-  CREATURE_668 = 668
-  CREATURE_669 = 669
-  CREATURE_670 = 670
-  CREATURE_671 = 671
-  CREATURE_672 = 672
-  CREATURE_673 = 673
-  CREATURE_674 = 674
-  CREATURE_675 = 675
-  CREATURE_676 = 676
-  CREATURE_677 = 677
-  CREATURE_678 = 678
-  CREATURE_679 = 679
-  CREATURE_680 = 680
-  CREATURE_681 = 681
-  CREATURE_682 = 682
-  CREATURE_683 = 683
-  CREATURE_684 = 684
-  CREATURE_685 = 685
-  CREATURE_686 = 686
-  CREATURE_687 = 687
-  CREATURE_688 = 688
-  CREATURE_689 = 689
-  CREATURE_690 = 690
-  CREATURE_691 = 691
-  CREATURE_692 = 692
-  CREATURE_693 = 693
-  CREATURE_694 = 694
-  CREATURE_695 = 695
-  CREATURE_696 = 696
-  CREATURE_697 = 697
-  CREATURE_698 = 698
-  CREATURE_699 = 699
-  CREATURE_700 = 700
-  CREATURE_701 = 701
-  CREATURE_702 = 702
-  CREATURE_703 = 703
-  CREATURE_704 = 704
-  CREATURE_705 = 705
-  CREATURE_706 = 706
-  CREATURE_707 = 707
-  CREATURE_708 = 708
-  CREATURE_709 = 709
-  CREATURE_710 = 710
-  CREATURE_711 = 711
-  CREATURE_712 = 712
-  CREATURE_713 = 713
-  CREATURE_714 = 714
-  CREATURE_715 = 715
-  CREATURE_716 = 716
-  CREATURE_717 = 717
-  CREATURE_718 = 718
-  CREATURE_719 = 719
-  CREATURE_720 = 720
-  CREATURE_721 = 721
-  CREATURE_722 = 722
-  CREATURE_723 = 723
-  CREATURE_724 = 724
-  CREATURE_725 = 725
-  CREATURE_726 = 726
-  CREATURE_727 = 727
-  CREATURE_728 = 728
-  CREATURE_729 = 729
-  CREATURE_730 = 730
-  CREATURE_731 = 731
-  CREATURE_732 = 732
-  CREATURE_733 = 733
-  CREATURE_734 = 734
-  CREATURE_735 = 735
-  CREATURE_736 = 736
-  CREATURE_737 = 737
-  CREATURE_738 = 738
-  CREATURE_739 = 739
-  CREATURE_740 = 740
-  CREATURE_741 = 741
-  CREATURE_742 = 742
-  CREATURE_743 = 743
-  CREATURE_744 = 744
-  CREATURE_745 = 745
-  CREATURE_746 = 746
-  CREATURE_747 = 747
-  CREATURE_748 = 748
-  CREATURE_749 = 749
-  CREATURE_750 = 750
-  CREATURE_751 = 751
-  CREATURE_752 = 752
-  CREATURE_753 = 753
-  CREATURE_754 = 754
-  CREATURE_755 = 755
-  CREATURE_756 = 756
-  CREATURE_757 = 757
-  CREATURE_758 = 758
-  CREATURE_759 = 759
-  CREATURE_760 = 760
-  CREATURE_761 = 761
-  CREATURE_762 = 762
-  CREATURE_763 = 763
-  CREATURE_764 = 764
-  CREATURE_765 = 765
-  CREATURE_766 = 766
-  CREATURE_767 = 767
-  CREATURE_768 = 768
-  CREATURE_769 = 769
-  CREATURE_770 = 770
-  CREATURE_771 = 771
-  CREATURE_772 = 772
-  CREATURE_773 = 773
-  CREATURE_774 = 774
-  CREATURE_775 = 775
-  CREATURE_776 = 776
-  CREATURE_777 = 777
-  CREATURE_778 = 778
-  CREATURE_779 = 779
-  CREATURE_780 = 780
-  CREATURE_781 = 781
-  CREATURE_782 = 782
-  CREATURE_783 = 783
-  CREATURE_784 = 784
-  CREATURE_785 = 785
-  CREATURE_786 = 786
-  CREATURE_787 = 787
-  CREATURE_788 = 788
-  CREATURE_789 = 789
-  CREATURE_790 = 790
-  CREATURE_791 = 791
-  CREATURE_792 = 792
-  CREATURE_793 = 793
-  CREATURE_794 = 794
-  CREATURE_795 = 795
-  CREATURE_796 = 796
-  CREATURE_797 = 797
-  CREATURE_798 = 798
-  CREATURE_799 = 799
-  CREATURE_800 = 800
-  CREATURE_801 = 801
-  CREATURE_802 = 802
-  CREATURE_803 = 803
-  CREATURE_804 = 804
-  CREATURE_805 = 805
-  CREATURE_806 = 806
-  CREATURE_807 = 807
-  CREATURE_808 = 808
-  CREATURE_809 = 809
-  CREATURE_810 = 810
-  CREATURE_811 = 811
-  CREATURE_812 = 812
-  CREATURE_813 = 813
-  CREATURE_814 = 814
-  CREATURE_815 = 815
-  CREATURE_816 = 816
-  CREATURE_817 = 817
-  CREATURE_818 = 818
-  CREATURE_819 = 819
-  CREATURE_820 = 820
-  CREATURE_821 = 821
-  CREATURE_822 = 822
-  CREATURE_823 = 823
-  CREATURE_824 = 824
-  CREATURE_825 = 825
-  CREATURE_826 = 826
-  CREATURE_827 = 827
-  CREATURE_828 = 828
-  CREATURE_829 = 829
-  CREATURE_830 = 830
-  CREATURE_831 = 831
-  CREATURE_832 = 832
-  CREATURE_833 = 833
-  CREATURE_834 = 834
-  CREATURE_835 = 835
-  CREATURE_836 = 836
-  CREATURE_837 = 837
-  CREATURE_838 = 838
-  CREATURE_839 = 839
-  CREATURE_840 = 840
-  CREATURE_841 = 841
-  CREATURE_842 = 842
-  CREATURE_843 = 843
-  CREATURE_844 = 844
-  CREATURE_845 = 845
-  CREATURE_846 = 846
-  CREATURE_847 = 847
-  CREATURE_848 = 848
-  CREATURE_849 = 849
-  CREATURE_850 = 850
-  CREATURE_851 = 851
-  CREATURE_852 = 852
-  CREATURE_853 = 853
-  CREATURE_854 = 854
-  CREATURE_855 = 855
-  CREATURE_856 = 856
-  CREATURE_857 = 857
-  CREATURE_858 = 858
-  CREATURE_859 = 859
-  CREATURE_860 = 860
-  CREATURE_861 = 861
-  CREATURE_862 = 862
-  CREATURE_863 = 863
-  CREATURE_864 = 864
-  CREATURE_865 = 865
-  CREATURE_866 = 866
-  CREATURE_867 = 867
-  CREATURE_868 = 868
-  CREATURE_869 = 869
-  CREATURE_870 = 870
-  CREATURE_871 = 871
-  CREATURE_872 = 872
-  CREATURE_873 = 873
-  CREATURE_874 = 874
-  CREATURE_875 = 875
-  CREATURE_876 = 876
-  CREATURE_877 = 877
-  CREATURE_878 = 878
-  CREATURE_879 = 879
-  CREATURE_880 = 880
-  CREATURE_881 = 881
-  CREATURE_882 = 882
-  CREATURE_883 = 883
-  CREATURE_884 = 884
-  CREATURE_885 = 885
-  CREATURE_886 = 886
-  CREATURE_887 = 887
-  CREATURE_888 = 888
-  CREATURE_889 = 889
-  CREATURE_890 = 890
-  CREATURE_891 = 891
-  CREATURE_892 = 892
-  CREATURE_893 = 893
-  CREATURE_894 = 894
-  CREATURE_895 = 895
-  CREATURE_896 = 896
-  CREATURE_897 = 897
-  CREATURE_898 = 898
-  CREATURE_899 = 899
-  CREATURE_900 = 900
-  CREATURE_901 = 901
-  CREATURE_902 = 902
-  CREATURE_903 = 903
-  CREATURE_904 = 904
-  CREATURE_905 = 905
-  CREATURE_906 = 906
-  CREATURE_907 = 907
-  CREATURE_908 = 908
-  CREATURE_909 = 909
-  CREATURE_910 = 910
-  CREATURE_911 = 911
-  CREATURE_912 = 912
-  CREATURE_913 = 913
-  CREATURE_914 = 914
-  CREATURE_915 = 915
-  CREATURE_916 = 916
-  CREATURE_917 = 917
-  CREATURE_918 = 918
-  CREATURE_919 = 919
-  CREATURE_920 = 920
-  CREATURE_921 = 921
-  CREATURE_922 = 922
-  CREATURE_923 = 923
-  CREATURE_924 = 924
-  CREATURE_925 = 925
-  CREATURE_926 = 926
-  CREATURE_927 = 927
-  CREATURE_928 = 928
-  CREATURE_929 = 929
-  CREATURE_930 = 930
-  CREATURE_FIRE_MECHANICAL = 930
-  CREATURE_931 = 931
-  CREATURE_WATER_MECHANICAL = 931
-  CREATURE_932 = 932
-  CREATURE_EARTH_MECHANICAL = 932
-  CREATURE_933 = 933
-  CREATURE_AIR_MECHANICAL = 933
-  CREATURE_934 = 934
-  CREATURE_PHOENIX_MECHANICAL = 934
-  CREATURE_935 = 935
-  -- 光/暗天使
-  CREATURE_936 = 936
-  CREATURE_937 = 937
-  CREATURE_938 = 938
-  CREATURE_939 = 939
-  CREATURE_940 = 940
-  CREATURE_941 = 941
-  CREATURE_942 = 942
-  CREATURE_943 = 943
-  CREATURE_944 = 944
-  CREATURE_945 = 945
-  CREATURE_946 = 946
-  CREATURE_947 = 947
-  CREATURE_948 = 948
-  CREATURE_949 = 949
-  CREATURE_950 = 950
-  CREATURE_Straker_Skill = 950
-  CREATURE_951 = 951
-  CREATURE_Itil_Druid = 951
-  CREATURE_952 = 952
-  CREATURE_Itil_Unicorn = 952
-  CREATURE_953 = 953
-  CREATURE_Jeddite_Skill = 953
-  CREATURE_954 = 954
-  CREATURE_Nemor_Skill = 954
-  CREATURE_955 = 955
-  CREATURE_Orlando2 = 955
-  CREATURE_956 = 956
-  CREATURE_957 = 957
-  CREATURE_958 = 958
-  CREATURE_959 = 959
-  CREATURE_960 = 960
-  CREATURE_961 = 961
-  CREATURE_962 = 962
-  CREATURE_963 = 963
-  CREATURE_964 = 964
-  CREATURE_965 = 965
-  CREATURE_966 = 966
-  CREATURE_967 = 967
-  CREATURE_968 = 968
-  CREATURE_969 = 969
-  CREATURE_970 = 970
-  CREATURE_971 = 971
-  CREATURE_972 = 972
-  CREATURE_973 = 973
-  CREATURE_974 = 974
-  CREATURE_975 = 975
-  CREATURE_976 = 976
-  CREATURE_977 = 977
-  CREATURE_978 = 978
-  CREATURE_979 = 979
-  CREATURE_980 = 980
-  CREATURE_981 = 981
-  CREATURE_982 = 982
-  CREATURE_983 = 983
-  CREATURE_984 = 984
-  CREATURE_985 = 985
-  CREATURE_986 = 986
-  CREATURE_987 = 987
-  CREATURE_988 = 988
-  CREATURE_989 = 989
-  CREATURE_990 = 990
-  CREATURE_991 = 991
-  CREATURE_992 = 992
-  CREATURE_993 = 993
-  CREATURE_994 = 994
-  CREATURE_995 = 995
-  CREATURE_996 = 996
-  CREATURE_997 = 997
-  CREATURE_998 = 998
-  CREATURE_999 = 999
-  CREATURES_COUNT = 1000
-
 -- RaceHero
   H55SMOD_HavenHeroes = {
       "Nathaniel", "Orrin", "Mardigo", "Ving", "Sarge", "Isabell", "Christian", "RedHeavenHero02", "RedHeavenHero05", "Brem"
-      , "Nicolai", "GodricMP", "Alaric", "Axel", "SaintIsabell", "Maeve", "RedHeavenHero06", "Jeddite"
+      , "Nicolai", "GodricMP", "Alaric", "Axel", "SaintIsabell", "Maeve", "RedHeavenHero06", "Caldwell", "OrtanCassius"
       , "RedHeavenHero03", "Orlando", "Markal"
   };
   H55SMOD_SylvanHeroes = {
@@ -1030,8 +16,8 @@
   };
   H55SMOD_InfernoHeroes = {
       "Calh", "Calid", "Deleb", "Jazaz", "Marder", "Orlando2"
-      , "Efion", "Grok", "Malustar", "Nymus", "Oddrema", "Sovereign", "Agrael", "Zydar"
-      , "Ash", "Biara", "Calid2", "Sheltem"
+      , "Efion", "Grok", "Malustar", "Nymus", "Oddrema", "Sovereign", "Agrael"
+      , "Ash", "Biara", "Calid2", "Sheltem", "Zydar", "Jeddite"
   };
   H55SMOD_NecropolisHeroes = {
       "Archilus", "Berein", "Gles", "Nikolay", "Straker", "Tamika", "Xerxon", "Karissa"
@@ -1049,13 +35,13 @@
       , "Agbeth", "Almegir", "Inagost", "Kastore", "Raelag", "Ranleth", "Sephinroth"
   };
   H55SMOD_StrongholdHeroes = {
-      "Hero1", "Hero2", "Hero3", "Hero4", "Hero5", "Hero6", "Hero8", "Hero9", "Gottai", "Crag", "KujinMP", "Hero7", "Azar", "Kraal", "Kujin", "Kunyak", "Matewa", "Quroq", "Shiva", "Mokka", "Erika", "Zouleika"
+      "Hero1", "Hero2", "Hero3", "Hero4", "Hero6", "Hero8", "Hero9", "Gottai", "Crag", "KujinMP", "Hero7", "Azar", "Kraal", "Kunyak", "Matewa", "Quroq", "Shiva", "Mokka", "Erika", "Zouleika"
   };
 
 -- AllHero
   H55SMOD_Heroes = {
       "Nathaniel", "Orrin", "Mardigo", "Ving", "Sarge", "Isabell", "Christian", "RedHeavenHero02", "RedHeavenHero05", "Brem"
-      , "Nicolai", "GodricMP", "Alaric", "Axel", "SaintIsabell", "Maeve", "RedHeavenHero06", "Jeddite"
+      , "Nicolai", "GodricMP", "Alaric", "Axel", "SaintIsabell", "Maeve", "RedHeavenHero06", "Caldwell", "OrtanCassius"
       , "RedHeavenHero03", "Orlando", "Markal"
       , "Metlirn", "Ossir", "Nadaur", "Linaas", "Heam", "Gelu", "Arniel", "Kyrre"
       , "Gillion", "Itil", "Melodia", "Jenova", "Mephala", "Gem"
@@ -1065,7 +51,7 @@
       , "Emilia", "Nur", "Astral", "Zehir", "Faiz", "Josephine"
       , "Calh", "Calid", "Deleb", "Jazaz", "Marder", "Orlando2"
       , "Efion", "Grok", "Malustar", "Nymus", "Oddrema", "Sovereign", "Agrael"
-      , "Ash", "Biara", "Calid2", "Sheltem", "Zydar"
+      , "Ash", "Biara", "Calid2", "Sheltem", "Zydar", "Jeddite"
       , "Archilus", "Berein", "Gles", "Nikolay", "Straker", "Tamika", "Xerxon", "Karissa"
       , "Aislinn", "Effig", "Giovanni", "OrnellaNecro", "Aberrar", "Muscip"
       , "Arantir", "Nemor", "Nimbus", "Pelt", "Sandro", "Thant", "Adelaide", "Vidomina"
@@ -1075,15 +61,16 @@
       , "Urunir", "Menel", "Ferigl", "Sylsai", "Welygg"
       , "Ohtarig", "Eruina", "Dalom", "Kelodin", "Shadwyn", "Thralsai"
       , "Agbeth", "Almegir", "Inagost", "Kastore", "Raelag", "Ranleth", "Sephinroth"
-      , "Hero1", "Hero2", "Hero3", "Hero4", "Hero5", "Hero6", "Hero8", "Hero9", "Gottai", "Crag", "KujinMP", "Hero7", "Azar", "Kraal", "Kujin", "Kunyak", "Matewa", "Quroq", "Shiva", "Mokka", "Erika", "Zouleika"
+      , "Hero1", "Hero2", "Hero3", "Hero4", "Hero6", "Hero8", "Hero9", "Gottai", "Crag", "KujinMP", "Hero7", "Azar", "Kraal", "Kunyak", "Matewa", "Quroq", "Shiva", "Mokka", "Erika", "Zouleika"
   };
 
 -- HeroClass
   H55_Renegades = {"Mardigo","RedHeavenHero01","RedHeavenHero02","RedHeavenHero05"};
 
   H55_Knights = {"Nathaniel","Orrin","Mardigo","Ving","Sarge","Isabell","Christian","RedHeavenHero02","RedHeavenHero05","Brem"};
-  H55_Paladins = {"Nicolai","GodricMP","Alaric","Axel","SaintIsabell","Maeve","RedHeavenHero06","Jeddite"};
+  H55_Paladins = {"Nicolai","GodricMP","Alaric","Axel","SaintIsabell","Maeve","RedHeavenHero06","Caldwell"};
   H55_Heretics = {"RedHeavenHero03","Orlando","Markal"};
+  H55_Retributions = {"OrtanCassius"};
 
   H55_Rangers = {"Metlirn","Ossir","Nadaur","Linaas","Heam","Gelu","Arniel","Kyrre"};
   H55_Wardens = {"Gillion","Itil","Melodia","Jenova","Mephala","Gem"};
@@ -1095,7 +82,7 @@
 
   H55_Demonlords = {"Calid","Deleb","Jazaz","Marder","Orlando2"};
   H55_Gatekeepers = {"Calh","Efion","Grok","Malustar","Nymus","Oddrema","Sovereign","Agrael"};
-  H55_Sorcerers = {"Ash","Biara","Calid2","Sheltem","Zydar"};
+  H55_Sorcerers = {"Ash","Biara","Calid2","Sheltem","Zydar","Jeddite"};
 
   H55_DeathKnights = {"Archilus","Berein","Gles","Nikolay","Straker","Tamika","Xerxon","Karissa"};
   H55_Reavers = {"Aislinn","Effig","Giovanni","OrnellaNecro","Aberrar","Muscip"};
@@ -1109,19 +96,19 @@
   H55_Assassins = {"Ohtarig","Eruina","Dalom","Kelodin","Shadwyn","Thralsai"};
   H55_Warlocks = {"Agbeth","Almegir","Inagost","Kastore","Raelag","Ranleth","Sephinroth"};
 
-  H55_Barbarians = {"Hero1","Hero2","Hero3","Hero4","Hero5","Hero6","Hero8","Hero9","Gottai","Crag","KujinMP","Hero7","Azar","Kraal","Kujin","Kunyak","Matewa","Quroq","Shiva","Mokka","Erika","Zouleika"};
+  H55_Barbarians = {"Hero1","Hero2","Hero3","Hero4","Hero6","Hero8","Hero9","Gottai","Crag","KujinMP","Hero7","Azar","Kraal","Kunyak","Matewa","Quroq","Shiva","Mokka","Erika","Zouleika"};
   H55_Shamans = {};
   H55_Witches = {};
 
 -- Hero8Race
-  H55_HavenHeroes = {"Nicolai","GodricMP","Maeve","Nathaniel","Axel","Brem","Jeddite","Markal","Orlando","RedHeavenHero03","RedHeavenHero06","Alaric","RedHeavenHero01","Christian","Sarge","Isabell","Mardigo","Ving","Orrin","Godric","Freyda","Ornella","GhostFSLord","Giar","Glen","Isabell_A1","SaintIsabell","RedHeavenHero01","RedHeavenHero02","RedHeavenHero05"};
+  H55_HavenHeroes = {"Nicolai","GodricMP","Maeve","Nathaniel","Axel","Brem","Caldwell","OrtanCassius","Markal","Orlando","RedHeavenHero03","RedHeavenHero06","Alaric","RedHeavenHero01","Christian","Sarge","Isabell","Mardigo","Ving","Orrin","Godric","Freyda","Ornella","GhostFSLord","Giar","Glen","Isabell_A1","SaintIsabell","RedHeavenHero01","RedHeavenHero02","RedHeavenHero05"};
   H55_SylvanHeroes = {"Heam","Metlirn","Gelu","Nadaur","Linaas","Ossir","Jenova","Kyrre","Mephala","Arniel","Ildar","Melodia","Gillion","Vaniel","Elleshar","Vinrael","Itil","Diraya","Gem","Tieru"};
-  H55_InfernoHeroes = {"Marder","Sheltem","Orlando2","Calh","Calid","Jazaz","Gamor","Guarg","Erasial","Kha-Beleth","Veyer","DMessiah","Efion","Ash","Nymus","Oddrema","Malustar","Grok","Sovereign","Deleb","Calid2","Zydar","Agrael","Biara"};
+  H55_InfernoHeroes = {"Marder","Sheltem","Orlando2","Calh","Calid","Jazaz","Gamor","Guarg","Erasial","Kha-Beleth","Veyer","DMessiah","Efion","Ash","Nymus","Oddrema","Malustar","Grok","Sovereign","Deleb","Calid2","Zydar","Jeddite","Agrael","Biara"};
   H55_DungeonHeroes = {"Agbeth","Ranleth","Sylsai","Urunir","Menel","Ferigl","Dalom","Eruina","Ohtarig","Welygg","Thralsai","Almegir","Raelag","Kastore","Kelodin","Shadwyn","Sephinroth","Inagost"};
   H55_NecropolisHeroes = {"Gles","Pelt","Tamika","OrnellaNecro","Straker","Xerxon","Karissa","Archilus","Nimbus","Aislinn","Nemor","Muscip","Giovanni","Thant", "Adelaide","Vidomina","Arantir","Aberrar","Effig","Sandro","Berein","Nikolay"};
   H55_AcademyHeroes = {"Isher","Rissa","Minasli","Davius","Josephine","Havez","Dracon","Razzak","Maahir","Faiz","Sufi","Cyrus","Zehir","Timerkhan","Nur","Tan","Emilia","Astral"};
   H55_FortressHeroes = {"Wulfstan","Rolf","Maximus","Tazar","Ingvar","Skeggy","Hangvul2","KingTolghar","Ufretin","Bersy","Ottar","Una","Bart","Vilma","Hangvul","Brand","Egil","Vegeyr"};
-  H55_StrongholdHeroes = {"Hero1","Hero2","Hero3","Hero4","Hero5","Hero6","Hero7","Hero8","Hero9","Gottai","Crag","Azar","Kraal","Kujin","KujinMP","Kunyak","Matewa","Shiva","Zouleika","Quroq","Mokka","Erika"};
+  H55_StrongholdHeroes = {"Hero1","Hero2","Hero3","Hero4","Hero6","Hero7","Hero8","Hero9","Gottai","Crag","Azar","Kraal","KujinMP","Kunyak","Matewa","Shiva","Zouleika","Quroq","Mokka","Erika"};
 
 -- Creature8Race&Level
   H55_Creatures = {
@@ -1501,7 +488,7 @@
     SKILL_SORCERY,
     SKILL_TRAINING
   };
-  H55_WitchMindG = { --Paladin,Warden,Seer
+  H55_WitchMindG = { --Paladin,Retribution,Warden,Seer
     SKILL_LOGISTICS,
     SKILL_LEARNING,
     SKILL_OFFENCE,
@@ -4416,11 +3403,11 @@
       , ["POWER"] = 1798
     }
     , [188] = {
-      ["ID"] = CREATURE_188
+      ["ID"] = CREATURE_JUSTICAR
       , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_188/Name.txt"
-      , ["GROWTH"] = 1
-      , ["TIER"] = 1
-      , ["POWER"] = 0
+      , ["GROWTH"] = 2
+      , ["TIER"] = 6
+      , ["POWER"] = 2235
     }
     , [189] = {
       ["ID"] = CREATURE_189
@@ -9772,7 +8759,7 @@
     }
     , [953] = {
       ["ID"] = CREATURE_953
-      , ["NAME"] = "/Text/Game/Creatures/Haven/Cleric_Jeddite.txt"
+      , ["NAME"] = "/Text/Game/Creatures/Haven/Cleric_Caldwell.txt"
       , ["GROWTH"] = 3
       , ["TIER"] = 5
       , ["POWER"] = 1523
@@ -10326,6 +9313,7 @@
     -- 英雄职业
       TTH_ENUM.Knight = 1;
       TTH_ENUM.Paladin = 2;
+      TTH_ENUM.Retribution = 25;
       TTH_ENUM.Heretic = 3;
       TTH_ENUM.Ranger = 4;
       TTH_ENUM.Warden = 5;
@@ -10590,6 +9578,7 @@
 
         TTH_PATH.Talent["Cast"]["Hero"] = {};
         TTH_PATH.Talent["Cast"]["Hero"]["Pre"] = TTH_PATH.Talent["Cast"]["Pre"].."Hero/";
+        TTH_PATH.Talent["Cast"]["Hero"]["OrtanCassius"] = TTH_PATH.Talent["Cast"]["Hero"]["Pre"].."OrtanCassius.txt";
         TTH_PATH.Talent["Cast"]["Hero"]["Gelu"] = TTH_PATH.Talent["Cast"]["Hero"]["Pre"].."Gelu.txt";
         TTH_PATH.Talent["Cast"]["Hero"]["Itil"] = TTH_PATH.Talent["Cast"]["Hero"]["Pre"].."Itil.txt";
         TTH_PATH.Talent["Cast"]["Hero"]["Dracon"] = TTH_PATH.Talent["Cast"]["Hero"]["Pre"].."Dracon.txt";
@@ -11011,6 +10000,9 @@
           ["Nathaniel"] = {
             [TTH_ENUM.FuncAlways] = "TTH_TALENT.initNathaniel"
           }
+          , ["OrtanCassius"] = {
+            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initCastCreature"
+          }
           , ["Gelu"] = {
             [TTH_ENUM.FuncAlways] = "TTH_TALENT.initCastCreature"
           }
@@ -11092,6 +10084,11 @@
             ["Text"] = TTH_PATH.Talent["Nathaniel"]["Text"]
             , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeNathaniel"
             , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeNathaniel"
+          }
+          , ["OrtanCassius"] = {
+            ["Text"] = TTH_PATH.Talent["Cast"]["Hero"]["OrtanCassius"]
+            , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeCastCreature"
+            , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeCastCreature"
           }
           , ["Gelu"] = {
             ["Text"] = TTH_PATH.Talent["Cast"]["Hero"]["Gelu"]
@@ -11188,7 +10185,10 @@
           }
         }
         , [TTH_ENUM.FuncCombatResult] = {
-          ["Gelu"] = {
+          ["OrtanCassius"] = {
+            [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultCastCreature"
+          }
+          , ["Gelu"] = {
             [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultCastCreature"
           }
           , ["Itil"] = {
@@ -11286,7 +10286,10 @@
           }
         }
         , [TTH_ENUM.FuncResetDaily] = {
-          ["Gelu"] = {
+          ["OrtanCassius"] = {
+            [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailyCastCreature"
+          }
+          , ["Gelu"] = {
             [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailyCastCreature"
           }
           , ["Itil"] = {
@@ -17513,7 +16516,192 @@
 
     -- 转化类英雄生物对照表
       TTH_TABLE.CastCreature = {
-        ["Gelu"] = {
+        ["OrtanCassius"] = {
+          ["CastType"] = TTH_ENUM.Training
+          , ["PreCreature"] = {
+            [CREATURE_PEASANT] = {
+              ["Scale"] = 1
+              , ["PostCreatureId"] = CREATURE_JUSTICAR
+              , ["MaxGcd"] = 5
+              , ["HeroStep"] = 5
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 1
+                , [MERCURY] = 0
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 1
+                , [GOLD] = 1000
+              }
+            }
+            , [CREATURE_MILITIAMAN] = {
+              ["Scale"] = 1
+              , ["PostCreatureId"] = CREATURE_JUSTICAR
+              , ["MaxGcd"] = 5
+              , ["HeroStep"] = 5
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 1
+                , [MERCURY] = 0
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 1
+                , [GOLD] = 1000
+              }
+            }
+            , [CREATURE_LANDLORD] = {
+              ["Scale"] = 1
+              , ["PostCreatureId"] = CREATURE_JUSTICAR
+              , ["MaxGcd"] = 5
+              , ["HeroStep"] = 5
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 1
+                , [MERCURY] = 0
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 1
+                , [GOLD] = 1000
+              }
+            }
+            , [CREATURE_ARCHER] = {
+              ["Scale"] = 1
+              , ["PostCreatureId"] = CREATURE_JUSTICAR
+              , ["MaxGcd"] = 5
+              , ["HeroStep"] = 5
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 0
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 1
+                , [GOLD] = 800
+              }
+            }
+            , [CREATURE_MARKSMAN] = {
+              ["Scale"] = 1
+              , ["PostCreatureId"] = CREATURE_JUSTICAR
+              , ["MaxGcd"] = 5
+              , ["HeroStep"] = 5
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 0
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 1
+                , [GOLD] = 800
+              }
+            }
+            , [CREATURE_LONGBOWMAN] = {
+              ["Scale"] = 1
+              , ["PostCreatureId"] = CREATURE_JUSTICAR
+              , ["MaxGcd"] = 5
+              , ["HeroStep"] = 5
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 0
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 1
+                , [GOLD] = 800
+              }
+            }
+            , [CREATURE_FOOTMAN] = {
+              ["Scale"] = 1
+              , ["PostCreatureId"] = CREATURE_JUSTICAR
+              , ["MaxGcd"] = 5
+              , ["HeroStep"] = 5
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 0
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 1
+                , [GOLD] = 500
+              }
+            }
+            , [CREATURE_SWORDSMAN] = {
+              ["Scale"] = 1
+              , ["PostCreatureId"] = CREATURE_JUSTICAR
+              , ["MaxGcd"] = 5
+              , ["HeroStep"] = 5
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 0
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 1
+                , [GOLD] = 500
+              }
+            }
+            , [CREATURE_VINDICATOR] = {
+              ["Scale"] = 1
+              , ["PostCreatureId"] = CREATURE_JUSTICAR
+              , ["MaxGcd"] = 5
+              , ["HeroStep"] = 5
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 0
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 1
+                , [GOLD] = 500
+              }
+            }
+            , [CREATURE_PRIEST] = {
+              ["Scale"] = 1
+              , ["PostCreatureId"] = CREATURE_JUSTICAR
+              , ["MaxGcd"] = 5
+              , ["HeroStep"] = 5
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 0
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 500
+              }
+            }
+            , [CREATURE_CLERIC] = {
+              ["Scale"] = 1
+              , ["PostCreatureId"] = CREATURE_JUSTICAR
+              , ["MaxGcd"] = 5
+              , ["HeroStep"] = 5
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 0
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 500
+              }
+            }
+            , [CREATURE_ZEALOT] = {
+              ["Scale"] = 1
+              , ["PostCreatureId"] = CREATURE_JUSTICAR
+              , ["MaxGcd"] = 5
+              , ["HeroStep"] = 5
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 0
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 500
+              }
+            }
+          }
+        }
+        , ["Gelu"] = {
           ["CastType"] = TTH_ENUM.Training
           , ["PreCreature"] = {
             [CREATURE_ARCHER] = {
@@ -18154,12 +17342,27 @@
               , ["Class"] = TTH_ENUM.Paladin
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
             }
-            , ["Jeddite"] = {
+            , ["Caldwell"] = {
               ["Id"] = 18
-              , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Jeddite/name.txt"
+              , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Caldwell/name.txt"
               , ["Race"] = TOWN_HEAVEN
               , ["Class"] = TTH_ENUM.Paladin
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
+            }
+          -- Retribution
+            , ["OrtanCassius"] = {
+              ["Id"] = 155
+              , ["Text"] = "/Text/Game/Heroes/TTH_ALL/OrtanCassius/name.txt"
+              , ["Race"] = TOWN_HEAVEN
+              , ["Class"] = TTH_ENUM.Retribution
+              , ["Group"] = TTH_ENUM.GroupBalanceNotNec
+              , ["Specialty"] = {
+                [1] = {
+                  ["CreatureId"] = CREATURE_JUSTICAR
+                  , ["Stat"] = STAT_KNOWLEDGE
+                  , ["ArtifactId"] = ARTIFACT_LEGION_EXPERT
+                }
+              }
             }
           -- Heretic
             , ["RedHeavenHero03"] = {
@@ -19048,6 +18251,13 @@
               , ["Class"] = TTH_ENUM.DemonLord
               , ["Group"] = TTH_ENUM.GroupMight
             }
+            , ["Jeddite"] = {
+              ["Id"] = 156
+              , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Jeddite/name.txt"
+              , ["Race"] = TOWN_INFERNO
+              , ["Class"] = TTH_ENUM.DemonLord
+              , ["Group"] = TTH_ENUM.GroupMight
+            }
           -- Sorcerer
             , ["Ash"] = {
               ["Id"] = 113
@@ -19824,6 +19034,7 @@
             , ["Class"] = {
               TTH_ENUM.Knight
               , TTH_ENUM.Paladin
+              , TTH_ENUM.Retribution
               , TTH_ENUM.Heretic
               , TTH_ENUM.Ranger
               , TTH_ENUM.Warden
@@ -19859,6 +19070,7 @@
                     ["Class"] = {
                       TTH_ENUM.Knight
                       , TTH_ENUM.Paladin
+                      , TTH_ENUM.Retribution
                       , TTH_ENUM.Heretic
                     }
                     , ["Depend"] = {
@@ -20245,6 +19457,7 @@
             , ["Class"] = {
               TTH_ENUM.Knight
               , TTH_ENUM.Paladin
+              , TTH_ENUM.Retribution
               , TTH_ENUM.Heretic
               , TTH_ENUM.Ranger
               , TTH_ENUM.Warden
@@ -20343,6 +19556,7 @@
             , ["Class"] = {
               TTH_ENUM.Knight
               , TTH_ENUM.Paladin
+              , TTH_ENUM.Retribution
               , TTH_ENUM.Heretic
               , TTH_ENUM.Ranger
               , TTH_ENUM.Warden
@@ -20395,6 +19609,7 @@
                     ["Class"] = {
                       TTH_ENUM.Knight
                       , TTH_ENUM.Paladin
+                      , TTH_ENUM.Retribution
                       , TTH_ENUM.Heretic
                       , TTH_ENUM.Ranger
                       , TTH_ENUM.Warden
@@ -20462,6 +19677,7 @@
             , ["Class"] = {
               TTH_ENUM.Knight
               , TTH_ENUM.Paladin
+              , TTH_ENUM.Retribution
               , TTH_ENUM.Heretic
               , TTH_ENUM.Ranger
               , TTH_ENUM.Warden
@@ -20528,6 +19744,7 @@
             , ["Class"] = {
               TTH_ENUM.Knight
               , TTH_ENUM.Paladin
+              , TTH_ENUM.Retribution
               , TTH_ENUM.Heretic
               , TTH_ENUM.Ranger
               , TTH_ENUM.Warden
@@ -20594,6 +19811,7 @@
             , ["Class"] = {
               TTH_ENUM.Knight
               , TTH_ENUM.Paladin
+              , TTH_ENUM.Retribution
               , TTH_ENUM.Heretic
               , TTH_ENUM.Ranger
               , TTH_ENUM.Warden
@@ -20660,6 +19878,7 @@
             , ["Class"] = {
               TTH_ENUM.Knight
               , TTH_ENUM.Paladin
+              , TTH_ENUM.Retribution
               , TTH_ENUM.Heretic
               , TTH_ENUM.Ranger
               , TTH_ENUM.Warden

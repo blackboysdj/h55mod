@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Texture>
+	<SrcName href="/H5A2/Creatures/AlternativeUpgrades/Inferno/T7_Arch_Demon/Textures/ArchDemon_axe.tga"/>
+	<DestName href="T7_Arch_Demon-ArchDemon_axe.(Texture).dds"/>
+	<Type>REGULAR</Type>
+	<ConversionType>CONVERT_ORDINARY</ConversionType>
+	<AddrType>CLAMP</AddrType>
+	<Format>TF_DXT3</Format>
+	<Width>256</Width>
+	<Height>512</Height>
+	<MappingSize>0</MappingSize>
+	<NMips>0</NMips>
+	<Gain>0</Gain>
+	<AverageColor>-131915998</AverageColor>
+	<InstantLoad>false</InstantLoad>
+	<IsDXT>true</IsDXT>
+	<FlipY>false</FlipY>
+	<StandardExport>true</StandardExport>
+	<UseS3TC>false</UseS3TC>
+</Texture>

@@ -8090,6 +8090,12 @@
 			</heroClasses>
 		</Item>
 		<Item>
+			<Camera href="/Cameras/Interface/HeroScreen/Ranger.xdb#xpointer(/Camera)"/>
+			<heroClasses>
+				<Item>HERO_CLASS_RETRIBUTION</Item>
+			</heroClasses>
+		</Item>
+		<Item>
 			<Camera href="/Cameras/Interface/HeroScreen/Warlock.xdb#xpointer(/Camera)"/>
 			<heroClasses>
 				<Item>HERO_CLASS_WARLOCK</Item>

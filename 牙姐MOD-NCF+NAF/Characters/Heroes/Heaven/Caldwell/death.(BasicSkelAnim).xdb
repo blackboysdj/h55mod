@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BasicSkelAnim ObjectRecordID="126">
+	<SrcName href="/models/Creatures/Castle/Champion.mb"/>
+	<uid>09E64A4B-7D3A-4C11-BD6C-1D3626D0F02C</uid>
+	<ExpSrcClip href="/Animations/Creatures/Champion/Clip/Champion.death.ma"/>
+	<ExpRootTransform>Global</ExpRootTransform>
+	<ExpFrameFirst>0</ExpFrameFirst>
+	<ExpFrameLast>0</ExpFrameLast>
+	<ExpSettingsFile href="/H:/Tools/MayaExportSettings/settings_character_anim.ges"/>
+	<MovementSpeed>0</MovementSpeed>
+	<SpeedFactor>1</SpeedFactor>
+	<Sound href="/Sounds/Caldwelldeath.xdb#xpointer(/Sound)"/>
+	<Effect href="defeat.(Effect).xdb#xpointer(/Effect)"/>
+	<SpeedLineFallTime>250</SpeedLineFallTime>
+	<SpeedLineMaterial/>
+</BasicSkelAnim>

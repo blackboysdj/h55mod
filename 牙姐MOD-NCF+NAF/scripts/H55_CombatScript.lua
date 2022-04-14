@@ -2647,10 +2647,11 @@ doFile('/scripts/combat-startup.lua')
 									and GetCreatureNumber(strUnitName) > 0
 									and itemUnit['strUnitName'] ~= strUnitName then
 									startThread(ThreadUnitCastAimedSpell, itemUnit['strUnitName'], SPELL_ABILITY_LAY_HANDS, strUnitName);
-									sleep(20);
 									print(itemUnit['strUnitName'].." casted SPELL_ABILITY_LAY_HANDS to "..strUnitName);
+									sleep(1);
 								end;
 							end;
+							sleep(20);
 							itemUnit['iAtb'] = 1.25;
 							push(ListUnitSetATB, itemUnit);
 							combatSetPause(nil);
@@ -5083,37 +5084,39 @@ doFile('/scripts/combat-startup.lua')
 		end;
 		H55SMOD_MiddlewareListener['DragonKnight']['function'] = Events_MiddlewareListener_Implement_DragonKnight;
 
-	-- CREATURE_JUSTICAR 死亡守望者
+	-- CREATURE_JUSTICAR 阿斯塔特修士
 		H55SMOD_MiddlewareListener['Justicar'] = {};
 		function Events_MiddlewareListener_Implement_Justicar(strHero, iSide, itemUnitLast, listCreaturesBeEffected)
 			if listCreaturesBeEffected ~= nil and length(listCreaturesBeEffected) > 0 then
 				if (itemUnitLast['iUnitCategory'] == ENUM_CATEGORY.HERO and contains(TTHCS_TABLE.JusticarTargetHero, itemUnitLast['iUnitType']) ~= nil)
 					or (itemUnitLast['iUnitCategory'] == ENUM_CATEGORY.CREATURE and contains(TTHCS_TABLE.JusticarTargetCreature, itemUnitLast['iUnitType']) ~= nil) then
-					local strUnitCast = listCreaturesBeEffected[0]['strUnitName'];
-					if IsCombatUnit(strUnitCast) ~= nil and GetCreatureNumber(strUnitCast) > 0 then
-						local itemUnitCast = geneUnitStatus(strUnitCast);
-						if itemUnitCast['iUnitType'] == CREATURE_JUSTICAR then
-							combatSetPause(1);
-							startThread(Thread_Command_UnitCastGlobalSpell_IgnoreMana, itemUnitCast['strUnitName'], SPELL_HOLY_WORD);
-							ShowFlyingSign(TTHCS_PATH["Creature"][CREATURE_JUSTICAR]["EffectHolyWord"], itemUnitCast['strUnitName'], 5);
-							print(itemUnitCast['strUnitName'].." cast "..SPELL_HOLY_WORD);
-							sleep(30);
-							local arrUnitName = TTHCS_GLOBAL.listUnitInArea(itemUnitCast["strUnitName"], 1, iSide);
-							local strHeroName = GetHero(iSide);
-							if length(arrUnitName) > 0 then
-								local iLenJusticarTarget = 0;
-								for i, strUnitName in arrUnitName do
-									local itemUnitName = geneUnitStatus(strUnitName);
-									if itemUnitName['iUnitCategory'] == ENUM_CATEGORY.CREATURE and contains(TTHCS_TABLE.JusticarTargetCreature, itemUnitName['iUnitType']) ~= nil then
-										iLenJusticarTarget = iLenJusticarTarget + 1;
-									end;
-								end
-								local iAtb =  0.3 * iLenJusticarTarget;
-								itemUnitCast['iAtb'] = iAtb;
-								push(ListUnitSetATB, itemUnitCast);
-								print(itemUnitCast['strUnitName'].." increase atb to "..iAtb);
+					for iCast, itemUnitCast in listCreaturesBeEffected do
+						local strUnitCast = itemUnitCast['strUnitName'];
+						if IsCombatUnit(strUnitCast) ~= nil and GetCreatureNumber(strUnitCast) > 0 then
+							local itemUnitCast = geneUnitStatus(strUnitCast);
+							if itemUnitCast['iUnitType'] == CREATURE_JUSTICAR then
+								combatSetPause(1);
+								startThread(Thread_Command_UnitCastGlobalSpell_IgnoreMana, itemUnitCast['strUnitName'], SPELL_HOLY_WORD);
+								ShowFlyingSign(TTHCS_PATH["Creature"][CREATURE_JUSTICAR]["EffectHolyWord"], itemUnitCast['strUnitName'], 5);
+								print(itemUnitCast['strUnitName'].." cast "..SPELL_HOLY_WORD);
+								sleep(30);
+								local arrUnitName = TTHCS_GLOBAL.listUnitInArea(itemUnitCast["strUnitName"], 1, iSide);
+								local strHeroName = GetHero(iSide);
+								if length(arrUnitName) > 0 then
+									local iLenJusticarTarget = 0;
+									for i, strUnitName in arrUnitName do
+										local itemUnitName = geneUnitStatus(strUnitName);
+										if itemUnitName['iUnitCategory'] == ENUM_CATEGORY.CREATURE and contains(TTHCS_TABLE.JusticarTargetCreature, itemUnitName['iUnitType']) ~= nil then
+											iLenJusticarTarget = iLenJusticarTarget + 1;
+										end;
+									end
+									local iAtb =  0.3 * iLenJusticarTarget;
+									itemUnitCast['iAtb'] = iAtb;
+									push(ListUnitSetATB, itemUnitCast);
+									print(itemUnitCast['strUnitName'].." increase atb to "..iAtb);
+								end;
+								combatSetPause(nil);
 							end;
-							combatSetPause(nil);
 						end;
 					end;
 				end;

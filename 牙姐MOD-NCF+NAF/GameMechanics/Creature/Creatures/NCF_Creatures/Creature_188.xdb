@@ -50,10 +50,11 @@
 	<flybySequence/>
 	<Visual href="/GameMechanics/CreatureVisual/Creatures/NCF_Creatures/Creature_188.xdb#xpointer(/CreatureVisual)"/>
 	<Range>0</Range>
-	<BaseCreature>CREATURE_PRIEST</BaseCreature>
+	<BaseCreature>CREATURE_UNKNOWN</BaseCreature>
 	<Upgrades/>
 	<Abilities>
-		<Item>ABILITY_BOND_OF_LIGHT</Item>
+		<Item>ABILITY_TAUNT</Item>
+		<Item>ABILITY_SUMMON_OTHER</Item>
 		<Item>ABILITY_PURGER</Item>
 		<Item>ABILITY_IMMUNITY_TO_MIND_CONTROL</Item>
 		<Item>ABILITY_LAY_HANDS</Item>

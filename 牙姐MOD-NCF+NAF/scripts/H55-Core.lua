@@ -13826,6 +13826,9 @@ doFile("/scripts/H55-Settings.lua");
 			GiveHeroSkill(strHero, HERO_SKILL_LIGHT_MAGIC);
 			TeachHeroSpell(strHero, SPELL_REGENERATION);
 			ChangeHeroStat(strHero, STAT_MANA_POINTS, 1000);
+			MakeHeroInteractWithObject(strHero, GetObjectNamesByType("BUILDING_BATTLE_ACADEMY")[0]);
+			ReplaceDwelling(GetObjectNamesByType("BUILDING_BATTLE_ACADEMY")[0], TOWN_DUNGEON, 188);
+			TTH.see();
 		end;
 		function TTH_TEST.test(iLevel)
 			local strTown = GetObjectNamesByType('TOWN')[0];

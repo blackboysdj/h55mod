@@ -14,6 +14,7 @@ Justicar
 CREATURE_JUSTICAR
 光明追随者/祛除/免疫心智魔法/50%火抗/被攻击施放光明圣言/行动前为周围己方生物施放圣疗
 
+阿斯塔特修士
 惩戒骑士
 Retribution
 HERO_CLASS_RETRIBUTION

@@ -19,15 +19,15 @@
 			<PerPower>0</PerPower>
 		</Item>
 		<Item>
-			<Base>0.65</Base>
+			<Base>0.7</Base>
 			<PerPower>0</PerPower>
 		</Item>
 		<Item>
-			<Base>0.70</Base>
+			<Base>0.9</Base>
 			<PerPower>0</PerPower>
 		</Item>
 		<Item>
-			<Base>0.75</Base>
+			<Base>1</Base>
 			<PerPower>0</PerPower>
 		</Item>
 	</damage>

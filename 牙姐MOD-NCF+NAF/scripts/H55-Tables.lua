@@ -8597,38 +8597,38 @@
       , ["POWER"] = 0
     }
     , [930] = {
-      ["ID"] = CREATURE_930
+      ["ID"] = CREATURE_FIRE_MECHANICAL
       , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_930/Name.txt"
-      , ["GROWTH"] = 1
-      , ["TIER"] = 1
+      , ["GROWTH"] = 4
+      , ["TIER"] = 4
       , ["POWER"] = 829
     }
     , [931] = {
-      ["ID"] = CREATURE_931
+      ["ID"] = CREATURE_WATER_MECHANICAL
       , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_931/Name.txt"
-      , ["GROWTH"] = 1
-      , ["TIER"] = 1
+      , ["GROWTH"] = 4
+      , ["TIER"] = 4
       , ["POWER"] = 795
     }
     , [932] = {
-      ["ID"] = CREATURE_932
+      ["ID"] = CREATURE_EARTH_MECHANICAL
       , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_932/Name.txt"
-      , ["GROWTH"] = 1
-      , ["TIER"] = 1
+      , ["GROWTH"] = 4
+      , ["TIER"] = 4
       , ["POWER"] = 856
     }
     , [933] = {
-      ["ID"] = CREATURE_933
+      ["ID"] = CREATURE_AIR_MECHANICAL
       , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_933/Name.txt"
-      , ["GROWTH"] = 1
-      , ["TIER"] = 1
+      , ["GROWTH"] = 4
+      , ["TIER"] = 4
       , ["POWER"] = 813
     }
     , [934] = {
-      ["ID"] = CREATURE_934
+      ["ID"] = CREATURE_PHOENIX_MECHANICAL
       , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_934/Name.txt"
       , ["GROWTH"] = 1
-      , ["TIER"] = 1
+      , ["TIER"] = 7
       , ["POWER"] = 8576
     }
     , [935] = {
@@ -9923,6 +9923,29 @@
         TTH_PATH.Perk[HERO_SKILL_TOUGHNESS]["Text"] = TTH_PATH.Perk[HERO_SKILL_TOUGHNESS]["Pre"].."Text.txt";
         TTH_PATH.Perk[HERO_SKILL_TOUGHNESS]["NotEnoughTimes"] = TTH_PATH.Perk[HERO_SKILL_TOUGHNESS]["Pre"].."NotEnoughTimes.txt";
         TTH_PATH.Perk[HERO_SKILL_TOUGHNESS]["NoBuildingOnAdvMap"] = TTH_PATH.Perk[HERO_SKILL_TOUGHNESS]["Pre"].."NoBuildingOnAdvMap.txt";
+      -- HERO_SKILL_RAISE_ARCHERS 061 宝物学者
+        TTH_PATH.Perk[HERO_SKILL_RAISE_ARCHERS] = {};
+        TTH_PATH.Perk[HERO_SKILL_RAISE_ARCHERS]["Pre"] = TTH_PATH.Perk["Pre"] .."061-RaiseArchers/";
+        TTH_PATH.Perk[HERO_SKILL_RAISE_ARCHERS]["Text"] = TTH_PATH.Perk[HERO_SKILL_RAISE_ARCHERS]["Pre"].."Text.txt";
+        TTH_PATH.Perk[HERO_SKILL_RAISE_ARCHERS]["NotEnoughTimes"] = TTH_PATH.Perk[HERO_SKILL_RAISE_ARCHERS]["Pre"].."NotEnoughTimes.txt";
+        TTH_PATH.Perk[HERO_SKILL_RAISE_ARCHERS]["NotEnoughGold"] = TTH_PATH.Perk[HERO_SKILL_RAISE_ARCHERS]["Pre"].."NotEnoughGold.txt";
+        TTH_PATH.Perk[HERO_SKILL_RAISE_ARCHERS]["OptionTemplate4Level"] = TTH_PATH.Perk[HERO_SKILL_RAISE_ARCHERS]["Pre"].."OptionTemplate4Level.txt";
+        TTH_PATH.Perk[HERO_SKILL_RAISE_ARCHERS]["RadioTips4Level"] = TTH_PATH.Perk[HERO_SKILL_RAISE_ARCHERS]["Pre"].."RadioTips4Level.txt";
+        TTH_PATH.Perk[HERO_SKILL_RAISE_ARCHERS]["NoArtifact"] = TTH_PATH.Perk[HERO_SKILL_RAISE_ARCHERS]["Pre"].."NoArtifact.txt";
+        TTH_PATH.Perk[HERO_SKILL_RAISE_ARCHERS]["RadioTips4Artifact"] = TTH_PATH.Perk[HERO_SKILL_RAISE_ARCHERS]["Pre"].."RadioTips4Artifact.txt";
+        TTH_PATH.Perk[HERO_SKILL_RAISE_ARCHERS]["Confirm"] = TTH_PATH.Perk[HERO_SKILL_RAISE_ARCHERS]["Pre"].."Confirm.txt";
+        TTH_PATH.Perk[HERO_SKILL_RAISE_ARCHERS]["Success"] = TTH_PATH.Perk[HERO_SKILL_RAISE_ARCHERS]["Pre"].."Success.txt";
+      -- HERO_SKILL_MELT_ARTIFACT 068 熔毁宝物
+        TTH_PATH.Perk[HERO_SKILL_MELT_ARTIFACT] = {};
+        TTH_PATH.Perk[HERO_SKILL_MELT_ARTIFACT]["Pre"] = TTH_PATH.Perk["Pre"] .."068-MeltArtifact/";
+        TTH_PATH.Perk[HERO_SKILL_MELT_ARTIFACT]["Text"] = TTH_PATH.Perk[HERO_SKILL_MELT_ARTIFACT]["Pre"].."Text.txt";
+        TTH_PATH.Perk[HERO_SKILL_MELT_ARTIFACT]["NotEnoughTimes"] = TTH_PATH.Perk[HERO_SKILL_MELT_ARTIFACT]["Pre"].."NotEnoughTimes.txt";
+        TTH_PATH.Perk[HERO_SKILL_MELT_ARTIFACT]["OptionTemplate4Level"] = TTH_PATH.Perk[HERO_SKILL_MELT_ARTIFACT]["Pre"].."OptionTemplate4Level.txt";
+        TTH_PATH.Perk[HERO_SKILL_MELT_ARTIFACT]["RadioTips4Level"] = TTH_PATH.Perk[HERO_SKILL_MELT_ARTIFACT]["Pre"].."RadioTips4Level.txt";
+        TTH_PATH.Perk[HERO_SKILL_MELT_ARTIFACT]["NoArtifact"] = TTH_PATH.Perk[HERO_SKILL_MELT_ARTIFACT]["Pre"].."NoArtifact.txt";
+        TTH_PATH.Perk[HERO_SKILL_MELT_ARTIFACT]["RadioTips4Artifact"] = TTH_PATH.Perk[HERO_SKILL_MELT_ARTIFACT]["Pre"].."RadioTips4Artifact.txt";
+        TTH_PATH.Perk[HERO_SKILL_MELT_ARTIFACT]["Confirm"] = TTH_PATH.Perk[HERO_SKILL_MELT_ARTIFACT]["Pre"].."Confirm.txt";
+        TTH_PATH.Perk[HERO_SKILL_MELT_ARTIFACT]["Success"] = TTH_PATH.Perk[HERO_SKILL_MELT_ARTIFACT]["Pre"].."Success.txt";
       -- HERO_SKILL_PARIAH 083 堕落骑士
         TTH_PATH.Perk[HERO_SKILL_PARIAH] = {};
         TTH_PATH.Perk[HERO_SKILL_PARIAH]["Pre"] = TTH_PATH.Perk["Pre"] .."083-Pariah/";
@@ -9967,6 +9990,13 @@
         TTH_PATH.Perk[HERO_SKILL_HAUNT_MINE]["TemplateCreature"] = TTH_PATH.Perk[HERO_SKILL_HAUNT_MINE]["Pre"].."TemplateCreature.txt";
         TTH_PATH.Perk[HERO_SKILL_HAUNT_MINE]["TemplateReduceCreature"] = TTH_PATH.Perk[HERO_SKILL_HAUNT_MINE]["Pre"].."TemplateReduceCreature.txt";
         TTH_PATH.Perk[HERO_SKILL_HAUNT_MINE]["Success"] = TTH_PATH.Perk[HERO_SKILL_HAUNT_MINE]["Pre"].."Success.txt";
+      -- HERO_SKILL_MARCH_OF_THE_MACHINES 125 魔像行进
+        TTH_PATH.Perk[HERO_SKILL_MARCH_OF_THE_MACHINES] = {};
+        TTH_PATH.Perk[HERO_SKILL_MARCH_OF_THE_MACHINES]["Pre"] = TTH_PATH.Perk["Pre"] .."125-MarchOfTheMachines/";
+        TTH_PATH.Perk[HERO_SKILL_MARCH_OF_THE_MACHINES]["Text"] = TTH_PATH.Perk[HERO_SKILL_MARCH_OF_THE_MACHINES]["Pre"].."Text.txt";
+        TTH_PATH.Perk[HERO_SKILL_MARCH_OF_THE_MACHINES]["NotEnoughTimes"] = TTH_PATH.Perk[HERO_SKILL_MARCH_OF_THE_MACHINES]["Pre"].."NotEnoughTimes.txt";
+        TTH_PATH.Perk[HERO_SKILL_MARCH_OF_THE_MACHINES]["TipsCreature"] = TTH_PATH.Perk[HERO_SKILL_MARCH_OF_THE_MACHINES]["Pre"].."TipsCreature.txt";
+        TTH_PATH.Perk[HERO_SKILL_MARCH_OF_THE_MACHINES]["Confirm"] = TTH_PATH.Perk[HERO_SKILL_MARCH_OF_THE_MACHINES]["Pre"].."Confirm.txt";
       -- HERO_SKILL_SNATCH 168 攫取
         TTH_PATH.Perk[HERO_SKILL_SNATCH] = {};
         TTH_PATH.Perk[HERO_SKILL_SNATCH]["Pre"] = TTH_PATH.Perk["Pre"] .."168/";
@@ -10488,6 +10518,21 @@
             , [TTH_ENUM.FuncAtGate] = "TTH_PERK.active181"
             , [TTH_ENUM.FuncNotAtGate] = "TTH_PERK.active181"
           }
+          , [HERO_SKILL_MARCH_OF_THE_MACHINES] = {
+            ["Text"] = TTH_PATH.Perk[HERO_SKILL_MARCH_OF_THE_MACHINES]["Text"]
+            , [TTH_ENUM.FuncAtGate] = "TTH_PERK.active125"
+            , [TTH_ENUM.FuncNotAtGate] = "TTH_PERK.active125"
+          }
+          , [HERO_SKILL_MELT_ARTIFACT] = {
+            ["Text"] = TTH_PATH.Perk[HERO_SKILL_MELT_ARTIFACT]["Text"]
+            , [TTH_ENUM.FuncAtGate] = "TTH_PERK.active068"
+            , [TTH_ENUM.FuncNotAtGate] = "TTH_PERK.active068"
+          }
+          , [HERO_SKILL_RAISE_ARCHERS] = {
+            ["Text"] = TTH_PATH.Perk[HERO_SKILL_RAISE_ARCHERS]["Text"]
+            , [TTH_ENUM.FuncAtGate] = "TTH_PERK.active061"
+            , [TTH_ENUM.FuncNotAtGate] = "TTH_PERK.active061"
+          }
         }
         , [TTH_ENUM.FuncLevelUp] = {
         }
@@ -10537,6 +10582,15 @@
           }
           , [HERO_SKILL_DEFEND_US_ALL] = {
             [TTH_ENUM.FuncAlways] = "TTH_PERK.resetWeekly181"
+          }
+          , [HERO_SKILL_MARCH_OF_THE_MACHINES] = {
+            [TTH_ENUM.FuncAlways] = "TTH_PERK.resetWeekly125"
+          }
+          , [HERO_SKILL_MELT_ARTIFACT] = {
+            [TTH_ENUM.FuncAlways] = "TTH_PERK.resetWeekly068"
+          }
+          , [HERO_SKILL_RAISE_ARCHERS] = {
+            [TTH_ENUM.FuncAlways] = "TTH_PERK.resetWeekly061"
           }
         }
         , [TTH_ENUM.FuncDealDaily] = {
@@ -16006,69 +16060,769 @@
 
     -- 宝物
       TTH_TABLE.Artifact = {
-        [ARTIFACT_CLOAK_OF_MOURNING] = {
-          ["Id"] = ARTIFACT_CLOAK_OF_MOURNING
-          , ["Text"] = "Text/Game/Artifacts/Cloak_of_mourning/Name.txt"
+        [ARTIFACT_SWORD_OF_RUINS] = {
+          ["Id"] = ARTIFACT_SWORD_OF_RUINS
+          , ["Text"] = "/Text/TTH/Artifact/001-SwordOfRuins/Text.txt"
+        }
+        , [ARTIFACT_GREAT_AXE_OF_GIANT_SLAYING] = {
+          ["Id"] = ARTIFACT_GREAT_AXE_OF_GIANT_SLAYING
+          , ["Text"] = "/Text/TTH/Artifact/002-GreatAxeOfGiantSlaying/Text.txt"
+        }
+        , [ARTIFACT_WAND_OF_X] = {
+          ["Id"] = ARTIFACT_WAND_OF_X
+          , ["Text"] = "/Text/TTH/Artifact/003-WandOfX/Text.txt"
+        }
+        , [ARTIFACT_UNICORN_HORN_BOW] = {
+          ["Id"] = ARTIFACT_UNICORN_HORN_BOW
+          , ["Text"] = "/Text/TTH/Artifact/004-UnicornHornBow/Text.txt"
+        }
+        , [ARTIFACT_TITANS_TRIDENT] = {
+          ["Id"] = ARTIFACT_TITANS_TRIDENT
+          , ["Text"] = "/Text/TTH/Artifact/005-TitansTrident/Text.txt"
         }
         , [ARTIFACT_STAFF_OF_VEXINGS] = {
           ["Id"] = ARTIFACT_STAFF_OF_VEXINGS
-          , ["Text"] = "Text/Game/Artifacts/Staff_of_vexing/Name.txt"
+          , ["Text"] = "/Text/TTH/Artifact/006-StaffOfVexings/Text.txt"
         }
-        , [ARTIFACT_RING_OF_DEATH] = {
-          ["Id"] = ARTIFACT_RING_OF_DEATH
-          , ["Text"] = "Text/Game/Artifacts/Ring_of_Death/Name.txt"
+        , [ARTIFACT_SHACKLES_OF_WAR] = {
+          ["Id"] = ARTIFACT_SHACKLES_OF_WAR
+          , ["Text"] = "/Text/TTH/Artifact/007-ShacklesOfWar/Text.txt"
         }
-        , [ARTIFACT_NECROMANCER_PENDANT] = {
-          ["Id"] = ARTIFACT_NECROMANCER_PENDANT
-          , ["Text"] = "Text/Game/Artifacts/Necromancer_Pendant/Name.txt"
+        , [ARTIFACT_FOUR_LEAF_CLOVER] = {
+          ["Id"] = ARTIFACT_FOUR_LEAF_CLOVER
+          , ["Text"] = "/Text/TTH/Artifact/008-FourLeafClover/Text.txt"
         }
-        , [ARTIFACT_SKULL_HELMET] = {
-          ["Id"] = ARTIFACT_SKULL_HELMET
-          , ["Text"] = "Text/Game/Artifacts/Skull_Helmet/Name.txt"
+        , [ARTIFACT_ICEBERG_SHIELD] = {
+          ["Id"] = ARTIFACT_ICEBERG_SHIELD
+          , ["Text"] = "/Text/TTH/Artifact/009-IcebergShield/Text.txt"
         }
-        , [ARTIFACT_SKULL_OF_MARKAL] = {
-          ["Id"] = ARTIFACT_SKULL_OF_MARKAL
-          , ["Text"] = "Text/Game/Artifacts/Skull_of_Markal/Name.txt"
+        , [ARTIFACT_GOLDEN_SEXTANT] = {
+          ["Id"] = ARTIFACT_GOLDEN_SEXTANT
+          , ["Text"] = "/Text/TTH/Artifact/010-GoldenSextant/Text.txt"
         }
-        , [ARTIFACT_RES_BASIC] = {
-          ["Id"] = ARTIFACT_RES_BASIC
-          , ["Text"] = "Text/Game/Artifacts/Res_Basic/Name.txt"
+        , [ARTIFACT_CROWN_OF_COURAGE] = {
+          ["Id"] = ARTIFACT_CROWN_OF_COURAGE
+          , ["Text"] = "/Text/TTH/Artifact/011-CrownOfCourage/Text.txt"
         }
-        , [ARTIFACT_RES_ADVANCED] = {
-          ["Id"] = ARTIFACT_RES_ADVANCED
-          , ["Text"] = "Text/Game/Artifacts/Res_Advanced/Name.txt"
+        , [ARTIFACT_CROWN_OF_MANY_EYES] = {
+          ["Id"] = ARTIFACT_CROWN_OF_MANY_EYES
+          , ["Text"] = "/Text/TTH/Artifact/012-CrownOfManyEyes/Text.txt"
         }
-        , [ARTIFACT_RES_EXPERT] = {
-          ["Id"] = ARTIFACT_RES_EXPERT
-          , ["Text"] = "Text/Game/Artifacts/Res_Expert/Name.txt"
+        , [ARTIFACT_PLATE_MAIL_OF_STABILITY] = {
+          ["Id"] = ARTIFACT_PLATE_MAIL_OF_STABILITY
+          , ["Text"] = "/Text/TTH/Artifact/013-PlateMailOfStability/Text.txt"
         }
-        , [ARTIFACT_LEGION_BASIC] = {
-          ["Id"] = ARTIFACT_LEGION_BASIC
-          , ["Text"] = "/Text/Game/Artifacts/Legion_Basic/Name.txt"
+        , [ARTIFACT_BREASTPLATE_OF_PETRIFIED_WOOD] = {
+          ["Id"] = ARTIFACT_BREASTPLATE_OF_PETRIFIED_WOOD
+          , ["Text"] = "/Text/TTH/Artifact/014-BreastplateOfPetrifiedWood/Text.txt"
         }
-        , [ARTIFACT_LEGION_ADVANCED] = {
-          ["Id"] = ARTIFACT_LEGION_ADVANCED
-          , ["Text"] = "/Text/Game/Artifacts/Legion_Advanced/Name.txt"
+        , [ARTIFACT_PEDANT_OF_MASTERY] = {
+          ["Id"] = ARTIFACT_PEDANT_OF_MASTERY
+          , ["Text"] = "/Text/TTH/Artifact/015-PedantOfMastery/Text.txt"
         }
-        , [ARTIFACT_LEGION_EXPERT] = {
-          ["Id"] = ARTIFACT_LEGION_EXPERT
-          , ["Text"] = "/Text/Game/Artifacts/Legion_Expert/Name.txt"
+        , [ARTIFACT_NECKLACE_OF_BRAVERY] = {
+          ["Id"] = ARTIFACT_NECKLACE_OF_BRAVERY
+          , ["Text"] = "/Text/TTH/Artifact/016-NecklaceOfBravery/Text.txt"
+        }
+        , [ARTIFACT_WEREWOLF_CLAW_NECKLACE] = {
+          ["Id"] = ARTIFACT_WEREWOLF_CLAW_NECKLACE
+          , ["Text"] = "/Text/TTH/Artifact/017-WerewolfClawNecklace/Text.txt"
+        }
+        , [ARTIFACT_EVERCOLD_ICICLE] = {
+          ["Id"] = ARTIFACT_EVERCOLD_ICICLE
+          , ["Text"] = "/Text/TTH/Artifact/018-EvercoldIcicle/Text.txt"
+        }
+        , [ARTIFACT_NECKLACE_OF_POWER] = {
+          ["Id"] = ARTIFACT_NECKLACE_OF_POWER
+          , ["Text"] = "/Text/TTH/Artifact/019-NecklaceOfPower/Text.txt"
+        }
+        , [ARTIFACT_RING_OF_LIGHTING_PROTECTION] = {
+          ["Id"] = ARTIFACT_RING_OF_LIGHTING_PROTECTION
+          , ["Text"] = "/Text/TTH/Artifact/020-RingOfLightingProtection/Text.txt"
+        }
+        , [ARTIFACT_RING_OF_LIFE] = {
+          ["Id"] = ARTIFACT_RING_OF_LIFE
+          , ["Text"] = "/Text/TTH/Artifact/021-RingOfLife/Text.txt"
+        }
+        , [ARTIFACT_RING_OF_HASTE] = {
+          ["Id"] = ARTIFACT_RING_OF_HASTE
+          , ["Text"] = "/Text/TTH/Artifact/022-RingOfHaste/Text.txt"
+        }
+        , [ARTIFACT_NIGHTMARISH_RING] = {
+          ["Id"] = ARTIFACT_NIGHTMARISH_RING
+          , ["Text"] = "/Text/TTH/Artifact/023-NightmarishRing/Text.txt"
+        }
+        , [ARTIFACT_BOOTS_OF_SPEED] = {
+          ["Id"] = ARTIFACT_BOOTS_OF_SPEED
+          , ["Text"] = "/Text/TTH/Artifact/024-BootsOfSpeed/Text.txt"
+        }
+        , [ARTIFACT_GOLDEN_HORSESHOE] = {
+          ["Id"] = ARTIFACT_GOLDEN_HORSESHOE
+          , ["Text"] = "/Text/TTH/Artifact/025-GoldenHorseshoe/Text.txt"
+        }
+        , [ARTIFACT_WAYFARER_BOOTS] = {
+          ["Id"] = ARTIFACT_WAYFARER_BOOTS
+          , ["Text"] = "/Text/TTH/Artifact/026-WayfarerBoots/Text.txt"
+        }
+        , [ARTIFACT_BOOTS_OF_INTERFERENCE] = {
+          ["Id"] = ARTIFACT_BOOTS_OF_INTERFERENCE
+          , ["Text"] = "/Text/TTH/Artifact/027-BootsOfInterference/Text.txt"
+        }
+        , [ARTIFACT_ENDLESS_SACK_OF_GOLD] = {
+          ["Id"] = ARTIFACT_ENDLESS_SACK_OF_GOLD
+          , ["Text"] = "/Text/TTH/Artifact/028-EndlessSackOfGold/Text.txt"
         }
         , [ARTIFACT_ENDLESS_BAG_OF_GOLD] = {
           ["Id"] = ARTIFACT_ENDLESS_BAG_OF_GOLD
-          , ["Text"] = "/Text/Game/Artifacts/Endless_Bag_Of_Gold/Name.txt"
+          , ["Text"] = "/Text/TTH/Artifact/029-EndlessBagOfGold/Text.txt"
         }
-        , [ARTIFACT_HORN_OF_PLENTY] = {
-          ["Id"] = ARTIFACT_HORN_OF_PLENTY
-          , ["Text"] = "/Text/Game/Artifacts/Horn_Of_Plenty/Name.txt"
+        , [ARTIFACT_ANGEL_WINGS] = {
+          ["Id"] = ARTIFACT_ANGEL_WINGS
+          , ["Text"] = "/Text/TTH/Artifact/030-AngelWings/Text.txt"
+        }
+        , [ARTIFACT_LION_HIDE_CAPE] = {
+          ["Id"] = ARTIFACT_LION_HIDE_CAPE
+          , ["Text"] = "/Text/TTH/Artifact/031-LionHideCape/Text.txt"
+        }
+        , [ARTIFACT_PHOENIX_FEATHER_CAPE] = {
+          ["Id"] = ARTIFACT_PHOENIX_FEATHER_CAPE
+          , ["Text"] = "/Text/TTH/Artifact/032-PhoenixFeatherCape/Text.txt"
+        }
+        , [ARTIFACT_CLOAK_OF_MOURNING] = {
+          ["Id"] = ARTIFACT_CLOAK_OF_MOURNING
+          , ["Text"] = "/Text/TTH/Artifact/033-CloakOfMourning/Text.txt"
+        }
+        , [ARTIFACT_HELM_OF_ENLIGHTMENT] = {
+          ["Id"] = ARTIFACT_HELM_OF_ENLIGHTMENT
+          , ["Text"] = "/Text/TTH/Artifact/034-HelmOfEnlightment/Text.txt"
+        }
+        , [ARTIFACT_CHAIN_MAIL_OF_ENLIGHTMENT] = {
+          ["Id"] = ARTIFACT_CHAIN_MAIL_OF_ENLIGHTMENT
+          , ["Text"] = "/Text/TTH/Artifact/035-ChainMailOfEnlightment/Text.txt"
+        }
+        , [ARTIFACT_DRAGON_SCALE_ARMOR] = {
+          ["Id"] = ARTIFACT_DRAGON_SCALE_ARMOR
+          , ["Text"] = "/Text/TTH/Artifact/036-DragonScaleArmor/Text.txt"
+        }
+        , [ARTIFACT_DRAGON_SCALE_SHIELD] = {
+          ["Id"] = ARTIFACT_DRAGON_SCALE_SHIELD
+          , ["Text"] = "/Text/TTH/Artifact/037-DragonScaleShield/Text.txt"
+        }
+        , [ARTIFACT_DRAGON_BONE_GRAVES] = {
+          ["Id"] = ARTIFACT_DRAGON_BONE_GRAVES
+          , ["Text"] = "/Text/TTH/Artifact/038-DragonBoneGraves/Text.txt"
+        }
+        , [ARTIFACT_DRAGON_WING_MANTLE] = {
+          ["Id"] = ARTIFACT_DRAGON_WING_MANTLE
+          , ["Text"] = "/Text/TTH/Artifact/039-DragonWingMantle/Text.txt"
+        }
+        , [ARTIFACT_DRAGON_TEETH_NECKLACE] = {
+          ["Id"] = ARTIFACT_DRAGON_TEETH_NECKLACE
+          , ["Text"] = "/Text/TTH/Artifact/040-DragonTeethNecklace/Text.txt"
+        }
+        , [ARTIFACT_DRAGON_TALON_CROWN] = {
+          ["Id"] = ARTIFACT_DRAGON_TALON_CROWN
+          , ["Text"] = "/Text/TTH/Artifact/041-DragonTalonCrown/Text.txt"
+        }
+        , [ARTIFACT_DRAGON_EYE_RING] = {
+          ["Id"] = ARTIFACT_DRAGON_EYE_RING
+          , ["Text"] = "/Text/TTH/Artifact/042-DragonEyeRing/Text.txt"
+        }
+        , [ARTIFACT_DRAGON_FLAME_TONGUE] = {
+          ["Id"] = ARTIFACT_DRAGON_FLAME_TONGUE
+          , ["Text"] = "/Text/TTH/Artifact/043-DragonFlameTongue/Text.txt"
+        }
+        , [ARTIFACT_ROBE_OF_MAGI] = {
+          ["Id"] = ARTIFACT_ROBE_OF_MAGI
+          , ["Text"] = "/Text/TTH/Artifact/044-RobeOfMagi/Text.txt"
+        }
+        , [ARTIFACT_STAFF_OF_MAGI] = {
+          ["Id"] = ARTIFACT_STAFF_OF_MAGI
+          , ["Text"] = "/Text/TTH/Artifact/045-StaffOfMagi/Text.txt"
+        }
+        , [ARTIFACT_CROWN_OF_MAGI] = {
+          ["Id"] = ARTIFACT_CROWN_OF_MAGI
+          , ["Text"] = "/Text/TTH/Artifact/046-CrownOfMagi/Text.txt"
+        }
+        , [ARTIFACT_RING_OF_MAGI] = {
+          ["Id"] = ARTIFACT_RING_OF_MAGI
+          , ["Text"] = "/Text/TTH/Artifact/047-RingOfMagi/Text.txt"
+        }
+        , [ARTIFACT_DWARVEN_MITHRAL_CUIRASS] = {
+          ["Id"] = ARTIFACT_DWARVEN_MITHRAL_CUIRASS
+          , ["Text"] = "/Text/TTH/Artifact/048-DwarvenMithralCuirass/Text.txt"
+        }
+        , [ARTIFACT_DWARVEN_MITHRAL_GREAVES] = {
+          ["Id"] = ARTIFACT_DWARVEN_MITHRAL_GREAVES
+          , ["Text"] = "/Text/TTH/Artifact/049-DwarvenMithralGreaves/Text.txt"
+        }
+        , [ARTIFACT_DWARVEN_MITHRAL_HELMET] = {
+          ["Id"] = ARTIFACT_DWARVEN_MITHRAL_HELMET
+          , ["Text"] = "/Text/TTH/Artifact/050-DwarvenMithralHelmet/Text.txt"
+        }
+        , [ARTIFACT_DWARVEN_MITHRAL_SHIELD] = {
+          ["Id"] = ARTIFACT_DWARVEN_MITHRAL_SHIELD
+          , ["Text"] = "/Text/TTH/Artifact/051-DwarvenMithralShield/Text.txt"
+        }
+        , [ARTIFACT_SCROLL_OF_SPELL_X] = {
+          ["Id"] = ARTIFACT_SCROLL_OF_SPELL_X
+          , ["Text"] = "/Text/TTH/Artifact/052-ScrollOfSpellX/Text.txt"
+        }
+        , [ARTIFACT_GRAAL] = {
+          ["Id"] = ARTIFACT_GRAAL
+          , ["Text"] = "/Text/TTH/Artifact/053-Graal/Text.txt"
+        }
+        , [ARTIFACT_BOOTS_OF_LEVITATION] = {
+          ["Id"] = ARTIFACT_BOOTS_OF_LEVITATION
+          , ["Text"] = "/Text/TTH/Artifact/054-BootsOfLevitation/Text.txt"
+        }
+        , [ARTIFACT_SKULL_HELMET] = {
+          ["Id"] = ARTIFACT_SKULL_HELMET
+          , ["Text"] = "/Text/TTH/Artifact/055-SkullHelmet/Text.txt"
+        }
+        , [ARTIFACT_VALORIOUS_ARMOR] = {
+          ["Id"] = ARTIFACT_VALORIOUS_ARMOR
+          , ["Text"] = "/Text/TTH/Artifact/056-ValoriousArmor/Text.txt"
+        }
+        , [ARTIFACT_BOOTS_OF_SWIFTNESS] = {
+          ["Id"] = ARTIFACT_BOOTS_OF_SWIFTNESS
+          , ["Text"] = "/Text/TTH/Artifact/057-BootsOfSwiftness/Text.txt"
+        }
+        , [ARTIFACT_MOONBLADE] = {
+          ["Id"] = ARTIFACT_MOONBLADE
+          , ["Text"] = "/Text/TTH/Artifact/058-Moonblade/Text.txt"
+        }
+        , [ARTIFACT_RING_OF_CELERITY] = {
+          ["Id"] = ARTIFACT_RING_OF_CELERITY
+          , ["Text"] = "/Text/TTH/Artifact/059-RingOfCelerity/Text.txt"
+        }
+        , [ARTIFACT_BAND_OF_CONJURER] = {
+          ["Id"] = ARTIFACT_BAND_OF_CONJURER
+          , ["Text"] = "/Text/TTH/Artifact/060-BandOfConjurer/Text.txt"
+        }
+        , [ARTIFACT_EARTHSLIDERS] = {
+          ["Id"] = ARTIFACT_EARTHSLIDERS
+          , ["Text"] = "/Text/TTH/Artifact/061-EarthSliders/Text.txt"
+        }
+        , [ARTIFACT_RIGID_MANTLE] = {
+          ["Id"] = ARTIFACT_RIGID_MANTLE
+          , ["Text"] = "/Text/TTH/Artifact/062-RigidMantle/Text.txt"
+        }
+        , [ARTIFACT_RING_OF_THE_SHADOWBRAND] = {
+          ["Id"] = ARTIFACT_RING_OF_THE_SHADOWBRAND
+          , ["Text"] = "/Text/TTH/Artifact/063-JinxingBand/Text.txt"
+        }
+        , [ARTIFACT_BONESTUDDED_LEATHER] = {
+          ["Id"] = ARTIFACT_BONESTUDDED_LEATHER
+          , ["Text"] = "/Text/TTH/Artifact/064-BonestuddedLeather/Text.txt"
+        }
+        , [ARTIFACT_WISPERING_RING] = {
+          ["Id"] = ARTIFACT_WISPERING_RING
+          , ["Text"] = "/Text/TTH/Artifact/065-WisperingRing/Text.txt"
+        }
+        , [ARTIFACT_HELM_OF_CHAOS] = {
+          ["Id"] = ARTIFACT_HELM_OF_CHAOS
+          , ["Text"] = "/Text/TTH/Artifact/066-HelmOfChaos/Text.txt"
+        }
+        , [ARTIFACT_TWISTING_NEITHER] = {
+          ["Id"] = ARTIFACT_TWISTING_NEITHER
+          , ["Text"] = "/Text/TTH/Artifact/067-TwistingNeither/Text.txt"
+        }
+        , [ARTIFACT_ANGELIC_ALLIANCE] = {
+          ["Id"] = ARTIFACT_ANGELIC_ALLIANCE
+          , ["Text"] = "/Text/TTH/Artifact/068-AngelicAlliance/Text.txt"
+        }
+        , [ARTIFACT_SHAWL_OF_GREAT_LICH] = {
+          ["Id"] = ARTIFACT_SHAWL_OF_GREAT_LICH
+          , ["Text"] = "/Text/TTH/Artifact/069-ShawlOfGreatLich/Text.txt"
+        }
+        , [ARTIFACT_RING_OF_DEATH] = {
+          ["Id"] = ARTIFACT_RING_OF_DEATH
+          , ["Text"] = "/Text/TTH/Artifact/070-RingOfDeath/Text.txt"
+        }
+        , [ARTIFACT_NECROMANCER_PENDANT] = {
+          ["Id"] = ARTIFACT_NECROMANCER_PENDANT
+          , ["Text"] = "/Text/TTH/Artifact/071-NecromancerPendant/Text.txt"
+        }
+        , [ARTIFACT_FREIDA] = {
+          ["Id"] = ARTIFACT_FREIDA
+          , ["Text"] = "/Text/TTH/Artifact/072-Freida/Text.txt"
+        }
+        , [ARTIFACT_JINXING_BAND] = {
+          ["Id"] = ARTIFACT_JINXING_BAND
+          , ["Text"] = "/Text/TTH/Artifact/073-RingOfTheShadowbrand/Text.txt"
+        }
+        , [ARTIFACT_OGRE_CLUB] = {
+          ["Id"] = ARTIFACT_OGRE_CLUB
+          , ["Text"] = "/Text/TTH/Artifact/074-OgreClub/Text.txt"
+        }
+        , [ARTIFACT_OGRE_SHIELD] = {
+          ["Id"] = ARTIFACT_OGRE_SHIELD
+          , ["Text"] = "/Text/TTH/Artifact/075-OgreShield/Text.txt"
+        }
+        , [ARTIFACT_TOME_OF_DESTRUCTION] = {
+          ["Id"] = ARTIFACT_TOME_OF_DESTRUCTION
+          , ["Text"] = "/Text/TTH/Artifact/076-TomeOfDestruction/Text.txt"
+        }
+        , [ARTIFACT_TOME_OF_LIGHT_MAGIC] = {
+          ["Id"] = ARTIFACT_TOME_OF_LIGHT_MAGIC
+          , ["Text"] = "/Text/TTH/Artifact/077-TomeOfLightMagic/Text.txt"
+        }
+        , [ARTIFACT_TOME_OF_DARK_MAGIC] = {
+          ["Id"] = ARTIFACT_TOME_OF_DARK_MAGIC
+          , ["Text"] = "/Text/TTH/Artifact/078-TomeOfDarkMagic/Text.txt"
+        }
+        , [ARTIFACT_TOME_OF_SUMMONING_MAGIC] = {
+          ["Id"] = ARTIFACT_TOME_OF_SUMMONING_MAGIC
+          , ["Text"] = "/Text/TTH/Artifact/079-TomeOfSummoningMagic/Text.txt"
+        }
+        , [ARTIFACT_BEGINNER_MAGIC_STICK] = {
+          ["Id"] = ARTIFACT_BEGINNER_MAGIC_STICK
+          , ["Text"] = "/Text/TTH/Artifact/080-BeginnerMagicStick/Text.txt"
+        }
+        , [ARTIFACT_RUNIC_WAR_AXE] = {
+          ["Id"] = ARTIFACT_RUNIC_WAR_AXE
+          , ["Text"] = "/Text/TTH/Artifact/081-RunicWarAxe/Text.txt"
+        }
+        , [ARTIFACT_RUNIC_WAR_HARNESS] = {
+          ["Id"] = ARTIFACT_RUNIC_WAR_HARNESS
+          , ["Text"] = "/Text/TTH/Artifact/082-RunicWarHarness/Text.txt"
+        }
+        , [ARTIFACT_SKULL_OF_MARKAL] = {
+          ["Id"] = ARTIFACT_SKULL_OF_MARKAL
+          , ["Text"] = "/Text/TTH/Artifact/083-SkullOfMarkal/Text.txt"
+        }
+        , [ARTIFACT_BEARHIDE_WRAPS] = {
+          ["Id"] = ARTIFACT_BEARHIDE_WRAPS
+          , ["Text"] = "/Text/TTH/Artifact/084-BearhideWraps/Text.txt"
+        }
+        , [ARTIFACT_DWARVEN_SMITHY_HUMMER] = {
+          ["Id"] = ARTIFACT_DWARVEN_SMITHY_HUMMER
+          , ["Text"] = "/Text/TTH/Artifact/085-DwarvenSmithyHummer/Text.txt"
+        }
+        , [ARTIFACT_RUNE_OF_FLAME] = {
+          ["Id"] = ARTIFACT_RUNE_OF_FLAME
+          , ["Text"] = "/Text/TTH/Artifact/086-RuneOfFlame/Text.txt"
+        }
+        , [ARTIFACT_TAROT_DECK] = {
+          ["Id"] = ARTIFACT_TAROT_DECK
+          , ["Text"] = "/Text/TTH/Artifact/087-TarotDeck/Text.txt"
+        }
+        , [ARTIFACT_CROWN_OF_LEADER] = {
+          ["Id"] = ARTIFACT_CROWN_OF_LEADER
+          , ["Text"] = "/Text/TTH/Artifact/088-CrownOfLeader/Text.txt"
         }
         , [ARTIFACT_MASK_OF_DOPPELGANGER] = {
           ["Id"] = ARTIFACT_MASK_OF_DOPPELGANGER
-          , ["Text"] = "/Text/Game/Artifacts/Mask_Of_Doppelganger/Name.txt"
+          , ["Text"] = "/Text/TTH/Artifact/089-MaskOfDoppelganger/Text.txt"
+        }
+        , [ARTIFACT_EDGE_OF_BALANCE] = {
+          ["Id"] = ARTIFACT_EDGE_OF_BALANCE
+          , ["Text"] = "/Text/TTH/Artifact/090-EdgeOfBalance/Text.txt"
+        }
+        , [ARTIFACT_RING_OF_MACHINE_AFFINITY] = {
+          ["Id"] = ARTIFACT_RING_OF_MACHINE_AFFINITY
+          , ["Text"] = "/Text/TTH/Artifact/091-RingOfMachineAffinity/Text.txt"
+        }
+        , [ARTIFACT_HORN_OF_PLENTY] = {
+          ["Id"] = ARTIFACT_HORN_OF_PLENTY
+          , ["Text"] = "/Text/TTH/Artifact/092-HornOfPlenty/Text.txt"
+        }
+        , [ARTIFACT_RING_OF_UNSUMMONING] = {
+          ["Id"] = ARTIFACT_RING_OF_UNSUMMONING
+          , ["Text"] = "/Text/TTH/Artifact/093-RingOfUnsummoning/Text.txt"
+        }
+        , [ARTIFACT_BOOK_OF_POWER] = {
+          ["Id"] = ARTIFACT_BOOK_OF_POWER
+          , ["Text"] = "/Text/TTH/Artifact/094-BookOfPower/Text.txt"
+        }
+        , [ARTIFACT_TREEBORN_QUIVER] = {
+          ["Id"] = ARTIFACT_TREEBORN_QUIVER
+          , ["Text"] = "/Text/TTH/Artifact/095-TreebornQuiver/Text.txt"
+        }
+        , [ARTIFACT_PRINCESS] = {
+          ["Id"] = ARTIFACT_PRINCESS
+          , ["Text"] = "/Text/TTH/Artifact/096-Princess/Text.txt"
+        }
+        , [ARTIFACT_RES_WOOD] = {
+          ["Id"] = ARTIFACT_RES_WOOD
+          , ["Text"] = "/Text/TTH/Artifact/097-ResWood/Text.txt"
+        }
+        , [ARTIFACT_RES_BASIC] = {
+          ["Id"] = ARTIFACT_RES_BASIC
+          , ["Text"] = "/Text/TTH/Artifact/098-ResBasic/Text.txt"
+        }
+        , [ARTIFACT_RES_ADVANCED] = {
+          ["Id"] = ARTIFACT_RES_ADVANCED
+          , ["Text"] = "/Text/TTH/Artifact/099-ResAdvanced/Text.txt"
+        }
+        , [ARTIFACT_RES_CRYSTAL] = {
+          ["Id"] = ARTIFACT_RES_CRYSTAL
+          , ["Text"] = "/Text/TTH/Artifact/100-ResCrystal/Text.txt"
+        }
+        , [ARTIFACT_PENDANT_OF_BLIND] = {
+          ["Id"] = ARTIFACT_PENDANT_OF_BLIND
+          , ["Text"] = "/Text/TTH/Artifact/101-PendantOfBlind/Text.txt"
         }
         , [ARTIFACT_GEM_OF_PHANTOM] = {
           ["Id"] = ARTIFACT_GEM_OF_PHANTOM
-          , ["Text"] = "/Text/Game/Artifacts/Gem_Of_Phantom/Name.txt"
+          , ["Text"] = "/Text/TTH/Artifact/102-GemOfPhantom/Text.txt"
+        }
+        , [ARTIFACT_DIMENSION_DOOR] = {
+          ["Id"] = ARTIFACT_DIMENSION_DOOR
+          , ["Text"] = "/Text/TTH/Artifact/103-DimensionDoor/Text.txt"
+        }
+        , [ARTIFACT_LEGION_BASIC] = {
+          ["Id"] = ARTIFACT_LEGION_BASIC
+          , ["Text"] = "/Text/TTH/Artifact/104-LegionBasic/Text.txt"
+        }
+        , [ARTIFACT_LEGION_T3] = {
+          ["Id"] = ARTIFACT_LEGION_T3
+          , ["Text"] = "/Text/TTH/Artifact/105-LegionT3/Text.txt"
+        }
+        , [ARTIFACT_DRUM_OF_CHARGE] = {
+          ["Id"] = ARTIFACT_DRUM_OF_CHARGE
+          , ["Text"] = "/Text/TTH/Artifact/106-DrumOfCharge/Text.txt"
+        }
+        , [ARTIFACT_LEGION_T5] = {
+          ["Id"] = ARTIFACT_LEGION_T5
+          , ["Text"] = "/Text/TTH/Artifact/107-LegionT5/Text.txt"
+        }
+        , [ARTIFACT_LEGION_ADVANCED] = {
+          ["Id"] = ARTIFACT_LEGION_ADVANCED
+          , ["Text"] = "/Text/TTH/Artifact/108-LegionAdvanced/Text.txt"
+        }
+        , [ARTIFACT_LEGION_EXPERT] = {
+          ["Id"] = ARTIFACT_LEGION_EXPERT
+          , ["Text"] = "/Text/TTH/Artifact/109-LegionExpert/Text.txt"
+        }
+        , [ARTIFACT_STEADFAST] = {
+          ["Id"] = ARTIFACT_STEADFAST
+          , ["Text"] = "/Text/TTH/Artifact/110-Steadfast/Text.txt"
+        }
+        , [ARTIFACT_BUCKLER] = {
+          ["Id"] = ARTIFACT_BUCKLER
+          , ["Text"] = "/Text/TTH/Artifact/111-Buckler/Text.txt"
+        }
+        , [ARTIFACT_REINCARNATION] = {
+          ["Id"] = ARTIFACT_REINCARNATION
+          , ["Text"] = "/Text/TTH/Artifact/112-Reincarnation/Text.txt"
+        }
+        , [ARTIFACT_PENDANT_OF_STARDUST] = {
+          ["Id"] = ARTIFACT_PENDANT_OF_STARDUST
+          , ["Text"] = "/Text/TTH/Artifact/113-PendantOfStardust/Text.txt"
+        }
+        , [ARTIFACT_CURSE_SHOULDER] = {
+          ["Id"] = ARTIFACT_CURSE_SHOULDER
+          , ["Text"] = "/Text/TTH/Artifact/114-CurseShoulder/Text.txt"
+        }
+        , [ARTIFACT_INHERITANCE] = {
+          ["Id"] = ARTIFACT_INHERITANCE
+          , ["Text"] = "/Text/TTH/Artifact/115-Inheritance/Text.txt"
+        }
+        , [ARTIFACT_MONK_01] = {
+          ["Id"] = ARTIFACT_MONK_01
+          , ["Text"] = "/Text/TTH/Artifact/116-Monk01/Text.txt"
+        }
+        , [ARTIFACT_MONK_02] = {
+          ["Id"] = ARTIFACT_MONK_02
+          , ["Text"] = "/Text/TTH/Artifact/117-Monk02/Text.txt"
+        }
+        , [ARTIFACT_MONK_03] = {
+          ["Id"] = ARTIFACT_MONK_03
+          , ["Text"] = "/Text/TTH/Artifact/118-Monk03/Text.txt"
+        }
+        , [ARTIFACT_MONK_04] = {
+          ["Id"] = ARTIFACT_MONK_04
+          , ["Text"] = "/Text/TTH/Artifact/119-Monk04/Text.txt"
+        }
+        , [ARTIFACT_GUARDIAN_01] = {
+          ["Id"] = ARTIFACT_GUARDIAN_01
+          , ["Text"] = "/Text/TTH/Artifact/120-Guardian01/Text.txt"
+        }
+        , [ARTIFACT_GUARDIAN_02] = {
+          ["Id"] = ARTIFACT_GUARDIAN_02
+          , ["Text"] = "/Text/TTH/Artifact/121-Guardian02/Text.txt"
+        }
+        , [ARTIFACT_GUARDIAN_03] = {
+          ["Id"] = ARTIFACT_GUARDIAN_03
+          , ["Text"] = "/Text/TTH/Artifact/122-Guardian03/Text.txt"
+        }
+        , [ARTIFACT_DRACONIC] = {
+          ["Id"] = ARTIFACT_DRACONIC
+          , ["Text"] = "/Text/TTH/Artifact/123-Draconic/Text.txt"
+        }
+        , [ARTIFACT_SENTINEL] = {
+          ["Id"] = ARTIFACT_SENTINEL
+          , ["Text"] = "/Text/TTH/Artifact/124-Sentinel/Text.txt"
+        }
+        , [ARTIFACT_EIGHTFOLD] = {
+          ["Id"] = ARTIFACT_EIGHTFOLD
+          , ["Text"] = "/Text/TTH/Artifact/125-Eightfold/Text.txt"
+        }
+        , [ARTIFACT_CODEX] = {
+          ["Id"] = ARTIFACT_CODEX
+          , ["Text"] = "/Text/TTH/Artifact/126-Codex/Text.txt"
+        }
+        , [ARTIFACT_PIRATE_HAT] = {
+          ["Id"] = ARTIFACT_PIRATE_HAT
+          , ["Text"] = "/Text/TTH/Artifact/127-PirateHat/Text.txt"
+        }
+        , [ARTIFACT_PIRATE_VEST] = {
+          ["Id"] = ARTIFACT_PIRATE_VEST
+          , ["Text"] = "/Text/TTH/Artifact/128-PirateVest/Text.txt"
+        }
+        , [ARTIFACT_PIRATE_RING] = {
+          ["Id"] = ARTIFACT_PIRATE_RING
+          , ["Text"] = "/Text/TTH/Artifact/129-PirateRing/Text.txt"
+        }
+        , [ARTIFACT_PIRATE_HOOK] = {
+          ["Id"] = ARTIFACT_PIRATE_HOOK
+          , ["Text"] = "/Text/TTH/Artifact/130-PirateHook/Text.txt"
+        }
+        , [ARTIFACT_PIRATE_BOOTS] = {
+          ["Id"] = ARTIFACT_PIRATE_BOOTS
+          , ["Text"] = "/Text/TTH/Artifact/131-PirateBoots/Text.txt"
+        }
+        , [ARTIFACT_PIRATE_CHARM] = {
+          ["Id"] = ARTIFACT_PIRATE_CHARM
+          , ["Text"] = "/Text/TTH/Artifact/132-PirateCharm/Text.txt"
+        }
+        , [ARTIFACT_MEDICAL01] = {
+          ["Id"] = ARTIFACT_MEDICAL01
+          , ["Text"] = "/Text/TTH/Artifact/133-Medical01/Text.txt"
+        }
+        , [ARTIFACT_MEDICAL02] = {
+          ["Id"] = ARTIFACT_MEDICAL02
+          , ["Text"] = "/Text/TTH/Artifact/134-Medical02/Text.txt"
+        }
+        , [ARTIFACT_MEDICAL03] = {
+          ["Id"] = ARTIFACT_MEDICAL03
+          , ["Text"] = "/Text/TTH/Artifact/135-Medical03/Text.txt"
+        }
+        , [ARTIFACT_MEDICAL04] = {
+          ["Id"] = ARTIFACT_MEDICAL04
+          , ["Text"] = "/Text/TTH/Artifact/136-Medical04/Text.txt"
+        }
+        , [ARTIFACT_POTION_MANA] = {
+          ["Id"] = ARTIFACT_POTION_MANA
+          , ["Text"] = "/Text/TTH/Artifact/137-PotionMana/Text.txt"
+        }
+        , [ARTIFACT_POTION_ENERGY] = {
+          ["Id"] = ARTIFACT_POTION_ENERGY
+          , ["Text"] = "/Text/TTH/Artifact/138-PotionEnergy/Text.txt"
+        }
+        , [ARTIFACT_POTION_REVIVE] = {
+          ["Id"] = ARTIFACT_POTION_REVIVE
+          , ["Text"] = "/Text/TTH/Artifact/139-PotionRevive/Text.txt"
+        }
+        , [ARTIFACT_BOOK_A1] = {
+          ["Id"] = ARTIFACT_BOOK_A1
+          , ["Text"] = "/Text/TTH/Artifact/140-BookA1/Text.txt"
+        }
+        , [ARTIFACT_BOOK_A2] = {
+          ["Id"] = ARTIFACT_BOOK_A2
+          , ["Text"] = "/Text/TTH/Artifact/141-BookA2/Text.txt"
+        }
+        , [ARTIFACT_BOOK_A3] = {
+          ["Id"] = ARTIFACT_BOOK_A3
+          , ["Text"] = "/Text/TTH/Artifact/142-BookA3/Text.txt"
+        }
+        , [ARTIFACT_BOOK_A4] = {
+          ["Id"] = ARTIFACT_BOOK_A4
+          , ["Text"] = "/Text/TTH/Artifact/143-BookA4/Text.txt"
+        }
+        , [ARTIFACT_BOOK_D1] = {
+          ["Id"] = ARTIFACT_BOOK_D1
+          , ["Text"] = "/Text/TTH/Artifact/144-BookD1/Text.txt"
+        }
+        , [ARTIFACT_BOOK_D2] = {
+          ["Id"] = ARTIFACT_BOOK_D2
+          , ["Text"] = "/Text/TTH/Artifact/145-BookD2/Text.txt"
+        }
+        , [ARTIFACT_BOOK_D3] = {
+          ["Id"] = ARTIFACT_BOOK_D3
+          , ["Text"] = "/Text/TTH/Artifact/146-BookD3/Text.txt"
+        }
+        , [ARTIFACT_BOOK_OF_MALASSA] = {
+          ["Id"] = ARTIFACT_BOOK_OF_MALASSA
+          , ["Text"] = "/Text/TTH/Artifact/147-BookOfMalassa/Text.txt"
+        }
+        , [ARTIFACT_BOOK_S1] = {
+          ["Id"] = ARTIFACT_BOOK_S1
+          , ["Text"] = "/Text/TTH/Artifact/148-BookS1/Text.txt"
+        }
+        , [ARTIFACT_BOOK_S2] = {
+          ["Id"] = ARTIFACT_BOOK_S2
+          , ["Text"] = "/Text/TTH/Artifact/149-BookS2/Text.txt"
+        }
+        , [ARTIFACT_BOOK_S3] = {
+          ["Id"] = ARTIFACT_BOOK_S3
+          , ["Text"] = "/Text/TTH/Artifact/150-BookS3/Text.txt"
+        }
+        , [ARTIFACT_BOOK_S4] = {
+          ["Id"] = ARTIFACT_BOOK_S4
+          , ["Text"] = "/Text/TTH/Artifact/151-BookS4/Text.txt"
+        }
+        , [ARTIFACT_BOOK_K1] = {
+          ["Id"] = ARTIFACT_BOOK_K1
+          , ["Text"] = "/Text/TTH/Artifact/152-BookK1/Text.txt"
+        }
+        , [ARTIFACT_BOOK_K2] = {
+          ["Id"] = ARTIFACT_BOOK_K2
+          , ["Text"] = "/Text/TTH/Artifact/153-BookK2/Text.txt"
+        }
+        , [ARTIFACT_BOOK_K3] = {
+          ["Id"] = ARTIFACT_BOOK_K3
+          , ["Text"] = "/Text/TTH/Artifact/154-BookK3/Text.txt"
+        }
+        , [ARTIFACT_BOOK_K4] = {
+          ["Id"] = ARTIFACT_BOOK_K4
+          , ["Text"] = "/Text/TTH/Artifact/155-BookK4/Text.txt"
+        }
+        , [ARTIFACT_BOOK_R1] = {
+          ["Id"] = ARTIFACT_BOOK_R1
+          , ["Text"] = "/Text/TTH/Artifact/156-BookR1/Text.txt"
+        }
+        , [ARTIFACT_BOOK_R2] = {
+          ["Id"] = ARTIFACT_BOOK_R2
+          , ["Text"] = "/Text/TTH/Artifact/157-BookR2/Text.txt"
+        }
+        , [ARTIFACT_BOOK_R3] = {
+          ["Id"] = ARTIFACT_BOOK_R3
+          , ["Text"] = "/Text/TTH/Artifact/158-BookR3/Text.txt"
+        }
+        , [ARTIFACT_SHANTIRI_01] = {
+          ["Id"] = ARTIFACT_SHANTIRI_01
+          , ["Text"] = "/Text/TTH/Artifact/159-Shantiri01/Text.txt"
+        }
+        , [ARTIFACT_SHANTIRI_02] = {
+          ["Id"] = ARTIFACT_SHANTIRI_02
+          , ["Text"] = "/Text/TTH/Artifact/160-Shantiri02/Text.txt"
+        }
+        , [ARTIFACT_SHANTIRI_03] = {
+          ["Id"] = ARTIFACT_SHANTIRI_03
+          , ["Text"] = "/Text/TTH/Artifact/161-Shantiri03/Text.txt"
+        }
+        , [ARTIFACT_SHANTIRI_04] = {
+          ["Id"] = ARTIFACT_SHANTIRI_04
+          , ["Text"] = "/Text/TTH/Artifact/162-Shantiri04/Text.txt"
+        }
+        , [ARTIFACT_SHANTIRI_05] = {
+          ["Id"] = ARTIFACT_SHANTIRI_05
+          , ["Text"] = "/Text/TTH/Artifact/163-Shantiri05/Text.txt"
+        }
+        , [ARTIFACT_CLOAK_OF_MALASSA] = {
+          ["Id"] = ARTIFACT_CLOAK_OF_MALASSA
+          , ["Text"] = "/Text/TTH/Artifact/164-CloakOfMalassa/Text.txt"
+        }
+        , [ARTIFACT_UPG_AR2] = {
+          ["Id"] = ARTIFACT_UPG_AR2
+          , ["Text"] = "/Text/TTH/Artifact/165-UpgAr2/Text.txt"
+        }
+        , [ARTIFACT_SHIELD_OF_WOLF_DUCHY] = {
+          ["Id"] = ARTIFACT_SHIELD_OF_WOLF_DUCHY
+          , ["Text"] = "/Text/TTH/Artifact/166-ShieldOfWolfDuchy/Text.txt"
+        }
+        , [ARTIFACT_UPG_HM1] = {
+          ["Id"] = ARTIFACT_UPG_HM1
+          , ["Text"] = "/Text/TTH/Artifact/167-UpgHm1/Text.txt"
+        }
+        , [ARTIFACT_HELMET_OF_HEAVENLY_ENLIGHTENMENT] = {
+          ["Id"] = ARTIFACT_HELMET_OF_HEAVENLY_ENLIGHTENMENT
+          , ["Text"] = "/Text/TTH/Artifact/168-HelmetOfHeavenlyEnlightenment/Text.txt"
+        }
+        , [ARTIFACT_RING_OF_HOLY_GRIFFIN] = {
+          ["Id"] = ARTIFACT_RING_OF_HOLY_GRIFFIN
+          , ["Text"] = "/Text/TTH/Artifact/169-RingOfHolyGriffin/Text.txt"
+        }
+        , [ARTIFACT_UPG_ST1] = {
+          ["Id"] = ARTIFACT_UPG_ST1
+          , ["Text"] = "/Text/TTH/Artifact/170-UpgSt1/Text.txt"
+        }
+        , [ARTIFACT_UPG_ST2] = {
+          ["Id"] = ARTIFACT_UPG_ST2
+          , ["Text"] = "/Text/TTH/Artifact/171-UpgSt2/Text.txt"
+        }
+        , [ARTIFACT_UPG_ST3] = {
+          ["Id"] = ARTIFACT_UPG_ST3
+          , ["Text"] = "/Text/TTH/Artifact/172-UpgSt3/Text.txt"
+        }
+        , [ARTIFACT_BADGE_OF_SUN_CROSS] = {
+          ["Id"] = ARTIFACT_BADGE_OF_SUN_CROSS
+          , ["Text"] = "/Text/TTH/Artifact/173-BadgeOfSunCross/Text.txt"
+        }
+        , [ARTIFACT_PENDANT_OF_INTERFERENCE] = {
+          ["Id"] = ARTIFACT_PENDANT_OF_INTERFERENCE
+          , ["Text"] = "/Text/TTH/Artifact/174-PendantOfInterference/Text.txt"
+        }
+        , [ARTIFACT_SPIRIT_OF_OPPRESSION] = {
+          ["Id"] = ARTIFACT_SPIRIT_OF_OPPRESSION
+          , ["Text"] = "/Text/TTH/Artifact/175-SpiritOfOppression/Text.txt"
+        }
+        , [ARTIFACT_FIZBIN] = {
+          ["Id"] = ARTIFACT_FIZBIN
+          , ["Text"] = "/Text/TTH/Artifact/176-Fizbin/Text.txt"
+        }
+        , [ARTIFACT_FORGING] = {
+          ["Id"] = ARTIFACT_FORGING
+          , ["Text"] = "/Text/TTH/Artifact/177-Forging/Text.txt"
+        }
+        , [ARTIFACT_URGASH_01] = {
+          ["Id"] = ARTIFACT_URGASH_01
+          , ["Text"] = "/Text/TTH/Artifact/178-Urgash01/Text.txt"
+        }
+        , [ARTIFACT_URGASH_02] = {
+          ["Id"] = ARTIFACT_URGASH_02
+          , ["Text"] = "/Text/TTH/Artifact/179-Urgash02/Text.txt"
+        }
+        , [ARTIFACT_RING_OF_FORGOTTEN] = {
+          ["Id"] = ARTIFACT_RING_OF_FORGOTTEN
+          , ["Text"] = "/Text/TTH/Artifact/180-RingOfForgotten/Text.txt"
+        }
+        , [ARTIFACT_ELRATH_02] = {
+          ["Id"] = ARTIFACT_ELRATH_02
+          , ["Text"] = "/Text/TTH/Artifact/181-Elrath02/Text.txt"
+        }
+        , [ARTIFACT_QUILL_OF_MAYOR] = {
+          ["Id"] = ARTIFACT_QUILL_OF_MAYOR
+          , ["Text"] = "/Text/TTH/Artifact/182-QuillOfMayor/Text.txt"
+        }
+        , [ARTIFACT_GOVERNOR_02] = {
+          ["Id"] = ARTIFACT_GOVERNOR_02
+          , ["Text"] = "/Text/TTH/Artifact/183-Governor02/Text.txt"
+        }
+        , [ARTIFACT_GEAR_01] = {
+          ["Id"] = ARTIFACT_GEAR_01
+          , ["Text"] = "/Text/TTH/Artifact/184-Gear01/Text.txt"
+        }
+        , [ARTIFACT_GEAR_02] = {
+          ["Id"] = ARTIFACT_GEAR_02
+          , ["Text"] = "/Text/TTH/Artifact/185-Gear02/Text.txt"
+        }
+        , [ARTIFACT_GEAR_03] = {
+          ["Id"] = ARTIFACT_GEAR_03
+          , ["Text"] = "/Text/TTH/Artifact/186-Gear03/Text.txt"
+        }
+        , [ARTIFACT_GEAR_04] = {
+          ["Id"] = ARTIFACT_GEAR_04
+          , ["Text"] = "/Text/TTH/Artifact/187-Gear04/Text.txt"
+        }
+        , [ARTIFACT_GEAR_05] = {
+          ["Id"] = ARTIFACT_GEAR_05
+          , ["Text"] = "/Text/TTH/Artifact/188-Gear05/Text.txt"
+        }
+        , [ARTIFACT_GEAR_06] = {
+          ["Id"] = ARTIFACT_GEAR_06
+          , ["Text"] = "/Text/TTH/Artifact/189-Gear06/Text.txt"
+        }
+        , [ARTIFACT_GEAR_07] = {
+          ["Id"] = ARTIFACT_GEAR_07
+          , ["Text"] = "/Text/TTH/Artifact/190-Gear07/Text.txt"
+        }
+        , [ARTIFACT_GEAR_08] = {
+          ["Id"] = ARTIFACT_GEAR_08
+          , ["Text"] = "/Text/TTH/Artifact/191-Gear08/Text.txt"
         }
         , [ARTIFACT_ORB_AIR] = {
           ["Id"] = ARTIFACT_ORB_AIR
@@ -16085,34 +16839,6 @@
         , [ARTIFACT_ORB_WATER] = {
           ["Id"] = ARTIFACT_ORB_WATER
           , ["Text"] = "/Text/TTH/Artifact/195-OrbWater/Text.txt"
-        }
-        , [ARTIFACT_DIMENSION_DOOR] = {
-          ["Id"] = ARTIFACT_DIMENSION_DOOR
-          , ["Text"] = "/Text/TTH/Artifact/103-DimensionDoor/Text.txt"
-        }
-        , [ARTIFACT_POTION_MANA] = {
-          ["Id"] = ARTIFACT_POTION_MANA
-          , ["Text"] = "/Text/TTH/Artifact/137-PotionMana/Text.txt"
-        }
-        , [ARTIFACT_POTION_ENERGY] = {
-          ["Id"] = ARTIFACT_POTION_ENERGY
-          , ["Text"] = "/Text/TTH/Artifact/138-PotionEnergy/Text.txt"
-        }
-        , [ARTIFACT_POTION_REVIVE] = {
-          ["Id"] = ARTIFACT_POTION_REVIVE
-          , ["Text"] = "/Text/TTH/Artifact/139-PotionRevive/Text.txt"
-        }
-        , [ARTIFACT_QUILL_OF_MAYOR] = {
-          ["Id"] = ARTIFACT_QUILL_OF_MAYOR
-          , ["Text"] = "/Text/TTH/Artifact/182-QuillOfMayor/Text.txt"
-        }
-        , [ARTIFACT_OGRE_CLUB] = {
-          ["Id"] = ARTIFACT_OGRE_CLUB
-          , ["Text"] = "/Text/TTH/Artifact/074-OgreClub/Text.txt"
-        }
-        , [ARTIFACT_OGRE_SHIELD] = {
-          ["Id"] = ARTIFACT_OGRE_SHIELD
-          , ["Text"] = "/Text/TTH/Artifact/075-OgreShield/Text.txt"
         }
       }
 
@@ -19183,12 +19909,25 @@
                 ["Id"] = HERO_SKILL_MELT_ARTIFACT
                 , ["Text"] = "/Text/TTH/Skills/Artificier/068-MeltArtifact/Name.txt"
               }
+              , [69] = { -- 魔镜
+                ["Id"] = HERO_SKILL_MAGIC_MIRROR
+                , ["Text"] = "/Text/TTH/Skills/Artificier/069-MagicMirror/Name.txt"
+              }
+              , [67] = { -- 法师印记
+                ["Id"] = HERO_SKILL_MAGIC_BOND
+                , ["Text"] = "/Text/TTH/Skills/Sorcery/067-MagicBond/Name.txt"
+                , ["DependType"] = TTH_ENUM.Simple
+                , ["Depend"] = {
+                  [1] = HERO_SKILL_MAGIC_MIRROR
+                }
+              }
               , [61] = { -- 宝物学者
                 ["Id"] = HERO_SKILL_RAISE_ARCHERS
                 , ["Text"] = "/Text/TTH/Skills/Artificier/061-RaiseArchers/Name.txt"
                 , ["DependType"] = TTH_ENUM.Simple
                 , ["Depend"] = {
                   [1] = HERO_SKILL_MELT_ARTIFACT
+                  , [2] = HERO_SKILL_MAGIC_MIRROR
                 }
               }
               , [125] = { -- 魔像行进
@@ -19210,10 +19949,6 @@
                 , ["Depend"] = {
                   [1] = HERO_SKILL_MARCH_OF_THE_MACHINES
                 }
-              }
-              , [69] = { -- 魔镜
-                ["Id"] = HERO_SKILL_MAGIC_MIRROR
-                , ["Text"] = "/Text/TTH/Skills/Artificier/069-MagicMirror/Name.txt"
               }
             }
           }
@@ -19588,52 +20323,6 @@
                 , ["DependType"] = TTH_ENUM.Simple
                 , ["Depend"] = {
                   [1] = HERO_SKILL_MYSTICISM
-                }
-              }
-              , [67] = { -- 法师印记
-                ["Id"] = HERO_SKILL_MAGIC_BOND
-                , ["Text"] = "/Text/TTH/Skills/Sorcery/067-MagicBond/Name.txt"
-                , ["DependType"] = TTH_ENUM.Complicated
-                , ["Include"] = {
-                  [1] = {
-                    ["Class"] = {
-                      TTH_ENUM.GuildMaster
-                      , TTH_ENUM.Wizard
-                      , TTH_ENUM.ElementAlist
-                    }
-                    , ["Depend"] = {
-                      [1] = HERO_SKILL_MYSTICISM
-                    }
-                  }
-                  , [2] = {
-                    ["Class"] = {
-                      TTH_ENUM.Knight
-                      , TTH_ENUM.Paladin
-                      , TTH_ENUM.Retribution
-                      , TTH_ENUM.Heretic
-                      , TTH_ENUM.Ranger
-                      , TTH_ENUM.Warden
-                      , TTH_ENUM.Enchanter
-                      , TTH_ENUM.DemonLord
-                      , TTH_ENUM.GateKeeper
-                      , TTH_ENUM.Sorcerer
-                      , TTH_ENUM.DeathKnight
-                      , TTH_ENUM.Reaver
-                      , TTH_ENUM.Necromancer
-                      , TTH_ENUM.Engineer
-                      , TTH_ENUM.Runemage
-                      , TTH_ENUM.Flamekeepera
-                      , TTH_ENUM.BeastMaster
-                      , TTH_ENUM.Seer
-                      , TTH_ENUM.Warlock
-                    }
-                    , ["Depend"] = {
-                      [1] = HERO_SKILL_INSIGHTS
-                    }
-                  }
-                }
-                , ["Depend"] = {
-                  [1] = HERO_SKILL_MAGIC_BOND
                 }
               }
               , [162] = { -- 干扰

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Creature ObjectRecordID="1000058">
 	<AttackSkill>8</AttackSkill>
-	<DefenceSkill>6</DefenceSkill>
+	<DefenceSkill>8</DefenceSkill>
 	<Shots>0</Shots>
-	<MinDamage>5</MinDamage>
-	<MaxDamage>7</MaxDamage>
+	<MinDamage>6</MinDamage>
+	<MaxDamage>8</MaxDamage>
 	<Speed>8</Speed>
-	<Initiative>17</Initiative>
+	<Initiative>16</Initiative>
 	<Flying>true</Flying>
 	<Health>30</Health>
 	<KnownSpells>
@@ -22,8 +22,8 @@
 	<SpellPoints>2</SpellPoints>
 	<SpellPoints1>0</SpellPoints1>
 	<SpellPoints2>0</SpellPoints2>
-	<Exp>59</Exp>
-	<Power>813</Power>
+	<Exp>60</Exp>
+	<Power>820</Power>
 	<TimeToCommand>10</TimeToCommand>
 	<CreatureTier>4</CreatureTier>
 	<Upgrade>true</Upgrade>
@@ -41,7 +41,7 @@
 		<Crystal>0</Crystal>
 		<Sulfur>0</Sulfur>
 		<Gem>0</Gem>
-		<Gold>400</Gold>
+		<Gold>300</Gold>
 	</Cost>
 	<SubjectOfRandomGeneration>false</SubjectOfRandomGeneration>
 	<MonsterShared href="/MapObjects/Neutral/Air_Elemental.(AdvMapMonsterShared).xdb#xpointer(/AdvMapMonsterShared)"/>

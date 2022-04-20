@@ -8,7 +8,7 @@
 		<Item href="/Text/Game/Spells/Combat/Celestial_Shield/SpellBookPrediction.txt"/>
 	</SpellBookPredictions>
 	<CombatLogTexts/>
-	<Level>2</Level>
+	<Level>3</Level>
 	<MagicSchool>MAGIC_SCHOOL_SUMMONING</MagicSchool>
 	<RequiredHeroLevel>0</RequiredHeroLevel>
 	<TrainedCost>10</TrainedCost>

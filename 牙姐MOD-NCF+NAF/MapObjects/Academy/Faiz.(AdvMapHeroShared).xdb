@@ -35,8 +35,8 @@
 		<Mastery>MASTERY_ADVANCED</Mastery>
 		<SkillID>HERO_SKILL_DARK_MAGIC</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Academy55/Disrupter/Name.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Academy55/Disrupter/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Academy/057-Faiz/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Academy/057-Faiz/Description.txt"/>
 	<SpecializationIcon href="/Textures/HeroScreen/Specializations/Academy/Disrupter.xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Academy/Academy_Faiz_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>
@@ -59,7 +59,6 @@
 		</perkIDs>
 		<spellIDs>
 			<Item>SPELL_DISRUPTING_RAY</Item>
-			<Item>SPELL_PLAGUE</Item>			
 		</spellIDs>
 		<Ballista>false</Ballista>
 		<FirstAidTent>false</FirstAidTent>

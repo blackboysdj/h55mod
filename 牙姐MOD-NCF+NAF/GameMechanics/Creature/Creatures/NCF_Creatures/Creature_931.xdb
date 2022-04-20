@@ -5,7 +5,7 @@
 	<Shots>0</Shots>
 	<MinDamage>8</MinDamage>
 	<MaxDamage>12</MaxDamage>
-	<Speed>5</Speed>
+	<Speed>6</Speed>
 	<Initiative>10</Initiative>
 	<Flying>false</Flying>
 	<Health>43</Health>
@@ -19,10 +19,10 @@
 			<Mastery>MASTERY_BASIC</Mastery>
 		</Item>
 	</KnownSpells>
-	<SpellPoints>12</SpellPoints>
+	<SpellPoints>14</SpellPoints>
 	<SpellPoints1>0</SpellPoints1>
 	<SpellPoints2>0</SpellPoints2>
-	<Exp>57</Exp>
+	<Exp>60</Exp>
 	<Power>795</Power>
 	<TimeToCommand>15</TimeToCommand>
 	<CreatureTier>4</CreatureTier>
@@ -41,7 +41,7 @@
 		<Crystal>0</Crystal>
 		<Sulfur>0</Sulfur>
 		<Gem>0</Gem>
-		<Gold>400</Gold>
+		<Gold>300</Gold>
 	</Cost>
 	<SubjectOfRandomGeneration>false</SubjectOfRandomGeneration>
 	<MonsterShared href="/MapObjects/Neutral/Water_Elemental.(AdvMapMonsterShared).xdb#xpointer(/AdvMapMonsterShared)"/>

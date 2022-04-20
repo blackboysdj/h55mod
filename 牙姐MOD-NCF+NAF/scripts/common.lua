@@ -353,6 +353,9 @@ end;
 function Thread_Command_UnitDefend(caster)
     DefendCombatUnit(caster);
 end;
+function ThreadCommandMove(strCreature, iPosX, iPosY)
+    commandMove(strCreature, iPosX, iPosY);
+end;
 
 
 --common function
@@ -11384,46 +11387,46 @@ end;
           , ["Range"] = 0
         }
         , [930] = {
-          ["ID"] = CREATURE_930
+          ["ID"] = CREATURE_FIRE_MECHANICAL
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_930/Name.txt"
-          , ["GROWTH"] = 1
-          , ["TIER"] = 1
+          , ["GROWTH"] = 4
+          , ["TIER"] = 4
           , ["POWER"] = 829
           , ["CombatSize"] = 1
-          , ["Range"] = 0
+          , ["Range"] = 1
         }
         , [931] = {
-          ["ID"] = CREATURE_931
+          ["ID"] = CREATURE_WATER_MECHANICAL
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_931/Name.txt"
-          , ["GROWTH"] = 1
-          , ["TIER"] = 1
+          , ["GROWTH"] = 4
+          , ["TIER"] = 4
           , ["POWER"] = 795
           , ["CombatSize"] = 1
           , ["Range"] = 0
         }
         , [932] = {
-          ["ID"] = CREATURE_932
+          ["ID"] = CREATURE_EARTH_MECHANICAL
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_932/Name.txt"
-          , ["GROWTH"] = 1
-          , ["TIER"] = 1
+          , ["GROWTH"] = 4
+          , ["TIER"] = 4
           , ["POWER"] = 856
           , ["CombatSize"] = 1
           , ["Range"] = 0
         }
         , [933] = {
-          ["ID"] = CREATURE_933
+          ["ID"] = CREATURE_AIR_MECHANICAL
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_933/Name.txt"
-          , ["GROWTH"] = 1
-          , ["TIER"] = 1
+          , ["GROWTH"] = 4
+          , ["TIER"] = 4
           , ["POWER"] = 813
           , ["CombatSize"] = 1
           , ["Range"] = 0
         }
         , [934] = {
-          ["ID"] = CREATURE_934
+          ["ID"] = CREATURE_PHOENIX_MECHANICAL
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_934/Name.txt"
           , ["GROWTH"] = 1
-          , ["TIER"] = 1
+          , ["TIER"] = 7
           , ["POWER"] = 8576
           , ["CombatSize"] = 2
           , ["Range"] = 0
@@ -12170,6 +12173,44 @@ end;
         , CREATURE_WOLF
       };
 
+    -- 森林生物
+      TTHCS_TABLE.PreserveCreature = {
+        CREATURE_PIXIE
+        , CREATURE_SPRITE
+        , CREATURE_DRYAD
+        , CREATURE_BLADE_JUGGLER
+        , CREATURE_WAR_DANCER
+        , CREATURE_BLADE_SINGER
+        , CREATURE_WOOD_ELF
+        , CREATURE_GRAND_ELF
+        , CREATURE_SHARP_SHOOTER
+        , CREATURE_DRUID
+        , CREATURE_DRUID_ELDER
+        , CREATURE_HIGH_DRUID
+        , CREATURE_UNICORN
+        , CREATURE_WAR_UNICORN
+        , CREATURE_WHITE_UNICORN
+        , CREATURE_TREANT
+        , CREATURE_TREANT_GUARDIAN
+        , CREATURE_ANGER_TREANT
+        , CREATURE_GREEN_DRAGON
+        , CREATURE_GOLD_DRAGON
+        , CREATURE_RAINBOW_DRAGON
+        , CREATURE_SNOW_APE
+        , CREATURE_Itil_Unicorn
+      };
+
+    -- 森林远程生物
+      TTHCS_TABLE.PreserveRangeCreature = {
+        CREATURE_WOOD_ELF
+        , CREATURE_GRAND_ELF
+        , CREATURE_SHARP_SHOOTER
+        , CREATURE_DRUID
+        , CREATURE_DRUID_ELDER
+        , CREATURE_HIGH_DRUID
+        , CREATURE_SNOW_APE
+      };
+
     -- 元素魔法（目标）
         TTHCS_TABLE.ElementMagicAimed = {
           SPELL_MAGIC_ARROW
@@ -12244,6 +12285,32 @@ end;
         return i;
       end;
 
+    -- 四舍五入
+      function TTHCS_COMMON.round(n)
+        if n == 0 then return 0 end;
+        local m = n;
+        if m >= 1 then
+          repeat m = m - 1; until m < 1;
+        end;
+        if m == 0 then return n end;
+        if m ~= 0 then
+          if m >= 0.5 then
+            return n - m + 1;
+          else
+            return n - m;
+          end;
+        end;
+      end;
+
+    -- 绝对值
+      function TTHCS_COMMON.abs(n)
+        if n < 0 then
+          return -n;
+        else
+          return n;
+        end;
+      end;
+
     -- 两个数组相连
       function TTHCS_COMMON.concat(arr1, arr2)
         local retArr = {};
@@ -12299,6 +12366,38 @@ end;
             else
               if objItem ~= nil and iCompare[strKey] < objItem[strKey] then
                 iCompare = objItem;
+              end;
+            end;
+          end;
+        end;
+        return iCompare;
+      end;
+
+    -- 生物数组最大战力
+      function TTHCS_COMMON.max8Power(arrCreature)
+        local iCompare = nil;
+        if arrCreature ~= nil and length(arrCreature) > 0 then
+          for iIndex, strCreature in arrCreature do
+            if strCreature == nil then
+              return nil;
+            end;
+            local iPowerTotal = 0;
+            if strCreature ~= nil then
+              local iPower = TTHCS_TABLE.Creature[GetCreatureType(strCreature)]["POWER"];
+              local iCount = GetCreatureNumber(strCreature);
+              iPowerTotal = iPower * iCount;
+              if iCompare == nil then
+                iCompare = {
+                  ["CombatName"] = strCreature
+                  , ["Power"] = iPowerTotal
+                };
+              else
+                if iCompare["Power"] < iPowerTotal then
+                  iCompare = {
+                    ["CombatName"] = strCreature
+                    , ["Power"] = iPowerTotal
+                  };
+                end;
               end;
             end;
           end;

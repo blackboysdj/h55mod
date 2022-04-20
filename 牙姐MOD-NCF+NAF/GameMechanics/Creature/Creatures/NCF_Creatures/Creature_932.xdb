@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Creature ObjectRecordID="1000057">
-	<AttackSkill>8</AttackSkill>
-	<DefenceSkill>11</DefenceSkill>
+	<AttackSkill>6</AttackSkill>
+	<DefenceSkill>10</DefenceSkill>
 	<Shots>0</Shots>
 	<MinDamage>10</MinDamage>
 	<MaxDamage>14</MaxDamage>
 	<Speed>5</Speed>
-	<Initiative>8</Initiative>
+	<Initiative>9</Initiative>
 	<Flying>false</Flying>
-	<Health>75</Health>
+	<Health>50</Health>
 	<KnownSpells>
 		<Item>
 			<Spell>SPELL_CELESTIAL_SHIELD</Spell>
@@ -18,8 +18,8 @@
 	<SpellPoints>8</SpellPoints>
 	<SpellPoints1>0</SpellPoints1>
 	<SpellPoints2>0</SpellPoints2>
-	<Exp>63</Exp>
-	<Power>856</Power>
+	<Exp>60</Exp>
+	<Power>820</Power>
 	<TimeToCommand>10</TimeToCommand>
 	<CreatureTier>4</CreatureTier>
 	<Upgrade>true</Upgrade>
@@ -37,7 +37,7 @@
 		<Crystal>0</Crystal>
 		<Sulfur>0</Sulfur>
 		<Gem>0</Gem>
-		<Gold>400</Gold>
+		<Gold>300</Gold>
 	</Cost>
 	<SubjectOfRandomGeneration>false</SubjectOfRandomGeneration>
 	<MonsterShared href="/MapObjects/Neutral/Earth_Elemental.(AdvMapMonsterShared).xdb#xpointer(/AdvMapMonsterShared)"/>
@@ -49,9 +49,9 @@
 	<BaseCreature>CREATURE_UNKNOWN</BaseCreature>
 	<Upgrades/>
 	<Abilities>
-		<Item>ABILITY_UNLIMITED_RETALIATION</Item>
 		<Item>ABILITY_MECHANICAL</Item>
 		<Item>ABILITY_IMMUNITY_TO_EARTH</Item>
-		<Item>ABILITY_MAGIC_PROOF_50</Item>
+		<Item>ABILITY_UNLIMITED_RETALIATION</Item>
+		<Item>ABILITY_AURA_OF_MAGIC_RESISTANCE</Item>
 	</Abilities>
 </Creature>

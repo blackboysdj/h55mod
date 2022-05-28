@@ -356,6 +356,9 @@ end;
 function ThreadCommandMove(strCreature, iPosX, iPosY)
     commandMove(strCreature, iPosX, iPosY);
 end;
+function ThreadCommandDisplace(strCreature, iPosX, iPosY)
+    displace(strCreature, iPosX, iPosY);
+end;
 
 
 --common function
@@ -12590,6 +12593,32 @@ end;
         return arrUnitName;
       end;
 
+      -- 获取范围内的单位列表
+        -- 参数: strUnitName, iAreaSize
+        -- 返回值: arrUnitName
+        function TTHCS_GLOBAL.listUnitInArea8Object(objUnit, iAreaSize, iSide)
+          local arrUnitName = {};
+          local iUnitCombatSize = 1;
+          if objUnit["UnitCategory"] == ENUM_CATEGORY.CREATURE then
+            iUnitCombatSize = TTHCS_TABLE.Creature[objUnit["UnitType"]]["CombatSize"];
+          end;
+          local arrCreature4Check = GetCreatures(getSide(iSide, 1));
+          local arrEffectPosition = TTHCS_COMMON.calcEffectArea(iUnitCombatSize + 1 + iAreaSize, objUnit["PosX"], objUnit["PosY"], TTHCS_ENUM.Creature);
+          for k, itemEffectPosition in arrEffectPosition do
+            local iEffectPosX = itemEffectPosition["PosX"];
+            local iEffectPosY = itemEffectPosition["PosY"];
+            for i, strUnitName in arrCreature4Check do
+              local enumEffect = TTHCS_COMMON.isEffectUnit(strUnitName, iEffectPosX, iEffectPosY);
+              if enumEffect == TTHCS_ENUM.Yes then
+                if contains(arrUnitName, strUnitName) == nil then
+                  push(arrUnitName, strUnitName);
+                end;
+              end;
+            end;
+          end;
+          return arrUnitName;
+        end;
+
   TTHCS_PATH = {};
     TTHCS_PATH["Talent"] = {};
       TTHCS_PATH["Talent"]["Calh"] = {};
@@ -12599,6 +12628,12 @@ end;
 
       TTHCS_PATH["Talent"]["Dracon"] = {};
       TTHCS_PATH["Talent"]["Dracon"]["EffectStart"] = "/Text/TTH/Heroes/Specializations/Academy/Dracon/Combat/EffectStart.txt";
+
+      TTHCS_PATH["Talent"]["Emilia"] = {};
+      TTHCS_PATH["Talent"]["Emilia"]["Effect"] = "/Text/TTH/Heroes/Specializations/Academy/053-Emilia/Combat/Effect.txt";
+
+      TTHCS_PATH["Talent"]["Faiz"] = {};
+      TTHCS_PATH["Talent"]["Faiz"]["Effect"] = "/Text/TTH/Heroes/Specializations/Academy/057-Faiz/Combat/Effect.txt";
 
       TTHCS_PATH["Talent"]["Hero9"] = {};
       TTHCS_PATH["Talent"]["Hero9"]["Effect"] = "/Text/TTH/Heroes/Specializations/Stronghold/135-Hero9/Combat/Effect.txt";

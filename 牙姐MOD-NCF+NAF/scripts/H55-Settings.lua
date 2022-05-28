@@ -20,7 +20,8 @@ H55_BuildNeutralTowns = 1; 					-- 新开地图无主城镇的建筑等级：选
 -- ☆☆☆☆☆☆☆☆☆☆☆☆ 这部分是给AI送宝物和技能的选项，如果要提高游戏难度，可在此配置
 H55_AISetBonus_Tear = 0; 					-- 是否送亚莎之泪：0是不送 1是送
 H55_AISetBonus_Travel = 0; 					-- 是否送旅行者长靴：0是不送 1是送
-H55_AISetBonus_Shield = 0; 					-- 是否送哨兵之盾：0是不送 1是送（因哨兵之盾特效为施放偏转飞弹，为触发3.1原版的BUG，导致AI的战力溢出而逃跑，最好不要送）
+H55_AISetBonus_Shield = 0; 					-- 是否送哨兵之盾：0是不送 1是送
+H55_AISetBonus_Heavenly = 0; 					-- 是否送天启头盔：0是不送 1是送
 H55_AISetBonus_Angelic_Alliance= 0; 		-- 是否送天使联盟：0是不送 1是送
 H55_AISetBonus_Curse_Shoulder = 0; 			-- 是否送诅咒斗篷：0是不送 1是送
 H55_AISetBonus_Phoenix = 0; 				-- 是否送大法师之书：0是不送 1是送
@@ -35,6 +36,7 @@ H55_AICheats = 0; 							-- 该部分选项是否生效：0是不生效，1是�
 H55_PlayerSetBonus_Tear = 0; 				-- 是否送亚莎之泪：0是不送 1是送
 H55_PlayerSetBonus_Travel = 0; 				-- 是否送旅行者长靴：0是不送 1是送
 H55_PlayerSetBonus_Shield = 0; 				-- 是否送哨兵之盾：0是不送 1是送
+H55_PlayerSetBonus_Heavenly = 0; 					-- 是否送天启头盔：0是不送 1是送
 H55_PlayerSetBonus_Angelic_Alliance= 0; 	-- 是否送天使联盟：0是不送 1是送
 H55_PlayerSetBonus_Curse_Shoulder = 0; 		-- 是否送诅咒斗篷：0是不送 1是送
 H55_PlayerSetBonus_Phoenix = 0; 			-- 是否送大法师之书：0是不送 1是送
@@ -46,7 +48,8 @@ H55_PlayerCheats = 0; 						-- 该部分选项是否生效：0是不生效，1�
 -- ☆☆☆☆☆☆☆☆☆☆☆☆
 
 -- ☆☆☆☆☆☆☆☆☆☆☆☆ 这部分是为了解决，特定多英雄开局难题，减少reload次数
-H55_ChooseHero_Name = ''; 					-- 填写英雄控制台ID，具体可查看【牙姐MOD资料汇总】→搜索英雄中文名→紧跟在后面的英文就是英雄的控制台ID（例如艾莲娜的ID就是Ving，直接在单引号中填入，写成 H55_ChooseHero_Name = 'Ving';）
+H55_ChooseHero_Name1 = ''; 					-- 填写英雄控制台ID，具体可查看【牙姐MOD资料汇总】→搜索英雄中文名→紧跟在后面的英文就是英雄的控制台ID（例如艾莲娜的ID就是Ving，直接在单引号中填入，写成 H55_ChooseHero_Name = 'Ving';）
+H55_ChooseHero_Name2 = ''; 					-- 填写英雄控制台ID，具体可查看【牙姐MOD资料汇总】→搜索英雄中文名→紧跟在后面的英文就是英雄的控制台ID（例如艾莲娜的ID就是Ving，直接在单引号中填入，写成 H55_ChooseHero_Name = 'Ving';）
 H55_ChooseHero_Switch = 0; 					-- 该部分选项是否生效：0是不生效，1是生效
 -- ☆☆☆☆☆☆☆☆☆☆☆☆
 

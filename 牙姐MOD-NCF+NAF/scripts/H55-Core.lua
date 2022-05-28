@@ -454,17 +454,27 @@ doFile("/scripts/H55-Settings.lua");
 		-- 招募指定英雄
 			function TTH.hero1(iPlayer, strHero)
 				if strHero ~= nil then
-					H55_ChooseHero_Name = strHero;
+					H55_ChooseHero_Name1 = strHero;
+					H55_ChooseHero_Name2 = "";
 				end;
 				for i = TOWN_HEAVEN, TOWN_STRONGHOLD do
 					AllowPlayerTavernRace(iPlayer, i, TTH_ENUM.No);
 				end
-				if H55_ChooseHero_Name ~= "" and contains(GetPlayerHeroes(iPlayer), H55_ChooseHero_Name) == nil then
+				if H55_ChooseHero_Name1 ~= "" and contains(GetPlayerHeroes(iPlayer), H55_ChooseHero_Name1) == nil then
 					for i = PLAYER_1, PLAYER_8 do
 						if i == iPlayer then
-							AllowPlayerTavernHero(i, H55_ChooseHero_Name, TTH_ENUM.Yes);
+							AllowPlayerTavernHero(i, H55_ChooseHero_Name1, TTH_ENUM.Yes);
 						else
-							AllowPlayerTavernHero(i, H55_ChooseHero_Name, TTH_ENUM.No);
+							AllowPlayerTavernHero(i, H55_ChooseHero_Name1, TTH_ENUM.No);
+						end;
+					end;
+				end;
+				if H55_ChooseHero_Name2 ~= "" and contains(GetPlayerHeroes(iPlayer), H55_ChooseHero_Name2) == nil then
+					for i = PLAYER_1, PLAYER_8 do
+						if i == iPlayer then
+							AllowPlayerTavernHero(i, H55_ChooseHero_Name2, TTH_ENUM.Yes);
+						else
+							AllowPlayerTavernHero(i, H55_ChooseHero_Name2, TTH_ENUM.No);
 						end;
 					end;
 				end;
@@ -1281,6 +1291,10 @@ doFile("/scripts/H55-Settings.lua");
 									TTH_GLOBAL.giveShield(strHero);
 									print("Shield has been given!");
 								end;
+								if H55_AISetBonus_Heavenly == 1 then
+									TTH_GLOBAL.giveHeavenly(strHero);
+									print("Heavenly has been given!");
+								end;
 								if H55_AISetBonus_Angelic_Alliance == 1 then
 									TTH_GLOBAL.giveAngelicAlliance(strHero);
 									print("Angelic_Alliance has been given!");
@@ -1323,6 +1337,10 @@ doFile("/scripts/H55-Settings.lua");
 								if H55_PlayerSetBonus_Shield == 1 then
 									TTH_GLOBAL.giveShield(strHero);
 									print("Shield has been given!");
+								end;
+								if H55_PlayerSetBonus_Heavenly == 1 then
+									TTH_GLOBAL.giveHeavenly(strHero);
+									print("Heavenly has been given!");
 								end;
 								if H55_PlayerSetBonus_Angelic_Alliance == 1 then
 									TTH_GLOBAL.giveAngelicAlliance(strHero);
@@ -1530,6 +1548,9 @@ doFile("/scripts/H55-Settings.lua");
 				end;
 				function TTH_GLOBAL.giveShield(strHero)
 					GiveArtefact(strHero, 124);
+				end;
+				function TTH_GLOBAL.giveHeavenly(strHero)
+					GiveArtefact(strHero, ARTIFACT_HELMET_OF_HEAVENLY_ENLIGHTENMENT);
 				end;
 				function TTH_GLOBAL.giveAngelicAlliance(strHero)
 					GiveArtefact(strHero, 68);
@@ -2254,7 +2275,7 @@ doFile("/scripts/H55-Settings.lua");
 
 			-- 招募指定英雄
 				function TTH_GLOBAL.hireHero(iPlayer)
-					if H55_ChooseHero_Switch == 1 and H55_ChooseHero_Name ~= "" then
+					if H55_ChooseHero_Switch == 1 and (H55_ChooseHero_Name1 ~= "" or H55_ChooseHero_Name2 ~= "") then
 						if TTH_VARI.day == 1 then
 							TTH.hero1(iPlayer);
 						end;

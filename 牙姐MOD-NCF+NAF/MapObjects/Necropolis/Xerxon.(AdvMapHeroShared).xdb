@@ -30,13 +30,13 @@
 	<Icon128/>
 	<InternalName>Xerxon</InternalName>
 	<Class>HERO_CLASS_DEATHKNIGHT</Class>
-	<Specialization>HERO_SPEC_EVASIVE</Specialization>
+	<Specialization>HERO_SPEC_BEATER</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_NECROMANCY</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Necropolis55/Evasive/Name.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Necropolis55/Evasive/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Necromancy/083-Xerxon/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Necromancy/083-Xerxon/Description.txt"/>
 	<SpecializationIcon href="/UI/H5A1/Icons/Abilites/Skills/128x128/Defencive_Formation.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Necropolis/Necropolis_Xerxon_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>
@@ -56,18 +56,18 @@
 		<skills>
 			<Item>
 				<Mastery>MASTERY_BASIC</Mastery>
-				<SkillID>HERO_SKILL_DEFENCE</SkillID>
+				<SkillID>HERO_SKILL_LOGISTICS</SkillID>
 			</Item>
 		</skills>
 		<perkIDs>
-			<Item>HERO_SKILL_EVASION</Item>
+			<Item>HERO_SKILL_TELEPORT_ASSAULT</Item>
 		</perkIDs>
 		<spellIDs>
-			<Item>SPELL_DEFLECT_ARROWS</Item>
 			<Item>SPELL_ANIMATE_DEAD</Item>
+			<Item>SPELL_TELEPORT</Item>
 		</spellIDs>
 		<Ballista>false</Ballista>
-		<FirstAidTent>false</FirstAidTent>
+		<FirstAidTent>true</FirstAidTent>
 		<AmmoCart>false</AmmoCart>
 		<FavoriteEnemies/>
 	</Editable>

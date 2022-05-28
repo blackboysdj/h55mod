@@ -1174,6 +1174,9 @@ doFile('/scripts/combat-startup.lua')
 			-- Skill
 				H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_TRIPLE_CATAPULT]['function'](getSide(itemUnit["iSide"], 1), itemUnit);
 			H55SMOD_MiddlewareListener['Adelaide']['function']['hero']('Adelaide', itemUnit["iSide"], itemUnit);
+
+			-- Academy
+				H55SMOD_MiddlewareListener["Emilia"]["function"]("Emilia", itemUnit["iSide"], itemUnit);
 		elseif iType == ENUM_BASICLISTENER.MOVE then
 			local itemUnitLast = nil;
 			if length(ListUnitTriggerMiddlewareListener) > 0 then
@@ -1407,6 +1410,33 @@ doFile('/scripts/combat-startup.lua')
 							-- Stronghold
 							-- Artifact
 								H55SMOD_MiddlewareListener['Artifact'][ARTIFACT_BOOK_OF_MALASSA]['function'](iSide, itemUnitLast, listCreaturesBeEffected, listCreaturesDeath);
+									
+							local listCreaturesMoved = {};
+							local iLenCreaturesBeforeLast = length(ObjSnapshotBeforeLastTurn['Creatures'][iSide]);
+							local iLenCreaturesLast = length(ObjSnapshotLastTurn['Creatures'][iSide]);
+							for iIndexCreaturesBeforeLast = 0, iLenCreaturesBeforeLast - 1 do
+								for iIndexCreaturesLast = 0, iLenCreaturesLast - 1 do
+									if ObjSnapshotBeforeLastTurn['Creatures'][iSide][iIndexCreaturesBeforeLast]['strUnitName'] == ObjSnapshotLastTurn['Creatures'][iSide][iIndexCreaturesLast]['strUnitName']
+										and (ObjSnapshotBeforeLastTurn['Creatures'][iSide][iIndexCreaturesBeforeLast]['iPositionX'] ~= ObjSnapshotLastTurn['Creatures'][iSide][iIndexCreaturesLast]['iPositionX']
+											or ObjSnapshotBeforeLastTurn['Creatures'][iSide][iIndexCreaturesBeforeLast]['iPositionY'] ~= ObjSnapshotLastTurn['Creatures'][iSide][iIndexCreaturesLast]['iPositionY']) then
+										push(listCreaturesMoved, ObjSnapshotBeforeLastTurn['Creatures'][iSide][iIndexCreaturesBeforeLast]);
+									end;
+								end;
+							end;
+	
+							if length(listCreaturesMoved) > 0 then
+								-- Haven
+								-- Sylvan	
+								-- Academy	
+								-- Inferno	
+								-- Necropolis	
+									H55SMOD_MiddlewareListener['Xerxon']['function']('Xerxon', iSide, itemUnitLast, listCreaturesMoved);
+								-- Fortress
+								-- Dungeon	
+									H55SMOD_MiddlewareListener['Thralsai']['function']('Thralsai', iSide, itemUnitLast, listCreaturesMoved);
+								-- Stronghold
+	
+							end;
 						end;
 					end;
 				end;
@@ -1760,7 +1790,7 @@ doFile('/scripts/combat-startup.lua')
 						-- Necropolis
 						-- Fortress
 						-- Dungeon
-							H55SMOD_MiddlewareListener['Emilia']['function']('Emilia', iSide, itemUnitLast, listUnitLastSummonBeDestroied);
+							-- H55SMOD_MiddlewareListener['Emilia']['function']('Emilia', iSide, itemUnitLast, listUnitLastSummonBeDestroied);
 						-- Stronghold
 					end;
 				end;
@@ -2541,8 +2571,6 @@ doFile('/scripts/combat-startup.lua')
 				if GetHero(iSide) ~= nil and itemUnitLast['strUnitName'] == GetHero(iSide) then
 					if TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_FOREST_RAGE] == 1 then
 						if listCreaturesBeEffected ~= nil and length(listCreaturesBeEffected) >= 1 then
-							ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_FOREST_RAGE]["Effect"], GetHero(iSide), 5);
-							combatSetPause(1);
 							local arrCreatureAtb = {};
 							local arrCreatureFriend = GetCreatures(iSide);
 							local arrPreserveCreatureFriend = {};
@@ -2551,21 +2579,25 @@ doFile('/scripts/combat-startup.lua')
 									push(arrPreserveCreatureFriend, strCreatureFriend);
 								end;
 							end;
-							local itemPreserveCreatureFriend8MaxPower = TTHCS_COMMON.max8Power(arrPreserveCreatureFriend);
-							local strPreserveCreatureFriend = itemPreserveCreatureFriend8MaxPower["CombatName"];
-							for i, itemCreatureEffect in listCreaturesBeEffected do
-								local strCreatureEffect = itemCreatureEffect["strUnitName"];
-								if IsCombatUnit(strCreatureEffect) ~= nil	and GetCreatureNumber(strCreatureEffect) > 0 then
-									startThread(Thread_Command_UnitShotAimed, strPreserveCreatureFriend, strCreatureEffect);
-									print(strPreserveCreatureFriend.." shot to "..strCreatureEffect.." by ForestRage");
-									sleep(20);
+							if length(arrPreserveCreatureFriend) > 0 then
+								combatSetPause(1);
+								ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_FOREST_RAGE]["Effect"], GetHero(iSide), 5);
+								local itemPreserveCreatureFriend8MaxPower = TTHCS_COMMON.max8Power(arrPreserveCreatureFriend);
+								local strPreserveCreatureFriend = itemPreserveCreatureFriend8MaxPower["CombatName"];
+								for i, itemCreatureEffect in listCreaturesBeEffected do
+									local strCreatureEffect = itemCreatureEffect["strUnitName"];
+									if IsCombatUnit(strCreatureEffect) ~= nil	and GetCreatureNumber(strCreatureEffect) > 0 then
+										startThread(Thread_Command_UnitShotAimed, strPreserveCreatureFriend, strCreatureEffect);
+										print(strPreserveCreatureFriend.." shot to "..strCreatureEffect.." by ForestRage");
+										sleep(20);
+									end;
 								end;
+								local itemPreserveCreatureFriend = geneUnitStatus(strPreserveCreatureFriend);
+								itemPreserveCreatureFriend['iAtb'] = 1.25;
+								print(itemPreserveCreatureFriend["strUnitName"].."'s atb has increase to "..itemPreserveCreatureFriend['iAtb']);
+								push(ListUnitSetATB, itemPreserveCreatureFriend);
+								combatSetPause(nil);
 							end;
-							local itemPreserveCreatureFriend = geneUnitStatus(strPreserveCreatureFriend);
-							itemPreserveCreatureFriend['iAtb'] = 1.25;
-							print(itemPreserveCreatureFriend["strUnitName"].."'s atb has increase to "..itemPreserveCreatureFriend['iAtb']);
-							push(ListUnitSetATB, itemPreserveCreatureFriend);
-							combatSetPause(nil);
 						end;
 					end;
 				end;
@@ -3081,20 +3113,39 @@ doFile('/scripts/combat-startup.lua')
 			H55SMOD_MiddlewareListener['Dracon']['function']['charge'] = Events_MiddlewareListener_Implement_Dracon_Charge;
 
 		-- Emilia
-			H55SMOD_MiddlewareListener['Emilia'] = {};
-			function Events_MiddlewareListener_Implement_Emilia(strHero, iSide, itemUnitLast, listUnitLastSummonBeDestroied)
+			H55SMOD_MiddlewareListener["Emilia"] = {};
+			function Events_MiddlewareListener_Implement_Emilia(strHero, iSide, itemUnitDeath)
 				if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero then
-					if length(listUnitLastSummonBeDestroied) > 0 then
-						local strHeroName = GetHero(iSide);
-						local iCurrentMana = GetUnitManaPoints(strHeroName);
-						local iPaybackMana = length(listUnitLastSummonBeDestroied) * 2;
-						SetUnitManaPoints(strHeroName, GetUnitManaPoints(strHeroName) + iPaybackMana);
-						sleep(20);
-						print(strHeroName.." payback "..iPaybackMana.." mana");
+					if itemUnitDeath['iUnitCategory'] == ENUM_CATEGORY.SPELLSPAWN then
+						ShowFlyingSign(TTHCS_PATH["Talent"]["Emilia"]["Effect"], itemUnitDeath['strUnitName'], 5);
+						local arrUnitName = TTHCS_GLOBAL.listUnitInArea(itemUnitDeath["strUnitName"], 1, iSide);
+						for i, strUnitName in arrUnitName do
+							if IsCombatUnit(strUnitName) ~= nil and GetCreatureNumber(strUnitName) > 0 then
+								local itemUnit = geneUnitStatus(strUnitName);
+								local iDistance = TTHCS_TABLE.Creature[itemUnit["iUnitType"]]["CombatSize"];
+								local iTowardsX = 0;
+								if itemUnit["iPositionX"] < itemUnitDeath["iPositionX"] then
+									iTowardsX = -1;
+								elseif itemUnit["iPositionX"] > itemUnitDeath["iPositionX"] then
+									iTowardsX = 1;
+								end;
+								local iTowardsY = 0;
+								if itemUnit["iPositionY"] < itemUnitDeath["iPositionY"] then
+									iTowardsY = -1;
+								elseif itemUnit["iPositionY"] > itemUnitDeath["iPositionY"] then
+									iTowardsY = 1;
+								end;
+								local iTargetX = itemUnit["iPositionX"] + iDistance * iTowardsX;
+								local iTargetY = itemUnit["iPositionY"] + iDistance * iTowardsY;
+								startThread(ThreadCommandMove, itemUnit["strUnitName"], iTargetX, iTargetY);
+								sleep(50);
+								print(itemUnitDeath["strUnitName"].." has been destroied, then "..itemUnit["strUnitName"].." has exploded and move to ["..iTargetX..","..iTargetY.."]");
+							end;
+						end;
 					end;
 				end;
 			end;
-			H55SMOD_MiddlewareListener['Emilia']['function'] = Events_MiddlewareListener_Implement_Emilia;
+			H55SMOD_MiddlewareListener["Emilia"]["function"] = Events_MiddlewareListener_Implement_Emilia;
 
 		-- Nur
 			H55SMOD_MiddlewareListener['Nur'] = {};
@@ -3218,6 +3269,7 @@ doFile('/scripts/combat-startup.lua')
 				if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero and itemUnitLast ~= nil and itemUnitLast['strUnitName'] == GetHero(iSide) then
 					local iLenCreature = length(listCreaturesEffect) + length(listCreaturesDeath);
 					if iLenCreature > 1 then
+						ShowFlyingSign(TTHCS_PATH["Talent"]["Faiz"]["Effect"], GetHero(iSide), 5);
 						combatSetPause(1);
 						local iTowards = 1;
 						if iSide == ATTACKER then
@@ -3712,6 +3764,41 @@ doFile('/scripts/combat-startup.lua')
 			H55SMOD_MiddlewareListener['Deleb']['function']['consume'] = Events_MiddlewareListener_Implement_Deleb_Consume;
 
 	-- Necropolis
+		-- Xerxon
+			H55SMOD_MiddlewareListener['Xerxon'] = {};
+			function Events_MiddlewareListener_Implement_Xerxon(strHero, iSide, itemUnitLast, listCreaturesMoved)
+				if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero and itemUnitLast ~= nil and itemUnitLast['strUnitName'] == GetHero(iSide) then
+					local iLenCreaturesMoved = length(listCreaturesMoved);
+					if iLenCreaturesMoved == 1 then
+						combatSetPause(1);
+						local itemUnitMoved = listCreaturesMoved[0];
+						local objUnitPre = TTHCS_GLOBAL.geneUnitInfo(itemUnitMoved["strUnitName"]);
+						objUnitPre["PosX"] = itemUnitMoved["iPositionX"];
+						objUnitPre["PosY"] = itemUnitMoved["iPositionY"];
+						local objUnitPost = TTHCS_GLOBAL.geneUnitInfo(itemUnitMoved["strUnitName"]);
+						local arrUnitName = TTHCS_GLOBAL.listUnitInArea8Object(objUnitPre, 1, getSide(iSide, 1));
+						for i, strCreatureTarget in arrUnitName do
+							if IsCombatUnit(strCreatureTarget) ~= nil	and GetCreatureNumber(strCreatureTarget) > 0 then
+								local objCreatureTarget = TTHCS_GLOBAL.geneUnitInfo(strCreatureTarget);
+								local iPosX = objUnitPost["PosX"] + objCreatureTarget["PosX"] - objUnitPre["PosX"];
+								local iPosY = objUnitPost["PosY"] + objCreatureTarget["PosY"] - objUnitPre["PosY"];
+								startThread(ThreadCommandDisplace, strCreatureTarget, iPosX, iPosY);
+								sleep(20);
+								print(strCreatureTarget.." displace to "..iPosX.."-"..iPosY);
+							end;
+							if IsCombatUnit(strCreatureTarget) ~= nil	and GetCreatureNumber(strCreatureTarget) > 0 then
+								local objCreatureTarget = geneUnitStatus(strCreatureTarget);
+								objCreatureTarget['iAtb'] = 1.25;
+								push(ListUnitSetATB, objCreatureTarget);
+								print(objCreatureTarget['strUnitName']..'\'s atb has been increase to 1.25');
+							end;
+						end;
+						combatSetPause(nil);
+					end;
+				end;
+			end;
+			H55SMOD_MiddlewareListener['Xerxon']['function'] = Events_MiddlewareListener_Implement_Xerxon;
+
 		-- Archilus
 			H55SMOD_MiddlewareListener['Archilus'] = {};
 			function Events_MiddlewareListener_Implement_Archilus(strHero, iSide, itemUnitLast)
@@ -3745,6 +3832,8 @@ doFile('/scripts/combat-startup.lua')
 								local itemHero = geneUnitStatus(strHeroName);
 								itemHero['iAtb'] = 1.25;
 								push(ListUnitSetATB, itemHero);
+								itemCreaturesBeEffected['iAtb'] = 1.25;
+								push(ListUnitSetATB, itemCreaturesBeEffected);
 								sleep(20);
 								print(strHeroName.." casted SPELL_CELESTIAL_SHIELD on "..itemCreaturesBeEffected['strUnitName']);
 								ShowFlyingSign(TTHCS_PATH["Talent"]["Gles"]["Effect"], itemCreaturesBeEffected["strUnitName"], 5);
@@ -4329,6 +4418,33 @@ doFile('/scripts/combat-startup.lua')
 			H55SMOD_MiddlewareListener['Egil']['function']['creature'] = Events_MiddlewareListener_Implement_Egil_Creature;
 
 	-- Dungeon
+		-- Thralsai
+		H55SMOD_MiddlewareListener["Thralsai"] = {};
+		function Events_MiddlewareListener_Implement_Thralsai(strHero, iSide, itemUnitLast, listCreaturesMoved)
+			if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero and itemUnitLast ~= nil and itemUnitLast["strUnitName"] == GetHero(iSide) then
+				local iLenCreaturesMoved = length(listCreaturesMoved);
+				if iLenCreaturesMoved == 1 then
+					local itemUnitMoved = listCreaturesMoved[0];
+					local objUnitPost = TTHCS_GLOBAL.geneUnitInfo(itemUnitMoved["strUnitName"]);
+					local iNumber8CreatureNumber = objUnitPost["UnitNumber"];
+					local iNumberSummon = TTHCS_COMMON.floor(iNumber8CreatureNumber * H55SMOD_HeroLevel[strHero] / 100);
+					if iNumberSummon < 1 then
+						iNumberSummon = 1;
+					end;
+					if IsCombatUnit(itemUnitMoved["strUnitName"]) ~= nil and GetCreatureNumber(itemUnitMoved["strUnitName"]) > 0 then
+						combatSetPause(1);
+						startThread(ThreadCommandDisplace, itemUnitMoved["strUnitName"], itemUnitMoved["iPositionX"], itemUnitMoved["iPositionY"]);
+						sleep(20);
+						Thread_Command_SummonCreature(iSide, objUnitPost["UnitType"], iNumberSummon, objUnitPost["PosX"], objUnitPost["PosY"]);
+						sleep(20);
+						print("Summon "..objUnitPost["UnitName"].."\'s phantom at "..objUnitPost["PosX"].."-"..objUnitPost["PosY"]);
+						combatSetPause(nil);
+					end;
+				end;
+			end;
+		end;
+		H55SMOD_MiddlewareListener["Thralsai"]["function"] = Events_MiddlewareListener_Implement_Thralsai;
+
 		-- Almegir
 			H55SMOD_MiddlewareListener['Almegir'] = {};
 			function Events_MiddlewareListener_Implement_Almegir(strHero, iSide, itemUnitLast, iLossManaPoints)

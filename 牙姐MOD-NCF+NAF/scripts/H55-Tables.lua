@@ -933,30 +933,60 @@
       , ["LEVEL"] = 1
       , ["ELEMENT"] = "LIGHT"
     }
+    , [SPELL_MASS_BLESS] = {
+      ["ID"] = SPELL_MASS_BLESS
+      , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_MASS_BLESS.txt"
+      , ["LEVEL"] = 1
+      , ["ELEMENT"] = "LIGHT"
+    }    
     , [SPELL_HASTE] = {
       ["ID"] = SPELL_HASTE
       , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_HASTE.txt"
       , ["LEVEL"] = 1
       , ["ELEMENT"] = "LIGHT"
     }
+    , [SPELL_MASS_HASTE] = {
+      ["ID"] = SPELL_MASS_HASTE
+      , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_MASS_HASTE.txt"
+      , ["LEVEL"] = 1
+      , ["ELEMENT"] = "LIGHT"
+    }    
     , [SPELL_STONESKIN] = {
       ["ID"] = SPELL_STONESKIN
       , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_STONESKIN.txt"
       , ["LEVEL"] = 2
       , ["ELEMENT"] = "LIGHT"
     }
+    , [SPELL_MASS_STONESKIN] = {
+      ["ID"] = SPELL_MASS_STONESKIN
+      , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_MASS_STONESKIN.txt"
+      , ["LEVEL"] = 2
+      , ["ELEMENT"] = "LIGHT"
+    }    
     , [SPELL_BLOODLUST] = {
       ["ID"] = SPELL_BLOODLUST
       , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_BLOODLUST.txt"
       , ["LEVEL"] = 2
       , ["ELEMENT"] = "LIGHT"
     }
+    , [SPELL_MASS_BLOODLUST] = {
+      ["ID"] = SPELL_MASS_BLOODLUST
+      , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_MASS_BLOODLUST.txt"
+      , ["LEVEL"] = 2
+      , ["ELEMENT"] = "LIGHT"
+    }    
     , [SPELL_DEFLECT_ARROWS] = {
       ["ID"] = SPELL_DEFLECT_ARROWS
       , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_DEFLECT_ARROWS.txt"
       , ["LEVEL"] = 2
       , ["ELEMENT"] = "LIGHT"
     }
+    , [SPELL_MASS_DEFLECT_ARROWS] = {
+      ["ID"] = SPELL_MASS_DEFLECT_ARROWS
+      , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_MASS_DEFLECT_ARROWS.txt"
+      , ["LEVEL"] = 2
+      , ["ELEMENT"] = "LIGHT"
+    }    
     , [SPELL_DISPEL] = {
       ["ID"] = SPELL_DISPEL
       , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_DISPEL.txt"
@@ -1011,36 +1041,72 @@
       , ["LEVEL"] = 1
       , ["ELEMENT"] = "DARK"
     }
+    , [SPELL_MASS_CURSE] = {
+      ["ID"] = SPELL_MASS_CURSE
+      , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_MASS_CURSE.txt"
+      , ["LEVEL"] = 1
+      , ["ELEMENT"] = "DARK"
+    }    
     , [SPELL_SLOW] = {
       ["ID"] = SPELL_SLOW
       , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_SLOW.txt"
       , ["LEVEL"] = 1
       , ["ELEMENT"] = "DARK"
-    }
+    }    
+    , [SPELL_MASS_SLOW] = {
+      ["ID"] = SPELL_MASS_SLOW
+      , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_MASS_SLOW.txt"
+      , ["LEVEL"] = 1
+      , ["ELEMENT"] = "DARK"
+    }    
     , [SPELL_DISRUPTING_RAY] = {
       ["ID"] = SPELL_DISRUPTING_RAY
       , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_DISRUPTING_RAY.txt"
       , ["LEVEL"] = 2
       , ["ELEMENT"] = "DARK"
     }
+    , [SPELL_MASS_DISRUPTING_RAY] = {
+      ["ID"] = SPELL_MASS_DISRUPTING_RAY
+      , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_MASS_DISRUPTING_RAY.txt"
+      , ["LEVEL"] = 2
+      , ["ELEMENT"] = "DARK"
+    }    
     , [SPELL_WEAKNESS] = {
       ["ID"] = SPELL_WEAKNESS
       , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_WEAKNESS.txt"
       , ["LEVEL"] = 2
       , ["ELEMENT"] = "DARK"
     }
+    , [SPELL_MASS_WEAKNESS] = {
+      ["ID"] = SPELL_MASS_WEAKNESS
+      , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_MASS_WEAKNESS.txt"
+      , ["LEVEL"] = 2
+      , ["ELEMENT"] = "DARK"
+    }    
     , [SPELL_FORGETFULNESS] = {
       ["ID"] = SPELL_FORGETFULNESS
       , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_FORGETFULNESS.txt"
       , ["LEVEL"] = 2
       , ["ELEMENT"] = "DARK"
     }
+    , [SPELL_MASS_FORGETFULNESS] = {
+      ["ID"] = SPELL_MASS_FORGETFULNESS
+      , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_MASS_FORGETFULNESS.txt"
+      , ["LEVEL"] = 2
+      , ["ELEMENT"] = "DARK"
+    }    
     , [SPELL_PLAGUE] = {
       ["ID"] = SPELL_PLAGUE
       , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_PLAGUE.txt"
       , ["LEVEL"] = 3
       , ["ELEMENT"] = "DARK"
     }
+    , [SPELL_MASS_PLAGUE] = {
+      ["ID"] = SPELL_MASS_PLAGUE
+      , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_MASS_PLAGUE.txt"
+      , ["LEVEL"] = 3
+      , ["ELEMENT"] = "DARK"
+    }    
     , [SPELL_SORROW] = {
       ["ID"] = SPELL_SORROW
       , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_SORROW.txt"
@@ -1083,6 +1149,12 @@
       , ["LEVEL"] = 1
       , ["ELEMENT"] = "SUMMONING"
     }
+    , [SPELL_EMPOWERED_MAGIC_FIST] = {
+      ["ID"] = SPELL_EMPOWERED_MAGIC_FIST
+      , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_EMPOWERED_MAGIC_FIST.txt"
+      , ["LEVEL"] = 1
+      , ["ELEMENT"] = "SUMMONING"
+    }    
     , [SPELL_LAND_MINE] = {
       ["ID"] = SPELL_LAND_MINE
       , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_LAND_MINE.txt"
@@ -1161,66 +1233,132 @@
       , ["LEVEL"] = 1
       , ["ELEMENT"] = "DESTRUCTIVE"
     }
+    , [SPELL_EMPOWERED_MAGIC_ARROW] = {
+      ["ID"] = SPELL_EMPOWERED_MAGIC_ARROW
+      , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_EMPOWERED_MAGIC_ARROW.txt"
+      , ["LEVEL"] = 1
+      , ["ELEMENT"] = "DESTRUCTIVE"
+    }    
     , [SPELL_STONE_SPIKES] = {
       ["ID"] = SPELL_STONE_SPIKES
       , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_STONE_SPIKES.txt"
       , ["LEVEL"] = 1
       , ["ELEMENT"] = "DESTRUCTIVE"
     }
+    , [SPELL_EMPOWERED_STONE_SPIKES] = {
+      ["ID"] = SPELL_EMPOWERED_STONE_SPIKES
+      , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_EMPOWERED_STONE_SPIKES.txt"
+      , ["LEVEL"] = 1
+      , ["ELEMENT"] = "DESTRUCTIVE"
+    }    
     , [SPELL_ICE_BOLT] = {
       ["ID"] = SPELL_ICE_BOLT
       , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_ICE_BOLT.txt"
       , ["LEVEL"] = 2
       , ["ELEMENT"] = "DESTRUCTIVE"
     }
+    , [SPELL_EMPOWERED_ICE_BOLT] = {
+      ["ID"] = SPELL_EMPOWERED_ICE_BOLT
+      , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_EMPOWERED_ICE_BOLT.txt"
+      , ["LEVEL"] = 2
+      , ["ELEMENT"] = "DESTRUCTIVE"
+    }    
     , [SPELL_LIGHTNING_BOLT] = {
       ["ID"] = SPELL_LIGHTNING_BOLT
       , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_LIGHTNING_BOLT.txt"
       , ["LEVEL"] = 2
       , ["ELEMENT"] = "DESTRUCTIVE"
     }
+    , [SPELL_EMPOWERED_LIGHTNING_BOLT] = {
+      ["ID"] = SPELL_EMPOWERED_LIGHTNING_BOLT
+      , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_EMPOWERED_LIGHTNING_BOLT.txt"
+      , ["LEVEL"] = 2
+      , ["ELEMENT"] = "DESTRUCTIVE"
+    }    
     , [SPELL_FIREBALL] = {
       ["ID"] = SPELL_FIREBALL
       , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_FIREBALL.txt"
       , ["LEVEL"] = 3
       , ["ELEMENT"] = "DESTRUCTIVE"
     }
+    , [SPELL_EMPOWERED_FIREBALL] = {
+      ["ID"] = SPELL_EMPOWERED_FIREBALL
+      , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_EMPOWERED_FIREBALL.txt"
+      , ["LEVEL"] = 3
+      , ["ELEMENT"] = "DESTRUCTIVE"
+    }    
     , [SPELL_FROST_RING] = {
       ["ID"] = SPELL_FROST_RING
       , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_FROST_RING.txt"
       , ["LEVEL"] = 3
       , ["ELEMENT"] = "DESTRUCTIVE"
     }
+    , [SPELL_EMPOWERED_FROST_RING] = {
+      ["ID"] = SPELL_EMPOWERED_FROST_RING
+      , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_EMPOWERED_FROST_RING.txt"
+      , ["LEVEL"] = 3
+      , ["ELEMENT"] = "DESTRUCTIVE"
+    }    
     , [SPELL_METEOR_SHOWER] = {
       ["ID"] = SPELL_METEOR_SHOWER
       , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_METEOR_SHOWER.txt"
       , ["LEVEL"] = 3
       , ["ELEMENT"] = "DESTRUCTIVE"
     }
+    , [SPELL_EMPOWERED_METEOR_SHOWER] = {
+      ["ID"] = SPELL_EMPOWERED_METEOR_SHOWER
+      , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_EMPOWERED_METEOR_SHOWER.txt"
+      , ["LEVEL"] = 3
+      , ["ELEMENT"] = "DESTRUCTIVE"
+    }    
     , [SPELL_CHAIN_LIGHTNING] = {
       ["ID"] = SPELL_CHAIN_LIGHTNING
       , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_CHAIN_LIGHTNING.txt"
       , ["LEVEL"] = 4
       , ["ELEMENT"] = "DESTRUCTIVE"
     }
+    , [SPELL_EMPOWERED_CHAIN_LIGHTNING] = {
+      ["ID"] = SPELL_EMPOWERED_CHAIN_LIGHTNING
+      , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_EMPOWERED_CHAIN_LIGHTNING.txt"
+      , ["LEVEL"] = 4
+      , ["ELEMENT"] = "DESTRUCTIVE"
+    }    
     , [SPELL_IMPLOSION] = {
       ["ID"] = SPELL_IMPLOSION
       , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_IMPLOSION.txt"
       , ["LEVEL"] = 4
       , ["ELEMENT"] = "DESTRUCTIVE"
     }
+    , [SPELL_EMPOWERED_IMPLOSION] = {
+      ["ID"] = SPELL_EMPOWERED_IMPLOSION
+      , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_EMPOWERED_IMPLOSION.txt"
+      , ["LEVEL"] = 4
+      , ["ELEMENT"] = "DESTRUCTIVE"
+    }    
     , [SPELL_ARMAGEDDON] = {
       ["ID"] = SPELL_ARMAGEDDON
       , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_ARMAGEDDON.txt"
       , ["LEVEL"] = 5
       , ["ELEMENT"] = "DESTRUCTIVE"
-    }
+    } 
+    , [SPELL_EMPOWERED_ARMAGEDDON] = {
+      ["ID"] = SPELL_EMPOWERED_ARMAGEDDON
+      , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_EMPOWERED_ARMAGEDDON.txt"
+      , ["LEVEL"] = 5
+      , ["ELEMENT"] = "DESTRUCTIVE"
+    }    
     , [SPELL_DEEP_FREEZE] = {
       ["ID"] = SPELL_DEEP_FREEZE
       , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_DEEP_FREEZE.txt"
       , ["LEVEL"] = 5
       , ["ELEMENT"] = "DESTRUCTIVE"
     }
+    , [SPELL_EMPOWERED_DEEP_FREEZE] = {
+      ["ID"] = SPELL_EMPOWERED_DEEP_FREEZE
+      , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_EMPOWERED_DEEP_FREEZE.txt"
+      , ["LEVEL"] = 5
+      , ["ELEMENT"] = "DESTRUCTIVE"
+    }    
     , [SPELL_RUNE_OF_CHARGE] = {
       ["ID"] = SPELL_RUNE_OF_CHARGE
       , ["NAME"] = "/Text/Game/Scripts/Spells/spell_name_SPELL_RUNE_OF_CHARGE.txt"
@@ -9648,6 +9786,17 @@
         TTH_PATH.Talent["Rissa"]["Text"] = TTH_PATH.Talent["Rissa"]["Pre"].."Text.txt";
         TTH_PATH.Talent["Rissa"]["NotEnoughTimes"] = TTH_PATH.Talent["Rissa"]["Pre"].."NotEnoughTimes.txt";
         TTH_PATH.Talent["Rissa"]["Success"] = TTH_PATH.Talent["Rissa"]["Pre"].."Success.txt";
+      -- Razzak 047 纳克西斯
+        TTH_PATH.Talent["Razzak"] = {};
+        TTH_PATH.Talent["Razzak"]["Pre"] = TTH_PATH.Talent["Pre"].."047-Razzak/";
+        TTH_PATH.Talent["Razzak"]["Text"] = TTH_PATH.Talent["Razzak"]["Pre"].."Text.txt";
+        TTH_PATH.Talent["Razzak"]["Unknow"] = TTH_PATH.Talent["Razzak"]["Pre"].."Unknow.txt";
+        TTH_PATH.Talent["Razzak"]["RadioTipsType"] = TTH_PATH.Talent["Razzak"]["Pre"].."RadioTipsType.txt";
+        TTH_PATH.Talent["Razzak"]["RadioTipsSpell"] = TTH_PATH.Talent["Razzak"]["Pre"].."RadioTipsSpell.txt";
+        TTH_PATH.Talent["Razzak"]["NoSuitableSpell"] = TTH_PATH.Talent["Razzak"]["Pre"].."NoSuitableSpell.txt";
+        TTH_PATH.Talent["Razzak"]["ConfirmActive"] = TTH_PATH.Talent["Razzak"]["Pre"].."ConfirmActive.txt";
+        TTH_PATH.Talent["Razzak"]["Cancel"] = TTH_PATH.Talent["Razzak"]["Pre"].."Cancel.txt";
+        TTH_PATH.Talent["Razzak"]["Success"] = TTH_PATH.Talent["Razzak"]["Pre"].."Success.txt";
       -- Maahir 050 马希尔
         TTH_PATH.Talent["Maahir"] = {};
         TTH_PATH.Talent["Maahir"]["Pre"] = TTH_PATH.Talent["Pre"].."050/";
@@ -10108,6 +10257,9 @@
           , ["Metlirn"] = {
             [TTH_ENUM.FuncAlways] = "TTH_TALENT.initMetlirn"
           }
+          , ["Razzak"] = {
+            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initRazzak"
+          }
         }
         , [TTH_ENUM.FuncActive] = {
           ["Nathaniel"] = {
@@ -10207,6 +10359,11 @@
             ["Text"] = TTH_PATH.Talent["Metlirn"]["Text"]
             , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeMetlirn"
             , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeMetlirn"
+          }
+          , ["Razzak"] = {
+            ["Text"] = TTH_PATH.Talent["Razzak"]["Text"]
+            , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeRazzak"
+            , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeRazzak"
           }
         }
         , [TTH_ENUM.FuncLevelUp] = {
@@ -19378,6 +19535,62 @@
         , SPELL_IMPLOSION
         , SPELL_ARMAGEDDON
         , SPELL_STONE_SPIKES
+      };
+
+    -- 注魔弩可关联魔法
+      TTH_TABLE.ImbueBallistaSpell = {
+        [HERO_SKILL_LIGHT_MAGIC] = {
+          SPELL_DISPEL
+          , SPELL_MASS_DISPEL
+          , SPELL_DIVINE_VENGEANCE
+        }
+        , [HERO_SKILL_DARK_MAGIC] = {
+          SPELL_CURSE
+          , SPELL_SLOW
+          , SPELL_DISRUPTING_RAY
+          , SPELL_MASS_DISRUPTING_RAY
+          , SPELL_WEAKNESS
+          , SPELL_FORGETFULNESS
+          , SPELL_MASS_FORGETFULNESS
+          , SPELL_PLAGUE
+          , SPELL_MASS_PLAGUE
+          , SPELL_SORROW
+          , SPELL_BERSERK
+          , SPELL_BLIND
+          , SPELL_HYPNOTIZE
+        }
+        , [HERO_SKILL_SUMMONING_MAGIC] = {
+          SPELL_MAGIC_FIST
+          , SPELL_EMPOWERED_MAGIC_FIST
+          , SPELL_LAND_MINE
+          , SPELL_WASP_SWARM
+          , SPELL_ARCANE_CRYSTAL
+          , SPELL_BLADE_BARRIER
+          , SPELL_SUMMON_HIVE
+        }
+        , [HERO_SKILL_DESTRUCTIVE_MAGIC] = {
+          SPELL_MAGIC_ARROW
+          , SPELL_EMPOWERED_MAGIC_ARROW
+          , SPELL_STONE_SPIKES
+          , SPELL_EMPOWERED_STONE_SPIKES
+          , SPELL_LIGHTNING_BOLT
+          , SPELL_EMPOWERED_LIGHTNING_BOLT
+          , SPELL_ICE_BOLT
+          , SPELL_EMPOWERED_ICE_BOLT
+          , SPELL_FIREBALL
+          , SPELL_EMPOWERED_FIREBALL
+          , SPELL_FROST_RING
+          , SPELL_EMPOWERED_FROST_RING
+          , SPELL_METEOR_SHOWER
+          , SPELL_EMPOWERED_METEOR_SHOWER
+          , SPELL_CHAIN_LIGHTNING
+          , SPELL_EMPOWERED_CHAIN_LIGHTNING
+          , SPELL_IMPLOSION
+          , SPELL_EMPOWERED_IMPLOSION
+          , SPELL_FIREWALL
+          , SPELL_DEEP_FREEZE
+          , SPELL_EMPOWERED_DEEP_FREEZE
+        }
       };
 
     -- 技能

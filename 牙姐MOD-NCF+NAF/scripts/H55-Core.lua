@@ -312,11 +312,11 @@ doFile("/scripts/H55-Settings.lua");
 					if iChosen > iOptionCount then
 						TTH_COMMON.cancelOption();
 					else
-						if iOptionCount > 20 then
+						if iOptionCount > 21 then
 							print("Too more options, don\'t supported");
 						else
 							local arrText = {};
-							for i = 1, 20 do
+							for i = 1, 21 do
 								if TTH_VARI.arrOption[i] ~= nil then
 									arrText[i] = TTH_VARI.arrOption[i]["Text"];
 								else
@@ -379,6 +379,7 @@ doFile("/scripts/H55-Settings.lua");
 										,strText18=arrText[18]
 										,strText19=arrText[19]
 										,strText20=arrText[20]
+										,strText21=arrText[21]
 									}
 								}
 								, strCallback.."("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(TTH_VARI.arrOption[iChosen]["Id"])..")"
@@ -5705,6 +5706,16 @@ doFile("/scripts/H55-Settings.lua");
 					return iRecordPoint;
 				end;
 
+			-- 给予玩家政绩
+				function TTH_MANAGE.addRecordPoint(iPlayer, strHero, iRecordPoint)
+					TTH_MAIN.debug("TTH_MANAGE.addRecordPoint", iPlayer, strHero, iRecordPoint);
+
+					if iRecordPoint ~= 0 then
+						TTH_VARI.arrRecordPoint[iPlayer]["RecordPoint"] = TTH_VARI.arrRecordPoint[iPlayer]["RecordPoint"] + iRecordPoint;
+					end;
+					return iRecordPoint;
+				end;
+
 			-- 英雄政绩兑换
 				function TTH_MANAGE.useRecordPoint(iPlayer, strHero, iRecordPoint)
 					if iRecordPoint ~= 0 then
@@ -6222,7 +6233,6 @@ doFile("/scripts/H55-Settings.lua");
 				function TTH_MANAGE.getOperTimes(strHero)
 					local iPlayer = TTH_GLOBAL.GetObjectOwner(strHero);
 					local iTimes = TTH_MANAGE.getDefaultOperTimes(strHero)
-						+ TTH_MANAGE.getExtraOperTimes8Hero(strHero)
 						+ TTH_MANAGE.getExtraOperTimes8Player(iPlayer);
 					return iTimes;
 				end;
@@ -6235,15 +6245,6 @@ doFile("/scripts/H55-Settings.lua");
 						iStep = 10;
 					end;
 					local iTimes = TTH_COMMON.floor(iHeroLevel / iStep) + 1;
-					return iTimes;
-				end;
-
-			-- 获取内政操作次数（重置值）（对英雄加成的额外值）
-				function TTH_MANAGE.getExtraOperTimes8Hero(strHero)
-					local iTimes = 0;
-					if TTH_VARI.recordQuillOfMayor[strHero] ~= nil then
-						iTimes = TTH_VARI.recordQuillOfMayor[strHero];
-					end;
 					return iTimes;
 				end;
 
@@ -9779,6 +9780,114 @@ doFile("/scripts/H55-Settings.lua");
       		TTH_VARI.talent[strHero]["CurrentTimes"] = TTH_VARI.talent[strHero]["MaxTimes"];
       	end;
 
+			-- Razzak 047 纳克西斯
+				function TTH_TALENT.initRazzak(strHero)
+					TTH_MAIN.debug("TTH_TALENT.initRazzak", nil, strHero);
+
+					TTH_VARI.talent[strHero] = {
+						["PreGameVar"] = "TTH_Var_Talent_"
+						, ["CurrentSpellId"] = TTH_ENUM.No
+					};
+					local strKey = TTH_VARI.talent[strHero]["PreGameVar"]..strHero;
+					SetGameVar(strKey, TTH_VARI.talent[strHero]["CurrentSpellId"]);
+				end;
+				function TTH_TALENT.activeRazzak(iPlayer, strHero)
+					TTH_COMMON.nextNavi(TTH_PATH.Talent[strHero]["Text"]);
+
+					TTH_TALENT.radioRazzak4Type(iPlayer, strHero);
+				end;
+				function TTH_TALENT.radioRazzak4Type(iPlayer, strHero)
+					local arrOption = {};
+					local i = 1;
+					arrOption[i] = {
+						["Id"] = 0
+						, ["Text"] = TTH_PATH.Talent["Razzak"]["Unknow"]
+						, ["Callback"] = "TTH_TALENT.confirmActiveRazzak"
+					};
+					i = i + 1;
+					for iTypeId, itemType in TTH_TABLE.ImbueBallistaSpell do
+						arrOption[i] = {
+							["Id"] = iTypeId
+							, ["Text"] = TTH_TABLE.Mastery[iTypeId]["Text"]
+							, ["Callback"] = "TTH_TALENT.radioRazzak4Magic"
+						};
+						i = i + 1;
+					end;
+
+					local strTextTips = TTH_PATH.Talent["Razzak"]["RadioTipsType"];
+					TTH_COMMON.optionRadio(iPlayer, strHero, arrOption, strTextTips);
+				end;
+				function TTH_TALENT.radioRazzak4Magic(iPlayer, strHero, iTypeId)
+					local arrOption = {};
+					local i = 1;
+					for iIndex, iSpellId in TTH_TABLE.ImbueBallistaSpell[iTypeId] do
+						print("iIndex: "..iIndex)
+						print("iSpellId: "..iSpellId)
+						if KnowHeroSpell(strHero, iSpellId) ~= nil then
+							arrOption[i] = {
+								["Id"] = iSpellId
+								, ["Text"] = TTH_TABLE_SPELL[iSpellId]["NAME"]
+								, ["Callback"] = "TTH_TALENT.confirmActiveRazzak"
+							};
+							i = i + 1;
+						end;
+					end;
+
+					if length(arrOption) == 0 then
+	    			local strText = TTH_PATH.Talent[strHero]["NoSuitableSpell"];
+						TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.MessageBox, strText);
+						return nil;
+					end;
+
+					local strTextTips = TTH_PATH.Talent["Razzak"]["RadioTipsSpell"];
+					TTH_COMMON.optionRadio(iPlayer, strHero, arrOption, strTextTips);
+				end;
+				function TTH_TALENT.confirmActiveRazzak(iPlayer, strHero, iTargetSpellId)
+					local iCurrentSpellId = TTH_VARI.talent[strHero]["CurrentSpellId"];
+					local strCurrentSpellName = "";
+					if iCurrentSpellId == TTH_ENUM.No then
+						strCurrentSpellName = TTH_PATH.Talent["Razzak"]["Unknow"];
+					else
+						strCurrentSpellName = TTH_TABLE_SPELL[iCurrentSpellId]["NAME"];
+					end;
+					local strTargetSpellName = "";
+					if iTargetSpellId == TTH_ENUM.No then
+						strTargetSpellName = TTH_PATH.Talent["Razzak"]["Unknow"];
+					else
+						strTargetSpellName = TTH_TABLE_SPELL[iTargetSpellId]["NAME"];
+					end;
+
+					local strPathMain={
+						TTH_PATH.Talent[strHero]["ConfirmActive"]
+						;strCurrentSpellName=strCurrentSpellName
+						,strTargetSpellName=strTargetSpellName
+					};
+					local strCallbackOk = "TTH_TALENT.implActiveRazzak("..iPlayer..","..TTH_COMMON.psp(strHero)..","..iTargetSpellId..")";
+					local strCallbackCancel = "TTH_COMMON.cancelOption()";
+					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+				end;
+				function TTH_TALENT.implActiveRazzak(iPlayer, strHero, iTargetSpellId)
+					local strTargetTypeName = "";
+					if iTargetSpellId == TTH_ENUM.No then
+						strTargetTypeName = TTH_PATH.Talent["Razzak"]["Unknow"];
+					else
+						strTargetTypeName = TTH_TABLE_SPELL[iTargetSpellId]["NAME"];
+					end;
+					TTH_VARI.talent[strHero]["CurrentSpellId"] = iTargetSpellId;
+					local strKey = TTH_VARI.talent[strHero]["PreGameVar"]..strHero;
+					SetGameVar(strKey, iTargetSpellId);
+					if iTargetSpellId == 0 then
+						local strText = TTH_PATH.Talent["Razzak"]["Cancel"];
+						TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.MessageBox, strText);
+					else
+						local strPathMain = {
+							TTH_PATH.Talent["Razzak"]["Success"]
+			  			;strSpellName=strTargetTypeName
+						};
+						TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.MessageBox, strPathMain);
+					end;
+				end;
+
       -- Maahir 马希尔 050
       	function TTH_TALENT.initMaahir(strHero)
 					TTH_MAIN.debug("TTH_TALENT.initMaahir", nil, strHero);
@@ -12333,7 +12442,7 @@ doFile("/scripts/H55-Settings.lua");
 			end;
 
 		-- ARTIFACT_QUILL_OF_MAYOR 182 执政官羽饰
-			TTH_VARI.recordQuillOfMayor = {};
+			TTH_FINAL.QUILL_OF_MAYOR_NUMBER = 1000;
 			function TTH_ARTI.active182(iPlayer, strHero)
 				TTH_COMMON.nextNavi(TTH_PATH.Artifact[ARTIFACT_QUILL_OF_MAYOR]["Text"]);
 
@@ -12345,6 +12454,7 @@ doFile("/scripts/H55-Settings.lua");
 				local strPathMain={
 					TTH_PATH.Artifact[ARTIFACT_QUILL_OF_MAYOR]["Confirm"]
 					;strArtifactName=strArtifactName
+					,iRecordPoint=TTH_FINAL.QUILL_OF_MAYOR_NUMBER
 				};
 				local strCallbackOk = "TTH_ARTI.implActive182("..iPlayer..","..TTH_COMMON.psp(strHero)..")";
 				local strCallbackCancel = "TTH_COMMON.cancelOption()";
@@ -12352,15 +12462,12 @@ doFile("/scripts/H55-Settings.lua");
 			end;
 			function TTH_ARTI.implActive182(iPlayer, strHero, strTown)
 				RemoveArtefact(strHero, ARTIFACT_QUILL_OF_MAYOR);
-				if TTH_VARI.recordQuillOfMayor[strHero] == nil then
-					TTH_VARI.recordQuillOfMayor[strHero] = 0;
-				end;
-				TTH_VARI.recordQuillOfMayor[strHero] = TTH_VARI.recordQuillOfMayor[strHero] + 1;
-				local strText = TTH_PATH.Artifact[ARTIFACT_QUILL_OF_MAYOR]["Success"];
-  			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
-  				TTH_MANAGE.addWeeklyOperTimes(strHero, 1);
-    		end;
-				TTH_GLOBAL.sign(strHero, strText);
+				TTH_MANAGE.addRecordPoint(iPlayer, strHero, TTH_FINAL.QUILL_OF_MAYOR_NUMBER);
+				local strPathMain = {
+					TTH_PATH.Artifact[ARTIFACT_QUILL_OF_MAYOR]["Success"]
+					;iRecordPoint=TTH_FINAL.QUILL_OF_MAYOR_NUMBER
+				};
+				TTH_GLOBAL.sign(strHero, strPathMain);
 			end;
 
 	-- 技能

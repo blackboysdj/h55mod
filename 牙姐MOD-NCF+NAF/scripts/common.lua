@@ -12629,6 +12629,9 @@ end;
       TTHCS_PATH["Talent"]["Dracon"] = {};
       TTHCS_PATH["Talent"]["Dracon"]["EffectStart"] = "/Text/TTH/Heroes/Specializations/Academy/Dracon/Combat/EffectStart.txt";
 
+      TTHCS_PATH["Talent"]["Razzak"] = {};
+      TTHCS_PATH["Talent"]["Razzak"]["Effect"] = "/Text/TTH/Heroes/Specializations/Academy/047-Razzak/Combat/Effect.txt";
+
       TTHCS_PATH["Talent"]["Emilia"] = {};
       TTHCS_PATH["Talent"]["Emilia"]["Effect"] = "/Text/TTH/Heroes/Specializations/Academy/053-Emilia/Combat/Effect.txt";
 

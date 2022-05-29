@@ -1060,19 +1060,32 @@ doFile('/scripts/combat-startup.lua')
 		end;
 	end;
 	function Events_Init_HeroAbility()
-		if 1 == 1 then
+		do
 			local strHero = 'Ildar';
+			local strHeroAbility = GetGameVar('TTH_Var_Talent_'..strHero);
+			if H55SMOD_HeroAbility[strHero] == nil then
+				H55SMOD_HeroAbility[strHero] = {};
+			end;
+			if strHeroAbility == nil
+				or strHeroAbility == ''
+				or strHeroAbility == '0' then
+				H55SMOD_HeroAbility[strHero] = 'Light';
+			else
+				H55SMOD_HeroAbility[strHero] = 'Dark';
+			end;
+		end;
+		do
+			local strHero = 'Razzak';
 			if H55SMOD_HeroAbility[strHero] == nil then
 				H55SMOD_HeroAbility[strHero] = {};
 			end;
 			if 1 == 1 then
 				local strHeroAbility = GetGameVar('TTH_Var_Talent_'..strHero);
-				if strHeroAbility == nil
-					or strHeroAbility == ''
-					or strHeroAbility == '0' then
-					H55SMOD_HeroAbility[strHero] = 'Light';
+				if strHeroAbility ~= nil
+					and strHeroAbility ~= '' then
+					H55SMOD_HeroAbility[strHero] = strHeroAbility + 0;
 				else
-					H55SMOD_HeroAbility[strHero] = 'Dark';
+					H55SMOD_HeroAbility[strHero] = 0;
 				end;
 			end;
 		end;
@@ -1562,6 +1575,21 @@ doFile('/scripts/combat-startup.lua')
 							end;
 						end;
 
+						-- 造成战损或击杀
+						if length(listCreaturesBeEffected) + length(listCreaturesDeath) > 0 then
+							-- Haven
+							-- Sylvan
+							-- Academy
+							-- Inferno
+							-- Necropolis
+							-- Fortress
+							-- Dungeon
+							-- Stronghold
+							-- Skill
+								H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_ELITE_CASTERS]['function'](iSide, itemUnitLast, listCreaturesBeEffected, listCreaturesDeath);
+							-- ArtifactSet
+						end;
+
 						-- 多队
 						if length(listCreaturesBeEffected) + length(listCreaturesDeath) > 1 then
 							-- Haven
@@ -1574,6 +1602,31 @@ doFile('/scripts/combat-startup.lua')
 							-- Fortress
 							-- Dungeon
 							-- Stronghold
+
+							-- 生物平砍
+							local bCreatureIsCast = 0;
+							local iOppositeSide = getSide(iSide, 1);
+							local iLenOppositeSideCreaturesBeforeLast = length(ObjSnapshotBeforeLastTurn["Creatures"][iOppositeSide]);
+							for iIndex = 0, iLenOppositeSideCreaturesBeforeLast - 1 do
+								if ObjSnapshotBeforeLastTurn["Creatures"][iOppositeSide][iIndex]["strUnitName"] == itemUnitLast["strUnitName"]
+									and ObjSnapshotBeforeLastTurn["Creatures"][iOppositeSide][iIndex]["iMana"] == itemUnitLast["iMana"]
+									and GetHero(iOppositeSide) ~= nil and ObjSnapshotBeforeLastTurn['Hero'][iOppositeSide]['iMana'] == ObjSnapshotLastTurn['Hero'][iOppositeSide]['iMana'] then
+									bCreatureIsCast = 1;
+								end;
+							end;
+							if bCreatureIsCast == 1 then
+								-- Haven
+								-- Sylvan
+								-- Academy
+									H55SMOD_MiddlewareListener["Razzak"]["function"]("Razzak", iSide, itemUnitLast, listCreaturesBeEffected, listCreaturesDeath);
+								-- Inferno
+								-- Necropolis
+								-- Fortress
+								-- Dungeon
+								-- Stronghold
+								-- Skill
+								-- ArtifactSet
+							end;
 						end;
 
 						-- 减员
@@ -2424,27 +2477,21 @@ doFile('/scripts/combat-startup.lua')
 			end;
 			H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_WEAKENING_STRIKE]['function'] = Events_MiddlewareListener_Implement_Skill_WeakeningStrike;
 
-		-- 精炼魔力: 英雄魔法值消耗时回复友方生物1点魔法值 HERO_SKILL_ELITE_CASTERS
+		-- 精炼魔力: 英雄带领的施法生物【对敌方生物造成战损时】回复魔法值（数值为: 每造成一队敌方生物的战损回复1点魔法值）
 			H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_ELITE_CASTERS] = {};
-			function Events_MiddlewareListener_Implement_Skill_EliteCasters(iSide, itemUnitLast, iLossManaPoints)
-				if GetHero(iSide) ~= nil then
-					if TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_ELITE_CASTERS] == 1 then
-						local listCreaturesTarget = ObjSnapshotLastTurn['Creatures'][iSide];
-						local iLenCreaturesTarget = length(listCreaturesTarget);
-						for iIndexCreaturesTarget = 0, iLenCreaturesTarget - 1 do
-							local itemCreatureTarget = listCreaturesTarget[iIndexCreaturesTarget];
-							if IsCombatUnit(itemCreatureTarget['strUnitName']) ~= nil and itemCreatureTarget['iUnitNumber'] > 0 then
-								local iDiffMana = 1; -- h55_ceil(iLossManaPoints * (0.1 + 0.01 * H55SMOD_HeroLevel[strHero]));
-								local iBeforeMana = GetUnitManaPoints(itemCreatureTarget['strUnitName']);
-								local iCurrentMana = iBeforeMana + iDiffMana;
-						    SetUnitManaPoints(itemCreatureTarget['strUnitName'], iCurrentMana);
-								print(itemCreatureTarget['strUnitName'].." remain "..iDiffMana.." mana by [Elite_Casters]");
-							end;
-						end;
+			function Events_MiddlewareListener_Implement_Skill_EliteCasters(iSide, itemUnitLast, listCreaturesBeEffected, listCreaturesDeath)
+				local iOppositeSide = getSide(iSide, 1);
+				if GetHero(iOppositeSide) ~= nil then
+					if TTH_SKILL_EFFECT_COMBAT_HERO[iOppositeSide][HERO_SKILL_ELITE_CASTERS] == 1 and itemUnitLast["iUnitCategory"] == ENUM_CATEGORY.CREATURE then
+						local iDiffMana = length(listCreaturesBeEffected) + length(listCreaturesDeath);
+						local iBeforeMana = GetUnitManaPoints(itemUnitLast["strUnitName"]);
+						local iCurrentMana = iBeforeMana + iDiffMana;
+						SetUnitManaPoints(itemUnitLast["strUnitName"], iCurrentMana);
+						print(itemUnitLast["strUnitName"].." remain "..iDiffMana.." mana by [Elite_Casters]");
 					end;
 				end;
 			end;
-			H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_ELITE_CASTERS]['function'] = Events_MiddlewareListener_Implement_Skill_EliteCasters;
+			H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_ELITE_CASTERS]["function"] = Events_MiddlewareListener_Implement_Skill_EliteCasters;
 
 		-- 众志成城: 【守城时】【英雄主动攻击对敌方生物造成战损时】所有箭塔会对该生物进行【射击】并立刻行动 HERO_SKILL_SEAL_OF_PROTECTION
 			H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_SEAL_OF_PROTECTION] = {};
@@ -3112,6 +3159,31 @@ doFile('/scripts/combat-startup.lua')
 			end;
 			H55SMOD_MiddlewareListener['Dracon']['function']['charge'] = Events_MiddlewareListener_Implement_Dracon_Charge;
 
+		-- Razzak
+			H55SMOD_MiddlewareListener["Razzak"] = {};
+			function Events_MiddlewareListener_Implement_Razzak(strHero, iSide, itemUnitLast, listCreaturesBeEffected, listCreaturesDeath)
+				if GetHero(getSide(iSide, 1)) ~= nil and GetHeroName(GetHero(getSide(iSide, 1))) == strHero
+					and (itemUnitLast["iUnitType"] == CREATURE_MAGI or itemUnitLast["iUnitType"] == CREATURE_ARCH_MAGI or itemUnitLast["iUnitType"] == CREATURE_COMBAT_MAGE)
+					and H55SMOD_HeroAbility[strHero] > 0 then
+					local iSpellId = H55SMOD_HeroAbility[strHero];
+					local itemHero = geneUnitStatus(GetHero(getSide(iSide, 1)));
+					if length(listCreaturesBeEffected) > 0 then
+						combatSetPause(1);
+						ShowFlyingSign(TTHCS_PATH["Talent"]["Razzak"]["Effect"], itemHero["strUnitName"], 5);
+						for i, itemCreatureEffected in listCreaturesBeEffected do
+							if IsCombatUnit(itemCreatureEffected["strUnitName"]) ~= nil and GetCreatureNumber(itemCreatureEffected["strUnitName"]) > 0 then
+								startThread(Thread_Command_UnitCastAimedSpell_UseMana, itemHero["strUnitName"], iSpellId, itemCreatureEffected["strUnitName"]);
+								sleep(20);
+							end;
+						end;
+						itemHero["iAtb"] = 1.25;
+						push(ListUnitSetATB, itemHero);
+						combatSetPause(nil);
+					end;
+				end;
+			end;
+			H55SMOD_MiddlewareListener["Razzak"]["function"] = Events_MiddlewareListener_Implement_Razzak;
+
 		-- Emilia
 			H55SMOD_MiddlewareListener["Emilia"] = {};
 			function Events_MiddlewareListener_Implement_Emilia(strHero, iSide, itemUnitDeath)
@@ -3778,19 +3850,26 @@ doFile('/scripts/combat-startup.lua')
 						local objUnitPost = TTHCS_GLOBAL.geneUnitInfo(itemUnitMoved["strUnitName"]);
 						local arrUnitName = TTHCS_GLOBAL.listUnitInArea8Object(objUnitPre, 1, getSide(iSide, 1));
 						for i, strCreatureTarget in arrUnitName do
+							local iPosX = 0;
+							local iPosY = 0;
 							if IsCombatUnit(strCreatureTarget) ~= nil	and GetCreatureNumber(strCreatureTarget) > 0 then
 								local objCreatureTarget = TTHCS_GLOBAL.geneUnitInfo(strCreatureTarget);
-								local iPosX = objUnitPost["PosX"] + objCreatureTarget["PosX"] - objUnitPre["PosX"];
-								local iPosY = objUnitPost["PosY"] + objCreatureTarget["PosY"] - objUnitPre["PosY"];
+								local strPosition = GetUnitPosition(strCreatureTarget);
+								iPosX = objUnitPost["PosX"] + objCreatureTarget["PosX"] - objUnitPre["PosX"];
+								iPosY = objUnitPost["PosY"] + objCreatureTarget["PosY"] - objUnitPre["PosY"];
 								startThread(ThreadCommandDisplace, strCreatureTarget, iPosX, iPosY);
-								sleep(20);
+								local iTime = 0;
+								repeat sleep(1); iTime = iTime + 1; until strPosition ~= GetUnitPosition(strCreatureTarget) or iTime >= 100;
 								print(strCreatureTarget.." displace to "..iPosX.."-"..iPosY);
 							end;
 							if IsCombatUnit(strCreatureTarget) ~= nil	and GetCreatureNumber(strCreatureTarget) > 0 then
-								local objCreatureTarget = geneUnitStatus(strCreatureTarget);
-								objCreatureTarget['iAtb'] = 1.25;
-								push(ListUnitSetATB, objCreatureTarget);
-								print(objCreatureTarget['strUnitName']..'\'s atb has been increase to 1.25');
+								local objCreatureTargetAfterDisplace = TTHCS_GLOBAL.geneUnitInfo(strCreatureTarget);
+								if iPosX == objCreatureTargetAfterDisplace["PosX"] and iPosY == objCreatureTargetAfterDisplace["PosY"] then
+									local objCreatureTarget = geneUnitStatus(strCreatureTarget);
+									objCreatureTarget['iAtb'] = 1.25;
+									push(ListUnitSetATB, objCreatureTarget);
+									print(objCreatureTarget['strUnitName']..'\'s atb has been increase to 1.25');
+								end;
 							end;
 						end;
 						combatSetPause(nil);

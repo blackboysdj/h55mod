@@ -12231,6 +12231,57 @@ end;
           , SPELL_STONE_SPIKES
         };
 
+    -- 注魔弩可关联魔法（目标）
+        TTHCS_TABLE.ImbueBallistaSpellAimed = {
+          SPELL_DISPEL
+          , SPELL_DIVINE_VENGEANCE
+          , SPELL_CURSE
+          , SPELL_SLOW
+          , SPELL_DISRUPTING_RAY
+          , SPELL_WEAKNESS
+          , SPELL_FORGETFULNESS
+          , SPELL_PLAGUE
+          , SPELL_SORROW
+          , SPELL_BERSERK
+          , SPELL_BLIND
+          , SPELL_HYPNOTIZE
+          , SPELL_MAGIC_FIST
+          , SPELL_EMPOWERED_MAGIC_FIST
+          , SPELL_WASP_SWARM
+          , SPELL_MAGIC_ARROW
+          , SPELL_EMPOWERED_MAGIC_ARROW
+          , SPELL_LIGHTNING_BOLT
+          , SPELL_EMPOWERED_LIGHTNING_BOLT
+          , SPELL_ICE_BOLT
+          , SPELL_EMPOWERED_ICE_BOLT
+          , SPELL_CHAIN_LIGHTNING
+          , SPELL_EMPOWERED_CHAIN_LIGHTNING
+          , SPELL_IMPLOSION
+          , SPELL_EMPOWERED_IMPLOSION
+          , SPELL_DEEP_FREEZE
+          , SPELL_EMPOWERED_DEEP_FREEZE
+        };
+    -- 注魔弩可关联魔法（范围）
+        TTHCS_TABLE.ImbueBallistaSpellArea = {
+          SPELL_MASS_DISPEL
+          , SPELL_MASS_DISRUPTING_RAY
+          , SPELL_MASS_FORGETFULNESS
+          , SPELL_MASS_PLAGUE
+          , SPELL_LAND_MINE
+          , SPELL_ARCANE_CRYSTAL
+          , SPELL_BLADE_BARRIER
+          , SPELL_SUMMON_HIVE
+          , SPELL_STONE_SPIKES
+          , SPELL_EMPOWERED_STONE_SPIKES
+          , SPELL_FIREBALL
+          , SPELL_EMPOWERED_FIREBALL
+          , SPELL_FROST_RING
+          , SPELL_EMPOWERED_FROST_RING
+          , SPELL_METEOR_SHOWER
+          , SPELL_EMPOWERED_METEOR_SHOWER
+          , SPELL_FIREWALL
+        };
+
     TTHCS_TABLE.JusticarTargetHero = {
       'Calh', 'Calid', 'Deleb', 'Jazaz', 'Marder', 'Orlando2'
       , 'Efion', 'Grok', 'Malustar', 'Nymus', 'Oddrema', 'Sovereign', 'Agrael', 'Jeddite'

@@ -3172,7 +3172,14 @@ doFile('/scripts/combat-startup.lua')
 						ShowFlyingSign(TTHCS_PATH["Talent"]["Razzak"]["Effect"], itemHero["strUnitName"], 5);
 						for i, itemCreatureEffected in listCreaturesBeEffected do
 							if IsCombatUnit(itemCreatureEffected["strUnitName"]) ~= nil and GetCreatureNumber(itemCreatureEffected["strUnitName"]) > 0 then
-								startThread(Thread_Command_UnitCastAimedSpell_UseMana, itemHero["strUnitName"], iSpellId, itemCreatureEffected["strUnitName"]);
+								if contains(TTHCS_TABLE.ImbueBallistaSpellAimed, iSpellId) ~= nil then
+									startThread(Thread_Command_UnitCastAimedSpell_UseMana, itemHero["strUnitName"], iSpellId, itemCreatureEffected["strUnitName"]);
+									print(itemHero["strUnitName"].." casted "..iSpellId.." to "..itemCreatureEffected["strUnitName"]);
+								elseif contains(TTHCS_TABLE.ImbueBallistaSpellArea, iSpellId) ~= nil then
+									local iPosX, iPosY = GetUnitPosition(itemCreatureEffected["strUnitName"]);
+									startThread(Thread_Command_UnitCastAreaSpell_UseMana, itemHero["strUnitName"], iSpellId, iPosX, iPosY);
+									print(itemHero["strUnitName"].." casted "..iSpellId.." at "..iPosX.."-"..iPosY);
+								end;	
 								sleep(20);
 							end;
 						end;

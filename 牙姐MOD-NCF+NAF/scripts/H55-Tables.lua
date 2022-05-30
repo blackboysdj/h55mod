@@ -19564,9 +19564,9 @@
           , SPELL_EMPOWERED_MAGIC_FIST
           , SPELL_LAND_MINE
           , SPELL_WASP_SWARM
-          , SPELL_ARCANE_CRYSTAL
-          , SPELL_BLADE_BARRIER
-          , SPELL_SUMMON_HIVE
+          -- , SPELL_ARCANE_CRYSTAL
+          -- , SPELL_BLADE_BARRIER
+          -- , SPELL_SUMMON_HIVE
         }
         , [HERO_SKILL_DESTRUCTIVE_MAGIC] = {
           SPELL_MAGIC_ARROW

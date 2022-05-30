@@ -9821,8 +9821,6 @@ doFile("/scripts/H55-Settings.lua");
 					local arrOption = {};
 					local i = 1;
 					for iIndex, iSpellId in TTH_TABLE.ImbueBallistaSpell[iTypeId] do
-						print("iIndex: "..iIndex)
-						print("iSpellId: "..iSpellId)
 						if KnowHeroSpell(strHero, iSpellId) ~= nil then
 							arrOption[i] = {
 								["Id"] = iSpellId

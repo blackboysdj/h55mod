@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CharacterView>
+	<Model href="creature_shadow.(Model).xdb#xpointer(/Model)"/>
+	<AnimSet href="animset/creature.(AnimSet).xdb#xpointer(/AnimSet)"/>
+	<sequence/>
+	<Effect/>
+</CharacterView>

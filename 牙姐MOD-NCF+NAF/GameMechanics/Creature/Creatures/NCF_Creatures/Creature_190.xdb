@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Creature>
-	<AttackSkill>1</AttackSkill>
-	<DefenceSkill>1</DefenceSkill>
+<Creature ObjectRecordID="8">
+	<AttackSkill>20</AttackSkill>
+	<DefenceSkill>20</DefenceSkill>
 	<Shots>0</Shots>
-	<MinDamage>1</MinDamage>
-	<MaxDamage>1</MaxDamage>
-	<Speed>1</Speed>
-	<Initiative>1</Initiative>
+	<MinDamage>6</MinDamage>
+	<MaxDamage>30</MaxDamage>
+	<Speed>7</Speed>
+	<Initiative>11</Initiative>
 	<Flying>false</Flying>
-	<Health>1</Health>
+	<Health>90</Health>
 	<KnownSpells/>
 	<SpellPoints>0</SpellPoints>
 	<SpellPoints1>0</SpellPoints1>
 	<SpellPoints2>0</SpellPoints2>
-	<Exp>1</Exp>
-	<Power>1</Power>
+	<Exp>160</Exp>
+	<Power>2510</Power>
 	<TimeToCommand>10</TimeToCommand>
-	<CreatureTier>1</CreatureTier>
-	<Upgrade>false</Upgrade>
+	<CreatureTier>6</CreatureTier>
+	<Upgrade>true</Upgrade>
 	<PairCreature>CREATURE_UNKNOWN</PairCreature>
-	<CreatureTown>TOWN_NO_TYPE</CreatureTown>
+	<CreatureTown>TOWN_HEAVEN</CreatureTown>
 	<MagicElement>
-		<First>ELEMENT_NONE</First>
-		<Second>ELEMENT_NONE</Second>
+		<First>ELEMENT_EARTH</First>
+		<Second>ELEMENT_FIRE</Second>
 	</MagicElement>
-	<WeeklyGrowth>0</WeeklyGrowth>
+	<WeeklyGrowth>2</WeeklyGrowth>
 	<Cost>
 		<Wood>0</Wood>
 		<Ore>0</Ore>
@@ -32,16 +32,22 @@
 		<Crystal>0</Crystal>
 		<Sulfur>0</Sulfur>
 		<Gem>0</Gem>
-		<Gold>0</Gold>
+		<Gold>1800</Gold>
 	</Cost>
 	<SubjectOfRandomGeneration>true</SubjectOfRandomGeneration>
-	<MonsterShared/>
-	<CombatSize>1</CombatSize>
-	<PatternAttack/>
+	<MonsterShared href="/new_creatures/Haven/Legate/creature.(AdvMapMonsterShared).xdb#xpointer(/AdvMapMonsterShared)"/>
+	<CombatSize>2</CombatSize>
+	<PatternAttack href="/GameMechanics/Creature/Creatures/Dungeon/HalfCircleLargeAttack.xdb#xpointer(/PatternAttack)"/>
 	<flybySequence/>
-	<Visual href="/GameMechanics/CreatureVisual/Creatures/Neutrals/SnowApe.xdb#xpointer(/CreatureVisual)"/>
+	<Visual href="/new_creatures/Haven/Legate/creature.(CreatureVisual).xdb#xpointer(/CreatureVisual)"/>
 	<Range>0</Range>
-	<BaseCreature>CREATURE_UNKNOWN</BaseCreature>
+	<BaseCreature>CREATURE_FOOTMAN</BaseCreature>
 	<Upgrades/>
-	<Abilities/>
+	<Abilities>
+		<Item>ABILITY_BERSERKER_RAGE</Item>
+		<Item>ABILITY_WEAKENING_AURA</Item>
+		<Item>ABILITY_ARMORED</Item>
+		<Item>ABILITY_WHIRLWIND</Item>
+		<Item>ABILITY_UNLIMITED_RETALIATION</Item>
+	</Abilities>
 </Creature>

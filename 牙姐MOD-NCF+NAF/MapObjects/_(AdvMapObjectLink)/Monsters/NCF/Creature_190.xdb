@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AdvMapObjectLink>
-	<Link/>
+	<Link href="//new_creatures/Haven/Legate/creature.(AdvMapMonsterShared).xdb#xpointer(/AdvMapMonsterShared)"/>
 	<RndGroup/>
-	<IconFile/>
+	<IconFile>Icons\Creature_190.dds</IconFile>
 	<HideInEditor>true</HideInEditor>
 </AdvMapObjectLink>

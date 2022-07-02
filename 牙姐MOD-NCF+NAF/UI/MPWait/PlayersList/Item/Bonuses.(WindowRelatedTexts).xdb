@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WindowRelatedTexts ObjectRecordID="1000012">
+	<texts>
+		<Item>
+			<TextName>bonus0</TextName>
+			<text href="bonus0.txt"/>
+		</Item>
+		<Item>
+			<TextName>bonus1</TextName>
+			<text href="bonus1.txt"/>
+		</Item>
+		<Item>
+			<TextName>bonus2</TextName>
+			<text href="bonus2.txt"/>
+		</Item>
+		<Item>
+			<TextName>bonus3</TextName>
+			<text href="bonus3.txt"/>
+		</Item>
+		<Item>
+			<TextName>bonus_tooltip_random</TextName>
+			<text href="bonus_tooltip_random.txt"/>
+		</Item>
+		<Item>
+			<TextName>bonus_tooltip_random_minor_artifact</TextName>
+			<text href="bonus_tooltip_random_minor_artifact.txt"/>
+		</Item>
+		<Item>
+			<TextName>bonus_tooltip_gold</TextName>
+			<!-- <text href="bonus_tooltip_gold.txt"/> -->
+			<text href="bonus_tooltip_skill.txt"/>
+		</Item>
+		<Item>
+			<TextName>bonus_tooltip_resource</TextName>
+			<text href="bonus_tooltip_resource.txt"/>
+		</Item>
+		<Item>
+			<TextName>EE_equal_resources</TextName>
+			<text href="EE_tooltip_equal_resources.txt"/>
+		</Item>
+		<Item>
+			<TextName>EE_ai_aggressive</TextName>
+			<text href="EE_tooltip_ai_aggressive.txt"/>
+		</Item>
+		<Item>
+			<TextName>EE_ai_defensive</TextName>
+			<text href="EE_tooltip_ai_defensive.txt"/>
+		</Item>
+	</texts>
+</WindowRelatedTexts>

@@ -48,7 +48,7 @@ MAX_MANA = 1000;
 
 H55SMOD_HavenHeroes = {
     'Nathaniel', 'Orrin', 'Mardigo', 'Ving', 'Sarge', 'Isabell', 'Christian', 'RedHeavenHero02', 'RedHeavenHero05', 'Brem'
-    , 'Nicolai', 'GodricMP', 'Alaric', 'Axel', 'SaintIsabell', 'Maeve', 'RedHeavenHero06', 'Caldwell', 'OrtanCassius'
+    , 'Nicolai', 'GodricMP', 'Alaric', 'Axel', 'SaintIsabell', 'Maeve', 'RedHeavenHero06', 'Caldwell', 'OrtanCassius', 'Sanguinius'
     , 'RedHeavenHero03', 'Orlando', 'Markal'
 };
 H55SMOD_SylvanHeroes = {
@@ -87,7 +87,7 @@ H55SMOD_StrongholdHeroes = {
 
 H55SMOD_Heroes = {
     'Nathaniel', 'Orrin', 'Mardigo', 'Ving', 'Sarge', 'Isabell', 'Christian', 'RedHeavenHero02', 'RedHeavenHero05', 'Brem'
-    , 'Nicolai', 'GodricMP', 'Alaric', 'Axel', 'SaintIsabell', 'Maeve', 'RedHeavenHero06', 'Caldwell', 'OrtanCassius'
+    , 'Nicolai', 'GodricMP', 'Alaric', 'Axel', 'SaintIsabell', 'Maeve', 'RedHeavenHero06', 'Caldwell', 'OrtanCassius', 'Sanguinius'
     , 'RedHeavenHero03', 'Orlando', 'Markal'
     , 'Metlirn', 'Ossir', 'Nadaur', 'Linaas', 'Heam', 'Gelu', 'Arniel', 'Kyrre'
     , 'Gillion', 'Itil', 'Melodia', 'Jenova', 'Mephala', 'Gem'
@@ -1165,9 +1165,13 @@ end;
   CREATURE_188 = 188
   CREATURE_JUSTICAR = 188;
   CREATURE_189 = 189
+  CREATURE_CHRISTIAN_REPAIR = 189;
   CREATURE_190 = 190
+  CREATURE_LEGATE = 190;
   CREATURE_191 = 191
+  CREATURE_LEGATE_SHADOW = 191;
   CREATURE_192 = 192
+  CREATURE_DUNGEON_TOOL = 192;
   CREATURE_193 = 193
   CREATURE_194 = 194
   CREATURE_195 = 195
@@ -12689,6 +12693,9 @@ end;
       TTHCS_PATH["Talent"]["Faiz"] = {};
       TTHCS_PATH["Talent"]["Faiz"]["Effect"] = "/Text/TTH/Heroes/Specializations/Academy/057-Faiz/Combat/Effect.txt";
 
+      TTHCS_PATH["Talent"]["Astral"] = {};
+      TTHCS_PATH["Talent"]["Astral"]["Effect"] = "/Text/TTH/Heroes/Specializations/Academy/055-Astral/Combat/Effect.txt";
+
       TTHCS_PATH["Talent"]["Hero9"] = {};
       TTHCS_PATH["Talent"]["Hero9"]["Effect"] = "/Text/TTH/Heroes/Specializations/Stronghold/135-Hero9/Combat/Effect.txt";
 
@@ -12700,6 +12707,18 @@ end;
 
       TTHCS_PATH["Talent"]["Gles"] = {};
       TTHCS_PATH["Talent"]["Gles"]["Effect"] = "/Text/TTH/Heroes/Specializations/Necromancy/079-Gles/Combat/Effect.txt";
+
+      TTHCS_PATH["Talent"]["Christian"] = {};
+      TTHCS_PATH["Talent"]["Christian"]["Effect"] = "/Text/TTH/Heroes/Specializations/Heaven/007-Christian/Combat/Effect.txt";
+
+      TTHCS_PATH["Talent"]["Menel"] = {};
+      TTHCS_PATH["Talent"]["Menel"]["Effect"] = "/Text/TTH/Heroes/Specializations/Dungeon/060-Menel/Combat/Effect.txt";
+
+      TTHCS_PATH["Talent"]["Ohtarig"] = {};
+      TTHCS_PATH["Talent"]["Ohtarig"]["Effect"] = "/Text/TTH/Heroes/Specializations/Dungeon/064-Ohtarig/Combat/Effect.txt";
+
+      TTHCS_PATH["Talent"]["Sanguinius"] = {};
+      TTHCS_PATH["Talent"]["Sanguinius"]["Effect"] = "/Text/TTH/Heroes/Specializations/Heaven/156-Sanguinius/Combat/Effect.txt";
 
     TTHCS_PATH["Perk"] = {};
       TTHCS_PATH["Perk"][HERO_SKILL_SEAL_OF_PROTECTION] = {};
@@ -12743,6 +12762,9 @@ end;
       TTHCS_PATH["Creature"][CREATURE_JUSTICAR] = {};
       TTHCS_PATH["Creature"][CREATURE_JUSTICAR]["EffectLayHands"] = "/Text/TTH/Creature/188-Justicar/Combat/EffectLayHands.txt";
       TTHCS_PATH["Creature"][CREATURE_JUSTICAR]["EffectHolyWord"] = "/Text/TTH/Creature/188-Justicar/Combat/EffectHolyWord.txt";
+
+      TTHCS_PATH["Creature"][CREATURE_LEGATE] = {};
+      TTHCS_PATH["Creature"][CREATURE_LEGATE]["Effect"] = "/Text/TTH/Creature/190-Legate/Combat/Effect.txt";
 
     TTHCS_PATH["Spell"] = {};
       TTHCS_PATH["Spell"][SPELL_ABILITY_LAY_HANDS] = {};

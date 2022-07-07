@@ -63,7 +63,7 @@
 			<Item>HERO_SKILL_HOLY_CHARGE</Item>
 		</perkIDs>
 		<spellIDs>
-			<Item>SPELL_HOLY_WORD</Item>
+			<Item>SPELL_BLESS</Item>
 		</spellIDs>
 		<Ballista>false</Ballista>
 		<FirstAidTent>true</FirstAidTent>

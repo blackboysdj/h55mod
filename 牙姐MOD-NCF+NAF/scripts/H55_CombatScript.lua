@@ -2575,7 +2575,7 @@ doFile('/scripts/combat-startup.lua')
 				if GetHero(iSide) ~= nil and itemUnit['strUnitName'] == GetHero(iSide) then
 					if TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_EXPLODING_CORPSES] == 1 then
 						H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_EXPLODING_CORPSES]['flag'][iSide] = H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_EXPLODING_CORPSES]['flag'][iSide] + 1;
-						-- print("charge: "..H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_EXPLODING_CORPSES]['flag'][iSide]);
+						print("charge: "..H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_EXPLODING_CORPSES]['flag'][iSide]);
 						if H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_EXPLODING_CORPSES]['flag'][iSide] >= 2 then
 							print(itemUnit['strUnitName'].." recovery times for [ExplodingCorpses]");
 						end;
@@ -2985,7 +2985,7 @@ doFile('/scripts/combat-startup.lua')
 						end;
 					end;
 					itemUnit["iAtb"] = 1.25;
-					push(ListUnitSetATB, itemUnit["strUnitName"]);
+					push(ListUnitSetATB, itemUnit);
 					sleep(20);
 					combatSetPause(nil);
 				end;

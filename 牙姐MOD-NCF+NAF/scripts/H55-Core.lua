@@ -1178,6 +1178,10 @@ doFile("/scripts/H55-Settings.lua");
 						TTH_VARI.arrBuilding["BUILDING_ABANDONED_MINE"] = GetObjectNamesByType("BUILDING_ABANDONED_MINE"); -- 废弃的矿洞（8种族随机）
 						TTH_GLOBAL.initMine();
 
+					-- 初始化 女巫小屋
+						TTH_VARI.arrBuilding["BUILDING_WITCH_HUT"] = GetObjectNamesByType("BUILDING_WITCH_HUT");
+						TTH_GLOBAL.initWitchHut();
+
 					-- 初始化 先知小屋
 						TTH_VARI.arrBuilding["BUILDING_MERMAIDS"] = GetObjectNamesByType("BUILDING_MERMAIDS");
 						TTH_GLOBAL.initMermaids();
@@ -1209,6 +1213,9 @@ doFile("/scripts/H55-Settings.lua");
 									TTH_COMMON.setTrigger2ObjectType(TTH_TABLE.DwellingOnAdvMap[iTier][jDwellingRace], OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitDwellingOnAdvMap", nil);
 								end;
 							end;
+
+						-- 女巫小屋
+							TTH_COMMON.setTrigger2ObjectType("BUILDING_WITCH_HUT", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitWitchHut", nil);
 
 						-- 先知小屋
 							TTH_COMMON.setTrigger2ObjectType("BUILDING_MERMAIDS", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitMermaids", nil);
@@ -2170,11 +2177,9 @@ doFile("/scripts/H55-Settings.lua");
 					local arrMasteryOption = {};
 					for iMasteryId, objMastery in TTH_TABLE.Mastery do
 						if GetHeroSkillMastery(strHero, iMasteryId) > 0	and GetHeroSkillMastery(strHero, iMasteryId) <= 2 then
-							TTH_COMMON.push(arrMasteryOption, iMasteryId);
+							GiveHeroSkill(strHero, iMasteryId);
 						end;
 					end;
-					local iRanId = random(length(arrMasteryOption));
-					GiveHeroSkill(strHero, arrMasteryOption[iRanId]);
 				end;
 
 			-- 开局选择生物
@@ -4586,6 +4591,381 @@ doFile("/scripts/H55-Settings.lua");
 					TTH_GLOBAL.reduceResource(iPlayer, GOLD, TTH_TABLE.ConvertDwellingRes[iTier][GOLD]);
 					Play3DSoundForPlayers(GetPlayerFilter(iPlayer), H55_SndCrash, iPosX, iPosY, iPosZ);
 					ReplaceDwelling(strBuildingName, iHeroRace);
+				end;
+
+		-- 女巫小屋
+			TTH_ENUM.WitchHutFixed = 1;
+			TTH_ENUM.WitchHutBonus = 2;
+			TTH_ENUM.WitchHutArtifact = 3;
+			TTH_VARI.recordBuildingName = {};
+			TTH_VARI.recordWitchHut = {};
+			TTH_VARI.recordTop3WitchHutHumanVisit = {};
+			TTH_FINAL.WITCHHUT_RESET_DAY = 14;
+			TTH_FINAL.WITCHHUT_BONUS_GOLD_COST = 5000;
+			TTH_FINAL.WITCHHUT_ARTIFACT_GOLD_COST = 50000;
+			TTH_TABLE.WitchHutMasteryGroupMight = {
+				["Class"] = {
+					TTH_ENUM.Knight
+					, TTH_ENUM.Paladin
+					, TTH_ENUM.Retribution
+					, TTH_ENUM.Ranger
+					, TTH_ENUM.Warden
+					, TTH_ENUM.GuildMaster
+					, TTH_ENUM.DemonLord
+					, TTH_ENUM.GateKeeper
+					, TTH_ENUM.DeathKnight
+					, TTH_ENUM.Reaver
+					, TTH_ENUM.Engineer
+					, TTH_ENUM.Flamekeepera
+					, TTH_ENUM.BeastMaster
+				}
+				, ["Mastery"] = {
+				  HERO_SKILL_LOGISTICS
+				  , HERO_SKILL_LEARNING
+				  , HERO_SKILL_OFFENCE
+				  , HERO_SKILL_DEFENCE
+				  , HERO_SKILL_LEADERSHIP
+				  , HERO_SKILL_LUCK
+				  , HERO_SKILL_WAR_MACHINES
+				  , HERO_SKILL_LIGHT_MAGIC
+				  , HERO_SKILL_DARK_MAGIC
+				  , HERO_SKILL_SUMMONING_MAGIC
+				  , HERO_SKILL_DESTRUCTIVE_MAGIC
+				  , HERO_SKILL_SORCERY
+				  , HERO_SKILL_TRAINING
+				}
+			};
+			TTH_TABLE.WitchHutMasteryGroupMagic = {
+				["Class"] = {
+					TTH_ENUM.Heretic
+					, TTH_ENUM.Enchanter
+					, TTH_ENUM.Wizard
+					, TTH_ENUM.ElementAlist
+					, TTH_ENUM.Sorcerer
+					, TTH_ENUM.Necromancer
+					, TTH_ENUM.Runemage
+					, TTH_ENUM.Seer
+					, TTH_ENUM.Warlock
+				}
+				, ["Mastery"] = {
+				  HERO_SKILL_LOGISTICS
+				  , HERO_SKILL_LEARNING
+				  , HERO_SKILL_OFFENCE
+				  , HERO_SKILL_DEFENCE
+				  , HERO_SKILL_LEADERSHIP
+				  , HERO_SKILL_LUCK
+				  , HERO_SKILL_WAR_MACHINES
+				  , HERO_SKILL_LIGHT_MAGIC
+				  , HERO_SKILL_DARK_MAGIC
+				  , HERO_SKILL_SUMMONING_MAGIC
+				  , HERO_SKILL_DESTRUCTIVE_MAGIC
+				  , HERO_SKILL_SORCERY
+				  , HERO_SKILL_INVOCATION
+				}
+			};
+			TTH_TABLE.WitchHutMasteryGroupBarbarian = {
+				["Class"] = {
+					TTH_ENUM.Barbarian
+				}
+				, ["Mastery"] = {
+				  HERO_SKILL_LOGISTICS
+				  , HERO_SKILL_BARBARIAN_LEARNING
+				  , HERO_SKILL_OFFENCE
+				  , HERO_SKILL_DEFENCE
+				  , HERO_SKILL_LEADERSHIP
+				  , HERO_SKILL_LUCK
+				  , HERO_SKILL_WAR_MACHINES
+				  , HERO_SKILL_SHATTER_LIGHT_MAGIC
+				  , HERO_SKILL_SHATTER_DARK_MAGIC
+				  , HERO_SKILL_SHATTER_SUMMONING_MAGIC
+				  , HERO_SKILL_SHATTER_DESTRUCTIVE_MAGIC
+				  , HERO_SKILL_VOICE
+				  , HERO_SKILL_TRAINING
+				}
+			};
+			TTH_TABLE.WitchHutTypeOption = {
+				[1] = {
+					["Id"] = TTH_ENUM.WitchHutFixed
+					, ["Text"] = TTH_PATH.Visit["WitchHut"]["Fixed"]["Option"]
+					, ["Callback"] = "TTH_VISIT.visitWitchHut2Fixed"
+				}
+				, [2] = {
+					["Id"] = TTH_ENUM.WitchHutBonus
+					, ["Text"] = TTH_PATH.Visit["WitchHut"]["Bonus"]["Option"]
+					, ["Callback"] = "TTH_VISIT.visitWitchHut2Bonus"
+				}
+				, [3] = {
+					["Id"] = TTH_ENUM.WitchHutArtifact
+					, ["Text"] = TTH_PATH.Visit["WitchHut"]["Artifact"]["Option"]
+					, ["Callback"] = "TTH_VISIT.visitWitchHut2Artifact"
+				}
+			};
+			function TTH_GLOBAL.initWitchHut(iPlayer, strHero)
+				for i, strBuildingName in TTH_VARI.arrBuilding["BUILDING_WITCH_HUT"] do
+					TTH_VARI.recordWitchHut[strBuildingName] = {
+						["MasteryId"] = random(13) + 1
+						, ["ResetDay"] = 0
+					}
+					for iPlayer = PLAYER_1, PLAYER_8 do
+						if TTH_GLOBAL.isAi(iPlayer) == TTH_ENUM.Yes then
+							SetAIPlayerAttractor(strBuildingName, iPlayer, -1); -- AI访问优先级设为最低
+						end;
+					end;
+				end;
+			end;
+			function TTH_GLOBAL.getMasteryId4WitchHut(strHero, iWitchHutMasteryId)
+				local iMasteryId = 0;
+				local enumHeroClass = TTH_TABLE.Hero[strHero]["Class"];
+				if contains(TTH_TABLE.WitchHutMasteryGroupMight["Class"], enumHeroClass) ~= nil then
+					iMasteryId = TTH_TABLE.WitchHutMasteryGroupMight["Mastery"][iWitchHutMasteryId];
+				elseif contains(TTH_TABLE.WitchHutMasteryGroupMagic["Class"], enumHeroClass) ~= nil then
+					iMasteryId = TTH_TABLE.WitchHutMasteryGroupMagic["Mastery"][iWitchHutMasteryId];
+				elseif contains(TTH_TABLE.WitchHutMasteryGroupBarbarian["Class"], enumHeroClass) ~= nil then
+					iMasteryId = TTH_TABLE.WitchHutMasteryGroupBarbarian["Mastery"][iWitchHutMasteryId];
+				end;
+				return iMasteryId;
+			end;
+			function TTH_VISIT.visitWitchHut(strHero, strBuildingName)
+				TTH_COMMON.initNavi(TTH_PATH.Visit["WitchHut"]["Text"]);
+
+				local funcCallback = "TTH_VISIT.visitWitchHut";
+				MarkObjectAsVisited(strBuildingName, strHero);
+				local iPlayer = GetObjectOwner(strHero);
+				if TTH_GLOBAL.isAi(iPlayer) == TTH_ENUM.Yes then
+					print("AI Player: "..iPlayer.." Visits Witch Hut");
+					TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
+				else
+					TTH_VISIT.checkPreWitchHut4HasLeave(iPlayer, strHero, strBuildingName);
+				end;
+			end;
+			function TTH_VISIT.checkPreWitchHut4HasLeave(iPlayer, strHero, strBuildingName)
+				if TTH_VARI.recordWitchHut[strBuildingName]["ResetDay"] > 0 then
+					local strPathMain = TTH_PATH.Visit["WitchHut"]["HasLeave"];
+					TTH_GLOBAL.sign(strHero, strPathMain);
+					return nil;
+				end;
+
+				TTH_VISIT.configureWitchHut4Top3(iPlayer, strHero, strBuildingName);
+			end;
+			function TTH_VISIT.configureWitchHut4Top3(iPlayer, strHero, strBuildingName)
+				if length(TTH_VARI.recordTop3WitchHutHumanVisit) == 0 then
+					if contains(TTH_VARI.recordTop3WitchHutHumanVisit, strBuildingName) == nil then
+						TTH_COMMON.push(TTH_VARI.recordTop3WitchHutHumanVisit, strBuildingName);
+						if H55_Witch_1_1 ~= 0 then
+							TTH_VARI.recordWitchHut[strBuildingName]["MasteryId"] = H55_Witch_1_1;
+						end;
+					end;
+				end;
+				if length(TTH_VARI.recordTop3WitchHutHumanVisit) == 1 then
+					if contains(TTH_VARI.recordTop3WitchHutHumanVisit, strBuildingName) == nil then
+						TTH_COMMON.push(TTH_VARI.recordTop3WitchHutHumanVisit, strBuildingName);
+						if H55_Witch_2_1 ~= 0 then
+							TTH_VARI.recordWitchHut[strBuildingName]["MasteryId"] = H55_Witch_2_1;
+						end;
+					end;
+				end;
+				if length(TTH_VARI.recordTop3WitchHutHumanVisit) == 2 then
+					if contains(TTH_VARI.recordTop3WitchHutHumanVisit, strBuildingName) == nil then
+						TTH_COMMON.push(TTH_VARI.recordTop3WitchHutHumanVisit, strBuildingName);
+						if H55_Witch_3_1 ~= 0 then
+							TTH_VARI.recordWitchHut[strBuildingName]["MasteryId"] = H55_Witch_3_1;
+						end;
+					end;
+				end;
+
+				local iWitchHutMasteryId = TTH_VARI.recordWitchHut[strBuildingName]["MasteryId"];
+				local iMasteryId = TTH_GLOBAL.getMasteryId4WitchHut(strHero, iWitchHutMasteryId);
+				OverrideObjectTooltipNameAndDescription(strBuildingName, TTH_PATH.Visit["WitchHut"]["Title"], TTH_PATH.Visit["WitchHut"]["Mastery"][iWitchHutMasteryId]);
+				
+				TTH_VISIT.radioWitchHut4Type(iPlayer, strHero, strBuildingName);
+			end;
+			function TTH_VISIT.radioWitchHut4Type(iPlayer, strHero, strBuildingName)
+				TTH_VARI.recordBuildingName = strBuildingName;
+				local iWitchHutMasteryId = TTH_VARI.recordWitchHut[strBuildingName]["MasteryId"];
+				local iMasteryId = TTH_GLOBAL.getMasteryId4WitchHut(strHero, iWitchHutMasteryId);
+				local strMasteryName = TTH_TABLE.Mastery[iMasteryId]["Text"];
+				TTH_TABLE.WitchHutTypeOption[1]["Text"] = {
+					TTH_PATH.Visit["WitchHut"]["Fixed"]["Option"]
+					;strMasteryName=strMasteryName
+				}
+				TTH_COMMON.optionRadio(iPlayer, strHero, TTH_TABLE.WitchHutTypeOption, TTH_PATH.Visit["WitchHut"]["RadioTips"]);
+			end;
+			function TTH_VISIT.resetWitchHut(strHero, strBuildingName)
+				TTH_VARI.recordWitchHut[strBuildingName] = {
+					["MasteryId"] = random(13) + 1
+					, ["ResetDay"] = TTH_FINAL.WITCHHUT_RESET_DAY
+				};
+				local strPathMain = TTH_PATH.Visit["WitchHut"]["Success"];
+				TTH_GLOBAL.sign(strHero, strPathMain);
+				OverrideObjectTooltipNameAndDescription(strBuildingName, TTH_PATH.Visit["WitchHut"]["Title"], TTH_PATH.Visit["WitchHut"]["Reset"][6]);
+			end;
+			function TTH_VISIT.refreshWitchHut(iPlayer)
+				TTH_MAIN.debug("TTH_VISIT.refreshWitchHut", iPlayer, nil);
+
+				for i, strBuildingName in TTH_VARI.arrBuilding["BUILDING_WITCH_HUT"] do
+					local iResetDay = TTH_VARI.recordWitchHut[strBuildingName]["ResetDay"];
+					if iResetDay > 0 then
+						iResetDay = iResetDay - 1;
+						TTH_VARI.recordWitchHut[strBuildingName]["ResetDay"] = iResetDay;
+					end;
+					if iResetDay > 0 and iResetDay <= 5 then
+						OverrideObjectTooltipNameAndDescription(strBuildingName, TTH_PATH.Visit["WitchHut"]["Title"], TTH_PATH.Visit["WitchHut"]["Reset"][iResetDay]);
+					elseif iResetDay > 5 then
+						OverrideObjectTooltipNameAndDescription(strBuildingName, TTH_PATH.Visit["WitchHut"]["Title"], TTH_PATH.Visit["WitchHut"]["Reset"][6]);
+					else
+						local iMasteryId = TTH_VARI.recordWitchHut[strBuildingName]["MasteryId"];
+						OverrideObjectTooltipNameAndDescription(strBuildingName, TTH_PATH.Visit["WitchHut"]["Title"], TTH_PATH.Visit["WitchHut"]["Mastery"][iMasteryId]);
+					end;
+				end;
+			end;
+			-- 固定技能
+				function TTH_VISIT.visitWitchHut2Fixed(iPlayer, strHero)
+					TTH_VISIT.checkPreWitchHut2Fixed4NotEnoughSlot(iPlayer, strHero);
+				end;
+				function TTH_VISIT.checkPreWitchHut2Fixed4NotEnoughSlot(iPlayer, strHero)
+					local enumHeroClass = TTH_TABLE.Hero[strHero]["Class"];
+					local arrMastery = {};
+					if contains(TTH_TABLE.WitchHutMasteryGroupMight["Class"], enumHeroClass) ~= nil then
+						arrMastery = TTH_TABLE.WitchHutMasteryGroupMight["Mastery"];
+					elseif contains(TTH_TABLE.WitchHutMasteryGroupMagic["Class"], enumHeroClass) ~= nil then
+						arrMastery = TTH_TABLE.WitchHutMasteryGroupMagic["Mastery"];
+					elseif contains(TTH_TABLE.WitchHutMasteryGroupBarbarian["Class"], enumHeroClass) ~= nil then
+						arrMastery = TTH_TABLE.WitchHutMasteryGroupBarbarian["Mastery"];
+					end;
+					local iCountMastery = 0;
+					local bExistSuitableMastery = 0;
+					local iWitchHutMasteryId = TTH_VARI.recordWitchHut[TTH_VARI.recordBuildingName]["MasteryId"];
+					local iSuitableMasteryId = TTH_GLOBAL.getMasteryId4WitchHut(strHero, iWitchHutMasteryId);
+					for iIndexId, iMasteryId in arrMastery do
+						if GetHeroSkillMastery(strHero, iMasteryId) > 0 then
+							iCountMastery = iCountMastery + 1;
+						end;
+						if GetHeroSkillMastery(strHero, iSuitableMasteryId) > 0 and GetHeroSkillMastery(strHero, iSuitableMasteryId) <= 2 then
+							bExistSuitableMastery = 1;
+						end;
+					end;
+					if iCountMastery == 8 and bExistSuitableMastery == 0 then
+						local strPathMain = TTH_PATH.Visit["WitchHut"]["Fixed"]["NotEnoughSlot"];
+						TTH_GLOBAL.sign(strHero, strPathMain);
+						return nil;
+					end;
+
+					TTH_VISIT.confirmWitchHut2Fixed(iPlayer, strHero);
+				end;
+				function TTH_VISIT.confirmWitchHut2Fixed(iPlayer, strHero)
+					local iWitchHutMasteryId = TTH_VARI.recordWitchHut[TTH_VARI.recordBuildingName]["MasteryId"];
+					local iMasteryId = TTH_GLOBAL.getMasteryId4WitchHut(strHero, iWitchHutMasteryId);
+					local strMasteryName = TTH_TABLE.Mastery[iMasteryId]["Text"];
+					local strText = {
+						TTH_PATH.Visit["WitchHut"]["Fixed"]["Confirm"]
+						;strMasteryName=strMasteryName
+					};
+					local strCallbackOk = "TTH_VISIT.implWitchHut2Fixed("..iPlayer..","..TTH_COMMON.psp(strHero)..")";
+					local strCallbackCancel = "TTH_COMMON.cancelOption()";
+					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strText, strCallbackOk, strCallbackCancel);
+				end;
+				function TTH_VISIT.implWitchHut2Fixed(iPlayer, strHero)
+					local iWitchHutMasteryId = TTH_VARI.recordWitchHut[TTH_VARI.recordBuildingName]["MasteryId"];
+					local iMasteryId = TTH_GLOBAL.getMasteryId4WitchHut(strHero, iWitchHutMasteryId);
+					local strMasteryName = TTH_TABLE.Mastery[iMasteryId]["Text"];
+					GiveHeroSkill(strHero, iMasteryId);
+					sleep(1);
+					TTH_GLOBAL.dealSkillBonus8Hero(strHero); -- 英雄技能效果实装
+					local strPathMain = {
+						TTH_PATH.Visit["WitchHut"]["Fixed"]["Success"]
+						;strMasteryName=strMasteryName
+					}
+					TTH_GLOBAL.sign(strHero, strPathMain);
+					TTH_VISIT.resetWitchHut(strHero, TTH_VARI.recordBuildingName);
+				end;
+			-- 提升技能
+				function TTH_VISIT.visitWitchHut2Bonus(iPlayer, strHero)
+					TTH_VISIT.checkPreWitchHut2Bonus4NotEnoughSlot(iPlayer, strHero);
+				end;
+				function TTH_VISIT.checkPreWitchHut2Bonus4NotEnoughSlot(iPlayer, strHero)
+					local arrMasteryOption = {};
+					local i = 1;
+					local iCountMastery = 0;
+					local enumHeroClass = TTH_TABLE.Hero[strHero]["Class"];
+					for iMasteryId, objMastery in TTH_TABLE.Mastery do
+						if GetHeroSkillMastery(strHero, iMasteryId) > 0	and GetHeroSkillMastery(strHero, iMasteryId) <= 2 then
+							arrMasteryOption[i] = {
+								["Id"] = iMasteryId
+								, ["Text"] = objMastery["Text"]
+								, ["Callback"] = "TTH_VISIT.checkPreWitchHut2Bonus4NotEnoughGold"
+							};
+							i = i + 1;
+						end;
+					end;
+
+					if arrMasteryOption == nil
+						or length(arrMasteryOption) == 0 then
+						local strText = TTH_PATH.Visit["WitchHut"]["Bonus"]["NotOptionMastery"]
+						TTH_GLOBAL.sign(strHero, strText);
+						return nil;
+					end;
+					TTH_COMMON.optionRadio(iPlayer, strHero, arrMasteryOption, TTH_PATH.Visit["WitchHut"]["Bonus"]["RadioTipsMastery"]);
+				end;
+				function TTH_VISIT.checkPreWitchHut2Bonus4NotEnoughGold(iPlayer, strHero, iMasteryId)
+					if GetPlayerResource(iPlayer, GOLD) < TTH_FINAL.WITCHHUT_BONUS_GOLD_COST then
+						local strPathMain = TTH_PATH.Visit["WitchHut"]["Bonus"]["NotEnoughGold"];
+						TTH_GLOBAL.sign(strHero, strPathMain);
+						return nil;
+					end;
+
+					TTH_VISIT.confirmWitchHut2Bonus(iPlayer, strHero, iMasteryId);
+				end;
+				function TTH_VISIT.confirmWitchHut2Bonus(iPlayer, strHero, iMasteryId)
+					local strMasteryName = TTH_TABLE.Mastery[iMasteryId]["Text"];
+					local strText = {
+						TTH_PATH.Visit["WitchHut"]["Bonus"]["Confirm"]
+						;strMasteryName=strMasteryName
+					};
+					local strCallbackOk = "TTH_VISIT.implWitchHut2Bonus("..iPlayer..","..TTH_COMMON.psp(strHero)..","..iMasteryId..")";
+					local strCallbackCancel = "TTH_COMMON.cancelOption()";
+					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strText, strCallbackOk, strCallbackCancel);
+				end;
+				function TTH_VISIT.implWitchHut2Bonus(iPlayer, strHero, iMasteryId)
+					local strMasteryName = TTH_TABLE.Mastery[iMasteryId]["Text"];
+					GiveHeroSkill(strHero, iMasteryId);
+					sleep(1);
+					TTH_GLOBAL.dealSkillBonus8Hero(strHero); -- 英雄技能效果实装
+					local strPathMain = {
+						TTH_PATH.Visit["WitchHut"]["Bonus"]["Success"]
+						;strMasteryName=strMasteryName
+					}
+					TTH_GLOBAL.sign(strHero, strPathMain);
+					TTH_VISIT.resetWitchHut(strHero, TTH_VARI.recordBuildingName);
+				end;
+			-- 技能坠饰
+				function TTH_VISIT.visitWitchHut2Artifact(iPlayer, strHero)
+					TTH_VISIT.checkPreWitchHut2Artifact4NotEnoughGold(iPlayer, strHero);
+				end;
+				function TTH_VISIT.checkPreWitchHut2Artifact4NotEnoughGold(iPlayer, strHero)
+					if GetPlayerResource(iPlayer, GOLD) < TTH_FINAL.WITCHHUT_ARTIFACT_GOLD_COST then
+						local strPathMain = TTH_PATH.Visit["WitchHut"]["Artifact"]["NotEnoughGold"];
+						TTH_GLOBAL.sign(strHero, strPathMain);
+						return nil;
+					end;
+
+					TTH_VISIT.confirmWitchHut2Artifact(iPlayer, strHero);
+				end;
+				function TTH_VISIT.confirmWitchHut2Artifact(iPlayer, strHero)
+					local strText = TTH_PATH.Visit["WitchHut"]["Artifact"]["Confirm"];
+					local strCallbackOk = "TTH_VISIT.implWitchHut2Artifact("..iPlayer..","..TTH_COMMON.psp(strHero)..")";
+					local strCallbackCancel = "TTH_COMMON.cancelOption()";
+					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strText, strCallbackOk, strCallbackCancel);
+				end;
+				function TTH_VISIT.implWitchHut2Artifact(iPlayer, strHero)
+					TTH_GLOBAL.reduceResource(iPlayer, GOLD, TTH_FINAL.WITCHHUT_ARTIFACT_GOLD_COST);
+					GiveArtefact(strHero, ARTIFACT_PEDANT_OF_MASTERY);
+					local strArtifactName = TTH_TABLE.Artifact[ARTIFACT_PEDANT_OF_MASTERY]["Text"];
+					local strPathMain = {
+						TTH_PATH.Visit["WitchHut"]["Artifact"]["Success"]
+						;strArtifactName=strArtifactName
+					}
+					TTH_GLOBAL.sign(strHero, strPathMain);
+					TTH_VISIT.resetWitchHut(strHero, TTH_VARI.recordBuildingName);
 				end;
 
 		-- 先知小屋
@@ -15180,6 +15560,7 @@ doFile("/scripts/H55-Settings.lua");
 						end;
 
 					TTH_GLOBAL.refreshBankRestDay(iPlayer); -- :TODO 更新银行时间剩余时间
+					TTH_VISIT.refreshWitchHut(iPlayer); -- 更新女巫小屋刷新时间
 				end;
 
 			-- 遍历玩家城镇

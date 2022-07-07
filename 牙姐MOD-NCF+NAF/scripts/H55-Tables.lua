@@ -457,239 +457,6 @@
   H55_Fire02fx = "/Effects/_(Effect)/Towns/Inferno/DemonGate.xdb#xpointer(/Effect)";
   H55_Glowfx = "/Effects/_(Effect)/Environment/Inferno/Hellpikes/Hellpikes4x4_3.xdb#xpointer(/Effect)";
 
--- Witch Huts
-  H55_WitchMightB = { --Death Knight,Overlord,Demon Lord
-    SKILL_LOGISTICS,
-    SKILL_LEARNING,
-    SKILL_OFFENCE,
-    SKILL_DEFENCE,
-    SKILL_LEADERSHIP,
-    SKILL_LUCK,
-    SKILL_WAR_MACHINES,
-    SKILL_LIGHT_MAGIC,
-    SKILL_DARK_MAGIC,
-    SKILL_SUMMONING_MAGIC,
-    SKILL_DESTRUCTIVE_MAGIC,
-    SKILL_SORCERY,
-    SKILL_TRAINING
-  };
-  H55_WitchMightG = { --Knight,Ranger,Engineer
-    SKILL_LOGISTICS,
-    SKILL_LEARNING,
-    SKILL_OFFENCE,
-    SKILL_DEFENCE,
-    SKILL_LEADERSHIP,
-    SKILL_LUCK,
-    SKILL_WAR_MACHINES,
-    SKILL_LIGHT_MAGIC,
-    SKILL_DARK_MAGIC,
-    SKILL_SUMMONING_MAGIC,
-    SKILL_DESTRUCTIVE_MAGIC,
-    SKILL_SORCERY,
-    SKILL_TRAINING
-  };
-  H55_WitchMindG = { --Paladin,Retribution,Warden,Seer
-    SKILL_LOGISTICS,
-    SKILL_LEARNING,
-    SKILL_OFFENCE,
-    SKILL_DEFENCE,
-    SKILL_LEADERSHIP,
-    SKILL_LUCK,
-    SKILL_WAR_MACHINES,
-    SKILL_LIGHT_MAGIC,
-    SKILL_DARK_MAGIC,
-    SKILL_SUMMONING_MAGIC,
-    SKILL_DESTRUCTIVE_MAGIC,
-    SKILL_SORCERY,
-    SKILL_TRAINING
-  };
-  H55_WitchMindB = { --Gatekeeper,Reaver,Assassin
-    SKILL_LOGISTICS,
-    SKILL_LEARNING,
-    SKILL_OFFENCE,
-    SKILL_DEFENCE,
-    SKILL_LEADERSHIP,
-    SKILL_LUCK,
-    SKILL_WAR_MACHINES,
-    SKILL_LIGHT_MAGIC,
-    SKILL_DARK_MAGIC,
-    SKILL_SUMMONING_MAGIC,
-    SKILL_DESTRUCTIVE_MAGIC,
-    SKILL_SORCERY,
-    SKILL_INVOCATION
-  };
-  H55_WitchMagic = {
-    SKILL_LOGISTICS,
-    SKILL_LEARNING,
-    SKILL_OFFENCE,
-    SKILL_DEFENCE,
-    SKILL_LEADERSHIP,
-    SKILL_LUCK,
-    SKILL_WAR_MACHINES,
-    SKILL_LIGHT_MAGIC,
-    SKILL_DARK_MAGIC,
-    SKILL_SUMMONING_MAGIC,
-    SKILL_DESTRUCTIVE_MAGIC,
-    SKILL_SORCERY,
-    SKILL_INVOCATION
-  };
-  H55_WitchBarbarian = {
-    SKILL_LOGISTICS,
-    HERO_SKILL_BARBARIAN_LEARNING,
-    SKILL_OFFENCE,
-    SKILL_DEFENCE,
-    SKILL_LEADERSHIP,
-    SKILL_LUCK,
-    SKILL_WAR_MACHINES,
-    HERO_SKILL_SHATTER_LIGHT_MAGIC,
-    HERO_SKILL_SHATTER_DARK_MAGIC,
-    HERO_SKILL_SHATTER_SUMMONING_MAGIC,
-    HERO_SKILL_SHATTER_DESTRUCTIVE_MAGIC,
-    HERO_SKILL_VOICE,
-    SKILL_TRAINING
-  };
-  H55_WitchSpecial = { --Runemage
-    SKILL_LOGISTICS,
-    SKILL_LEARNING,
-    SKILL_OFFENCE,
-    SKILL_DEFENCE,
-    SKILL_LEADERSHIP,
-    SKILL_LUCK,
-    SKILL_WAR_MACHINES,
-    SKILL_LIGHT_MAGIC,
-    SKILL_DARK_MAGIC,
-    SKILL_SUMMONING_MAGIC,
-    SKILL_DESTRUCTIVE_MAGIC,
-    SKILL_SORCERY,
-    SKILL_INVOCATION
-  };
-  H55_WitchMightGText = {
-    "/Text/Game/Scripts/Witch/Logistics.txt",
-    "/Text/Game/Scripts/Witch/Enlightment.txt",
-    "/Text/Game/Scripts/Witch/Offense.txt",
-    "/Text/Game/Scripts/Witch/Defense.txt",
-    "/Text/Game/Scripts/Witch/Leadership.txt",
-    "/Text/Game/Scripts/Witch/Luck.txt",
-    "/Text/Game/Scripts/Witch/Warmachines.txt",
-    "/Text/Game/Scripts/Witch/Lightmagic.txt",
-    "/Text/Game/Scripts/Witch/Darkmagic.txt",
-    "/Text/Game/Scripts/Witch/Summoningmagic.txt",
-    "/Text/Game/Scripts/Witch/Destructivemagic.txt",
-    "/Text/Game/Scripts/Witch/Sorcery.txt",
-    "/Text/Game/Scripts/Witch/Combat.txt"
-  };
-  H55_WitchMightBText = {
-    "/Text/Game/Scripts/Witch/Logistics.txt",
-    "/Text/Game/Scripts/Witch/Enlightment.txt",
-    "/Text/Game/Scripts/Witch/Offense.txt",
-    "/Text/Game/Scripts/Witch/Defense.txt",
-    "/Text/Game/Scripts/Witch/Leadership.txt",
-    "/Text/Game/Scripts/Witch/Luck.txt",
-    "/Text/Game/Scripts/Witch/Warmachines.txt",
-    "/Text/Game/Scripts/Witch/Lightmagic.txt",
-    "/Text/Game/Scripts/Witch/Darkmagic.txt",
-    "/Text/Game/Scripts/Witch/Summoningmagic.txt",
-    "/Text/Game/Scripts/Witch/Destructivemagic.txt",
-    "/Text/Game/Scripts/Witch/Sorcery.txt",
-    "/Text/Game/Scripts/Witch/Combat.txt"
-  };
-  H55_WitchMindGText = {
-    "/Text/Game/Scripts/Witch/Logistics.txt",
-    "/Text/Game/Scripts/Witch/Enlightment.txt",
-    "/Text/Game/Scripts/Witch/Offense.txt",
-    "/Text/Game/Scripts/Witch/Defense.txt",
-    "/Text/Game/Scripts/Witch/Leadership.txt",
-    "/Text/Game/Scripts/Witch/Luck.txt",
-    "/Text/Game/Scripts/Witch/Warmachines.txt",
-    "/Text/Game/Scripts/Witch/Lightmagic.txt",
-    "/Text/Game/Scripts/Witch/Darkmagic.txt",
-    "/Text/Game/Scripts/Witch/Summoningmagic.txt",
-    "/Text/Game/Scripts/Witch/Destructivemagic.txt",
-    "/Text/Game/Scripts/Witch/Sorcery.txt",
-    "/Text/Game/Scripts/Witch/Combat.txt"
-  };
-  H55_WitchMindBText = {
-    "/Text/Game/Scripts/Witch/Logistics.txt",
-    "/Text/Game/Scripts/Witch/Enlightment.txt",
-    "/Text/Game/Scripts/Witch/Offense.txt",
-    "/Text/Game/Scripts/Witch/Defense.txt",
-    "/Text/Game/Scripts/Witch/Leadership.txt",
-    "/Text/Game/Scripts/Witch/Luck.txt",
-    "/Text/Game/Scripts/Witch/Warmachines.txt",
-    "/Text/Game/Scripts/Witch/Lightmagic.txt",
-    "/Text/Game/Scripts/Witch/Darkmagic.txt",
-    "/Text/Game/Scripts/Witch/Summoningmagic.txt",
-    "/Text/Game/Scripts/Witch/Destructivemagic.txt",
-    "/Text/Game/Scripts/Witch/Sorcery.txt",
-    "/Text/Game/Scripts/Witch/Occultism.txt"
-  };
-  H55_WitchMagicText = {
-    "/Text/Game/Scripts/Witch/Logistics.txt",
-    "/Text/Game/Scripts/Witch/Enlightment.txt",
-    "/Text/Game/Scripts/Witch/Offense.txt",
-    "/Text/Game/Scripts/Witch/Defense.txt",
-    "/Text/Game/Scripts/Witch/Leadership.txt",
-    "/Text/Game/Scripts/Witch/Luck.txt",
-    "/Text/Game/Scripts/Witch/Warmachines.txt",
-    "/Text/Game/Scripts/Witch/Lightmagic.txt",
-    "/Text/Game/Scripts/Witch/Darkmagic.txt",
-    "/Text/Game/Scripts/Witch/Summoningmagic.txt",
-    "/Text/Game/Scripts/Witch/Destructivemagic.txt",
-    "/Text/Game/Scripts/Witch/Sorcery.txt",
-    "/Text/Game/Scripts/Witch/Occultism.txt"
-  };
-  H55_WitchBarbarianText = {
-    "/Text/Game/Scripts/Witch/Logistics.txt",
-    "/Text/Game/Scripts/Witch/Learning.txt",
-    "/Text/Game/Scripts/Witch/Offense.txt",
-    "/Text/Game/Scripts/Witch/Defense.txt",
-    "/Text/Game/Scripts/Witch/Leadership.txt",
-    "/Text/Game/Scripts/Witch/Luck.txt",
-    "/Text/Game/Scripts/Witch/Warmachines.txt",
-    "/Text/Game/Scripts/Witch/Shatterlight.txt",
-    "/Text/Game/Scripts/Witch/Shatterdark.txt",
-    "/Text/Game/Scripts/Witch/Shattersummoning.txt",
-    "/Text/Game/Scripts/Witch/Shatterdestructive.txt",
-    "/Text/Game/Scripts/Witch/Voice.txt",
-    "/Text/Game/Scripts/Witch/Combat.txt"
-  };
-  H55_WitchSpecialText = {
-    "/Text/Game/Scripts/Witch/Logistics.txt",
-    "/Text/Game/Scripts/Witch/Enlightment.txt",
-    "/Text/Game/Scripts/Witch/Offense.txt",
-    "/Text/Game/Scripts/Witch/Defense.txt",
-    "/Text/Game/Scripts/Witch/Leadership.txt",
-    "/Text/Game/Scripts/Witch/Luck.txt",
-    "/Text/Game/Scripts/Witch/Warmachines.txt",
-    "/Text/Game/Scripts/Witch/Lightmagic.txt",
-    "/Text/Game/Scripts/Witch/Darkmagic.txt",
-    "/Text/Game/Scripts/Witch/Summoningmagic.txt",
-    "/Text/Game/Scripts/Witch/Destructivemagic.txt",
-    "/Text/Game/Scripts/Witch/Sorcery.txt",
-    "/Text/Game/Scripts/Witch/Occultism.txt"
-  };
-  H55_WitchMasteryText = {
-    [0] = "/Text/Game/Scripts/Witch/Basic.txt",
-    [1] = "/Text/Game/Scripts/Witch/Advanced.txt",
-    [2] = "/Text/Game/Scripts/Witch/Expert.txt",
-    [3] = "/Text/Game/Scripts/Witch/Ultimate.txt"
-  };
-  H55_WitchTipsText = {
-    "/Text/Game/Scripts/Witch/Tips_1_logistics.txt",
-    "/Text/Game/Scripts/Witch/Tips_2_enlightment.txt",
-    "/Text/Game/Scripts/Witch/Tips_3_offense.txt",
-    "/Text/Game/Scripts/Witch/Tips_4_defense.txt",
-    "/Text/Game/Scripts/Witch/Tips_5_leadership.txt",
-    "/Text/Game/Scripts/Witch/Tips_6_luck.txt",
-    "/Text/Game/Scripts/Witch/Tips_7_warmachines.txt",
-    "/Text/Game/Scripts/Witch/Tips_8_lightmagic.txt",
-    "/Text/Game/Scripts/Witch/Tips_9_darkmagic.txt",
-    "/Text/Game/Scripts/Witch/Tips_10_summoningmagic.txt",
-    "/Text/Game/Scripts/Witch/Tips_11_destructivemagic.txt",
-    "/Text/Game/Scripts/Witch/Tips_12_sorcery.txt",
-    "/Text/Game/Scripts/Witch/Tips_13_special.txt"
-  };
-
 -- 宝屋剩余天数 文案
   H55_BankTipsTextType = {
     "/Text/Game/Scripts/Bank/Type_0.txt",
@@ -9684,6 +9451,82 @@
         TTH_PATH.Visit["Bank"]["Normal"] = TTH_PATH.Visit["Bank"]["Pre"].."Normal.txt";
         TTH_PATH.Visit["Bank"]["Adv"] = TTH_PATH.Visit["Bank"]["Pre"].."Adv.txt";
         TTH_PATH.Visit["Bank"]["RadioTips"] = TTH_PATH.Visit["Bank"]["Pre"].."RadioTips.txt";
+      TTH_PATH.Visit["WitchHut"] = {};
+        TTH_PATH.Visit["WitchHut"]["Pre"] = "/Text/Game/Scripts/TTH_Path/Visit/WitchHut/";
+        TTH_PATH.Visit["WitchHut"]["Text"] = TTH_PATH.Visit["WitchHut"]["Pre"].."Text.txt";
+        TTH_PATH.Visit["WitchHut"]["Title"] = TTH_PATH.Visit["WitchHut"]["Pre"].."Title.txt";
+        TTH_PATH.Visit["WitchHut"]["RadioTips"] = TTH_PATH.Visit["WitchHut"]["Pre"].."RadioTips.txt";
+        TTH_PATH.Visit["WitchHut"]["HasLeave"] = TTH_PATH.Visit["WitchHut"]["Pre"].."HasLeave.txt";
+        TTH_PATH.Visit["WitchHut"]["Success"] = TTH_PATH.Visit["WitchHut"]["Pre"].."Success.txt";
+        TTH_PATH.Visit["WitchHut"]["Mastery"] = {};
+        TTH_PATH.Visit["WitchHut"]["Mastery"]["Pre"] = TTH_PATH.Visit["WitchHut"]["Pre"].."Mastery/";
+        TTH_PATH.Visit["WitchHut"]["Mastery"][1] = TTH_PATH.Visit["WitchHut"]["Mastery"]["Pre"].."1_logistics.txt";
+        TTH_PATH.Visit["WitchHut"]["Mastery"][2] = TTH_PATH.Visit["WitchHut"]["Mastery"]["Pre"].."2_enlightment.txt";
+        TTH_PATH.Visit["WitchHut"]["Mastery"][3] = TTH_PATH.Visit["WitchHut"]["Mastery"]["Pre"].."3_offense.txt";
+        TTH_PATH.Visit["WitchHut"]["Mastery"][4] = TTH_PATH.Visit["WitchHut"]["Mastery"]["Pre"].."4_defense.txt";
+        TTH_PATH.Visit["WitchHut"]["Mastery"][5] = TTH_PATH.Visit["WitchHut"]["Mastery"]["Pre"].."5_leadership.txt";
+        TTH_PATH.Visit["WitchHut"]["Mastery"][6] = TTH_PATH.Visit["WitchHut"]["Mastery"]["Pre"].."6_luck.txt";
+        TTH_PATH.Visit["WitchHut"]["Mastery"][7] = TTH_PATH.Visit["WitchHut"]["Mastery"]["Pre"].."7_warmachines.txt";
+        TTH_PATH.Visit["WitchHut"]["Mastery"][8] = TTH_PATH.Visit["WitchHut"]["Mastery"]["Pre"].."8_lightmagic.txt";
+        TTH_PATH.Visit["WitchHut"]["Mastery"][9] = TTH_PATH.Visit["WitchHut"]["Mastery"]["Pre"].."9_darkmagic.txt";
+        TTH_PATH.Visit["WitchHut"]["Mastery"][10] = TTH_PATH.Visit["WitchHut"]["Mastery"]["Pre"].."10_summoningmagic.txt";
+        TTH_PATH.Visit["WitchHut"]["Mastery"][11] = TTH_PATH.Visit["WitchHut"]["Mastery"]["Pre"].."11_destructivemagic.txt";
+        TTH_PATH.Visit["WitchHut"]["Mastery"][12] = TTH_PATH.Visit["WitchHut"]["Mastery"]["Pre"].."12_sorcery.txt";
+        TTH_PATH.Visit["WitchHut"]["Mastery"][13] = TTH_PATH.Visit["WitchHut"]["Mastery"]["Pre"].."13_special.txt";
+        TTH_PATH.Visit["WitchHut"]["Reset"] = {};
+        TTH_PATH.Visit["WitchHut"]["Reset"]["Pre"] = TTH_PATH.Visit["WitchHut"]["Pre"].."Reset/";
+        TTH_PATH.Visit["WitchHut"]["Reset"][1] = TTH_PATH.Visit["WitchHut"]["Reset"]["Pre"].."Day_1.txt";
+        TTH_PATH.Visit["WitchHut"]["Reset"][2] = TTH_PATH.Visit["WitchHut"]["Reset"]["Pre"].."Day_2.txt";
+        TTH_PATH.Visit["WitchHut"]["Reset"][3] = TTH_PATH.Visit["WitchHut"]["Reset"]["Pre"].."Day_3.txt";
+        TTH_PATH.Visit["WitchHut"]["Reset"][4] = TTH_PATH.Visit["WitchHut"]["Reset"]["Pre"].."Day_4.txt";
+        TTH_PATH.Visit["WitchHut"]["Reset"][5] = TTH_PATH.Visit["WitchHut"]["Reset"]["Pre"].."Day_5.txt";
+        TTH_PATH.Visit["WitchHut"]["Reset"][6] = TTH_PATH.Visit["WitchHut"]["Reset"]["Pre"].."Day_6.txt";
+        TTH_PATH.Visit["WitchHut"]["Fixed"] = {};
+        TTH_PATH.Visit["WitchHut"]["Fixed"]["Pre"] = TTH_PATH.Visit["WitchHut"]["Pre"].."Fixed/";
+        TTH_PATH.Visit["WitchHut"]["Fixed"]["Text"] = TTH_PATH.Visit["WitchHut"]["Fixed"]["Pre"].."Text.txt";
+        TTH_PATH.Visit["WitchHut"]["Fixed"]["Option"] = TTH_PATH.Visit["WitchHut"]["Fixed"]["Pre"].."Option.txt";
+        TTH_PATH.Visit["WitchHut"]["Fixed"]["NotEnoughSlot"] = TTH_PATH.Visit["WitchHut"]["Fixed"]["Pre"].."NotEnoughSlot.txt";
+        TTH_PATH.Visit["WitchHut"]["Fixed"]["Confirm"] = TTH_PATH.Visit["WitchHut"]["Fixed"]["Pre"].."Confirm.txt";
+        TTH_PATH.Visit["WitchHut"]["Fixed"]["Success"] = TTH_PATH.Visit["WitchHut"]["Fixed"]["Pre"].."Success.txt";
+        TTH_PATH.Visit["WitchHut"]["Bonus"] = {};
+        TTH_PATH.Visit["WitchHut"]["Bonus"]["Pre"] = TTH_PATH.Visit["WitchHut"]["Pre"].."Bonus/";
+        TTH_PATH.Visit["WitchHut"]["Bonus"]["Text"] = TTH_PATH.Visit["WitchHut"]["Bonus"]["Pre"].."Text.txt";
+        TTH_PATH.Visit["WitchHut"]["Bonus"]["Option"] = TTH_PATH.Visit["WitchHut"]["Bonus"]["Pre"].."Option.txt";
+        TTH_PATH.Visit["WitchHut"]["Bonus"]["NotOptionMastery"] = TTH_PATH.Visit["WitchHut"]["Bonus"]["Pre"].."NotOptionMastery.txt";
+        TTH_PATH.Visit["WitchHut"]["Bonus"]["NotEnoughGold"] = TTH_PATH.Visit["WitchHut"]["Bonus"]["Pre"].."NotEnoughGold.txt";
+        TTH_PATH.Visit["WitchHut"]["Bonus"]["Confirm"] = TTH_PATH.Visit["WitchHut"]["Bonus"]["Pre"].."Confirm.txt";
+        TTH_PATH.Visit["WitchHut"]["Bonus"]["Success"] = TTH_PATH.Visit["WitchHut"]["Bonus"]["Pre"].."Success.txt";
+        TTH_PATH.Visit["WitchHut"]["Artifact"] = {};
+        TTH_PATH.Visit["WitchHut"]["Artifact"]["Pre"] = TTH_PATH.Visit["WitchHut"]["Pre"].."Artifact/";
+        TTH_PATH.Visit["WitchHut"]["Artifact"]["Text"] = TTH_PATH.Visit["WitchHut"]["Artifact"]["Pre"].."Text.txt";
+        TTH_PATH.Visit["WitchHut"]["Artifact"]["Option"] = TTH_PATH.Visit["WitchHut"]["Artifact"]["Pre"].."Option.txt";
+        TTH_PATH.Visit["WitchHut"]["Artifact"]["NotEnoughGold"] = TTH_PATH.Visit["WitchHut"]["Artifact"]["Pre"].."NotEnoughGold.txt";
+        TTH_PATH.Visit["WitchHut"]["Artifact"]["Confirm"] = TTH_PATH.Visit["WitchHut"]["Artifact"]["Pre"].."Confirm.txt";
+        TTH_PATH.Visit["WitchHut"]["Artifact"]["Success"] = TTH_PATH.Visit["WitchHut"]["Artifact"]["Pre"].."Success.txt";
+
+      TTH_PATH.WitchHutDesc4Mastery = {
+        "/Text/Game/Scripts/TTH_PATH/Visit/Witch/Mastery/1_logistics.txt"
+        , "/Text/Game/Scripts/TTH_PATH/Visit/Witch/Mastery/2_enlightment.txt"
+        , "/Text/Game/Scripts/TTH_PATH/Visit/Witch/Mastery/3_offense.txt"
+        , "/Text/Game/Scripts/TTH_PATH/Visit/Witch/Mastery/4_defense.txt"
+        , "/Text/Game/Scripts/TTH_PATH/Visit/Witch/Mastery/5_leadership.txt"
+        , "/Text/Game/Scripts/TTH_PATH/Visit/Witch/Mastery/6_luck.txt"
+        , "/Text/Game/Scripts/TTH_PATH/Visit/Witch/Mastery/7_warmachines.txt"
+        , "/Text/Game/Scripts/TTH_PATH/Visit/Witch/Mastery/8_lightmagic.txt"
+        , "/Text/Game/Scripts/TTH_PATH/Visit/Witch/Mastery/9_darkmagic.txt"
+        , "/Text/Game/Scripts/TTH_PATH/Visit/Witch/Mastery/10_summoningmagic.txt"
+        , "/Text/Game/Scripts/TTH_PATH/Visit/Witch/Mastery/11_destructivemagic.txt"
+        , "/Text/Game/Scripts/TTH_PATH/Visit/Witch/Mastery/12_sorcery.txt"
+        , "/Text/Game/Scripts/TTH_PATH/Visit/Witch/Mastery/13_special.txt"
+      };
+      TTH_PATH.WitchHutDesc4Reset = {
+        "/Text/Game/Scripts/TTH_PATH/Visit/Witch/Reset/Day_1.txt"
+        , "/Text/Game/Scripts/TTH_PATH/Visit/Witch/Reset/Day_2.txt"
+        , "/Text/Game/Scripts/TTH_PATH/Visit/Witch/Reset/Day_3.txt"
+        , "/Text/Game/Scripts/TTH_PATH/Visit/Witch/Reset/Day_4.txt"
+        , "/Text/Game/Scripts/TTH_PATH/Visit/Witch/Reset/Day_5.txt"
+        , "/Text/Game/Scripts/TTH_PATH/Visit/Witch/Reset/Day_5+.txt"
+      };
 
     TTH_PATH.Mayor = {};
       TTH_PATH.Mayor["BeginExpedition"] = "/Text/Game/Scripts/TTH_Path/Mayor/BeginExpedition.txt";

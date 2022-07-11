@@ -1650,6 +1650,7 @@ doFile('/scripts/combat-startup.lua')
 						-- 减员
 						if length(listCreaturesBeEffected) >= 1 then
 							-- Haven
+								H55SMOD_MiddlewareListener["Avitus"]["function"]("Avitus", iSide, itemUnitLast, listCreaturesBeEffected);
 							-- Sylvan
 							-- Academy
 							-- Inferno
@@ -2991,6 +2992,70 @@ doFile('/scripts/combat-startup.lua')
 				end;
 			end;
 			H55SMOD_MiddlewareListener["Sanguinius"]["function"] = Events_MiddlewareListener_Implement_Sanguinius;
+
+		-- Avitus
+			H55SMOD_MiddlewareListener["Avitus"] = {};
+			function Events_MiddlewareListener_Implement_Avitus(strHero, iSide, itemUnitLast, listCreaturesBeEffected)
+				local iOppositeSide = getSide(iSide, 1);
+				if GetHero(iOppositeSide) ~= nil and GetHeroName(GetHero(iOppositeSide)) == strHero and itemUnitLast["iUnitType"] == CREATURE_CROSSBOW then
+					local strCreatureCaster = itemUnitLast["strUnitName"];
+					local itemCreatureCaster = geneUnitStatus(strCreatureCaster);
+					if IsCombatUnit(strCreatureCaster) ~= nil and itemCreatureCaster["iUnitNumber"] > 0 then
+						local iLenCreaturesBeEffected = length(listCreaturesBeEffected);
+						if iLenCreaturesBeEffected > 0 then
+							local strCreatureBeEffected = listCreaturesBeEffected[0]["strUnitName"];
+							local itemCreatureBeEffected = geneUnitStatus(strCreatureBeEffected);
+							if IsCombatUnit(strCreatureBeEffected) ~= nil and itemCreatureBeEffected["iUnitNumber"] > 0 then
+								if TTH_SKILL_EFFECT_COMBAT_HERO[iOppositeSide][HERO_SKILL_BALLISTA] == 1
+									or TTH_SKILL_EFFECT_COMBAT_HERO[iOppositeSide][HERO_SKILL_TRIPLE_BALLISTA] == 1
+									or TTH_ARTIFACT_EFFECT_COMBAT_HERO[iOppositeSide][ARTIFACT_RING_OF_MACHINE_AFFINITY] == 1
+									or TTH_SKILL_EFFECT_COMBAT_HERO[iOppositeSide][HERO_SKILL_CHILLING_STEEL] == 1
+									or TTH_SKILL_EFFECT_COMBAT_HERO[iOppositeSide][HERO_SKILL_WILDFIRE] == 1 then
+									combatSetPause(1);
+									ShowFlyingSign(TTHCS_PATH["Talent"]["Avitus"]["Effect"], itemCreatureCaster["strUnitName"], 5);
+									if TTH_SKILL_EFFECT_COMBAT_HERO[iOppositeSide][HERO_SKILL_BALLISTA] == 1 then
+										startThread(Thread_Command_UnitCastAreaSpell, strCreatureCaster, SPELL_ABILITY_SCATTER_SHOT, itemCreatureBeEffected["iPositionX"], itemCreatureBeEffected["iPositionY"], 2);
+										sleep(50);
+										print(strCreatureCaster.." scatter_shot to "..itemCreatureBeEffected["strUnitName"]);
+									end;
+									if TTH_SKILL_EFFECT_COMBAT_HERO[iOppositeSide][HERO_SKILL_TRIPLE_BALLISTA] == 1 then
+										startThread(Thread_Command_UnitCastAreaSpell, strCreatureCaster, SPELL_ABILITY_SCATTER_SHOT, itemCreatureBeEffected["iPositionX"], itemCreatureBeEffected["iPositionY"], 2);
+										sleep(50);
+										print(strCreatureCaster.." scatter_shot to "..itemCreatureBeEffected["strUnitName"]);
+									end;
+									if TTH_ARTIFACT_EFFECT_COMBAT_HERO[iOppositeSide][ARTIFACT_RING_OF_MACHINE_AFFINITY] == 1 then
+										startThread(Thread_Command_UnitCastAreaSpell, strCreatureCaster, SPELL_ABILITY_SCATTER_SHOT, itemCreatureBeEffected["iPositionX"], itemCreatureBeEffected["iPositionY"], 2);
+										sleep(50);
+										print(strCreatureCaster.." scatter_shot to "..itemCreatureBeEffected["strUnitName"]);
+									end;
+									if TTH_SKILL_EFFECT_COMBAT_HERO[iOppositeSide][HERO_SKILL_CHILLING_STEEL] == 1 then
+										local strCreatureSummon = Thread_Command_SummonCreature(iOppositeSide, CREATURE_CROSSBOW, itemCreatureCaster["iUnitNumber"], itemCreatureCaster["iPositionX"], itemCreatureCaster["iPositionY"]);
+										if strCreatureSummon ~= nil and IsCombatUnit(strCreatureSummon) ~= nil then
+											Thread_Command_UnitCastAreaSpell_IgnoreMana(strCreatureSummon, SPELL_FROST_RING, itemCreatureBeEffected["iPositionX"], itemCreatureBeEffected["iPositionY"]);
+											print(strCreatureSummon.." cast frost_ring to "..itemCreatureBeEffected["strUnitName"]);
+											sleep(50);
+											startThread(Thread_Command_RemoveCombatUnit, iOppositeSide, strCreatureSummon);
+											sleep(20);
+										end;
+									end;
+									if TTH_SKILL_EFFECT_COMBAT_HERO[iOppositeSide][HERO_SKILL_WILDFIRE] == 1 then
+										local strCreatureSummon = Thread_Command_SummonCreature(iOppositeSide, CREATURE_CROSSBOW, itemCreatureCaster["iUnitNumber"], itemCreatureCaster["iPositionX"], itemCreatureCaster["iPositionY"]);
+										if strCreatureSummon ~= nil and IsCombatUnit(strCreatureSummon) ~= nil then
+											Thread_Command_UnitCastAreaSpell_IgnoreMana(strCreatureSummon, SPELL_FIREBALL, itemCreatureBeEffected["iPositionX"], itemCreatureBeEffected["iPositionY"]);
+											print(strCreatureSummon.." cast fireball to "..itemCreatureBeEffected["strUnitName"]);
+											sleep(50);
+											startThread(Thread_Command_RemoveCombatUnit, iOppositeSide, strCreatureSummon);
+											sleep(20);
+										end;
+									end;
+									combatSetPause(nil);
+								end;
+							end;
+						end;
+					end;
+				end;
+			end;
+			H55SMOD_MiddlewareListener["Avitus"]["function"] = Events_MiddlewareListener_Implement_Avitus;
 
 	-- Sylvan
 		-- Gelu

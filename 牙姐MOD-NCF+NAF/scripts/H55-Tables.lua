@@ -1,7 +1,7 @@
 -- RaceHero
   H55SMOD_HavenHeroes = {
       "Nathaniel", "Orrin", "Mardigo", "Ving", "Sarge", "Isabell", "Christian", "RedHeavenHero02", "RedHeavenHero05", "Brem"
-      , "Nicolai", "GodricMP", "Alaric", "Axel", "SaintIsabell", "Maeve", "RedHeavenHero06", "Caldwell", "OrtanCassius", "Sanguinius"
+      , "Nicolai", "GodricMP", "Alaric", "Axel", "SaintIsabell", "Maeve", "RedHeavenHero06", "Caldwell", "OrtanCassius", "Sanguinius", "Avitus"
       , "RedHeavenHero03", "Orlando", "Markal"
   };
   H55SMOD_SylvanHeroes = {
@@ -41,7 +41,7 @@
 -- AllHero
   H55SMOD_Heroes = {
       "Nathaniel", "Orrin", "Mardigo", "Ving", "Sarge", "Isabell", "Christian", "RedHeavenHero02", "RedHeavenHero05", "Brem"
-      , "Nicolai", "GodricMP", "Alaric", "Axel", "SaintIsabell", "Maeve", "RedHeavenHero06", "Caldwell", "OrtanCassius", "Sanguinius"
+      , "Nicolai", "GodricMP", "Alaric", "Axel", "SaintIsabell", "Maeve", "RedHeavenHero06", "Caldwell", "OrtanCassius", "Sanguinius", "Avitus"
       , "RedHeavenHero03", "Orlando", "Markal"
       , "Metlirn", "Ossir", "Nadaur", "Linaas", "Heam", "Gelu", "Arniel", "Kyrre"
       , "Gillion", "Itil", "Melodia", "Jenova", "Mephala", "Gem"
@@ -70,7 +70,7 @@
   H55_Knights = {"Nathaniel","Orrin","Mardigo","Ving","Sarge","Isabell","Christian","RedHeavenHero02","RedHeavenHero05","Brem"};
   H55_Paladins = {"Nicolai","GodricMP","Alaric","Axel","SaintIsabell","Maeve","RedHeavenHero06","Caldwell"};
   H55_Heretics = {"RedHeavenHero03","Orlando","Markal"};
-  H55_Retributions = {"OrtanCassius", "Sanguinius"};
+  H55_Retributions = {"OrtanCassius", "Sanguinius", "Avitus"};
 
   H55_Rangers = {"Metlirn","Ossir","Nadaur","Linaas","Heam","Gelu","Arniel","Kyrre"};
   H55_Wardens = {"Gillion","Itil","Melodia","Jenova","Mephala","Gem"};
@@ -101,7 +101,7 @@
   H55_Witches = {};
 
 -- Hero8Race
-  H55_HavenHeroes = {"Nicolai","GodricMP","Maeve","Nathaniel","Axel","Brem","Caldwell","OrtanCassius","Sanguinius","Markal","Orlando","RedHeavenHero03","RedHeavenHero06","Alaric","RedHeavenHero01","Christian","Sarge","Isabell","Mardigo","Ving","Orrin","Godric","Freyda","Ornella","GhostFSLord","Giar","Glen","Isabell_A1","SaintIsabell","RedHeavenHero01","RedHeavenHero02","RedHeavenHero05"};
+  H55_HavenHeroes = {"Nicolai","GodricMP","Maeve","Nathaniel","Axel","Brem","Caldwell","OrtanCassius","Sanguinius","Avitus","Markal","Orlando","RedHeavenHero03","RedHeavenHero06","Alaric","RedHeavenHero01","Christian","Sarge","Isabell","Mardigo","Ving","Orrin","Godric","Freyda","Ornella","GhostFSLord","Giar","Glen","Isabell_A1","SaintIsabell","RedHeavenHero01","RedHeavenHero02","RedHeavenHero05"};
   H55_SylvanHeroes = {"Heam","Metlirn","Gelu","Nadaur","Linaas","Ossir","Jenova","Kyrre","Mephala","Arniel","Ildar","Melodia","Gillion","Vaniel","Elleshar","Vinrael","Itil","Diraya","Gem","Tieru"};
   H55_InfernoHeroes = {"Marder","Sheltem","Orlando2","Calh","Calid","Jazaz","Gamor","Guarg","Erasial","Kha-Beleth","Veyer","DMessiah","Efion","Ash","Nymus","Oddrema","Malustar","Grok","Sovereign","Deleb","Calid2","Zydar","Jeddite","Agrael","Biara"};
   H55_DungeonHeroes = {"Agbeth","Ranleth","Sylsai","Urunir","Menel","Ferigl","Dalom","Eruina","Ohtarig","Welygg","Thralsai","Almegir","Raelag","Kastore","Kelodin","Shadwyn","Sephinroth","Inagost"};
@@ -3345,9 +3345,9 @@
     , [193] = {
       ["ID"] = CREATURE_193
       , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_193/Name.txt"
-      , ["GROWTH"] = 1
-      , ["TIER"] = 1
-      , ["POWER"] = 0
+      , ["GROWTH"] = 5
+      , ["TIER"] = 4
+      , ["POWER"] = 524
     }
     , [194] = {
       ["ID"] = CREATURE_194
@@ -9561,6 +9561,7 @@
         TTH_PATH.Talent["Cast"]["Hero"]["Pre"] = TTH_PATH.Talent["Cast"]["Pre"].."Hero/";
         TTH_PATH.Talent["Cast"]["Hero"]["OrtanCassius"] = TTH_PATH.Talent["Cast"]["Hero"]["Pre"].."OrtanCassius.txt";
         TTH_PATH.Talent["Cast"]["Hero"]["Sanguinius"] = TTH_PATH.Talent["Cast"]["Hero"]["Pre"].."Sanguinius.txt";
+        TTH_PATH.Talent["Cast"]["Hero"]["Avitus"] = TTH_PATH.Talent["Cast"]["Hero"]["Pre"].."Avitus.txt";
         TTH_PATH.Talent["Cast"]["Hero"]["Gelu"] = TTH_PATH.Talent["Cast"]["Hero"]["Pre"].."Gelu.txt";
         TTH_PATH.Talent["Cast"]["Hero"]["Itil"] = TTH_PATH.Talent["Cast"]["Hero"]["Pre"].."Itil.txt";
         TTH_PATH.Talent["Cast"]["Hero"]["Dracon"] = TTH_PATH.Talent["Cast"]["Hero"]["Pre"].."Dracon.txt";
@@ -9580,6 +9581,9 @@
         TTH_PATH.Talent["Brem"]["Pre"] = TTH_PATH.Talent["Pre"].."010-Brem/";
         TTH_PATH.Talent["Brem"]["Text"] = TTH_PATH.Talent["Brem"]["Pre"].."Text.txt";
         TTH_PATH.Talent["Brem"]["NotEnoughTimes"] = TTH_PATH.Talent["Brem"]["Pre"].."NotEnoughTimes.txt";
+        TTH_PATH.Talent["Brem"]["OptionTemplate"] = TTH_PATH.Talent["Brem"]["Pre"].."OptionTemplate.txt";
+        TTH_PATH.Talent["Brem"]["NoSuitableStables"] = TTH_PATH.Talent["Brem"]["Pre"].."NoSuitableStables.txt";
+        TTH_PATH.Talent["Brem"]["RadioTips"] = TTH_PATH.Talent["Brem"]["Pre"].."RadioTips.txt";
         TTH_PATH.Talent["Brem"]["HasStables"] = TTH_PATH.Talent["Brem"]["Pre"].."HasStables.txt";
         TTH_PATH.Talent["Brem"]["ConfirmVisitStables"] = TTH_PATH.Talent["Brem"]["Pre"].."ConfirmVisitStables.txt";
         TTH_PATH.Talent["Brem"]["SuccessVisitStables"] = TTH_PATH.Talent["Brem"]["Pre"].."SuccessVisitStables.txt";
@@ -9665,6 +9669,8 @@
         TTH_PATH.Talent["Astral"]["Pre"] = TTH_PATH.Talent["Pre"].."055-Astral/";
         TTH_PATH.Talent["Astral"]["Text"] = TTH_PATH.Talent["Astral"]["Pre"].."Text.txt";
         TTH_PATH.Talent["Astral"]["NotEnoughTimes"] = TTH_PATH.Talent["Astral"]["Pre"].."NotEnoughTimes.txt";
+        TTH_PATH.Talent["Astral"]["OptionTemplate"] = TTH_PATH.Talent["Astral"]["Pre"].."OptionTemplate.txt";
+        TTH_PATH.Talent["Astral"]["NoSuitableMagicNode"] = TTH_PATH.Talent["Astral"]["Pre"].."NoSuitableMagicNode.txt";
         TTH_PATH.Talent["Astral"]["HasMagicNode"] = TTH_PATH.Talent["Astral"]["Pre"].."HasMagicNode.txt";
         TTH_PATH.Talent["Astral"]["ConfirmVisitMagicNode"] = TTH_PATH.Talent["Astral"]["Pre"].."ConfirmVisitMagicNode.txt";
         TTH_PATH.Talent["Astral"]["SuccessVisitMagicNode"] = TTH_PATH.Talent["Astral"]["Pre"].."SuccessVisitMagicNode.txt";
@@ -10050,6 +10056,9 @@
           , ["Sanguinius"] = {
             [TTH_ENUM.FuncAlways] = "TTH_TALENT.initCastCreature"
           }
+          , ["Avitus"] = {
+            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initCastCreature"
+          }
           , ["Gelu"] = {
             [TTH_ENUM.FuncAlways] = "TTH_TALENT.initCastCreature"
           }
@@ -10128,6 +10137,9 @@
           , ["Brem"] = {
             [TTH_ENUM.FuncAlways] = "TTH_TALENT.initBrem"
           }
+          , ["Astral"] = {
+            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initAstral"
+          }
           , ["Metlirn"] = {
             [TTH_ENUM.FuncAlways] = "TTH_TALENT.initMetlirn"
           }
@@ -10148,6 +10160,11 @@
           }
           , ["Sanguinius"] = {
             ["Text"] = TTH_PATH.Talent["Cast"]["Hero"]["Sanguinius"]
+            , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeCastCreature"
+            , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeCastCreature"
+          }
+          , ["Avitus"] = {
+            ["Text"] = TTH_PATH.Talent["Cast"]["Hero"]["Avitus"]
             , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeCastCreature"
             , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeCastCreature"
           }
@@ -10244,6 +10261,16 @@
             , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeRazzak"
             , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeRazzak"
           }
+          , ["Brem"] = {
+            ["Text"] = TTH_PATH.Talent["Brem"]["Text"]
+            , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeBrem"
+            , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeBrem"
+          }
+          , ["Astral"] = {
+            ["Text"] = TTH_PATH.Talent["Astral"]["Text"]
+            , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeAstral"
+            , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeAstral"
+          }
         }
         , [TTH_ENUM.FuncLevelUp] = {
           ["Vinrael"] = {
@@ -10255,6 +10282,9 @@
             [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultCastCreature"
           }
           , ["Sanguinius"] = {
+            [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultCastCreature"
+          }
+          , ["Avitus"] = {
             [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultCastCreature"
           }
           , ["Gelu"] = {
@@ -10365,6 +10395,9 @@
             [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailyCastCreature"
           }
           , ["Sanguinius"] = {
+            [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailyCastCreature"
+          }
+          , ["Avitus"] = {
             [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailyCastCreature"
           }
           , ["Gelu"] = {
@@ -17481,8 +17514,8 @@
             [CREATURE_FOOTMAN] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_LEGATE
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
+              , ["MaxGcd"] = 6
+              , ["HeroStep"] = 6
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -17490,14 +17523,14 @@
                 , [CRYSTAL] = 1
                 , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 500
+                , [GOLD] = 1500
               }
             }
             , [CREATURE_SWORDSMAN] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_LEGATE
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
+              , ["MaxGcd"] = 6
+              , ["HeroStep"] = 6
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -17505,14 +17538,14 @@
                 , [CRYSTAL] = 1
                 , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 500
+                , [GOLD] = 1500
               }
             }
             , [CREATURE_VINDICATOR] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_LEGATE
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
+              , ["MaxGcd"] = 6
+              , ["HeroStep"] = 6
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -17520,7 +17553,57 @@
                 , [CRYSTAL] = 1
                 , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 500
+                , [GOLD] = 1500
+              }
+            }
+          }
+        }
+        , ["Avitus"] = {
+          ["CastType"] = TTH_ENUM.Training
+          , ["PreCreature"] = {
+            [CREATURE_ARCHER] = {
+              ["Scale"] = 1
+              , ["PostCreatureId"] = CREATURE_CROSSBOW
+              , ["MaxGcd"] = 4
+              , ["HeroStep"] = 4
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 1
+                , [MERCURY] = 0
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 600
+              }
+            }
+            , [CREATURE_MARKSMAN] = {
+              ["Scale"] = 1
+              , ["PostCreatureId"] = CREATURE_CROSSBOW
+              , ["MaxGcd"] = 4
+              , ["HeroStep"] = 4
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 1
+                , [MERCURY] = 0
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 600
+              }
+            }
+            , [CREATURE_LONGBOWMAN] = {
+              ["Scale"] = 1
+              , ["PostCreatureId"] = CREATURE_CROSSBOW
+              , ["MaxGcd"] = 4
+              , ["HeroStep"] = 4
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 1
+                , [MERCURY] = 0
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 600
               }
             }
           }
@@ -18199,6 +18282,20 @@
                   ["CreatureId"] = CREATURE_LEGATE
                   , ["Stat"] = STAT_KNOWLEDGE
                   , ["ArtifactId"] = ARTIFACT_LEGION_EXPERT
+                }
+              }
+            }
+            , ["Avitus"] = {
+              ["Id"] = 157
+              , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Avitus/name.txt"
+              , ["Race"] = TOWN_HEAVEN
+              , ["Class"] = TTH_ENUM.Retribution
+              , ["Group"] = TTH_ENUM.GroupBalanceNotNec
+              , ["Specialty"] = {
+                [1] = {
+                  ["CreatureId"] = CREATURE_CROSSBOW
+                  , ["Stat"] = STAT_KNOWLEDGE
+                  , ["ArtifactId"] = ARTIFACT_LEGION_ADVANCED
                 }
               }
             }

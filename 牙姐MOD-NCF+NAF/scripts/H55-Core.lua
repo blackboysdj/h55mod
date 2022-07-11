@@ -1227,13 +1227,22 @@ doFile("/scripts/H55-Settings.lua");
 							TTH_COMMON.setTrigger2ObjectType("BUILDING_REDWOORD_OBSERVATORY", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitRedwoordObservatory", nil);
 
 						-- 马厩
-							TTH_COMMON.setTrigger2ObjectType("BUILDING_STABLES", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitStables", nil);
+							-- TTH_COMMON.setTrigger2ObjectType("BUILDING_STABLES", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitStables", nil);
 
 						-- 魔力节点 启示水晶/天文台/魔法学校/启蒙图书馆
-							TTH_COMMON.setTrigger2ObjectType("BUILDING_GARDEN_OF_REVELATION", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitMagicNode", nil);
-							TTH_COMMON.setTrigger2ObjectType("BUILDING_STAR_AXIS", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitMagicNode", nil);
-							TTH_COMMON.setTrigger2ObjectType("BUILDING_SCHOOL_OF_MAGIC", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitMagicNode", nil);
-							TTH_COMMON.setTrigger2ObjectType("BUILDING_LIBRARY_OF_ENLIGHTENMENT", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitMagicNode", nil);
+							-- TTH_COMMON.setTrigger2ObjectType("BUILDING_GARDEN_OF_REVELATION", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitMagicNode", nil);
+							-- TTH_COMMON.setTrigger2ObjectType("BUILDING_STAR_AXIS", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitMagicNode", nil);
+							-- TTH_COMMON.setTrigger2ObjectType("BUILDING_SCHOOL_OF_MAGIC", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitMagicNode", nil);
+							-- TTH_COMMON.setTrigger2ObjectType("BUILDING_LIBRARY_OF_ENLIGHTENMENT", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitMagicNode", nil);
+							TTH_VARI.arrBuilding["BUILDING_GARDEN_OF_REVELATION"] = GetObjectNamesByType("BUILDING_GARDEN_OF_REVELATION");
+							TTH_VARI.arrBuilding["BUILDING_STAR_AXIS"] = GetObjectNamesByType("BUILDING_STAR_AXIS");
+							TTH_VARI.arrBuilding["BUILDING_SCHOOL_OF_MAGIC"] = GetObjectNamesByType("BUILDING_SCHOOL_OF_MAGIC");
+							TTH_VARI.arrBuilding["BUILDING_LIBRARY_OF_ENLIGHTENMENT"] = GetObjectNamesByType("BUILDING_LIBRARY_OF_ENLIGHTENMENT");
+							TTH_VARI.arrBuilding["BUILDING_MAGICNODE"] = {};
+							TTH_VARI.arrBuilding["BUILDING_MAGICNODE"] = TTH_COMMON.concat(TTH_VARI.arrBuilding["BUILDING_MAGICNODE"], TTH_VARI.arrBuilding["BUILDING_GARDEN_OF_REVELATION"]);
+							TTH_VARI.arrBuilding["BUILDING_MAGICNODE"] = TTH_COMMON.concat(TTH_VARI.arrBuilding["BUILDING_MAGICNODE"], TTH_VARI.arrBuilding["BUILDING_STAR_AXIS"]);
+							TTH_VARI.arrBuilding["BUILDING_MAGICNODE"] = TTH_COMMON.concat(TTH_VARI.arrBuilding["BUILDING_MAGICNODE"], TTH_VARI.arrBuilding["BUILDING_SCHOOL_OF_MAGIC"]);
+							TTH_VARI.arrBuilding["BUILDING_MAGICNODE"] = TTH_COMMON.concat(TTH_VARI.arrBuilding["BUILDING_MAGICNODE"], TTH_VARI.arrBuilding["BUILDING_LIBRARY_OF_ENLIGHTENMENT"]);
 
 						-- 初始化 杉提瑞圆盘和方尖碑
 							TTH_VARI.arrBuilding["BUILDING_EYE_OF_MAGI"] = GetObjectNamesByType("BUILDING_EYE_OF_MAGI");
@@ -2868,6 +2877,7 @@ doFile("/scripts/H55-Settings.lua");
 					, [7] = ARTIFACT_DRUM_OF_CHARGE
 					, [8] = ARTIFACT_GEM_OF_PHANTOM
 					, [9] = ARTIFACT_BOOK_OF_MALASSA
+					, [10] = ARTIFACT_RING_OF_MACHINE_AFFINITY					
 				};
 				function TTH_GLOBAL.setGameVar4HeroArtifact(iPlayer, strHero)
 					TTH_MAIN.debug("TTH_GLOBAL.setGameVar4HeroArtifact", iPlayer, strHero);
@@ -2933,6 +2943,10 @@ doFile("/scripts/H55-Settings.lua");
 					, [8] = HERO_SKILL_TRIPLE_CATAPULT
 					, [9] = HERO_SKILL_EXPLODING_CORPSES
 					, [10] = HERO_SKILL_FOREST_RAGE
+					, [11] = HERO_SKILL_BALLISTA
+					, [12] = HERO_SKILL_TRIPLE_BALLISTA
+					, [13] = HERO_SKILL_CHILLING_STEEL
+					, [14] = HERO_SKILL_WILDFIRE
 				};
 				TTH_TABLE.CombatSkill2Special = {
 					[0] = HERO_SKILL_PARIAH
@@ -7226,6 +7240,7 @@ doFile("/scripts/H55-Settings.lua");
 
 					, ["OrtanCassius"] = TOWN_BUILDING_DWELLING_5
 					, ["Sanguinius"] = TOWN_BUILDING_DWELLING_3
+					, ["Avitus"] = TOWN_BUILDING_DWELLING_2
 					, ["Gillion"] = TOWN_BUILDING_DWELLING_2
 					, ["Razzak"] = TOWN_BUILDING_DWELLING_4
 					, ["Menel"] = TOWN_BUILDING_DWELLING_3
@@ -9688,7 +9703,7 @@ doFile("/scripts/H55-Settings.lua");
       	end;
 
 			-- Brem 010 拉特格
-      	function TTH_TALENT.initBrem(strHero)
+				function TTH_TALENT.initBrem(strHero)
 					TTH_MAIN.debug("TTH_TALENT.initBrem", nil, strHero);
 
 					TTH_VARI.talent[strHero] = {
@@ -9697,104 +9712,125 @@ doFile("/scripts/H55-Settings.lua");
 						, ["CurrentTimes"] = 1
 						, ["MaxTimes"] = 1
 					};
-      	end;
-				function TTH_TALENT.visitStablesBrem(iPlayer, strHero, strBuildingName, funcCallback)
-					TTH_COMMON.initNavi(TTH_PATH.Talent[strHero]["Text"]);
-
-					TTH_TALENT.checkPreVisitStablesBrem4Times(iPlayer, strHero, strBuildingName, funcCallback);
 				end;
-				function TTH_TALENT.checkPreVisitStablesBrem4Times(iPlayer, strHero, strBuildingName, funcCallback)
-      		if TTH_VARI.talent[strHero]["CurrentTimes"] <= 0 then
-      			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
-      				if TTH_MANAGE.getRemainOperTimes(strHero) <= 0 then
-      					local strText = TTH_PATH.Talent[strHero]["NotEnoughTimes"];
+				function TTH_TALENT.activeBrem(iPlayer, strHero)
+					TTH_COMMON.nextNavi(TTH_PATH.Talent[strHero]["Text"]);
+
+					TTH_TALENT.checkPreActiveBrem4Times(iPlayer, strHero);
+				end;
+				function TTH_TALENT.checkPreActiveBrem4Times(iPlayer, strHero)
+					local strText = TTH_PATH.Talent[strHero]["NotEnoughTimes"];
+					if TTH_VARI.talent[strHero]["CurrentTimes"] <= 0 then
+						if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+							if TTH_MANAGE.getRemainOperTimes(strHero) <= 0 then
 			    			TTH_GLOBAL.sign(strHero, strText);
+			  				return nil;
+							end;
+						else
+			  			TTH_GLOBAL.sign(strHero, strText);
+							return nil;
+			  		end;
+					end;
 
-			    			TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
-		    				return nil;
-      				end;
-      			else
-    					local strText = TTH_PATH.Talent[strHero]["NotEnoughTimes"];
-		    			TTH_GLOBAL.sign(strHero, strText);
-
-		    			TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
-	    				return nil;
-		    		end;
-      		end;
-
-      		TTH_TALENT.checkPreVisitStablesBrem4HasStables(iPlayer, strHero, strBuildingName, funcCallback);
+					TTH_TALENT.checkPreActiveBrem4SuitableStables(iPlayer, strHero);
 				end;
-				function TTH_TALENT.checkPreVisitStablesBrem4HasStables(iPlayer, strHero, strBuildingName, funcCallback)
-      		if contains(TTH_VARI.talent[strHero]["Stables"], strBuildingName) ~= nil then
-	    			TTH_GLOBAL.sign(strHero, TTH_PATH.Talent[strHero]["HasStables"]);
+				function TTH_TALENT.checkPreActiveBrem4SuitableStables(iPlayer, strHero, strBuildingName)
+					local arrOptionStables = {};
+					local arrStables = GetObjectNamesByType("BUILDING_STABLES");
+					local i = 1;
+					for iIndexStables, strStablesStack in arrStables do
+						if TTH_GLOBAL.getDistance(strHero, strStablesStack) <= 5 then
+							local iPosX, iPosY, iPosZ = GetObjectPosition(strStablesStack);
+							arrOptionStables[i] = {
+								["Id"] = strStablesStack
+								, ["Text"] = {
+										TTH_PATH.Talent[strHero]["OptionTemplate"]
+										;iPosX=iPosX
+										,iPosY=iPosY
+									}
+								, ["Callback"] = "TTH_TALENT.checkPreActiveBrem4HasStables"
+							};
+							i = i + 1;
+						end;
+					end;
+					if length(arrOptionStables) <= 0 then
+						local strText = TTH_PATH.Talent[strHero]["NoSuitableStables"];
+						TTH_GLOBAL.sign(strHero, strText);
+						return nil;
+					end;
 
-		    		TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
-    				return nil;
-      		end;
-
-      		TTH_TALENT.confirmVisitStablesBrem(iPlayer, strHero, strBuildingName, funcCallback);
+					local strPathOption = TTH_PATH.Talent[strHero]["RadioTips"];
+					TTH_COMMON.optionRadio(iPlayer, strHero, arrOptionStables, strPathOption);
 				end;
-				function TTH_TALENT.confirmVisitStablesBrem(iPlayer, strHero, strBuildingName, funcCallback)
+				function TTH_TALENT.checkPreActiveBrem4HasStables(iPlayer, strHero, strBuildingName)
+					if contains(TTH_VARI.talent[strHero]["Stables"], strBuildingName) ~= nil then
+						TTH_GLOBAL.sign(strHero, TTH_PATH.Talent[strHero]["HasStables"]);
+						return nil;
+					end;
+
+					TTH_TALENT.comfirmActiveBrem(iPlayer, strHero, strBuildingName);
+				end;
+				function TTH_TALENT.comfirmActiveBrem(iPlayer, strHero, strBuildingName)
 					local strText = TTH_PATH.Talent[strHero]["ConfirmVisitStables"];
 					local strCallbackOk = "TTH_TALENT.implVisitStablesBrem("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strBuildingName)..")";
-					local strCallbackCancel = "TTH_VISIT.visitBuildingWithoutScript("..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strBuildingName)..","..TTH_COMMON.psp(funcCallback)..")";
+					local strCallbackCancel = "TTH_COMMON.cancelOption()";
 					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strText, strCallbackOk, strCallbackCancel);
 				end;
 				function TTH_TALENT.implVisitStablesBrem(iPlayer, strHero, strBuildingName)
-      		if TTH_VARI.talent[strHero]["CurrentTimes"] > 0 then
-    				TTH_VARI.talent[strHero]["CurrentTimes"] = TTH_VARI.talent[strHero]["CurrentTimes"] - 1;
-		    	else
-      			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
-		    			TTH_MANAGE.useOperTimes(strHero);
-		    		end;
-      		end;
-      		if contains(TTH_VARI.talent[strHero]["Stables"], strBuildingName) == nil then
+					if TTH_VARI.talent[strHero]["CurrentTimes"] > 0 then
+						TTH_VARI.talent[strHero]["CurrentTimes"] = TTH_VARI.talent[strHero]["CurrentTimes"] - 1;
+			  	else
+						if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+			  			TTH_MANAGE.useOperTimes(strHero);
+			  		end;
+					end;
+					if contains(TTH_VARI.talent[strHero]["Stables"], strBuildingName) == nil then
 						TTH_VARI.talent[strHero]["Stables"] = TTH_COMMON.push(TTH_VARI.talent[strHero]["Stables"], strBuildingName);
-      		end;
-      		OverrideObjectTooltipNameAndDescription(strBuildingName, TTH_PATH.Talent[strHero]["Title"], TTH_PATH.Talent[strHero]["Desc"]);
+					end;
+					OverrideObjectTooltipNameAndDescription(strBuildingName, TTH_PATH.Talent[strHero]["Title"], TTH_PATH.Talent[strHero]["Desc"]);
 					local strText = TTH_PATH.Talent[strHero]["SuccessVisitStables"];
 					TTH_GLOBAL.sign(strHero, strText);
 				end;
-      	function TTH_TALENT.resetWeeklyBrem(iPlayer, strHero)
-      		TTH_MAIN.debug("TTH_TALENT.resetWeeklyBrem", iPlayer, strHero);
+				function TTH_TALENT.resetWeeklyBrem(iPlayer, strHero)
+					TTH_MAIN.debug("TTH_TALENT.resetWeeklyBrem", iPlayer, strHero);
 
-      		TTH_VARI.talent[strHero]["CurrentTimes"] = TTH_VARI.talent[strHero]["MaxTimes"];
-      	end;
-      	function TTH_TALENT.checkExpedition8Brem(iPlayer, strHero)
-      		TTH_MAIN.debug("TTH_TALENT.checkExpedition8Brem", iPlayer, strHero);
+					TTH_VARI.talent[strHero]["CurrentTimes"] = TTH_VARI.talent[strHero]["MaxTimes"];
+				end;
+				function TTH_TALENT.checkExpedition8Brem(iPlayer, strHero)
+					TTH_MAIN.debug("TTH_TALENT.checkExpedition8Brem", iPlayer, strHero);
 
-      		local bIsExpedition = TTH_ENUM.Yes;
-      		if strHero == "Brem" then
-      			bIsExpedition = TTH_ENUM.No;
-      		else
-	      		if TTH_GLOBAL.getRace8Hero(strHero) == TOWN_HEAVEN
-	      			and TTH_VARI.talent["Brem"] ~= nil then
-		      		local arrStables = TTH_VARI.talent["Brem"]["Stables"];
-		      		for i, strStablesName in arrStables do
-		      			if TTH_GLOBAL.getDistance(strHero, strStablesName) <= TTH_MANAGE.getTerritoryRadius(iPlayer) then
-		      				bIsExpedition = TTH_ENUM.No;
-		      				break;
-		      			end;
-		      		end;
-	      		end;
-      		end;
-      		return bIsExpedition;
-      	end;
-      	function TTH_TALENT.getDistance4Hero2NearestMayorTown8Brem(iPlayer, strHero)
-      		TTH_MAIN.debug("TTH_TALENT.getDistance4Hero2NearestMayorTown8Brem", iPlayer, strHero);
+					local bIsExpedition = TTH_ENUM.Yes;
+					if strHero == "Brem" then
+						bIsExpedition = TTH_ENUM.No;
+					else
+			  		if TTH_GLOBAL.getRace8Hero(strHero) == TOWN_HEAVEN
+			  			and TTH_VARI.talent["Brem"] ~= nil then
+			    		local arrStables = TTH_VARI.talent["Brem"]["Stables"];
+			    		for i, strStablesName in arrStables do
+			    			if TTH_GLOBAL.getDistance(strHero, strStablesName) <= TTH_MANAGE.getTerritoryRadius(iPlayer) then
+			    				bIsExpedition = TTH_ENUM.No;
+			    				break;
+			    			end;
+			    		end;
+			  		end;
+					end;
+					return bIsExpedition;
+				end;
+				function TTH_TALENT.getDistance4Hero2NearestMayorTown8Brem(iPlayer, strHero)
+					TTH_MAIN.debug("TTH_TALENT.getDistance4Hero2NearestMayorTown8Brem", iPlayer, strHero);
 
-      		local strBrem = "Brem";
-      		local arrDistance = {};
-      		if TTH_VARI.talent[strBrem] ~= nil
-	      		and contains(GetPlayerHeroes(iPlayer), strBrem) ~= nil
-      			and TTH_GLOBAL.getRace8Hero(strHero) == TOWN_HEAVEN then
-      			local arrStables = TTH_VARI.talent["Brem"]["Stables"];
-      			for i, strStablesName in arrStables do
-      				TTH_COMMON.push(arrDistance, TTH_GLOBAL.getDistance(strHero, strStablesName));
-      			end
-      		end;
-      		return arrDistance;
-      	end;
+					local strBrem = "Brem";
+					local arrDistance = {};
+					if TTH_VARI.talent[strBrem] ~= nil
+			  		and contains(GetPlayerHeroes(iPlayer), strBrem) ~= nil
+						and TTH_GLOBAL.getRace8Hero(strHero) == TOWN_HEAVEN then
+						local arrStables = TTH_VARI.talent["Brem"]["Stables"];
+						for i, strStablesName in arrStables do
+							TTH_COMMON.push(arrDistance, TTH_GLOBAL.getDistance(strHero, strStablesName));
+						end
+					end;
+					return arrDistance;
+				end;
 
       -- RedHeavenHero06 017 加布里埃尔
       	function TTH_TALENT.initRedHeavenHero06(strHero)
@@ -10536,7 +10572,7 @@ doFile("/scripts/H55-Settings.lua");
       	end;
 
 			-- Astral 055 努尔
-      	function TTH_TALENT.initAstral(strHero)
+				function TTH_TALENT.initAstral(strHero)
 					TTH_MAIN.debug("TTH_TALENT.initAstral", nil, strHero);
 
 					TTH_VARI.talent[strHero] = {
@@ -10546,110 +10582,131 @@ doFile("/scripts/H55-Settings.lua");
 						, ["CurrentTimes"] = 1
 						, ["MaxTimes"] = 1
 					};
-      	end;
-				function TTH_TALENT.visitMagicNodeAstral(iPlayer, strHero, strBuildingName, funcCallback)
-					TTH_COMMON.initNavi(TTH_PATH.Talent[strHero]["Text"]);
-					
-					TTH_TALENT.checkPreVisitMagicNodeAstral4Times(iPlayer, strHero, strBuildingName, funcCallback);
 				end;
-				function TTH_TALENT.checkPreVisitMagicNodeAstral4Times(iPlayer, strHero, strBuildingName, funcCallback)
-      		if TTH_VARI.talent[strHero]["CurrentTimes"] <= 0 then
-      			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
-      				if TTH_MANAGE.getRemainOperTimes(strHero) <= 0 then
-      					local strText = TTH_PATH.Talent[strHero]["NotEnoughTimes"];
+				function TTH_TALENT.activeAstral(iPlayer, strHero)
+					TTH_COMMON.nextNavi(TTH_PATH.Talent[strHero]["Text"]);
+
+					TTH_TALENT.checkPreActiveAstral4Times(iPlayer, strHero);
+				end;
+				function TTH_TALENT.checkPreActiveAstral4Times(iPlayer, strHero)
+					local strText = TTH_PATH.Talent[strHero]["NotEnoughTimes"];
+					if TTH_VARI.talent[strHero]["CurrentTimes"] <= 0 then
+						if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+							if TTH_MANAGE.getRemainOperTimes(strHero) <= 0 then
 			    			TTH_GLOBAL.sign(strHero, strText);
+			  				return nil;
+							end;
+						else
+			  			TTH_GLOBAL.sign(strHero, strText);
+							return nil;
+			  		end;
+					end;
 
-			    			TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
-		    				return nil;
-      				end;
-      			else
-    					local strText = TTH_PATH.Talent[strHero]["NotEnoughTimes"];
-		    			TTH_GLOBAL.sign(strHero, strText);
-
-		    			TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
-	    				return nil;
-		    		end;
-      		end;
-
-      		TTH_TALENT.checkPreVisitMagicNodeAstral4HasMagicNode(iPlayer, strHero, strBuildingName, funcCallback);
+					TTH_TALENT.checkPreActiveAstral4SuitableStables(iPlayer, strHero);
 				end;
-				function TTH_TALENT.checkPreVisitMagicNodeAstral4HasMagicNode(iPlayer, strHero, strBuildingName, funcCallback)
-      		if contains(TTH_VARI.talent[strHero]["MagicNode"], strBuildingName) ~= nil then
-	    			TTH_GLOBAL.sign(strHero, TTH_PATH.Talent[strHero]["HasMagicNode"]);
+				function TTH_TALENT.checkPreActiveAstral4SuitableStables(iPlayer, strHero, strBuildingName)
+					local arrOptionMagicNode = {};
+					local arrMagicNode = TTH_VARI.arrBuilding["BUILDING_MAGICNODE"];
+					local i = 1;
+					for iIndexMagicNode, strMagicNodeStack in arrMagicNode do
+						if TTH_GLOBAL.getDistance(strHero, strMagicNodeStack) <= 5 then
+							local iPosX, iPosY, iPosZ = GetObjectPosition(strMagicNodeStack);
+							arrOptionMagicNode[i] = {
+								["Id"] = strMagicNodeStack
+								, ["Text"] = {
+										TTH_PATH.Talent[strHero]["OptionTemplate"]
+										;iPosX=iPosX
+										,iPosY=iPosY
+									}
+								, ["Callback"] = "TTH_TALENT.checkPreActiveAstral4HasMagicNode"
+							};
+							i = i + 1;
+						end;
+					end;
+					if length(arrOptionMagicNode) <= 0 then
+						local strText = TTH_PATH.Talent[strHero]["NoSuitableMagicNode"];
+						TTH_GLOBAL.sign(strHero, strText);
+						return nil;
+					end;
 
-		    		TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
-    				return nil;
-      		end;
-
-      		TTH_TALENT.confirmVisitMagicNodeAstral(iPlayer, strHero, strBuildingName, funcCallback);
+					local strPathOption = TTH_PATH.Talent[strHero]["RadioTips"];
+					TTH_COMMON.optionRadio(iPlayer, strHero, arrOptionMagicNode, strPathOption);
 				end;
-				function TTH_TALENT.confirmVisitMagicNodeAstral(iPlayer, strHero, strBuildingName, funcCallback)
+				function TTH_TALENT.checkPreActiveAstral4HasMagicNode(iPlayer, strHero, strBuildingName)
+					if contains(TTH_VARI.talent[strHero]["MagicNode"], strBuildingName) ~= nil then
+						TTH_GLOBAL.sign(strHero, TTH_PATH.Talent[strHero]["HasMagicNode"]);
+						return nil;
+					end;
+
+					TTH_TALENT.comfirmActiveAstral(iPlayer, strHero, strBuildingName);
+				end;
+				function TTH_TALENT.comfirmActiveAstral(iPlayer, strHero, strBuildingName)
 					local strText = TTH_PATH.Talent[strHero]["ConfirmVisitMagicNode"];
 					local strCallbackOk = "TTH_TALENT.implVisitMagicNodeAstral("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strBuildingName)..")";
-					local strCallbackCancel = "TTH_VISIT.visitBuildingWithoutScript("..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strBuildingName)..","..TTH_COMMON.psp(funcCallback)..")";
+					local strCallbackCancel = "TTH_COMMON.cancelOption()";
 					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strText, strCallbackOk, strCallbackCancel);
 				end;
 				function TTH_TALENT.implVisitMagicNodeAstral(iPlayer, strHero, strBuildingName)
-      		if TTH_VARI.talent[strHero]["CurrentTimes"] > 0 then
-    				TTH_VARI.talent[strHero]["CurrentTimes"] = TTH_VARI.talent[strHero]["CurrentTimes"] - 1;
-		    	else
-      			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
-		    			TTH_MANAGE.useOperTimes(strHero);
-		    		end;
-      		end;
-      		if contains(TTH_VARI.talent[strHero]["MagicNode"], strBuildingName) == nil then
+					if TTH_VARI.talent[strHero]["CurrentTimes"] > 0 then
+						TTH_VARI.talent[strHero]["CurrentTimes"] = TTH_VARI.talent[strHero]["CurrentTimes"] - 1;
+			  	else
+						if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+			  			TTH_MANAGE.useOperTimes(strHero);
+			  		end;
+					end;
+					if contains(TTH_VARI.talent[strHero]["MagicNode"], strBuildingName) == nil then
 						TTH_VARI.talent[strHero]["MagicNode"] = TTH_COMMON.push(TTH_VARI.talent[strHero]["MagicNode"], strBuildingName);
-      		end;
-      		OverrideObjectTooltipNameAndDescription(strBuildingName, TTH_PATH.Talent[strHero]["Title"], TTH_PATH.Talent[strHero]["Desc"]);
-      		local strKey = TTH_VARI.talent[strHero]["PreGameVar"]..strHero;
-      		local iMagicNodeCount = length(TTH_VARI.talent[strHero]["MagicNode"]);
-      		SetGameVar(strKey, iMagicNodeCount);
+					end;
+					OverrideObjectTooltipNameAndDescription(strBuildingName, TTH_PATH.Talent[strHero]["Title"], TTH_PATH.Talent[strHero]["Desc"]);
+					local strKey = TTH_VARI.talent[strHero]["PreGameVar"]..strHero;
+					local iMagicNodeCount = length(TTH_VARI.talent[strHero]["MagicNode"]);
+					SetGameVar(strKey, iMagicNodeCount);
 					local strPathMain = {
 						TTH_PATH.Talent[strHero]["SuccessVisitMagicNode"]
 				    ;iMagicNodeCount=iMagicNodeCount
 					};
 					TTH_GLOBAL.sign(strHero, strPathMain);
 				end;
-      	function TTH_TALENT.resetWeeklyAstral(iPlayer, strHero)
-      		TTH_MAIN.debug("TTH_TALENT.resetWeeklyAstral", iPlayer, strHero);
+				function TTH_TALENT.resetWeeklyAstral(iPlayer, strHero)
+					TTH_MAIN.debug("TTH_TALENT.resetWeeklyAstral", iPlayer, strHero);
 
-      		TTH_VARI.talent[strHero]["CurrentTimes"] = TTH_VARI.talent[strHero]["MaxTimes"];
-      	end;
-      	function TTH_TALENT.checkExpedition8Astral(iPlayer, strHero)
-      		TTH_MAIN.debug("TTH_TALENT.checkExpedition8Astral", iPlayer, strHero);
+					TTH_VARI.talent[strHero]["CurrentTimes"] = TTH_VARI.talent[strHero]["MaxTimes"];
+				end;
+				function TTH_TALENT.checkExpedition8Astral(iPlayer, strHero)
+					TTH_MAIN.debug("TTH_TALENT.checkExpedition8Astral", iPlayer, strHero);
 
-      		local bIsExpedition = TTH_ENUM.Yes;
-      		if strHero == "Astral" then
-      			bIsExpedition = TTH_ENUM.No;
-      		else
-	      		if TTH_GLOBAL.getRace8Hero(strHero) == TOWN_HEAVEN
-	      			and TTH_VARI.talent["Astral"] ~= nil then
-		      		local arrMagicNode = TTH_VARI.talent["Astral"]["MagicNode"];
-		      		for i, strMagicNodeName in arrMagicNode do
-		      			if TTH_GLOBAL.getDistance(strHero, strMagicNodeName) <= TTH_MANAGE.getTerritoryRadius(iPlayer) then
-		      				bIsExpedition = TTH_ENUM.No;
-		      				break;
-		      			end;
-		      		end;
-	      		end;
-      		end;
-      		return bIsExpedition;
-      	end;
-      	function TTH_TALENT.getDistance4Hero2NearestMayorTown8Astral(iPlayer, strHero)
-      		TTH_MAIN.debug("TTH_TALENT.getDistance4Hero2NearestMayorTown8Astral", iPlayer, strHero);
+					local bIsExpedition = TTH_ENUM.Yes;
+					if strHero == "Astral" then
+						bIsExpedition = TTH_ENUM.No;
+					else
+			  		if TTH_GLOBAL.getRace8Hero(strHero) == TOWN_HEAVEN
+			  			and TTH_VARI.talent["Astral"] ~= nil then
+			    		local arrMagicNode = TTH_VARI.talent["Astral"]["MagicNode"];
+			    		for i, strMagicNodeName in arrMagicNode do
+			    			if TTH_GLOBAL.getDistance(strHero, strMagicNodeName) <= TTH_MANAGE.getTerritoryRadius(iPlayer) then
+			    				bIsExpedition = TTH_ENUM.No;
+			    				break;
+			    			end;
+			    		end;
+			  		end;
+					end;
+					return bIsExpedition;
+				end;
+				function TTH_TALENT.getDistance4Hero2NearestMayorTown8Astral(iPlayer, strHero)
+					TTH_MAIN.debug("TTH_TALENT.getDistance4Hero2NearestMayorTown8Astral", iPlayer, strHero);
 
-      		local strAstral = "Astral";
-      		local arrDistance = {};
-      		if TTH_VARI.talent[strAstral] ~= nil
-	      		and contains(GetPlayerHeroes(iPlayer), strAstral) ~= nil
-      			and TTH_GLOBAL.getRace8Hero(strHero) == TOWN_ACADEMY then
-      			local arrMagicNode = TTH_VARI.talent["Astral"]["MagicNode"];
-      			for i, strMagicNodeName in arrMagicNode do
-      				TTH_COMMON.push(arrDistance, TTH_GLOBAL.getDistance(strHero, strMagicNodeName));
-      			end
-      		end;
-      		return arrDistance;
-      	end;
+					local strAstral = "Astral";
+					local arrDistance = {};
+					if TTH_VARI.talent[strAstral] ~= nil
+			  		and contains(GetPlayerHeroes(iPlayer), strAstral) ~= nil
+						and TTH_GLOBAL.getRace8Hero(strHero) == TOWN_ACADEMY then
+						local arrMagicNode = TTH_VARI.talent["Astral"]["MagicNode"];
+						for i, strMagicNodeName in arrMagicNode do
+							TTH_COMMON.push(arrDistance, TTH_GLOBAL.getDistance(strHero, strMagicNodeName));
+						end
+					end;
+					return arrDistance;
+				end;
 
 		-- Dungeon
 			-- Menel 060 基特拉
@@ -10875,6 +10932,7 @@ doFile("/scripts/H55-Settings.lua");
 						, ["MaxTimes"] = 1
 						, ["SpecialCreature"] = {
 							CREATURE_LEGATE
+							, CREATURE_CROSSBOW
 						}
 						, ["AppointCreature"] = CREATURE_UNKNOWN
 						, ["Diplomacy"] = {}

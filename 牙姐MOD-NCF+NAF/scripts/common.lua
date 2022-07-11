@@ -30,6 +30,7 @@ ARTIFACT_PENDANT_OF_BLIND = 101
 ARTIFACT_GEM_OF_PHANTOM = 102
 ARTIFACT_DRUM_OF_CHARGE = 106
 ARTIFACT_BOOK_OF_MALASSA = 147;
+ARTIFACT_RING_OF_MACHINE_AFFINITY = 91;
 
 HERO_SKILL_WEAKENING_STRIKE = 95;
 HERO_SKILL_BARBARIAN_WEAKENING_STRIKE = 209;
@@ -43,12 +44,16 @@ HERO_SKILL_PARIAH = 83;
 HERO_SKILL_TWILIGHT = 109;
 HERO_SKILL_EXPLODING_CORPSES = 93;
 HERO_SKILL_FOREST_RAGE = 117;
+HERO_SKILL_BALLISTA = 23;
+HERO_SKILL_TRIPLE_BALLISTA = 74;
+HERO_SKILL_CHILLING_STEEL = 104;
+HERO_SKILL_WILDFIRE = 130;
 
 MAX_MANA = 1000;
 
 H55SMOD_HavenHeroes = {
     'Nathaniel', 'Orrin', 'Mardigo', 'Ving', 'Sarge', 'Isabell', 'Christian', 'RedHeavenHero02', 'RedHeavenHero05', 'Brem'
-    , 'Nicolai', 'GodricMP', 'Alaric', 'Axel', 'SaintIsabell', 'Maeve', 'RedHeavenHero06', 'Caldwell', 'OrtanCassius', 'Sanguinius'
+    , 'Nicolai', 'GodricMP', 'Alaric', 'Axel', 'SaintIsabell', 'Maeve', 'RedHeavenHero06', 'Caldwell', 'OrtanCassius', 'Sanguinius', 'Avitus'
     , 'RedHeavenHero03', 'Orlando', 'Markal'
 };
 H55SMOD_SylvanHeroes = {
@@ -87,7 +92,7 @@ H55SMOD_StrongholdHeroes = {
 
 H55SMOD_Heroes = {
     'Nathaniel', 'Orrin', 'Mardigo', 'Ving', 'Sarge', 'Isabell', 'Christian', 'RedHeavenHero02', 'RedHeavenHero05', 'Brem'
-    , 'Nicolai', 'GodricMP', 'Alaric', 'Axel', 'SaintIsabell', 'Maeve', 'RedHeavenHero06', 'Caldwell', 'OrtanCassius', 'Sanguinius'
+    , 'Nicolai', 'GodricMP', 'Alaric', 'Axel', 'SaintIsabell', 'Maeve', 'RedHeavenHero06', 'Caldwell', 'OrtanCassius', 'Sanguinius', 'Avitus'
     , 'RedHeavenHero03', 'Orlando', 'Markal'
     , 'Metlirn', 'Ossir', 'Nadaur', 'Linaas', 'Heam', 'Gelu', 'Arniel', 'Kyrre'
     , 'Gillion', 'Itil', 'Melodia', 'Jenova', 'Mephala', 'Gem'
@@ -121,6 +126,7 @@ TTH_ARTIFACT_EFFECT_COMBAT = {
     , [7] = ARTIFACT_GEM_OF_PHANTOM
     , [8] = ARTIFACT_DRUM_OF_CHARGE
     , [9] = ARTIFACT_BOOK_OF_MALASSA
+    , [10] = ARTIFACT_RING_OF_MACHINE_AFFINITY
 };
 TTH_ARTIFACT_EFFECT_COMBAT_ONCE = {
     [0] = ARTIFACT_ANGELIC_ALLIANCE
@@ -147,6 +153,10 @@ TTH_SKILL_EFFECT_COMBAT = {
     , [8] = HERO_SKILL_TWILIGHT
     , [9] = HERO_SKILL_EXPLODING_CORPSES
     , [10] = HERO_SKILL_FOREST_RAGE
+    , [11] = HERO_SKILL_BALLISTA
+    , [12] = HERO_SKILL_TRIPLE_BALLISTA
+    , [13] = HERO_SKILL_CHILLING_STEEL
+    , [14] = HERO_SKILL_WILDFIRE
 };
 TTH_SKILL_EFFECT_COMBAT_ONCE = {
 };
@@ -307,6 +317,15 @@ function Thread_Command_UnitCastAreaSpell(caster, spell_id, x, y, ishero)
 end;
 function Thread_Command_UnitCastAreaSpell_UseMana(caster, spell_id, x, y)
     UnitCastAreaSpell(caster, spell_id, x, y);
+end;
+function Thread_Command_UnitCastAreaSpell_IgnoreMana(caster, spell_id, x, y)
+    local iCurrentMana = GetUnitManaPoints(caster);
+    SetUnitManaPoints(caster, 1000);
+    repeat sleep(1); until GetUnitManaPoints(caster) >= 1000;
+    UnitCastAreaSpell(caster, spell_id, x, y);
+    repeat sleep(1); until GetUnitManaPoints(caster) < 1000;
+    SetUnitManaPoints(caster, iCurrentMana);
+    repeat sleep(1); until GetUnitManaPoints(caster) == iCurrentMana;
 end;
 function Thread_Command_UnitCastAimedSpell(caster, spell_id, target, ishero)
     if ishero == 1 then
@@ -1173,6 +1192,7 @@ end;
   CREATURE_192 = 192
   CREATURE_DUNGEON_TOOL = 192;
   CREATURE_193 = 193
+  CREATURE_CROSSBOW = 193;
   CREATURE_194 = 194
   CREATURE_195 = 195
   CREATURE_196 = 196
@@ -4736,10 +4756,10 @@ end;
         , [190] = {
           ["ID"] = CREATURE_190
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_190/Name.txt"
-          , ["GROWTH"] = 1
-          , ["TIER"] = 1
-          , ["POWER"] = 0
-          , ["CombatSize"] = 1
+          , ["GROWTH"] = 2
+          , ["TIER"] = 6
+          , ["POWER"] = 2510
+          , ["CombatSize"] = 2
           , ["Range"] = 0
         }
         , [191] = {
@@ -4763,11 +4783,11 @@ end;
         , [193] = {
           ["ID"] = CREATURE_193
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_193/Name.txt"
-          , ["GROWTH"] = 1
-          , ["TIER"] = 1
-          , ["POWER"] = 0
+          , ["GROWTH"] = 5
+          , ["TIER"] = 4
+          , ["POWER"] = 524
           , ["CombatSize"] = 1
-          , ["Range"] = 0
+          , ["Range"] = 1
         }
         , [194] = {
           ["ID"] = CREATURE_194
@@ -12719,6 +12739,9 @@ end;
 
       TTHCS_PATH["Talent"]["Sanguinius"] = {};
       TTHCS_PATH["Talent"]["Sanguinius"]["Effect"] = "/Text/TTH/Heroes/Specializations/Heaven/156-Sanguinius/Combat/Effect.txt";
+
+      TTHCS_PATH["Talent"]["Avitus"] = {};
+      TTHCS_PATH["Talent"]["Avitus"]["Effect"] = "/Text/TTH/Heroes/Specializations/Heaven/157-Avitus/Combat/Effect.txt";
 
     TTHCS_PATH["Perk"] = {};
       TTHCS_PATH["Perk"][HERO_SKILL_SEAL_OF_PROTECTION] = {};

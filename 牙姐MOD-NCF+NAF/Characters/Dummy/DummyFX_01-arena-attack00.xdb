@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BasicSkelAnim>
+	<SrcName href="/H5A2/Effects/Dummy/FX_Dummy.mb"/>
+	<uid>62862103-A23A-42B6-9406-AC60301D8BD7</uid>
+	<ExpSrcClip href="/H5A2/Effects/Dummy/Clip/Dummy.attack00.ma"/>
+	<ExpRootTransform>Global</ExpRootTransform>
+	<ExpFrameFirst>0</ExpFrameFirst>
+	<ExpFrameLast>0</ExpFrameLast>
+	<ExpSettingsFile href=""/>
+	<MovementSpeed>0</MovementSpeed>
+	<SpeedFactor>5</SpeedFactor>
+	<Sound href="/Sounds/_(Sound)/Spells/SummonHive_attack00.xdb#xpointer(/Sound)"/>
+	<Effect href="/Effects/_(Effect)/Spells/SummonHive/SummunHive_Attack.(Effect).xdb#xpointer(/Effect)"/>
+	<SpeedLineFallTime>250</SpeedLineFallTime>
+	<SpeedLineMaterial/>
+</BasicSkelAnim>

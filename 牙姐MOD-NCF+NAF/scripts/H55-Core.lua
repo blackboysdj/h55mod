@@ -1732,24 +1732,26 @@ doFile("/scripts/H55-Settings.lua");
 						GiveHeroSkill(strHero, HERO_SKILL_PRAYER);
 					end;
 					if enumHeroClass == TTH_ENUM.Retribution then
-						GiveHeroSkill(strHero, HERO_SKILL_LEADERSHIP);
-						GiveHeroSkill(strHero, HERO_SKILL_LEADERSHIP);
-						GiveHeroSkill(strHero, HERO_SKILL_LEARNING);
-						GiveHeroSkill(strHero, HERO_SKILL_LEARNING);
 						GiveHeroSkill(strHero, HERO_SKILL_LIGHT_MAGIC);
 						GiveHeroSkill(strHero, HERO_SKILL_LIGHT_MAGIC);
-						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_ENCOURAGE);
-						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_EAGLE_EYE);
-						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_QUICKNESS_OF_MIND);
+						GiveHeroSkill(strHero, HERO_SKILL_SORCERY);
+						GiveHeroSkill(strHero, HERO_SKILL_SORCERY);
+						GiveHeroSkill(strHero, HERO_SKILL_DEFENCE);
+						GiveHeroSkill(strHero, HERO_SKILL_DEFENCE);
 						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_MASTER_OF_BLESSING);
 						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_ETERNAL_LIGHT);
 						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_PRAYER);
+						GiveHeroSkill(strHero, HERO_SKILL_DISTRACT);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_COUNTERSPELL);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_PROTECTION);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_MAGIC_CUSHION);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_FIRE_PROTECTION);
 					end;
 					if enumHeroClass == TTH_ENUM.Heretic then
 						GiveHeroSkill(strHero, HERO_SKILL_LEADERSHIP);
@@ -2940,7 +2942,7 @@ doFile("/scripts/H55-Settings.lua");
 					, [5] = HERO_SKILL_MASTER_OF_FIRE
 					, [6] = HERO_SKILL_MASTER_OF_LIGHTNINGS
 					, [7] = HERO_SKILL_SEAL_OF_PROTECTION
-					, [8] = HERO_SKILL_TRIPLE_CATAPULT
+					, [8] = HERO_SKILL_DEATH_TREAD
 					, [9] = HERO_SKILL_EXPLODING_CORPSES
 					, [10] = HERO_SKILL_FOREST_RAGE
 					, [11] = HERO_SKILL_BALLISTA
@@ -3319,10 +3321,38 @@ doFile("/scripts/H55-Settings.lua");
 				  end;
 				end;
 
-			-- 套装送魔法
+			-- 宝物送魔法
 				TTH_VARI.artifactGiveMagic8Hero = {};
 				function TTH_GLOBAL.upgradeArtifactGiveMagic8Hero(iPlayer, strHero)
 					TTH_MAIN.debug("TTH_GLOBAL.upgradeArtifactGiveMagic8Hero", nil, strHero);
+
+				  if TTH_GLOBAL.isHeroAtGarrison(strHero) == 0 then
+				    local iPlayer = GetObjectOwner(strHero);
+				    for iArtifactId, objArtifact8Magic in TTH_TABLE.Artifact4Magic do
+				    	if HasArtefact(strHero, iArtifactId, 1) ~= nil then
+                -- 初始化套装魔法奖励在存储空间 by 英雄
+                  if TTH_VARI.artifactGiveMagic8Hero[strHero] == nil then
+                    TTH_VARI.artifactGiveMagic8Hero[strHero] = {};
+                  end;
+
+                if TTH_VARI.artifactGiveMagic8Hero[strHero][iArtifactId] == nil then
+		              TTH_VARI.artifactGiveMagic8Hero[strHero][iArtifactId] = 1;
+		              TeachHeroSpell(strHero, objArtifact8Magic["GiveMagic"]);
+		              local strText = {
+		              	"/Text/Game/Scripts/Learnspell.txt"
+		              	;name=TTH_TABLE_SPELL[objArtifact8Magic["GiveMagic"]]["NAME"]
+		              };
+		              TTH_GLOBAL.sign(strHero, strText);
+		            end;
+		          end;   
+				    end;
+				  end;
+				end;
+
+			-- 套装送魔法
+				TTH_VARI.artifactSetGiveMagic8Hero = {};
+				function TTH_GLOBAL.upgradeArtifactSetGiveMagic8Hero(iPlayer, strHero)
+					TTH_MAIN.debug("TTH_GLOBAL.upgradeArtifactSetGiveMagic8Hero", nil, strHero);
 
 				  if TTH_GLOBAL.isHeroAtGarrison(strHero) == 0 then
 				    local iPlayer = GetObjectOwner(strHero);
@@ -3330,11 +3360,11 @@ doFile("/scripts/H55-Settings.lua");
 				      local iCount = TTH_GLOBAL.getSetComponentCount(strHero, iSetId); -- 统计套装件数（含星尘坠饰）
 
 				      -- 初始化套装魔法奖励在存储空间 by 英雄
-				        if TTH_VARI.artifactGiveMagic8Hero[strHero] == nil then
-				          TTH_VARI.artifactGiveMagic8Hero[strHero] = {};
+				        if TTH_VARI.artifactSetGiveMagic8Hero[strHero] == nil then
+				          TTH_VARI.artifactSetGiveMagic8Hero[strHero] = {};
 				        end;
-				        if TTH_VARI.artifactGiveMagic8Hero[strHero][iSetId] == nil then
-				          TTH_VARI.artifactGiveMagic8Hero[strHero][iSetId] = {};
+				        if TTH_VARI.artifactSetGiveMagic8Hero[strHero][iSetId] == nil then
+				          TTH_VARI.artifactSetGiveMagic8Hero[strHero][iSetId] = {};
 				        end;
 
 				      -- 查验有几件套装组件，并随之赠送魔法
@@ -3343,8 +3373,8 @@ doFile("/scripts/H55-Settings.lua");
 						      for i = 1, 8 do
 						        if objGiveMagic[i] ~= nil then
 						          if iCount >= i then
-						            if TTH_VARI.artifactGiveMagic8Hero[strHero][iSetId][i] == nil then
-						              TTH_VARI.artifactGiveMagic8Hero[strHero][iSetId][i] = 1;
+						            if TTH_VARI.artifactSetGiveMagic8Hero[strHero][iSetId][i] == nil then
+						              TTH_VARI.artifactSetGiveMagic8Hero[strHero][iSetId][i] = 1;
 						              TeachHeroSpell(strHero, objGiveMagic[i]);
 						              local strText = {
 						              	"/Text/Game/Scripts/Learnspell.txt"
@@ -5672,7 +5702,7 @@ doFile("/scripts/H55-Settings.lua");
 							) then
 							if (
 									GetHeroSkillMastery(strHero, iMasteryId) == 0
-									and iCountMastery < 7
+									and iCountMastery <= 7
 								)
 								or (
 									GetHeroSkillMastery(strHero, iMasteryId) > 0
@@ -5703,7 +5733,7 @@ doFile("/scripts/H55-Settings.lua");
 					local i = 1;
 					local enumHeroClass = TTH_TABLE.Hero[strHero]["Class"];
 					for iPerkId, objPerk in TTH_TABLE.Mastery[iMasteryId]["Perk"] do
-						if HasHeroSkill(strHero, iPerkId) == nil then
+						if HasHeroSkill(strHero, iPerkId) == nil and objPerk["IsAbsolute"] == nil then
 							if objPerk["Depend"] == nil then
 								arrPerkOption[i] = {
 									["Id"] = iPerkId
@@ -5945,7 +5975,7 @@ doFile("/scripts/H55-Settings.lua");
 					local i = 1;
 					local enumHeroClass = TTH_TABLE.Hero[strHero]["Class"];
 					for iPerkId, objPerk in TTH_TABLE.Mastery[iMasteryId]["Perk"] do
-						if HasHeroSkill(strHero, iPerkId) == nil then
+						if HasHeroSkill(strHero, iPerkId) == nil and objPerk["IsAbsolute"] == nil then
 							if objPerk["Depend"] == nil then
 								arrPerkOption[i] = {
 									["Id"] = iPerkId
@@ -15390,7 +15420,8 @@ doFile("/scripts/H55-Settings.lua");
 									TTH_GLOBAL.setGameVar4HeroArtifact(iPlayer, strHero); -- 保存全局参数，英雄携带宝物
 									TTH_GLOBAL.setGameVar4HeroArtifactSet(iPlayer, strHero); -- 保存全局参数，英雄携带宝物套装
 									TTH_GLOBAL.upgradeArtifactSetBonus8Hero(iPlayer, strHero); -- 宝物套装属性更新
-									TTH_GLOBAL.upgradeArtifactGiveMagic8Hero(iPlayer, strHero); -- 宝物套装赠送魔法
+									TTH_GLOBAL.upgradeArtifactGiveMagic8Hero(iPlayer, strHero); -- 宝物赠送魔法
+									TTH_GLOBAL.upgradeArtifactSetGiveMagic8Hero(iPlayer, strHero); -- 宝物套装赠送魔法
 									TTH_SUPPORT.dealIldar(iPlayer, strHero); -- 寒卿娜瑞莎
 								end;
 
@@ -15682,6 +15713,11 @@ doFile("/scripts/H55-Settings.lua");
 						TTH_COMMON.parse(objItem[TTH_ENUM.FuncAlways], iPlayer, strHero);
 					end;
 				end;
+
+				TTH_GLOBAL.setGameVar4HeroLevel(strHero);
+				TTH_GLOBAL.giveHero4Attribute(strHero);
+				TTH_GLOBAL.dealSkillBonus8Hero(strHero);
+				TTH_MANAGE.updateMaxOperTimes(strHero);
 			end;
 
 			print("Player-"..iPlayer.." resetDaily-"..TTH_VARI.counterResetDailyEvent[iPlayer].." event finished");

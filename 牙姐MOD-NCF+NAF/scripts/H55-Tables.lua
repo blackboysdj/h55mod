@@ -16923,6 +16923,13 @@
         }
       }
 
+    -- 宝物送魔法
+      TTH_TABLE.Artifact4Magic = {
+        [ARTIFACT_PENDANT_OF_BLIND] = {
+          ["GiveMagic"] = SPELL_BLIND
+        }
+      };
+
     -- 宝物套装属性
       TTH_TABLE.ArtifactSetBonus = {
         [TTH_ENUM.SET_DWARVEN] = {
@@ -19664,14 +19671,6 @@
                   [1] = HERO_SKILL_SCOUTING
                 }
               }
-              , [99] = { -- 死亡行军
-                ["Id"] = HERO_SKILL_DEATH_TREAD
-                , ["Text"] = "/Text/TTH/Skills/Logistics/099-DeathTread/Name.txt"
-                , ["DependType"] = TTH_ENUM.Simple
-                , ["Depend"] = {
-                  [1] = HERO_SKILL_SCOUTING
-                }
-              }
               , [19] = { -- 探路术
                 ["Id"] = HERO_SKILL_PATHFINDING
                 , ["Text"] = "/Text/TTH/Skills/Logistics/019-Pathfinding/Name.txt"
@@ -19704,6 +19703,11 @@
                   [1] = HERO_SKILL_SNATCH
                 }
               }
+              , [93] = { -- 风暴突袭（终极）
+                ["Id"] = HERO_SKILL_EXPLODING_CORPSES
+                , ["Text"] = "/Text/TTH/Skills/Logistics/093-ExplodingCorpses/Name.txt"
+                , ["IsAbsolute"] = TTH_ENUM.Yes
+              }
             }
           }
         -- 战争机械
@@ -19732,9 +19736,9 @@
                 ["Id"] = HERO_SKILL_CATAPULT
                 , ["Text"] = "/Text/TTH/Skills/WarMachines/024-Catapult/Name.txt"
               }
-              , [88] = { -- 硫磺烟雨
-                ["Id"] = HERO_SKILL_TRIPLE_CATAPULT
-                , ["Text"] = "/Text/TTH/Skills/WarMachines/088-TripleCatapult/Name.txt"
+              , [99] = { -- 攻城大师
+                ["Id"] = HERO_SKILL_DEATH_TREAD
+                , ["Text"] = "/Text/TTH/Skills/WarMachines/099-DeathTread/Name.txt"
                 , ["DependType"] = TTH_ENUM.Simple
                 , ["Depend"] = {
                   [1] = HERO_SKILL_CATAPULT
@@ -19822,6 +19826,11 @@
                   [1] = HERO_SKILL_ENCOURAGE
                 }
               }
+              , [56] = { -- 佑福仪式（终极）
+                ["Id"] = HERO_SKILL_PRAYER
+                , ["Text"] = "/Text/TTH/Skills/Leadership/078-GuardianAngel/Name.txt"
+                , ["IsAbsolute"] = TTH_ENUM.Yes
+              }
             }
           }
         -- 幸运术
@@ -19881,6 +19890,16 @@
                   [1] = HERO_SKILL_CHAOTIC_SPELLS
                 }
               }
+              , [124] = { -- 自然之幸（终极）
+                ["Id"] = HERO_SKILL_ABSOLUTE_LUCK
+                , ["Text"] = "/Text/Game/Skills/Unique/Avenger/AbsoluteLuck/Name.txt"
+                , ["IsAbsolute"] = TTH_ENUM.Yes
+              }
+              , [167] = { -- 绝对保护（终极）
+                ["Id"] = HERO_SKILL_ABSOLUTE_PROTECTION
+                , ["Text"] = "/Text/Game/Skills/Unique/Runelore/AbsoluteProtection/Name.txt"
+                , ["IsAbsolute"] = TTH_ENUM.Yes
+              }
             }
           }
         -- 攻击术
@@ -19939,6 +19958,11 @@
                 , ["Depend"] = {
                   [1] = HERO_SKILL_FRENZY
                 }
+              }
+              , [82] = { -- 怒火中烧（终极）
+                ["Id"] = HERO_SKILL_ANCIENT_SMITHY
+                , ["Text"] = "/Text/TTH/Skills/Offence/082-AncientSmithy/Name.txt"
+                , ["IsAbsolute"] = TTH_ENUM.Yes
               }
             }
           }
@@ -20158,6 +20182,11 @@
                   [1] = HERO_SKILL_SNIPE_DEAD
                 }
               }
+              , [117] = { -- 自然之怒（终极）
+                ["Id"] = HERO_SKILL_FIRE_PROTECTION
+                , ["Text"] = "/Text/TTH/Skills/Avenger/117-ForestRage/Name.txt"
+                , ["IsAbsolute"] = TTH_ENUM.Yes
+              }
             }
           }
         -- 制宝术
@@ -20202,14 +20231,6 @@
               , [126] = { -- 远程控制
                 ["Id"] = HERO_SKILL_REMOTE_CONTROL
                 , ["Text"] = "/Text/TTH/Skills/Artificier/126-RemoteControl/Name.txt"
-                , ["DependType"] = TTH_ENUM.Simple
-                , ["Depend"] = {
-                  [1] = HERO_SKILL_MARCH_OF_THE_MACHINES
-                }
-              }
-              , [139] = { -- 大地战栗
-                ["Id"] = HERO_SKILL_SHAKE_GROUND
-                , ["Text"] = "/Text/TTH/Skills/Artificier/139-ShakeGround/Name.txt"
                 , ["DependType"] = TTH_ENUM.Simple
                 , ["Depend"] = {
                   [1] = HERO_SKILL_MARCH_OF_THE_MACHINES
@@ -20285,6 +20306,11 @@
                   [1] = HERO_SKILL_DARK_RITUAL
                 }
               }
+              , [150] = { -- 元素的愤怒（终极）
+                ["Id"] = HERO_SKILL_ABSOLUTE_CHAINS
+                , ["Text"] = "/Text/Game/Skills/Unique/Invocation/AbsoluteChains/Name.txt"
+                , ["IsAbsolute"] = TTH_ENUM.Yes
+              }
             }
           }
         -- 亡灵巫术
@@ -20325,6 +20351,16 @@
                   [1] = HERO_SKILL_NO_REST_FOR_THE_WICKED
                   , [2] = HERO_SKILL_LORD_OF_UNDEAD
                 }
+              }
+              , [73] = { -- 邪恶远征（终极）
+                ["Id"] = HERO_SKILL_ROAD_HOME
+                , ["Text"] = "/Text/TTH/Skills/Necromancy/073-RoadHome/Name.txt"
+                , ["IsAbsolute"] = TTH_ENUM.Yes
+              }
+              , [111] = { -- 惊魂嚎叫（终极）
+                ["Id"] = HERO_SKILL_ABSOLUTE_FEAR
+                , ["Text"] = "/Text/Game/Skills/Unique/Necromancy/AbsoluteFear/Name.txt"
+                , ["IsAbsolute"] = TTH_ENUM.Yes
               }
             }
           }
@@ -20369,6 +20405,16 @@
                 , ["Depend"] = {
                   [1] = HERO_SKILL_GATING_MASTERY
                 }
+              }
+              , [98] = { -- 鄂加斯的呼唤（终极）
+                ["Id"] = HERO_SKILL_ABSOLUTE_GATING
+                , ["Text"] = "/Text/Game/Skills/Unique/Gating/AbsoluteGating/Name.txt"
+                , ["IsAbsolute"] = TTH_ENUM.Yes
+              }
+              , [90] = { -- 蜂拥之门（终极）
+                ["Id"] = HERO_SKILL_CRITICAL_GATING
+                , ["Text"] = "/Text/Game/Skills/Common/Luck/CriticalGating/Name.txt"
+                , ["IsAbsolute"] = TTH_ENUM.Yes
               }
             }
           }
@@ -20447,6 +20493,11 @@
                 , ["Depend"] = {
                   [1] = HERO_SKILL_MEMORY_OF_OUR_BLOOD
                 }
+              }
+              , [176] = { -- 绝对狂暴（终极）
+                ["Id"] = HERO_SKILL_ABSOLUTE_RAGE
+                , ["Text"] = "/Text/Game/Skills/Unique/DemonicRage/AbsoluteRage/Name.txt"
+                , ["IsAbsolute"] = TTH_ENUM.Yes
               }
             }
           }
@@ -20622,6 +20673,11 @@
                   [1] = HERO_SKILL_ARCANE_TRAINING
                 }
               }
+              , [137] = { -- 神秘全知（终极）
+                ["Id"] = HERO_SKILL_ABSOLUTE_WIZARDY
+                , ["Text"] = "/Text/Game/Skills/Unique/Artificer/AbsoluteWizardy/Name.txt"
+                , ["IsAbsolute"] = TTH_ENUM.Yes
+              }
             }
           }
         -- 光明魔法
@@ -20688,6 +20744,11 @@
                 , ["Depend"] = {
                   [1] = HERO_SKILL_MASTER_OF_ABJURATION
                 }
+              }
+              , [96] = { -- 潜能激发（终极）
+                ["Id"] = HERO_SKILL_FIRE_PROTECTION
+                , ["Text"] = "/Text/TTH/Skills/LightMagic/096-FireProtection/Name.txt"
+                , ["IsAbsolute"] = TTH_ENUM.Yes
               }
             }
           }
@@ -20806,6 +20867,22 @@
               , [97] = { -- 烈火勇士
                 ["Id"] = HERO_SKILL_FIRE_AFFINITY
                 , ["Text"] = "/Text/TTH/Skills/SummoningMagic/097-FireAffinity/Name.txt"
+                , ["DependType"] = TTH_ENUM.Simple
+                , ["Depend"] = {
+                  [1] = HERO_SKILL_MASTER_OF_CREATURES
+                }
+              }
+              , [88] = { -- 寒冰勇士
+                ["Id"] = HERO_SKILL_TRIPLE_CATAPULT
+                , ["Text"] = "/Text/TTH/Skills/SummoningMagic/088-WaterAffinity/Name.txt"
+                , ["DependType"] = TTH_ENUM.Simple
+                , ["Depend"] = {
+                  [1] = HERO_SKILL_MASTER_OF_CREATURES
+                }
+              }
+              , [139] = { -- 雷暴勇士
+                ["Id"] = HERO_SKILL_SHAKE_GROUND
+                , ["Text"] = "/Text/TTH/Skills/SummoningMagic/139-AirAffinity/Name.txt"
                 , ["DependType"] = TTH_ENUM.Simple
                 , ["Depend"] = {
                   [1] = HERO_SKILL_MASTER_OF_CREATURES

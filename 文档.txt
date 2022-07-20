@@ -56,10 +56,8 @@ HERO_CLASS_RETRIBUTION
 删除词条 配置文件
 
 添加词条关键字
-问 外交介绍
-答 
-https://www.bilibili.com/video/BV1734y1k7oq
-新版配置文件只支持神力之遗2.0.8后的版本，请及时更新
+问 转换生物
+答 https://www.bilibili.com/video/BV1XY4y1B7qY
 
 地精飞龙天地双王-纯享版-第8天500地精起飞
 地精飞龙天地双王-纯享版-天降神器机械引力指环
@@ -96,9 +94,16 @@ DK的智慧试炼 亡巫
 奥尔坦·卡西乌斯
 战锤40K
 玩家狂喜
+<spellBuffs>
+  <Item>SPELL_DEMON_RAGE_LEVEL_3</Item>
+  <Item>SPELL_DEMON_RAGE_LEVEL_3</Item>
+  <Item>SPELL_DEMON_RAGE_LEVEL_3</Item>
+</spellBuffs>
+HERO_SKILL_FIRE_PROTECTION
 
+<Item>ABILITY_DEMON_RAGED</Item>
 
-
+英雄无敌5神力之遗MOD--圣吉列斯<大河马定制战锤40K联动>
 
 视频相关
   7AI结盟+3倍增兵+眼泪+旅行者长靴+哨兵之盾+天使联盟+诅咒斗篷+大法师之书+龙神胸甲+初始技能+终极技能
@@ -526,6 +531,17 @@ NCF生物
   ffmpeg -ss 00:08:18 -to 00:14:58 -i 赛勒斯-破口-剪辑前.mp4 -codec copy 赛勒斯-破口-剪辑后.mp4
   ffmpeg -f concat -safe 0 -i filelist.txt -c copy 篷车的反杀.mp4
   ffmpeg -i "1.mkv" -vcodec copy -acodec copy "1.mp4"
+
+  ffmpeg -ss 00:00:00 -to 01:00:00 -i 2022-07-06_21-55-34.mp4 -codec copy 圣吉列斯-1.mp4
+  ffmpeg -ss 01:00:00 -to 02:00:00 -i 2022-07-06_21-55-34.mp4 -codec copy 圣吉列斯-2.mp4
+  ffmpeg -ss 02:00:00 -to 03:00:00 -i 2022-07-06_21-55-34.mp4 -codec copy 圣吉列斯-3.mp4
+  ffmpeg -ss 03:00:00 -to 04:00:00 -i 2022-07-06_21-55-34.mp4 -codec copy 圣吉列斯-4.mp4
+  ffmpeg -ss 00:00:00 -to 01:00:00 -i 2022-07-07_22-37-30.mp4 -codec copy 圣吉列斯-5.mp4
+  ffmpeg -ss 01:00:00 -to 02:00:00 -i 2022-07-07_22-37-30.mp4 -codec copy 圣吉列斯-6.mp4
+
+  ffmpeg -ss 00:00:00 -t 12 -i 赛勒斯-10级技能-剪辑前2.mp4 -codec copy 赛勒斯-决战技能-剪辑后2.mp4
+
+
 
 
 公众号相关

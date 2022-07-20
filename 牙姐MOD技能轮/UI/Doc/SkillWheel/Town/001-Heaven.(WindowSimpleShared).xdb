@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WindowSimpleShared ObjectRecordID="1000326">
+	<Crap>false</Crap>
+	<Children>
+		<Item href="001-Heaven/Detail/001-Knight/Class.(WindowTextView).xdb#xpointer(/WindowTextView)"/>
+		<Item href="001-Heaven/Detail/001-Knight/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="001-Heaven/Detail/001-Knight/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="001-Heaven/Detail/001-Knight/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="001-Heaven/Detail/001-Knight/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="001-Heaven/Detail/001-Knight/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<!-- <Item href="001-Heaven/Detail/001-Knight/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
+		<!-- <Item href="001-Heaven/Detail/001-Knight/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
+		<Item href="001-Heaven/Detail/002-Paladin/Class.(WindowTextView).xdb#xpointer(/WindowTextView)"/>
+		<Item href="001-Heaven/Detail/002-Paladin/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="001-Heaven/Detail/002-Paladin/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="001-Heaven/Detail/002-Paladin/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="001-Heaven/Detail/002-Paladin/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="001-Heaven/Detail/002-Paladin/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<!-- <Item href="001-Heaven/Detail/002-Paladin/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
+		<!-- <Item href="001-Heaven/Detail/002-Paladin/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
+		<Item href="001-Heaven/Detail/003-Heretic/Class.(WindowTextView).xdb#xpointer(/WindowTextView)"/>
+		<Item href="001-Heaven/Detail/003-Heretic/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="001-Heaven/Detail/003-Heretic/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="001-Heaven/Detail/003-Heretic/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="001-Heaven/Detail/003-Heretic/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="001-Heaven/Detail/003-Heretic/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<!-- <Item href="001-Heaven/Detail/003-Heretic/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
+		<!-- <Item href="001-Heaven/Detail/003-Heretic/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
+		<Item href="001-Heaven/Detail/025-Retribution/Class.(WindowTextView).xdb#xpointer(/WindowTextView)"/>
+		<Item href="001-Heaven/Detail/025-Retribution/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="001-Heaven/Detail/025-Retribution/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="001-Heaven/Detail/025-Retribution/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="001-Heaven/Detail/025-Retribution/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="001-Heaven/Detail/025-Retribution/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<!-- <Item href="001-Heaven/Detail/025-Retribution/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
+		<!-- <Item href="001-Heaven/Detail/025-Retribution/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
+	</Children>
+	<Background/>
+	<Foreground/>
+	<Flags>
+		<Transparent>false</Transparent>
+	</Flags>
+	<Placement>
+		<Position>
+			<First>
+				<x>0</x>
+				<y>0</y>
+			</First>
+			<Second>false</Second>
+		</Position>
+		<VerAllign>
+			<First>EPA_LOW_END</First>
+			<Second>false</Second>
+		</VerAllign>
+		<HorAllign>
+			<First>EPA_LOW_END</First>
+			<Second>false</Second>
+		</HorAllign>
+		<Size>
+			<First>
+				<x>0</x>
+				<y>0</y>
+			</First>
+			<Second>false</Second>
+		</Size>
+		<LowerMargin>
+			<First>
+				<x>0</x>
+				<y>0</y>
+			</First>
+			<Second>false</Second>
+		</LowerMargin>
+		<UpperMargin>
+			<First>
+				<x>0</x>
+				<y>0</y>
+			</First>
+			<Second>false</Second>
+		</UpperMargin>
+	</Placement>
+	<ActiveArea/>
+	<IgnoreDblClick>false</IgnoreDblClick>
+	<ActiveMask/>
+</WindowSimpleShared>

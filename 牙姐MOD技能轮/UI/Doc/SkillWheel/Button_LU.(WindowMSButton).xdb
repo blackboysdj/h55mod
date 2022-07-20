@@ -2,7 +2,7 @@
 <WindowMSButton ObjectRecordID="1000123">
 	<ClassTypeID>285694855</ClassTypeID>
 	<Shared href="Button.(WindowMSButtonShared).xdb#xpointer(/WindowMSButtonShared)"/>
-	<Name>SkillWheelButton</Name>
+	<Name>SkillWheelButton_LU</Name>
 	<TooltipFileRef href="Button.txt"/>
 	<Visible>true</Visible>
 	<Priority>100</Priority>
@@ -58,7 +58,7 @@
 			<CommandsOnEnterState>
 				<Commands>
 					<Item href="SkillsShow.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
-					<!-- <Item href="SWButtonsShow.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/> -->
+					<Item href="SWButtonsShow.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
 				</Commands>
 				<Reversable>false</Reversable>
 			</CommandsOnEnterState>

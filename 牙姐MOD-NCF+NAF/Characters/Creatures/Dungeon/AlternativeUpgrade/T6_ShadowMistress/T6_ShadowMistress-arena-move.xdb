@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BasicSkelAnim>
+	<SrcName href="/H5A2/Creatures/AlternativeUpgrades/Dangeon/T6_ShadowMistress/Shadow Mistress.mb"/>
+	<uid>8F2C4E19-1A9E-4232-BE35-6475AE29FE59</uid>
+	<ExpSrcClip href="/H5A2/Creatures/AlternativeUpgrades/Dangeon/T6_ShadowMistress/Animations/Clip/Priestess.move.ma"/>
+	<ExpRootTransform>Global</ExpRootTransform>
+	<ExpFrameFirst>0</ExpFrameFirst>
+	<ExpFrameLast>0</ExpFrameLast>
+	<ExpSettingsFile href=""/>
+	<MovementSpeed>1.03131</MovementSpeed>
+	<SpeedFactor>2.5</SpeedFactor>
+	<Sound href="/Sounds/_(Sound)/Creatures/Dungeon/T6/move.xdb#xpointer(/Sound)"/>
+	<Effect href="/Effects/_(Effect)/Characters/Creatures/Dungeon/AlternativeUpgrade/T6_ShadowMistress/idle00_lash.(Effect).xdb#xpointer(/Effect)"/>
+	<SpeedLineFallTime>250</SpeedLineFallTime>
+	<SpeedLineMaterial/>
+</BasicSkelAnim>

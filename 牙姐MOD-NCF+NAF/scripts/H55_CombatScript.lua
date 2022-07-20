@@ -724,8 +724,8 @@ doFile('/scripts/combat-startup.lua')
 						    iPositionY = 7;
 						end;
 
-						local iOver = tth_mod(I_TIMER, 4);
-						local idSummonElemental = H55SMOD_Start['Artifact'][ARTIFACT_BAND_OF_CONJURER]['list'][iOver];
+						local iIndex = TTHCS_COMMON.getRandom(4);
+						local idSummonElemental = H55SMOD_Start['Artifact'][ARTIFACT_BAND_OF_CONJURER]['list'][iIndex];
 						local iHeroLevel = H55SMOD_HeroLevel[GetHeroName(GetHero(iSide))];
 						Thread_Command_SummonCreature(iSide, idSummonElemental, iHeroLevel * 1, iPositionX, iPositionY);
 						combatSetPause(nil);
@@ -742,8 +742,8 @@ doFile('/scripts/combat-startup.lua')
 						combatSetPause(1);
 						local listCreaturesSnapshotInit = ObjSnapshotInit['Creatures'][iSide];
 						local iLenCreaturesSnapshotInit = length(listCreaturesSnapshotInit);
-						local iOver = tth_mod(I_TIMER, iLenCreaturesSnapshotInit);
-						local itemCreatureSnapshotInit = listCreaturesSnapshotInit[iOver];
+						local iIndex = TTHCS_COMMON.getRandom(iLenCreaturesSnapshotInit);
+						local itemCreatureSnapshotInit = listCreaturesSnapshotInit[iIndex];
 						print(itemCreatureSnapshotInit['strUnitName']..'\'s atb has been increase to 1.25');
 						setATB(itemCreatureSnapshotInit['strUnitName'], 1.25);
 						combatSetPause(nil);
@@ -930,6 +930,13 @@ doFile('/scripts/combat-startup.lua')
 
 	function Events_Start()
 		combatSetPause(1);
+		TTHCS_COMMON.initRandom();
+		while not TTHCS_COMMON.random do
+		  sleep();
+		end;
+		for i=1,100 do
+			print(TTHCS_COMMON.random(100))
+		end
 		Events_Init();
 		Events_Init_HeroLevel();
 		Events_Init_HeroSkill_Special();
@@ -1200,7 +1207,7 @@ doFile('/scripts/combat-startup.lua')
 
 			print(itemUnit["strUnitName"].." death");
 			-- Skill
-				H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_TRIPLE_CATAPULT]['function'](getSide(itemUnit["iSide"], 1), itemUnit);
+				H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_DEATH_TREAD]['function'](getSide(itemUnit["iSide"], 1), itemUnit);
 			H55SMOD_MiddlewareListener['Adelaide']['function']['hero']('Adelaide', itemUnit["iSide"], itemUnit);
 			
 			-- Haven
@@ -2269,10 +2276,8 @@ doFile('/scripts/combat-startup.lua')
 		function Events_MiddlewareListener_Implement_Artifact_Eightfold(itemUnitLast, iSide)
 			if TTH_ARTIFACT_EFFECT_COMBAT_HERO[iSide][ARTIFACT_EIGHTFOLD] == 1 then
 				combatSetPause(1);
-				print(I_TIMER);
-				local iOver = tth_mod(I_TIMER, 4);
-				print(iOver);
-				if iOver == 0 then
+				local iIndex = TTHCS_COMMON.getRandom(4);
+				if iIndex == 0 then
 					itemUnitLast['iAtb'] = 1.25;
 					push(ListUnitSetATB, itemUnitLast);
 				end;
@@ -2298,11 +2303,14 @@ doFile('/scripts/combat-startup.lua')
 			if H55SMOD_MiddlewareListener['Artifact'][ARTIFACT_PENDANT_OF_BLIND][iSide]['flag'] == ENUM_STAGE.ONCE.UNEXECUTE then
 				if TTH_ARTIFACT_EFFECT_COMBAT_HERO[iSide][ARTIFACT_PENDANT_OF_BLIND] == 1 then
 					H55SMOD_MiddlewareListener['Artifact'][ARTIFACT_PENDANT_OF_BLIND][iSide]['flag'] = ENUM_STAGE.ONCE.EXECUTED;
+					combatSetPause(1);
 					local iLenCreaturesLast = length(ObjSnapshotLastTurn['Creatures'][getSide(iSide, 1)]);
-					local iOver = tth_mod(I_TIMER, iLenCreaturesLast);
-					startThread(Thread_Command_UnitCastAimedSpell, itemUnit['strUnitName'], SPELL_BLIND, ObjSnapshotLastTurn['Creatures'][getSide(iSide, 1)][iLenCreaturesLast - 1]['strUnitName'], 1);
+					local iIndex = TTHCS_COMMON.getRandom(iLenCreaturesLast);
+					startThread(Thread_Command_UnitCastAimedSpell, itemUnit['strUnitName'], SPELL_BLIND, ObjSnapshotLastTurn['Creatures'][getSide(iSide, 1)][iIndex]['strUnitName'], 1);
+					sleep(20);
 					itemUnit['iAtb'] = 1.25;
 					push(ListUnitSetATB, itemUnit);
+					combatSetPause(nil);
 				end;
 			end;
 		end;
@@ -2370,8 +2378,8 @@ doFile('/scripts/combat-startup.lua')
 						end;
 					end;
 					local iLenStrongholdCreature = length(arrStrongholdCreature);
-					local iIndexCreature = tth_mod(I_TIMER, iLenStrongholdCreature);
-					local strCreatureName = arrStrongholdCreature[iIndexCreature];
+					local iIndex = TTHCS_COMMON.getRandom(iLenStrongholdCreature);
+					local strCreatureName = arrStrongholdCreature[iIndex];
 					startThread(Thread_Command_UnitCastAimedSpell, GetHero(iSide), SPELL_WARCRY_CALL_OF_BLOOD, strCreatureName, 1);
 					ShowFlyingSign(TTHCS_PATH["ArtifactSet"][TTHCS_ENUM.SET_OGRES.."_"..2]["Effect"], strCreatureName, 5);
 					local itemHero = geneUnitStatus(GetHero(iSide));
@@ -2498,12 +2506,12 @@ doFile('/scripts/combat-startup.lua')
 			end;
 			H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_SEAL_OF_PROTECTION]['function'] = Events_MiddlewareListener_Implement_Skill_SealOfProtection;
 
-		-- 硫磺烟雨: 当城墙/箭塔/城门被击毁时，己方所有生物/战争机械/英雄立即行动 HERO_SKILL_TRIPLE_CATAPULT
-			H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_TRIPLE_CATAPULT] = {};
+		-- 硫磺烟雨: 当城墙/箭塔/城门被击毁时，己方所有生物/战争机械/英雄立即行动 HERO_SKILL_DEATH_TREAD
+			H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_DEATH_TREAD] = {};
 			function Events_MiddlewareListener_Implement_Skill_TripleCatapult(iSide, itemUnitDeath)
 				if GetHero(iSide) ~= nil then
-					if TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_TRIPLE_CATAPULT] == 1
-						and IsBuilding(itemUnitDeath) ~= nil then
+					if TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_DEATH_TREAD] == 1
+						and IsBuilding(itemUnitDeath["strUnitName"]) ~= nil then
 						local listCreatures = GetCreatures(iSide);
 						for i, strCreatureName in listCreatures do
 							local objCreature = geneUnitStatus(strCreatureName);
@@ -2520,7 +2528,7 @@ doFile('/scripts/combat-startup.lua')
 								push(ListUnitSetATB, objWarMachine);
 								print(objWarMachine['strUnitName'].." \'s atb effect by TripleCatapult");
 							elseif objWarMachine["iUnitType"] == WAR_MACHINE_CATAPULT then
-								ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_TRIPLE_CATAPULT]["Effect"], objWarMachine["strUnitName"], 5);
+								ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEATH_TREAD]["Effect"], objWarMachine["strUnitName"], 5);
 							end;
 						end;
 						local objHero = geneUnitStatus(GetHero(iSide));
@@ -2530,7 +2538,7 @@ doFile('/scripts/combat-startup.lua')
 					end;
 				end;
 			end;
-			H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_TRIPLE_CATAPULT]['function'] = Events_MiddlewareListener_Implement_Skill_TripleCatapult;
+			H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_DEATH_TREAD]['function'] = Events_MiddlewareListener_Implement_Skill_TripleCatapult;
 
 		-- 风暴突袭: 己方生物【造成战损后】英雄会对战损敌方生物及其周围的敌方生物各追加一发霹雳闪电并且英雄立刻行动（该特效在每两次英雄行动之间只能触发一次）
 			H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_EXPLODING_CORPSES] = {};
@@ -4016,10 +4024,8 @@ doFile('/scripts/combat-startup.lua')
 			function Events_MiddlewareListener_Implement_Archilus(strHero, iSide, itemUnitLast)
 				if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero and itemUnitLast['iUnitType'] == CREATURE_DEATH_KNIGHT and itemUnitLast['iSide'] == iSide then
 					combatSetPause(1);
-					print(I_TIMER);
-					local iOver = tth_mod(I_TIMER, 4);
-					print(iOver);
-					if iOver == 0 then
+					local iIndex = TTHCS_COMMON.getRandom(4);
+					if iIndex == 0 then
 							itemUnitLast['iAtb'] = 1.25;
 							push(ListUnitSetATB, itemUnitLast);
 					end;
@@ -5486,19 +5492,6 @@ doFile('/scripts/combat-startup.lua')
 	function DefenderSpellSpawnDeath(spellspawnName)
 		onUnitTriggerMiddlewareListener(spellspawnName, ENUM_BASICLISTENER.DEATH);
 	end;
-
--- 计时器 取随机数
-	I_TIMER = 0;
-	function timeInterval()
-		I_TIMER = I_TIMER + 1;
-		if I_TIMER > 100 then
-			I_TIMER = 0;
-		end;
-		sleep(10);
-		timeInterval();
-	end;
-	startThread(timeInterval);
-	print("timeInterval started");
 
 print("All functions started");
 

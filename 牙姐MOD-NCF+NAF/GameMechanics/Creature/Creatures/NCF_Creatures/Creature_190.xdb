@@ -48,6 +48,6 @@
 		<Item>ABILITY_WEAKENING_AURA</Item>
 		<Item>ABILITY_ARMORED</Item>
 		<Item>ABILITY_WHIRLWIND</Item>
-		<Item>ABILITY_UNLIMITED_RETALIATION</Item>
+		<Item>ABILITY_BATTLE_RAGE</Item>
 	</Abilities>
 </Creature>

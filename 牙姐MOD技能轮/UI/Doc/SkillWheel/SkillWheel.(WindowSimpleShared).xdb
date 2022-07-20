@@ -2,967 +2,573 @@
 <WindowSimpleShared ObjectRecordID="1000860">
 	<Crap>false</Crap>
 	<Children>
-	<!-- 全局按钮 -->
 		<Item href="ExitButton.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/Title.(WindowTextView).xdb#xpointer(/WindowTextView)"/>
-
-	<!-- 圣堂终极 -->
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteMorale/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteMorale/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteMorale/1/Knight.(WindowTextView).xdb#xpointer(/WindowTextView)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteMorale/1/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteMorale/1/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteMorale/1/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteMorale/1/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteMorale/1/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteMorale/1/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteMorale/1/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteMorale/1/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteMorale/2/Paladin.(WindowTextView).xdb#xpointer(/WindowTextView)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteMorale/2/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteMorale/2/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteMorale/2/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteMorale/2/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteMorale/2/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteMorale/2/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteMorale/2/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteMorale/2/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteMorale/3/Heretic.(WindowTextView).xdb#xpointer(/WindowTextView)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteMorale/3/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteMorale/3/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteMorale/3/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteMorale/3/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteMorale/3/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteMorale/3/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteMorale/3/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteMorale/3/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-
-	<!-- 森林终极 -->
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteLuck/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteLuck/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteLuck/1/Ranger.(WindowTextView).xdb#xpointer(/WindowTextView)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteLuck/1/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteLuck/1/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteLuck/1/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteLuck/1/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteLuck/1/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteLuck/1/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteLuck/1/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteLuck/1/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteLuck/1/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteLuck/1/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteLuck/2/Warden.(WindowTextView).xdb#xpointer(/WindowTextView)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteLuck/2/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteLuck/2/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteLuck/2/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteLuck/2/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteLuck/2/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteLuck/2/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteLuck/2/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteLuck/2/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteLuck/3/Enchanter.(WindowTextView).xdb#xpointer(/WindowTextView)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteLuck/3/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteLuck/3/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteLuck/3/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteLuck/3/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteLuck/3/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteLuck/3/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteLuck/3/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteLuck/3/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-
-	<!-- 学院终极 -->
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteWizardy/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteWizardy/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteWizardy/1/Guildmaster.(WindowTextView).xdb#xpointer(/WindowTextView)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteWizardy/1/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteWizardy/1/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteWizardy/1/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteWizardy/1/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteWizardy/1/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteWizardy/1/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteWizardy/1/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteWizardy/1/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteWizardy/2/Wizard.(WindowTextView).xdb#xpointer(/WindowTextView)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteWizardy/2/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteWizardy/2/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteWizardy/2/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteWizardy/2/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteWizardy/2/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteWizardy/2/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteWizardy/2/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteWizardy/2/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteWizardy/3/Elementalist.(WindowTextView).xdb#xpointer(/WindowTextView)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteWizardy/3/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteWizardy/3/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteWizardy/3/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteWizardy/3/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteWizardy/3/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteWizardy/3/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteWizardy/3/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteWizardy/3/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteWizardy/3/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteWizardy/3/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteWizardy/3/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteWizardy/3/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-
-	<!-- 地牢终极 -->
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteChains/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteChains/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteChains/1/Warlock.(WindowTextView).xdb#xpointer(/WindowTextView)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteChains/1/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteChains/1/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteChains/1/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteChains/1/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteChains/1/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteChains/1/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteChains/1/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteChains/1/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteChains/1/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteChains/1/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-
-	<!-- 墓园终极 -->
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteFear/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteFear/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteFear/1/Deathknight.(WindowTextView).xdb#xpointer(/WindowTextView)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteFear/1/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteFear/1/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteFear/1/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteFear/1/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteFear/1/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteFear/1/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteFear/2/Reaver.(WindowTextView).xdb#xpointer(/WindowTextView)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteFear/2/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteFear/2/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteFear/2/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteFear/2/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteFear/2/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteFear/2/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteFear/2/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteFear/2/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteFear/3/Necromancer.(WindowTextView).xdb#xpointer(/WindowTextView)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteFear/3/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteFear/3/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteFear/3/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteFear/3/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteFear/3/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteFear/3/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-
-	<!-- 堡垒终极 -->
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteProtection/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteProtection/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteProtection/1/Engineer.(WindowTextView).xdb#xpointer(/WindowTextView)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteProtection/1/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteProtection/1/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteProtection/1/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteProtection/1/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteProtection/1/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteProtection/1/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteProtection/1/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteProtection/1/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteProtection/2/Runemage.(WindowTextView).xdb#xpointer(/WindowTextView)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteProtection/2/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteProtection/2/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteProtection/2/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteProtection/2/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteProtection/2/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteProtection/2/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteProtection/2/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteProtection/2/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteProtection/3/Flamekeepera.(WindowTextView).xdb#xpointer(/WindowTextView)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteProtection/3/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteProtection/3/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteProtection/3/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteProtection/3/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteProtection/3/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteProtection/3/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteProtection/3/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteProtection/3/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-
-	<!-- 地狱终极 -->
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteGating/Inferno.(WindowTextView).xdb#xpointer(/WindowTextView)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteGating/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteGating/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteGating/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteGating/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteGating/1/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteGating/1/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteGating/1/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteGating/1/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteGating/1/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteGating/1/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteGating/2/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteGating/2/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteGating/2/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteGating/2/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteGating/2/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteGating/2/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-
-	<!-- 据点终极 -->
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteRage/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteRage/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteRage/1/Barbarian.(WindowTextView).xdb#xpointer(/WindowTextView)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteRage/1/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteRage/1/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteRage/1/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteRage/1/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteRage/1/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteRage/1/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteRage/1/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/AbsoluteSkills/AbsoluteRage/1/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-
-
-	<!-- 后勤 -->
-		<Item href="/UI/Doc/SkillWheel/Skills/Logistics/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Logistics/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Logistics/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Logistics/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Logistics/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Logistics/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Logistics/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Logistics/PerkButton8.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Logistics/PerkButton9.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Logistics/PerkButtonX.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Logistics/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Logistics/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-
-		<Item href="/UI/Doc/SkillWheel/Skills/Logistics/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Logistics/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Logistics/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Logistics/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Logistics/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Logistics/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Logistics/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Logistics/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Logistics/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Logistics/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Logistics/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Logistics/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-
-	<!-- 启蒙 -->
-		<Item href="/UI/Doc/SkillWheel/Skills/Enlightenment/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Enlightenment/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Enlightenment/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Enlightenment/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Enlightenment/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Enlightenment/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Enlightenment/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Enlightenment/PerkButton8.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Enlightenment/PerkButton9.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Enlightenment/PerkButtonX.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Enlightenment/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Enlightenment/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Enlightenment/PerkButtonX3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-
-		<Item href="/UI/Doc/SkillWheel/Skills/Enlightenment/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Enlightenment/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Enlightenment/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Enlightenment/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Enlightenment/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Enlightenment/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Enlightenment/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Enlightenment/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Enlightenment/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Enlightenment/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Enlightenment/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Enlightenment/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Enlightenment/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-
-	<!-- 进攻 -->
-		<Item href="/UI/Doc/SkillWheel/Skills/Offense/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Offense/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Offense/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Offense/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Offense/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Offense/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Offense/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Offense/PerkButton8.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Offense/PerkButton9.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Offense/PerkButtonX.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Offense/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Offense/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-
-		<Item href="/UI/Doc/SkillWheel/Skills/Offense/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Offense/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Offense/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Offense/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Offense/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Offense/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Offense/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Offense/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Offense/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Offense/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Offense/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Offense/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-
-	<!-- 防御 -->
-		<Item href="/UI/Doc/SkillWheel/Skills/Defense/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Defense/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Defense/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Defense/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Defense/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Defense/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Defense/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Defense/PerkButton8.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Defense/PerkButton9.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Defense/PerkButtonX.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Defense/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Defense/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-
-		<Item href="/UI/Doc/SkillWheel/Skills/Defense/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Defense/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Defense/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Defense/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Defense/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Defense/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Defense/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Defense/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Defense/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Defense/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Defense/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Defense/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-
-	<!-- 领导 -->
-		<Item href="/UI/Doc/SkillWheel/Skills/Leadership/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Leadership/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Leadership/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Leadership/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Leadership/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Leadership/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Leadership/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Leadership/PerkButton8.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Leadership/PerkButton9.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Leadership/PerkButtonX.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Leadership/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Leadership/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-
-		<Item href="/UI/Doc/SkillWheel/Skills/Leadership/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Leadership/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Leadership/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Leadership/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Leadership/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Leadership/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Leadership/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Leadership/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Leadership/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Leadership/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Leadership/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Leadership/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-
-	<!-- 幸运 -->
-		<Item href="/UI/Doc/SkillWheel/Skills/Luck/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Luck/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Luck/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Luck/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Luck/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Luck/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Luck/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Luck/PerkButton8.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Luck/PerkButton9.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Luck/PerkButtonX.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Luck/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Luck/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-
-		<Item href="/UI/Doc/SkillWheel/Skills/Luck/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Luck/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Luck/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Luck/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Luck/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Luck/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Luck/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Luck/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Luck/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Luck/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Luck/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Luck/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-
-	<!-- 机械 -->
-		<Item href="/UI/Doc/SkillWheel/Skills/WarMachines/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/WarMachines/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/WarMachines/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/WarMachines/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/WarMachines/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/WarMachines/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/WarMachines/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/WarMachines/PerkButton8.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/WarMachines/PerkButton9.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/WarMachines/PerkButtonX.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/WarMachines/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/WarMachines/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-
-		<Item href="/UI/Doc/SkillWheel/Skills/WarMachines/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/WarMachines/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/WarMachines/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/WarMachines/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/WarMachines/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/WarMachines/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/WarMachines/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/WarMachines/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/WarMachines/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/WarMachines/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/WarMachines/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/WarMachines/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-
-	<!-- 光明 -->
-		<Item href="/UI/Doc/SkillWheel/Skills/Light/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Light/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Light/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Light/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Light/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Light/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Light/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Light/PerkButton8.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Light/PerkButton9.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Light/PerkButtonX.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Light/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Light/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-
-		<Item href="/UI/Doc/SkillWheel/Skills/Light/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Light/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Light/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Light/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Light/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Light/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Light/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Light/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Light/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Light/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Light/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Light/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-
-	<!-- 黑暗 -->
-		<Item href="/UI/Doc/SkillWheel/Skills/Dark/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Dark/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Dark/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Dark/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Dark/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Dark/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Dark/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Dark/PerkButton8.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Dark/PerkButton9.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Dark/PerkButtonX.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Dark/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Dark/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-
-		<Item href="/UI/Doc/SkillWheel/Skills/Dark/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Dark/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Dark/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Dark/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Dark/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Dark/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Dark/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Dark/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Dark/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Dark/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Dark/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Dark/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-
-	<!-- 召唤 -->
-		<Item href="/UI/Doc/SkillWheel/Skills/Summoning/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Summoning/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Summoning/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Summoning/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Summoning/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Summoning/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Summoning/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Summoning/PerkButton8.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Summoning/PerkButton9.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Summoning/PerkButtonX.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Summoning/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Summoning/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-
-		<Item href="/UI/Doc/SkillWheel/Skills/Summoning/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Summoning/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Summoning/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Summoning/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Summoning/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Summoning/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Summoning/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Summoning/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Summoning/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Summoning/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Summoning/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Summoning/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-
-	<!-- 破坏 -->
-		<Item href="/UI/Doc/SkillWheel/Skills/Destructive/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Destructive/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Destructive/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Destructive/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Destructive/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Destructive/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Destructive/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Destructive/PerkButton8.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Destructive/PerkButton9.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Destructive/PerkButtonX.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Destructive/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Destructive/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-
-		<Item href="/UI/Doc/SkillWheel/Skills/Destructive/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Destructive/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Destructive/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Destructive/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Destructive/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Destructive/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Destructive/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Destructive/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Destructive/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Destructive/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Destructive/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Destructive/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-
-	<!-- 巫术 -->
-		<Item href="/UI/Doc/SkillWheel/Skills/Sorcery/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Sorcery/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Sorcery/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Sorcery/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Sorcery/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Sorcery/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Sorcery/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Sorcery/PerkButton8.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Sorcery/PerkButton9.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Sorcery/PerkButtonX.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Sorcery/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<Item href="/UI/Doc/SkillWheel/Skills/Sorcery/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Sorcery/PerkButtonX3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-
-		<Item href="/UI/Doc/SkillWheel/Skills/Sorcery/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Sorcery/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Sorcery/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Sorcery/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Sorcery/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Sorcery/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Sorcery/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Sorcery/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Sorcery/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Sorcery/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Sorcery/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<Item href="/UI/Doc/SkillWheel/Skills/Sorcery/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Sorcery/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-
-	<!-- 反击 -->
-		<Item href="/UI/Doc/SkillWheel/Skills/Training/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Training/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Training/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Training/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Training/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Training/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Training/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Training/PerkButton8.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Training/PerkButton9.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Training/PerkButtonX.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Training/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Training/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Training/PerkButtonX3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-
-		<Item href="/UI/Doc/SkillWheel/Skills/Training/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Training/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Training/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Training/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Training/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Training/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Training/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Training/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Training/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Training/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Training/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Training/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Training/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-
-	<!-- 穿透 -->
-		<Item href="/UI/Doc/SkillWheel/Skills/Invocation/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Invocation/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Invocation/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Invocation/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Invocation/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Invocation/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Invocation/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Invocation/PerkButton8.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Invocation/PerkButton9.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Invocation/PerkButtonX.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Invocation/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Invocation/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Invocation/PerkButtonX3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-
-		<Item href="/UI/Doc/SkillWheel/Skills/Invocation/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Invocation/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Invocation/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Invocation/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Invocation/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Invocation/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Invocation/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Invocation/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Invocation/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Invocation/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Invocation/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Invocation/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Invocation/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-
-	<!-- 符文 -->
-		<Item href="/UI/Doc/SkillWheel/Skills/Runelore/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Runelore/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Runelore/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Runelore/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Runelore/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Runelore/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Runelore/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Runelore/PerkButton8.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Runelore/PerkButton9.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Runelore/PerkButtonX.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Runelore/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Runelore/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Runelore/PerkButtonX3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-
-		<Item href="/UI/Doc/SkillWheel/Skills/Runelore/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Runelore/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Runelore/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Runelore/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Runelore/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Runelore/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Runelore/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Runelore/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Runelore/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Runelore/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Runelore/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Runelore/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Runelore/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-
-	<!-- 制宝 -->
-		<Item href="/UI/Doc/SkillWheel/Skills/Artificer/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Artificer/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Artificer/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Artificer/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Artificer/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Artificer/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Artificer/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Artificer/PerkButton8.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Artificer/PerkButton9.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Artificer/PerkButtonX.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Artificer/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Artificer/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Artificer/PerkButtonX3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-
-		<Item href="/UI/Doc/SkillWheel/Skills/Artificer/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Artificer/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Artificer/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Artificer/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Artificer/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Artificer/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Artificer/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Artificer/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Artificer/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Artificer/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Artificer/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Artificer/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Artificer/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-
-	<!-- 复仇 -->
-		<Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkButton8.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkButton9.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkButtonX.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkButtonX3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-
-		<Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Avenger/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-
-	<!-- 地门 -->
-		<Item href="/UI/Doc/SkillWheel/Skills/Gating/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Gating/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Gating/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Gating/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Gating/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Gating/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Gating/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Gating/PerkButton8.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Gating/PerkButton9.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Gating/PerkButtonX.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Gating/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Gating/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Gating/PerkButtonX3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-
-		<Item href="/UI/Doc/SkillWheel/Skills/Gating/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Gating/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Gating/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Gating/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Gating/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Gating/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Gating/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Gating/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Gating/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Gating/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Gating/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Gating/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Gating/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-
-	<!-- 亡巫 -->
-		<Item href="/UI/Doc/SkillWheel/Skills/Necromancy/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Necromancy/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Necromancy/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Necromancy/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Necromancy/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Necromancy/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Necromancy/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Necromancy/PerkButton8.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Necromancy/PerkButton9.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Necromancy/PerkButtonX.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Necromancy/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Necromancy/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Necromancy/PerkButtonX3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-
-		<Item href="/UI/Doc/SkillWheel/Skills/Necromancy/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Necromancy/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Necromancy/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Necromancy/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Necromancy/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Necromancy/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Necromancy/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Necromancy/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Necromancy/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Necromancy/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Necromancy/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Necromancy/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Necromancy/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-
-	<!-- 血怒 -->
-		<Item href="/UI/Doc/SkillWheel/Skills/Bloodrage/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Bloodrage/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Bloodrage/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Bloodrage/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Bloodrage/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Bloodrage/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Bloodrage/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Bloodrage/PerkButton8.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Bloodrage/PerkButton9.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Bloodrage/PerkButtonX.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Bloodrage/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Bloodrage/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Bloodrage/PerkButtonX3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-
-		<Item href="/UI/Doc/SkillWheel/Skills/Bloodrage/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Bloodrage/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Bloodrage/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Bloodrage/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Bloodrage/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Bloodrage/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Bloodrage/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Bloodrage/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Bloodrage/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Bloodrage/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Bloodrage/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Bloodrage/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Bloodrage/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-
-	<!-- 学习 -->
-		<Item href="/UI/Doc/SkillWheel/Skills/BLearning/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/BLearning/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/BLearning/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/BLearning/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/BLearning/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/BLearning/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/BLearning/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/BLearning/PerkButton8.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/BLearning/PerkButton9.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/BLearning/PerkButtonX.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/BLearning/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/BLearning/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/BLearning/PerkButtonX3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-
-		<Item href="/UI/Doc/SkillWheel/Skills/BLearning/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/BLearning/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/BLearning/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/BLearning/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/BLearning/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/BLearning/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/BLearning/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/BLearning/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/BLearning/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/BLearning/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/BLearning/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/BLearning/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/BLearning/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-
-	<!-- 战嚎 -->
-		<Item href="/UI/Doc/SkillWheel/Skills/Shouting/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Shouting/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Shouting/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Shouting/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Shouting/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Shouting/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Shouting/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Shouting/PerkButton8.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Shouting/PerkButton9.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Shouting/PerkButtonX.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Shouting/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Shouting/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Shouting/PerkButtonX3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-
-		<Item href="/UI/Doc/SkillWheel/Skills/Shouting/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Shouting/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Shouting/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Shouting/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Shouting/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Shouting/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Shouting/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Shouting/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/Shouting/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Shouting/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Shouting/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Shouting/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/Shouting/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-
-	<!-- 反光 -->
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterLight/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterLight/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterLight/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterLight/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterLight/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterLight/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterLight/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterLight/PerkButton8.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterLight/PerkButton9.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/ShatterLight/PerkButtonX.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/ShatterLight/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/ShatterLight/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/ShatterLight/PerkButtonX3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterLight/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterLight/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterLight/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterLight/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterLight/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterLight/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterLight/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterLight/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterLight/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/ShatterLight/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/ShatterLight/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/ShatterLight/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/ShatterLight/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-
-	<!-- 反黑 -->
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterDark/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterDark/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterDark/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterDark/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterDark/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterDark/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterDark/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterDark/PerkButton8.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterDark/PerkButton9.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterDark/PerkButtonX.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/ShatterDark/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/ShatterDark/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/ShatterDark/PerkButtonX3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterDark/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterDark/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterDark/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterDark/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterDark/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterDark/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterDark/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterDark/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterDark/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterDark/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/ShatterDark/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/ShatterDark/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/ShatterDark/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-
-	<!-- 反破 -->
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterDestructive/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterDestructive/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterDestructive/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterDestructive/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterDestructive/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterDestructive/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterDestructive/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterDestructive/PerkButton8.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/ShatterDestructive/PerkButton9.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/ShatterDestructive/PerkButtonX.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/ShatterDestructive/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/ShatterDestructive/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/ShatterDestructive/PerkButtonX3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterDestructive/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterDestructive/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterDestructive/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterDestructive/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterDestructive/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterDestructive/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterDestructive/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterDestructive/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/ShatterDestructive/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/ShatterDestructive/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/ShatterDestructive/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/ShatterDestructive/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/ShatterDestructive/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-
-	<!-- 反召 -->
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterSummoning/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterSummoning/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterSummoning/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterSummoning/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterSummoning/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterSummoning/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterSummoning/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterSummoning/PerkButton8.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterSummoning/PerkButton9.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterSummoning/PerkButtonX.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/ShatterSummoning/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/ShatterSummoning/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/ShatterSummoning/PerkButtonX3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterSummoning/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterSummoning/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterSummoning/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterSummoning/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterSummoning/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterSummoning/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterSummoning/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterSummoning/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterSummoning/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/Skills/ShatterSummoning/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/ShatterSummoning/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/ShatterSummoning/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<!-- <Item href="/UI/Doc/SkillWheel/Skills/ShatterSummoning/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+
+		<Item href="Skills/001-Logistics/Page.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/001-Logistics/Detail/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/001-Logistics/Detail/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/001-Logistics/Detail/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/001-Logistics/Detail/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/001-Logistics/Detail/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/001-Logistics/Detail/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/001-Logistics/Detail/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/001-Logistics/Detail/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/001-Logistics/Detail/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/001-Logistics/Detail/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+
+		<Item href="Skills/002-WarMachines/Page.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/002-WarMachines/Detail/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/002-WarMachines/Detail/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/002-WarMachines/Detail/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/002-WarMachines/Detail/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/002-WarMachines/Detail/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/002-WarMachines/Detail/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/002-WarMachines/Detail/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/002-WarMachines/Detail/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/002-WarMachines/Detail/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/002-WarMachines/Detail/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/002-WarMachines/Detail/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/002-WarMachines/Detail/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Skills/002-WarMachines/Detail/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+
+		<Item href="Skills/003-Learning/Page.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/003-Learning/Detail/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/003-Learning/Detail/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/003-Learning/Detail/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/003-Learning/Detail/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/003-Learning/Detail/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/003-Learning/Detail/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/003-Learning/Detail/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/003-Learning/Detail/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/003-Learning/Detail/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/003-Learning/Detail/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/003-Learning/Detail/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/003-Learning/Detail/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/003-Learning/Detail/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+
+		<Item href="Skills/004-Leadership/Page.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/004-Leadership/Detail/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/004-Leadership/Detail/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/004-Leadership/Detail/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/004-Leadership/Detail/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/004-Leadership/Detail/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/004-Leadership/Detail/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/004-Leadership/Detail/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/004-Leadership/Detail/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/004-Leadership/Detail/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/004-Leadership/Detail/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/004-Leadership/Detail/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/004-Leadership/Detail/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Skills/004-Leadership/Detail/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+
+		<Item href="Skills/005-Luck/Page.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/005-Luck/Detail/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/005-Luck/Detail/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/005-Luck/Detail/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/005-Luck/Detail/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/005-Luck/Detail/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/005-Luck/Detail/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/005-Luck/Detail/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/005-Luck/Detail/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/005-Luck/Detail/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/005-Luck/Detail/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/005-Luck/Detail/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Skills/005-Luck/Detail/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/005-Luck/Detail/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+
+		<Item href="Skills/006-Offence/Page.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/006-Offence/Detail/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/006-Offence/Detail/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/006-Offence/Detail/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/006-Offence/Detail/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/006-Offence/Detail/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/006-Offence/Detail/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/006-Offence/Detail/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/006-Offence/Detail/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/006-Offence/Detail/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/006-Offence/Detail/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/006-Offence/Detail/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Skills/006-Offence/Detail/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/006-Offence/Detail/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+
+		<Item href="Skills/007-Defence/Page.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/007-Defence/Detail/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/007-Defence/Detail/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/007-Defence/Detail/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/007-Defence/Detail/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/007-Defence/Detail/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/007-Defence/Detail/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/007-Defence/Detail/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/007-Defence/Detail/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/007-Defence/Detail/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/007-Defence/Detail/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/007-Defence/Detail/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/007-Defence/Detail/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/007-Defence/Detail/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+
+		<Item href="Skills/008-Sorcery/Page.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/008-Sorcery/Detail/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/008-Sorcery/Detail/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/008-Sorcery/Detail/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/008-Sorcery/Detail/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/008-Sorcery/Detail/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/008-Sorcery/Detail/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/008-Sorcery/Detail/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/008-Sorcery/Detail/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/008-Sorcery/Detail/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/008-Sorcery/Detail/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Skills/008-Sorcery/Detail/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/008-Sorcery/Detail/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/008-Sorcery/Detail/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+
+		<Item href="Skills/009-DestructiveMagic/Page.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/009-DestructiveMagic/Detail/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/009-DestructiveMagic/Detail/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/009-DestructiveMagic/Detail/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/009-DestructiveMagic/Detail/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/009-DestructiveMagic/Detail/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/009-DestructiveMagic/Detail/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/009-DestructiveMagic/Detail/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/009-DestructiveMagic/Detail/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/009-DestructiveMagic/Detail/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Skills/009-DestructiveMagic/Detail/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/009-DestructiveMagic/Detail/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/009-DestructiveMagic/Detail/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/009-DestructiveMagic/Detail/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+
+		<Item href="Skills/010-DarkMagic/Page.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/010-DarkMagic/Detail/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/010-DarkMagic/Detail/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/010-DarkMagic/Detail/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/010-DarkMagic/Detail/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/010-DarkMagic/Detail/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/010-DarkMagic/Detail/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/010-DarkMagic/Detail/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/010-DarkMagic/Detail/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/010-DarkMagic/Detail/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Skills/010-DarkMagic/Detail/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/010-DarkMagic/Detail/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/010-DarkMagic/Detail/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/010-DarkMagic/Detail/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+
+		<Item href="Skills/011-LightMagic/Page.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/011-LightMagic/Detail/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/011-LightMagic/Detail/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/011-LightMagic/Detail/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/011-LightMagic/Detail/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/011-LightMagic/Detail/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/011-LightMagic/Detail/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/011-LightMagic/Detail/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/011-LightMagic/Detail/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/011-LightMagic/Detail/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Skills/011-LightMagic/Detail/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/011-LightMagic/Detail/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/011-LightMagic/Detail/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/011-LightMagic/Detail/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+
+		<Item href="Skills/012-SummoningMagic/Page.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/012-SummoningMagic/Detail/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/012-SummoningMagic/Detail/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/012-SummoningMagic/Detail/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/012-SummoningMagic/Detail/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/012-SummoningMagic/Detail/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/012-SummoningMagic/Detail/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/012-SummoningMagic/Detail/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/012-SummoningMagic/Detail/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/012-SummoningMagic/Detail/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/012-SummoningMagic/Detail/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/012-SummoningMagic/Detail/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Skills/012-SummoningMagic/Detail/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/012-SummoningMagic/Detail/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+
+		<Item href="Skills/013-Training/Page.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/013-Training/Detail/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/013-Training/Detail/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/013-Training/Detail/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/013-Training/Detail/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/013-Training/Detail/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/013-Training/Detail/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/013-Training/Detail/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/013-Training/Detail/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/013-Training/Detail/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/013-Training/Detail/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/013-Training/Detail/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/013-Training/Detail/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Skills/013-Training/Detail/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+
+		<Item href="Skills/014-Gating/Page.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/014-Gating/Detail/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/014-Gating/Detail/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/014-Gating/Detail/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/014-Gating/Detail/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/014-Gating/Detail/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/014-Gating/Detail/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/014-Gating/Detail/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/014-Gating/Detail/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/014-Gating/Detail/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Skills/014-Gating/Detail/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/014-Gating/Detail/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/014-Gating/Detail/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/014-Gating/Detail/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+
+		<Item href="Skills/015-Necromancy/Page.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/015-Necromancy/Detail/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/015-Necromancy/Detail/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/015-Necromancy/Detail/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/015-Necromancy/Detail/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/015-Necromancy/Detail/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/015-Necromancy/Detail/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/015-Necromancy/Detail/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/015-Necromancy/Detail/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/015-Necromancy/Detail/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Skills/015-Necromancy/Detail/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/015-Necromancy/Detail/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/015-Necromancy/Detail/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/015-Necromancy/Detail/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+
+		<Item href="Skills/016-Avenger/Page.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/016-Avenger/Detail/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/016-Avenger/Detail/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/016-Avenger/Detail/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/016-Avenger/Detail/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/016-Avenger/Detail/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/016-Avenger/Detail/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/016-Avenger/Detail/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/016-Avenger/Detail/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/016-Avenger/Detail/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Skills/016-Avenger/Detail/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/016-Avenger/Detail/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/016-Avenger/Detail/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/016-Avenger/Detail/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+
+		<Item href="Skills/017-Artificier/Page.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/017-Artificier/Detail/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/017-Artificier/Detail/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/017-Artificier/Detail/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/017-Artificier/Detail/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/017-Artificier/Detail/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/017-Artificier/Detail/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/017-Artificier/Detail/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/017-Artificier/Detail/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/017-Artificier/Detail/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/017-Artificier/Detail/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Skills/017-Artificier/Detail/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/017-Artificier/Detail/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/017-Artificier/Detail/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+
+		<Item href="Skills/018-Invocation/Page.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/018-Invocation/Detail/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/018-Invocation/Detail/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/018-Invocation/Detail/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/018-Invocation/Detail/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/018-Invocation/Detail/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/018-Invocation/Detail/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/018-Invocation/Detail/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/018-Invocation/Detail/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/018-Invocation/Detail/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/018-Invocation/Detail/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Skills/018-Invocation/Detail/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/018-Invocation/Detail/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/018-Invocation/Detail/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+
+		<Item href="Skills/151-Runelore/Page.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/151-Runelore/Detail/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/151-Runelore/Detail/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/151-Runelore/Detail/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/151-Runelore/Detail/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/151-Runelore/Detail/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/151-Runelore/Detail/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/151-Runelore/Detail/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/151-Runelore/Detail/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/151-Runelore/Detail/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Skills/151-Runelore/Detail/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/151-Runelore/Detail/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/151-Runelore/Detail/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/151-Runelore/Detail/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+
+		<Item href="Skills/172-DemonicRage/Page.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/172-DemonicRage/Detail/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/172-DemonicRage/Detail/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/172-DemonicRage/Detail/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/172-DemonicRage/Detail/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/172-DemonicRage/Detail/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/172-DemonicRage/Detail/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/172-DemonicRage/Detail/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/172-DemonicRage/Detail/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Skills/172-DemonicRage/Detail/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/172-DemonicRage/Detail/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/172-DemonicRage/Detail/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/172-DemonicRage/Detail/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/172-DemonicRage/Detail/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+
+		<Item href="Skills/183-BarbarianLearning/Page.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/183-BarbarianLearning/Detail/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/183-BarbarianLearning/Detail/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/183-BarbarianLearning/Detail/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/183-BarbarianLearning/Detail/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/183-BarbarianLearning/Detail/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/183-BarbarianLearning/Detail/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/183-BarbarianLearning/Detail/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/183-BarbarianLearning/Detail/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/183-BarbarianLearning/Detail/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/183-BarbarianLearning/Detail/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Skills/183-BarbarianLearning/Detail/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/183-BarbarianLearning/Detail/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/183-BarbarianLearning/Detail/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+
+		<Item href="Skills/187-Voice/Page.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/187-Voice/Detail/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/187-Voice/Detail/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/187-Voice/Detail/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/187-Voice/Detail/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/187-Voice/Detail/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/187-Voice/Detail/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/187-Voice/Detail/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/187-Voice/Detail/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/187-Voice/Detail/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Skills/187-Voice/Detail/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/187-Voice/Detail/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/187-Voice/Detail/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/187-Voice/Detail/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+
+		<Item href="Skills/191-ShatterDestructiveMagic/Page.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/191-ShatterDestructiveMagic/Detail/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/191-ShatterDestructiveMagic/Detail/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/191-ShatterDestructiveMagic/Detail/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/191-ShatterDestructiveMagic/Detail/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/191-ShatterDestructiveMagic/Detail/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/191-ShatterDestructiveMagic/Detail/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/191-ShatterDestructiveMagic/Detail/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/191-ShatterDestructiveMagic/Detail/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Skills/191-ShatterDestructiveMagic/Detail/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/191-ShatterDestructiveMagic/Detail/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/191-ShatterDestructiveMagic/Detail/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/191-ShatterDestructiveMagic/Detail/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/191-ShatterDestructiveMagic/Detail/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+
+		<Item href="Skills/195-ShatterDarkMagic/Page.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/195-ShatterDarkMagic/Detail/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/195-ShatterDarkMagic/Detail/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/195-ShatterDarkMagic/Detail/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/195-ShatterDarkMagic/Detail/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/195-ShatterDarkMagic/Detail/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/195-ShatterDarkMagic/Detail/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/195-ShatterDarkMagic/Detail/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/195-ShatterDarkMagic/Detail/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/195-ShatterDarkMagic/Detail/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/195-ShatterDarkMagic/Detail/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Skills/195-ShatterDarkMagic/Detail/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/195-ShatterDarkMagic/Detail/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/195-ShatterDarkMagic/Detail/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+
+		<Item href="Skills/199-ShatterLightMagic/Page.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/199-ShatterLightMagic/Detail/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/199-ShatterLightMagic/Detail/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/199-ShatterLightMagic/Detail/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/199-ShatterLightMagic/Detail/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/199-ShatterLightMagic/Detail/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/199-ShatterLightMagic/Detail/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/199-ShatterLightMagic/Detail/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/199-ShatterLightMagic/Detail/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/199-ShatterLightMagic/Detail/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Skills/199-ShatterLightMagic/Detail/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/199-ShatterLightMagic/Detail/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/199-ShatterLightMagic/Detail/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/199-ShatterLightMagic/Detail/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+
+		<Item href="Skills/203-ShatterSummoningMagic/Page.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/203-ShatterSummoningMagic/Detail/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/203-ShatterSummoningMagic/Detail/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/203-ShatterSummoningMagic/Detail/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/203-ShatterSummoningMagic/Detail/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/203-ShatterSummoningMagic/Detail/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/203-ShatterSummoningMagic/Detail/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/203-ShatterSummoningMagic/Detail/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/203-ShatterSummoningMagic/Detail/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/203-ShatterSummoningMagic/Detail/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Skills/203-ShatterSummoningMagic/Detail/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Skills/203-ShatterSummoningMagic/Detail/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/203-ShatterSummoningMagic/Detail/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/203-ShatterSummoningMagic/Detail/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+
+		<Item href="Town/001-Heaven/Page.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/001-Heaven/Detail/001-Knight/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/001-Heaven/Detail/001-Knight/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/001-Heaven/Detail/001-Knight/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/001-Heaven/Detail/001-Knight/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/001-Heaven/Detail/001-Knight/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Town/001-Heaven/Detail/001-Knight/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Town/001-Heaven/Detail/001-Knight/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<Item href="Town/001-Heaven/Detail/002-Paladin/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/001-Heaven/Detail/002-Paladin/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/001-Heaven/Detail/002-Paladin/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/001-Heaven/Detail/002-Paladin/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/001-Heaven/Detail/002-Paladin/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Town/001-Heaven/Detail/002-Paladin/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Town/001-Heaven/Detail/002-Paladin/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<Item href="Town/001-Heaven/Detail/003-Heretic/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/001-Heaven/Detail/003-Heretic/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/001-Heaven/Detail/003-Heretic/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/001-Heaven/Detail/003-Heretic/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/001-Heaven/Detail/003-Heretic/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Town/001-Heaven/Detail/003-Heretic/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Town/001-Heaven/Detail/003-Heretic/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<Item href="Town/001-Heaven/Detail/025-Retribution/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/001-Heaven/Detail/025-Retribution/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/001-Heaven/Detail/025-Retribution/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/001-Heaven/Detail/025-Retribution/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/001-Heaven/Detail/025-Retribution/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Town/001-Heaven/Detail/025-Retribution/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Town/001-Heaven/Detail/025-Retribution/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+
+		<Item href="Town/002-Preserve/Page.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/002-Preserve/Detail/004-Ranger1/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/002-Preserve/Detail/004-Ranger1/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/002-Preserve/Detail/004-Ranger1/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/002-Preserve/Detail/004-Ranger1/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/002-Preserve/Detail/004-Ranger1/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/002-Preserve/Detail/004-Ranger1/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Town/002-Preserve/Detail/004-Ranger1/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<Item href="Town/002-Preserve/Detail/004-Ranger2/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/002-Preserve/Detail/004-Ranger2/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/002-Preserve/Detail/004-Ranger2/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/002-Preserve/Detail/004-Ranger2/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/002-Preserve/Detail/004-Ranger2/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Town/002-Preserve/Detail/004-Ranger2/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Town/002-Preserve/Detail/004-Ranger2/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<Item href="Town/002-Preserve/Detail/005-Warden/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/002-Preserve/Detail/005-Warden/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/002-Preserve/Detail/005-Warden/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/002-Preserve/Detail/005-Warden/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/002-Preserve/Detail/005-Warden/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Town/002-Preserve/Detail/005-Warden/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Town/002-Preserve/Detail/005-Warden/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<Item href="Town/002-Preserve/Detail/006-Enchanter/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/002-Preserve/Detail/006-Enchanter/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/002-Preserve/Detail/006-Enchanter/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/002-Preserve/Detail/006-Enchanter/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/002-Preserve/Detail/006-Enchanter/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Town/002-Preserve/Detail/006-Enchanter/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Town/002-Preserve/Detail/006-Enchanter/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+
+		<Item href="Town/003-Academy/Page.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/003-Academy/Detail/007-GuildMaster/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/003-Academy/Detail/007-GuildMaster/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/003-Academy/Detail/007-GuildMaster/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/003-Academy/Detail/007-GuildMaster/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/003-Academy/Detail/007-GuildMaster/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Town/003-Academy/Detail/007-GuildMaster/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Town/003-Academy/Detail/007-GuildMaster/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<Item href="Town/003-Academy/Detail/008-Wizard/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/003-Academy/Detail/008-Wizard/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/003-Academy/Detail/008-Wizard/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/003-Academy/Detail/008-Wizard/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/003-Academy/Detail/008-Wizard/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Town/003-Academy/Detail/008-Wizard/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Town/003-Academy/Detail/008-Wizard/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<Item href="Town/003-Academy/Detail/009-ElementAlist/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/003-Academy/Detail/009-ElementAlist/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/003-Academy/Detail/009-ElementAlist/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/003-Academy/Detail/009-ElementAlist/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/003-Academy/Detail/009-ElementAlist/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/003-Academy/Detail/009-ElementAlist/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/003-Academy/Detail/009-ElementAlist/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+
+		<Item href="Town/004-Dungeon/Page.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/004-Dungeon/Detail/010-BeastMaster/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/004-Dungeon/Detail/010-BeastMaster/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/004-Dungeon/Detail/010-BeastMaster/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/004-Dungeon/Detail/010-BeastMaster/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/004-Dungeon/Detail/010-BeastMaster/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/004-Dungeon/Detail/010-BeastMaster/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Town/004-Dungeon/Detail/010-BeastMaster/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<Item href="Town/004-Dungeon/Detail/011-Seer/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/004-Dungeon/Detail/011-Seer/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/004-Dungeon/Detail/011-Seer/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/004-Dungeon/Detail/011-Seer/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/004-Dungeon/Detail/011-Seer/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Town/004-Dungeon/Detail/011-Seer/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Town/004-Dungeon/Detail/011-Seer/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<Item href="Town/004-Dungeon/Detail/012-Warlock/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/004-Dungeon/Detail/012-Warlock/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/004-Dungeon/Detail/012-Warlock/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/004-Dungeon/Detail/012-Warlock/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/004-Dungeon/Detail/012-Warlock/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/004-Dungeon/Detail/012-Warlock/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Town/004-Dungeon/Detail/012-Warlock/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+
+		<Item href="Town/005-Necromancy/Page.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/005-Necromancy/Detail/013-DeathKnight/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/005-Necromancy/Detail/013-DeathKnight/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/005-Necromancy/Detail/013-DeathKnight/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/005-Necromancy/Detail/013-DeathKnight/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/005-Necromancy/Detail/013-DeathKnight/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Town/005-Necromancy/Detail/013-DeathKnight/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Town/005-Necromancy/Detail/013-DeathKnight/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<Item href="Town/005-Necromancy/Detail/014-Reaver/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/005-Necromancy/Detail/014-Reaver/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/005-Necromancy/Detail/014-Reaver/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/005-Necromancy/Detail/014-Reaver/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/005-Necromancy/Detail/014-Reaver/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Town/005-Necromancy/Detail/014-Reaver/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Town/005-Necromancy/Detail/014-Reaver/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<Item href="Town/005-Necromancy/Detail/015-Necromancer/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/005-Necromancy/Detail/015-Necromancer/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/005-Necromancy/Detail/015-Necromancer/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/005-Necromancy/Detail/015-Necromancer/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Town/005-Necromancy/Detail/015-Necromancer/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Town/005-Necromancy/Detail/015-Necromancer/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Town/005-Necromancy/Detail/015-Necromancer/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+
+		<Item href="Town/006-Inferno/Page.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/006-Inferno/Detail/016-Inferno1/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/006-Inferno/Detail/016-Inferno1/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/006-Inferno/Detail/016-Inferno1/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/006-Inferno/Detail/016-Inferno1/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Town/006-Inferno/Detail/016-Inferno1/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Town/006-Inferno/Detail/016-Inferno1/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Town/006-Inferno/Detail/016-Inferno1/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<Item href="Town/006-Inferno/Detail/017-Inferno2/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/006-Inferno/Detail/017-Inferno2/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/006-Inferno/Detail/017-Inferno2/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/006-Inferno/Detail/017-Inferno2/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Town/006-Inferno/Detail/017-Inferno2/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Town/006-Inferno/Detail/017-Inferno2/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Town/006-Inferno/Detail/017-Inferno2/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+
+		<Item href="Town/007-Fortress/Page.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/007-Fortress/Detail/019-Engineer/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/007-Fortress/Detail/019-Engineer/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/007-Fortress/Detail/019-Engineer/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/007-Fortress/Detail/019-Engineer/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/007-Fortress/Detail/019-Engineer/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Town/007-Fortress/Detail/019-Engineer/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Town/007-Fortress/Detail/019-Engineer/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<Item href="Town/007-Fortress/Detail/020-Runemage/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/007-Fortress/Detail/020-Runemage/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/007-Fortress/Detail/020-Runemage/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/007-Fortress/Detail/020-Runemage/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/007-Fortress/Detail/020-Runemage/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Town/007-Fortress/Detail/020-Runemage/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Town/007-Fortress/Detail/020-Runemage/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<Item href="Town/007-Fortress/Detail/021-Flamekeepera/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/007-Fortress/Detail/021-Flamekeepera/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/007-Fortress/Detail/021-Flamekeepera/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/007-Fortress/Detail/021-Flamekeepera/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/007-Fortress/Detail/021-Flamekeepera/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Town/007-Fortress/Detail/021-Flamekeepera/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Town/007-Fortress/Detail/021-Flamekeepera/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+
+		<Item href="Town/008-Stronghold/Page.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/008-Stronghold/Detail/022-Barbarian/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/008-Stronghold/Detail/022-Barbarian/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/008-Stronghold/Detail/022-Barbarian/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/008-Stronghold/Detail/022-Barbarian/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/008-Stronghold/Detail/022-Barbarian/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Town/008-Stronghold/Detail/022-Barbarian/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Town/008-Stronghold/Detail/022-Barbarian/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+
+		<Item href="BackgroundMain.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 	</Children>
 	<Background href="Background.(BackgroundSimpleScallingTexture).xdb#xpointer(/BackgroundSimpleScallingTexture)"/>
 	<Foreground/>

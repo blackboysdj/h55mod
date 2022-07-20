@@ -39,6 +39,7 @@ HERO_SKILL_MYSTICISM = 40;
 HERO_SKILL_PRAYER = 56;
 HERO_SKILL_SEAL_OF_PROTECTION = 131;
 HERO_SKILL_TRIPLE_CATAPULT = 88;
+HERO_SKILL_DEATH_TREAD = 99;
 HERO_SKILL_GUARDIAN_ANGEL = 78;
 HERO_SKILL_PARIAH = 83;
 HERO_SKILL_TWILIGHT = 109;
@@ -147,7 +148,7 @@ TTH_SKILL_EFFECT_COMBAT = {
     , [2] = HERO_SKILL_MYSTICISM
     , [3] = HERO_SKILL_PRAYER
     , [4] = HERO_SKILL_SEAL_OF_PROTECTION
-    , [5] = HERO_SKILL_TRIPLE_CATAPULT
+    , [5] = HERO_SKILL_DEATH_TREAD
     , [6] = HERO_SKILL_GUARDIAN_ANGEL
     , [7] = HERO_SKILL_PARIAH
     , [8] = HERO_SKILL_TWILIGHT
@@ -12483,6 +12484,126 @@ end;
         return iCompare;
       end;
 
+    -- 伪随机
+      TTHCS_COMMON.random = nil;
+      local default_state = {
+        {1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0},
+        {0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0},
+        {1, 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0},
+        {1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1},
+      };
+      function TTHCS_COMMON.initRandom()
+        local seed_t = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
+        local seed = {}
+        local shift = 0
+        for side = 0, 1 do
+          for j, unit in GetCreatures(side) do
+            local type = GetCreatureType(unit)
+            local num = GetCreatureNumber(unit)
+            local x, y = pos(unit)
+            local n = mod(type, 180) + 180 * (x + 14 * (y + 14 * mod(num, 200)))
+            shift = shift + 7
+            for i=1,24 do
+              local bit = mod(n, 2)
+              n = (n - bit) / 2
+              local index = mod(shift + i, 24) + 1
+              seed_t[index] = seed_t[index] ~= bit or 0
+            end
+          end
+          local x = 0
+          local p = 1
+          for i=1,24 do
+            x = x + p * seed_t[i]
+            p = p * 2
+          end
+          for i=1,12 do
+            seed_t[i], seed_t[25 - i] = seed_t[25 - i], seed_t[i]
+          end
+          seed[side+1] = x
+          seed[side+3] = x
+          seed[side+5] = x
+        end
+        print('PRNG seed = ' .. seed[1] .. ':' .. seed[2])
+        TTHCS_COMMON.random = TTHCS_COMMON.newPRNG(seed)
+      end;
+      function TTHCS_COMMON.setPRNGSeed(state, seeds)
+          state = state or {}
+          seeds = seeds or {}
+          for i=1,4 do
+              if not state[i] then
+                  state[i] = {}
+              end
+              for j=1,32 do
+                  state[i][j] = %default_state[i][j]
+              end
+          end
+          local col, row = 1, 4
+          local si
+          for i=1,6 do
+              si = seeds[i] or si
+              if not si then break end
+              local si = si
+              for j=1,23 do
+                  local bit = mod(si, 2)
+                  si = (si - bit) / 2
+                  state[row][col] = state[row][col] ~= bit or 0
+                  row = row - 1
+                  if row < 1 then row, col = 4, col + 1 end
+                  if col > 32 then break end
+              end
+              if col > 32 then break end
+          end
+          return state
+      end;
+      function TTHCS_COMMON.newPRNG(seeds)
+        local state = TTHCS_COMMON.setPRNGSeed({}, seeds)
+        local random = function(n, m)
+          local state = %state
+          local s
+          local t = state[4]
+          for i=1,21 do  -- t = t xor (t << 11)
+            t[i] = t[i] ~= t[i+11] or 0
+          end
+          for i=9,32 do  -- t = t xor (t >> 8)
+            t[i] = t[i] ~= t[i-8] or 0
+          end
+          state[4] = state[3]
+          state[3] = state[2]
+          s = state[1]
+          state[2] = s
+          for i=1,32 do  -- t = t xor s
+            t[i] = t[i] ~= s[i] or 0
+          end
+          for i=20,32 do  -- t = t xor (s >> 19)
+            t[i] = t[i] ~= s[i-19] or 0
+          end
+          state[1] = t
+          local r = 0
+          local p = 1
+          for i=24,1,-1 do
+            r = r + p * t[i]
+            p = p * 2
+          end
+          r = r / 16777216
+          if n then
+            if not m then
+              n, m = 1, n
+            end
+            return n + TTHCS_COMMON.floor(r * (m - n + 1))
+          else
+            return r
+          end
+        end
+        return random, state
+      end;
+      function TTHCS_COMMON.getRandom(iMod)
+        local iRandom = TTHCS_COMMON.random(100);
+        local iIndex = tth_mod(iRandom, iMod);
+        print("iRandom: "..iRandom);
+        print("iIndex: "..iIndex);
+        return iIndex;
+      end;
+
   TTHCS_GLOBAL = {};
     -- 生成单位信息
       function TTHCS_GLOBAL.geneUnitInfo(strUnitName)
@@ -12747,8 +12868,8 @@ end;
       TTHCS_PATH["Perk"][HERO_SKILL_SEAL_OF_PROTECTION] = {};
       TTHCS_PATH["Perk"][HERO_SKILL_SEAL_OF_PROTECTION]["Effect"] = "/Text/TTH/Skills/Training/131-SealOfProtection/Combat/Effect.txt";
 
-      TTHCS_PATH["Perk"][HERO_SKILL_TRIPLE_CATAPULT] = {};
-      TTHCS_PATH["Perk"][HERO_SKILL_TRIPLE_CATAPULT]["Effect"] = "/Text/TTH/Skills/WarMachines/088-TripleCatapult/Combat/Effect.txt";
+      TTHCS_PATH["Perk"][HERO_SKILL_DEATH_TREAD] = {};
+      TTHCS_PATH["Perk"][HERO_SKILL_DEATH_TREAD]["Effect"] = "/Text/TTH/Skills/WarMachines/099-DeathTread/Combat/Effect.txt";
 
       TTHCS_PATH["Perk"][HERO_SKILL_GUARDIAN_ANGEL] = {};
       TTHCS_PATH["Perk"][HERO_SKILL_GUARDIAN_ANGEL]["Effect"] = "/Text/TTH/Skills/Leadership/078-GuardianAngel/Combat/Effect.txt";
@@ -12793,7 +12914,6 @@ end;
       TTHCS_PATH["Spell"][SPELL_ABILITY_LAY_HANDS] = {};
       TTHCS_PATH["Spell"][SPELL_ABILITY_LAY_HANDS]["Effect"] = "/Text/TTH/Spell/CreatureAbility/156-LayHands/Combat/Effect.txt";
 
-
 TTH_ARTIFACTSET_EFFECT_COMBAT = {
   [1] = {
       ["Id"] = TTHCS_ENUM.SET_OGRES
@@ -12802,3 +12922,7 @@ TTH_ARTIFACTSET_EFFECT_COMBAT = {
 };
 
 function close_file(fileName) end
+
+
+
+

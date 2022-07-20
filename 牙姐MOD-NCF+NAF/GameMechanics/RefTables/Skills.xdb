@@ -4110,11 +4110,11 @@
 				</Texture>
 				<CommonTexture/>
 				<NameFileRef>
-					<Item href="/Text/Game/Skills/Common/SummoningMagic/MasterOfCreatures/Name.txt"/>
+					<Item href="/Text/TTH/Skills/SummoningMagic/053-MasterOfCreatures/Name.txt"/>
 				</NameFileRef>
 				<CommonNameFileRef href=""/>
 				<DescriptionFileRef>
-					<Item href="/Text/Game/Skills/Common/SummoningMagic/MasterOfCreatures/Description.txt"/>
+					<Item href="/Text/TTH/Skills/SummoningMagic/053-MasterOfCreatures/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
 				<SkillType>SKILLTYPE_STANDART_PERK</SkillType>
@@ -8364,182 +8364,159 @@
 			<ID>HERO_SKILL_TRIPLE_CATAPULT</ID>
 			<obj>
 				<Texture>
-					<Item href="/Textures/HeroScreen/Feats/Demon_Lord/Demonic_TripleCatapult_grey.xdb#xpointer(/Texture)"/>
-					<Item href="/Textures/HeroScreen/Feats/Demon_Lord/Demonic_TripleCatapult.xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/HeroScreen/Feats/Demon_Lord/Demonic_WaterAffinity_grey.xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/HeroScreen/Feats/Demon_Lord/Demonic_WaterAffinity.xdb#xpointer(/Texture)"/>
 				</Texture>
 				<CommonTexture/>
 				<NameFileRef>
-				  <Item href="/Text/TTH/Skills/WarMachines/088-TripleCatapult/Name.txt"/>
+				  <Item href="/Text/TTH/Skills/SummoningMagic/088-WaterAffinity/Name.txt"/>
 				</NameFileRef>
 				<CommonNameFileRef href=""/>
 				<DescriptionFileRef>
-				  <Item href="/Text/TTH/Skills/WarMachines/088-TripleCatapult/Description.txt"/>
+				  <Item href="/Text/TTH/Skills/SummoningMagic/088-WaterAffinity/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
 				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
 				<HeroClass>HERO_CLASS_NONE</HeroClass>
 				<spellBuffs/>
-				<BasicSkillID>HERO_SKILL_WAR_MACHINES</BasicSkillID>
+				<BasicSkillID>HERO_SKILL_SUMMONING_MAGIC</BasicSkillID>
 				<SkillPrerequisites>
 					<Item>
 						<Class>HERO_CLASS_KNIGHT</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_CATAPULT</Item>
-							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_CATAPULT</Item>
-							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_RETRIBUTION</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_CATAPULT</Item>
-							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_CATAPULT</Item>
-							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_RANGER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_CATAPULT</Item>
-							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_WARDEN</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_CATAPULT</Item>
-							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_ENCHANTER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_CATAPULT</Item>
-							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_SORCERER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_CATAPULT</Item>
-							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_GATE_KEEPER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_CATAPULT</Item>
-							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_FLAMEKEEPERA</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_CATAPULT</Item>
-							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_ENGINEER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_CATAPULT</Item>
-							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_NECROMANCER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_CATAPULT</Item>
-							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_REAVER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_CATAPULT</Item>
-							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_WARLOCK</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_CATAPULT</Item>
-							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_BEASTMASTER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_CATAPULT</Item>
-							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_GUILDMASTER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_CATAPULT</Item>
-							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_SEER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_CATAPULT</Item>
-							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_WIZARD</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_CATAPULT</Item>
-							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_ELEMENTALIST</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_CATAPULT</Item>
-							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_DEMON_LORD</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_CATAPULT</Item>
-							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_DEATHKNIGHT</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_CATAPULT</Item>
-							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_RUNEMAGE</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_CATAPULT</Item>
-							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_BARBARIAN</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_CATAPULT</Item>
-							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
 						</dependenciesIDs>
 					</Item>
 				</SkillPrerequisites>
@@ -9256,25 +9233,36 @@
 			<ID>HERO_SKILL_FIRE_PROTECTION</ID>
 			<obj>
 				<Texture>
-					<Item href="/Textures/HeroScreen/Feats/Demon_Lord/Demonic_FireProtection_grey.xdb#xpointer(/Texture)"/>
-					<Item href="/Textures/HeroScreen/Feats/Demon_Lord/Demonic_FireProtection.xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/HeroScreen/Feats/Demon_Lord/StimulationPotential.xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/HeroScreen/Feats/Demon_Lord/StimulationPotential.xdb#xpointer(/Texture)"/>
 				</Texture>
 				<CommonTexture/>
 				<NameFileRef>
-					<Item href="/Text/Game/Skills/Common/LightMagic/FireProtection/Name.txt"/>
+					<Item href="/Text/TTH/Skills/LightMagic/096-FireProtection/Name.txt"/>
 				</NameFileRef>
 				<CommonNameFileRef href=""/>
 				<DescriptionFileRef>
-					<Item href="/Text/Game/Skills/Common/LightMagic/FireProtection/Description.txt"/>
+					<Item href="/Text/TTH/Skills/LightMagic/096-FireProtection/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
 				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
 				<HeroClass>HERO_CLASS_NONE</HeroClass>
 				<spellBuffs>
-					<Item>SPELL_SKILL_FIRE_PROTECTION</Item>
+					<Item>SPELL_DEMON_RAGE_LEVEL_1</Item>
+					<Item>SPELL_DEMON_RAGE_LEVEL_1</Item>
+					<Item>SPELL_DEMON_RAGE_LEVEL_1</Item>
 				</spellBuffs>
 				<BasicSkillID>HERO_SKILL_LIGHT_MAGIC</BasicSkillID>
-				<SkillPrerequisites/>
+				<SkillPrerequisites>
+					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_ETERNAL_LIGHT</Item>
+							<Item>HERO_SKILL_COUNTERSPELL</Item>
+							<Item>HERO_SKILL_MAGIC_CUSHION</Item>
+						</dependenciesIDs>
+					</Item>
+				</SkillPrerequisites>
 				<AIRacesValues>
 					<Haven>
 						<CommanderValue>100</CommanderValue>
@@ -9329,11 +9317,11 @@
 				</Texture>
 				<CommonTexture/>
 				<NameFileRef>
-					<Item href="/Text/Game/Skills/Common/SummoningMagic/FireAffinity/Name.txt"/>
+				  <Item href="/Text/TTH/Skills/SummoningMagic/097-FireAffinity/Name.txt"/>
 				</NameFileRef>
 				<CommonNameFileRef href=""/>
 				<DescriptionFileRef>
-					<Item href="/Text/Game/Skills/Common/SummoningMagic/FireAffinity/Description.txt"/>
+				  <Item href="/Text/TTH/Skills/SummoningMagic/097-FireAffinity/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
 				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
@@ -9611,159 +9599,182 @@
 			<ID>HERO_SKILL_DEATH_TREAD</ID>
 			<obj>
 				<Texture>
-					<Item href="/Textures/HeroScreen/Added/Superior_Tactics_grey.xdb#xpointer(/Texture)"/>
-					<Item href="/Textures/HeroScreen/Added/Superior_Tactics.xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/HeroScreen/Feats/Demon_Lord/Demonic_TripleCatapult_grey.xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/HeroScreen/Feats/Demon_Lord/Demonic_TripleCatapult.xdb#xpointer(/Texture)"/>
 				</Texture>
 				<CommonTexture/>
 				<NameFileRef>
-					<Item href="/Text/TTH/Skills/Logistics/099-DeathTread/Name.txt"/>
+				  <Item href="/Text/TTH/Skills/WarMachines/099-DeathTread/Name.txt"/>
 				</NameFileRef>
 				<CommonNameFileRef href=""/>
 				<DescriptionFileRef>
-					<Item href="/Text/TTH/Skills/Logistics/099-DeathTread/Description.txt"/>
+				  <Item href="/Text/TTH/Skills/WarMachines/099-DeathTread/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
 				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
 				<HeroClass>HERO_CLASS_NONE</HeroClass>
 				<spellBuffs/>
-				<BasicSkillID>HERO_SKILL_LOGISTICS</BasicSkillID>
+				<BasicSkillID>HERO_SKILL_WAR_MACHINES</BasicSkillID>
 				<SkillPrerequisites>
 					<Item>
 						<Class>HERO_CLASS_KNIGHT</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_SCOUTING</Item>
+							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_PALADIN</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_SCOUTING</Item>
+							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_RETRIBUTION</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_SCOUTING</Item>
+							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_HERETIC</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_SCOUTING</Item>
+							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_RANGER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_SCOUTING</Item>
+							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_WARDEN</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_SCOUTING</Item>
+							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_ENCHANTER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_SCOUTING</Item>
+							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_SORCERER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_SCOUTING</Item>
+							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_GATE_KEEPER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_SCOUTING</Item>
+							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_FLAMEKEEPERA</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_SCOUTING</Item>
+							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_ENGINEER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_SCOUTING</Item>
+							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_NECROMANCER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_SCOUTING</Item>
+							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_REAVER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_SCOUTING</Item>
+							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_WARLOCK</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_SCOUTING</Item>
+							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_BEASTMASTER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_SCOUTING</Item>
+							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_GUILDMASTER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_SCOUTING</Item>
+							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_SEER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_SCOUTING</Item>
+							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_WIZARD</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_SCOUTING</Item>
+							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_ELEMENTALIST</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_SCOUTING</Item>
+							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_DEMON_LORD</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_SCOUTING</Item>
+							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_DEATHKNIGHT</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_SCOUTING</Item>
+							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_RUNEMAGE</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_SCOUTING</Item>
+							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_BARBARIAN</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_SCOUTING</Item>
+							<Item>HERO_SKILL_CATAPULT</Item>
+							<Item>HERO_SKILL_RUNIC_MACHINES</Item>
 						</dependenciesIDs>
 					</Item>
 				</SkillPrerequisites>
@@ -16056,39 +16067,153 @@
 			<ID>HERO_SKILL_SHAKE_GROUND</ID>
 			<obj>
 				<Texture>
-					<Item href="/Textures/HeroScreen/Feats/Warlock/WarMachines_ShakeGround_grey.(Texture).xdb#xpointer(/Texture)"/>
-					<Item href="/Textures/HeroScreen/Feats/Warlock/WarMachines_ShakeGround.(Texture).xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/HeroScreen/Feats/Demon_Lord/Demonic_AirAffinity_grey.xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/HeroScreen/Feats/Demon_Lord/Demonic_AirAffinity.xdb#xpointer(/Texture)"/>
 				</Texture>
 				<CommonTexture/>
 				<NameFileRef>
-					<Item href="/Text/Game/Skills/Common/WarMachines/ShakeGround/Name.txt"/>
+				  <Item href="/Text/TTH/Skills/SummoningMagic/139-AirAffinity/Name.txt"/>
 				</NameFileRef>
 				<CommonNameFileRef href=""/>
 				<DescriptionFileRef>
-					<Item href="/Text/Game/Skills/Common/WarMachines/ShakeGround/Description.txt"/>
+				  <Item href="/Text/TTH/Skills/SummoningMagic/139-AirAffinity/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
 				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
 				<HeroClass>HERO_CLASS_NONE</HeroClass>
 				<spellBuffs/>
-				<BasicSkillID>HERO_SKILL_ARTIFICIER</BasicSkillID>
+				<BasicSkillID>HERO_SKILL_SUMMONING_MAGIC</BasicSkillID>
 				<SkillPrerequisites>
+					<Item>
+						<Class>HERO_CLASS_KNIGHT</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_PALADIN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_HERETIC</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RANGER</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_WARDEN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_ENCHANTER</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_SORCERER</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_GATE_KEEPER</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_FLAMEKEEPERA</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_ENGINEER</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_NECROMANCER</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_REAVER</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_WARLOCK</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_BEASTMASTER</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
+						</dependenciesIDs>
+					</Item>
 					<Item>
 						<Class>HERO_CLASS_GUILDMASTER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_MARCH_OF_THE_MACHINES</Item>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_SEER</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_WIZARD</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_MARCH_OF_THE_MACHINES</Item>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_ELEMENTALIST</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_MARCH_OF_THE_MACHINES</Item>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_DEMON_LORD</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_DEATHKNIGHT</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RUNEMAGE</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
 						</dependenciesIDs>
 					</Item>
 				</SkillPrerequisites>

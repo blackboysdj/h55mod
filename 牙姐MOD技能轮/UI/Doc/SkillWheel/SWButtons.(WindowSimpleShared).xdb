@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WindowSimpleShared ObjectRecordID="1000860">
+	<Crap>false</Crap>
+	<Children>
+		<Item href="Skills/001-Logistics/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/002-WarMachines/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/003-Learning/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/004-Leadership/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/005-Luck/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/006-Offence/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/007-Defence/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/008-Sorcery/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/009-DestructiveMagic/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/010-DarkMagic/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/011-LightMagic/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/012-SummoningMagic/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/013-Training/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/014-Gating/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/015-Necromancy/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/016-Avenger/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/017-Artificier/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/018-Invocation/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/151-Runelore/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/172-DemonicRage/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/183-BarbarianLearning/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/187-Voice/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/191-ShatterDestructiveMagic/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/195-ShatterDarkMagic/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/199-ShatterLightMagic/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/203-ShatterSummoningMagic/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+
+		<Item href="Skills/001-Logistics/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/002-WarMachines/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/003-Learning/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/004-Leadership/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/005-Luck/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/006-Offence/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/007-Defence/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/008-Sorcery/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/009-DestructiveMagic/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/010-DarkMagic/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/011-LightMagic/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/012-SummoningMagic/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/013-Training/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/014-Gating/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/015-Necromancy/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/016-Avenger/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/017-Artificier/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/018-Invocation/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/151-Runelore/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/172-DemonicRage/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/183-BarbarianLearning/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/187-Voice/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/191-ShatterDestructiveMagic/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/195-ShatterDarkMagic/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/199-ShatterLightMagic/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Skills/203-ShatterSummoningMagic/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+
+		<Item href="Town/001-Heaven/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Town/002-Preserve/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Town/003-Academy/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Town/004-Dungeon/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Town/005-Necromancy/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Town/006-Inferno/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Town/007-Fortress/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Town/008-Stronghold/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+
+		<Item href="Town/001-Heaven/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Town/002-Preserve/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Town/003-Academy/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Town/004-Dungeon/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Town/005-Necromancy/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Town/006-Inferno/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Town/007-Fortress/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Town/008-Stronghold/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+	</Children>
+	<Background/>
+	<Foreground/>
+	<Flags>
+		<Transparent>false</Transparent>
+	</Flags>
+	<Placement>
+		<Position>
+			<First>
+				<x>0</x>
+				<y>0</y>
+			</First>
+			<Second>false</Second>
+		</Position>
+		<VerAllign>
+			<First>EPA_LOW_END</First>
+			<Second>false</Second>
+		</VerAllign>
+		<HorAllign>
+			<First>EPA_LOW_END</First>
+			<Second>false</Second>
+		</HorAllign>
+		<Size>
+			<First>
+				<x>0</x>
+				<y>0</y>
+			</First>
+			<Second>false</Second>
+		</Size>
+		<LowerMargin>
+			<First>
+				<x>0</x>
+				<y>0</y>
+			</First>
+			<Second>false</Second>
+		</LowerMargin>
+		<UpperMargin>
+			<First>
+				<x>0</x>
+				<y>0</y>
+			</First>
+			<Second>false</Second>
+		</UpperMargin>
+	</Placement>
+	<ActiveArea/>
+	<IgnoreDblClick>false</IgnoreDblClick>
+	<ActiveMask/>
+</WindowSimpleShared>

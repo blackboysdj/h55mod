@@ -934,9 +934,6 @@ doFile('/scripts/combat-startup.lua')
 		while not TTHCS_COMMON.random do
 		  sleep();
 		end;
-		for i=1,100 do
-			print(TTHCS_COMMON.random(100))
-		end
 		Events_Init();
 		Events_Init_HeroLevel();
 		Events_Init_HeroSkill_Special();
@@ -2362,7 +2359,8 @@ doFile('/scripts/combat-startup.lua')
 	-- 宝物套装-力量武器 英雄普攻造成战损后自动释放一次随机血之召唤
 		H55SMOD_MiddlewareListener["ArtifactSet"][TTHCS_ENUM.SET_OGRES.."_"..2] = {};
 		function Events_MiddlewareListener_Implement_ArtifactSet_SetOgres(iSide, itemUnitLast, enumType)
-			if GetHero(iSide) ~= nil and itemUnitLast["strUnitName"] == GetHero(iSide) then
+			if GetHero(iSide) ~= nil and itemUnitLast["strUnitName"] == GetHero(iSide)
+				and contains(H55SMOD_StrongholdHeroes, itemUnitLast["iUnitType"]) ~= nil then
 				if TTH_ARTIFACTSET_EFFECT_COMBAT_HERO[iSide][TTHCS_ENUM.SET_OGRES.."_"..2] ~= nil
 					and TTH_ARTIFACTSET_EFFECT_COMBAT_HERO[iSide][TTHCS_ENUM.SET_OGRES.."_"..2] >= 2 then
 					combatSetPause(1);

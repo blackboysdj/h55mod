@@ -591,64 +591,6 @@ function Thread_Command_RemoveCombatUnit_Uncheck(itemUnit)
     return nil;
 end;
 
-function getRandom(max, seed)
-    local ran_num = seed * 457 + 757;
-    local pos_x = 0;
-    local pos_y = 0;
-    local i_type = 0;
-    local i_count = 0;
-    local i_mana = 0;
-    local i_maxmana = 0;
-
-    local hero_attacker = GetAttackerHero();
-    local hero_defender = GetDefenderHero();
-    local creatures_attacker = GetAttackerCreatures();
-    creatures_attacker.len = length(creatures_attacker);
-    local creatures_defender = GetDefenderCreatures();
-    creatures_defender.len = length(creatures_defender);
-
-    if hero_attacker ~= nil then
-        pos_x, pos_y = GetUnitPosition(hero_attacker);
-        i_mana = GetUnitManaPoints(hero_attacker);
-        i_maxmana = GetUnitMaxManaPoints(hero_attacker);
-        ran_num = ran_num + (pos_x * 7 + pos_y * 13 + i_mana * 17 + i_maxmana * 23);
-    end;
-    if hero_defender ~= nil then
-        pos_x, pos_y = GetUnitPosition(hero_defender);
-        i_mana = GetUnitManaPoints(hero_defender);
-        i_maxmana = GetUnitMaxManaPoints(hero_defender);
-        ran_num = ran_num + (pos_x * 7 + pos_y * 13 + i_mana * 17 + i_maxmana * 23);
-    end;
-    if creatures_attacker ~= nil and creatures_attacker.len > 0 then
-        for i = 0, creatures_attacker.len - 1 do
-            x, y = GetUnitPosition(creatures_attacker[i]);
-            i_type = GetCreatureType(creatures_attacker[i]);
-            i_count = GetCreatureNumber(creatures_attacker[i]);
-            ran_num = ran_num + (pos_x * 7 + pos_y * 13 + i_type * 17 + i_count * 23);
-        end;
-    end;
-    if creatures_defender ~= nil and creatures_defender.len > 0 then
-        for i = 0, creatures_defender.len - 1 do
-            x, y = GetUnitPosition(creatures_defender[i]);
-            i_type = GetCreatureType(creatures_defender[i]);
-            i_count = GetCreatureNumber(creatures_defender[i]);
-            ran_num = ran_num + (pos_x * 7 + pos_y * 13 + i_type * 17 + i_count * 23);
-        end;
-    end;
-
-    local f_num1 = ran_num / max;
-    local i_add = 0;
-    repeat i_add = i_add + 1; until i_add >= f_num1;
-    local i_num2 = ran_num - max * (i_add - 1);
-    for i = 0, max do
-        if i_num2 <= i then
-            i_num2 = i;
-            break;
-        end;
-    end;
-    return i_num2;
-end;
-
 function getBattleSize()
     local pos_x, pos_y = GetUnitPosition(GetAttackerHero());
     if pos_y >= 13 then

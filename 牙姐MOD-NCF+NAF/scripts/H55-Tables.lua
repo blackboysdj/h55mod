@@ -1,7 +1,8 @@
 -- RaceHero
   H55SMOD_HavenHeroes = {
       "Nathaniel", "Orrin", "Mardigo", "Ving", "Sarge", "Isabell", "Christian", "RedHeavenHero02", "RedHeavenHero05", "Brem"
-      , "Nicolai", "GodricMP", "Alaric", "Axel", "SaintIsabell", "Maeve", "RedHeavenHero06", "Caldwell", "OrtanCassius", "Sanguinius", "Avitus"
+      , "Nicolai", "GodricMP", "Alaric", "Axel", "SaintIsabell", "Maeve", "RedHeavenHero06", "Caldwell", "Tarkus"
+      , "OrtanCassius", "Sanguinius", "Avitus"
       , "RedHeavenHero03", "Orlando", "Markal"
   };
   H55SMOD_SylvanHeroes = {
@@ -41,7 +42,8 @@
 -- AllHero
   H55SMOD_Heroes = {
       "Nathaniel", "Orrin", "Mardigo", "Ving", "Sarge", "Isabell", "Christian", "RedHeavenHero02", "RedHeavenHero05", "Brem"
-      , "Nicolai", "GodricMP", "Alaric", "Axel", "SaintIsabell", "Maeve", "RedHeavenHero06", "Caldwell", "OrtanCassius", "Sanguinius", "Avitus"
+      , "Nicolai", "GodricMP", "Alaric", "Axel", "SaintIsabell", "Maeve", "RedHeavenHero06", "Caldwell", "Tarkus"
+      , "OrtanCassius", "Sanguinius", "Avitus"
       , "RedHeavenHero03", "Orlando", "Markal"
       , "Metlirn", "Ossir", "Nadaur", "Linaas", "Heam", "Gelu", "Arniel", "Kyrre"
       , "Gillion", "Itil", "Melodia", "Jenova", "Mephala", "Gem"
@@ -68,7 +70,7 @@
   H55_Renegades = {"Mardigo","RedHeavenHero01","RedHeavenHero02","RedHeavenHero05"};
 
   H55_Knights = {"Nathaniel","Orrin","Mardigo","Ving","Sarge","Isabell","Christian","RedHeavenHero02","RedHeavenHero05","Brem"};
-  H55_Paladins = {"Nicolai","GodricMP","Alaric","Axel","SaintIsabell","Maeve","RedHeavenHero06","Caldwell"};
+  H55_Paladins = {"Nicolai","GodricMP","Alaric","Axel","SaintIsabell","Maeve","RedHeavenHero06","Caldwell","Tarkus"};
   H55_Heretics = {"RedHeavenHero03","Orlando","Markal"};
   H55_Retributions = {"OrtanCassius", "Sanguinius", "Avitus"};
 
@@ -81,12 +83,12 @@
   H55_Elementalists = {"Emilia","Nur","Astral","Zehir","Faiz","Josephine"};
 
   H55_Demonlords = {"Calid","Deleb","Jazaz","Marder","Orlando2"};
-  H55_Gatekeepers = {"Calh","Efion","Grok","Malustar","Nymus","Oddrema","Sovereign","Agrael"};
-  H55_Sorcerers = {"Ash","Biara","Calid2","Sheltem","Zydar","Jeddite"};
+  H55_Gatekeepers = {"Calh","Efion","Grok","Malustar","Nymus","Oddrema","Sovereign","Agrael","Zydar"};
+  H55_Sorcerers = {"Ash","Biara","Calid2","Sheltem","Jeddite"};
 
   H55_DeathKnights = {"Archilus","Berein","Gles","Nikolay","Straker","Tamika","Xerxon","Karissa"};
-  H55_Reavers = {"Aislinn","Effig","Giovanni","OrnellaNecro","Aberrar","Muscip"};
-  H55_Necromancers = {"Arantir","Nemor","Nimbus","Pelt","Sandro","Thant", "Adelaide","Vidomina"};
+  H55_Reavers = {"Aislinn","Effig","Giovanni","OrnellaNecro","Aberrar","Nimbus"};
+  H55_Necromancers = {"Muscip","Arantir","Nemor","Pelt","Sandro","Thant", "Adelaide","Vidomina"};
 
   H55_Engineers = {"Bersy","Maximus","Skeggy","Tazar","Vilma"};
   H55_Runemages = {"Bart","Brand","Egil","KingTolghar","Ottar","Hangvul2","Una","Vegeyr"};
@@ -101,7 +103,7 @@
   H55_Witches = {};
 
 -- Hero8Race
-  H55_HavenHeroes = {"Nicolai","GodricMP","Maeve","Nathaniel","Axel","Brem","Caldwell","OrtanCassius","Sanguinius","Avitus","Markal","Orlando","RedHeavenHero03","RedHeavenHero06","Alaric","RedHeavenHero01","Christian","Sarge","Isabell","Mardigo","Ving","Orrin","Godric","Freyda","Ornella","GhostFSLord","Giar","Glen","Isabell_A1","SaintIsabell","RedHeavenHero01","RedHeavenHero02","RedHeavenHero05"};
+  H55_HavenHeroes = {"Nicolai","GodricMP","Maeve","Nathaniel","Axel","Brem","Caldwell","Tarkus","OrtanCassius","Sanguinius","Avitus","Markal","Orlando","RedHeavenHero03","RedHeavenHero06","Alaric","RedHeavenHero01","Christian","Sarge","Isabell","Mardigo","Ving","Orrin","Godric","Freyda","Ornella","GhostFSLord","Giar","Glen","Isabell_A1","SaintIsabell","RedHeavenHero01","RedHeavenHero02","RedHeavenHero05"};
   H55_SylvanHeroes = {"Heam","Metlirn","Gelu","Nadaur","Linaas","Ossir","Jenova","Kyrre","Mephala","Arniel","Ildar","Melodia","Gillion","Vaniel","Elleshar","Vinrael","Itil","Diraya","Gem","Tieru"};
   H55_InfernoHeroes = {"Marder","Sheltem","Orlando2","Calh","Calid","Jazaz","Gamor","Guarg","Erasial","Kha-Beleth","Veyer","DMessiah","Efion","Ash","Nymus","Oddrema","Malustar","Grok","Sovereign","Deleb","Calid2","Zydar","Jeddite","Agrael","Biara"};
   H55_DungeonHeroes = {"Agbeth","Ranleth","Sylsai","Urunir","Menel","Ferigl","Dalom","Eruina","Ohtarig","Welygg","Thralsai","Almegir","Raelag","Kastore","Kelodin","Shadwyn","Sephinroth","Inagost"};
@@ -9334,6 +9336,31 @@
       TTH_PATH.Race[TOWN_FORTRESS] = "/Text/Game/Scripts/TTH_Path/Race/Fortress.txt";
       TTH_PATH.Race[TOWN_STRONGHOLD] = "/Text/Game/Scripts/TTH_Path/Race/Stronghold.txt";
 
+    TTH_PATH.HeroClass = {};
+      TTH_PATH.HeroClass[TTH_ENUM.Knight] = "/Text/Game/Scripts/TTH_Path/HeroClass/01-Knight.txt";
+      TTH_PATH.HeroClass[TTH_ENUM.Paladin] = "/Text/Game/Scripts/TTH_Path/HeroClass/02-Paladin.txt";
+      TTH_PATH.HeroClass[TTH_ENUM.Heretic] = "/Text/Game/Scripts/TTH_Path/HeroClass/03-Heretic.txt";
+      TTH_PATH.HeroClass[TTH_ENUM.Retribution] = "/Text/Game/Scripts/TTH_Path/HeroClass/25-Retribution.txt";
+      TTH_PATH.HeroClass[TTH_ENUM.Ranger] = "/Text/Game/Scripts/TTH_Path/HeroClass/04-Ranger.txt";
+      TTH_PATH.HeroClass[TTH_ENUM.Warden] = "/Text/Game/Scripts/TTH_Path/HeroClass/05-Warden.txt";
+      TTH_PATH.HeroClass[TTH_ENUM.Enchanter] = "/Text/Game/Scripts/TTH_Path/HeroClass/06-Enchanter.txt";
+      TTH_PATH.HeroClass[TTH_ENUM.GuildMaster] = "/Text/Game/Scripts/TTH_Path/HeroClass/07-GuildMaster.txt";
+      TTH_PATH.HeroClass[TTH_ENUM.Wizard] = "/Text/Game/Scripts/TTH_Path/HeroClass/08-Wizard.txt";
+      TTH_PATH.HeroClass[TTH_ENUM.ElementAlist] = "/Text/Game/Scripts/TTH_Path/HeroClass/09-ElementAlist.txt";
+      TTH_PATH.HeroClass[TTH_ENUM.BeastMaster] = "/Text/Game/Scripts/TTH_Path/HeroClass/10-BeastMaster.txt";
+      TTH_PATH.HeroClass[TTH_ENUM.Seer] = "/Text/Game/Scripts/TTH_Path/HeroClass/11-Seer.txt";
+      TTH_PATH.HeroClass[TTH_ENUM.Warlock] = "/Text/Game/Scripts/TTH_Path/HeroClass/12-Warlock.txt";
+      TTH_PATH.HeroClass[TTH_ENUM.DeathKnight] = "/Text/Game/Scripts/TTH_Path/HeroClass/13-DeathKnight.txt";
+      TTH_PATH.HeroClass[TTH_ENUM.Reaver] = "/Text/Game/Scripts/TTH_Path/HeroClass/14-Reaver.txt";
+      TTH_PATH.HeroClass[TTH_ENUM.Necromancer] = "/Text/Game/Scripts/TTH_Path/HeroClass/15-Necromancer.txt";
+      TTH_PATH.HeroClass[TTH_ENUM.GateKeeper] = "/Text/Game/Scripts/TTH_Path/HeroClass/16-GateKeeper.txt";
+      TTH_PATH.HeroClass[TTH_ENUM.DemonLord] = "/Text/Game/Scripts/TTH_Path/HeroClass/17-DemonLord.txt";
+      TTH_PATH.HeroClass[TTH_ENUM.Sorcerer] = "/Text/Game/Scripts/TTH_Path/HeroClass/18-Sorcerer.txt";
+      TTH_PATH.HeroClass[TTH_ENUM.Engineer] = "/Text/Game/Scripts/TTH_Path/HeroClass/19-Engineer.txt";
+      TTH_PATH.HeroClass[TTH_ENUM.Runemage] = "/Text/Game/Scripts/TTH_Path/HeroClass/20-Runemage.txt";
+      TTH_PATH.HeroClass[TTH_ENUM.Flamekeepera] = "/Text/Game/Scripts/TTH_Path/HeroClass/21-Flamekeepera.txt";
+      TTH_PATH.HeroClass[TTH_ENUM.Barbarian] = "/Text/Game/Scripts/TTH_Path/HeroClass/22-Barbarian.txt";
+
     TTH_PATH.Mine = {};
       TTH_PATH.Mine["BUILDING_SAWMILL"] = "/Text/Game/Scripts/TTH_Path/Mine/Wood.txt";
       TTH_PATH.Mine["BUILDING_ORE_PIT"] = "/Text/Game/Scripts/TTH_Path/Mine/Ore.txt";
@@ -10801,8 +10828,8 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 0
-                , [ORE] = 5
+                [WOOD] = 5
+                , [ORE] = 0
                 , [MERCURY] = 0
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
@@ -10935,8 +10962,8 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 5
-                , [ORE] = 5
+                [WOOD] = 0
+                , [ORE] = 10
                 , [MERCURY] = 0
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
@@ -10973,8 +11000,8 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 5
-                , [ORE] = 5
+                [WOOD] = 0
+                , [ORE] = 10
                 , [MERCURY] = 0
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
@@ -11051,10 +11078,10 @@
               , ["Resource"] = {
                 [WOOD] = 5
                 , [ORE] = 5
-                , [MERCURY] = 4
-                , [CRYSTAL] = 4
-                , [SULFUR] = 4
-                , [GEM] = 4
+                , [MERCURY] = 3
+                , [CRYSTAL] = 3
+                , [SULFUR] = 3
+                , [GEM] = 3
                 , [GOLD] = 1000
               }
             }
@@ -11070,10 +11097,10 @@
               , ["Resource"] = {
                 [WOOD] = 5
                 , [ORE] = 5
-                , [MERCURY] = 6
-                , [CRYSTAL] = 6
-                , [SULFUR] = 6
-                , [GEM] = 6
+                , [MERCURY] = 5
+                , [CRYSTAL] = 5
+                , [SULFUR] = 5
+                , [GEM] = 5
                 , [GOLD] = 1000
               }
             }
@@ -11145,8 +11172,8 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 5
-                , [ORE] = 5
+                [WOOD] = 10
+                , [ORE] = 10
                 , [MERCURY] = 5
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
@@ -11209,7 +11236,7 @@
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 3500
+                , [GOLD] = 5000
               }
             }
             , [24] = {
@@ -11321,9 +11348,9 @@
                 [WOOD] = 15
                 , [ORE] = 0
                 , [MERCURY] = 0
-                , [CRYSTAL] = 0
+                , [CRYSTAL] = 10
                 , [SULFUR] = 0
-                , [GEM] = 10
+                , [GEM] = 0
                 , [GOLD] = 6000
               }
             }
@@ -11337,12 +11364,12 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 15
+                [WOOD] = 20
                 , [ORE] = 0
                 , [MERCURY] = 0
-                , [CRYSTAL] = 0
+                , [CRYSTAL] = 15
                 , [SULFUR] = 0
-                , [GEM] = 10
+                , [GEM] = 0
                 , [GOLD] = 9000
               }
             }
@@ -11379,9 +11406,9 @@
                 [WOOD] = 0
                 , [ORE] = 15
                 , [MERCURY] = 0
-                , [CRYSTAL] = 15
+                , [CRYSTAL] = 0
                 , [SULFUR] = 0
-                , [GEM] = 0
+                , [GEM] = 10
                 , [GOLD] = 10000
               }
             }
@@ -11396,11 +11423,11 @@
               }
               , ["Resource"] = {
                 [WOOD] = 0
-                , [ORE] = 15
+                , [ORE] = 20
                 , [MERCURY] = 0
-                , [CRYSTAL] = 20
+                , [CRYSTAL] = 0
                 , [SULFUR] = 0
-                , [GEM] = 0
+                , [GEM] = 10
                 , [GOLD] = 12000
               }
             }
@@ -17281,6 +17308,52 @@
         }
       };
 
+    -- 英雄表 维度：种族 & 职业
+      TTH_TABLE.Hero8RaceAndClass = {
+        [TOWN_HEAVEN] = {
+          [TTH_ENUM.Knight] = {"Nathaniel","Orrin","Mardigo","Ving","Sarge","Isabell","Christian","RedHeavenHero02","RedHeavenHero05","Brem"}
+          -- , [TTH_ENUM.Paladin] = {"Nicolai","GodricMP","Alaric","Axel","SaintIsabell","Maeve","RedHeavenHero06","Caldwell","Tarkus"}
+          , [TTH_ENUM.Paladin] = {"Nicolai","GodricMP","Alaric","Axel","SaintIsabell","Maeve","RedHeavenHero06","Tarkus"}
+          , [TTH_ENUM.Retribution] = {"OrtanCassius", "Sanguinius", "Avitus"}
+          , [TTH_ENUM.Heretic] = {"RedHeavenHero03","Orlando","Markal"}
+        }
+        , [TOWN_PRESERVE] = {
+          [TTH_ENUM.Ranger] = {"Metlirn","Ossir","Nadaur","Linaas","Heam","Gelu","Arniel","Kyrre"}
+          , [TTH_ENUM.Warden] = {"Gillion","Itil","Melodia","Jenova","Mephala","Gem"}
+          , [TTH_ENUM.Enchanter] = {"Elleshar","Ildar","Vaniel","Vinrael","Diraya"}
+        }
+        , [TOWN_ACADEMY] = {
+          [TTH_ENUM.GuildMaster] = {"Havez","Minasli","Isher","Davius","Dracon"}
+          , [TTH_ENUM.Wizard] = {"Rissa","Razzak","Sufi","Cyrus","Maahir","Timerkhan","Tan"}
+          , [TTH_ENUM.ElementAlist] = {"Emilia","Nur","Astral","Zehir","Faiz","Josephine"}
+        }
+        , [TOWN_DUNGEON] = {
+          [TTH_ENUM.BeastMaster] = {"Urunir","Menel","Ferigl","Sylsai","Welygg"}
+          , [TTH_ENUM.Seer] = {"Ohtarig","Eruina","Dalom","Kelodin","Shadwyn","Thralsai"}
+          , [TTH_ENUM.Warlock] = {"Agbeth","Almegir","Inagost","Kastore","Raelag","Ranleth","Sephinroth"}
+        }
+        , [TOWN_NECROMANCY] = {
+          -- [TTH_ENUM.DeathKnight] = {"Archilus","Berein","Gles","Nikolay","Straker","Tamika","Xerxon","Karissa"}
+          [TTH_ENUM.DeathKnight] = {"Archilus","Berein","Gles","Nikolay","Straker","Tamika","Xerxon"}
+          , [TTH_ENUM.Reaver] = {"Aislinn","Effig","Giovanni","OrnellaNecro","Aberrar","Nimbus"}
+          , [TTH_ENUM.Necromancer] = {"Muscip","Arantir","Nemor","Pelt","Sandro","Thant", "Adelaide","Vidomina"}
+        }
+        , [TOWN_INFERNO] = {
+          [TTH_ENUM.GateKeeper] = {"Calid","Deleb","Jazaz","Marder","Orlando2"}
+          , [TTH_ENUM.DemonLord] = {"Calh","Efion","Grok","Malustar","Nymus","Oddrema","Sovereign","Agrael","Zydar"}
+          -- , [TTH_ENUM.Sorcerer] = {"Ash","Biara","Calid2","Sheltem","Jeddite"}
+          , [TTH_ENUM.Sorcerer] = {"Ash","Biara","Calid2","Sheltem"}
+        }
+        , [TOWN_FORTRESS] = {
+          [TTH_ENUM.Engineer] = {"Bersy","Maximus","Skeggy","Tazar","Vilma"}
+          , [TTH_ENUM.Runemage] = {"Bart","Brand","Egil","KingTolghar","Ottar","Hangvul2","Una","Vegeyr"}
+          , [TTH_ENUM.Flamekeepera] = {"Hangvul","Ingvar","Rolf","Ufretin","Wulfstan"}
+        }
+        , [TOWN_STRONGHOLD] = {
+          [TTH_ENUM.Barbarian] = {"Hero9","Hero7","Hero8","Azar","Hero4","Hero6","Crag","Gottai","Hero1","Hero2","Hero3","Kraal","KujinMP","Kunyak","Matewa","Quroq","Shiva","Zouleika","Erika","Mokka"}
+        }
+      };
+
     -- 据点生物
       TTH_TABLE.StrongholdCreature = {
         CREATURE_GOBLIN
@@ -18305,6 +18378,13 @@
                   , ["ArtifactId"] = ARTIFACT_LEGION_ADVANCED
                 }
               }
+            }
+            , ["Tarkus"] = {
+              ["Id"] = 158
+              , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Tarkus/name.txt"
+              , ["Race"] = TOWN_HEAVEN
+              , ["Class"] = TTH_ENUM.Paladin
+              , ["Group"] = TTH_ENUM.GroupBalanceNotNec
             }
           -- Heretic
             , ["RedHeavenHero03"] = {

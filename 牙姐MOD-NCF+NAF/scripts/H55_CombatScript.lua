@@ -192,12 +192,12 @@ doFile('/scripts/combat-startup.lua')
 	H55SMOD_Tactics = {};
 
 	-- KujinMP
-	H55SMOD_Tactics['KujinMP'] = {};
-	H55SMOD_Tactics['KujinMP']['flag'] = ENUM_STAGE.ONCE.UNEXECUTE;
-	function Events_Tactics_Implement_KujinMP(strHero, iSide, isReverse)
-		H55SMOD_Tactics[strHero]['value'] = Thread_Command_AddCreature(getSide(iSide, isReverse), CREATURE_DEMON, 1, -1, -1);
-	end;
-	H55SMOD_Tactics['KujinMP']['function'] = Events_Tactics_Implement_KujinMP;
+		H55SMOD_Tactics['KujinMP'] = {};
+		H55SMOD_Tactics['KujinMP']['flag'] = ENUM_STAGE.ONCE.UNEXECUTE;
+		function Events_Tactics_Implement_KujinMP(strHero, iSide, isReverse)
+			H55SMOD_Tactics[strHero]['value'] = Thread_Command_AddCreature(getSide(iSide, isReverse), CREATURE_DEMON, 1, -1, -1);
+		end;
+		H55SMOD_Tactics['KujinMP']['function'] = Events_Tactics_Implement_KujinMP;
 
 	function Events_Tactics_Interface(strHero, isReverse)
 		for iSide = ENUM_SIDE.ATTACKER, ENUM_SIDE.DEFENDER do
@@ -228,6 +228,92 @@ doFile('/scripts/combat-startup.lua')
 	H55SMOD_Start = {};
 	H55SMOD_Start['Artifact'] = {};
 	H55SMOD_Start['Skill'] = {};
+
+	-- Tarkus
+		-- 小场 X: 5-10 Y: 1-10
+		-- 大场 X: 5-12 Y: 1-14
+		H55SMOD_Start["Tarkus"] = {};
+		H55SMOD_Start["Tarkus"]["flag"] = ENUM_STAGE.ONCE.UNEXECUTE;
+		H55SMOD_Start["Tarkus"]["ListAttack"] = {};
+		H55SMOD_Start["Tarkus"]["ListDefend"] = {};
+		H55SMOD_Start["Tarkus"]["ListAll"] = {};
+		function Events_Tactics_Implement_Tarkus_Check(itemPosition)
+			local bCheck = 1;
+			for i, objPostion in H55SMOD_Start["Tarkus"]["ListAll"] do
+				if itemPosition["PosX"] == objPostion["PosX"] and itemPosition["PosY"] == objPostion["PosY"] then
+					bCheck = 0;
+				end;
+			end;
+			return bCheck;
+		end;
+		function Events_Tactics_Implement_Tarkus(strHero, iSide)
+			local iBattleFieldSize = TTHCS_GLOBAL.getBattleFieldSize();
+			for i = 1, 3 do
+				local itemPositionLeft = {};
+				repeat
+					if itemPositionLeft["UnitName"] ~= nil then
+						Thread_Command_RemoveCombatUnit(iSide, itemPositionLeft["UnitName"]);
+						itemPositionLeft = {};
+					end;
+					if iBattleFieldSize == TTHCS_ENUM.BattleEffectFieldSmall then
+					  itemPositionLeft["PosX"] = TTHCS_COMMON.getRandom(3) + 5;
+					  itemPositionLeft["PosY"] = TTHCS_COMMON.getRandom(10) + 1;
+					else
+					  itemPositionLeft["PosX"] = TTHCS_COMMON.getRandom(4) + 5;
+					  itemPositionLeft["PosY"] = TTHCS_COMMON.getRandom(14) + 1;
+					end;
+					local strCreatureLeft = Thread_Command_AddCreature(iSide, CREATURE_HEAVEN_TOOL, 1, itemPositionLeft["PosX"], itemPositionLeft["PosY"]);
+					local objCreatureLeft = TTHCS_GLOBAL.geneUnitInfo(strCreatureLeft);
+					itemPositionLeft = objCreatureLeft;
+				until Events_Tactics_Implement_Tarkus_Check(itemPositionLeft) == 1;
+				Thread_Command_RemoveCombatUnit(iSide, itemPositionLeft["UnitName"]);
+				push(H55SMOD_Start[strHero]["ListAll"], itemPositionLeft);
+				if iSide == TTHCS_ENUM.SideAttacker then
+					push(H55SMOD_Start[strHero]["ListDefend"], itemPositionLeft);
+				else
+					push(H55SMOD_Start[strHero]["ListAttack"], itemPositionLeft);
+				end;
+			end;
+			for i = 1, 3 do
+				local itemPositionRight = {};
+				repeat 
+					if itemPositionRight["UnitName"] ~= nil then
+						Thread_Command_RemoveCombatUnit(iSide, itemPositionRight["UnitName"]);
+						itemPositionRight = {};
+					end;
+					if iBattleFieldSize == TTHCS_ENUM.BattleEffectFieldSmall then
+					  itemPositionRight["PosX"] = TTHCS_COMMON.getRandom(3) + 8;
+					  itemPositionRight["PosY"] = TTHCS_COMMON.getRandom(10) + 1;
+					else
+					  itemPositionRight["PosX"] = TTHCS_COMMON.getRandom(4) + 9;
+					  itemPositionRight["PosY"] = TTHCS_COMMON.getRandom(14) + 1;
+					end;
+					local strCreatureRight = Thread_Command_AddCreature(iSide, CREATURE_HEAVEN_TOOL, 1, itemPositionRight["PosX"], itemPositionRight["PosY"]);
+					local objCreatureRight = TTHCS_GLOBAL.geneUnitInfo(strCreatureRight);
+					itemPositionRight = objCreatureRight;
+				until Events_Tactics_Implement_Tarkus_Check(itemPositionRight) == 1;
+				Thread_Command_RemoveCombatUnit(iSide, itemPositionRight["UnitName"]);
+				push(H55SMOD_Start[strHero]["ListAll"], itemPositionRight);
+				if iSide == TTHCS_ENUM.SideAttacker then
+					push(H55SMOD_Start[strHero]["ListAttack"], itemPositionRight);
+				else
+					push(H55SMOD_Start[strHero]["ListDefend"], itemPositionRight);
+				end;
+			end;
+			for i, objPostion in H55SMOD_Start["Tarkus"]["ListAttack"] do
+				local strCreatureCaster = Thread_Command_AddCreature(iSide, CREATURE_HEAVEN_TOOL, 1, 1, 1);
+				UnitCastAreaSpell(strCreatureCaster, SPELL_ABILITY_SET_SNARES, objPostion["PosX"], objPostion["PosY"]);
+				Thread_Command_RemoveCombatUnit(iSide, strCreatureCaster);
+				print("Attack: "..objPostion["PosX"].."-"..objPostion["PosY"]);
+			end;
+			for i, objPostion in H55SMOD_Start["Tarkus"]["ListDefend"] do
+				local strCreatureCaster = Thread_Command_AddCreature(iSide, CREATURE_HEAVEN_TOOL, 1, 1, 1);
+				UnitCastAreaSpell(strCreatureCaster, SPELL_ABILITY_SET_SNARES, objPostion["PosX"], objPostion["PosY"]);
+				Thread_Command_RemoveCombatUnit(iSide, strCreatureCaster);
+				print("Defend: "..objPostion["PosX"].."-"..objPostion["PosY"]);
+			end;
+		end;
+		H55SMOD_Start["Tarkus"]["function"] = Events_Tactics_Implement_Tarkus;
 
 	-- Sarge
 		H55SMOD_Start['Sarge'] = {};
@@ -1135,6 +1221,7 @@ doFile('/scripts/combat-startup.lua')
 		H55SMOD_Start['Artifact'][ARTIFACT_GEM_OF_PHANTOM]['function']['summon']();
 
 		-- 前置英雄特效
+		Events_Start_Interface('Tarkus', 0);
 		Events_Start_Interface('Sarge', 0);
 		Events_Start_Interface('Shadwyn', 1);
 		Events_Start_Interface('Azar', 1);
@@ -2236,6 +2323,7 @@ doFile('/scripts/combat-startup.lua')
 					for iSide = ENUM_SIDE.ATTACKER, ENUM_SIDE.DEFENDER do
 						-- Haven
 							H55SMOD_MiddlewareListener['RedHeavenHero05']['function']['after']('RedHeavenHero05', iSide, itemUnitLast);
+							H55SMOD_MiddlewareListener["Tarkus"]["function"]("Tarkus", iSide, itemUnitLast);
 						-- Sylvan
 							H55SMOD_MiddlewareListener['Mephala']['function']('Mephala', iSide, itemUnitLast);
 						-- Academy
@@ -3062,6 +3150,70 @@ doFile('/scripts/combat-startup.lua')
 				end;
 			end;
 			H55SMOD_MiddlewareListener["Avitus"]["function"] = Events_MiddlewareListener_Implement_Avitus;
+
+		-- Tarkus
+			H55SMOD_MiddlewareListener["Tarkus"] = {};
+			function Events_MiddlewareListener_Implement_Tarkus(strHero, iSide, itemUnitLast)
+				if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero then
+					local bAttack = 0;
+					for i, objInit in ObjSnapshotInit["Creatures"][iSide] do
+						local objUnitTrigger = TTHCS_GLOBAL.geneUnitInfo(objInit["strUnitName"]);
+						if bAttack == 0 then
+							local bMatch = 0;
+							local iIndex = -1;
+							for i, objPosition in H55SMOD_Start[strHero]["ListAttack"] do
+								if bMatch == 0 and TTHCS_COMMON.isEffectUnit(objInit["strUnitName"], objPosition["PosX"], objPosition["PosY"]) == TTHCS_ENUM.Yes then
+									bMatch = 1;
+									iIndex = i;
+								end;
+							end;
+							if bMatch == 1 then
+								bAttack = 1;
+								combatSetPause(1);
+								local objPosition = {};
+								H55SMOD_Start[strHero]["ListAttack"], objPosition = pop(H55SMOD_Start[strHero]["ListAttack"], iIndex);
+								local strCreatureSummon = Thread_Command_SummonCreature(iSide, objUnitTrigger["UnitType"], objUnitTrigger["UnitNumber"], objPosition["PosX"], objPosition["PosY"]);
+								local objCreatureSummon = geneUnitStatus(strCreatureSummon);
+								objCreatureSummon["iAtb"] = 1.25;
+								push(ListUnitSetATB, objCreatureSummon);
+								print(objUnitTrigger["UnitName"].." arrive tactics target and clone "..objCreatureSummon["strUnitName"]);
+								ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["EffectAttack"], objUnitTrigger["UnitName"], 5);
+								combatSetPause(nil);
+							end;
+						end;
+					end;
+					local iOppositeSide = getSide(iSide, 1);
+					local bDefend = 0;
+					for i, objInit in ObjSnapshotInit["Creatures"][iOppositeSide] do
+						local objUnitTrigger = TTHCS_GLOBAL.geneUnitInfo(objInit["strUnitName"]);
+						if bDefend == 0 then
+							local bMatch = 0;
+							local iIndex = -1;
+							for i, objPosition in H55SMOD_Start[strHero]["ListDefend"] do
+								if bMatch == 0 and TTHCS_COMMON.isEffectUnit(objInit["strUnitName"], objPosition["PosX"], objPosition["PosY"]) == TTHCS_ENUM.Yes then
+									bMatch = 1;
+									iIndex = i;
+								end;
+							end;
+							if bMatch == 1 then
+								bDefend = 1;
+								combatSetPause(1);
+								local objPosition = {};
+								H55SMOD_Start[strHero]["ListDefend"], objPosition = pop(H55SMOD_Start[strHero]["ListDefend"], iIndex);
+								for i, strCreature in GetCreatures(iSide) do
+									local objCreature = geneUnitStatus(strCreature);
+									objCreature["iAtb"] = 1.25;
+									push(ListUnitSetATB, objCreature);
+									print(objUnitTrigger["UnitName"].." fall into a trap");
+									ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["EffectDefend"], objUnitTrigger["UnitName"], 5);
+								end;
+								combatSetPause(nil);
+							end;
+						end;
+					end;
+				end;
+			end;
+			H55SMOD_MiddlewareListener["Tarkus"]["function"] = Events_MiddlewareListener_Implement_Tarkus;
 
 	-- Sylvan
 		-- Gelu

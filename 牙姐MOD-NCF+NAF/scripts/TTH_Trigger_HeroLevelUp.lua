@@ -61,6 +61,9 @@ end;
 function TTH_TRIGGER.heroLevelUpAvitus()
 	TTH_TRIGGER.heroLevelUp("Avitus");
 end;
+function TTH_TRIGGER.heroLevelUpTarkus()
+	TTH_TRIGGER.heroLevelUp("Tarkus");
+end;
 function TTH_TRIGGER.heroLevelUpRedHeavenHero03()
 	TTH_TRIGGER.heroLevelUp("RedHeavenHero03");
 end;

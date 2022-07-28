@@ -54,7 +54,8 @@ MAX_MANA = 1000;
 
 H55SMOD_HavenHeroes = {
     'Nathaniel', 'Orrin', 'Mardigo', 'Ving', 'Sarge', 'Isabell', 'Christian', 'RedHeavenHero02', 'RedHeavenHero05', 'Brem'
-    , 'Nicolai', 'GodricMP', 'Alaric', 'Axel', 'SaintIsabell', 'Maeve', 'RedHeavenHero06', 'Caldwell', 'OrtanCassius', 'Sanguinius', 'Avitus'
+    , 'Nicolai', 'GodricMP', 'Alaric', 'Axel', 'SaintIsabell', 'Maeve', 'RedHeavenHero06', 'Caldwell', 'Tarkus'
+    , 'OrtanCassius', 'Sanguinius', 'Avitus'
     , 'RedHeavenHero03', 'Orlando', 'Markal'
 };
 H55SMOD_SylvanHeroes = {
@@ -93,7 +94,8 @@ H55SMOD_StrongholdHeroes = {
 
 H55SMOD_Heroes = {
     'Nathaniel', 'Orrin', 'Mardigo', 'Ving', 'Sarge', 'Isabell', 'Christian', 'RedHeavenHero02', 'RedHeavenHero05', 'Brem'
-    , 'Nicolai', 'GodricMP', 'Alaric', 'Axel', 'SaintIsabell', 'Maeve', 'RedHeavenHero06', 'Caldwell', 'OrtanCassius', 'Sanguinius', 'Avitus'
+    , 'Nicolai', 'GodricMP', 'Alaric', 'Axel', 'SaintIsabell', 'Maeve', 'RedHeavenHero06', 'Caldwell', 'Tarkus'
+    , 'OrtanCassius', 'Sanguinius', 'Avitus'
     , 'RedHeavenHero03', 'Orlando', 'Markal'
     , 'Metlirn', 'Ossir', 'Nadaur', 'Linaas', 'Heam', 'Gelu', 'Arniel', 'Kyrre'
     , 'Gillion', 'Itil', 'Melodia', 'Jenova', 'Mephala', 'Gem'
@@ -1137,6 +1139,7 @@ end;
   CREATURE_193 = 193
   CREATURE_CROSSBOW = 193;
   CREATURE_194 = 194
+  CREATURE_HEAVEN_TOOL = 194;
   CREATURE_195 = 195
   CREATURE_196 = 196
   CREATURE_197 = 197
@@ -2541,6 +2544,7 @@ end;
 
   SPELL_ABILITY_SACRIFICE_GOBLIN = 299;
   SPELL_ABILITY_SWALLOW_GOBLIN = 300;
+  SPELL_ABILITY_SET_SNARES = 301;
 
 -- 大型战争机械
   List_Large_WarMachines = {
@@ -2554,6 +2558,10 @@ end;
     -- 战场大小
       TTHCS_ENUM.BattleEffectFieldSmall = 1;
       TTHCS_ENUM.BattleEffectFieldBig = 2;
+
+    -- 攻守方
+      TTHCS_ENUM.SideAttacker = 0;
+      TTHCS_ENUM.SideDefender = 1;
 
     -- 是否
       TTHCS_ENUM.No = 0;
@@ -12805,6 +12813,10 @@ end;
 
       TTHCS_PATH["Talent"]["Avitus"] = {};
       TTHCS_PATH["Talent"]["Avitus"]["Effect"] = "/Text/TTH/Heroes/Specializations/Heaven/157-Avitus/Combat/Effect.txt";
+
+      TTHCS_PATH["Talent"]["Tarkus"] = {};
+      TTHCS_PATH["Talent"]["Tarkus"]["EffectAttack"] = "/Text/TTH/Heroes/Specializations/Heaven/158-Tarkus/Combat/EffectAttack.txt";
+      TTHCS_PATH["Talent"]["Tarkus"]["EffectDefend"] = "/Text/TTH/Heroes/Specializations/Heaven/158-Tarkus/Combat/EffectDefend.txt";
 
     TTHCS_PATH["Perk"] = {};
       TTHCS_PATH["Perk"][HERO_SKILL_SEAL_OF_PROTECTION] = {};

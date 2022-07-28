@@ -9252,12 +9252,12 @@
 					<Item>SPELL_DEMON_RAGE_LEVEL_1</Item>
 					<Item>SPELL_DEMON_RAGE_LEVEL_1</Item>
 				</spellBuffs>
-				<BasicSkillID>HERO_SKILL_LIGHT_MAGIC</BasicSkillID>
+				<BasicSkillID>HERO_SKILL_SORCERY</BasicSkillID>
 				<SkillPrerequisites>
 					<Item>
 						<Class>HERO_CLASS_RETRIBUTION</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_ETERNAL_LIGHT</Item>
+							<Item>HERO_SKILL_TWILIGHT</Item>
 							<Item>HERO_SKILL_COUNTERSPELL</Item>
 							<Item>HERO_SKILL_MAGIC_CUSHION</Item>
 						</dependenciesIDs>

@@ -454,29 +454,14 @@ doFile("/scripts/H55-Settings.lua");
 
 		-- 招募指定英雄
 			function TTH.hero1(iPlayer, strHero)
-				if strHero ~= nil then
-					H55_ChooseHero_Name1 = strHero;
-					H55_ChooseHero_Name2 = "";
+				for iRace = TOWN_HEAVEN, TOWN_STRONGHOLD do
+					AllowPlayerTavernRace(iPlayer, iRace, TTH_ENUM.No);
 				end;
-				for i = TOWN_HEAVEN, TOWN_STRONGHOLD do
-					AllowPlayerTavernRace(iPlayer, i, TTH_ENUM.No);
-				end
-				if H55_ChooseHero_Name1 ~= "" and contains(GetPlayerHeroes(iPlayer), H55_ChooseHero_Name1) == nil then
-					for i = PLAYER_1, PLAYER_8 do
-						if i == iPlayer then
-							AllowPlayerTavernHero(i, H55_ChooseHero_Name1, TTH_ENUM.Yes);
-						else
-							AllowPlayerTavernHero(i, H55_ChooseHero_Name1, TTH_ENUM.No);
-						end;
-					end;
-				end;
-				if H55_ChooseHero_Name2 ~= "" and contains(GetPlayerHeroes(iPlayer), H55_ChooseHero_Name2) == nil then
-					for i = PLAYER_1, PLAYER_8 do
-						if i == iPlayer then
-							AllowPlayerTavernHero(i, H55_ChooseHero_Name2, TTH_ENUM.Yes);
-						else
-							AllowPlayerTavernHero(i, H55_ChooseHero_Name2, TTH_ENUM.No);
-						end;
+				for iIndexPlayer = PLAYER_1, PLAYER_8 do
+					if iIndexPlayer == iPlayer then
+						AllowPlayerTavernHero(iIndexPlayer, strHero, TTH_ENUM.Yes);
+					else
+						AllowPlayerTavernHero(iIndexPlayer, strHero, TTH_ENUM.No);
 					end;
 				end;
 			end;
@@ -1736,12 +1721,13 @@ doFile("/scripts/H55-Settings.lua");
 						GiveHeroSkill(strHero, HERO_SKILL_LIGHT_MAGIC);
 						GiveHeroSkill(strHero, HERO_SKILL_SORCERY);
 						GiveHeroSkill(strHero, HERO_SKILL_SORCERY);
+						GiveHeroSkill(strHero, HERO_SKILL_SORCERY);
 						GiveHeroSkill(strHero, HERO_SKILL_DEFENCE);
 						GiveHeroSkill(strHero, HERO_SKILL_DEFENCE);
 						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_MASTER_OF_BLESSING);
+						GiveHeroSkill(strHero, HERO_SKILL_MASTER_OF_ABJURATION);
 						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_ETERNAL_LIGHT);
+						GiveHeroSkill(strHero, HERO_SKILL_TWILIGHT);
 						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_DISTRACT);
 						sleep(1);
@@ -2319,18 +2305,6 @@ doFile("/scripts/H55-Settings.lua");
 			-- 绑定英雄自定义技能3 定点回城
 				function TTH_GLOBAL.bindHeroCustomAbility3Hero(strHero)
 					ControlHeroCustomAbility(strHero, CUSTOM_ABILITY_3, CUSTOM_ABILITY_ENABLED);
-				end;
-
-			-- 招募指定英雄
-				function TTH_GLOBAL.hireHero(iPlayer)
-					if H55_ChooseHero_Switch == 1 and (H55_ChooseHero_Name1 ~= "" or H55_ChooseHero_Name2 ~= "") then
-						if TTH_VARI.day == 1 then
-							TTH.hero1(iPlayer);
-						end;
-						if TTH_VARI.day == 2 then
-							TTH.hero2(iPlayer);
-						end;
-					end;
 				end;
 
 		-- 组队
@@ -4970,6 +4944,7 @@ doFile("/scripts/H55-Settings.lua");
 					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strText, strCallbackOk, strCallbackCancel);
 				end;
 				function TTH_VISIT.implWitchHut2Bonus(iPlayer, strHero, iMasteryId)
+					TTH_GLOBAL.reduceResource(iPlayer, GOLD, TTH_FINAL.WITCHHUT_BONUS_GOLD_COST);
 					local strMasteryName = TTH_TABLE.Mastery[iMasteryId]["Text"];
 					GiveHeroSkill(strHero, iMasteryId);
 					sleep(1);
@@ -7321,6 +7296,7 @@ doFile("/scripts/H55-Settings.lua");
 		TTH_ENUM.TownManage = 3; -- 城镇管理
 		TTH_ENUM.ExchangeRecord = 4; -- 政绩管理
 		TTH_ENUM.CombineArtifact = 5; -- 宝物合成
+		TTH_ENUM.HireHero = 6; -- 招募指定英雄
 
 		TTH_TABLE.KingManagePath = {
 			["Widget"] = {
@@ -7556,16 +7532,37 @@ doFile("/scripts/H55-Settings.lua");
 					["Text"] = "/Text/Game/Scripts/TTH_KingManage/CombineArtifact/Success.txt"
 				}
 			}
+			, ["HireHero"] = {
+				["Text"] = "/Text/Game/Scripts/TTH_KingManage/HireHero.txt"
+				, ["RaceRadioTips"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/HireHero/RaceRadioTips.txt"
+				}
+				, ["ClassRadioTips"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/HireHero/ClassRadioTips.txt"
+				}
+				, ["HeroRadioTips"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/HireHero/HeroRadioTips.txt"
+				}
+				, ["HasExist"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/HireHero/HasExist.txt"
+				}
+				, ["Confirm"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/HireHero/Confirm.txt"
+				}
+				, ["Success"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/HireHero/Success.txt"
+				}
+			}
 		};
 
 		-- 英雄主动技能4
-		function TTH_MANAGE.customAbility(strHero, CUSTOM_ABILITY_ID)
-			if CUSTOM_ABILITY_ID == CUSTOM_ABILITY_4 then
-				TTH_MANAGE.kingManage(strHero);
-			elseif CUSTOM_ABILITY_ID == CUSTOM_ABILITY_3 then
-				TTH_MANAGE.dealTeleport2AppointTown(strHero);
+			function TTH_MANAGE.customAbility(strHero, CUSTOM_ABILITY_ID)
+				if CUSTOM_ABILITY_ID == CUSTOM_ABILITY_4 then
+					TTH_MANAGE.kingManage(strHero);
+				elseif CUSTOM_ABILITY_ID == CUSTOM_ABILITY_3 then
+					TTH_MANAGE.dealTeleport2AppointTown(strHero);
+				end;
 			end;
-		end;
 
 		-- 王国管理-总入口
 			TTH_TABLE.KingManageOption = {
@@ -7593,6 +7590,11 @@ doFile("/scripts/H55-Settings.lua");
 					["Id"] = TTH_ENUM.CombineArtifact
 					, ["Text"] = TTH_TABLE.KingManagePath["CombineArtifact"]["Text"]
 					, ["Callback"] = "TTH_MANAGE.dealCombineArtifact"
+				}
+				, [6] = {
+					["Id"] = TTH_ENUM.HireHero
+					, ["Text"] = TTH_TABLE.KingManagePath["HireHero"]["Text"]
+					, ["Callback"] = "TTH_MANAGE.dealHireHero"
 				}
 			};
 			function TTH_MANAGE.kingManage(strHero)
@@ -8992,6 +8994,112 @@ doFile("/scripts/H55-Settings.lua");
 						};
 						TTH_GLOBAL.sign(strHero, strPathMain);
 					end;
+
+			-- 指定英雄
+				TTH_VARI.hireHero = {};
+				function TTH_MANAGE.initHireHero()
+					TTH_VARI.hireHero = {
+						["Race"] = TTH_ENUM.Default
+						, ["Class"] = TTH_ENUM.Default
+						, ["Hero"] = TTH_ENUM.Default
+					};
+				end;
+				function TTH_MANAGE.dealHireHero(iPlayer, strHero)
+					TTH_COMMON.nextNavi(TTH_TABLE.KingManagePath["HireHero"]["Text"]);
+
+					TTH_MANAGE.initHireHero();
+					TTH_MANAGE.radioHireHero4Race(iPlayer, strHero);
+				end;
+				function TTH_MANAGE.radioHireHero4Race(iPlayer, strHero)
+					local arrOption4HireHero4Race = {};
+					local i = 1;
+					local strCallback = "TTH_MANAGE.radioHireHero4Class";
+					for iHeroRace = TOWN_HEAVEN, TOWN_STRONGHOLD do
+						arrOption4HireHero4Race[i] = {
+							["Id"] = iHeroRace
+							, ["Text"] = TTH_PATH.Race[iHeroRace]
+							, ["Callback"] = strCallback
+						};
+						i = i + 1;
+					end;
+					local strRadioTips = TTH_TABLE.KingManagePath["HireHero"]["RaceRadioTips"]["Text"];
+					TTH_COMMON.optionRadio(iPlayer, strHero, arrOption4HireHero4Race, strRadioTips);
+				end;
+				function TTH_MANAGE.radioHireHero4Class(iPlayer, strHero, iHeroRace)
+					TTH_VARI.hireHero["Race"] = iHeroRace;
+					local arrOption4HireHero4Class = {};
+					local i = 1;
+					local strCallback = "TTH_MANAGE.radioHireHero4Hero";
+					for iHeroClass, objHeroClass in TTH_TABLE.Hero8RaceAndClass[iHeroRace] do
+						arrOption4HireHero4Class[i] = {
+							["Id"] = iHeroClass
+							, ["Text"] = TTH_PATH.HeroClass[iHeroClass]
+							, ["Callback"] = strCallback
+						};
+						i = i + 1;
+					end;
+					local strRadioTips = TTH_TABLE.KingManagePath["HireHero"]["ClassRadioTips"]["Text"];
+					TTH_COMMON.optionRadio(iPlayer, strHero, arrOption4HireHero4Class, strRadioTips);
+				end;
+				function TTH_MANAGE.radioHireHero4Hero(iPlayer, strHero, iHeroClass)
+					TTH_VARI.hireHero["Class"] = iHeroClass;
+					TTH_VARI.arrTeleportTown8Class = {};
+					local arrOption4HireHero4Hero = {};
+					local i = 1;
+					local strCallback = "TTH_MANAGE.checkPreHireHero4HasExist";
+					for iHeroIndex, strHero in TTH_TABLE.Hero8RaceAndClass[TTH_VARI.hireHero["Race"]][iHeroClass] do
+						arrOption4HireHero4Hero[i] = {
+							["Id"] = iHeroIndex
+							, ["Text"] = TTH_TABLE.Hero[strHero]["Text"]
+							, ["Callback"] = strCallback
+						};
+						i = i + 1;
+					end;
+					local strRadioTips = TTH_TABLE.KingManagePath["HireHero"]["HeroRadioTips"]["Text"];
+					TTH_COMMON.optionRadio(iPlayer, strHero, arrOption4HireHero4Hero, strRadioTips);
+				end;
+				function TTH_MANAGE.checkPreHireHero4HasExist(iPlayer, strHero, iHeroIndex)
+					local iHeroRace = TTH_VARI.hireHero["Race"];
+					local iHeroClass = TTH_VARI.hireHero["Class"];
+					TTH_VARI.hireHero["Hero"] = TTH_TABLE.Hero8RaceAndClass[iHeroRace][iHeroClass][iHeroIndex];
+					for iPlayer = PLAYER_1, PLAYER_8 do
+						local arrHero = GetPlayerHeroes(iPlayer);
+						for iIndexHero, strExistHero in arrHero do
+							if strExistHero == TTH_VARI.hireHero["Hero"] then
+								local strText = TTH_TABLE.KingManagePath["HireHero"]["HasExist"]["Text"];
+								TTH_GLOBAL.sign(strHero, strText);
+								return nil;
+							end;
+						end;
+					end;
+
+					TTH_MANAGE.comfirmHireHero(iPlayer, strHero);
+				end;
+      	function TTH_MANAGE.comfirmHireHero(iPlayer, strHero)
+					local strHireHero = TTH_VARI.hireHero["Hero"];
+					local strHireHeroName = TTH_TABLE.Hero[strHireHero]["Text"];
+
+					local strText = {
+						TTH_TABLE.KingManagePath["HireHero"]["Confirm"]["Text"]
+						;strHireHeroName=strHireHeroName
+					};
+					local strCallbackOk = "TTH_MANAGE.implHireHero("..iPlayer..","..TTH_COMMON.psp(strHero)..")";
+					local strCallbackCancel = "TTH_COMMON.cancelOption()";
+					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strText, strCallbackOk, strCallbackCancel);
+      	end;
+      	function TTH_MANAGE.implHireHero(iPlayer, strHero)
+					local strHireHero = TTH_VARI.hireHero["Hero"];
+					local strHireHeroName = TTH_TABLE.Hero[strHireHero]["Text"];
+					print("strHireHero: ");
+					print(strHireHero);
+
+      		TTH.hero1(iPlayer, strHireHero);
+      		local strText = {
+						TTH_TABLE.KingManagePath["HireHero"]["Success"]["Text"]
+						;strHireHeroName=strHireHeroName
+					};
+      		TTH_GLOBAL.sign(strHero, strText);
+      	end;
 
 		-- 定点回城
 			-- 传送状态开关
@@ -15631,7 +15739,7 @@ doFile("/scripts/H55-Settings.lua");
 
 			-- 若玩家是人类
 				if TTH_GLOBAL.isAi(iPlayer) ~= TTH_ENUM.Yes then
-					TTH_GLOBAL.hireHero(iPlayer); -- 玩家招募指定英雄<作弊>
+					TTH.hero2(iPlayer); -- 取消所有招募指定英雄的设置
 
 					-- 遍历玩家城镇
 						for i, strTown in TTH_VARI.arrTown do

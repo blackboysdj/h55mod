@@ -40,9 +40,21 @@ doFile("/scripts/H55-Settings.lua");
 		TTH_VARI.playerFaction = {0, 0, 0, 0, 0, 0, 0, 0}; -- 1: HEAVEN; 2: PRESERVE; 3: INFERNO; 4: NECROMANCY; 5: ACADEMY; 6: DUNGEON; 7: FORTRESS; 8: STRONGHOLD
 		TTH_VARI.arrPathNavigation = {};
 		TTH_VARI.arrPathArrow = {};
+		TTH_VARI.switchSingleton = 0; -- 启动器单例模式
+		TTH_VARI.isMultiPlayer = TTH_ENUM.No; -- 是否多人游戏
 
 	-- common
 		TTH_COMMON = {};
+
+		-- 记录全局变量，多人游戏时通过控制台语句录入
+			function TTH_COMMON.consoleSetGameVar(strParam, strValue)
+				if GetGameVar(strParam) ~= (strValue .. "") then
+					SetGameVar(strParam, strValue);
+					if TTH_VARI.isMultiPlayer == TTH_ENUM.Yes then
+						consoleCmd("@SetGameVar('"..strParam.."', '"..strValue.."')")
+					end;
+				end;
+			end;
 
 		-- 是否字符串
 			function TTH_COMMON.isString(param)
@@ -2308,8 +2320,27 @@ doFile("/scripts/H55-Settings.lua");
 				end;
 
 		-- 组队
-			-- 若有多名玩家，弹窗询问玩家是否组队
-				function TTH_GLOBAL.questionTeam()
+			-- 单人游戏启动器
+				function TTH_GLOBAL.startUpSinglePlayer()
+					if TTH_COMMON.getTargetCount(TTH_VARI.playerStatus, 0) == 1 then
+						if TTH_VARI.switchSingleton == 0 then
+							TTH_VARI.switchSingleton = 1;
+							TTH_TABLE.KingManageOption[7] = nil;
+							startThread(TTH_MAIN.init);
+							TTH_COMMON.consoleSetGameVar("TTH_Var_SwitchSingleton", TTH_VARI.switchSingleton);
+						end;
+					else
+						for i = 1, 8 do
+							if TTH_VARI.playerStatus[i] == 0 then
+								TTH_GLOBAL.bindHeroCustomAbility4Hero(GetPlayerHeroes(i)[0]); -- 触发器: 王国管理
+								break;
+							end;
+						end;
+					end;
+				end;
+
+			-- 多人游戏启动器
+				function TTH_GLOBAL.startUpMultiPlayer()
 					local iPlayer = 1;
 					for i = 1, 8 do
 						if IsPlayerCurrent(i) then
@@ -2317,13 +2348,11 @@ doFile("/scripts/H55-Settings.lua");
 						end;
 					end;
 					if TTH_COMMON.getTargetCount(TTH_VARI.playerStatus, 0) > 1 then
+						TTH_VARI.isMultiPlayer = TTH_ENUM.Yes;
 						QuestionBoxForPlayers(GetPlayerFilter(iPlayer)
 							, "/Text/Game/Scripts/Teamquestion.txt"
 							, "TTH_GLOBAL.doHumanTeamUp"
 							, "TTH_GLOBAL.doHumanFfa");
-					end;
-					if H55_AllAgainstOne == 1 then
-						TTH_GLOBAL.doAiTeamUp();
 					end;
 				end;
 
@@ -2349,6 +2378,13 @@ doFile("/scripts/H55-Settings.lua");
 				end;
 
 			-- AI玩家组队
+				function TTH_GLOBAL.checkAiCount()
+					if TTH_COMMON.getTargetCount(TTH_VARI.playerStatus, 1) > 1 then
+						if H55_AllAgainstOne == 1 then
+							TTH_GLOBAL.doAiTeamUp();
+						end;
+					end;
+				end;
 				function TTH_GLOBAL.doAiTeamUp()
 					local iIndexFirstAi = 1;
 					for i = 1, 8 do
@@ -2419,14 +2455,6 @@ doFile("/scripts/H55-Settings.lua");
 
 					print("Player-"..iPlayer.." dealSettleResource-"..TTH_VARI.counterDealSettleResource[iPlayer].." event finished");
 				end;
-
-		-- 设置英雄的战场脚本
-			function TTH_GLOBAL.setHeroCombatScript(strHero)
-				TTH_MAIN.debug("TTH_GLOBAL.setHeroCombatScript", nil, strHero);
-
-				ResetHeroCombatScript(strHero);
-				SetHeroCombatScript(strHero, "/scripts/H55_CombatScript.xdb#xpointer(/Script)");
-			end;
 
 		-- 兵种特初始赠送生物 Specialty
 			function TTH_GLOBAL.initHero4Specialty(strHero)
@@ -2833,13 +2861,11 @@ doFile("/scripts/H55-Settings.lua");
 
 		-- 全局参数
 			-- 保存英雄等级到游戏全局参数中
-				function TTH_GLOBAL.interfaceRefreshGameVar(strHero)
-				end;
 				function TTH_GLOBAL.setGameVar4HeroLevel(strHero)
 					TTH_MAIN.debug("TTH_GLOBAL.setGameVar4HeroLevel", nil, strHero);
 
 					local iHeroLevel = GetHeroLevel(strHero);
-					SetGameVar('TTH_Var_HeroLevel_'..strHero, iHeroLevel);
+					TTH_COMMON.consoleSetGameVar('TTH_Var_HeroLevel_'..strHero, iHeroLevel);
 				end;
 
 			-- 保存英雄宝物到游戏全局参数中
@@ -2869,16 +2895,16 @@ doFile("/scripts/H55-Settings.lua");
 							if objArtifact == ARTIFACT_BOOK_OF_MALASSA then
 								iValue = TTH_ARTI.calcValue147(iPlayer, strHero);
 							end;
-							SetGameVar(strKey, iValue);
+							TTH_COMMON.consoleSetGameVar(strKey, iValue);
 						else
-							SetGameVar(strKey, 0);
+							TTH_COMMON.consoleSetGameVar(strKey, 0);
 						end;
 					end;
 				end;
 				function TTH_GLOBAL.removeGameVar4HeroArtifact(strHero)
 					for iIndexArtifact, objArtifact in TTH_TABLE.CombatArtifact do
 						local strKey = TTH_FINAL.GAMEVAR_COMBAT_ARTIFACT..strHero..'_'..objArtifact;
-						SetGameVar(strKey, 0);
+						TTH_COMMON.consoleSetGameVar(strKey, 0);
 					end;
 				end;
 				TTH_TABLE.CombatArtifactSet = {
@@ -2894,16 +2920,16 @@ doFile("/scripts/H55-Settings.lua");
 						local strKey = TTH_FINAL.GAMEVAR_COMBAT_ARTIFACTSET..strHero..'_'..objArtifactSet["Id"]..'_'..objArtifactSet["Count"];
 						local iCount = TTH_GLOBAL.getSetComponentCount(strHero, objArtifactSet["Id"]); -- 统计套装件数（含星尘坠饰）
 						if iCount > 0 then
-							SetGameVar(strKey, iCount);
+							TTH_COMMON.consoleSetGameVar(strKey, iCount);
 						else
-							SetGameVar(strKey, 0);
+							TTH_COMMON.consoleSetGameVar(strKey, 0);
 						end;
 					end;
 				end;
 				function TTH_GLOBAL.removeGameVar4HeroArtifactSet(strHero)
 					for i, objArtifactSet in TTH_TABLE.CombatArtifactSet do
 						local strKey = TTH_FINAL.GAMEVAR_COMBAT_ARTIFACTSET..strHero..'_'..objArtifactSet["Id"]..'_'..objArtifactSet["Count"];
-						SetGameVar(strKey, 0);
+						TTH_COMMON.consoleSetGameVar(strKey, 0);
 					end;
 				end;
 
@@ -2933,9 +2959,9 @@ doFile("/scripts/H55-Settings.lua");
 					for iIndexSkill, objSkill in TTH_TABLE.CombatSkill do
 						local strKey = TTH_FINAL.GAMEVAR_COMBAT_SKILL..strHero..'_'..objSkill;
 						if HasHeroSkill(strHero, objSkill) ~= nil then
-							SetGameVar(strKey, 1);
+							TTH_COMMON.consoleSetGameVar(strKey, 1);
 						else
-							SetGameVar(strKey, 0);
+							TTH_COMMON.consoleSetGameVar(strKey, 0);
 						end;
 					end;
 				end;
@@ -2943,14 +2969,14 @@ doFile("/scripts/H55-Settings.lua");
 					for iIndexSkill, objSkill in TTH_TABLE.CombatSkill2Special do
 						local strKey = TTH_FINAL.GAMEVAR_COMBAT_SKILL..strHero..'_'..objSkill;
 						if HasHeroSkill(strHero, objSkill) == nil then
-							SetGameVar(strKey, 0);
+							TTH_COMMON.consoleSetGameVar(strKey, 0);
 						end;
 					end;
 				end;
 				function TTH_GLOBAL.removeGameVar4HeroSkill(strHero)
 					for iIndexSkill, objSkill in TTH_TABLE.CombatSkill do
 						local strKey = TTH_FINAL.GAMEVAR_COMBAT_SKILL..strHero..'_'..objSkill;
-						SetGameVar(strKey, 0);
+						TTH_COMMON.consoleSetGameVar(strKey, 0);
 					end;
 				end;
 
@@ -3396,16 +3422,6 @@ doFile("/scripts/H55-Settings.lua");
 				TTH_GLOBAL.dealStudentAward(strHero); -- 毕业生
 				TTH_GLOBAL.dealAcademyAward(strHero); -- 魔法师
 				TTH_GLOBAL.dealInvocation(strHero); -- 穿透
-			end;
-			function TTH_GLOBAL.dealSkillBonus8Hero4GameVar(strHero)
-				TTH_MAIN.debug("TTH_GLOBAL.dealSkillBonus8Hero4GameVar", nil, strHero);
-
-				TTH_GLOBAL.implSkillBonus8Hero4GameVar(strHero);
-			end;
-			function TTH_GLOBAL.implSkillBonus8Hero4GameVar(strHero)
-				sleep(1);
-				TTH_GLOBAL.setGameVar4HeroSkill(strHero);
-				TTH_GLOBAL.setGameVar4HeroSkill2Special(strHero);
 			end;
 
 			-- 根据英雄技能赠送魔法相关
@@ -7320,6 +7336,7 @@ doFile("/scripts/H55-Settings.lua");
 		TTH_ENUM.ExchangeRecord = 4; -- 政绩管理
 		TTH_ENUM.CombineArtifact = 5; -- 宝物合成
 		TTH_ENUM.HireHero = 6; -- 招募指定英雄
+		TTH_ENUM.EnableMultiScript = 7; -- 激活多人脚本
 
 		TTH_TABLE.KingManagePath = {
 			["Widget"] = {
@@ -7576,6 +7593,9 @@ doFile("/scripts/H55-Settings.lua");
 					["Text"] = "/Text/Game/Scripts/TTH_KingManage/HireHero/Success.txt"
 				}
 			}
+			, ["EnableMultiScript"] = {
+				["Text"] = "/Text/Game/Scripts/TTH_KingManage/EnableMultiScript.txt"
+			}
 		};
 
 		-- 英雄主动技能4
@@ -7618,6 +7638,11 @@ doFile("/scripts/H55-Settings.lua");
 					["Id"] = TTH_ENUM.HireHero
 					, ["Text"] = TTH_TABLE.KingManagePath["HireHero"]["Text"]
 					, ["Callback"] = "TTH_MANAGE.dealHireHero"
+				}
+				, [7] = {
+					["Id"] = TTH_ENUM.EnableMultiScript
+					, ["Text"] = TTH_TABLE.KingManagePath["EnableMultiScript"]["Text"]
+					, ["Callback"] = "TTH_MANAGE.enableMultiScript"
 				}
 			};
 			function TTH_MANAGE.kingManage(strHero)
@@ -9124,6 +9149,19 @@ doFile("/scripts/H55-Settings.lua");
       		TTH_GLOBAL.sign(strHero, strText);
       	end;
 
+			-- 激活多人脚本
+				function TTH_MANAGE.enableMultiScript(iPlayer, strHero)
+					TTH_COMMON.nextNavi(TTH_TABLE.KingManagePath["EnableMultiScript"]["Text"]);
+
+					if TTH_VARI.switchSingleton == 0 then
+						TTH_VARI.switchSingleton = 1;
+						TTH_TABLE.KingManageOption[7] = nil;
+						startThread(TTH_GLOBAL.startUpMultiPlayer);
+						startThread(TTH_MAIN.init);
+						TTH_COMMON.consoleSetGameVar("TTH_Var_SwitchSingleton", TTH_VARI.switchSingleton);
+					end;
+				end;
+
 		-- 定点回城
 			-- 传送状态开关
 				TTH_ENUM.TownManageTeleportTown4TeleportStart = 1;
@@ -9498,7 +9536,6 @@ doFile("/scripts/H55-Settings.lua");
 				TTH_MAIN.debug("TTH_TRIGGER.playerAddHero", nil, strHero);
 
 				SetTrigger(HERO_LEVELUP_TRIGGER, strHero, "TTH_TRIGGER.heroLevelUp"..strHero);
-				TTH_GLOBAL.setHeroCombatScript(strHero);
 				TTH_GLOBAL.initHero4Specialty(strHero);
 				TTH_GLOBAL.bindHeroCustomAbility4Hero(strHero);
 				TTH_GLOBAL.bindHeroCustomAbility3Hero(strHero);
@@ -10409,7 +10446,7 @@ doFile("/scripts/H55-Settings.lua");
 						, ["CurrentType"] = TTH_ENUM.IldarLight
 					};
 					local strKey = TTH_VARI.talent[strHero]["PreGameVar"]..strHero;
-					SetGameVar(strKey, TTH_VARI.talent[strHero]["CurrentType"]);
+					TTH_COMMON.consoleSetGameVar(strKey, TTH_VARI.talent[strHero]["CurrentType"]);
       	end;
       	function TTH_TALENT.activeIldar(iPlayer, strHero)
 					TTH_COMMON.nextNavi(TTH_PATH.Talent[strHero]["Text"]);
@@ -10436,7 +10473,7 @@ doFile("/scripts/H55-Settings.lua");
       		local iTargetType = 1 - iCurrentType;
       		TTH_VARI.talent[strHero]["CurrentType"] = iTargetType;
 					local strKey = TTH_VARI.talent[strHero]["PreGameVar"]..strHero;
-					SetGameVar(strKey, iTargetType);
+					TTH_COMMON.consoleSetGameVar(strKey, iTargetType);
       		local strTargetTypeName = TTH_PATH.Talent[strHero][iTargetType];
       		local strPathMain={
       			TTH_PATH.Talent[strHero]["Success"]
@@ -10540,7 +10577,7 @@ doFile("/scripts/H55-Settings.lua");
 						, ["CurrentSpellId"] = TTH_ENUM.No
 					};
 					local strKey = TTH_VARI.talent[strHero]["PreGameVar"]..strHero;
-					SetGameVar(strKey, TTH_VARI.talent[strHero]["CurrentSpellId"]);
+					TTH_COMMON.consoleSetGameVar(strKey, TTH_VARI.talent[strHero]["CurrentSpellId"]);
 				end;
 				function TTH_TALENT.activeRazzak(iPlayer, strHero)
 					TTH_COMMON.nextNavi(TTH_PATH.Talent[strHero]["Text"]);
@@ -10624,7 +10661,7 @@ doFile("/scripts/H55-Settings.lua");
 					end;
 					TTH_VARI.talent[strHero]["CurrentSpellId"] = iTargetSpellId;
 					local strKey = TTH_VARI.talent[strHero]["PreGameVar"]..strHero;
-					SetGameVar(strKey, iTargetSpellId);
+					TTH_COMMON.consoleSetGameVar(strKey, iTargetSpellId);
 					if iTargetSpellId == 0 then
 						local strText = TTH_PATH.Talent["Razzak"]["Cancel"];
 						TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.MessageBox, strText);
@@ -10821,7 +10858,7 @@ doFile("/scripts/H55-Settings.lua");
 					OverrideObjectTooltipNameAndDescription(strBuildingName, TTH_PATH.Talent[strHero]["Title"], TTH_PATH.Talent[strHero]["Desc"]);
 					local strKey = TTH_VARI.talent[strHero]["PreGameVar"]..strHero;
 					local iMagicNodeCount = length(TTH_VARI.talent[strHero]["MagicNode"]);
-					SetGameVar(strKey, iMagicNodeCount);
+					TTH_COMMON.consoleSetGameVar(strKey, iMagicNodeCount);
 					local strPathMain = {
 						TTH_PATH.Talent[strHero]["SuccessVisitMagicNode"]
 				    ;iMagicNodeCount=iMagicNodeCount
@@ -13121,7 +13158,7 @@ doFile("/scripts/H55-Settings.lua");
 					, ["CreatureNum"] = iPostRecordCreatureNum
 				};
 				local strKey = TTH_FINAL.GAMEVAR_COMBAT_ARTIFACT..strHero..'_'..ARTIFACT_GEM_OF_PHANTOM;
-				SetGameVar(strKey, TTH_ARTI.calcValue102(strHero));
+				TTH_COMMON.consoleSetGameVar(strKey, TTH_ARTI.calcValue102(strHero));
 				local strPathMain={
 					TTH_PATH.Artifact[ARTIFACT_GEM_OF_PHANTOM]["SuccessActive"]
 				  ;strPostRecordCreatureName=strPostRecordCreatureName
@@ -13274,7 +13311,7 @@ doFile("/scripts/H55-Settings.lua");
 			function TTH_ARTI.implActive147(iPlayer, strHero, iSpellId)
 				local strKey = TTH_FINAL.GAMEVAR_COMBAT_ARTIFACT..strHero..'_'..ARTIFACT_BOOK_OF_MALASSA;
 				TTH_VARI.recordBookOfMalassa[strHero] = iSpellId;
-				SetGameVar(strKey, iSpellId);
+				TTH_COMMON.consoleSetGameVar(strKey, iSpellId);
 				if iSpellId == 0 then
 	  			local strText = TTH_PATH.Artifact[ARTIFACT_BOOK_OF_MALASSA]["Cancel"];
 	  			TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.MessageBox, strText);
@@ -14291,13 +14328,13 @@ doFile("/scripts/H55-Settings.lua");
 			function TTH_PERK.enableActive083(iPlayer, strHero, iCreatureId)
 				TTH_VARI.recordPariah[strHero]["Status"] = TTH_ENUM.Yes;
 				local strKey = TTH_FINAL.GAMEVAR_COMBAT_SKILL..strHero..'_'..HERO_SKILL_PARIAH;
-				SetGameVar(strKey, iCreatureId);
+				TTH_COMMON.consoleSetGameVar(strKey, iCreatureId);
 			end;
 			function TTH_PERK.disableActive083(iPlayer, strHero)
 				if TTH_VARI.recordPariah[strHero]["Status"] == TTH_ENUM.Yes then
 					TTH_VARI.recordPariah[strHero]["Status"] = TTH_ENUM.No;
 					local strKey = TTH_FINAL.GAMEVAR_COMBAT_SKILL..strHero..'_'..HERO_SKILL_PARIAH;
-					SetGameVar(strKey, 0);
+					TTH_COMMON.consoleSetGameVar(strKey, 0);
 				end;
 			end;
 
@@ -14385,13 +14422,13 @@ doFile("/scripts/H55-Settings.lua");
 			function TTH_PERK.enableActive109(iPlayer, strHero, iCreatureId)
 				TTH_VARI.recordTwilight[strHero]["Status"] = TTH_ENUM.Yes;
 				local strKey = TTH_FINAL.GAMEVAR_COMBAT_SKILL..strHero..'_'..HERO_SKILL_TWILIGHT;
-				SetGameVar(strKey, iCreatureId);
+				TTH_COMMON.consoleSetGameVar(strKey, iCreatureId);
 			end;
 			function TTH_PERK.disableActive109(iPlayer, strHero)
 				if TTH_VARI.recordTwilight[strHero]["Status"] == TTH_ENUM.Yes then
 					TTH_VARI.recordTwilight[strHero]["Status"] = TTH_ENUM.No;
 					local strKey = TTH_FINAL.GAMEVAR_COMBAT_SKILL..strHero..'_'..HERO_SKILL_TWILIGHT;
-					SetGameVar(strKey, 0);
+					TTH_COMMON.consoleSetGameVar(strKey, 0);
 				end;
 			end;
 
@@ -15414,15 +15451,14 @@ doFile("/scripts/H55-Settings.lua");
 			TTH_GLOBAL.setExpCoef8GameDifficulty(); -- 初始化英雄经验系数
 			TTH_GLOBAL.initAdvTown(); -- 初始化城镇列表
 			TTH_GLOBAL.initAdvBuilding(); -- 初始化地图建筑
+			TTH_GLOBAL.checkAiCount(); -- 校验AI数量
 
 			for iPlayer = PLAYER_1, PLAYER_8 do
-				if SwitchSingleton == 1 then
-					TTH_GLOBAL.initAi(iPlayer); -- 配置文件: AI玩家初始作弊
+				TTH_GLOBAL.initAi(iPlayer); -- 配置文件: AI玩家初始作弊
 				-- TTH_GLOBAL.chooseStartGold(iPlayer); -- 玩家初始选择金币奖励时赠送2500金币
-					TTH_GLOBAL.chooseStartSkill(iPlayer); -- 玩家初始选择技能奖励时随机提升一项已习得技能的等级
-					TTH_GLOBAL.chooseStartCreature(iPlayer); -- 配置文件: 人类玩家初始选择生物奖励时定制生物
-					TTH_GLOBAL.chooseStartArtifact(iPlayer); -- 配置文件: 人类玩家初始选择宝物奖励时定制宝物
-				end;
+				TTH_GLOBAL.chooseStartSkill(iPlayer); -- 玩家初始选择技能奖励时随机提升一项已习得技能的等级
+				TTH_GLOBAL.chooseStartCreature(iPlayer); -- 配置文件: 人类玩家初始选择生物奖励时定制生物
+				TTH_GLOBAL.chooseStartArtifact(iPlayer); -- 配置文件: 人类玩家初始选择宝物奖励时定制宝物
 				TTH_GLOBAL.setStartResource(iPlayer); -- 配置文件: 人类玩家是否0资源开局
 				TTH_GLOBAL.triggerInitPlayerAddHero(iPlayer); -- 触发器: 玩家招募英雄
 				TTH_GLOBAL.triggerInitPlayerRemoveHero(iPlayer); --触发器: 玩家失去英雄
@@ -15437,16 +15473,11 @@ doFile("/scripts/H55-Settings.lua");
 					TTH_GLOBAL.bindHeroCustomAbility4Hero(strHero); -- 触发器: 王国管理
 					TTH_GLOBAL.bindHeroCustomAbility3Hero(strHero); -- 触发器: 定点回城
 					TTH_GLOBAL.triggerInitHeroLevelUp(strHero); -- 触发器: 英雄升级
-					TTH_GLOBAL.setHeroCombatScript(strHero); -- 绑定英雄战场脚本
-					if SwitchSingleton == 1 then
-						TTH_GLOBAL.initHero4Specialty(strHero); -- 初始生物特奖励生物
-					end;
+					TTH_GLOBAL.initHero4Specialty(strHero); -- 初始生物特奖励生物
 					TTH_MANAGE.initMayor(strHero); -- 初始内政官信息
 					TTH_GLOBAL.setGameVar4HeroLevel(strHero); -- 将英雄等级记录到游戏全局参数
-					if SwitchSingleton == 1 then
-						TTH_GLOBAL.giveHero4Attribute(strHero); -- 属性特属性奖励
-						TTH_GLOBAL.dealSkillBonus8Hero(strHero); -- 英雄初始技能效果实装
-					end;
+					TTH_GLOBAL.giveHero4Attribute(strHero); -- 属性特属性奖励
+					TTH_GLOBAL.dealSkillBonus8Hero(strHero); -- 英雄初始技能效果实装
 
 					for iKey, objItem in TTH_TABLE.FuncTalent[TTH_ENUM.FuncInit] do
 						if iKey == strHero then
@@ -15459,11 +15490,8 @@ doFile("/scripts/H55-Settings.lua");
 			TTH_MAIN.recordCalendar();
 			SetTrigger(NEW_DAY_TRIGGER, "TTH_MAIN.recordCalendar"); -- 新的一天 → 记录日期
 			startThread(TTH_MAIN.heartBeat); -- 后台轮询
-			if SwitchSingleton == 1 then
-				startThread(TTH_MAIN.controller); -- 主程入口
-			end;
+			startThread(TTH_MAIN.controller); -- 主程入口
 
-			SetTrigger(CUSTOM_ABILITY_TRIGGER, "TTH_MANAGE.customAbility"); -- 英雄自定义技能 → 王国管理
 			SetTrigger(COMBAT_RESULTS_TRIGGER, "TTH_TRIGGER.combatResults"); -- 战斗结束触发器
 		end;
 
@@ -15556,14 +15584,11 @@ doFile("/scripts/H55-Settings.lua");
 							local arrHero = GetPlayerHeroes(iPlayer);
 							if arrHero ~= nil then
 								for iIndex, strHero in arrHero do
-									TTH_GLOBAL.interfaceRefreshGameVar(strHero);
 									TTH_GLOBAL.setGameVar4HeroArtifact(iPlayer, strHero); -- 保存全局参数，英雄携带宝物
 									TTH_GLOBAL.setGameVar4HeroArtifactSet(iPlayer, strHero); -- 保存全局参数，英雄携带宝物套装
-									if SwitchSingleton == 1 then
-										TTH_GLOBAL.upgradeArtifactSetBonus8Hero(iPlayer, strHero); -- 宝物套装属性更新
-										TTH_GLOBAL.upgradeArtifactGiveMagic8Hero(iPlayer, strHero); -- 宝物赠送魔法
-										TTH_GLOBAL.upgradeArtifactSetGiveMagic8Hero(iPlayer, strHero); -- 宝物套装赠送魔法
-									end;
+									TTH_GLOBAL.upgradeArtifactSetBonus8Hero(iPlayer, strHero); -- 宝物套装属性更新
+									TTH_GLOBAL.upgradeArtifactGiveMagic8Hero(iPlayer, strHero); -- 宝物赠送魔法
+									TTH_GLOBAL.upgradeArtifactSetGiveMagic8Hero(iPlayer, strHero); -- 宝物套装赠送魔法
 									TTH_SUPPORT.dealIldar(iPlayer, strHero); -- 寒卿娜瑞莎
 								end;
 
@@ -15878,13 +15903,11 @@ doFile("/scripts/H55-Settings.lua");
 
 	doFile("/scripts/H55-AdvMap.lua");
 
-	if SwitchSingleton == 1 then
-		startThread(TTH_GLOBAL.questionTeam);
-	end;
-	startThread(TTH_MAIN.init);
+
+	SetTrigger(CUSTOM_ABILITY_TRIGGER, "TTH_MANAGE.customAbility"); -- 英雄自定义技能 → 王国管理
+	startThread(TTH_GLOBAL.startUpSinglePlayer);
 
 -- 模块加载
-	doFile("/scripts/hotseat/TTH_MOD_GameVar4HotSeat.lua");
 	doFile("/scripts/mod/TTH_MOD_CombatResults4LoseCreature.lua");
 	doFile("/scripts/mod/TTH_MOD_CombatResults4ReviveCreature.lua");
 	doFile("/scripts/support/hanqing-core.lua");

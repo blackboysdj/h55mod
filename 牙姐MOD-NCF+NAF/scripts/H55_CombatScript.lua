@@ -1,5 +1,3 @@
-doFile('/scripts/combat-startup.lua')
-
 -- name: 	combat-script
 -- author: 	sdj
 -- time: 	2018-02-14

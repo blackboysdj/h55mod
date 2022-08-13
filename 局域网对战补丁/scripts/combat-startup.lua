@@ -260,7 +260,10 @@ end
 
 -- 多人游戏，单例模式校验
 	function dealSingleton4MultiPlayer()
-		print("dealSingleton4MultiPlayer-1")
-		doFile('/scripts/H55_CombatScript.lua');
+		print("dealSingleton4MultiPlayer-2")
+		if GetHost(0) ~= 0 or GetHost(1) ~= 0 then
+			print("dealSingleton4MultiPlayer-3")
+			doFile('/scripts/H55_CombatScript.lua');
+		end;
 	end;
 	dealSingleton4MultiPlayer();

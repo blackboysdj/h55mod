@@ -1,1 +1,0 @@
-SwitchSingleton = 1;

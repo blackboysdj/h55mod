@@ -53,13 +53,64 @@ HERO_CLASS_RETRIBUTION
 
 一个战术小队 一个侦查小队 一个无畏机甲 还有一个愤青突击队
 
-删除词条 配置文件
+删除词条 塔库斯
 
 添加词条关键字
-问 配置文件
-答 配置文件下载地址：http://47.99.202.14/#/
-配置文件下载说明视频：https://www.bilibili.com/video/BV1hE411G72D?p=8
-注：4.0.2后配置文件指定初始英雄的功能已失效，请使用游戏内【王国管理】→【招募英雄】功能来招募指定英雄
+问 为什么
+答截图所有相关信息（截图一定要截全，按下键盘上F12右边的PrintScreen键，然后粘贴到QQ即可）并@群主（包含但是不局限于以下信息）
+1.游戏目录的bin文件夹
+2.游戏目录的UserMODs文件夹
+3.当前游戏界面，类似这样
+4.描述产生BUG的情况
+  4.1.你以为的并不一定是真实情况，所以直白的描述就好
+  4.2.如果是战斗中，最好截上战斗记录的图，类似这样
+
+
+添加词条关键字
+问 英雄排名规则
+答
+阶段: 
+  1.破口
+  2.前期决战1（3倍+终极）
+  3.前期决战2（3倍+终极+龙神+哨兵）
+  4.力量试炼
+  5.高级宝屋下层/智慧试炼
+  6.后期决战1（3倍+终极）
+  7.后期决战2（全神）
+评分规则:
+  1.成型难度
+    1.1.需要的技能点数
+    1.2.关键子技能/终极的获取难度
+    1.3.需要的关键魔法
+    1.4.对生物数量的要求
+    1.5.关键宝物的获取难度
+    1.6.对资源的需求
+  2.成型强度
+    2.1.应对不同野怪的难度
+    2.2.应对不同决战英雄的难度
+    2.3.应对送龙神胸甲和哨兵之盾时的输出能力
+  3.萌新适性
+    3.1.是否能自动战斗
+    3.2.实际战斗时对站位的要求
+    3.3.与成型难度负相关
+  SSS:
+  SS:
+  S:
+  A:
+  B:
+  C:
+  D:
+
+添加词条关键字
+问 塔库斯
+答
+1.破口：带骑士，光召出再生，防御
+2.前期决战1：
+3.前期决战2：
+4.力量试炼：
+5.高级宝屋下层/智慧试炼：需要有转世重生，要带白弩踩战术点输出，然后复活
+6.后期决战1：光召，进攻防御，后勤→传送突袭
+7.后期决战2：光召，进攻防御，后勤→传送突袭，终极，领导→入神，巫术→魔法抑制
 
 地精飞龙天地双王-纯享版-第8天500地精起飞
 地精飞龙天地双王-纯享版-天降神器机械引力指环
@@ -229,18 +280,36 @@ exe修改
 
 /Text/TTH/Heroes/Specializations/Fortress/Wulfstan/Text.txt
 
-<body_bright>英雄: <color=ff0033>拉扎克
-<body_bright>职业: <color=yellow>先知
-<body_bright>控制台名: <color=yellow>Isher
-<body_bright>初始技能: <color=yellow>高级防御+活力
-<body_bright>战争机械: <color=yellow>帐篷
-<body_bright>生物特长: <color=0099FF>铁魔像<color_default> （种族: 学院）
-<body_bright>英雄天赋：<color=ff0033>魔像工匠
-<body_bright>1) <color=0099FF>铁魔像<body_bright>攻防增加<color_default>（数值为: 英雄等级/2 向上取整）
+<left><body_bright>英雄: <color=ff0033>阿维图斯--大河马赞助并设计
+<body_bright>职业: <color=yellow>惩戒骑士
+<body_bright>控制台名: <color=yellow>Avitus
+<body_bright>初始技能: <color=yellow>初级光明/初级机械+符文机械
+<body_bright>初始魔法: <color=yellow>乱石利刺
+<body_bright>战争机械: <color=yellow>弹药车
+<body_bright>生物特长: <color=0099FF>帝国重弩<color_default> （种族: 圣堂）
+<body_bright>英雄天赋: <color=ff0033>火力压制
+<color=7F38EC>主动特效:<color_default>（4CD/战胜/过天）
+<body_bright>1) 可将<color=0099FF>弓箭手<color=yellow>【训练】<body_bright>为<color=0099FF>帝国重弩
 <color=7F38EC>战场特效:
-<body_bright>1) <color=0099FF>铁魔像<body_bright>被攻击减员后会恢复生命值<color_default>（数值为: 当前数量*5）
+<body_bright>1) 英雄获得<color=0099FF>符文机械/弹射学/三箭连射/机械引力指环/寒铁之刃/燃烧箭<body_bright>后<color=0099FF>帝国重弩<body_bright>会在攻击后追加<color=ff0033>火力压制
 <color=orange>内政官特效:
-<body_bright>1) 通过内政<color=yellow>【建造建筑】<body_bright>按百分比减少资源消耗<color_default>（数值为: 0.2+英雄等级*0.01）
+<body_bright>1) <color=yellow>【所辖城镇】<body_bright>会自动建造<color=0099FF>弓箭塔
+
+<left><color=7F38EC>建筑效果:
+<body_bright>1.城墙防御增加
+<body_bright>2.生物产量+<color=yellow>50%
+<body_bright>3.两侧箭塔
+<color=7F38EC>内政官特效:
+<color=0099FF>防御+<color=yellow>1
+
+<left><color=7F38EC>建筑效果:
+<body_bright>1.招募
+
+<left><color=7F38EC>建筑效果:
+<body_bright>1.招募黑曜石像怪/元素石像怪
+<body_bright>2.升级小精怪
+<body_bright>3.转换升级形态
+
 
 EPA_LOW_END
 ERA_CENTER
@@ -516,47 +585,15 @@ NCF生物
   亚莎之泪的预见 KNIGHT_FEAT_GRAIL_VISION 送资源
   理财 PERK_ESTATES +金币
   永恒奴役 PERK_NO_REST_FOR_THE_WICKED +知识点数的 骷髅
-
-  拜娅拉 Biara
-  汉格瓦尔 Hangvul
-  希尔塞 Sylsai
-  库恩亚克 Kunyak
-  卡利德 Calid2
-  科尔汉 Hero9
-  地精支援 加钱 HERO_SKILL_GOBLIN_SUPPORT
-  瑞萨 Rissa 加资源
-
   PERK_FORTUNATE_ADVENTURER 增加可占领经济建筑收益
 
-
-  ffmpeg -ss 00:00:01 -t 12 -i 赛勒斯-10级技能-剪辑前2.mp4 -codec copy 赛勒斯-决战技能-剪辑后2.mp4
-  ffmpeg -ss 00:08:18 -to 00:14:58 -i 赛勒斯-破口-剪辑前.mp4 -codec copy 赛勒斯-破口-剪辑后.mp4
+-- ffmpeg
   ffmpeg -f concat -safe 0 -i filelist.txt -c copy 篷车的反杀.mp4
   ffmpeg -i "1.mkv" -vcodec copy -acodec copy "1.mp4"
-
   ffmpeg -ss 00:00:00 -to 01:00:00 -i 2022-07-06_21-55-34.mp4 -codec copy 圣吉列斯-1.mp4
-  ffmpeg -ss 01:00:00 -to 02:00:00 -i 2022-07-06_21-55-34.mp4 -codec copy 圣吉列斯-2.mp4
-  ffmpeg -ss 02:00:00 -to 03:00:00 -i 2022-07-06_21-55-34.mp4 -codec copy 圣吉列斯-3.mp4
-  ffmpeg -ss 03:00:00 -to 04:00:00 -i 2022-07-06_21-55-34.mp4 -codec copy 圣吉列斯-4.mp4
-  ffmpeg -ss 00:00:00 -to 01:00:00 -i 2022-07-07_22-37-30.mp4 -codec copy 圣吉列斯-5.mp4
-  ffmpeg -ss 01:00:00 -to 02:00:00 -i 2022-07-07_22-37-30.mp4 -codec copy 圣吉列斯-6.mp4
-
   ffmpeg -ss 00:00:00 -t 12 -i 赛勒斯-10级技能-剪辑前2.mp4 -codec copy 赛勒斯-决战技能-剪辑后2.mp4
 
-
-
-
-公众号相关
-  【英雄无敌5.5牙姐MOD】英雄前瞻--维托利奥
-  https://mp.weixin.qq.com/s/8_0XorVTycmQA6QtgiDQtQ
-
-  麻烦大家动动手指，支持一下牙姐，关注下公众号【无策略不单机】，以后英雄前瞻、攻略、机器人，都会放到微信公众号上，谢谢大家的支持~~
-  后续公众号上会有如下福利（公众号关注满500人，群里一人点一下就有了）：
-  1.每天更新一篇推文（版本前瞻，英雄攻略）
-  2.机器人放到公众号上实现
-  3.新的大版本更新（包含3~4个相关英雄）
-
-其它
+-- 视频相关
   视频素材
     免版权素材
     Royalty Free
@@ -573,17 +610,3 @@ NCF生物
     完播率，互动率
   修改视频时的弹幕问题
     建2P，迁移弹幕，删1P
-
-
-
-
-012 068
-033 087
-066 244
-108 053
-144 009
-166 016
-230 050
-240 048
-269 141
-315 053

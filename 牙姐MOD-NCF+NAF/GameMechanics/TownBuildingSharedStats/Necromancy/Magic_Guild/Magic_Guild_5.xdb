@@ -7,10 +7,10 @@
 	<Cost>
 		<Wood>5</Wood>
 		<Ore>5</Ore>
-		<Mercury>6</Mercury>
-		<Crystal>6</Crystal>
-		<Sulfur>6</Sulfur>
-		<Gem>6</Gem>
+		<Mercury>5</Mercury>
+		<Crystal>5</Crystal>
+		<Sulfur>5</Sulfur>
+		<Gem>5</Gem>
 		<Gold>1000</Gold>
 	</Cost>
 	<ModObjectName>Magic_Guild</ModObjectName>

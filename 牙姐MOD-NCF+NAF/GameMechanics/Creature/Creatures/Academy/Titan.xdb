@@ -4,11 +4,11 @@
 	<DefenceSkill>30</DefenceSkill>
 	<Shots>5</Shots>
 	<MinDamage>40</MinDamage>
-	<MaxDamage>75</MaxDamage>
+	<MaxDamage>70</MaxDamage>
 	<Speed>6</Speed>
 	<Initiative>10</Initiative>
 	<Flying>false</Flying>
-	<Health>210</Health>
+	<Health>190</Health>
 	<KnownSpells>
 		<Item>
 			<Spell>SPELL_ABILITY_CALL_LIGHTNING</Spell>
@@ -18,7 +18,7 @@
 	<SpellPoints>0</SpellPoints>
 	<SpellPoints1>0</SpellPoints1>
 	<SpellPoints2>0</SpellPoints2>
-	<Exp>330</Exp>
+	<Exp>290</Exp>
 	<Power>6095</Power>
 	<TimeToCommand>10</TimeToCommand>
 	<CreatureTier>7</CreatureTier>
@@ -37,7 +37,7 @@
 		<Crystal>0</Crystal>
 		<Sulfur>0</Sulfur>
 		<Gem>2</Gem>
-		<Gold>3550</Gold>
+		<Gold>3300</Gold>
 	</Cost>
 	<SubjectOfRandomGeneration>true</SubjectOfRandomGeneration>
 	<MonsterShared href="/MapObjects/Academy/Titan.xdb#xpointer(/AdvMapMonsterShared)"/>

@@ -8,9 +8,9 @@
 		<Wood>0</Wood>
 		<Ore>15</Ore>
 		<Mercury>0</Mercury>
-		<Crystal>15</Crystal>
+		<Crystal>0</Crystal>
 		<Sulfur>0</Sulfur>
-		<Gem>0</Gem>
+		<Gem>10</Gem>
 		<Gold>10000</Gold>
 	</Cost>
 	<ModObjectName>Angel</ModObjectName>

@@ -5265,11 +5265,20 @@ doFile('/scripts/combat-startup.lua')
 			H55SMOD_MiddlewareListener['Gottai'] = {};
 			function Events_MiddlewareListener_Implement_Gottai(strHero, iSide, itemUnitLast, iLossManaPoints)
 				if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero then
-					combatSetPause(1);
-					startThread(Thread_Command_UnitCastGlobalSpell, GetHero(iSide), SPELL_WARCRY_BATTLECRY, 1);
-					sleep(20);
-					print(strHero.." casted SPELL_WARCRY_BATTLECRY");
-					combatSetPause(nil);
+					local bExistDemonRage = 0;
+					local arrCreature4Hero = GetCreatures(iSide);
+					for i, strUnitName in arrCreature4Hero do
+						if bExistDemonRage == 0 and contains(List_DemonRage_Creatures, GetCreatureType(strUnitName)) ~= nil then
+							bExistDemonRage = 1;
+						end;
+					end
+					if bExistDemonRage == 1 then
+						combatSetPause(1);
+						startThread(Thread_Command_UnitCastGlobalSpell, GetHero(iSide), SPELL_WARCRY_BATTLECRY, 1);
+						sleep(20);
+						print(strHero.." casted SPELL_WARCRY_BATTLECRY");
+						combatSetPause(nil);
+					end;
 				end;
 			end;
 			H55SMOD_MiddlewareListener['Gottai']['function'] = Events_MiddlewareListener_Implement_Gottai;

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TownBuildingSharedStats ObjectRecordID="1000045">
+	<NameFileRef href="/Text/Game/TownBuildings/Necromancy/Dwelling_5/Name.txt"/>
+	<DescriptionFileRef href="/Text/Game/TownBuildings/Necromancy/Dwelling_5/Description.txt"/>
+	<Type>TB_DWELLING_5</Type>
+	<Upgrade>BLD_UPG_1</Upgrade>
+	<Cost>
+		<Wood>10</Wood>
+		<Ore>10</Ore>
+		<Mercury>2</Mercury>
+		<Crystal>2</Crystal>
+		<Sulfur>2</Sulfur>
+		<Gem>2</Gem>
+		<Gold>2000</Gold>
+	</Cost>
+	<ModObjectName>Mausoleum</ModObjectName>
+	<dependencies>
+		<Item href="/GameMechanics/TownBuildingSharedStats/Necromancy/Special_/NecromancyAmplifier.xdb#xpointer(/TownBuildingSharedStats)"/>
+	</dependencies>
+	<Creature>CREATURE_LICH</Creature>
+	<DevLevelNeeded>9</DevLevelNeeded>
+	<UIObjectName>Dwelling_5</UIObjectName>
+	<UIStackPosition>0</UIStackPosition>
+	<Icon href="/UI/TownHall/necropolis/128/d5.xdb#xpointer(/Texture)"/>
+</TownBuildingSharedStats>

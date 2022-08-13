@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TownBuildingSharedStats ObjectRecordID="1000098">
+	<NameFileRef href="/Text/Game/TownBuildings/Dungeon/Dwelling_6/Name.txt"/>
+	<DescriptionFileRef href="/Text/Game/TownBuildings/Dungeon/Dwelling_6/Description.txt"/>
+	<Type>TB_DWELLING_6</Type>
+	<Upgrade>BLD_UPG_1</Upgrade>
+	<Cost>
+		<Wood>5</Wood>
+		<Ore>5</Ore>
+		<Mercury>4</Mercury>
+		<Crystal>0</Crystal>
+		<Sulfur>4</Sulfur>
+		<Gem>4</Gem>
+		<Gold>4000</Gold>
+	</Cost>
+	<ModObjectName>matron_chambers</ModObjectName>
+	<dependencies>
+		<Item href="/GameMechanics/TownBuildingSharedStats/Dungeon/Special_6/HallOfIntrigue.xdb#xpointer(/TownBuildingSharedStats)"/>
+	</dependencies>
+	<Creature>CREATURE_MATRON</Creature>
+	<DevLevelNeeded>12</DevLevelNeeded>
+	<UIObjectName>Dwelling_6</UIObjectName>
+	<UIStackPosition>0</UIStackPosition>
+	<Icon href="/UI/TownHall/dungeon/128/d5.xdb#xpointer(/Texture)"/>
+</TownBuildingSharedStats>

@@ -11482,8 +11482,8 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 0
-                , [ORE] = 5
+                [WOOD] = 5
+                , [ORE] = 0
                 , [MERCURY] = 0
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
@@ -11561,9 +11561,9 @@
                 [WOOD] = 5
                 , [ORE] = 0
                 , [MERCURY] = 0
-                , [CRYSTAL] = 1
+                , [CRYSTAL] = 0
                 , [SULFUR] = 0
-                , [GEM] = 1
+                , [GEM] = 0
                 , [GOLD] = 900
               }
             }
@@ -11616,10 +11616,10 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 5
+                [WOOD] = 10
                 , [ORE] = 5
                 , [MERCURY] = 0
-                , [CRYSTAL] = 3
+                , [CRYSTAL] = 2
                 , [SULFUR] = 0
                 , [GEM] = 0
                 , [GOLD] = 2000
@@ -11694,10 +11694,10 @@
               , ["Resource"] = {
                 [WOOD] = 5
                 , [ORE] = 5
-                , [MERCURY] = 4
-                , [CRYSTAL] = 4
-                , [SULFUR] = 4
-                , [GEM] = 4
+                , [MERCURY] = 3
+                , [CRYSTAL] = 3
+                , [SULFUR] = 3
+                , [GEM] = 3
                 , [GOLD] = 1000
               }
             }
@@ -11713,10 +11713,10 @@
               , ["Resource"] = {
                 [WOOD] = 5
                 , [ORE] = 5
-                , [MERCURY] = 6
-                , [CRYSTAL] = 6
-                , [SULFUR] = 6
-                , [GEM] = 6
+                , [MERCURY] = 5
+                , [CRYSTAL] = 5
+                , [SULFUR] = 5
+                , [GEM] = 5
                 , [GOLD] = 1000
               }
             }
@@ -11732,10 +11732,10 @@
               , ["Resource"] = {
                 [WOOD] = 0
                 , [ORE] = 0
-                , [MERCURY] = 2
-                , [CRYSTAL] = 2
-                , [SULFUR] = 2
-                , [GEM] = 2
+                , [MERCURY] = 0
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 5
                 , [GOLD] = 500
               }
             }
@@ -11790,8 +11790,8 @@
               , ["Resource"] = {
                 [WOOD] = 0
                 , [ORE] = 0
-                , [MERCURY] = 0
-                , [CRYSTAL] = 5
+                , [MERCURY] = 10
+                , [CRYSTAL] = 0
                 , [SULFUR] = 0
                 , [GEM] = 0
                 , [GOLD] = 1000
@@ -11807,7 +11807,7 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 10
+                [WOOD] = 12
                 , [ORE] = 5
                 , [MERCURY] = 0
                 , [CRYSTAL] = 0
@@ -11871,7 +11871,7 @@
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 3500
+                , [GOLD] = 5000
               }
             }
             , [23] = {
@@ -11887,9 +11887,9 @@
                 [WOOD] = 0
                 , [ORE] = 10
                 , [MERCURY] = 0
-                , [CRYSTAL] = 0
+                , [CRYSTAL] = 3
                 , [SULFUR] = 0
-                , [GEM] = 5
+                , [GEM] = 3
                 , [GOLD] = 1500
               }
             }
@@ -11906,9 +11906,9 @@
                 [WOOD] = 0
                 , [ORE] = 10
                 , [MERCURY] = 0
-                , [CRYSTAL] = 3
-                , [SULFUR] = 5
-                , [GEM] = 3
+                , [CRYSTAL] = 5
+                , [SULFUR] = 0
+                , [GEM] = 5
                 , [GOLD] = 4000
               }
             }
@@ -11923,7 +11923,7 @@
               }
               , ["Resource"] = {
                 [WOOD] = 5
-                , [ORE] = 5
+                , [ORE] = 0
                 , [MERCURY] = 0
                 , [CRYSTAL] = 5
                 , [SULFUR] = 0
@@ -11946,7 +11946,7 @@
                 , [MERCURY] = 0
                 , [CRYSTAL] = 5
                 , [SULFUR] = 0
-                , [GEM] = 5
+                , [GEM] = 10
                 , [GOLD] = 6000
               }
             }
@@ -12001,10 +12001,10 @@
               , ["Resource"] = {
                 [WOOD] = 15
                 , [ORE] = 0
-                , [MERCURY] = 3
-                , [CRYSTAL] = 0
-                , [SULFUR] = 3
-                , [GEM] = 0
+                , [MERCURY] = 0
+                , [CRYSTAL] = 5
+                , [SULFUR] = 5
+                , [GEM] = 3
                 , [GOLD] = 4000
               }
             }
@@ -12018,12 +12018,12 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 15
+                [WOOD] = 10
                 , [ORE] = 0
-                , [MERCURY] = 5
-                , [CRYSTAL] = 0
+                , [MERCURY] = 0
+                , [CRYSTAL] = 7
                 , [SULFUR] = 5
-                , [GEM] = 0
+                , [GEM] = 5
                 , [GOLD] = 8000
               }
             }
@@ -12076,10 +12076,10 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 0
-                , [ORE] = 20
+                [WOOD] = 5
+                , [ORE] = 5
                 , [MERCURY] = 0
-                , [CRYSTAL] = 0
+                , [CRYSTAL] = 15
                 , [SULFUR] = 0
                 , [GEM] = 15
                 , [GOLD] = 10000
@@ -12095,12 +12095,12 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 0
-                , [ORE] = 15
+                [WOOD] = 5
+                , [ORE] = 5
                 , [MERCURY] = 0
-                , [CRYSTAL] = 0
+                , [CRYSTAL] = 10
                 , [SULFUR] = 0
-                , [GEM] = 20
+                , [GEM] = 10
                 , [GOLD] = 10000
               }
             }
@@ -12174,8 +12174,8 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 0
-                , [ORE] = 5
+                [WOOD] = 5
+                , [ORE] = 0
                 , [MERCURY] = 0
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
@@ -12231,8 +12231,8 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 2
-                , [ORE] = 2
+                [WOOD] = 0
+                , [ORE] = 5
                 , [MERCURY] = 0
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
@@ -12250,8 +12250,8 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 3
-                , [ORE] = 3
+                [WOOD] = 0
+                , [ORE] = 5
                 , [MERCURY] = 0
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
@@ -12329,10 +12329,10 @@
               , ["Resource"] = {
                 [WOOD] = 5
                 , [ORE] = 5
-                , [MERCURY] = 4
-                , [CRYSTAL] = 4
-                , [SULFUR] = 4
-                , [GEM] = 4
+                , [MERCURY] = 3
+                , [CRYSTAL] = 3
+                , [SULFUR] = 3
+                , [GEM] = 3
                 , [GOLD] = 1000
               }
             }
@@ -12348,10 +12348,10 @@
               , ["Resource"] = {
                 [WOOD] = 5
                 , [ORE] = 5
-                , [MERCURY] = 6
-                , [CRYSTAL] = 6
-                , [SULFUR] = 6
-                , [GEM] = 6
+                , [MERCURY] = 5
+                , [CRYSTAL] = 5
+                , [SULFUR] = 5
+                , [GEM] = 5
                 , [GOLD] = 1000
               }
             }
@@ -12384,12 +12384,12 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 5
+                [WOOD] = 0
                 , [ORE] = 5
-                , [MERCURY] = 3
+                , [MERCURY] = 5
                 , [CRYSTAL] = 0
-                , [SULFUR] = 3
-                , [GEM] = 0
+                , [SULFUR] = 0
+                , [GEM] = 5
                 , [GOLD] = 1500
               }
             }
@@ -12405,7 +12405,7 @@
               , ["Resource"] = {
                 [WOOD] = 5
                 , [ORE] = 5
-                , [MERCURY] = 5
+                , [MERCURY] = 0
                 , [CRYSTAL] = 0
                 , [SULFUR] = 5
                 , [GEM] = 0
@@ -12442,10 +12442,10 @@
               }
               , ["Resource"] = {
                 [WOOD] = 0
-                , [ORE] = 5
+                , [ORE] = 0
                 , [MERCURY] = 0
-                , [CRYSTAL] = 1
-                , [SULFUR] = 1
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
                 , [GEM] = 0
                 , [GOLD] = 2400
               }
@@ -12500,12 +12500,12 @@
               }
               , ["Resource"] = {
                 [WOOD] = 5
-                , [ORE] = 5
+                , [ORE] = 0
                 , [MERCURY] = 0
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 3500
+                , [GOLD] = 5000
               }
             }
             , [20] = {
@@ -12518,11 +12518,11 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 5
-                , [ORE] = 5
+                [WOOD] = 0
+                , [ORE] = 10
                 , [MERCURY] = 0
-                , [CRYSTAL] = 5
-                , [SULFUR] = 0
+                , [CRYSTAL] = 0
+                , [SULFUR] = 10
                 , [GEM] = 5
                 , [GOLD] = 2200
               }
@@ -12537,12 +12537,12 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 5
-                , [ORE] = 5
-                , [MERCURY] = 5
-                , [CRYSTAL] = 3
-                , [SULFUR] = 5
-                , [GEM] = 3
+                [WOOD] = 10
+                , [ORE] = 0
+                , [MERCURY] = 0
+                , [CRYSTAL] = 10
+                , [SULFUR] = 0
+                , [GEM] = 5
                 , [GOLD] = 5000
               }
             }
@@ -12582,7 +12582,7 @@
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 3500
+                , [GOLD] = 5000
               }
             }
             , [24] = {
@@ -12595,11 +12595,11 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 5
+                [WOOD] = 10
                 , [ORE] = 5
-                , [MERCURY] = 5
+                , [MERCURY] = 10
                 , [CRYSTAL] = 0
-                , [SULFUR] = 5
+                , [SULFUR] = 0
                 , [GEM] = 0
                 , [GOLD] = 2500
               }
@@ -12615,11 +12615,11 @@
               }
               , ["Resource"] = {
                 [WOOD] = 5
-                , [ORE] = 5
-                , [MERCURY] = 0
-                , [CRYSTAL] = 5
+                , [ORE] = 0
+                , [MERCURY] = 5
+                , [CRYSTAL] = 0
                 , [SULFUR] = 0
-                , [GEM] = 5
+                , [GEM] = 0
                 , [GOLD] = 6000
               }
             }
@@ -12633,8 +12633,8 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 2
-                , [ORE] = 2
+                [WOOD] = 0
+                , [ORE] = 0
                 , [MERCURY] = 2
                 , [CRYSTAL] = 2
                 , [SULFUR] = 2
@@ -12674,10 +12674,10 @@
               , ["Resource"] = {
                 [WOOD] = 0
                 , [ORE] = 10
-                , [MERCURY] = 10
-                , [CRYSTAL] = 0
+                , [MERCURY] = 0
+                , [CRYSTAL] = 5
                 , [SULFUR] = 5
-                , [GEM] = 0
+                , [GEM] = 10
                 , [GOLD] = 5000
               }
             }
@@ -12691,11 +12691,11 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 5
-                , [ORE] = 5
-                , [MERCURY] = 10
-                , [CRYSTAL] = 5
-                , [SULFUR] = 0
+                [WOOD] = 0
+                , [ORE] = 10
+                , [MERCURY] = 0
+                , [CRYSTAL] = 10
+                , [SULFUR] = 10
                 , [GEM] = 0
                 , [GOLD] = 8000
               }
@@ -12754,8 +12754,8 @@
                 , [MERCURY] = 0
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
-                , [GEM] = 10
-                , [GOLD] = 10000
+                , [GEM] = 5
+                , [GOLD] = 12000
               }
             }
             , [33] = {
@@ -12773,7 +12773,7 @@
                 , [MERCURY] = 0
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
-                , [GEM] = 20
+                , [GEM] = 10
                 , [GOLD] = 12000
               }
             }
@@ -12868,10 +12868,10 @@
               , ["Resource"] = {
                 [WOOD] = 5
                 , [ORE] = 5
-                , [MERCURY] = 4
-                , [CRYSTAL] = 4
-                , [SULFUR] = 4
-                , [GEM] = 4
+                , [MERCURY] = 3
+                , [CRYSTAL] = 3
+                , [SULFUR] = 3
+                , [GEM] = 3
                 , [GOLD] = 1000
               }
             }
@@ -12887,10 +12887,10 @@
               , ["Resource"] = {
                 [WOOD] = 5
                 , [ORE] = 5
-                , [MERCURY] = 6
-                , [CRYSTAL] = 6
-                , [SULFUR] = 6
-                , [GEM] = 6
+                , [MERCURY] = 5
+                , [CRYSTAL] = 5
+                , [SULFUR] = 5
+                , [GEM] = 5
                 , [GOLD] = 1000
               }
             }
@@ -13020,11 +13020,11 @@
               }
               , ["Resource"] = {
                 [WOOD] = 0
-                , [ORE] = 5
-                , [MERCURY] = 1
-                , [CRYSTAL] = 1
-                , [SULFUR] = 1
-                , [GEM] = 1
+                , [ORE] = 0
+                , [MERCURY] = 3
+                , [CRYSTAL] = 3
+                , [SULFUR] = 3
+                , [GEM] = 3
                 , [GOLD] = 2000
               }
             }
@@ -13039,11 +13039,11 @@
               }
               , ["Resource"] = {
                 [WOOD] = 0
-                , [ORE] = 0
-                , [MERCURY] = 2
-                , [CRYSTAL] = 2
-                , [SULFUR] = 2
-                , [GEM] = 2
+                , [ORE] = 5
+                , [MERCURY] = 0
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
                 , [GOLD] = 3000
               }
             }
@@ -13095,8 +13095,8 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 0
-                , [ORE] = 5
+                [WOOD] = 5
+                , [ORE] = 0
                 , [MERCURY] = 0
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
@@ -13159,7 +13159,7 @@
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 3500
+                , [GOLD] = 1000
               }
             }
             , [20] = {
@@ -13173,7 +13173,7 @@
               }
               , ["Resource"] = {
                 [WOOD] = 5
-                , [ORE] = 5
+                , [ORE] = 10
                 , [MERCURY] = 0
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
@@ -13191,8 +13191,8 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 5
-                , [ORE] = 5
+                [WOOD] = 0
+                , [ORE] = 10
                 , [MERCURY] = 0
                 , [CRYSTAL] = 0
                 , [SULFUR] = 5
@@ -13236,7 +13236,7 @@
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 3500
+                , [GOLD] = 5000
               }
             }
             , [24] = {
@@ -13270,10 +13270,10 @@
               , ["Resource"] = {
                 [WOOD] = 10
                 , [ORE] = 0
-                , [MERCURY] = 3
+                , [MERCURY] = 0
                 , [CRYSTAL] = 0
-                , [SULFUR] = 0
-                , [GEM] = 5
+                , [SULFUR] = 5
+                , [GEM] = 0
                 , [GOLD] = 2000
               }
             }
@@ -13287,12 +13287,12 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 5
+                [WOOD] = 0
                 , [ORE] = 0
-                , [MERCURY] = 5
-                , [CRYSTAL] = 0
-                , [SULFUR] = 0
-                , [GEM] = 5
+                , [MERCURY] = 0
+                , [CRYSTAL] = 5
+                , [SULFUR] = 5
+                , [GEM] = 0
                 , [GOLD] = 4000
               }
             }
@@ -13311,7 +13311,7 @@
                 , [MERCURY] = 0
                 , [CRYSTAL] = 5
                 , [SULFUR] = 0
-                , [GEM] = 5
+                , [GEM] = 0
                 , [GOLD] = 2500
               }
             }
@@ -13328,9 +13328,9 @@
                 [WOOD] = 5
                 , [ORE] = 5
                 , [MERCURY] = 0
-                , [CRYSTAL] = 5
+                , [CRYSTAL] = 10
                 , [SULFUR] = 0
-                , [GEM] = 10
+                , [GEM] = 5
                 , [GOLD] = 4000
               }
             }
@@ -13366,10 +13366,10 @@
               , ["Resource"] = {
                 [WOOD] = 5
                 , [ORE] = 5
-                , [MERCURY] = 3
-                , [CRYSTAL] = 3
-                , [SULFUR] = 3
-                , [GEM] = 3
+                , [MERCURY] = 4
+                , [CRYSTAL] = 0
+                , [SULFUR] = 4
+                , [GEM] = 4
                 , [GOLD] = 4000
               }
             }
@@ -13385,10 +13385,10 @@
               , ["Resource"] = {
                 [WOOD] = 5
                 , [ORE] = 5
-                , [MERCURY] = 4
-                , [CRYSTAL] = 4
-                , [SULFUR] = 4
-                , [GEM] = 4
+                , [MERCURY] = 5
+                , [CRYSTAL] = 0
+                , [SULFUR] = 5
+                , [GEM] = 5
                 , [GOLD] = 6000
               }
             }
@@ -13423,9 +13423,9 @@
               }
               , ["Resource"] = {
                 [WOOD] = 0
-                , [ORE] = 15
+                , [ORE] = 10
                 , [MERCURY] = 0
-                , [CRYSTAL] = 0
+                , [CRYSTAL] = 15
                 , [SULFUR] = 15
                 , [GEM] = 0
                 , [GOLD] = 12000
@@ -13442,9 +13442,9 @@
               }
               , ["Resource"] = {
                 [WOOD] = 0
-                , [ORE] = 10
+                , [ORE] = 0
                 , [MERCURY] = 0
-                , [CRYSTAL] = 0
+                , [CRYSTAL] = 15
                 , [SULFUR] = 20
                 , [GEM] = 0
                 , [GOLD] = 15000
@@ -13482,8 +13482,8 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 0
-                , [ORE] = 5
+                [WOOD] = 5
+                , [ORE] = 0
                 , [MERCURY] = 0
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
@@ -13558,8 +13558,8 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 5
-                , [ORE] = 0
+                [WOOD] = 0
+                , [ORE] = 5
                 , [MERCURY] = 0
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
@@ -13577,12 +13577,12 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 5
-                , [ORE] = 0
+                [WOOD] = 0
+                , [ORE] = 5
                 , [MERCURY] = 0
-                , [CRYSTAL] = 1
+                , [CRYSTAL] = 0
                 , [SULFUR] = 0
-                , [GEM] = 1
+                , [GEM] = 0
                 , [GOLD] = 900
               }
             }
@@ -13616,10 +13616,10 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 5
+                [WOOD] = 0
                 , [ORE] = 5
-                , [MERCURY] = 0
-                , [CRYSTAL] = 3
+                , [MERCURY] = 3
+                , [CRYSTAL] = 0
                 , [SULFUR] = 0
                 , [GEM] = 0
                 , [GOLD] = 2000
@@ -13771,7 +13771,7 @@
               , ["Resource"] = {
                 [WOOD] = 5
                 , [ORE] = 5
-                , [MERCURY] = 2
+                , [MERCURY] = 3
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
                 , [GEM] = 0
@@ -13788,12 +13788,12 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 15
-                , [ORE] = 0
-                , [MERCURY] = 0
+                [WOOD] = 5
+                , [ORE] = 5
+                , [MERCURY] = 5
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
-                , [GEM] = 5
+                , [GEM] = 0
                 , [GOLD] = 2000
               }
             }
@@ -13871,7 +13871,7 @@
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 3500
+                , [GOLD] = 5000
               }
             }
             , [22] = {
@@ -13886,10 +13886,10 @@
               , ["Resource"] = {
                 [WOOD] = 10
                 , [ORE] = 10
-                , [MERCURY] = 0
-                , [CRYSTAL] = 3
+                , [MERCURY] = 5
+                , [CRYSTAL] = 0
                 , [SULFUR] = 0
-                , [GEM] = 3
+                , [GEM] = 0
                 , [GOLD] = 1500
               }
             }
@@ -13903,12 +13903,12 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 0
+                [WOOD] = 10
                 , [ORE] = 10
                 , [MERCURY] = 0
-                , [CRYSTAL] = 3
-                , [SULFUR] = 5
-                , [GEM] = 3
+                , [CRYSTAL] = 5
+                , [SULFUR] = 0
+                , [GEM] = 5
                 , [GOLD] = 4000
               }
             }
@@ -13941,12 +13941,12 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 5
-                , [ORE] = 5
-                , [MERCURY] = 0
-                , [CRYSTAL] = 5
-                , [SULFUR] = 0
-                , [GEM] = 5
+                [WOOD] = 10
+                , [ORE] = 10
+                , [MERCURY] = 3
+                , [CRYSTAL] = 3
+                , [SULFUR] = 3
+                , [GEM] = 3
                 , [GOLD] = 6000
               }
             }
@@ -14001,10 +14001,10 @@
               , ["Resource"] = {
                 [WOOD] = 10
                 , [ORE] = 10
-                , [MERCURY] = 0
-                , [CRYSTAL] = 5
+                , [MERCURY] = 10
+                , [CRYSTAL] = 0
                 , [SULFUR] = 0
-                , [GEM] = 5
+                , [GEM] = 0
                 , [GOLD] = 4000
               }
             }
@@ -14018,11 +14018,11 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 15
-                , [ORE] = 0
-                , [MERCURY] = 5
-                , [CRYSTAL] = 0
-                , [SULFUR] = 5
+                [WOOD] = 10
+                , [ORE] = 5
+                , [MERCURY] = 10
+                , [CRYSTAL] = 5
+                , [SULFUR] = 0
                 , [GEM] = 0
                 , [GOLD] = 8000
               }
@@ -14057,9 +14057,9 @@
                 , ["Level"] = 3
               }
               , ["Resource"] = {
-                [WOOD] = 10
-                , [ORE] = 10
-                , [MERCURY] = 10
+                [WOOD] = 20
+                , [ORE] = 20
+                , [MERCURY] = 20
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
                 , [GEM] = 0
@@ -14076,13 +14076,13 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 0
-                , [ORE] = 15
-                , [MERCURY] = 0
+                [WOOD] = 20
+                , [ORE] = 10
+                , [MERCURY] = 15
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
                 , [GEM] = 20
-                , [GOLD] = 10000
+                , [GOLD] = 8000
               }
             }
             , [34] = {
@@ -14101,7 +14101,7 @@
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 5000
+                , [GOLD] = 3000
               }
             }
         }
@@ -14174,8 +14174,8 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 0
-                , [ORE] = 5
+                [WOOD] = 5
+                , [ORE] = 0
                 , [MERCURY] = 0
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
@@ -14348,10 +14348,10 @@
               , ["Resource"] = {
                 [WOOD] = 5
                 , [ORE] = 5
-                , [MERCURY] = 4
-                , [CRYSTAL] = 4
-                , [SULFUR] = 4
-                , [GEM] = 4
+                , [MERCURY] = 3
+                , [CRYSTAL] = 3
+                , [SULFUR] = 3
+                , [GEM] = 3
                 , [GOLD] = 1000
               }
             }
@@ -14367,10 +14367,10 @@
               , ["Resource"] = {
                 [WOOD] = 5
                 , [ORE] = 5
-                , [MERCURY] = 6
-                , [CRYSTAL] = 6
-                , [SULFUR] = 6
-                , [GEM] = 6
+                , [MERCURY] = 5
+                , [CRYSTAL] = 5
+                , [SULFUR] = 5
+                , [GEM] = 5
                 , [GOLD] = 1000
               }
             }
@@ -14403,12 +14403,12 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 5
+                [WOOD] = 10
                 , [ORE] = 5
                 , [MERCURY] = 0
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
-                , [GEM] = 3
+                , [GEM] = 0
                 , [GOLD] = 2500
               }
             }
@@ -14461,7 +14461,7 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 10
+                [WOOD] = 15
                 , [ORE] = 0
                 , [MERCURY] = 0
                 , [CRYSTAL] = 0
@@ -14484,8 +14484,8 @@
                 , [ORE] = 0
                 , [MERCURY] = 0
                 , [CRYSTAL] = 0
-                , [SULFUR] = 0
-                , [GEM] = 2
+                , [SULFUR] = 5
+                , [GEM] = 0
                 , [GOLD] = 1500
               }
             }
@@ -14525,7 +14525,7 @@
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 3500
+                , [GOLD] = 5000
               }
             }
             , [22] = {
@@ -14578,9 +14578,9 @@
               , ["Resource"] = {
                 [WOOD] = 5
                 , [ORE] = 5
-                , [MERCURY] = 5
-                , [CRYSTAL] = 5
-                , [SULFUR] = 0
+                , [MERCURY] = 0
+                , [CRYSTAL] = 0
+                , [SULFUR] = 10
                 , [GEM] = 0
                 , [GOLD] = 4000
               }
@@ -14597,9 +14597,9 @@
               , ["Resource"] = {
                 [WOOD] = 5
                 , [ORE] = 5
-                , [MERCURY] = 5
-                , [CRYSTAL] = 5
-                , [SULFUR] = 0
+                , [MERCURY] = 0
+                , [CRYSTAL] = 7
+                , [SULFUR] = 10
                 , [GEM] = 0
                 , [GOLD] = 6000
               }
@@ -14617,10 +14617,10 @@
               , ["Resource"] = {
                 [WOOD] = 0
                 , [ORE] = 0
-                , [MERCURY] = 2
-                , [CRYSTAL] = 2
-                , [SULFUR] = 2
-                , [GEM] = 2
+                , [MERCURY] = 0
+                , [CRYSTAL] = 5
+                , [SULFUR] = 5
+                , [GEM] = 5
                 , [GOLD] = 2000
               }
             }
@@ -14655,10 +14655,10 @@
               , ["Resource"] = {
                 [WOOD] = 0
                 , [ORE] = 10
-                , [MERCURY] = 5
-                , [CRYSTAL] = 5
+                , [MERCURY] = 10
+                , [CRYSTAL] = 0
                 , [SULFUR] = 0
-                , [GEM] = 0
+                , [GEM] = 7
                 , [GOLD] = 8000
               }
             }
@@ -14713,11 +14713,11 @@
               , ["Resource"] = {
                 [WOOD] = 0
                 , [ORE] = 0
-                , [MERCURY] = 3
-                , [CRYSTAL] = 3
+                , [MERCURY] = 0
+                , [CRYSTAL] = 5
                 , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 3000
+                , [GOLD] = 1000
               }
             }
             , [32] = {
@@ -14730,11 +14730,11 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 10
+                [WOOD] = 0
                 , [ORE] = 10
-                , [MERCURY] = 0
+                , [MERCURY] = 10
                 , [CRYSTAL] = 0
-                , [SULFUR] = 15
+                , [SULFUR] = 5
                 , [GEM] = 0
                 , [GOLD] = 10000
               }
@@ -14750,10 +14750,10 @@
               }
               , ["Resource"] = {
                 [WOOD] = 10
-                , [ORE] = 10
-                , [MERCURY] = 0
+                , [ORE] = 0
+                , [MERCURY] = 15
                 , [CRYSTAL] = 0
-                , [SULFUR] = 20
+                , [SULFUR] = 10
                 , [GEM] = 0
                 , [GOLD] = 10000
               }
@@ -14905,8 +14905,8 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 0
-                , [ORE] = 5
+                [WOOD] = 5
+                , [ORE] = 0
                 , [MERCURY] = 0
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
@@ -14930,7 +14930,7 @@
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 1200
+                , [GOLD] = 1000
               }
             }
             , [9] = {
@@ -14943,8 +14943,8 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 10
-                , [ORE] = 0
+                [WOOD] = 0
+                , [ORE] = 10
                 , [MERCURY] = 0
                 , [CRYSTAL] = 3
                 , [SULFUR] = 0
@@ -14987,7 +14987,7 @@
                 , [CRYSTAL] = 2
                 , [SULFUR] = 2
                 , [GEM] = 2
-                , [GOLD] = 2000
+                , [GOLD] = 4000
               }
             }
             , [12] = {
@@ -15006,7 +15006,7 @@
                 , [CRYSTAL] = 3
                 , [SULFUR] = 3
                 , [GEM] = 3
-                , [GOLD] = 3000
+                , [GOLD] = 6000
               }
             }
             , [13] = {
@@ -15078,10 +15078,10 @@
               , ["Resource"] = {
                 [WOOD] = 5
                 , [ORE] = 5
-                , [MERCURY] = 4
-                , [CRYSTAL] = 4
-                , [SULFUR] = 4
-                , [GEM] = 4
+                , [MERCURY] = 3
+                , [CRYSTAL] = 3
+                , [SULFUR] = 3
+                , [GEM] = 3
                 , [GOLD] = 1000
               }
             }
@@ -15097,10 +15097,10 @@
               , ["Resource"] = {
                 [WOOD] = 5
                 , [ORE] = 5
-                , [MERCURY] = 6
-                , [CRYSTAL] = 6
-                , [SULFUR] = 6
-                , [GEM] = 6
+                , [MERCURY] = 5
+                , [CRYSTAL] = 5
+                , [SULFUR] = 5
+                , [GEM] = 5
                 , [GOLD] = 1000
               }
             }
@@ -15155,10 +15155,10 @@
               , ["Resource"] = {
                 [WOOD] = 5
                 , [ORE] = 5
-                , [MERCURY] = 3
+                , [MERCURY] = 10
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
-                , [GEM] = 3
+                , [GEM] = 5
                 , [GOLD] = 2000
               }
             }
@@ -15214,7 +15214,7 @@
                 , [ORE] = 5
                 , [MERCURY] = 0
                 , [CRYSTAL] = 0
-                , [SULFUR] = 5
+                , [SULFUR] = 0
                 , [GEM] = 0
                 , [GOLD] = 2500
               }
@@ -15255,7 +15255,7 @@
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 3500
+                , [GOLD] = 5000
               }
             }
             , [29] = {
@@ -15268,8 +15268,8 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 5
-                , [ORE] = 5
+                [WOOD] = 10
+                , [ORE] = 10
                 , [MERCURY] = 5
                 , [CRYSTAL] = 5
                 , [SULFUR] = 5
@@ -15290,9 +15290,9 @@
                 [WOOD] = 0
                 , [ORE] = 5
                 , [MERCURY] = 0
-                , [CRYSTAL] = 0
-                , [SULFUR] = 5
-                , [GEM] = 5
+                , [CRYSTAL] = 5
+                , [SULFUR] = 0
+                , [GEM] = 10
                 , [GOLD] = 6000
               }
             }
@@ -15307,8 +15307,8 @@
                 , ["Level"] = 2
               }
               , ["Resource"] = {
-                [WOOD] = 0
-                , [ORE] = 10
+                [WOOD] = 5
+                , [ORE] = 5
                 , [MERCURY] = 0
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
@@ -15331,7 +15331,7 @@
                 , [MERCURY] = 0
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
-                , [GEM] = 5
+                , [GEM] = 0
                 , [GOLD] = 1500
               }
             }
@@ -15365,9 +15365,9 @@
               }
               , ["Resource"] = {
                 [WOOD] = 0
-                , [ORE] = 10
-                , [MERCURY] = 10
-                , [CRYSTAL] = 0
+                , [ORE] = 0
+                , [MERCURY] = 0
+                , [CRYSTAL] = 20
                 , [SULFUR] = 0
                 , [GEM] = 0
                 , [GOLD] = 4000
@@ -15383,12 +15383,12 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 5
-                , [ORE] = 5
-                , [MERCURY] = 5
-                , [CRYSTAL] = 0
-                , [SULFUR] = 10
-                , [GEM] = 0
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 0
+                , [CRYSTAL] = 10
+                , [SULFUR] = 0
+                , [GEM] = 10
                 , [GOLD] = 8000
               }
             }
@@ -15444,8 +15444,8 @@
                 [WOOD] = 0
                 , [ORE] = 15
                 , [MERCURY] = 0
-                , [CRYSTAL] = 15
-                , [SULFUR] = 0
+                , [CRYSTAL] = 10
+                , [SULFUR] = 10
                 , [GEM] = 0
                 , [GOLD] = 10000
               }
@@ -15461,10 +15461,10 @@
               }
               , ["Resource"] = {
                 [WOOD] = 0
-                , [ORE] = 15
+                , [ORE] = 10
                 , [MERCURY] = 0
-                , [CRYSTAL] = 20
-                , [SULFUR] = 0
+                , [CRYSTAL] = 0
+                , [SULFUR] = 10
                 , [GEM] = 0
                 , [GOLD] = 10000
               }
@@ -15501,8 +15501,8 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 0
-                , [ORE] = 5
+                [WOOD] = 5
+                , [ORE] = 0
                 , [MERCURY] = 0
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
@@ -15602,7 +15602,7 @@
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 1000
+                , [GOLD] = 1500
               }
             }
           -- TownLevel 3
@@ -15660,7 +15660,7 @@
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 1000
+                , [GOLD] = 1100
               }
             }
             , [10] = {
@@ -15717,7 +15717,7 @@
                 , [CRYSTAL] = 2
                 , [SULFUR] = 2
                 , [GEM] = 2
-                , [GOLD] = 2000
+                , [GOLD] = 3000
               }
             }
             , [13] = {
@@ -15736,7 +15736,7 @@
                 , [CRYSTAL] = 4
                 , [SULFUR] = 4
                 , [GEM] = 4
-                , [GOLD] = 2000
+                , [GOLD] = 4000
               }
             }
             , [14] = {
@@ -15751,11 +15751,11 @@
               , ["Resource"] = {
                 [WOOD] = 1
                 , [ORE] = 1
-                , [MERCURY] = 0
+                , [MERCURY] = 1
                 , [CRYSTAL] = 0
-                , [SULFUR] = 2
+                , [SULFUR] = 1
                 , [GEM] = 0
-                , [GOLD] = 500
+                , [GOLD] = 100
               }
             }
           -- TownLevel 6
@@ -15775,7 +15775,7 @@
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 3500
+                , [GOLD] = 5000
               }
             }
             , [16] = {
@@ -15794,7 +15794,7 @@
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 1500
+                , [GOLD] = 2000
               }
             }
             , [17] = {
@@ -15808,12 +15808,12 @@
               }
               , ["Resource"] = {
                 [WOOD] = 5
-                , [ORE] = 5
+                , [ORE] = 10
                 , [MERCURY] = 0
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
-                , [GEM] = 5
-                , [GOLD] = 3000
+                , [GEM] = 4
+                , [GOLD] = 3100
               }
             }
             , [18] = {
@@ -15826,13 +15826,13 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 5
-                , [ORE] = 5
-                , [MERCURY] = 3
-                , [CRYSTAL] = 3
-                , [SULFUR] = 3
-                , [GEM] = 3
-                , [GOLD] = 2000
+                [WOOD] = 4
+                , [ORE] = 4
+                , [MERCURY] = 1
+                , [CRYSTAL] = 1
+                , [SULFUR] = 1
+                , [GEM] = 1
+                , [GOLD] = 1500
               }
             }
           -- TownLevel 9
@@ -15867,9 +15867,9 @@
               , ["Resource"] = {
                 [WOOD] = 0
                 , [ORE] = 5
-                , [MERCURY] = 0
-                , [CRYSTAL] = 3
-                , [SULFUR] = 3
+                , [MERCURY] = 4
+                , [CRYSTAL] = 0
+                , [SULFUR] = 4
                 , [GEM] = 0
                 , [GOLD] = 2000
               }
@@ -15886,11 +15886,11 @@
               , ["Resource"] = {
                 [WOOD] = 5
                 , [ORE] = 0
-                , [MERCURY] = 5
+                , [MERCURY] = 9
                 , [CRYSTAL] = 5
                 , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 2500
+                , [GOLD] = 3200
               }
             }
             , [22] = {
@@ -15905,11 +15905,11 @@
               , ["Resource"] = {
                 [WOOD] = 5
                 , [ORE] = 5
-                , [MERCURY] = 5
+                , [MERCURY] = 0
                 , [CRYSTAL] = 0
-                , [SULFUR] = 0
-                , [GEM] = 5
-                , [GOLD] = 4000
+                , [SULFUR] = 7
+                , [GEM] = 7
+                , [GOLD] = 4400
               }
             }
           -- TownLevel 12
@@ -15923,13 +15923,13 @@
                 , ["Level"] = 3
               }
               , ["Resource"] = {
-                [WOOD] = 5
-                , [ORE] = 5
-                , [MERCURY] = 1
-                , [CRYSTAL] = 1
-                , [SULFUR] = 1
-                , [GEM] = 1
-                , [GOLD] = 1000
+                [WOOD] = 10
+                , [ORE] = 10
+                , [MERCURY] = 4
+                , [CRYSTAL] = 0
+                , [SULFUR] = 2
+                , [GEM] = 4
+                , [GOLD] = 3500
               }
             }
             , [24] = {
@@ -15942,13 +15942,13 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 10
-                , [ORE] = 0
-                , [MERCURY] = 0
-                , [CRYSTAL] = 5
+                [WOOD] = 5
+                , [ORE] = 10
+                , [MERCURY] = 5
+                , [CRYSTAL] = 0
                 , [SULFUR] = 0
-                , [GEM] = 5
-                , [GOLD] = 3500
+                , [GEM] = 0
+                , [GOLD] = 4500
               }
             }
             , [25] = {
@@ -15962,7 +15962,7 @@
               }
               , ["Resource"] = {
                 [WOOD] = 5
-                , [ORE] = 5
+                , [ORE] = 15
                 , [MERCURY] = 0
                 , [CRYSTAL] = 5
                 , [SULFUR] = 0
@@ -15980,13 +15980,13 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 10
+                [WOOD] = 20
                 , [ORE] = 0
                 , [MERCURY] = 0
                 , [CRYSTAL] = 0
-                , [SULFUR] = 10
+                , [SULFUR] = 5
                 , [GEM] = 0
-                , [GOLD] = 4500
+                , [GOLD] = 7000
               }
             }
             , [27] = {
@@ -15999,13 +15999,13 @@
                 , ["Level"] = 1
               }
               , ["Resource"] = {
-                [WOOD] = 10
+                [WOOD] = 15
                 , [ORE] = 5
                 , [MERCURY] = 0
                 , [CRYSTAL] = 0
                 , [SULFUR] = 10
                 , [GEM] = 0
-                , [GOLD] = 7500
+                , [GOLD] = 9500
               }
             }
           -- TownLevel 15
@@ -16059,10 +16059,10 @@
               , ["Resource"] = {
                 [WOOD] = 0
                 , [ORE] = 15
-                , [MERCURY] = 10
+                , [MERCURY] = 7
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
-                , [GEM] = 0
+                , [GEM] = 5
                 , [GOLD] = 10000
               }
             }
@@ -16078,8 +16078,8 @@
               , ["Resource"] = {
                 [WOOD] = 0
                 , [ORE] = 20
-                , [MERCURY] = 20
-                , [CRYSTAL] = 0
+                , [MERCURY] = 10
+                , [CRYSTAL] = 10
                 , [SULFUR] = 0
                 , [GEM] = 0
                 , [GOLD] = 11000

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TownBuildingSharedStats ObjectRecordID="1000144">
+	<NameFileRef href="/Text/Game/TownBuildings/Dwarves/Special_1/Runic_Shrine_1_Name.txt"/>
+	<DescriptionFileRef href="/Text/Game/TownBuildings/Dwarves/Special_1/Runic_Shrine_1_Description.txt"/>
+	<Type>TB_SPECIAL_1</Type>
+	<Upgrade>BLD_UPG_1</Upgrade>
+	<Cost>
+		<Wood>0</Wood>
+		<Ore>1</Ore>
+		<Mercury>1</Mercury>
+		<Crystal>1</Crystal>
+		<Sulfur>1</Sulfur>
+		<Gem>1</Gem>
+		<Gold>1000</Gold>
+	</Cost>
+	<ModObjectName>Special_1</ModObjectName>
+	<dependencies/>
+	<Creature>CREATURE_UNKNOWN</Creature>
+	<DevLevelNeeded>3</DevLevelNeeded>
+	<UIObjectName>Special_1</UIObjectName>
+	<UIStackPosition>0</UIStackPosition>
+	<Icon href="/UI/H5A1/Icons/Buildings/Towns/Fortress/Building_Mode_Icon/128x128/Runic_Shrine_1.(Texture).xdb#xpointer(/Texture)"/>
+</TownBuildingSharedStats>

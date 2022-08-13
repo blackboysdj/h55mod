@@ -3,10 +3,10 @@
 	<AttackSkill>5</AttackSkill>
 	<DefenceSkill>3</DefenceSkill>
 	<Shots>4</Shots>
-	<MinDamage>3</MinDamage>
+	<MinDamage>2</MinDamage>
 	<MaxDamage>5</MaxDamage>
 	<Speed>4</Speed>
-	<Initiative>10</Initiative>
+	<Initiative>9</Initiative>
 	<Flying>false</Flying>
 	<Health>10</Health>
 	<KnownSpells/>
@@ -32,7 +32,7 @@
 		<Crystal>0</Crystal>
 		<Sulfur>0</Sulfur>
 		<Gem>0</Gem>
-		<Gold>85</Gold>
+		<Gold>65</Gold>
 	</Cost>
 	<PresetPrice>0</PresetPrice>
 	<SubjectOfRandomGeneration>true</SubjectOfRandomGeneration>

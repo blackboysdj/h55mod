@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TownBuildingSharedStats ObjectRecordID="1000014">
+	<NameFileRef href="/Text/Game/TownBuildings/Preserve/Dwelling_7/Name.txt"/>
+	<DescriptionFileRef href="/Text/Game/TownBuildings/Preserve/Dwelling_7/Description.txt"/>
+	<Type>TB_DWELLING_7</Type>
+	<Upgrade>BLD_UPG_1</Upgrade>
+	<Cost>
+		<Wood>5</Wood>
+		<Ore>5</Ore>
+		<Mercury>0</Mercury>
+		<Crystal>15</Crystal>
+		<Sulfur>0</Sulfur>
+		<Gem>15</Gem>
+		<Gold>8000</Gold>
+	</Cost>
+	<ModObjectName>ForestNest</ModObjectName>
+	<dependencies/>
+	<Creature>CREATURE_GREEN_DRAGON</Creature>
+	<DevLevelNeeded>15</DevLevelNeeded>
+	<UIObjectName>Dwelling_7</UIObjectName>
+	<UIStackPosition>0</UIStackPosition>
+	<Icon href="/UI/TownHall/preserve/128/d7.xdb#xpointer(/Texture)"/>
+</TownBuildingSharedStats>

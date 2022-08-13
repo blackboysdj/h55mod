@@ -3,23 +3,18 @@
 	<AttackSkill>4</AttackSkill>
 	<DefenceSkill>4</DefenceSkill>
 	<Shots>12</Shots>
-	<MinDamage>4</MinDamage>
+	<MinDamage>2</MinDamage>
 	<MaxDamage>8</MaxDamage>
 	<Speed>4</Speed>
-	<Initiative>9</Initiative>
+	<Initiative>8</Initiative>
 	<Flying>false</Flying>
 	<Health>10</Health>
-	<KnownSpells>
-		<Item>
-			<Spell>SPELL_ABILITY_SCATTER_SHOT</Spell>
-			<Mastery>MASTERY_EXPERT</Mastery>
-		</Item>
-	</KnownSpells>
+	<KnownSpells/>
 	<SpellPoints>0</SpellPoints>
 	<SpellPoints1>0</SpellPoints1>
 	<SpellPoints2>0</SpellPoints2>
-	<Exp>20</Exp>
-	<Power>203</Power>
+	<Exp>19</Exp>
+	<Power>199</Power>
 	<TimeToCommand>10</TimeToCommand>
 	<CreatureTier>2</CreatureTier>
 	<Upgrade>true</Upgrade>
@@ -49,7 +44,6 @@
 	<BaseCreature>CREATURE_ARCHER</BaseCreature>
 	<Upgrades/>
 	<Abilities>
-		<Item>ABILITY_SCATTER_SHOT</Item>
 		<Item>ABILITY_PRECISE_SHOT</Item>
 	</Abilities>
 </Creature>

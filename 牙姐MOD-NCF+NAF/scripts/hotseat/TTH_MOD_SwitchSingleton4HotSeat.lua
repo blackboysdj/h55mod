@@ -1,0 +1,1 @@
+SwitchSingleton = 1;

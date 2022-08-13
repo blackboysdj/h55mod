@@ -2513,7 +2513,6 @@ doFile("/scripts/H55-Settings.lua");
 					local enumAttriType = objAttribute["Type"];
 					local iDiffStat = TTH_COMMON.floor(iHeroLevel / iStep) - TTH_VARI.attribute4Hero[strHero];
 					if iDiffStat > 0 then
-						ChangeHeroStat(strHero, enumAttriType, iDiffStat);
 						TTH_VARI.attribute4Hero[strHero] = TTH_COMMON.floor(iHeroLevel / iStep);
 						if TTH_GLOBAL.isHeroAtGarrison(strHero) == 0 then
 							local iPlayer = TTH_GLOBAL.GetObjectOwner(strHero);
@@ -2834,6 +2833,8 @@ doFile("/scripts/H55-Settings.lua");
 
 		-- 全局参数
 			-- 保存英雄等级到游戏全局参数中
+				function TTH_GLOBAL.interfaceRefreshGameVar(strHero)
+				end;
 				function TTH_GLOBAL.setGameVar4HeroLevel(strHero)
 					TTH_MAIN.debug("TTH_GLOBAL.setGameVar4HeroLevel", nil, strHero);
 
@@ -3395,6 +3396,16 @@ doFile("/scripts/H55-Settings.lua");
 				TTH_GLOBAL.dealStudentAward(strHero); -- 毕业生
 				TTH_GLOBAL.dealAcademyAward(strHero); -- 魔法师
 				TTH_GLOBAL.dealInvocation(strHero); -- 穿透
+			end;
+			function TTH_GLOBAL.dealSkillBonus8Hero4GameVar(strHero)
+				TTH_MAIN.debug("TTH_GLOBAL.dealSkillBonus8Hero4GameVar", nil, strHero);
+
+				TTH_GLOBAL.implSkillBonus8Hero4GameVar(strHero);
+			end;
+			function TTH_GLOBAL.implSkillBonus8Hero4GameVar(strHero)
+				sleep(1);
+				TTH_GLOBAL.setGameVar4HeroSkill(strHero);
+				TTH_GLOBAL.setGameVar4HeroSkill2Special(strHero);
 			end;
 
 			-- 根据英雄技能赠送魔法相关
@@ -6430,14 +6441,26 @@ doFile("/scripts/H55-Settings.lua");
 							iSpellPower = iSpellPower + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] * 2;
 						elseif iTownRace == TOWN_NECROMANCY then
 							iKnowledge = iKnowledge + objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD];
+							iSpellPower = iSpellPower + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] * 2;
+							iKnowledge = iKnowledge + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_2] * 2;
 						elseif iTownRace == TOWN_INFERNO then
 							iKnowledge = iKnowledge + objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD];
+							iSpellPower = iSpellPower + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] * 2;
 						elseif iTownRace == TOWN_FORTRESS then
 							iKnowledge = iKnowledge + objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD];
 							iDefence = iDefence + objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_FORT] * objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_4];
 							iSpellPower = iSpellPower + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1];
 						elseif iTownRace == TOWN_STRONGHOLD then
-							iKnowledge = iKnowledge + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_3];
+							print("iKnowledge1:")
+							print(iKnowledge)
+							print("iAttack1:")
+							print(iAttack)
+							iKnowledge = iKnowledge + objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD];
+							iAttack = iAttack + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_4] * 2;
+							print("iKnowledge2:")
+							print(iKnowledge)
+							print("iAttack2:")
+							print(iAttack)
 						end;
 
 					local objHeroBonus = {
@@ -7060,7 +7083,7 @@ doFile("/scripts/H55-Settings.lua");
 							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_5] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_5);
 							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_6] = 0;
 						elseif iTownRace == TOWN_STRONGHOLD then
-							objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_1) + GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_3) + 1;
+							objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_1) + GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_3);
 							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_0] = 0;
 							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] = 0;
 							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_2] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_2);
@@ -15393,11 +15416,13 @@ doFile("/scripts/H55-Settings.lua");
 			TTH_GLOBAL.initAdvBuilding(); -- 初始化地图建筑
 
 			for iPlayer = PLAYER_1, PLAYER_8 do
-				TTH_GLOBAL.initAi(iPlayer); -- 配置文件: AI玩家初始作弊
+				if SwitchSingleton == 1 then
+					TTH_GLOBAL.initAi(iPlayer); -- 配置文件: AI玩家初始作弊
 				-- TTH_GLOBAL.chooseStartGold(iPlayer); -- 玩家初始选择金币奖励时赠送2500金币
-				TTH_GLOBAL.chooseStartSkill(iPlayer); -- 玩家初始选择技能奖励时随机提升一项已习得技能的等级
-				TTH_GLOBAL.chooseStartCreature(iPlayer); -- 配置文件: 人类玩家初始选择生物奖励时定制生物
-				TTH_GLOBAL.chooseStartArtifact(iPlayer); -- 配置文件: 人类玩家初始选择宝物奖励时定制宝物
+					TTH_GLOBAL.chooseStartSkill(iPlayer); -- 玩家初始选择技能奖励时随机提升一项已习得技能的等级
+					TTH_GLOBAL.chooseStartCreature(iPlayer); -- 配置文件: 人类玩家初始选择生物奖励时定制生物
+					TTH_GLOBAL.chooseStartArtifact(iPlayer); -- 配置文件: 人类玩家初始选择宝物奖励时定制宝物
+				end;
 				TTH_GLOBAL.setStartResource(iPlayer); -- 配置文件: 人类玩家是否0资源开局
 				TTH_GLOBAL.triggerInitPlayerAddHero(iPlayer); -- 触发器: 玩家招募英雄
 				TTH_GLOBAL.triggerInitPlayerRemoveHero(iPlayer); --触发器: 玩家失去英雄
@@ -15413,11 +15438,15 @@ doFile("/scripts/H55-Settings.lua");
 					TTH_GLOBAL.bindHeroCustomAbility3Hero(strHero); -- 触发器: 定点回城
 					TTH_GLOBAL.triggerInitHeroLevelUp(strHero); -- 触发器: 英雄升级
 					TTH_GLOBAL.setHeroCombatScript(strHero); -- 绑定英雄战场脚本
-					TTH_GLOBAL.initHero4Specialty(strHero); -- 初始生物特奖励生物
+					if SwitchSingleton == 1 then
+						TTH_GLOBAL.initHero4Specialty(strHero); -- 初始生物特奖励生物
+					end;
 					TTH_MANAGE.initMayor(strHero); -- 初始内政官信息
 					TTH_GLOBAL.setGameVar4HeroLevel(strHero); -- 将英雄等级记录到游戏全局参数
-					TTH_GLOBAL.giveHero4Attribute(strHero); -- 属性特属性奖励
-					TTH_GLOBAL.dealSkillBonus8Hero(strHero); -- 英雄初始技能效果实装
+					if SwitchSingleton == 1 then
+						TTH_GLOBAL.giveHero4Attribute(strHero); -- 属性特属性奖励
+						TTH_GLOBAL.dealSkillBonus8Hero(strHero); -- 英雄初始技能效果实装
+					end;
 
 					for iKey, objItem in TTH_TABLE.FuncTalent[TTH_ENUM.FuncInit] do
 						if iKey == strHero then
@@ -15430,7 +15459,9 @@ doFile("/scripts/H55-Settings.lua");
 			TTH_MAIN.recordCalendar();
 			SetTrigger(NEW_DAY_TRIGGER, "TTH_MAIN.recordCalendar"); -- 新的一天 → 记录日期
 			startThread(TTH_MAIN.heartBeat); -- 后台轮询
-			startThread(TTH_MAIN.controller); -- 主程入口
+			if SwitchSingleton == 1 then
+				startThread(TTH_MAIN.controller); -- 主程入口
+			end;
 
 			SetTrigger(CUSTOM_ABILITY_TRIGGER, "TTH_MANAGE.customAbility"); -- 英雄自定义技能 → 王国管理
 			SetTrigger(COMBAT_RESULTS_TRIGGER, "TTH_TRIGGER.combatResults"); -- 战斗结束触发器
@@ -15525,11 +15556,14 @@ doFile("/scripts/H55-Settings.lua");
 							local arrHero = GetPlayerHeroes(iPlayer);
 							if arrHero ~= nil then
 								for iIndex, strHero in arrHero do
+									TTH_GLOBAL.interfaceRefreshGameVar(strHero);
 									TTH_GLOBAL.setGameVar4HeroArtifact(iPlayer, strHero); -- 保存全局参数，英雄携带宝物
 									TTH_GLOBAL.setGameVar4HeroArtifactSet(iPlayer, strHero); -- 保存全局参数，英雄携带宝物套装
-									TTH_GLOBAL.upgradeArtifactSetBonus8Hero(iPlayer, strHero); -- 宝物套装属性更新
-									TTH_GLOBAL.upgradeArtifactGiveMagic8Hero(iPlayer, strHero); -- 宝物赠送魔法
-									TTH_GLOBAL.upgradeArtifactSetGiveMagic8Hero(iPlayer, strHero); -- 宝物套装赠送魔法
+									if SwitchSingleton == 1 then
+										TTH_GLOBAL.upgradeArtifactSetBonus8Hero(iPlayer, strHero); -- 宝物套装属性更新
+										TTH_GLOBAL.upgradeArtifactGiveMagic8Hero(iPlayer, strHero); -- 宝物赠送魔法
+										TTH_GLOBAL.upgradeArtifactSetGiveMagic8Hero(iPlayer, strHero); -- 宝物套装赠送魔法
+									end;
 									TTH_SUPPORT.dealIldar(iPlayer, strHero); -- 寒卿娜瑞莎
 								end;
 
@@ -15844,10 +15878,13 @@ doFile("/scripts/H55-Settings.lua");
 
 	doFile("/scripts/H55-AdvMap.lua");
 
-	startThread(TTH_GLOBAL.questionTeam);
+	if SwitchSingleton == 1 then
+		startThread(TTH_GLOBAL.questionTeam);
+	end;
 	startThread(TTH_MAIN.init);
 
 -- 模块加载
+	doFile("/scripts/hotseat/TTH_MOD_GameVar4HotSeat.lua");
 	doFile("/scripts/mod/TTH_MOD_CombatResults4LoseCreature.lua");
 	doFile("/scripts/mod/TTH_MOD_CombatResults4ReviveCreature.lua");
 	doFile("/scripts/support/hanqing-core.lua");

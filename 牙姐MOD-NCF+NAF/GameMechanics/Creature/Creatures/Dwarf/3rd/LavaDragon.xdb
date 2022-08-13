@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Creature>
-	<AttackSkill>32</AttackSkill>
+	<AttackSkill>30</AttackSkill>
 	<DefenceSkill>35</DefenceSkill>
 	<Shots>0</Shots>
 	<MinDamage>44</MinDamage>
@@ -32,7 +32,7 @@
 		<Crystal>2</Crystal>
 		<Sulfur>0</Sulfur>
 		<Gem>0</Gem>
-		<Gold>3500</Gold>
+		<Gold>3400</Gold>
 	</Cost>
 	<PresetPrice>0</PresetPrice>
 	<SubjectOfRandomGeneration>true</SubjectOfRandomGeneration>

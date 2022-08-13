@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TownBuildingSharedStats ObjectRecordID="1000141">
+	<NameFileRef href="/Text/Game/TownBuildings/Academy/Dwelling_5/Upgraded_Name.txt"/>
+	<DescriptionFileRef href="/Text/Game/TownBuildings/Academy/Dwelling_5/Upgraded_Description.txt"/>
+	<Type>TB_DWELLING_5</Type>
+	<Upgrade>BLD_UPG_2</Upgrade>
+	<Cost>
+		<Wood>5</Wood>
+		<Ore>0</Ore>
+		<Mercury>5</Mercury>
+		<Crystal>0</Crystal>
+		<Sulfur>0</Sulfur>
+		<Gem>0</Gem>
+		<Gold>6000</Gold>
+	</Cost>
+	<ModObjectName>PinnacleofWishes</ModObjectName>
+	<dependencies>
+		<Item href="PinnacleOfWishes.xdb#xpointer(/TownBuildingSharedStats)"/>
+	</dependencies>
+	<Creature>CREATURE_MASTER_GENIE</Creature>
+	<Creature2>CREATURE_DJINN_VIZIER</Creature2>
+	<DevLevelNeeded>9</DevLevelNeeded>
+	<UIObjectName>Dwelling_5</UIObjectName>
+	<UIStackPosition>0</UIStackPosition>
+	<Icon href="/UI/TownHall/academy/128/d4u.xdb#xpointer(/Texture)"/>
+</TownBuildingSharedStats>

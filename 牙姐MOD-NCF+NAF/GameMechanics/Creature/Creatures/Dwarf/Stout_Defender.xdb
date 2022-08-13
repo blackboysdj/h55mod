@@ -32,7 +32,7 @@
 		<Crystal>0</Crystal>
 		<Sulfur>0</Sulfur>
 		<Gem>0</Gem>
-		<Gold>55</Gold>
+		<Gold>40</Gold>
 	</Cost>
 	<SubjectOfRandomGeneration>true</SubjectOfRandomGeneration>
 	<MonsterShared href="/MapObjects/Dwarf/Stout_Defender.(AdvMapMonsterShared).xdb#xpointer(/AdvMapMonsterShared)"/>

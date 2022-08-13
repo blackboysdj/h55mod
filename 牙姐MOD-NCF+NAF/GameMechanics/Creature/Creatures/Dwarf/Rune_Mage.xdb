@@ -14,10 +14,6 @@
 			<Spell>SPELL_DEFLECT_ARROWS</Spell>
 			<Mastery>MASTERY_BASIC</Mastery>
 		</Item>
-		<Item>
-			<Spell>SPELL_BLESS</Spell>
-			<Mastery>MASTERY_BASIC</Mastery>
-		</Item>		
 	</KnownSpells>
 	<SpellPoints>15</SpellPoints>
 	<SpellPoints1>0</SpellPoints1>
@@ -41,7 +37,7 @@
 		<Crystal>0</Crystal>
 		<Sulfur>0</Sulfur>
 		<Gem>0</Gem>
-		<Gold>480</Gold>
+		<Gold>470</Gold>
 	</Cost>
 	<SubjectOfRandomGeneration>true</SubjectOfRandomGeneration>
 	<MonsterShared href="/MapObjects/Dwarf/Rune_Mage.(AdvMapMonsterShared).xdb#xpointer(/AdvMapMonsterShared)"/>

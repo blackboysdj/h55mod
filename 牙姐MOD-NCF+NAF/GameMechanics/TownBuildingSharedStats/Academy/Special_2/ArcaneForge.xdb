@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TownBuildingSharedStats ObjectRecordID="1000145">
+	<NameFileRef href="/Text/Game/TownBuildings/Academy/Special_2/Name.txt"/>
+	<DescriptionFileRef href="/Text/Game/TownBuildings/Academy/Special_2/Desc.txt"/>
+	<Type>TB_SPECIAL_2</Type>
+	<Upgrade>BLD_UPG_1</Upgrade>
+	<Cost>
+		<Wood>1</Wood>
+		<Ore>1</Ore>
+		<Mercury>1</Mercury>
+		<Crystal>1</Crystal>
+		<Sulfur>1</Sulfur>
+		<Gem>1</Gem>
+		<Gold>2000</Gold>
+	</Cost>
+	<ModObjectName>ArcaneForge</ModObjectName>
+	<dependencies/>
+	<Creature>CREATURE_UNKNOWN</Creature>
+	<DevLevelNeeded>3</DevLevelNeeded>
+	<UIObjectName>Special_2</UIObjectName>
+	<UIStackPosition>0</UIStackPosition>
+	<Icon href="/UI/TownHall/academy/128/s2.xdb#xpointer(/Texture)"/>
+</TownBuildingSharedStats>

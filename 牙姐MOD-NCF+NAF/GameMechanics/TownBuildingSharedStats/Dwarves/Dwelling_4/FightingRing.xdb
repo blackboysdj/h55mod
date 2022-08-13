@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TownBuildingSharedStats ObjectRecordID="1000133">
+	<NameFileRef href="/Text/Game/TownBuildings/Dwarves/Dwelling_4/Name.txt"/>
+	<DescriptionFileRef href="/Text/Game/TownBuildings/Dwarves/Dwelling_4/Description.txt"/>
+	<Type>TB_DWELLING_4</Type>
+	<Upgrade>BLD_UPG_1</Upgrade>
+	<Cost>
+		<Wood>5</Wood>
+		<Ore>5</Ore>
+		<Mercury>10</Mercury>
+		<Crystal>0</Crystal>
+		<Sulfur>0</Sulfur>
+		<Gem>5</Gem>
+		<Gold>2000</Gold>
+	</Cost>
+	<ModObjectName>Dwelling_4</ModObjectName>
+	<dependencies/>
+	<Creature>CREATURE_BROWLER</Creature>
+	<DevLevelNeeded>6</DevLevelNeeded>
+	<UIObjectName>Dwelling_4</UIObjectName>
+	<UIStackPosition>0</UIStackPosition>
+	<Icon href="/UI/H5A1/Icons/Buildings/Towns/Fortress/Building_Mode_Icon/128x128/Fighting_Ring.(Texture).xdb#xpointer(/Texture)"/>
+</TownBuildingSharedStats>

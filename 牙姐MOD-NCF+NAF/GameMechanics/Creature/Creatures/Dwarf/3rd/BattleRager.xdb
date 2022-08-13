@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Creature>
 	<AttackSkill>7</AttackSkill>
-	<DefenceSkill>10</DefenceSkill>
+	<DefenceSkill>7</DefenceSkill>
 	<Shots>0</Shots>
 	<MinDamage>3</MinDamage>
 	<MaxDamage>7</MaxDamage>
-	<Speed>6</Speed>
+	<Speed>5</Speed>
 	<Initiative>11</Initiative>
 	<Flying>false</Flying>
-	<Health>35</Health>
+	<Health>30</Health>
 	<KnownSpells/>
 	<SpellPoints>0</SpellPoints>
 	<SpellPoints1>0</SpellPoints1>
 	<SpellPoints2>0</SpellPoints2>
-	<Exp>36</Exp>
-	<Power>420</Power>
+	<Exp>41</Exp>
+	<Power>434</Power>
 	<TimeToCommand>10</TimeToCommand>
 	<CreatureTier>4</CreatureTier>
 	<Upgrade>false</Upgrade>
@@ -45,9 +45,9 @@
 	<BaseCreature>CREATURE_BROWLER</BaseCreature>
 	<Upgrades/>
 	<Abilities>
-		<Item>ABILITY_IMMUNITY_TO_MIND_CONTROL</Item>
-		<Item>ABILITY_BATTLE_RAGE</Item>
 		<Item>ABILITY_ANTI_GIANT</Item>
 		<Item>ABILITY_BASH</Item>
+		<Item>ABILITY_IMMUNITY_TO_MIND_CONTROL</Item>
+		<Item>ABILITY_BATTLE_RAGE</Item>
 	</Abilities>
 </Creature>

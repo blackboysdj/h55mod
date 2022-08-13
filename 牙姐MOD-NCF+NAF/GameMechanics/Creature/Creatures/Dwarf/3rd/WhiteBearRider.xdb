@@ -9,17 +9,12 @@
 	<Initiative>11</Initiative>
 	<Flying>false</Flying>
 	<Health>30</Health>
-	<KnownSpells>
-		<Item>
-			<Spell>SPELL_REGENERATION</Spell>
-			<Mastery>MASTERY_EXPERT</Mastery>
-		</Item>
-	</KnownSpells>
-	<SpellPoints>1</SpellPoints>
+	<KnownSpells/>
+	<SpellPoints>0</SpellPoints>
 	<SpellPoints1>0</SpellPoints1>
 	<SpellPoints2>0</SpellPoints2>
-	<Exp>41</Exp>
-	<Power>436</Power>
+	<Exp>36</Exp>
+	<Power>422</Power>
 	<TimeToCommand>10</TimeToCommand>
 	<CreatureTier>3</CreatureTier>
 	<Upgrade>false</Upgrade>
@@ -37,7 +32,7 @@
 		<Crystal>0</Crystal>
 		<Sulfur>0</Sulfur>
 		<Gem>0</Gem>
-		<Gold>210</Gold>
+		<Gold>185</Gold>
 	</Cost>
 	<PresetPrice>0</PresetPrice>
 	<SubjectOfRandomGeneration>true</SubjectOfRandomGeneration>
@@ -51,7 +46,6 @@
 	<Upgrades/>
 	<Abilities>
 		<Item>ABILITY_ENRAGED</Item>
-		<Item>ABILITY_ARMORED</Item>
 		<Item>ABILITY_BEAR_ROAR</Item>
 	</Abilities>
 </Creature>

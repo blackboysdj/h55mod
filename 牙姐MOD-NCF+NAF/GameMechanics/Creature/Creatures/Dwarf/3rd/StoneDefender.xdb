@@ -8,7 +8,7 @@
 	<Speed>4</Speed>
 	<Initiative>8</Initiative>
 	<Flying>false</Flying>
-	<Health>14</Health>
+	<Health>12</Health>
 	<KnownSpells/>
 	<SpellPoints>0</SpellPoints>
 	<SpellPoints1>0</SpellPoints1>
@@ -32,7 +32,7 @@
 		<Crystal>0</Crystal>
 		<Sulfur>0</Sulfur>
 		<Gem>0</Gem>
-		<Gold>55</Gold>
+		<Gold>40</Gold>
 	</Cost>
 	<PresetPrice>0</PresetPrice>
 	<SubjectOfRandomGeneration>true</SubjectOfRandomGeneration>

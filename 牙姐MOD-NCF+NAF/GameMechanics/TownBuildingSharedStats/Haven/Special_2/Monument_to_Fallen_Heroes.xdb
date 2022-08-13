@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TownBuildingSharedStats ObjectRecordID="33">
 	<NameFileRef href="/Text/Game/TownBuildings/Haven/Special_2/Name.txt"/>
-	<DescriptionFileRef href="/Text/Game/TownBuildings/Haven/Special_2/Description.txt"/>
+	<DescriptionFileRef href="/Text/Game/TownBuildings/Haven/Special_2/Desc.txt"/>
 	<Type>TB_SPECIAL_2</Type>
 	<Upgrade>BLD_UPG_1</Upgrade>
 	<Cost>

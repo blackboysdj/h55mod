@@ -3,8 +3,8 @@
 	<AttackSkill>6</AttackSkill>
 	<DefenceSkill>6</DefenceSkill>
 	<Shots>0</Shots>
-	<MinDamage>3</MinDamage>
-	<MaxDamage>7</MaxDamage>
+	<MinDamage>2</MinDamage>
+	<MaxDamage>6</MaxDamage>
 	<Speed>5</Speed>
 	<Initiative>12</Initiative>
 	<Flying>false</Flying>
@@ -13,8 +13,8 @@
 	<SpellPoints>0</SpellPoints>
 	<SpellPoints1>0</SpellPoints1>
 	<SpellPoints2>0</SpellPoints2>
-	<Exp>24</Exp>
-	<Power>304</Power>
+	<Exp>27</Exp>
+	<Power>318</Power>
 	<TimeToCommand>10</TimeToCommand>
 	<CreatureTier>4</CreatureTier>
 	<Upgrade>false</Upgrade>

@@ -1300,8 +1300,8 @@
 					<GatekeeperHeroSpecPerLevelPortionBonus>0.01</GatekeeperHeroSpecPerLevelPortionBonus>
 				</Gating>
 				<DemonicFire>
-					<BaseDamage>20</BaseDamage>
-					<DamagePerSpellPower>20</DamagePerSpellPower>
+					<BaseDamage>10</BaseDamage>
+					<DamagePerSpellPower>10</DamagePerSpellPower>
 					<ManaCost>5</ManaCost>
 				</DemonicFire>
 				<ConsumeCorpseHPForOneMana>120</ConsumeCorpseHPForOneMana>

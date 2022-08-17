@@ -1,43 +1,4 @@
 -- RaceHero
-  H55SMOD_HavenHeroes = {
-      "Nathaniel", "Orrin", "Mardigo", "Ving", "Sarge", "Isabell", "Christian", "RedHeavenHero02", "RedHeavenHero05", "Brem"
-      , "Nicolai", "GodricMP", "Alaric", "Axel", "SaintIsabell", "Maeve", "RedHeavenHero06", "Caldwell", "Tarkus"
-      , "OrtanCassius", "Sanguinius", "Avitus"
-      , "RedHeavenHero03", "Orlando", "Markal"
-  };
-  H55SMOD_SylvanHeroes = {
-      "Metlirn", "Ossir", "Nadaur", "Linaas", "Heam", "Gelu", "Arniel", "Kyrre"
-      , "Gillion", "Itil", "Melodia", "Jenova", "Mephala", "Gem"
-      , "Elleshar", "Ildar", "Vaniel", "Vinrael", "Diraya"
-  };
-  H55SMOD_AcademyHeroes = {
-      "Havez", "Minasli", "Isher", "Davius", "Dracon"
-      , "Rissa", "Razzak", "Sufi", "Cyrus", "Maahir", "Timerkhan", "Tan"
-      , "Emilia", "Nur", "Astral", "Zehir", "Faiz", "Josephine"
-  };
-  H55SMOD_InfernoHeroes = {
-      "Calh", "Calid", "Deleb", "Jazaz", "Marder", "Orlando2"
-      , "Efion", "Grok", "Malustar", "Nymus", "Oddrema", "Sovereign", "Agrael"
-      , "Ash", "Biara", "Calid2", "Sheltem", "Zydar", "Jeddite"
-  };
-  H55SMOD_NecropolisHeroes = {
-      "Archilus", "Berein", "Gles", "Nikolay", "Straker", "Tamika", "Xerxon", "Karissa"
-      , "Aislinn", "Effig", "Giovanni", "OrnellaNecro", "Aberrar", "Nimbus"
-      , "Arantir", "Nemor", "Muscip", "Pelt", "Sandro", "Thant", "Adelaide", "Vidomina"
-  };
-  H55SMOD_FortressHeroes = {
-      "Bersy", "Maximus", "Skeggy", "Tazar", "Vilma"
-      , "Bart", "Brand", "Egil", "KingTolghar", "Ottar", "Hangvul2", "Una", "Vegeyr"
-      , "Hangvul", "Ingvar", "Rolf", "Ufretin", "Wulfstan"
-  };
-  H55SMOD_DungeonHeroes = {
-      "Urunir", "Menel", "Ferigl", "Sylsai", "Welygg"
-      , "Ohtarig", "Eruina", "Dalom", "Kelodin", "Shadwyn", "Thralsai"
-      , "Agbeth", "Almegir", "Inagost", "Kastore", "Raelag", "Ranleth", "Sephinroth"
-  };
-  H55SMOD_StrongholdHeroes = {
-      "Hero1", "Hero2", "Hero3", "Hero4", "Hero6", "Hero8", "Hero9", "Gottai", "Crag", "KujinMP", "Hero7", "Azar", "Kraal", "Kunyak", "Matewa", "Quroq", "Shiva", "Mokka", "Erika", "Zouleika"
-  };
 
 -- AllHero
   H55SMOD_Heroes = {
@@ -9644,6 +9605,9 @@
         TTH_PATH.Talent["Gillion"]["Pre"] = TTH_PATH.Talent["Pre"].."030-Gillion/";
         TTH_PATH.Talent["Gillion"]["Text"] = TTH_PATH.Talent["Gillion"]["Pre"].."Text.txt";
         TTH_PATH.Talent["Gillion"]["NotEnoughTimes"] = TTH_PATH.Talent["Gillion"]["Pre"].."NotEnoughTimes.txt";
+        TTH_PATH.Talent["Gillion"]["OptionTemplate"] = TTH_PATH.Talent["Gillion"]["Pre"].."OptionTemplate.txt";
+        TTH_PATH.Talent["Gillion"]["NoSuitableRedwoord"] = TTH_PATH.Talent["Gillion"]["Pre"].."NoSuitableRedwoord.txt";
+        TTH_PATH.Talent["Gillion"]["RadioTips"] = TTH_PATH.Talent["Gillion"]["Pre"].."RadioTips.txt";
         TTH_PATH.Talent["Gillion"]["HasRedwoord"] = TTH_PATH.Talent["Gillion"]["Pre"].."HasRedwoord.txt";
         TTH_PATH.Talent["Gillion"]["ConfirmVisitRedwoord"] = TTH_PATH.Talent["Gillion"]["Pre"].."ConfirmVisitRedwoord.txt";
         TTH_PATH.Talent["Gillion"]["SuccessVisitRedwoord"] = TTH_PATH.Talent["Gillion"]["Pre"].."SuccessVisitRedwoord.txt";
@@ -9732,17 +9696,24 @@
         TTH_PATH.Talent["Sylsai"] = {};
         TTH_PATH.Talent["Sylsai"]["Pre"] = TTH_PATH.Talent["Pre"].."062-Sylsai/";
         TTH_PATH.Talent["Sylsai"]["Text"] = TTH_PATH.Talent["Sylsai"]["Pre"].."Text.txt";
-        TTH_PATH.Talent["Sylsai"]["ConfirmActiveInit"] = TTH_PATH.Talent["Sylsai"]["Pre"].."ConfirmActiveInit.txt";
-        TTH_PATH.Talent["Sylsai"]["MatchSpecialCreature"] = TTH_PATH.Talent["Sylsai"]["Pre"].."MatchSpecialCreature.txt";
-        TTH_PATH.Talent["Sylsai"]["ConfirmActiveChange"] = TTH_PATH.Talent["Sylsai"]["Pre"].."ConfirmActiveChange.txt";
-        TTH_PATH.Talent["Sylsai"]["SuccessActive"] = TTH_PATH.Talent["Sylsai"]["Pre"].."SuccessActive.txt";
-        TTH_PATH.Talent["Sylsai"]["NoAppointCreature"] = TTH_PATH.Talent["Sylsai"]["Pre"].."NoAppointCreature.txt";
-        TTH_PATH.Talent["Sylsai"]["NotEnoughGold"] = TTH_PATH.Talent["Sylsai"]["Pre"].."NotEnoughGold.txt";
-        TTH_PATH.Talent["Sylsai"]["NotEnoughOperTimes"] = TTH_PATH.Talent["Sylsai"]["Pre"].."NotEnoughOperTimes.txt";
-        TTH_PATH.Talent["Sylsai"]["ConfirmVisitDwelling"] = TTH_PATH.Talent["Sylsai"]["Pre"].."ConfirmVisitDwelling.txt";
-        TTH_PATH.Talent["Sylsai"]["SuccessVisitDwelling"] = TTH_PATH.Talent["Sylsai"]["Pre"].."SuccessVisitDwelling.txt";
-        TTH_PATH.Talent["Sylsai"]["Title"] = TTH_PATH.Talent["Sylsai"]["Pre"].."Title.txt";
-        TTH_PATH.Talent["Sylsai"]["Desc"] = TTH_PATH.Talent["Sylsai"]["Pre"].."Desc.txt";
+        TTH_PATH.Talent["Sylsai"]["AppointCreature"] = TTH_PATH.Talent["Sylsai"]["Pre"].."AppointCreature.txt";
+        TTH_PATH.Talent["Sylsai"]["AppointCreatureNotEnoughOperTimes"] = TTH_PATH.Talent["Sylsai"]["Pre"].."AppointCreatureNotEnoughOperTimes.txt";
+        TTH_PATH.Talent["Sylsai"]["AppointCreatureMatchSpecialCreature"] = TTH_PATH.Talent["Sylsai"]["Pre"].."AppointCreatureMatchSpecialCreature.txt";
+        TTH_PATH.Talent["Sylsai"]["AppointCreatureConfirmInit"] = TTH_PATH.Talent["Sylsai"]["Pre"].."AppointCreatureConfirmInit.txt";
+        TTH_PATH.Talent["Sylsai"]["AppointCreatureConfirmChange"] = TTH_PATH.Talent["Sylsai"]["Pre"].."AppointCreatureConfirmChange.txt";
+        TTH_PATH.Talent["Sylsai"]["AppointCreatureSuccess"] = TTH_PATH.Talent["Sylsai"]["Pre"].."AppointCreatureSuccess.txt";
+        TTH_PATH.Talent["Sylsai"]["ConvertDiplomacy"] = TTH_PATH.Talent["Sylsai"]["Pre"].."ConvertDiplomacy.txt";
+        TTH_PATH.Talent["Sylsai"]["ConvertDiplomacyNoAppointCreature"] = TTH_PATH.Talent["Sylsai"]["Pre"].."ConvertDiplomacyNoAppointCreature.txt";
+        TTH_PATH.Talent["Sylsai"]["ConvertDiplomacyNotEnoughOperTimes"] = TTH_PATH.Talent["Sylsai"]["Pre"].."ConvertDiplomacyNotEnoughOperTimes.txt";
+        TTH_PATH.Talent["Sylsai"]["ConvertDiplomacyNotEnoughGold"] = TTH_PATH.Talent["Sylsai"]["Pre"].."ConvertDiplomacyNotEnoughGold.txt";
+        TTH_PATH.Talent["Sylsai"]["ConvertDiplomacyOptionTemplate"] = TTH_PATH.Talent["Sylsai"]["Pre"].."ConvertDiplomacyOptionTemplate.txt";
+        TTH_PATH.Talent["Sylsai"]["ConvertDiplomacyNoSuitableDiplomacy"] = TTH_PATH.Talent["Sylsai"]["Pre"].."ConvertDiplomacyNoSuitableDiplomacy.txt";
+        TTH_PATH.Talent["Sylsai"]["ConvertDiplomacyRadioTips"] = TTH_PATH.Talent["Sylsai"]["Pre"].."ConvertDiplomacyRadioTips.txt";
+        TTH_PATH.Talent["Sylsai"]["ConvertDiplomacyHasDiplomacy"] = TTH_PATH.Talent["Sylsai"]["Pre"].."ConvertDiplomacyHasDiplomacy.txt";
+        TTH_PATH.Talent["Sylsai"]["ConvertDiplomacyConfirm"] = TTH_PATH.Talent["Sylsai"]["Pre"].."ConvertDiplomacyConfirm.txt";
+        TTH_PATH.Talent["Sylsai"]["ConvertDiplomacyTitle"] = TTH_PATH.Talent["Sylsai"]["Pre"].."ConvertDiplomacyTitle.txt";
+        TTH_PATH.Talent["Sylsai"]["ConvertDiplomacyDesc"] = TTH_PATH.Talent["Sylsai"]["Pre"].."ConvertDiplomacyDesc.txt";
+        TTH_PATH.Talent["Sylsai"]["ConvertDiplomacySuccess"] = TTH_PATH.Talent["Sylsai"]["Pre"].."ConvertDiplomacySuccess.txt";
       -- Nikolay 080 尼科莱
         TTH_PATH.Talent["Nikolay"] = {};
         TTH_PATH.Talent["Nikolay"]["Pre"] = TTH_PATH.Talent["Pre"].."080/";
@@ -9757,6 +9728,19 @@
         TTH_PATH.Talent["Pelt"]["GainPower"] = TTH_PATH.Talent["Pelt"]["Pre"].."GainPower.txt";
         TTH_PATH.Talent["Pelt"]["NoCreature4Cast"] = TTH_PATH.Talent["Pelt"]["Pre"].."NoCreature4Cast.txt";
         TTH_PATH.Talent["Pelt"]["Success"] = TTH_PATH.Talent["Pelt"]["Pre"].."Success.txt";
+      -- Nymus 108 耐莫斯
+        TTH_PATH.Talent["Nymus"] = {};
+        TTH_PATH.Talent["Nymus"]["Pre"] = TTH_PATH.Talent["Pre"].."108-Nymus/";
+        TTH_PATH.Talent["Nymus"]["Text"] = TTH_PATH.Talent["Nymus"]["Pre"].."Text.txt";
+        TTH_PATH.Talent["Nymus"]["NotEnoughTimes"] = TTH_PATH.Talent["Nymus"]["Pre"].."NotEnoughTimes.txt";
+        TTH_PATH.Talent["Nymus"]["OptionTemplate"] = TTH_PATH.Talent["Nymus"]["Pre"].."OptionTemplate.txt";
+        TTH_PATH.Talent["Nymus"]["NoSuitablePortal"] = TTH_PATH.Talent["Nymus"]["Pre"].."NoSuitablePortal.txt";
+        TTH_PATH.Talent["Nymus"]["RadioTips"] = TTH_PATH.Talent["Nymus"]["Pre"].."RadioTips.txt";
+        TTH_PATH.Talent["Nymus"]["HasPortal"] = TTH_PATH.Talent["Nymus"]["Pre"].."HasPortal.txt";
+        TTH_PATH.Talent["Nymus"]["ConfirmVisitPortal"] = TTH_PATH.Talent["Nymus"]["Pre"].."ConfirmVisitPortal.txt";
+        TTH_PATH.Talent["Nymus"]["SuccessVisitPortal"] = TTH_PATH.Talent["Nymus"]["Pre"].."SuccessVisitPortal.txt";
+        TTH_PATH.Talent["Nymus"]["Title"] = TTH_PATH.Talent["Nymus"]["Pre"].."Title.txt";
+        TTH_PATH.Talent["Nymus"]["Desc"] = TTH_PATH.Talent["Nymus"]["Pre"].."Desc.txt";
       -- Sheltem 116 谢尔坦
         TTH_PATH.Talent["Sheltem"] = {};
         TTH_PATH.Talent["Sheltem"]["Pre"] = TTH_PATH.Talent["Pre"].."116/";
@@ -9798,12 +9782,15 @@
         TTH_PATH.Talent["Rolf"]["TemplateCreature"] = TTH_PATH.Talent["Rolf"]["Pre"].."TemplateCreature.txt";
       -- Wulfstan 134 乌尔夫斯坦
         TTH_PATH.Talent["Wulfstan"] = {};
-        TTH_PATH.Talent["Wulfstan"]["Pre"] = TTH_PATH.Talent["Pre"].."134/";
+        TTH_PATH.Talent["Wulfstan"]["Pre"] = TTH_PATH.Talent["Pre"].."134-Wulfstan/";
         TTH_PATH.Talent["Wulfstan"]["Text"] = TTH_PATH.Talent["Wulfstan"]["Pre"].."Text.txt";
         TTH_PATH.Talent["Wulfstan"]["NotEnoughTimes"] = TTH_PATH.Talent["Wulfstan"]["Pre"].."NotEnoughTimes.txt";
+        TTH_PATH.Talent["Wulfstan"]["OptionTemplate"] = TTH_PATH.Talent["Wulfstan"]["Pre"].."OptionTemplate.txt";
+        TTH_PATH.Talent["Wulfstan"]["NoSuitableOutpost"] = TTH_PATH.Talent["Wulfstan"]["Pre"].."NoSuitableOutpost.txt";
+        TTH_PATH.Talent["Wulfstan"]["RadioTips"] = TTH_PATH.Talent["Wulfstan"]["Pre"].."RadioTips.txt";
         TTH_PATH.Talent["Wulfstan"]["HasOutpost"] = TTH_PATH.Talent["Wulfstan"]["Pre"].."HasOutpost.txt";
-        TTH_PATH.Talent["Wulfstan"]["ConfirmVisitDwelling"] = TTH_PATH.Talent["Wulfstan"]["Pre"].."ConfirmVisitDwelling.txt";
-        TTH_PATH.Talent["Wulfstan"]["SuccessVisitDwelling"] = TTH_PATH.Talent["Wulfstan"]["Pre"].."SuccessVisitDwelling.txt";
+        TTH_PATH.Talent["Wulfstan"]["ConfirmVisitOutpost"] = TTH_PATH.Talent["Wulfstan"]["Pre"].."ConfirmVisitOutpost.txt";
+        TTH_PATH.Talent["Wulfstan"]["SuccessVisitOutpost"] = TTH_PATH.Talent["Wulfstan"]["Pre"].."SuccessVisitOutpost.txt";
         TTH_PATH.Talent["Wulfstan"]["Title"] = TTH_PATH.Talent["Wulfstan"]["Pre"].."Title.txt";
         TTH_PATH.Talent["Wulfstan"]["TitleCapture"] = TTH_PATH.Talent["Wulfstan"]["Pre"].."TitleCapture.txt";
         TTH_PATH.Talent["Wulfstan"]["Desc"] = TTH_PATH.Talent["Wulfstan"]["Pre"].."Desc.txt";
@@ -9811,10 +9798,15 @@
       -- Azar 138 艾扎-埃克
         TTH_PATH.Talent["Azar"] = {};
         TTH_PATH.Talent["Azar"]["Pre"] = TTH_PATH.Talent["Pre"].."138-Azar/";
-        TTH_PATH.Talent["Azar"]["NotEnoughOperTimes"] = TTH_PATH.Talent["Azar"]["Pre"].."NotEnoughOperTimes.txt";
+        TTH_PATH.Talent["Azar"]["Text"] = TTH_PATH.Talent["Azar"]["Pre"].."Text.txt";
+        TTH_PATH.Talent["Azar"]["NotEnoughTimes"] = TTH_PATH.Talent["Azar"]["Pre"].."NotEnoughTimes.txt";
         TTH_PATH.Talent["Azar"]["NotEnoughGold"] = TTH_PATH.Talent["Azar"]["Pre"].."NotEnoughGold.txt";
-        TTH_PATH.Talent["Azar"]["ConfirmVisitDwelling"] = TTH_PATH.Talent["Azar"]["Pre"].."ConfirmVisitDwelling.txt";
-        TTH_PATH.Talent["Azar"]["SuccessVisitDwelling"] = TTH_PATH.Talent["Azar"]["Pre"].."SuccessVisitDwelling.txt";
+        TTH_PATH.Talent["Azar"]["OptionTemplate"] = TTH_PATH.Talent["Azar"]["Pre"].."OptionTemplate.txt";
+        TTH_PATH.Talent["Azar"]["NoSuitableWolfLair"] = TTH_PATH.Talent["Azar"]["Pre"].."NoSuitableWolfLair.txt";
+        TTH_PATH.Talent["Azar"]["RadioTips"] = TTH_PATH.Talent["Azar"]["Pre"].."RadioTips.txt";
+        TTH_PATH.Talent["Azar"]["HasWolfLair"] = TTH_PATH.Talent["Azar"]["Pre"].."HasWolfLair.txt";
+        TTH_PATH.Talent["Azar"]["ConfirmVisitWolfLair"] = TTH_PATH.Talent["Azar"]["Pre"].."ConfirmVisitWolfLair.txt";
+        TTH_PATH.Talent["Azar"]["SuccessVisitWolfLair"] = TTH_PATH.Talent["Azar"]["Pre"].."SuccessVisitWolfLair.txt";
         TTH_PATH.Talent["Azar"]["Title"] = TTH_PATH.Talent["Azar"]["Pre"].."Title.txt";
         TTH_PATH.Talent["Azar"]["Desc"] = TTH_PATH.Talent["Azar"]["Pre"].."Desc.txt";
 
@@ -10017,6 +10009,12 @@
         TTH_PATH.Perk[HERO_SKILL_GRAIL_VISION]["Touch"] = TTH_PATH.Perk[HERO_SKILL_GRAIL_VISION]["Pre"].."Touch.txt";
         TTH_PATH.Perk[HERO_SKILL_GRAIL_VISION]["NotEnoughCombat"] = TTH_PATH.Perk[HERO_SKILL_GRAIL_VISION]["Pre"].."NotEnoughCombat.txt";
         TTH_PATH.Perk[HERO_SKILL_GRAIL_VISION]["Recovery"] = TTH_PATH.Perk[HERO_SKILL_GRAIL_VISION]["Pre"].."Recovery.txt";
+      -- HERO_SKILL_FIRE_AFFINITY 097 元素勇士
+        TTH_PATH.Perk[HERO_SKILL_FIRE_AFFINITY] = {};
+        TTH_PATH.Perk[HERO_SKILL_FIRE_AFFINITY]["Pre"] = TTH_PATH.Perk["Pre"] .."097-FireAffinity/";
+        TTH_PATH.Perk[HERO_SKILL_FIRE_AFFINITY]["Text"] = TTH_PATH.Perk[HERO_SKILL_FIRE_AFFINITY]["Pre"].."Text.txt";
+        TTH_PATH.Perk[HERO_SKILL_FIRE_AFFINITY]["RadioTips"] = TTH_PATH.Perk[HERO_SKILL_FIRE_AFFINITY]["Pre"].."RadioTips.txt";
+        TTH_PATH.Perk[HERO_SKILL_FIRE_AFFINITY]["Success"] = TTH_PATH.Perk[HERO_SKILL_FIRE_AFFINITY]["Pre"].."Success.txt";
       -- HERO_SKILL_DEATH_TREAD 099 死亡行军
         TTH_PATH.Perk[HERO_SKILL_DEATH_TREAD] = {};
         TTH_PATH.Perk[HERO_SKILL_DEATH_TREAD]["Pre"] = TTH_PATH.Perk["Pre"] .."099/";
@@ -10074,383 +10072,426 @@
     -- 技能池: 英雄天赋/主动宝物/主动技能
       TTH_TABLE.FuncTalent = {
         [TTH_ENUM.FuncInit] = {
-          ["Nathaniel"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initNathaniel"
-          }
-          , ["OrtanCassius"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initCastCreature"
-          }
-          , ["Sanguinius"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initCastCreature"
-          }
-          , ["Avitus"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initCastCreature"
-          }
-          , ["Gelu"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initCastCreature"
-          }
-          , ["Itil"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initCastCreature"
-          }
-          , ["Dracon"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initCastCreature"
-          }
-          , ["Adelaide"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initCastCreature"
-          }
-          , ["Thant"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initCastCreature"
-          }
-          , ["Archilus"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initCastCreature"
-          }
-          , ["Ildar"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initIldar"
-          }
-          , ["Rissa"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initRissa"
-          }
-          , ["Melodia"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initMelodia"
-          }
-          , ["Menel"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initMenel"
-          }
-          , ["Sylsai"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initSylsai"
-          }
-          , ["Pelt"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initPelt"
-          }
-          , ["Maahir"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initMaahir"
-          }
-          , ["Sheltem"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initSheltem"
-          }
-          , ["Ufretin"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initUfretin"
-          }
-          , ["Wulfstan"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initWulfstan"
-          }
-          , ["Gillion"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initGillion"
-          }
-          , ["Brem"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initBrem"
-          }
-          , ["Astral"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initAstral"
-          }
-          , ["RedHeavenHero06"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initRedHeavenHero06"
-          }
-          , ["Melodia"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initMelodia"
-          }
-          , ["Rolf"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initRolf"
-          }
-          , ["Una"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initUna"
-          }
-          , ["Quroq"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initQuroq"
-          }
-          , ["Azar"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initAzar"
-          }
-          , ["Brem"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initBrem"
-          }
-          , ["Astral"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initAstral"
-          }
-          , ["Metlirn"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initMetlirn"
-          }
-          , ["Razzak"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.initRazzak"
-          }
+          -- 转化
+            ["OrtanCassius"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initCastCreature"
+            }
+            , ["Sanguinius"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initCastCreature"
+            }
+            , ["Avitus"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initCastCreature"
+            }
+            , ["Gelu"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initCastCreature"
+            }
+            , ["Itil"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initCastCreature"
+            }
+            , ["Dracon"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initCastCreature"
+            }
+            , ["Adelaide"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initCastCreature"
+            }
+            , ["Thant"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initCastCreature"
+            }
+            , ["Archilus"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initCastCreature"
+            }
+          -- 内扩
+            , ["Brem"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initBrem"
+            }
+            , ["Gillion"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initGillion"
+            }
+            , ["Astral"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initAstral"
+            }
+            , ["Menel"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initMenel"
+            }
+            , ["Nymus"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initNymus"
+            }
+            , ["Wulfstan"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initWulfstan"
+            }
+          -- 其他
+            , ["Nathaniel"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initNathaniel"
+            }
+            , ["Ildar"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initIldar"
+            }
+            , ["Rissa"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initRissa"
+            }
+            , ["Melodia"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initMelodia"
+            }
+            , ["Sylsai"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initSylsai"
+            }
+            , ["Pelt"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initPelt"
+            }
+            , ["Maahir"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initMaahir"
+            }
+            , ["Sheltem"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initSheltem"
+            }
+            , ["Ufretin"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initUfretin"
+            }
+            , ["RedHeavenHero06"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initRedHeavenHero06"
+            }
+            , ["Melodia"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initMelodia"
+            }
+            , ["Rolf"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initRolf"
+            }
+            , ["Una"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initUna"
+            }
+            , ["Quroq"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initQuroq"
+            }
+            , ["Azar"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initAzar"
+            }
+            , ["Metlirn"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initMetlirn"
+            }
+            , ["Razzak"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initRazzak"
+            }
+            , ["Azar"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initAzar"
+            }
         }
         , [TTH_ENUM.FuncActive] = {
-          ["Nathaniel"] = {
-            ["Text"] = TTH_PATH.Talent["Nathaniel"]["Text"]
-            , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeNathaniel"
-            , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeNathaniel"
-          }
-          , ["OrtanCassius"] = {
-            ["Text"] = TTH_PATH.Talent["Cast"]["Hero"]["OrtanCassius"]
-            , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeCastCreature"
-            , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeCastCreature"
-          }
-          , ["Sanguinius"] = {
-            ["Text"] = TTH_PATH.Talent["Cast"]["Hero"]["Sanguinius"]
-            , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeCastCreature"
-            , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeCastCreature"
-          }
-          , ["Avitus"] = {
-            ["Text"] = TTH_PATH.Talent["Cast"]["Hero"]["Avitus"]
-            , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeCastCreature"
-            , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeCastCreature"
-          }
-          , ["Gelu"] = {
-            ["Text"] = TTH_PATH.Talent["Cast"]["Hero"]["Gelu"]
-            , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeCastCreature"
-            , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeCastCreature"
-          }
-          , ["Itil"] = {
-            ["Text"] = TTH_PATH.Talent["Cast"]["Hero"]["Itil"]
-            , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeCastCreature"
-            , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeCastCreature"
-          }
-          , ["Dracon"] = {
-            ["Text"] = TTH_PATH.Talent["Cast"]["Hero"]["Dracon"]
-            , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeCastCreature"
-            , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeCastCreature"
-          }
-          , ["Adelaide"] = {
-            ["Text"] = TTH_PATH.Talent["Cast"]["Hero"]["Adelaide"]
-            , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeCastCreature"
-            , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeCastCreature"
-          }
-          , ["Thant"] = {
-            ["Text"] = TTH_PATH.Talent["Cast"]["Hero"]["Thant"]
-            , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeCastCreature"
-            , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeCastCreature"
-          }
-          , ["Archilus"] = {
-            ["Text"] = TTH_PATH.Talent["Cast"]["Hero"]["Archilus"]
-            , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeCastCreature"
-            , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeCastCreature"
-          }
-          , ["Ildar"] = {
-            ["Text"] = TTH_PATH.Talent["Ildar"]["Text"]
-            , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeIldar"
-            , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeIldar"
-          }
-          , ["Rissa"] = {
-            ["Text"] = TTH_PATH.Talent["Rissa"]["Text"]
-            , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeRissa"
-            , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeRissa"
-          }
-          , ["Melodia"] = {
-            ["Text"] = TTH_PATH.Talent["Melodia"]["Text"]
-            , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeMelodia"
-            , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeMelodia"
-          }
-          , ["Menel"] = {
-            ["Text"] = TTH_PATH.Talent["Menel"]["Active"]["Text"]
-            , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeMenel"
-            , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeMenel"
-          }
-          , ["Sylsai"] = {
-            ["Text"] = TTH_PATH.Talent["Sylsai"]["Text"]
-            , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeSylsai"
-            , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeSylsai"
-          }
-          , ["Nikolay"] = {
-            ["Text"] = TTH_PATH.Talent["Nikolay"]["Text"]
-            , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeNikolay"
-          }
-          , ["Pelt"] = {
-            ["Text"] = TTH_PATH.Talent["Pelt"]["Text"]
-            , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activePelt"
-            , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activePelt"
-          }
-          , ["Maahir"] = {
-            ["Text"] = TTH_PATH.Talent["Maahir"]["Text"]
-            , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeMaahir"
-          }
-          , ["Sheltem"] = {
-            ["Text"] = TTH_PATH.Talent["Sheltem"]["Text"]
-            , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeSheltem"
-            , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeSheltem"
-          }
-          , ["Rolf"] = {
-            ["Text"] = TTH_PATH.Talent["Rolf"]["Text"]
-            , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeRolf"
-            , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeRolf"
-          }
-          , ["Una"] = {
-            ["Text"] = TTH_PATH.Talent["Una"]["Text"]
-            , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeUna"
-            , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeUna"
-          }
-          , ["Metlirn"] = {
-            ["Text"] = TTH_PATH.Talent["Metlirn"]["Text"]
-            , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeMetlirn"
-            , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeMetlirn"
-          }
-          , ["Razzak"] = {
-            ["Text"] = TTH_PATH.Talent["Razzak"]["Text"]
-            , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeRazzak"
-            , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeRazzak"
-          }
-          , ["Brem"] = {
-            ["Text"] = TTH_PATH.Talent["Brem"]["Text"]
-            , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeBrem"
-            , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeBrem"
-          }
-          , ["Astral"] = {
-            ["Text"] = TTH_PATH.Talent["Astral"]["Text"]
-            , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeAstral"
-            , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeAstral"
-          }
+          -- 转化
+            ["OrtanCassius"] = {
+              ["Text"] = TTH_PATH.Talent["Cast"]["Hero"]["OrtanCassius"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeCastCreature"
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeCastCreature"
+            }
+            , ["Sanguinius"] = {
+              ["Text"] = TTH_PATH.Talent["Cast"]["Hero"]["Sanguinius"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeCastCreature"
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeCastCreature"
+            }
+            , ["Avitus"] = {
+              ["Text"] = TTH_PATH.Talent["Cast"]["Hero"]["Avitus"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeCastCreature"
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeCastCreature"
+            }
+            , ["Gelu"] = {
+              ["Text"] = TTH_PATH.Talent["Cast"]["Hero"]["Gelu"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeCastCreature"
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeCastCreature"
+            }
+            , ["Itil"] = {
+              ["Text"] = TTH_PATH.Talent["Cast"]["Hero"]["Itil"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeCastCreature"
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeCastCreature"
+            }
+            , ["Dracon"] = {
+              ["Text"] = TTH_PATH.Talent["Cast"]["Hero"]["Dracon"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeCastCreature"
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeCastCreature"
+            }
+            , ["Adelaide"] = {
+              ["Text"] = TTH_PATH.Talent["Cast"]["Hero"]["Adelaide"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeCastCreature"
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeCastCreature"
+            }
+            , ["Thant"] = {
+              ["Text"] = TTH_PATH.Talent["Cast"]["Hero"]["Thant"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeCastCreature"
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeCastCreature"
+            }
+            , ["Archilus"] = {
+              ["Text"] = TTH_PATH.Talent["Cast"]["Hero"]["Archilus"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeCastCreature"
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeCastCreature"
+            }
+          -- 内扩
+            , ["Brem"] = {
+              ["Text"] = TTH_PATH.Talent["Brem"]["Text"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeBrem"
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeBrem"
+            }
+            , ["Gillion"] = {
+              ["Text"] = TTH_PATH.Talent["Gillion"]["Text"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeGillion"
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeGillion"
+            }
+            , ["Astral"] = {
+              ["Text"] = TTH_PATH.Talent["Astral"]["Text"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeAstral"
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeAstral"
+            }
+            , ["Menel"] = {
+              ["Text"] = TTH_PATH.Talent["Menel"]["Text"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeMenel"
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeMenel"
+            }
+            , ["Nymus"] = {
+              ["Text"] = TTH_PATH.Talent["Nymus"]["Text"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeNymus"
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeNymus"
+            }
+            , ["Wulfstan"] = {
+              ["Text"] = TTH_PATH.Talent["Wulfstan"]["Text"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeWulfstan"
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeWulfstan"
+            }
+          -- 其他
+            , ["Nathaniel"] = {
+              ["Text"] = TTH_PATH.Talent["Nathaniel"]["Text"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeNathaniel"
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeNathaniel"
+            }
+            , ["Ildar"] = {
+              ["Text"] = TTH_PATH.Talent["Ildar"]["Text"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeIldar"
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeIldar"
+            }
+            , ["Rissa"] = {
+              ["Text"] = TTH_PATH.Talent["Rissa"]["Text"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeRissa"
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeRissa"
+            }
+            , ["Melodia"] = {
+              ["Text"] = TTH_PATH.Talent["Melodia"]["Text"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeMelodia"
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeMelodia"
+            }
+            , ["Menel"] = {
+              ["Text"] = TTH_PATH.Talent["Menel"]["Active"]["Text"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeMenel"
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeMenel"
+            }
+            , ["Sylsai"] = {
+              ["Text"] = TTH_PATH.Talent["Sylsai"]["Text"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeSylsai"
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeSylsai"
+            }
+            , ["Nikolay"] = {
+              ["Text"] = TTH_PATH.Talent["Nikolay"]["Text"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeNikolay"
+            }
+            , ["Pelt"] = {
+              ["Text"] = TTH_PATH.Talent["Pelt"]["Text"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activePelt"
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activePelt"
+            }
+            , ["Maahir"] = {
+              ["Text"] = TTH_PATH.Talent["Maahir"]["Text"]
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeMaahir"
+            }
+            , ["Sheltem"] = {
+              ["Text"] = TTH_PATH.Talent["Sheltem"]["Text"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeSheltem"
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeSheltem"
+            }
+            , ["Rolf"] = {
+              ["Text"] = TTH_PATH.Talent["Rolf"]["Text"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeRolf"
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeRolf"
+            }
+            , ["Una"] = {
+              ["Text"] = TTH_PATH.Talent["Una"]["Text"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeUna"
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeUna"
+            }
+            , ["Metlirn"] = {
+              ["Text"] = TTH_PATH.Talent["Metlirn"]["Text"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeMetlirn"
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeMetlirn"
+            }
+            , ["Razzak"] = {
+              ["Text"] = TTH_PATH.Talent["Razzak"]["Text"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeRazzak"
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeRazzak"
+            }
+            , ["Azar"] = {
+              ["Text"] = TTH_PATH.Talent["Azar"]["Text"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeAzar"
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeAzar"
+            }
         }
         , [TTH_ENUM.FuncLevelUp] = {
-          ["Vinrael"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.levelUpVinrael"
-          }
+          -- 其他
+            ["Vinrael"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.levelUpVinrael"
+            }
         }
         , [TTH_ENUM.FuncCombatResult] = {
-          ["OrtanCassius"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultCastCreature"
-          }
-          , ["Sanguinius"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultCastCreature"
-          }
-          , ["Avitus"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultCastCreature"
-          }
-          , ["Gelu"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultCastCreature"
-          }
-          , ["Itil"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultCastCreature"
-          }
-          , ["Dracon"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultCastCreature"
-          }
-          , ["Adelaide"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultCastCreature"
-          }
-          , ["Thant"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultCastCreature"
-          }
-          , ["Archilus"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultCastCreature"
-          }
-          , ["Pelt"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultPelt"
-          }
-          , ["Sovereign"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultSovereign"
-          }
-          , ["Kyrre"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultKyrre"
-          }
-          , ["Metlirn"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultMetlirn"
-          }
+          -- 转化
+            ["OrtanCassius"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultCastCreature"
+            }
+            , ["Sanguinius"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultCastCreature"
+            }
+            , ["Avitus"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultCastCreature"
+            }
+            , ["Gelu"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultCastCreature"
+            }
+            , ["Itil"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultCastCreature"
+            }
+            , ["Dracon"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultCastCreature"
+            }
+            , ["Adelaide"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultCastCreature"
+            }
+            , ["Thant"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultCastCreature"
+            }
+            , ["Archilus"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultCastCreature"
+            }
+          -- 其他
+            , ["Pelt"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultPelt"
+            }
+            , ["Sovereign"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultSovereign"
+            }
+            , ["Kyrre"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultKyrre"
+            }
+            , ["Metlirn"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultMetlirn"
+            }
         }
         , [TTH_ENUM.FuncDealWeekly] = {
-          ["Sylsai"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.dealWeeklySylsai"
-          }
+          -- 其他
+            ["Sylsai"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.dealWeeklySylsai"
+            }
         }
         , [TTH_ENUM.FuncResetWeekly] = {
-          ["Nathaniel"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyNathaniel"
-          }
-          , ["RedHeavenHero06"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyRedHeavenHero06"
-          }
-          , ["Rissa"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyRissa"
-          }
-          , ["Melodia"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyMelodia"
-          }
-          , ["Sylsai"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklySylsai"
-          }
-          , ["Ufretin"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyUfretin"
-          }
-          , ["Wulfstan"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyWulfstan"
-          }
-          , ["Gillion"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyGillion"
-          }
-          , ["Brem"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyBrem"
-          }
-          , ["Astral"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyAstral"
-          }
-          , ["Rolf"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyRolf"
-          }
-          , ["Una"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyUna"
-          }
-          , ["Azar"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyAzar"
-          }
-          , ["Metlirn"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyMetlirn"
-          }
+          -- 内扩
+            ["Brem"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyBrem"
+            }
+            , ["Gillion"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyGillion"
+            }
+            , ["Astral"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyAstral"
+            }
+            , ["Nymus"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyNymus"
+            }
+            , ["Wulfstan"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyWulfstan"
+            }
+          -- 其他
+            , ["Nathaniel"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyNathaniel"
+            }
+            , ["RedHeavenHero06"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyRedHeavenHero06"
+            }
+            , ["Rissa"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyRissa"
+            }
+            , ["Melodia"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyMelodia"
+            }
+            , ["Sylsai"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklySylsai"
+            }
+            , ["Ufretin"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyUfretin"
+            }
+            , ["Rolf"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyRolf"
+            }
+            , ["Una"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyUna"
+            }
+            , ["Azar"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyAzar"
+            }
+            , ["Metlirn"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyMetlirn"
+            }
         }
         , [TTH_ENUM.FuncDealDaily] = {
-          ["Menel"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.dealDailyMenel"
-          }
-          , ["Sylsai"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.dealDailySylsai"
-          }
-          , ["Biara"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.dealDailyBiara"
-          }
-          , ["Ufretin"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.dealDailyUfretin"
-          }
-          , ["Wulfstan"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.dealDailyWulfstan"
-          }
-          , ["Hero9"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.dealDailyHero9"
-          }
-          , ["Quroq"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.dealDailyQuroq"
-          }
+          -- 其他
+            ["Menel"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.dealDailyMenel"
+            }
+            , ["Sylsai"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.dealDailySylsai"
+            }
+            , ["Biara"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.dealDailyBiara"
+            }
+            , ["Ufretin"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.dealDailyUfretin"
+            }
+            , ["Wulfstan"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.dealDailyWulfstan"
+            }
+            , ["Hero9"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.dealDailyHero9"
+            }
+            , ["Quroq"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.dealDailyQuroq"
+            }
         }
         , [TTH_ENUM.FuncResetDaily] = {
-          ["OrtanCassius"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailyCastCreature"
-          }
-          , ["Sanguinius"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailyCastCreature"
-          }
-          , ["Avitus"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailyCastCreature"
-          }
-          , ["Gelu"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailyCastCreature"
-          }
-          , ["Itil"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailyCastCreature"
-          }
-          , ["Dracon"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailyCastCreature"
-          }
-          , ["Adelaide"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailyCastCreature"
-          }
-          , ["Thant"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailyCastCreature"
-          }
-          , ["Archilus"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailyCastCreature"
-          }
-          , ["Maahir"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailyMaahir"
-          }
-          , ["Sheltem"] = {
-            [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailySheltem"
-          }
+          -- 转化
+            ["OrtanCassius"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailyCastCreature"
+            }
+            , ["Sanguinius"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailyCastCreature"
+            }
+            , ["Avitus"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailyCastCreature"
+            }
+            , ["Gelu"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailyCastCreature"
+            }
+            , ["Itil"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailyCastCreature"
+            }
+            , ["Dracon"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailyCastCreature"
+            }
+            , ["Adelaide"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailyCastCreature"
+            }
+            , ["Thant"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailyCastCreature"
+            }
+            , ["Archilus"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailyCastCreature"
+            }
+          -- 其他
+            , ["Maahir"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailyMaahir"
+            }
+            , ["Sheltem"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailySheltem"
+            }
         }
       };
 
@@ -10640,6 +10681,11 @@
             ["Text"] = TTH_PATH.Perk[HERO_SKILL_RAISE_ARCHERS]["Text"]
             , [TTH_ENUM.FuncAtGate] = "TTH_PERK.active061"
             , [TTH_ENUM.FuncNotAtGate] = "TTH_PERK.active061"
+          }
+          , [HERO_SKILL_FIRE_AFFINITY] = {
+            ["Text"] = TTH_PATH.Perk[HERO_SKILL_FIRE_AFFINITY]["Text"]
+            , [TTH_ENUM.FuncAtGate] = "TTH_PERK.active097"
+            , [TTH_ENUM.FuncNotAtGate] = "TTH_PERK.active097"
           }
         }
         , [TTH_ENUM.FuncLevelUp] = {

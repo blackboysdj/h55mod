@@ -1,28 +1,6 @@
-字体
+-- 字体
   YaHei Consolas Hybr
   DejaVu Sans Mono
-  ********_homm homm********
-ShowFlyingSign
-
-
-implSkillBonus8Hero
-setGameVar4HeroSkill
-
-定制
-奥尔坦·卡西乌斯
-OrtanCassius
-Justicar
-CREATURE_JUSTICAR
-光明追随者/祛除/免疫心智魔法/50%火抗/被攻击施放光明圣言/行动前为周围己方生物施放圣疗
-
-戴维图斯
-
-阿斯塔特修士
-惩戒骑士
-Retribution
-HERO_CLASS_RETRIBUTION
-
-光明之龙艾尔拉思教会里的牧师一直以公正，正义的形象示人，就好比他们的教义那样。但是当神圣狮鹫帝国的皇权剥离了圣骑士作为护教骑士的编制以后。牧师在与地狱亡灵的战争之中惨遭屠杀。牧师们不得已放下了祈祷的十字架，拿起了裁决之锤。其中最出色的名为奥尔坦·卡西乌斯。光明可以抚慰伤痛，可以坚定心灵，更可以裁决异端，净化恶魔。随着战争的进程，卡西乌斯大主教带领他传奇的死亡守望部队活跃在与地狱的战场上，随时准备好让恶魔与亡灵在他们手中的裁决圣光之下燃烧
 
 新版本调整
   死亡行军BUG
@@ -32,121 +10,15 @@ HERO_CLASS_RETRIBUTION
   内比罗斯: 敌方英雄无法逃跑
   shantiri传送
 
-  地动山摇增强战场特效
-  募兵按基础生物产量+增产建筑（生物产量需要校对，狂战士应该是6+4，现在是10）
-  内政官在管辖城镇传送无消耗
-  马希尔传送无消耗
-  执政官羽饰改为直接加政绩
   尤佛瑞汀的经验给汉格瓦尔
-  卡利德结算调整
-  建筑内政相关文案
-  先知小屋 技能吊坠
-
-  维托利奥
-  伯权德
-  尼克莱
-  杰迪特
-  维拉利亚
-  奥兰多
-
-  卡里萨
+课题：
+  6.众志成城 内政官一路守城上限（与咒骂进行伤害对比），反击，机械，防御
 
 一个战术小队 一个侦查小队 一个无畏机甲 还有一个愤青突击队
 
-删除词条 塔库斯
-
-添加词条关键字
-问 为什么
-答截图所有相关信息（截图一定要截全，按下键盘上F12右边的PrintScreen键，然后粘贴到QQ即可）并@群主（包含但是不局限于以下信息）
-1.游戏目录的bin文件夹
-2.游戏目录的UserMODs文件夹
-3.当前游戏界面，类似这样
-4.描述产生BUG的情况
-  4.1.你以为的并不一定是真实情况，所以直白的描述就好
-  4.2.如果是战斗中，最好截上战斗记录的图，类似这样
 
 
-添加词条关键字
-问 英雄排名规则
-答
-阶段: 
-  1.破口
-  2.前期决战1（3倍+终极）
-  3.前期决战2（3倍+终极+龙神+哨兵）
-  4.力量试炼
-  5.高级宝屋下层/智慧试炼
-  6.后期决战1（3倍+终极）
-  7.后期决战2（全神）
-评分规则:
-  1.成型难度
-    1.1.需要的技能点数
-    1.2.关键子技能/终极的获取难度
-    1.3.需要的关键魔法
-    1.4.对生物数量的要求
-    1.5.关键宝物的获取难度
-    1.6.对资源的需求
-  2.成型强度
-    2.1.应对不同野怪的难度
-    2.2.应对不同决战英雄的难度
-    2.3.应对送龙神胸甲和哨兵之盾时的输出能力
-  3.萌新适性
-    3.1.是否能自动战斗
-    3.2.实际战斗时对站位的要求
-    3.3.与成型难度负相关
-  SSS:
-  SS:
-  S:
-  A:
-  B:
-  C:
-  D:
 
-添加词条关键字
-问 塔库斯
-答
-1.破口：带骑士，光召出再生，防御
-2.前期决战1：
-3.前期决战2：
-4.力量试炼：
-5.高级宝屋下层/智慧试炼：需要有转世重生，要带白弩踩战术点输出，然后复活
-6.后期决战1：光召，进攻防御，后勤→传送突袭
-7.后期决战2：光召，进攻防御，后勤→传送突袭，终极，领导→入神，巫术→魔法抑制
-
-地精飞龙天地双王-纯享版-第8天500地精起飞
-地精飞龙天地双王-纯享版-天降神器机械引力指环
-地精飞龙天地双王-纯享版-自动刷宝屋飞龙王成型
-地精飞龙天地双王-纯享版-最后一天宝物商店翻出速度指环
-地精飞龙天地双王-纯享版-但使龙城飞将在凿壁破垒踏雪原
-地精飞龙天地双王-纯享版-偶遇墓园主力NoSL直接拿下
-地精飞龙天地双王-纯享版-老迈的飞龙王下高级宝屋居然还要招天神
-
-刺客专属终极-风暴突袭-守城灭圣堂
-刺客专属终极-风暴突袭-技能成型疯狂MF
-刺客专属终极-风暴突袭-守城灭地狱拜姐
-刺客专属终极-风暴突袭-最后的决战学院大BOSS米纳斯丽
-刺客专属终极-风暴突袭-转角遇森林-MF转决战-3个副英雄白培养
-刺客专属终极-风暴突袭-W5D5进决战-史上最早的决战
-
-英雄无敌5神力之遗-自跪完W1D4就打了1个小时超高强度
-英雄无敌5神力之遗-自跪完W1D7全程无尿点浪费一颗雷算我输
-英雄无敌5神力之遗-自跪完W2D2双主力双线破口芜湖起飞
-英雄无敌5神力之遗-自跪完W2D5双主力双线会师终于有炮灰了
-英雄无敌5神力之遗-自跪完W2D7星辰坠饰到手海盗兵临森林主城
-英雄无敌5神力之遗-自跪完W3D5占森林眼泪城当后花园疯狂白嫖
-英雄无敌5神力之遗-自跪完W3D7灭森林（又是守城？？？）
-英雄无敌5神力之遗-自跪完W4D5宝物学者复刻星辰坠饰+冥界手杖
-英雄无敌5神力之遗-自跪完W4D7召唤流下高级宝屋下层声控萨戒
-
-接下来是
-2048
-1152
-DK的智慧试炼 亡巫
-
-
-定制新英雄
-奥尔坦·卡西乌斯
-战锤40K
-玩家狂喜
 <spellBuffs>
   <Item>SPELL_DEMON_RAGE_LEVEL_3</Item>
   <Item>SPELL_DEMON_RAGE_LEVEL_3</Item>
@@ -183,27 +55,16 @@ HERO_SKILL_FIRE_PROTECTION
 11分44秒5+1+1召唤流下高级宝屋下层，声控游戏萨戒到手
 ==========================================
 你们的支持就是牙姐的动力，谢谢大家，加UP下载游戏：2302978672
-※8技能※过夜快※城镇转换※内政官※定点回城※女巫双技能※
+※8技能※过夜快※城镇转换※
+※内政官※定点回城※女巫技能定制※
+※宝物合成※野怪带中立英雄支援※
 ※新英雄天赋※新英雄技能※新特效宝物※
 ※新组合神器※新战场特技※新生物特技※
 ※主动天赋/主动技能/主动宝物※
-※格鲁※德肯※宝物合成※野怪带中立英雄支援※
+※格鲁※德肯※天使联盟※诅咒斗篷※龙神胸甲※
 
-课题：
-  6.众志成城 内政官一路守城上限（与咒骂进行伤害对比），反击，机械，防御
-  9.熔毁宝物 可选择宝物熔毁成指定资源
-  10.宝物学者 每周制造一件指定宝物（开局可随出来的宝物中选择）
-  11.地狱烈火 降低蓝耗 泽达技能调整
 
-  Friend
-  Hostile
-
-  SKILLTYPE_SKILL
-  SKILLTYPE_DISABLED
-  SKILLTYPE_STANDART_PERK
-  SKILLTYPE_SPECIAL_PERK
-
-exe修改
+-- 宝物exe修改
   # - Added artifact ID 166 to increase HP by 2
   # - Added artifact ID 124 to increase HP by 6
   # - Added artifact ID 169 to increase HP by 4
@@ -219,7 +80,7 @@ exe修改
   # - 173 10%
   # - 174 5%
 
-技能
+-- 主技能
   001-Logistics
   002-WarMachines
   003-Learning
@@ -247,83 +108,76 @@ exe修改
   199-ShatterLightMagic
   203-ShatterSummoningMagic
 
-<Obstacles>
-  <MinSmallObstacles>2</MinSmallObstacles>
-  <MaxSmallObstacles>12</MaxSmallObstacles>
-  <MinBigObstacles>2</MinBigObstacles>
-  <MaxBigObstacles>4</MaxBigObstacles>
-  <MinMixedObstacles>2</MinMixedObstacles>
-  <MaxMixedObstacles>8</MaxMixedObstacles>
-  <ObstaclesMaxArea>32</ObstaclesMaxArea>
-  <FreeLines>6</FreeLines>
-</Obstacles>
+-- 战场障碍物
+  <Obstacles>
+    <MinSmallObstacles>2</MinSmallObstacles>
+    <MaxSmallObstacles>12</MaxSmallObstacles>
+    <MinBigObstacles>2</MinBigObstacles>
+    <MaxBigObstacles>4</MaxBigObstacles>
+    <MinMixedObstacles>2</MinMixedObstacles>
+    <MaxMixedObstacles>8</MaxMixedObstacles>
+    <ObstaclesMaxArea>32</ObstaclesMaxArea>
+    <FreeLines>6</FreeLines>
+  </Obstacles>
 
-未实装的技能
+-- 未实装的技能
   HERO_SKILL_NAVIGATION 回到今天开始的位置
-  HERO_SKILL_FIRE_PROTECTION 光明→御火术
   HERO_SKILL_CHILLING_BONES 防御→冰冷之骨
   HERO_SKILL_SUN_FIRE 破坏→魔力爆发
   HERO_SKILL_LUCK_OF_THE_BARBARIAN 幸运→野蛮人的幸运
   HERO_SKILL_EXPERT_TRAINER 反击→训练专家
 
-[0] = defender-townbuilding-0-WALL
-[1] = defender-townbuilding-1-WALL
-[2] = defender-townbuilding-2-WALL
-[3] = defender-townbuilding-3-WALL
-[4] = defender-townbuilding-4-LEFT_TOWER
-[5] = defender-townbuilding-5-RIGHT_TOWER
-[6] = defender-townbuilding-6-GATE
-[7] = defender-townbuilding-7-BIG_TOWER
-[8] = defender-townbuilding-8-MOAT
+-- 战场城墙
+  defender-townbuilding-0-WALL
+  defender-townbuilding-1-WALL
+  defender-townbuilding-2-WALL
+  defender-townbuilding-3-WALL
+  defender-townbuilding-4-LEFT_TOWER
+  defender-townbuilding-5-RIGHT_TOWER
+  defender-townbuilding-6-GATE
+  defender-townbuilding-7-BIG_TOWER
+  defender-townbuilding-8-MOAT
 
-<.*?>
+-- 文案
+  <left><body_bright>英雄: <color=ff0033>阿维图斯--大河马赞助并设计
+  <body_bright>职业: <color=yellow>惩戒骑士
+  <body_bright>控制台名: <color=yellow>Avitus
+  <body_bright>初始技能: <color=yellow>初级光明/初级机械+符文机械
+  <body_bright>初始魔法: <color=yellow>乱石利刺
+  <body_bright>战争机械: <color=yellow>弹药车
+  <body_bright>生物特长: <color=0099FF>帝国重弩<color_default> （种族: 圣堂）
+  <body_bright>英雄天赋: <color=ff0033>火力压制
+  <color=7F38EC>主动特效:<color_default>（4CD/战胜/过天）
+  <body_bright>1) 可将<color=0099FF>弓箭手<color=yellow>【训练】<body_bright>为<color=0099FF>帝国重弩
+  <color=7F38EC>战场特效:
+  <body_bright>1) 英雄获得<color=0099FF>符文机械/弹射学/三箭连射/机械引力指环/寒铁之刃/燃烧箭<body_bright>后<color=0099FF>帝国重弩<body_bright>会在攻击后追加<color=ff0033>火力压制
+  <color=orange>内政官特效:
+  <body_bright>1) <color=yellow>【所辖城镇】<body_bright>会自动建造<color=0099FF>弓箭塔
 
-/Text/TTH/Heroes/Specializations/Fortress/Wulfstan/Text.txt
+  <left><color=7F38EC>建筑效果:
+  <body_bright>1.城墙防御增加
+  <body_bright>2.生物产量+<color=yellow>50%
+  <body_bright>3.两侧箭塔
+  <color=7F38EC>内政官特效:
+  <color=0099FF>防御+<color=yellow>1
 
-<left><body_bright>英雄: <color=ff0033>阿维图斯--大河马赞助并设计
-<body_bright>职业: <color=yellow>惩戒骑士
-<body_bright>控制台名: <color=yellow>Avitus
-<body_bright>初始技能: <color=yellow>初级光明/初级机械+符文机械
-<body_bright>初始魔法: <color=yellow>乱石利刺
-<body_bright>战争机械: <color=yellow>弹药车
-<body_bright>生物特长: <color=0099FF>帝国重弩<color_default> （种族: 圣堂）
-<body_bright>英雄天赋: <color=ff0033>火力压制
-<color=7F38EC>主动特效:<color_default>（4CD/战胜/过天）
-<body_bright>1) 可将<color=0099FF>弓箭手<color=yellow>【训练】<body_bright>为<color=0099FF>帝国重弩
-<color=7F38EC>战场特效:
-<body_bright>1) 英雄获得<color=0099FF>符文机械/弹射学/三箭连射/机械引力指环/寒铁之刃/燃烧箭<body_bright>后<color=0099FF>帝国重弩<body_bright>会在攻击后追加<color=ff0033>火力压制
-<color=orange>内政官特效:
-<body_bright>1) <color=yellow>【所辖城镇】<body_bright>会自动建造<color=0099FF>弓箭塔
+  <left><color=7F38EC>建筑效果:
+  <body_bright>1.招募
 
-<left><color=7F38EC>建筑效果:
-<body_bright>1.城墙防御增加
-<body_bright>2.生物产量+<color=yellow>50%
-<body_bright>3.两侧箭塔
-<color=7F38EC>内政官特效:
-<color=0099FF>防御+<color=yellow>1
+  <left><color=7F38EC>建筑效果:
+  <body_bright>1.招募黑曜石像怪/元素石像怪
+  <body_bright>2.升级小精怪
+  <body_bright>3.转换升级形态
 
-<left><color=7F38EC>建筑效果:
-<body_bright>1.招募
+-- 按钮位置
+  EPA_LOW_END
+  ERA_CENTER
+  EPA_MARGIN
+  EPA_HIGH_END
+  ERA_LOW_END
+  EPA_CENTER
 
-<left><color=7F38EC>建筑效果:
-<body_bright>1.招募黑曜石像怪/元素石像怪
-<body_bright>2.升级小精怪
-<body_bright>3.转换升级形态
-
-
-EPA_LOW_END
-ERA_CENTER
-EPA_MARGIN
-EPA_HIGH_END
-
-EPA_LOW_END
-ERA_CENTER
-EPA_MARGIN
-EPA_HIGH_END
-ERA_LOW_END
-EPA_CENTER
-
-术语
+-- 术语
   <left>
   <color=orange>主动特效<color_default>（耗1/日回1/内替）:
   <color=0099FF>属性/生物/种族/资源
@@ -331,10 +185,10 @@ EPA_CENTER
   回复魔法值
   恢复移动力
 
-宝物槽
+-- 宝物槽
   INVENTORY-背包
 
-颜色
+-- 颜色
   默认亮 <body_bright>
   黄 <color=yellow>
   <color=ff0033>
@@ -353,67 +207,27 @@ EPA_CENTER
   <color=7F38EC>玩家 7
   <color=8B4513>玩家 8
 
-内政官数据结构
-  TTH_VARI.arrMayor = {
-    ["Orrin"] = {
-      ["Oper"] = {
-        ["MaxTimes"] = 2
-        , ["UsedTimes"] = 1
-      }
-      ["Town"] = {
-        ["0-86-192-AdvMapTown-88888"] = {
-          ["Value"] = 80
-        }
-      }
-      , ["Bonus"] = {
-        [STAT_ATTACK] = 1
-        , [STAT_DEFENCE] = 1
-        , [STAT_SPELL_POWER] = 1
-        , [STAT_KNOWLEDGE] = 1
-        , [STAT_LUCK] = 1
-        , [STAT_MORALE] = 1
-      }
-      , ["IsExpedition"] = {
-        ["Status"] = 0
-        , ["Duration"] = 0
-      }
-      , ["IsDefeat"] = {
-        ["Status"] = 0
-        , ["Duration"] = 0
-      }
-    }
-  };
-
-闪退
-  1.不要开着360这样的杀软
-  2.不要频繁读档
-  3.操作不要太快，前一个界面还没消失就点下一个
-  4.如果是同一个地方频繁跳出，可能是你的有宝物商店的城被AI占了
-
-NCF生物
-  929 魔幻法师
-
-技能类型
+-- 技能类型
   SKILLTYPE_SKILL
   SKILLTYPE_STANDART_PERK
   SKILLTYPE_CLASS_PERK
   SKILLTYPE_SPECIAL_PERK
   SKILLTYPE_UINQUE_PERK
 
-宝物类型
+-- 宝物类型
   ARTF_CLASS_MINOR
   ARTF_CLASS_MAJOR
   ARTF_CLASS_RELIC
   ARTF_CLASS_GRAIL
 
-主技能等级
+-- 主技能等级
   MASTERY_NONE
   MASTERY_BASIC
   MASTERY_ADVANCED
   MASTERY_EXPERT
   MASTERY_EXTRA_EXPERT
 
-待整理
+-- 待整理
   Shantiri
   BUILDING_MEMORY_MENTOR
   BUILDING_EYE_OF_MAGI
@@ -421,11 +235,7 @@ NCF生物
   ? BUILDING_MAGMA_SHRINE
   BUILDING_LAKE_OF_SCARLET_SWAN
 
-  consoleCmd
-
-4530
-
-机械坐标
+-- 机械坐标
   进攻小场
     1 6
     1 4
@@ -448,12 +258,12 @@ NCF生物
     1 11
     1 2
 
-随机宝物编号
+-- 随机宝物编号
   3 WAND_OF_X
   52 SCROLL_OF_SPELL_X
   86 ARTIFACT_RUNE_OF_FLAME
 
-战斗结束trigger
+-- 战斗结束trigger
   GetLastSavedCombatIndex();
 
   local iPlayerWinner = GetSavedCombatArmyPlayer(iCombatIndex, 1);
@@ -561,29 +371,14 @@ NCF生物
     CreateMonster( monsterName, creatureID, creatureCount, x,y,floorID, moodID=1, courageID=2, rotation=0, doesNotGrow=0)
     -Now you can set whether the monster should grow.
 
-  5.城墙+D 魔法塔+P 职业建筑给非职业的加属性
-  6.英雄类型→女巫小屋/银行/试炼
-  7.邪教大师 是否施法生物 DEMON_FEAT_EXPLODING_CORPSES
-
-  GetGameVar( name )
-  SetGameVar( name, value )
-  开始游戏时重置数据
-
-  -- 先知小屋
-  H55_Mermaids = GetObjectNamesByType("BUILDING_MERMAIDS");
-  H55_MermaidsQty = length(H55_Mermaids);
-  H55_MermaidChoices = {};
   -- 莎拉萨神殿
   H55_SummonTemples = GetObjectNamesByType("BUILDING_SIRENS");
   H55_SummonTemplesQty = length(H55_SummonTemples);
   H55_SummonTempleChoices = {};
 
-  全体保卫 HERO_SKILL_DEFEND_US_ALL +1 3级
-  魔像的行进 WIZARD_FEAT_MARCH_OF_THE_MACHINES +1 3级
   战争掠劫 WIZARD_FEAT_SPOILS_OF_WAR +1 魔童
   灼热之火 DEMON_FEAT_DEMONIC_FLAME +1 矮子1级
   亚莎之泪的预见 KNIGHT_FEAT_GRAIL_VISION 送资源
-  理财 PERK_ESTATES +金币
   永恒奴役 PERK_NO_REST_FOR_THE_WICKED +知识点数的 骷髅
   PERK_FORTUNATE_ADVENTURER 增加可占领经济建筑收益
 
@@ -610,3 +405,43 @@ NCF生物
     完播率，互动率
   修改视频时的弹幕问题
     建2P，迁移弹幕，删1P
+
+-- 机器人词条
+  删除词条 维托利奥
+
+  添加词条关键字
+  问 维托利奥
+  答维托利奥
+  1.初始奖励选择: 技能点
+  2.初始女巫小屋选择: 进攻/进攻/后勤
+  3.破口: 
+    评分: SSS
+    生物: 农民*7
+    魔法: 无
+    技能点: 12
+    等级: 6
+      高级反击: 
+      高级进攻: 箭术+燃烧箭
+      专家机械: 弹射学+工程学+三箭连射
+  4.前期决战1: 同破口
+    评分: S
+  5.前期决战2: 同破口
+    评分: S
+  6.力量试炼: 同破口
+    评分: S
+  7.高级宝屋下层/智慧试炼: 同破口
+    评分: S
+  8.后期决战: 
+    评分: S
+    生物: 农民*2*7
+    魔法: 活力再生/亡灵复生
+    宝物: 机械引力指环
+    技能点: 32
+    等级: 22
+      高级反击: 极度痛击+咒骂印记
+      专级进攻: 箭术+燃烧箭+寒铁之刃
+      高级光明: 愤怒大师+暴风来袭
+      专级黑暗: 
+      专级后勤: 探路学+战争之路
+      专级防御: 活力无限+闪避+屹立不倒
+      高级领导: 神圣指引+人造荣耀

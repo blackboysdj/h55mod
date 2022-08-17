@@ -439,40 +439,6 @@
 		end;
 		H55SMOD_Start['Josephine']['function'] = Events_Start_Implement_Josephine;
 
-	-- out of date
-		-- -- Efion
-		-- H55SMOD_Start['Efion'] = {};
-		-- H55SMOD_Start['Efion']['flag'] = ENUM_STAGE.ONCE.UNEXECUTE;
-		-- function Events_Start_Implement_Efion(strHero, iSide, isReverse)
-		-- 	local listCreaturesTarget = GetCreatures(getSide(iSide, isReverse));
-		-- 	local iLenCreaturesTarget = length(listCreaturesTarget);
-		-- 	for iIndexCreaturesTarget = 0, iLenCreaturesTarget - 1 do
-		-- 		startThread(Thread_Command_UnitCastAimedSpell, GetHero(iSide), SPELL_FORGETFULNESS, listCreaturesTarget[iIndexCreaturesTarget], 1);
-		-- 		sleep(20);
-		-- 	end;
-		-- 	print(strHero.." casted SPELL_MASS_FORGETFULNESS");
-		-- 	sleep(20);
-		-- 	setATB(GetHero(iSide), 0.7 + 0.01 * H55SMOD_HeroLevel[strHero]);
-		-- end;
-		-- H55SMOD_Start['Efion']['function'] = Events_Start_Implement_Efion;
-
-	-- out of date
-		-- -- Aislinn
-		-- H55SMOD_Start['Aislinn'] = {};
-		-- H55SMOD_Start['Aislinn']['flag'] = ENUM_STAGE.ONCE.UNEXECUTE;
-		-- function Events_Start_Implement_Aislinn(strHero, iSide, isReverse)
-		-- 	local listCreaturesTarget = GetCreatures(getSide(iSide, isReverse));
-		-- 	local iLenCreaturesTarget = length(listCreaturesTarget);
-		-- 	for iIndexCreaturesTarget = 0, iLenCreaturesTarget - 1 do
-		-- 		startThread(Thread_Command_UnitCastAimedSpell, GetHero(iSide), SPELL_FORGETFULNESS, listCreaturesTarget[iIndexCreaturesTarget], 1);
-		-- 		sleep(20);
-		-- 	end;
-		-- 	print(strHero.." casted SPELL_MASS_FORGETFULNESS");
-		-- 	sleep(20);
-		-- 	setATB(GetHero(iSide), 0.7 + 0.01 * H55SMOD_HeroLevel[strHero]);
-		-- end;
-		-- H55SMOD_Start['Aislinn']['function'] = Events_Start_Implement_Aislinn;
-
 	-- Vegeyr
 		H55SMOD_Start['Vegeyr'] = {};
 		H55SMOD_Start['Vegeyr']['flag'] = ENUM_STAGE.ONCE.UNEXECUTE;
@@ -698,74 +664,85 @@
 
 	-- Artifact
 		-- ARTIFACT_ANGELIC_ALLIANCE
-		function Events_Start_Artifact_Implement_Angelic_Alliance(iSide)
-			local pos = BattleLargeCenterPos[getBattleSize()];
-			local itemCreatureCaster = Thread_Command_SummonCreature(iSide, CREATURE_CHERUBIN, 1, pos['x'], pos['y']);
-			ShowFlyingSign(TTHCS_PATH["Artifact"][ARTIFACT_ANGELIC_ALLIANCE]["Effect"], itemCreatureCaster, 5);
-			startThread(Thread_Command_UnitCastGlobalSpell_IgnoreMana, itemCreatureCaster, SPELL_MASS_HASTE);
-			print("ARTIFACT_ANGELIC_ALLIANCE casted SPELL_MASS_HASTE");
-			startThread(Thread_Command_UnitCastGlobalSpell_IgnoreMana, itemCreatureCaster, SPELL_MASS_BLESS);
-			print("ARTIFACT_ANGELIC_ALLIANCE casted SPELL_MASS_BLESS");
-			sleep(100);
-			startThread(Thread_Command_RemoveCombatUnit_Uncheck, itemCreatureCaster);
-			repeat sleep(1); until IsCombatUnit(itemCreatureCaster) == nil;
-			print("CREATURE_CHERUBIN has left");
-		end;
-		H55SMOD_Start['Artifact'][ARTIFACT_ANGELIC_ALLIANCE] = {
-			[ENUM_SIDE.ATTACKER] = {
-				['flag'] = ENUM_STAGE.ONCE.UNEXECUTE
-			}
-			, [ENUM_SIDE.DEFENDER] = {
-				['flag'] = ENUM_STAGE.ONCE.UNEXECUTE
-			}
-			, ['function'] = Events_Start_Artifact_Implement_Angelic_Alliance
-		};
+			function Events_Start_Artifact_Implement_Angelic_Alliance(iSide)
+				local pos = BattleLargeCenterPos[getBattleSize()];
+				local itemCreatureCaster = Thread_Command_SummonCreature(iSide, CREATURE_CHERUBIN, 1, pos['x'], pos['y']);
+				ShowFlyingSign(TTHCS_PATH["Artifact"][ARTIFACT_ANGELIC_ALLIANCE]["Effect"], itemCreatureCaster, 5);
+				Thread_Command_UnitCastGlobalSpell_IgnoreMana(itemCreatureCaster, SPELL_MASS_HASTE);
+				print("ARTIFACT_ANGELIC_ALLIANCE casted SPELL_MASS_HASTE");
+				Thread_Command_UnitCastGlobalSpell_IgnoreMana(itemCreatureCaster, SPELL_MASS_BLESS);
+				print("ARTIFACT_ANGELIC_ALLIANCE casted SPELL_MASS_BLESS");
+				if GetHero(iSide) ~= nil
+					and TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_TWILIGHT] ~= nil
+					and TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_TWILIGHT] > 0 then
+					return nil;
+				end;
+				Thread_Command_RemoveCombatUnit_Check(itemCreatureCaster);
+				print("CREATURE_CHERUBIN has left");
+			end;
+			H55SMOD_Start['Artifact'][ARTIFACT_ANGELIC_ALLIANCE] = {
+				[ENUM_SIDE.ATTACKER] = {
+					['flag'] = ENUM_STAGE.ONCE.UNEXECUTE
+				}
+				, [ENUM_SIDE.DEFENDER] = {
+					['flag'] = ENUM_STAGE.ONCE.UNEXECUTE
+				}
+				, ['function'] = Events_Start_Artifact_Implement_Angelic_Alliance
+			};
+		
 		-- ARTIFACT_SENTINEL
-		function Events_Start_Artifact_Implement_Sentinel(iSide)
-			local pos = BattleLargeCenterPos[getBattleSize()];
-			local itemCreatureCaster = Thread_Command_SummonCreature(iSide, CREATURE_CHERUBIN, 1, pos['x'], pos['y']);
-			ShowFlyingSign(TTHCS_PATH["Artifact"][ARTIFACT_SENTINEL]["Effect"], itemCreatureCaster, 5);
-			startThread(Thread_Command_UnitCastGlobalSpell_IgnoreMana, itemCreatureCaster, SPELL_MASS_STONESKIN);
-			print("ARTIFACT_SENTINEL casted SPELL_MASS_STONESKIN");
-			startThread(Thread_Command_UnitCastGlobalSpell_IgnoreMana, itemCreatureCaster, SPELL_MASS_BLOODLUST);
-			print("ARTIFACT_SENTINEL casted SPELL_MASS_BLOODLUST");
-			sleep(100);
-			startThread(Thread_Command_RemoveCombatUnit_Uncheck, itemCreatureCaster);
-			repeat sleep(1); until IsCombatUnit(itemCreatureCaster) == nil;
-			print("CREATURE_CHERUBIN has left");
-		end;
-		H55SMOD_Start['Artifact'][ARTIFACT_SENTINEL] = {
-			[ENUM_SIDE.ATTACKER] = {
-				['flag'] = ENUM_STAGE.ONCE.UNEXECUTE
-			}
-			, [ENUM_SIDE.DEFENDER] = {
-				['flag'] = ENUM_STAGE.ONCE.UNEXECUTE
-			}
-			, ['function'] = Events_Start_Artifact_Implement_Sentinel
-		};
+			function Events_Start_Artifact_Implement_Sentinel(iSide)
+				local pos = BattleLargeCenterPos[getBattleSize()];
+				local itemCreatureCaster = Thread_Command_SummonCreature(iSide, CREATURE_CHERUBIN, 1, pos['x'], pos['y']);
+				ShowFlyingSign(TTHCS_PATH["Artifact"][ARTIFACT_SENTINEL]["Effect"], itemCreatureCaster, 5);
+				Thread_Command_UnitCastGlobalSpell_IgnoreMana(itemCreatureCaster, SPELL_MASS_STONESKIN);
+				print("ARTIFACT_SENTINEL casted SPELL_MASS_STONESKIN");
+				Thread_Command_UnitCastGlobalSpell_IgnoreMana(itemCreatureCaster, SPELL_MASS_BLOODLUST);
+				print("ARTIFACT_SENTINEL casted SPELL_MASS_BLOODLUST");
+				if GetHero(iSide) ~= nil
+					and TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_TWILIGHT] ~= nil
+					and TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_TWILIGHT] > 0 then
+					return nil;
+				end;
+				Thread_Command_RemoveCombatUnit_Check(itemCreatureCaster);
+				print("CREATURE_CHERUBIN has left");
+			end;
+			H55SMOD_Start['Artifact'][ARTIFACT_SENTINEL] = {
+				[ENUM_SIDE.ATTACKER] = {
+					['flag'] = ENUM_STAGE.ONCE.UNEXECUTE
+				}
+				, [ENUM_SIDE.DEFENDER] = {
+					['flag'] = ENUM_STAGE.ONCE.UNEXECUTE
+				}
+				, ['function'] = Events_Start_Artifact_Implement_Sentinel
+			};
+		
 		-- ARTIFACT_CURSE_SHOULDER
-		function Events_Start_Artifact_Implement_Curse_Shoulder(iSide)
-			local pos = BattleLargeCenterPos[getBattleSize()];
-			local itemCreatureCaster = Thread_Command_SummonCreature(iSide, CREATURE_DRAGON_KNIGHT, 1, pos['x'], pos['y']);
-			ShowFlyingSign(TTHCS_PATH["Artifact"][ARTIFACT_CURSE_SHOULDER]["Effect"], itemCreatureCaster, 5);
-			startThread(Thread_Command_UnitCastGlobalSpell_IgnoreMana, itemCreatureCaster, SPELL_MASS_SLOW);
-			print("ARTIFACT_ANGELIC_ALLIANCE casted SPELL_MASS_SLOW");
-			startThread(Thread_Command_UnitCastGlobalSpell_IgnoreMana, itemCreatureCaster, SPELL_MASS_WEAKNESS);
-			print("ARTIFACT_ANGELIC_ALLIANCE casted SPELL_MASS_WEAKNESS");
-			sleep(100);
-			startThread(Thread_Command_RemoveCombatUnit_Uncheck, itemCreatureCaster);
-			repeat sleep(1); until IsCombatUnit(itemCreatureCaster) == nil;
-			print("CREATURE_DRAGON_KNIGHT has left");
-		end;
-		H55SMOD_Start['Artifact'][ARTIFACT_CURSE_SHOULDER] = {
-			[ENUM_SIDE.ATTACKER] = {
-				['flag'] = ENUM_STAGE.ONCE.UNEXECUTE
-			}
-			, [ENUM_SIDE.DEFENDER] = {
-				['flag'] = ENUM_STAGE.ONCE.UNEXECUTE
-			}
-			, ['function'] = Events_Start_Artifact_Implement_Curse_Shoulder
-		};
+			function Events_Start_Artifact_Implement_Curse_Shoulder(iSide)
+				local pos = BattleLargeCenterPos[getBattleSize()];
+				local itemCreatureCaster = Thread_Command_SummonCreature(iSide, CREATURE_DRAGON_KNIGHT, 1, pos['x'], pos['y']);
+				ShowFlyingSign(TTHCS_PATH["Artifact"][ARTIFACT_CURSE_SHOULDER]["Effect"], itemCreatureCaster, 5);
+				Thread_Command_UnitCastGlobalSpell_IgnoreMana(itemCreatureCaster, SPELL_MASS_SLOW);
+				print("ARTIFACT_ANGELIC_ALLIANCE casted SPELL_MASS_SLOW");
+				Thread_Command_UnitCastGlobalSpell_IgnoreMana(itemCreatureCaster, SPELL_MASS_WEAKNESS);
+				print("ARTIFACT_ANGELIC_ALLIANCE casted SPELL_MASS_WEAKNESS");
+				if GetHero(iSide) ~= nil
+					and TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_PARIAH] ~= nil
+					and TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_PARIAH] > 0 then
+					return nil;
+				end;
+				Thread_Command_RemoveCombatUnit_Check(itemCreatureCaster);
+				print("CREATURE_DRAGON_KNIGHT has left");
+			end;
+			H55SMOD_Start['Artifact'][ARTIFACT_CURSE_SHOULDER] = {
+				[ENUM_SIDE.ATTACKER] = {
+					['flag'] = ENUM_STAGE.ONCE.UNEXECUTE
+				}
+				, [ENUM_SIDE.DEFENDER] = {
+					['flag'] = ENUM_STAGE.ONCE.UNEXECUTE
+				}
+				, ['function'] = Events_Start_Artifact_Implement_Curse_Shoulder
+			};
 
 		function Events_Start_Artifact_Interface()
 			for indexArtifact, objArtifact in TTH_ARTIFACT_EFFECT_COMBAT_ONCE do
@@ -810,8 +787,12 @@
 
 						local iIndex = TTHCS_COMMON.getRandom(4);
 						local idSummonElemental = H55SMOD_Start['Artifact'][ARTIFACT_BAND_OF_CONJURER]['list'][iIndex];
+						local iAppointedCreatureId = idSummonElemental;
+						if TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_FIRE_AFFINITY] ~= nil then
+							iAppointedCreatureId = TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_FIRE_AFFINITY] + 0;
+						end;
 						local iHeroLevel = H55SMOD_HeroLevel[GetHeroName(GetHero(iSide))];
-						Thread_Command_SummonCreature(iSide, idSummonElemental, iHeroLevel * 1, iPositionX, iPositionY);
+						Thread_Command_SummonCreature(iSide, iAppointedCreatureId, iHeroLevel * 1, iPositionX, iPositionY);
 						combatSetPause(nil);
 					end;
 				end;
@@ -947,6 +928,9 @@
 					if GetHero(iSide) ~= nil
 						and TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_PARIAH] ~= nil
 						and TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_PARIAH] > 0 then
+						if TTH_ARTIFACT_EFFECT_COMBAT_HERO[iSide][ARTIFACT_CURSE_SHOULDER] == 1 then
+							return nil;
+						end;
 						local iCreatureId = TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_PARIAH];
 						local iBattleSize = getBattleSize();
 						local iPositionX = 0;
@@ -983,6 +967,9 @@
 					if GetHero(iSide) ~= nil
 						and TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_TWILIGHT] ~= nil
 						and TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_TWILIGHT] > 0 then
+						if TTH_ARTIFACT_EFFECT_COMBAT_HERO[iSide][ARTIFACT_ANGELIC_ALLIANCE] == 1 or TTH_ARTIFACT_EFFECT_COMBAT_HERO[iSide][ARTIFACT_SENTINEL] == 1 then
+							return nil;
+						end;
 						local iCreatureId = TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_TWILIGHT];
 						local iBattleSize = getBattleSize();
 						local iPositionX = 0;
@@ -1027,7 +1014,6 @@
 		Events_Init_Interface();
 		combatSetPause(nil);
 	end;
-	-- startThread(Events_Start);
 
 	function Events_Init()
 		-- Hero
@@ -1125,11 +1111,11 @@
 			if H55SMOD_HeroSkill[strHero] == nil then
 				H55SMOD_HeroSkill[strHero] = {};
 			end;
-			local strHeroSkill = GetGameVar('H55SMOD_Var_Skill_'..strHero..'_'..SKILL_ABSOLUTE_MORALE);
+			local strHeroSkill = GetGameVar('H55SMOD_Var_Skill_'..strHero..'_'..HERO_SKILL_ABSOLUTE_MORALE);
 			if strHeroSkill == nil or strHeroSkill == '' or strHeroSkill == '0' then
-				H55SMOD_HeroSkill[strHero][SKILL_ABSOLUTE_MORALE] = 0;
+				H55SMOD_HeroSkill[strHero][HERO_SKILL_ABSOLUTE_MORALE] = 0;
 			else
-				H55SMOD_HeroSkill[strHero][SKILL_ABSOLUTE_MORALE] = strHeroSkill * 1;
+				H55SMOD_HeroSkill[strHero][HERO_SKILL_ABSOLUTE_MORALE] = strHeroSkill * 1;
 			end;
 		end;
 	end;
@@ -1296,6 +1282,7 @@
 				H55SMOD_MiddlewareListener["Christian"]["function"]["death"]("Christian", itemUnit["iSide"], itemUnit);
 			-- Academy
 				H55SMOD_MiddlewareListener["Emilia"]["function"]("Emilia", itemUnit["iSide"], itemUnit);
+				H55SMOD_MiddlewareListener["Zehir"]["function"]("Zehir", itemUnit["iSide"], itemUnit);
 		elseif iType == ENUM_BASICLISTENER.MOVE then
 			local itemUnitLast = nil;
 			if length(ListUnitTriggerMiddlewareListener) > 0 then
@@ -1458,6 +1445,10 @@
 								H55SMOD_MiddlewareListener['Artifact'][ARTIFACT_MOONBLADE]['function'](itemUnitLast, iSide);
 							end;
 
+							if itemUnitLast["iUnitCategory"] == ENUM_CATEGORY.CREATURE then
+								H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_DEMONIC_FIRE]["function"]["charge"](iSide, itemUnitLast, iLossManaPoints);
+							end;
+
 							-- 造成生物减员
 							local listCreaturesBeEffected = {};
 							local iLenCreaturesBeforeLast = length(ObjSnapshotBeforeLastTurn['Creatures'][getSide(iSide, 1)]);
@@ -1569,7 +1560,6 @@
 								if ObjSnapshotBeforeLastTurn['Hero'][iSide]['iMana'] - ObjSnapshotLastTurn['Hero'][iSide]['iMana'] > 5
 									or ObjSnapshotBeforeLastTurn['Hero'][iSide]['iMana'] - ObjSnapshotLastTurn['Hero'][iSide]['iMana'] <= -10 then
 									H55SMOD_MiddlewareListener['Vaniel']['function']('Vaniel', iSide, itemUnitLast, itemUnit);
-									H55SMOD_MiddlewareListener['Zydar']['function']('Zydar', iSide, itemUnitLast, itemUnit);
 								end;
 							-- Academy
 							-- Inferno
@@ -1897,7 +1887,7 @@
 			-- 召唤生物
 				if itemUnitLast ~= nil then
 					for iSide = ENUM_SIDE.ATTACKER, ENUM_SIDE.DEFENDER do
-						local listCreaturesLastSummon = {};
+						local listSummonCreature = {};
 						local iLenCreaturesBeforeLast = length(ObjSnapshotBeforeLastTurn['Creatures'][iSide]);
 						local iLenCreaturesLast = length(ObjSnapshotLastTurn['Creatures'][iSide]);
 						for iIndexCreaturesLast = 0, iLenCreaturesLast - 1 do
@@ -1909,21 +1899,24 @@
 								end;
 							end;
 							if bIsExist == 0 then
-								push(listCreaturesLastSummon, ObjSnapshotLastTurn['Creatures'][iSide][iIndexCreaturesLast]);
+								push(listSummonCreature, ObjSnapshotLastTurn['Creatures'][iSide][iIndexCreaturesLast]);
 							end;
 						end;
 						-- Haven
 						-- Sylvan
 						-- Academy
-							H55SMOD_MiddlewareListener['Zehir']['function']('Zehir', iSide, itemUnitLast, listCreaturesLastSummon);
+							-- H55SMOD_MiddlewareListener['Zehir']['function']('Zehir', iSide, itemUnitLast, listSummonCreature);
 						-- Inferno
-							H55SMOD_MiddlewareListener['Calh']['function']('Calh', iSide, itemUnitLast, listCreaturesLastSummon);
-							H55SMOD_MiddlewareListener['Malustar']['function']('Malustar', iSide, itemUnitLast, listCreaturesLastSummon);
+							H55SMOD_MiddlewareListener['Calh']['function']('Calh', iSide, itemUnitLast, listSummonCreature);
+							H55SMOD_MiddlewareListener['Malustar']['function']('Malustar', iSide, itemUnitLast, listSummonCreature);
 						-- Necropolis
 						-- Fortress
 						-- Dungeon
-							H55SMOD_MiddlewareListener['Kastore']['function']('Kastore', iSide, itemUnitLast, listCreaturesLastSummon);
+							-- H55SMOD_MiddlewareListener['Kastore']['function']('Kastore', iSide, itemUnitLast, listSummonCreature);
 						-- Stronghold
+
+						-- 召唤整合
+							H55SMOD_MiddlewareListener["Summon"]["function"](iSide, itemUnitLast, listSummonCreature);
 					end;
 				end;
 
@@ -2114,8 +2107,6 @@
 						-- Creature
 							H55SMOD_MiddlewareListener['LightAngel']['function']('LightAngel', iSide, itemUnit);
 							H55SMOD_MiddlewareListener['Enchanter']['function']['consume']('Enchanter', iSide, itemUnit);
-							H55SMOD_MiddlewareListener['Cherubin']['function']('Cherubin', iSide, itemUnit);
-							H55SMOD_MiddlewareListener['DragonKnight']['function']('DragonKnight', iSide, itemUnit);
 					end;
 				end;
 
@@ -2152,12 +2143,15 @@
 						-- Dungeon
 						-- Stronghold
 						-- Skill
+							H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_DEMONIC_FIRE]["function"]["consume"](iSide, itemUnitLast);
 					end;
 				end;
 
 			-- 上回合生物行动
 				if itemUnitLast ~= nil and itemUnitLast['iUnitCategory'] == ENUM_CATEGORY.CREATURE then
 					for iSide = ENUM_SIDE.ATTACKER, ENUM_SIDE.DEFENDER do
+						H55SMOD_MiddlewareListener['Cherubin']['function']('Cherubin', iSide, itemUnitLast);
+						H55SMOD_MiddlewareListener['DragonKnight']['function']('DragonKnight', iSide, itemUnitLast);
 						-- 造成生物战损（至少为1）
 						local listCreaturesBeEffectedLimit = {};
 						local iLenCreaturesBeforeLast = length(ObjSnapshotBeforeLastTurn['Creatures'][getSide(iSide, 1)]);
@@ -2354,6 +2348,7 @@
 
 -- 宝物
 	H55SMOD_MiddlewareListener['Artifact'] = {};
+	
 	-- 亚莎之八重杖
 		H55SMOD_MiddlewareListener['Artifact'][ARTIFACT_EIGHTFOLD] = {};
 		function Events_MiddlewareListener_Implement_Artifact_Eightfold(itemUnitLast, iSide)
@@ -2368,6 +2363,7 @@
 			end;
 		end;
 		H55SMOD_MiddlewareListener['Artifact'][ARTIFACT_EIGHTFOLD]['function'] = Events_MiddlewareListener_Implement_Artifact_Eightfold;
+	
 	-- 月光利刃
 		H55SMOD_MiddlewareListener['Artifact'][ARTIFACT_MOONBLADE] = {};
 		function Events_MiddlewareListener_Implement_Artifact_Moonblade(itemUnitLast, iSide)
@@ -2376,6 +2372,7 @@
 			end;
 		end;
 		H55SMOD_MiddlewareListener['Artifact'][ARTIFACT_MOONBLADE]['function'] = Events_MiddlewareListener_Implement_Artifact_Moonblade;
+	
 	-- 闪耀坠饰
 		H55SMOD_MiddlewareListener['Artifact'][ARTIFACT_PENDANT_OF_BLIND] = {};
 		H55SMOD_MiddlewareListener['Artifact'][ARTIFACT_PENDANT_OF_BLIND][ENUM_SIDE.ATTACKER] = {};
@@ -2398,6 +2395,7 @@
 			end;
 		end;
 		H55SMOD_MiddlewareListener['Artifact'][ARTIFACT_PENDANT_OF_BLIND]['function'] = Events_MiddlewareListener_Implement_Artifact_PendantOfBlind;
+	
 	-- ARTIFACT_BOOK_OF_MALASSA 147 玛拉萨之书
 		H55SMOD_MiddlewareListener['Artifact'][ARTIFACT_BOOK_OF_MALASSA] = {};
 		function Events_MiddlewareListener_Implement_Artifact_BookOfMalassa(iSide, itemUnitLast, listCreaturesBeEffected, listCreaturesDeath)
@@ -2487,7 +2485,7 @@
 		H55SMOD_MiddlewareListener['Skill'][ENUM_SKILL.ABSOLUTEMORALE]['function'] = {};
 		function Events_MiddlewareListener_Implement_Skill_AbsoluteMorale_Charge(itemUnitLast, iSide)
 			if H55SMOD_HeroSkill[itemUnitLast['iUnitType']] ~= nil
-				and H55SMOD_HeroSkill[itemUnitLast['iUnitType']][SKILL_ABSOLUTE_MORALE] == 1
+				and H55SMOD_HeroSkill[itemUnitLast['iUnitType']][HERO_SKILL_ABSOLUTE_MORALE] == 1
 				and ENUM_SKILL.TIMER_ABSOLUTEMORALE > 0 then
 				if H55SMOD_MiddlewareListener['Skill'][ENUM_SKILL.ABSOLUTEMORALE]['flag'][iSide] == nil then
 					H55SMOD_MiddlewareListener['Skill'][ENUM_SKILL.ABSOLUTEMORALE]['flag'][iSide] = {};
@@ -2498,7 +2496,7 @@
 		end;
 		H55SMOD_MiddlewareListener['Skill'][ENUM_SKILL.ABSOLUTEMORALE]['function']['charge'] = Events_MiddlewareListener_Implement_Skill_AbsoluteMorale_Charge;
 		function Events_MiddlewareListener_Implement_Skill_AbsoluteMorale_Consume(itemUnit, iSide)
-			if itemUnit['iSide'] == iSide and H55SMOD_HeroSkill[itemUnit['iUnitType']] ~= nil and H55SMOD_HeroSkill[itemUnit['iUnitType']][SKILL_ABSOLUTE_MORALE] == 1 then
+			if itemUnit['iSide'] == iSide and H55SMOD_HeroSkill[itemUnit['iUnitType']] ~= nil and H55SMOD_HeroSkill[itemUnit['iUnitType']][HERO_SKILL_ABSOLUTE_MORALE] == 1 then
 				if H55SMOD_MiddlewareListener['Skill'][ENUM_SKILL.ABSOLUTEMORALE]['flag'][iSide] == nil then
 					H55SMOD_MiddlewareListener['Skill'][ENUM_SKILL.ABSOLUTEMORALE]['flag'][iSide] = {};
 				end;
@@ -2715,6 +2713,82 @@
 				end;
 			end;
 			H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_FOREST_RAGE]['function'] = Events_MiddlewareListener_Implement_Skill_ForestRage;
+
+		-- 地狱烈火/灼热之火/地狱愤怒: 英雄在生物行动时失去魔法值，则累积atb，0.1/0.05/0.05
+			H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_DEMONIC_FIRE] = {};
+			H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_DEMONIC_FIRE]["iAtb"] = {};
+			H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_DEMONIC_FIRE]["iAtb"][0] = 0;
+			H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_DEMONIC_FIRE]["iAtb"][1] = 0;
+			H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_DEMONIC_FIRE]["function"] = {};
+			function Events_MiddlewareListener_Implement_Skill_DemonicFire_Consume(iSide, itemUnitLast)
+				if GetHero(iSide) ~= nil and TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_DEMONIC_FIRE] == 1 then
+					if H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_DEMONIC_FIRE]["iAtb"][iSide] >= 1 then
+						H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_DEMONIC_FIRE]["iAtb"][iSide] = H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_DEMONIC_FIRE]["iAtb"][iSide] - 1;
+						itemUnitLast["iAtb"] = 1.25;
+						push(ListUnitSetATB, itemUnitLast);
+						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect"], GetHero(iSide), 5);
+					end;
+				end;
+			end;
+			H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_DEMONIC_FIRE]["function"]["consume"] = Events_MiddlewareListener_Implement_Skill_DemonicFire_Consume;
+			function Events_MiddlewareListener_Implement_Skill_DemonicFire_Charge(iSide, itemUnitLast, iLossManaPoints)
+				if GetHero(iSide) ~= nil and TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_DEMONIC_FIRE] == 1 then
+					local iAtb = 0.1;
+					if TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_DEMONIC_RETALIATION] == 1 then
+						iAtb = iAtb + 0.05;
+					end;
+					if TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_DEMONIC_FLAME] == 1 then
+						iAtb = iAtb + 0.05;
+					end;
+					if geneUnitStatus(GetHero(iSide))["iUnitType"] == "Zydar" then
+						iAtb = iAtb * 1.5;
+					end;
+					H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_DEMONIC_FIRE]["iAtb"][iSide] = H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_DEMONIC_FIRE]["iAtb"][iSide] + iAtb;
+					local tempAtb = H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_DEMONIC_FIRE]["iAtb"][iSide];
+					if tempAtb <= 0.05 then
+						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect005"], GetHero(iSide), 5);
+					elseif tempAtb <= 0.10 then
+						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect010"], GetHero(iSide), 5);
+					elseif tempAtb <= 0.15 then
+						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect015"], GetHero(iSide), 5);
+					elseif tempAtb <= 0.20 then
+						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect020"], GetHero(iSide), 5);
+					elseif tempAtb <= 0.25 then
+						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect025"], GetHero(iSide), 5);
+					elseif tempAtb <= 0.30 then
+						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect030"], GetHero(iSide), 5);
+					elseif tempAtb <= 0.35 then
+						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect035"], GetHero(iSide), 5);
+					elseif tempAtb <= 0.40 then
+						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect040"], GetHero(iSide), 5);
+					elseif tempAtb <= 0.45 then
+						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect045"], GetHero(iSide), 5);
+					elseif tempAtb <= 0.50 then
+						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect050"], GetHero(iSide), 5);
+					elseif tempAtb <= 0.55 then
+						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect055"], GetHero(iSide), 5);
+					elseif tempAtb <= 0.60 then
+						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect060"], GetHero(iSide), 5);
+					elseif tempAtb <= 0.65 then
+						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect065"], GetHero(iSide), 5);
+					elseif tempAtb <= 0.70 then
+						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect070"], GetHero(iSide), 5);
+					elseif tempAtb <= 0.75 then
+						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect075"], GetHero(iSide), 5);
+					elseif tempAtb <= 0.80 then
+						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect080"], GetHero(iSide), 5);
+					elseif tempAtb <= 0.85 then
+						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect085"], GetHero(iSide), 5);
+					elseif tempAtb <= 0.90 then
+						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect090"], GetHero(iSide), 5);
+					elseif tempAtb <= 0.95 then
+						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect095"], GetHero(iSide), 5);
+					else
+						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect100"], GetHero(iSide), 5);
+					end;
+				end;
+			end;
+			H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_DEMONIC_FIRE]["function"]["charge"] = Events_MiddlewareListener_Implement_Skill_DemonicFire_Charge;
 
 -- 英雄特长
 	-- Haven
@@ -3587,26 +3661,20 @@
 				-- H55SMOD_MiddlewareListener['Nur']['function']['hero'] = Events_MiddlewareListener_Implement_Nur_Hero;
 
 		-- Zehir
-			H55SMOD_MiddlewareListener['Zehir'] = {};
-			function Events_MiddlewareListener_Implement_Zehir(strHero, iSide, itemUnitLast, listCreaturesLastSummon)
+			H55SMOD_MiddlewareListener["Zehir"] = {};
+			function Events_MiddlewareListener_Implement_Zehir(strHero, iSide, itemUnit)
 				if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero then
-					if listCreaturesLastSummon ~= nil and length(listCreaturesLastSummon) > 0 then
-					local iLenCreaturesLastSummon = length(listCreaturesLastSummon);
-					for iIndexCreaturesLastSummon = 0, iLenCreaturesLastSummon - 1 do
-						local itemCreaturesLastSummon = listCreaturesLastSummon[iIndexCreaturesLastSummon];
-							if itemCreaturesLastSummon['iUnitType'] == CREATURE_FIRE_ELEMENTAL
-								or itemCreaturesLastSummon['iUnitType'] == CREATURE_WATER_ELEMENTAL
-								or itemCreaturesLastSummon['iUnitType'] == CREATURE_EARTH_ELEMENTAL
-								or itemCreaturesLastSummon['iUnitType'] == CREATURE_AIR_ELEMENTAL
-								or itemCreaturesLastSummon['iUnitType'] == CREATURE_PHOENIX then
-								itemCreaturesLastSummon['iAtb'] = 0.4 + H55SMOD_HeroLevel[strHero] * 0.02;
-								push(ListUnitSetATB, itemCreaturesLastSummon);
-							end;
+					local listCreatures = GetCreatures(iSide);
+					for i, strCreatureName in listCreatures do
+						local objCreature = geneUnitStatus(strCreatureName);
+						if objCreature["iPositionX"] == itemUnit["iPositionX"] and objCreature["iPositionY"] == itemUnit["iPositionY"] then
+							objCreature["iAtb"] = 0.4 + H55SMOD_HeroLevel[strHero] * 0.02;
+							push(ListUnitSetATB, objCreature);
 						end;
 					end;
 				end;
 			end;
-			H55SMOD_MiddlewareListener['Zehir']['function'] = Events_MiddlewareListener_Implement_Zehir;
+			H55SMOD_MiddlewareListener["Zehir"]["function"] = Events_MiddlewareListener_Implement_Zehir;
 
 		-- Faiz
 			H55SMOD_MiddlewareListener['Faiz'] = {};
@@ -3878,6 +3946,10 @@
 				if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero then
 					if listCreaturesLastSummon ~= nil and length(listCreaturesLastSummon) > 0 then
 						local iLenUnitLastSummon = length(listCreaturesLastSummon);
+						local iAppointedCreatureId = CREATURE_FIRE_ELEMENTAL;
+						if TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_FIRE_AFFINITY] ~= nil then
+							iAppointedCreatureId = TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_FIRE_AFFINITY] + 0;
+						end;
 						combatSetPause(1);
 						for iIndexUnitLastSummon = 0, iLenUnitLastSummon - 1 do
 							local itemUnitLastSummon = listCreaturesLastSummon[iIndexUnitLastSummon];
@@ -3888,7 +3960,7 @@
 								and itemUnitLastSummon['iUnitType'] ~= CREATURE_PHOENIX
 								and itemUnitLastSummon['iUnitType'] ~= CREATURE_GOBLIN
 								and itemUnitLastSummon['iUnitNumber'] > 1 then
-								Thread_Command_SummonCreature(iSide, CREATURE_FIRE_ELEMENTAL, 1, itemUnitLastSummon['iPositionX'], itemUnitLastSummon['iPositionY']);
+								Thread_Command_SummonCreature(iSide, iAppointedCreatureId, 1, itemUnitLastSummon['iPositionX'], itemUnitLastSummon['iPositionY']);
 							end;
 						end;
 						combatSetPause(nil);
@@ -3941,18 +4013,6 @@
 				end;
 			end;
 			H55SMOD_MiddlewareListener['Ash']['function']['hero'] = Events_MiddlewareListener_Implement_Ash_Hero;
-
-		-- Zydar
-			H55SMOD_MiddlewareListener['Zydar'] = {};
-			function Events_MiddlewareListener_Implement_Zydar(strHero, iSide, itemUnitLast, itemUnit)
-				if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero	and itemUnitLast['strUnitName'] ~= GetHero(iSide) and itemUnit['strUnitName'] ~= GetHero(iSide) then
-					local itemHero = geneUnitStatus(GetHero(iSide));
-					itemHero['iAtb'] = 1.25;
-					push(ListUnitSetATB, itemHero);
-					print(itemHero['strUnitName'].." move by changed mana");
-				end;
-			end;
-			H55SMOD_MiddlewareListener['Zydar']['function'] = Events_MiddlewareListener_Implement_Zydar;
 
 		-- Efion
 			H55SMOD_MiddlewareListener['Efion'] = {};
@@ -5484,24 +5544,24 @@
 	-- CREATURE_CHERUBIN 神圣守护者
 		H55SMOD_MiddlewareListener['Cherubin'] = {};
 		H55SMOD_MiddlewareListener['Cherubin']['MagicIndex'] = 1;
-		function Events_MiddlewareListener_Implement_Cherubin(strHero, iSide, itemUnit)
-			if itemUnit['iUnitType'] == CREATURE_CHERUBIN
-				and itemUnit['iSide'] == iSide then
-				if IsCombatUnit(itemUnit['strUnitName']) ~= nil and itemUnit['iUnitNumber'] > 0 then
+		function Events_MiddlewareListener_Implement_Cherubin(strHero, iSide, itemUnitLast)
+			if itemUnitLast['iUnitType'] == CREATURE_CHERUBIN
+				and itemUnitLast['iSide'] == iSide then
+				if IsCombatUnit(itemUnitLast['strUnitName']) ~= nil and itemUnitLast['iUnitNumber'] > 0 then
 					combatSetPause(1);
 					local iMagicIndex = H55SMOD_MiddlewareListener['Cherubin']['MagicIndex'];
 					local objMagicId = TTHCS_TABLE.CherubinMagic[iMagicIndex];
 					local iMagicId = objMagicId["Id"];
 					local enumMagicType = objMagicId["Type"];
-					startThread(Thread_Command_UnitCastGlobalSpell_IgnoreMana, itemUnit['strUnitName'], iMagicId);
+					startThread(Thread_Command_UnitCastGlobalSpell_IgnoreMana, itemUnitLast['strUnitName'], iMagicId);
 					-- sleep(10);
 					H55SMOD_MiddlewareListener['Cherubin']['MagicIndex'] = H55SMOD_MiddlewareListener['Cherubin']['MagicIndex'] + 1;
 					if H55SMOD_MiddlewareListener['Cherubin']['MagicIndex'] > 3 then
 						H55SMOD_MiddlewareListener['Cherubin']['MagicIndex'] = 1;
 					end;
-					itemUnit['iAtb'] = 1.25;
-					push(ListUnitSetATB, itemUnit);
-					print(itemUnit['strUnitName'].." cast "..iMagicId);
+					-- itemUnitLast['iAtb'] = 1.25;
+					-- push(ListUnitSetATB, itemUnitLast);
+					print(itemUnitLast['strUnitName'].." cast "..iMagicId);
 					combatSetPause(nil);
 				end;
 			end;
@@ -5511,10 +5571,10 @@
 	-- CREATURE_DRAGON_KNIGHT 暗黑龙骑士
 		H55SMOD_MiddlewareListener['DragonKnight'] = {};
 		H55SMOD_MiddlewareListener['DragonKnight']['MagicIndex'] = 1;
-		function Events_MiddlewareListener_Implement_DragonKnight(strHero, iSide, itemUnit)
-			if itemUnit['iUnitType'] == CREATURE_DRAGON_KNIGHT
-				and itemUnit['iSide'] == iSide then
-				if IsCombatUnit(itemUnit['strUnitName']) ~= nil and itemUnit['iUnitNumber'] > 0 then
+		function Events_MiddlewareListener_Implement_DragonKnight(strHero, iSide, itemUnitLast)
+			if itemUnitLast['iUnitType'] == CREATURE_DRAGON_KNIGHT
+				and itemUnitLast['iSide'] == iSide then
+				if IsCombatUnit(itemUnitLast['strUnitName']) ~= nil and itemUnitLast['iUnitNumber'] > 0 then
 					combatSetPause(1);
 					local iMagicIndex = H55SMOD_MiddlewareListener['DragonKnight']['MagicIndex'];
 					local objMagicId = TTHCS_TABLE.DragonKnightMagic[iMagicIndex];
@@ -5531,17 +5591,17 @@
 						end;
 					end;
 					if iLenCreaturesTarget > iLenImmune and iLenCreaturesTarget > 0 then
-						startThread(Thread_Command_UnitCastGlobalSpell_IgnoreMana, itemUnit['strUnitName'], iMagicId);
-						-- Thread_Command_UnitCastGlobalSpell_IgnoreMana(itemUnit['strUnitName'], iMagicId);
+						startThread(Thread_Command_UnitCastGlobalSpell_IgnoreMana, itemUnitLast['strUnitName'], iMagicId);
+						-- Thread_Command_UnitCastGlobalSpell_IgnoreMana(itemUnitLast['strUnitName'], iMagicId);
 					end;
 					-- sleep(10);
 					H55SMOD_MiddlewareListener['DragonKnight']['MagicIndex'] = H55SMOD_MiddlewareListener['DragonKnight']['MagicIndex'] + 1;
 					if H55SMOD_MiddlewareListener['DragonKnight']['MagicIndex'] > 3 then
 						H55SMOD_MiddlewareListener['DragonKnight']['MagicIndex'] = 1;
 					end;
-					itemUnit['iAtb'] = 1.25;
-					push(ListUnitSetATB, itemUnit);
-					print(itemUnit['strUnitName'].." cast "..iMagicId);
+					-- itemUnitLast['iAtb'] = 1.25;
+					-- push(ListUnitSetATB, itemUnitLast);
+					print(itemUnitLast['strUnitName'].." cast "..iMagicId);
 					combatSetPause(nil);
 				end;
 			end;
@@ -5599,6 +5659,106 @@
 			end;
 		end;
 		H55SMOD_MiddlewareListener["Legate"]["function"] = Events_MiddlewareListener_Implement_Legate;
+
+-- 召唤整合
+	H55SMOD_MiddlewareListener["Summon"] = {};
+	H55SMOD_MiddlewareListener["Summon"]["Creature"] = {};
+	TTHCS_TABLE.ElementCreature = { CREATURE_FIRE_ELEMENTAL, CREATURE_WATER_ELEMENTAL, CREATURE_EARTH_ELEMENTAL, CREATURE_AIR_ELEMENTAL };
+	function Events_MiddlewareListener_Implement_Summon(iSide, itemUnitLast, listSummonCreature)
+		if GetHero(iSide) ~= nil then
+			local objHero = geneUnitStatus(GetHero(iSide));
+			local strHero = objHero["iUnitType"];
+			local iAppointedCreatureId = 0;
+			if TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_FIRE_AFFINITY] ~= nil then
+				iAppointedCreatureId = TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_FIRE_AFFINITY] + 0;
+			end;
+			if iAppointedCreatureId > 0 and itemUnitLast["iSide"] == iSide and itemUnitLast["iUnitCategory"] == ENUM_CATEGORY.HERO then
+				if listSummonCreature ~= nil and length(listSummonCreature) > 0 then
+					combatSetPause(1);
+					-- 过滤生物数量
+						local listSummonCreature4Number = {};
+						for i, objSummonCreature in listSummonCreature do
+							if objSummonCreature["iUnitNumber"] > 1 then
+								push(listSummonCreature4Number, objSummonCreature);
+							end;
+						end;
+					-- 过滤生物类型
+						local listSummonCreature4Type = {};
+						for i, objSummonCreature in listSummonCreature4Number do
+							if contains(TTHCS_TABLE.ElementCreature, objSummonCreature["iUnitType"]) ~= nil then
+								push(listSummonCreature4Type, objSummonCreature);
+							end;
+						end;
+					-- 过滤元素大师英雄特技的召唤生物
+						local listSummonCreature4Spec = {};
+						for i, objSummonCreature in listSummonCreature4Type do
+							local bMatch = 0;
+							for j, objBeforeLastTurnCreature in ObjSnapshotBeforeLastTurn["Creatures"][iSide] do
+								if objSummonCreature["iPositionX"] == objBeforeLastTurnCreature["iPositionX"] and objSummonCreature["iPositionY"] == objBeforeLastTurnCreature["iPositionY"] then
+									bMatch = 1;
+									break;
+								end;
+							end;
+							if bMatch == 0 then
+								push(listSummonCreature4Spec, objSummonCreature);
+							end;
+						end;
+					-- 过滤镜像元素生物
+						local listSummonCreature4Phantom = {};
+						for i, objSummonCreature in listSummonCreature4Spec do
+							local bMatch = 0;
+							for j, objBeforeLastTurnCreature in ObjSnapshotBeforeLastTurn["Creatures"][iSide] do
+								if (objSummonCreature["iPositionX"] - objBeforeLastTurnCreature["iPositionX"] <= 1
+									or objSummonCreature["iPositionX"] - objBeforeLastTurnCreature["iPositionX"] >= -1)
+									and (objSummonCreature["iPositionY"] - objBeforeLastTurnCreature["iPositionY"] <= 1
+										or objSummonCreature["iPositionY"] - objBeforeLastTurnCreature["iPositionY"] >= -1)
+									and objSummonCreature["iUnitType"] == objBeforeLastTurnCreature["iUnitType"]
+									and objSummonCreature["iUnitNumber"] == objBeforeLastTurnCreature["iUnitNumber"]
+								then
+									bMatch = 1;
+									break;
+								end;
+							end;
+							if bMatch == 0 then
+								push(listSummonCreature4Phantom, objSummonCreature);
+							end;
+						end;
+					-- 移除原元素召唤生物
+						if length(listSummonCreature4Phantom) > 0 and H55SMOD_MiddlewareListener["Summon"]["Creature"][iSide] ~= nil then
+							Thread_Command_RemoveCombatUnit_Check(H55SMOD_MiddlewareListener["Summon"]["Creature"][iSide]["strUnitName"]);
+						end;
+
+					for i, objSummonCreature in listSummonCreature4Phantom do
+						if objSummonCreature["iUnitType"] ~= iAppointedCreatureId then
+							Thread_Command_RemoveCombatUnit_Check(objSummonCreature["strUnitName"]);
+							local strAppointedCreature = Thread_Command_SummonCreature(iSide, iAppointedCreatureId, objSummonCreature["iUnitNumber"], objSummonCreature["iPositionX"], objSummonCreature["iPositionY"]);
+							local objAppointedCreature = geneUnitStatus(strAppointedCreature);
+							if strHero == "Kastore" then
+								if H55SMOD_MiddlewareListener["Summon"]["Creature"][iSide] == nil then
+									if TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_MASTER_OF_ICE] == 1 then
+										Thread_Command_SummonCreature(iSide, CREATURE_WATER_ELEMENTAL, TTHCS_COMMON.ceil(H55SMOD_HeroLevel[strHero] / 3), objSummonCreature["iPositionX"], objSummonCreature["iPositionY"]);
+									end;
+									if TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_MASTER_OF_FIRE] == 1 then
+										Thread_Command_SummonCreature(iSide, CREATURE_FIRE_ELEMENTAL, TTHCS_COMMON.ceil(H55SMOD_HeroLevel[strHero] / 3), objSummonCreature["iPositionX"], objSummonCreature["iPositionY"]);
+									end;
+									if TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_MASTER_OF_LIGHTNINGS] == 1 then
+										Thread_Command_SummonCreature(iSide, CREATURE_AIR_ELEMENTAL, TTHCS_COMMON.ceil(H55SMOD_HeroLevel[strHero] / 3), objSummonCreature["iPositionX"], objSummonCreature["iPositionY"]);
+									end;
+								end;
+							end;
+							H55SMOD_MiddlewareListener["Summon"]["Creature"][iSide] = objAppointedCreature;
+							if strHero == "Zehir" then
+								objAppointedCreature["iAtb"] = 0.4 + H55SMOD_HeroLevel[strHero] * 0.02;
+								push(ListUnitSetATB, objAppointedCreature);
+							end;
+						end;
+					end;
+					combatSetPause(nil);
+				end;
+			end;
+		end;
+	end;
+	H55SMOD_MiddlewareListener["Summon"]["function"] = Events_MiddlewareListener_Implement_Summon;
 
 -- 系统接口
 	function AttackerHeroMove(heroName)

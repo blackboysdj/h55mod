@@ -15,10 +15,10 @@ DIFFICULTY_NORMAL = 1
 DIFFICULTY_HARD = 2
 DIFFICULTY_HEROIC = 3
 
-SKILL_ABSOLUTE_MORALE = 78;
-SKILL_MASTER_OF_ICE = 43;
-SKILL_MASTER_OF_FIRE = 44;
-SKILL_MASTER_OF_LIGHTNINGS = 45;
+HERO_SKILL_ABSOLUTE_MORALE = 78;
+HERO_SKILL_MASTER_OF_ICE = 43;
+HERO_SKILL_MASTER_OF_FIRE = 44;
+HERO_SKILL_MASTER_OF_LIGHTNINGS = 45;
 
 ARTIFACT_ANGELIC_ALLIANCE = 68;
 ARTIFACT_CURSE_SHOULDER = 114;
@@ -49,6 +49,10 @@ HERO_SKILL_BALLISTA = 23;
 HERO_SKILL_TRIPLE_BALLISTA = 74;
 HERO_SKILL_CHILLING_STEEL = 104;
 HERO_SKILL_WILDFIRE = 130;
+HERO_SKILL_DEMONIC_FIRE = 59;
+HERO_SKILL_DEMONIC_RETALIATION = 92;
+HERO_SKILL_DEMONIC_FLAME = 94;
+HERO_SKILL_FIRE_AFFINITY = 97;
 
 MAX_MANA = 1000;
 
@@ -160,6 +164,13 @@ TTH_SKILL_EFFECT_COMBAT = {
     , [12] = HERO_SKILL_TRIPLE_BALLISTA
     , [13] = HERO_SKILL_CHILLING_STEEL
     , [14] = HERO_SKILL_WILDFIRE
+    , [15] = HERO_SKILL_DEMONIC_FIRE
+    , [16] = HERO_SKILL_DEMONIC_RETALIATION
+    , [17] = HERO_SKILL_DEMONIC_FLAME
+    , [18] = HERO_SKILL_FIRE_AFFINITY
+    , [19] = HERO_SKILL_MASTER_OF_ICE
+    , [20] = HERO_SKILL_MASTER_OF_FIRE
+    , [21] = HERO_SKILL_MASTER_OF_LIGHTNINGS
 };
 TTH_SKILL_EFFECT_COMBAT_ONCE = {
 };
@@ -590,6 +601,14 @@ end;
 
 function Thread_Command_RemoveCombatUnit_Uncheck(itemUnit)
     RemoveCombatUnit(itemUnit);
+    return nil;
+end;
+
+function Thread_Command_RemoveCombatUnit_Check(strUnitName)
+    if IsCombatUnit(strUnitName) ~= nil then
+        RemoveCombatUnit(strUnitName);
+    end;
+    repeat sleep(1); until IsCombatUnit(strUnitName) == nil;
     return nil;
 end;
 
@@ -12837,6 +12856,29 @@ end;
 
       TTHCS_PATH["Perk"][HERO_SKILL_FOREST_RAGE] = {};
       TTHCS_PATH["Perk"][HERO_SKILL_FOREST_RAGE]["Effect"] = "/Text/TTH/Skills/Avenger/117-ForestRage/Combat/Effect.txt";
+
+      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE] = {};
+      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect.txt";
+      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect005"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect005.txt";
+      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect010"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect010.txt";
+      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect015"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect015.txt";
+      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect020"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect020.txt";
+      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect025"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect025.txt";
+      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect030"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect030.txt";
+      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect035"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect035.txt";
+      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect040"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect040.txt";
+      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect045"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect045.txt";
+      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect050"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect050.txt";
+      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect055"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect055.txt";
+      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect060"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect060.txt";
+      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect065"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect065.txt";
+      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect070"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect070.txt";
+      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect075"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect075.txt";
+      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect080"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect080.txt";
+      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect085"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect085.txt";
+      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect090"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect090.txt";
+      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect095"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect095.txt";
+      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect100"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect100.txt";
 
     TTHCS_PATH["Artifact"] = {};
       TTHCS_PATH["Artifact"][ARTIFACT_ANGELIC_ALLIANCE] = {};

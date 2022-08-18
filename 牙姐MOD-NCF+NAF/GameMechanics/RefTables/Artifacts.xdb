@@ -2004,8 +2004,8 @@
 		<Item>
 			<ID>ARTIFACT_MOONBLADE</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Moonblade/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Moonblade/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/058-Moonblade/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/058-Moonblade/Description.txt"/>
 				<Model/>
 				<Type>ARTF_CLASS_MAJOR</Type>
 				<Slot>SECONDARY</Slot>

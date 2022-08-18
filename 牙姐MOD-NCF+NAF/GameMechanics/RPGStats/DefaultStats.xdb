@@ -1302,7 +1302,7 @@
 				<DemonicFire>
 					<BaseDamage>10</BaseDamage>
 					<DamagePerSpellPower>10</DamagePerSpellPower>
-					<ManaCost>5</ManaCost>
+					<ManaCost>3</ManaCost>
 				</DemonicFire>
 				<ConsumeCorpseHPForOneMana>120</ConsumeCorpseHPForOneMana>
 				<CriticalStrike_ChanceToWork>50</CriticalStrike_ChanceToWork>

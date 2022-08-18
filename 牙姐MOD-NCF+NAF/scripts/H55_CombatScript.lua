@@ -670,8 +670,10 @@
 				ShowFlyingSign(TTHCS_PATH["Artifact"][ARTIFACT_ANGELIC_ALLIANCE]["Effect"], itemCreatureCaster, 5);
 				Thread_Command_UnitCastGlobalSpell_IgnoreMana(itemCreatureCaster, SPELL_MASS_HASTE);
 				print("ARTIFACT_ANGELIC_ALLIANCE casted SPELL_MASS_HASTE");
-				Thread_Command_UnitCastGlobalSpell_IgnoreMana(itemCreatureCaster, SPELL_MASS_BLESS);
-				print("ARTIFACT_ANGELIC_ALLIANCE casted SPELL_MASS_BLESS");
+				if GetHeroName(GetHero(iSide)) ~= "SaintIsabell" then
+					Thread_Command_UnitCastGlobalSpell_IgnoreMana(itemCreatureCaster, SPELL_MASS_BLESS);
+					print("ARTIFACT_ANGELIC_ALLIANCE casted SPELL_MASS_BLESS");
+				end;
 				if GetHero(iSide) ~= nil
 					and TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_TWILIGHT] ~= nil
 					and TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_TWILIGHT] > 0 then
@@ -722,10 +724,11 @@
 				local pos = BattleLargeCenterPos[getBattleSize()];
 				local itemCreatureCaster = Thread_Command_SummonCreature(iSide, CREATURE_DRAGON_KNIGHT, 1, pos['x'], pos['y']);
 				ShowFlyingSign(TTHCS_PATH["Artifact"][ARTIFACT_CURSE_SHOULDER]["Effect"], itemCreatureCaster, 5);
-				Thread_Command_UnitCastGlobalSpell_IgnoreMana(itemCreatureCaster, SPELL_MASS_SLOW);
+				startThread(Thread_Command_UnitCastGlobalSpell_IgnoreMana, itemCreatureCaster, SPELL_MASS_SLOW);
 				print("ARTIFACT_ANGELIC_ALLIANCE casted SPELL_MASS_SLOW");
-				Thread_Command_UnitCastGlobalSpell_IgnoreMana(itemCreatureCaster, SPELL_MASS_WEAKNESS);
+				startThread(Thread_Command_UnitCastGlobalSpell_IgnoreMana, itemCreatureCaster, SPELL_MASS_WEAKNESS);
 				print("ARTIFACT_ANGELIC_ALLIANCE casted SPELL_MASS_WEAKNESS");
+				sleep(100);
 				if GetHero(iSide) ~= nil
 					and TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_PARIAH] ~= nil
 					and TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_PARIAH] > 0 then
@@ -1437,12 +1440,13 @@
 								H55SMOD_MiddlewareListener['Gottai']['function']('Gottai', iSide, itemUnitLast, iLossManaPoints);
 							-- Common
 								H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_ELITE_CASTERS]['function'](iSide, itemUnitLast, iLossManaPoints);
+							-- Artifact
+								H55SMOD_MiddlewareListener['Artifact'][ARTIFACT_MOONBLADE]['function'](itemUnitLast, iSide);
 							-- ArtifactSet
 								H55SMOD_MiddlewareListener["ArtifactSet"][TTHCS_ENUM.SET_OGRES.."_"..2]["function"](iSide, itemUnitLast, TTHCS_ENUM.Voice);
 
 							if itemUnitLast['iSide'] == iSide and itemUnitLast['iUnitCategory'] == ENUM_CATEGORY.HERO then
 								H55SMOD_MiddlewareListener['Artifact'][ARTIFACT_EIGHTFOLD]['function'](itemUnitLast, iSide);
-								H55SMOD_MiddlewareListener['Artifact'][ARTIFACT_MOONBLADE]['function'](itemUnitLast, iSide);
 							end;
 
 							if itemUnitLast["iUnitCategory"] == ENUM_CATEGORY.CREATURE then
@@ -2368,7 +2372,12 @@
 		H55SMOD_MiddlewareListener['Artifact'][ARTIFACT_MOONBLADE] = {};
 		function Events_MiddlewareListener_Implement_Artifact_Moonblade(itemUnitLast, iSide)
 			if TTH_ARTIFACT_EFFECT_COMBAT_HERO[iSide][ARTIFACT_MOONBLADE] == 1 then
-				SetUnitManaPoints(itemUnitLast['strUnitName'], GetUnitManaPoints(itemUnitLast['strUnitName']) + 2);
+				local strHeroName = GetHero(iSide);
+				local iRecoveryMana = 2;
+				if TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_MYSTICISM] == 1 then
+					iRecoveryMana = iRecoveryMana * 2;
+				end;
+				SetUnitManaPoints(strHeroName, GetUnitManaPoints(strHeroName) + iRecoveryMana);
 			end;
 		end;
 		H55SMOD_MiddlewareListener['Artifact'][ARTIFACT_MOONBLADE]['function'] = Events_MiddlewareListener_Implement_Artifact_Moonblade;

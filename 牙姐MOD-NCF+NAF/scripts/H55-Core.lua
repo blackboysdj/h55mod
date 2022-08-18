@@ -6178,7 +6178,7 @@ doFile("/scripts/H55-Settings.lua");
 						local iTownValue = TTH_MANAGE.totalTownValue4Mayor(strMayor);
 						local iHeroLevel = GetHeroLevel(strMayor);
 						iCountPit = TTH_MANAGE.totalSacrificialPit4Mayor(strMayor);
-						iExp = 200 * (1 + iCountPit) + iTownValue * iHeroLevel * iHeroLevel;
+						iExp = 200 * (1 + iCountPit) + iTownValue * iHeroLevel * iHeroLevel / 9;
 						if strMayor == "Calid2" then
 							iExp = TTH_COMMON.round(iExp * 1.5);
 						end;

@@ -52,7 +52,7 @@
 	<Flags>
 		<SuperActive>false</SuperActive>
 	</Flags>
-	<TextFileRef href="/Text/Game/Skills/Unique/Gating/DemonicFire/Description.txt"/>
+	<TextFileRef href="/Text/TTH/Skills/Gating/059-DemonicFire/Description.txt"/>
 	<ResizeOnTextSet>true</ResizeOnTextSet>
 	<ResizeWidthOnTextSet>false</ResizeWidthOnTextSet>
 	<TextFormat href="/UI/Doc/SkillWheel/Common/Description.(TextFormat).xdb#xpointer(/TextFormat)"/>

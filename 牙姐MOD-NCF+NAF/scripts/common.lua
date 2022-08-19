@@ -12567,10 +12567,10 @@ end;
       end;
       function TTHCS_COMMON.getRandom(iMod)
         local iRandom = TTHCS_COMMON.random(100);
-        local iIndex = tth_mod(iRandom, iMod);
-        print("iRandom: "..iRandom);
-        print("iIndex: "..iIndex);
-        return iIndex;
+        local iMod = tth_mod(iRandom, iMod);
+        print("Random: "..iRandom);
+        print("Mod: "..iMod);
+        return iMod;
       end;
 
   TTHCS_GLOBAL = {};

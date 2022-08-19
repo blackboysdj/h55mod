@@ -9698,6 +9698,7 @@
         TTH_PATH.Talent["Sylsai"]["Text"] = TTH_PATH.Talent["Sylsai"]["Pre"].."Text.txt";
         TTH_PATH.Talent["Sylsai"]["AppointCreature"] = TTH_PATH.Talent["Sylsai"]["Pre"].."AppointCreature.txt";
         TTH_PATH.Talent["Sylsai"]["AppointCreatureNotEnoughOperTimes"] = TTH_PATH.Talent["Sylsai"]["Pre"].."AppointCreatureNotEnoughOperTimes.txt";
+        TTH_PATH.Talent["Sylsai"]["AppointCreatureEmptyDiplomacyCreature"] = TTH_PATH.Talent["Sylsai"]["Pre"].."AppointCreatureEmptyDiplomacyCreature.txt";
         TTH_PATH.Talent["Sylsai"]["AppointCreatureMatchSpecialCreature"] = TTH_PATH.Talent["Sylsai"]["Pre"].."AppointCreatureMatchSpecialCreature.txt";
         TTH_PATH.Talent["Sylsai"]["AppointCreatureConfirmInit"] = TTH_PATH.Talent["Sylsai"]["Pre"].."AppointCreatureConfirmInit.txt";
         TTH_PATH.Talent["Sylsai"]["AppointCreatureConfirmChange"] = TTH_PATH.Talent["Sylsai"]["Pre"].."AppointCreatureConfirmChange.txt";
@@ -10376,6 +10377,9 @@
             , ["Metlirn"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultMetlirn"
             }
+            , ["Sylsai"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultSylsai"
+            }
         }
         , [TTH_ENUM.FuncDealWeekly] = {
           -- 其他
@@ -10439,9 +10443,6 @@
             }
             , ["Sylsai"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.dealDailySylsai"
-            }
-            , ["Biara"] = {
-              [TTH_ENUM.FuncAlways] = "TTH_TALENT.dealDailyBiara"
             }
             , ["Ufretin"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.dealDailyUfretin"

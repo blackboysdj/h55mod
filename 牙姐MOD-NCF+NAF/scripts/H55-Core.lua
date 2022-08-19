@@ -139,6 +139,22 @@ doFile("/scripts/H55-Settings.lua");
 			    return arr;
 				end;
 
+			-- 在数组头部移除一个对象: shift
+				function TTH_COMMON.shift(arr)
+					if arr == nil then
+						arr = {};
+					end;
+					local newArr = {};
+					local i = 0;
+					for key, value in arr do
+						if key ~= 0 then
+							newArr[i] = value;
+							i = i + 1;
+						end;
+					end
+			    return newArr;
+				end;
+
 			-- 从数组中移除一个对象: remove
 				function TTH_COMMON.remove8Key(arr, index)
 					if arr == nil then
@@ -11235,6 +11251,8 @@ doFile("/scripts/H55-Settings.lua");
 							, CREATURE_CROSSBOW
 						}
 						, ["AppointCreature"] = CREATURE_UNKNOWN
+						, ["DiplomacyCreature"] = {}
+						, ["DiplomacyCreatureBak"] = {}
 						, ["Diplomacy"] = {}
 					};
       	end;
@@ -11268,7 +11286,34 @@ doFile("/scripts/H55-Settings.lua");
 						if GetObjectOwner(strDiplomacy) ~= iPlayer then
 							TTH_VARI.talent[strHero]["Diplomacy"] = TTH_COMMON.remove8Value(TTH_VARI.talent[strHero]["Diplomacy"], strDiplomacy);
 						end;
-					end
+					end;
+				end;
+				function TTH_TALENT.combatResultSylsai(iPlayer, strHero, iCombatIndex)
+					TTH_MAIN.debug("TTH_TALENT.combatResultSylsai", iPlayer, strHero, iCombatIndex);
+
+					local arrCreatureId = TTH_VARI.talent[strHero]["DiplomacyCreatureBak"];
+					if arrCreatureId ~= nil and length(arrCreatureId) > 0 then
+						for i, iCreatureId in arrCreatureId do
+							local iBaseCreatureId = iCreatureId;
+							if TTH_TABLE_NCF_CREATURES[iCreatureId]["Upgrade"] == nil then
+								for iRace = TOWN_HEAVEN, TOWN_STRONGHOLD do
+									for jTier = 1, 7 do
+										for kType = 1, 3 do
+											local iTempCreatureId = TTH_TABLE.Creature8RaceAndLevel[iRace][jTier][kType];
+											if iCreatureId == iTempCreatureId  then
+												iBaseCreatureId = TTH_TABLE.Creature8RaceAndLevel[iRace][jTier][1];
+											end;
+										end;
+									end;
+								end;
+							end;
+							TTH_VARI.talent[strHero]["DiplomacyCreature"] = TTH_COMMON.push(TTH_VARI.talent[strHero]["DiplomacyCreature"], iBaseCreatureId);
+							if length(TTH_VARI.talent[strHero]["DiplomacyCreature"]) > 20 then
+								TTH_VARI.talent[strHero]["DiplomacyCreature"] = TTH_COMMON.shift(TTH_VARI.talent[strHero]["DiplomacyCreature"]);
+							end;
+						end;
+						TTH_VARI.talent[strHero]["DiplomacyCreatureBak"] = {};
+					end;
 				end;
       	function TTH_TALENT.activeSylsai(iPlayer, strHero)
 					TTH_COMMON.nextNavi(TTH_PATH.Talent[strHero]["Text"]);
@@ -11279,42 +11324,28 @@ doFile("/scripts/H55-Settings.lua");
       	function TTH_TALENT.activeSylsaiAppointCreature(iPlayer, strHero)
 					TTH_COMMON.nextNavi(TTH_PATH.Talent[strHero]["AppointCreature"]);
 
-					if TTH_VARI.talent[strHero]["AppointCreature"] == CREATURE_UNKNOWN then
-						TTH_TALENT.radioActiveSylsaiAppointCreature4DiplomacyCreature(iPlayer, strHero);
-					else
-      			TTH_TALENT.checkPreActiveSylsaiAppointCreature4OperTimes(iPlayer, strHero);
-					end;
+					TTH_TALENT.checkPreActiveSylsaiAppointCreature4DiplomacyCreature(iPlayer, strHero);
       	end;
-      	function TTH_TALENT.checkPreActiveSylsaiAppointCreature4OperTimes(iPlayer, strHero)
-      		if TTH_VARI.talent[strHero]["CurrentTimes"] <= 0 then
-      			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
-      				if TTH_MANAGE.getRemainOperTimes(strHero) <= 0 then
-			    			TTH_GLOBAL.sign(strHero, TTH_PATH.Talent[strHero]["AppointCreatureNotEnoughOperTimes"]);
-		    				return nil;
-      				end;
-      			else
-		    			TTH_GLOBAL.sign(strHero, TTH_PATH.Talent[strHero]["AppointCreatureNotEnoughOperTimes"]);
-	    				return nil;
-		    		end;
+      	function TTH_TALENT.checkPreActiveSylsaiAppointCreature4DiplomacyCreature(iPlayer, strHero)
+      		if TTH_VARI.talent[strHero]["DiplomacyCreature"] == nil or length(TTH_VARI.talent[strHero]["DiplomacyCreature"]) == 0 then
+	    			TTH_GLOBAL.sign(strHero, TTH_PATH.Talent[strHero]["AppointCreatureEmptyDiplomacyCreature"]);
+    				return nil;
       		end;
 
 					TTH_TALENT.radioActiveSylsaiAppointCreature4DiplomacyCreature(iPlayer, strHero);
       	end;
       	function TTH_TALENT.radioActiveSylsaiAppointCreature4DiplomacyCreature(iPlayer, strHero)
-					local arrCreature4Hero = TTH_GLOBAL.getHeroCreatureInfo(strHero);
+					local arrDiplomacyCreature = TTH_VARI.talent[strHero]["DiplomacyCreature"];
       		local arrOption = {};
       		local i = 1;
-					for iIndex = 0, 6 do
-						if arrCreature4Hero[iIndex]["Count"] > 0 then
-							local iCreatureId = arrCreature4Hero[iIndex]["Id"];
-							arrOption[i] = {
-								["Id"] = iCreatureId
-								, ["Text"] = TTH_TABLE_NCF_CREATURES[iCreatureId]["NAME"]
-								, ["Callback"] = "TTH_TALENT.confirmActiveSylsaiAppointCreature4SpecialCreature"
-							};
-							i = i + 1;
-						end;
-					end;
+      		for iIndex, iCreatureId in arrDiplomacyCreature do
+      			arrOption[i] = {
+							["Id"] = iCreatureId
+							, ["Text"] = TTH_TABLE_NCF_CREATURES[iCreatureId]["NAME"]
+							, ["Callback"] = "TTH_TALENT.confirmActiveSylsaiAppointCreature4SpecialCreature"
+						};
+						i = i + 1;
+      		end;
 
 					TTH_COMMON.optionRadio(iPlayer, strHero, arrOption);
       	end;
@@ -11944,27 +11975,6 @@ doFile("/scripts/H55-Settings.lua");
         		end;
         	end
         end;
-
-      -- Biara 114 拜娅拉
-      	function TTH_TALENT.dealDailyBiara(iPlayer, strHero)
-      		TTH_MAIN.debug("TTH_TALENT.dealDailyBiara", iPlayer, strHero);
-
-      		if TTH_VARI.dayOfWeek == 4 then
-  					local iHeroLevel = GetHeroLevel(strHero);
-  					local iHeroKnowledge = GetHeroStat(strHero, STAT_KNOWLEDGE);
-  					local arrCreatureGrowth8Tier = {};
-  					for iTier = 1, 7 do
-  						arrCreatureGrowth8Tier[iTier] = TTH_COMMON.round(iHeroLevel / TTH_TABLE.Coef8Mayor4TownDwellingCreature[iTier]);
-  					end;
-      			local arrTown = TTH_MANAGE.listMayorTown8Hero(strHero);
-      			if arrTown ~= nil and length(arrTown) > 0 then
-	      			for i, strTown in arrTown do
-	    					TTH_GLOBAL.updateTownDwellingCreature(strTown, arrCreatureGrowth8Tier);
-	      			end;
-	      			TTH_GLOBAL.signHero4TownRecruit(strHero);
-	      		end;
-      		end;
-      	end;
 
 			-- Calid2 115 卡利德
 				function TTH_TALENT.combatResultCalid2(iPlayer, strHero, iCombatIndex)
@@ -13759,10 +13769,13 @@ doFile("/scripts/H55-Settings.lua");
 			function TTH_PERK.checkPreActive0284HasRecruit(iPlayer, strHero, strTown)
 				TTH_PERK.init0284Town(iPlayer, strHero, strTown);
 
-				if TTH_VARI.recordRecruitment[strTown]["HasRecruit"] == TTH_VARI.absoluteWeek then
-					local strText = TTH_PATH.Perk[HERO_SKILL_RECRUITMENT]["HasRecruit"];
-					TTH_GLOBAL.sign(strHero, strText);
-					return nil;
+				local strHeroBiara = "Biara";
+				if strHero ~= strHeroBiara then
+					if TTH_VARI.recordRecruitment[strTown]["HasRecruit"] == TTH_VARI.absoluteWeek then
+						local strText = TTH_PATH.Perk[HERO_SKILL_RECRUITMENT]["HasRecruit"];
+						TTH_GLOBAL.sign(strHero, strText);
+						return nil;
+					end;
 				end;
 
 				TTH_PERK.checkPreActive0284NoDwelling(iPlayer, strHero, strTown);
@@ -13807,8 +13820,12 @@ doFile("/scripts/H55-Settings.lua");
 				local iTownRace = TTH_GLOBAL.getRace8Town(strTown);
 				local arrCreatureGrowth8Tier = {};
 				local iCoef = 1;
+				local strHeroBiara = "Biara";
 				if HasArtefact(strHero, ARTIFACT_CROWN_OF_LEADER, 1) ~= nil then
-					iCoef = 1.5;
+					iCoef = iCoef * 1.5;
+				end;
+				if strHero == strHeroBiara then
+					iCoef = iCoef * 1.5;
 				end;
 				for iTier = 1, 7 do
 					if GetTownBuildingLevel(strTown, iTier + TOWN_BUILDING_DWELLING_1 - 1) >= 1 then
@@ -14125,6 +14142,7 @@ doFile("/scripts/H55-Settings.lua");
 				local iCount = TTH_COMMON.round(1 * iCoef);
     		local strHeroMarkal = "Markal";
     		local strHeroBerein = "Berein";
+    		local strHeroSylsai = "Sylsai";
 				if strHero == strHeroMarkal then
 					iCount = TTH_COMMON.round(2 * iCoef);
 				end;
@@ -14145,6 +14163,9 @@ doFile("/scripts/H55-Settings.lua");
 							end;
 						end;
     				TTH_GLOBAL.addCreature4Hero8Sign(strHero, iCreatureId, iSlotCount, TTH_ENUM.AddCreature);
+    				if contains(TTH_VARI.talent[strHeroSylsai]["DiplomacyCreatureBak"], iCreatureId) == nil then
+    					TTH_VARI.talent[strHeroSylsai]["DiplomacyCreatureBak"] = TTH_COMMON.push(TTH_VARI.talent[strHeroSylsai]["DiplomacyCreatureBak"], iCreatureId);
+    				end;
     			end;
     		end;
     		SetMonsterCourageAndMood(strCreatureStack, iPlayer, MONSTER_COURAGE_CAN_FLEE_JOIN, MONSTER_MOOD_AGGRESSIVE);

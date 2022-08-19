@@ -2357,13 +2357,17 @@
 		H55SMOD_MiddlewareListener['Artifact'][ARTIFACT_EIGHTFOLD] = {};
 		function Events_MiddlewareListener_Implement_Artifact_Eightfold(itemUnitLast, iSide)
 			if TTH_ARTIFACT_EFFECT_COMBAT_HERO[iSide][ARTIFACT_EIGHTFOLD] == 1 then
-				combatSetPause(1);
-				local iIndex = TTHCS_COMMON.getRandom(4);
-				if iIndex == 0 then
-					itemUnitLast['iAtb'] = 1.25;
-					push(ListUnitSetATB, itemUnitLast);
+				if TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_DEMONIC_FIRE] == 1 then
+					H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_DEMONIC_FIRE]["Chance"][iSide] = H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_DEMONIC_FIRE]["Chance"][iSide] + 25;
+				else
+					combatSetPause(1);
+					local iIndex = TTHCS_COMMON.getRandom(4);
+					if iIndex == 0 then
+						itemUnitLast['iAtb'] = 1.25;
+						push(ListUnitSetATB, itemUnitLast);
+					end;
+					combatSetPause(nil);
 				end;
-				combatSetPause(nil);
 			end;
 		end;
 		H55SMOD_MiddlewareListener['Artifact'][ARTIFACT_EIGHTFOLD]['function'] = Events_MiddlewareListener_Implement_Artifact_Eightfold;
@@ -2723,78 +2727,91 @@
 			end;
 			H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_FOREST_RAGE]['function'] = Events_MiddlewareListener_Implement_Skill_ForestRage;
 
-		-- 地狱烈火/灼热之火/地狱愤怒: 英雄在生物行动时失去魔法值，则累积atb，0.1/0.05/0.05
+		-- 地狱烈火/灼热之火/地狱愤怒: 英雄在生物行动时失去魔法值，则累积再动几率，10%/5%/5%
 			H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_DEMONIC_FIRE] = {};
-			H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_DEMONIC_FIRE]["iAtb"] = {};
-			H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_DEMONIC_FIRE]["iAtb"][0] = 0;
-			H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_DEMONIC_FIRE]["iAtb"][1] = 0;
+			H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_DEMONIC_FIRE]["Chance"] = {};
+			H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_DEMONIC_FIRE]["Chance"][0] = 0;
+			H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_DEMONIC_FIRE]["Chance"][1] = 0;
 			H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_DEMONIC_FIRE]["function"] = {};
+			function showMessage4DemonicFireChance(iChance)
+				if iChance <= 5 then
+					ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect005"], GetHero(iSide), 5);
+				elseif iChance <= 10 then
+					ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect010"], GetHero(iSide), 5);
+				elseif iChance <= 15 then
+					ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect015"], GetHero(iSide), 5);
+				elseif iChance <= 20 then
+					ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect020"], GetHero(iSide), 5);
+				elseif iChance <= 25 then
+					ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect025"], GetHero(iSide), 5);
+				elseif iChance <= 30 then
+					ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect030"], GetHero(iSide), 5);
+				elseif iChance <= 35 then
+					ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect035"], GetHero(iSide), 5);
+				elseif iChance <= 40 then
+					ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect040"], GetHero(iSide), 5);
+				elseif iChance <= 45 then
+					ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect045"], GetHero(iSide), 5);
+				elseif iChance <= 50 then
+					ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect050"], GetHero(iSide), 5);
+				elseif iChance <= 55 then
+					ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect055"], GetHero(iSide), 5);
+				elseif iChance <= 60 then
+					ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect060"], GetHero(iSide), 5);
+				elseif iChance <= 65 then
+					ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect065"], GetHero(iSide), 5);
+				elseif iChance <= 70 then
+					ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect070"], GetHero(iSide), 5);
+				elseif iChance <= 75 then
+					ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect075"], GetHero(iSide), 5);
+				elseif iChance <= 80 then
+					ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect080"], GetHero(iSide), 5);
+				elseif iChance <= 85 then
+					ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect085"], GetHero(iSide), 5);
+				elseif iChance <= 90 then
+					ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect090"], GetHero(iSide), 5);
+				elseif iChance <= 95 then
+					ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect095"], GetHero(iSide), 5);
+				else
+					ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect100"], GetHero(iSide), 5);
+				end;
+			end;
 			function Events_MiddlewareListener_Implement_Skill_DemonicFire_Consume(iSide, itemUnitLast)
 				if GetHero(iSide) ~= nil and TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_DEMONIC_FIRE] == 1 then
-					if H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_DEMONIC_FIRE]["iAtb"][iSide] >= 1 then
-						H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_DEMONIC_FIRE]["iAtb"][iSide] = H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_DEMONIC_FIRE]["iAtb"][iSide] - 1;
-						itemUnitLast["iAtb"] = 1.25;
-						push(ListUnitSetATB, itemUnitLast);
-						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect"], GetHero(iSide), 5);
+					local iChance = H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_DEMONIC_FIRE]["Chance"][iSide];
+					if iChance >= 0 then
+						if TTHCS_COMMON.getRandom(100) <= iChance then
+							if iChance < 100 then
+								iChance = 0;
+							else
+								iChance = iChance - 100;
+							end;
+							H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_DEMONIC_FIRE]["Chance"][iSide] = iChance;
+							itemUnitLast["iAtb"] = 1.25;
+							push(ListUnitSetATB, itemUnitLast);
+							ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect"], GetHero(iSide), 5);
+							sleep(20);
+						end;
+						showMessage4DemonicFireChance(iChance);
 					end;
 				end;
 			end;
 			H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_DEMONIC_FIRE]["function"]["consume"] = Events_MiddlewareListener_Implement_Skill_DemonicFire_Consume;
 			function Events_MiddlewareListener_Implement_Skill_DemonicFire_Charge(iSide, itemUnitLast, iLossManaPoints)
 				if GetHero(iSide) ~= nil and TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_DEMONIC_FIRE] == 1 then
-					local iAtb = 0.1;
+					local iChance = 10;
 					if TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_DEMONIC_RETALIATION] == 1 then
-						iAtb = iAtb + 0.05;
+						iChance = iChance + 5;
 					end;
 					if TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_DEMONIC_FLAME] == 1 then
-						iAtb = iAtb + 0.05;
+						iChance = iChance + 5;
 					end;
 					if geneUnitStatus(GetHero(iSide))["iUnitType"] == "Zydar" then
-						iAtb = iAtb * 1.5;
+						iChance = iChance * 1.5;
 					end;
-					H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_DEMONIC_FIRE]["iAtb"][iSide] = H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_DEMONIC_FIRE]["iAtb"][iSide] + iAtb;
-					local tempAtb = H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_DEMONIC_FIRE]["iAtb"][iSide];
-					if tempAtb <= 0.05 then
-						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect005"], GetHero(iSide), 5);
-					elseif tempAtb <= 0.10 then
-						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect010"], GetHero(iSide), 5);
-					elseif tempAtb <= 0.15 then
-						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect015"], GetHero(iSide), 5);
-					elseif tempAtb <= 0.20 then
-						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect020"], GetHero(iSide), 5);
-					elseif tempAtb <= 0.25 then
-						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect025"], GetHero(iSide), 5);
-					elseif tempAtb <= 0.30 then
-						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect030"], GetHero(iSide), 5);
-					elseif tempAtb <= 0.35 then
-						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect035"], GetHero(iSide), 5);
-					elseif tempAtb <= 0.40 then
-						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect040"], GetHero(iSide), 5);
-					elseif tempAtb <= 0.45 then
-						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect045"], GetHero(iSide), 5);
-					elseif tempAtb <= 0.50 then
-						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect050"], GetHero(iSide), 5);
-					elseif tempAtb <= 0.55 then
-						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect055"], GetHero(iSide), 5);
-					elseif tempAtb <= 0.60 then
-						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect060"], GetHero(iSide), 5);
-					elseif tempAtb <= 0.65 then
-						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect065"], GetHero(iSide), 5);
-					elseif tempAtb <= 0.70 then
-						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect070"], GetHero(iSide), 5);
-					elseif tempAtb <= 0.75 then
-						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect075"], GetHero(iSide), 5);
-					elseif tempAtb <= 0.80 then
-						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect080"], GetHero(iSide), 5);
-					elseif tempAtb <= 0.85 then
-						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect085"], GetHero(iSide), 5);
-					elseif tempAtb <= 0.90 then
-						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect090"], GetHero(iSide), 5);
-					elseif tempAtb <= 0.95 then
-						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect095"], GetHero(iSide), 5);
-					else
-						ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect100"], GetHero(iSide), 5);
-					end;
+					H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_DEMONIC_FIRE]["Chance"][iSide] = H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_DEMONIC_FIRE]["Chance"][iSide] + iChance;
+					local iCurrentChance = H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_DEMONIC_FIRE]["Chance"][iSide];
+					showMessage4DemonicFireChance(iCurrentChance);
 				end;
 			end;
 			H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_DEMONIC_FIRE]["function"]["charge"] = Events_MiddlewareListener_Implement_Skill_DemonicFire_Charge;

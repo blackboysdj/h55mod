@@ -37,8 +37,8 @@
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_SORCERY</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Inferno/Biara/Text.txt"/>
-	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Inferno/Biara/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Inferno/114-Biara/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Inferno/114-Biara/Description.txt"/>
 	<SpecializationIcon href="/Textures/TTH/Heroes/Inferno/Biara/Talent64.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/TTH/Heroes/Inferno/Biara/Face128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall href="/Textures/TTH/Heroes/Inferno/Biara/Face64.(Texture).xdb#xpointer(/Texture)"/>
@@ -62,7 +62,7 @@
 			</Item>
 		</skills>
 		<perkIDs>
-			<Item>HERO_SKILL_DIPLOMACY</Item>
+			<Item>HERO_SKILL_RECRUITMENT</Item>
 		</perkIDs>
 		<spellIDs>
 			<Item>SPELL_LIGHTNING_BOLT</Item>

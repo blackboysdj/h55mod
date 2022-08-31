@@ -1288,13 +1288,12 @@
 						<Item>0.45</Item>
 					</PortionOfSummonedByGatingLevel>
 					<CallerStartATB>0.5</CallerStartATB>
-					<GatedStartATB>0.5</GatedStartATB>
+					<GatedStartATB>0</GatedStartATB>
 					<InitiativeFactor>1</InitiativeFactor>
 					<GatingMasteryPortionBonus>0.2</GatingMasteryPortionBonus>
 					<QuickGatingStartATB>0.75</QuickGatingStartATB>
-					<GatingConstantProb>0.1</CriticalGatingConstantProb>
-					<CriticalGatingConstantProb>0.2</CriticalGatingConstantProb>
-					<CriticalGatingPerLuckPointProb>0.1</CriticalGatingPerLuckPointProb>
+					<CriticalGatingConstantProb>0.1</CriticalGatingConstantProb>
+					<CriticalGatingPerLuckPointProb>0.05</CriticalGatingPerLuckPointProb>
 					<CriticalGatingPortionBonus>1</CriticalGatingPortionBonus>
 					<InfernalLoomPortionBonus>0.1</InfernalLoomPortionBonus>
 					<GatekeeperHeroSpecPerLevelPortionBonus>0.01</GatekeeperHeroSpecPerLevelPortionBonus>

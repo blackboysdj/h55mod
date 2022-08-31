@@ -35,8 +35,8 @@
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_SORCERY</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Inferno/Calid2/Text.txt"/>
-	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Inferno/Calid2/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Inferno/115-Calid2/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Inferno/115-Calid2/Description.txt"/>
 	<SpecializationIcon href="/Textures/TTH/Heroes/Inferno/Calid2/Talent64.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/TTH/Heroes/Inferno/Calid2/Face128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>

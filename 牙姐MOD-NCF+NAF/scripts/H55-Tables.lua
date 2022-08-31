@@ -1,258 +1,3 @@
--- RaceHero
-
--- AllHero
-  H55SMOD_Heroes = {
-      "Nathaniel", "Orrin", "Mardigo", "Ving", "Sarge", "Isabell", "Christian", "RedHeavenHero02", "RedHeavenHero05", "Brem"
-      , "Nicolai", "GodricMP", "Alaric", "Axel", "SaintIsabell", "Maeve", "RedHeavenHero06", "Caldwell", "Tarkus"
-      , "OrtanCassius", "Sanguinius", "Avitus"
-      , "RedHeavenHero03", "Orlando", "Markal"
-      , "Metlirn", "Ossir", "Nadaur", "Linaas", "Heam", "Gelu", "Arniel", "Kyrre"
-      , "Gillion", "Itil", "Melodia", "Jenova", "Mephala", "Gem"
-      , "Elleshar", "Ildar", "Vaniel", "Vinrael", "Diraya"
-      , "Havez", "Minasli", "Isher", "Davius", "Dracon"
-      , "Rissa", "Razzak", "Sufi", "Cyrus", "Maahir", "Timerkhan", "Tan"
-      , "Emilia", "Nur", "Astral", "Zehir", "Faiz", "Josephine"
-      , "Calh", "Calid", "Deleb", "Jazaz", "Marder", "Orlando2"
-      , "Efion", "Grok", "Malustar", "Nymus", "Oddrema", "Sovereign", "Agrael"
-      , "Ash", "Biara", "Calid2", "Sheltem", "Zydar", "Jeddite"
-      , "Archilus", "Berein", "Gles", "Nikolay", "Straker", "Tamika", "Xerxon", "Karissa"
-      , "Aislinn", "Effig", "Giovanni", "OrnellaNecro", "Aberrar", "Muscip"
-      , "Arantir", "Nemor", "Nimbus", "Pelt", "Sandro", "Thant", "Adelaide", "Vidomina"
-      , "Bersy", "Maximus", "Skeggy", "Tazar", "Vilma"
-      , "Bart", "Brand", "Egil", "KingTolghar", "Ottar", "Hangvul2", "Una", "Vegeyr"
-      , "Hangvul", "Ingvar", "Rolf", "Ufretin", "Wulfstan"
-      , "Urunir", "Menel", "Ferigl", "Sylsai", "Welygg"
-      , "Ohtarig", "Eruina", "Dalom", "Kelodin", "Shadwyn", "Thralsai"
-      , "Agbeth", "Almegir", "Inagost", "Kastore", "Raelag", "Ranleth", "Sephinroth"
-      , "Hero1", "Hero2", "Hero3", "Hero4", "Hero6", "Hero8", "Hero9", "Gottai", "Crag", "KujinMP", "Hero7", "Azar", "Kraal", "Kunyak", "Matewa", "Quroq", "Shiva", "Mokka", "Erika", "Zouleika"
-  };
-
--- HeroClass
-  H55_Renegades = {"Mardigo","RedHeavenHero01","RedHeavenHero02","RedHeavenHero05"};
-
-  H55_Knights = {"Nathaniel","Orrin","Mardigo","Ving","Sarge","Isabell","Christian","RedHeavenHero02","RedHeavenHero05","Brem"};
-  H55_Paladins = {"Nicolai","GodricMP","Alaric","Axel","SaintIsabell","Maeve","RedHeavenHero06","Caldwell","Tarkus"};
-  H55_Heretics = {"RedHeavenHero03","Orlando","Markal"};
-  H55_Retributions = {"OrtanCassius", "Sanguinius", "Avitus"};
-
-  H55_Rangers = {"Metlirn","Ossir","Nadaur","Linaas","Heam","Gelu","Arniel","Kyrre"};
-  H55_Wardens = {"Gillion","Itil","Melodia","Jenova","Mephala","Gem"};
-  H55_Druids = {"Elleshar","Ildar","Vaniel","Vinrael","Diraya"};
-
-  H55_Seers = {"Havez","Minasli","Isher","Davius","Dracon"};
-  H55_Wizards = {"Rissa","Razzak","Sufi","Cyrus","Maahir","Timerkhan","Tan"};
-  H55_Elementalists = {"Emilia","Nur","Astral","Zehir","Faiz","Josephine"};
-
-  H55_Demonlords = {"Calid","Deleb","Jazaz","Marder","Orlando2"};
-  H55_Gatekeepers = {"Calh","Efion","Grok","Malustar","Nymus","Oddrema","Sovereign","Agrael","Zydar"};
-  H55_Sorcerers = {"Ash","Biara","Calid2","Sheltem","Jeddite"};
-
-  H55_DeathKnights = {"Archilus","Berein","Gles","Nikolay","Straker","Tamika","Xerxon","Karissa"};
-  H55_Reavers = {"Aislinn","Effig","Giovanni","OrnellaNecro","Aberrar","Nimbus"};
-  H55_Necromancers = {"Muscip","Arantir","Nemor","Pelt","Sandro","Thant", "Adelaide","Vidomina"};
-
-  H55_Engineers = {"Bersy","Maximus","Skeggy","Tazar","Vilma"};
-  H55_Runemages = {"Bart","Brand","Egil","KingTolghar","Ottar","Hangvul2","Una","Vegeyr"};
-  H55_Flamekeepers = {"Hangvul","Ingvar","Rolf","Ufretin","Wulfstan"};
-
-  H55_Overlords = {"Urunir","Menel","Ferigl","Sylsai","Welygg"};
-  H55_Assassins = {"Ohtarig","Eruina","Dalom","Kelodin","Shadwyn","Thralsai"};
-  H55_Warlocks = {"Agbeth","Almegir","Inagost","Kastore","Raelag","Ranleth","Sephinroth"};
-
-  H55_Barbarians = {"Hero1","Hero2","Hero3","Hero4","Hero6","Hero8","Hero9","Gottai","Crag","KujinMP","Hero7","Azar","Kraal","Kunyak","Matewa","Quroq","Shiva","Mokka","Erika","Zouleika"};
-  H55_Shamans = {};
-  H55_Witches = {};
-
--- Hero8Race
-  H55_HavenHeroes = {"Nicolai","GodricMP","Maeve","Nathaniel","Axel","Brem","Caldwell","Tarkus","OrtanCassius","Sanguinius","Avitus","Markal","Orlando","RedHeavenHero03","RedHeavenHero06","Alaric","RedHeavenHero01","Christian","Sarge","Isabell","Mardigo","Ving","Orrin","Godric","Freyda","Ornella","GhostFSLord","Giar","Glen","Isabell_A1","SaintIsabell","RedHeavenHero01","RedHeavenHero02","RedHeavenHero05"};
-  H55_SylvanHeroes = {"Heam","Metlirn","Gelu","Nadaur","Linaas","Ossir","Jenova","Kyrre","Mephala","Arniel","Ildar","Melodia","Gillion","Vaniel","Elleshar","Vinrael","Itil","Diraya","Gem","Tieru"};
-  H55_InfernoHeroes = {"Marder","Sheltem","Orlando2","Calh","Calid","Jazaz","Gamor","Guarg","Erasial","Kha-Beleth","Veyer","DMessiah","Efion","Ash","Nymus","Oddrema","Malustar","Grok","Sovereign","Deleb","Calid2","Zydar","Jeddite","Agrael","Biara"};
-  H55_DungeonHeroes = {"Agbeth","Ranleth","Sylsai","Urunir","Menel","Ferigl","Dalom","Eruina","Ohtarig","Welygg","Thralsai","Almegir","Raelag","Kastore","Kelodin","Shadwyn","Sephinroth","Inagost"};
-  H55_NecropolisHeroes = {"Gles","Pelt","Tamika","OrnellaNecro","Straker","Xerxon","Karissa","Archilus","Nimbus","Aislinn","Nemor","Muscip","Giovanni","Thant", "Adelaide","Vidomina","Arantir","Aberrar","Effig","Sandro","Berein","Nikolay"};
-  H55_AcademyHeroes = {"Isher","Rissa","Minasli","Davius","Josephine","Havez","Dracon","Razzak","Maahir","Faiz","Sufi","Cyrus","Zehir","Timerkhan","Nur","Tan","Emilia","Astral"};
-  H55_FortressHeroes = {"Wulfstan","Rolf","Maximus","Tazar","Ingvar","Skeggy","Hangvul2","KingTolghar","Ufretin","Bersy","Ottar","Una","Bart","Vilma","Hangvul","Brand","Egil","Vegeyr"};
-  H55_StrongholdHeroes = {"Hero1","Hero2","Hero3","Hero4","Hero6","Hero7","Hero8","Hero9","Gottai","Crag","Azar","Kraal","KujinMP","Kunyak","Matewa","Shiva","Zouleika","Quroq","Mokka","Erika"};
-
--- Creature8Race&Level
-  H55_Creatures = {
-    --Haven
-      {
-        {1, 2, 106}
-        , {3, 4, 107}
-        , {5, 6, 108}
-        , {7, 8, 109}
-        , {9, 10, 110}
-        , {11, 12, 111}
-        , {13, 14, 112}
-      }
-    --Sylvan
-      , {
-        {43, 44, 145}
-        , {45, 46, 146}
-        , {47, 48, 147}
-        , {49, 50, 148}
-        , {51, 52, 149}
-        , {53, 54, 150}
-        , {55, 56, 151}
-      }
-    --Inferno
-      , {
-        {15, 16, 131}
-        , {17, 18, 132}
-        , {19, 20, 133}
-        , {21, 22, 134}
-        , {23, 24, 135}
-        , {25, 26, 136}
-        , {27, 28, 137}
-      }
-    --Necropolis
-      , {
-        {29, 30, 152}
-        , {31, 32, 153}
-        , {33, 34, 154}
-        , {35, 36, 155}
-        , {37, 38, 156}
-        , {39, 40, 157}
-        , {41, 42, 158}
-      }
-    --Academy
-      , {
-        {57, 58, 159}
-        , {59, 60, 160}
-        , {61, 62, 161}
-        , {63, 64, 162}
-        , {65, 66, 163}
-        , {67, 68, 164}
-        , {69, 70, 165}
-      }
-    --Dungeon
-      , {
-        {71, 72, 138}
-        , {73, 74, 139}
-        , {75, 76, 140}
-        , {77, 78, 141}
-        , {79, 80, 142}
-        , {81, 82, 143}
-        , {83, 84, 144}
-      }
-    --Fortress
-      , {
-        {92, 93, 166}
-        , {94, 95, 167}
-        , {96, 97, 168}
-        , {98, 99, 169}
-        , {100, 101, 170}
-        , {102, 103, 171}
-        , {104, 105, 172}
-      }
-    --Stronghold
-      , {
-        {117, 118, 173}
-        , {119, 120, 174}
-        , {121, 122, 175}
-        , {123, 124, 176}
-        , {125, 126, 177}
-        , {127, 128, 178}
-        , {129, 130, 179}
-      }
-  };
-
--- CreaturePower8Race&Level
-  H55_Creatures_Power = {
-    --Haven
-      {
-        {41, 72, 72}
-        , {140, 199, 203}
-        , {201, 287, 299}
-        , {524, 716, 697}
-        , {1086, 1487, 1523}
-        , {2185, 2520, 2520}
-        , {4866, 6153, 6003}
-      }
-    --Sylvan
-      , {
-        {100, 169, 174}
-        , {191, 311, 308}
-        , {309, 433, 447}
-        , {635, 846, 862}
-        , {1072, 1441, 1457}
-        , {1717, 1993, 2032}
-        , {4942, 6028, 5905}
-      }
-    --Inferno
-      , {
-        {  78,  127,  124}
-        , { 106,  150,  149}
-        , { 259,  370,  368}
-        , { 511,  694,  680}
-        , {1069, 1415, 1434}
-        , {2102, 2445, 2448}
-        , {4868, 6066, 6060}
-      }
-    --Necropolis
-      , {
-        {  54,   84,   85}
-        , { 105,  150,  145}
-        , { 232,  327,  331}
-        , { 518,  739,  757}
-        , {1166, 1539, 1541}
-        , {2204, 2588, 2449}
-        , {3174, 3905, 3872}
-      }
-    --Academy
-      , {
-        {  63,  105,  105}
-        , { 113,  172,  180}
-        , { 243,  357,  355}
-        , { 498,  643,  642}
-        , { 839, 1126, 1096}
-        , {2108, 2535, 2581}
-        , {4822, 6095, 6095}
-      }
-    --Dungeon
-      , {
-        { 180,  295,  290}
-        , { 333,  484,  477}
-        , { 342,  474,  488}
-        , { 598,  812,  833}
-        , { 968, 1324, 1333}
-        , {2193, 2537, 2622}
-        , {5234, 6443, 6389}
-      }
-    --Fortress
-      , {
-        {  70,  115,  113}
-        , { 115,  171,  171}
-        , { 318,  436,  436}
-        , { 304,  420,  420}
-        , { 932, 1308, 1329}
-        , {2109, 2477, 2437}
-        , {4883, 6100, 6070}
-      }
-    --Stronghold
-      , {
-        {  42,   69,   66}
-        , { 121,  174,  181}
-        , { 190,  254,  265}
-        , { 492,  680,  692}
-        , { 695,  926,  895}
-        , {2058, 2571, 2572}
-        , {4790, 5937, 5937}
-      }
-  };
-
--- CreatureGrowth8Race&Level
-  H55_CreaturesGrowth = {
-    {22, 12, 10, 5, 3, 2, 1}, --Haven
-    {10, 9, 7, 4, 3, 2, 1}, --Sylvan
-    {17, 15, 8, 5, 3, 2, 1}, --Inferno
-    {20, 15, 9, 5, 3, 2, 1}, --Necropolis
-    {20, 14, 9, 5, 3, 2, 1}, --Academy
-    {7, 5, 6, 4, 3, 2, 1}, --Dungeon
-    {18, 14, 7, 6, 3, 2, 1}, --Fortress
-    {25, 14, 11, 5, 5, 2, 1} --Stronghold
-  };
-
 -- 高级银行生物及数量
   TTH_BankMonsterByNoRace = {
     ["BUILDING_CYCLOPS_STOCKPILE"] = {
@@ -392,10 +137,6 @@
     }
   };
 
--- 中立生物信息
-  H55_NeutralCreatures = {85,86,87,88,91,113,115,116,90}; --Fire,Water,Earth,Air,Phoenix,Wolf,MissingSnowApe,Manticore,Mummy,Black_Knight
-  H55_NeutralCreaturesGrowth = {4,4,4,4,1,8,2,3};
-
 -- Sounds
   H55_SndStat = "/Sounds/_(Sound)/Interface/Ingame/Join-Flee.xdb#xpointer(/Sound)";
   H55_SndLvlUp = "/Sounds/_(Sound)/Interface/Events/Level Up.xdb#xpointer(/Sound)";
@@ -419,39 +160,6 @@
   H55_Fire01fx = "/Effects/_(Effect)/Towns/Inferno/MagicGuild.xdb#xpointer(/Effect)";
   H55_Fire02fx = "/Effects/_(Effect)/Towns/Inferno/DemonGate.xdb#xpointer(/Effect)";
   H55_Glowfx = "/Effects/_(Effect)/Environment/Inferno/Hellpikes/Hellpikes4x4_3.xdb#xpointer(/Effect)";
-
--- 宝屋剩余天数 文案
-  H55_BankTipsTextType = {
-    "/Text/Game/Scripts/Bank/Type_0.txt",
-    "/Text/Game/Scripts/Bank/Type_1.txt",
-    "/Text/Game/Scripts/Bank/Type_2.txt"
-  };
-  H55_BankTipsTextDay = {
-    "/Text/Game/Scripts/Bank/Day_0.txt",
-    "/Text/Game/Scripts/Bank/Day_1.txt",
-    "/Text/Game/Scripts/Bank/Day_2.txt",
-    "/Text/Game/Scripts/Bank/Day_3.txt",
-    "/Text/Game/Scripts/Bank/Day_4.txt",
-    "/Text/Game/Scripts/Bank/Day_5.txt",
-    "/Text/Game/Scripts/Bank/Day_6.txt",
-    "/Text/Game/Scripts/Bank/Day_7.txt",
-    "/Text/Game/Scripts/Bank/Day_8.txt",
-    "/Text/Game/Scripts/Bank/Day_9.txt",
-    "/Text/Game/Scripts/Bank/Day_10.txt",
-    "/Text/Game/Scripts/Bank/Day_11.txt",
-    "/Text/Game/Scripts/Bank/Day_12.txt",
-    "/Text/Game/Scripts/Bank/Day_13.txt"
-  };
-
--- Summoning Temple
-  H55_SummonResourceText = {
-    [0] = "/Text/Game/Scripts/Summon/Wood.txt",
-    [1] = "/Text/Game/Scripts/Summon/Ore.txt",
-    [2] = "/Text/Game/Scripts/Summon/Mercury.txt",
-    [3] = "/Text/Game/Scripts/Summon/Crystal.txt",
-    [4] = "/Text/Game/Scripts/Summon/Sulphur.txt",
-    [5] = "/Text/Game/Scripts/Summon/Gem.txt"
-  };
 
 -- 所有宝物列表
   TTH_TABLE_Artifacts = {
@@ -9032,49 +8740,6 @@
       }
   };
 
--- 待整理
-  H55_TM_Txt_NA = "/Text/Game/Scripts/TownPortal/TM_NA.txt";
-  H55_TM_Txt_Conquest = "/Text/Game/Scripts/TownPortal/TM_Conquest.txt";
-  H55_TM_Txt_Governor = "/Text/Game/Scripts/TownPortal/TM_Governor.txt";
-  H55_TM_Txt_Enabled = "/Text/Game/Scripts/TownPortal/TM_Enabled.txt";
-  H55_TM_Txt_Disabled = "/Text/Game/Scripts/TownPortal/TM_Disabled.txt";
-
-  H55_Supply_Txt = {
-    "/Text/Game/Scripts/Supply/P1Name.txt",
-    "/Text/Game/Scripts/Supply/P2Name.txt",
-    "/Text/Game/Scripts/Supply/P3Name.txt",
-    "/Text/Game/Scripts/Supply/P4Name.txt",
-    "/Text/Game/Scripts/Supply/P5Name.txt",
-    "/Text/Game/Scripts/Supply/P6Name.txt",
-    "/Text/Game/Scripts/Supply/P7Name.txt",
-    "/Text/Game/Scripts/Supply/P8Name.txt",
-  };
-
-  H55_Supply_Txt_Warren = "/Text/Game/Scripts/Supply/WarrenDesc.txt";
-  H55_Supply_Txt_Mill = "/Text/Game/Scripts/Supply/MillDesc.txt";
-  H55_Supply_Txt_Garden = "/Text/Game/Scripts/Supply/GardenDesc.txt";
-  H55_Supply_Txt_Workshop = "/Text/Game/Scripts/Supply/WorkshopDesc.txt";
-
-  -- 1 - lg(n) - n * .01
-  H55_T7_COEF = 0.08;
-  H55_T6_COEF = 0.16;
-  H55_T5_COEF = 0.25;
-  H55_T4_COEF = 0.36;
-  H55_T3_COEF = 0.49;
-  H55_T2_COEF = 0.68;
-  H55_T1_COEF = 0.99;
-
-  H55_COEF_LIST = {H55_T1_COEF, H55_T2_COEF, H55_T3_COEF, H55_T4_COEF, H55_T5_COEF, H55_T6_COEF, H55_T7_COEF};
-  H55_ARTIFACT_LEGION_LIST = {ARTIFACT_LEGION_BASIC, ARTIFACT_LEGION_BASIC, ARTIFACT_LEGION_ADVANCED, ARTIFACT_LEGION_ADVANCED, ARTIFACT_LEGION_ADVANCED, ARTIFACT_LEGION_EXPERT, ARTIFACT_LEGION_EXPERT};
-  H55_TOWN_BUILDING_DWELLING_LIST = {TOWN_BUILDING_DWELLING_1, TOWN_BUILDING_DWELLING_2, TOWN_BUILDING_DWELLING_3, TOWN_BUILDING_DWELLING_4, TOWN_BUILDING_DWELLING_5, TOWN_BUILDING_DWELLING_6, TOWN_BUILDING_DWELLING_7};
-
-  H55_RndResources = {1,2,3,4,5,5};
-  H55_RndGold = {1000,1100,1200,1300,1400,1500,1500};
-  H55_RndDayGold = {50,100,150,200,250};
-
-  H55_GldLevelFactor = {0,0,0,0,0, 0,0,0,0,1, 1,1,1,1,2, 2,2,2,2,3, 3,3,3,3,4, 4,4,4,4,5, 5,5,5,5,6, 6,6,6,6,7, 7,7,7,7,8, 8,8,8,8,9,  9,9,9,9,    10, 10,10,10,10,11};
-  H55_ResLevelFactor = {0,0,0,0,1, 1,1,1,1,2, 2,2,2,2,3, 3,3,3,3,4, 4,4,4,4,5, 5,5,5,5,6, 6,6,6,6,7, 7,7,7,7,8, 8,8,8,8,9, 9,9,9,9,10, 10,10,10,10,11, 11,11,11,11,12};
-
 -- TTH环境
   -- 常量
     TTH_FINAL = {};
@@ -9135,6 +8800,12 @@
       TTH_ENUM.Guide = 3;
       TTH_ENUM.Reproduce = 4;
 
+    -- 新增生物的提示类型
+      TTH_ENUM.AddCreature = 1;
+      TTH_ENUM.CastCreature = 2;
+      TTH_ENUM.ReviveCreature = 3;
+      TTH_ENUM.ReleaseCreature = 4;
+
     -- 对话框类型
       TTH_ENUM.QuestionBox = 1;
       TTH_ENUM.MessageBox = 2;
@@ -9152,6 +8823,8 @@
       TTH_ENUM.FuncResetWeekly = 6;
       TTH_ENUM.FuncDealDaily = 7;
       TTH_ENUM.FuncResetDaily = 8;
+      TTH_ENUM.FuncUpgradeMastery = 9;
+      TTH_ENUM.FuncUpgradeShantiri = 10;
 
       TTH_ENUM.FuncAlways = 1;
       TTH_ENUM.FuncNotAtGate = 2;
@@ -9248,6 +8921,15 @@
       TTH_ENUM.SET_ROOKIE = 13
       TTH_ENUM.SET_ELEMENT = 14
       TTH_ENUM.SET_PIRATE = 15
+
+    -- 宝屋奖励
+      TTH_ENUM.BankRewardResource = 1;
+      TTH_ENUM.BankRewardStat = 2;
+      TTH_ENUM.BankRewardSpell = 3;
+      TTH_ENUM.BankRewardArtifact = 4;
+      TTH_ENUM.BankRewardCreature = 5;
+      TTH_ENUM.BankRewardExp = 6;
+      TTH_ENUM.BankRewardHidden = 7;
 
   -- 文本路径
     TTH_PATH = {};
@@ -9436,9 +9118,39 @@
         TTH_PATH.Visit["Bank"]["CombatLink"] = "/Arenas/CombatArena/FinalCombat/Bank_Bank.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)";
         TTH_PATH.Visit["Bank"]["Pre"] = "/Text/Game/Scripts/TTH_Path/Visit/Bank/";
         TTH_PATH.Visit["Bank"]["Text"] = TTH_PATH.Visit["Bank"]["Pre"].."Text.txt";
+        TTH_PATH.Visit["Bank"]["AdvText"] = TTH_PATH.Visit["Bank"]["Pre"].."AdvText.txt";
         TTH_PATH.Visit["Bank"]["Normal"] = TTH_PATH.Visit["Bank"]["Pre"].."Normal.txt";
         TTH_PATH.Visit["Bank"]["Adv"] = TTH_PATH.Visit["Bank"]["Pre"].."Adv.txt";
         TTH_PATH.Visit["Bank"]["RadioTips"] = TTH_PATH.Visit["Bank"]["Pre"].."RadioTips.txt";
+        TTH_PATH.Visit["Bank"]["RewardSpellText"] = TTH_PATH.Visit["Bank"]["Pre"].."RewardSpellText.txt";
+        TTH_PATH.Visit["Bank"]["RewardCreatureText"] = TTH_PATH.Visit["Bank"]["Pre"].."RewardCreatureText.txt";
+        TTH_PATH.Visit["Bank"]["Status"] = {};
+          TTH_PATH.Visit["Bank"]["Status"]["Pre"] = TTH_PATH.Visit["Bank"]["Pre"].."Status/";
+          TTH_PATH.Visit["Bank"]["Status"]["Open"] = TTH_PATH.Visit["Bank"]["Status"]["Pre"].."Open.txt";
+          TTH_PATH.Visit["Bank"]["Status"]["Close"] = TTH_PATH.Visit["Bank"]["Status"]["Pre"].."Close.txt";
+          TTH_PATH.Visit["Bank"]["Status"]["HasVisited"] = TTH_PATH.Visit["Bank"]["Status"]["Pre"].."HasVisited.txt";
+        TTH_PATH.Visit["Bank"]["RestDay"] = {};
+          TTH_PATH.Visit["Bank"]["RestDay"]["Pre"] = TTH_PATH.Visit["Bank"]["Pre"].."RestDay/";
+          TTH_PATH.Visit["Bank"]["RestDay"][0] = TTH_PATH.Visit["Bank"]["RestDay"]["Pre"].."Day_0.txt";
+          TTH_PATH.Visit["Bank"]["RestDay"][1] = TTH_PATH.Visit["Bank"]["RestDay"]["Pre"].."Day_1.txt";
+          TTH_PATH.Visit["Bank"]["RestDay"][2] = TTH_PATH.Visit["Bank"]["RestDay"]["Pre"].."Day_2.txt";
+          TTH_PATH.Visit["Bank"]["RestDay"][3] = TTH_PATH.Visit["Bank"]["RestDay"]["Pre"].."Day_3.txt";
+          TTH_PATH.Visit["Bank"]["RestDay"][4] = TTH_PATH.Visit["Bank"]["RestDay"]["Pre"].."Day_4.txt";
+          TTH_PATH.Visit["Bank"]["RestDay"][5] = TTH_PATH.Visit["Bank"]["RestDay"]["Pre"].."Day_5.txt";
+          TTH_PATH.Visit["Bank"]["RestDay"][6] = TTH_PATH.Visit["Bank"]["RestDay"]["Pre"].."Day_6.txt";
+          TTH_PATH.Visit["Bank"]["RestDay"][7] = TTH_PATH.Visit["Bank"]["RestDay"]["Pre"].."Day_7.txt";
+        TTH_PATH.Visit["Bank"]["Reward"] = {};
+          TTH_PATH.Visit["Bank"]["Reward"]["Pre"] = TTH_PATH.Visit["Bank"]["Pre"].."Reward/";
+          TTH_PATH.Visit["Bank"]["Reward"][TTH_ENUM.BankRewardResource] = TTH_PATH.Visit["Bank"]["Reward"]["Pre"].."RewardResource.txt";
+          TTH_PATH.Visit["Bank"]["Reward"][TTH_ENUM.BankRewardStat] = TTH_PATH.Visit["Bank"]["Reward"]["Pre"].."RewardStat.txt";
+          TTH_PATH.Visit["Bank"]["Reward"][TTH_ENUM.BankRewardSpell] = TTH_PATH.Visit["Bank"]["Reward"]["Pre"].."RewardSpell.txt";
+          TTH_PATH.Visit["Bank"]["Reward"][TTH_ENUM.BankRewardArtifact] = TTH_PATH.Visit["Bank"]["Reward"]["Pre"].."RewardArtifact.txt";
+          TTH_PATH.Visit["Bank"]["Reward"][TTH_ENUM.BankRewardCreature] = TTH_PATH.Visit["Bank"]["Reward"]["Pre"].."RewardCreature.txt";
+          TTH_PATH.Visit["Bank"]["Reward"][TTH_ENUM.BankRewardExp] = TTH_PATH.Visit["Bank"]["Reward"]["Pre"].."RewardExp.txt";
+          TTH_PATH.Visit["Bank"]["Reward"][TTH_ENUM.BankRewardHidden] = TTH_PATH.Visit["Bank"]["Reward"]["Pre"].."RewardHidden.txt";
+          TTH_PATH.Visit["Bank"]["Reward"]["PartOfRelic"] = TTH_PATH.Visit["Bank"]["Reward"]["Pre"].."PartOfRelic.txt";
+          TTH_PATH.Visit["Bank"]["Reward"]["RadioTips"] = TTH_PATH.Visit["Bank"]["Reward"]["Pre"].."RadioTips.txt";
+          TTH_PATH.Visit["Bank"]["Reward"]["RewardSpellFail"] = TTH_PATH.Visit["Bank"]["Reward"]["Pre"].."RewardSpellFail.txt";
       TTH_PATH.Visit["WitchHut"] = {};
         TTH_PATH.Visit["WitchHut"]["Pre"] = "/Text/Game/Scripts/TTH_Path/Visit/WitchHut/";
         TTH_PATH.Visit["WitchHut"]["Text"] = TTH_PATH.Visit["WitchHut"]["Pre"].."Text.txt";
@@ -9516,6 +9228,9 @@
         , "/Text/Game/Scripts/TTH_PATH/Visit/Witch/Reset/Day_5+.txt"
       };
 
+    TTH_PATH.Sphinx = {};
+      TTH_PATH.Sphinx["HasVisited"] = "/Text/Game/Scripts/TTH_Path/Visit/Sphinx/HasVisited.txt";
+
     TTH_PATH.Mayor = {};
       TTH_PATH.Mayor["BeginExpedition"] = "/Text/Game/Scripts/TTH_Path/Mayor/BeginExpedition.txt";
       TTH_PATH.Mayor["EndExpedition"] = "/Text/Game/Scripts/TTH_Path/Mayor/EndExpedition.txt";
@@ -9526,8 +9241,11 @@
       TTH_PATH.FlyingSign["AddCreature2Hero"] = "/Text/Game/Scripts/TTH_Path/FlyingSign/AddCreature2Hero.txt";
       TTH_PATH.FlyingSign["CastCreature2Hero"] = "/Text/Game/Scripts/TTH_Path/FlyingSign/CastCreature2Hero.txt";
       TTH_PATH.FlyingSign["ReviveCreature2Hero"] = "/Text/Game/Scripts/TTH_Path/FlyingSign/ReviveCreature2Hero.txt";
-      TTH_PATH.FlyingSign["RecoveryMaxMove2Hero"] = "/Text/Game/Scripts/TTH_Path/FlyingSign/RecoveryMaxMana2Hero.txt";
-      TTH_PATH.FlyingSign["RecoveryMaxMove2Hero"] = "/Text/Game/Scripts/TTH_Path/FlyingSign/RecoveryMaxMana2Hero.txt";
+      TTH_PATH.FlyingSign["ReleaseCreature2Hero"] = "/Text/Game/Scripts/TTH_Path/FlyingSign/ReleaseCreature2Hero.txt";
+      TTH_PATH.FlyingSign["RecoveryMaxMove2Hero"] = "/Text/Game/Scripts/TTH_Path/FlyingSign/RecoveryMaxMove2Hero.txt";
+      TTH_PATH.FlyingSign["RecoveryMaxMana2Hero"] = "/Text/Game/Scripts/TTH_Path/FlyingSign/RecoveryMaxMana2Hero.txt";
+      TTH_PATH.FlyingSign["TeachHeroSpell"] = "/Text/Game/Scripts/TTH_Path/FlyingSign/TeachHeroSpell.txt";
+      TTH_PATH.FlyingSign["GiveHeroArtifact"] = "/Text/Game/Scripts/TTH_Path/FlyingSign/GiveHeroArtifact.txt";
 
     TTH_PATH.FuncPre = "/Text/Game/Scripts/TTH_Func/";
 
@@ -9729,6 +9447,30 @@
         TTH_PATH.Talent["Pelt"]["GainPower"] = TTH_PATH.Talent["Pelt"]["Pre"].."GainPower.txt";
         TTH_PATH.Talent["Pelt"]["NoCreature4Cast"] = TTH_PATH.Talent["Pelt"]["Pre"].."NoCreature4Cast.txt";
         TTH_PATH.Talent["Pelt"]["Success"] = TTH_PATH.Talent["Pelt"]["Pre"].."Success.txt";
+      -- Marder 103 马巴斯
+        TTH_PATH.Talent["Marder"] = {};
+        TTH_PATH.Talent["Marder"]["Pre"] = TTH_PATH.Talent["Pre"].."103-Marder/";
+        TTH_PATH.Talent["Marder"]["Text"] = TTH_PATH.Talent["Marder"]["Pre"].."Text.txt";
+        TTH_PATH.Talent["Marder"]["NotEnoughTimes"] = TTH_PATH.Talent["Marder"]["Pre"].."NotEnoughTimes.txt";
+        TTH_PATH.Talent["Marder"]["Success"] = TTH_PATH.Talent["Marder"]["Pre"].."Success.txt";
+      -- Orlando2 104 奥兰多
+        TTH_ENUM.Orlando2AbilityVorpalSword = CREATURE_INFERNO_TOOL_Orlando2_AbilityVorpalSword;
+        TTH_ENUM.Orlando2AbilityAxeOfSlaughter = CREATURE_INFERNO_TOOL_Orlando2_AbilityAxeOfSlaughter;
+        TTH_ENUM.Orlando2AbilityUpgradeMastery = CREATURE_INFERNO_TOOL_Orlando2_AbilityUpgradeMastery;
+        TTH_ENUM.Orlando2AbilityUpgradeShantiri = CREATURE_INFERNO_TOOL_Orlando2_AbilityUpgradeShantiri;
+        TTH_PATH.Talent["Orlando2"] = {};
+        TTH_PATH.Talent["Orlando2"]["Pre"] = TTH_PATH.Talent["Pre"].."104-Orlando2/";
+        TTH_PATH.Talent["Orlando2"]["Text"] = TTH_PATH.Talent["Orlando2"]["Pre"].."Text.txt";
+        TTH_PATH.Talent["Orlando2"]["UpgradeMasteryText"] = TTH_PATH.Talent["Orlando2"]["Pre"].."UpgradeMasteryText.txt";
+        TTH_PATH.Talent["Orlando2"]["UpgradeShantiriText"] = TTH_PATH.Talent["Orlando2"]["Pre"].."UpgradeShantiriText.txt";
+        TTH_PATH.Talent["Orlando2"]["HasUpgrade"] = TTH_PATH.Talent["Orlando2"]["Pre"].."HasUpgrade.txt";
+        TTH_PATH.Talent["Orlando2"][TTH_ENUM.Orlando2AbilityVorpalSword] = TTH_PATH.Talent["Orlando2"]["Pre"].."AbilityVorpalSword.txt";
+        TTH_PATH.Talent["Orlando2"][TTH_ENUM.Orlando2AbilityAxeOfSlaughter] = TTH_PATH.Talent["Orlando2"]["Pre"].."AbilityAxeOfSlaughter.txt";
+        TTH_PATH.Talent["Orlando2"][TTH_ENUM.Orlando2AbilityUpgrade] = TTH_PATH.Talent["Orlando2"]["Pre"].."AbilityUpgrade.txt";
+        TTH_PATH.Talent["Orlando2"]["Confirm"] = TTH_PATH.Talent["Orlando2"]["Pre"].."Confirm.txt";
+        TTH_PATH.Talent["Orlando2"]["Success"] = TTH_PATH.Talent["Orlando2"]["Pre"].."Success.txt";
+        TTH_PATH.Talent["Orlando2"]["SuccessUpgradeMastery"] = TTH_PATH.Talent["Orlando2"]["Pre"].."SuccessUpgradeMastery.txt";
+        TTH_PATH.Talent["Orlando2"]["SuccessUpgradeShantiri"] = TTH_PATH.Talent["Orlando2"]["Pre"].."SuccessUpgradeShantiri.txt";
       -- Nymus 108 耐莫斯
         TTH_PATH.Talent["Nymus"] = {};
         TTH_PATH.Talent["Nymus"]["Pre"] = TTH_PATH.Talent["Pre"].."108-Nymus/";
@@ -9742,6 +9484,13 @@
         TTH_PATH.Talent["Nymus"]["SuccessVisitPortal"] = TTH_PATH.Talent["Nymus"]["Pre"].."SuccessVisitPortal.txt";
         TTH_PATH.Talent["Nymus"]["Title"] = TTH_PATH.Talent["Nymus"]["Pre"].."Title.txt";
         TTH_PATH.Talent["Nymus"]["Desc"] = TTH_PATH.Talent["Nymus"]["Pre"].."Desc.txt";
+      -- Calid2 115 卡利德  
+        TTH_PATH.Talent["Calid2"] = {};
+        TTH_PATH.Talent["Calid2"]["Pre"] = TTH_PATH.Talent["Pre"].."115-Calid2/";
+        TTH_PATH.Talent["Calid2"]["Text"] = TTH_PATH.Talent["Calid2"]["Pre"].."Text.txt";
+        TTH_PATH.Talent["Calid2"]["NotEnoughTimes"] = TTH_PATH.Talent["Calid2"]["Pre"].."NotEnoughTimes.txt";
+        TTH_PATH.Talent["Calid2"]["NotSuitableHero"] = TTH_PATH.Talent["Calid2"]["Pre"].."NotSuitableHero.txt";
+        TTH_PATH.Talent["Calid2"]["Success"] = TTH_PATH.Talent["Calid2"]["Pre"].."Success.txt";
       -- Sheltem 116 谢尔坦
         TTH_PATH.Talent["Sheltem"] = {};
         TTH_PATH.Talent["Sheltem"]["Pre"] = TTH_PATH.Talent["Pre"].."116/";
@@ -9820,13 +9569,35 @@
         TTH_PATH.Artifact[ARTIFACT_MASK_OF_DOPPELGANGER]["Text"] = TTH_PATH.Artifact[ARTIFACT_MASK_OF_DOPPELGANGER]["Pre"].."Text.txt";
         TTH_PATH.Artifact[ARTIFACT_MASK_OF_DOPPELGANGER]["ConfirmActive"] = TTH_PATH.Artifact[ARTIFACT_MASK_OF_DOPPELGANGER]["Pre"].."ConfirmActive.txt";
 
+      -- ARTIFACT_PEDANT_OF_MASTERY 015 技能坠饰
+        TTH_PATH.Artifact[ARTIFACT_PEDANT_OF_MASTERY] = {};
+        TTH_PATH.Artifact[ARTIFACT_PEDANT_OF_MASTERY]["Pre"] = TTH_PATH.Artifact["Pre"].."015-PedantOfMastery/";
+        TTH_PATH.Artifact[ARTIFACT_PEDANT_OF_MASTERY]["Text"] = TTH_PATH.Artifact[ARTIFACT_PEDANT_OF_MASTERY]["Pre"].."Text.txt";
+        TTH_PATH.Artifact[ARTIFACT_PEDANT_OF_MASTERY]["HasUpgradeMastery"] = TTH_PATH.Artifact[ARTIFACT_PEDANT_OF_MASTERY]["Pre"].."HasUpgradeMastery.txt";
+        TTH_PATH.Artifact[ARTIFACT_PEDANT_OF_MASTERY]["NotEnoughHeroLevel"] = TTH_PATH.Artifact[ARTIFACT_PEDANT_OF_MASTERY]["Pre"].."NotEnoughHeroLevel.txt";
+        TTH_PATH.Artifact[ARTIFACT_PEDANT_OF_MASTERY]["NoOption"] = TTH_PATH.Artifact[ARTIFACT_PEDANT_OF_MASTERY]["Pre"].."NoOption.txt";
+
+      -- ARTIFACT_SHANTIRI_05 163 龙神之证
+        TTH_PATH.Artifact[ARTIFACT_SHANTIRI_05] = {};
+        TTH_PATH.Artifact[ARTIFACT_SHANTIRI_05]["Pre"] = TTH_PATH.Artifact["Pre"].."163-Shantiri05/";
+        TTH_PATH.Artifact[ARTIFACT_SHANTIRI_05]["Text"] = TTH_PATH.Artifact[ARTIFACT_SHANTIRI_05]["Pre"].."Text.txt";
+        TTH_PATH.Artifact[ARTIFACT_SHANTIRI_05]["HasUpgradeShantiri"] = TTH_PATH.Artifact[ARTIFACT_SHANTIRI_05]["Pre"].."HasUpgradeShantiri.txt";
+        TTH_PATH.Artifact[ARTIFACT_SHANTIRI_05]["HasNotUpgradeMastery"] = TTH_PATH.Artifact[ARTIFACT_SHANTIRI_05]["Pre"].."HasNotUpgradeMastery.txt";
+        TTH_PATH.Artifact[ARTIFACT_SHANTIRI_05]["NotEnoughHeroLevel"] = TTH_PATH.Artifact[ARTIFACT_SHANTIRI_05]["Pre"].."NotEnoughHeroLevel.txt";
+        TTH_PATH.Artifact[ARTIFACT_SHANTIRI_05]["NoOption"] = TTH_PATH.Artifact[ARTIFACT_SHANTIRI_05]["Pre"].."NoOption.txt";
+
       -- ARTIFACT_GEM_OF_PHANTOM 102 幻影宝石
         TTH_PATH.Artifact[ARTIFACT_GEM_OF_PHANTOM] = {};
         TTH_PATH.Artifact[ARTIFACT_GEM_OF_PHANTOM]["Pre"] = TTH_PATH.Artifact["Pre"].."102/";
         TTH_PATH.Artifact[ARTIFACT_GEM_OF_PHANTOM]["Text"] = TTH_PATH.Artifact[ARTIFACT_GEM_OF_PHANTOM]["Pre"].."Text.txt";
-        TTH_PATH.Artifact[ARTIFACT_GEM_OF_PHANTOM]["SingleSlot"] = TTH_PATH.Artifact[ARTIFACT_GEM_OF_PHANTOM]["Pre"].."SingleSlot.txt";
-        TTH_PATH.Artifact[ARTIFACT_GEM_OF_PHANTOM]["ConfirmActive"] = TTH_PATH.Artifact[ARTIFACT_GEM_OF_PHANTOM]["Pre"].."ConfirmActive.txt";
-        TTH_PATH.Artifact[ARTIFACT_GEM_OF_PHANTOM]["SuccessActive"] = TTH_PATH.Artifact[ARTIFACT_GEM_OF_PHANTOM]["Pre"].."SuccessActive.txt";
+        TTH_PATH.Artifact[ARTIFACT_GEM_OF_PHANTOM]["OptionEnglobe"] = TTH_PATH.Artifact[ARTIFACT_GEM_OF_PHANTOM]["Pre"].."OptionEnglobe.txt";
+        TTH_PATH.Artifact[ARTIFACT_GEM_OF_PHANTOM]["OptionRelease"] = TTH_PATH.Artifact[ARTIFACT_GEM_OF_PHANTOM]["Pre"].."OptionRelease.txt";
+        TTH_PATH.Artifact[ARTIFACT_GEM_OF_PHANTOM]["EnglobeSingleSlot"] = TTH_PATH.Artifact[ARTIFACT_GEM_OF_PHANTOM]["Pre"].."EnglobeSingleSlot.txt";
+        TTH_PATH.Artifact[ARTIFACT_GEM_OF_PHANTOM]["EnglobeConfirm"] = TTH_PATH.Artifact[ARTIFACT_GEM_OF_PHANTOM]["Pre"].."EnglobeConfirm.txt";
+        TTH_PATH.Artifact[ARTIFACT_GEM_OF_PHANTOM]["EnglobeRemove"] = TTH_PATH.Artifact[ARTIFACT_GEM_OF_PHANTOM]["Pre"].."EnglobeRemove.txt";
+        TTH_PATH.Artifact[ARTIFACT_GEM_OF_PHANTOM]["EnglobeSuccess"] = TTH_PATH.Artifact[ARTIFACT_GEM_OF_PHANTOM]["Pre"].."EnglobeSuccess.txt";
+        TTH_PATH.Artifact[ARTIFACT_GEM_OF_PHANTOM]["ReleaseEmpty"] = TTH_PATH.Artifact[ARTIFACT_GEM_OF_PHANTOM]["Pre"].."ReleaseEmpty.txt";
+        TTH_PATH.Artifact[ARTIFACT_GEM_OF_PHANTOM]["ReleaseFullSlot"] = TTH_PATH.Artifact[ARTIFACT_GEM_OF_PHANTOM]["Pre"].."ReleaseFullSlot.txt";
 
       -- ARTIFACT_DIMENSION_DOOR 103 回城令
         TTH_PATH.Artifact[ARTIFACT_DIMENSION_DOOR] = {};
@@ -10127,11 +9898,17 @@
             , ["Ildar"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.initIldar"
             }
+            , ["Orlando2"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initOrlando2"
+            }
             , ["Rissa"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.initRissa"
             }
             , ["Melodia"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.initMelodia"
+            }
+            , ["Marder"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initMarder"
             }
             , ["Sylsai"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.initSylsai"
@@ -10150,9 +9927,6 @@
             }
             , ["RedHeavenHero06"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.initRedHeavenHero06"
-            }
-            , ["Melodia"] = {
-              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initMelodia"
             }
             , ["Rolf"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.initRolf"
@@ -10174,6 +9948,9 @@
             }
             , ["Azar"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.initAzar"
+            }
+            , ["Calid2"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initCalid2"
             }
         }
         , [TTH_ENUM.FuncActive] = {
@@ -10265,6 +10042,11 @@
               , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeIldar"
               , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeIldar"
             }
+            , ["Orlando2"] = {
+              ["Text"] = TTH_PATH.Talent["Orlando2"]["Text"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeOrlando2"
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeOrlando2"
+            }
             , ["Rissa"] = {
               ["Text"] = TTH_PATH.Talent["Rissa"]["Text"]
               , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeRissa"
@@ -10274,6 +10056,10 @@
               ["Text"] = TTH_PATH.Talent["Melodia"]["Text"]
               , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeMelodia"
               , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeMelodia"
+            }
+            , ["Marder"] = {
+              ["Text"] = TTH_PATH.Talent["Marder"]["Text"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeMarder"
             }
             , ["Menel"] = {
               ["Text"] = TTH_PATH.Talent["Menel"]["Active"]["Text"]
@@ -10327,6 +10113,11 @@
               ["Text"] = TTH_PATH.Talent["Azar"]["Text"]
               , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeAzar"
               , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeAzar"
+            }
+            , ["Calid2"] = {
+              ["Text"] = TTH_PATH.Talent["Calid2"]["Text"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeCalid2"
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeCalid2"
             }
         }
         , [TTH_ENUM.FuncLevelUp] = {
@@ -10417,6 +10208,9 @@
             , ["Melodia"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyMelodia"
             }
+            , ["Marder"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyMarder"
+            }
             , ["Sylsai"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklySylsai"
             }
@@ -10434,6 +10228,9 @@
             }
             , ["Metlirn"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyMetlirn"
+            }
+            , ["Calid2"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyCalid2"
             }
         }
         , [TTH_ENUM.FuncDealDaily] = {
@@ -10493,6 +10290,18 @@
             , ["Sheltem"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailySheltem"
             }
+        }
+        , [TTH_ENUM.FuncUpgradeMastery] = {
+          ["Orlando2"] = {
+            ["Text"] = TTH_PATH.Talent["Orlando2"]["UpgradeMasteryText"]
+            , [TTH_ENUM.FuncAlways] = "TTH_TALENT.upgradeMasteryOrlando2"
+          }
+        }
+        , [TTH_ENUM.FuncUpgradeShantiri] = {
+          ["Orlando2"] = {
+            ["Text"] = TTH_PATH.Talent["Orlando2"]["UpgradeShantiriText"]
+            , [TTH_ENUM.FuncAlways] = "TTH_TALENT.upgradeShantiriOrlando2"
+          }
         }
       };
 
@@ -10576,6 +10385,18 @@
             , ["NeedWear"] = TTH_ENUM.No
             , [TTH_ENUM.FuncAtGate] = "TTH_ARTI.active182"
             , [TTH_ENUM.FuncNotAtGate] = "TTH_ARTI.active182"
+          }
+          , [ARTIFACT_PEDANT_OF_MASTERY] = {
+            ["Text"] = TTH_PATH.Artifact[ARTIFACT_PEDANT_OF_MASTERY]["Text"]
+            , ["NeedWear"] = TTH_ENUM.No
+            , [TTH_ENUM.FuncAtGate] = "TTH_ARTI.active015"
+            , [TTH_ENUM.FuncNotAtGate] = "TTH_ARTI.active015"
+          }
+          , [ARTIFACT_SHANTIRI_05] = {
+            ["Text"] = TTH_PATH.Artifact[ARTIFACT_SHANTIRI_05]["Text"]
+            , ["NeedWear"] = TTH_ENUM.No
+            , [TTH_ENUM.FuncAtGate] = "TTH_ARTI.active163"
+            , [TTH_ENUM.FuncNotAtGate] = "TTH_ARTI.active163"
           }
         }
         , [TTH_ENUM.FuncLevelUp] = {}
@@ -17355,6 +17176,82 @@
         }
       };
 
+    -- 生物产量表 维度: 种族 & 等级
+      TTH_TABLE.CreatureGrowth8RaceAndLevel = {
+        [TOWN_HEAVEN] = {
+          [1] = 22
+          , [2] = 12
+          , [3] = 10
+          , [4] = 5
+          , [5] = 3
+          , [6] = 2
+          , [7] = 1
+        }
+        , [TOWN_PRESERVE] = {
+          [1] = 10
+          , [2] = 9
+          , [3] = 7
+          , [4] = 4
+          , [5] = 3
+          , [6] = 2
+          , [7] = 1
+        }
+        , [TOWN_ACADEMY] = {
+          [1] = 17
+          , [2] = 15
+          , [3] = 8
+          , [4] = 5
+          , [5] = 3
+          , [6] = 2
+          , [7] = 1
+        }
+        , [TOWN_DUNGEON] = {
+          [1] = 20
+          , [2] = 15
+          , [3] = 9
+          , [4] = 5
+          , [5] = 3
+          , [6] = 2
+          , [7] = 1
+        }
+        , [TOWN_NECROMANCY] = {
+          [1] = 20
+          , [2] = 14
+          , [3] = 9
+          , [4] = 5
+          , [5] = 3
+          , [6] = 2
+          , [7] = 1
+        }
+        , [TOWN_INFERNO] = {
+          [1] = 7
+          , [2] = 5
+          , [3] = 6
+          , [4] = 4
+          , [5] = 3
+          , [6] = 2
+          , [7] = 1
+        }
+        , [TOWN_FORTRESS] = {
+          [1] = 18
+          , [2] = 14
+          , [3] = 7
+          , [4] = 6
+          , [5] = 3
+          , [6] = 2
+          , [7] = 1
+        }
+        , [TOWN_STRONGHOLD] = {
+          [1] = 25
+          , [2] = 14
+          , [3] = 11
+          , [4] = 5
+          , [5] = 5
+          , [6] = 2
+          , [7] = 1
+        }
+      };
+
     -- 英雄表 维度：种族 & 职业
       TTH_TABLE.Hero8RaceAndClass = {
         [TOWN_HEAVEN] = {
@@ -20206,31 +20103,10 @@
               , [85] = { -- 无敌冲锋
                 ["Id"] = HERO_SKILL_ABSOLUTE_CHARGE
                 , ["Text"] = "/Text/TTH/Skills/Training/085-AbsoluteCharge/Name.txt"
-                , ["DependType"] = TTH_ENUM.Complicated
-                , ["Include"] = {
-                  [1] = {
-                    ["Class"] = {
-                      TTH_ENUM.Knight
-                      , TTH_ENUM.Paladin
-                      , TTH_ENUM.Retribution
-                      , TTH_ENUM.Heretic
-                    }
-                    , ["Depend"] = {
-                      [1] = HERO_SKILL_HOLY_CHARGE
-                    }
-                  }
-                  , [2] = {
-                    ["Class"] = {
-                      TTH_ENUM.Barbarian
-                    }
-                    , ["Depend"] = {
-                      [1] = HERO_SKILL_HOLY_CHARGE
-                      , [2] = HERO_SKILL_CRITICAL_STRIKE
-                    }
-                  }
-                }
+                , ["DependType"] = TTH_ENUM.Simple
                 , ["Depend"] = {
-                  [1] = HERO_SKILL_WEAKENING_STRIKE
+                  [1] = HERO_SKILL_HOLY_CHARGE
+                  , [2] = HERO_SKILL_CRITICAL_STRIKE
                 }
               }
               , [91] = { -- 极度痛击
@@ -20533,14 +20409,17 @@
                   [1] = HERO_SKILL_GATING_MASTERY
                 }
               }
+              , [90] = { -- 蜂拥之门（终极）
+                ["Id"] = HERO_SKILL_CRITICAL_GATING
+                , ["Text"] = "/Text/TTH/Skills/Gating/086-QuickGating/Name.txt"
+                , ["DependType"] = TTH_ENUM.Simple
+                , ["Depend"] = {
+                  [1] = HERO_SKILL_GATING_MASTERY
+                }
+              }
               , [98] = { -- 鄂加斯的呼唤（终极）
                 ["Id"] = HERO_SKILL_ABSOLUTE_GATING
                 , ["Text"] = "/Text/Game/Skills/Unique/Gating/AbsoluteGating/Name.txt"
-                , ["IsAbsolute"] = TTH_ENUM.Yes
-              }
-              , [90] = { -- 蜂拥之门（终极）
-                ["Id"] = HERO_SKILL_CRITICAL_GATING
-                , ["Text"] = "/Text/Game/Skills/Common/Luck/CriticalGating/Name.txt"
                 , ["IsAbsolute"] = TTH_ENUM.Yes
               }
             }
@@ -21432,4 +21311,49 @@
           ["Id"] = SPELL_RUNE_OF_DRAGONFORM
           , ["Text"] = "/Text/TTH/Rune/258-Dragonform/Text.txt"
         }
+      };
+
+    -- 英雄升级所需经验
+      TTH_TABLE.Exp4LevelUp = {
+        [0] = 0
+        , [1] = 1000
+        , [2] = 2000
+        , [3] = 3200
+        , [4] = 4600
+        , [5] = 6200
+        , [6] = 8000
+        , [7] = 10000
+        , [8] = 12200
+        , [9] = 14700
+        , [10] = 17500
+        , [11] = 20600
+        , [12] = 24320
+        , [13] = 28784
+        , [14] = 34140
+        , [15] = 40567
+        , [16] = 48279
+        , [17] = 57533
+        , [18] = 68637
+        , [19] = 81961
+        , [20] = 97949
+        , [21] = 117134
+        , [22] = 140156
+        , [23] = 167782
+        , [24] = 195408
+        , [25] = 225796
+        , [26] = 262261
+        , [27] = 309665
+        , [28] = 376030
+        , [29] = 475577
+        , [30] = 634852
+        , [31] = 905619
+        , [32] = 1392999
+        , [33] = 2319021
+        , [34] = 4171065
+        , [35] = 8060357
+        , [36] = 16616799
+        , [37] = 36296615
+        , [38] = 83528171
+        , [39] = 201607059
+        , [40] = 2147483647
       };

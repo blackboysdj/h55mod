@@ -2,16 +2,16 @@
   YaHei Consolas Hybr
   DejaVu Sans Mono
 
-新版本调整
+-- 新版本调整
   死亡行军BUG
   乌尔夫斯坦边境哨塔数量在信息管理→个人里面显示
   hero with name '7' is not exist
   士气-5 亡巫功能提示选择
-  内比罗斯: 敌方英雄无法逃跑
+  内比罗斯: 敌方英雄无法逃跑 DenyAIHeroFlee
   shantiri传送
-
   尤佛瑞汀的经验给汉格瓦尔
-课题：
+
+-- 课题：
   6.众志成城 内政官一路守城上限（与咒骂进行伤害对比），反击，机械，防御
 
 一个战术小队 一个侦查小队 一个无畏机甲 还有一个愤青突击队
@@ -30,13 +30,13 @@ HERO_SKILL_FIRE_PROTECTION
 
 英雄无敌5神力之遗MOD--圣吉列斯<大河马定制战锤40K联动>
 
-视频相关
+-- 视频相关
   7AI结盟+3倍增兵+眼泪+旅行者长靴+哨兵之盾+天使联盟+诅咒斗篷+大法师之书+龙神胸甲+初始技能+终极技能
   你们的支持就是牙姐的动力，谢谢大家，进群下载游戏：241244439
   过夜快※8技能※城镇转换※内政官※定点回城※女巫双技能
   MOD介绍: 8技能※过夜快※城镇转换※内政官※定点回城※消耗药水※战场特技※主动天赋※主动技能※主动宝物※格鲁※德肯※宝物合成
 
-直播相关
+-- 直播相关
   rtmp://live-push.bilivideo.com/live-bvc/
   本局游戏的板子：7AI结盟+3倍增兵+眼泪+天使联盟+哨兵之盾+诅咒斗篷+龙神胸甲+天启头盔+终极技能（这些都是送AI的哦）
   8技能/过夜快/战场特技/主动天赋/主动技能/主动宝物/格鲁/德肯/宝物合成
@@ -44,25 +44,24 @@ HERO_SKILL_FIRE_PROTECTION
   http://live.bilibili.com/3234260
   QQ群241244439
 
-顶配学院5+2，高级精怪+机械元素气，老太婆+海盗，每场战斗操作拉满，第二天6英雄开图，W1D4打了1个多小时，这是免费能看的内容？？？
-教科书级5+2+火焰陷阱MF独角兽，浪费一颗雷算我输（这么骄傲合适吗？）
-吹飞特效开始发威，多场战斗靠水晶吹飞打出的伤害和清空ATB的效果实现极限MF
-1高级精怪+1机械元素气MF大群幽灵龙，成功破大口两方面军会师，差点就没炮灰要回家了
-第二周星辰坠饰到手，W2D7老太婆回家，海盗兵临城下，直面森林主城
-周日占的森林主城，白赚一周兵，把兵招出来后，战力威慑又白占一周眼泪城，每天7千金币，一周又是5万金币额外收益
-海盗守着森林主城，艾米莉亚去MF了萨冠和狮冠，入神套齐了，W3D7又守城把森林灭了，森林这把活了6集。。。
-7分45秒进行宝物学者复刻宝物的介绍，复刻了星辰坠饰+冥界手杖
-11分44秒5+1+1召唤流下高级宝屋下层，声控游戏萨戒到手
-==========================================
-你们的支持就是牙姐的动力，谢谢大家，加UP下载游戏：2302978672
-※8技能※过夜快※城镇转换※
-※内政官※定点回城※女巫技能定制※
-※宝物合成※野怪带中立英雄支援※
-※新英雄天赋※新英雄技能※新特效宝物※
-※新组合神器※新战场特技※新生物特技※
-※主动天赋/主动技能/主动宝物※
-※格鲁※德肯※天使联盟※诅咒斗篷※龙神胸甲※
-
+  顶配学院5+2，高级精怪+机械元素气，老太婆+海盗，每场战斗操作拉满，第二天6英雄开图，W1D4打了1个多小时，这是免费能看的内容？？？
+  教科书级5+2+火焰陷阱MF独角兽，浪费一颗雷算我输（这么骄傲合适吗？）
+  吹飞特效开始发威，多场战斗靠水晶吹飞打出的伤害和清空ATB的效果实现极限MF
+  1高级精怪+1机械元素气MF大群幽灵龙，成功破大口两方面军会师，差点就没炮灰要回家了
+  第二周星辰坠饰到手，W2D7老太婆回家，海盗兵临城下，直面森林主城
+  周日占的森林主城，白赚一周兵，把兵招出来后，战力威慑又白占一周眼泪城，每天7千金币，一周又是5万金币额外收益
+  海盗守着森林主城，艾米莉亚去MF了萨冠和狮冠，入神套齐了，W3D7又守城把森林灭了，森林这把活了6集。。。
+  7分45秒进行宝物学者复刻宝物的介绍，复刻了星辰坠饰+冥界手杖
+  11分44秒5+1+1召唤流下高级宝屋下层，声控游戏萨戒到手
+  ==========================================
+  你们的支持就是牙姐的动力，谢谢大家，加UP下载游戏：2302978672
+  ※8技能※过夜快※城镇转换※
+  ※内政官※定点回城※女巫技能定制※
+  ※宝物合成※野怪带中立英雄支援※
+  ※新英雄天赋※新英雄技能※新特效宝物※
+  ※新组合神器※新战场特技※新生物特技※
+  ※主动天赋/主动技能/主动宝物※
+  ※格鲁※德肯※天使联盟※诅咒斗篷※龙神胸甲※
 
 -- 宝物exe修改
   # - Added artifact ID 166 to increase HP by 2
@@ -139,35 +138,41 @@ HERO_SKILL_FIRE_PROTECTION
   defender-townbuilding-8-MOAT
 
 -- 文案
-  <left><body_bright>英雄: <color=ff0033>阿维图斯--大河马赞助并设计
-  <body_bright>职业: <color=yellow>惩戒骑士
-  <body_bright>控制台名: <color=yellow>Avitus
-  <body_bright>初始技能: <color=yellow>初级光明/初级机械+符文机械
-  <body_bright>初始魔法: <color=yellow>乱石利刺
-  <body_bright>战争机械: <color=yellow>弹药车
-  <body_bright>生物特长: <color=0099FF>帝国重弩<color_default> （种族: 圣堂）
-  <body_bright>英雄天赋: <color=ff0033>火力压制
-  <color=7F38EC>主动特效:<color_default>（4CD/战胜/过天）
-  <body_bright>1) 可将<color=0099FF>弓箭手<color=yellow>【训练】<body_bright>为<color=0099FF>帝国重弩
-  <color=7F38EC>战场特效:
-  <body_bright>1) 英雄获得<color=0099FF>符文机械/弹射学/三箭连射/机械引力指环/寒铁之刃/燃烧箭<body_bright>后<color=0099FF>帝国重弩<body_bright>会在攻击后追加<color=ff0033>火力压制
-  <color=orange>内政官特效:
-  <body_bright>1) <color=yellow>【所辖城镇】<body_bright>会自动建造<color=0099FF>弓箭塔
+  英雄
+    <left><body_bright>英雄: <color=ff0033>阿维图斯--大河马赞助并设计
+    <body_bright>职业: <color=yellow>惩戒骑士
+    <body_bright>控制台名: <color=yellow>Avitus
+    <body_bright>初始技能: <color=yellow>初级光明/初级机械+符文机械
+    <body_bright>初始魔法: <color=yellow>乱石利刺
+    <body_bright>战争机械: <color=yellow>弹药车
+    <body_bright>生物特长: <color=0099FF>帝国重弩<color_default> （种族: 圣堂）
+    <body_bright>英雄天赋: <color=ff0033>火力压制
+    <color=7F38EC>主动特效:<color_default>（4CD/战胜/过天）
+    <body_bright>1) 可将<color=0099FF>弓箭手<color=yellow>【训练】<body_bright>为<color=0099FF>帝国重弩
+    <color=7F38EC>战场特效:
+    <body_bright>1) 英雄获得<color=0099FF>符文机械/弹射学/三箭连射/机械引力指环/寒铁之刃/燃烧箭<body_bright>后<color=0099FF>帝国重弩<body_bright>会在攻击后追加<color=ff0033>火力压制
+    <color=orange>内政官特效:
+    <body_bright>1) <color=yellow>【所辖城镇】<body_bright>会自动建造<color=0099FF>弓箭塔
 
-  <left><color=7F38EC>建筑效果:
-  <body_bright>1.城墙防御增加
-  <body_bright>2.生物产量+<color=yellow>50%
-  <body_bright>3.两侧箭塔
-  <color=7F38EC>内政官特效:
-  <color=0099FF>防御+<color=yellow>1
+  建筑
+    <left><color=7F38EC>建筑效果:
+    <body_bright>1.城墙防御增加
+    <body_bright>2.生物产量+<color=yellow>50%
+    <body_bright>3.两侧箭塔
+    <color=7F38EC>内政官特效:
+    <color=0099FF>防御+<color=yellow>1
 
-  <left><color=7F38EC>建筑效果:
-  <body_bright>1.招募
+    <left><color=7F38EC>建筑效果:
+    <body_bright>1.招募
 
-  <left><color=7F38EC>建筑效果:
-  <body_bright>1.招募黑曜石像怪/元素石像怪
-  <body_bright>2.升级小精怪
-  <body_bright>3.转换升级形态
+    <left><color=7F38EC>建筑效果:
+    <body_bright>1.招募黑曜石像怪/元素石像怪
+    <body_bright>2.升级小精怪
+    <body_bright>3.转换升级形态
+
+  初始奖励
+    <left><body_bright>初始奖励：
+    <body_bright>所有英雄<color=yellow>【首次招募时】<body_bright>获得随机一项<color=0099FF>主技能<body_bright>等级+ <color=yellow>1<body_bright> 的提升
 
 -- 按钮位置
   EPA_LOW_END
@@ -234,6 +239,13 @@ HERO_SKILL_FIRE_PROTECTION
   BUILDING_HUT_OF_MAGI
   ? BUILDING_MAGMA_SHRINE
   BUILDING_LAKE_OF_SCARLET_SWAN
+  BUILDING_SIRENS 莎拉萨神殿
+  BUILDING_TRADING_POST
+  BUILDING_ASTROLOGER_TOWER
+  BUILDING_SPELL_SHOP
+  BUILDING_MEMORY_MENTOR
+  BUILDING_BLACK_MARKET
+  BUILDING_SACRIFICIAL_ALTAR
 
 -- 机械坐标
   进攻小场
@@ -371,11 +383,6 @@ HERO_SKILL_FIRE_PROTECTION
     CreateMonster( monsterName, creatureID, creatureCount, x,y,floorID, moodID=1, courageID=2, rotation=0, doesNotGrow=0)
     -Now you can set whether the monster should grow.
 
-  -- 莎拉萨神殿
-  H55_SummonTemples = GetObjectNamesByType("BUILDING_SIRENS");
-  H55_SummonTemplesQty = length(H55_SummonTemples);
-  H55_SummonTempleChoices = {};
-
   战争掠劫 WIZARD_FEAT_SPOILS_OF_WAR +1 魔童
   灼热之火 DEMON_FEAT_DEMONIC_FLAME +1 矮子1级
   亚莎之泪的预见 KNIGHT_FEAT_GRAIL_VISION 送资源
@@ -484,3 +491,23 @@ HERO_SKILL_FIRE_PROTECTION
       专家传送：门禁卫士+敏捷传送门+鄂加斯的意志
       专家启蒙：鹰眼+闪电思维+智慧学
       专家幸运：士兵之幸+幸运一击+魔法抵抗
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+--APPENDIX
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+-- TTH_COMMON.setTrigger2ObjectType("BUILDING_DRAGON_UTOPIA", OBJECT_TOUCH_TRIGGER, 'H55_UtopiaVisit', nil);
+-- TTH_COMMON.setTrigger2ObjectType("BUILDING_SUNKEN_TEMPLE", OBJECT_TOUCH_TRIGGER, 'H55_SunkenTempleVisit', nil);
+-- TTH_COMMON.setTrigger2ObjectType("BUILDING_NAGA_BANK", OBJECT_TOUCH_TRIGGER, 'H55_MageVaultVisit', nil);
+-- TTH_COMMON.setTrigger2ObjectType("BUILDING_CRYPT", OBJECT_TOUCH_TRIGGER, 'H55_CryptVisit', nil);
+-- TTH_COMMON.setTrigger2ObjectType("BUILDING_GARGOYLE_STONEVAULT", OBJECT_TOUCH_TRIGGER, 'H55_StoneVaultVisit', nil);
+-- TTH_COMMON.setTrigger2ObjectType("BUILDING_DWARVEN_TREASURE", OBJECT_TOUCH_TRIGGER, 'H55_DwarvenTreasureVisit', nil);
+-- TTH_COMMON.setTrigger2ObjectType("BUILDING_DEMOLISH", OBJECT_TOUCH_TRIGGER, 'H55_DemolishVisit', nil);
+-- TTH_COMMON.setTrigger2ObjectType("BUILDING_UNKEMPT", OBJECT_TOUCH_TRIGGER, 'H55_UnkemptVisit', nil);
+-- TTH_COMMON.setTrigger2ObjectType("BUILDING_CYCLOPS_STOCKPILE", OBJECT_TOUCH_TRIGGER, 'H55_StockpileVisit', nil);
+-- TTH_COMMON.setTrigger2ObjectType("BUILDING_BLOOD_TEMPLE", OBJECT_TOUCH_TRIGGER, 'H55_WitchBankVisit', nil);
+-- TTH_COMMON.setTrigger2ObjectType("BUILDING_TREANT_THICKET", OBJECT_TOUCH_TRIGGER, 'H55_TreantThicketVisit', nil);
+-- TTH_COMMON.setTrigger2ObjectType("BUILDING_PYRAMID", OBJECT_TOUCH_TRIGGER, 'H55_PyramidVisit', nil);
+-- TTH_COMMON.setTrigger2ObjectType("BUILDING_NAGA_TEMPLE", OBJECT_TOUCH_TRIGGER, 'object_touch_handler', nil);
+
+-- TTH_COMMON.setTrigger2ObjectType("BUILDING_ABANDONED_MINE", OBJECT_TOUCH_TRIGGER, 'H55_AbandonedVisit', nil);

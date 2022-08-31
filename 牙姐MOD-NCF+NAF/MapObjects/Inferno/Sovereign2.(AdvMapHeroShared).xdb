@@ -35,8 +35,8 @@
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_GATING</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Inferno55/Sovereign/Name.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Inferno55/Sovereign/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Inferno/110-Sovereign/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Inferno/110-Sovereign/Description.txt"/>
 	<SpecializationIcon href="/Textures/Icons/Heroes/Inferno/Inferno_Sovereign_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Inferno/Inferno_Sovereign_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>
@@ -63,7 +63,7 @@
 			<Item>HERO_SKILL_FRENZY</Item>
 		</perkIDs>
 		<spellIDs>
-			<Item>SPELL_UNHOLY_WORD</Item>
+			<Item>SPELL_BOSS_FIREWALL</Item>
 		</spellIDs>
 		<Ballista>false</Ballista>
 		<FirstAidTent>false</FirstAidTent>

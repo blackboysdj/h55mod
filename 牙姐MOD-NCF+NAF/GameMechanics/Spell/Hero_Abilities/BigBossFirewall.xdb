@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Spell ObjectRecordID="1000105">
+	<NameFileRef href="/Text/Game/Spells/Combat/BigBossFirewall/Name.txt"/>
+	<LongDescriptionFileRef href="/Text/Game/Spells/Combat/BigBossFirewall/Long_Description.txt"/>
+	<Texture href="/Textures/SpellBook______2618/Spells/Spell_Boss_Firewall.xdb#xpointer(/Texture)"/>
+	<EffectTexture/>
+	<SpellBookPredictions/>
+	<CombatLogTexts/>
+	<Level>6</Level>
+	<MagicSchool>MAGIC_SCHOOL_SPECIAL</MagicSchool>
+	<RequiredHeroLevel>0</RequiredHeroLevel>
+	<IsAimed>false</IsAimed>
+	<TrainedCost>0</TrainedCost>
+	<damage>
+		<Item>
+			<Base>15</Base>
+			<PerPower>15</PerPower>
+		</Item>
+		<Item>
+			<Base>15</Base>
+			<PerPower>15</PerPower>
+		</Item>
+		<Item>
+			<Base>15</Base>
+			<PerPower>15</PerPower>
+		</Item>
+		<Item>
+			<Base>15</Base>
+			<PerPower>15</PerPower>
+		</Item>
+	</damage>
+	<duration>
+		<Item>
+			<Base>1</Base>
+			<PerPower>1</PerPower>
+		</Item>
+		<Item>
+			<Base>1</Base>
+			<PerPower>1</PerPower>
+		</Item>
+		<Item>
+			<Base>1</Base>
+			<PerPower>1</PerPower>
+		</Item>
+		<Item>
+			<Base>1</Base>
+			<PerPower>1</PerPower>
+		</Item>
+	</duration>
+	<sSpellCost>
+		<Wood>0</Wood>
+		<Ore>0</Ore>
+		<Mercury>0</Mercury>
+		<Crystal>0</Crystal>
+		<Sulfur>0</Sulfur>
+		<Gem>0</Gem>
+		<Gold>0</Gold>
+	</sSpellCost>
+	<IsAreaAttack>false</IsAreaAttack>
+	<CanSelectDead>false</CanSelectDead>
+	<Target>TARGET_NEUTRAL</Target>
+	<Element>ELEMENT_FIRE</Element>
+	<visuals>
+		<Item href="BigBossFirewall.(SpellVisual).xdb#xpointer(/SpellVisual)"/>
+	</visuals>
+</Spell>

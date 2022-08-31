@@ -1160,9 +1160,13 @@ end;
   CREATURE_194 = 194
   CREATURE_HEAVEN_TOOL = 194;
   CREATURE_195 = 195
+  CREATURE_INFERNO_TOOL_Orlando2_AbilityVorpalSword = 195
   CREATURE_196 = 196
+  CREATURE_INFERNO_TOOL_Orlando2_AbilityAxeOfSlaughter = 196
   CREATURE_197 = 197
+  CREATURE_INFERNO_TOOL_Orlando2_AbilityUpgradeMastery = 197
   CREATURE_198 = 198
+  CREATURE_INFERNO_TOOL_Orlando2_AbilityUpgradeShantiri = 198
   CREATURE_199 = 199
   CREATURE_200 = 200
   CREATURE_201 = 201
@@ -2573,6 +2577,9 @@ end;
   };
 
 -- TTH环境
+  TTHCS_FINAL = {};
+    TTHCS_FINAL.MAX_MANA = 9999;
+
   TTHCS_ENUM = {};
     -- 战场大小
       TTHCS_ENUM.BattleEffectFieldSmall = 1;
@@ -2630,6 +2637,14 @@ end;
       TTHCS_ENUM.Combat = 2;
 
   TTHCS_TABLE = {};
+    -- 魔法列表
+      TTHCS_TABLE.Magic = {
+        [SPELL_ICE_BOLT] = {
+          ["DebugText"] = "SPELL_ICE_BOLT"
+          , ["SignText"] = "/Text/TTH/Spell/CombatSpells/004-IceBolt/Text.txt"
+        }
+      }
+
     -- 战场大小
       TTHCS_TABLE.BattleEffectField = {
         [TTHCS_ENUM.BattleEffectFieldSmall] = {
@@ -12421,6 +12436,34 @@ end;
         return iCompare;
       end;
 
+    -- 数组对象按key排序-正序
+      function TTHCS_COMMON.asc8key(arr, strKey)
+        local iLenArr = length(arr);
+        local temp = nil;
+        for i = 0, iLenArr - 2 do
+          for j = 0, iLenArr - 2 - i do
+            print("i")
+            print(i)
+            print("j")
+            print(j)
+            -- print("strKey")
+            -- print(strKey)
+            -- print("arr[j]")
+            -- print(arr[j])
+            -- print("arr[j + 1]")
+            -- print(arr[j + 1])
+            if arr[j][strKey] > arr[j + 1][strKey] then
+              temp = arr[j];
+              arr[j] = arr[j + 1];
+              arr[j + 1] = temp;
+            end;
+          end;
+        end;
+        print("arr")
+        print(arr)
+        return arr;
+      end;
+
     -- 生物数组最大战力
       function TTHCS_COMMON.max8Power(arrCreature)
         local iCompare = nil;
@@ -12571,6 +12614,24 @@ end;
         print("Random: "..iRandom);
         print("Mod: "..iMod);
         return iMod;
+      end;
+
+  TTHCS_THREAD = {};
+    -- 施放单体魔法
+      function TTHCS_THREAD.castAimedSpell(strCaster, iSpellId, listTarget)
+        combatSetPause(1);
+        local iCurrentMana = GetUnitManaPoints(strCaster);
+        SetUnitManaPoints(strCaster, TTHCS_FINAL.MAX_MANA);
+        repeat sleep(1); until GetUnitManaPoints(strCaster) == TTHCS_FINAL.MAX_MANA;
+        for i, strTarget in listTarget do
+          startThread(UnitCastAimedSpell, strCaster, iSpellId, strTarget);
+          print(strCaster.." cast "..TTHCS_TABLE.Magic[iSpellId]["DebugText"].." on "..strTarget);
+        end;
+        ShowFlyingSign(TTHCS_TABLE.Magic[iSpellId]["SignText"], strCaster, 5);
+        sleep(50);
+        SetUnitManaPoints(strCaster, iCurrentMana);
+        repeat sleep(1); until GetUnitManaPoints(strCaster) == iCurrentMana;
+        combatSetPause(nil);
       end;
 
   TTHCS_GLOBAL = {};
@@ -12728,7 +12789,7 @@ end;
       end;
 
     -- 获取范围内的单位列表
-      -- 参数: strUnitName, iAreaSize
+      -- 参数: strUnitName, iAreaSize, iSide
       -- 返回值: arrUnitName
       function TTHCS_GLOBAL.listUnitInArea(strUnitName, iAreaSize, iSide)
         local arrUnitName = {};
@@ -12758,31 +12819,61 @@ end;
         return arrUnitName;
       end;
 
-      -- 获取范围内的单位列表
-        -- 参数: strUnitName, iAreaSize
-        -- 返回值: arrUnitName
-        function TTHCS_GLOBAL.listUnitInArea8Object(objUnit, iAreaSize, iSide)
-          local arrUnitName = {};
-          local iUnitCombatSize = 1;
-          if objUnit["UnitCategory"] == ENUM_CATEGORY.CREATURE then
-            iUnitCombatSize = TTHCS_TABLE.Creature[objUnit["UnitType"]]["CombatSize"];
-          end;
-          local arrCreature4Check = GetCreatures(getSide(iSide, 1));
-          local arrEffectPosition = TTHCS_COMMON.calcEffectArea(iUnitCombatSize + 1 + iAreaSize, objUnit["PosX"], objUnit["PosY"], TTHCS_ENUM.Creature);
-          for k, itemEffectPosition in arrEffectPosition do
-            local iEffectPosX = itemEffectPosition["PosX"];
-            local iEffectPosY = itemEffectPosition["PosY"];
-            for i, strUnitName in arrCreature4Check do
-              local enumEffect = TTHCS_COMMON.isEffectUnit(strUnitName, iEffectPosX, iEffectPosY);
-              if enumEffect == TTHCS_ENUM.Yes then
-                if contains(arrUnitName, strUnitName) == nil then
-                  push(arrUnitName, strUnitName);
-                end;
+    -- 获取范围内的单位列表
+      -- 参数: strUnitName, iAreaSize, iSide
+      -- 返回值: arrUnitName
+      function TTHCS_GLOBAL.listUnitInArea8Object(objUnit, iAreaSize, iSide)
+        local arrUnitName = {};
+        local iUnitCombatSize = 1;
+        if objUnit["UnitCategory"] == ENUM_CATEGORY.CREATURE then
+          iUnitCombatSize = TTHCS_TABLE.Creature[objUnit["UnitType"]]["CombatSize"];
+        end;
+        local arrCreature4Check = GetCreatures(getSide(iSide, 1));
+        local arrEffectPosition = TTHCS_COMMON.calcEffectArea(iUnitCombatSize + 1 + iAreaSize, objUnit["PosX"], objUnit["PosY"], TTHCS_ENUM.Creature);
+        for k, itemEffectPosition in arrEffectPosition do
+          local iEffectPosX = itemEffectPosition["PosX"];
+          local iEffectPosY = itemEffectPosition["PosY"];
+          for i, strUnitName in arrCreature4Check do
+            local enumEffect = TTHCS_COMMON.isEffectUnit(strUnitName, iEffectPosX, iEffectPosY);
+            if enumEffect == TTHCS_ENUM.Yes then
+              if contains(arrUnitName, strUnitName) == nil then
+                push(arrUnitName, strUnitName);
               end;
             end;
           end;
-          return arrUnitName;
         end;
+        return arrUnitName;
+      end;
+
+    -- 获取生物列表，按距离某坐标最近距离排序
+      -- 参数: iPositionX, iPositionY, iSide
+      -- 返回值: arrUnitName
+      function TTHCS_GLOBAL.sortCreature8Distance(iPositionX, iPositionY, iSide)
+        local arrCreature = GetCreatures(iSide);
+        local listCreature = {};
+        for i, strCreatureName in arrCreature do
+          local objCreature = TTHCS_GLOBAL.geneUnitInfo(strCreatureName);
+          print("objCreature")
+          print(objCreature)
+          local iDistanceX = iPositionX - objCreature["PosX"];
+          print("iDistanceX")
+          print(iDistanceX)
+          local iDistanceY = iPositionY - objCreature["PosY"];
+          print("iDistanceY")
+          print(iDistanceY)
+          objCreature["Distance"] = iDistanceX * iDistanceX +  iDistanceY * iDistanceY;
+          print("Distance")
+          print(objCreature["Distance"])
+          listCreature = push(listCreature, objCreature);
+        end;
+        for i,v in listCreature do
+          print("objCreature1")
+          print(v)
+        end
+        local listCreatureSorted8Distance = TTHCS_COMMON.asc8key(listCreature, "Distance");
+        return listCreatureSorted8Distance;
+      end;
+
 
   TTHCS_PATH = {};
     TTHCS_PATH["Talent"] = {};
@@ -12813,7 +12904,8 @@ end;
       TTHCS_PATH["Talent"]["Hero4"]["Effect"] = "/Text/TTH/Heroes/Specializations/Stronghold/139-Hero4/Combat/Effect.txt";
 
       TTHCS_PATH["Talent"]["Orlando2"] = {};
-      TTHCS_PATH["Talent"]["Orlando2"]["Effect"] = "/Text/TTH/Heroes/Specializations/Inferno/104-Orlando2/Combat/Effect.txt";
+      TTHCS_PATH["Talent"]["Orlando2"]["EffectVorpalSword"] = "/Text/TTH/Heroes/Specializations/Inferno/104-Orlando2/Combat/EffectVorpalSword.txt";
+      TTHCS_PATH["Talent"]["Orlando2"]["EffectAxeOfSlaughter"] = "/Text/TTH/Heroes/Specializations/Inferno/104-Orlando2/Combat/EffectAxeOfSlaughter.txt";
 
       TTHCS_PATH["Talent"]["Gles"] = {};
       TTHCS_PATH["Talent"]["Gles"]["Effect"] = "/Text/TTH/Heroes/Specializations/Necromancy/079-Gles/Combat/Effect.txt";
@@ -12857,29 +12949,6 @@ end;
       TTHCS_PATH["Perk"][HERO_SKILL_FOREST_RAGE] = {};
       TTHCS_PATH["Perk"][HERO_SKILL_FOREST_RAGE]["Effect"] = "/Text/TTH/Skills/Avenger/117-ForestRage/Combat/Effect.txt";
 
-      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE] = {};
-      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect.txt";
-      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect005"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect005.txt";
-      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect010"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect010.txt";
-      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect015"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect015.txt";
-      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect020"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect020.txt";
-      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect025"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect025.txt";
-      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect030"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect030.txt";
-      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect035"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect035.txt";
-      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect040"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect040.txt";
-      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect045"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect045.txt";
-      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect050"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect050.txt";
-      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect055"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect055.txt";
-      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect060"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect060.txt";
-      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect065"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect065.txt";
-      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect070"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect070.txt";
-      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect075"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect075.txt";
-      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect080"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect080.txt";
-      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect085"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect085.txt";
-      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect090"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect090.txt";
-      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect095"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect095.txt";
-      TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_FIRE]["Effect100"] = "/Text/TTH/Skills/Gating/059-DemonicFire/Combat/Effect100.txt";
-
     TTHCS_PATH["Artifact"] = {};
       TTHCS_PATH["Artifact"][ARTIFACT_ANGELIC_ALLIANCE] = {};
       TTHCS_PATH["Artifact"][ARTIFACT_ANGELIC_ALLIANCE]["Effect"] = "/Text/TTH/Artifact/068-AngelicAlliance/Combat/Effect.txt";
@@ -12909,6 +12978,29 @@ end;
     TTHCS_PATH["Spell"] = {};
       TTHCS_PATH["Spell"][SPELL_ABILITY_LAY_HANDS] = {};
       TTHCS_PATH["Spell"][SPELL_ABILITY_LAY_HANDS]["Effect"] = "/Text/TTH/Spell/CreatureAbility/156-LayHands/Combat/Effect.txt";
+
+    TTHCS_PATH["Continuous"] = {};
+      TTHCS_PATH["Continuous"]["Effect"] = "/Text/TTH/Combat/Continuous/Effect.txt";
+      TTHCS_PATH["Continuous"]["Effect005"] = "/Text/TTH/Combat/Continuous/Effect005.txt";
+      TTHCS_PATH["Continuous"]["Effect010"] = "/Text/TTH/Combat/Continuous/Effect010.txt";
+      TTHCS_PATH["Continuous"]["Effect015"] = "/Text/TTH/Combat/Continuous/Effect015.txt";
+      TTHCS_PATH["Continuous"]["Effect020"] = "/Text/TTH/Combat/Continuous/Effect020.txt";
+      TTHCS_PATH["Continuous"]["Effect025"] = "/Text/TTH/Combat/Continuous/Effect025.txt";
+      TTHCS_PATH["Continuous"]["Effect030"] = "/Text/TTH/Combat/Continuous/Effect030.txt";
+      TTHCS_PATH["Continuous"]["Effect035"] = "/Text/TTH/Combat/Continuous/Effect035.txt";
+      TTHCS_PATH["Continuous"]["Effect040"] = "/Text/TTH/Combat/Continuous/Effect040.txt";
+      TTHCS_PATH["Continuous"]["Effect045"] = "/Text/TTH/Combat/Continuous/Effect045.txt";
+      TTHCS_PATH["Continuous"]["Effect050"] = "/Text/TTH/Combat/Continuous/Effect050.txt";
+      TTHCS_PATH["Continuous"]["Effect055"] = "/Text/TTH/Combat/Continuous/Effect055.txt";
+      TTHCS_PATH["Continuous"]["Effect060"] = "/Text/TTH/Combat/Continuous/Effect060.txt";
+      TTHCS_PATH["Continuous"]["Effect065"] = "/Text/TTH/Combat/Continuous/Effect065.txt";
+      TTHCS_PATH["Continuous"]["Effect070"] = "/Text/TTH/Combat/Continuous/Effect070.txt";
+      TTHCS_PATH["Continuous"]["Effect075"] = "/Text/TTH/Combat/Continuous/Effect075.txt";
+      TTHCS_PATH["Continuous"]["Effect080"] = "/Text/TTH/Combat/Continuous/Effect080.txt";
+      TTHCS_PATH["Continuous"]["Effect085"] = "/Text/TTH/Combat/Continuous/Effect085.txt";
+      TTHCS_PATH["Continuous"]["Effect090"] = "/Text/TTH/Combat/Continuous/Effect090.txt";
+      TTHCS_PATH["Continuous"]["Effect095"] = "/Text/TTH/Combat/Continuous/Effect095.txt";
+      TTHCS_PATH["Continuous"]["Effect100"] = "/Text/TTH/Combat/Continuous/Effect100.txt";
 
 TTH_ARTIFACTSET_EFFECT_COMBAT = {
   [1] = {

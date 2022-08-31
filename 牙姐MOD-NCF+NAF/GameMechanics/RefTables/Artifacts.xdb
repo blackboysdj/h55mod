@@ -154,8 +154,8 @@
 		<Item>
 			<ID>ARTIFACT_GEM_OF_PHANTOM</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Gem_Of_Phantom/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Gem_Of_Phantom/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/102-GemOfPhantom/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/102-GemOfPhantom/Description.txt"/>
 				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
 				<Type>ARTF_CLASS_MAJOR</Type>
 				<Slot>NECK</Slot>
@@ -2354,8 +2354,8 @@
 		<Item>
 			<ID>PEDANT_OF_MASTERY</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Pedant_of_mastery/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Pedant_of_mastery/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/015-PedantOfMastery/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/015-PedantOfMastery/Description.txt"/>
 				<Model href="/_(Model)/Artefacts/Pendant_of_Mastery.(Model).xdb#xpointer(/Model)"/>
 				<Type>ARTF_CLASS_RELIC</Type>
 				<Slot>NECK</Slot>
@@ -2367,7 +2367,7 @@
 					<Attack>0</Attack>
 					<Defence>0</Defence>
 					<Knowledge>0</Knowledge>
-					<SpellPower>4</SpellPower>
+					<SpellPower>0</SpellPower>
 					<Morale>0</Morale>
 					<Luck>0</Luck>
 				</HeroStatsModif>
@@ -3979,8 +3979,8 @@
 		<Item>
 			<ID>ARTIFACT_SHANTIRI_01</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Shantiri_01/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Shantiri_01/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/159-Shantiri01/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/159-Shantiri01/Description.txt"/>
 				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
 				<Type>ARTF_CLASS_MAJOR</Type>
 				<Slot>INVENTORY</Slot>
@@ -4004,8 +4004,8 @@
 		<Item>
 			<ID>ARTIFACT_SHANTIRI_02</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Shantiri_02/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Shantiri_02/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/160-Shantiri02/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/160-Shantiri02/Description.txt"/>
 				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
 				<Type>ARTF_CLASS_MAJOR</Type>
 				<Slot>INVENTORY</Slot>
@@ -4029,8 +4029,8 @@
 		<Item>
 			<ID>ARTIFACT_SHANTIRI_03</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Shantiri_03/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Shantiri_03/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/161-Shantiri03/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/161-Shantiri03/Description.txt"/>
 				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
 				<Type>ARTF_CLASS_MAJOR</Type>
 				<Slot>INVENTORY</Slot>
@@ -4054,8 +4054,8 @@
 		<Item>
 			<ID>ARTIFACT_SHANTIRI_04</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Shantiri_04/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Shantiri_04/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/162-Shantiri04/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/162-Shantiri04/Description.txt"/>
 				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
 				<Type>ARTF_CLASS_MAJOR</Type>
 				<Slot>INVENTORY</Slot>
@@ -4079,11 +4079,11 @@
 		<Item>
 			<ID>ARTIFACT_SHANTIRI_05</ID>
 			<obj>
-				<NameFileRef href="/Text/Game/Artifacts/Shantiri_05/Name.txt"/>
-				<DescriptionFileRef href="/Text/Game/Artifacts/Shantiri_05/Description.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/163-Shantiri05/Text.txt"/>
+				<DescriptionFileRef href="/Text/TTH/Artifact/163-Shantiri05/Description.txt"/>
 				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
 				<Type>ARTF_CLASS_RELIC</Type>
-				<Slot>MISCSLOT1</Slot>
+				<Slot>INVENTORY</Slot>
 				<Icon href="/Textures/HeroScreen/Artifacts/Shantiri05.xdb#xpointer(/Texture)"/>
 				<CostOfGold>80000</CostOfGold>
 				<AIValue>26000</AIValue>

@@ -30,13 +30,13 @@
 	<Icon128/>
 	<InternalName>Thant</InternalName>
 	<Class>HERO_CLASS_NECROMANCER</Class>
-	<Specialization/>
+	<Specialization>HERO_SPEC_ZOMBIES</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_NECROMANCY</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Necropolis55/Mummies/Name.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Necropolis55/Mummies/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Necromancy/096-Thant/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Necromancy/096-Thant/Description.txt"/>
 	<SpecializationIcon href="/UI/H5A1/Icons/Creatures/Neutral/128x128/Mummy.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Necropolis/Necropolis_Thant_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>

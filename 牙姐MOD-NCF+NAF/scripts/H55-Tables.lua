@@ -268,6 +268,10 @@
       , [18] = ARTIFACT_GUARDIAN_01
       , [19] = ARTIFACT_GUARDIAN_02
       , [20] = ARTIFACT_GUARDIAN_03
+      , [21] = ARTIFACT_ORB_AIR
+      , [22] = ARTIFACT_ORB_EARTH
+      , [23] = ARTIFACT_ORB_FIRE
+      , [24] = ARTIFACT_ORB_WATER
     }
     , [6] = {
       [0] = ARTIFACT_LEGION_EXPERT
@@ -8919,8 +8923,11 @@
       TTH_ENUM.SET_MONK = 11
       TTH_ENUM.SET_GUARDIAN = 12
       TTH_ENUM.SET_ROOKIE = 13
-      TTH_ENUM.SET_ELEMENT = 14
-      TTH_ENUM.SET_PIRATE = 15
+      TTH_ENUM.SET_PIRATE = 14
+      TTH_ENUM.SET_ELEMENT_AIR = 15
+      TTH_ENUM.SET_ELEMENT_EARTH = 16
+      TTH_ENUM.SET_ELEMENT_FIRE = 17
+      TTH_ENUM.SET_ELEMENT_WATER = 18
 
     -- 宝屋奖励
       TTH_ENUM.BankRewardResource = 1;
@@ -9273,7 +9280,7 @@
         TTH_PATH.Talent["Cast"]["Hero"]["Dracon"] = TTH_PATH.Talent["Cast"]["Hero"]["Pre"].."Dracon.txt";
         TTH_PATH.Talent["Cast"]["Hero"]["Adelaide"] = TTH_PATH.Talent["Cast"]["Hero"]["Pre"].."Adelaide.txt";
         TTH_PATH.Talent["Cast"]["Hero"]["Thant"] = TTH_PATH.Talent["Cast"]["Hero"]["Pre"].."Thant.txt";
-        TTH_PATH.Talent["Cast"]["Hero"]["Archilus"] = TTH_PATH.Talent["Cast"]["Hero"]["Pre"].."Archilus.txt";
+        TTH_PATH.Talent["Cast"]["Hero"]["LordHaart"] = TTH_PATH.Talent["Cast"]["Hero"]["Pre"].."LordHaart.txt";
       -- Nathaniel 001 埃兰妮
         TTH_PATH.Talent["Nathaniel"] = {};
         TTH_PATH.Talent["Nathaniel"]["Pre"] = TTH_PATH.Talent["Pre"].."001/";
@@ -9433,6 +9440,20 @@
         TTH_PATH.Talent["Sylsai"]["ConvertDiplomacyTitle"] = TTH_PATH.Talent["Sylsai"]["Pre"].."ConvertDiplomacyTitle.txt";
         TTH_PATH.Talent["Sylsai"]["ConvertDiplomacyDesc"] = TTH_PATH.Talent["Sylsai"]["Pre"].."ConvertDiplomacyDesc.txt";
         TTH_PATH.Talent["Sylsai"]["ConvertDiplomacySuccess"] = TTH_PATH.Talent["Sylsai"]["Pre"].."ConvertDiplomacySuccess.txt";
+      -- Almegir 071 伊蓓丝
+        TTH_PATH.Talent["Almegir"] = {};
+        TTH_PATH.Talent["Almegir"]["Pre"] = TTH_PATH.Talent["Pre"].."071-Almegir/";
+        TTH_PATH.Talent["Almegir"]["Text"] = TTH_PATH.Talent["Almegir"]["Pre"].."Text.txt";
+        TTH_PATH.Talent["Almegir"]["NotEnoughTimes"] = TTH_PATH.Talent["Almegir"]["Pre"].."NotEnoughTimes.txt";
+        TTH_PATH.Talent["Almegir"]["NotEnoughMana"] = TTH_PATH.Talent["Almegir"]["Pre"].."NotEnoughMana.txt";
+        TTH_PATH.Talent["Almegir"]["Success"] = TTH_PATH.Talent["Almegir"]["Pre"].."Success.txt";
+      -- LordHaart 077 罗德哈特
+        TTH_PATH.Talent["LordHaart"] = {};
+        TTH_PATH.Talent["LordHaart"]["Pre"] = TTH_PATH.Talent["Pre"].."077-LordHaart/";
+        TTH_PATH.Talent["LordHaart"]["UpgradeMasteryText"] = TTH_PATH.Talent["LordHaart"]["Pre"].."UpgradeMasteryText.txt";
+        TTH_PATH.Talent["LordHaart"]["UpgradeShantiriText"] = TTH_PATH.Talent["LordHaart"]["Pre"].."UpgradeShantiriText.txt";
+        TTH_PATH.Talent["LordHaart"]["SuccessUpgradeMastery"] = TTH_PATH.Talent["LordHaart"]["Pre"].."SuccessUpgradeMastery.txt";
+        TTH_PATH.Talent["LordHaart"]["SuccessUpgradeShantiri"] = TTH_PATH.Talent["LordHaart"]["Pre"].."SuccessUpgradeShantiri.txt";
       -- Nikolay 080 尼科莱
         TTH_PATH.Talent["Nikolay"] = {};
         TTH_PATH.Talent["Nikolay"]["Pre"] = TTH_PATH.Talent["Pre"].."080/";
@@ -9484,6 +9505,13 @@
         TTH_PATH.Talent["Nymus"]["SuccessVisitPortal"] = TTH_PATH.Talent["Nymus"]["Pre"].."SuccessVisitPortal.txt";
         TTH_PATH.Talent["Nymus"]["Title"] = TTH_PATH.Talent["Nymus"]["Pre"].."Title.txt";
         TTH_PATH.Talent["Nymus"]["Desc"] = TTH_PATH.Talent["Nymus"]["Pre"].."Desc.txt";
+      -- Oddrema 109 耶泽蓓丝
+        TTH_PATH.Talent["Oddrema"] = {};
+        TTH_PATH.Talent["Oddrema"]["Pre"] = TTH_PATH.Talent["Pre"].."109-Oddrema/";
+        TTH_PATH.Talent["Oddrema"]["UpgradeMasteryText"] = TTH_PATH.Talent["Oddrema"]["Pre"].."UpgradeMasteryText.txt";
+        TTH_PATH.Talent["Oddrema"]["UpgradeShantiriText"] = TTH_PATH.Talent["Oddrema"]["Pre"].."UpgradeShantiriText.txt";
+        TTH_PATH.Talent["Oddrema"]["SuccessUpgradeMastery"] = TTH_PATH.Talent["Oddrema"]["Pre"].."SuccessUpgradeMastery.txt";
+        TTH_PATH.Talent["Oddrema"]["SuccessUpgradeShantiri"] = TTH_PATH.Talent["Oddrema"]["Pre"].."SuccessUpgradeShantiri.txt";
       -- Calid2 115 卡利德  
         TTH_PATH.Talent["Calid2"] = {};
         TTH_PATH.Talent["Calid2"]["Pre"] = TTH_PATH.Talent["Pre"].."115-Calid2/";
@@ -9869,7 +9897,7 @@
             , ["Thant"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.initCastCreature"
             }
-            , ["Archilus"] = {
+            , ["LordHaart"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.initCastCreature"
             }
           -- 内扩
@@ -9909,6 +9937,9 @@
             }
             , ["Marder"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.initMarder"
+            }
+            , ["Almegir"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initAlmegir"
             }
             , ["Sylsai"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.initSylsai"
@@ -9995,8 +10026,8 @@
               , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeCastCreature"
               , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeCastCreature"
             }
-            , ["Archilus"] = {
-              ["Text"] = TTH_PATH.Talent["Cast"]["Hero"]["Archilus"]
+            , ["LordHaart"] = {
+              ["Text"] = TTH_PATH.Talent["Cast"]["Hero"]["LordHaart"]
               , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeCastCreature"
               , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeCastCreature"
             }
@@ -10061,6 +10092,10 @@
               ["Text"] = TTH_PATH.Talent["Marder"]["Text"]
               , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeMarder"
             }
+            , ["Almegir"] = {
+              ["Text"] = TTH_PATH.Talent["Almegir"]["Text"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeAlmegir"
+            }            
             , ["Menel"] = {
               ["Text"] = TTH_PATH.Talent["Menel"]["Active"]["Text"]
               , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeMenel"
@@ -10152,7 +10187,7 @@
             , ["Thant"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultCastCreature"
             }
-            , ["Archilus"] = {
+            , ["LordHaart"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultCastCreature"
             }
           -- 其他
@@ -10211,6 +10246,9 @@
             , ["Marder"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyMarder"
             }
+            , ["Almegir"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklyAlmegir"
+            }            
             , ["Sylsai"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetWeeklySylsai"
             }
@@ -10280,7 +10318,7 @@
             , ["Thant"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailyCastCreature"
             }
-            , ["Archilus"] = {
+            , ["LordHaart"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailyCastCreature"
             }
           -- 其他
@@ -10296,11 +10334,27 @@
             ["Text"] = TTH_PATH.Talent["Orlando2"]["UpgradeMasteryText"]
             , [TTH_ENUM.FuncAlways] = "TTH_TALENT.upgradeMasteryOrlando2"
           }
+          , ["Oddrema"] = {
+            ["Text"] = TTH_PATH.Talent["Oddrema"]["UpgradeMasteryText"]
+            , [TTH_ENUM.FuncAlways] = "TTH_TALENT.upgradeMasteryOddrema"
+          }
+          , ["LordHaart"] = {
+            ["Text"] = TTH_PATH.Talent["LordHaart"]["UpgradeMasteryText"]
+            , [TTH_ENUM.FuncAlways] = "TTH_TALENT.upgradeMasteryLordHaart"
+          }
         }
         , [TTH_ENUM.FuncUpgradeShantiri] = {
           ["Orlando2"] = {
             ["Text"] = TTH_PATH.Talent["Orlando2"]["UpgradeShantiriText"]
             , [TTH_ENUM.FuncAlways] = "TTH_TALENT.upgradeShantiriOrlando2"
+          }
+          , ["Oddrema"] = {
+            ["Text"] = TTH_PATH.Talent["Oddrema"]["UpgradeShantiriText"]
+            , [TTH_ENUM.FuncAlways] = "TTH_TALENT.upgradeShantiriOddrema"
+          }
+          , ["LordHaart"] = {
+            ["Text"] = TTH_PATH.Talent["LordHaart"]["UpgradeShantiriText"]
+            , [TTH_ENUM.FuncAlways] = "TTH_TALENT.upgradeShantiriLordHaart"
           }
         }
       };
@@ -17044,32 +17098,6 @@
             }
           }
         }
-        , [TTH_ENUM.SET_ELEMENT] = {
-          ["Component"] = {
-            [0] = ARTIFACT_TITANS_TRIDENT
-            , [1] = ARTIFACT_EVERCOLD_ICICLE
-            , [2] = ARTIFACT_PHOENIX_FEATHER_CAPE
-            , [3] = ARTIFACT_EARTHSLIDERS
-          }
-          , ["SetBonus"] = {
-            [2] = {
-              [STAT_ATTACK] = 0
-              , [STAT_DEFENCE] = 0
-              , [STAT_SPELL_POWER] = 2
-              , [STAT_KNOWLEDGE] = 0
-              , [STAT_LUCK] = 0
-              , [STAT_MORALE] = 0
-            }
-            , [4] = {
-              [STAT_ATTACK] = 0
-              , [STAT_DEFENCE] = 0
-              , [STAT_SPELL_POWER] = 0
-              , [STAT_KNOWLEDGE] = 2
-              , [STAT_LUCK] = 0
-              , [STAT_MORALE] = 0
-            }
-          }
-        }
         , [TTH_ENUM.SET_PIRATE] = {
           ["Component"] = {
             [0] = ARTIFACT_PIRATE_HAT
@@ -17096,6 +17124,33 @@
               , [STAT_LUCK] = 0
               , [STAT_MORALE] = 0
             }
+          }
+        }
+        , [TTH_ENUM.SET_ELEMENT_AIR] = {
+          ["Component"] = {
+            [0] = ARTIFACT_TITANS_TRIDENT
+            , [1] = ARTIFACT_ORB_AIR
+          }
+        }
+        , [TTH_ENUM.SET_ELEMENT_EARTH] = {
+          ["Component"] = {
+            [0] = ARTIFACT_EARTHSLIDERS
+            , [1] = ARTIFACT_ORB_EARTH
+          }
+          , ["GiveMagic"] = {
+            [2] = SPELL_IMPLOSION
+          }
+        }
+        , [TTH_ENUM.SET_ELEMENT_FIRE] = {
+          ["Component"] = {
+            [0] = ARTIFACT_PHOENIX_FEATHER_CAPE
+            , [1] = ARTIFACT_ORB_FIRE
+          }
+        }
+        , [TTH_ENUM.SET_ELEMENT_WATER] = {
+          ["Component"] = {
+            [0] = ARTIFACT_EVERCOLD_ICICLE
+            , [1] = ARTIFACT_ORB_WATER
           }
         }
       };
@@ -17269,7 +17324,7 @@
         , [TOWN_ACADEMY] = {
           [TTH_ENUM.GuildMaster] = {"Havez","Minasli","Isher","Davius","Dracon"}
           , [TTH_ENUM.Wizard] = {"Rissa","Razzak","Sufi","Cyrus","Maahir","Timerkhan","Tan"}
-          , [TTH_ENUM.ElementAlist] = {"Emilia","Nur","Astral","Zehir","Faiz","Josephine"}
+          , [TTH_ENUM.ElementAlist] = {"Emilia","Nur","Astral","Zehir","Faiz","Solmyr"}
         }
         , [TOWN_DUNGEON] = {
           [TTH_ENUM.BeastMaster] = {"Urunir","Menel","Ferigl","Sylsai","Welygg"}
@@ -17277,8 +17332,8 @@
           , [TTH_ENUM.Warlock] = {"Agbeth","Almegir","Inagost","Kastore","Raelag","Ranleth","Sephinroth"}
         }
         , [TOWN_NECROMANCY] = {
-          -- [TTH_ENUM.DeathKnight] = {"Archilus","Berein","Gles","Nikolay","Straker","Tamika","Xerxon","Karissa"}
-          [TTH_ENUM.DeathKnight] = {"Archilus","Berein","Gles","Nikolay","Straker","Tamika","Xerxon"}
+          -- [TTH_ENUM.DeathKnight] = {"LordHaart","Berein","Gles","Nikolay","Straker","Tamika","Xerxon","Karissa"}
+          [TTH_ENUM.DeathKnight] = {"LordHaart","Berein","Gles","Nikolay","Straker","Tamika","Xerxon"}
           , [TTH_ENUM.Reaver] = {"Aislinn","Effig","Giovanni","OrnellaNecro","Aberrar","Nimbus"}
           , [TTH_ENUM.Necromancer] = {"Muscip","Arantir","Nemor","Pelt","Sandro","Thant", "Adelaide","Vidomina"}
         }
@@ -18062,7 +18117,7 @@
             }
           }
         }
-        , ["Archilus"] = {
+        , ["LordHaart"] = {
           ["CastType"] = TTH_ENUM.Cast
           , ["PreCreature"] = {
             [CREATURE_WIGHT] = {
@@ -18468,7 +18523,7 @@
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
               , ["Specialty"] = {
                 [1] = {
-                  ["CreatureId"] = CREATURE_UNICORN
+                  ["CreatureId"] = CREATURE_Itil_Unicorn
                   , ["Stat"] = STAT_KNOWLEDGE
                   , ["ArtifactId"] = ARTIFACT_LEGION_ADVANCED
                 }
@@ -18712,9 +18767,9 @@
               , ["Class"] = TTH_ENUM.ElementAlist
               , ["Group"] = TTH_ENUM.GroupMagic
             }
-            , ["Josephine"] = {
+            , ["Solmyr"] = {
               ["Id"] = 58
-              , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Josephine/name.txt"
+              , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Solmyr/name.txt"
               , ["Race"] = TOWN_ACADEMY
               , ["Class"] = TTH_ENUM.ElementAlist
               , ["Group"] = TTH_ENUM.GroupMagic
@@ -18897,9 +18952,9 @@
             }
         -- TOWN_NECROMANCY
           -- DeathKnight
-            , ["Archilus"] = {
+            , ["LordHaart"] = {
               ["Id"] = 77
-              , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Archilus/name.txt"
+              , ["Text"] = "/Text/Game/Heroes/TTH_ALL/LordHaart/name.txt"
               , ["Race"] = TOWN_NECROMANCY
               , ["Class"] = TTH_ENUM.DeathKnight
               , ["Group"] = TTH_ENUM.GroupMight

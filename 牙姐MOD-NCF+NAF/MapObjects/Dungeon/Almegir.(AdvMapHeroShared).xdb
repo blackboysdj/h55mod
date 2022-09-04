@@ -35,8 +35,8 @@
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_INVOCATION</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Dungeon55/Dark_Acolyte/Name.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Dungeon55/Dark_Acolyte/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Dungeon/071-Almegir/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Dungeon/071-Almegir/Description.txt"/>
 	<SpecializationIcon href="/Textures/HeroScreen/Specializations/Dungeon/Dark_Acolyte.xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Dungeon/Dungeon_Yrbeth_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>

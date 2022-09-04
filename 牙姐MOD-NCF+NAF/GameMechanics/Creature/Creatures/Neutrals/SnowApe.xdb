@@ -41,7 +41,7 @@
 	<flybySequence/>
 	<Visual href="/GameMechanics/CreatureVisual/Creatures/Neutrals/Sharpshooter.xdb#xpointer(/CreatureVisual)"/>
 	<Range>-1</Range>
-	<BaseCreature>CREATURE_UNKNOWN</BaseCreature>
+	<BaseCreature>CREATURE_WOOD_ELF</BaseCreature>
 	<Upgrades/>
 	<Abilities>
 		<Item>ABILITY_WARDING_ARROWS</Item>

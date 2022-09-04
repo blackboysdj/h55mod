@@ -1302,16 +1302,6 @@ doFile("/scripts/H55-Settings.lua");
 							TTH_COMMON.setTrigger2ObjectType("BUILDING_WATER_WHEEL", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitWaterWheel", nil);
 							TTH_COMMON.setTrigger2ObjectType("BUILDING_WARMACHINE_FACTORY", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitWarmachineFactory", nil);
 
-						-- 可占领的资源矿
-							TTH_COMMON.setTrigger2ObjectType("BUILDING_SAWMILL", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitWood", nil);
-							TTH_COMMON.setTrigger2ObjectType("BUILDING_ORE_PIT", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitOre", nil);
-							TTH_COMMON.setTrigger2ObjectType("BUILDING_ALCHEMIST_LAB", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitMercury", nil);
-							TTH_COMMON.setTrigger2ObjectType("BUILDING_CRYSTAL_CAVERN", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitCrystal", nil);
-							TTH_COMMON.setTrigger2ObjectType("BUILDING_SULFUR_DUNE", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitSulfur", nil);
-							TTH_COMMON.setTrigger2ObjectType("BUILDING_GEM_POND", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitGem", nil);
-							TTH_COMMON.setTrigger2ObjectType("BUILDING_GOLD_MINE", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitGold", nil);
-							-- TTH_COMMON.setTrigger2ObjectType("BUILDING_ABANDONED_MINE", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitRandom", nil);
-
 						-- 女巫小屋
 							TTH_COMMON.setTrigger2ObjectType("BUILDING_WITCH_HUT", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitWitchHut", nil);
 
@@ -2348,26 +2338,42 @@ doFile("/scripts/H55-Settings.lua");
 					local arrHero = GetPlayerHeroes(iPlayer);
 					local strHero = arrHero[0];
 					local iTier = 1;
-					if H55_StartCreatureBonusTier < 1
-						or H55_StartCreatureBonusTier > 7 then
-						return nil;
-					end
-					iTier = H55_StartCreatureBonusTier;
-					local iGold = GetPlayerResource(iPlayer, GOLD);
-					if iTier == 6 then
-						SetPlayerResource(iPlayer, GOLD, iGold - 2000);
-					elseif iTier == 7 then
-						SetPlayerResource(iPlayer, GOLD, iGold - 5000);
+					local arrSpecialty = TTH_TABLE.Hero[strHero]["Specialty"];
+					if arrSpecialty ~= nil then
+						for i, objSpecialty in arrSpecialty do
+							local iCreatureId = objSpecialty["CreatureId"];
+							local objCreature = TTH_TABLE_NCF_CREATURES[iCreatureId];
+							local iInitNumber = objCreature["GROWTH"];
+							if objCreature["TIER"] >= 4 then
+								iInitNumber = TTH_COMMON.floor(iInitNumber / 2);
+							end;
+							if iInitNumber < 1 then
+								iInitNumber = 1;
+							end;
+							TTH_GLOBAL.addCreature4Hero8Sign(strHero, iCreatureId, iInitNumber, TTH_ENUM.AddCreature);
+						end;
+					else
+						if H55_StartCreatureBonusTier < 1
+							or H55_StartCreatureBonusTier > 7 then
+							return nil;
+						end
+						iTier = H55_StartCreatureBonusTier;
+						local iGold = GetPlayerResource(iPlayer, GOLD);
+						if iTier == 6 then
+							SetPlayerResource(iPlayer, GOLD, iGold - 2000);
+						elseif iTier == 7 then
+							SetPlayerResource(iPlayer, GOLD, iGold - 5000);
+						end;
+						local iHeroRace = TTH_GLOBAL.getRace8Hero(strHero);
+						local iGrowth = 1;
+						local iCreatureId = TTH_TABLE.Creature8RaceAndLevel[iHeroRace][iTier][1];
+						if iTier == 4 then
+							iGrowth = 3;
+						elseif iTier < 4 then
+							iGrowth = TTH_TABLE_NCF_CREATURES[iCreatureId]["GROWTH"];
+						end;
+						TTH_GLOBAL.addCreature4Hero8Sign(strHero, iCreatureId, iGrowth, TTH_ENUM.AddCreature);
 					end;
-					local iHeroRace = TTH_GLOBAL.getRace8Hero(strHero);
-					local iGrowth = 1;
-					local iCreatureId = TTH_TABLE.Creature8RaceAndLevel[iHeroRace][iTier][1];
-					if iTier == 4 then
-						iGrowth = 3;
-					elseif iTier < 4 then
-						iGrowth = TTH_TABLE_NCF_CREATURES[iCreatureId]["GROWTH"];
-					end;
-					TTH_GLOBAL.addCreature4Hero8Sign(strHero, iCreatureId, iGrowth, TTH_ENUM.AddCreature);
 				end;
 
 			-- 开局选择宝物
@@ -3036,8 +3042,24 @@ doFile("/scripts/H55-Settings.lua");
 					end;
 				end;
 				TTH_TABLE.CombatArtifactSet = {
-					[1] = {
+					[TTH_ENUM.SET_OGRES] = {
 						["Id"] = TTH_ENUM.SET_OGRES
+						, ["Count"] = 2
+					}
+					, [TTH_ENUM.SET_ELEMENT_AIR] = {
+						["Id"] = TTH_ENUM.SET_ELEMENT_AIR
+						, ["Count"] = 2
+					}
+					, [TTH_ENUM.SET_ELEMENT_EARTH] = {
+						["Id"] = TTH_ENUM.SET_ELEMENT_EARTH
+						, ["Count"] = 2
+					}
+					, [TTH_ENUM.SET_ELEMENT_FIRE] = {
+						["Id"] = TTH_ENUM.SET_ELEMENT_FIRE
+						, ["Count"] = 2
+					}
+					, [TTH_ENUM.SET_ELEMENT_WATER] = {
+						["Id"] = TTH_ENUM.SET_ELEMENT_WATER
 						, ["Count"] = 2
 					}
 				};
@@ -4501,188 +4523,6 @@ doFile("/scripts/H55-Settings.lua");
 					local strBuildingType = "BUILDING_WARMACHINE_FACTORY";
 					TTH_VISIT.visitEconomicBuilding(strHero, strBuildingName, strBuildingType, "TTH_VISIT.visitWarmachineFactory");
 				end;
-
-		-- 可占领的资源矿
-			TTH_VARI.arrMineBuilding = {};
-			TTH_TABLE.MineBuilding = {
-				["BUILDING_SAWMILL"] = {
-					["ArtifactId"] = ARTIFACT_RES_BASIC
-					, ["Resource"] = WOOD
-				}
-				, ["BUILDING_ORE_PIT"] = {
-					["ArtifactId"] = ARTIFACT_RES_BASIC
-					, ["Resource"] = ORE
-				}
-				, ["BUILDING_ALCHEMIST_LAB"] = {
-					["ArtifactId"] = ARTIFACT_RES_ADVANCED
-					, ["Resource"] = MERCURY
-				}
-				, ["BUILDING_CRYSTAL_CAVERN"] = {
-					["ArtifactId"] = ARTIFACT_RES_ADVANCED
-					, ["Resource"] = CRYSTAL
-				}
-				, ["BUILDING_SULFUR_DUNE"] = {
-					["ArtifactId"] = ARTIFACT_RES_ADVANCED
-					, ["Resource"] = SULFUR
-				}
-				, ["BUILDING_GEM_POND"] = {
-					["ArtifactId"] = ARTIFACT_RES_ADVANCED
-					, ["Resource"] = GEM
-				}
-				, ["BUILDING_GOLD_MINE"] = {
-					["ArtifactId"] = ARTIFACT_RES_EXPERT
-					, ["Resource"] = GOLD
-				}
-			}
-
-			-- 初始化资源矿的对象
-				function TTH_GLOBAL.initMine()
-					for strMineType, objMine in TTH_TABLE.MineBuilding do
-						for i, strMineName in TTH_VARI.arrBuilding[strMineType] do
-							TTH_VARI.arrMineBuilding[strMineName] = {
-								["Type"] = strMineType
-								, ["BonusLevel"] = 0
-							};
-						end;
-					end;
-				end;
-
-			-- 每周资源矿的资源宝物加成结算
-				function TTH_GLOBAL.dealWeeklyBonusMine(iPlayer)
-					TTH_MAIN.debug("TTH_GLOBAL.dealWeeklyBonusMine", iPlayer, nil);
-
-					for strMineName, objMine in TTH_VARI.arrMineBuilding do
-						if GetObjectOwner(strMineName) == iPlayer then
-							local objMine = TTH_VARI.arrMineBuilding[strMineName];
-							local iBonus = objMine["BonusLevel"];
-							if iBonus > 0 then
-								local iPosX, iPosY, iPosZ = GetObjectPosition(strMineName);
-								local iUnit = 5 * iBonus;
-								if objMine["Type"] == "BUILDING_SAWMILL" then
-									CreateTreasure("", 6, iUnit + random(iUnit), iPosX, iPosY, iPosZ);
-									sleep(1);
-									CreateTreasure("", 6, iUnit + random(iUnit), iPosX, iPosY, iPosZ);
-								elseif objMine["Type"] == "BUILDING_ORE_PIT" then
-									CreateTreasure("", 4, iUnit + random(iUnit), iPosX, iPosY, iPosZ);
-									sleep(1);
-									CreateTreasure("", 4, iUnit + random(iUnit), iPosX, iPosY, iPosZ);
-								elseif objMine["Type"] == "BUILDING_ALCHEMIST_LAB" then
-									CreateTreasure("", 3, iUnit + random(iUnit), iPosX, iPosY, iPosZ);
-								elseif objMine["Type"] == "BUILDING_CRYSTAL_CAVERN" then
-									CreateTreasure("", 0, iUnit + random(iUnit), iPosX, iPosY, iPosZ);
-								elseif objMine["Type"] == "BUILDING_SULFUR_DUNE" then
-									CreateTreasure("", 5, iUnit + random(iUnit), iPosX, iPosY, iPosZ);
-								elseif objMine["Type"] == "BUILDING_GEM_POND" then
-									CreateTreasure("", 1, iUnit + random(iUnit), iPosX, iPosY, iPosZ);
-								elseif objMine["Type"] == "BUILDING_GOLD_MINE" then
-									CreateTreasure("", 2, iUnit * 10 + random(iUnit * 10), iPosX, iPosY, iPosZ);
-								end;
-							end;
-						end;
-					end;
-				end;
-
-			-- 访问
-				function TTH_VISIT.visitMineBuilding(strHero, strBuildingName, strBuildingType, funcCallback)
-					local iPlayer = GetObjectOwner(strHero);
-					if TTH_GLOBAL.isAi(iPlayer) == TTH_ENUM.Yes then
-						TTH_VISIT.captureMineBuilding4Ai(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback);
-					else
-						TTH_VISIT.captureMineBuilding4Human(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback);
-					end;
-				end;
-
-			-- 执行AI占领
-				function TTH_VISIT.captureMineBuilding4Ai(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback)
-					TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
-				end;
-
-			-- 执行人类占领
-				function TTH_VISIT.captureMineBuilding4Human(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback)
-					if GetObjectOwner(strBuildingName) == iPlayer then
-						TTH_VISIT.checkPreMineBuilding4Human(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback);
-					else
-						TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
-					end;
-				end;
-
-			-- 是否携带对应资源宝物
-				function TTH_VISIT.checkPreMineBuilding4Human(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback)
-					local strRedHeavenHero06 = "RedHeavenHero06";
-					if strHero == strRedHeavenHero06 then
-						TTH_TALENT.visitMineRedHeavenHero06(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback);
-					end;
-					local iArtifactId = TTH_TABLE.MineBuilding[strBuildingType]["ArtifactId"];
-					if HasArtefact(strHero, iArtifactId, 0) ~= nil then
-						TTH_VISIT.confirmMineBuilding4Human(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback);
-					else
-						TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
-					end;
-				end;
-
-			-- 是否使用对应资源宝物
-				function TTH_VISIT.confirmMineBuilding4Human(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback)
-					TTH_COMMON.initNavi(TTH_PATH.Visit["Mine"]["Text"]);
-
-					local strBuildingText = TTH_PATH.Mine[strBuildingType];
-					local iArtifactId = TTH_TABLE.MineBuilding[strBuildingType]["ArtifactId"];
-					local strArtifactName = TTH_TABLE.Artifact[iArtifactId]["Text"];
-					local objBuilding = TTH_VARI.arrMineBuilding[strBuildingName];
-					local iBonusLevel = objBuilding["BonusLevel"];
-					local strPathMain={
-						TTH_PATH.Visit["Mine"]["Confirm"]
-						;strBuildingText=strBuildingText
-						,strArtifactName=strArtifactName
-						,iBonusLevel=iBonusLevel
-					};
-					local strCallbackOk = "TTH_VISIT.implMineBuilding4Human("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strBuildingName)..","..TTH_COMMON.psp(strBuildingType)..","..TTH_COMMON.psp(funcCallback)..")";
-					local strCallbackCancel = "TTH_VISIT.visitBuildingWithoutScript("..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strBuildingName)..","..TTH_COMMON.psp(funcCallback)..")";
-					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
-				end;
-
-			-- 使用对应资源宝物
-				function TTH_VISIT.implMineBuilding4Human(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback)
-					RemoveArtefact(strHero, TTH_TABLE.MineBuilding[strBuildingType]["ArtifactId"]);
-					TTH_VARI.arrMineBuilding[strBuildingName]["BonusLevel"] = TTH_VARI.arrMineBuilding[strBuildingName]["BonusLevel"] + 1;
-					ShowFlyingSign(TTH_PATH.Visit["Mine"]["Success"], strHero, iPlayer, 5);
-					TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
-				end;
-
-				-- 木矿
-					function TTH_VISIT.visitWood(strHero, strBuildingName)
-						local strBuildingType = "BUILDING_SAWMILL";
-						TTH_VISIT.visitMineBuilding(strHero, strBuildingName, strBuildingType, "TTH_VISIT.visitWood");
-					end;
-				-- 石矿
-					function TTH_VISIT.visitOre(strHero, strBuildingName)
-						local strBuildingType = "BUILDING_ORE_PIT";
-						TTH_VISIT.visitMineBuilding(strHero, strBuildingName, strBuildingType, "TTH_VISIT.visitOre");
-					end;
-				-- 水银矿
-					function TTH_VISIT.visitMercury(strHero, strBuildingName)
-						local strBuildingType = "BUILDING_ALCHEMIST_LAB";
-						TTH_VISIT.visitMineBuilding(strHero, strBuildingName, strBuildingType, "TTH_VISIT.visitMercury");
-					end;
-				-- 水晶矿
-					function TTH_VISIT.visitCrystal(strHero, strBuildingName)
-						local strBuildingType = "BUILDING_CRYSTAL_CAVERN";
-						TTH_VISIT.visitMineBuilding(strHero, strBuildingName, strBuildingType, "TTH_VISIT.visitCrystal");
-					end;
-				-- 硫磺矿
-					function TTH_VISIT.visitSulfur(strHero, strBuildingName)
-						local strBuildingType = "BUILDING_SULFUR_DUNE";
-						TTH_VISIT.visitMineBuilding(strHero, strBuildingName, strBuildingType, "TTH_VISIT.visitSulfur");
-					end;
-				-- 宝石矿
-					function TTH_VISIT.visitGem(strHero, strBuildingName)
-						local strBuildingType = "BUILDING_GEM_POND";
-						TTH_VISIT.visitMineBuilding(strHero, strBuildingName, strBuildingType, "TTH_VISIT.visitGem");
-					end;
-				-- 金矿
-					function TTH_VISIT.visitGold(strHero, strBuildingName)
-						local strBuildingType = "BUILDING_GOLD_MINE";
-						TTH_VISIT.visitMineBuilding(strHero, strBuildingName, strBuildingType, "TTH_VISIT.visitGold");
-					end;
 
 		-- 女巫小屋
 			TTH_ENUM.WitchHutFixed = 1;
@@ -6675,6 +6515,7 @@ doFile("/scripts/H55-Settings.lua");
 			-- AI
 				function TTH_VISIT.visitBankAiWin(strHero, result)
 					local iPlayer = GetObjectOwner(strHero);
+					TTH_VISIT.increaseTimesBankWeekWin(iPlayer, TTH_AI.getCoef8Setting());
 					local strBankName = TTH_VARI.recordBankCurrentVisit4Player[iPlayer];
 					local iDay = GetDate(DAY);
 					TTH_VARI.recordBankLastVisitDay[strBankName] = iDay;
@@ -6838,8 +6679,10 @@ doFile("/scripts/H55-Settings.lua");
 				end;
 			-- 废弃矿井
 				function TTH_VISIT.visitAbandonedMine(strHero, strBankName)
+					local strCallback = "TTH_VISIT.visitAbandonedMine";
 					local iRace = random(8) + 1;
-					TTH_VISIT.combatBank4Mine(strHero, strBankName, iRace, "TTH_VISIT.visitAbandonedMine", "/Arenas/CombatArena/FinalCombat/Bank_Mine.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)");
+					local strCombatLink = "/Arenas/CombatArena/FinalCombat/Bank_Mine.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)";
+					TTH_VISIT.combatBank4Mine(strHero, strBankName, iRace, strCallback, strCombatLink);
 				end;
 				function TTH_VISIT.combatBank4Mine(strHero, strBankName, iRace, strCallbackVisit, strCombatLink)
 					if TTH_GLOBAL.getBankRestDay(strBankName) == 0 then
@@ -6937,7 +6780,7 @@ doFile("/scripts/H55-Settings.lua");
 						local iPlayer = GetObjectOwner(strHero);
 						TTH_VARI.recordBankCurrentVisit4Player[iPlayer] = strBankName;
 						if TTH_GLOBAL.isAi(iPlayer) == TTH_ENUM.Yes then
-							TTH_VISIT.visitBuildingWithoutScript(strHero, strBankName, "TTH_VISIT.visitWagon");
+							TTH_VISIT.visitBuildingWithoutScript(strHero, strBankName, strCallbackVisit);
 							TTH_VISIT.visitBankAiWin(strHero, 1);
 						else
 							if TTH_VISIT.filterBankVisit(strHero, strBankName) == TTH_ENUM.Yes then
@@ -7088,7 +6931,7 @@ doFile("/scripts/H55-Settings.lua");
 						local iPlayer = GetObjectOwner(strHero);
 						TTH_VARI.recordBankCurrentVisit4Player[iPlayer] = strBankName;
 						if TTH_GLOBAL.isAi(iPlayer) == TTH_ENUM.Yes then
-							TTH_VISIT.visitBuildingWithoutScript(strHero, strBankName, "TTH_VISIT.combatBank4Element");
+							TTH_VISIT.visitBuildingWithoutScript(strHero, strBankName, strCallbackVisit);
 							TTH_VISIT.visitBankAiWin(strHero, 1);
 						else
 							if TTH_VISIT.filterBankVisit(strHero, strBankName) == TTH_ENUM.Yes then
@@ -7210,7 +7053,7 @@ doFile("/scripts/H55-Settings.lua");
 						local iPlayer = GetObjectOwner(strHero);
 						TTH_VARI.recordBankCurrentVisit4Player[iPlayer] = strBankName;
 						if TTH_GLOBAL.isAi(iPlayer) == TTH_ENUM.Yes then
-							TTH_VISIT.visitBuildingWithoutScript(strHero, strBankName, "TTH_VISIT.radioBank4Adv");
+							TTH_VISIT.visitBuildingWithoutScript(strHero, strBankName, strCallbackVisit);
 							TTH_VISIT.visitBankAiWin(strHero, 1);
 						else
 							if TTH_VISIT.filterBankVisit(strHero, strBankName) == TTH_ENUM.Yes then
@@ -8631,12 +8474,12 @@ doFile("/scripts/H55-Settings.lua");
 						local iTownRace = TTH_GLOBAL.getRace8Town(strTown);
 						local bEnoughMagic = 0;
 						if iTownRace == TOWN_STRONGHOLD then
-							if GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_1) == 3
+							if GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_1) >= 1
 								and GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_3) == 1 then
 								bEnoughMagic = 1;
 							end;
 						elseif iTownRace == TOWN_INFERNO then
-							if GetTownBuildingLevel(strTown, TOWN_BUILDING_MAGIC_GUILD) >= 1
+							if GetTownBuildingLevel(strTown, TOWN_BUILDING_MAGIC_GUILD) >= 2
 								and GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_1) == 1 then
 								bEnoughMagic = 1;
 							end;
@@ -10186,28 +10029,6 @@ doFile("/scripts/H55-Settings.lua");
 							}
 						}
 					}
-					, [ARTIFACT_TOME_OF_DESTRUCTION] = {
-						["Id"] = ARTIFACT_TOME_OF_DESTRUCTION
-						, ["Text"] = "/Text/Game/Artifacts/Tome_of_Destruction/Name.txt"
-						, ["Component"] = {
-							[ARTIFACT_TITANS_TRIDENT] = {
-								["Id"] = ARTIFACT_TITANS_TRIDENT
-								, ["Text"] = "/Text/Game/Artifacts/Titan`s_trident/Name.txt"
-							}
-							, [ARTIFACT_EVERCOLD_ICICLE] = {
-								["Id"] = ARTIFACT_EVERCOLD_ICICLE
-								, ["Text"] = "/Text/Game/Artifacts/Evercold_icicle/Name.txt"
-							}
-							, [ARTIFACT_PHOENIX_FEATHER_CAPE] = {
-								["Id"] = ARTIFACT_PHOENIX_FEATHER_CAPE
-								, ["Text"] = "/Text/Game/Artifacts/Phoenix_feather_cape/Name.txt"
-							}
-							, [ARTIFACT_EARTHSLIDERS] = {
-								["Id"] = ARTIFACT_EARTHSLIDERS
-								, ["Text"] = "/Text/Game/Artifacts/Earthsliders/Name.txt"
-							}
-						}
-					}
 					, [ARTIFACT_SHIELD_OF_WOLF_DUCHY] = {
 					  ["Id"] = ARTIFACT_SHIELD_OF_WOLF_DUCHY
 					  , ["Text"] = "/Text/TTH/Artifact/166-ShieldOfWolfDuchy/Text.txt"
@@ -11501,58 +11322,86 @@ doFile("/scripts/H55-Settings.lua");
 
       -- RedHeavenHero06 017 加布里埃尔
       	function TTH_TALENT.initRedHeavenHero06(strHero)
-					TTH_MAIN.debug("TTH_TALENT.initRedHeavenHero06", nil, strHero);
+      		TTH_MAIN.debug("TTH_TALENT.initRedHeavenHero06", nil, strHero);
 
       		TTH_VARI.talent[strHero] = {
-						["CurrentTimes"] = 1
-						, ["MaxTimes"] = 1
-					};
+      			["CurrentTimes"] = 1
+      			, ["MaxTimes"] = 1
+      		};
       	end;
-      	function TTH_TALENT.visitMineRedHeavenHero06(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback)
-    			TTH_COMMON.initNavi(TTH_PATH.Talent[strHero]["Text"]);
+      	function TTH_TALENT.activeRedHeavenHero06(iPlayer, strHero)
+      		TTH_COMMON.initNavi(TTH_PATH.Talent[strHero]["Text"]);
 
-      		TTH_TALENT.checkPreActiveRedHeavenHero064Times(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback)
+      		TTH_TALENT.checkPreActiveRedHeavenHero064Times(iPlayer, strHero)
       	end;
-      	function TTH_TALENT.checkPreActiveRedHeavenHero064Times(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback)
+      	function TTH_TALENT.checkPreActiveRedHeavenHero064Times(iPlayer, strHero)
       		if TTH_VARI.talent[strHero]["CurrentTimes"] <= 0 then
       			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
       				if TTH_MANAGE.getRemainOperTimes(strHero) <= 0 then
-			    			TTH_GLOBAL.sign(strHero, TTH_PATH.Talent[strHero]["NotEnoughTimes"]);
-		    				return nil;
+          			TTH_GLOBAL.sign(strHero, TTH_PATH.Talent[strHero]["NotEnoughTimes"]);
+        				return nil;
       				end;
       			else
-		    			TTH_GLOBAL.sign(strHero, TTH_PATH.Talent[strHero]["NotEnoughTimes"]);
-	    				return nil;
-		    		end;
+        			TTH_GLOBAL.sign(strHero, TTH_PATH.Talent[strHero]["NotEnoughTimes"]);
+      				return nil;
+        		end;
       		end;
 
-      		TTH_TALENT.confirmVisitMineRedHeavenHero06(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback);
+      		TTH_TALENT.checkPreActiveRedHeavenHero064SuitableMine(iPlayer, strHero);
       	end;
-    		function TTH_TALENT.confirmVisitMineRedHeavenHero06(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback)
-    			local strBuildingText = TTH_PATH.Mine[strBuildingType];
-    			local objBuilding = TTH_VARI.arrMineBuilding[strBuildingName];
-    			local iBonusLevel = objBuilding["BonusLevel"];
-    			local strPathMain = {
-    				TTH_PATH.Talent[strHero]["Confirm"]
-    				;strBuildingText=strBuildingText
-    				,iBonusLevel=iBonusLevel
-    			};
-    			local strCallbackOk = "TTH_TALENT.implVisitMineRedHeavenHero06("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strBuildingName)..","..TTH_COMMON.psp(strBuildingType)..","..TTH_COMMON.psp(funcCallback)..")";
-    			local strCallbackCancel = "TTH_COMMON.cancelOption()";
-    			TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
-    		end;
-    		function TTH_TALENT.implVisitMineRedHeavenHero06(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback)
-      		if TTH_VARI.talent[strHero]["CurrentTimes"] > 0 then
-    				TTH_VARI.talent[strHero]["CurrentTimes"] = TTH_VARI.talent[strHero]["CurrentTimes"] - 1;
-		    	else
-      			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
-		    			TTH_MANAGE.useOperTimes(strHero);
-		    		end;
+      	function TTH_TALENT.checkPreActiveRedHeavenHero064SuitableMine(iPlayer, strHero)
+      		local arrOption = {};
+      		local i = 1;
+      		for iIndexType, strBuildingType in TTH_TABLE.MineOnAdvMap do
+      			for jIndexMain, strBuildingName in TTH_VARI.arrBuilding[strBuildingType] do
+      				if GetObjectOwner(strBuildingName) == iPlayer then
+      					if TTH_GLOBAL.getDistance(strHero, strBuildingName) <= 5 then
+      						local iPosX, iPosY, iPosZ = GetObjectPosition(strBuildingName);
+      						arrOption[i] = {
+      							["Id"] = strBuildingName
+      							, ["Text"] = {
+      									TTH_PATH.Talent[strHero]["OptionTemplate"]
+      									;iPosX=iPosX
+      									,iPosY=iPosY
+      								}
+      							, ["Callback"] = "TTH_TALENT.confirmActiveMineRedHeavenHero06"
+      						};
+      						i = i + 1;
+      					end;
+      				end;
+      			end;
       		end;
-    			TTH_VARI.arrMineBuilding[strBuildingName]["BonusLevel"] = TTH_VARI.arrMineBuilding[strBuildingName]["BonusLevel"] + 1;
+      		if length(arrOption) <= 0 then
+      			local strText = TTH_PATH.Talent[strHero]["NoSuitableMine"];
+      			TTH_GLOBAL.sign(strHero, strText);
+      			return nil;
+      		end;
+
+      		TTH_COMMON.optionRadio(iPlayer, strHero, arrOption);
+      	end;
+      	function TTH_TALENT.confirmActiveMineRedHeavenHero06(iPlayer, strHero, strBuildingName)
+      		local objBuilding = TTH_VARI.arrMineBuilding[strBuildingName];
+      		local iBonusLevel = objBuilding["BonusLevel"];
+      		local strPathMain = {
+      			TTH_PATH.Talent[strHero]["Confirm"]
+      			;iBonusLevel=iBonusLevel
+      		};
+      		local strCallbackOk = "TTH_TALENT.implActiveRedHeavenHero06("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strBuildingName)..")";
+      		local strCallbackCancel = "TTH_COMMON.cancelOption()";
+      		TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+      	end;
+      	function TTH_TALENT.implActiveRedHeavenHero06(iPlayer, strHero, strBuildingName)
+      		if TTH_VARI.talent[strHero]["CurrentTimes"] > 0 then
+      			TTH_VARI.talent[strHero]["CurrentTimes"] = TTH_VARI.talent[strHero]["CurrentTimes"] - 1;
+        	else
+      			if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+        			TTH_MANAGE.useOperTimes(strHero);
+        		end;
+      		end;
+      		TTH_VARI.arrMineBuilding[strBuildingName]["BonusLevel"] = TTH_VARI.arrMineBuilding[strBuildingName]["BonusLevel"] + 1;
       		local strText = TTH_PATH.Talent[strHero]["Success"]
-    			TTH_GLOBAL.sign(strHero, strText);
-    		end;
+      		TTH_GLOBAL.sign(strHero, strText);
+      	end;
       	function TTH_TALENT.resetWeeklyRedHeavenHero06(iPlayer, strHero)
       		TTH_MAIN.debug("TTH_TALENT.resetWeeklyRedHeavenHero06", iPlayer, strHero);
 
@@ -12897,7 +12746,122 @@ doFile("/scripts/H55-Settings.lua");
 					TTH_GLOBAL.sign(strHero, strText);
 				end;
 
+			-- Almegir 071 伊蓓丝
+				TTH_TABLE.AlmegirArtifact = {
+					ARTIFACT_BREASTPLATE_OF_PETRIFIED_WOOD
+					, ARTIFACT_BEGINNER_MAGIC_STICK
+					, ARTIFACT_CROWN_OF_MANY_EYES
+					, ARTIFACT_TITANS_TRIDENT
+					, ARTIFACT_EVERCOLD_ICICLE
+					, ARTIFACT_PHOENIX_FEATHER_CAPE
+					, ARTIFACT_EARTHSLIDERS
+					, ARTIFACT_CHAIN_MAIL_OF_ENLIGHTMENT
+					, ARTIFACT_RUNIC_WAR_AXE
+					, ARTIFACT_MONK_02
+					, ARTIFACT_NECKLACE_OF_POWER
+					, ARTIFACT_BONESTUDDED_LEATHER
+					, ARTIFACT_RING_OF_THE_SHADOWBRAND
+					, ARTIFACT_BOOK_OF_POWER
+					, ARTIFACT_RING_OF_FORGOTTEN
+					, ARTIFACT_PENDANT_OF_INTERFERENCE
+					, ARTIFACT_DRAGON_BONE_GRAVES
+					, ARTIFACT_DRAGON_WING_MANTLE
+					, ARTIFACT_DRAGON_TEETH_NECKLACE
+					, ARTIFACT_DRAGON_EYE_RING
+					, ARTIFACT_ROBE_OF_MAGI
+					, ARTIFACT_DWARVEN_MITHRAL_CUIRASS
+					, ARTIFACT_DWARVEN_MITHRAL_GREAVES
+					, ARTIFACT_SKULL_OF_MARKAL
+					, ARTIFACT_GUARDIAN_01
+					, ARTIFACT_ORB_AIR
+					, ARTIFACT_ORB_EARTH
+					, ARTIFACT_ORB_FIRE
+					, ARTIFACT_ORB_WATER
+					, ARTIFACT_PLATE_MAIL_OF_STABILITY
+					, ARTIFACT_CLOAK_OF_MALASSA
+				};
+				function TTH_TALENT.initAlmegir(strHero)
+					TTH_MAIN.debug("TTH_TALENT.initAlmegir", nil, strHero);
+
+					TTH_VARI.talent[strHero] = {
+						["CurrentTimes"] = 1
+						, ["MaxTimes"] = 1
+					};
+				end;
+				function TTH_TALENT.activeAlmegir(iPlayer, strHero)
+					TTH_COMMON.nextNavi(TTH_PATH.Talent[strHero]["Text"]);
+
+					TTH_TALENT.checkPreActiveAlmegir4Times(iPlayer, strHero);
+				end;
+				function TTH_TALENT.checkPreActiveAlmegir4Times(iPlayer, strHero)
+					if TTH_VARI.talent[strHero]["CurrentTimes"] <= 0 then
+						if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+							if TTH_MANAGE.getRemainOperTimes(strHero) <= 0 then
+			    			TTH_GLOBAL.sign(strHero, TTH_PATH.Talent[strHero]["NotEnoughTimes"]);
+			  				return nil;
+							end;
+						else
+			  			TTH_GLOBAL.sign(strHero, TTH_PATH.Talent[strHero]["NotEnoughTimes"]);
+							return nil;
+			  		end;
+					end;
+
+					TTH_TALENT.checkPreActiveAlmegir4Mana(iPlayer, strHero);
+				end;
+				function TTH_TALENT.checkPreActiveAlmegir4Mana(iPlayer, strHero)
+					local iMana = GetHeroStat(strHero, STAT_MANA_POINTS);
+					if iMana < 50 then
+		  			TTH_GLOBAL.sign(strHero, TTH_PATH.Talent[strHero]["NotEnoughMana"]);
+						return nil;
+					end;
+
+					TTH_TALENT.implActiveAlmegir(iPlayer, strHero);
+				end;
+				function TTH_TALENT.implActiveAlmegir(iPlayer, strHero)
+					local iRandomIndex = random(length(TTH_TABLE.AlmegirArtifact));
+					local iPosX, iPosY, iPosZ = GetObjectPosition(strHero);
+					local iArtifactId = TTH_TABLE.AlmegirArtifact[iRandomIndex];
+					ChangeHeroStat(strHero, STAT_MANA_POINTS, -1 * TTH_FINAL.NUM_MAX);
+					CreateArtifact("", iArtifactId, iPosX, iPosY, iPosZ);
+
+					if TTH_VARI.talent[strHero]["CurrentTimes"] > 0 then
+						TTH_VARI.talent[strHero]["CurrentTimes"] = TTH_VARI.talent[strHero]["CurrentTimes"] - 1;
+			  	else
+						if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+			  			TTH_MANAGE.useOperTimes(strHero);
+			  		end;
+					end;
+
+					local strText = TTH_PATH.Talent[strHero]["Success"]
+					TTH_GLOBAL.sign(strHero, strText);
+				end;
+				function TTH_TALENT.resetWeeklyAlmegir(iPlayer, strHero)
+					TTH_MAIN.debug("TTH_TALENT.resetWeeklyAlmegir", iPlayer, strHero);
+
+					TTH_VARI.talent[strHero]["CurrentTimes"] = TTH_VARI.talent[strHero]["MaxTimes"];
+				end;
+
 		-- Necromancy
+			-- LordHaart 077 罗德哈特
+				function TTH_TALENT.upgradeMasteryLordHaart(iPlayer, strHero)
+					TTH_ARTI.callbackActive015(iPlayer, strHero);
+					local strUpgradeMasteryTypeName = TTH_PATH.Talent[strHero][iUpgradeMasteryType];
+					local strText = {
+						TTH_PATH.Talent[strHero]["SuccessUpgradeMastery"]
+						;strUpgradeMasteryTypeName=strUpgradeMasteryTypeName
+					};
+					TTH_GLOBAL.sign(strHero, strText);
+				end;
+				function TTH_TALENT.upgradeShantiriLordHaart(iPlayer, strHero)
+					TTH_ARTI.callbackActive163(iPlayer, strHero);
+					local strUpgradeShantiriTypeName = TTH_PATH.Talent[strHero][iUpgradeShantiriType];
+					local strText = {
+						TTH_PATH.Talent[strHero]["SuccessUpgradeShantiri"]
+						;strUpgradeShantiriTypeName=strUpgradeShantiriTypeName
+					};
+					TTH_GLOBAL.sign(strHero, strText);
+				end;
+
 			-- Nikolay 080 尼科莱
       	function TTH_TALENT.initNikolay(strHero)
 					TTH_MAIN.debug("TTH_TALENT.initNikolay", nil, strHero);
@@ -13460,6 +13424,26 @@ doFile("/scripts/H55-Settings.lua");
 						end
 					end;
 					return arrDistance;
+				end;
+
+			-- Oddrema 109 耶泽蓓丝
+				function TTH_TALENT.upgradeMasteryOddrema(iPlayer, strHero)
+					TTH_ARTI.callbackActive015(iPlayer, strHero);
+					local strUpgradeMasteryTypeName = TTH_PATH.Talent[strHero][iUpgradeMasteryType];
+					local strText = {
+						TTH_PATH.Talent[strHero]["SuccessUpgradeMastery"]
+						;strUpgradeMasteryTypeName=strUpgradeMasteryTypeName
+					};
+					TTH_GLOBAL.sign(strHero, strText);
+				end;
+				function TTH_TALENT.upgradeShantiriOddrema(iPlayer, strHero)
+					TTH_ARTI.callbackActive163(iPlayer, strHero);
+					local strUpgradeShantiriTypeName = TTH_PATH.Talent[strHero][iUpgradeShantiriType];
+					local strText = {
+						TTH_PATH.Talent[strHero]["SuccessUpgradeShantiri"]
+						;strUpgradeShantiriTypeName=strUpgradeShantiriTypeName
+					};
+					TTH_GLOBAL.sign(strHero, strText);
 				end;
 
 			-- Sovereign 110 卡-贝勒斯
@@ -14952,8 +14936,216 @@ doFile("/scripts/H55-Settings.lua");
 					TTH_GLOBAL.sign(strHero, strPathMain);
 				end;
 
+		-- 资源宝物
+			TTH_VARI.arrMineBuilding = {};
+			-- 初始化资源矿的对象
+				function TTH_GLOBAL.initMine()
+					for iIndexType, strMineType in TTH_TABLE.MineOnAdvMap do
+						for jIndexMain, strMineName in TTH_VARI.arrBuilding[strMineType] do
+							TTH_VARI.arrMineBuilding[strMineName] = {
+								["Type"] = strMineType
+								, ["BonusLevel"] = 0
+							};
+						end;
+					end;
+				end;
+			-- 每周资源矿的资源宝物加成结算
+				function TTH_GLOBAL.dealWeeklyBonusMine(iPlayer)
+					TTH_MAIN.debug("TTH_GLOBAL.dealWeeklyBonusMine", iPlayer, nil);
+
+					for strMineName, objMine in TTH_VARI.arrMineBuilding do
+						if GetObjectOwner(strMineName) == iPlayer then
+							local objMine = TTH_VARI.arrMineBuilding[strMineName];
+							local iBonus = objMine["BonusLevel"];
+							if iBonus > 0 then
+								local iPosX, iPosY, iPosZ = GetObjectPosition(strMineName);
+								local iUnit = 5 * iBonus;
+								local strMineType = objMine["Type"];
+								if strMineType == "BUILDING_ABANDONED_MINE" then
+									strMineType = TTH_TABLE.MineOnAdvMap[random(length(TTH_TABLE.MineOnAdvMap) - 1) + 1];
+								end;
+								if strMineType == "BUILDING_SAWMILL" then
+									CreateTreasure("", 6, iUnit * 2 + random(iUnit * 2), iPosX, iPosY, iPosZ);
+								elseif strMineType == "BUILDING_ORE_PIT" then
+									CreateTreasure("", 4, iUnit * 2 + random(iUnit * 2), iPosX, iPosY, iPosZ);
+								elseif strMineType == "BUILDING_ALCHEMIST_LAB" then
+									CreateTreasure("", 3, iUnit + random(iUnit), iPosX, iPosY, iPosZ);
+								elseif strMineType == "BUILDING_CRYSTAL_CAVERN" then
+									CreateTreasure("", 0, iUnit + random(iUnit), iPosX, iPosY, iPosZ);
+								elseif strMineType == "BUILDING_SULFUR_DUNE" then
+									CreateTreasure("", 5, iUnit + random(iUnit), iPosX, iPosY, iPosZ);
+								elseif strMineType == "BUILDING_GEM_POND" then
+									CreateTreasure("", 1, iUnit + random(iUnit), iPosX, iPosY, iPosZ);
+								elseif strMineType == "BUILDING_GOLD_MINE" then
+									CreateTreasure("", 2, iUnit * 10 + random(iUnit * 10), iPosX, iPosY, iPosZ);
+								end;
+							end;
+						end;
+					end;
+				end;
+			-- ARTIFACT_RES_BASIC 098 矮人十字镐
+				function TTH_ARTI.active098(iPlayer, strHero)
+					TTH_COMMON.nextNavi(TTH_PATH.Artifact["Mine"][ARTIFACT_RES_BASIC]["Text"]);
+
+					TTH_ARTI.checkPreActive0984SuitableMine(iPlayer, strHero);
+				end;
+				function TTH_ARTI.checkPreActive0984SuitableMine(iPlayer, strHero)
+					local arrOption = {};
+					local i = 1;
+					for iIndexType, strBuildingType in TTH_TABLE.MineOnAdvMapBasic do
+						for jIndexMain, strBuildingName in TTH_VARI.arrBuilding[strBuildingType] do
+							if GetObjectOwner(strBuildingName) == iPlayer then
+								if TTH_GLOBAL.getDistance(strHero, strBuildingName) <= 5 then
+									local iPosX, iPosY, iPosZ = GetObjectPosition(strBuildingName);
+									arrOption[i] = {
+										["Id"] = strBuildingName
+										, ["Text"] = {
+												TTH_PATH.Artifact["Mine"]["OptionTemplate"]
+												;iPosX=iPosX
+												,iPosY=iPosY
+											}
+										, ["Callback"] = "TTH_ARTI.confirmActiveMine098"
+									};
+									i = i + 1;
+								end;
+							end;
+						end;
+					end;
+					if length(arrOption) <= 0 then
+						local strText = TTH_PATH.Artifact["Mine"]["NoSuitableMine"];
+						TTH_GLOBAL.sign(strHero, strText);
+						return nil;
+					end;
+
+					TTH_COMMON.optionRadio(iPlayer, strHero, arrOption);
+				end;
+				function TTH_ARTI.confirmActiveMine098(iPlayer, strHero, strBuildingName)
+					local objBuilding = TTH_VARI.arrMineBuilding[strBuildingName];
+					local iBonusLevel = objBuilding["BonusLevel"];
+					local strPathMain = {
+						TTH_PATH.Artifact["Mine"]["Confirm"]
+						;iBonusLevel=iBonusLevel
+					};
+					local strCallbackOk = "TTH_ARTI.implActive098("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strBuildingName)..")";
+					local strCallbackCancel = "TTH_COMMON.cancelOption()";
+					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+				end;
+				function TTH_ARTI.implActive098(iPlayer, strHero, strBuildingName)
+					RemoveArtefact(strHero, ARTIFACT_RES_BASIC);
+					TTH_VARI.arrMineBuilding[strBuildingName]["BonusLevel"] = TTH_VARI.arrMineBuilding[strBuildingName]["BonusLevel"] + 1;
+					local strText = TTH_PATH.Artifact["Mine"]["Success"]
+					TTH_GLOBAL.sign(strHero, strText);
+				end;
+			-- ARTIFACT_RES_ADVANCED 099 育龙者的魔法盒
+				function TTH_ARTI.active099(iPlayer, strHero)
+					TTH_COMMON.nextNavi(TTH_PATH.Artifact["Mine"][ARTIFACT_RES_ADVANCED]["Text"]);
+
+					TTH_ARTI.checkPreActive0994SuitableMine(iPlayer, strHero);
+				end;
+				function TTH_ARTI.checkPreActive0994SuitableMine(iPlayer, strHero)
+					local arrOption = {};
+					local i = 1;
+					for iIndexType, strBuildingType in TTH_TABLE.MineOnAdvMapAdvanced do
+						for jIndexMain, strBuildingName in TTH_VARI.arrBuilding[strBuildingType] do
+							if GetObjectOwner(strBuildingName) == iPlayer then
+								if TTH_GLOBAL.getDistance(strHero, strBuildingName) <= 5 then
+									local iPosX, iPosY, iPosZ = GetObjectPosition(strBuildingName);
+									arrOption[i] = {
+										["Id"] = strBuildingName
+										, ["Text"] = {
+												TTH_PATH.Artifact["Mine"]["OptionTemplate"]
+												;iPosX=iPosX
+												,iPosY=iPosY
+											}
+										, ["Callback"] = "TTH_ARTI.confirmActiveMine099"
+									};
+									i = i + 1;
+								end;
+							end;
+						end;
+					end;
+					if length(arrOption) <= 0 then
+						local strText = TTH_PATH.Artifact["Mine"]["NoSuitableMine"];
+						TTH_GLOBAL.sign(strHero, strText);
+						return nil;
+					end;
+
+					TTH_COMMON.optionRadio(iPlayer, strHero, arrOption);
+				end;
+				function TTH_ARTI.confirmActiveMine099(iPlayer, strHero, strBuildingName)
+					local objBuilding = TTH_VARI.arrMineBuilding[strBuildingName];
+					local iBonusLevel = objBuilding["BonusLevel"];
+					local strPathMain = {
+						TTH_PATH.Artifact["Mine"]["Confirm"]
+						;iBonusLevel=iBonusLevel
+					};
+					local strCallbackOk = "TTH_ARTI.implActive099("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strBuildingName)..")";
+					local strCallbackCancel = "TTH_COMMON.cancelOption()";
+					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+				end;
+				function TTH_ARTI.implActive099(iPlayer, strHero, strBuildingName)
+					RemoveArtefact(strHero, ARTIFACT_RES_ADVANCED);
+					TTH_VARI.arrMineBuilding[strBuildingName]["BonusLevel"] = TTH_VARI.arrMineBuilding[strBuildingName]["BonusLevel"] + 1;
+					local strText = TTH_PATH.Artifact["Mine"]["Success"]
+					TTH_GLOBAL.sign(strHero, strText);
+				end;
+			-- ARTIFACT_RES_EXPERT 028 无尽黄金麻袋
+				function TTH_ARTI.active028(iPlayer, strHero)
+					TTH_COMMON.nextNavi(TTH_PATH.Artifact["Mine"][ARTIFACT_RES_EXPERT]["Text"]);
+
+					TTH_ARTI.checkPreActive0284SuitableMine(iPlayer, strHero);
+				end;
+				function TTH_ARTI.checkPreActive0284SuitableMine(iPlayer, strHero)
+					local arrOption = {};
+					local i = 1;
+					for iIndexType, strBuildingType in TTH_TABLE.MineOnAdvMapExpert do
+						for jIndexMain, strBuildingName in TTH_VARI.arrBuilding[strBuildingType] do
+							if GetObjectOwner(strBuildingName) == iPlayer then
+								if TTH_GLOBAL.getDistance(strHero, strBuildingName) <= 5 then
+									local iPosX, iPosY, iPosZ = GetObjectPosition(strBuildingName);
+									arrOption[i] = {
+										["Id"] = strBuildingName
+										, ["Text"] = {
+												TTH_PATH.Artifact["Mine"]["OptionTemplate"]
+												;iPosX=iPosX
+												,iPosY=iPosY
+											}
+										, ["Callback"] = "TTH_ARTI.confirmActiveMine028"
+									};
+									i = i + 1;
+								end;
+							end;
+						end;
+					end;
+					if length(arrOption) <= 0 then
+						local strText = TTH_PATH.Artifact["Mine"]["NoSuitableMine"];
+						TTH_GLOBAL.sign(strHero, strText);
+						return nil;
+					end;
+
+					TTH_COMMON.optionRadio(iPlayer, strHero, arrOption);
+				end;
+				function TTH_ARTI.confirmActiveMine028(iPlayer, strHero, strBuildingName)
+					local objBuilding = TTH_VARI.arrMineBuilding[strBuildingName];
+					local iBonusLevel = objBuilding["BonusLevel"];
+					local strPathMain = {
+						TTH_PATH.Artifact["Mine"]["Confirm"]
+						;iBonusLevel=iBonusLevel
+					};
+					local strCallbackOk = "TTH_ARTI.implActive028("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strBuildingName)..")";
+					local strCallbackCancel = "TTH_COMMON.cancelOption()";
+					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+				end;
+				function TTH_ARTI.implActive028(iPlayer, strHero, strBuildingName)
+					RemoveArtefact(strHero, ARTIFACT_RES_EXPERT);
+					TTH_VARI.arrMineBuilding[strBuildingName]["BonusLevel"] = TTH_VARI.arrMineBuilding[strBuildingName]["BonusLevel"] + 1;
+					local strText = TTH_PATH.Artifact["Mine"]["Success"]
+					TTH_GLOBAL.sign(strHero, strText);
+				end;
+
 		-- ARTIFACT_PEDANT_OF_MASTERY 015 技能坠饰
 			TTH_VARI.record4UpgradeMastery = {};
+			TTH_FINAL.UPGRADE_MASTERY = "TTH_Var_Upgrade_Mastery_";
 			function TTH_ARTI.active015(iPlayer, strHero)
 				TTH_COMMON.nextNavi(TTH_PATH.Artifact[ARTIFACT_PEDANT_OF_MASTERY]["Text"]);
 
@@ -15001,9 +15193,15 @@ doFile("/scripts/H55-Settings.lua");
 
 				TTH_COMMON.optionRadio(iPlayer, strHero, arrOption);
 			end;
+			function TTH_ARTI.callbackActive015(iPlayer, strHero)
+				RemoveArtefact(strHero, ARTIFACT_PEDANT_OF_MASTERY);
+				TTH_VARI.record4UpgradeMastery[strHero] = TTH_ENUM.Yes;
+				TTH_COMMON.consoleSetGameVar(TTH_FINAL.UPGRADE_MASTERY..strHero, TTH_ENUM.Yes);
+			end;
 
 		-- ARTIFACT_SHANTIRI_05 163 龙神之证
 			TTH_VARI.record4UpgradeShantiri = {};
+			TTH_FINAL.UPGRADE_SHANTIRI = "TTH_Var_Upgrade_Shantiri_";
 			function TTH_ARTI.active163(iPlayer, strHero)
 				TTH_COMMON.nextNavi(TTH_PATH.Artifact[ARTIFACT_SHANTIRI_05]["Text"]);
 				TTH_ARTI.checkPreActive0154HasUpgradeShantiri(iPlayer, strHero);
@@ -15058,6 +15256,11 @@ doFile("/scripts/H55-Settings.lua");
 				end;
 
 				TTH_COMMON.optionRadio(iPlayer, strHero, arrOption);
+			end;
+			function TTH_ARTI.callbackActive163(iPlayer, strHero)
+				RemoveArtefact(strHero, ARTIFACT_SHANTIRI_05);
+				TTH_VARI.record4UpgradeShantiri[strHero] = TTH_ENUM.Yes;
+				TTH_COMMON.consoleSetGameVar(TTH_FINAL.UPGRADE_SHANTIRI..strHero, TTH_ENUM.Yes);
 			end;
 
 		-- ARTIFACT_MASK_OF_DOPPELGANGER 089 皇家遗物
@@ -15612,6 +15815,7 @@ doFile("/scripts/H55-Settings.lua");
     		else
     			TTH_MANAGE.useOperTimes(strHero);
     		end;
+				local iCoef = 1;
     		local strHeroBiara = "Biara";
     		if strHero ~= strHeroBiara then
 	    		TTH_VARI.recordRecruitment[strTown]["HasRecruit"] = TTH_VARI.absoluteWeek;
@@ -15930,7 +16134,7 @@ doFile("/scripts/H55-Settings.lua");
 							end;
 						end;
     				TTH_GLOBAL.addCreature4Hero8Sign(strHero, iCreatureId, iSlotCount, TTH_ENUM.AddCreature);
-    				if contains(TTH_VARI.talent[strHeroSylsai]["DiplomacyCreatureBak"], iCreatureId) == nil then
+    				if TTH_VARI.talent[strHeroSylsai] ~= nil and contains(TTH_VARI.talent[strHeroSylsai]["DiplomacyCreatureBak"], iCreatureId) == nil then
     					TTH_VARI.talent[strHeroSylsai]["DiplomacyCreatureBak"] = TTH_COMMON.push(TTH_VARI.talent[strHeroSylsai]["DiplomacyCreatureBak"], iCreatureId);
     				end;
     			end;

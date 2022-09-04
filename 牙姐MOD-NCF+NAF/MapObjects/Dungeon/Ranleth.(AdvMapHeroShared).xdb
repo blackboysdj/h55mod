@@ -35,8 +35,8 @@
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_INVOCATION</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Dungeon55/Weilder_of_Fire/Name.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Dungeon55/Weilder_of_Fire/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Dungeon/075-Ranleth/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Dungeon/075-Ranleth/Description.txt"/>
 	<SpecializationIcon href="/Textures/HeroScreen/Skills/DestructiveMagic_4.xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Maps/Scenario/A2C3M4/Dungeon Agaris_128_128.1.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall href=""/>

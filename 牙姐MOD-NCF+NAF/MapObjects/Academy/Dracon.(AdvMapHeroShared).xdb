@@ -30,13 +30,13 @@
 	<Icon128/>
 	<InternalName>Dracon</InternalName>
 	<Class>HERO_CLASS_GUILDMASTER</Class>
-	<Specialization/>
+	<Specialization>HERO_SPEC_MAGES</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_SORCERY</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Academy/Dracon/Text.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Academy55/MagicMaster/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Academy/045-Dracon/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Academy/045-Dracon/Description.txt"/>
 	<SpecializationIcon href="/Textures/HeroScreen/Perks/Learning_Scholar.xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Academy/Academy_Dracon_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>

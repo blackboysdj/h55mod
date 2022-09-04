@@ -82,7 +82,7 @@
 	<flybySequence/>
 	<Visual href="/new_creatures/Academy/Enchanter/creature_academy.(CreatureVisual).xdb#xpointer(/CreatureVisual)"/>
 	<Range>-1</Range>
-	<BaseCreature>CREATURE_UNKNOWN</BaseCreature>
+	<BaseCreature>CREATURE_MAGI</BaseCreature>
 	<Upgrades/>
 	<Abilities>
 		<Item>ABILITY_NO_RANGE_PENALTY</Item>

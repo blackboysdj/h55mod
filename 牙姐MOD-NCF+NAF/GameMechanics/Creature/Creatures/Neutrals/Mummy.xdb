@@ -50,7 +50,7 @@
 	<flybySequence/>
 	<Visual href="/GameMechanics/CreatureVisual/Creatures/Neutrals/Mummy.xdb#xpointer(/CreatureVisual)"/>
 	<Range>0</Range>
-	<BaseCreature>CREATURE_UNKNOWN</BaseCreature>
+	<BaseCreature>CREATURE_WALKING_DEAD</BaseCreature>
 	<Upgrades/>
 	<Abilities>
 		<Item>ABILITY_UNDEAD</Item>

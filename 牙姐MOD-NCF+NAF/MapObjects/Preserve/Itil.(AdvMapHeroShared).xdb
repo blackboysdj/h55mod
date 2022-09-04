@@ -35,8 +35,8 @@
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_DEFENCE</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Preserve55/Unicorn_Trainer/Name.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Preserve55/Unicorn_Trainer/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Preserve/031-Itil/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Preserve/031-Itil/Description.txt"/>
 	<SpecializationIcon href="/Textures/HeroScreen/Specializations/Preserve/Unicorn_Trainer.xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Preserve/Preserve_Ylthin_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>

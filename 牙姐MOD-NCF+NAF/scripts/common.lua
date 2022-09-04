@@ -70,7 +70,7 @@ H55SMOD_SylvanHeroes = {
 H55SMOD_AcademyHeroes = {
     'Havez', 'Minasli', 'Isher', 'Davius', 'Dracon'
     , 'Rissa', 'Razzak', 'Sufi', 'Cyrus', 'Maahir', 'Timerkhan', 'Tan'
-    , 'Emilia', 'Nur', 'Astral', 'Zehir', 'Faiz', 'Josephine'
+    , 'Emilia', 'Nur', 'Astral', 'Zehir', 'Faiz', 'Solmyr'
 };
 H55SMOD_InfernoHeroes = {
     'Calh', 'Calid', 'Deleb', 'Jazaz', 'Marder', 'Orlando2'
@@ -78,7 +78,7 @@ H55SMOD_InfernoHeroes = {
     , 'Ash', 'Biara', 'Calid2', 'Sheltem', 'Zydar'
 };
 H55SMOD_NecropolisHeroes = {
-    'Archilus', 'Berein', 'Gles', 'Nikolay', 'Straker', 'Tamika', 'Xerxon', 'Karissa'
+    'LordHaart', 'Berein', 'Gles', 'Nikolay', 'Straker', 'Tamika', 'Xerxon', 'Karissa'
     , 'Aislinn', 'Effig', 'Giovanni', 'OrnellaNecro', 'Aberrar', 'Muscip'
     , 'Arantir', 'Nemor', 'Nimbus', 'Pelt', 'Sandro', 'Thant', 'Adelaide', 'Vidomina'
 };
@@ -106,11 +106,11 @@ H55SMOD_Heroes = {
     , 'Elleshar', 'Ildar', 'Vaniel', 'Vinrael', 'Diraya'
     , 'Havez', 'Minasli', 'Isher', 'Davius', 'Dracon'
     , 'Rissa', 'Razzak', 'Sufi', 'Cyrus', 'Maahir', 'Timerkhan', 'Tan'
-    , 'Emilia', 'Nur', 'Astral', 'Zehir', 'Faiz', 'Josephine'
+    , 'Emilia', 'Nur', 'Astral', 'Zehir', 'Faiz', 'Solmyr'
     , 'Calh', 'Calid', 'Deleb', 'Jazaz', 'Marder', 'Orlando2'
     , 'Efion', 'Grok', 'Malustar', 'Nymus', 'Oddrema', 'Sovereign', 'Agrael', 'Jeddite'
     , 'Ash', 'Biara', 'Calid2', 'Sheltem', 'Zydar'
-    , 'Archilus', 'Berein', 'Gles', 'Nikolay', 'Straker', 'Tamika', 'Xerxon', 'Karissa'
+    , 'LordHaart', 'Berein', 'Gles', 'Nikolay', 'Straker', 'Tamika', 'Xerxon', 'Karissa'
     , 'Aislinn', 'Effig', 'Giovanni', 'OrnellaNecro', 'Aberrar', 'Muscip'
     , 'Arantir', 'Nemor', 'Nimbus', 'Pelt', 'Sandro', 'Thant', 'Adelaide', 'Vidomina'
     , 'Bersy', 'Maximus', 'Skeggy', 'Tazar', 'Vilma'
@@ -178,6 +178,15 @@ TTH_SKILL_EFFECT_COMBAT_HERO = {
     [0] = {}
     , [1] = {}
 };
+TTH_SKILL_UPGRADE_MASTERY_COMBAT_HERO = {
+    [0] = {}
+    , [1] = {}
+};
+TTH_SKILL_UPGRADE_SHANTIRI_COMBAT_HERO = {
+    [0] = {}
+    , [1] = {}
+};
+
 
 function length(array)
     local count = 0
@@ -334,10 +343,10 @@ function Thread_Command_UnitCastAreaSpell_UseMana(caster, spell_id, x, y)
 end;
 function Thread_Command_UnitCastAreaSpell_IgnoreMana(caster, spell_id, x, y)
     local iCurrentMana = GetUnitManaPoints(caster);
-    SetUnitManaPoints(caster, 1000);
-    repeat sleep(1); until GetUnitManaPoints(caster) >= 1000;
+    SetUnitManaPoints(caster, 9999);
+    repeat sleep(1); until GetUnitManaPoints(caster) >= 9999;
     UnitCastAreaSpell(caster, spell_id, x, y);
-    repeat sleep(1); until GetUnitManaPoints(caster) < 1000;
+    repeat sleep(1); until GetUnitManaPoints(caster) < 9999;
     SetUnitManaPoints(caster, iCurrentMana);
     repeat sleep(1); until GetUnitManaPoints(caster) == iCurrentMana;
 end;
@@ -361,21 +370,21 @@ end;
 function Thread_Command_UnitCastAimedSpell_WithoutMana(caster, spell_id, target)
     UnitCastAimedSpell(caster, spell_id, target);
 end;
+function Thread_Command_UnitCastAimedSpell_IgnoreMana(caster, spell_id, target)
+    local iCurrentMana = GetUnitManaPoints(caster);
+    SetUnitManaPoints(caster, 9999);
+    repeat sleep(1); until GetUnitManaPoints(caster) >= 9999;
+    UnitCastAimedSpell(caster, spell_id, target);
+    repeat sleep(1); until GetUnitManaPoints(caster) < 9999;
+    SetUnitManaPoints(caster, iCurrentMana);
+    repeat sleep(1); until GetUnitManaPoints(caster) == iCurrentMana;
+end;
 
 function ThreadUnitCastAimedSpell(strCaster, iSpellId, strTarget)
     UnitCastAimedSpell(strCaster, iSpellId, strTarget);
     if iSpellId == SPELL_ABILITY_LAY_HANDS then
         ShowFlyingSign(TTHCS_PATH["Spell"][SPELL_ABILITY_LAY_HANDS]["Effect"], strCaster, 5);
     end;
-end;
-
-function Thread_Command_UnitCastAimedSpell_IgnoreMana(caster, spell_id, target)
-    local iCurrentMana = GetUnitManaPoints(caster);
-    SetUnitManaPoints(caster, 1000);
-    repeat sleep(1); until GetUnitManaPoints(caster) >= 1000;
-    UnitCastAimedSpell(caster, spell_id, target);
-    repeat sleep(1); until GetUnitManaPoints(caster) < 1000;
-    SetUnitManaPoints(caster, 1);
 end;
 function Thread_Command_UnitAttackAimed(caster, target)
     AttackCombatUnit(caster, target);
@@ -1168,6 +1177,7 @@ end;
   CREATURE_198 = 198
   CREATURE_INFERNO_TOOL_Orlando2_AbilityUpgradeShantiri = 198
   CREATURE_199 = 199
+  CREATURE_ACADEMY_TOOL = 199
   CREATURE_200 = 200
   CREATURE_201 = 201
   CREATURE_202 = 202
@@ -2629,8 +2639,11 @@ end;
       TTHCS_ENUM.SET_MONK = 11
       TTHCS_ENUM.SET_GUARDIAN = 12
       TTHCS_ENUM.SET_ROOKIE = 13
-      TTHCS_ENUM.SET_ELEMENT = 14
-      TTHCS_ENUM.SET_PIRATE = 15
+      TTHCS_ENUM.SET_PIRATE = 14
+      TTHCS_ENUM.SET_ELEMENT_AIR = 15
+      TTHCS_ENUM.SET_ELEMENT_EARTH = 16
+      TTHCS_ENUM.SET_ELEMENT_FIRE = 17
+      TTHCS_ENUM.SET_ELEMENT_WATER = 18
 
     -- 力量武器触发类型
       TTHCS_ENUM.Voice = 1;
@@ -12296,7 +12309,7 @@ end;
       , 'Efion', 'Grok', 'Malustar', 'Nymus', 'Oddrema', 'Sovereign', 'Agrael', 'Jeddite'
       , 'Ash', 'Biara', 'Calid2', 'Sheltem', 'Zydar'
 
-      , 'Archilus', 'Berein', 'Gles', 'Nikolay', 'Straker', 'Tamika', 'Xerxon', 'Karissa'
+      , 'LordHaart', 'Berein', 'Gles', 'Nikolay', 'Straker', 'Tamika', 'Xerxon', 'Karissa'
       , 'Aislinn', 'Effig', 'Giovanni', 'OrnellaNecro', 'Aberrar', 'Muscip'
       , 'Arantir', 'Nemor', 'Nimbus', 'Pelt', 'Sandro', 'Thant', 'Adelaide', 'Vidomina'
 
@@ -12906,6 +12919,9 @@ end;
       TTHCS_PATH["Talent"]["Orlando2"] = {};
       TTHCS_PATH["Talent"]["Orlando2"]["EffectVorpalSword"] = "/Text/TTH/Heroes/Specializations/Inferno/104-Orlando2/Combat/EffectVorpalSword.txt";
       TTHCS_PATH["Talent"]["Orlando2"]["EffectAxeOfSlaughter"] = "/Text/TTH/Heroes/Specializations/Inferno/104-Orlando2/Combat/EffectAxeOfSlaughter.txt";
+      
+      TTHCS_PATH["Talent"]["Oddrema"] = {};
+      TTHCS_PATH["Talent"]["Oddrema"]["Effect"] = "/Text/TTH/Heroes/Specializations/Inferno/109-Oddrema/Combat/Effect.txt";
 
       TTHCS_PATH["Talent"]["Gles"] = {};
       TTHCS_PATH["Talent"]["Gles"]["Effect"] = "/Text/TTH/Heroes/Specializations/Necromancy/079-Gles/Combat/Effect.txt";
@@ -12960,6 +12976,14 @@ end;
     TTHCS_PATH["ArtifactSet"] = {};
       TTHCS_PATH["ArtifactSet"][TTHCS_ENUM.SET_OGRES.."_"..2] = {};
       TTHCS_PATH["ArtifactSet"][TTHCS_ENUM.SET_OGRES.."_"..2]["Effect"] = "/Text/TTH/ArtifactSet/008-Ogres/Combat/Effect2.txt";
+      TTHCS_PATH["ArtifactSet"][TTHCS_ENUM.SET_ELEMENT_AIR.."_"..2] = {};
+      TTHCS_PATH["ArtifactSet"][TTHCS_ENUM.SET_ELEMENT_AIR.."_"..2]["Effect"] = "/Text/TTH/ArtifactSet/015-ElementAir/Combat/Effect2.txt";
+      TTHCS_PATH["ArtifactSet"][TTHCS_ENUM.SET_ELEMENT_EARTH.."_"..2] = {};
+      TTHCS_PATH["ArtifactSet"][TTHCS_ENUM.SET_ELEMENT_EARTH.."_"..2]["Effect"] = "/Text/TTH/ArtifactSet/016-ElementEarth/Combat/Effect2.txt";
+      TTHCS_PATH["ArtifactSet"][TTHCS_ENUM.SET_ELEMENT_FIRE.."_"..2] = {};
+      TTHCS_PATH["ArtifactSet"][TTHCS_ENUM.SET_ELEMENT_FIRE.."_"..2]["Effect"] = "/Text/TTH/ArtifactSet/017-ElementFire/Combat/Effect2.txt";
+      TTHCS_PATH["ArtifactSet"][TTHCS_ENUM.SET_ELEMENT_WATER.."_"..2] = {};
+      TTHCS_PATH["ArtifactSet"][TTHCS_ENUM.SET_ELEMENT_WATER.."_"..2]["Effect"] = "/Text/TTH/ArtifactSet/018-ElementWater/Combat/Effect2.txt";
 
     TTHCS_PATH["Creature"] = {};
       TTHCS_PATH["Creature"]["Enchanter"] = {};
@@ -13003,8 +13027,24 @@ end;
       TTHCS_PATH["Continuous"]["Effect100"] = "/Text/TTH/Combat/Continuous/Effect100.txt";
 
 TTH_ARTIFACTSET_EFFECT_COMBAT = {
-  [1] = {
+  [TTHCS_ENUM.SET_OGRES] = {
       ["Id"] = TTHCS_ENUM.SET_OGRES
+      , ["Count"] = 2
+  }
+  , [TTHCS_ENUM.SET_ELEMENT_AIR] = {
+      ["Id"] = TTHCS_ENUM.SET_ELEMENT_AIR
+      , ["Count"] = 2
+  }
+  , [TTHCS_ENUM.SET_ELEMENT_EARTH] = {
+      ["Id"] = TTHCS_ENUM.SET_ELEMENT_EARTH
+      , ["Count"] = 2
+  }
+  , [TTHCS_ENUM.SET_ELEMENT_FIRE] = {
+      ["Id"] = TTHCS_ENUM.SET_ELEMENT_FIRE
+      , ["Count"] = 2
+  }
+  , [TTHCS_ENUM.SET_ELEMENT_WATER] = {
+      ["Id"] = TTHCS_ENUM.SET_ELEMENT_WATER
       , ["Count"] = 2
   }
 };

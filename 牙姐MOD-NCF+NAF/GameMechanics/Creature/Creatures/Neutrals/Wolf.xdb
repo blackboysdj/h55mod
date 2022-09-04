@@ -41,7 +41,7 @@
 	<flybySequence/>
 	<Visual href="/GameMechanics/CreatureVisual/Creatures/Neutrals/Wolf.xdb#xpointer(/CreatureVisual)"/>
 	<Range>0</Range>
-	<BaseCreature>CREATURE_UNKNOWN</BaseCreature>
+	<BaseCreature>CREATURE_ORC_WARRIOR</BaseCreature>
 	<Upgrades/>
 	<Abilities>
 		<Item>ABILITY_DEMON_RAGED</Item>

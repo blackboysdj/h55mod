@@ -11,13 +11,15 @@
   shantiri传送
   尤佛瑞汀的经验给汉格瓦尔
 
+  战争劫掠，矿，政绩
+  4小法术宝，施法连动
+  部分英雄增加技能吊坠特效
+  拉兹罗 步兵联动
+
 -- 课题：
   6.众志成城 内政官一路守城上限（与咒骂进行伤害对比），反击，机械，防御
 
 一个战术小队 一个侦查小队 一个无畏机甲 还有一个愤青突击队
-
-
-
 
 <spellBuffs>
   <Item>SPELL_DEMON_RAGE_LEVEL_3</Item>
@@ -492,22 +494,10 @@ HERO_SKILL_FIRE_PROTECTION
       专家启蒙：鹰眼+闪电思维+智慧学
       专家幸运：士兵之幸+幸运一击+魔法抵抗
 
----------------------------------------------------------------------------------------------------------------------------------------------
---APPENDIX
----------------------------------------------------------------------------------------------------------------------------------------------
 
--- TTH_COMMON.setTrigger2ObjectType("BUILDING_DRAGON_UTOPIA", OBJECT_TOUCH_TRIGGER, 'H55_UtopiaVisit', nil);
--- TTH_COMMON.setTrigger2ObjectType("BUILDING_SUNKEN_TEMPLE", OBJECT_TOUCH_TRIGGER, 'H55_SunkenTempleVisit', nil);
--- TTH_COMMON.setTrigger2ObjectType("BUILDING_NAGA_BANK", OBJECT_TOUCH_TRIGGER, 'H55_MageVaultVisit', nil);
--- TTH_COMMON.setTrigger2ObjectType("BUILDING_CRYPT", OBJECT_TOUCH_TRIGGER, 'H55_CryptVisit', nil);
--- TTH_COMMON.setTrigger2ObjectType("BUILDING_GARGOYLE_STONEVAULT", OBJECT_TOUCH_TRIGGER, 'H55_StoneVaultVisit', nil);
--- TTH_COMMON.setTrigger2ObjectType("BUILDING_DWARVEN_TREASURE", OBJECT_TOUCH_TRIGGER, 'H55_DwarvenTreasureVisit', nil);
--- TTH_COMMON.setTrigger2ObjectType("BUILDING_DEMOLISH", OBJECT_TOUCH_TRIGGER, 'H55_DemolishVisit', nil);
--- TTH_COMMON.setTrigger2ObjectType("BUILDING_UNKEMPT", OBJECT_TOUCH_TRIGGER, 'H55_UnkemptVisit', nil);
--- TTH_COMMON.setTrigger2ObjectType("BUILDING_CYCLOPS_STOCKPILE", OBJECT_TOUCH_TRIGGER, 'H55_StockpileVisit', nil);
--- TTH_COMMON.setTrigger2ObjectType("BUILDING_BLOOD_TEMPLE", OBJECT_TOUCH_TRIGGER, 'H55_WitchBankVisit', nil);
--- TTH_COMMON.setTrigger2ObjectType("BUILDING_TREANT_THICKET", OBJECT_TOUCH_TRIGGER, 'H55_TreantThicketVisit', nil);
--- TTH_COMMON.setTrigger2ObjectType("BUILDING_PYRAMID", OBJECT_TOUCH_TRIGGER, 'H55_PyramidVisit', nil);
--- TTH_COMMON.setTrigger2ObjectType("BUILDING_NAGA_TEMPLE", OBJECT_TOUCH_TRIGGER, 'object_touch_handler', nil);
-
--- TTH_COMMON.setTrigger2ObjectType("BUILDING_ABANDONED_MINE", OBJECT_TOUCH_TRIGGER, 'H55_AbandonedVisit', nil);
+自定义群欢迎消息 欢迎新同学[at]
+游戏本体在群文件，先转发后下载，一边下载一边看介绍视频，看完也下载好了，介绍视频里没提的随时来问~~
+MOD介绍视频-基础: https://www.bilibili.com/video/av96001600
+MOD介绍视频-神力之遗更新内容: https://www.bilibili.com/video/BV14P4y1M7gL/
+MOD介绍视频-热座及多人联机设置 https://www.bilibili.com/video/BV1ya411V7ao/?vd_source=1cf193e97ae01faa5357ee16c974a5ec （该视频有一处地方没有切换画面，详细操作看置顶评论第一条）
+配置文件网址: http://47.99.202.14/#/

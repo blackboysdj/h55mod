@@ -181,8 +181,8 @@ end;
 function TTH_TRIGGER.heroLevelUpFaiz()
 	TTH_TRIGGER.heroLevelUp("Faiz");
 end;
-function TTH_TRIGGER.heroLevelUpJosephine()
-	TTH_TRIGGER.heroLevelUp("Josephine");
+function TTH_TRIGGER.heroLevelUpSolmyr()
+	TTH_TRIGGER.heroLevelUp("Solmyr");
 end;
 function TTH_TRIGGER.heroLevelUpUrunir()
 	TTH_TRIGGER.heroLevelUp("Urunir");
@@ -238,8 +238,8 @@ end;
 function TTH_TRIGGER.heroLevelUpSephinroth()
 	TTH_TRIGGER.heroLevelUp("Sephinroth");
 end;
-function TTH_TRIGGER.heroLevelUpArchilus()
-	TTH_TRIGGER.heroLevelUp("Archilus");
+function TTH_TRIGGER.heroLevelUpLordHaart()
+	TTH_TRIGGER.heroLevelUp("LordHaart");
 end;
 function TTH_TRIGGER.heroLevelUpBerein()
 	TTH_TRIGGER.heroLevelUp("Berein");

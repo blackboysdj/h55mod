@@ -32,7 +32,7 @@
 	<Icon128/>
 	<InternalName>Azar</InternalName>
 	<Class>HERO_CLASS_BARBARIAN</Class>
-	<Specialization/>
+	<Specialization>HERO_SPEC_GRIM_FIGHTER</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_DEMONIC_RAGE</SkillID>

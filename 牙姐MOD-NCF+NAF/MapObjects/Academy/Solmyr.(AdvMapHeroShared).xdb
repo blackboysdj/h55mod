@@ -28,7 +28,7 @@
 	<AdventureSoundEffect/>
 	<RazedStatic/>
 	<Icon128/>
-	<InternalName>Josephine</InternalName>
+	<InternalName>Solmyr</InternalName>
 	<Class>HERO_CLASS_ELEMENTALIST</Class>
 	<Specialization>HERO_SPEC_STORMCALLER</Specialization>
 	<PrimarySkill>
@@ -38,7 +38,7 @@
 	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Academy55/Stormcaller/Name.txt"/>
 	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Academy55/Stormcaller/Description.txt"/>
 	<SpecializationIcon href="/Textures/Heroes_Abillites/Academy55/Stormcaller.(Texture).xdb#xpointer(/Texture)"/>
-	<FaceTexture href="/Textures/Icons/Heroes/Academy/Academy_Josephine_128x128.(Texture).xdb#xpointer(/Texture)"/>
+	<FaceTexture href="/Textures/Icons/Heroes/Academy/Academy_Solmyr_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>
 	<HeroCharacterArena href="/Characters/Heroes/Wizard.(Character).xdb#xpointer(/Character)"/>
 	<HeroCharacterArenaMelee/>
@@ -47,8 +47,8 @@
 	<CombatVisual href="/GameMechanics/CreatureVisual/Heroes/Wizard.xdb#xpointer(/CreatureVisual)"/>
 	<TownType>TOWN_ACADEMY</TownType>
 	<Editable>
-		<NameFileRef href="/Text/Game/Heroes/Persons/Academy/Josephine/Name.txt"/>
-		<BiographyFileRef href="/Text/Game/Heroes/Persons/Academy/Josephine/Bio.txt"/>
+		<NameFileRef href="/Text/Game/Heroes/Persons/Academy/Solmyr/Name.txt"/>
+		<BiographyFileRef href="/Text/Game/Heroes/Persons/Academy/Solmyr/Bio.txt"/>
 		<Offence>0</Offence>
 		<Defence>0</Defence>
 		<Spellpower>3</Spellpower>

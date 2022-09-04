@@ -41,13 +41,11 @@
 	<flybySequence/>
 	<Visual href="/GameMechanics/CreatureVisual/Creatures/Neutrals/Death_Knight.xdb#xpointer(/CreatureVisual)"/>
 	<Range>0</Range>
-	<BaseCreature>CREATURE_UNKNOWN</BaseCreature>
+	<BaseCreature>CREATURE_WALKING_DEAD</BaseCreature>
 	<Upgrades/>
 	<Abilities>
 		<Item>ABILITY_UNDEAD</Item>
-		<!-- <Item>ABILITY_CURSING_ATTACK</Item> -->
 		<Item>ABILITY_DEADLY_STRIKE</Item>		
-		<!-- <Item>ABILITY_FRIGHT_AURA</Item> -->
 		<Item>ABILITY_BRUTALITY</Item>
 	</Abilities>
 </Creature>

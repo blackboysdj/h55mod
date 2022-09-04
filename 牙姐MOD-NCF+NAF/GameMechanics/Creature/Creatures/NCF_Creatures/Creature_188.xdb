@@ -50,7 +50,7 @@
 	<flybySequence/>
 	<Visual href="/GameMechanics/CreatureVisual/Creatures/NCF_Creatures/Creature_188.xdb#xpointer(/CreatureVisual)"/>
 	<Range>0</Range>
-	<BaseCreature>CREATURE_UNKNOWN</BaseCreature>
+	<BaseCreature>CREATURE_FOOTMAN</BaseCreature>
 	<Upgrades/>
 	<Abilities>
 		<Item>ABILITY_TAUNT</Item>

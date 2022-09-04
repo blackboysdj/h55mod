@@ -2773,7 +2773,7 @@
 				<HeroPool>
 					<Item href="/MapObjects/Academy/Havez.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 					<Item href="/MapObjects/Academy/Minasli.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
-					<Item href="/MapObjects/Academy/Josephine.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+					<Item href="/MapObjects/Academy/Solmyr.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 					<Item href="/MapObjects/Academy/Isher.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 					<Item href="/MapObjects/Academy/Davius.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 					<Item href="/MapObjects/Academy/Rissa.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
@@ -4147,7 +4147,7 @@
 					<Item href="/MapObjects/Necropolis/Aislinn.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 					<Item href="/MapObjects/Necropolis/Giovanni.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 					<Item href="/MapObjects/Necropolis/Nimbus.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
-					<Item href="/MapObjects/Necropolis/Archilus.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+					<Item href="/MapObjects/Necropolis/LordHaart.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 					<Item href="/MapObjects/Necropolis/Aberrar.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 					<Item href="/MapObjects/Necropolis/Effig.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 					<Item href="/MapObjects/Necropolis/A2_Arantir.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>

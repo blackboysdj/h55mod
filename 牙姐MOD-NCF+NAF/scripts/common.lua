@@ -630,7 +630,6 @@ function getBattleSize()
 end;
 
 function matchArea(itemCreature, iPositionX, iPositionY, iDistance)
-    -- print(itemCreature)
     local iBattleSize = getBattleSize();
     local iBattleAllowMaxX = 0;
     local iBattleAllowMaxY = 0;
@@ -692,7 +691,6 @@ function matchArea(itemCreature, iPositionX, iPositionY, iDistance)
 end;
 
 function matchArea2(itemCreature, iPositionX, iPositionY, iDistance)
-    -- print(itemCreature)
     local iBattleSize = getBattleSize();
     local iBattleAllowMaxX = 0;
     local iBattleAllowMaxY = 0;
@@ -12455,16 +12453,6 @@ end;
         local temp = nil;
         for i = 0, iLenArr - 2 do
           for j = 0, iLenArr - 2 - i do
-            print("i")
-            print(i)
-            print("j")
-            print(j)
-            -- print("strKey")
-            -- print(strKey)
-            -- print("arr[j]")
-            -- print(arr[j])
-            -- print("arr[j + 1]")
-            -- print(arr[j + 1])
             if arr[j][strKey] > arr[j + 1][strKey] then
               temp = arr[j];
               arr[j] = arr[j + 1];
@@ -12472,8 +12460,6 @@ end;
             end;
           end;
         end;
-        print("arr")
-        print(arr)
         return arr;
       end;
 
@@ -12624,8 +12610,6 @@ end;
       function TTHCS_COMMON.getRandom(iMod)
         local iRandom = TTHCS_COMMON.random(100);
         local iMod = tth_mod(iRandom, iMod);
-        print("Random: "..iRandom);
-        print("Mod: "..iMod);
         return iMod;
       end;
 
@@ -12773,17 +12757,7 @@ end;
                       , ["Count"] = 1
                     };
                   else
-                    print("arrPosition[iUniquePos]: ")
-                    print(arrPosition[iUniquePos])
-                    print("contains: ")
-                    print(contains(arrPosition[iUniquePos]["Unit"], strUnitName))
                     if contains(arrPosition[iUniquePos]["Unit"], strUnitName) == nil then
-                      print("arrPosition[iUniquePos]: ")
-                      print(arrPosition[iUniquePos])
-                      print("iUniquePos: ")
-                      print(iUniquePos)
-                      print("strUnitName: ")
-                      print(strUnitName)
                       arrPosition[iUniquePos]["Unit"] = push(arrPosition[iUniquePos]["Unit"], strUnitName);
                       arrPosition[iUniquePos]["Count"] = arrPosition[iUniquePos]["Count"] + 1;
                     end;
@@ -12794,10 +12768,6 @@ end;
           end;
         end;
         local objMaxPosition = TTHCS_COMMON.max8key(arrPosition, "Count");
-        print("objMaxPosition: ")
-        print(objMaxPosition)
-        print("arrPosition: ")
-        print(arrPosition)
         return arrPosition, objMaxPosition;
       end;
 
@@ -12866,23 +12836,11 @@ end;
         local listCreature = {};
         for i, strCreatureName in arrCreature do
           local objCreature = TTHCS_GLOBAL.geneUnitInfo(strCreatureName);
-          print("objCreature")
-          print(objCreature)
           local iDistanceX = iPositionX - objCreature["PosX"];
-          print("iDistanceX")
-          print(iDistanceX)
           local iDistanceY = iPositionY - objCreature["PosY"];
-          print("iDistanceY")
-          print(iDistanceY)
           objCreature["Distance"] = iDistanceX * iDistanceX +  iDistanceY * iDistanceY;
-          print("Distance")
-          print(objCreature["Distance"])
           listCreature = push(listCreature, objCreature);
         end;
-        for i,v in listCreature do
-          print("objCreature1")
-          print(v)
-        end
         local listCreatureSorted8Distance = TTHCS_COMMON.asc8key(listCreature, "Distance");
         return listCreatureSorted8Distance;
       end;
@@ -12896,7 +12854,7 @@ end;
       TTHCS_PATH["Talent"]["Calh"]["EffectMelee"] = "/Text/TTH/Heroes/Specializations/Inferno/Calh/Combat/EffectMelee.txt";
 
       TTHCS_PATH["Talent"]["Dracon"] = {};
-      TTHCS_PATH["Talent"]["Dracon"]["EffectStart"] = "/Text/TTH/Heroes/Specializations/Academy/Dracon/Combat/EffectStart.txt";
+      TTHCS_PATH["Talent"]["Dracon"]["EffectStart"] = "/Text/TTH/Heroes/Specializations/Academy/045-Dracon/Combat/EffectStart.txt";
 
       TTHCS_PATH["Talent"]["Razzak"] = {};
       TTHCS_PATH["Talent"]["Razzak"]["Effect"] = "/Text/TTH/Heroes/Specializations/Academy/047-Razzak/Combat/Effect.txt";

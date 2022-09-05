@@ -6451,7 +6451,12 @@ doFile("/scripts/H55-Settings.lua");
 							TTH_COMMON.parse(funcCallbak, iPlayer, strHero);
 						end;
 					-- 神器碎片奖励
-						TTH_TABLE.BankRewardPartOfRelic = {ARTIFACT_SHANTIRI_01, ARTIFACT_SHANTIRI_02, ARTIFACT_SHANTIRI_03, ARTIFACT_SHANTIRI_04};
+						TTH_TABLE.BankRewardPartOfRelic = {
+							[0] = ARTIFACT_SHANTIRI_01
+							, [1] = ARTIFACT_SHANTIRI_02
+						  , [2] = ARTIFACT_SHANTIRI_03
+							, [3] = ARTIFACT_SHANTIRI_04
+						};
 						function TTH_VISIT.rewardBankPartOfRelic(iPlayer, strHero)
 							local iRandom = random(4);
 							local iArtifactId = TTH_TABLE.BankRewardPartOfRelic[iRandom];
@@ -12748,37 +12753,56 @@ doFile("/scripts/H55-Settings.lua");
 
 			-- Almegir 071 伊蓓丝
 				TTH_TABLE.AlmegirArtifact = {
-					ARTIFACT_BREASTPLATE_OF_PETRIFIED_WOOD
-					, ARTIFACT_BEGINNER_MAGIC_STICK
-					, ARTIFACT_CROWN_OF_MANY_EYES
-					, ARTIFACT_TITANS_TRIDENT
-					, ARTIFACT_EVERCOLD_ICICLE
-					, ARTIFACT_PHOENIX_FEATHER_CAPE
-					, ARTIFACT_EARTHSLIDERS
-					, ARTIFACT_CHAIN_MAIL_OF_ENLIGHTMENT
-					, ARTIFACT_RUNIC_WAR_AXE
-					, ARTIFACT_MONK_02
-					, ARTIFACT_NECKLACE_OF_POWER
-					, ARTIFACT_BONESTUDDED_LEATHER
-					, ARTIFACT_RING_OF_THE_SHADOWBRAND
-					, ARTIFACT_BOOK_OF_POWER
-					, ARTIFACT_RING_OF_FORGOTTEN
-					, ARTIFACT_PENDANT_OF_INTERFERENCE
-					, ARTIFACT_DRAGON_BONE_GRAVES
-					, ARTIFACT_DRAGON_WING_MANTLE
-					, ARTIFACT_DRAGON_TEETH_NECKLACE
-					, ARTIFACT_DRAGON_EYE_RING
-					, ARTIFACT_ROBE_OF_MAGI
-					, ARTIFACT_DWARVEN_MITHRAL_CUIRASS
-					, ARTIFACT_DWARVEN_MITHRAL_GREAVES
-					, ARTIFACT_SKULL_OF_MARKAL
-					, ARTIFACT_GUARDIAN_01
-					, ARTIFACT_ORB_AIR
-					, ARTIFACT_ORB_EARTH
-					, ARTIFACT_ORB_FIRE
-					, ARTIFACT_ORB_WATER
-					, ARTIFACT_PLATE_MAIL_OF_STABILITY
-					, ARTIFACT_CLOAK_OF_MALASSA
+					[1] = {
+						ARTIFACT_BREASTPLATE_OF_PETRIFIED_WOOD
+						, ARTIFACT_BEGINNER_MAGIC_STICK
+						, ARTIFACT_CROWN_OF_MANY_EYES
+					}
+					, [2] = {
+						ARTIFACT_TITANS_TRIDENT
+						, ARTIFACT_EVERCOLD_ICICLE
+						, ARTIFACT_PHOENIX_FEATHER_CAPE
+						, ARTIFACT_EARTHSLIDERS
+					}
+					, [3] = {
+						ARTIFACT_CHAIN_MAIL_OF_ENLIGHTMENT
+						, ARTIFACT_RUNIC_WAR_AXE
+						, ARTIFACT_MONK_02
+
+					}
+					, [4] = {
+						ARTIFACT_NECKLACE_OF_POWER
+						, ARTIFACT_BONESTUDDED_LEATHER
+						, ARTIFACT_RING_OF_THE_SHADOWBRAND
+						, ARTIFACT_BOOK_OF_POWER
+						, ARTIFACT_RING_OF_FORGOTTEN
+						, ARTIFACT_PENDANT_OF_INTERFERENCE
+					}
+					, [5] = {
+						ARTIFACT_DRAGON_BONE_GRAVES
+						, ARTIFACT_DRAGON_WING_MANTLE
+						, ARTIFACT_DRAGON_TEETH_NECKLACE
+						, ARTIFACT_DRAGON_EYE_RING
+						, ARTIFACT_ROBE_OF_MAGI
+						, ARTIFACT_DWARVEN_MITHRAL_CUIRASS
+						, ARTIFACT_DWARVEN_MITHRAL_GREAVES
+						, ARTIFACT_SKULL_OF_MARKAL
+						, ARTIFACT_GUARDIAN_01
+						, ARTIFACT_ORB_AIR
+						, ARTIFACT_ORB_EARTH
+						, ARTIFACT_ORB_FIRE
+						, ARTIFACT_ORB_WATER
+					}
+					, [6] = {
+						ARTIFACT_PLATE_MAIL_OF_STABILITY
+						, ARTIFACT_CLOAK_OF_MALASSA
+					}
+					, [7] = {
+						ARTIFACT_CURSE_SHOULDER
+						, ARTIFACT_DRACONIC
+						, ARTIFACT_EIGHTFOLD
+						, ARTIFACT_HELMET_OF_HEAVENLY_ENLIGHTENMENT
+					}
 				};
 				function TTH_TALENT.initAlmegir(strHero)
 					TTH_MAIN.debug("TTH_TALENT.initAlmegir", nil, strHero);
@@ -12810,7 +12834,7 @@ doFile("/scripts/H55-Settings.lua");
 				end;
 				function TTH_TALENT.checkPreActiveAlmegir4Mana(iPlayer, strHero)
 					local iMana = GetHeroStat(strHero, STAT_MANA_POINTS);
-					if iMana < 50 then
+					if iMana == 0 then
 		  			TTH_GLOBAL.sign(strHero, TTH_PATH.Talent[strHero]["NotEnoughMana"]);
 						return nil;
 					end;
@@ -12818,9 +12842,15 @@ doFile("/scripts/H55-Settings.lua");
 					TTH_TALENT.implActiveAlmegir(iPlayer, strHero);
 				end;
 				function TTH_TALENT.implActiveAlmegir(iPlayer, strHero)
-					local iRandomIndex = random(length(TTH_TABLE.AlmegirArtifact));
+					local iCurrentMana = GetHeroStat(strHero, STAT_MANA_POINTS);
+					local iLevel = TTH_COMMON.ceil(iCurrentMana / 100);
+					if iLevel > 7 then
+						iLevel = 7;
+					end;
+					local iRandomLevel = random(iLevel) + 1;
+					local iRandomIndex = random(length(TTH_TABLE.AlmegirArtifact[iRandomLevel])) + 1;
 					local iPosX, iPosY, iPosZ = GetObjectPosition(strHero);
-					local iArtifactId = TTH_TABLE.AlmegirArtifact[iRandomIndex];
+					local iArtifactId = TTH_TABLE.AlmegirArtifact[iRandomLevel][iRandomIndex];
 					ChangeHeroStat(strHero, STAT_MANA_POINTS, -1 * TTH_FINAL.NUM_MAX);
 					CreateArtifact("", iArtifactId, iPosX, iPosY, iPosZ);
 

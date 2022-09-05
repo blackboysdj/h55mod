@@ -2532,8 +2532,8 @@
 				if TTH_ARTIFACTSET_EFFECT_COMBAT_HERO[iSide][TTHCS_ENUM.SET_ELEMENT_AIR.."_"..2] ~= nil
 					and TTH_ARTIFACTSET_EFFECT_COMBAT_HERO[iSide][TTHCS_ENUM.SET_ELEMENT_AIR.."_"..2] >= 2 then
 					if length(listCreaturesBeEffected) + length(listCreaturesDeath) > 0 and length(listCreaturesBeEffected) > 0 then
-						local itemCreatureTarget = listCreaturesBeEffected[TTHCS_COMMON.getRandom(length(listCreaturesBeEffected))];
-						if IsCombatUnit(itemCreatureTarget["strUnitName"]) ~= nil then
+						local objUnitTarget = listCreaturesBeEffected[TTHCS_COMMON.getRandom(length(listCreaturesBeEffected))];
+						if IsCombatUnit(objUnitTarget["strUnitName"]) ~= nil then
 							combatSetPause(1);
 							local strHero = GetHeroName(GetHero(iSide));
 							local iPositionXCaster = -1;
@@ -2543,7 +2543,7 @@
 								iPositionXCaster = 13;
 							end;
 							local itemCreatureCaster = Thread_Command_AddCreature(iSide, CREATURE_ACADEMY_TOOL, H55SMOD_HeroLevel[strHero] * 1, iPositionXCaster, 1);
-							startThread(Thread_Command_UnitCastAreaSpell_UseMana, itemCreatureCaster, SPELL_ABILITY_CALL_STORM, itemCreatureTarget["iPositionX"], itemCreatureTarget["iPositionY"]);
+							startThread(Thread_Command_UnitCastAreaSpell_UseMana, itemCreatureCaster, SPELL_ABILITY_CALL_STORM, objUnitTarget["iPositionX"], objUnitTarget["iPositionY"]);
 							sleep(20);
 							startThread(Thread_Command_RemoveCombatUnit_Uncheck, itemCreatureCaster);
 							sleep(20);
@@ -2793,10 +2793,12 @@
 							combatSetPause(1);
 							local iCurrentManaPre = GetUnitManaPoints(strHeroName);
 							for i, strCreatureTarget in arrUnitName do
-								startThread(Thread_Command_UnitCastAimedSpell_UseMana, strHeroName, SPELL_LIGHTNING_BOLT, strCreatureTarget);
-								sleep(20);
-								SetUnitManaPoints(strHeroName, iCurrentManaPre);
-								repeat sleep(1); until GetUnitManaPoints(strHeroName) >= iCurrentManaPre;
+								if IsCombatUnit(strCreatureTarget) ~= nil	and GetCreatureNumber(strCreatureTarget) > 0 then
+									startThread(Thread_Command_UnitCastAimedSpell_UseMana, strHeroName, SPELL_LIGHTNING_BOLT, strCreatureTarget);
+									sleep(20);
+									SetUnitManaPoints(strHeroName, iCurrentManaPre);
+									repeat sleep(1); until GetUnitManaPoints(strHeroName) >= iCurrentManaPre;
+								end;
 							end;
 							combatSetPause(nil);
 						end;
@@ -5729,15 +5731,15 @@
 			local strUnitName = itemUnit["strUnitName"];
 			if GetUnitSide(strUnitName) == iSide then
 				if itemUnit["iUnitType"] == CREATURE_DEATH_KNIGHT then
-					local iChance = 25;
+					local iChance = 12.5;
 					local strHeroLordHaart = "LordHaart";
 					if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHeroLordHaart then
-						iChance = 50;
+						iChance = 25;
 						if TTH_SKILL_UPGRADE_MASTERY_COMBAT_HERO[iSide] == 1 then
-							iChance = 75;
+							iChance = 37.5;
 						end;
 						if TTH_SKILL_UPGRADE_SHANTIRI_COMBAT_HERO[iSide] == 1 then
-							iChance = 100;
+							iChance = 50;
 						end;
 					end;
 					increaseContinuousChance(strUnitName, iChance);

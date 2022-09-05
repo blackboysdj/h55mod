@@ -9304,9 +9304,11 @@
         TTH_PATH.Talent["Brem"]["Desc"] = TTH_PATH.Talent["Brem"]["Pre"].."Desc.txt";
       -- RedHeavenHero06 17 加布里埃尔
         TTH_PATH.Talent["RedHeavenHero06"] = {};
-        TTH_PATH.Talent["RedHeavenHero06"]["Pre"] = TTH_PATH.Talent["Pre"].."017/";
+        TTH_PATH.Talent["RedHeavenHero06"]["Pre"] = TTH_PATH.Talent["Pre"].."017-RedHeavenHero06/";
         TTH_PATH.Talent["RedHeavenHero06"]["Text"] = TTH_PATH.Talent["RedHeavenHero06"]["Pre"].."Text.txt";
         TTH_PATH.Talent["RedHeavenHero06"]["NotEnoughTimes"] = TTH_PATH.Talent["RedHeavenHero06"]["Pre"].."NotEnoughTimes.txt";
+        TTH_PATH.Talent["RedHeavenHero06"]["OptionTemplate"] = TTH_PATH.Talent["RedHeavenHero06"]["Pre"].."OptionTemplate.txt";
+        TTH_PATH.Talent["RedHeavenHero06"]["NoSuitableMine"] = TTH_PATH.Talent["RedHeavenHero06"]["Pre"].."NoSuitableMine.txt";
         TTH_PATH.Talent["RedHeavenHero06"]["Confirm"] = TTH_PATH.Talent["RedHeavenHero06"]["Pre"].."Confirm.txt";
         TTH_PATH.Talent["RedHeavenHero06"]["Success"] = TTH_PATH.Talent["RedHeavenHero06"]["Pre"].."Success.txt";
       -- Metlirn 022 安文
@@ -9682,6 +9684,25 @@
         TTH_PATH.Artifact["Legion"][ARTIFACT_LEGION_EXPERT] = {};
         TTH_PATH.Artifact["Legion"][ARTIFACT_LEGION_EXPERT]["Pre"] = TTH_PATH.Artifact["Legion"]["Pre"].."109/";
         TTH_PATH.Artifact["Legion"][ARTIFACT_LEGION_EXPERT]["Text"] = TTH_PATH.Artifact["Legion"][ARTIFACT_LEGION_EXPERT]["Pre"].."Text.txt";
+
+      -- ARTIFACT_RES_BASIC 098 矮人十字镐
+      -- ARTIFACT_RES_ADVANCED 099 育龙者的魔法盒
+      -- ARTIFACT_RES_EXPERT 028 无尽黄金麻袋
+        TTH_PATH.Artifact["Mine"] = {};
+        TTH_PATH.Artifact["Mine"]["Pre"] = TTH_PATH.Artifact["Pre"].."Mine/";
+        TTH_PATH.Artifact["Mine"]["OptionTemplate"] = TTH_PATH.Artifact["Mine"]["Pre"].."OptionTemplate.txt";
+        TTH_PATH.Artifact["Mine"]["NoSuitableMine"] = TTH_PATH.Artifact["Mine"]["Pre"].."NoSuitableMine.txt";
+        TTH_PATH.Artifact["Mine"]["Confirm"] = TTH_PATH.Artifact["Mine"]["Pre"].."Confirm.txt";
+        TTH_PATH.Artifact["Mine"]["Success"] = TTH_PATH.Artifact["Mine"]["Pre"].."Success.txt";
+        TTH_PATH.Artifact["Mine"][ARTIFACT_RES_BASIC] = {};
+        TTH_PATH.Artifact["Mine"][ARTIFACT_RES_BASIC]["Pre"] = TTH_PATH.Artifact["Mine"]["Pre"].."098/";
+        TTH_PATH.Artifact["Mine"][ARTIFACT_RES_BASIC]["Text"] = TTH_PATH.Artifact["Mine"][ARTIFACT_RES_BASIC]["Pre"].."Text.txt";
+        TTH_PATH.Artifact["Mine"][ARTIFACT_RES_ADVANCED] = {};
+        TTH_PATH.Artifact["Mine"][ARTIFACT_RES_ADVANCED]["Pre"] = TTH_PATH.Artifact["Mine"]["Pre"].."099/";
+        TTH_PATH.Artifact["Mine"][ARTIFACT_RES_ADVANCED]["Text"] = TTH_PATH.Artifact["Mine"][ARTIFACT_RES_ADVANCED]["Pre"].."Text.txt";
+        TTH_PATH.Artifact["Mine"][ARTIFACT_RES_EXPERT] = {};
+        TTH_PATH.Artifact["Mine"][ARTIFACT_RES_EXPERT]["Pre"] = TTH_PATH.Artifact["Mine"]["Pre"].."028/";
+        TTH_PATH.Artifact["Mine"][ARTIFACT_RES_EXPERT]["Text"] = TTH_PATH.Artifact["Mine"][ARTIFACT_RES_EXPERT]["Pre"].."Text.txt";
 
       -- ARTIFACT_ENDLESS_BAG_OF_GOLD 029 军团金像
       -- ARTIFACT_HORN_OF_PLENTY 092 丰收之角
@@ -10068,6 +10089,11 @@
               , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeNathaniel"
               , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeNathaniel"
             }
+            , ["RedHeavenHero06"] = {
+              ["Text"] = TTH_PATH.Talent["RedHeavenHero06"]["Text"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeRedHeavenHero06"
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeRedHeavenHero06"
+            }
             , ["Ildar"] = {
               ["Text"] = TTH_PATH.Talent["Ildar"]["Text"]
               , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeIldar"
@@ -10091,10 +10117,12 @@
             , ["Marder"] = {
               ["Text"] = TTH_PATH.Talent["Marder"]["Text"]
               , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeMarder"
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeMarder"
             }
             , ["Almegir"] = {
               ["Text"] = TTH_PATH.Talent["Almegir"]["Text"]
               , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeAlmegir"
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeAlmegir"
             }            
             , ["Menel"] = {
               ["Text"] = TTH_PATH.Talent["Menel"]["Active"]["Text"]
@@ -10406,6 +10434,21 @@
             ["Text"] = TTH_PATH.Artifact["Legion"][ARTIFACT_LEGION_EXPERT]["Text"]
             , ["NeedWear"] = TTH_ENUM.No
             , [TTH_ENUM.FuncAtGate] = "TTH_ARTI.active109"
+          }
+          , [ARTIFACT_RES_BASIC] = {
+            ["Text"] = TTH_PATH.Artifact["Mine"][ARTIFACT_RES_BASIC]["Text"]
+            , ["NeedWear"] = TTH_ENUM.No
+            , [TTH_ENUM.FuncNotAtGate] = "TTH_ARTI.active098"
+          }
+          , [ARTIFACT_RES_ADVANCED] = {
+            ["Text"] = TTH_PATH.Artifact["Mine"][ARTIFACT_RES_ADVANCED]["Text"]
+            , ["NeedWear"] = TTH_ENUM.No
+            , [TTH_ENUM.FuncNotAtGate] = "TTH_ARTI.active099"
+          }
+          , [ARTIFACT_RES_EXPERT] = {
+            ["Text"] = TTH_PATH.Artifact["Mine"][ARTIFACT_RES_EXPERT]["Text"]
+            , ["NeedWear"] = TTH_ENUM.No
+            , [TTH_ENUM.FuncNotAtGate] = "TTH_ARTI.active028"
           }
           , [ARTIFACT_ENDLESS_BAG_OF_GOLD] = {
             ["Text"] = TTH_PATH.Artifact["Economic"][ARTIFACT_ENDLESS_BAG_OF_GOLD]["Text"]
@@ -16021,6 +16064,23 @@
         , "BUILDING_GOLD_MINE"
         , "BUILDING_ABANDONED_MINE"
       };
+      TTH_TABLE.MineOnAdvMapBasic = {
+        "BUILDING_SAWMILL"
+        , "BUILDING_ORE_PIT"
+        , "BUILDING_ABANDONED_MINE"
+      };
+      TTH_TABLE.MineOnAdvMapAdvanced = {
+        "BUILDING_ORE_PIT"
+        , "BUILDING_ALCHEMIST_LAB"
+        , "BUILDING_CRYSTAL_CAVERN"
+        , "BUILDING_SULFUR_DUNE"
+        , "BUILDING_GEM_POND"
+        , "BUILDING_ABANDONED_MINE"
+      };
+      TTH_TABLE.MineOnAdvMapExpert = {
+        "BUILDING_GOLD_MINE"
+        , "BUILDING_ABANDONED_MINE"
+      };
 
     -- 大地图上的兵种前哨建筑
       TTH_TABLE.DwellingOnAdvMap = {
@@ -18070,7 +18130,187 @@
         , ["Thant"] = {
           ["CastType"] = TTH_ENUM.Cast
           , ["PreCreature"] = {
-            [CREATURE_LICH] = {
+            [CREATURE_SKELETON] = {
+              ["Scale"] = 5
+              , ["PostCreatureId"] = CREATURE_MUMMY
+              , ["MaxGcd"] = 5
+              , ["HeroStep"] = 5
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 1
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1200
+              }
+            }
+            , [CREATURE_SKELETON_ARCHER] = {
+              ["Scale"] = 5
+              , ["PostCreatureId"] = CREATURE_MUMMY
+              , ["MaxGcd"] = 5
+              , ["HeroStep"] = 5
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 1
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1200
+              }
+            }
+            , [CREATURE_SKELETON_WARRIOR] = {
+              ["Scale"] = 5
+              , ["PostCreatureId"] = CREATURE_MUMMY
+              , ["MaxGcd"] = 5
+              , ["HeroStep"] = 5
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 1
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1200
+              }
+            }
+            , [CREATURE_WALKING_DEAD] = {
+              ["Scale"] = 4
+              , ["PostCreatureId"] = CREATURE_MUMMY
+              , ["MaxGcd"] = 5
+              , ["HeroStep"] = 5
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 1
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1200
+              }
+            }
+            , [CREATURE_ZOMBIE] = {
+              ["Scale"] = 4
+              , ["PostCreatureId"] = CREATURE_MUMMY
+              , ["MaxGcd"] = 5
+              , ["HeroStep"] = 5
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 1
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1200
+              }
+            }
+            , [CREATURE_DISEASE_ZOMBIE] = {
+              ["Scale"] = 4
+              , ["PostCreatureId"] = CREATURE_MUMMY
+              , ["MaxGcd"] = 5
+              , ["HeroStep"] = 5
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 1
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1200
+              }
+            }
+            , [CREATURE_MANES] = {
+              ["Scale"] = 3
+              , ["PostCreatureId"] = CREATURE_MUMMY
+              , ["MaxGcd"] = 5
+              , ["HeroStep"] = 5
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 1
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1200
+              }
+            }
+            , [CREATURE_GHOST] = {
+              ["Scale"] = 3
+              , ["PostCreatureId"] = CREATURE_MUMMY
+              , ["MaxGcd"] = 5
+              , ["HeroStep"] = 5
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 1
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1200
+              }
+            }
+            , [CREATURE_POLTERGEIST] = {
+              ["Scale"] = 3
+              , ["PostCreatureId"] = CREATURE_MUMMY
+              , ["MaxGcd"] = 5
+              , ["HeroStep"] = 5
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 1
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1200
+              }
+            }
+            , [CREATURE_VAMPIRE] = {
+              ["Scale"] = 2
+              , ["PostCreatureId"] = CREATURE_MUMMY
+              , ["MaxGcd"] = 5
+              , ["HeroStep"] = 5
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 1
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1200
+              }
+            }
+            , [CREATURE_VAMPIRE_LORD] = {
+              ["Scale"] = 2
+              , ["PostCreatureId"] = CREATURE_MUMMY
+              , ["MaxGcd"] = 5
+              , ["HeroStep"] = 5
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 1
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1200
+              }
+            }
+            , [CREATURE_NOSFERATU] = {
+              ["Scale"] = 2
+              , ["PostCreatureId"] = CREATURE_MUMMY
+              , ["MaxGcd"] = 5
+              , ["HeroStep"] = 5
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 1
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1200
+              }
+            }
+            , [CREATURE_LICH] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_MUMMY
               , ["MaxGcd"] = 5
@@ -18078,11 +18318,11 @@
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
-                , [MERCURY] = 0
+                , [MERCURY] = 1
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 800
+                , [GOLD] = 1200
               }
             }
             , [CREATURE_DEMILICH] = {
@@ -18093,11 +18333,11 @@
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
-                , [MERCURY] = 0
+                , [MERCURY] = 1
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 800
+                , [GOLD] = 1200
               }
             }
             , [CREATURE_LICH_MASTER] = {
@@ -18108,11 +18348,101 @@
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
-                , [MERCURY] = 0
+                , [MERCURY] = 1
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 800
+                , [GOLD] = 1200
+              }
+            }
+            , [CREATURE_WIGHT] = {
+              ["Scale"] = 1
+              , ["PostCreatureId"] = CREATURE_MUMMY
+              , ["MaxGcd"] = 5
+              , ["HeroStep"] = 5
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 1
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1200
+              }
+            }
+            , [CREATURE_WRAITH] = {
+              ["Scale"] = 1
+              , ["PostCreatureId"] = CREATURE_MUMMY
+              , ["MaxGcd"] = 5
+              , ["HeroStep"] = 5
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 1
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1200
+              }
+            }
+            , [CREATURE_BANSHEE] = {
+              ["Scale"] = 1
+              , ["PostCreatureId"] = CREATURE_MUMMY
+              , ["MaxGcd"] = 5
+              , ["HeroStep"] = 5
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 1
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1200
+              }
+            }
+            , [CREATURE_BONE_DRAGON] = {
+              ["Scale"] = 1
+              , ["PostCreatureId"] = CREATURE_MUMMY
+              , ["MaxGcd"] = 5
+              , ["HeroStep"] = 5
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 1
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1200
+              }
+            }
+            , [CREATURE_SHADOW_DRAGON] = {
+              ["Scale"] = 1
+              , ["PostCreatureId"] = CREATURE_MUMMY
+              , ["MaxGcd"] = 5
+              , ["HeroStep"] = 5
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 1
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1200
+              }
+            }
+            , [CREATURE_HORROR_DRAGON] = {
+              ["Scale"] = 1
+              , ["PostCreatureId"] = CREATURE_MUMMY
+              , ["MaxGcd"] = 5
+              , ["HeroStep"] = 5
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 1
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1200
               }
             }
           }
@@ -18120,7 +18450,232 @@
         , ["LordHaart"] = {
           ["CastType"] = TTH_ENUM.Cast
           , ["PreCreature"] = {
-            [CREATURE_WIGHT] = {
+            [CREATURE_SKELETON] = {
+              ["Scale"] = 6
+              , ["PostCreatureId"] = CREATURE_DEATH_KNIGHT
+              , ["MaxGcd"] = 6
+              , ["HeroStep"] = 6
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 1
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1500
+              }
+            }
+            , [CREATURE_SKELETON_ARCHER] = {
+              ["Scale"] = 6
+              , ["PostCreatureId"] = CREATURE_DEATH_KNIGHT
+              , ["MaxGcd"] = 6
+              , ["HeroStep"] = 6
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 1
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1500
+              }
+            }
+            , [CREATURE_SKELETON_WARRIOR] = {
+              ["Scale"] = 6
+              , ["PostCreatureId"] = CREATURE_DEATH_KNIGHT
+              , ["MaxGcd"] = 6
+              , ["HeroStep"] = 6
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 1
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1500
+              }
+            }
+            , [CREATURE_WALKING_DEAD] = {
+              ["Scale"] = 5
+              , ["PostCreatureId"] = CREATURE_DEATH_KNIGHT
+              , ["MaxGcd"] = 6
+              , ["HeroStep"] = 6
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 1
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1500
+              }
+            }
+            , [CREATURE_ZOMBIE] = {
+              ["Scale"] = 5
+              , ["PostCreatureId"] = CREATURE_DEATH_KNIGHT
+              , ["MaxGcd"] = 6
+              , ["HeroStep"] = 6
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 1
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1500
+              }
+            }
+            , [CREATURE_DISEASE_ZOMBIE] = {
+              ["Scale"] = 5
+              , ["PostCreatureId"] = CREATURE_DEATH_KNIGHT
+              , ["MaxGcd"] = 6
+              , ["HeroStep"] = 6
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 1
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1500
+              }
+            }
+            , [CREATURE_MANES] = {
+              ["Scale"] = 4
+              , ["PostCreatureId"] = CREATURE_DEATH_KNIGHT
+              , ["MaxGcd"] = 6
+              , ["HeroStep"] = 6
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 1
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1500
+              }
+            }
+            , [CREATURE_GHOST] = {
+              ["Scale"] = 4
+              , ["PostCreatureId"] = CREATURE_DEATH_KNIGHT
+              , ["MaxGcd"] = 6
+              , ["HeroStep"] = 6
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 1
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1500
+              }
+            }
+            , [CREATURE_POLTERGEIST] = {
+              ["Scale"] = 4
+              , ["PostCreatureId"] = CREATURE_DEATH_KNIGHT
+              , ["MaxGcd"] = 6
+              , ["HeroStep"] = 6
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 1
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1500
+              }
+            }
+            , [CREATURE_VAMPIRE] = {
+              ["Scale"] = 3
+              , ["PostCreatureId"] = CREATURE_DEATH_KNIGHT
+              , ["MaxGcd"] = 6
+              , ["HeroStep"] = 6
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 1
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1500
+              }
+            }
+            , [CREATURE_VAMPIRE_LORD] = {
+              ["Scale"] = 3
+              , ["PostCreatureId"] = CREATURE_DEATH_KNIGHT
+              , ["MaxGcd"] = 6
+              , ["HeroStep"] = 6
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 1
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1500
+              }
+            }
+            , [CREATURE_NOSFERATU] = {
+              ["Scale"] = 3
+              , ["PostCreatureId"] = CREATURE_DEATH_KNIGHT
+              , ["MaxGcd"] = 6
+              , ["HeroStep"] = 6
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 1
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1500
+              }
+            }
+            , [CREATURE_LICH] = {
+              ["Scale"] = 2
+              , ["PostCreatureId"] = CREATURE_DEATH_KNIGHT
+              , ["MaxGcd"] = 6
+              , ["HeroStep"] = 6
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 1
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1500
+              }
+            }
+            , [CREATURE_DEMILICH] = {
+              ["Scale"] = 2
+              , ["PostCreatureId"] = CREATURE_DEATH_KNIGHT
+              , ["MaxGcd"] = 6
+              , ["HeroStep"] = 6
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 1
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1500
+              }
+            }
+            , [CREATURE_LICH_MASTER] = {
+              ["Scale"] = 2
+              , ["PostCreatureId"] = CREATURE_DEATH_KNIGHT
+              , ["MaxGcd"] = 6
+              , ["HeroStep"] = 6
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 1
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1500
+              }
+            }
+            , [CREATURE_WIGHT] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_DEATH_KNIGHT
               , ["MaxGcd"] = 6
@@ -18128,11 +18683,11 @@
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
-                , [MERCURY] = 0
+                , [MERCURY] = 1
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 1200
+                , [GOLD] = 1500
               }
             }
             , [CREATURE_WRAITH] = {
@@ -18143,11 +18698,11 @@
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
-                , [MERCURY] = 0
+                , [MERCURY] = 1
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 1200
+                , [GOLD] = 1500
               }
             }
             , [CREATURE_BANSHEE] = {
@@ -18158,11 +18713,56 @@
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
-                , [MERCURY] = 0
+                , [MERCURY] = 1
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 1200
+                , [GOLD] = 1500
+              }
+            }
+            , [CREATURE_BONE_DRAGON] = {
+              ["Scale"] = 1
+              , ["PostCreatureId"] = CREATURE_DEATH_KNIGHT
+              , ["MaxGcd"] = 6
+              , ["HeroStep"] = 6
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 1
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1500
+              }
+            }
+            , [CREATURE_SHADOW_DRAGON] = {
+              ["Scale"] = 1
+              , ["PostCreatureId"] = CREATURE_DEATH_KNIGHT
+              , ["MaxGcd"] = 6
+              , ["HeroStep"] = 6
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 1
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1500
+              }
+            }
+            , [CREATURE_HORROR_DRAGON] = {
+              ["Scale"] = 1
+              , ["PostCreatureId"] = CREATURE_DEATH_KNIGHT
+              , ["MaxGcd"] = 6
+              , ["HeroStep"] = 6
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 1
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1500
               }
             }
           }

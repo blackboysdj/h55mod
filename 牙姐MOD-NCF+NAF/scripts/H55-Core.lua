@@ -1077,6 +1077,98 @@ doFile("/scripts/H55-Settings.lua");
 					end;
 				end;
 
+			-- 计算城镇角度
+				function TTH_GLOBAL.calcTownRotateAngle(iPosX, iPosY, iPosZ, iAngle, arrTile, enumTile)
+					local bIsPassable = TTH_ENUM.No;
+					local iMapSize = GetTerrainSize();
+					if length(arrTile["x"]) == 0 then
+						return 1;
+					end;
+					for i = 0, length(arrTile["x"]) - 1 do
+						local iDiffX = 0;
+						local iDiffY = 0;
+						if iAngle == 1 then 
+							iDiffX = arrTile["x"][i]; 
+							iDiffY = arrTile["y"][i]; 
+						end;
+						if iAngle == 2 then 
+							iDiffX = -arrTile["y"][i]; 
+							iDiffY = arrTile["x"][i]; 
+						end;
+						if iAngle == 3 then 
+							iDiffX = -arrTile["x"][i]; 
+							iDiffY = -arrTile["y"][i]; 
+						end;
+						if iAngle == 4 then 
+							iDiffX = arrTile["y"][i]; 
+							iDiffY = -arrTile["x"][i]; 
+						end;
+						if iMapSize == iPosX + iDiffX or iMapSize == iPosY + iDiffY then
+							bIsPassable = TTH_ENUM.No;
+						elseif IsTilePassable(iPosX + iDiffX, iPosY + iDiffY, iPosZ) ~= nil then
+							bIsPassable = TTH_ENUM.Yes;
+						end;
+						if bIsPassable ~= enumTile then
+							return 0;
+						end; 
+					end;
+					return 1;
+				end;
+
+			-- 获取城镇角度
+				TTH_VARI.arrTownRotate = {};
+				function TTH_GLOBAL.getTownRotate(strTown)
+					if TTH_VARI.arrTownRotate[strTown] ~= nil then
+						return TTH_VARI.arrTownRotate[strTown];
+					end;
+					local enumRotate = 0;
+					local iIndexEntry = 0;
+					local iFlag = 0;
+					local iTownRace = TTH_GLOBAL.getRace8Town(strTown);
+					local iPosX, iPosY, iPosZ = GetObjectPosition(strTown);
+					while iFlag < 2 and iIndexEntry < TTH_TABLE.TownTile[iTownRace]["entries"] + 1 do
+						enumRotate = 0;
+						local arrActive = TTH_TABLE.TownTile[iTownRace]["activeTiles"][iIndexEntry];
+						local arrBlocked = TTH_TABLE.TownTile[iTownRace]["blockedTiles"][iIndexEntry];
+						while iFlag < 2 and enumRotate < 4 do
+							iFlag = 0;
+							enumRotate = enumRotate + 1;
+							iFlag = iFlag + TTH_GLOBAL.calcTownRotateAngle(iPosX, iPosY, iPosZ, enumRotate, arrActive , TTH_ENUM.Yes);
+							iFlag = iFlag + TTH_GLOBAL.calcTownRotateAngle(iPosX, iPosY, iPosZ, enumRotate, arrBlocked, TTH_ENUM.No);
+						end
+						iIndexEntry = iIndexEntry + 1;
+					end;
+					print("This Town Rotation is "..enumRotate);
+					TTH_VARI.arrTownRotate[strTown] = enumRotate;
+					return enumRotate;
+				end;
+
+			-- 获取城门坐标
+				function TTH_GLOBAL.getTownPosition4Gate(strTown)
+					local iDiffX = 0;
+					local iDiffY = 0;
+					local iTownRace = TTH_GLOBAL.getRace8Town(strTown);
+					local iPosX, iPosY, iPosZ = GetObjectPosition(strTown);
+					local enumRotate = TTH_GLOBAL.getTownRotate(strTown);
+					if enumRotate == 1 then 
+						iDiffX = TTH_TABLE.TownTile[iTownRace]["activeTiles"][0]["x"][0];
+						iDiffY = TTH_TABLE.TownTile[iTownRace]["activeTiles"][0]["y"][0]; 
+					end;
+					if enumRotate == 2 then 
+						iDiffX = -TTH_TABLE.TownTile[iTownRace]["activeTiles"][0]["y"][0];
+						iDiffY = TTH_TABLE.TownTile[iTownRace]["activeTiles"][0]["x"][0]; 
+					end;
+					if enumRotate == 3 then 
+						iDiffX = -TTH_TABLE.TownTile[iTownRace]["activeTiles"][0]["x"][0];
+						iDiffY = -TTH_TABLE.TownTile[iTownRace]["activeTiles"][0]["y"][0]; 
+					end;
+					if enumRotate == 4 then 
+						iDiffX = TTH_TABLE.TownTile[iTownRace]["activeTiles"][0]["y"][0];
+						iDiffY = -TTH_TABLE.TownTile[iTownRace]["activeTiles"][0]["x"][0]; 
+					end;
+					return iPosX + iDiffX, iPosY + iDiffY, iPosZ;
+				end;
+
 		-- 游戏准备阶段
 			-- 从初始状态查验是否为AI
 				function TTH_GLOBAL.detectPlayerState(iPlayer)
@@ -1166,10 +1258,10 @@ doFile("/scripts/H55-Settings.lua");
 				end;
 
 			-- 初始化领地半径 根据地图大小
-				TTH_VARI.TerritoryRadius = 60;
+				TTH_VARI.TerritoryRadius = 68;
 				function TTH_GLOBAL.initTerritoryRadius()
 					local iMapSize = GetTerrainSize();
-					TTH_VARI.TerritoryRadius = TTH_COMMON.round(iMapSize / 4 - 20);
+					TTH_VARI.TerritoryRadius = TTH_COMMON.round(iMapSize / 4 - 12);
 				end;
 
 			-- 初始化城镇列表
@@ -1972,8 +2064,8 @@ doFile("/scripts/H55-Settings.lua");
 						GiveHeroSkill(strHero, HERO_SKILL_DESTRUCTIVE_MAGIC);
 						GiveHeroSkill(strHero, HERO_SKILL_DESTRUCTIVE_MAGIC);
 						GiveHeroSkill(strHero, HERO_SKILL_DESTRUCTIVE_MAGIC);
-						GiveHeroSkill(strHero, HERO_SKILL_INVOCATION);
-						GiveHeroSkill(strHero, HERO_SKILL_INVOCATION);
+						GiveHeroSkill(strHero, HERO_SKILL_LEARNING);
+						GiveHeroSkill(strHero, HERO_SKILL_LEARNING);
 						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_ARCANE_TRAINING);
 						sleep(1);
@@ -1985,9 +2077,9 @@ doFile("/scripts/H55-Settings.lua");
 						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_MASTER_OF_LIGHTNINGS);
 						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_CASTER_CERTIFICATE);
+						GiveHeroSkill(strHero, HERO_SKILL_INTELLIGENCE);
 						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_EMPOWERED_SPELLS);
+						GiveHeroSkill(strHero, HERO_SKILL_ACADEMY_AWARD);
 						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_ABSOLUTE_WIZARDY);
 					end;
@@ -2283,8 +2375,16 @@ doFile("/scripts/H55-Settings.lua");
 				function TTH_GLOBAL.signStartSkill(iPlayer)
 					TTH_VARI.startSkill4Player[iPlayer] = TTH_ENUM.Yes;
 				end;
-				function TTH_GLOBAL.implStartSkill(strHero)
-					local iPlayer = TTH_GLOBAL.GetObjectOwner(strHero);
+				function TTH_GLOBAL.confirmStartSkill(iPlayer, strHero)
+					local strText =	{
+						TTH_TABLE.KingManagePath["BonusStartSkill"]["Confirm"]["Text"]
+						;strHeroName=TTH_TABLE.Hero[strHero]["Text"]
+					};	
+					local strCallbackOk = "TTH_GLOBAL.implStartSkill("..iPlayer..","..TTH_COMMON.psp(strHero)..")";
+					local strCallbackCancel = "TTH_COMMON.cancelOption()";
+					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strText, strCallbackOk, strCallbackCancel);
+				end;
+				function TTH_GLOBAL.implStartSkill(iPlayer, strHero)
 					if TTH_VARI.startSkill4Player[iPlayer] == TTH_ENUM.Yes and TTH_VARI.startSkill4Player[strHero] == nil then
 						TTH_VARI.startSkill4Player[strHero] = TTH_ENUM.Yes;
 						local arrMasteryOption = {};
@@ -2295,9 +2395,19 @@ doFile("/scripts/H55-Settings.lua");
 						end;
 						local iLenOption = length(arrMasteryOption);
 						if iLenOption > 0 then
+							TTH_VARI.startSkill4Player[iPlayer] = TTH_ENUM.No;
 							local iRandomIndex = random(length(arrMasteryOption));
 							local iRandomMasteryId = arrMasteryOption[iRandomIndex];
 							GiveHeroSkill(strHero, iRandomMasteryId);
+							local strMasteryName = TTH_TABLE.Mastery[iRandomMasteryId]["Text"];
+							local strText = {
+								TTH_TABLE.KingManagePath["BonusStartSkill"]["Success"]["Text"]
+								;strMasteryName=strMasteryName
+							}
+							TTH_GLOBAL.sign(strHero, strText);
+						else
+							local strText =	TTH_TABLE.KingManagePath["BonusStartSkill"]["Fail"]["Text"];
+							TTH_GLOBAL.sign(strHero, strText);
 						end;
 					end;
 				end;
@@ -2452,7 +2562,6 @@ doFile("/scripts/H55-Settings.lua");
 					if TTH_COMMON.getTargetCount(TTH_VARI.playerStatus, 0) == 1 then
 						if TTH_VARI.switchSingleton == 0 then
 							TTH_VARI.switchSingleton = 1;
-							TTH_TABLE.KingManageOption[8] = nil;
 							startThread(TTH_MAIN.init);
 							TTH_COMMON.consoleSetGameVar("TTH_Var_SwitchSingleton", TTH_VARI.switchSingleton);
 						end;
@@ -2679,7 +2788,7 @@ doFile("/scripts/H55-Settings.lua");
 				end;
 			end;
 
-		-- 执行传送
+		-- 执行传送指定位置
 			function TTH_GLOBAL.teleHero2Point(iPlayer, strHero, strPoint, bIsDeviation)
 				local iPosX, iPosY, iPosZ = GetObjectPosition(strPoint);
 				Play2DSoundForPlayers(GetPlayerFilter(iPlayer), H55_SndTPStart);
@@ -2692,6 +2801,25 @@ doFile("/scripts/H55-Settings.lua");
 				TTH_COMMON.wakeup();
 				sleep(8);
 				Play2DSoundForPlayers(GetPlayerFilter(iPlayer), H55_SndTPEnd);
+			end;
+
+		-- 执行传送到城门
+			TTH_TABLE.Rotate = {
+				[1] = 0
+				, [2] = 90
+				, [3] = 180
+				, [4] = 270
+			}
+			function TTH_GLOBAL.teleHero2TownGate(iPlayer, strHero, strTown)
+				local iPosX, iPosY, iPosZ = TTH_GLOBAL.getTownPosition4Gate(strTown);
+				Play2DSoundForPlayers(GetPlayerFilter(iPlayer), H55_SndTPStart);
+				PlayVisualEffect("/Effects/_(Effect)/Spells/townportal_start.xdb#xpointer(/Effect)", strTown, "", 0, 0, 0, 0, iPosZ);
+				SetObjectPosition(strHero, iPosX, iPosY, iPosZ);
+				TTH_COMMON.wakeup();
+				sleep(8);
+				Play2DSoundForPlayers(GetPlayerFilter(iPlayer), H55_SndTPEnd);
+				local enumRotate = TTH_GLOBAL.getTownRotate(strTown);
+				SetObjectRotation(strHero, TTH_TABLE.Rotate[enumRotate]);
 			end;
 
 		-- 获取
@@ -2845,6 +2973,21 @@ doFile("/scripts/H55-Settings.lua");
 						end;
 					end;
 					return strTown;
+				end;
+
+			-- 获取城门是否有英雄 -- 0: 否; 1: 是
+				function TTH_GLOBAL.isGateHasHero(iPlayer, strTown)
+					local arrHero = GetPlayerHeroes(iPlayer);
+					local bIsHeroAtTownGate = 0;
+					for iIndexHero, strHero in arrHero do
+						if TTH_GLOBAL.isHeroAtGarrison(strHero) == TTH_ENUM.No then
+							if IsHeroInTown(strHero, strTown, 1, 0) == not nil then
+								bIsHeroAtTownGate = 1;
+								break;
+							end;
+						end;
+					end;
+					return bIsHeroAtTownGate;
 				end;
 
 			-- 获取内城是否有英雄 -- 0: 否; 1: 是
@@ -4563,7 +4706,6 @@ doFile("/scripts/H55-Settings.lua");
 				  , HERO_SKILL_SUMMONING_MAGIC
 				  , HERO_SKILL_DESTRUCTIVE_MAGIC
 				  , HERO_SKILL_SORCERY
-				  , HERO_SKILL_TRAINING
 				}
 			};
 			TTH_TABLE.WitchHutMasteryGroupMagic = {
@@ -4591,7 +4733,6 @@ doFile("/scripts/H55-Settings.lua");
 				  , HERO_SKILL_SUMMONING_MAGIC
 				  , HERO_SKILL_DESTRUCTIVE_MAGIC
 				  , HERO_SKILL_SORCERY
-				  , HERO_SKILL_INVOCATION
 				}
 			};
 			TTH_TABLE.WitchHutMasteryGroupBarbarian = {
@@ -4611,7 +4752,6 @@ doFile("/scripts/H55-Settings.lua");
 				  , HERO_SKILL_SHATTER_SUMMONING_MAGIC
 				  , HERO_SKILL_SHATTER_DESTRUCTIVE_MAGIC
 				  , HERO_SKILL_VOICE
-				  , HERO_SKILL_TRAINING
 				}
 			};
 			TTH_TABLE.WitchHutTypeOption = {
@@ -4634,7 +4774,7 @@ doFile("/scripts/H55-Settings.lua");
 			function TTH_GLOBAL.initWitchHut(iPlayer, strHero)
 				for i, strBuildingName in TTH_VARI.arrBuilding["BUILDING_WITCH_HUT"] do
 					TTH_VARI.recordWitchHut[strBuildingName] = {
-						["MasteryId"] = random(13) + 1
+						["MasteryId"] = random(12) + 1
 						, ["ResetDay"] = 0
 					}
 					for iPlayer = PLAYER_1, PLAYER_8 do
@@ -4682,7 +4822,7 @@ doFile("/scripts/H55-Settings.lua");
 				if length(TTH_VARI.recordTop3WitchHutHumanVisit) == 0 then
 					if contains(TTH_VARI.recordTop3WitchHutHumanVisit, strBuildingName) == nil then
 						TTH_COMMON.push(TTH_VARI.recordTop3WitchHutHumanVisit, strBuildingName);
-						if H55_Witch_1_1 ~= 0 then
+						if H55_Witch_1_1 ~= 0 and H55_Witch_1_1 < 13 then
 							TTH_VARI.recordWitchHut[strBuildingName]["MasteryId"] = H55_Witch_1_1;
 						end;
 					end;
@@ -4690,7 +4830,7 @@ doFile("/scripts/H55-Settings.lua");
 				if length(TTH_VARI.recordTop3WitchHutHumanVisit) == 1 then
 					if contains(TTH_VARI.recordTop3WitchHutHumanVisit, strBuildingName) == nil then
 						TTH_COMMON.push(TTH_VARI.recordTop3WitchHutHumanVisit, strBuildingName);
-						if H55_Witch_2_1 ~= 0 then
+						if H55_Witch_2_1 ~= 0 and H55_Witch_2_1 < 13 then
 							TTH_VARI.recordWitchHut[strBuildingName]["MasteryId"] = H55_Witch_2_1;
 						end;
 					end;
@@ -4698,7 +4838,7 @@ doFile("/scripts/H55-Settings.lua");
 				if length(TTH_VARI.recordTop3WitchHutHumanVisit) == 2 then
 					if contains(TTH_VARI.recordTop3WitchHutHumanVisit, strBuildingName) == nil then
 						TTH_COMMON.push(TTH_VARI.recordTop3WitchHutHumanVisit, strBuildingName);
-						if H55_Witch_3_1 ~= 0 then
+						if H55_Witch_3_1 ~= 0 and H55_Witch_3_1 < 13 then
 							TTH_VARI.recordWitchHut[strBuildingName]["MasteryId"] = H55_Witch_3_1;
 						end;
 					end;
@@ -4723,7 +4863,7 @@ doFile("/scripts/H55-Settings.lua");
 			end;
 			function TTH_VISIT.resetWitchHut(strHero, strBuildingName)
 				TTH_VARI.recordWitchHut[strBuildingName] = {
-					["MasteryId"] = random(13) + 1
+					["MasteryId"] = random(12) + 1
 					, ["ResetDay"] = TTH_FINAL.WITCHHUT_RESET_DAY
 				};
 				local strPathMain = TTH_PATH.Visit["WitchHut"]["Success"];
@@ -6194,12 +6334,30 @@ doFile("/scripts/H55-Settings.lua");
 			            , SPELL_RESURRECT
 			          }
 			          , ["MassAndEmpowered"] = {
-			            SPELL_MASS_BLESS
-			            , SPELL_MASS_DISPEL
-			            , SPELL_MASS_STONESKIN
-			            , SPELL_MASS_DEFLECT_ARROWS
-			            , SPELL_MASS_BLOODLUST
-			            , SPELL_MASS_HASTE
+			            [1] = {
+			            	["Basic"] = SPELL_BLESS
+			            	, ["MaE"] = SPELL_MASS_BLESS
+			            }
+			            , [2] = {
+			            	["Basic"] = SPELL_DISPEL
+			            	, ["MaE"] = SPELL_MASS_DISPEL
+			            }
+			            , [3] = {
+			            	["Basic"] = SPELL_STONESKIN
+			            	, ["MaE"] = SPELL_MASS_STONESKIN
+			            }
+			            , [4] = {
+			            	["Basic"] = SPELL_DEFLECT_ARROWS
+			            	, ["MaE"] = SPELL_MASS_DEFLECT_ARROWS
+			            }
+			            , [5] = {
+			            	["Basic"] = SPELL_BLOODLUST
+			            	, ["MaE"] = SPELL_MASS_BLOODLUST
+			            }
+			            , [6] = {
+			            	["Basic"] = SPELL_HASTE
+			            	, ["MaE"] = SPELL_MASS_HASTE
+			            }
 			          }
 			        }
 			        , [HERO_SKILL_DARK_MAGIC] = {
@@ -6226,12 +6384,30 @@ doFile("/scripts/H55-Settings.lua");
 			            , SPELL_VAMPIRISM
 			          }
 			          , ["MassAndEmpowered"] = {
-			            SPELL_MASS_CURSE
-			            , SPELL_MASS_DISRUPTING_RAY
-			            , SPELL_MASS_SLOW
-			            , SPELL_MASS_FORGETFULNESS
-			            , SPELL_MASS_PLAGUE
-			            , SPELL_MASS_WEAKNESS
+			            [1] = {
+			            	["Basic"] = SPELL_CURSE
+			            	, ["MaE"] = SPELL_MASS_CURSE
+			            }
+			            , [2] = {
+			            	["Basic"] = SPELL_DISRUPTING_RAY
+			            	, ["MaE"] = SPELL_MASS_DISRUPTING_RAY
+			            }
+			            , [3] = {
+			            	["Basic"] = SPELL_SLOW
+			            	, ["MaE"] = SPELL_MASS_SLOW
+			            }
+			            , [4] = {
+			            	["Basic"] = SPELL_FORGETFULNESS
+			            	, ["MaE"] = SPELL_MASS_FORGETFULNESS
+			            }
+			            , [5] = {
+			            	["Basic"] = SPELL_PLAGUE
+			            	, ["MaE"] = SPELL_MASS_PLAGUE
+			            }
+			            , [6] = {
+			            	["Basic"] = SPELL_WEAKNESS
+			            	, ["MaE"] = SPELL_MASS_WEAKNESS
+			            }
 			          }
 			        }
 			        , [HERO_SKILL_SUMMONING_MAGIC] = {
@@ -6258,7 +6434,10 @@ doFile("/scripts/H55-Settings.lua");
 			            , SPELL_SUMMON_HIVE
 			          }
 			          , ["MassAndEmpowered"] = {
-			            SPELL_EMPOWERED_MAGIC_FIST
+			            [1] = {
+			            	["Basic"] = SPELL_MAGIC_FIST
+			            	, ["MaE"] = SPELL_EMPOWERED_MAGIC_FIST
+			            }
 			          }
 			        }
 			        , [HERO_SKILL_DESTRUCTIVE_MAGIC] = {
@@ -6285,17 +6464,50 @@ doFile("/scripts/H55-Settings.lua");
 			            , SPELL_DEEP_FREEZE
 			          }
 			          , ["MassAndEmpowered"] = {
-			            SPELL_EMPOWERED_MAGIC_ARROW
-			            , SPELL_EMPOWERED_LIGHTNING_BOLT
-			            , SPELL_EMPOWERED_ICE_BOLT
-			            , SPELL_EMPOWERED_FIREBALL
-			            , SPELL_EMPOWERED_FROST_RING
-			            , SPELL_EMPOWERED_CHAIN_LIGHTNING
-			            , SPELL_EMPOWERED_METEOR_SHOWER
-			            , SPELL_EMPOWERED_IMPLOSION
-			            , SPELL_EMPOWERED_ARMAGEDDON
-			            , SPELL_EMPOWERED_STONE_SPIKES
-			            , SPELL_EMPOWERED_DEEP_FREEZE
+			            [1] = {
+			            	["Basic"] = SPELL_MAGIC_ARROW
+			            	, ["MaE"] = SPELL_EMPOWERED_MAGIC_ARROW
+			            }
+			            , [2] = {
+			            	["Basic"] = SPELL_LIGHTNING_BOLT
+			            	, ["MaE"] = SPELL_EMPOWERED_LIGHTNING_BOLT
+			            }
+			            , [3] = {
+			            	["Basic"] = SPELL_ICE_BOLT
+			            	, ["MaE"] = SPELL_EMPOWERED_ICE_BOLT
+			            }
+			            , [4] = {
+			            	["Basic"] = SPELL_FIREBALL
+			            	, ["MaE"] = SPELL_EMPOWERED_FIREBALL
+			            }
+			            , [5] = {
+			            	["Basic"] = SPELL_FROST_RING
+			            	, ["MaE"] = SPELL_EMPOWERED_FROST_RING
+			            }
+			            , [6] = {
+			            	["Basic"] = SPELL_CHAIN_LIGHTNING
+			            	, ["MaE"] = SPELL_EMPOWERED_CHAIN_LIGHTNING
+			            }
+			            , [7] = {
+			            	["Basic"] = SPELL_METEOR_SHOWER
+			            	, ["MaE"] = SPELL_EMPOWERED_METEOR_SHOWER
+			            }
+			            , [8] = {
+			            	["Basic"] = SPELL_IMPLOSION
+			            	, ["MaE"] = SPELL_EMPOWERED_IMPLOSION
+			            }
+			            , [9] = {
+			            	["Basic"] = SPELL_ARMAGEDDON
+			            	, ["MaE"] = SPELL_EMPOWERED_ARMAGEDDON
+			            }
+			            , [10] = {
+			            	["Basic"] = SPELL_STONE_SPIKES
+			            	, ["MaE"] = SPELL_EMPOWERED_STONE_SPIKES
+			            }
+			            , [11] = {
+			            	["Basic"] = SPELL_DEEP_FREEZE
+			            	, ["MaE"] = SPELL_EMPOWERED_DEEP_FREEZE
+			            }
 			          }
 			        }
 			      };
@@ -6343,8 +6555,46 @@ doFile("/scripts/H55-Settings.lua");
 							end;
 							local listSpell8Type8Level = TTH_TABLE.BankRewardSpell8Type[iSpellType][strLevel];
 							local iLenSpell8Type8Level = length(listSpell8Type8Level);
-							local iRandom = random(iLenSpell8Type8Level) + 1;
-							local iSpellId = listSpell8Type8Level[iRandom];
+							local iSpellId = 0;
+							if strLevel == "MassAndEmpowered" then
+								local listFilter = {};
+								local bHasChose = TTH_ENUM.No;
+								if bHasChose == TTH_ENUM.No then
+									listFilter = {};
+									for i, objMassAndEmpowered in listSpell8Type8Level do
+										if KnowHeroSpell(strHero, objMassAndEmpowered["Basic"]) ~= nil and KnowHeroSpell(strHero, objMassAndEmpowered["MaE"]) == nil then
+											listFilter = TTH_COMMON.push(listFilter, objMassAndEmpowered);
+										end;
+									end;
+									if length(listFilter) ~= 0 then
+										bHasChose = TTH_ENUM.Yes;
+										local iLenFilter = length(listFilter);
+										local iRandom = random(iLenFilter);
+										iSpellId = listFilter[iRandom]["MaE"];
+									end;
+								end;
+								if bHasChose == TTH_ENUM.No then
+									listFilter = {};
+									for i, objMassAndEmpowered in listSpell8Type8Level do
+										if KnowHeroSpell(strHero, objMassAndEmpowered["MaE"]) == nil then
+											listFilter = TTH_COMMON.push(listFilter, objMassAndEmpowered);
+										end;
+									end;
+									if length(listFilter) ~= 0 then
+										bHasChose = TTH_ENUM.Yes;
+										local iLenFilter = length(listFilter);
+										local iRandom = random(iLenFilter);
+										iSpellId = listFilter[iRandom]["MaE"];
+									end;
+								end;
+								if bHasChose == TTH_ENUM.No then
+									local iRandom = random(iLenSpell8Type8Level) + 1;
+									iSpellId = listSpell8Type8Level[iRandom]["MaE"];
+								end;
+							else
+								local iRandom = random(iLenSpell8Type8Level) + 1;
+								iSpellId = listSpell8Type8Level[iRandom];
+							end;
 							if KnowHeroSpell(strHero, iSpellId) == nil then
 								TTH_GLOBAL.teachHeroSpell(strHero, iSpellId);
 							else
@@ -6412,15 +6662,24 @@ doFile("/scripts/H55-Settings.lua");
 							local iScale = TTH_VISIT.rewardBankStep(strHero);
 							local iGrowth = TTH_TABLE_NCF_CREATURES[iCreatureId]["GROWTH"];
 							local strName = TTH_TABLE_NCF_CREATURES[iCreatureId]["NAME"];
-							local iCreatureNumber = TTH_COMMON.round(iGrowth * iScale);
+							local iCreatureNumber = TTH_COMMON.round(iGrowth * iScale / 2);
+							if iCreatureNumber < 1 then
+								iCreatureNumber = 1;
+							end;
 							TTH_GLOBAL.addCreature4Hero8Sign(strHero, iCreatureId, iCreatureNumber, TTH_ENUM.AddCreature);
 							TTH_VISIT.rewardBankRepeat(strHero);
 						end;
 					-- 经验奖励
 						function TTH_VISIT.rewardBankExp(iPlayer, strHero)
 							local iScale = TTH_VISIT.rewardBankStep(strHero);
-							local iExp = TTH_COMMON.round(2000 * iScale);
-							TTH_GLOBAL.giveExp(strHero, iExp);
+							local iExp = 2000 * iScale;
+							local iHeroLevel = GetHeroLevel(strHero);
+							local iLevelExp = TTH_TABLE.Exp4LevelUp[iHeroLevel] - TTH_TABLE.Exp4LevelUp[iHeroLevel - 1];
+							local iRewardLevelExp = iLevelExp * 0.1;
+							if iRewardLevelExp > iExp then
+								iExp = iRewardLevelExp;
+							end;
+							TTH_GLOBAL.giveExp(strHero, TTH_COMMON.round(iExp));
 							TTH_VISIT.rewardBankRepeat(strHero);
 						end;
 					-- 试试手气
@@ -6685,7 +6944,7 @@ doFile("/scripts/H55-Settings.lua");
 			-- 废弃矿井
 				function TTH_VISIT.visitAbandonedMine(strHero, strBankName)
 					local strCallback = "TTH_VISIT.visitAbandonedMine";
-					local iRace = random(8) + 1;
+					local iRace = random(8);
 					local strCombatLink = "/Arenas/CombatArena/FinalCombat/Bank_Mine.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)";
 					TTH_VISIT.combatBank4Mine(strHero, strBankName, iRace, strCallback, strCombatLink);
 				end;
@@ -8510,6 +8769,7 @@ doFile("/scripts/H55-Settings.lua");
 		TTH_ENUM.HireHero = 6; -- 招募指定英雄
 		TTH_ENUM.ConvertDwelling = 7; -- 转换野外生物巢穴
 		TTH_ENUM.EnableMultiScript = 8; -- 激活多人脚本
+		TTH_ENUM.BonusStartSkill = 9; -- 初始技能奖励
 
 		TTH_TABLE.KingManagePath = {
 			["Widget"] = {
@@ -8787,6 +9047,18 @@ doFile("/scripts/H55-Settings.lua");
 			, ["EnableMultiScript"] = {
 				["Text"] = "/Text/Game/Scripts/TTH_KingManage/EnableMultiScript.txt"
 			}
+			, ["BonusStartSkill"] = {
+				["Text"] = "/Text/Game/Scripts/TTH_KingManage/BonusStartSkill.txt"
+				, ["Confirm"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/BonusStartSkill/Confirm.txt"
+				}
+				, ["Fail"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/BonusStartSkill/Fail.txt"
+				}
+				, ["Success"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/BonusStartSkill/Success.txt"
+				}
+			}
 		};
 
 		-- 英雄主动技能4
@@ -8835,17 +9107,34 @@ doFile("/scripts/H55-Settings.lua");
 					, ["Text"] = TTH_TABLE.KingManagePath["ConvertDwelling"]["Text"]
 					, ["Callback"] = "TTH_MANAGE.dealConvertDwelling"
 				}
-				, [8] = {
-					["Id"] = TTH_ENUM.EnableMultiScript
-					, ["Text"] = TTH_TABLE.KingManagePath["EnableMultiScript"]["Text"]
-					, ["Callback"] = "TTH_MANAGE.enableMultiScript"
-				}
 			};
 			function TTH_MANAGE.kingManage(strHero)
 				TTH_COMMON.initNavi(TTH_TABLE.KingManagePath["KingManage"]["Text"]);
 
 				local iPlayer = GetObjectOwner(strHero);
-				TTH_COMMON.optionRadio(iPlayer, strHero, TTH_TABLE.KingManageOption);
+				local arrOption = {};
+				local i = 1;
+				if TTH_VARI.switchSingleton == 0 then
+					arrOption[i] = {
+						["Id"] = TTH_ENUM.EnableMultiScript
+						, ["Text"] = TTH_TABLE.KingManagePath["EnableMultiScript"]["Text"]
+						, ["Callback"] = "TTH_MANAGE.enableMultiScript"
+					};
+					i = i + 1;
+				end;
+				if TTH_VARI.startSkill4Player[iPlayer] == TTH_ENUM.Yes then
+					arrOption[i] = {
+						["Id"] = TTH_ENUM.BonusStartSkill
+						, ["Text"] = TTH_TABLE.KingManagePath["BonusStartSkill"]["Text"]
+						, ["Callback"] = "TTH_GLOBAL.confirmStartSkill"
+					};
+					i = i + 1;
+				end;
+				for iIndex, objKingManageOption in TTH_TABLE.KingManageOption do
+					arrOption[i] = objKingManageOption;
+					i = i + 1;
+				end;
+				TTH_COMMON.optionRadio(iPlayer, strHero, arrOption);
 			end;
 
 			-- 信息查询
@@ -10439,7 +10728,6 @@ doFile("/scripts/H55-Settings.lua");
 
 					if TTH_VARI.switchSingleton == 0 then
 						TTH_VARI.switchSingleton = 1;
-						TTH_TABLE.KingManageOption[8] = nil;
 						startThread(TTH_GLOBAL.startUpMultiPlayer);
 						startThread(TTH_MAIN.init);
 						TTH_COMMON.consoleSetGameVar("TTH_Var_SwitchSingleton", TTH_VARI.switchSingleton);
@@ -10553,7 +10841,10 @@ doFile("/scripts/H55-Settings.lua");
 
 				-- 确认内城是否有英雄
 					function TTH_MANAGE.checkPreTeleport2AppointTown4GarrisonHero(iPlayer, strHero, strTown)
-						if TTH_GLOBAL.isGarrisonHasHero(iPlayer, strTown) == 1 then
+						if TTH_GLOBAL.isGateHasHero(iPlayer, strTown) == 1 then
+							local iPosX, iPosY, iPosZ = GetObjectPosition(strHero);
+							MoveCamera(iPosX, iPosY, iPosZ, 50, TTH_FINAL.PI/2, 1, 1, 1, 1);
+							sleep(2);
 							local strText = TTH_TABLE.KingManagePath["TownManage"]["Teleport2AppointTown"]["HeroInGarrison"]["Text"];
 							TTH_GLOBAL.sign(strHero, strText);
 							TTH_MANAGE.endStatusTeleport2AppointTown();
@@ -10602,15 +10893,13 @@ doFile("/scripts/H55-Settings.lua");
 							or iCountCrystal > GetPlayerResource(iPlayer, CRYSTAL)
 							or iCountSulphur > GetPlayerResource(iPlayer, SULFUR)
 							or iCountGem > GetPlayerResource(iPlayer, GEM) then
-							local strText = TTH_TABLE.KingManagePath["TownManage"]["Teleport2AppointTown"]["NotEnoughRes"]["Text"];
-							TTH_GLOBAL.sign(strHero, strText);
-
-							TTH_MANAGE.endStatusTeleport2AppointTown();
-							TTH_COMMON.wakeup();
 							local iPosX, iPosY, iPosZ = GetObjectPosition(strHero);
 							MoveCamera(iPosX, iPosY, iPosZ, 50, TTH_FINAL.PI/2, 1, 1, 1, 1);
 							sleep(2);
-
+							local strText = TTH_TABLE.KingManagePath["TownManage"]["Teleport2AppointTown"]["NotEnoughRes"]["Text"];
+							TTH_GLOBAL.sign(strHero, strText);
+							TTH_MANAGE.endStatusTeleport2AppointTown();
+							TTH_COMMON.wakeup();
 							return nil;
 						end;
 
@@ -10622,15 +10911,13 @@ doFile("/scripts/H55-Settings.lua");
 						TTH_VARI.teleport2AppointTownChosenResOrMana = TTH_ENUM.TownManageTeleport2AppointTown8Mana;
 						local iManaPoint = GetHeroStat(strHero, STAT_MANA_POINTS);
 						if iManaPoint < TTH_VARI.teleport2AppointTownLimitMana then
-							local strText = TTH_TABLE.KingManagePath["TownManage"]["Teleport2AppointTown"]["NotEnoughMana"]["Text"];
-							TTH_GLOBAL.sign(strHero, strText);
-
-							TTH_MANAGE.endStatusTeleport2AppointTown();
-							TTH_COMMON.wakeup();
 							local iPosX, iPosY, iPosZ = GetObjectPosition(strHero);
 							MoveCamera(iPosX, iPosY, iPosZ, 50, TTH_FINAL.PI/2, 1, 1, 1, 1);
 							sleep(2);
-
+							local strText = TTH_TABLE.KingManagePath["TownManage"]["Teleport2AppointTown"]["NotEnoughMana"]["Text"];
+							TTH_GLOBAL.sign(strHero, strText);
+							TTH_MANAGE.endStatusTeleport2AppointTown();
+							TTH_COMMON.wakeup();
 							return nil;
 						end;
 
@@ -10661,15 +10948,13 @@ doFile("/scripts/H55-Settings.lua");
 
 						local iCountGold = TTH_VARI.teleport2AppointTownUnitRes * 1000;
 						if iCountGold > GetPlayerResource(iPlayer, GOLD) then
-							local strText = TTH_TABLE.KingManagePath["TownManage"]["Teleport2AppointTown"]["NotEnoughGold"]["Text"];
-							TTH_GLOBAL.sign(strHero, strText);
-
-							TTH_MANAGE.endStatusTeleport2AppointTown();
-							TTH_COMMON.wakeup();
 							local iPosX, iPosY, iPosZ = GetObjectPosition(strHero);
 							MoveCamera(iPosX, iPosY, iPosZ, 50, TTH_FINAL.PI/2, 1, 1, 1, 1);
 							sleep(2);
-
+							local strText = TTH_TABLE.KingManagePath["TownManage"]["Teleport2AppointTown"]["NotEnoughGold"]["Text"];
+							TTH_GLOBAL.sign(strHero, strText);
+							TTH_MANAGE.endStatusTeleport2AppointTown();
+							TTH_COMMON.wakeup();
 							return nil;
 						end;
 
@@ -10681,15 +10966,13 @@ doFile("/scripts/H55-Settings.lua");
 						TTH_VARI.teleport2AppointTownChosenGoldOrMove = TTH_ENUM.TownManageTeleport2AppointTown8Move;
 						local iMovePoint = GetHeroStat(strHero, STAT_MOVE_POINTS);
 						if iMovePoint < TTH_VARI.teleport2AppointTownLimitMove then
-							local strText = TTH_TABLE.KingManagePath["TownManage"]["Teleport2AppointTown"]["NotEnoughMove"]["Text"];
-							TTH_GLOBAL.sign(strHero, strText);
-
-							TTH_MANAGE.endStatusTeleport2AppointTown();
-							TTH_COMMON.wakeup();
 							local iPosX, iPosY, iPosZ = GetObjectPosition(strHero);
 							MoveCamera(iPosX, iPosY, iPosZ, 50, TTH_FINAL.PI/2, 1, 1, 1, 1);
 							sleep(2);
-
+							local strText = TTH_TABLE.KingManagePath["TownManage"]["Teleport2AppointTown"]["NotEnoughMove"]["Text"];
+							TTH_GLOBAL.sign(strHero, strText);
+							TTH_MANAGE.endStatusTeleport2AppointTown();
+							TTH_COMMON.wakeup();
 							return nil;
 						end;
 
@@ -10726,7 +11009,7 @@ doFile("/scripts/H55-Settings.lua");
 
 						-- 执行传送
 							TTH_MANAGE.endStatusTeleport2AppointTown();
-							TTH_GLOBAL.teleHero2Point(iPlayer, strHero, strTown);
+							TTH_GLOBAL.teleHero2TownGate(iPlayer, strHero, strTown);
 					end;
 
 	-- trigger
@@ -10830,7 +11113,6 @@ doFile("/scripts/H55-Settings.lua");
 				TTH_MAIN.debug("TTH_TRIGGER.playerAddHero", nil, strHero);
 
 				SetTrigger(HERO_LEVELUP_TRIGGER, strHero, "TTH_TRIGGER.heroLevelUp"..strHero);
-				TTH_GLOBAL.implStartSkill(strHero);
 				TTH_GLOBAL.initHero4Specialty(strHero);
 				TTH_GLOBAL.bindHeroCustomAbility4Hero(strHero);
 				TTH_GLOBAL.bindHeroCustomAbility3Hero(strHero);
@@ -11196,6 +11478,7 @@ doFile("/scripts/H55-Settings.lua");
       	end;
 
 			-- Brem 010 拉特格
+				TTH_FINAL.BREM_COST = 5000;
 				function TTH_TALENT.initBrem(strHero)
 					TTH_MAIN.debug("TTH_TALENT.initBrem", nil, strHero);
 
@@ -11223,6 +11506,19 @@ doFile("/scripts/H55-Settings.lua");
 			  			TTH_GLOBAL.sign(strHero, strText);
 							return nil;
 			  		end;
+					end;
+
+					TTH_TALENT.checkPreActiveBrem4Gold(iPlayer, strHero);
+				end;
+				function TTH_TALENT.checkPreActiveBrem4Gold(iPlayer, strHero)
+					local iGold = length(TTH_VARI.talent[strHero]["Stables"]) * TTH_FINAL.BREM_COST;
+					if GetPlayerResource(iPlayer, GOLD) < iGold then
+						local strPathMain = {
+							TTH_PATH.Talent[strHero]["NotEnoughGold"]
+					    ;iGold=iGold
+						};
+						TTH_GLOBAL.sign(strHero, strPathMain);
+						return nil;
 					end;
 
 					TTH_TALENT.checkPreActiveBrem4SuitableStables(iPlayer, strHero);
@@ -11277,6 +11573,8 @@ doFile("/scripts/H55-Settings.lua");
 			  			TTH_MANAGE.useOperTimes(strHero);
 			  		end;
 					end;
+					local iGold = length(TTH_VARI.talent[strHero]["Stables"]) * TTH_FINAL.BREM_COST;
+					TTH_GLOBAL.reduceResource(iPlayer, GOLD, iGold);
 					if contains(TTH_VARI.talent[strHero]["Stables"], strBuildingName) == nil then
 						TTH_VARI.talent[strHero]["Stables"] = TTH_COMMON.push(TTH_VARI.talent[strHero]["Stables"], strBuildingName);
 					end;
@@ -11578,6 +11876,7 @@ doFile("/scripts/H55-Settings.lua");
   			end;
 
 			-- Gillion 030 吉尔里恩
+				TTH_FINAL.GILLION_COST = 5000;
 				function TTH_TALENT.initGillion(strHero)
 					TTH_MAIN.debug("TTH_TALENT.initGillion", nil, strHero);
 
@@ -11605,6 +11904,19 @@ doFile("/scripts/H55-Settings.lua");
 			  			TTH_GLOBAL.sign(strHero, strText);
 							return nil;
 			  		end;
+					end;
+
+					TTH_TALENT.checkPreActiveGillion4Gold(iPlayer, strHero);
+				end;
+				function TTH_TALENT.checkPreActiveGillion4Gold(iPlayer, strHero)
+					local iGold = length(TTH_VARI.talent[strHero]["Redwoord"]) * TTH_FINAL.GILLION_COST;
+					if GetPlayerResource(iPlayer, GOLD) < iGold then
+						local strPathMain = {
+							TTH_PATH.Talent[strHero]["NotEnoughGold"]
+					    ;iGold=iGold
+						};
+						TTH_GLOBAL.sign(strHero, strPathMain);
+						return nil;
 					end;
 
 					TTH_TALENT.checkPreActiveGillion4SuitableRedwoord(iPlayer, strHero);
@@ -11659,6 +11971,8 @@ doFile("/scripts/H55-Settings.lua");
 			  			TTH_MANAGE.useOperTimes(strHero);
 			  		end;
 					end;
+					local iGold = length(TTH_VARI.talent[strHero]["Redwoord"]) * TTH_FINAL.GILLION_COST;
+					TTH_GLOBAL.reduceResource(iPlayer, GOLD, iGold);
 					if contains(TTH_VARI.talent[strHero]["Redwoord"], strBuildingName) == nil then
 						TTH_VARI.talent[strHero]["Redwoord"] = TTH_COMMON.push(TTH_VARI.talent[strHero]["Redwoord"], strBuildingName);
 					end;
@@ -11828,6 +12142,7 @@ doFile("/scripts/H55-Settings.lua");
 
 			-- Vinrael 艾丽莎
 				function TTH_TALENT.levelUpVinrael(strHero)
+					local iPlayer = TTH_GLOBAL.GetObjectOwner(strHero);
 					TTH_MAIN.debug("TTH_TALENT.levelUpVinrael", iPlayer, strHero);
 
 					ChangeHeroStat(strHero, STAT_MANA_POINTS, TTH_FINAL.NUM_MAX);
@@ -12114,6 +12429,7 @@ doFile("/scripts/H55-Settings.lua");
       	end;
 
 			-- Astral 055 努尔
+				TTH_FINAL.ASTRAL_COST = 5000;
 				function TTH_TALENT.initAstral(strHero)
 					TTH_MAIN.debug("TTH_TALENT.initAstral", nil, strHero);
 
@@ -12144,9 +12460,22 @@ doFile("/scripts/H55-Settings.lua");
 			  		end;
 					end;
 
-					TTH_TALENT.checkPreActiveAstral4SuitableStables(iPlayer, strHero);
+					TTH_TALENT.checkPreActiveAstral4Gold(iPlayer, strHero);
 				end;
-				function TTH_TALENT.checkPreActiveAstral4SuitableStables(iPlayer, strHero, strBuildingName)
+				function TTH_TALENT.checkPreActiveAstral4Gold(iPlayer, strHero)
+					local iGold = length(TTH_VARI.talent[strHero]["MagicNode"]) * TTH_FINAL.ASTRAL_COST;
+					if GetPlayerResource(iPlayer, GOLD) < iGold then
+						local strPathMain = {
+							TTH_PATH.Talent[strHero]["NotEnoughGold"]
+					    ;iGold=iGold
+						};
+						TTH_GLOBAL.sign(strHero, strPathMain);
+						return nil;
+					end;
+
+					TTH_TALENT.checkPreActiveAstral4SuitableMagicNode(iPlayer, strHero);
+				end;
+				function TTH_TALENT.checkPreActiveAstral4SuitableMagicNode(iPlayer, strHero, strBuildingName)
 					local arrOptionMagicNode = {};
 					local arrMagicNode = TTH_VARI.arrBuilding["BUILDING_MAGICNODE"];
 					local i = 1;
@@ -12196,6 +12525,8 @@ doFile("/scripts/H55-Settings.lua");
 			  			TTH_MANAGE.useOperTimes(strHero);
 			  		end;
 					end;
+					local iGold = length(TTH_VARI.talent[strHero]["MagicNode"]) * TTH_FINAL.ASTRAL_COST;
+					TTH_GLOBAL.reduceResource(iPlayer, GOLD, iGold);
 					if contains(TTH_VARI.talent[strHero]["MagicNode"], strBuildingName) == nil then
 						TTH_VARI.talent[strHero]["MagicNode"] = TTH_COMMON.push(TTH_VARI.talent[strHero]["MagicNode"], strBuildingName);
 					end;
@@ -13327,6 +13658,7 @@ doFile("/scripts/H55-Settings.lua");
 				end;
 
 			-- Nymus 108 耐莫斯
+				TTH_FINAL.NYMUS_COST = 5000;
 				function TTH_TALENT.initNymus(strHero)
 					TTH_MAIN.debug("TTH_TALENT.initNymus", nil, strHero);
 
@@ -13354,6 +13686,19 @@ doFile("/scripts/H55-Settings.lua");
 			  			TTH_GLOBAL.sign(strHero, strText);
 							return nil;
 			  		end;
+					end;
+
+					TTH_TALENT.checkPreActiveNymus4Gold(iPlayer, strHero);
+				end;
+				function TTH_TALENT.checkPreActiveNymus4Gold(iPlayer, strHero)
+					local iGold = length(TTH_VARI.talent[strHero]["Portal"]) * TTH_FINAL.NYMUS_COST;
+					if GetPlayerResource(iPlayer, GOLD) < iGold then
+						local strPathMain = {
+							TTH_PATH.Talent[strHero]["NotEnoughGold"]
+					    ;iGold=iGold
+						};
+						TTH_GLOBAL.sign(strHero, strPathMain);
+						return nil;
 					end;
 
 					TTH_TALENT.checkPreActiveNymus4SuitablePortal(iPlayer, strHero);
@@ -13408,6 +13753,8 @@ doFile("/scripts/H55-Settings.lua");
 			  			TTH_MANAGE.useOperTimes(strHero);
 			  		end;
 					end;
+					local iGold = length(TTH_VARI.talent[strHero]["Portal"]) * TTH_FINAL.NYMUS_COST;
+					TTH_GLOBAL.reduceResource(iPlayer, GOLD, iGold);
 					if contains(TTH_VARI.talent[strHero]["Portal"], strBuildingName) == nil then
 						TTH_VARI.talent[strHero]["Portal"] = TTH_COMMON.push(TTH_VARI.talent[strHero]["Portal"], strBuildingName);
 					end;
@@ -14071,6 +14418,7 @@ doFile("/scripts/H55-Settings.lua");
 
 			-- Wulfstan 134 乌尔夫斯坦
 				TTH_FINAL.WULFSTAN_BONUS = 2;
+				TTH_FINAL.WULFSTAN_COST = 5000;
 				function TTH_TALENT.initWulfstan(strHero)
 					TTH_MAIN.debug("TTH_TALENT.initWulfstan", nil, strHero);
 
@@ -14098,6 +14446,7 @@ doFile("/scripts/H55-Settings.lua");
 
 					TTH_TALENT.checkPreActiveWulfstan4Times(iPlayer, strHero);
 				end;
+
 				function TTH_TALENT.checkPreActiveWulfstan4Times(iPlayer, strHero)
 					local strText = TTH_PATH.Talent[strHero]["NotEnoughTimes"];
 					if TTH_VARI.talent[strHero]["CurrentTimes"] <= 0 then
@@ -14110,6 +14459,19 @@ doFile("/scripts/H55-Settings.lua");
 			  			TTH_GLOBAL.sign(strHero, strText);
 							return nil;
 			  		end;
+					end;
+
+					TTH_TALENT.checkPreActiveWulfstan4Gold(iPlayer, strHero);
+				end;
+				function TTH_TALENT.checkPreActiveWulfstan4Gold(iPlayer, strHero)
+					local iGold = length(TTH_VARI.talent[strHero]["Outpost"]) * TTH_FINAL.WULFSTAN_COST;
+					if GetPlayerResource(iPlayer, GOLD) < iGold then
+						local strPathMain = {
+							TTH_PATH.Talent[strHero]["NotEnoughGold"]
+					    ;iGold=iGold
+						};
+						TTH_GLOBAL.sign(strHero, strPathMain);
+						return nil;
 					end;
 
 					TTH_TALENT.checkPreActiveWulfstan4SuitableOutpost(iPlayer, strHero);
@@ -14168,6 +14530,8 @@ doFile("/scripts/H55-Settings.lua");
 			  			TTH_MANAGE.useOperTimes(strHero);
 			  		end;
 					end;
+					local iGold = length(TTH_VARI.talent[strHero]["Outpost"]) * TTH_FINAL.WULFSTAN_COST;
+					TTH_GLOBAL.reduceResource(iPlayer, GOLD, iGold);
 					if contains(TTH_VARI.talent[strHero]["Outpost"], strBuildingName) == nil then
 						TTH_VARI.talent[strHero]["Outpost"] = TTH_COMMON.push(TTH_VARI.talent[strHero]["Outpost"], strBuildingName);
 					end;
@@ -14420,6 +14784,8 @@ doFile("/scripts/H55-Settings.lua");
 			  			TTH_MANAGE.useOperTimes(strHero);
 			  		end;
 					end;
+					local iGold = length(TTH_VARI.talent[strHero]["WolfLair"]) * TTH_FINAL.AZAR_COST;
+					TTH_GLOBAL.reduceResource(iPlayer, GOLD, iGold);
 					if contains(TTH_VARI.talent[strHero]["WolfLair"], strBuildingName) == nil then
 						TTH_VARI.talent[strHero]["WolfLair"] = TTH_COMMON.push(TTH_VARI.talent[strHero]["WolfLair"], strBuildingName);
 					end;
@@ -14485,7 +14851,7 @@ doFile("/scripts/H55-Settings.lua");
 			end;
 			function TTH_ARTI.implActive103(iPlayer, strHero, strTown)
 				RemoveArtefact(strHero, ARTIFACT_DIMENSION_DOOR);
-				MakeHeroInteractWithObject(strHero, strTown);
+				TTH_GLOBAL.teleHero2TownGate(iPlayer, strHero, strTown);
 			end;
 
 		-- 药水宝物 ARTIFACT_POTION_X
@@ -16961,7 +17327,7 @@ doFile("/scripts/H55-Settings.lua");
 					and TTH_VARI.recordDeathTread["DefenceTown"]["CombatIndex"] + 1 == iCombatIndex
 					and TTH_VARI.recordDeathTread["DefenceTown"]["Hero"] == strHero
 					and GetObjectOwner(TTH_VARI.recordDeathTread["DefenceTown"]["Town"]) == iPlayer then
-					TTH_GLOBAL.teleHero2Point(iPlayer, strHero, TTH_VARI.recordDeathTread["DefenceTown"]["Town"]);
+					TTH_GLOBAL.teleHero2TownGate(iPlayer, strHero, TTH_VARI.recordDeathTread["DefenceTown"]["Town"]);
 					TTH_VARI.recordDeathTread["DefenceTown"]["CombatIndex"] = nil;
 				end;
 			end;
@@ -17818,6 +18184,7 @@ doFile("/scripts/H55-Settings.lua");
 		function TTH_MAIN.init()
 			BlockGame();
 			TTH_GLOBAL.initGameDifficulty(); -- 初始化游戏难度
+			TTH_GLOBAL.initTerritoryRadius(); -- 初始化地图对应的领地半径
 			TTH_GLOBAL.setExpCoef8GameDifficulty(); -- 初始化英雄经验系数
 			TTH_GLOBAL.initAdvTown(); -- 初始化城镇列表
 			TTH_GLOBAL.initAdvBuilding(); -- 初始化地图建筑
@@ -17844,7 +18211,6 @@ doFile("/scripts/H55-Settings.lua");
 					TTH_GLOBAL.bindHeroCustomAbility4Hero(strHero); -- 触发器: 王国管理
 					TTH_GLOBAL.bindHeroCustomAbility3Hero(strHero); -- 触发器: 定点回城
 					TTH_GLOBAL.triggerInitHeroLevelUp(strHero); -- 触发器: 英雄升级
-					TTH_GLOBAL.implStartSkill(strHero);
 					TTH_GLOBAL.initHero4Specialty(strHero); -- 初始生物特奖励生物
 					TTH_MANAGE.initMayor(strHero); -- 初始内政官信息
 					TTH_GLOBAL.setGameVar4HeroLevel(strHero); -- 将英雄等级记录到游戏全局参数

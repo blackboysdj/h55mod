@@ -1803,7 +1803,7 @@
 
 							-- Haven
 							-- Sylvan
-								H55SMOD_MiddlewareListener['Gem']['function']['enemy']('Gem', iSide, itemUnitLast, listCreaturesBeEffected);
+								H55SMOD_MiddlewareListener["Gem"]["function"]["enemy"]["charge"]("Gem", getSide(iSide, 1), itemUnitLast, listCreaturesBeEffected);
 							-- Academy
 								H55SMOD_MiddlewareListener['Isher']['function']('Isher', iSide, itemUnitLast, listCreaturesBeEffected);
 							-- Inferno
@@ -1857,7 +1857,7 @@
 							-- Haven
 							-- Sylvan
 								H55SMOD_MiddlewareListener['Itil']['function']('Itil', iSide, itemUnitLast, listCreaturesBeEffected);
-								H55SMOD_MiddlewareListener['Gem']['function']['friendly']('Gem', iSide, itemUnitLast, listCreaturesBeEffected);
+								H55SMOD_MiddlewareListener["Gem"]["function"]["friend"]["charge"]("Gem", iSide, itemUnitLast, listCreaturesBeEffected);
 							-- Academy
 							-- Inferno
 							-- Necropolis
@@ -2344,6 +2344,8 @@
 					for iSide = ENUM_SIDE.ATTACKER, ENUM_SIDE.DEFENDER do
 						-- Haven
 						-- Sylvan
+							H55SMOD_MiddlewareListener["Gem"]["function"]["friend"]["consume"]("Gem", iSide, itemUnit);
+							H55SMOD_MiddlewareListener["Gem"]["function"]["enemy"]["consume"]("Gem", iSide, itemUnit);
 						-- Academy
 						-- Inferno
 							H55SMOD_MiddlewareListener["Deleb"]["function"]["consume"]("Deleb", iSide, itemUnit);
@@ -2593,7 +2595,7 @@
 					and TTH_ARTIFACTSET_EFFECT_COMBAT_HERO[iSide][TTHCS_ENUM.SET_ELEMENT_FIRE.."_"..2] >= 2 then
 					if length(listCreaturesBeEffected) + length(listCreaturesDeath) > 0 then
 						local strUnitName = GetHero(iSide);
-						increaseContinuousChance(strUnitName, 15);
+						increaseContinuousChance(strUnitName, 8);
 						ShowFlyingSign(TTHCS_PATH["ArtifactSet"][TTHCS_ENUM.SET_ELEMENT_FIRE.."_"..2]["Effect"], GetHero(iSide), 5);
 					end;
 				end;
@@ -3431,52 +3433,75 @@
 			H55SMOD_MiddlewareListener['Itil']['function'] = Events_MiddlewareListener_Implement_Itil;
 
 		-- Gem
-			H55SMOD_MiddlewareListener['Gem'] = {};
-			H55SMOD_MiddlewareListener['Gem']['function'] = {};
-			function Events_MiddlewareListener_Implement_Gem_Friendly(strHero, iSide, itemUnitLast, listCreaturesBeEffected)
-				if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero and iSide == GetUnitSide(itemUnitLast['strUnitName']) then
-					if itemUnitLast['iUnitType'] == WAR_MACHINE_FIRST_AID_TENT then
-						local iLenCreaturesBeEffected = length(listCreaturesBeEffected);
-						if iLenCreaturesBeEffected == 1 then
-							local itemCreaturesBeEffected = listCreaturesBeEffected[0];
-							if IsCombatUnit(itemCreaturesBeEffected['strUnitName']) ~= nil and itemCreaturesBeEffected['iUnitNumber'] > 0 then
-								combatSetPause(1);
-								local strHeroName = GetHero(iSide);
-								startThread(Thread_Command_UnitCastAimedSpell, strHeroName, SPELL_REGENERATION, itemCreaturesBeEffected['strUnitName'], 1);
-								local itemHero = geneUnitStatus(strHeroName);
-								itemHero['iAtb'] = 1.25;
-								push(ListUnitSetATB, itemHero);
-								sleep(20);
-								print(strHeroName.." casted SPELL_REGENERATION on "..itemCreaturesBeEffected['strUnitName']);
-								combatSetPause(nil);
-							end;
+			H55SMOD_MiddlewareListener["Gem"] = {};
+			H55SMOD_MiddlewareListener["Gem"]["target"] = {};
+			H55SMOD_MiddlewareListener["Gem"]["target"]["friend"] = {};
+			H55SMOD_MiddlewareListener["Gem"]["target"]["enemy"] = {};
+			H55SMOD_MiddlewareListener["Gem"]["function"] = {};
+			H55SMOD_MiddlewareListener["Gem"]["function"]["friend"] = {};
+			H55SMOD_MiddlewareListener["Gem"]["function"]["enemy"] = {};
+			function Events_MiddlewareListener_Implement_Gem_Friend_Charge(strHero, iSide, itemUnitLast, listCreaturesBeEffected)
+				if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero	and itemUnitLast["strUnitName"] == GetWarMachine(iSide, WAR_MACHINE_FIRST_AID_TENT) then
+					for i, objTarget in listCreaturesBeEffected do
+						if contains(H55SMOD_MiddlewareListener[strHero]["target"]["friend"], objTarget["strUnitName"]) == nil then
+							push(H55SMOD_MiddlewareListener[strHero]["target"]["friend"], objTarget["strUnitName"]);
 						end;
 					end;
 				end;
 			end;
-			H55SMOD_MiddlewareListener['Gem']['function']['friendly'] = Events_MiddlewareListener_Implement_Gem_Friendly;
-			function Events_MiddlewareListener_Implement_Gem_Enemy(strHero, iSide, itemUnitLast, listCreaturesBeEffected)
-				if GetHero(getSide(iSide, 1)) ~= nil and GetHeroName(GetHero(getSide(iSide, 1))) == strHero and getSide(iSide, 1) == GetUnitSide(itemUnitLast['strUnitName']) then
-					if itemUnitLast['iUnitType'] == WAR_MACHINE_FIRST_AID_TENT then
-						local iLenCreaturesBeEffected = length(listCreaturesBeEffected);
-						if iLenCreaturesBeEffected == 1 then
-							local itemCreaturesBeEffected = listCreaturesBeEffected[0];
-							if IsCombatUnit(itemCreaturesBeEffected['strUnitName']) ~= nil and itemCreaturesBeEffected['iUnitNumber'] > 0 then
-								combatSetPause(1);
-								local strHeroName = GetHero(getSide(iSide, 1));
-								startThread(Thread_Command_UnitCastAimedSpell, strHeroName, SPELL_PLAGUE, itemCreaturesBeEffected['strUnitName'], 1);
-								local itemHero = geneUnitStatus(strHeroName);
-								itemHero['iAtb'] = 1.25;
-								push(ListUnitSetATB, itemHero);
-								sleep(20);
-								print(strHeroName.." casted SPELL_PLAGUE on "..itemCreaturesBeEffected['strUnitName']);
-								combatSetPause(nil);
+			H55SMOD_MiddlewareListener["Gem"]["function"]["friend"]["charge"] = Events_MiddlewareListener_Implement_Gem_Friend_Charge;
+			function Events_MiddlewareListener_Implement_Gem_Friend_Consume(strHero, iSide, itemUnit)
+				if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero and GetHero(iSide) == itemUnit["strUnitName"] then
+					if H55SMOD_MiddlewareListener[strHero]["target"]["friend"] ~= nil and length(H55SMOD_MiddlewareListener[strHero]["target"]["friend"]) > 0 then
+						combatSetPause(1);
+						local listTarget = {};
+						for i, strTarget in H55SMOD_MiddlewareListener[strHero]["target"]["friend"] do
+							if contains(listTarget, strTarget) == nil then
+								push(listTarget, strTarget);
 							end;
+						end;
+						if length(listTarget) > 0 then
+							TTHCS_THREAD.castAimedSpell(GetHero(iSide), SPELL_REGENERATION, listTarget);
+						end;
+						H55SMOD_MiddlewareListener[strHero]["target"]["friend"] = {};
+						itemUnit["iAtb"] = 1.25;
+						push(ListUnitSetATB, itemUnit);
+						combatSetPause(nil);
+					end;
+				end;
+			end;
+			H55SMOD_MiddlewareListener["Gem"]["function"]["friend"]["consume"] = Events_MiddlewareListener_Implement_Gem_Friend_Consume;
+			function Events_MiddlewareListener_Implement_Gem_Enemy_Charge(strHero, iSide, itemUnitLast, listCreaturesBeEffected)
+				if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero	and itemUnitLast["strUnitName"] == GetWarMachine(iSide, WAR_MACHINE_FIRST_AID_TENT) then
+					for i, objTarget in listCreaturesBeEffected do
+						if contains(H55SMOD_MiddlewareListener[strHero]["target"]["enemy"], objTarget["strUnitName"]) == nil then
+							push(H55SMOD_MiddlewareListener[strHero]["target"]["enemy"], objTarget["strUnitName"]);
 						end;
 					end;
 				end;
 			end;
-			H55SMOD_MiddlewareListener['Gem']['function']['enemy'] = Events_MiddlewareListener_Implement_Gem_Enemy;
+			H55SMOD_MiddlewareListener["Gem"]["function"]["enemy"]["charge"] = Events_MiddlewareListener_Implement_Gem_Enemy_Charge;
+			function Events_MiddlewareListener_Implement_Gem_Enemy_Consume(strHero, iSide, itemUnit)
+				if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero and GetHero(iSide) == itemUnit["strUnitName"] then
+					if H55SMOD_MiddlewareListener[strHero]["target"]["enemy"] ~= nil and length(H55SMOD_MiddlewareListener[strHero]["target"]["enemy"]) > 0 then
+						combatSetPause(1);
+						local listTarget = {};
+						for i, strTarget in H55SMOD_MiddlewareListener[strHero]["target"]["enemy"] do
+							if contains(listTarget, strTarget) == nil then
+								push(listTarget, strTarget);
+							end;
+						end;
+						if length(listTarget) > 0 then
+							TTHCS_THREAD.castAimedSpell(GetHero(iSide), SPELL_PLAGUE, listTarget);
+						end;
+						H55SMOD_MiddlewareListener[strHero]["target"]["enemy"] = {};
+						itemUnit["iAtb"] = 1.25;
+						push(ListUnitSetATB, itemUnit);
+						combatSetPause(nil);
+					end;
+				end;
+			end;
+			H55SMOD_MiddlewareListener["Gem"]["function"]["enemy"]["consume"] = Events_MiddlewareListener_Implement_Gem_Enemy_Consume;
 
 	-- Academy
 		-- Davius
@@ -4260,7 +4285,7 @@
 			H55SMOD_MiddlewareListener["Zydar"] = {};
 			function Events_MiddlewareListener_Implement_Zydar(strHero, iSide, itemUnitLast, iLossManaPoints)
 				if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero and GetHero(iSide) == itemUnitLast["strUnitName"] then
-					increaseContinuousChance(GetHero(iSide), 10);
+					increaseContinuousChance(GetHero(iSide), 6);
 				end;
 			end;
 			H55SMOD_MiddlewareListener["Zydar"]["function"] = Events_MiddlewareListener_Implement_Zydar;
@@ -5858,6 +5883,7 @@
 		end;
 		local iChance = H55SMOD_MiddlewareListener["Continuous"]["Chance"][strUnitName];
 		if iChance ~= nil and iChance > 0 then
+			combatSetPause(1);
 			if TTHCS_COMMON.getRandom(100) <= iChance then
 				if iChance < 100 then
 					iChance = 0;
@@ -5872,6 +5898,7 @@
 				ShowFlyingSign(TTHCS_PATH["Continuous"]["Effect"], strUnitName, 5);
 			end;
 			showMessage4ContinuousChance(strUnitName, iChance);
+			combatSetPause(nil); 
 		end;
 	end;
 	H55SMOD_MiddlewareListener["Continuous"]["function"] = Events_MiddlewareListener_Implement_Continuous;

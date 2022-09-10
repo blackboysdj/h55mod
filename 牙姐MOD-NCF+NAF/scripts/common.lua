@@ -2654,6 +2654,14 @@ end;
           ["DebugText"] = "SPELL_ICE_BOLT"
           , ["SignText"] = "/Text/TTH/Spell/CombatSpells/004-IceBolt/Text.txt"
         }
+        , [SPELL_REGENERATION] = {
+          ["DebugText"] = "SPELL_REGENERATION"
+          , ["SignText"] = "/Text/TTH/Spell/CombatSpells/280-Regeneration/Text.txt"
+        }
+        , [SPELL_PLAGUE] = {
+          ["DebugText"] = "SPELL_PLAGUE"
+          , ["SignText"] = "/Text/TTH/Spell/CombatSpells/014-Plague/Text.txt"
+        }
       }
 
     -- 战场大小
@@ -12621,8 +12629,10 @@ end;
         SetUnitManaPoints(strCaster, TTHCS_FINAL.MAX_MANA);
         repeat sleep(1); until GetUnitManaPoints(strCaster) == TTHCS_FINAL.MAX_MANA;
         for i, strTarget in listTarget do
-          startThread(UnitCastAimedSpell, strCaster, iSpellId, strTarget);
-          print(strCaster.." cast "..TTHCS_TABLE.Magic[iSpellId]["DebugText"].." on "..strTarget);
+          if IsCombatUnit(strTarget) ~= nil and GetCreatureNumber(strTarget) > 0 then
+            startThread(UnitCastAimedSpell, strCaster, iSpellId, strTarget);
+            print(strCaster.." cast "..TTHCS_TABLE.Magic[iSpellId]["DebugText"].." on "..strTarget);
+          end;
         end;
         ShowFlyingSign(TTHCS_TABLE.Magic[iSpellId]["SignText"], strCaster, 5);
         sleep(50);

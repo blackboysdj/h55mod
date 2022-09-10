@@ -16,11 +16,21 @@
   部分英雄增加技能吊坠特效
   拉兹罗 步兵联动
 
-  function H55_IsAnyHeroInGateTile(town,x,y,z)
-  function H55_GetRotationAngle(x,y,angle,array,tile)
-  function H55_GetTownRotation(town)
-  function H55_GetTownActiveTile(town)
-  SetObjectRotation(hero,H55_TeleportAngles[rotate]);
+
+   
+- &m55_encourage           0.2 神圣指引 1
+ - &m55_prayer             0.15 佑福仪式 1
+ - &m55_banshee_howl       0.15 女妖尖叫 1
+ - &m55_bannish            0.33 驱逐 1
+ - &m55_avatar_of_death    0.15 死亡化身 1
+ - &m55_refresh_rune       0.33 轮转符文 1
+ - &m55_retaliation_strike 1.0 复仇打击 0.5
+ - &m55_demonic_strike     0.75 咒骂 0.5
+ - &m55_spirit_link        0.5 魂链 0.5
+ - &m55_mark_of_the_sorc   0.5 法师印记 0.5
+ - &m55_chain_attack       0.5 强力打击 0.5
+ 注魔弩0.25回合
+
 
 -- 课题：
   6.众志成城 内政官一路守城上限（与咒骂进行伤害对比），反击，机械，防御
@@ -515,11 +525,11 @@ MOD介绍视频-热座及多人联机设置 https://www.bilibili.com/video/BV1ya
 艾莲娜
 克劳斯
 维托利奥
-伯全德
+伯权德
 尼克莱
 埃拉里克
 拜娅拉
-妹夫
+玫芙
 卡西乌斯
 圣吉列斯
 阿维图斯
@@ -582,18 +592,15 @@ MOD介绍视频-热座及多人联机设置 https://www.bilibili.com/video/BV1ya
 塞尔克松
 艾斯瑞
 拉雯
- 乔瓦尼
+乔瓦尼
 欧尼拉
 佐尔坦
 尼姆巴斯
 纳蒂尔
 阿兰蒂尔
 迪尔德丽
-弗拉基米尔
 山德鲁
 山特
-维德尼娜
-艾德里德
 
 格劳尔
 迪里布
@@ -641,3 +648,147 @@ MOD介绍视频-热座及多人联机设置 https://www.bilibili.com/video/BV1ya
 摩卡
 
 
+堡垒删除斯威和英伽
+地狱删除迪里布和格洛克
+墓园删除，佛拉基米尔，维德妮娜，卡斯帕，奥森，艾斯瑞
+<AvailableHeroes>
+  <Item href="/MapObjects/Haven/Orrin.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Haven/Mardigo.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Haven/Ving.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Haven/Sarge.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Haven/Christian.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Haven/RedHeavenHero05.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Haven/Nicolai.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Haven/Alaric.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Haven/Biara_Saint_Isabel.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Haven/Maeve.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Haven/OrtanCassius.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Haven/Sanguinius.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Haven/Avitus.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Haven/RedHeavenHero03.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Haven/RedHeaven07_Orlando.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+
+  <Item href="/MapObjects/Preserve/Metlirn.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Preserve/Ossir.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Preserve/Nadaur.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Preserve/Heam.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Preserve/Gelu.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Preserve/Arniel.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Preserve/Gillion.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Preserve/Itil.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Preserve/Melodia.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Preserve/Gem.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Preserve/Elleshar.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Preserve/Ildar.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Preserve/Vaniel.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Preserve/Vinrael.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Preserve/Diraya.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+
+  <Item href="/MapObjects/Academy/Havez.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Academy/Minasli.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Academy/Isher.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Academy/Davius.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Academy/Dracon.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Academy/Razzak.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Academy/Sufi.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Academy/Cyrus.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Academy/Maahir.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Academy/Tan.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Academy/Emilia.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Academy/Nur.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Academy/Astral.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Academy/Zehir.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Academy/Faiz.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Academy/Solmyr.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+
+  <Item href="/MapObjects/Dungeon/Urunir.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Dungeon/Menel.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Dungeon/Ferigl.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Dungeon/Ohtarig.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Dungeon/Eruina.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Dungeon/Dalom.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Dungeon/Kelodin.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Dungeon/Shadwyn.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Dungeon/Thralsai.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Dungeon/Agbeth.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Dungeon/Almegir.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Dungeon/Inagost.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Dungeon/Kastore.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Dungeon/Ranleth.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Dungeon/Sephinroth.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+
+  <Item href="/MapObjects/Necropolis/LordHaart.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Necropolis/Gles.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Necropolis/Straker.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Necropolis/Tamika.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Necropolis/Xerxon.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Necropolis/Aislinn.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Necropolis/Effig.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Necropolis/Giovanni.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Necropolis/OrnellaNecro.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Necropolis/Aberrar.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Necropolis/Nimbus.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Necropolis/Muscip.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Necropolis/A2_Arantir.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Necropolis/Nemor.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Necropolis/Sandro.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Necropolis/Thant.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+
+  <Item href="/MapObjects/Inferno/Calid.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Inferno/Deleb.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Inferno/Jazaz.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Inferno/Marder.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Inferno/Orlando.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Inferno/Calh.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Inferno/Efion.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Inferno/Grok.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Inferno/Malustar.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Inferno/Nymus.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Inferno/Oddrema.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Inferno/Zydar.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Inferno/Ash.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Inferno/Sheltem.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+
+  <Item href="/MapObjects/Dwarves/Bersy.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Dwarves/Maximus.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Dwarves/Skeggy.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Dwarves/Tazar.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Dwarves/Vilma.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Dwarves/Bart.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Dwarves/Brand.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Dwarves/Egil.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Dwarves/KingTolghar.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Dwarves/Ottar.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Dwarves/Hangvul2.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Dwarves/Una.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Dwarves/Vegeyr.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Dwarves/Ingvar.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+
+  <Item href="/MapObjects/Stronghold/Hero9.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Stronghold/Hero7.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Stronghold/Hero8.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Stronghold/Azar.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Stronghold/Hero4.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Stronghold/Hero6.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Stronghold/Gottai.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Stronghold/Hero1.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Stronghold/Kraal.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Stronghold/KujinMP.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Stronghold/Matewa.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Stronghold/Hero5.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Stronghold/Erika.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Stronghold/Mokka.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+</AvailableHeroes>
+
+
+删除词条成功：为什么
+回答：
+截图所有相关信息（截图一定要截全，按下键盘上F12右边的PrintScreen键，然后粘贴到QQ即可）并@群主（包含但是不局限于以下信息）
+1.游戏目录的bin文件夹
+2.游戏目录的UserMODs文件夹
+3.当前游戏界面，类似这样
+[__placeholder_0]
+4.描述产生BUG的情况
+  4.1.你以为的并不一定是真实情况，所以直白的描述就好
+  4.2.如果是战斗中，最好截上战斗记录的图，类似这样
+[__placeholder_1]

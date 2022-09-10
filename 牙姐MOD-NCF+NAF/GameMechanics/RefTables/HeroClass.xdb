@@ -22,11 +22,11 @@
 				<SkillsProbs>
 					<Item>
 						<SkillID>HERO_SKILL_LOGISTICS</SkillID>
-						<Prob>10</Prob>
+						<Prob>8</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LEARNING</SkillID>
-						<Prob>4</Prob>
+						<Prob>2</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_OFFENCE</SkillID>
@@ -34,11 +34,11 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DEFENCE</SkillID>
-						<Prob>12</Prob>
+						<Prob>15</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
-						<Prob>12</Prob>
+						<Prob>15</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LUCK</SkillID>
@@ -70,14 +70,14 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_TRAINING</SkillID>
-						<Prob>12</Prob>
+						<Prob>10</Prob>
 					</Item>
 				</SkillsProbs>
 				<AttributeProbs>
-					<OffenceProb>35</OffenceProb>
+					<OffenceProb>30</OffenceProb>
 					<DefenceProb>45</DefenceProb>
 					<SpellpowerProb>10</SpellpowerProb>
-					<KnowledgeProb>10</KnowledgeProb>
+					<KnowledgeProb>15</KnowledgeProb>
 				</AttributeProbs>
 				<PreferredSpellsFromSpellShop>
 					<Item>SPELL_RESURRECT</Item>
@@ -99,15 +99,15 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LEARNING</SkillID>
-						<Prob>4</Prob>
+						<Prob>10</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_OFFENCE</SkillID>
-						<Prob>12</Prob>
+						<Prob>6</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DEFENCE</SkillID>
-						<Prob>8</Prob>
+						<Prob>10</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
@@ -119,7 +119,7 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_WAR_MACHINES</SkillID>
-						<Prob>8</Prob>
+						<Prob>2</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LIGHT_MAGIC</SkillID>
@@ -131,15 +131,15 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_SUMMONING_MAGIC</SkillID>
-						<Prob>4</Prob>
+						<Prob>2</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DESTRUCTIVE_MAGIC</SkillID>
-						<Prob>2</Prob>
+						<Prob>8</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_SORCERY</SkillID>
-						<Prob>2</Prob>
+						<Prob>4</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_TRAINING</SkillID>
@@ -147,14 +147,14 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_AVENGER</SkillID>
-						<Prob>12</Prob>
+						<Prob>10</Prob>
 					</Item>
 				</SkillsProbs>
 				<AttributeProbs>
-					<OffenceProb>45</OffenceProb>
-					<DefenceProb>35</DefenceProb>
+					<OffenceProb>25</OffenceProb>
+					<DefenceProb>40</DefenceProb>
 					<SpellpowerProb>10</SpellpowerProb>
-					<KnowledgeProb>10</KnowledgeProb>
+					<KnowledgeProb>25</KnowledgeProb>
 				</AttributeProbs>
 				<PreferredSpellsFromSpellShop>
 					<Item>SPELL_RESURRECT</Item>
@@ -172,23 +172,23 @@
 				<SkillsProbs>
 					<Item>
 						<SkillID>HERO_SKILL_LOGISTICS</SkillID>
-						<Prob>10</Prob>
-					</Item>
-					<Item>
-						<SkillID>HERO_SKILL_LEARNING</SkillID>
-						<Prob>12</Prob>
-					</Item>
-					<Item>
-						<SkillID>HERO_SKILL_OFFENCE</SkillID>
 						<Prob>6</Prob>
 					</Item>
 					<Item>
-						<SkillID>HERO_SKILL_DEFENCE</SkillID>
+						<SkillID>HERO_SKILL_LEARNING</SkillID>
+						<Prob>4</Prob>
+					</Item>
+					<Item>
+						<SkillID>HERO_SKILL_OFFENCE</SkillID>
 						<Prob>10</Prob>
 					</Item>
 					<Item>
+						<SkillID>HERO_SKILL_DEFENCE</SkillID>
+						<Prob>15</Prob>
+					</Item>
+					<Item>
 						<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
-						<Prob>10</Prob>
+						<Prob>15</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LUCK</SkillID>
@@ -196,19 +196,19 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_WAR_MACHINES</SkillID>
-						<Prob>6</Prob>
+						<Prob>10</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LIGHT_MAGIC</SkillID>
-						<Prob>12</Prob>
+						<Prob>8</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DARK_MAGIC</SkillID>
-						<Prob>2</Prob>
+						<Prob>8</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_SUMMONING_MAGIC</SkillID>
-						<Prob>8</Prob>
+						<Prob>2</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DESTRUCTIVE_MAGIC</SkillID>
@@ -216,7 +216,7 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_SORCERY</SkillID>
-						<Prob>8</Prob>
+						<Prob>2</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_TRAINING</SkillID>
@@ -224,10 +224,10 @@
 					</Item>
 				</SkillsProbs>
 				<AttributeProbs>
-					<OffenceProb>15</OffenceProb>
-					<DefenceProb>35</DefenceProb>
-					<SpellpowerProb>20</SpellpowerProb>
-					<KnowledgeProb>30</KnowledgeProb>
+					<OffenceProb>20</OffenceProb>
+					<DefenceProb>45</DefenceProb>
+					<SpellpowerProb>10</SpellpowerProb>
+					<KnowledgeProb>25</KnowledgeProb>
 				</AttributeProbs>
 				<PreferredSpellsFromSpellShop>
 					<Item>SPELL_RESURRECT</Item>
@@ -245,23 +245,23 @@
 				<SkillsProbs>
 					<Item>
 						<SkillID>HERO_SKILL_LOGISTICS</SkillID>
-						<Prob>10</Prob>
+						<Prob>8</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LEARNING</SkillID>
-						<Prob>6</Prob>
+						<Prob>4</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_OFFENCE</SkillID>
-						<Prob>12</Prob>
+						<Prob>10</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DEFENCE</SkillID>
-						<Prob>10</Prob>
+						<Prob>15</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
-						<Prob>10</Prob>
+						<Prob>15</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LUCK</SkillID>
@@ -269,19 +269,19 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_WAR_MACHINES</SkillID>
-						<Prob>12</Prob>
+						<Prob>10</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LIGHT_MAGIC</SkillID>
-						<Prob>12</Prob>
+						<Prob>8</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DARK_MAGIC</SkillID>
-						<Prob>2</Prob>
+						<Prob>8</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_SUMMONING_MAGIC</SkillID>
-						<Prob>8</Prob>
+						<Prob>2</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DESTRUCTIVE_MAGIC</SkillID>
@@ -289,7 +289,7 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_SORCERY</SkillID>
-						<Prob>2</Prob>
+						<Prob>4</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_TRAINING</SkillID>
@@ -297,10 +297,10 @@
 					</Item>
 				</SkillsProbs>
 				<AttributeProbs>
-					<OffenceProb>35</OffenceProb>
-					<DefenceProb>15</DefenceProb>
-					<SpellpowerProb>20</SpellpowerProb>
-					<KnowledgeProb>30</KnowledgeProb>
+					<OffenceProb>30</OffenceProb>
+					<DefenceProb>35</DefenceProb>
+					<SpellpowerProb>15</SpellpowerProb>
+					<KnowledgeProb>20</KnowledgeProb>
 				</AttributeProbs>
 				<PreferredSpellsFromSpellShop>
 					<Item>SPELL_RESURRECT</Item>
@@ -318,19 +318,19 @@
 				<SkillsProbs>
 					<Item>
 						<SkillID>HERO_SKILL_LOGISTICS</SkillID>
-						<Prob>8</Prob>
+						<Prob>2</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LEARNING</SkillID>
-						<Prob>12</Prob>
+						<Prob>15</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_OFFENCE</SkillID>
-						<Prob>4</Prob>
+						<Prob>2</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DEFENCE</SkillID>
-						<Prob>4</Prob>
+						<Prob>2</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
@@ -342,19 +342,19 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_WAR_MACHINES</SkillID>
-						<Prob>4</Prob>
-					</Item>
-					<Item>
-						<SkillID>HERO_SKILL_LIGHT_MAGIC</SkillID>
 						<Prob>8</Prob>
 					</Item>
 					<Item>
+						<SkillID>HERO_SKILL_LIGHT_MAGIC</SkillID>
+						<Prob>10</Prob>
+					</Item>
+					<Item>
 						<SkillID>HERO_SKILL_DARK_MAGIC</SkillID>
-						<Prob>4</Prob>
+						<Prob>8</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_SUMMONING_MAGIC</SkillID>
-						<Prob>12</Prob>
+						<Prob>15</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DESTRUCTIVE_MAGIC</SkillID>
@@ -365,19 +365,15 @@
 						<Prob>10</Prob>
 					</Item>
 					<Item>
-						<SkillID>HERO_SKILL_INVOCATION</SkillID>
-						<Prob>4</Prob>
-					</Item>
-					<Item>
 						<SkillID>HERO_SKILL_ARTIFICIER</SkillID>
-						<Prob>12</Prob>
+						<Prob>10</Prob>
 					</Item>
 				</SkillsProbs>
 				<AttributeProbs>
 					<OffenceProb>10</OffenceProb>
 					<DefenceProb>15</DefenceProb>
-					<SpellpowerProb>35</SpellpowerProb>
-					<KnowledgeProb>40</KnowledgeProb>
+					<SpellpowerProb>30</SpellpowerProb>
+					<KnowledgeProb>45</KnowledgeProb>
 				</AttributeProbs>
 				<PreferredSpellsFromSpellShop>
 					<Item>SPELL_IMPLOSION</Item>
@@ -402,7 +398,7 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LEARNING</SkillID>
-						<Prob>4</Prob>
+						<Prob>2</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_OFFENCE</SkillID>
@@ -410,11 +406,11 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DEFENCE</SkillID>
-						<Prob>6</Prob>
+						<Prob>8</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
-						<Prob>8</Prob>
+						<Prob>2</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LUCK</SkillID>
@@ -430,23 +426,23 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DARK_MAGIC</SkillID>
-						<Prob>2</Prob>
-					</Item>
-					<Item>
-						<SkillID>HERO_SKILL_SUMMONING_MAGIC</SkillID>
-						<Prob>4</Prob>
-					</Item>
-					<Item>
-						<SkillID>HERO_SKILL_DESTRUCTIVE_MAGIC</SkillID>
 						<Prob>8</Prob>
 					</Item>
 					<Item>
-						<SkillID>HERO_SKILL_SORCERY</SkillID>
+						<SkillID>HERO_SKILL_SUMMONING_MAGIC</SkillID>
 						<Prob>2</Prob>
 					</Item>
 					<Item>
+						<SkillID>HERO_SKILL_DESTRUCTIVE_MAGIC</SkillID>
+						<Prob>10</Prob>
+					</Item>
+					<Item>
+						<SkillID>HERO_SKILL_SORCERY</SkillID>
+						<Prob>8</Prob>
+					</Item>
+					<Item>
 						<SkillID>HERO_SKILL_TRAINING</SkillID>
-						<Prob>12</Prob>
+						<Prob>6</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_GATING</SkillID>
@@ -454,10 +450,10 @@
 					</Item>
 				</SkillsProbs>
 				<AttributeProbs>
-					<OffenceProb>50</OffenceProb>
-					<DefenceProb>30</DefenceProb>
-					<SpellpowerProb>10</SpellpowerProb>
-					<KnowledgeProb>10</KnowledgeProb>
+					<OffenceProb>40</OffenceProb>
+					<DefenceProb>15</DefenceProb>
+					<SpellpowerProb>15</SpellpowerProb>
+					<KnowledgeProb>30</KnowledgeProb>
 				</AttributeProbs>
 				<PreferredSpellsFromSpellShop>
 					<Item>SPELL_IMPLOSION</Item>
@@ -475,15 +471,15 @@
 				<SkillsProbs>
 					<Item>
 						<SkillID>HERO_SKILL_LOGISTICS</SkillID>
-						<Prob>10</Prob>
+						<Prob>12</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LEARNING</SkillID>
-						<Prob>8</Prob>
+						<Prob>2</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_OFFENCE</SkillID>
-						<Prob>8</Prob>
+						<Prob>12</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DEFENCE</SkillID>
@@ -491,7 +487,7 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
-						<Prob>8</Prob>
+						<Prob>6</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LUCK</SkillID>
@@ -499,7 +495,7 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_WAR_MACHINES</SkillID>
-						<Prob>4</Prob>
+						<Prob>10</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LIGHT_MAGIC</SkillID>
@@ -507,19 +503,19 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DARK_MAGIC</SkillID>
-						<Prob>6</Prob>
+						<Prob>8</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_SUMMONING_MAGIC</SkillID>
-						<Prob>8</Prob>
+						<Prob>2</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DESTRUCTIVE_MAGIC</SkillID>
-						<Prob>8</Prob>
+						<Prob>10</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_SORCERY</SkillID>
-						<Prob>4</Prob>
+						<Prob>8</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_TRAINING</SkillID>
@@ -527,14 +523,14 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_GATING</SkillID>
-						<Prob>12</Prob>
+						<Prob>6</Prob>
 					</Item>
 				</SkillsProbs>
 				<AttributeProbs>
-					<OffenceProb>35</OffenceProb>
-					<DefenceProb>15</DefenceProb>
-					<SpellpowerProb>30</SpellpowerProb>
-					<KnowledgeProb>20</KnowledgeProb>
+					<OffenceProb>45</OffenceProb>
+					<DefenceProb>10</DefenceProb>
+					<SpellpowerProb>15</SpellpowerProb>
+					<KnowledgeProb>30</KnowledgeProb>
 				</AttributeProbs>
 				<PreferredSpellsFromSpellShop>
 					<Item>SPELL_IMPLOSION</Item>
@@ -552,31 +548,31 @@
 				<SkillsProbs>
 					<Item>
 						<SkillID>HERO_SKILL_LOGISTICS</SkillID>
-						<Prob>8</Prob>
+						<Prob>2</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LEARNING</SkillID>
-						<Prob>4</Prob>
-					</Item>
-					<Item>
-						<SkillID>HERO_SKILL_OFFENCE</SkillID>
-						<Prob>10</Prob>
-					</Item>
-					<Item>
-						<SkillID>HERO_SKILL_DEFENCE</SkillID>
-						<Prob>10</Prob>
-					</Item>
-					<Item>
-						<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
-						<Prob>10</Prob>
-					</Item>
-					<Item>
-						<SkillID>HERO_SKILL_LUCK</SkillID>
 						<Prob>8</Prob>
 					</Item>
 					<Item>
-						<SkillID>HERO_SKILL_WAR_MACHINES</SkillID>
+						<SkillID>HERO_SKILL_OFFENCE</SkillID>
+						<Prob>8</Prob>
+					</Item>
+					<Item>
+						<SkillID>HERO_SKILL_DEFENCE</SkillID>
 						<Prob>12</Prob>
+					</Item>
+					<Item>
+						<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
+						<Prob>8</Prob>
+					</Item>
+					<Item>
+						<SkillID>HERO_SKILL_LUCK</SkillID>
+						<Prob>9</Prob>
+					</Item>
+					<Item>
+						<SkillID>HERO_SKILL_WAR_MACHINES</SkillID>
+						<Prob>15</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LIGHT_MAGIC</SkillID>
@@ -588,11 +584,11 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_SUMMONING_MAGIC</SkillID>
-						<Prob>2</Prob>
+						<Prob>4</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DESTRUCTIVE_MAGIC</SkillID>
-						<Prob>2</Prob>
+						<Prob>10</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_SORCERY</SkillID>
@@ -600,18 +596,18 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_TRAINING</SkillID>
-						<Prob>12</Prob>
+						<Prob>6</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_RUNELORE</SkillID>
-						<Prob>10</Prob>
+						<Prob>6</Prob>
 					</Item>
 				</SkillsProbs>
 				<AttributeProbs>
-					<OffenceProb>40</OffenceProb>
-					<DefenceProb>40</DefenceProb>
-					<SpellpowerProb>5</SpellpowerProb>
-					<KnowledgeProb>15</KnowledgeProb>
+					<OffenceProb>30</OffenceProb>
+					<DefenceProb>30</DefenceProb>
+					<SpellpowerProb>20</SpellpowerProb>
+					<KnowledgeProb>20</KnowledgeProb>
 				</AttributeProbs>
 				<PreferredSpellsFromSpellShop>
 					<Item>SPELL_HOLY_WORD</Item>
@@ -633,19 +629,19 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LEARNING</SkillID>
-						<Prob>12</Prob>
+						<Prob>10</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_OFFENCE</SkillID>
-						<Prob>4</Prob>
+						<Prob>8</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DEFENCE</SkillID>
-						<Prob>4</Prob>
+						<Prob>10</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LUCK</SkillID>
-						<Prob>8</Prob>
+						<Prob>2</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_WAR_MACHINES</SkillID>
@@ -653,38 +649,34 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LIGHT_MAGIC</SkillID>
-						<Prob>4</Prob>
+						<Prob>2</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DARK_MAGIC</SkillID>
-						<Prob>12</Prob>
+						<Prob>15</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_SUMMONING_MAGIC</SkillID>
-						<Prob>12</Prob>
+						<Prob>10</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DESTRUCTIVE_MAGIC</SkillID>
-						<Prob>6</Prob>
+						<Prob>8</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_SORCERY</SkillID>
 						<Prob>10</Prob>
 					</Item>
 					<Item>
-						<SkillID>HERO_SKILL_INVOCATION</SkillID>
-						<Prob>6</Prob>
-					</Item>
-					<Item>
 						<SkillID>HERO_SKILL_NECROMANCY</SkillID>
-						<Prob>12</Prob>
+						<Prob>15</Prob>
 					</Item>
 				</SkillsProbs>
 				<AttributeProbs>
 					<OffenceProb>10</OffenceProb>
-					<DefenceProb>15</DefenceProb>
+					<DefenceProb>30</DefenceProb>
 					<SpellpowerProb>45</SpellpowerProb>
-					<KnowledgeProb>30</KnowledgeProb>
+					<KnowledgeProb>15</KnowledgeProb>
 				</AttributeProbs>
 				<PreferredSpellsFromSpellShop>
 					<Item>SPELL_CELESTIAL_SHIELD</Item>
@@ -704,19 +696,19 @@
 				<SkillsProbs>
 					<Item>
 						<SkillID>HERO_SKILL_LOGISTICS</SkillID>
-						<Prob>10</Prob>
+						<Prob>8</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LEARNING</SkillID>
-						<Prob>10</Prob>
+						<Prob>8</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_OFFENCE</SkillID>
-						<Prob>4</Prob>
+						<Prob>15</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DEFENCE</SkillID>
-						<Prob>4</Prob>
+						<Prob>2</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
@@ -728,15 +720,15 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_WAR_MACHINES</SkillID>
-						<Prob>2</Prob>
+						<Prob>8</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LIGHT_MAGIC</SkillID>
-						<Prob>4</Prob>
+						<Prob>2</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DARK_MAGIC</SkillID>
-						<Prob>10</Prob>
+						<Prob>2</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_SUMMONING_MAGIC</SkillID>
@@ -744,22 +736,22 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DESTRUCTIVE_MAGIC</SkillID>
-						<Prob>12</Prob>
+						<Prob>15</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_SORCERY</SkillID>
-						<Prob>12</Prob>
+						<Prob>10</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_INVOCATION</SkillID>
-						<Prob>12</Prob>
+						<Prob>10</Prob>
 					</Item>
 				</SkillsProbs>
 				<AttributeProbs>
-					<OffenceProb>15</OffenceProb>
+					<OffenceProb>30</OffenceProb>
 					<DefenceProb>10</DefenceProb>
-					<SpellpowerProb>50</SpellpowerProb>
-					<KnowledgeProb>25</KnowledgeProb>
+					<SpellpowerProb>45</SpellpowerProb>
+					<KnowledgeProb>15</KnowledgeProb>
 				</AttributeProbs>
 				<PreferredSpellsFromSpellShop>
 					<Item>SPELL_IMPLOSION</Item>
@@ -926,11 +918,11 @@
 				<SkillsProbs>
 					<Item>
 						<SkillID>HERO_SKILL_LOGISTICS</SkillID>
-						<Prob>10</Prob>
+						<Prob>8</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LEARNING</SkillID>
-						<Prob>6</Prob>
+						<Prob>8</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_OFFENCE</SkillID>
@@ -938,15 +930,15 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DEFENCE</SkillID>
-						<Prob>12</Prob>
+						<Prob>10</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LUCK</SkillID>
-						<Prob>8</Prob>
+						<Prob>4</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_WAR_MACHINES</SkillID>
-						<Prob>10</Prob>
+						<Prob>4</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LIGHT_MAGIC</SkillID>
@@ -954,34 +946,34 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DARK_MAGIC</SkillID>
-						<Prob>8</Prob>
-					</Item>
-					<Item>
-						<SkillID>HERO_SKILL_SUMMONING_MAGIC</SkillID>
-						<Prob>6</Prob>
-					</Item>
-					<Item>
-						<SkillID>HERO_SKILL_DESTRUCTIVE_MAGIC</SkillID>
-						<Prob>2</Prob>
-					</Item>
-					<Item>
-						<SkillID>HERO_SKILL_SORCERY</SkillID>
-						<Prob>2</Prob>
-					</Item>
-					<Item>
-						<SkillID>HERO_SKILL_TRAINING</SkillID>
 						<Prob>12</Prob>
 					</Item>
 					<Item>
-						<SkillID>HERO_SKILL_NECROMANCY</SkillID>
+						<SkillID>HERO_SKILL_SUMMONING_MAGIC</SkillID>
 						<Prob>10</Prob>
+					</Item>
+					<Item>
+						<SkillID>HERO_SKILL_DESTRUCTIVE_MAGIC</SkillID>
+						<Prob>8</Prob>
+					</Item>
+					<Item>
+						<SkillID>HERO_SKILL_SORCERY</SkillID>
+						<Prob>10</Prob>
+					</Item>
+					<Item>
+						<SkillID>HERO_SKILL_TRAINING</SkillID>
+						<Prob>6</Prob>
+					</Item>
+					<Item>
+						<SkillID>HERO_SKILL_NECROMANCY</SkillID>
+						<Prob>8</Prob>
 					</Item>
 				</SkillsProbs>
 				<AttributeProbs>
-					<OffenceProb>30</OffenceProb>
-					<DefenceProb>45</DefenceProb>
-					<SpellpowerProb>10</SpellpowerProb>
-					<KnowledgeProb>15</KnowledgeProb>
+					<OffenceProb>20</OffenceProb>
+					<DefenceProb>35</DefenceProb>
+					<SpellpowerProb>35</SpellpowerProb>
+					<KnowledgeProb>10</KnowledgeProb>
 				</AttributeProbs>
 				<PreferredSpellsFromSpellShop>
 					<Item>SPELL_DEEP_FREEZE</Item>
@@ -999,23 +991,23 @@
 				<SkillsProbs>
 					<Item>
 						<SkillID>HERO_SKILL_LOGISTICS</SkillID>
-						<Prob>8</Prob>
+						<Prob>2</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LEARNING</SkillID>
-						<Prob>10</Prob>
+						<Prob>8</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_OFFENCE</SkillID>
-						<Prob>4</Prob>
+						<Prob>8</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DEFENCE</SkillID>
-						<Prob>12</Prob>
+						<Prob>15</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
-						<Prob>2</Prob>
+						<Prob>8</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LUCK</SkillID>
@@ -1023,11 +1015,11 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_WAR_MACHINES</SkillID>
-						<Prob>8</Prob>
+						<Prob>15</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LIGHT_MAGIC</SkillID>
-						<Prob>10</Prob>
+						<Prob>8</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DARK_MAGIC</SkillID>
@@ -1035,7 +1027,7 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_SUMMONING_MAGIC</SkillID>
-						<Prob>2</Prob>
+						<Prob>4</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DESTRUCTIVE_MAGIC</SkillID>
@@ -1043,20 +1035,16 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_SORCERY</SkillID>
-						<Prob>8</Prob>
-					</Item>
-					<Item>
-						<SkillID>HERO_SKILL_INVOCATION</SkillID>
-						<Prob>4</Prob>
+						<Prob>2</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_RUNELORE</SkillID>
-						<Prob>12</Prob>
+						<Prob>10</Prob>
 					</Item>
 				</SkillsProbs>
 				<AttributeProbs>
-					<OffenceProb>15</OffenceProb>
-					<DefenceProb>35</DefenceProb>
+					<OffenceProb>20</OffenceProb>
+					<DefenceProb>30</DefenceProb>
 					<SpellpowerProb>30</SpellpowerProb>
 					<KnowledgeProb>20</KnowledgeProb>
 				</AttributeProbs>
@@ -1076,7 +1064,7 @@
 				<SkillsProbs>
 					<Item>
 						<SkillID>HERO_SKILL_LOGISTICS</SkillID>
-						<Prob>10</Prob>
+						<Prob>12</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_BARBARIAN_LEARNING</SkillID>
@@ -1088,54 +1076,54 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DEFENCE</SkillID>
-						<Prob>6</Prob>
+						<Prob>10</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
-						<Prob>12</Prob>
+						<Prob>10</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LUCK</SkillID>
-						<Prob>6</Prob>
-					</Item>
-					<Item>
-						<SkillID>HERO_SKILL_WAR_MACHINES</SkillID>
-						<Prob>12</Prob>
-					</Item>
-					<Item>
-						<SkillID>HERO_SKILL_SHATTER_LIGHT_MAGIC</SkillID>
-						<Prob>4</Prob>
-					</Item>
-					<Item>
-						<SkillID>HERO_SKILL_SHATTER_DARK_MAGIC</SkillID>
-						<Prob>4</Prob>
-					</Item>
-					<Item>
-						<SkillID>HERO_SKILL_SHATTER_SUMMONING_MAGIC</SkillID>
-						<Prob>4</Prob>
-					</Item>
-					<Item>
-						<SkillID>HERO_SKILL_SHATTER_DESTRUCTIVE_MAGIC</SkillID>
-						<Prob>4</Prob>
-					</Item>
-					<Item>
-						<SkillID>HERO_SKILL_VOICE</SkillID>
-						<Prob>4</Prob>
-					</Item>
-					<Item>
-						<SkillID>HERO_SKILL_TRAINING</SkillID>
 						<Prob>8</Prob>
 					</Item>
 					<Item>
+						<SkillID>HERO_SKILL_WAR_MACHINES</SkillID>
+						<Prob>8</Prob>
+					</Item>
+					<Item>
+						<SkillID>HERO_SKILL_SHATTER_LIGHT_MAGIC</SkillID>
+						<Prob>5</Prob>
+					</Item>
+					<Item>
+						<SkillID>HERO_SKILL_SHATTER_DARK_MAGIC</SkillID>
+						<Prob>5</Prob>
+					</Item>
+					<Item>
+						<SkillID>HERO_SKILL_SHATTER_SUMMONING_MAGIC</SkillID>
+						<Prob>5</Prob>
+					</Item>
+					<Item>
+						<SkillID>HERO_SKILL_SHATTER_DESTRUCTIVE_MAGIC</SkillID>
+						<Prob>5</Prob>
+					</Item>
+					<Item>
+						<SkillID>HERO_SKILL_VOICE</SkillID>
+						<Prob>2</Prob>
+					</Item>
+					<Item>
+						<SkillID>HERO_SKILL_TRAINING</SkillID>
+						<Prob>6</Prob>
+					</Item>
+					<Item>
 						<SkillID>HERO_SKILL_DEMONIC_RAGE</SkillID>
-						<Prob>12</Prob>
+						<Prob>10</Prob>
 					</Item>
 				</SkillsProbs>
 				<AttributeProbs>
-					<OffenceProb>55</OffenceProb>
-					<DefenceProb>30</DefenceProb>
+					<OffenceProb>45</OffenceProb>
+					<DefenceProb>35</DefenceProb>
 					<SpellpowerProb>5</SpellpowerProb>
-					<KnowledgeProb>10</KnowledgeProb>
+					<KnowledgeProb>15</KnowledgeProb>
 				</AttributeProbs>
 				<PreferredSpellsFromSpellShop/>
 			</obj>
@@ -1147,7 +1135,7 @@
 				<SkillsProbs>
 					<Item>
 						<SkillID>HERO_SKILL_LOGISTICS</SkillID>
-						<Prob>10</Prob>
+						<Prob>12</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LEARNING</SkillID>
@@ -1155,7 +1143,7 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_OFFENCE</SkillID>
-						<Prob>4</Prob>
+						<Prob>6</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DEFENCE</SkillID>
@@ -1163,19 +1151,19 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
-						<Prob>10</Prob>
+						<Prob>8</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LUCK</SkillID>
-						<Prob>10</Prob>
+						<Prob>12</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_WAR_MACHINES</SkillID>
-						<Prob>6</Prob>
+						<Prob>4</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LIGHT_MAGIC</SkillID>
-						<Prob>10</Prob>
+						<Prob>8</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DARK_MAGIC</SkillID>
@@ -1183,30 +1171,30 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_SUMMONING_MAGIC</SkillID>
-						<Prob>4</Prob>
+						<Prob>2</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DESTRUCTIVE_MAGIC</SkillID>
-						<Prob>2</Prob>
-					</Item>
-					<Item>
-						<SkillID>HERO_SKILL_SORCERY</SkillID>
-						<Prob>2</Prob>
-					</Item>
-					<Item>
-						<SkillID>HERO_SKILL_TRAINING</SkillID>
 						<Prob>8</Prob>
 					</Item>
 					<Item>
+						<SkillID>HERO_SKILL_SORCERY</SkillID>
+						<Prob>4</Prob>
+					</Item>
+					<Item>
+						<SkillID>HERO_SKILL_TRAINING</SkillID>
+						<Prob>6</Prob>
+					</Item>
+					<Item>
 						<SkillID>HERO_SKILL_AVENGER</SkillID>
-						<Prob>10</Prob>
+						<Prob>6</Prob>
 					</Item>
 				</SkillsProbs>
 				<AttributeProbs>
 					<OffenceProb>15</OffenceProb>
-					<DefenceProb>35</DefenceProb>
-					<SpellpowerProb>25</SpellpowerProb>
-					<KnowledgeProb>25</KnowledgeProb>
+					<DefenceProb>45</DefenceProb>
+					<SpellpowerProb>10</SpellpowerProb>
+					<KnowledgeProb>30</KnowledgeProb>
 				</AttributeProbs>
 				<PreferredSpellsFromSpellShop>
 					<Item>SPELL_RESURRECT</Item>
@@ -1224,23 +1212,23 @@
 				<SkillsProbs>
 					<Item>
 						<SkillID>HERO_SKILL_LOGISTICS</SkillID>
-						<Prob>8</Prob>
+						<Prob>6</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LEARNING</SkillID>
-						<Prob>12</Prob>
+						<Prob>4</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_OFFENCE</SkillID>
-						<Prob>6</Prob>
+						<Prob>10</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DEFENCE</SkillID>
-						<Prob>6</Prob>
+						<Prob>15</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
-						<Prob>6</Prob>
+						<Prob>15</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LUCK</SkillID>
@@ -1248,7 +1236,7 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_WAR_MACHINES</SkillID>
-						<Prob>4</Prob>
+						<Prob>10</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LIGHT_MAGIC</SkillID>
@@ -1260,30 +1248,26 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_SUMMONING_MAGIC</SkillID>
-						<Prob>4</Prob>
+						<Prob>2</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DESTRUCTIVE_MAGIC</SkillID>
-						<Prob>4</Prob>
+						<Prob>2</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_SORCERY</SkillID>
-						<Prob>12</Prob>
+						<Prob>2</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_TRAINING</SkillID>
-						<Prob>4</Prob>
-					</Item>
-					<Item>
-						<SkillID>HERO_SKILL_INVOCATION</SkillID>
 						<Prob>6</Prob>
 					</Item>
 				</SkillsProbs>
 				<AttributeProbs>
-					<OffenceProb>20</OffenceProb>
-					<DefenceProb>20</DefenceProb>
-					<SpellpowerProb>35</SpellpowerProb>
-					<KnowledgeProb>25</KnowledgeProb>
+					<OffenceProb>30</OffenceProb>
+					<DefenceProb>35</DefenceProb>
+					<SpellpowerProb>20</SpellpowerProb>
+					<KnowledgeProb>15</KnowledgeProb>
 				</AttributeProbs>
 				<PreferredSpellsFromSpellShop>
 					<Item>SPELL_IMPLOSION</Item>
@@ -1301,7 +1285,7 @@
 				<SkillsProbs>
 					<Item>
 						<SkillID>HERO_SKILL_LOGISTICS</SkillID>
-						<Prob>12</Prob>
+						<Prob>8</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LEARNING</SkillID>
@@ -1309,39 +1293,39 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_OFFENCE</SkillID>
-						<Prob>12</Prob>
-					</Item>
-					<Item>
-						<SkillID>HERO_SKILL_DEFENCE</SkillID>
-						<Prob>8</Prob>
-					</Item>
-					<Item>
-						<SkillID>HERO_SKILL_LUCK</SkillID>
-						<Prob>6</Prob>
-					</Item>
-					<Item>
-						<SkillID>HERO_SKILL_WAR_MACHINES</SkillID>
-						<Prob>6</Prob>
-					</Item>
-					<Item>
-						<SkillID>HERO_SKILL_LIGHT_MAGIC</SkillID>
-						<Prob>4</Prob>
-					</Item>
-					<Item>
-						<SkillID>HERO_SKILL_DARK_MAGIC</SkillID>
 						<Prob>10</Prob>
 					</Item>
 					<Item>
-						<SkillID>HERO_SKILL_SUMMONING_MAGIC</SkillID>
-						<Prob>8</Prob>
+						<SkillID>HERO_SKILL_DEFENCE</SkillID>
+						<Prob>10</Prob>
 					</Item>
 					<Item>
-						<SkillID>HERO_SKILL_DESTRUCTIVE_MAGIC</SkillID>
+						<SkillID>HERO_SKILL_LUCK</SkillID>
+						<Prob>2</Prob>
+					</Item>
+					<Item>
+						<SkillID>HERO_SKILL_WAR_MACHINES</SkillID>
 						<Prob>4</Prob>
 					</Item>
 					<Item>
+						<SkillID>HERO_SKILL_LIGHT_MAGIC</SkillID>
+						<Prob>2</Prob>
+					</Item>
+					<Item>
+						<SkillID>HERO_SKILL_DARK_MAGIC</SkillID>
+						<Prob>12</Prob>
+					</Item>
+					<Item>
+						<SkillID>HERO_SKILL_SUMMONING_MAGIC</SkillID>
+						<Prob>10</Prob>
+					</Item>
+					<Item>
+						<SkillID>HERO_SKILL_DESTRUCTIVE_MAGIC</SkillID>
+						<Prob>8</Prob>
+					</Item>
+					<Item>
 						<SkillID>HERO_SKILL_SORCERY</SkillID>
-						<Prob>6</Prob>
+						<Prob>10</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_TRAINING</SkillID>
@@ -1353,10 +1337,10 @@
 					</Item>
 				</SkillsProbs>
 				<AttributeProbs>
-					<OffenceProb>35</OffenceProb>
-					<DefenceProb>15</DefenceProb>
-					<SpellpowerProb>20</SpellpowerProb>
-					<KnowledgeProb>30</KnowledgeProb>
+					<OffenceProb>20</OffenceProb>
+					<DefenceProb>25</DefenceProb>
+					<SpellpowerProb>35</SpellpowerProb>
+					<KnowledgeProb>20</KnowledgeProb>
 				</AttributeProbs>
 				<PreferredSpellsFromSpellShop>
 					<Item>SPELL_SUMMON_ELEMENTALS</Item>
@@ -1374,11 +1358,11 @@
 				<SkillsProbs>
 					<Item>
 						<SkillID>HERO_SKILL_LOGISTICS</SkillID>
-						<Prob>8</Prob>
+						<Prob>6</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LEARNING</SkillID>
-						<Prob>4</Prob>
+						<Prob>8</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_OFFENCE</SkillID>
@@ -1390,7 +1374,7 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
-						<Prob>12</Prob>
+						<Prob>8</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LUCK</SkillID>
@@ -1398,7 +1382,7 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_WAR_MACHINES</SkillID>
-						<Prob>10</Prob>
+						<Prob>12</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LIGHT_MAGIC</SkillID>
@@ -1410,11 +1394,11 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_SUMMONING_MAGIC</SkillID>
-						<Prob>2</Prob>
+						<Prob>4</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DESTRUCTIVE_MAGIC</SkillID>
-						<Prob>2</Prob>
+						<Prob>10</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_SORCERY</SkillID>
@@ -1422,18 +1406,18 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_TRAINING</SkillID>
-						<Prob>12</Prob>
+						<Prob>6</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_RUNELORE</SkillID>
-						<Prob>10</Prob>
+						<Prob>6</Prob>
 					</Item>
 				</SkillsProbs>
 				<AttributeProbs>
 					<OffenceProb>25</OffenceProb>
 					<DefenceProb>40</DefenceProb>
-					<SpellpowerProb>15</SpellpowerProb>
-					<KnowledgeProb>20</KnowledgeProb>
+					<SpellpowerProb>20</SpellpowerProb>
+					<KnowledgeProb>15</KnowledgeProb>
 				</AttributeProbs>
 				<PreferredSpellsFromSpellShop>
 					<Item>SPELL_IMPLOSION</Item>
@@ -1452,11 +1436,11 @@
 				<SkillsProbs>
 					<Item>
 						<SkillID>HERO_SKILL_LOGISTICS</SkillID>
-						<Prob>12</Prob>
+						<Prob>8</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LEARNING</SkillID>
-						<Prob>4</Prob>
+						<Prob>8</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_OFFENCE</SkillID>
@@ -1464,15 +1448,15 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DEFENCE</SkillID>
-						<Prob>8</Prob>
+						<Prob>2</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
-						<Prob>12</Prob>
+						<Prob>6</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LUCK</SkillID>
-						<Prob>10</Prob>
+						<Prob>8</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_WAR_MACHINES</SkillID>
@@ -1484,34 +1468,34 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DARK_MAGIC</SkillID>
-						<Prob>4</Prob>
-					</Item>
-					<Item>
-						<SkillID>HERO_SKILL_SUMMONING_MAGIC</SkillID>
-						<Prob>6</Prob>
-					</Item>
-					<Item>
-						<SkillID>HERO_SKILL_DESTRUCTIVE_MAGIC</SkillID>
-						<Prob>8</Prob>
-					</Item>
-					<Item>
-						<SkillID>HERO_SKILL_SORCERY</SkillID>
 						<Prob>2</Prob>
 					</Item>
 					<Item>
+						<SkillID>HERO_SKILL_SUMMONING_MAGIC</SkillID>
+						<Prob>10</Prob>
+					</Item>
+					<Item>
+						<SkillID>HERO_SKILL_DESTRUCTIVE_MAGIC</SkillID>
+						<Prob>12</Prob>
+					</Item>
+					<Item>
+						<SkillID>HERO_SKILL_SORCERY</SkillID>
+						<Prob>10</Prob>
+					</Item>
+					<Item>
 						<SkillID>HERO_SKILL_TRAINING</SkillID>
-						<Prob>8</Prob>
+						<Prob>6</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_INVOCATION</SkillID>
-						<Prob>4</Prob>
+						<Prob>6</Prob>
 					</Item>
 				</SkillsProbs>
 				<AttributeProbs>
-					<OffenceProb>45</OffenceProb>
-					<DefenceProb>30</DefenceProb>
-					<SpellpowerProb>10</SpellpowerProb>
-					<KnowledgeProb>15</KnowledgeProb>
+					<OffenceProb>35</OffenceProb>
+					<DefenceProb>20</DefenceProb>
+					<SpellpowerProb>35</SpellpowerProb>
+					<KnowledgeProb>10</KnowledgeProb>
 				</AttributeProbs>
 				<PreferredSpellsFromSpellShop>
 					<Item>SPELL_BERSERK</Item>
@@ -1529,31 +1513,31 @@
 				<SkillsProbs>
 					<Item>
 						<SkillID>HERO_SKILL_LOGISTICS</SkillID>
-						<Prob>8</Prob>
+						<Prob>2</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LEARNING</SkillID>
-						<Prob>10</Prob>
-					</Item>
-					<Item>
-						<SkillID>HERO_SKILL_OFFENCE</SkillID>
-						<Prob>8</Prob>
-					</Item>
-					<Item>
-						<SkillID>HERO_SKILL_DEFENCE</SkillID>
-						<Prob>10</Prob>
-					</Item>
-					<Item>
-						<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
-						<Prob>4</Prob>
-					</Item>
-					<Item>
-						<SkillID>HERO_SKILL_LUCK</SkillID>
 						<Prob>12</Prob>
 					</Item>
 					<Item>
+						<SkillID>HERO_SKILL_OFFENCE</SkillID>
+						<Prob>4</Prob>
+					</Item>
+					<Item>
+						<SkillID>HERO_SKILL_DEFENCE</SkillID>
+						<Prob>4</Prob>
+					</Item>
+					<Item>
+						<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
+						<Prob>2</Prob>
+					</Item>
+					<Item>
+						<SkillID>HERO_SKILL_LUCK</SkillID>
+						<Prob>8</Prob>
+					</Item>
+					<Item>
 						<SkillID>HERO_SKILL_WAR_MACHINES</SkillID>
-						<Prob>10</Prob>
+						<Prob>8</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LIGHT_MAGIC</SkillID>
@@ -1561,34 +1545,34 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DARK_MAGIC</SkillID>
-						<Prob>4</Prob>
-					</Item>
-					<Item>
-						<SkillID>HERO_SKILL_SUMMONING_MAGIC</SkillID>
 						<Prob>8</Prob>
 					</Item>
 					<Item>
+						<SkillID>HERO_SKILL_SUMMONING_MAGIC</SkillID>
+						<Prob>12</Prob>
+					</Item>
+					<Item>
 						<SkillID>HERO_SKILL_DESTRUCTIVE_MAGIC</SkillID>
-						<Prob>2</Prob>
+						<Prob>8</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_SORCERY</SkillID>
-						<Prob>2</Prob>
+						<Prob>10</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_TRAINING</SkillID>
-						<Prob>2</Prob>
+						<Prob>6</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_ARTIFICIER</SkillID>
-						<Prob>10</Prob>
+						<Prob>6</Prob>
 					</Item>
 				</SkillsProbs>
 				<AttributeProbs>
-					<OffenceProb>40</OffenceProb>
+					<OffenceProb>20</OffenceProb>
 					<DefenceProb>25</DefenceProb>
-					<SpellpowerProb>15</SpellpowerProb>
-					<KnowledgeProb>20</KnowledgeProb>
+					<SpellpowerProb>20</SpellpowerProb>
+					<KnowledgeProb>35</KnowledgeProb>
 				</AttributeProbs>
 				<PreferredSpellsFromSpellShop>
 					<Item>SPELL_BERSERK</Item>
@@ -1606,7 +1590,7 @@
 				<SkillsProbs>
 					<Item>
 						<SkillID>HERO_SKILL_LOGISTICS</SkillID>
-						<Prob>12</Prob>
+						<Prob>8</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LEARNING</SkillID>
@@ -1614,19 +1598,19 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_OFFENCE</SkillID>
-						<Prob>10</Prob>
+						<Prob>15</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DEFENCE</SkillID>
-						<Prob>8</Prob>
+						<Prob>4</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
-						<Prob>6</Prob>
+						<Prob>4</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LUCK</SkillID>
-						<Prob>12</Prob>
+						<Prob>8</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_WAR_MACHINES</SkillID>
@@ -1638,19 +1622,19 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DARK_MAGIC</SkillID>
-						<Prob>6</Prob>
+						<Prob>2</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_SUMMONING_MAGIC</SkillID>
-						<Prob>8</Prob>
+						<Prob>10</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DESTRUCTIVE_MAGIC</SkillID>
-						<Prob>8</Prob>
+						<Prob>15</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_SORCERY</SkillID>
-						<Prob>6</Prob>
+						<Prob>10</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_INVOCATION</SkillID>
@@ -1660,8 +1644,8 @@
 				<AttributeProbs>
 					<OffenceProb>40</OffenceProb>
 					<DefenceProb>10</DefenceProb>
-					<SpellpowerProb>30</SpellpowerProb>
-					<KnowledgeProb>20</KnowledgeProb>
+					<SpellpowerProb>40</SpellpowerProb>
+					<KnowledgeProb>10</KnowledgeProb>
 				</AttributeProbs>
 				<PreferredSpellsFromSpellShop>
 					<Item>SPELL_RESURRECT</Item>
@@ -1679,27 +1663,27 @@
 				<SkillsProbs>
 					<Item>
 						<SkillID>HERO_SKILL_LOGISTICS</SkillID>
-						<Prob>8</Prob>
+						<Prob>15</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LEARNING</SkillID>
-						<Prob>12</Prob>
+						<Prob>10</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_OFFENCE</SkillID>
-						<Prob>4</Prob>
+						<Prob>6</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DEFENCE</SkillID>
-						<Prob>8</Prob>
+						<Prob>10</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
-						<Prob>2</Prob>
+						<Prob>8</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LUCK</SkillID>
-						<Prob>8</Prob>
+						<Prob>15</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_WAR_MACHINES</SkillID>
@@ -1715,30 +1699,26 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_SUMMONING_MAGIC</SkillID>
-						<Prob>4</Prob>
+						<Prob>2</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DESTRUCTIVE_MAGIC</SkillID>
-						<Prob>12</Prob>
+						<Prob>8</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_SORCERY</SkillID>
-						<Prob>12</Prob>
-					</Item>
-					<Item>
-						<SkillID>HERO_SKILL_INVOCATION</SkillID>
-						<Prob>8</Prob>
+						<Prob>6</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_AVENGER</SkillID>
-						<Prob>8</Prob>
+						<Prob>6</Prob>
 					</Item>
 				</SkillsProbs>
 				<AttributeProbs>
 					<OffenceProb>10</OffenceProb>
-					<DefenceProb>20</DefenceProb>
-					<SpellpowerProb>40</SpellpowerProb>
-					<KnowledgeProb>30</KnowledgeProb>
+					<DefenceProb>35</DefenceProb>
+					<SpellpowerProb>20</SpellpowerProb>
+					<KnowledgeProb>35</KnowledgeProb>
 				</AttributeProbs>
 				<PreferredSpellsFromSpellShop>
 					<Item>SPELL_RESURRECT</Item>
@@ -1757,19 +1737,19 @@
 				<SkillsProbs>
 					<Item>
 						<SkillID>HERO_SKILL_LOGISTICS</SkillID>
-						<Prob>8</Prob>
+						<Prob>12</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LEARNING</SkillID>
-						<Prob>8</Prob>
+						<Prob>6</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_OFFENCE</SkillID>
-						<Prob>4</Prob>
+						<Prob>12</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DEFENCE</SkillID>
-						<Prob>4</Prob>
+						<Prob>8</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
@@ -1777,23 +1757,23 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LUCK</SkillID>
-						<Prob>12</Prob>
+						<Prob>8</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_WAR_MACHINES</SkillID>
-						<Prob>2</Prob>
+						<Prob>10</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LIGHT_MAGIC</SkillID>
-						<Prob>8</Prob>
+						<Prob>2</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DARK_MAGIC</SkillID>
-						<Prob>4</Prob>
+						<Prob>8</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_SUMMONING_MAGIC</SkillID>
-						<Prob>8</Prob>
+						<Prob>4</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DESTRUCTIVE_MAGIC</SkillID>
@@ -1801,21 +1781,17 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_SORCERY</SkillID>
-						<Prob>12</Prob>
-					</Item>
-					<Item>
-						<SkillID>HERO_SKILL_INVOCATION</SkillID>
-						<Prob>8</Prob>
+						<Prob>10</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_GATING</SkillID>
-						<Prob>8</Prob>
+						<Prob>6</Prob>
 					</Item>
 				</SkillsProbs>
 				<AttributeProbs>
-					<OffenceProb>10</OffenceProb>
+					<OffenceProb>35</OffenceProb>
 					<DefenceProb>10</DefenceProb>
-					<SpellpowerProb>45</SpellpowerProb>
+					<SpellpowerProb>20</SpellpowerProb>
 					<KnowledgeProb>35</KnowledgeProb>
 				</AttributeProbs>
 				<PreferredSpellsFromSpellShop>
@@ -1835,11 +1811,11 @@
 				<SkillsProbs>
 					<Item>
 						<SkillID>HERO_SKILL_LOGISTICS</SkillID>
-						<Prob>8</Prob>
+						<Prob>2</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LEARNING</SkillID>
-						<Prob>10</Prob>
+						<Prob>15</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_OFFENCE</SkillID>
@@ -1859,11 +1835,11 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_WAR_MACHINES</SkillID>
-						<Prob>2</Prob>
+						<Prob>8</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_LIGHT_MAGIC</SkillID>
-						<Prob>8</Prob>
+						<Prob>10</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DARK_MAGIC</SkillID>
@@ -1871,7 +1847,7 @@
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_SUMMONING_MAGIC</SkillID>
-						<Prob>10</Prob>
+						<Prob>15</Prob>
 					</Item>
 					<Item>
 						<SkillID>HERO_SKILL_DESTRUCTIVE_MAGIC</SkillID>
@@ -1882,19 +1858,15 @@
 						<Prob>12</Prob>
 					</Item>
 					<Item>
-						<SkillID>HERO_SKILL_INVOCATION</SkillID>
-						<Prob>10</Prob>
-					</Item>
-					<Item>
 						<SkillID>HERO_SKILL_ARTIFICIER</SkillID>
-						<Prob>8</Prob>
+						<Prob>6</Prob>
 					</Item>
 				</SkillsProbs>
 				<AttributeProbs>
 					<OffenceProb>10</OffenceProb>
 					<DefenceProb>10</DefenceProb>
-					<SpellpowerProb>50</SpellpowerProb>
-					<KnowledgeProb>30</KnowledgeProb>
+					<SpellpowerProb>40</SpellpowerProb>
+					<KnowledgeProb>40</KnowledgeProb>
 				</AttributeProbs>
 				<PreferredSpellsFromSpellShop>
 					<Item>SPELL_IMPLOSION</Item>

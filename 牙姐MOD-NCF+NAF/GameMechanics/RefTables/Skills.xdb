@@ -144,17 +144,17 @@
 				</Texture>
 				<CommonTexture href="/Textures/HeroScreen/Skills/WarMachines_1.xdb#xpointer(/Texture)"/>
 				<NameFileRef>
-					<Item href="/Text/Game/Skills/Common/WarMachines/1/Name.txt"/>
-					<Item href="/Text/Game/Skills/Common/WarMachines/2/Name.txt"/>
-					<Item href="/Text/Game/Skills/Common/WarMachines/3/Name.txt"/>
-					<Item href="/Text/Game/Skills/Common/WarMachines/4/Name.txt"/>
+					<Item href="/Text/TTH/Skills/WarMachines/Mastery/NameBasic.txt"/>
+					<Item href="/Text/TTH/Skills/WarMachines/Mastery/NameAdvanced.txt"/>
+					<Item href="/Text/TTH/Skills/WarMachines/Mastery/NameExpert.txt"/>
+					<Item href="/Text/TTH/Skills/WarMachines/Mastery/NameExpert.txt"/>
 				</NameFileRef>
 				<CommonNameFileRef href=""/>
 				<DescriptionFileRef>
-					<Item href="/Text/Game/Skills/Common/WarMachines/1/Description.txt"/>
-					<Item href="/Text/Game/Skills/Common/WarMachines/2/Description.txt"/>
-					<Item href="/Text/Game/Skills/Common/WarMachines/3/Description.txt"/>
-					<Item href="/Text/Game/Skills/Common/WarMachines/4/Description.txt"/>
+					<Item href="/Text/TTH/Skills/WarMachines/Mastery/DescBasic.txt"/>
+					<Item href="/Text/TTH/Skills/WarMachines/Mastery/DescAdvanced.txt"/>
+					<Item href="/Text/TTH/Skills/WarMachines/Mastery/DescExpert.txt"/>
+					<Item href="/Text/TTH/Skills/WarMachines/Mastery/DescExpert.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
 				<SkillType>SKILLTYPE_SKILL</SkillType>
@@ -4483,138 +4483,24 @@
 				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
 				<HeroClass>HERO_CLASS_NONE</HeroClass>
 				<spellBuffs/>
-				<BasicSkillID>HERO_SKILL_INVOCATION</BasicSkillID>
+				<BasicSkillID>HERO_SKILL_GATING</BasicSkillID>
 				<SkillPrerequisites>
-					<Item>
-						<Class>HERO_CLASS_KNIGHT</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_DARK_RITUAL</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_PALADIN</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_DARK_RITUAL</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_RETRIBUTION</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_DARK_RITUAL</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_HERETIC</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_DARK_RITUAL</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_RANGER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_DARK_RITUAL</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_WARDEN</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_DARK_RITUAL</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_ENCHANTER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_DARK_RITUAL</Item>
-						</dependenciesIDs>
-					</Item>
 					<Item>
 						<Class>HERO_CLASS_SORCERER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_DARK_RITUAL</Item>
+							<Item>HERO_SKILL_DEMONIC_FLAME</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_GATE_KEEPER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_DARK_RITUAL</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_FLAMEKEEPERA</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_DARK_RITUAL</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_ENGINEER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_DARK_RITUAL</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_NECROMANCER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_DARK_RITUAL</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_REAVER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_DARK_RITUAL</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_WARLOCK</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_DARK_RITUAL</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_BEASTMASTER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_DARK_RITUAL</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_GUILDMASTER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_DARK_RITUAL</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_SEER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_DARK_RITUAL</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_WIZARD</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_DARK_RITUAL</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_ELEMENTALIST</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_DARK_RITUAL</Item>
+							<Item>HERO_SKILL_DEMONIC_FLAME</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_DEMON_LORD</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_DARK_RITUAL</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_DEATHKNIGHT</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_DARK_RITUAL</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_RUNEMAGE</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_DARK_RITUAL</Item>
+							<Item>HERO_SKILL_DEMONIC_FLAME</Item>
 						</dependenciesIDs>
 					</Item>
 				</SkillPrerequisites>
@@ -5316,11 +5202,11 @@
 				</Texture>
 				<CommonTexture/>
 				<NameFileRef>
-					<Item href="/Text/Game/Skills/Unique/Avenger/ImbueArrow/Name.txt"/>
+					<Item href="/Text/TTH/Skills/Avenger/066-ImbueArrow/Name.txt"/>
 				</NameFileRef>
 				<CommonNameFileRef href=""/>
 				<DescriptionFileRef>
-					<Item href="/Text/Game/Skills/Unique/Avenger/ImbueArrow/Description.txt"/>
+					<Item href="/Text/TTH/Skills/Avenger/066-ImbueArrow/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
 				<SkillType>SKILLTYPE_STANDART_PERK</SkillType>
@@ -9715,11 +9601,11 @@
 				</Texture>
 				<CommonTexture/>
 				<NameFileRef>
-					<Item href="/Text/Game/Skills/Common/WarMachines/LastAid/Name.txt"/>
+					<Item href="/Text/TTH/Skills/WarMachines/100-LastAid/Name.txt"/>
 				</NameFileRef>
 				<CommonNameFileRef href=""/>
 				<DescriptionFileRef>
-					<Item href="/Text/Game/Skills/Common/WarMachines/LastAid/Description.txt"/>
+					<Item href="/Text/TTH/Skills/WarMachines/100-LastAid/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
 				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
@@ -11635,11 +11521,11 @@
 				</Texture>
 				<CommonTexture/>
 				<NameFileRef>
-					<Item href="/Text/Game/Skills/Common/WarMachines/ImbueBallista/Name.txt"/>
+					<Item href="/Text/TTH/Skills/Avenger/113-ImbueBallista/Name.txt"/>
 				</NameFileRef>
 				<CommonNameFileRef href=""/>
 				<DescriptionFileRef>
-					<Item href="/Text/Game/Skills/Common/WarMachines/ImbueBallista/Description.txt"/>
+					<Item href="/Text/TTH/Skills/Avenger/113-ImbueBallista/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
 				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
@@ -14232,11 +14118,11 @@
 				</Texture>
 				<CommonTexture/>
 				<NameFileRef>
-					<Item href="/Text/Game/Skills/Common/Offence/Wildfire/Name.txt"/>
+					<Item href="/Text/TTH/Skills/Offence/130-Wildfire/Name.txt"/>
 				</NameFileRef>
 				<CommonNameFileRef href=""/>
 				<DescriptionFileRef>
-					<Item href="/Text/Game/Skills/Common/Offence/Wildfire/Description.txt"/>
+					<Item href="/Text/TTH/Skills/Offence/130-Wildfire/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
 				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
@@ -15698,7 +15584,7 @@
 							<Item>HERO_SKILL_MASTER_OF_LIGHTNINGS</Item>
 							<Item>HERO_SKILL_MASTER_OF_ICE</Item>
 							<Item>HERO_SKILL_WISDOM</Item>
-							<Item>HERO_SKILL_EMPOWERED_SPELLS</Item>
+							<Item>HERO_SKILL_ACADEMY_AWARD</Item>
 						</dependenciesIDs>
 					</Item>
 				</SkillPrerequisites>
@@ -19742,16 +19628,18 @@
 				</Texture>
 				<CommonTexture/>
 				<NameFileRef>
-					<Item href="/Text/Game/Skills/Common/LightMagic/EternalLight/Name.txt"/>
+				  <Item href="/Text/TTH/Skills/LightMagic/165-EternalLight/Name.txt"/>
 				</NameFileRef>
 				<CommonNameFileRef href=""/>
 				<DescriptionFileRef>
-					<Item href="/Text/Game/Skills/Common/LightMagic/EternalLight/Description.txt"/>
+				  <Item href="/Text/TTH/Skills/LightMagic/165-EternalLight/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
 				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
 				<HeroClass>HERO_CLASS_NONE</HeroClass>
-				<spellBuffs/>
+				<spellBuffs>
+					<Item>SPELL_SKILL_FIRE_PROTECTION</Item>
+				</spellBuffs>
 				<BasicSkillID>HERO_SKILL_LIGHT_MAGIC</BasicSkillID>
 				<SkillPrerequisites>
 					<Item>

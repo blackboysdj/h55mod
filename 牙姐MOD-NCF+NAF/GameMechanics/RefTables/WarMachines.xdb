@@ -41,7 +41,7 @@
 				<WarMachine ObjectRecordID="29">
 					<Shots>100</Shots>
 					<Initiative>10</Initiative>
-					<Health>500</Health>
+					<Health>250</Health>
 					<Range>0</Range>
 					<spellIDs/>
 					<MagicElement>
@@ -55,7 +55,7 @@
 						<Crystal>0</Crystal>
 						<Sulfur>0</Sulfur>
 						<Gem>0</Gem>
-						<Gold>3000</Gold>
+						<Gold>1500</Gold>
 					</Cost>
 					<CombatSize>2</CombatSize>
 					<flybySequence/>
@@ -63,22 +63,22 @@
 					<TimeToCommand>10</TimeToCommand>
 					<Offense>
 						<Item>5</Item>
-						<Item>9</Item>
+						<Item>10</Item>
 						<Item>12</Item>
 						<Item>15</Item>
-						<Item>17</Item>
+						<Item>18</Item>
 					</Offense>
 					<Defense>
-						<Item>9</Item>
+						<Item>5</Item>
+						<Item>10</Item>
 						<Item>12</Item>
 						<Item>15</Item>
-						<Item>17</Item>
-						<Item>20</Item>
+						<Item>18</Item>
 					</Defense>
 					<MinDamageFactor>
 						<Item>2</Item>
-						<Item>3</Item>
-						<Item>4</Item>
+						<Item>2</Item>
+						<Item>2</Item>
 						<Item>5</Item>
 						<Item>6</Item>
 					</MinDamageFactor>
@@ -86,8 +86,8 @@
 						<Item>3</Item>
 						<Item>4</Item>
 						<Item>5</Item>
+						<Item>5</Item>
 						<Item>6</Item>
-						<Item>7</Item>
 					</MaxDamageFactor>
 					<PresetPrice>250</PresetPrice>
 				</WarMachine>
@@ -99,7 +99,7 @@
 				<WarMachine ObjectRecordID="30">
 					<Shots>0</Shots>
 					<Initiative>10</Initiative>
-					<Health>2000</Health>
+					<Health>1000</Health>
 					<Range>0</Range>
 					<spellIDs/>
 					<MagicElement>
@@ -121,11 +121,11 @@
 					<TimeToCommand>10</TimeToCommand>
 					<Offense/>
 					<Defense>
-						<Item>9</Item>
-						<Item>12</Item>
-						<Item>15</Item>
-						<Item>17</Item>
-						<Item>20</Item>
+						<Item>10</Item>
+						<Item>10</Item>
+						<Item>10</Item>
+						<Item>10</Item>
+						<Item>10</Item>
 					</Defense>
 					<MinDamageFactor>
 						<Item>150</Item>
@@ -139,7 +139,7 @@
 						<Item>300</Item>
 						<Item>400</Item>
 						<Item>500</Item>
-						<Item>550</Item>
+						<Item>600</Item>
 					</MaxDamageFactor>
 					<PresetPrice>400</PresetPrice>
 				</WarMachine>
@@ -151,7 +151,7 @@
 				<WarMachine ObjectRecordID="31">
 					<Shots>3</Shots>
 					<Initiative>10</Initiative>
-					<Health>400</Health>
+					<Health>100</Health>
 					<Range>0</Range>
 					<spellIDs>
 						<Item>SPELL_EFFECT_FIRST_AID_TENT_HEAL</Item>
@@ -167,20 +167,14 @@
 						<Crystal>0</Crystal>
 						<Sulfur>0</Sulfur>
 						<Gem>0</Gem>
-						<Gold>250</Gold>
+						<Gold>500</Gold>
 					</Cost>
 					<CombatSize>2</CombatSize>
 					<flybySequence/>
 					<Visual href="/GameMechanics/CreatureVisual/WarMachines/FirstAidTent.xdb#xpointer(/CreatureVisual)"/>
 					<TimeToCommand>10</TimeToCommand>
 					<Offense/>
-					<Defense>
-						<Item>9</Item>
-						<Item>12</Item>
-						<Item>15</Item>
-						<Item>17</Item>
-						<Item>20</Item>
-					</Defense>
+					<Defense/>
 					<MinDamageFactor/>
 					<MaxDamageFactor/>
 					<PresetPrice>200</PresetPrice>
@@ -193,7 +187,7 @@
 				<WarMachine ObjectRecordID="32">
 					<Shots>0</Shots>
 					<Initiative>10</Initiative>
-					<Health>400</Health>
+					<Health>100</Health>
 					<Range>0</Range>
 					<spellIDs/>
 					<MagicElement>
@@ -207,7 +201,7 @@
 						<Crystal>0</Crystal>
 						<Sulfur>0</Sulfur>
 						<Gem>0</Gem>
-						<Gold>500</Gold>
+						<Gold>750</Gold>
 					</Cost>
 					<CombatSize>1</CombatSize>
 					<flybySequence/>
@@ -215,11 +209,11 @@
 					<TimeToCommand>10</TimeToCommand>
 					<Offense/>
 					<Defense>
-						<Item>9</Item>
-						<Item>12</Item>
-						<Item>15</Item>
-						<Item>17</Item>
-						<Item>20</Item>
+						<Item>5</Item>
+						<Item>5</Item>
+						<Item>5</Item>
+						<Item>5</Item>
+						<Item>5</Item>
 					</Defense>
 					<MinDamageFactor/>
 					<MaxDamageFactor/>

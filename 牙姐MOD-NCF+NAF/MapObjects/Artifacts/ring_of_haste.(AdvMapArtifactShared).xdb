@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AdvMapArtifactShared ObjectRecordID="28">
-	<Model href="/_(Model)/Artefacts/Tank.(Model).xdb#xpointer(/Model)"/>
+	<Model href="/_(Model)/Artefacts/RingOfHaste.xdb#xpointer(/Model)"/>
 	<AnimSet href="/_(AnimSet)/Artefacts/General.(AnimSet).xdb#xpointer(/AnimSet)"/>
 	<blockedTiles/>
 	<holeTiles/>
@@ -15,11 +15,11 @@
 		<x>0</x>
 		<y>0</y>
 	</PossessionMarkerTile>
-	<Effect href="/Effects/_(Effect)/Artefacts/General/Gold.xdb#xpointer(/Effect)"/>
+	<Effect href="/Effects/_(Effect)/Artefacts/General/Blue.xdb#xpointer(/Effect)"/>
 	<EffectWhenOwned/>
 	<messagesFileRef>
-		<Item href="/Text/Game/Artifacts/Life_01/Name.txt"/>
-		<Item href="/Text/Game/Artifacts/Life_01/Description.txt"/>
+		<Item href="/Text/Game/Artifacts/Ring_of_haste/Name.txt"/>
+		<Item href="/Text/Game/Artifacts/Ring_of_haste/Description.txt"/>
 	</messagesFileRef>
 	<WaterBased>false</WaterBased>
 	<ApplyHeroTrace>false</ApplyHeroTrace>
@@ -32,5 +32,5 @@
 	<RazedStatic/>
 	<Icon128/>
 	<Type>ARTF_RANDOM_SPECIFIC</Type>
-	<ArtifactID>ARTIFACT_REINCARNATION</ArtifactID>
+	<ArtifactID>RING_OF_HASTE</ArtifactID>
 </AdvMapArtifactShared>

@@ -12,7 +12,7 @@
 		<Item href="005-Luck/Detail/PerkButton8.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="005-Luck/Detail/PerkButton9.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="005-Luck/Detail/PerkButtonX.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="005-Luck/Detail/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<!-- <Item href="005-Luck/Detail/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
 		<!-- <Item href="005-Luck/Detail/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
 		<!-- <Item href="005-Luck/Detail/PerkButtonX3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
 	</Children>

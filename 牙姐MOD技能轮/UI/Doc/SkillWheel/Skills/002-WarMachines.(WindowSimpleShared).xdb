@@ -11,9 +11,9 @@
 		<Item href="002-WarMachines/Detail/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="002-WarMachines/Detail/PerkButton8.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="002-WarMachines/Detail/PerkButton9.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="002-WarMachines/Detail/PerkButtonX.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="002-WarMachines/Detail/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="002-WarMachines/Detail/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<!-- <Item href="002-WarMachines/Detail/PerkButtonX.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
+		<!-- <Item href="002-WarMachines/Detail/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
+		<!-- <Item href="002-WarMachines/Detail/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
 		<!-- <Item href="002-WarMachines/Detail/PerkButtonX3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
 	</Children>
 	<Background/>

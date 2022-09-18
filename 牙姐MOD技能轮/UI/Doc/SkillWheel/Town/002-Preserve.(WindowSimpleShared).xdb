@@ -2,22 +2,14 @@
 <WindowSimpleShared ObjectRecordID="1000326">
 	<Crap>false</Crap>
 	<Children>
-		<Item href="002-Preserve/Detail/004-Ranger1/Class.(WindowTextView).xdb#xpointer(/WindowTextView)"/>
-		<Item href="002-Preserve/Detail/004-Ranger1/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="002-Preserve/Detail/004-Ranger1/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="002-Preserve/Detail/004-Ranger1/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="002-Preserve/Detail/004-Ranger1/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="002-Preserve/Detail/004-Ranger1/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="002-Preserve/Detail/004-Ranger1/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<!-- <Item href="002-Preserve/Detail/004-Ranger1/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<Item href="002-Preserve/Detail/004-Ranger2/Class.(WindowTextView).xdb#xpointer(/WindowTextView)"/>
-		<Item href="002-Preserve/Detail/004-Ranger2/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="002-Preserve/Detail/004-Ranger2/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="002-Preserve/Detail/004-Ranger2/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="002-Preserve/Detail/004-Ranger2/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="002-Preserve/Detail/004-Ranger2/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<!-- <Item href="002-Preserve/Detail/004-Ranger2/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="002-Preserve/Detail/004-Ranger2/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
+		<Item href="002-Preserve/Detail/004-Ranger/Class.(WindowTextView).xdb#xpointer(/WindowTextView)"/>
+		<Item href="002-Preserve/Detail/004-Ranger/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="002-Preserve/Detail/004-Ranger/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="002-Preserve/Detail/004-Ranger/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="002-Preserve/Detail/004-Ranger/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="002-Preserve/Detail/004-Ranger/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="002-Preserve/Detail/004-Ranger/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<!-- <Item href="002-Preserve/Detail/004-Ranger/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
 		<Item href="002-Preserve/Detail/005-Warden/Class.(WindowTextView).xdb#xpointer(/WindowTextView)"/>
 		<Item href="002-Preserve/Detail/005-Warden/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="002-Preserve/Detail/005-Warden/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>

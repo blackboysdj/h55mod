@@ -5,6 +5,9 @@
 doFile("/scripts/H55-Settings.lua");
 
 -- TTH环境
+	-- 地图
+		TTH_MAP10W = {};
+		
 	-- 赞助
 		TTH_SUPPORT = {};
 
@@ -1913,7 +1916,6 @@ doFile("/scripts/H55-Settings.lua");
 						GiveHeroSkill(strHero, HERO_SKILL_LIGHT_MAGIC);
 						GiveHeroSkill(strHero, HERO_SKILL_SORCERY);
 						GiveHeroSkill(strHero, HERO_SKILL_SORCERY);
-						GiveHeroSkill(strHero, HERO_SKILL_SORCERY);
 						GiveHeroSkill(strHero, HERO_SKILL_DEFENCE);
 						GiveHeroSkill(strHero, HERO_SKILL_DEFENCE);
 						sleep(1);
@@ -1921,9 +1923,7 @@ doFile("/scripts/H55-Settings.lua");
 						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_TWILIGHT);
 						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_DISTRACT);
-						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_COUNTERSPELL);
+						GiveHeroSkill(strHero, HERO_SKILL_ARCANE_TRAINING);
 						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_PROTECTION);
 						sleep(1);
@@ -1958,7 +1958,8 @@ doFile("/scripts/H55-Settings.lua");
 						GiveHeroSkill(strHero, HERO_SKILL_OFFENCE);
 						GiveHeroSkill(strHero, HERO_SKILL_OFFENCE);
 						GiveHeroSkill(strHero, HERO_SKILL_TRAINING);
-						GiveHeroSkill(strHero, HERO_SKILL_LOGISTICS);
+						GiveHeroSkill(strHero, HERO_SKILL_LEARNING);
+						GiveHeroSkill(strHero, HERO_SKILL_LEARNING);
 						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_SNIPE_DEAD);
 						sleep(1);
@@ -1968,7 +1969,9 @@ doFile("/scripts/H55-Settings.lua");
 						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_POWERFULL_BLOW);
 						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_SCOUTING);
+						GiveHeroSkill(strHero, HERO_SKILL_INTELLIGENCE);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_ACADEMY_AWARD);
 						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_FOREST_RAGE);
 					end;
@@ -1980,6 +1983,8 @@ doFile("/scripts/H55-Settings.lua");
 						GiveHeroSkill(strHero, HERO_SKILL_OFFENCE);
 						GiveHeroSkill(strHero, HERO_SKILL_DEFENCE);
 						GiveHeroSkill(strHero, HERO_SKILL_DEFENCE);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_LUCK_OF_THE_BARBARIAN);
 						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_RESISTANCE);
 						sleep(1);
@@ -2175,18 +2180,21 @@ doFile("/scripts/H55-Settings.lua");
 						GiveHeroSkill(strHero, HERO_SKILL_ROAD_HOME);
 					end;
 					if enumHeroClass == TTH_ENUM.Reaver then
-						GiveHeroSkill(strHero, HERO_SKILL_NECROMANCY);
-						GiveHeroSkill(strHero, HERO_SKILL_NECROMANCY);
-						GiveHeroSkill(strHero, HERO_SKILL_SORCERY);
 						GiveHeroSkill(strHero, HERO_SKILL_DARK_MAGIC);
+						GiveHeroSkill(strHero, HERO_SKILL_DARK_MAGIC);
+						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
+						GiveHeroSkill(strHero, HERO_SKILL_NECROMANCY);
+						GiveHeroSkill(strHero, HERO_SKILL_NECROMANCY);
 						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_DEATH_SCREAM);
+						GiveHeroSkill(strHero, HERO_SKILL_MASTER_OF_CURSES);
 						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_ARCANE_TRAINING);
+						GiveHeroSkill(strHero, HERO_SKILL_MASTER_OF_SICKNESS);
 						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_MASTER_OF_MIND);
+						GiveHeroSkill(strHero, HERO_SKILL_NO_REST_FOR_THE_WICKED);
 						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_ABSOLUTE_FEAR);
+						GiveHeroSkill(strHero, HERO_SKILL_CHAOTIC_SPELLS);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_DEAD_LUCK);
 					end;
 					if enumHeroClass == TTH_ENUM.Necromancer then
 						GiveHeroSkill(strHero, HERO_SKILL_NECROMANCY);
@@ -2196,7 +2204,7 @@ doFile("/scripts/H55-Settings.lua");
 						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_DEATH_SCREAM);
 						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_INTELLIGENCE);
+						GiveHeroSkill(strHero, HERO_SKILL_EAGLE_EYE);
 						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_DARK_REVELATION);
 						sleep(1);
@@ -2274,37 +2282,37 @@ doFile("/scripts/H55-Settings.lua");
 					end;
 
 					if enumHeroClass == TTH_ENUM.Engineer then
-						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
-						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
-						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
-						GiveHeroSkill(strHero, HERO_SKILL_WAR_MACHINES);
-						GiveHeroSkill(strHero, HERO_SKILL_DEFENCE);
-						GiveHeroSkill(strHero, HERO_SKILL_DEFENCE);
+						GiveHeroSkill(strHero, HERO_SKILL_RUNELORE);
+						GiveHeroSkill(strHero, HERO_SKILL_RUNELORE);
+						GiveHeroSkill(strHero, HERO_SKILL_LEADERSHIP);
+						GiveHeroSkill(strHero, HERO_SKILL_LEADERSHIP);
+						GiveHeroSkill(strHero, HERO_SKILL_SORCERY);
+						GiveHeroSkill(strHero, HERO_SKILL_SORCERY);
 						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_RESISTANCE);
+						GiveHeroSkill(strHero, HERO_SKILL_RUNIC_ATTUNEMENT);
 						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_DEAD_LUCK);
+						GiveHeroSkill(strHero, HERO_SKILL_ENCOURAGE);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_ARTIFICIAL_GLORY);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_WISDOM);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_INSIGHTS);
 						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_RUNIC_MACHINES);
-						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_EVASION);
-						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_DEFENSIVE_FORMATION);
-						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_ABSOLUTE_PROTECTION);
 					end;
 					if enumHeroClass == TTH_ENUM.Runemage then
 						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
 						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
-						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
 						GiveHeroSkill(strHero, HERO_SKILL_LIGHT_MAGIC);
 						GiveHeroSkill(strHero, HERO_SKILL_LIGHT_MAGIC);
 						GiveHeroSkill(strHero, HERO_SKILL_DEFENCE);
 						GiveHeroSkill(strHero, HERO_SKILL_DEFENCE);
+						GiveHeroSkill(strHero, HERO_SKILL_DEFENCE);
+						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_LUCK_OF_THE_BARBARIAN);
 						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_RESISTANCE);
-						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_DEAD_LUCK);
 						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_MASTER_OF_BLESSING);
 						sleep(1);
@@ -2317,24 +2325,24 @@ doFile("/scripts/H55-Settings.lua");
 						GiveHeroSkill(strHero, HERO_SKILL_ABSOLUTE_PROTECTION);
 					end;
 					if enumHeroClass == TTH_ENUM.Flamekeepera then
-						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
-						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
-						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
 						GiveHeroSkill(strHero, HERO_SKILL_TRAINING);
-						GiveHeroSkill(strHero, HERO_SKILL_DEFENCE);
-						GiveHeroSkill(strHero, HERO_SKILL_DEFENCE);
+						GiveHeroSkill(strHero, HERO_SKILL_TRAINING);
+						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
+						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
+						GiveHeroSkill(strHero, HERO_SKILL_LEARNING);
+						GiveHeroSkill(strHero, HERO_SKILL_LEARNING);
 						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_RESISTANCE);
+						GiveHeroSkill(strHero, HERO_SKILL_CRITICAL_STRIKE);
 						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_DEAD_LUCK);
+						GiveHeroSkill(strHero, HERO_SKILL_SEAL_OF_PROTECTION);
 						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_HOLY_CHARGE);
+						GiveHeroSkill(strHero, HERO_SKILL_LUCKY_STRIKE);
 						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_TOUGHNESS);
+						GiveHeroSkill(strHero, HERO_SKILL_SCHOLAR);
 						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_HOLD_GROUND);
+						GiveHeroSkill(strHero, HERO_SKILL_DISGUISE_AND_RECKON);
 						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_ABSOLUTE_PROTECTION);
+						GiveHeroSkill(strHero, HERO_SKILL_DWARVEN_LUCK);
 					end;
 
 					if enumHeroClass == TTH_ENUM.Barbarian then
@@ -2568,8 +2576,10 @@ doFile("/scripts/H55-Settings.lua");
 					else
 						for i = 1, 8 do
 							if TTH_VARI.playerStatus[i] == 0 then
-								TTH_GLOBAL.bindHeroCustomAbility4Hero(GetPlayerHeroes(i)[0]); -- 触发器: 王国管理
-								break;
+								if GetPlayerHeroes(i)[0] ~= nil then
+									TTH_GLOBAL.bindHeroCustomAbility4Hero(GetPlayerHeroes(i)[0]); -- 触发器: 王国管理
+									break;
+								end;
 							end;
 						end;
 					end;
@@ -3007,16 +3017,16 @@ doFile("/scripts/H55-Settings.lua");
 				function TTH_GLOBAL.isHeroAtGarrison(strHero)
 					local bIsHeroAtGarrison = TTH_ENUM.No;
 					-- 距离方式
-						-- for iIndexTown, strTown in TTH_VARI.arrTown do
-						-- 	if TTH_GLOBAL.getDistance(strHero, strTown) == 0 then
-						-- 		bIsHeroAtGarrison = 1;
-						-- 		break;
-						-- 	end;
-						-- end;
+						for iIndexTown, strTown in TTH_VARI.arrTown do
+							if TTH_GLOBAL.getDistance(strHero, strTown) == 0 then
+								bIsHeroAtGarrison = TTH_ENUM.Yes;
+								break;
+							end;
+						end;
 
-					if GetHeroTown(strHero) then
-						bIsHeroAtGarrison = TTH_ENUM.Yes;
-					end;
+					-- if GetHeroTown(strHero) then
+					-- 	bIsHeroAtGarrison = TTH_ENUM.Yes;
+					-- end;
 					return bIsHeroAtGarrison;
 				end;
 
@@ -3136,6 +3146,15 @@ doFile("/scripts/H55-Settings.lua");
 					return iPower;
 				end;
 
+			-- 获取英雄操作次数
+				function TTH_GLOBAL.getCurrentTimes()
+					local iCurrentTimes = 1;
+					if TTH_MAP10W.init then
+						iCurrentTimes = 3;
+					end;
+					return iCurrentTimes;
+				end;
+
 		-- 全局参数
 			-- 保存英雄等级到游戏全局参数中
 				function TTH_GLOBAL.setGameVar4HeroLevel(strHero)
@@ -3246,10 +3265,16 @@ doFile("/scripts/H55-Settings.lua");
 					, [15] = HERO_SKILL_DEMONIC_FIRE
 					, [16] = HERO_SKILL_DEMONIC_RETALIATION
 					, [17] = HERO_SKILL_DEMONIC_FLAME
+					, [18] = HERO_SKILL_FIRST_AID
+					, [19] = HERO_SKILL_CATAPULT
 				};
 				TTH_TABLE.CombatSkill2Special = {
 					[0] = HERO_SKILL_PARIAH
 					, [1] = HERO_SKILL_TWILIGHT
+					, [2] = HERO_SKILL_DEAD_LUCK
+				};
+				TTH_TABLE.CombatMastery = {
+					[0] = HERO_SKILL_WAR_MACHINES
 				};
 				function TTH_GLOBAL.setGameVar4HeroSkill(strHero)
 					for iIndexSkill, objSkill in TTH_TABLE.CombatSkill do
@@ -3273,6 +3298,16 @@ doFile("/scripts/H55-Settings.lua");
 					for iIndexSkill, objSkill in TTH_TABLE.CombatSkill do
 						local strKey = TTH_FINAL.GAMEVAR_COMBAT_SKILL..strHero..'_'..objSkill;
 						TTH_COMMON.consoleSetGameVar(strKey, 0);
+					end;
+				end;
+				function TTH_GLOBAL.setGameVar4HeroMastery(strHero)
+					for iIndexSkill, objSkill in TTH_TABLE.CombatMastery do
+						local strKey = TTH_FINAL.GAMEVAR_COMBAT_SKILL..strHero..'_'..objSkill;
+						if GetHeroSkillMastery(strHero, objSkill) > 0 then
+							TTH_COMMON.consoleSetGameVar(strKey, GetHeroSkillMastery(strHero, objSkill));
+						else
+							TTH_COMMON.consoleSetGameVar(strKey, 0);
+						end;
 					end;
 				end;
 
@@ -3572,7 +3607,6 @@ doFile("/scripts/H55-Settings.lua");
 					TTH_MAIN.debug("TTH_GLOBAL.upgradeArtifactSetBonus8Hero", nil, strHero);
 
 				  if TTH_GLOBAL.isHeroAtGarrison(strHero) == 0 then
-				    local iPlayer = GetObjectOwner(strHero);
 				    for iSetId, objSet in TTH_TABLE.ArtifactSetBonus do
 				      local iCount = TTH_GLOBAL.getSetComponentCount(strHero, iSetId); -- 统计套装件数（含星尘坠饰）
 
@@ -3709,6 +3743,7 @@ doFile("/scripts/H55-Settings.lua");
 				sleep(1);
 				TTH_GLOBAL.setGameVar4HeroSkill(strHero);
 				TTH_GLOBAL.setGameVar4HeroSkill2Special(strHero);
+				TTH_GLOBAL.setGameVar4HeroMastery(strHero);				
 				TTH_GLOBAL.giveMagic8Skill(strHero);
 				TTH_GLOBAL.giveMagic8Wisdom(strHero);
 				TTH_GLOBAL.giveAttribute8Skill(strHero);
@@ -6117,7 +6152,7 @@ doFile("/scripts/H55-Settings.lua");
 			TTH_VARI.filterBankVisit = {};
 			TTH_VARI.bankWeekWinTimes = {};
 			TTH_VARI.recordTempRewardOption = {};
-			TTH_VARI.recordTempAdvRepeatReward = TTH_ENUM.No;
+			TTH_VARI.rewardBankTimes = 0;
 			-- 过滤连击访问BUG
 				function TTH_VISIT.filterBankVisit(strHero, strBankName)
 					local bIsRepeat = TTH_ENUM.No;
@@ -6182,13 +6217,19 @@ doFile("/scripts/H55-Settings.lua");
 							, ["Callback"] = "TTH_VISIT.rewardBankHidden"
 						}
 					};
-					-- 高级宝屋会有两次奖励
-						function TTH_VISIT.setRewardBankRepeat()
-							TTH_VARI.recordTempAdvRepeatReward = TTH_ENUM.Yes;
+					-- 高级宝屋会有两次奖励，矮人之幸有4次
+						function TTH_VISIT.setRewardBankTimes(strHero, bAdv)
+							TTH_VARI.rewardBankTimes = 1;
+							if bAdv == TTH_ENUM.Yes then
+								TTH_VARI.rewardBankTimes = TTH_VARI.rewardBankTimes * 2;
+							end;
+							if HasHeroSkill(strHero, HERO_SKILL_DWARVEN_LUCK) then
+								TTH_VARI.rewardBankTimes = TTH_VARI.rewardBankTimes * 2;
+							end;
 						end;
 						function TTH_VISIT.rewardBankRepeat(strHero)
-							if TTH_VARI.recordTempAdvRepeatReward == TTH_ENUM.Yes then
-								TTH_VARI.recordTempAdvRepeatReward = TTH_ENUM.No;
+							if TTH_VARI.rewardBankTimes > 0 then
+								TTH_VARI.rewardBankTimes = TTH_VARI.rewardBankTimes - 1;
 								sleep(2);
 								TTH_VISIT.rewardBankBasic(strHero);
 							end;
@@ -6733,7 +6774,7 @@ doFile("/scripts/H55-Settings.lua");
 								local iRandom = random(iLenArtifact);
 								local iArtifactId = TTH_TABLE_Artifacts[iLevel][iRandom];
 								TTH_GLOBAL.giveHeroArtifact(strHero, iArtifactId);
-							end
+							end;
 						end;
 				-- 宝屋阶梯奖励
 					function TTH_VISIT.rewardBankStep(strHero)
@@ -6866,6 +6907,9 @@ doFile("/scripts/H55-Settings.lua");
 					local iDay = GetDate(DAY);
 					if result ~= nil then
 						TTH_VISIT.rewardWagon(strHero);
+						if HasHeroSkill(strHero, HERO_SKILL_DWARVEN_LUCK) then
+							TTH_VISIT.rewardWagon(strHero);
+						end;
 						TTH_VARI.recordBankLastVisitDay[strBankName] = iDay;
 					end;
 					MarkObjectAsVisited(strBankName, strHero);
@@ -6916,6 +6960,9 @@ doFile("/scripts/H55-Settings.lua");
 					local iDay = GetDate(DAY);
 					if result ~= nil then
 						TTH_VISIT.rewardSkeleton(strHero);
+						if HasHeroSkill(strHero, HERO_SKILL_DWARVEN_LUCK) then
+							TTH_VISIT.rewardSkeleton(strHero);
+						end;
 						TTH_VARI.recordBankLastVisitDay[strBankName] = iDay;
 					end;
 					MarkObjectAsVisited(strBankName, strHero);
@@ -7127,7 +7174,8 @@ doFile("/scripts/H55-Settings.lua");
 					local strBankName = TTH_VARI.recordBankCurrentVisit4Player[iPlayer];
 					local iDay = GetDate(DAY);
 					if result ~= nil then
-						TTH_VISIT.rewardBankBasic(strHero);
+						TTH_VISIT.setRewardBankTimes(strHero, TTH_ENUM.No);
+						TTH_VISIT.rewardBankRepeat(strHero);
 						TTH_VARI.recordBankLastVisitDay[strBankName] = iDay;
 					end;
 					MarkObjectAsVisited(strBankName, strHero);
@@ -7283,8 +7331,8 @@ doFile("/scripts/H55-Settings.lua");
 					local strBankName = TTH_VARI.recordBankCurrentVisit4Player[iPlayer];
 					local iDay = GetDate(DAY);
 					if result ~= nil then
-						TTH_VISIT.setRewardBankRepeat();
-						TTH_VISIT.rewardBankBasic(strHero);
+						TTH_VISIT.setRewardBankTimes(strHero, TTH_ENUM.Yes);
+						TTH_VISIT.rewardBankRepeat(strHero);
 						TTH_VARI.recordBankLastVisitDay[strBankName] = iDay;
 					end;
 					MarkObjectAsVisited(strBankName, strHero);
@@ -7470,8 +7518,8 @@ doFile("/scripts/H55-Settings.lua");
 					local strBankName = TTH_VARI.recordBankCurrentVisit4Player[iPlayer];
 					local iDay = GetDate(DAY);
 					if result ~= nil then
-						TTH_VISIT.setRewardBankRepeat();
-						TTH_VISIT.rewardBankBasic(strHero);
+						TTH_VISIT.setRewardBankTimes(strHero, TTH_ENUM.Yes);
+						TTH_VISIT.rewardBankRepeat(strHero);
 						TTH_VARI.recordBankLastVisitDay[strBankName] = iDay;
 					end;
 					MarkObjectAsVisited(strBankName, strHero);
@@ -7483,9 +7531,12 @@ doFile("/scripts/H55-Settings.lua");
 					local strBankName = TTH_VARI.recordBankCurrentVisit4Player[iPlayer];
 					local iDay = GetDate(DAY);
 					if result ~= nil then
-						TTH_VISIT.setRewardBankRepeat();
-						TTH_VISIT.rewardBankBasic(strHero);
+						TTH_VISIT.setRewardBankTimes(strHero, TTH_ENUM.Yes);
+						TTH_VISIT.rewardBankRepeat(strHero);
 						TTH_VISIT.rewardBankExtraArtifact(strHero);
+						if HasHeroSkill(strHero, HERO_SKILL_DWARVEN_LUCK) then
+							TTH_VISIT.rewardBankExtraArtifact(strHero);
+						end;
 						TTH_VARI.recordBankLastVisitDay[strBankName] = iDay;
 					end;
 					MarkObjectAsVisited(strBankName, strHero);
@@ -8706,7 +8757,6 @@ doFile("/scripts/H55-Settings.lua");
 			-- 特殊英雄成为内政官后建造附带建筑
 				TTH_TABLE.AttachBuilding = {
 					["Brem"] = TOWN_BUILDING_SPECIAL_4
-					, ["Christian"] = TOWN_BUILDING_BLACKSMITH
 					, ["Metlirn"] = TOWN_BUILDING_SPECIAL_0
 					, ["Rissa"] = TOWN_BUILDING_SPECIAL_4
 					, ["Nymus"] = TOWN_BUILDING_SPECIAL_1
@@ -9131,8 +9181,10 @@ doFile("/scripts/H55-Settings.lua");
 					i = i + 1;
 				end;
 				for iIndex, objKingManageOption in TTH_TABLE.KingManageOption do
-					arrOption[i] = objKingManageOption;
-					i = i + 1;
+					if TTH_MAP10W.init == nil or objKingManageOption["Id"] ~= TTH_ENUM.TownManage then
+						arrOption[i] = objKingManageOption;
+						i = i + 1;
+					end;
 				end;
 				TTH_COMMON.optionRadio(iPlayer, strHero, arrOption);
 			end;
@@ -9221,6 +9273,24 @@ doFile("/scripts/H55-Settings.lua");
 								};
 								optionSkillManage[iIndex] = objOption;
 								iIndex = iIndex + 1;
+							end;
+						end;
+					end;
+					for iKey, objItem in TTH_TABLE.FuncBuilding[TTH_ENUM.FuncActive] do
+						if strTown ~= nil then
+							local iTownRace = TTH_GLOBAL.getRace8Town(strTown);
+							if iTownRace == iKey then
+								for idBuilding, objItemBuilding in objItem do
+									if GetTownBuildingLevel(strTown, idBuilding) >= objItemBuilding["Level"] then
+										local objOption = {
+											["Id"] = strTown
+											, ["Text"] = objItemBuilding["Text"]
+											, ["Callback"] = objItemBuilding[TTH_ENUM.FuncAtGate]
+										};
+										optionSkillManage[iIndex] = objOption;
+										iIndex = iIndex + 1;
+									end;
+								end;
 							end;
 						end;
 					end;
@@ -10323,6 +10393,84 @@ doFile("/scripts/H55-Settings.lua");
 							}
 						}
 					}
+					, [ARTIFACT_GUARDIAN_01] = {
+						["Id"] = ARTIFACT_GUARDIAN_01
+						, ["Text"] = "/Text/Game/Artifacts/Guardian_Helmet/Name.txt"
+						, ["Component"] = {
+							[ARTIFACT_SWORD_OF_RUINS] = {
+								["Id"] = ARTIFACT_SWORD_OF_RUINS
+								, ["Text"] = "/Text/Game/Artifacts/SwordOfRuin/Name.txt"
+							}
+							, [ARTIFACT_BREASTPLATE_OF_PETRIFIED_WOOD] = {
+								["Id"] = ARTIFACT_BREASTPLATE_OF_PETRIFIED_WOOD
+								, ["Text"] = "/Text/Game/Artifacts/Breastplate_of_petrified_wood/Name.txt"
+							}
+							, [ARTIFACT_SKULL_HELMET] = {
+								["Id"] = ARTIFACT_SKULL_HELMET
+								, ["Text"] = "/Text/Game/Artifacts/Skull_Helmet/Name.txt"
+							}
+							, [ARTIFACT_BUCKLER] = {
+								["Id"] = ARTIFACT_BUCKLER
+								, ["Text"] = "/Text/Game/Artifacts/Buckler/Name.txt"
+							}
+							, [ARTIFACT_BOOTS_OF_INTERFERENCE] = {
+								["Id"] = ARTIFACT_BOOTS_OF_INTERFERENCE
+								, ["Text"] = "/Text/Game/Artifacts/Boots_of_interference/Name.txt"
+							}
+						}
+					}
+					, [ARTIFACT_GUARDIAN_02] = {
+						["Id"] = ARTIFACT_GUARDIAN_02
+						, ["Text"] = "/Text/Game/Artifacts/Guardian_Boots/Name.txt"
+						, ["Component"] = {
+							[ARTIFACT_SWORD_OF_RUINS] = {
+								["Id"] = ARTIFACT_SWORD_OF_RUINS
+								, ["Text"] = "/Text/Game/Artifacts/SwordOfRuin/Name.txt"
+							}
+							, [ARTIFACT_BREASTPLATE_OF_PETRIFIED_WOOD] = {
+								["Id"] = ARTIFACT_BREASTPLATE_OF_PETRIFIED_WOOD
+								, ["Text"] = "/Text/Game/Artifacts/Breastplate_of_petrified_wood/Name.txt"
+							}
+							, [ARTIFACT_SKULL_HELMET] = {
+								["Id"] = ARTIFACT_SKULL_HELMET
+								, ["Text"] = "/Text/Game/Artifacts/Skull_Helmet/Name.txt"
+							}
+							, [ARTIFACT_BUCKLER] = {
+								["Id"] = ARTIFACT_BUCKLER
+								, ["Text"] = "/Text/Game/Artifacts/Buckler/Name.txt"
+							}
+							, [ARTIFACT_BOOTS_OF_INTERFERENCE] = {
+								["Id"] = ARTIFACT_BOOTS_OF_INTERFERENCE
+								, ["Text"] = "/Text/Game/Artifacts/Boots_of_interference/Name.txt"
+							}
+						}
+					}
+					, [ARTIFACT_GUARDIAN_03] = {
+						["Id"] = ARTIFACT_GUARDIAN_03
+						, ["Text"] = "/Text/Game/Artifacts/Guardian_Shield/Name.txt"
+						, ["Component"] = {
+							[ARTIFACT_SWORD_OF_RUINS] = {
+								["Id"] = ARTIFACT_SWORD_OF_RUINS
+								, ["Text"] = "/Text/Game/Artifacts/SwordOfRuin/Name.txt"
+							}
+							, [ARTIFACT_BREASTPLATE_OF_PETRIFIED_WOOD] = {
+								["Id"] = ARTIFACT_BREASTPLATE_OF_PETRIFIED_WOOD
+								, ["Text"] = "/Text/Game/Artifacts/Breastplate_of_petrified_wood/Name.txt"
+							}
+							, [ARTIFACT_SKULL_HELMET] = {
+								["Id"] = ARTIFACT_SKULL_HELMET
+								, ["Text"] = "/Text/Game/Artifacts/Skull_Helmet/Name.txt"
+							}
+							, [ARTIFACT_BUCKLER] = {
+								["Id"] = ARTIFACT_BUCKLER
+								, ["Text"] = "/Text/Game/Artifacts/Buckler/Name.txt"
+							}
+							, [ARTIFACT_BOOTS_OF_INTERFERENCE] = {
+								["Id"] = ARTIFACT_BOOTS_OF_INTERFERENCE
+								, ["Text"] = "/Text/Game/Artifacts/Boots_of_interference/Name.txt"
+							}
+						}
+					}
 					, [ARTIFACT_SHIELD_OF_WOLF_DUCHY] = {
 					  ["Id"] = ARTIFACT_SHIELD_OF_WOLF_DUCHY
 					  , ["Text"] = "/Text/TTH/Artifact/166-ShieldOfWolfDuchy/Text.txt"
@@ -10337,8 +10485,8 @@ doFile("/scripts/H55-Settings.lua");
 					    }
 					  }
 					}
-					, [ARTIFACT_GUARDIAN_03] = {
-					  ["Id"] = ARTIFACT_GUARDIAN_03
+					, [ARTIFACT_DWARVEN_MITHRAL_CUIRASS] = {
+					  ["Id"] = ARTIFACT_DWARVEN_MITHRAL_CUIRASS
 					  , ["Text"] = "/Text/TTH/Artifact/122-Guardian03/Text.txt"
 					  , ["Component"] = {
 					    [ARTIFACT_ICEBERG_SHIELD] = {
@@ -10348,6 +10496,80 @@ doFile("/scripts/H55-Settings.lua");
 					    , [ARTIFACT_DWARVEN_SMITHY_HUMMER] = {
 					      ["Id"] = ARTIFACT_DWARVEN_SMITHY_HUMMER
 					      , ["Text"] = "/Text/TTH/Artifact/085-DwarvenSmithyHummer/Text.txt"
+					    }
+					    , [ARTIFACT_WISPERING_RING] = {
+					      ["Id"] = ARTIFACT_WISPERING_RING
+					      , ["Text"] = "/Text/TTH/Artifact/065-WisperingRing/Text.txt"
+					    }
+					    , [ARTIFACT_NECKLACE_OF_POWER] = {
+					      ["Id"] = ARTIFACT_NECKLACE_OF_POWER
+					      , ["Text"] = "/Text/TTH/Artifact/019-NecklaceOfPower/Text.txt"
+					    }
+					  }
+					}
+					, [ARTIFACT_DWARVEN_MITHRAL_GREAVES] = {
+					  ["Id"] = ARTIFACT_DWARVEN_MITHRAL_GREAVES
+					  , ["Text"] = "/Text/TTH/Artifact/122-Guardian03/Text.txt"
+					  , ["Component"] = {
+					    [ARTIFACT_ICEBERG_SHIELD] = {
+					      ["Id"] = ARTIFACT_ICEBERG_SHIELD
+					      , ["Text"] = "/Text/TTH/Artifact/009-IcebergShield/Text.txt"
+					    }
+					    , [ARTIFACT_DWARVEN_SMITHY_HUMMER] = {
+					      ["Id"] = ARTIFACT_DWARVEN_SMITHY_HUMMER
+					      , ["Text"] = "/Text/TTH/Artifact/085-DwarvenSmithyHummer/Text.txt"
+					    }
+					    , [ARTIFACT_WISPERING_RING] = {
+					      ["Id"] = ARTIFACT_WISPERING_RING
+					      , ["Text"] = "/Text/TTH/Artifact/065-WisperingRing/Text.txt"
+					    }
+					    , [ARTIFACT_NECKLACE_OF_POWER] = {
+					      ["Id"] = ARTIFACT_NECKLACE_OF_POWER
+					      , ["Text"] = "/Text/TTH/Artifact/019-NecklaceOfPower/Text.txt"
+					    }
+					  }
+					}
+					, [ARTIFACT_DWARVEN_MITHRAL_HELMET] = {
+					  ["Id"] = ARTIFACT_DWARVEN_MITHRAL_HELMET
+					  , ["Text"] = "/Text/TTH/Artifact/122-Guardian03/Text.txt"
+					  , ["Component"] = {
+					    [ARTIFACT_ICEBERG_SHIELD] = {
+					      ["Id"] = ARTIFACT_ICEBERG_SHIELD
+					      , ["Text"] = "/Text/TTH/Artifact/009-IcebergShield/Text.txt"
+					    }
+					    , [ARTIFACT_DWARVEN_SMITHY_HUMMER] = {
+					      ["Id"] = ARTIFACT_DWARVEN_SMITHY_HUMMER
+					      , ["Text"] = "/Text/TTH/Artifact/085-DwarvenSmithyHummer/Text.txt"
+					    }
+					    , [ARTIFACT_WISPERING_RING] = {
+					      ["Id"] = ARTIFACT_WISPERING_RING
+					      , ["Text"] = "/Text/TTH/Artifact/065-WisperingRing/Text.txt"
+					    }
+					    , [ARTIFACT_NECKLACE_OF_POWER] = {
+					      ["Id"] = ARTIFACT_NECKLACE_OF_POWER
+					      , ["Text"] = "/Text/TTH/Artifact/019-NecklaceOfPower/Text.txt"
+					    }
+					  }
+					}
+					, [ARTIFACT_DWARVEN_MITHRAL_SHIELD] = {
+					  ["Id"] = ARTIFACT_DWARVEN_MITHRAL_SHIELD
+					  , ["Text"] = "/Text/TTH/Artifact/122-Guardian03/Text.txt"
+					  , ["Component"] = {
+					    [ARTIFACT_ICEBERG_SHIELD] = {
+					      ["Id"] = ARTIFACT_ICEBERG_SHIELD
+					      , ["Text"] = "/Text/TTH/Artifact/009-IcebergShield/Text.txt"
+					    }
+					    , [ARTIFACT_DWARVEN_SMITHY_HUMMER] = {
+					      ["Id"] = ARTIFACT_DWARVEN_SMITHY_HUMMER
+					      , ["Text"] = "/Text/TTH/Artifact/085-DwarvenSmithyHummer/Text.txt"
+					    }
+					    , [ARTIFACT_WISPERING_RING] = {
+					      ["Id"] = ARTIFACT_WISPERING_RING
+					      , ["Text"] = "/Text/TTH/Artifact/065-WisperingRing/Text.txt"
+					    }
+					    , [ARTIFACT_NECKLACE_OF_POWER] = {
+					      ["Id"] = ARTIFACT_NECKLACE_OF_POWER
+					      , ["Text"] = "/Text/TTH/Artifact/019-NecklaceOfPower/Text.txt"
 					    }
 					  }
 					}
@@ -11477,6 +11699,18 @@ doFile("/scripts/H55-Settings.lua");
 					return iTownValue;
       	end;
 
+    	-- Christian 007 维托利奥
+    		function TTH_TALENT.upgradeMasteryChristian(iPlayer, strHero)
+    			TTH_ARTI.callbackActive015(iPlayer, strHero);
+    			local strText = TTH_PATH.Talent[strHero]["SuccessUpgradeMastery"];
+    			TTH_GLOBAL.sign(strHero, strText);
+    		end;
+    		function TTH_TALENT.upgradeShantiriChristian(iPlayer, strHero)
+    			TTH_ARTI.callbackActive163(iPlayer, strHero);
+    			local strText = TTH_PATH.Talent[strHero]["SuccessUpgradeShantiri"];
+    			TTH_GLOBAL.sign(strHero, strText);
+    		end;
+
 			-- Brem 010 拉特格
 				TTH_FINAL.BREM_COST = 5000;
 				function TTH_TALENT.initBrem(strHero)
@@ -11485,8 +11719,8 @@ doFile("/scripts/H55-Settings.lua");
 					TTH_VARI.talent[strHero] = {
 						["BonusLevel"] = 0
 						, ["Stables"] = {}
-						, ["CurrentTimes"] = 1
-						, ["MaxTimes"] = 1
+						, ["CurrentTimes"] = TTH_GLOBAL.getCurrentTimes()
+						, ["MaxTimes"] = TTH_GLOBAL.getCurrentTimes()
 					};
 				end;
 				function TTH_TALENT.activeBrem(iPlayer, strHero)
@@ -11628,8 +11862,8 @@ doFile("/scripts/H55-Settings.lua");
       		TTH_MAIN.debug("TTH_TALENT.initRedHeavenHero06", nil, strHero);
 
       		TTH_VARI.talent[strHero] = {
-      			["CurrentTimes"] = 1
-      			, ["MaxTimes"] = 1
+      			["CurrentTimes"] = TTH_GLOBAL.getCurrentTimes()
+      			, ["MaxTimes"] = TTH_GLOBAL.getCurrentTimes()
       		};
       	end;
       	function TTH_TALENT.activeRedHeavenHero06(iPlayer, strHero)
@@ -11714,11 +11948,11 @@ doFile("/scripts/H55-Settings.lua");
 		-- Preserve
 			-- Metlirn 022 安文
 				TTH_FINAL.METLIRN_REWARD = 100;
-				function TTH_TALENT.initMetlirn(iPlayer, strHero)
+				function TTH_TALENT.initMetlirn(strHero)
 					if TTH_VARI.talent[strHero] == nil then
 						TTH_VARI.talent[strHero] = {
-							["OperTimes"] = 1
-							, ["MaxOperTimes"] = 1
+							["CurrentTimes"] = TTH_GLOBAL.getCurrentTimes()
+							, ["MaxOperTimes"] = TTH_GLOBAL.getCurrentTimes()
 							, ["Race"] = 0
 							, ["Level"] = 0
 							, ["Growth"] = 0
@@ -11729,12 +11963,12 @@ doFile("/scripts/H55-Settings.lua");
 				function TTH_TALENT.activeMetlirn(iPlayer, strHero)
 					TTH_COMMON.nextNavi(TTH_PATH.Talent[strHero]["Text"]);
 
-					TTH_TALENT.initMetlirn(iPlayer, strHero);
+					TTH_TALENT.initMetlirn(strHero);
 					TTH_TALENT.checkPreActiveMetlirn4NotEnoughTimes(iPlayer, strHero);
 				end;
 				function TTH_TALENT.checkPreActiveMetlirn4NotEnoughTimes(iPlayer, strHero)
 					local strText = TTH_PATH.Talent[strHero]["NotEnoughTimes"];
-					if TTH_VARI.talent[strHero]["OperTimes"] <= 0 then
+					if TTH_VARI.talent[strHero]["CurrentTimes"] <= 0 then
 						if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
 							if TTH_MANAGE.getRemainOperTimes(strHero) <= 0 then
 			    			TTH_GLOBAL.sign(strHero, strText);
@@ -11812,8 +12046,8 @@ doFile("/scripts/H55-Settings.lua");
 					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
 				end;
 				function TTH_TALENT.implActiveMetlirn(iPlayer, strHero)
-					if TTH_VARI.talent[strHero]["OperTimes"] > 0 then
-						TTH_VARI.talent[strHero]["OperTimes"] = TTH_VARI.talent[strHero]["OperTimes"] - 1;
+					if TTH_VARI.talent[strHero]["CurrentTimes"] > 0 then
+						TTH_VARI.talent[strHero]["CurrentTimes"] = TTH_VARI.talent[strHero]["CurrentTimes"] - 1;
 					else
 						TTH_MANAGE.useOperTimes(strHero);
 					end;
@@ -11851,8 +12085,8 @@ doFile("/scripts/H55-Settings.lua");
 				function TTH_TALENT.resetWeeklyMetlirn(iPlayer, strHero)
 					TTH_MAIN.debug("TTH_TALENT.resetWeeklyMetlirn", iPlayer, strHero);
 
-					TTH_TALENT.initMetlirn(iPlayer, strHero);
-					TTH_VARI.talent[strHero]["OperTimes"] = TTH_VARI.talent[strHero]["MaxOperTimes"];
+					TTH_TALENT.initMetlirn(strHero);
+					TTH_VARI.talent[strHero]["CurrentTimes"] = TTH_VARI.talent[strHero]["MaxOperTimes"];
 				end;
 
 			-- Kyrre 029 凯琳
@@ -11883,8 +12117,8 @@ doFile("/scripts/H55-Settings.lua");
 					TTH_VARI.talent[strHero] = {
 						["BonusLevel"] = 0
 						, ["Redwoord"] = {}
-						, ["CurrentTimes"] = 1
-						, ["MaxTimes"] = 1
+						, ["CurrentTimes"] = TTH_GLOBAL.getCurrentTimes()
+						, ["MaxTimes"] = TTH_GLOBAL.getCurrentTimes()
 					};
 				end;
 				function TTH_TALENT.activeGillion(iPlayer, strHero)
@@ -12026,8 +12260,8 @@ doFile("/scripts/H55-Settings.lua");
 					TTH_MAIN.debug("TTH_TALENT.initMelodia", nil, strHero);
 
       		TTH_VARI.talent[strHero] = {
-						["CurrentTimes"] = 1
-						, ["MaxTimes"] = 1
+						["CurrentTimes"] = TTH_GLOBAL.getCurrentTimes()
+						, ["MaxTimes"] = TTH_GLOBAL.getCurrentTimes()
 					};
       	end;
       	function TTH_TALENT.activeMelodia(iPlayer, strHero)
@@ -12168,8 +12402,8 @@ doFile("/scripts/H55-Settings.lua");
 					TTH_MAIN.debug("TTH_TALENT.initRissa", nil, strHero);
 
       		TTH_VARI.talent[strHero] = {
-						["CurrentTimes"] = 1
-						, ["MaxTimes"] = 1
+						["CurrentTimes"] = TTH_GLOBAL.getCurrentTimes()
+						, ["MaxTimes"] = TTH_GLOBAL.getCurrentTimes()
 					};
       	end;
       	function TTH_TALENT.activeRissa(iPlayer, strHero)
@@ -12338,8 +12572,8 @@ doFile("/scripts/H55-Settings.lua");
 					TTH_MAIN.debug("TTH_TALENT.initMaahir", nil, strHero);
 
       		TTH_VARI.talent[strHero] = {
-						["CurrentTimes"] = 1
-						, ["MaxTimes"] = 1
+						["CurrentTimes"] = TTH_GLOBAL.getCurrentTimes()
+						, ["MaxTimes"] = TTH_GLOBAL.getCurrentTimes()
 					};
       	end;
       	function TTH_TALENT.activeMaahir(iPlayer, strHero)
@@ -12437,8 +12671,8 @@ doFile("/scripts/H55-Settings.lua");
 						["PreGameVar"] = "TTH_Var_Talent_"
 						, ["BonusLevel"] = 0
 						, ["MagicNode"] = {}
-						, ["CurrentTimes"] = 1
-						, ["MaxTimes"] = 1
+						, ["CurrentTimes"] = TTH_GLOBAL.getCurrentTimes()
+						, ["MaxTimes"] = TTH_GLOBAL.getCurrentTimes()
 					};
 				end;
 				function TTH_TALENT.activeAstral(iPlayer, strHero)
@@ -12813,8 +13047,8 @@ doFile("/scripts/H55-Settings.lua");
 					TTH_MAIN.debug("TTH_TALENT.initSylsai", nil, strHero);
 
       		TTH_VARI.talent[strHero] = {
-						["CurrentTimes"] = 1
-						, ["MaxTimes"] = 1
+						["CurrentTimes"] = TTH_GLOBAL.getCurrentTimes()
+						, ["MaxTimes"] = TTH_GLOBAL.getCurrentTimes()
 						, ["SpecialCreature"] = {
 							CREATURE_LEGATE
 							, CREATURE_CROSSBOW
@@ -13139,8 +13373,8 @@ doFile("/scripts/H55-Settings.lua");
 					TTH_MAIN.debug("TTH_TALENT.initAlmegir", nil, strHero);
 
 					TTH_VARI.talent[strHero] = {
-						["CurrentTimes"] = 1
-						, ["MaxTimes"] = 1
+						["CurrentTimes"] = TTH_GLOBAL.getCurrentTimes()
+						, ["MaxTimes"] = TTH_GLOBAL.getCurrentTimes()
 					};
 				end;
 				function TTH_TALENT.activeAlmegir(iPlayer, strHero)
@@ -13206,20 +13440,12 @@ doFile("/scripts/H55-Settings.lua");
 			-- LordHaart 077 罗德哈特
 				function TTH_TALENT.upgradeMasteryLordHaart(iPlayer, strHero)
 					TTH_ARTI.callbackActive015(iPlayer, strHero);
-					local strUpgradeMasteryTypeName = TTH_PATH.Talent[strHero][iUpgradeMasteryType];
-					local strText = {
-						TTH_PATH.Talent[strHero]["SuccessUpgradeMastery"]
-						;strUpgradeMasteryTypeName=strUpgradeMasteryTypeName
-					};
+					local strText = TTH_PATH.Talent[strHero]["SuccessUpgradeMastery"];
 					TTH_GLOBAL.sign(strHero, strText);
 				end;
 				function TTH_TALENT.upgradeShantiriLordHaart(iPlayer, strHero)
 					TTH_ARTI.callbackActive163(iPlayer, strHero);
-					local strUpgradeShantiriTypeName = TTH_PATH.Talent[strHero][iUpgradeShantiriType];
-					local strText = {
-						TTH_PATH.Talent[strHero]["SuccessUpgradeShantiri"]
-						;strUpgradeShantiriTypeName=strUpgradeShantiriTypeName
-					};
+					local strText = TTH_PATH.Talent[strHero]["SuccessUpgradeShantiri"];
 					TTH_GLOBAL.sign(strHero, strText);
 				end;
 
@@ -13525,8 +13751,8 @@ doFile("/scripts/H55-Settings.lua");
 					TTH_MAIN.debug("TTH_TALENT.initMarder", nil, strHero);
 
 					TTH_VARI.talent[strHero] = {
-						["CurrentTimes"] = 1
-						, ["MaxTimes"] = 1
+						["CurrentTimes"] = TTH_GLOBAL.getCurrentTimes()
+						, ["MaxTimes"] = TTH_GLOBAL.getCurrentTimes()
 					};
 				end;
 				function TTH_TALENT.activeMarder(iPlayer, strHero)
@@ -13636,11 +13862,7 @@ doFile("/scripts/H55-Settings.lua");
 					local iUpgradeMasteryType = TTH_VARI.talent[strHero]["UpgradeMasteryType"];
 					local strKey = TTH_VARI.talent[strHero]["PreGameVar"]..strHero;
 					TTH_COMMON.consoleSetGameVar(strKey, iUpgradeMasteryType);
-					local strUpgradeMasteryTypeName = TTH_PATH.Talent[strHero][iUpgradeMasteryType];
-					local strText = {
-						TTH_PATH.Talent[strHero]["SuccessUpgradeMastery"]
-						;strUpgradeMasteryTypeName=strUpgradeMasteryTypeName
-					};
+					local strText = TTH_PATH.Talent[strHero]["SuccessUpgradeMastery"];
 					TTH_GLOBAL.sign(strHero, strText);
 				end;
 				function TTH_TALENT.upgradeShantiriOrlando2(iPlayer, strHero)
@@ -13649,11 +13871,7 @@ doFile("/scripts/H55-Settings.lua");
 					local iUpgradeShantiriType = TTH_VARI.talent[strHero]["UpgradeShantiriType"];
 					local strKey = TTH_VARI.talent[strHero]["PreGameVar"]..strHero;
 					TTH_COMMON.consoleSetGameVar(strKey, iUpgradeShantiriType);
-					local strUpgradeShantiriTypeName = TTH_PATH.Talent[strHero][iUpgradeShantiriType];
-					local strText = {
-						TTH_PATH.Talent[strHero]["SuccessUpgradeShantiri"]
-						;strUpgradeShantiriTypeName=strUpgradeShantiriTypeName
-					};
+					local strText = TTH_PATH.Talent[strHero]["SuccessUpgradeShantiri"];
 					TTH_GLOBAL.sign(strHero, strText);
 				end;
 
@@ -13665,8 +13883,8 @@ doFile("/scripts/H55-Settings.lua");
 					TTH_VARI.talent[strHero] = {
 						["BonusLevel"] = 0
 						, ["Portal"] = {}
-						, ["CurrentTimes"] = 1
-						, ["MaxTimes"] = 1
+						, ["CurrentTimes"] = TTH_GLOBAL.getCurrentTimes()
+						, ["MaxTimes"] = TTH_GLOBAL.getCurrentTimes()
 					};
 				end;
 				function TTH_TALENT.activeNymus(iPlayer, strHero)
@@ -13806,20 +14024,12 @@ doFile("/scripts/H55-Settings.lua");
 			-- Oddrema 109 耶泽蓓丝
 				function TTH_TALENT.upgradeMasteryOddrema(iPlayer, strHero)
 					TTH_ARTI.callbackActive015(iPlayer, strHero);
-					local strUpgradeMasteryTypeName = TTH_PATH.Talent[strHero][iUpgradeMasteryType];
-					local strText = {
-						TTH_PATH.Talent[strHero]["SuccessUpgradeMastery"]
-						;strUpgradeMasteryTypeName=strUpgradeMasteryTypeName
-					};
+					local strText = TTH_PATH.Talent[strHero]["SuccessUpgradeMastery"];
 					TTH_GLOBAL.sign(strHero, strText);
 				end;
 				function TTH_TALENT.upgradeShantiriOddrema(iPlayer, strHero)
 					TTH_ARTI.callbackActive163(iPlayer, strHero);
-					local strUpgradeShantiriTypeName = TTH_PATH.Talent[strHero][iUpgradeShantiriType];
-					local strText = {
-						TTH_PATH.Talent[strHero]["SuccessUpgradeShantiri"]
-						;strUpgradeShantiriTypeName=strUpgradeShantiriTypeName
-					};
+					local strText = TTH_PATH.Talent[strHero]["SuccessUpgradeShantiri"];
 					TTH_GLOBAL.sign(strHero, strText);
 				end;
 
@@ -13875,8 +14085,8 @@ doFile("/scripts/H55-Settings.lua");
 					TTH_MAIN.debug("TTH_TALENT.initCalid2", nil, strHero);
 
 					TTH_VARI.talent[strHero] = {
-						["CurrentTimes"] = 1
-						, ["MaxTimes"] = 1
+						["CurrentTimes"] = TTH_GLOBAL.getCurrentTimes()
+						, ["MaxTimes"] = TTH_GLOBAL.getCurrentTimes()
 					};
 				end;
 				function TTH_TALENT.activeCalid2(iPlayer, strHero)
@@ -14021,6 +14231,18 @@ doFile("/scripts/H55-Settings.lua");
       	end;
 
 		-- Fortress
+			-- Maximus 118 马克西姆斯
+				function TTH_TALENT.upgradeMasteryMaximus(iPlayer, strHero)
+					TTH_ARTI.callbackActive015(iPlayer, strHero);
+					local strText = TTH_PATH.Talent[strHero]["SuccessUpgradeMastery"];
+					TTH_GLOBAL.sign(strHero, strText);
+				end;
+				function TTH_TALENT.upgradeShantiriMaximus(iPlayer, strHero)
+					TTH_ARTI.callbackActive163(iPlayer, strHero);
+					local strText = TTH_PATH.Talent[strHero]["SuccessUpgradeShantiri"];
+					TTH_GLOBAL.sign(strHero, strText);
+				end;
+
 			-- Una 128 英伽
 				TTH_TABLE.UnaRune = {
 					[249] = { -- 冲锋符文
@@ -14143,11 +14365,11 @@ doFile("/scripts/H55-Settings.lua");
 						}
 					}
 				};
-				function TTH_TALENT.initUna(iPlayer, strHero)
+				function TTH_TALENT.initUna(strHero)
 					if TTH_VARI.talent[strHero] == nil then
 						TTH_VARI.talent[strHero] = {
-							["OperTimes"] = 1
-							, ["MaxOperTimes"] = 1
+							["CurrentTimes"] = TTH_GLOBAL.getCurrentTimes()
+							, ["MaxOperTimes"] = TTH_GLOBAL.getCurrentTimes()
 							, ["Rune"] = {
 								[1] = TTH_ENUM.No
 								, [2] = TTH_ENUM.No
@@ -14161,12 +14383,12 @@ doFile("/scripts/H55-Settings.lua");
 				function TTH_TALENT.activeUna(iPlayer, strHero)
 					TTH_COMMON.nextNavi(TTH_PATH.Talent[strHero]["Text"]);
 
-					TTH_TALENT.initUna(iPlayer, strHero);
+					TTH_TALENT.initUna(strHero);
 					TTH_TALENT.checkPreActiveUna4NotEnoughTimes(iPlayer, strHero);
 				end;
 				function TTH_TALENT.checkPreActiveUna4NotEnoughTimes(iPlayer, strHero)
 					local strText = TTH_PATH.Talent[strHero]["NotEnoughTimes"];
-					if TTH_VARI.talent[strHero]["OperTimes"] <= 0 then
+					if TTH_VARI.talent[strHero]["CurrentTimes"] <= 0 then
 						if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
 							if TTH_MANAGE.getRemainOperTimes(strHero) <= 0 then
 			    			TTH_GLOBAL.sign(strHero, strText);
@@ -14211,8 +14433,8 @@ doFile("/scripts/H55-Settings.lua");
 					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strText, strCallbackOk, strCallbackCancel);
 				end;
 				function TTH_TALENT.implActiveUna(iPlayer, strHero, iRuneId)
-					if TTH_VARI.talent[strHero]["OperTimes"] > 0 then
-						TTH_VARI.talent[strHero]["OperTimes"] = TTH_VARI.talent[strHero]["OperTimes"] - 1;
+					if TTH_VARI.talent[strHero]["CurrentTimes"] > 0 then
+						TTH_VARI.talent[strHero]["CurrentTimes"] = TTH_VARI.talent[strHero]["CurrentTimes"] - 1;
 					else
 						TTH_MANAGE.useOperTimes(strHero);
 					end;
@@ -14244,12 +14466,12 @@ doFile("/scripts/H55-Settings.lua");
 				function TTH_TALENT.resetWeeklyUna(iPlayer, strHero)
 					TTH_MAIN.debug("TTH_TALENT.resetWeeklyUna", iPlayer, strHero);
 
-					TTH_TALENT.initUna(iPlayer, strHero);
-					TTH_VARI.talent[strHero]["OperTimes"] = TTH_VARI.talent[strHero]["MaxOperTimes"];
+					TTH_TALENT.initUna(strHero);
+					TTH_VARI.talent[strHero]["CurrentTimes"] = TTH_VARI.talent[strHero]["MaxOperTimes"];
 				end;
 
 			-- Rolf 132 洛尔夫
-				function TTH_TALENT.initRolf(iPlayer, strHero)
+				function TTH_TALENT.initRolf(strHero)
 					if TTH_VARI.talent[strHero] == nil then
 						TTH_VARI.talent[strHero] = {
 							["OperTimes"] = 1
@@ -14260,7 +14482,7 @@ doFile("/scripts/H55-Settings.lua");
 				function TTH_TALENT.activeRolf(iPlayer, strHero)
 					TTH_COMMON.nextNavi(TTH_PATH.Talent[strHero]["Text"]);
 
-					TTH_TALENT.initRolf(iPlayer, strHero);
+					TTH_TALENT.initRolf(strHero);
 					TTH_TALENT.checkPreActiveRolf4NotEnoughTimes(iPlayer, strHero);
 				end;
 				function TTH_TALENT.checkPreActiveRolf4NotEnoughTimes(iPlayer, strHero)
@@ -14360,7 +14582,7 @@ doFile("/scripts/H55-Settings.lua");
 				function TTH_TALENT.resetWeeklyRolf(iPlayer, strHero)
 					TTH_MAIN.debug("TTH_TALENT.resetWeeklyRolf", iPlayer, strHero);
 
-					TTH_TALENT.initRolf(iPlayer, strHero);
+					TTH_TALENT.initRolf(strHero);
 	    		TTH_VARI.talent[strHero]["OperTimes"] = TTH_VARI.talent[strHero]["MaxOperTimes"];
 				end;
 
@@ -14370,8 +14592,8 @@ doFile("/scripts/H55-Settings.lua");
 
 					TTH_VARI.talent[strHero] = {
 						["TownLevel"] = 0
-						, ["CurrentTimes"] = 1
-						, ["MaxTimes"] = 1
+						, ["CurrentTimes"] = TTH_GLOBAL.getCurrentTimes()
+						, ["MaxTimes"] = TTH_GLOBAL.getCurrentTimes()
 					};
       	end;
 				function TTH_TALENT.calcCoefUfretin(strHero)
@@ -14426,8 +14648,8 @@ doFile("/scripts/H55-Settings.lua");
 						["BonusLevel"] = 0
 						, ["Outpost"] = {}
 						, ["OutpostHistory"] = {}
-						, ["CurrentTimes"] = 1
-						, ["MaxTimes"] = 1
+						, ["CurrentTimes"] = TTH_GLOBAL.getCurrentTimes()
+						, ["MaxTimes"] = TTH_GLOBAL.getCurrentTimes()
 					};
 				end;
 				function TTH_TALENT.dealDailyWulfstan(iPlayer, strHero)
@@ -14596,6 +14818,60 @@ doFile("/scripts/H55-Settings.lua");
 					return iRecovery;
 				end;
 
+			-- Kraal 146 克拉尔
+				function TTH_TALENT.initKraal(strHero)
+					TTH_MAIN.debug("TTH_TALENT.initKraal", nil, strHero);
+
+					TTH_VARI.talent[strHero] = {
+						["PreGameVar"] = "TTH_Var_Talent_"
+						, ["LinkCreatureId"] = 0
+					};
+					local strKey = TTH_VARI.talent[strHero]["PreGameVar"]..strHero;
+					TTH_COMMON.consoleSetGameVar(strKey, TTH_VARI.talent[strHero]["LinkCreatureId"]);
+				end;
+				function TTH_TALENT.activeKraal(iPlayer, strHero)
+					TTH_COMMON.nextNavi(TTH_PATH.Talent[strHero]["Text"]);
+
+					TTH_TALENT.radioActiveKraal(iPlayer, strHero);
+				end;
+				function TTH_TALENT.radioActiveKraal(iPlayer, strHero)
+					local arrCreature4Hero = TTH_GLOBAL.getHeroCreatureInfo(strHero);
+					local arrOption = {};
+					local i = 1;
+					for iSlot = 0, 6 do
+						if arrCreature4Hero[iSlot]["Id"] > 0 then
+							arrOption[i] = {
+								["Id"] = arrCreature4Hero[iSlot]["Id"]
+								, ["Text"] = TTH_TABLE_NCF_CREATURES[arrCreature4Hero[iSlot]["Id"]]["NAME"]
+								, ["Callback"] = "TTH_TALENT.implActiveKraal"
+							};
+							i = i + 1;
+						end;
+					end;
+					TTH_COMMON.optionRadio(iPlayer, strHero, arrOption);
+				end;
+				function TTH_TALENT.implActiveKraal(iPlayer, strHero, iCreatureId)
+					TTH_VARI.talent[strHero]["LinkCreatureId"] = iCreatureId;
+					local strKey = TTH_VARI.talent[strHero]["PreGameVar"]..strHero;
+					TTH_COMMON.consoleSetGameVar(strKey, iCreatureId);
+					local strCreatureName = TTH_TABLE_NCF_CREATURES[iCreatureId]["NAME"];
+					local strText = {
+						TTH_PATH.Talent[strHero]["Success"]
+						;strCreatureName=strCreatureName
+					};
+					TTH_GLOBAL.sign(strHero, strText);
+				end;
+				function TTH_TALENT.upgradeMasteryKraal(iPlayer, strHero)
+					TTH_ARTI.callbackActive015(iPlayer, strHero);
+					local strText = TTH_PATH.Talent[strHero]["SuccessUpgradeMastery"];
+					TTH_GLOBAL.sign(strHero, strText);
+				end;
+				function TTH_TALENT.upgradeShantiriKraal(iPlayer, strHero)
+					TTH_ARTI.callbackActive163(iPlayer, strHero);
+					local strText = TTH_PATH.Talent[strHero]["SuccessUpgradeShantiri"];
+					TTH_GLOBAL.sign(strHero, strText);
+				end;
+
       -- Kunyak 148 库恩亚克
       	function TTH_TALENT.calcTownValueKunyak(strHero, arrTown)
 					TTH_MAIN.debug("TTH_TALENT.calcTownValueKunyak", nil, strHero, arrTown);
@@ -14688,8 +14964,8 @@ doFile("/scripts/H55-Settings.lua");
 
 					TTH_VARI.talent[strHero] = {
 						["WolfLair"] = {}
-						, ["CurrentTimes"] = 1
-						, ["MaxTimes"] = 1
+						, ["CurrentTimes"] = TTH_GLOBAL.getCurrentTimes()
+						, ["MaxTimes"] = TTH_GLOBAL.getCurrentTimes()
 					};
 				end;
 				function TTH_TALENT.activeAzar(iPlayer, strHero)
@@ -17043,6 +17319,49 @@ doFile("/scripts/H55-Settings.lua");
 				end;
 			end;
 
+		-- HERO_SKILL_DEAD_LUCK 103 恶灵诅咒
+		  TTH_VARI.recordDeadLuck = {};
+		  function TTH_PERK.active103(iPlayer, strHero)
+		    TTH_COMMON.nextNavi(TTH_PATH.Perk[HERO_SKILL_DEAD_LUCK]["Text"]);
+
+		    TTH_PERK.radioActive103(iPlayer, strHero);
+		  end;
+		  function TTH_PERK.radioActive103(iPlayer, strHero)
+		    local arrOption = {};
+		    local i = 1;
+		    for iIndex, iSpellId in TTH_TABLE.ReaverCurseSpell do
+		      if KnowHeroSpell(strHero, iSpellId) ~= nil then
+		        arrOption[i] = {
+		          ["Id"] = iSpellId
+		          , ["Text"] = TTH_TABLE_SPELL[iSpellId]["NAME"]
+		          , ["Callback"] = "TTH_PERK.implActive103"
+		        };
+		        i = i + 1;
+		      end;
+		    end;
+
+		    if length(arrOption) == 0 then
+		      local strText = TTH_PATH.Perk[strHero]["NoSuitableSpell"];
+		      TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.MessageBox, strText);
+		      return nil;
+		    end;
+
+		    TTH_COMMON.optionRadio(iPlayer, strHero, arrOption);
+		  end;
+		  function TTH_PERK.implActive103(iPlayer, strHero, iSpellId)
+		    TTH_PERK.enableActive103(iPlayer, strHero, iSpellId);
+		    local strSpellName = TTH_TABLE_SPELL[iSpellId]["NAME"];
+		    local strText = {
+		      TTH_PATH.Perk[HERO_SKILL_DEAD_LUCK]["Success"]
+		      ;strSpellName=strSpellName
+		    };
+		    TTH_GLOBAL.sign(strHero, strText);
+		  end;
+		  function TTH_PERK.enableActive103(iPlayer, strHero, iSpellId)
+		    local strKey = TTH_FINAL.GAMEVAR_COMBAT_SKILL..strHero..'_'..HERO_SKILL_DEAD_LUCK;
+		    TTH_COMMON.consoleSetGameVar(strKey, iSpellId);
+		  end;
+
 		-- HERO_SKILL_TWILIGHT 109 微光黎明
 			TTH_VARI.recordTwilight = {};
 			function TTH_PERK.init109(iPlayer, strHero)
@@ -17502,6 +17821,7 @@ doFile("/scripts/H55-Settings.lua");
 			TTH_FINAL.MARCH_OF_THE_MACHINES_SCALE = 6;
 			TTH_FINAL.MARCH_OF_THE_MACHINES_ATTENUATION = 0.8;
 			TTH_FINAL.MARCH_OF_THE_MACHINES_MIN = 0.4;
+			TTH_FINAL.MARCH_OF_THE_MACHINES_SET_MAGIS = 2;
 			TTH_TABLE.CreatureOption125 = {
 				[1] = {
 					["Id"] = 1
@@ -17589,10 +17909,16 @@ doFile("/scripts/H55-Settings.lua");
 				TTH_PERK.radioActive1254Creature(iPlayer, strHero)
 			end;
 			function TTH_PERK.radioActive1254Creature(iPlayer, strHero)
+				local iRequireSetMagisCount = 0;
+				local strHeroCyrus = "Cyrus";
+				if strHero == strHeroCyrus then
+					iRequireSetMagisCount = 1;
+				end;
+
 				local arrOption = {};
 				local i = 1;
 				local iLevel = 4;
-				if TTH_GLOBAL.getSetComponentCount(strHero, TTH_ENUM.SET_MAGIS) >= 2 then
+				if TTH_GLOBAL.getSetComponentCount(strHero, TTH_ENUM.SET_MAGIS) >= TTH_FINAL.MARCH_OF_THE_MACHINES_SET_MAGIS - iRequireSetMagisCount then
 				  iLevel = 7;
 				end;
 				for iIndex, objOption in TTH_TABLE.CreatureOption125 do
@@ -17607,6 +17933,12 @@ doFile("/scripts/H55-Settings.lua");
 				TTH_COMMON.optionRadio(iPlayer, strHero, arrOption, strText);
 			end;
 			function TTH_PERK.comfirmActive125(iPlayer, strHero, iIndexId)
+				local iRequireSetMagisCount = 0;
+				local strHeroCyrus = "Cyrus";
+				if strHero == strHeroCyrus then
+					iRequireSetMagisCount = 1;
+				end;
+
 				local iPostCreatureId = TTH_TABLE.CreatureOption125[iIndexId]["CreatureId"];
 				local strCreatureNameGremlin = TTH_TABLE_NCF_CREATURES[CREATURE_GREMLIN]["NAME"];
 				local iCreatureNumberGremlin = 0;
@@ -17622,13 +17954,13 @@ doFile("/scripts/H55-Settings.lua");
 				end;
 				local strPostCreatureName = TTH_TABLE_NCF_CREATURES[iPostCreatureId]["NAME"];
 				local iAttenuation = TTH_PERK.calcAttenuation1254Player(iPlayer, strHero);
-				local iPostCreatureNumber = TTH_COMMON.round(iCreatureNumberGremlin / TTH_FINAL.MARCH_OF_THE_MACHINES_SCALE / TTH_TABLE.CreatureOption125[iIndexId]["Scale"] * (1 + 0.2 * TTH_GLOBAL.getSetComponentCount(strHero, TTH_ENUM.SET_MAGIS)) * iAttenuation);
+				local iPostCreatureNumber = TTH_COMMON.round(iCreatureNumberGremlin / TTH_FINAL.MARCH_OF_THE_MACHINES_SCALE / TTH_TABLE.CreatureOption125[iIndexId]["Scale"] * (1 + 0.2 * (TTH_GLOBAL.getSetComponentCount(strHero, TTH_ENUM.SET_MAGIS) + iRequireSetMagisCount)) * iAttenuation);
 				if iPostCreatureNumber < 1 then
 					iPostCreatureNumber = 1;
 				end;
 
 				local iLevel = 4;
-				if TTH_GLOBAL.getSetComponentCount(strHero, TTH_ENUM.SET_MAGIS) >= 2 then
+				if TTH_GLOBAL.getSetComponentCount(strHero, TTH_ENUM.SET_MAGIS) >= TTH_FINAL.MARCH_OF_THE_MACHINES_SET_MAGIS - iRequireSetMagisCount then
 				  iLevel = 7;
 				end;
 				local arrArtifactNameExist = {};
@@ -17692,6 +18024,98 @@ doFile("/scripts/H55-Settings.lua");
 					iAttenuation = TTH_FINAL.MARCH_OF_THE_MACHINES_MIN;
 				end;
 				return iAttenuation;
+			end;
+
+		-- HERO_SKILL_DWARVEN_LUCK 159 矮人之幸 
+			TTH_VARI.recordDwarvenLuck = {};
+			function TTH_PERK.init159(iPlayer, strHero)
+				TTH_MAIN.debug("TTH_PERK.init159", iPlayer, strHero);
+
+				TTH_VARI.recordDwarvenLuck[strHero] = {
+					["OperTimes"] = 1
+					, ["MaxOperTimes"] = 1
+				};
+			end;
+			function TTH_PERK.active159(iPlayer, strHero, strTown)
+				TTH_COMMON.nextNavi(TTH_PATH.Perk[HERO_SKILL_DWARVEN_LUCK]["Text"]);
+
+				TTH_PERK.checkPreActive1594NotEnoughTimes(iPlayer, strHero, strTown)
+			end;
+			function TTH_PERK.checkPreActive1594NotEnoughTimes(iPlayer, strHero, strTown)
+				if TTH_VARI.recordDwarvenLuck[strHero] == nil then
+					TTH_PERK.init159(iPlayer, strHero);
+				end;
+				local strText = TTH_PATH.Perk[HERO_SKILL_DWARVEN_LUCK]["NotEnoughTimes"];
+				if TTH_VARI.recordDwarvenLuck[strHero]["OperTimes"] <= 0 then
+					if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+						if TTH_MANAGE.getRemainOperTimes(strHero) <= 0 then
+		    			TTH_GLOBAL.sign(strHero, strText);
+		  				return nil;
+						end;
+					else
+		  			TTH_GLOBAL.sign(strHero, strText);
+						return nil;
+		  		end;
+				end;
+
+				TTH_PERK.radioActive159(iPlayer, strHero);
+			end;
+			function TTH_PERK.radioActive159(iPlayer, strHero)
+				local arrOption = {};
+				local i = 1;
+				for iIndexComponent, objComponent in TTH_TABLE.CombineArtifact do
+					local iCountComponent = length(objComponent["Component"]);
+					local iCountHasArtifact = 0;
+					for iIndexArtifact, objArtifact in objComponent["Component"] do
+						if HasArtefact(strHero, objArtifact["Id"], 0) ~= nil then
+							iCountHasArtifact = iCountHasArtifact + 1;
+						end;
+					end;
+					if iCountHasArtifact > 0 and iCountHasArtifact < iCountComponent then
+						arrOption[i] = {
+							["Id"] = objComponent["Id"]
+							, ["Text"] = objComponent["Text"]
+							, ["Callback"] = "TTH_PERK.implActive159"
+						};
+						i = i + 1;
+					end;
+				end;
+
+				if length(arrOption) == 0 then
+					local strText = TTH_PATH.Perk[HERO_SKILL_DWARVEN_LUCK]["NoOption"];
+					TTH_GLOBAL.sign(strHero, strText);
+					return nil;
+				end;
+
+				TTH_COMMON.optionRadio(iPlayer, strHero, arrOption);
+			end;
+			function TTH_PERK.implActive159(iPlayer, strHero, iCombineArtifactId)
+				if TTH_VARI.recordDwarvenLuck[strHero]["OperTimes"] > 0 then
+					TTH_VARI.recordDwarvenLuck[strHero]["OperTimes"] = TTH_VARI.recordDwarvenLuck[strHero]["OperTimes"] - 1;
+				else
+					TTH_MANAGE.useOperTimes(strHero);
+				end;
+				local arrRequireArtifact = {};
+				for iArtifactId, objArtifact in TTH_TABLE.CombineArtifact[iCombineArtifactId]["Component"] do
+					if HasArtefact(strHero, iArtifactId, 0) == nil then
+						arrRequireArtifact = push(arrRequireArtifact, iArtifactId);
+					end;
+				end;		
+				local iRandomIndex = random(length(arrRequireArtifact));
+				local iPosX, iPosY, iPosZ = GetObjectPosition(strHero);
+				local iArtifactId = arrRequireArtifact[iRandomIndex];
+				CreateArtifact("", iArtifactId, iPosX, iPosY, iPosZ);
+
+	  		local strText = TTH_PATH.Perk[HERO_SKILL_DWARVEN_LUCK]["Success"]
+				TTH_GLOBAL.sign(strHero, strText);
+			end;
+			function TTH_PERK.resetWeekly159(iPlayer, strHero)
+				TTH_MAIN.debug("TTH_PERK.resetWeekly159", iPlayer, strHero);
+
+				if TTH_VARI.recordDwarvenLuck[strHero] == nil then
+					TTH_PERK.init159(iPlayer, strHero);
+				end;
+				TTH_VARI.recordDwarvenLuck[strHero]["OperTimes"] = TTH_VARI.recordDwarvenLuck[strHero]["MaxOperTimes"];
 			end;
 
 		-- HERO_SKILL_SNATCH 168 攫取
@@ -17842,12 +18266,18 @@ doFile("/scripts/H55-Settings.lua");
     		TTH_PERK.radioActive1814Creature(iPlayer, strHero)
 			end;
 			function TTH_PERK.radioActive1814Creature(iPlayer, strHero)
+				local iRequireSetOgresCount = 0;
+				local strHeroKunyak = "Kunyak";
+				if strHero == strHeroKunyak then
+					iRequireSetOgresCount = 1;
+				end;
+
     		local arrOption = {};
     		local i = 1;
 				local iLevel = 4;
-				if TTH_GLOBAL.getSetComponentCount(strHero, TTH_ENUM.SET_OGRES) == 1 then
+				if TTH_GLOBAL.getSetComponentCount(strHero, TTH_ENUM.SET_OGRES) == 1 - iRequireSetOgresCount then
 				  iLevel = 6;
-				elseif TTH_GLOBAL.getSetComponentCount(strHero, TTH_ENUM.SET_OGRES) >= 2 then
+				elseif TTH_GLOBAL.getSetComponentCount(strHero, TTH_ENUM.SET_OGRES) >= 2 - iRequireSetOgresCount then
 				  iLevel = 7;
 				end;
     		for iIndex, objOption in TTH_TABLE.CreatureOption181 do
@@ -17862,6 +18292,12 @@ doFile("/scripts/H55-Settings.lua");
     		TTH_COMMON.optionRadio(iPlayer, strHero, arrOption, strText);
 			end;
     	function TTH_PERK.comfirmActive181(iPlayer, strHero, iIndexId)
+				local iRequireSetOgresCount = 0;
+				local strHeroKunyak = "Kunyak";
+				if strHero == strHeroKunyak then
+					iRequireSetOgresCount = 1;
+				end;
+
     		local iPostCreatureId = TTH_TABLE.CreatureOption181[iIndexId]["CreatureId"];
     		local strCreatureNameGoblin = TTH_TABLE_NCF_CREATURES[CREATURE_GOBLIN]["NAME"];
     		local iCreatureNumberGoblin = 0;
@@ -17877,15 +18313,15 @@ doFile("/scripts/H55-Settings.lua");
 				end;
     		local strPostCreatureName = TTH_TABLE_NCF_CREATURES[iPostCreatureId]["NAME"];
     		local iAttenuation = TTH_PERK.calcAttenuation1814Player(iPlayer, strHero);
-				local iPostCreatureNumber = TTH_COMMON.round(iCreatureNumberGoblin / TTH_FINAL.DEFEND_US_ALL_SCALE / TTH_TABLE.CreatureOption181[iIndexId]["Scale"] * (1 + 0.4 * TTH_GLOBAL.getSetComponentCount(strHero, TTH_ENUM.SET_OGRES)) * iAttenuation);
+				local iPostCreatureNumber = TTH_COMMON.round(iCreatureNumberGoblin / TTH_FINAL.DEFEND_US_ALL_SCALE / TTH_TABLE.CreatureOption181[iIndexId]["Scale"] * (1 + 0.4 * (TTH_GLOBAL.getSetComponentCount(strHero, TTH_ENUM.SET_OGRES) + iRequireSetOgresCount)) * iAttenuation);
 				if iPostCreatureNumber < 1 then
 					iPostCreatureNumber = 1;
 				end;
 
     		local iLevel = 4;
-    		if TTH_GLOBAL.getSetComponentCount(strHero, TTH_ENUM.SET_OGRES) == 1 then
+    		if TTH_GLOBAL.getSetComponentCount(strHero, TTH_ENUM.SET_OGRES) == 1 - iRequireSetOgresCount then
     		  iLevel = 6;
-    		elseif TTH_GLOBAL.getSetComponentCount(strHero, TTH_ENUM.SET_OGRES) >= 2 then
+    		elseif TTH_GLOBAL.getSetComponentCount(strHero, TTH_ENUM.SET_OGRES) >= 2 - iRequireSetOgresCount then
     		  iLevel = 7;
     		end;
 				local arrArtifactNameExist = {};
@@ -18112,6 +18548,70 @@ doFile("/scripts/H55-Settings.lua");
     		return arrDistance;
     	end;
 
+	-- 建筑
+		TTH_BUILDING = {};
+
+		-- TOWN_DUNGEON
+			-- TOWN_BUILDING_SPECIAL_1 元素祭坛
+				TTH_TABLE.DungeonSpecial14Artifact = {
+					[0] = ARTIFACT_ORB_AIR
+					, [1] = ARTIFACT_ORB_EARTH
+					, [2] = ARTIFACT_ORB_FIRE
+					, [3] = ARTIFACT_ORB_WATER
+				};
+				TTH_VARI.recordDungeonSpecial1 = {};
+				function TTH_BUILDING.initDungeonSpecial1(iPlayer, strHero, strTown)
+					TTH_MAIN.debug("TTH_BUILDING.initDungeonSpecial1", iPlayer, strHero, strTown);
+
+					if TTH_VARI.recordDungeonSpecial1[strTown] == nil then
+						TTH_VARI.recordDungeonSpecial1[strTown] = TTH_ENUM.No;
+					end;
+				end;
+				function TTH_BUILDING.activeDungeonSpecial1(iPlayer, strHero, strTown)
+					TTH_COMMON.nextNavi(TTH_PATH.Building[TOWN_DUNGEON][TOWN_BUILDING_SPECIAL_1]["Text"]);
+
+					TTH_BUILDING.initDungeonSpecial1(iPlayer, strHero, strTown);
+					TTH_BUILDING.checkPreActiveDungeonSpecial14HasUsed(iPlayer, strHero, strTown)
+				end;
+				function TTH_BUILDING.checkPreActiveDungeonSpecial14HasUsed(iPlayer, strHero, strTown)
+					if TTH_VARI.recordDungeonSpecial1[strTown] == TTH_ENUM.Yes then
+						local strText = TTH_PATH.Building[TOWN_DUNGEON][TOWN_BUILDING_SPECIAL_1]["HasUsed"];
+						TTH_GLOBAL.sign(strHero, strText);
+						return nil;
+					end;
+
+					TTH_BUILDING.checkPreActiveDungeonSpecial14HeroLevel(iPlayer, strHero);
+				end;
+				function TTH_BUILDING.checkPreActiveDungeonSpecial14HeroLevel(iPlayer, strHero)
+					local iHeroLevel = GetHeroLevel(strHero);
+					if iHeroLevel < 30 then
+						local strText = TTH_PATH.Building[TOWN_DUNGEON][TOWN_BUILDING_SPECIAL_1]["NotEnoughHeroLevel"];
+						TTH_GLOBAL.sign(strHero, strText);
+						return nil;
+					end;
+
+					TTH_BUILDING.radioActiveDungeonSpecial1(iPlayer, strHero);
+				end;
+				function TTH_BUILDING.radioActiveDungeonSpecial1(iPlayer, strHero)
+					local arrOption = {};
+					local i = 1;
+					for iKey, iArtifactId in TTH_TABLE.DungeonSpecial14Artifact do
+						arrOption[i] = {
+							["Id"] = iArtifactId
+							, ["Text"] = TTH_TABLE.Artifact[iArtifactId]["Text"]
+							, ["Callback"] = "TTH_BUILDING.implActiveDungeonSpecial1"
+						};
+						i = i + 1;
+					end;
+
+					TTH_COMMON.optionRadio(iPlayer, strHero, arrOption);
+				end;
+				function TTH_BUILDING.implActiveDungeonSpecial1(iPlayer, strHero, iArtifactId)
+					local strTown = TTH_VARI.townSkillManage;
+					TTH_VARI.recordDungeonSpecial1[strTown] = TTH_ENUM.Yes;
+					TTH_GLOBAL.giveHeroArtifact(strHero, iArtifactId);
+				end;
+
 	-- test
 		TTH_TEST = {};
 		function TTH_TEST.test2(iPlayer)
@@ -18231,6 +18731,11 @@ doFile("/scripts/H55-Settings.lua");
 			startThread(TTH_MAIN.controller); -- 主程入口
 
 			SetTrigger(COMBAT_RESULTS_TRIGGER, "TTH_TRIGGER.combatResults"); -- 战斗结束触发器
+			-- 初始化10W图
+				if TTH_MAP10W.init then
+					startThread(TTH_MAP10W.init); 
+				end;
+			startThread(TTH_MAIN.controller); -- 主程入口
 			UnblockGame();
 		end;
 

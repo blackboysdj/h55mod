@@ -8818,6 +8818,7 @@
       TTH_ENUM.FuncTalent = 1;
       TTH_ENUM.FuncArtifact = 2;
       TTH_ENUM.FuncPerk = 3;
+      TTH_ENUM.FuncBuilding = 4;
 
       TTH_ENUM.FuncInit = 1;
       TTH_ENUM.FuncActive = 2;
@@ -9289,6 +9290,13 @@
         TTH_PATH.Talent["Nathaniel"]["ConfirmActive"] = TTH_PATH.Talent["Nathaniel"]["Pre"].."ConfirmActive.txt";
         TTH_PATH.Talent["Nathaniel"]["LoseCreature"] = TTH_PATH.Talent["Nathaniel"]["Pre"].."LoseCreature.txt";
         TTH_PATH.Talent["Nathaniel"]["Success"] = TTH_PATH.Talent["Nathaniel"]["Pre"].."Success.txt";
+      -- Christian 007 维托利奥
+        TTH_PATH.Talent["Christian"] = {};
+        TTH_PATH.Talent["Christian"]["Pre"] = TTH_PATH.Talent["Pre"].."007-Christian/";
+        TTH_PATH.Talent["Christian"]["UpgradeMasteryText"] = TTH_PATH.Talent["Christian"]["Pre"].."UpgradeMasteryText.txt";
+        TTH_PATH.Talent["Christian"]["UpgradeShantiriText"] = TTH_PATH.Talent["Christian"]["Pre"].."UpgradeShantiriText.txt";
+        TTH_PATH.Talent["Christian"]["SuccessUpgradeMastery"] = TTH_PATH.Talent["Christian"]["Pre"].."SuccessUpgradeMastery.txt";
+        TTH_PATH.Talent["Christian"]["SuccessUpgradeShantiri"] = TTH_PATH.Talent["Christian"]["Pre"].."SuccessUpgradeShantiri.txt";
       -- Brem 010 拉特格
         TTH_PATH.Talent["Brem"] = {};
         TTH_PATH.Talent["Brem"]["Pre"] = TTH_PATH.Talent["Pre"].."010-Brem/";
@@ -9533,6 +9541,13 @@
         TTH_PATH.Talent["Sheltem"]["Confirm"] = TTH_PATH.Talent["Sheltem"]["Pre"].."Confirm.txt";
         TTH_PATH.Talent["Sheltem"]["K2P"] = TTH_PATH.Talent["Sheltem"]["Pre"].."K2P.txt";
         TTH_PATH.Talent["Sheltem"]["P2K"] = TTH_PATH.Talent["Sheltem"]["Pre"].."P2K.txt";
+      -- Maximus 118 马克西姆斯
+        TTH_PATH.Talent["Maximus"] = {};
+        TTH_PATH.Talent["Maximus"]["Pre"] = TTH_PATH.Talent["Pre"].."118-Maximus/";
+        TTH_PATH.Talent["Maximus"]["UpgradeMasteryText"] = TTH_PATH.Talent["Maximus"]["Pre"].."UpgradeMasteryText.txt";
+        TTH_PATH.Talent["Maximus"]["UpgradeShantiriText"] = TTH_PATH.Talent["Maximus"]["Pre"].."UpgradeShantiriText.txt";
+        TTH_PATH.Talent["Maximus"]["SuccessUpgradeMastery"] = TTH_PATH.Talent["Maximus"]["Pre"].."SuccessUpgradeMastery.txt";
+        TTH_PATH.Talent["Maximus"]["SuccessUpgradeShantiri"] = TTH_PATH.Talent["Maximus"]["Pre"].."SuccessUpgradeShantiri.txt";
       -- Una 128 英伽
         TTH_PATH.Talent["Una"] = {};
         TTH_PATH.Talent["Una"]["Pre"] = TTH_PATH.Talent["Pre"] .."128-Una/";
@@ -9594,6 +9609,15 @@
         TTH_PATH.Talent["Azar"]["SuccessVisitWolfLair"] = TTH_PATH.Talent["Azar"]["Pre"].."SuccessVisitWolfLair.txt";
         TTH_PATH.Talent["Azar"]["Title"] = TTH_PATH.Talent["Azar"]["Pre"].."Title.txt";
         TTH_PATH.Talent["Azar"]["Desc"] = TTH_PATH.Talent["Azar"]["Pre"].."Desc.txt";
+      -- Kraal 146 克拉尔
+        TTH_PATH.Talent["Kraal"] = {};
+        TTH_PATH.Talent["Kraal"]["Pre"] = TTH_PATH.Talent["Pre"].."146-Kraal/";
+        TTH_PATH.Talent["Kraal"]["Text"] = TTH_PATH.Talent["Kraal"]["Pre"].."Text.txt";
+        TTH_PATH.Talent["Kraal"]["Success"] = TTH_PATH.Talent["Kraal"]["Pre"].."Success.txt";
+        TTH_PATH.Talent["Kraal"]["UpgradeMasteryText"] = TTH_PATH.Talent["Kraal"]["Pre"].."UpgradeMasteryText.txt";
+        TTH_PATH.Talent["Kraal"]["UpgradeShantiriText"] = TTH_PATH.Talent["Kraal"]["Pre"].."UpgradeShantiriText.txt";
+        TTH_PATH.Talent["Kraal"]["SuccessUpgradeMastery"] = TTH_PATH.Talent["Kraal"]["Pre"].."SuccessUpgradeMastery.txt";
+        TTH_PATH.Talent["Kraal"]["SuccessUpgradeShantiri"] = TTH_PATH.Talent["Kraal"]["Pre"].."SuccessUpgradeShantiri.txt";
 
     TTH_PATH.Artifact = {};
     TTH_PATH.Artifact["Pre"] = TTH_PATH.FuncPre.."Artifact/";
@@ -9818,6 +9842,11 @@
         TTH_PATH.Perk[HERO_SKILL_PARIAH]["NotEnoughTimes"] = TTH_PATH.Perk[HERO_SKILL_PARIAH]["Pre"].."NotEnoughTimes.txt";
         TTH_PATH.Perk[HERO_SKILL_PARIAH]["Confirm"] = TTH_PATH.Perk[HERO_SKILL_PARIAH]["Pre"].."Confirm.txt";
         TTH_PATH.Perk[HERO_SKILL_PARIAH]["Success"] = TTH_PATH.Perk[HERO_SKILL_PARIAH]["Pre"].."Success.txt";
+      -- HERO_SKILL_DEAD_LUCK 103 恶灵诅咒
+        TTH_PATH.Perk[HERO_SKILL_DEAD_LUCK] = {};
+        TTH_PATH.Perk[HERO_SKILL_DEAD_LUCK]["Pre"] = TTH_PATH.Perk["Pre"] .."103-DeadLuck/";
+        TTH_PATH.Perk[HERO_SKILL_DEAD_LUCK]["Text"] = TTH_PATH.Perk[HERO_SKILL_DEAD_LUCK]["Pre"].."Text.txt";
+        TTH_PATH.Perk[HERO_SKILL_DEAD_LUCK]["Success"] = TTH_PATH.Perk[HERO_SKILL_DEAD_LUCK]["Pre"].."Success.txt";
       -- HERO_SKILL_TWILIGHT 109 微光黎明
         TTH_PATH.Perk[HERO_SKILL_TWILIGHT] = {};
         TTH_PATH.Perk[HERO_SKILL_TWILIGHT]["Pre"] = TTH_PATH.Perk["Pre"] .."109-Twilight/";
@@ -9868,6 +9897,13 @@
         TTH_PATH.Perk[HERO_SKILL_MARCH_OF_THE_MACHINES]["NotEnoughTimes"] = TTH_PATH.Perk[HERO_SKILL_MARCH_OF_THE_MACHINES]["Pre"].."NotEnoughTimes.txt";
         TTH_PATH.Perk[HERO_SKILL_MARCH_OF_THE_MACHINES]["TipsCreature"] = TTH_PATH.Perk[HERO_SKILL_MARCH_OF_THE_MACHINES]["Pre"].."TipsCreature.txt";
         TTH_PATH.Perk[HERO_SKILL_MARCH_OF_THE_MACHINES]["Confirm"] = TTH_PATH.Perk[HERO_SKILL_MARCH_OF_THE_MACHINES]["Pre"].."Confirm.txt";
+      -- HERO_SKILL_DWARVEN_LUCK 159 矮人之幸
+        TTH_PATH.Perk[HERO_SKILL_DWARVEN_LUCK] = {};
+        TTH_PATH.Perk[HERO_SKILL_DWARVEN_LUCK]["Pre"] = TTH_PATH.Perk["Pre"] .."159-DwarvenLuck/";
+        TTH_PATH.Perk[HERO_SKILL_DWARVEN_LUCK]["Text"] = TTH_PATH.Perk[HERO_SKILL_DWARVEN_LUCK]["Pre"].."Text.txt";
+        TTH_PATH.Perk[HERO_SKILL_DWARVEN_LUCK]["NotEnoughTimes"] = TTH_PATH.Perk[HERO_SKILL_DWARVEN_LUCK]["Pre"].."NotEnoughTimes.txt";
+        TTH_PATH.Perk[HERO_SKILL_DWARVEN_LUCK]["NoOption"] = TTH_PATH.Perk[HERO_SKILL_DWARVEN_LUCK]["Pre"].."NoOption.txt";
+        TTH_PATH.Perk[HERO_SKILL_DWARVEN_LUCK]["Success"] = TTH_PATH.Perk[HERO_SKILL_DWARVEN_LUCK]["Pre"].."Success.txt";
       -- HERO_SKILL_SNATCH 168 攫取
         TTH_PATH.Perk[HERO_SKILL_SNATCH] = {};
         TTH_PATH.Perk[HERO_SKILL_SNATCH]["Pre"] = TTH_PATH.Perk["Pre"] .."168/";
@@ -9892,10 +9928,23 @@
         TTH_PATH.Perk[HERO_SKILL_GOBLIN_SUPPORT]["NegetivePlace"] = TTH_PATH.Perk[HERO_SKILL_GOBLIN_SUPPORT]["Pre"].."NegetivePlace.txt";
         TTH_PATH.Perk[HERO_SKILL_GOBLIN_SUPPORT]["Success"] = TTH_PATH.Perk[HERO_SKILL_GOBLIN_SUPPORT]["Pre"].."Success.txt";
 
+    TTH_PATH.Building = {};
+    TTH_PATH.Building["Pre"] = TTH_PATH.FuncPre.."Building/";
+    -- Building 4
+      -- TOWN_DUNGEON
+        TTH_PATH.Building[TOWN_DUNGEON] = {};
+        TTH_PATH.Building[TOWN_DUNGEON]["Pre"] = TTH_PATH.Building["Pre"] .."Dungeon/";
+        -- TOWN_BUILDING_SPECIAL_1
+          TTH_PATH.Building[TOWN_DUNGEON][TOWN_BUILDING_SPECIAL_1] = {};
+          TTH_PATH.Building[TOWN_DUNGEON][TOWN_BUILDING_SPECIAL_1]["Pre"] = TTH_PATH.Building[TOWN_DUNGEON]["Pre"].."Special1/";
+          TTH_PATH.Building[TOWN_DUNGEON][TOWN_BUILDING_SPECIAL_1]["Text"] = TTH_PATH.Building[TOWN_DUNGEON][TOWN_BUILDING_SPECIAL_1]["Pre"].."Text.txt";
+          TTH_PATH.Building[TOWN_DUNGEON][TOWN_BUILDING_SPECIAL_1]["HasUsed"] = TTH_PATH.Building[TOWN_DUNGEON][TOWN_BUILDING_SPECIAL_1]["Pre"].."HasUsed.txt";
+          TTH_PATH.Building[TOWN_DUNGEON][TOWN_BUILDING_SPECIAL_1]["NotEnoughHeroLevel"] = TTH_PATH.Building[TOWN_DUNGEON][TOWN_BUILDING_SPECIAL_1]["Pre"].."NotEnoughHeroLevel.txt";
+          
   -- 数据表
     TTH_TABLE = {};
 
-    -- 技能池: 英雄天赋/主动宝物/主动技能
+    -- 技能池: 英雄天赋/主动宝物/主动技能/城镇建筑
       TTH_TABLE.FuncTalent = {
         [TTH_ENUM.FuncInit] = {
           -- 转化
@@ -10011,6 +10060,9 @@
             }
             , ["Calid2"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.initCalid2"
+            }
+            , ["Kraal"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initKraal"
             }
         }
         , [TTH_ENUM.FuncActive] = {
@@ -10189,6 +10241,11 @@
               ["Text"] = TTH_PATH.Talent["Calid2"]["Text"]
               , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeCalid2"
               , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeCalid2"
+            }
+            , ["Kraal"] = {
+              ["Text"] = TTH_PATH.Talent["Kraal"]["Text"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeKraal"
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeKraal"
             }
         }
         , [TTH_ENUM.FuncLevelUp] = {
@@ -10378,6 +10435,18 @@
             ["Text"] = TTH_PATH.Talent["LordHaart"]["UpgradeMasteryText"]
             , [TTH_ENUM.FuncAlways] = "TTH_TALENT.upgradeMasteryLordHaart"
           }
+          , ["Maximus"] = {
+            ["Text"] = TTH_PATH.Talent["Maximus"]["UpgradeMasteryText"]
+            , [TTH_ENUM.FuncAlways] = "TTH_TALENT.upgradeMasteryMaximus"
+          }
+          , ["Kraal"] = {
+            ["Text"] = TTH_PATH.Talent["Kraal"]["UpgradeMasteryText"]
+            , [TTH_ENUM.FuncAlways] = "TTH_TALENT.upgradeMasteryKraal"
+          }
+          , ["Christian"] = {
+            ["Text"] = TTH_PATH.Talent["Christian"]["UpgradeMasteryText"]
+            , [TTH_ENUM.FuncAlways] = "TTH_TALENT.upgradeMasteryChristian"
+          }
         }
         , [TTH_ENUM.FuncUpgradeShantiri] = {
           ["Orlando2"] = {
@@ -10391,6 +10460,18 @@
           , ["LordHaart"] = {
             ["Text"] = TTH_PATH.Talent["LordHaart"]["UpgradeShantiriText"]
             , [TTH_ENUM.FuncAlways] = "TTH_TALENT.upgradeShantiriLordHaart"
+          }
+          , ["Maximus"] = {
+            ["Text"] = TTH_PATH.Talent["Maximus"]["UpgradeShantiriText"]
+            , [TTH_ENUM.FuncAlways] = "TTH_TALENT.upgradeShantiriMaximus"
+          }
+          , ["Kraal"] = {
+            ["Text"] = TTH_PATH.Talent["Kraal"]["UpgradeShantiriText"]
+            , [TTH_ENUM.FuncAlways] = "TTH_TALENT.upgradeShantiriKraal"
+          }
+          , ["Christian"] = {
+            ["Text"] = TTH_PATH.Talent["Christian"]["UpgradeShantiriText"]
+            , [TTH_ENUM.FuncAlways] = "TTH_TALENT.upgradeShantiriChristian"
           }
         }
       };
@@ -10567,6 +10648,11 @@
             ["Text"] = TTH_PATH.Perk[HERO_SKILL_HAUNT_MINE]["Text"]
             , [TTH_ENUM.FuncNotAtGate] = "TTH_PERK.active110"
           }
+          , [HERO_SKILL_DWARVEN_LUCK] = {
+            ["Text"] = TTH_PATH.Perk[HERO_SKILL_DWARVEN_LUCK]["Text"]
+            , [TTH_ENUM.FuncAtGate] = "TTH_PERK.active159"
+            , [TTH_ENUM.FuncNotAtGate] = "TTH_PERK.active159"
+          }
           , [HERO_SKILL_SNATCH] = {
             ["Text"] = TTH_PATH.Perk[HERO_SKILL_SNATCH]["Text"]
             , [TTH_ENUM.FuncNotAtGate] = "TTH_PERK.active168"
@@ -10575,6 +10661,11 @@
             ["Text"] = TTH_PATH.Perk[HERO_SKILL_PARIAH]["Text"]
             , [TTH_ENUM.FuncAtGate] = "TTH_PERK.active083"
             , [TTH_ENUM.FuncNotAtGate] = "TTH_PERK.active083"
+          }
+          , [HERO_SKILL_DEAD_LUCK] = {
+            ["Text"] = TTH_PATH.Perk[HERO_SKILL_DEAD_LUCK]["Text"]
+            , [TTH_ENUM.FuncAtGate] = "TTH_PERK.active103"
+            , [TTH_ENUM.FuncNotAtGate] = "TTH_PERK.active103"
           }
           , [HERO_SKILL_TWILIGHT] = {
             ["Text"] = TTH_PATH.Perk[HERO_SKILL_TWILIGHT]["Text"]
@@ -10652,6 +10743,9 @@
           , [HERO_SKILL_HAUNT_MINE] = {
             [TTH_ENUM.FuncAlways] = "TTH_PERK.resetWeekly110"
           }
+          , [HERO_SKILL_DWARVEN_LUCK] = {
+            [TTH_ENUM.FuncAlways] = "TTH_PERK.resetWeekly159"
+          }
           , [HERO_SKILL_SNATCH] = {
             [TTH_ENUM.FuncAlways] = "TTH_PERK.resetWeekly168"
           }
@@ -10689,6 +10783,32 @@
           , [HERO_SKILL_TWILIGHT] = {
             [TTH_ENUM.FuncAlways] = "TTH_PERK.resetDaily109"
           }
+        }
+      };
+
+      TTH_TABLE.FuncBuilding = {
+        [TTH_ENUM.FuncInit] = {
+        }
+        , [TTH_ENUM.FuncActive] = {
+          [TOWN_DUNGEON] = {
+            [TOWN_BUILDING_SPECIAL_1] = {
+              ["Text"] = TTH_PATH.Building[TOWN_DUNGEON][TOWN_BUILDING_SPECIAL_1]["Text"]
+              , ["Level"] = 1
+              , [TTH_ENUM.FuncAtGate] = "TTH_BUILDING.activeDungeonSpecial1"
+            } 
+          }
+        }
+        , [TTH_ENUM.FuncLevelUp] = {
+        }
+        , [TTH_ENUM.FuncCombatResult] = {
+        }
+        , [TTH_ENUM.FuncDealWeekly] = {
+        }
+        , [TTH_ENUM.FuncResetWeekly] = {
+        }
+        , [TTH_ENUM.FuncDealDaily] = {
+        }
+        , [TTH_ENUM.FuncResetDaily] = {
         }
       };
 
@@ -20339,6 +20459,17 @@
         }
       };
 
+    -- 恶灵诅咒关联魔法
+      TTH_TABLE.ReaverCurseSpell = {
+        SPELL_CURSE
+        , SPELL_DISRUPTING_RAY
+        , SPELL_WEAKNESS
+        , SPELL_PLAGUE
+        , SPELL_SORROW
+        , SPELL_BERSERK
+        , SPELL_BLIND
+      };
+
     -- 技能
       TTH_TABLE.Mastery = {
         -- 后勤学
@@ -20402,11 +20533,7 @@
             ["Id"] = HERO_SKILL_WAR_MACHINES
             , ["Text"] = "/Text/TTH/Skills/WarMachines/Mastery/NameNone.txt"
             , ["Perk"] = {
-              [156] = { -- 符文机械
-                ["Id"] = HERO_SKILL_RUNIC_MACHINES
-                , ["Text"] = "/Text/TTH/Skills/WarMachines/156-RunicMachines/Name.txt"
-              }
-              , [22] = { -- 急救帐篷
+              [22] = { -- 急救帐篷
                 ["Id"] = HERO_SKILL_FIRST_AID
                 , ["Text"] = "/Text/TTH/Skills/WarMachines/022-FirstAid/Name.txt"
               }
@@ -20416,7 +20543,6 @@
                 , ["DependType"] = TTH_ENUM.Simple
                 , ["Depend"] = {
                   [1] = HERO_SKILL_FIRST_AID
-                  , [2] = HERO_SKILL_RUNIC_MACHINES
                 }
               }
               , [24] = { -- 弹道学
@@ -20429,7 +20555,6 @@
                 , ["DependType"] = TTH_ENUM.Simple
                 , ["Depend"] = {
                   [1] = HERO_SKILL_CATAPULT
-                  , [2] = HERO_SKILL_RUNIC_MACHINES
                 }
               }
               , [23] = { -- 弹射学
@@ -20442,7 +20567,6 @@
                 , ["DependType"] = TTH_ENUM.Simple
                 , ["Depend"] = {
                   [1] = HERO_SKILL_BALLISTA
-                  , [2] = HERO_SKILL_RUNIC_MACHINES
                 }
               }
             }
@@ -20545,24 +20669,16 @@
                   [1] = HERO_SKILL_LUCKY_STRIKE
                 }
               }
+              , [179] = { -- 勇士之幸
+                ["Id"] = HERO_SKILL_LUCK_OF_THE_BARBARIAN
+                , ["Text"] = "/Text/TTH/Skills/Luck/179-LuckOfTheBarbarian/Name.txt"
+              }
               , [31] = { -- 抗魔大法
                 ["Id"] = HERO_SKILL_RESISTANCE
                 , ["Text"] = "/Text/TTH/Skills/Luck/031-Resistance/Name.txt"
-              }
-              , [159] = { -- 勇士之幸
-                ["Id"] = HERO_SKILL_DWARVEN_LUCK
-                , ["Text"] = "/Text/TTH/Skills/Luck/159-DwarvenLuck/Name.txt"
                 , ["DependType"] = TTH_ENUM.Simple
                 , ["Depend"] = {
-                  [1] = HERO_SKILL_RESISTANCE
-                }
-              }
-              , [103] = { -- 亡者诅咒
-                ["Id"] = HERO_SKILL_DEAD_LUCK
-                , ["Text"] = "/Text/TTH/Skills/Luck/103-DeadLuck/Name.txt"
-                , ["DependType"] = TTH_ENUM.Simple
-                , ["Depend"] = {
-                  [1] = HERO_SKILL_RESISTANCE
+                  [1] = HERO_SKILL_LUCK_OF_THE_BARBARIAN
                 }
               }
               , [145] = { -- 古怪魔力
@@ -20582,9 +20698,9 @@
                 , ["Text"] = "/Text/Game/Skills/Unique/Avenger/AbsoluteLuck/Name.txt"
                 , ["IsAbsolute"] = TTH_ENUM.Yes
               }
-              , [167] = { -- 绝对保护（终极）
-                ["Id"] = HERO_SKILL_ABSOLUTE_PROTECTION
-                , ["Text"] = "/Text/Game/Skills/Unique/Runelore/AbsoluteProtection/Name.txt"
+              , [159] = { -- 矮人之幸（终极）
+                ["Id"] = HERO_SKILL_DWARVEN_LUCK
+                , ["Text"] = "/Text/TTH/Skills/Luck/159-DwarvenLuck/Name.txt"
                 , ["IsAbsolute"] = TTH_ENUM.Yes
               }
             }
@@ -20727,6 +20843,11 @@
                   [1] = HERO_SKILL_TOUGHNESS
                 }
               }
+              , [167] = { -- 绝对保护（终极）
+                ["Id"] = HERO_SKILL_ABSOLUTE_PROTECTION
+                , ["Text"] = "/Text/TTH/Skills/Defence/167-AbsoluteProtection/Name.txt"
+                , ["IsAbsolute"] = TTH_ENUM.Yes
+              }
             }
           }
         -- 反击术
@@ -20769,7 +20890,6 @@
                 , ["DependType"] = TTH_ENUM.Simple
                 , ["Depend"] = {
                   [1] = HERO_SKILL_HOLY_CHARGE
-                  , [2] = HERO_SKILL_CRITICAL_STRIKE
                 }
               }
               , [91] = { -- 极度痛击
@@ -20849,7 +20969,7 @@
                 }
               }
               , [117] = { -- 自然之怒（终极）
-                ["Id"] = HERO_SKILL_FIRE_PROTECTION
+                ["Id"] = HERO_SKILL_FOREST_RAGE
                 , ["Text"] = "/Text/TTH/Skills/Avenger/117-ForestRage/Name.txt"
                 , ["IsAbsolute"] = TTH_ENUM.Yes
               }
@@ -21020,6 +21140,11 @@
                 , ["Text"] = "/Text/Game/Skills/Unique/Necromancy/AbsoluteFear/Name.txt"
                 , ["IsAbsolute"] = TTH_ENUM.Yes
               }
+              , [103] = { -- 恶灵诅咒（终极）
+                ["Id"] = HERO_SKILL_DEAD_LUCK
+                , ["Text"] = "/Text/TTH/Skills/Luck/103-DeadLuck/Name.txt"
+                , ["IsAbsolute"] = TTH_ENUM.Yes
+              }
             }
           }
         -- 异界传送
@@ -21072,7 +21197,7 @@
                   [1] = HERO_SKILL_GATING_MASTERY
                 }
               }
-              , [90] = { -- 蜂拥之门（终极）
+              , [90] = { -- 蜂拥之门
                 ["Id"] = HERO_SKILL_CRITICAL_GATING
                 , ["Text"] = "/Text/TTH/Skills/Gating/086-QuickGating/Name.txt"
                 , ["DependType"] = TTH_ENUM.Simple
@@ -21117,17 +21242,22 @@
                   [1] = HERO_SKILL_FINE_RUNE
                 }
               }
-              , [157] = { -- 分流符文
-                ["Id"] = HERO_SKILL_TAP_RUNES
-                , ["Text"] = "/Text/TTH/Skills/Runelore/157-TapRunes/Name.txt"
-              }
               , [158] = { -- 符文平衡
                 ["Id"] = HERO_SKILL_RUNIC_ATTUNEMENT
                 , ["Text"] = "/Text/TTH/Skills/Runelore/158-RunicAttunement/Name.txt"
+              }
+              , [157] = { -- 分流符文
+                ["Id"] = HERO_SKILL_TAP_RUNES
+                , ["Text"] = "/Text/TTH/Skills/Runelore/157-TapRunes/Name.txt"
                 , ["DependType"] = TTH_ENUM.Simple
                 , ["Depend"] = {
-                  [1] = HERO_SKILL_TAP_RUNES
+                  [1] = HERO_SKILL_RUNIC_ATTUNEMENT
                 }
+              }
+              , [156] = { -- 符文机械（终极）
+                ["Id"] = HERO_SKILL_RUNIC_MACHINES
+                , ["Text"] = "/Text/TTH/Skills/WarMachines/156-RunicMachines/Name.txt"
+                , ["IsAbsolute"] = TTH_ENUM.Yes
               }
             }
           }
@@ -21211,11 +21341,19 @@
                   [1] = HERO_SKILL_EAGLE_EYE
                 }
               }
+              , [140] = { -- 黑暗启示
+                ["Id"] = HERO_SKILL_DARK_REVELATION
+                , ["Text"] = "/Text/TTH/Skills/Learning/140-DarkRevelation/Name.txt"
+                , ["DependType"] = TTH_ENUM.Simple
+                , ["Depend"] = {
+                  [1] = HERO_SKILL_EAGLE_EYE
+                }
+              }
               , [25] = { -- 智慧学
                 ["Id"] = HERO_SKILL_INTELLIGENCE
                 , ["Text"] = "/Text/TTH/Skills/Learning/025-Intelligence/Name.txt"
               }
-              , [79] = { -- 毕业生
+              , [79] = { -- 毕业奖励
                 ["Id"] = HERO_SKILL_STUDENT_AWARD
                 , ["Text"] = "/Text/TTH/Skills/Learning/079-StudentAward/Name.txt"
                 , ["DependType"] = TTH_ENUM.Simple
@@ -21223,17 +21361,9 @@
                   [1] = HERO_SKILL_INTELLIGENCE
                 }
               }
-              , [127] = { -- 魔法师奖励
+              , [127] = { -- 教官奖励
                 ["Id"] = HERO_SKILL_ACADEMY_AWARD
                 , ["Text"] = "/Text/TTH/Skills/Learning/127-AcademyAward/Name.txt"
-                , ["DependType"] = TTH_ENUM.Simple
-                , ["Depend"] = {
-                  [1] = HERO_SKILL_INTELLIGENCE
-                }
-              }
-              , [140] = { -- 黑暗启示
-                ["Id"] = HERO_SKILL_DARK_REVELATION
-                , ["Text"] = "/Text/TTH/Skills/Learning/140-DarkRevelation/Name.txt"
                 , ["DependType"] = TTH_ENUM.Simple
                 , ["Depend"] = {
                   [1] = HERO_SKILL_INTELLIGENCE
@@ -21302,41 +21432,42 @@
                 ["Id"] = HERO_SKILL_MYSTICISM
                 , ["Text"] = "/Text/TTH/Skills/Sorcery/040-Mysticism/Name.txt"
               }
-              , [119] = { -- 神秘光芒
-                ["Id"] = HERO_SKILL_INSIGHTS
-                , ["Text"] = "/Text/TTH/Skills/Sorcery/119-Insights/Name.txt"
+              , [148] = { -- 精炼魔力
+                ["Id"] = HERO_SKILL_ELITE_CASTERS
+                , ["Text"] = "/Text/TTH/Skills/Sorcery/148-EliteCasters/Name.txt"
                 , ["DependType"] = TTH_ENUM.Simple
                 , ["Depend"] = {
                   [1] = HERO_SKILL_MYSTICISM
                 }
               }
-              , [162] = { -- 干扰
-                ["Id"] = HERO_SKILL_DISTRACT
-                , ["Text"] = "/Text/TTH/Skills/Sorcery/162-Distract/Name.txt"
+              , [41] = { -- 洞察魔力
+                ["Id"] = HERO_SKILL_WISDOM
+                , ["Text"] = "/Text/TTH/Skills/Sorcery/041-Wisdom/Name.txt"
               }
-              , [132] = { -- 魔法抑制
-                ["Id"] = HERO_SKILL_COUNTERSPELL
-                , ["Text"] = "/Text/TTH/Skills/Sorcery/132-Counterspell/Name.txt"
+              , [119] = { -- 神秘光芒
+                ["Id"] = HERO_SKILL_INSIGHTS
+                , ["Text"] = "/Text/TTH/Skills/Sorcery/119-Insights/Name.txt"
                 , ["DependType"] = TTH_ENUM.Simple
                 , ["Depend"] = {
-                  [1] = HERO_SKILL_DISTRACT
+                  [1] = HERO_SKILL_WISDOM
                 }
               }
               , [42] = { -- 神秘训练
                 ["Id"] = HERO_SKILL_ARCANE_TRAINING
                 , ["Text"] = "/Text/TTH/Skills/Sorcery/042-ArcaneTraining/Name.txt"
               }
-              , [148] = { -- 精炼魔力
-                ["Id"] = HERO_SKILL_ELITE_CASTERS
-                , ["Text"] = "/Text/TTH/Skills/Sorcery/148-EliteCasters/Name.txt"
+              , [132] = { -- 魔法抑制
+                ["Id"] = HERO_SKILL_COUNTERSPELL
+                , ["Text"] = "/Text/TTH/Skills/Sorcery/132-Counterspell/Name.txt"
                 , ["DependType"] = TTH_ENUM.Simple
                 , ["Depend"] = {
-                  [1] = HERO_SKILL_ARCANE_TRAINING
+                  [1] = HERO_SKILL_WISDOM
+                  , [2] = HERO_SKILL_ARCANE_TRAINING
                 }
               }
-              , [41] = { -- 洞察魔力
-                ["Id"] = HERO_SKILL_WISDOM
-                , ["Text"] = "/Text/TTH/Skills/Sorcery/041-Wisdom/Name.txt"
+              , [162] = { -- 干扰
+                ["Id"] = HERO_SKILL_DISTRACT
+                , ["Text"] = "/Text/TTH/Skills/Sorcery/162-Distract/Name.txt"
                 , ["DependType"] = TTH_ENUM.Simple
                 , ["Depend"] = {
                   [1] = HERO_SKILL_ARCANE_TRAINING
@@ -21345,6 +21476,11 @@
               , [137] = { -- 神秘全知（终极）
                 ["Id"] = HERO_SKILL_ABSOLUTE_WIZARDY
                 , ["Text"] = "/Text/Game/Skills/Unique/Artificer/AbsoluteWizardy/Name.txt"
+                , ["IsAbsolute"] = TTH_ENUM.Yes
+              }
+              , [96] = { -- 潜能激发（终极）
+                ["Id"] = HERO_SKILL_FIRE_PROTECTION
+                , ["Text"] = "/Text/TTH/Skills/LightMagic/096-FireProtection/Name.txt"
                 , ["IsAbsolute"] = TTH_ENUM.Yes
               }
             }
@@ -21413,11 +21549,6 @@
                 , ["Depend"] = {
                   [1] = HERO_SKILL_MASTER_OF_ABJURATION
                 }
-              }
-              , [96] = { -- 潜能激发（终极）
-                ["Id"] = HERO_SKILL_FIRE_PROTECTION
-                , ["Text"] = "/Text/TTH/Skills/LightMagic/096-FireProtection/Name.txt"
-                , ["IsAbsolute"] = TTH_ENUM.Yes
               }
             }
           }
@@ -22002,22 +22133,22 @@
         , [21] = 117134
         , [22] = 140156
         , [23] = 167782
-        , [24] = 195408
-        , [25] = 225796
-        , [26] = 262261
-        , [27] = 309665
-        , [28] = 376030
-        , [29] = 475577
-        , [30] = 634852
-        , [31] = 905619
-        , [32] = 1392999
-        , [33] = 2319021
-        , [34] = 4171065
-        , [35] = 8060357
-        , [36] = 16616799
-        , [37] = 36296615
-        , [38] = 83528171
-        , [39] = 201607059
+        , [24] = 200933
+        , [25] = 244029
+        , [26] = 304363
+        , [27] = 394864
+        , [28] = 539665
+        , [29] = 785826
+        , [30] = 1228915
+        , [31] = 2070784
+        , [32] = 3754522
+        , [33] = 7290371
+        , [34] = 15069238
+        , [35] = 32960630
+        , [36] = 75899970
+        , [37] = 183248314
+        , [38] = 462353978
+        , [39] = 1215939194
         , [40] = 2147483647
       };
 

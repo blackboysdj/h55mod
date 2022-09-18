@@ -53,6 +53,10 @@ HERO_SKILL_DEMONIC_FIRE = 59;
 HERO_SKILL_DEMONIC_RETALIATION = 92;
 HERO_SKILL_DEMONIC_FLAME = 94;
 HERO_SKILL_FIRE_AFFINITY = 97;
+HERO_SKILL_DEAD_LUCK = 103;
+HERO_SKILL_FIRST_AID = 22;
+HERO_SKILL_CATAPULT = 24;
+HERO_SKILL_WAR_MACHINES = 2;
 
 MAX_MANA = 1000;
 
@@ -171,6 +175,10 @@ TTH_SKILL_EFFECT_COMBAT = {
     , [19] = HERO_SKILL_MASTER_OF_ICE
     , [20] = HERO_SKILL_MASTER_OF_FIRE
     , [21] = HERO_SKILL_MASTER_OF_LIGHTNINGS
+    , [22] = HERO_SKILL_DEAD_LUCK
+    , [23] = HERO_SKILL_FIRST_AID
+    , [24] = HERO_SKILL_CATAPULT
+    , [25] = HERO_SKILL_WAR_MACHINES
 };
 TTH_SKILL_EFFECT_COMBAT_ONCE = {
 };
@@ -2661,6 +2669,30 @@ end;
         , [SPELL_PLAGUE] = {
           ["DebugText"] = "SPELL_PLAGUE"
           , ["SignText"] = "/Text/TTH/Spell/CombatSpells/014-Plague/Text.txt"
+        }
+        , [SPELL_CURSE] = {
+          ["DebugText"] = "SPELL_CURSE"
+          , ["SignText"] = "/Text/TTH/Spell/CombatSpells/011-Curse/Text.txt"
+        }
+        , [SPELL_DISRUPTING_RAY] = {
+          ["DebugText"] = "SPELL_DISRUPTING_RAY"
+          , ["SignText"] = "/Text/TTH/Spell/CombatSpells/013-DisruptingRay/Text.txt"
+        }
+        , [SPELL_WEAKNESS] = {
+          ["DebugText"] = "SPELL_WEAKNESS"
+          , ["SignText"] = "/Text/TTH/Spell/CombatSpells/015-Weakness/Text.txt"
+        }
+        , [SPELL_SORROW] = {
+          ["DebugText"] = "SPELL_SORROW"
+          , ["SignText"] = "/Text/TTH/Spell/CombatSpells/277-Sorrow/Text.txt"
+        }
+        , [SPELL_BERSERK] = {
+          ["DebugText"] = "SPELL_BERSERK"
+          , ["SignText"] = "/Text/TTH/Spell/CombatSpells/018-Berserk/Text.txt"
+        }
+        , [SPELL_BLIND] = {
+          ["DebugText"] = "SPELL_BLIND"
+          , ["SignText"] = "/Text/TTH/Spell/CombatSpells/019-Blind/Text.txt"
         }
       }
 
@@ -12351,6 +12383,17 @@ end;
         , CREATURE_WOLF
     };
 
+    -- 恶灵诅咒关联魔法
+      TTHCS_TABLE.ReaverCurseSpell = {
+        SPELL_CURSE
+        , SPELL_DISRUPTING_RAY
+        , SPELL_WEAKNESS
+        , SPELL_PLAGUE
+        , SPELL_SORROW
+        , SPELL_BERSERK
+        , SPELL_BLIND
+      };
+
   TTHCS_COMMON = {};
     -- 向下取整
       function TTHCS_COMMON.floor(n)
@@ -12641,6 +12684,46 @@ end;
         combatSetPause(nil);
       end;
 
+    -- 添加生物
+      function TTHCS_THREAD.addCreature(iSide, iUnitType, iUnitNumber, iPositionX, iPositionY)
+        local iLenBefore = length(GetCreatures(iSide));
+        local iLenAfter = iLenBefore;
+        AddCreature(iSide, iUnitType, iUnitNumber, iPositionX, iPositionY);
+        local iCount = 0;
+        repeat 
+          sleep(1); 
+          iLenAfter = length(GetCreatures(iSide));
+        until iLenAfter > iLenBefore;
+        return GetCreatures(iSide)[iLenAfter - 1];
+      end;
+    -- 移除单位
+      function TTHCS_THREAD.removeCreature(strUnitBeRemoved)
+        if IsCombatUnit(strUnitBeRemoved) ~= nil then
+          RemoveCombatUnit(strUnitBeRemoved);
+        end;
+        repeat sleep(1); until IsCombatUnit(strUnitBeRemoved) == nil;
+      end;
+    -- 单位近战攻击
+      function TTHCS_THREAD.unitAttack(strUnitAttacker, strUnitTarget)
+        AttackCombatUnit(strUnitAttacker, strUnitTarget);
+      end;
+    -- 单位远程射击
+      function TTHCS_THREAD.unitShoot(strUnitShooter, strUnitTarget)
+        ShootCombatUnit(strUnitShooter, strUnitTarget);
+      end;
+    -- 单位防御
+      function TTHCS_THREAD.unitDefend(strUnitDefender)
+        DefendCombatUnit(strUnitDefender);
+      end;
+    -- 单位移动
+      function TTHCS_THREAD.unitMove(strUnitMove, iPositionX, iPositionY)
+        commandMove(strUnitMove, iPositionX, iPositionY);
+      end;
+    -- 单位瞬移
+      function TTHCS_THREAD.unitDisplace(strUnitDisplace, iPositionX, iPositionY)
+        displace(strUnitDisplace, iPositionX, iPositionY);
+      end;
+
   TTHCS_GLOBAL = {};
     -- 生成单位信息
       function TTHCS_GLOBAL.geneUnitInfo(strUnitName)
@@ -12677,6 +12760,15 @@ end;
         return itemUnit;
       end;
 
+    -- 获取单位是否存在
+      function TTHCS_GLOBAL.checkCombatCreature(strUnitName)
+        local bExist = TTHCS_ENUM.No;
+        if strUnitName ~= nil and IsCombatUnit(strUnitName) ~= nil and GetCreatureNumber(strUnitName) > 0 then
+          bExist = TTHCS_ENUM.Yes;
+        end;
+        return bExist;
+      end;
+
     -- 获取战场大小
       function TTHCS_GLOBAL.getBattleFieldSize()
         local enumBattleEffectField = TTHCS_ENUM.BattleEffectFieldSmall;
@@ -12685,6 +12777,19 @@ end;
           enumBattleEffectField = TTHCS_ENUM.BattleEffectFieldBig;
         end;
         return enumBattleEffectField;
+      end;
+
+    -- 获取战场边缘临时施法生物的坐标
+      function TTHCS_GLOBAL.getTempPosition4Caster(iSide)
+        local enumBattleFieldSize = TTHCS_GLOBAL.getBattleFieldSize();
+        local iPositionX = 0;
+        local iPositionY = 1;
+        if iSide == ENUM_SIDE.ATTACKER then
+          iPositionX = TTHCS_TABLE.BattleEffectField[enumBattleFieldSize]["PosX"]["Min"];
+        else
+          iPositionX = TTHCS_TABLE.BattleEffectField[enumBattleFieldSize]["PosX"]["Max"];
+        end;
+        return iPositionX, iPositionY;
       end;
 
     -- 计算给定坐标的影响坐标区域
@@ -12855,7 +12960,6 @@ end;
         return listCreatureSorted8Distance;
       end;
 
-
   TTHCS_PATH = {};
     TTHCS_PATH["Talent"] = {};
       TTHCS_PATH["Talent"]["Calh"] = {};
@@ -12900,6 +13004,9 @@ end;
       TTHCS_PATH["Talent"]["Menel"] = {};
       TTHCS_PATH["Talent"]["Menel"]["Effect"] = "/Text/TTH/Heroes/Specializations/Dungeon/060-Menel/Combat/Effect.txt";
 
+      TTHCS_PATH["Talent"]["Ferigl"] = {};
+      TTHCS_PATH["Talent"]["Ferigl"]["Effect"] = "/Text/TTH/Heroes/Specializations/Dungeon/061-Ferigl/Combat/Effect.txt";
+
       TTHCS_PATH["Talent"]["Ohtarig"] = {};
       TTHCS_PATH["Talent"]["Ohtarig"]["Effect"] = "/Text/TTH/Heroes/Specializations/Dungeon/064-Ohtarig/Combat/Effect.txt";
 
@@ -12913,9 +13020,19 @@ end;
       TTHCS_PATH["Talent"]["Tarkus"]["EffectAttack"] = "/Text/TTH/Heroes/Specializations/Heaven/158-Tarkus/Combat/EffectAttack.txt";
       TTHCS_PATH["Talent"]["Tarkus"]["EffectDefend"] = "/Text/TTH/Heroes/Specializations/Heaven/158-Tarkus/Combat/EffectDefend.txt";
 
+      TTHCS_PATH["Talent"]["Maximus"] = {};
+      TTHCS_PATH["Talent"]["Maximus"]["Effect"] = "/Text/TTH/Heroes/Specializations/Fortress/118-Maximus/Combat/Effect.txt";
+
+      TTHCS_PATH["Talent"]["Kraal"] = {};
+      TTHCS_PATH["Talent"]["Kraal"]["Effect"] = "/Text/TTH/Heroes/Specializations/Stronghold/146-Kraal/Combat/Effect.txt";
+
     TTHCS_PATH["Perk"] = {};
       TTHCS_PATH["Perk"][HERO_SKILL_SEAL_OF_PROTECTION] = {};
       TTHCS_PATH["Perk"][HERO_SKILL_SEAL_OF_PROTECTION]["Effect"] = "/Text/TTH/Skills/Training/131-SealOfProtection/Combat/Effect.txt";
+
+    TTHCS_PATH["Mastery"] = {};
+      TTHCS_PATH["Mastery"][HERO_SKILL_WAR_MACHINES] = {};
+      TTHCS_PATH["Mastery"][HERO_SKILL_WAR_MACHINES]["Effect"] = "/Text/TTH/Skills/WarMachines/Mastery/Combat/Effect.txt";
 
       TTHCS_PATH["Perk"][HERO_SKILL_DEATH_TREAD] = {};
       TTHCS_PATH["Perk"][HERO_SKILL_DEATH_TREAD]["Effect"] = "/Text/TTH/Skills/WarMachines/099-DeathTread/Combat/Effect.txt";
@@ -12932,6 +13049,9 @@ end;
 
       TTHCS_PATH["Perk"][HERO_SKILL_FOREST_RAGE] = {};
       TTHCS_PATH["Perk"][HERO_SKILL_FOREST_RAGE]["Effect"] = "/Text/TTH/Skills/Avenger/117-ForestRage/Combat/Effect.txt";
+
+      TTHCS_PATH["Perk"][HERO_SKILL_DEAD_LUCK] = {};
+      TTHCS_PATH["Perk"][HERO_SKILL_DEAD_LUCK]["Effect"] = "/Text/TTH/Skills/Luck/103-DeadLuck/Combat/Effect.txt";
 
     TTHCS_PATH["Artifact"] = {};
       TTHCS_PATH["Artifact"][ARTIFACT_ANGELIC_ALLIANCE] = {};

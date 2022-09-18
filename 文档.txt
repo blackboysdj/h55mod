@@ -15,7 +15,8 @@
   战争劫掠，矿，政绩
   部分英雄增加技能吊坠特效
   拉兹罗 步兵联动
-
+  Kelodin
+  野蛮人之幸
 
    
 - &m55_encourage           0.2 神圣指引 1
@@ -519,149 +520,162 @@ MOD介绍视频-热座及多人联机设置 https://www.bilibili.com/video/BV1ya
 配置文件网址: http://47.99.202.14/#/
 
 
+圣堂
+  杜格尔
+  拉兹罗
+  艾莲娜
+  克劳斯
+  维托利奥
+  安德里斯
+  伯权德
+  尼克莱
+  哥德里克
+  埃拉里克
+  拜娅拉
+  玫芙
+  塔库斯
+  卡西乌斯
+  圣吉列斯
+  阿维图斯
+  维拉利亚
+  奥兰多
+森林
+  安文
+  奥瑟
+  塔兰纳
+  韦恩加尔
+  芬丹
+  格鲁
+  伊沃
+  吉尔里恩
+  于尔辛
+  马洛迪亚
+  孟斐拉
+  珍妮
+  温丽尔
+  娜瑞莎
+  蒂耶鲁
+  艾丽莎
+  黛雷尔
+学院
+  哈维兹
+  米纳斯丽
+  拉扎克
+  戴维斯
+  德肯
+  纳克西斯
+  霍拉
+  塞勒斯
+  马希尔
+  泰莫克汉
+  加里布
+  艾米莉亚
+  纳西尔
+  努尔
+  泽希尔
+  法伊兹
+  索姆拉
+地牢
+  宇尔沃娜
+  基特拉
+  索戈尔
+  维尚
+  埃莉娜
+  莱托兹
+  莎蒂娅
+  伊拉娅
+  斯拉塞
+  阿格贝斯
+  伊蓓丝
+  塞纳特
+  卡斯托雷
+  雷拉格
+  兰勒斯
+  萨费罗斯
+墓园
+  罗德哈特
+  卡斯帕
+  奥森
+  卢克雷蒂娅
+  塞尔克松
+  艾斯瑞
+  拉雯
+  乔瓦尼
+  欧尼拉
+  佐尔坦
+  尼姆巴斯
+  纳蒂尔
+  阿兰蒂尔
+  迪尔德丽
+  山德鲁
+  山特
+  艾德里德
+地狱
+  格劳尔
+  迪里布
+  内比罗斯
+  马巴斯
+  奥兰多
+  艾丹
+  阿莱斯特
+  格洛克
+  马鲁斯塔
+  耐莫斯
+  耶泽蓓丝
+  卡-贝勒斯
+  阿格雷尔
+  泽达
+  艾许
+  拜娅拉
+  谢尔坦
+堡垒
+  艾巴
+  马克西姆斯
+  卡里
+  泰泽
+  威尔玛
+  巴特
+  布兰德
+  俄林
+  托尔戈哈王
+  海尔玛
+  尤兰德
+  英伽
+  斯威
+  英格瓦
+据点
+  科尔汉
+  哈戈什
+  坦尔塞克
+  艾扎-埃克
+  哥沙克
+  沙-库如汉特
+  高泰
+  克拉格
+  伽如娜
+  克拉尔
+  库金
+  库恩亚克
+  马特瓦
+  魁洛克
+  祖莱卡
+  艾莉卡
+  摩卡
 
-杜格尔
-拉兹罗
-艾莲娜
-克劳斯
-维托利奥
-伯权德
-尼克莱
-埃拉里克
-拜娅拉
-玫芙
-卡西乌斯
-圣吉列斯
-阿维图斯
-维拉利亚
-奥兰多
-
-安文
-奥瑟
-塔兰纳
-芬丹
-格鲁
-伊沃
-吉尔里恩
-于尔辛
-马洛迪亚
-珍妮
-温丽尔
-娜瑞莎
-蒂耶鲁
-艾丽莎
-黛雷尔
-
-哈维兹
-米纳斯丽
-拉扎克
-戴维斯
-德肯
-纳克西斯
-霍拉
-塞勒斯
-马希尔
-加里布
-艾米莉亚
-纳西尔
-努尔
-泽希尔
-法伊兹
-索姆拉
-
-宇尔沃娜
-基特拉
-索戈尔
-维尚
-埃莉娜
-莱托兹
-莎蒂娅
-伊拉娅
-斯拉塞
-阿格贝斯
-伊蓓丝
-塞纳特
-卡斯托雷
-兰勒斯
-萨费罗斯
-
-罗德哈特
-卡斯帕
-奥森
-卢克雷蒂娅
-塞尔克松
-艾斯瑞
-拉雯
-乔瓦尼
-欧尼拉
-佐尔坦
-尼姆巴斯
-纳蒂尔
-阿兰蒂尔
-迪尔德丽
-山德鲁
-山特
-
-格劳尔
-迪里布
-内比罗斯
-马巴斯
-奥兰多
-艾丹
-阿莱斯特
-格洛克
-马鲁斯塔
-耐莫斯
-耶泽蓓丝
-泽达
-艾许
-谢尔坦
-
-艾巴
-马克西姆斯
-卡里
-泰泽
-威尔玛
-巴特
-布兰德
-俄林
-托尔戈哈王
-海尔玛
-尤兰德
-英伽
-斯威
-英格瓦
-
-科尔汉
-哈戈什
-坦尔塞克
-艾扎-埃克
-哥沙克
-沙-库如汉特
-高泰
-克拉格
-克拉尔
-库金
-马特瓦
-魁洛克
-艾莉卡
-摩卡
-
-
-堡垒删除斯威和英伽
-地狱删除迪里布和格洛克
-墓园删除，佛拉基米尔，维德妮娜，卡斯帕，奥森，艾斯瑞
 <AvailableHeroes>
   <Item href="/MapObjects/Haven/Orrin.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Haven/Mardigo.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Haven/Ving.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Haven/Sarge.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Haven/Christian.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Haven/RedHeavenHero02.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Haven/RedHeavenHero05.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Haven/Nicolai.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Haven/GodricMP.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Haven/Alaric.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Haven/Biara_Saint_Isabel.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Haven/Maeve.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Haven/Tarkus.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Haven/OrtanCassius.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Haven/Sanguinius.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Haven/Avitus.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
@@ -671,12 +685,14 @@ MOD介绍视频-热座及多人联机设置 https://www.bilibili.com/video/BV1ya
   <Item href="/MapObjects/Preserve/Metlirn.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Preserve/Ossir.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Preserve/Nadaur.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Preserve/Linaas.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Preserve/Heam.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Preserve/Gelu.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Preserve/Arniel.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Preserve/Gillion.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Preserve/Itil.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Preserve/Melodia.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Preserve/Mephala.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Preserve/Gem.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Preserve/Elleshar.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Preserve/Ildar.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
@@ -693,6 +709,7 @@ MOD介绍视频-热座及多人联机设置 https://www.bilibili.com/video/BV1ya
   <Item href="/MapObjects/Academy/Sufi.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Academy/Cyrus.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Academy/Maahir.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Academy/Timerkhan.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Academy/Tan.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Academy/Emilia.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Academy/Nur.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
@@ -714,6 +731,7 @@ MOD介绍视频-热座及多人联机设置 https://www.bilibili.com/video/BV1ya
   <Item href="/MapObjects/Dungeon/Almegir.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Dungeon/Inagost.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Dungeon/Kastore.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Dungeon/Raelag.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Dungeon/Ranleth.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Dungeon/Sephinroth.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 
@@ -733,6 +751,7 @@ MOD介绍视频-热座及多人联机设置 https://www.bilibili.com/video/BV1ya
   <Item href="/MapObjects/Necropolis/Nemor.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Necropolis/Sandro.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Necropolis/Thant.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Necropolis/Adelaide.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 
   <Item href="/MapObjects/Inferno/Calid.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Inferno/Deleb.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
@@ -745,8 +764,11 @@ MOD介绍视频-热座及多人联机设置 https://www.bilibili.com/video/BV1ya
   <Item href="/MapObjects/Inferno/Malustar.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Inferno/Nymus.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Inferno/Oddrema.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Inferno/Sovereign2.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Inferno/Agrael.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Inferno/Zydar.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Inferno/Ash.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Inferno/Biara.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Inferno/Sheltem.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 
   <Item href="/MapObjects/Dwarves/Bersy.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
@@ -772,13 +794,152 @@ MOD介绍视频-热座及多人联机设置 https://www.bilibili.com/video/BV1ya
   <Item href="/MapObjects/Stronghold/Hero6.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Stronghold/Gottai.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Stronghold/Hero1.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Stronghold/Hero3.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Stronghold/Kraal.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Stronghold/KujinMP.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Stronghold/Kunyak.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Stronghold/Matewa.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Stronghold/Hero5.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Stronghold/Zouleika.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Stronghold/Erika.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Stronghold/Mokka.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 </AvailableHeroes>
+<artifactIDs>
+  <Item>SWORD_OF_RUINS</Item>
+  <Item>BREASTPLATE_OF_PETRIFIED_WOOD</Item>
+  <Item>ARTIFACT_SKULL_HELMET</Item>
+  <Item>ARTIFACT_WISPERING_RING</Item>
+  <Item>ARTIFACT_BEGINNER_MAGIC_STICK</Item>
+  <Item>ARTIFACT_EDGE_OF_BALANCE</Item>
+  <Item>ARTIFACT_STEADFAST</Item>
+  <Item>ARTIFACT_BUCKLER</Item>
+  <Item>FOUR_LEAF_CLOVER</Item>
+  <Item>GOLDEN_SEXTANT</Item>
+  <Item>CROWN_OF_MANY_EYES</Item>
+  <Item>RING_OF_LIGHTING_PROTECTION</Item>
+  <Item>BOOTS_OF_INTERFERENCE</Item>
+  <Item>ARTIFACT_RIGID_MANTLE</Item>
+  <Item>ARTIFACT_BEARHIDE_WRAPS</Item>
+  <Item>ARTIFACT_RING_OF_UNSUMMONING</Item>
+  <Item>TITANS_TRIDENT</Item>
+  <Item>RING_OF_LIFE</Item>
+  <Item>EVERCOLD_ICICLE</Item>
+  <Item>PHOENIX_FEATHER_CAPE</Item>
+  <Item>ARTIFACT_VALORIOUS_ARMOR</Item>
+  <Item>ARTIFACT_EARTHSLIDERS</Item>
+  <Item>ARTIFACT_TAROT_DECK</Item>
+  <Item>WEREWOLF_CLAW_NECKLACE</Item>
+  <Item>ARTIFACT_SPIRIT_OF_OPPRESSION</Item>
+  <Item>NECKLACE_OF_BRAVERY</Item>
+  <Item>LION_HIDE_CAPE</Item>
+  <Item>HELM_OF_ENLIGHTMENT</Item>
+  <Item>CHAIN_MAIL_OF_ENLIGHTMENT</Item>
+  <Item>ARTIFACT_RING_OF_DEATH</Item>
+  <Item>ARTIFACT_RUNIC_WAR_AXE</Item>
+  <Item>ARTIFACT_RUNIC_WAR_HARNESS</Item>
+  <Item>ARTIFACT_TREEBORN_QUIVER</Item>
+  <Item>ARTIFACT_MONK_02</Item>
+  <Item>ARTIFACT_MONK_04</Item>
+  <Item>ARTIFACT_PIRATE_HAT</Item>
+  <Item>ARTIFACT_PIRATE_VEST</Item>
+  <Item>ARTIFACT_PIRATE_RING</Item>
+  <Item>ARTIFACT_PIRATE_HOOK</Item>
+  <Item>ARTIFACT_PIRATE_BOOTS</Item>
+  <Item>ARTIFACT_DRUM_OF_CHARGE</Item>
+  <Item>ARTIFACT_MOONBLADE</Item>
+  <Item>ARTIFACT_BOOTS_OF_SWIFTNESS</Item>
+  <Item>ARTIFACT_INHERITANCE</Item>
+  <Item>GREAT_AXE_OF_GIANT_SLAYING</Item>
+  <Item>ICEBERG_SHIELD</Item>
+  <Item>NECKLACE_OF_POWER</Item>
+  <Item>NIGHTMARISH_RING</Item>
+  <Item>GOLDEN_HORSESHOE</Item>
+  <Item>ARTIFACT_RING_OF_CELERITY</Item>
+  <Item>ARTIFACT_BAND_OF_CONJURER</Item>
+  <Item>ARTIFACT_JINXING_BAND</Item>
+  <Item>ARTIFACT_BONESTUDDED_LEATHER</Item>
+  <Item>ARTIFACT_HELM_OF_CHAOS</Item>
+  <Item>ARTIFACT_RING_OF_THE_SHADOWBRAND</Item>
+  <Item>ARTIFACT_DWARVEN_SMITHY_HUMMER</Item>
+  <Item>ARTIFACT_BOOK_OF_POWER</Item>
+  <Item>ARTIFACT_SHIELD_OF_WOLF_DUCHY</Item>
+  <Item>ARTIFACT_RING_OF_FORGOTTEN</Item>
+  <Item>ARTIFACT_PENDANT_OF_INTERFERENCE</Item>
+  <Item>ARTIFACT_BADGE_OF_SUN_CROSS</Item>
+  <Item>ARTIFACT_CROWN_OF_LEADER</Item>
+  <Item>CROWN_OF_COURAGE</Item>
+  <Item>DRAGON_SCALE_ARMOR</Item>
+  <Item>DRAGON_SCALE_SHIELD</Item>
+  <Item>DRAGON_BONE_GRAVES</Item>
+  <Item>DRAGON_WING_MANTLE</Item>
+  <Item>DRAGON_TEETH_NECKLACE</Item>
+  <Item>DRAGON_TALON_CROWN</Item>
+  <Item>DRAGON_EYE_RING</Item>
+  <Item>DRAGON_FLAME_TONGUE</Item>
+  <Item>ROBE_OF_MAGI</Item>
+  <Item>CROWN_OF_MAGI</Item>
+  <Item>DWARVEN_MITHRAL_CUIRASS</Item>
+  <Item>DWARVEN_MITHRAL_GREAVES</Item>
+  <Item>DWARVEN_MITHRAL_HELMET</Item>
+  <Item>DWARVEN_MITHRAL_SHIELD</Item>
+  <Item>ARTIFACT_OGRE_CLUB</Item>
+  <Item>ARTIFACT_OGRE_SHIELD</Item>
+  <Item>ARTIFACT_SKULL_OF_MARKAL</Item>
+  <Item>ARTIFACT_GUARDIAN_01</Item>
+  <Item>ARTIFACT_GUARDIAN_02</Item>
+  <Item>ARTIFACT_GUARDIAN_03</Item>
+  <Item>ARTIFACT_ORB_AIR</Item>
+  <Item>ARTIFACT_ORB_EARTH</Item>
+  <Item>ARTIFACT_ORB_FIRE</Item>
+  <Item>ARTIFACT_ORB_WATER</Item>
+  <Item>ARTIFACT_PENDANT_OF_BLIND</Item>
+  <Item>UNICORN_HORN_BOW</Item>
+  <Item>PLATE_MAIL_OF_STABILITY</Item>
+  <Item>PEDANT_OF_MASTERY</Item>
+  <Item>CLOAK_OF_MOURNING</Item>
+  <Item>STAFF_OF_MAGI</Item>
+  <Item>RING_OF_MAGI</Item>
+  <Item>ARTIFACT_TWISTING_NEITHER</Item>
+  <Item>ARTIFACT_SHAWL_OF_GREAT_LICH</Item>
+  <Item>ARTIFACT_TOME_OF_DESTRUCTION</Item>
+  <Item>ARTIFACT_TOME_OF_LIGHT_MAGIC</Item>
+  <Item>ARTIFACT_TOME_OF_DARK_MAGIC</Item>
+  <Item>ARTIFACT_TOME_OF_SUMMONING_MAGIC</Item>
+  <Item>ARTIFACT_RING_OF_MACHINE_AFFINITY</Item>
+  <Item>ARTIFACT_RING_OF_HOLY_GRIFFIN</Item>
+  <Item>ARTIFACT_CLOAK_OF_MALASSA</Item>
+</artifactIDs>
+
+
+-- 地形
+  .Grass Dark_Grass
+    Haven & Sylvan
+    圣堂 & 森林
+
+  .Sand Sand_Cracked
+    Academy
+    学院
+
+  .SubTerrain SubTerrain_(2)
+    Dungeon
+    地牢
+    
+  .Dirt DarkGround 
+    Necropolis
+    墓园
+
+  .Lava Dead_Land_4
+    Inferno
+    地狱
+
+  .Snow Snow_(2)
+  .SubTerrain Dwarf_Floor_Incrusted
+    Fortress
+    堡垒
+
+  .Orc_Terrain Moss
+    Stronghold
+    据点
 
 
 删除词条成功：为什么
@@ -792,3 +953,8 @@ MOD介绍视频-热座及多人联机设置 https://www.bilibili.com/video/BV1ya
   4.1.你以为的并不一定是真实情况，所以直白的描述就好
   4.2.如果是战斗中，最好截上战斗记录的图，类似这样
 [__placeholder_1]
+
+
+
+
+

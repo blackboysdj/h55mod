@@ -26,9 +26,9 @@
 		<Item href="Skills/002-WarMachines/Detail/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<Item href="Skills/002-WarMachines/Detail/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<Item href="Skills/002-WarMachines/Detail/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="Skills/002-WarMachines/Detail/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="Skills/002-WarMachines/Detail/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="Skills/002-WarMachines/Detail/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Skills/002-WarMachines/Detail/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/002-WarMachines/Detail/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Skills/002-WarMachines/Detail/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
 		<!-- <Item href="Skills/002-WarMachines/Detail/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
 
 		<Item href="Skills/003-Learning/Page.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
@@ -72,7 +72,7 @@
 		<Item href="Skills/005-Luck/Detail/PerkPage8.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<Item href="Skills/005-Luck/Detail/PerkPage9.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<Item href="Skills/005-Luck/Detail/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="Skills/005-Luck/Detail/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Skills/005-Luck/Detail/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
 		<!-- <Item href="Skills/005-Luck/Detail/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
 		<!-- <Item href="Skills/005-Luck/Detail/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
 
@@ -422,20 +422,13 @@
 		<!-- <Item href="Town/001-Heaven/Detail/025-Retribution/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
 
 		<Item href="Town/002-Preserve/Page.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="Town/002-Preserve/Detail/004-Ranger1/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="Town/002-Preserve/Detail/004-Ranger1/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="Town/002-Preserve/Detail/004-Ranger1/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="Town/002-Preserve/Detail/004-Ranger1/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="Town/002-Preserve/Detail/004-Ranger1/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="Town/002-Preserve/Detail/004-Ranger1/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<!-- <Item href="Town/002-Preserve/Detail/004-Ranger1/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<Item href="Town/002-Preserve/Detail/004-Ranger2/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="Town/002-Preserve/Detail/004-Ranger2/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="Town/002-Preserve/Detail/004-Ranger2/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="Town/002-Preserve/Detail/004-Ranger2/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="Town/002-Preserve/Detail/004-Ranger2/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<!-- <Item href="Town/002-Preserve/Detail/004-Ranger2/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
-		<!-- <Item href="Town/002-Preserve/Detail/004-Ranger2/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<Item href="Town/002-Preserve/Detail/004-Ranger/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/002-Preserve/Detail/004-Ranger/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/002-Preserve/Detail/004-Ranger/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/002-Preserve/Detail/004-Ranger/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/002-Preserve/Detail/004-Ranger/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Town/002-Preserve/Detail/004-Ranger/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Town/002-Preserve/Detail/004-Ranger/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
 		<Item href="Town/002-Preserve/Detail/005-Warden/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<Item href="Town/002-Preserve/Detail/005-Warden/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<Item href="Town/002-Preserve/Detail/005-Warden/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
@@ -510,7 +503,7 @@
 		<Item href="Town/005-Necromancy/Detail/014-Reaver/PerkPage3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<Item href="Town/005-Necromancy/Detail/014-Reaver/PerkPage4.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<Item href="Town/005-Necromancy/Detail/014-Reaver/PerkPage5.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<!-- <Item href="Town/005-Necromancy/Detail/014-Reaver/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<Item href="Town/005-Necromancy/Detail/014-Reaver/PerkPage6.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<!-- <Item href="Town/005-Necromancy/Detail/014-Reaver/PerkPage7.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
 		<Item href="Town/005-Necromancy/Detail/015-Necromancer/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<Item href="Town/005-Necromancy/Detail/015-Necromancer/PerkPage2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>

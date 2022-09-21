@@ -5832,7 +5832,7 @@
 				</Pos>
 				<Rot>0</Rot>
 				<Floor>0</Floor>
-				<Name/>
+				<Name>Prison2</Name>
 				<CombatScript/>
 				<pointLights/>
 				<Shared href="/MapObjects/Prison.(AdvMapPrisonShared).xdb#xpointer(/AdvMapPrisonShared)"/>
@@ -5849,7 +5849,7 @@
 				</Pos>
 				<Rot>0</Rot>
 				<Floor>0</Floor>
-				<Name/>
+				<Name>Prison1</Name>
 				<CombatScript/>
 				<pointLights/>
 				<Shared href="/MapObjects/Prison.(AdvMapPrisonShared).xdb#xpointer(/AdvMapPrisonShared)"/>

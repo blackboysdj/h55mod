@@ -8,7 +8,7 @@
 		<Item href="008-Stronghold/Detail/022-Barbarian/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="008-Stronghold/Detail/022-Barbarian/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="008-Stronghold/Detail/022-Barbarian/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<!-- <Item href="008-Stronghold/Detail/022-Barbarian/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
+		<Item href="008-Stronghold/Detail/022-Barbarian/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<!-- <Item href="008-Stronghold/Detail/022-Barbarian/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
 	</Children>
 	<Background/>

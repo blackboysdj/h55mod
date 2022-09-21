@@ -20862,6 +20862,7 @@
 							<Item>HERO_SKILL_BATTLE_ELATION</Item>
 							<Item>HERO_SKILL_CRITICAL_STRIKE</Item>
 							<Item>HERO_SKILL_ENCOURAGE</Item>
+							<Item>HERO_SKILL_MIGHT_OVER_MAGIC</Item>
 						</dependenciesIDs>
 					</Item>
 				</SkillPrerequisites>

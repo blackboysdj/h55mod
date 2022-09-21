@@ -30,6 +30,10 @@ TTH_TABLE.BuildingName410W = {
     [PLAYER_1] = "Artifact1"
     , [PLAYER_2] = "Artifact2"
   }
+  , ["Prison"] = {
+    [PLAYER_1] = "Prison1"
+    , [PLAYER_2] = "Prison2"
+  }
   , ["Exp"] = {
     [PLAYER_1] = {
       ["01"] = "Exp1_01"
@@ -62,6 +66,9 @@ function TTH_MAP10W.initPath()
   TTH_PATH.Visit["ChooseSpecialArtifact410W"]["Title"] = TTH_PATH.Visit["ChooseSpecialArtifact410W"]["Pre"].."Title.txt";
   TTH_PATH.Visit["ChooseSpecialArtifact410W"]["Description"] = TTH_PATH.Visit["ChooseSpecialArtifact410W"]["Pre"].."Description.txt";
   TTH_PATH.Visit["ChooseSpecialArtifact410W"]["HasChosen"] = TTH_PATH.Visit["ChooseSpecialArtifact410W"]["Pre"].."HasChosen.txt";
+  TTH_PATH.Visit["Prison410W"] = {};
+  TTH_PATH.Visit["Prison410W"]["Pre"] = "/Text/Game/Scripts/TTH_Path/Visit/Prison410W/";
+  TTH_PATH.Visit["Prison410W"]["NoForeignAssistance"] = TTH_PATH.Visit["Prison410W"]["Pre"].."NoForeignAssistance.txt";
 end;
 
 function TTH_MAP10W.init()
@@ -82,6 +89,8 @@ function TTH_MAP10W.init()
     print("TTH_MAP10W initChooseSpecialArtifact410W-"..iPlayer);
     TTH_MAP10W.initVisitLearningStone(iPlayer);
     print("TTH_MAP10W initVisitLearningStone-"..iPlayer);
+    TTH_MAP10W.initVisitPrison410W(iPlayer);
+    print("TTH_MAP10W initVisitPrison410W-"..iPlayer);
     TTH_MAP10W.initDebuff(iPlayer);
     print("TTH_MAP10W initDebuff-"..iPlayer);
 	end;
@@ -1392,6 +1401,24 @@ function TTH_VISIT.implVisitChooseSpecialArtifact410W(iPlayer, strHero, iArtifac
   TTH_GLOBAL.giveHeroArtifact(strHero, iArtifactId);
 end;
 
+function TTH_MAP10W.initVisitPrison410W(iPlayer)
+  local strPrison = TTH_TABLE.BuildingName410W["Prison"][iPlayer];
+  SetTrigger(OBJECT_TOUCH_TRIGGER, strPrison, "TTH_VISIT.visitPrison410W");
+  SetObjectEnabled(strPrison, nil);
+end;
+function TTH_VISIT.visitPrison410W(strHero, strBuildingName)
+  local iPlayer = GetObjectOwner(strHero);
+  local strMainTown = TTH_TABLE.BuildingName410W["MainTown"][iPlayer];
+  local iMainTownRace = TTH_GLOBAL.getRace8Town(strMainTown);
+  if iMainTownRace == TOWN_ACADEMY then
+    local strText = TTH_PATH.Visit["Prison410W"]["NoForeignAssistance"];
+    TTH_GLOBAL.sign(strHero, strText);
+  else
+    local funcCallback = "TTH_VISIT.visitPrison410W";
+    TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
+  end;
+end;
+
 function TTH_MAP10W.initVisitLearningStone(iPlayer)
   local objExp = TTH_TABLE.BuildingName410W["Exp"][iPlayer];
   local strExp01 = objExp["01"];
@@ -1452,6 +1479,16 @@ function TTH_MAP10W.initDebuff4Garrison(iOldPlayer, iNewPlayer, strHero, strObje
   if iMainTownRace == TOWN_ACADEMY then
     TTH_GLOBAL.signChangeHeroStat(strHero, STAT_MORALE, -3);
     TTH_GLOBAL.signChangeHeroStat(strHero, STAT_LUCK, -2);
+  end;
+  
+  if HasHeroSkill(strHero, HERO_SKILL_TOUGHNESS) then
+    TTH_PERK.active039(iNewPlayer, strHero);
+  end;
+  if HasHeroSkill(strHero, HERO_SKILL_PARIAH) then
+    TTH_PERK.active083(iNewPlayer, strHero);
+  end;
+  if HasHeroSkill(strHero, HERO_SKILL_TWILIGHT) then
+    TTH_PERK.active109(iNewPlayer, strHero);
   end;
 end
 

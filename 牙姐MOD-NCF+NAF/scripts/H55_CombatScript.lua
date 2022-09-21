@@ -527,17 +527,6 @@
 		end;
 		H55SMOD_Start['KujinMP']['function'] = Events_Start_Implement_KujinMP;
 
-	-- Matewa
-		H55SMOD_Start['Matewa'] = {};
-		H55SMOD_Start['Matewa']['flag'] = ENUM_STAGE.ONCE.UNEXECUTE;
-		function Events_Start_Implement_Matewa(strHero, iSide, isReverse)
-			startThread(Thread_Command_UnitCastGlobalSpell, GetHero(iSide), SPELL_WARCRY_BATTLECRY, 1);
-			print(strHero.." casted SPELL_WARCRY_BATTLECRY");
-			sleep(20);
-			setATB(GetHero(iSide), 0.7 + 0.01 * H55SMOD_HeroLevel[strHero]);
-		end;
-		H55SMOD_Start['Matewa']['function'] = Events_Start_Implement_Matewa;
-
 	-- Tazar
 		H55SMOD_Start['Tazar'] = {};
 		H55SMOD_Start['Tazar']['flag'] = ENUM_STAGE.ONCE.UNEXECUTE;
@@ -1268,8 +1257,6 @@
 		Events_Start_Interface('Vegeyr', 1);
 		Events_Start_Interface('Tazar', 0);
 		Events_Start_Interface('Nicolai', 0);
-
-		Events_Start_Interface('Matewa', 0);
 
 		-- 后置宝物特效
 		H55SMOD_Start['Artifact'][ARTIFACT_BAND_OF_CONJURER]['function']();
@@ -2079,10 +2066,12 @@
 							H55SMOD_MiddlewareListener['Ash']['function']['hero']('Ash', iSide, itemUnit);
 						-- Necropolis
 							H55SMOD_MiddlewareListener['Giovanni']['function']['hero']('Giovanni', iSide, itemUnit);
+							H55SMOD_MiddlewareListener["Arantir"]["function"]("Arantir", iSide, itemUnit);
 						-- Fortress
 						-- Dungeon
 						-- Stronghold
 							H55SMOD_MiddlewareListener['Mokka']['function']('Mokka', iSide, itemUnit);
+							H55SMOD_MiddlewareListener["Matewa"]["function"]("Matewa", iSide, itemUnit);
 						-- Skill
 							H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_EXPLODING_CORPSES]['function']['charge'](iSide, itemUnit);
 							H55SMOD_MiddlewareListener["WarMachine"]["function"]["repair"](iSide, itemUnit);
@@ -4716,6 +4705,34 @@
 			end;
 			H55SMOD_MiddlewareListener['Muscip']['function'] = Events_MiddlewareListener_Implement_Muscip;
 
+		-- Arantir 092 阿兰蒂尔
+			H55SMOD_MiddlewareListener["Arantir"] = {};
+			H55SMOD_MiddlewareListener["Arantir"]["creture"] = "";
+			function Events_MiddlewareListener_Implement_Arantir(strHero, iSide, itemUnit)
+				if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero and itemUnit["strUnitName"] == GetHero(iSide) then
+					if TTH_SKILL_UPGRADE_MASTERY_COMBAT_HERO[iSide] == 1 then
+						local strCaster = itemUnit["strUnitName"];
+						if H55SMOD_MiddlewareListener[strHero]["creture"] == "" then
+							TTHCS_THREAD.castGlobalSpell(strCaster, SPELL_ABILITY_AVATAR_OF_DEATH);
+							H55SMOD_MiddlewareListener[strHero]["creture"] = GetCreatures(iSide)[length(GetCreatures(iSide)) - 1];
+							itemUnit["iAtb"] = 1.25;
+							push(ListUnitSetATB, itemUnit);
+						else
+							if TTH_SKILL_UPGRADE_SHANTIRI_COMBAT_HERO[iSide] == 1 then
+								local strCreature = H55SMOD_MiddlewareListener[strHero]["creture"];
+								if TTHCS_GLOBAL.checkCombatCreature(strCreature) == TTHCS_ENUM.No then
+									TTHCS_THREAD.castGlobalSpell(strCaster, SPELL_ABILITY_AVATAR_OF_DEATH);
+									H55SMOD_MiddlewareListener[strHero]["creture"] = GetCreatures(iSide)[length(GetCreatures(iSide)) - 1];
+									itemUnit["iAtb"] = 1.25;
+									push(ListUnitSetATB, itemUnit);
+								end;
+							end;
+						end;
+					end;
+				end;
+			end;
+			H55SMOD_MiddlewareListener["Arantir"]["function"] = Events_MiddlewareListener_Implement_Arantir;
+
 	-- Fortress
 		-- Hangvul2
 			H55SMOD_MiddlewareListener['Hangvul2'] = {};
@@ -5606,6 +5623,22 @@
 				end;
 			end;
 			H55SMOD_MiddlewareListener['Hero9']['function'] = Events_MiddlewareListener_Implement_Hero9;
+
+		-- Matewa
+			H55SMOD_MiddlewareListener["Matewa"] = {};
+			H55SMOD_MiddlewareListener["Matewa"]["flag"] = ENUM_STAGE.ONCE.UNEXECUTE;
+			function Events_MiddlewareListener_Implement_Matewa(strHero, iSide, itemUnit)
+				if H55SMOD_MiddlewareListener["Matewa"]["flag"] == ENUM_STAGE.ONCE.UNEXECUTE then
+					if GetHero(iSide) ~= nil and GetHeroName(GetHero(iSide)) == strHero and itemUnit["strUnitName"] == GetHero(iSide) then
+						local strCaster = itemUnit["strUnitName"];
+						TTHCS_THREAD.castGlobalSpell(strCaster, SPELL_WARCRY_BATTLECRY);
+						itemUnit["iAtb"] = 1.25;
+						push(ListUnitSetATB, itemUnit);
+						H55SMOD_MiddlewareListener[strHero]["flag"] = ENUM_STAGE.ONCE.EXECUTED;
+					end;
+				end;
+			end;
+			H55SMOD_MiddlewareListener["Matewa"]["function"] = Events_MiddlewareListener_Implement_Matewa;
 
 -- 生物
 	-- LightAngel

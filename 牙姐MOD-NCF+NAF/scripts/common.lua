@@ -2507,7 +2507,7 @@ end;
   SPELL_EFFECT_BASH_HIT = 197;
   SPELL_EFFECT_SUN_FIRE = 198;
   SPELL_EFFECT_SOIL_BURN = 199;
-  SPELL_EFFECT_CATAPULT_CHARGE_EXPLOSION = 200;
+  SPELL_ABILITY_AVATAR_OF_DEATH = 200;
   SPELL_EFFECT_FROZEN = 201;
   SPELL_EFFECT_FIRE_DAMAGE = 202;
   SPELL_EFFECT_LAND_MINE_EXPLOSION = 203;
@@ -2693,6 +2693,14 @@ end;
         , [SPELL_BLIND] = {
           ["DebugText"] = "SPELL_BLIND"
           , ["SignText"] = "/Text/TTH/Spell/CombatSpells/019-Blind/Text.txt"
+        }
+        , [SPELL_WARCRY_BATTLECRY] = {
+          ["DebugText"] = "SPELL_WARCRY_BATTLECRY"
+          , ["SignText"] = "/Text/TTH/Spell/CombatSpells/294-WarcryBattlecry/Text.txt"
+        }
+        , [SPELL_ABILITY_AVATAR_OF_DEATH] = {
+          ["DebugText"] = "SPELL_ABILITY_AVATAR_OF_DEATH"
+          , ["SignText"] = "/Text/TTH/Spell/CombatSpells/200-AvatarOfDeath/Text.txt"
         }
       }
 
@@ -12677,6 +12685,21 @@ end;
             print(strCaster.." cast "..TTHCS_TABLE.Magic[iSpellId]["DebugText"].." on "..strTarget);
           end;
         end;
+        ShowFlyingSign(TTHCS_TABLE.Magic[iSpellId]["SignText"], strCaster, 5);
+        sleep(50);
+        SetUnitManaPoints(strCaster, iCurrentMana);
+        repeat sleep(1); until GetUnitManaPoints(strCaster) == iCurrentMana;
+        combatSetPause(nil);
+      end;
+
+    -- 施放群体魔法
+      function TTHCS_THREAD.castGlobalSpell(strCaster, iSpellId)
+        combatSetPause(1);
+        local iCurrentMana = GetUnitManaPoints(strCaster);
+        SetUnitManaPoints(strCaster, TTHCS_FINAL.MAX_MANA);
+        repeat sleep(1); until GetUnitManaPoints(strCaster) == TTHCS_FINAL.MAX_MANA;
+        startThread(UnitCastGlobalSpell, strCaster, iSpellId);
+        print(strCaster.." cast "..TTHCS_TABLE.Magic[iSpellId]["DebugText"]);
         ShowFlyingSign(TTHCS_TABLE.Magic[iSpellId]["SignText"], strCaster, 5);
         sleep(50);
         SetUnitManaPoints(strCaster, iCurrentMana);

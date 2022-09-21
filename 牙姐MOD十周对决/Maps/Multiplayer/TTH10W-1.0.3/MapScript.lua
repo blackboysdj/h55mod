@@ -18,9 +18,17 @@ TTH_TABLE.BuildingName410W = {
     [PLAYER_1] = "Avenger1"
     , [PLAYER_2] = "Avenger2"
   }
+  , ["Garrison"] = {
+    [PLAYER_1] = "Garrison1"
+    , [PLAYER_2] = "Garrison2"
+  }
   , ["Cast"] = {
     [PLAYER_1] = "Cast1"
     , [PLAYER_2] = "Cast2"
+  }
+  , ["Artifact"] = {
+    [PLAYER_1] = "Artifact1"
+    , [PLAYER_2] = "Artifact2"
   }
   , ["Exp"] = {
     [PLAYER_1] = {
@@ -37,9 +45,27 @@ TTH_TABLE.BuildingName410W = {
     }
   }
 }
+function TTH_MAP10W.initPath()
+  TTH_PATH.Visit["CastCreature410W"] = {};
+  TTH_PATH.Visit["CastCreature410W"]["Pre"] = "/Text/Game/Scripts/TTH_Path/Visit/CastCreature410W/";
+  TTH_PATH.Visit["CastCreature410W"]["Text"] = TTH_PATH.Visit["CastCreature410W"]["Pre"].."Text.txt";
+  TTH_PATH.Visit["CastCreature410W"]["Title"] = TTH_PATH.Visit["CastCreature410W"]["Pre"].."Title.txt";
+  TTH_PATH.Visit["CastCreature410W"]["Description"] = TTH_PATH.Visit["CastCreature410W"]["Pre"].."Description.txt";
+  TTH_PATH.Visit["CastCreature410W"]["NotCastHero"] = TTH_PATH.Visit["CastCreature410W"]["Pre"].."NotCastHero.txt";
+  TTH_PATH.Visit["CastCreature410W"]["NotEnoughQuota"] = TTH_PATH.Visit["CastCreature410W"]["Pre"].."NotEnoughQuota.txt";
+  TTH_PATH.Visit["CastCreature410W"]["NoSuitableCreature"] = TTH_PATH.Visit["CastCreature410W"]["Pre"].."NoSuitableCreature.txt";
+  TTH_PATH.Visit["CastCreature410W"]["Confirm"] = TTH_PATH.Visit["CastCreature410W"]["Pre"].."Confirm.txt";
+  TTH_PATH.Visit["CastCreature410W"]["Success"] = TTH_PATH.Visit["CastCreature410W"]["Pre"].."Success.txt";
+  TTH_PATH.Visit["ChooseSpecialArtifact410W"] = {};
+  TTH_PATH.Visit["ChooseSpecialArtifact410W"]["Pre"] = "/Text/Game/Scripts/TTH_Path/Visit/ChooseSpecialArtifact410W/";
+  TTH_PATH.Visit["ChooseSpecialArtifact410W"]["Text"] = TTH_PATH.Visit["ChooseSpecialArtifact410W"]["Pre"].."Text.txt";
+  TTH_PATH.Visit["ChooseSpecialArtifact410W"]["Title"] = TTH_PATH.Visit["ChooseSpecialArtifact410W"]["Pre"].."Title.txt";
+  TTH_PATH.Visit["ChooseSpecialArtifact410W"]["Description"] = TTH_PATH.Visit["ChooseSpecialArtifact410W"]["Pre"].."Description.txt";
+  TTH_PATH.Visit["ChooseSpecialArtifact410W"]["HasChosen"] = TTH_PATH.Visit["ChooseSpecialArtifact410W"]["Pre"].."HasChosen.txt";
+end;
 
 function TTH_MAP10W.init()
-  TTH_MAP10W.initVisitSirens();
+  TTH_MAP10W.initPath();
 	for iPlayer = PLAYER_1, PLAYER_2 do
 		print("TTH_MAP10W init-"..iPlayer);
 		TTH_MAP10W.initArtifact(iPlayer);
@@ -50,10 +76,14 @@ function TTH_MAP10W.init()
     print("TTH_MAP10W initArmy-"..iPlayer);
     TTH_MAP10W.initResource(iPlayer);
     print("TTH_MAP10W initResource-"..iPlayer);
-    TTH_VISIT.initSirens(iPlayer);
-    print("TTH_MAP10W initSirens-"..iPlayer);
+    TTH_VISIT.initVisitCastCreature410W(iPlayer);
+    print("TTH_MAP10W initVisitCastCreature410W-"..iPlayer);
+    TTH_VISIT.initChooseSpecialArtifact410W(iPlayer);
+    print("TTH_MAP10W initChooseSpecialArtifact410W-"..iPlayer);
     TTH_MAP10W.initVisitLearningStone(iPlayer);
     print("TTH_MAP10W initVisitLearningStone-"..iPlayer);
+    TTH_MAP10W.initDebuff(iPlayer);
+    print("TTH_MAP10W initDebuff-"..iPlayer);
 	end;
 
   TTH_MAP10W.initNeutralTown();
@@ -164,19 +194,18 @@ TTH_TABLE.Artifacts4Map10W = {
     [0] = ARTIFACT_PENDANT_OF_BLIND
     , [1] = ARTIFACT_UNICORN_HORN_BOW
     , [2] = ARTIFACT_PLATE_MAIL_OF_STABILITY
-    , [3] = ARTIFACT_PEDANT_OF_MASTERY
-    , [4] = ARTIFACT_CLOAK_OF_MOURNING
-    , [5] = ARTIFACT_STAFF_OF_MAGI
-    , [6] = ARTIFACT_RING_OF_MAGI
-    , [7] = ARTIFACT_TWISTING_NEITHER
-    , [8] = ARTIFACT_SHAWL_OF_GREAT_LICH
-    , [9] = ARTIFACT_TOME_OF_DESTRUCTION
-    , [10] = ARTIFACT_TOME_OF_LIGHT_MAGIC
-    , [11] = ARTIFACT_TOME_OF_DARK_MAGIC
-    , [12] = ARTIFACT_TOME_OF_SUMMONING_MAGIC
-    , [13] = ARTIFACT_RING_OF_MACHINE_AFFINITY
-    , [14] = ARTIFACT_RING_OF_HOLY_GRIFFIN
-    , [15] = ARTIFACT_CLOAK_OF_MALASSA
+    , [3] = ARTIFACT_CLOAK_OF_MOURNING
+    , [4] = ARTIFACT_STAFF_OF_MAGI
+    , [5] = ARTIFACT_RING_OF_MAGI
+    , [6] = ARTIFACT_TWISTING_NEITHER
+    , [7] = ARTIFACT_SHAWL_OF_GREAT_LICH
+    , [8] = ARTIFACT_TOME_OF_DESTRUCTION
+    , [9] = ARTIFACT_TOME_OF_LIGHT_MAGIC
+    , [10] = ARTIFACT_TOME_OF_DARK_MAGIC
+    , [11] = ARTIFACT_TOME_OF_SUMMONING_MAGIC
+    , [12] = ARTIFACT_RING_OF_MACHINE_AFFINITY
+    , [13] = ARTIFACT_RING_OF_HOLY_GRIFFIN
+    , [14] = ARTIFACT_CLOAK_OF_MALASSA
   }
 };
 TTH_TABLE.positionArtifact410W = {
@@ -530,11 +559,21 @@ TTH_TABLE.PlayerInitArmy = {
 };
 function TTH_MAP10W.initBuilding(iPlayer)
   local strMainTown = TTH_TABLE.BuildingName410W["MainTown"][iPlayer];
+  local iMainTownRace = TTH_GLOBAL.getRace8Town(strMainTown);
   TTH_MANAGE.constructTown(strMainTown, 6);
+  if iMainTownRace == TOWN_ACADEMY then
+    DestroyTownBuildingToLevel(strMainTown, TOWN_BUILDING_SPECIAL_3, 0, 0);
+  end;
   DestroyTownBuildingToLevel(strMainTown, TOWN_BUILDING_TAVERN, 0, 0);
+
   local strSubTown = TTH_TABLE.BuildingName410W["SubTown"][iPlayer];
+  local iSubTownRace = TTH_GLOBAL.getRace8Town(strSubTown);
   TTH_MANAGE.constructTown(strSubTown, 6);
+  if iSubTownRace == TOWN_ACADEMY then
+    DestroyTownBuildingToLevel(strSubTown, TOWN_BUILDING_SPECIAL_3, 0, 0);
+  end;
   DestroyTownBuildingToLevel(strSubTown, TOWN_BUILDING_TAVERN, 0, 0);
+
   local strRandomTown = TTH_TABLE.BuildingName410W["RandomTown"][iPlayer];
   TTH_MANAGE.constructTown(strRandomTown, 6);
   DestroyTownBuildingToLevel(strRandomTown, TOWN_BUILDING_TAVERN, 0, 0);
@@ -678,7 +717,7 @@ function TTH_MAP10W.initResource(iPlayer)
   end;
 end;
 
-TTH_TABLE.SirensCastCreature410W = {
+TTH_TABLE.CastCreature410W = {
   ["OrtanCassius"] = {
     ["CastQuota"] = 50
     , ["PreCreature"] = {
@@ -1180,55 +1219,57 @@ TTH_TABLE.SirensCastCreature410W = {
     }
   }
 };
-TTH_VARI.recordSirensCastCreature = {};
-function TTH_VISIT.initSirens(iPlayer)
+TTH_VARI.recordCastCreature410W = {};
+function TTH_VISIT.initVisitCastCreature410W(iPlayer)
   local strCast = TTH_TABLE.BuildingName410W["Cast"][iPlayer];
-  OverrideObjectTooltipNameAndDescription(strCast, TTH_PATH.Visit["Sirens"]["Title"], TTH_PATH.Visit["Sirens"]["Description"]);
+  SetTrigger(OBJECT_TOUCH_TRIGGER, strCast, "TTH_VISIT.visitCastCreature410W");
+  SetObjectEnabled(strCast, nil);
+  OverrideObjectTooltipNameAndDescription(strCast, TTH_PATH.Visit["CastCreature410W"]["Title"], TTH_PATH.Visit["CastCreature410W"]["Description"]);
 end;
-function TTH_VISIT.visitSirens(strHero, strBuildingName)
-  TTH_COMMON.initNavi(TTH_PATH.Visit["Sirens"]["Text"]);
+function TTH_VISIT.visitCastCreature410W(strHero, strBuildingName)
+  TTH_COMMON.initNavi(TTH_PATH.Visit["CastCreature410W"]["Text"]);
 
-  local funcCallback = "TTH_VISIT.visitSirens";
+  local funcCallback = "TTH_VISIT.visitCastCreature410W";
   MarkObjectAsVisited(strBuildingName, strHero);
   local iPlayer = GetObjectOwner(strHero);
   if TTH_GLOBAL.isAi(iPlayer) == TTH_ENUM.Yes then
-    print("AI Player: "..iPlayer.." Visits Sirens");
+    print("AI Player: "..iPlayer.." Visits CastCreature410W");
     TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
   else
-    TTH_VISIT.checkPreVisitSirens4NotCastHero(iPlayer, strHero, strBuildingName);
+    TTH_VISIT.checkPreVisitCastCreature410W4NotCastHero(iPlayer, strHero, strBuildingName);
   end;
 end;
-function TTH_VISIT.checkPreVisitSirens4NotCastHero(iPlayer, strHero)
+function TTH_VISIT.checkPreVisitCastCreature410W4NotCastHero(iPlayer, strHero)
   local bIsCastHero = TTH_ENUM.No;
-  for strCastHero, objCastCreatureInfo in TTH_TABLE.SirensCastCreature410W do
+  for strCastHero, objCastCreatureInfo in TTH_TABLE.CastCreature410W do
     if strHero == strCastHero then
       bIsCastHero = TTH_ENUM.Yes;
       break;
     end;
   end;
   if bIsCastHero == TTH_ENUM.No then
-    local strText = TTH_PATH.Visit["Sirens"]["NotCastHero"];
+    local strText = TTH_PATH.Visit["CastCreature410W"]["NotCastHero"];
     TTH_GLOBAL.sign(strHero, strText);
     return nil;
   end;
 
-  TTH_VISIT.checkPreVisitSirens4NotEnoughQuota(iPlayer, strHero);
+  TTH_VISIT.checkPreVisitCastCreature410W4NotEnoughQuota(iPlayer, strHero);
 end;
-function TTH_VISIT.checkPreVisitSirens4NotEnoughQuota(iPlayer, strHero)
-  if TTH_VARI.recordSirensCastCreature[strHero] == nil then
-    TTH_VARI.recordSirensCastCreature[strHero] = TTH_TABLE.SirensCastCreature410W[strHero]["CastQuota"];
+function TTH_VISIT.checkPreVisitCastCreature410W4NotEnoughQuota(iPlayer, strHero)
+  if TTH_VARI.recordCastCreature410W[strHero] == nil then
+    TTH_VARI.recordCastCreature410W[strHero] = TTH_TABLE.CastCreature410W[strHero]["CastQuota"];
   end;
-  if TTH_VARI.recordSirensCastCreature[strHero] <= 0 then
-    local strText = TTH_PATH.Visit["Sirens"]["NotEnoughQuota"];
+  if TTH_VARI.recordCastCreature410W[strHero] <= 0 then
+    local strText = TTH_PATH.Visit["CastCreature410W"]["NotEnoughQuota"];
     TTH_GLOBAL.sign(strHero, strText);
     return nil;
   end;
 
-  TTH_VISIT.checkPreVisitSirens4CreatureExsit(iPlayer, strHero);
+  TTH_VISIT.checkPreVisitCastCreature410W4CreatureExsit(iPlayer, strHero);
 end;
-function TTH_VISIT.checkPreVisitSirens4CreatureExsit(iPlayer, strHero)
+function TTH_VISIT.checkPreVisitCastCreature410W4CreatureExsit(iPlayer, strHero)
   local arrCreature4Hero = TTH_GLOBAL.getHeroCreatureInfo(strHero);
-  local arrPreCreature = TTH_TABLE.SirensCastCreature410W[strHero]["PreCreature"];
+  local arrPreCreature = TTH_TABLE.CastCreature410W[strHero]["PreCreature"];
   local iCreatureNumber4Hero = 0;
   local i = 1;
   local arrOption = {};
@@ -1239,7 +1280,7 @@ function TTH_VISIT.checkPreVisitSirens4CreatureExsit(iPlayer, strHero)
         arrOption[i] = {
           ["Id"] = iSlotCreatureId
           , ["Text"] = TTH_TABLE_NCF_CREATURES[iPreCreatureId]["NAME"]
-          , ["Callback"] = "TTH_VISIT.comfirmVisitSirens"
+          , ["Callback"] = "TTH_VISIT.comfirmVisitCastCreature410W"
         };
         i = i + 1;
       end;
@@ -1247,14 +1288,14 @@ function TTH_VISIT.checkPreVisitSirens4CreatureExsit(iPlayer, strHero)
   end;
 
   if length(arrOption) == 0 then
-    local strText = TTH_PATH.Visit["Sirens"]["NoSuitableCreature"];
+    local strText = TTH_PATH.Visit["CastCreature410W"]["NoSuitableCreature"];
     TTH_GLOBAL.sign(strHero, strText);
     return nil;
   end;
 
   TTH_COMMON.optionRadio(iPlayer, strHero, arrOption);
 end;
-function TTH_VISIT.comfirmVisitSirens(iPlayer, strHero, iPreCreatureId)
+function TTH_VISIT.comfirmVisitCastCreature410W(iPlayer, strHero, iPreCreatureId)
   local arrCreature4Hero = TTH_GLOBAL.getHeroCreatureInfo(strHero);
   local iPreCreatureCount = 0;
   for iIndexSlot = 0, 6 do
@@ -1263,9 +1304,9 @@ function TTH_VISIT.comfirmVisitSirens(iPlayer, strHero, iPreCreatureId)
       break;
     end;
   end;
-  local objPreCreature = TTH_TABLE.SirensCastCreature410W[strHero]["PreCreature"][iPreCreatureId];
+  local objPreCreature = TTH_TABLE.CastCreature410W[strHero]["PreCreature"][iPreCreatureId];
   local iPostCreatureNum8Scale = TTH_COMMON.floor(iPreCreatureCount / objPreCreature["Scale"]);
-  local iPostCreatureNum8Quota = TTH_VARI.recordSirensCastCreature[strHero];
+  local iPostCreatureNum8Quota = TTH_VARI.recordCastCreature410W[strHero];
   local iPostCreatureNum = iPostCreatureNum8Scale;
   if iPostCreatureNum8Scale > iPostCreatureNum8Quota then
     iPostCreatureNum = iPostCreatureNum8Quota;
@@ -1276,40 +1317,79 @@ function TTH_VISIT.comfirmVisitSirens(iPlayer, strHero, iPreCreatureId)
   local strPostCreatureName = TTH_TABLE_NCF_CREATURES[iPostCreatureId]["NAME"];
 
   local strText = {
-    TTH_PATH.Visit["Sirens"]["Confirm"]
+    TTH_PATH.Visit["CastCreature410W"]["Confirm"]
     ;iPreCreatureNum=iPreCreatureNum
     ,strPreCreatureName=strPreCreatureName
     ,iPostCreatureNum=iPostCreatureNum
     ,strPostCreatureName=strPostCreatureName
   };
-  local strCallbackOk = "TTH_VISIT.implVisitSirens("..iPlayer..","..TTH_COMMON.psp(strHero)..","..iPreCreatureId..","..iPostCreatureNum..")";
+  local strCallbackOk = "TTH_VISIT.implVisitCastCreature410W("..iPlayer..","..TTH_COMMON.psp(strHero)..","..iPreCreatureId..","..iPostCreatureNum..")";
   local strCallbackCancel = "TTH_COMMON.cancelOption()";
   TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strText, strCallbackOk, strCallbackCancel);
 end;
-function TTH_VISIT.implVisitSirens(iPlayer, strHero, iPreCreatureId, iPostCreatureNum)
-  local objPreCreature = TTH_TABLE.SirensCastCreature410W[strHero]["PreCreature"][iPreCreatureId];
+function TTH_VISIT.implVisitCastCreature410W(iPlayer, strHero, iPreCreatureId, iPostCreatureNum)
+  local objPreCreature = TTH_TABLE.CastCreature410W[strHero]["PreCreature"][iPreCreatureId];
   local iPreCreatureNum = iPostCreatureNum * objPreCreature["Scale"];
   local strPreCreatureName = TTH_TABLE_NCF_CREATURES[iPreCreatureId]["NAME"];
   local iPostCreatureId = objPreCreature["PostCreatureId"];
   local strPostCreatureName = TTH_TABLE_NCF_CREATURES[iPostCreatureId]["NAME"];
 
-  TTH_VARI.recordSirensCastCreature[strHero] = TTH_VARI.recordSirensCastCreature[strHero] - iPostCreatureNum;
+  TTH_VARI.recordCastCreature410W[strHero] = TTH_VARI.recordCastCreature410W[strHero] - iPostCreatureNum;
   TTH_GLOBAL.replaceCreature4Hero(strHero, iPreCreatureId, iPreCreatureNum, iPostCreatureId, iPostCreatureNum);
-  local strText = TTH_PATH.Visit["Sirens"]["Success"];
+  local strText = TTH_PATH.Visit["CastCreature410W"]["Success"];
   TTH_GLOBAL.sign(strHero, strText);
 end;
-function TTH_MAP10W.initVisitSirens()
-  TTH_COMMON.setTrigger2ObjectType("BUILDING_SIRENS", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitSirens", nil);
-  TTH_PATH.Visit["Sirens"] = {};
-  TTH_PATH.Visit["Sirens"]["Pre"] = "/Text/Game/Scripts/TTH_Path/Visit/Sirens/";
-  TTH_PATH.Visit["Sirens"]["Text"] = TTH_PATH.Visit["Sirens"]["Pre"].."Text.txt";
-  TTH_PATH.Visit["Sirens"]["Title"] = TTH_PATH.Visit["Sirens"]["Pre"].."Title.txt";
-  TTH_PATH.Visit["Sirens"]["Description"] = TTH_PATH.Visit["Sirens"]["Pre"].."Description.txt";
-  TTH_PATH.Visit["Sirens"]["NotCastHero"] = TTH_PATH.Visit["Sirens"]["Pre"].."NotCastHero.txt";
-  TTH_PATH.Visit["Sirens"]["NotEnoughQuota"] = TTH_PATH.Visit["Sirens"]["Pre"].."NotEnoughQuota.txt";
-  TTH_PATH.Visit["Sirens"]["NoSuitableCreature"] = TTH_PATH.Visit["Sirens"]["Pre"].."NoSuitableCreature.txt";
-  TTH_PATH.Visit["Sirens"]["Confirm"] = TTH_PATH.Visit["Sirens"]["Pre"].."Confirm.txt";
-  TTH_PATH.Visit["Sirens"]["Success"] = TTH_PATH.Visit["Sirens"]["Pre"].."Success.txt";
+
+TTH_VARI.recordChooseSpecialArtifact410W = {};
+function TTH_VISIT.initChooseSpecialArtifact410W(iPlayer)
+  local strArtifact = TTH_TABLE.BuildingName410W["Artifact"][iPlayer];
+  SetTrigger(OBJECT_TOUCH_TRIGGER, strArtifact, "TTH_VISIT.visitChooseSpecialArtifact410W");
+  SetObjectEnabled(strArtifact, nil);
+  OverrideObjectTooltipNameAndDescription(strArtifact, TTH_PATH.Visit["ChooseSpecialArtifact410W"]["Title"], TTH_PATH.Visit["ChooseSpecialArtifact410W"]["Description"]);
+end;
+function TTH_VISIT.visitChooseSpecialArtifact410W(strHero, strBuildingName)
+  TTH_COMMON.initNavi(TTH_PATH.Visit["ChooseSpecialArtifact410W"]["Text"]);
+
+  local funcCallback = "TTH_VISIT.visitChooseSpecialArtifact410W";
+  MarkObjectAsVisited(strBuildingName, strHero);
+  local iPlayer = GetObjectOwner(strHero);
+  if TTH_GLOBAL.isAi(iPlayer) == TTH_ENUM.Yes then
+    print("AI Player: "..iPlayer.." Visits ChooseSpecialArtifact410W");
+    TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
+  else
+    TTH_VISIT.checkPreVisitChooseSpecialArtifact410W4HasChosen(iPlayer, strHero, strBuildingName);
+  end;
+end;
+function TTH_VISIT.checkPreVisitChooseSpecialArtifact410W4HasChosen(iPlayer, strHero)
+  if TTH_VARI.recordChooseSpecialArtifact410W[iPlayer] ~= nil and TTH_VARI.recordChooseSpecialArtifact410W[iPlayer] == TTH_ENUM.Yes then
+    local strText = TTH_PATH.Visit["ChooseSpecialArtifact410W"]["HasChosen"];
+    TTH_GLOBAL.sign(strHero, strText);
+    return nil;
+  end;
+
+  TTH_VISIT.radioVisitChooseSpecialArtifact410W(iPlayer, strHero);
+end;
+function TTH_VISIT.radioVisitChooseSpecialArtifact410W(iPlayer, strHero)
+  local i = 1;
+  local arrOption = {};
+  arrOption[i] = {
+    ["Id"] = ARTIFACT_PEDANT_OF_MASTERY
+    , ["Text"] = TTH_TABLE.Artifact[ARTIFACT_PEDANT_OF_MASTERY]["Text"]
+    , ["Callback"] = "TTH_VISIT.implVisitChooseSpecialArtifact410W"
+  };
+  i = i + 1;
+  arrOption[i] = {
+    ["Id"] = ARTIFACT_PENDANT_OF_STARDUST
+    , ["Text"] = TTH_TABLE.Artifact[ARTIFACT_PENDANT_OF_STARDUST]["Text"]
+    , ["Callback"] = "TTH_VISIT.implVisitChooseSpecialArtifact410W"
+  };
+  i = i + 1;
+
+  TTH_COMMON.optionRadio(iPlayer, strHero, arrOption);
+end;
+function TTH_VISIT.implVisitChooseSpecialArtifact410W(iPlayer, strHero, iArtifactId)
+  TTH_VARI.recordChooseSpecialArtifact410W[iPlayer] = TTH_ENUM.Yes;
+  TTH_GLOBAL.giveHeroArtifact(strHero, iArtifactId);
 end;
 
 function TTH_MAP10W.initVisitLearningStone(iPlayer)
@@ -1362,6 +1442,18 @@ function TTH_VISIT.visitLearningStone28(strHero, strBuildingName)
   TTH_GLOBAL.giveExp(strHero, iExp);
   MarkObjectAsVisited(strBuildingName, strHero);
 end;
+
+function TTH_MAP10W.initDebuff(iPlayer)
+  Trigger(OBJECT_CAPTURE_TRIGGER, TTH_TABLE.BuildingName410W["Garrison"][iPlayer], "TTH_MAP10W.initDebuff4Garrison")
+end;
+function TTH_MAP10W.initDebuff4Garrison(iOldPlayer, iNewPlayer, strHero, strObject)
+  local strMainTown = TTH_TABLE.BuildingName410W["MainTown"][iNewPlayer];
+  local iMainTownRace = TTH_GLOBAL.getRace8Town(strMainTown);
+  if iMainTownRace == TOWN_ACADEMY then
+    TTH_GLOBAL.signChangeHeroStat(strHero, STAT_MORALE, -3);
+    TTH_GLOBAL.signChangeHeroStat(strHero, STAT_LUCK, -2);
+  end;
+end
 
 function TTH_MAP10W.dealDaily(iPlayer)
 	print("TTH_MAP10W dealDaily-"..iPlayer.." day-"..TTH_VARI.day);

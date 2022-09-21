@@ -2349,17 +2349,14 @@ doFile("/scripts/H55-Settings.lua");
 						GiveHeroSkill(strHero, HERO_SKILL_DEMONIC_RAGE);
 						GiveHeroSkill(strHero, HERO_SKILL_DEMONIC_RAGE);
 						GiveHeroSkill(strHero, HERO_SKILL_DEMONIC_RAGE);
-						GiveHeroSkill(strHero, HERO_SKILL_OFFENCE);
-						GiveHeroSkill(strHero, HERO_SKILL_OFFENCE);
+						GiveHeroSkill(strHero, HERO_SKILL_TRAINING);
 						GiveHeroSkill(strHero, HERO_SKILL_LEADERSHIP);
 						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_MEMORY_OF_OUR_BLOOD);
 						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_BATTLE_ELATION);
 						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_FRENZY);
-						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_RETRIBUTION);
+						GiveHeroSkill(strHero, HERO_SKILL_CRITICAL_STRIKE);
 						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_ENCOURAGE);
 						sleep(1);
@@ -3448,14 +3445,19 @@ doFile("/scripts/H55-Settings.lua");
 				-- 计算
 					function TTH_GLOBAL.calcGainExp4Winner(strHero)
 						local iExp = 0;
+						local iHeroLevel = GetHeroLevel(strHero);
+						local iLevelExp = TTH_COMMON.round((TTH_TABLE.Exp4LevelUp[iHeroLevel] - TTH_TABLE.Exp4LevelUp[iHeroLevel - 1]) * 0.03);
+						if iLevelExp < 200 then
+							iLevelExp = 200;
+						end;
 						if HasArtefact(strHero, ARTIFACT_PIRATE_HAT, 1) then
-							iExp = iExp + 200;
+							iExp = iExp + iLevelExp;
 						end;
 						if HasArtefact(strHero, ARTIFACT_PIRATE_RING, 1) then
-							iExp = iExp + 200;
+							iExp = iExp + iLevelExp;
 						end;
 						if TTH_GLOBAL.isBonus8PirateExp(strHero) == TTH_ENUM.Enable then
-							iExp = iExp  * 1.5;
+							iExp = TTH_COMMON.round(iExp * 1.5);
 						end;
 						return iExp;
 					end;
@@ -3477,7 +3479,7 @@ doFile("/scripts/H55-Settings.lua");
 							iGold = iGold + 200;
 						end;
 						if TTH_GLOBAL.isBonus8PirateGold(strHero) == TTH_ENUM.Enable then
-							iGold = iGold  * 1.5;
+							iGold = iGold * 2;
 						end;
 						return iGold;
 					end;
@@ -3627,22 +3629,20 @@ doFile("/scripts/H55-Settings.lua");
 						            if TTH_VARI.artifactSetBonus8Hero[strHero][iSetId][i] == nil then
 						              for iIndexStat, iNumStat in objSetBonus[i] do
 						                if iNumStat ~= 0 then
-						                  ChangeHeroStat(strHero, iIndexStat, iNumStat);
+						                  TTH_GLOBAL.signChangeHeroStat(strHero, iIndexStat, iNumStat);
 						                end;
 						              end;
 						              TTH_VARI.artifactSetBonus8Hero[strHero][iSetId][i] = 1;
-						              TTH_GLOBAL.showArtifactSetFlyingSign(strHero, iPlayer, 1);
 						            end;
 						          end;
 						          if iCount < i then
 						            if TTH_VARI.artifactSetBonus8Hero[strHero][iSetId][i] == 1 then
 						              for indexStat, iNumStat in objSetBonus[i] do
 						                if iNumStat ~= 0 then
-						                  ChangeHeroStat(strHero, indexStat, -1 * iNumStat);
+						                  TTH_GLOBAL.signChangeHeroStat(strHero, indexStat, -1 * iNumStat);
 						                end;
 						              end;
 						              TTH_VARI.artifactSetBonus8Hero[strHero][iSetId][i] = nil;
-						              TTH_GLOBAL.showArtifactSetFlyingSign(strHero, iPlayer, 0);
 						            end;
 						          end;
 						        end;
@@ -4835,6 +4835,10 @@ doFile("/scripts/H55-Settings.lua");
 				TTH_COMMON.initNavi(TTH_PATH.Visit["WitchHut"]["Text"]);
 
 				local funcCallback = "TTH_VISIT.visitWitchHut";
+				if TTH_MAP10W.init ~= nil then
+					TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
+					return nil;
+				end;
 				MarkObjectAsVisited(strBuildingName, strHero);
 				local iPlayer = GetObjectOwner(strHero);
 				if TTH_GLOBAL.isAi(iPlayer) == TTH_ENUM.Yes then
@@ -11498,6 +11502,12 @@ doFile("/scripts/H55-Settings.lua");
 				local iCountGem = iPostCreatureNum * objRes[GEM];
 				local iCountGold = iPostCreatureNum * objRes[GOLD];
 				local iMaxGcd = objPreCreature["MaxGcd"];
+				if TTH_VARI.recordReincarnation[strHero] ~= nil then
+					iMaxGcd = iMaxGcd - TTH_VARI.recordReincarnation[strHero];
+					if iMaxGcd < 1 then
+						iMaxGcd = 1;
+					end;
+				end;
 
 				local strPathMain={
 					TTH_PATH.Talent["Cast"]["Confirm"]
@@ -11535,6 +11545,12 @@ doFile("/scripts/H55-Settings.lua");
 				local iCountGem = iPostCreatureNum * objRes[GEM];
 				local iCountGold = iPostCreatureNum * objRes[GOLD];
 				local iMaxGcd = objPreCreature["MaxGcd"];
+				if TTH_VARI.recordReincarnation[strHero] ~= nil then
+					iMaxGcd = iMaxGcd - TTH_VARI.recordReincarnation[strHero];
+					if iMaxGcd < 1 then
+						iMaxGcd = 1;
+					end;
+				end;
 
 				local strPathMain={
 					TTH_PATH.Talent["Cast"]["Success"]
@@ -13597,6 +13613,18 @@ doFile("/scripts/H55-Settings.lua");
 	      		end;
       		end;
       		return iDistance;
+      	end;
+
+      -- Arantir 092 阿兰蒂尔
+      	function TTH_TALENT.upgradeMasteryArantir(iPlayer, strHero)
+      		TTH_ARTI.callbackActive015(iPlayer, strHero);
+      		local strText = TTH_PATH.Talent[strHero]["SuccessUpgradeMastery"];
+      		TTH_GLOBAL.sign(strHero, strText);
+      	end;
+      	function TTH_TALENT.upgradeShantiriArantir(iPlayer, strHero)
+      		TTH_ARTI.callbackActive163(iPlayer, strHero);
+      		local strText = TTH_PATH.Talent[strHero]["SuccessUpgradeShantiri"];
+      		TTH_GLOBAL.sign(strHero, strText);
       	end;
 
 			-- Pelt 094 弗拉基米尔
@@ -16143,35 +16171,51 @@ doFile("/scripts/H55-Settings.lua");
 				end;
 
 		-- ARTIFACT_REINCARNATION 112 轮回之戒
+			TTH_TABLE.ReincarnationOption = {
+				[1] = {
+					["Id"] = 1
+					, ["Text"] = TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Covert"]["Text"]
+					, ["Callback"] = "TTH_ARTI.active112Covert"
+				}
+				, [2] = {
+					["Id"] = 2
+					, ["Text"] = TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Gcd"]["Text"]
+					, ["Callback"] = "TTH_ARTI.active112Gcd"
+				}
+			};
+			TTH_VARI.recordReincarnation = {};
 			function TTH_ARTI.active112(iPlayer, strHero)
-				TTH_COMMON.nextNavi(TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Text"]);
+				TTH_COMMON.optionRadio(iPlayer, strHero, TTH_TABLE.ReincarnationOption);
+			end;
+			function TTH_ARTI.active112Covert(iPlayer, strHero)
+				TTH_COMMON.nextNavi(TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Covert"]["Text"]);
 
 				local arrCreature4Hero = TTH_GLOBAL.getHeroCreatureInfo(strHero);
-    		local arrOption = {};
+				local arrOption = {};
 				local i = 1;
 				for iIndex = 0, 6 do
 					if TTH_TABLE_NCF_CREATURES[arrCreature4Hero[iIndex]["Id"]]["Pair"] ~= nil then
 						arrOption[i] = {
 							["Id"] = arrCreature4Hero[iIndex]["Id"]
 							, ["Text"] = TTH_TABLE_NCF_CREATURES[arrCreature4Hero[iIndex]["Id"]]["NAME"]
-							, ["Callback"] = "TTH_ARTI.implActive112"
+							, ["Callback"] = "TTH_ARTI.implActive112Covert"
 						};
 						i = i + 1;
 					end;
 				end;
 
 				if length(arrOption) == 0 then
-    			local strText = TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["NoCreature4Cast"];
+					local strText = TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Covert"]["NoCreature4Cast"];
 					TTH_GLOBAL.sign(strHero, strText);
 					return nil;
 				end;
 
 				TTH_COMMON.optionRadio(iPlayer, strHero, arrOption);
 			end;
-			function TTH_ARTI.implActive112(iPlayer, strHero, strCreatureId)
+			function TTH_ARTI.implActive112Covert(iPlayer, strHero, strCreatureId)
 				local iCreatureId = strCreatureId + 0;
 				local arrCreature4Hero = TTH_GLOBAL.getHeroCreatureInfo(strHero);
-    		local iCreatureNum = 0;
+				local iCreatureNum = 0;
 				for iIndex = 0, 6 do
 					if arrCreature4Hero[iIndex]["Id"] == iCreatureId then
 						iCreatureNum = arrCreature4Hero[iIndex]["Count"];
@@ -16179,14 +16223,51 @@ doFile("/scripts/H55-Settings.lua");
 					end;
 				end;
 				TTH_GLOBAL.replaceCreature4Hero(strHero, iCreatureId, iCreatureNum, TTH_TABLE_NCF_CREATURES[iCreatureId]["Pair"], iCreatureNum);
-  			local strPathMain ={
-  				TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Success"]
-    			;strPreCreatureName=TTH_TABLE_NCF_CREATURES[iCreatureId]["NAME"]
-    			,strPostCreatureName=TTH_TABLE_NCF_CREATURES[TTH_TABLE_NCF_CREATURES[iCreatureId]["Pair"]]["NAME"]
-    			,iCreatureNum=iCreatureNum
-  			};
-  			TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.MessageBox, strPathMain);
-  		end;
+				local strPathMain ={
+					TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Covert"]["Success"]
+					;strPreCreatureName=TTH_TABLE_NCF_CREATURES[iCreatureId]["NAME"]
+					,strPostCreatureName=TTH_TABLE_NCF_CREATURES[TTH_TABLE_NCF_CREATURES[iCreatureId]["Pair"]]["NAME"]
+					,iCreatureNum=iCreatureNum
+				};
+				TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.MessageBox, strPathMain);
+			end;
+			function TTH_ARTI.active112Gcd(iPlayer, strHero)
+				TTH_COMMON.nextNavi(TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Gcd"]["Text"]);
+
+				TTH_ARTI.checkPreActive112Gcd4NotCastHero(iPlayer, strHero);
+			end;
+			function TTH_ARTI.checkPreActive112Gcd4NotCastHero(iPlayer, strHero)
+				if TTH_TABLE.CastCreature[strHero] == nil then
+					local strText = TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Gcd"]["NotCastHero"];
+					TTH_GLOBAL.sign(strHero, strText);
+					return nil;
+				end;
+
+				TTH_ARTI.checkPreActive112Gcd4HasEnough(iPlayer, strHero)
+			end;
+			function TTH_ARTI.checkPreActive112Gcd4HasEnough(iPlayer, strHero)
+				if TTH_VARI.recordReincarnation[strHero] ~= nil then
+					for i, objCast in TTH_TABLE.CastCreature[strHero]["PreCreature"] do
+						if objCast["MaxGcd"] - 1 <= TTH_VARI.recordReincarnation[strHero] then
+							local strText = TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Gcd"]["HasEnough"];
+							TTH_GLOBAL.sign(strHero, strText);
+							return nil;
+						end;
+						break;
+					end;
+				end;
+
+				TTH_ARTI.implActive112Gcd(iPlayer, strHero)
+			end;
+			function TTH_ARTI.implActive112Gcd(iPlayer, strHero)
+				if TTH_VARI.recordReincarnation[strHero] == nil then
+					TTH_VARI.recordReincarnation[strHero] = 0;
+				end;
+				RemoveArtefact(strHero, ARTIFACT_REINCARNATION);
+				TTH_VARI.recordReincarnation[strHero] = TTH_VARI.recordReincarnation[strHero] + 1;
+				local strText = TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Gcd"]["Success"];
+				TTH_GLOBAL.sign(strHero, strText);
+			end;
 
 		-- ARTIFACT_INHERITANCE 115 幸运护符
 			function TTH_ARTI.combatResult115(strHero)
@@ -19060,13 +19141,17 @@ doFile("/scripts/H55-Settings.lua");
 						end;
 
 					TTH_GLOBAL.refreshBankRestDay(iPlayer); -- :TODO 更新银行时间剩余时间
-					TTH_VISIT.refreshWitchHut(iPlayer); -- 更新女巫小屋刷新时间
+					if TTH_MAP10W.init == nil then
+						TTH_VISIT.refreshWitchHut(iPlayer); -- 更新女巫小屋刷新时间
+					end;
 				end;
 
 			-- 遍历玩家城镇
 				for i, strTown in TTH_VARI.arrTown do
 					if iPlayer == GetObjectOwner(strTown) then
-						TTH_GLOBAL.checkArtifactMerchant(iPlayer, strTown); -- 地牢和学院的宝物商店
+						if TTH_MAP10W.init == nil then
+							TTH_GLOBAL.checkArtifactMerchant(iPlayer, strTown); -- 地牢和学院的宝物商店
+						end;
 					end;
 				end;
 

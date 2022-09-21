@@ -1587,7 +1587,7 @@
 			<AdvMapBuilding>
 				<Pos>
 					<x>1</x>
-					<y>110</y>
+					<y>107</y>
 					<z>0</z>
 				</Pos>
 				<Rot>0</Rot>
@@ -1886,7 +1886,7 @@
 			<AdvMapShrine>
 				<Pos>
 					<x>1</x>
-					<y>102</y>
+					<y>99</y>
 					<z>0</z>
 				</Pos>
 				<Rot>0</Rot>
@@ -1902,7 +1902,7 @@
 			<AdvMapShrine>
 				<Pos>
 					<x>2</x>
-					<y>107</y>
+					<y>104</y>
 					<z>0</z>
 				</Pos>
 				<Rot>0</Rot>
@@ -2033,7 +2033,7 @@
 			<AdvMapShrine>
 				<Pos>
 					<x>1</x>
-					<y>104</y>
+					<y>101</y>
 					<z>0</z>
 				</Pos>
 				<Rot>0</Rot>
@@ -2141,7 +2141,7 @@
 			<AdvMapShrine>
 				<Pos>
 					<x>134</x>
-					<y>102</y>
+					<y>99</y>
 					<z>0</z>
 				</Pos>
 				<Rot>0</Rot>
@@ -2157,7 +2157,7 @@
 			<AdvMapShrine>
 				<Pos>
 					<x>133</x>
-					<y>104</y>
+					<y>101</y>
 					<z>0</z>
 				</Pos>
 				<Rot>0</Rot>
@@ -2173,7 +2173,7 @@
 			<AdvMapShrine>
 				<Pos>
 					<x>134</x>
-					<y>107</y>
+					<y>104</y>
 					<z>0</z>
 				</Pos>
 				<Rot>0</Rot>
@@ -2327,7 +2327,7 @@
 			<AdvMapBuilding>
 				<Pos>
 					<x>133</x>
-					<y>110</y>
+					<y>107</y>
 					<z>0</z>
 				</Pos>
 				<Rot>0</Rot>
@@ -2514,7 +2514,7 @@
 				</Pos>
 				<Rot>3.1416</Rot>
 				<Floor>0</Floor>
-				<Name/>
+				<Name>Garrison1</Name>
 				<CombatScript/>
 				<pointLights/>
 				<Shared href="/MapObjects/GarrisonGood.(AdvMapGarrisonShared).xdb#xpointer(/AdvMapGarrisonShared)"/>
@@ -3074,7 +3074,7 @@
 				</Pos>
 				<Rot>3.1416</Rot>
 				<Floor>0</Floor>
-				<Name/>
+				<Name>Garrison2</Name>
 				<CombatScript/>
 				<pointLights/>
 				<Shared href="/MapObjects/GarrisonGood.(AdvMapGarrisonShared).xdb#xpointer(/AdvMapGarrisonShared)"/>
@@ -5857,6 +5857,98 @@
 				<RandomHero>true</RandomHero>
 			</AdvMapPrison>
 		</Item>
+		<Item href="#n:inline(AdvMapBuilding)" id="item_4E195DED-6C18-43D4-BFF0-B731FE87D794">
+			<AdvMapBuilding>
+				<Pos>
+					<x>2</x>
+					<y>110</y>
+					<z>0</z>
+				</Pos>
+				<Rot>0</Rot>
+				<Floor>0</Floor>
+				<Name/>
+				<CombatScript/>
+				<pointLights/>
+				<Shared href="/MapObjects/Black_Market.(AdvMapBuildingShared).xdb#xpointer(/AdvMapBuildingShared)"/>
+				<PlayerID>PLAYER_1</PlayerID>
+				<CaptureTrigger>
+					<Action>
+						<FunctionName/>
+					</Action>
+				</CaptureTrigger>
+				<GroupID>0</GroupID>
+				<showCameras/>
+			</AdvMapBuilding>
+		</Item>
+		<Item href="#n:inline(AdvMapBuilding)" id="item_5B30AAF5-C6EC-4513-B42C-34228A9F7B8F">
+			<AdvMapBuilding>
+				<Pos>
+					<x>134</x>
+					<y>110</y>
+					<z>0</z>
+				</Pos>
+				<Rot>0</Rot>
+				<Floor>0</Floor>
+				<Name/>
+				<CombatScript/>
+				<pointLights/>
+				<Shared href="/MapObjects/Black_Market.(AdvMapBuildingShared).xdb#xpointer(/AdvMapBuildingShared)"/>
+				<PlayerID>PLAYER_1</PlayerID>
+				<CaptureTrigger>
+					<Action>
+						<FunctionName/>
+					</Action>
+				</CaptureTrigger>
+				<GroupID>0</GroupID>
+				<showCameras/>
+			</AdvMapBuilding>
+		</Item>
+		<Item href="#n:inline(AdvMapBuilding)" id="item_E1C994E9-DAA0-4E75-BF7E-AB314EA76AF4">
+			<AdvMapBuilding>
+				<Pos>
+					<x>21</x>
+					<y>106</y>
+					<z>0</z>
+				</Pos>
+				<Rot>0</Rot>
+				<Floor>0</Floor>
+				<Name>Artifact1</Name>
+				<CombatScript/>
+				<pointLights/>
+				<Shared href="/MapObjects/NagaTemple.(AdvMapBuildingShared).xdb#xpointer(/AdvMapBuildingShared)"/>
+				<PlayerID>PLAYER_NONE</PlayerID>
+				<CaptureTrigger>
+					<Action>
+						<FunctionName/>
+					</Action>
+				</CaptureTrigger>
+				<GroupID>0</GroupID>
+				<showCameras/>
+			</AdvMapBuilding>
+		</Item>
+		<Item href="#n:inline(AdvMapBuilding)" id="item_E546952E-F5C8-47C8-B087-AC37B6BC0A99">
+			<AdvMapBuilding>
+				<Pos>
+					<x>114</x>
+					<y>106</y>
+					<z>0</z>
+				</Pos>
+				<Rot>0</Rot>
+				<Floor>0</Floor>
+				<Name>Artifact2</Name>
+				<CombatScript/>
+				<pointLights/>
+				<Shared href="/MapObjects/NagaTemple.(AdvMapBuildingShared).xdb#xpointer(/AdvMapBuildingShared)"/>
+				<PlayerID>PLAYER_NONE</PlayerID>
+				<CaptureTrigger>
+					<Action>
+						<FunctionName/>
+					</Action>
+				</CaptureTrigger>
+				<GroupID>0</GroupID>
+				<showCameras/>
+			</AdvMapBuilding>
+		</Item>
 	</objects>
 	<Resources>
 		<PointLights/>
@@ -7126,7 +7218,6 @@
 		<Item>ARTIFACT_PENDANT_OF_BLIND</Item>
 		<Item>UNICORN_HORN_BOW</Item>
 		<Item>PLATE_MAIL_OF_STABILITY</Item>
-		<Item>PEDANT_OF_MASTERY</Item>
 		<Item>CLOAK_OF_MOURNING</Item>
 		<Item>STAFF_OF_MAGI</Item>
 		<Item>RING_OF_MAGI</Item>

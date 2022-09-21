@@ -16,8 +16,47 @@
   部分英雄增加技能吊坠特效
   拉兹罗 步兵联动
   Kelodin
-  野蛮人之幸
+  谢尔坦
+  马特瓦
+  摩卡
+  莎蒂娅
+  塞纳特
 
+  米纳斯丽 初始
+『亡灵复生』
+
+
+-- 通用代码
+  -- 战场脚本
+    -- 天赋提升
+      if TTH_SKILL_UPGRADE_MASTERY_COMBAT_HERO[iSide] == 1 then
+        objCreatureShoot["iAtb"] = 2 / 3;
+      end;
+      if TTH_SKILL_UPGRADE_SHANTIRI_COMBAT_HERO[iSide] == 1 then
+        objCreatureShoot["iAtb"] = 1.25;
+      end;
+    -- 单位是否存在
+      if TTHCS_GLOBAL.checkCombatCreature(strCreatureEffect) == TTHCS_ENUM.Yes then
+      end;
+
+-- 通用文案
+  -- 宝物
+    <left><color=7F38EC>被动特效:
+    <body_bright>1.英雄<color=0099FF>咒力<color=yellow>+1
+    <body_bright>2.英雄<color=0099FF>知识<color=yellow>+1
+    <body_bright>3.己方生物免疫<color=0099FF>冥府诅咒
+    <color=7F38EC>相关组件:
+    <color_default>阴影烙印指环
+    <color_default>诅咒指环
+    <color_default>皮纹战袍
+    <color_default>力量之书
+    <color=green>遗忘指环
+    <body_bright>===============
+    <color=purple>套装:潮汐之力
+    <body_bright>2件:英雄<color=yellow>【施法并造成战损后】<body_bright>回复 <color=yellow>2<body_bright> 点<color=0099FF>魔法值
+    <body_bright>3件:英雄<color=yellow>【施法并造成战损后】<body_bright>回复 <color=yellow>2<body_bright> 点<color=0099FF>魔法值
+    <body_bright>===============
+    <color=ffcfb53b>合成:潮汐之力
    
 - &m55_encourage           0.2 神圣指引 1
  - &m55_prayer             0.15 佑福仪式 1

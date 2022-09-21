@@ -20860,7 +20860,7 @@
 						<Class>HERO_CLASS_BARBARIAN</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_BATTLE_ELATION</Item>
-							<Item>HERO_SKILL_RETRIBUTION</Item>
+							<Item>HERO_SKILL_CRITICAL_STRIKE</Item>
 							<Item>HERO_SKILL_ENCOURAGE</Item>
 						</dependenciesIDs>
 					</Item>

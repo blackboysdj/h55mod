@@ -8929,6 +8929,7 @@
       TTH_ENUM.SET_ELEMENT_EARTH = 16
       TTH_ENUM.SET_ELEMENT_FIRE = 17
       TTH_ENUM.SET_ELEMENT_WATER = 18
+      TTH_ENUM.SET_SMITH = 19
 
     -- 宝屋奖励
       TTH_ENUM.BankRewardResource = 1;
@@ -9474,6 +9475,13 @@
         TTH_PATH.Talent["Nikolay"]["GainPower"] = TTH_PATH.Talent["Nikolay"]["Pre"].."GainPower.txt";
         TTH_PATH.Talent["Nikolay"]["NotNecTown"] = TTH_PATH.Talent["Nikolay"]["Pre"].."NotNecTown.txt";
         TTH_PATH.Talent["Nikolay"]["ConfirmActive"] = TTH_PATH.Talent["Nikolay"]["Pre"].."ConfirmActive.txt";
+      -- Arantir 092 阿兰蒂尔
+        TTH_PATH.Talent["Arantir"] = {};
+        TTH_PATH.Talent["Arantir"]["Pre"] = TTH_PATH.Talent["Pre"].."092-Arantir/";
+        TTH_PATH.Talent["Arantir"]["UpgradeMasteryText"] = TTH_PATH.Talent["Arantir"]["Pre"].."UpgradeMasteryText.txt";
+        TTH_PATH.Talent["Arantir"]["UpgradeShantiriText"] = TTH_PATH.Talent["Arantir"]["Pre"].."UpgradeShantiriText.txt";
+        TTH_PATH.Talent["Arantir"]["SuccessUpgradeMastery"] = TTH_PATH.Talent["Arantir"]["Pre"].."SuccessUpgradeMastery.txt";
+        TTH_PATH.Talent["Arantir"]["SuccessUpgradeShantiri"] = TTH_PATH.Talent["Arantir"]["Pre"].."SuccessUpgradeShantiri.txt";
       -- Pelt 094 弗拉基米尔
         TTH_PATH.Talent["Pelt"] = {};
         TTH_PATH.Talent["Pelt"]["Pre"] = TTH_PATH.Talent["Pre"].."094/";
@@ -9692,10 +9700,19 @@
 
       -- ARTIFACT_REINCARNATION 112 轮回之戒
         TTH_PATH.Artifact[ARTIFACT_REINCARNATION] = {};
-        TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Pre"] = TTH_PATH.Artifact["Pre"].."112/";
+        TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Pre"] = TTH_PATH.Artifact["Pre"].."112-Reincarnation/";
         TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Text"] = TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Pre"].."Text.txt";
-        TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["NoCreature4Cast"] = TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Pre"].."NoCreature4Cast.txt";
-        TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Success"] = TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Pre"].."Success.txt";
+        TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Covert"] = {};
+        TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Covert"]["Pre"] = TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Pre"].."Convert/";
+        TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Covert"]["Text"] = TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Covert"]["Pre"].."Text.txt";
+        TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Covert"]["NoCreature4Cast"] = TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Covert"]["Pre"].."NoCreature4Cast.txt";
+        TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Covert"]["Success"] = TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Covert"]["Pre"].."Success.txt";
+        TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Gcd"] = {};
+        TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Gcd"]["Pre"] = TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Pre"].."Gcd/";
+        TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Gcd"]["Text"] = TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Gcd"]["Pre"].."Text.txt";
+        TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Gcd"]["NotCastHero"] = TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Gcd"]["Pre"].."NotCastHero.txt";
+        TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Gcd"]["HasEnough"] = TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Gcd"]["Pre"].."HasEnough.txt";
+        TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Gcd"]["Success"] = TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Gcd"]["Pre"].."Success.txt";
 
       -- ARTIFACT_LEGION_BASIC 104 军团之证
       -- ARTIFACT_LEGION_ADVANCED 108 军团斗篷
@@ -10447,6 +10464,10 @@
             ["Text"] = TTH_PATH.Talent["Christian"]["UpgradeMasteryText"]
             , [TTH_ENUM.FuncAlways] = "TTH_TALENT.upgradeMasteryChristian"
           }
+          , ["Arantir"] = {
+            ["Text"] = TTH_PATH.Talent["Arantir"]["UpgradeMasteryText"]
+            , [TTH_ENUM.FuncAlways] = "TTH_TALENT.upgradeMasteryArantir"
+          }
         }
         , [TTH_ENUM.FuncUpgradeShantiri] = {
           ["Orlando2"] = {
@@ -10472,6 +10493,10 @@
           , ["Christian"] = {
             ["Text"] = TTH_PATH.Talent["Christian"]["UpgradeShantiriText"]
             , [TTH_ENUM.FuncAlways] = "TTH_TALENT.upgradeShantiriChristian"
+          }
+          , ["Arantir"] = {
+            ["Text"] = TTH_PATH.Talent["Arantir"]["UpgradeShantiriText"]
+            , [TTH_ENUM.FuncAlways] = "TTH_TALENT.upgradeShantiriArantir"
           }
         }
       };
@@ -17076,40 +17101,12 @@
             , [2] = ARTIFACT_DWARVEN_MITHRAL_HELMET
             , [3] = ARTIFACT_DWARVEN_MITHRAL_SHIELD
           }
-          , ["SetBonus"] = {
-            [3] = {
-              [STAT_ATTACK] = 0
-              , [STAT_DEFENCE] = 0
-              , [STAT_SPELL_POWER] = 2
-              , [STAT_KNOWLEDGE] = 2
-              , [STAT_LUCK] = 0
-              , [STAT_MORALE] = 0
-            }
-            , [4] = {
-              [STAT_ATTACK] = 0
-              , [STAT_DEFENCE] = 8
-              , [STAT_SPELL_POWER] = 0
-              , [STAT_KNOWLEDGE] = 0
-              , [STAT_LUCK] = 0
-              , [STAT_MORALE] = 0
-            }
-          }
         }
         , [TTH_ENUM.SET_LIONS] = {
           ["Component"] = {
             [0] = ARTIFACT_CROWN_OF_COURAGE
             , [1] = ARTIFACT_LION_HIDE_CAPE
             , [2] = ARTIFACT_NECKLACE_OF_BRAVERY
-          }
-          , ["SetBonus"] = {
-            [2] = {
-              [STAT_ATTACK] = 4
-              , [STAT_DEFENCE] = 0
-              , [STAT_SPELL_POWER] = 0
-              , [STAT_KNOWLEDGE] = 0
-              , [STAT_LUCK] = 0
-              , [STAT_MORALE] = 0
-            }
           }
         }
         , [TTH_ENUM.SET_MAGIS] = {
@@ -17119,16 +17116,6 @@
             , [2] = ARTIFACT_CROWN_OF_MAGI
             , [3] = ARTIFACT_RING_OF_MAGI
           }
-          , ["SetBonus"] = {
-            [3] = {
-              [STAT_ATTACK] = 0
-              , [STAT_DEFENCE] = 0
-              , [STAT_SPELL_POWER] = 6
-              , [STAT_KNOWLEDGE] = 0
-              , [STAT_LUCK] = 0
-              , [STAT_MORALE] = 0
-            }
-          }
         }
         , [TTH_ENUM.SET_NECROMANCERS] = {
           ["Component"] = {
@@ -17136,16 +17123,6 @@
             , [1] = ARTIFACT_STAFF_OF_VEXINGS
             , [2] = ARTIFACT_RING_OF_DEATH
             , [3] = ARTIFACT_NECROMANCER_PENDANT
-          }
-          , ["SetBonus"] = {
-            [3] = {
-              [STAT_ATTACK] = 0
-              , [STAT_DEFENCE] = 0
-              , [STAT_SPELL_POWER] = 3
-              , [STAT_KNOWLEDGE] = 3
-              , [STAT_LUCK] = 0
-              , [STAT_MORALE] = 0
-            }
           }
         }
         , [TTH_ENUM.SET_NECROMANCERS_PELT] = {
@@ -17339,6 +17316,40 @@
           ["Component"] = {
             [0] = ARTIFACT_EVERCOLD_ICICLE
             , [1] = ARTIFACT_ORB_WATER
+          }
+        }
+        , [TTH_ENUM.SET_SMITH] = {
+          ["Component"] = {
+            [0] = ARTIFACT_ICEBERG_SHIELD
+            , [1] = ARTIFACT_NECKLACE_OF_POWER
+            , [2] = ARTIFACT_WISPERING_RING
+            , [3] = ARTIFACT_DWARVEN_SMITHY_HUMMER
+          }
+          , ["SetBonus"] = {
+            [2] = {
+              [STAT_ATTACK] = 0
+              , [STAT_DEFENCE] = 2
+              , [STAT_SPELL_POWER] = 0
+              , [STAT_KNOWLEDGE] = 0
+              , [STAT_LUCK] = 0
+              , [STAT_MORALE] = 0
+            }
+            , [3] = {
+              [STAT_ATTACK] = 0
+              , [STAT_DEFENCE] = 0
+              , [STAT_SPELL_POWER] = 2
+              , [STAT_KNOWLEDGE] = 0
+              , [STAT_LUCK] = 0
+              , [STAT_MORALE] = 0
+            }
+            , [4] = {
+              [STAT_ATTACK] = 2
+              , [STAT_DEFENCE] = 0
+              , [STAT_SPELL_POWER] = 0
+              , [STAT_KNOWLEDGE] = 0
+              , [STAT_LUCK] = 0
+              , [STAT_MORALE] = 0
+            }
           }
         }
       };

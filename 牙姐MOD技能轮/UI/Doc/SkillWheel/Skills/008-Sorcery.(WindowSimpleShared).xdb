@@ -12,8 +12,8 @@
 		<Item href="008-Sorcery/Detail/PerkButton8.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="008-Sorcery/Detail/PerkButton9.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="008-Sorcery/Detail/PerkButtonX.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<!-- <Item href="008-Sorcery/Detail/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="008-Sorcery/Detail/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
+		<Item href="008-Sorcery/Detail/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="008-Sorcery/Detail/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<!-- <Item href="008-Sorcery/Detail/PerkButtonX3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
 	</Children>
 	<Background/>

@@ -52,7 +52,7 @@
 	<Flags>
 		<SuperActive>false</SuperActive>
 	</Flags>
-	<TextFileRef href="/Text/TTH/Skills/DarkMagic/083-Pariah/Name.txt"/>
+	<TextFileRef href="/Text/TTH/Skills/DarkMagic/121-SoilBurn/Name.txt"/>
 	<ResizeOnTextSet>false</ResizeOnTextSet>
 	<ResizeWidthOnTextSet>false</ResizeWidthOnTextSet>
 	<TextFormat href="/UI/Doc/SkillWheel/Common/Name.(TextFormat).xdb#xpointer(/TextFormat)"/>

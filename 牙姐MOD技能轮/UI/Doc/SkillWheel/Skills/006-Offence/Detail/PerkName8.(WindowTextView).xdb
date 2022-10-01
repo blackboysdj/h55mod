@@ -52,7 +52,7 @@
 	<Flags>
 		<SuperActive>false</SuperActive>
 	</Flags>
-	<TextFileRef href="/Text/TTH/Skills/Offence/104-ChillingSteel/Name.txt"/>
+	<TextFileRef href="/Text/TTH/Skills/Offence/082-AncientSmithy/Name.txt"/>
 	<ResizeOnTextSet>false</ResizeOnTextSet>
 	<ResizeWidthOnTextSet>false</ResizeWidthOnTextSet>
 	<TextFormat href="/UI/Doc/SkillWheel/Common/Name.(TextFormat).xdb#xpointer(/TextFormat)"/>

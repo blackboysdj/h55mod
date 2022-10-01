@@ -29,7 +29,7 @@
 	<RazedStatic/>
 	<Icon128/>
 	<InternalName>Dracon</InternalName>
-	<Class>HERO_CLASS_GUILDMASTER</Class>
+	<Class>HERO_CLASS_WIZARD</Class>
 	<Specialization>HERO_SPEC_MAGES</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>

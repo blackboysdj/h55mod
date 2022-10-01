@@ -35,8 +35,8 @@
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_NECROMANCY</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Necropolis55/Soulhunter/Name.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Necropolis55/Soulhunter/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Necromancy/091-Muscip/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Necromancy/091-Muscip/Description.txt"/>
 	<SpecializationIcon href="/Textures/HeroScreen/Specializations/Necropolis/Soulhunter.xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Necropolis/Necropolis_Naadir_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>

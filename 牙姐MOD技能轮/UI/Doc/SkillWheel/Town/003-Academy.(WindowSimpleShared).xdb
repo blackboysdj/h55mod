@@ -24,8 +24,8 @@
 		<Item href="003-Academy/Detail/009-ElementAlist/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="003-Academy/Detail/009-ElementAlist/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="003-Academy/Detail/009-ElementAlist/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="003-Academy/Detail/009-ElementAlist/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="003-Academy/Detail/009-ElementAlist/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<!-- <Item href="003-Academy/Detail/009-ElementAlist/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
+		<!-- <Item href="003-Academy/Detail/009-ElementAlist/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
 	</Children>
 	<Background/>
 	<Foreground/>

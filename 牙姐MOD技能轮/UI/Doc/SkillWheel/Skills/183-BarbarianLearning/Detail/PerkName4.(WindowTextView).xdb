@@ -52,7 +52,7 @@
 	<Flags>
 		<SuperActive>false</SuperActive>
 	</Flags>
-	<TextFileRef href="/Text/Game/Skills/Unique/DemonicRage/MightOverMagic/Name.txt"/>
+	<TextFileRef href="/Text/TTH/Skills/BarbarianLearning/173-MightOverMagic/Name.txt"/>
 	<ResizeOnTextSet>false</ResizeOnTextSet>
 	<ResizeWidthOnTextSet>false</ResizeWidthOnTextSet>
 	<TextFormat href="/UI/Doc/SkillWheel/Common/Name.(TextFormat).xdb#xpointer(/TextFormat)"/>

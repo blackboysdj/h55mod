@@ -35,8 +35,8 @@
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_NECROMANCY</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Necropolis55/Hypnotist/Name.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Necropolis55/Hypnotist/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Necromancy/085-Aislinn/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Necromancy/085-Aislinn/Description.txt"/>
 	<SpecializationIcon href="/Textures/HeroScreen/Specializations/Inferno/Hypnotist.xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Necropolis/Necropolis_Aislinn_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>

@@ -15,6 +15,8 @@ DIFFICULTY_NORMAL = 1
 DIFFICULTY_HARD = 2
 DIFFICULTY_HEROIC = 3
 
+STAT_SPELL_POWER = 3
+
 HERO_SKILL_ABSOLUTE_MORALE = 78;
 HERO_SKILL_MASTER_OF_ICE = 43;
 HERO_SKILL_MASTER_OF_FIRE = 44;
@@ -31,11 +33,17 @@ ARTIFACT_GEM_OF_PHANTOM = 102
 ARTIFACT_DRUM_OF_CHARGE = 106
 ARTIFACT_BOOK_OF_MALASSA = 147;
 ARTIFACT_RING_OF_MACHINE_AFFINITY = 91;
+ARTIFACT_CROWN_OF_LEADER = 88;
 
 HERO_SKILL_WEAKENING_STRIKE = 95;
 HERO_SKILL_BARBARIAN_WEAKENING_STRIKE = 209;
 HERO_SKILL_ELITE_CASTERS = 148;
 HERO_SKILL_MYSTICISM = 40;
+HERO_SKILL_BARBARIAN_MYSTICISM = 213;
+HERO_SKILL_CASTER_CERTIFICATE = 81;
+HERO_SKILL_PAYBACK = 147;
+HERO_SKILL_ELEMENTAL_OVERKILL = 149;
+HERO_SKILL_LAST_STAND = 118;
 HERO_SKILL_PRAYER = 56;
 HERO_SKILL_SEAL_OF_PROTECTION = 131;
 HERO_SKILL_TRIPLE_CATAPULT = 88;
@@ -57,6 +65,10 @@ HERO_SKILL_DEAD_LUCK = 103;
 HERO_SKILL_FIRST_AID = 22;
 HERO_SKILL_CATAPULT = 24;
 HERO_SKILL_WAR_MACHINES = 2;
+HERO_SKILL_FOREST_GUARD_EMBLEM = 115;
+HERO_SKILL_SORCERY = 8;
+HERO_SKILL_REMOTE_CONTROL = 126;
+HERO_SKILL_MARCH_OF_THE_MACHINES = 125;
 
 MAX_MANA = 1000;
 
@@ -138,6 +150,7 @@ TTH_ARTIFACT_EFFECT_COMBAT = {
     , [8] = ARTIFACT_DRUM_OF_CHARGE
     , [9] = ARTIFACT_BOOK_OF_MALASSA
     , [10] = ARTIFACT_RING_OF_MACHINE_AFFINITY
+    , [11] = ARTIFACT_CROWN_OF_LEADER
 };
 TTH_ARTIFACT_EFFECT_COMBAT_ONCE = {
     [0] = ARTIFACT_ANGELIC_ALLIANCE
@@ -156,33 +169,49 @@ TTH_SKILL_EFFECT_COMBAT = {
     [0] = HERO_SKILL_WEAKENING_STRIKE
     , [1] = HERO_SKILL_ELITE_CASTERS
     , [2] = HERO_SKILL_MYSTICISM
-    , [3] = HERO_SKILL_PRAYER
-    , [4] = HERO_SKILL_SEAL_OF_PROTECTION
-    , [5] = HERO_SKILL_DEATH_TREAD
-    , [6] = HERO_SKILL_GUARDIAN_ANGEL
-    , [7] = HERO_SKILL_PARIAH
-    , [8] = HERO_SKILL_TWILIGHT
-    , [9] = HERO_SKILL_EXPLODING_CORPSES
-    , [10] = HERO_SKILL_FOREST_RAGE
-    , [11] = HERO_SKILL_BALLISTA
-    , [12] = HERO_SKILL_TRIPLE_BALLISTA
-    , [13] = HERO_SKILL_CHILLING_STEEL
-    , [14] = HERO_SKILL_WILDFIRE
-    , [15] = HERO_SKILL_DEMONIC_FIRE
-    , [16] = HERO_SKILL_DEMONIC_RETALIATION
-    , [17] = HERO_SKILL_DEMONIC_FLAME
-    , [18] = HERO_SKILL_FIRE_AFFINITY
-    , [19] = HERO_SKILL_MASTER_OF_ICE
-    , [20] = HERO_SKILL_MASTER_OF_FIRE
-    , [21] = HERO_SKILL_MASTER_OF_LIGHTNINGS
-    , [22] = HERO_SKILL_DEAD_LUCK
-    , [23] = HERO_SKILL_FIRST_AID
-    , [24] = HERO_SKILL_CATAPULT
-    , [25] = HERO_SKILL_WAR_MACHINES
+    , [3] = HERO_SKILL_BARBARIAN_MYSTICISM
+    , [4] = HERO_SKILL_PRAYER
+    , [5] = HERO_SKILL_SEAL_OF_PROTECTION
+    , [6] = HERO_SKILL_DEATH_TREAD
+    , [7] = HERO_SKILL_GUARDIAN_ANGEL
+    , [8] = HERO_SKILL_PARIAH
+    , [9] = HERO_SKILL_TWILIGHT
+    , [10] = HERO_SKILL_EXPLODING_CORPSES
+    , [11] = HERO_SKILL_FOREST_RAGE
+    , [12] = HERO_SKILL_BALLISTA
+    , [13] = HERO_SKILL_TRIPLE_BALLISTA
+    , [14] = HERO_SKILL_CHILLING_STEEL
+    , [15] = HERO_SKILL_WILDFIRE
+    , [16] = HERO_SKILL_DEMONIC_FIRE
+    , [17] = HERO_SKILL_DEMONIC_RETALIATION
+    , [18] = HERO_SKILL_DEMONIC_FLAME
+    , [19] = HERO_SKILL_FIRE_AFFINITY
+    , [20] = HERO_SKILL_MASTER_OF_ICE
+    , [21] = HERO_SKILL_MASTER_OF_FIRE
+    , [22] = HERO_SKILL_MASTER_OF_LIGHTNINGS
+    , [23] = HERO_SKILL_DEAD_LUCK
+    , [24] = HERO_SKILL_FIRST_AID
+    , [25] = HERO_SKILL_CATAPULT
+    , [26] = HERO_SKILL_WAR_MACHINES
+    , [27] = HERO_SKILL_CASTER_CERTIFICATE
+    , [28] = HERO_SKILL_PAYBACK
+    , [29] = HERO_SKILL_ELEMENTAL_OVERKILL
+    , [30] = HERO_SKILL_LAST_STAND
+    , [31] = HERO_SKILL_FOREST_GUARD_EMBLEM
+    , [32] = HERO_SKILL_SORCERY
+    , [33] = HERO_SKILL_REMOTE_CONTROL
+    , [34] = HERO_SKILL_MARCH_OF_THE_MACHINES
 };
 TTH_SKILL_EFFECT_COMBAT_ONCE = {
 };
 TTH_SKILL_EFFECT_COMBAT_HERO = {
+    [0] = {}
+    , [1] = {}
+};
+TTH_ATTRIBUTE_EFFECT_COMBAT = {
+    [0] = STAT_SPELL_POWER
+};
+TTH_ATTRIBUTE_EFFECT_COMBAT_HERO = {
     [0] = {}
     , [1] = {}
 };
@@ -1185,6 +1214,7 @@ end;
   CREATURE_199 = 199
   CREATURE_ACADEMY_TOOL = 199
   CREATURE_200 = 200
+  CREATURE_FORTRESS_TOOL = 200
   CREATURE_201 = 201
   CREATURE_202 = 202
   CREATURE_203 = 203
@@ -2577,6 +2607,7 @@ end;
   SPELL_WARCRY_SHOUT_OF_MANY = 295;
 
   SPELL_ABILITY_TREEANT_UNION = 323;
+  SPELL_ABILITY_POWER_FEED = 333;
   SPELL_ABILITY_CALL_STORM = 334;
   SPELL_ABILITY_STORMBOLT = 247;
   SPELL_ABILITY_FLAMESTRIKE = 345;
@@ -2661,6 +2692,10 @@ end;
         [SPELL_ICE_BOLT] = {
           ["DebugText"] = "SPELL_ICE_BOLT"
           , ["SignText"] = "/Text/TTH/Spell/CombatSpells/004-IceBolt/Text.txt"
+        }
+        , [SPELL_LIGHTNING_BOLT] = {
+          ["DebugText"] = "SPELL_LIGHTNING_BOLT"
+          , ["SignText"] = "/Text/TTH/Spell/CombatSpells/003-LightningBolt/Text.txt"
         }
         , [SPELL_REGENERATION] = {
           ["DebugText"] = "SPELL_REGENERATION"
@@ -12140,8 +12175,7 @@ end;
         }
         , [10] = {
           ["Id"] = SPELL_MASS_FORGETFULNESS
-          , ["Type"] = TTHCS_ENUM.Area
-          , ["Area"] = 4
+          , ["Type"] = TTHCS_ENUM.Global
           , ["Target"] = TTHCS_ENUM.Hostile
         }
         , [11] = {
@@ -12244,6 +12278,47 @@ end;
         , CREATURE_WOLF
       };
 
+    -- 学院机械生物
+      TTHCS_TABLE.AcademyMachineCreature = {
+            CREATURE_FIRE_MECHANICAL
+            , CREATURE_WATER_MECHANICAL
+            , CREATURE_EARTH_MECHANICAL
+            , CREATURE_AIR_MECHANICAL
+            , CREATURE_PHOENIX_MECHANICAL
+            , CREATURE_IRON_GOLEM
+            , CREATURE_STEEL_GOLEM
+            , CREATURE_OBSIDIAN_GOLEM
+      };
+    -- 学院机械生物-魔像行进
+      TTHCS_TABLE.AcademyMachineCreature8Absolute = {
+        CREATURE_GREMLIN
+        , CREATURE_MASTER_GREMLIN
+        , CREATURE_GREMLIN_SABOTEUR
+        , CREATURE_STONE_GARGOYLE
+        , CREATURE_OBSIDIAN_GARGOYLE
+        , CREATURE_MARBLE_GARGOYLE
+        , CREATURE_MAGI
+        , CREATURE_ARCH_MAGI
+        , CREATURE_COMBAT_MAGE
+        , CREATURE_GENIE
+        , CREATURE_MASTER_GENIE
+        , CREATURE_DJINN_VIZIER
+        , CREATURE_RAKSHASA
+        , CREATURE_RAKSHASA_RUKH
+        , CREATURE_RAKSHASA_KSHATRI
+        , CREATURE_GIANT
+        , CREATURE_TITAN
+        , CREATURE_STORM_LORD
+        , CREATURE_FIRE_MECHANICAL
+        , CREATURE_WATER_MECHANICAL
+        , CREATURE_EARTH_MECHANICAL
+        , CREATURE_AIR_MECHANICAL
+        , CREATURE_PHOENIX_MECHANICAL
+        , CREATURE_IRON_GOLEM
+        , CREATURE_STEEL_GOLEM
+        , CREATURE_OBSIDIAN_GOLEM
+      };
+
     -- 森林生物
       TTHCS_TABLE.PreserveCreature = {
         CREATURE_PIXIE
@@ -12333,7 +12408,6 @@ end;
         TTHCS_TABLE.ImbueBallistaSpellArea = {
           SPELL_MASS_DISPEL
           , SPELL_MASS_DISRUPTING_RAY
-          , SPELL_MASS_FORGETFULNESS
           , SPELL_MASS_PLAGUE
           , SPELL_LAND_MINE
           , SPELL_ARCANE_CRYSTAL
@@ -12673,6 +12747,40 @@ end;
       end;
 
   TTHCS_THREAD = {};
+    -- 包装函数
+      function TTHCS_THREAD.unitCastAimedSpell(strCaster, iSpellId, strTarget)
+        UnitCastAimedSpell(strCaster, iSpellId, strTarget);
+      end;
+      function TTHCS_THREAD.unitCastGlobalSpell(strCaster, iSpellId)
+        UnitCastGlobalSpell(strCaster, iSpellId);
+      end;
+
+    -- 临时工具单位
+      function TTHCS_THREAD.castAimedSpell8Tool(iSide, iCreatureId, iCreatureNumber, iSpellId, strTarget)
+        if TTHCS_GLOBAL.checkCombatCreature(strTarget) == TTHCS_ENUM.Yes then
+          combatSetPause(1);
+          local iPositionX, iPositionY = TTHCS_GLOBAL.getTempPosition4Caster(iSide);
+          local strCaster = TTHCS_THREAD.addCreature(iSide, iCreatureId, iCreatureNumber, iPositionX, iPositionY);
+          if TTHCS_GLOBAL.checkCombatCreature(strCaster) == TTHCS_ENUM.Yes then
+            startThread(TTHCS_THREAD.unitCastAimedSpell, strCaster, iSpellId, strTarget);
+            sleep(50);
+            TTHCS_THREAD.removeCreature(strCaster);
+          end;
+          combatSetPause(nil);
+        end;
+      end;
+      function TTHCS_THREAD.castGlobalSpell8Tool(iSide, iCreatureId, iCreatureNumber, iSpellId)
+        combatSetPause(1);
+        local iPositionX, iPositionY = TTHCS_GLOBAL.getTempPosition4Caster(iSide);
+        local strCaster = TTHCS_THREAD.addCreature(iSide, iCreatureId, iCreatureNumber, iPositionX, iPositionY);
+        if TTHCS_GLOBAL.checkCombatCreature(strCaster) == TTHCS_ENUM.Yes then
+          startThread(TTHCS_THREAD.unitCastGlobalSpell, strCaster, iSpellId);
+          sleep(50);
+          TTHCS_THREAD.removeCreature(strCaster);
+        end;
+        combatSetPause(nil);
+      end;
+
     -- 施放单体魔法
       function TTHCS_THREAD.castAimedSpell(strCaster, iSpellId, listTarget)
         combatSetPause(1);
@@ -12681,7 +12789,7 @@ end;
         repeat sleep(1); until GetUnitManaPoints(strCaster) == TTHCS_FINAL.MAX_MANA;
         for i, strTarget in listTarget do
           if IsCombatUnit(strTarget) ~= nil and GetCreatureNumber(strTarget) > 0 then
-            startThread(UnitCastAimedSpell, strCaster, iSpellId, strTarget);
+            startThread(TTHCS_THREAD.unitCastAimedSpell, strCaster, iSpellId, strTarget);
             print(strCaster.." cast "..TTHCS_TABLE.Magic[iSpellId]["DebugText"].." on "..strTarget);
           end;
         end;
@@ -12712,12 +12820,28 @@ end;
         local iLenBefore = length(GetCreatures(iSide));
         local iLenAfter = iLenBefore;
         AddCreature(iSide, iUnitType, iUnitNumber, iPositionX, iPositionY);
-        local iCount = 0;
         repeat 
           sleep(1); 
           iLenAfter = length(GetCreatures(iSide));
         until iLenAfter > iLenBefore;
         return GetCreatures(iSide)[iLenAfter - 1];
+      end;
+      function TTHCS_THREAD.addCreature2(iSide, iUnitType, iUnitNumber, iPositionX, iPositionY)
+        AddCreature(iSide, iUnitType, iUnitNumber, iPositionX, iPositionY);
+      end;
+    -- 召唤生物
+      function TTHCS_THREAD.summonCreature(iSide, iUnitType, iUnitNumber, iPositionX, iPositionY)
+        local iLenBefore = length(GetCreatures(iSide));
+        local iLenAfter = iLenBefore;
+        SummonCreature(iSide, iUnitType, iUnitNumber, iPositionX, iPositionY);
+        repeat 
+          sleep(1); 
+          iLenAfter = length(GetCreatures(iSide));
+        until iLenAfter > iLenBefore;
+        return GetCreatures(iSide)[iLenAfter - 1];
+      end;
+      function TTHCS_THREAD.summonCreature2(iSide, iUnitType, iUnitNumber, iPositionX, iPositionY)
+        SummonCreature(iSide, iUnitType, iUnitNumber, iPositionX, iPositionY);
       end;
     -- 移除单位
       function TTHCS_THREAD.removeCreature(strUnitBeRemoved)
@@ -12983,6 +13107,27 @@ end;
         return listCreatureSorted8Distance;
       end;
 
+    -- 设置英雄魔法值
+      function TTHCS_GLOBAL.setHeroMana(iSide, iManaPoint, bCheckMysticism)
+        local strHero = GetHero(iSide);
+        local iRecoveryMana = iManaPoint;
+        if bCheckMysticism == TTHCS_ENUM.Yes then
+          if TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_MYSTICISM] == 1 
+            or TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_BARBARIAN_MYSTICISM] == 1 then
+            iRecoveryMana = iRecoveryMana * 2;
+          end;
+        end;
+        local iResultMana = GetUnitManaPoints(strHero) + iRecoveryMana;
+        SetUnitManaPoints(strHero, iResultMana);
+        print(strHero.." set "..iRecoveryMana.." mana");
+        repeat sleep(1); until GetUnitManaPoints(strHero) == iResultMana;
+      end;
+
+    -- 设置魔法值 repeat
+      function TTHCS_GLOBAL.setManaRepeat()
+        TTHCS_FLAG.SetManaRepeat = TTHCS_ENUM.Yes;
+      end;
+
   TTHCS_PATH = {};
     TTHCS_PATH["Talent"] = {};
       TTHCS_PATH["Talent"]["Calh"] = {};
@@ -13021,6 +13166,15 @@ end;
       TTHCS_PATH["Talent"]["Gles"] = {};
       TTHCS_PATH["Talent"]["Gles"]["Effect"] = "/Text/TTH/Heroes/Specializations/Necromancy/079-Gles/Combat/Effect.txt";
 
+      TTHCS_PATH["Talent"]["Aislinn"] = {};
+      TTHCS_PATH["Talent"]["Aislinn"]["Effect"] = "/Text/TTH/Heroes/Specializations/Necromancy/085-Aislinn/Combat/Effect.txt";
+
+      TTHCS_PATH["Talent"]["Nimbus"] = {};
+      TTHCS_PATH["Talent"]["Nimbus"]["Effect"] = "/Text/TTH/Heroes/Specializations/Necromancy/090-Nimbus/Combat/Effect.txt";
+
+      TTHCS_PATH["Talent"]["Muscip"] = {};
+      TTHCS_PATH["Talent"]["Muscip"]["Effect"] = "/Text/TTH/Heroes/Specializations/Necromancy/091-Muscip/Combat/Effect.txt";
+
       TTHCS_PATH["Talent"]["Christian"] = {};
       TTHCS_PATH["Talent"]["Christian"]["Effect"] = "/Text/TTH/Heroes/Specializations/Heaven/007-Christian/Combat/Effect.txt";
 
@@ -13052,6 +13206,15 @@ end;
     TTHCS_PATH["Perk"] = {};
       TTHCS_PATH["Perk"][HERO_SKILL_SEAL_OF_PROTECTION] = {};
       TTHCS_PATH["Perk"][HERO_SKILL_SEAL_OF_PROTECTION]["Effect"] = "/Text/TTH/Skills/Training/131-SealOfProtection/Combat/Effect.txt";
+
+      TTHCS_PATH["Perk"][HERO_SKILL_ELEMENTAL_OVERKILL] = {};
+      TTHCS_PATH["Perk"][HERO_SKILL_ELEMENTAL_OVERKILL]["Effect"] = "/Text/TTH/Skills/DestructiveMagic/149-ElementalOverkill/Combat/Effect.txt";
+
+      TTHCS_PATH["Perk"][HERO_SKILL_FOREST_GUARD_EMBLEM] = {};
+      TTHCS_PATH["Perk"][HERO_SKILL_FOREST_GUARD_EMBLEM]["Effect"] = "/Text/TTH/Skills/Artificier/126-RemoteControl/Combat/Effect.txt";
+
+      TTHCS_PATH["Perk"][HERO_SKILL_REMOTE_CONTROL] = {};
+      TTHCS_PATH["Perk"][HERO_SKILL_REMOTE_CONTROL]["Effect"] = "/Text/TTH/Skills/Leadership/115-ForestGuardEmblem/Combat/Effect.txt";
 
     TTHCS_PATH["Mastery"] = {};
       TTHCS_PATH["Mastery"][HERO_SKILL_WAR_MACHINES] = {};
@@ -13136,6 +13299,10 @@ end;
       TTHCS_PATH["Continuous"]["Effect090"] = "/Text/TTH/Combat/Continuous/Effect090.txt";
       TTHCS_PATH["Continuous"]["Effect095"] = "/Text/TTH/Combat/Continuous/Effect095.txt";
       TTHCS_PATH["Continuous"]["Effect100"] = "/Text/TTH/Combat/Continuous/Effect100.txt";
+
+  TTHCS_FLAG = {};
+    -- 是否设置魔法值 repeat
+      TTHCS_FLAG.SetManaRepeat = TTHCS_ENUM.No;
 
 TTH_ARTIFACTSET_EFFECT_COMBAT = {
   [TTHCS_ENUM.SET_OGRES] = {

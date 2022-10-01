@@ -52,7 +52,7 @@
 	<Flags>
 		<SuperActive>false</SuperActive>
 	</Flags>
-	<TextFileRef href="/Text/Game/Skills/Unique/Artificer/MagicBond/Description.txt"/>
+	<TextFileRef href="/Text/TTH/Skills/Sorcery/162-Distract/Description.txt"/>
 	<ResizeOnTextSet>true</ResizeOnTextSet>
 	<ResizeWidthOnTextSet>false</ResizeWidthOnTextSet>
 	<TextFormat href="/UI/Doc/SkillWheel/Common/Description.(TextFormat).xdb#xpointer(/TextFormat)"/>

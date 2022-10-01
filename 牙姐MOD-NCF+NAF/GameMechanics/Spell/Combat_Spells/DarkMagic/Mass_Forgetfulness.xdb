@@ -21,7 +21,7 @@
 		<Gem>0</Gem>
 		<Gold>0</Gold>
 	</sSpellCost>
-	<IsAimed>true</IsAimed>	
+	<IsAimed>false</IsAimed>	
 	<IsAreaAttack>false</IsAreaAttack>
 	<CanSelectDead>false</CanSelectDead>
 	<Target>TARGET_HOSTILE</Target>

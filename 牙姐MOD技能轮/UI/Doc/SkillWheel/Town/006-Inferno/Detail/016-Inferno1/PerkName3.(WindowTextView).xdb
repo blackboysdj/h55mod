@@ -52,7 +52,7 @@
 	<Flags>
 		<SuperActive>false</SuperActive>
 	</Flags>
-	<TextFileRef href="/Text/Game/Skills/Common/Logistics/QuickGating/Name.txt"/>
+	<TextFileRef href="/Text/TTH/Skills/Gating/086-QuickGating/Name.txt"/>
 	<ResizeOnTextSet>false</ResizeOnTextSet>
 	<ResizeWidthOnTextSet>false</ResizeWidthOnTextSet>
 	<TextFormat href="/UI/Doc/SkillWheel/Common/Name.(TextFormat).xdb#xpointer(/TextFormat)"/>

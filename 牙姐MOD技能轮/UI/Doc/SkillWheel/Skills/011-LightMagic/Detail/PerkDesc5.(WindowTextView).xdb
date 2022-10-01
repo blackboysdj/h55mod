@@ -52,7 +52,7 @@
 	<Flags>
 		<SuperActive>false</SuperActive>
 	</Flags>
-	<TextFileRef href="/Text/Game/Skills/Common/LightMagic/MasterOfBlessings/Description.txt"/>
+	<TextFileRef href="/Text/TTH/Skills/LightMagic/049-MasterOfBlessing/Description.txt"/>
 	<ResizeOnTextSet>true</ResizeOnTextSet>
 	<ResizeWidthOnTextSet>false</ResizeWidthOnTextSet>
 	<TextFormat href="/UI/Doc/SkillWheel/Common/Description.(TextFormat).xdb#xpointer(/TextFormat)"/>

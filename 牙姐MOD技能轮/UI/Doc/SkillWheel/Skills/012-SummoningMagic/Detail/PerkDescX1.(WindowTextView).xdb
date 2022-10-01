@@ -52,7 +52,7 @@
 	<Flags>
 		<SuperActive>false</SuperActive>
 	</Flags>
-	<TextFileRef href="/Text/TTH/Skills/SummoningMagic/166-RunicArmor/Description.txt"/>
+	<TextFileRef href="/Text/TTH/Skills/SummoningMagic/136-Unsummon/Description.txt"/>
 	<ResizeOnTextSet>true</ResizeOnTextSet>
 	<ResizeWidthOnTextSet>false</ResizeWidthOnTextSet>
 	<TextFormat href="/UI/Doc/SkillWheel/Common/Description.(TextFormat).xdb#xpointer(/TextFormat)"/>

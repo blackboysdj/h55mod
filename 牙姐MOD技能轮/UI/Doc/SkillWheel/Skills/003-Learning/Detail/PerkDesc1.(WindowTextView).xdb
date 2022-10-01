@@ -52,7 +52,7 @@
 	<Flags>
 		<SuperActive>false</SuperActive>
 	</Flags>
-	<TextFileRef href="/Text/Game/Skills/Common/Learning/1/Description.txt"/>
+	<TextFileRef href="/Text/TTH/Skills/Learning/Mastery/DescBasic.txt"/>
 	<ResizeOnTextSet>true</ResizeOnTextSet>
 	<ResizeWidthOnTextSet>false</ResizeWidthOnTextSet>
 	<TextFormat href="/UI/Doc/SkillWheel/Common/Description.(TextFormat).xdb#xpointer(/TextFormat)"/>

@@ -25,7 +25,6 @@
   米纳斯丽 初始
 『亡灵复生』
 
-  轮回之戒
 
 
 -- 通用代码
@@ -180,11 +179,35 @@ HERO_SKILL_FIRE_PROTECTION
   </Obstacles>
 
 -- 未实装的技能
-  HERO_SKILL_NAVIGATION 回到今天开始的位置
-  HERO_SKILL_CHILLING_BONES 防御→冰冷之骨
+  HERO_SKILL_BARBARIAN_WEAKENING_STRIKE 反黑→虚弱打击
+    , [209] = { -- 虚弱攻击
+      ["Id"] = HERO_SKILL_BARBARIAN_WEAKENING_STRIKE
+      , ["Text"] = "/Text/TTH/Skills/ShatterDarkMagic/209-BarbarianWeakeningStrike/Name.txt"
+      , ["DependType"] = TTH_ENUM.Simple
+      , ["Depend"] = {
+        [1] = HERO_SKILL_WEAKEN_DARK
+      }
+    }
+  HERO_SKILL_BARBARIAN_ANCIENT_SMITHY 反破→怒火中烧
+    , [208] = { -- 怒火中烧
+      ["Id"] = HERO_SKILL_BARBARIAN_ANCIENT_SMITHY
+      , ["Text"] = "/Text/TTH/Skills/ShatterDestructiveMagic/208-BarbarianAncientSmithy/Name.txt"
+      , ["DependType"] = TTH_ENUM.Simple
+      , ["Depend"] = {
+        [1] = HERO_SKILL_WEAKEN_DESTRUCTIVE
+      }
+    }
   HERO_SKILL_SUN_FIRE 破坏→魔力爆发
-  HERO_SKILL_LUCK_OF_THE_BARBARIAN 幸运→野蛮人的幸运
-  HERO_SKILL_EXPERT_TRAINER 反击→训练专家
+    , [120] = { -- 魔力爆发
+      ["Id"] = HERO_SKILL_SUN_FIRE
+      , ["Text"] = "/Text/TTH/Skills/DestructiveMagic/120-SunFire/Name.txt"
+      , ["DependType"] = TTH_ENUM.Simple
+      , ["Depend"] = {
+        [1] = HERO_SKILL_DETAIN_DESTRUCTIVE
+      }
+    }
+  HERO_SKILL_CHILLING_BONES 防御→冰冷之骨
+  HERO_SKILL_SHAKE_GROUND
 
 -- 战场城墙
   defender-townbuilding-0-WALL
@@ -739,16 +762,15 @@ MOD介绍视频-热座及多人联机设置 https://www.bilibili.com/video/BV1ya
   <Item href="/MapObjects/Preserve/Ildar.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Preserve/Vaniel.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Preserve/Vinrael.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
-  <Item href="/MapObjects/Preserve/Diraya.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 
   <Item href="/MapObjects/Academy/Havez.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Academy/Minasli.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Academy/Isher.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Academy/Davius.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+  <Item href="/MapObjects/Academy/Cyrus.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Academy/Dracon.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Academy/Razzak.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Academy/Sufi.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
-  <Item href="/MapObjects/Academy/Cyrus.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Academy/Maahir.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Academy/Timerkhan.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Academy/Tan.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
@@ -809,7 +831,6 @@ MOD介绍视频-热座及多人联机设置 https://www.bilibili.com/video/BV1ya
   <Item href="/MapObjects/Inferno/Agrael.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Inferno/Zydar.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Inferno/Ash.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
-  <Item href="/MapObjects/Inferno/Biara.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Inferno/Sheltem.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 
   <Item href="/MapObjects/Dwarves/Bersy.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
@@ -838,7 +859,6 @@ MOD介绍视频-热座及多人联机设置 https://www.bilibili.com/video/BV1ya
   <Item href="/MapObjects/Stronghold/Hero3.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Stronghold/Kraal.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Stronghold/KujinMP.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
-  <Item href="/MapObjects/Stronghold/Kunyak.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Stronghold/Matewa.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Stronghold/Hero5.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
   <Item href="/MapObjects/Stronghold/Zouleika.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
@@ -997,5 +1017,14 @@ MOD介绍视频-热座及多人联机设置 https://www.bilibili.com/video/BV1ya
 
 
 
-
-
+添加词条关键字
+问 闪退
+答1.画质不要开最低
+2.确认360关了吗
+3.少读档
+4.多清档（新开一局把前面的档清了）
+5.不要玩带地下的图
+6.mod是否更新到最新版本
+7.删除游戏，再重新解压游戏（保留游戏本体的压缩包，方便解压）
+8.如果己方有宝物商店的城被AI占领必闪退
+9.上面的如果全确认过了，如果你上了造型mod，那就移除造型mod，你的电脑不够稳定，跑不起来（我推荐是优先上造型mod）

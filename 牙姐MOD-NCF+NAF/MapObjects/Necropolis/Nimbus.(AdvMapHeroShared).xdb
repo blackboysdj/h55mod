@@ -35,8 +35,8 @@
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_NECROMANCY</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Necropolis55/Feather_Mage/Name.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Necropolis55/Feather_Mage/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Necromancy/090-Nimbus/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Necromancy/090-Nimbus/Description.txt"/>
 	<SpecializationIcon href="/Textures/HeroScreen/Specializations/Academy/Feather_Mage.xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Necropolis/Necropolis_Nimbus_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>

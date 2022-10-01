@@ -16,7 +16,7 @@
 		<Item href="005-Necromancy/Detail/014-Reaver/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="005-Necromancy/Detail/014-Reaver/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="005-Necromancy/Detail/014-Reaver/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="005-Necromancy/Detail/014-Reaver/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<!-- <Item href="005-Necromancy/Detail/014-Reaver/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
 		<!-- <Item href="005-Necromancy/Detail/014-Reaver/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
 		<Item href="005-Necromancy/Detail/015-Necromancer/Class.(WindowTextView).xdb#xpointer(/WindowTextView)"/>
 		<Item href="005-Necromancy/Detail/015-Necromancer/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>

@@ -1999,24 +1999,24 @@ doFile("/scripts/H55-Settings.lua");
 						GiveHeroSkill(strHero, HERO_SKILL_ABSOLUTE_LUCK);
 					end;
 					if enumHeroClass == TTH_ENUM.Enchanter then
-						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
-						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
-						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
+						GiveHeroSkill(strHero, HERO_SKILL_SUMMONING_MAGIC);
+						GiveHeroSkill(strHero, HERO_SKILL_SUMMONING_MAGIC);
 						GiveHeroSkill(strHero, HERO_SKILL_SORCERY);
 						GiveHeroSkill(strHero, HERO_SKILL_SORCERY);
-						GiveHeroSkill(strHero, HERO_SKILL_LIGHT_MAGIC);
+						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
+						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
 						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_CHAOTIC_SPELLS);
+						GiveHeroSkill(strHero, HERO_SKILL_MASTER_OF_QUAKES);
 						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_LUCKY_SPELLS);
+						GiveHeroSkill(strHero, HERO_SKILL_ARCANE_TRAINING);
 						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_MYSTICISM);
+						GiveHeroSkill(strHero, HERO_SKILL_DISTRACT);
 						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_ELITE_CASTERS);
+						GiveHeroSkill(strHero, HERO_SKILL_LUCK_OF_THE_BARBARIAN);
 						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_MASTER_OF_WRATH);
+						GiveHeroSkill(strHero, HERO_SKILL_RESISTANCE);
 						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_ABSOLUTE_LUCK);
+						GiveHeroSkill(strHero, HERO_SKILL_SUN_FIRE);
 					end;
 
 					if enumHeroClass == TTH_ENUM.GuildMaster then
@@ -3276,6 +3276,8 @@ doFile("/scripts/H55-Settings.lua");
 					, [24] = HERO_SKILL_LAST_STAND
 					, [25] = HERO_SKILL_REMOTE_CONTROL
 					, [26] = HERO_SKILL_MARCH_OF_THE_MACHINES
+					, [27] = HERO_SKILL_MASTER_OF_SICKNESS
+					, [28] = HERO_SKILL_SUN_FIRE
 				};
 				TTH_TABLE.CombatSkill2Special = {
 					[0] = HERO_SKILL_PARIAH

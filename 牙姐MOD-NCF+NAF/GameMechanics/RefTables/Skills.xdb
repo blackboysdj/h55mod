@@ -890,15 +890,15 @@
 				</Texture>
 				<CommonTexture/>
 				<NameFileRef>
-					<Item href="/Text/Game/Skills/Common/SummoningMagic/1/Name.txt"/>
-					<Item href="/Text/Game/Skills/Common/SummoningMagic/2/Name.txt"/>
-					<Item href="/Text/Game/Skills/Common/SummoningMagic/3/Name.txt"/>
+					<Item href="/Text/TTH/Skills/SummoningMagic/Mastery/NameBasic.txt"/>
+					<Item href="/Text/TTH/Skills/SummoningMagic/Mastery/NameAdvanced.txt"/>
+					<Item href="/Text/TTH/Skills/SummoningMagic/Mastery/NameExpert.txt"/>
 				</NameFileRef>
 				<CommonNameFileRef href=""/>
 				<DescriptionFileRef>
-					<Item href="/Text/Game/Skills/Common/SummoningMagic/1/Description.txt"/>
-					<Item href="/Text/Game/Skills/Common/SummoningMagic/2/Description.txt"/>
-					<Item href="/Text/Game/Skills/Common/SummoningMagic/3/Description.txt"/>
+					<Item href="/Text/TTH/Skills/SummoningMagic/Mastery/DescBasic.txt"/>
+					<Item href="/Text/TTH/Skills/SummoningMagic/Mastery/DescAdvanced.txt"/>
+					<Item href="/Text/TTH/Skills/SummoningMagic/Mastery/DescExpert.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
 				<SkillType>SKILLTYPE_SKILL</SkillType>
@@ -10505,146 +10505,7 @@
 					<Item>SPELL_VAMPIRISM</Item>
 				</spellBuffs>
 				<BasicSkillID>HERO_SKILL_DEFENCE</BasicSkillID>
-				<SkillPrerequisites>
-					<Item>
-						<Class>HERO_CLASS_KNIGHT</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_PROTECTION</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_PALADIN</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_PROTECTION</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_RETRIBUTION</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_PROTECTION</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_HERETIC</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_PROTECTION</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_RANGER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_PROTECTION</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_WARDEN</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_PROTECTION</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_ENCHANTER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_PROTECTION</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_SORCERER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_PROTECTION</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_GATE_KEEPER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_PROTECTION</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_FLAMEKEEPERA</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_PROTECTION</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_ENGINEER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_PROTECTION</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_NECROMANCER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_PROTECTION</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_REAVER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_PROTECTION</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_WARLOCK</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_PROTECTION</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_BEASTMASTER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_PROTECTION</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_GUILDMASTER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_PROTECTION</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_SEER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_PROTECTION</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_WIZARD</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_PROTECTION</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_ELEMENTALIST</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_PROTECTION</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_DEMON_LORD</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_PROTECTION</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_DEATHKNIGHT</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_PROTECTION</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_RUNEMAGE</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_PROTECTION</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_BARBARIAN</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_PROTECTION</Item>
-						</dependenciesIDs>
-					</Item>
-				</SkillPrerequisites>
+				<SkillPrerequisites/>
 				<AIRacesValues>
 					<Haven>
 						<CommanderValue>0</CommanderValue>
@@ -12618,23 +12479,32 @@
 			<ID>HERO_SKILL_SUN_FIRE</ID>
 			<obj>
 				<Texture>
-					<Item href="/Textures/HeroScreen/Feats/Ranger/DestructiveMagic_SunFire_grey.(Texture).xdb#xpointer(/Texture)"/>
-					<Item href="/Textures/HeroScreen/Feats/Ranger/DestructiveMagic_SunFire.(Texture).xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/HeroScreen/Skills/AbsoluteHive.xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/HeroScreen/Skills/AbsoluteHive.xdb#xpointer(/Texture)"/>
 				</Texture>
 				<CommonTexture/>
 				<NameFileRef>
-					<Item href="/Text/Game/Skills/Common/DestructiveMagic/SunFire/Name.txt"/>
+					<Item href="/Text/TTH/Skills/SummoningMagic/120-SunFire/Name.txt"/>
 				</NameFileRef>
 				<CommonNameFileRef href=""/>
 				<DescriptionFileRef>
-					<Item href="/Text/Game/Skills/Common/DestructiveMagic/SunFire/Description.txt"/>
+					<Item href="/Text/TTH/Skills/SummoningMagic/120-SunFire/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
 				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
 				<HeroClass>HERO_CLASS_NONE</HeroClass>
 				<spellBuffs/>
-				<BasicSkillID>HERO_SKILL_DESTRUCTIVE_MAGIC</BasicSkillID>
-				<SkillPrerequisites/>
+				<BasicSkillID>HERO_SKILL_SUMMONING_MAGIC</BasicSkillID>
+				<SkillPrerequisites>
+					<Item>
+						<Class>HERO_CLASS_ENCHANTER</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_MASTER_OF_QUAKES</Item>
+							<Item>HERO_SKILL_DISTRACT</Item>
+							<Item>HERO_SKILL_RESISTANCE</Item>
+						</dependenciesIDs>
+					</Item>
+				</SkillPrerequisites>
 				<AIRacesValues>
 					<Haven>
 						<CommanderValue>1000</CommanderValue>
@@ -13304,14 +13174,6 @@
 							<Item>HERO_SKILL_RESISTANCE</Item>
 							<Item>HERO_SKILL_OFFENSIVE_FORMATION</Item>
 							<Item>HERO_SKILL_DEFENSIVE_FORMATION</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_ENCHANTER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_LUCKY_SPELLS</Item>
-							<Item>HERO_SKILL_ELITE_CASTERS</Item>
-							<Item>HERO_SKILL_MASTER_OF_WRATH</Item>
 						</dependenciesIDs>
 					</Item>
 				</SkillPrerequisites>

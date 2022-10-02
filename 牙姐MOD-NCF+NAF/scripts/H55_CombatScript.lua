@@ -1344,8 +1344,9 @@
 			print(itemUnit["strUnitName"].." death");
 			-- Skill
 				H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_DEATH_TREAD]['function'](getSide(itemUnit["iSide"], 1), itemUnit);
-			H55SMOD_MiddlewareListener['Adelaide']['function']['hero']('Adelaide', itemUnit["iSide"], itemUnit);
+				H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_SUN_FIRE]["function"]["mana"](itemUnit["iSide"], itemUnit);
 			
+			H55SMOD_MiddlewareListener['Adelaide']['function']['hero']('Adelaide', itemUnit["iSide"], itemUnit);
 			-- Haven
 				H55SMOD_MiddlewareListener["WarMachine"]["function"]["death"](itemUnit["iSide"], itemUnit);
 			-- Academy
@@ -1508,6 +1509,7 @@
 								H55SMOD_MiddlewareListener['Skill'][HERO_SKILL_PAYBACK]['function'](iSide, itemUnitLast, iLossManaPoints);
 								H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_REMOTE_CONTROL]["function"](iSide, itemUnitLast, iLossManaPoints);
 								H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_DEAD_LUCK]["function"]["product"](iSide, itemUnitLast, iLossManaPoints);
+								H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_SUN_FIRE]["function"]["product"](iSide, itemUnitLast, iLossManaPoints);
 							-- Artifact
 								H55SMOD_MiddlewareListener['Artifact'][ARTIFACT_MOONBLADE]['function'](iSide, itemUnitLast);
 							-- ArtifactSet
@@ -2382,6 +2384,7 @@
 						-- Stronghold
 						-- Skill
 							H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_DEAD_LUCK]["function"]["consume"](iSide, itemUnit);
+							H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_SUN_FIRE]["function"]["consume"](iSide, itemUnit);
 						-- Artifact
 						-- ArtifactSet
 						-- Creature
@@ -2822,7 +2825,11 @@
 							combatSetPause(1);
 							local iCurrentManaPre = GetUnitManaPoints(strHeroName);
 							for i, strCreatureTarget in arrUnitName do
-								if IsCombatUnit(strCreatureTarget) ~= nil	and GetCreatureNumber(strCreatureTarget) > 0 then
+								if IsCombatUnit(strCreatureTarget) ~= nil
+									and (
+										GetUnitType(strCreatureTarget) == ENUM_CATEGORY.CREATURE and GetCreatureNumber(strCreatureTarget) > 0
+										or GetUnitType(strCreatureTarget) == ENUM_CATEGORY.WARMACHINE
+									) then
 									startThread(Thread_Command_UnitCastAimedSpell_UseMana, strHeroName, SPELL_LIGHTNING_BOLT, strCreatureTarget);
 									sleep(20);
 									SetUnitManaPoints(strHeroName, iCurrentManaPre);
@@ -2941,7 +2948,18 @@
 			        local iRandom = TTHCS_COMMON.getRandom(iLenCreatureOpposite);
 			        local strCreature = arrCreatureOpposite[iRandom];
 			        local iSpellId = TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_DEAD_LUCK];
-			        TTHCS_THREAD.castAimedSpell(GetHero(iSide), iSpellId, {strCreature});
+			        if (iSpellId == SPELL_DISRUPTING_RAY or iSpellId == SPELL_PLAGUE)
+			        	and TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_MASTER_OF_SICKNESS] == 1 then
+			        	if iSpellId == SPELL_DISRUPTING_RAY then
+			        		iSpellId = SPELL_MASS_DISRUPTING_RAY;
+			        	end;
+			        	if iSpellId == SPELL_PLAGUE then
+			        		iSpellId = SPELL_MASS_PLAGUE;
+			        	end;
+				        TTHCS_THREAD.castAreaSpell(GetHero(iSide), iSpellId, {strCreature});
+			        else
+				        TTHCS_THREAD.castAimedSpell(GetHero(iSide), iSpellId, {strCreature});
+		        	end;
 			        local objCreature = geneUnitStatus(strCreature);
 			        objCreature["iAtb"] = 0;
 			        push(ListUnitSetATB, objCreature);
@@ -2955,6 +2973,78 @@
 		  end;
 		  H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_DEAD_LUCK]["function"]["consume"] = Events_MiddlewareListener_Implement_Skill_DeadLuck_Consume;
 	  
+		-- HERO_SKILL_SUN_FIRE 120 西莱纳的回响 
+		  H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_SUN_FIRE] = {};
+		  H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_SUN_FIRE]["function"] = {};
+		  H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_SUN_FIRE]["flag"] = {};
+		  H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_SUN_FIRE]["flag"][0] = TTHCS_ENUM.Yes;
+		  H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_SUN_FIRE]["flag"][1] = TTHCS_ENUM.Yes;
+			function Events_MiddlewareListener_Implement_Skill_SunFire_Product(iSide, itemUnitLast, iLossManaPoints)
+				if GetHero(iSide) ~= nil and GetHero(iSide) == itemUnitLast["strUnitName"]
+		      and TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_SUN_FIRE] ~= nil
+		      and TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_SUN_FIRE] > 0 then
+		    	H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_SUN_FIRE]["flag"][iSide] = TTHCS_ENUM.Yes;
+				end;
+			end;
+			H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_SUN_FIRE]["function"]["product"] = Events_MiddlewareListener_Implement_Skill_SunFire_Product;
+		  function Events_MiddlewareListener_Implement_Skill_SunFire_Consume(iSide, itemUnit)
+		  	local strHero = GetHero(iSide);
+		    if strHero ~= nil and strHero == itemUnit["strUnitName"]
+		      and TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_SUN_FIRE] == 1 then
+		      if H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_SUN_FIRE]["flag"][iSide] == TTHCS_ENUM.Yes then
+		      	H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_SUN_FIRE]["flag"][iSide] = TTHCS_ENUM.No;
+		      	local iCountHive = 0;
+		      	local strSide = "attacker";
+		      	if iSide == ENUM_SIDE.DEFENDER then
+		      		strSide = "defender";
+		      	end;
+		      	local arrSpellSpawn = GetSpellSpawns(iSide);
+		      	for i, strSpellSpawn in arrSpellSpawn do
+		      		if string.match(strSpellSpawn, "SPELL_SUMMON_HIVE") ~= nil then
+	      				iCountHive = iCountHive + 1;
+		      		end;
+		      	end;
+		      	local iMaxCountHive = 2;
+		      	if GetHeroName(strHero) == "Diraya" then
+		      		iMaxCountHive = 3;
+		      	end;
+		      	if iCountHive < iMaxCountHive then
+							local iBattleFieldSize = TTHCS_GLOBAL.getBattleFieldSize();
+							local itemBattleEffectField = TTHCS_TABLE.BattleEffectField[iBattleFieldSize];
+			      	local itemPosition = {};
+			    	  itemPosition["PosX"] = TTHCS_COMMON.getRandom(itemBattleEffectField["PosX"]["Max"] - itemBattleEffectField["PosX"]["Min"] + 1) + itemBattleEffectField["PosX"]["Min"];
+			    	  itemPosition["PosY"] = TTHCS_COMMON.getRandom(itemBattleEffectField["PosY"]["Max"] - itemBattleEffectField["PosY"]["Min"] + 1) + itemBattleEffectField["PosY"]["Min"];
+							local strCreature = TTHCS_THREAD.addCreature(iSide, CREATURE_PRESERVE_TOOL, 1, itemPosition["PosX"], itemPosition["PosY"]);
+							local objCreature = TTHCS_GLOBAL.geneUnitInfo(strCreature);
+							TTHCS_THREAD.removeCreature(strCreature);
+							TTHCS_THREAD.castAreaSpell2(strHero, SPELL_SUMMON_HIVE, objCreature["PosX"], objCreature["PosY"], TTHCS_ENUM.No);
+				      ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_SUN_FIRE]["Effect"], strHero, 5);
+				      itemUnit["iAtb"] = 1.25;
+				      push(ListUnitSetATB, itemUnit);
+				    else
+							local strHeroName = GetHeroName(strHero);
+    	    		local iRecoveryMana = TTHCS_COMMON.ceil(H55SMOD_HeroLevel[strHeroName] / 6);
+    	    		TTHCS_GLOBAL.setHeroMana(iSide, iRecoveryMana, TTHCS_ENUM.Yes);
+				      ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_SUN_FIRE]["Effect"], strHero, 5);
+		      	end;
+			    end;
+		    end;
+		  end;
+		  H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_SUN_FIRE]["function"]["consume"] = Events_MiddlewareListener_Implement_Skill_SunFire_Consume;
+			function Events_MiddlewareListener_Implement_Skill_SunFire_Mana(iSide, itemUnitDeath)
+				local strHero = GetHero(iSide);
+				if strHero ~= nil
+					and TTH_SKILL_EFFECT_COMBAT_HERO[iSide][HERO_SKILL_SUN_FIRE] == 1
+					and itemUnitDeath["iUnitCategory"] == ENUM_CATEGORY.SPELLSPAWN 
+					and string.match(itemUnitDeath["strUnitName"], "SPELL_SUMMON_HIVE") ~= nil then
+						local strHeroName = GetHeroName(strHero);
+						local iRecoveryMana = TTHCS_COMMON.ceil(H55SMOD_HeroLevel[strHeroName] / 6);
+						TTHCS_GLOBAL.setHeroMana(iSide, iRecoveryMana, TTHCS_ENUM.Yes);
+				    ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_SUN_FIRE]["Effect"], strHero, 5);
+				end;
+			end;
+			H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_SUN_FIRE]["function"]["mana"] = Events_MiddlewareListener_Implement_Skill_SunFire_Mana;
+
 	  -- HERO_SKILL_REMOTE_CONTROL 126 机械精通
 	  	H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_REMOTE_CONTROL] = {};
 	  	function Events_MiddlewareListener_Implement_Skill_RemoteControl(iSide, itemUnitLast, iLossManaPoints)
@@ -2965,6 +3055,7 @@
 	  					arrMachineCreatureType = TTHCS_TABLE.AcademyMachineCreature8Absolute;
 	  				end;
 	  				local arrCreature = GetCreatures(iSide);
+	  				local listCreatureInit = ObjSnapshotInit["Creatures"][iSide];
 	  				local strHero = GetHero(iSide);
 	  				local strHeroName = GetHeroName(strHero);
 	  				local iCreatureNumber = H55SMOD_HeroLevel[strHeroName];
@@ -2973,7 +3064,12 @@
 	  				end;
 	  				for i, strCreature in arrCreature do
 	  					if contains(arrMachineCreatureType, GetCreatureType(strCreature)) ~= nil then
-	  						TTHCS_THREAD.castAimedSpell8Tool(iSide, CREATURE_ACADEMY_TOOL, iCreatureNumber, SPELL_ABILITY_REPAIR, strCreature);
+	  						for j, itemCreatureInit in listCreatureInit do
+	  							if strCreature == itemCreatureInit["strUnitName"] and GetCreatureNumber(strCreature) < itemCreatureInit["iUnitNumber"] then
+	  								TTHCS_THREAD.castAimedSpell8Tool(iSide, CREATURE_ACADEMY_TOOL, iCreatureNumber, SPELL_ABILITY_REPAIR, strCreature);
+	  								break;
+	  							end;
+	  						end;
 	  					end;
 	  				end;
 	  				ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_REMOTE_CONTROL]["Effect"], strHero, 5);
@@ -3047,9 +3143,8 @@
 								H55SMOD_MiddlewareListener["Skill"][HERO_SKILL_ELEMENTAL_OVERKILL]["flag"] = TTHCS_ENUM.No;
 								TTHCS_THREAD.castGlobalSpell8Tool(iSide, CREATURE_ACADEMY_TOOL, 100000, SPELL_ABILITY_POWER_FEED);
 								local iSpellPower = TTH_ATTRIBUTE_EFFECT_COMBAT_HERO[iSide][STAT_SPELL_POWER];
-								print("iSpellPower")
-								print(iSpellPower)
-								SetUnitManaPoints(strHero, iSpellPower * 15);
+								local iManaPoint = TTHCS_COMMON.floor(iSpellPower * 7.5);
+								SetUnitManaPoints(strHero, iManaPoint);
 								ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_ELEMENTAL_OVERKILL]["Effect"], strHero, 5);
 								sleep(50);
 							end;
@@ -4648,10 +4743,16 @@
 							itemCreatureEffect["iAtb"] = 1.25;
 							push(ListUnitSetATB, itemCreatureEffect);
 							if TTH_SKILL_UPGRADE_SHANTIRI_COMBAT_HERO[iSide] == 1 then
-							  startThread(TTHCS_THREAD.addCreature2, iSide, itemCreatureEffect["iUnitType"], itemCreatureEffect["iUnitEffectNumber"], itemCreatureEffect["iPositionX"], itemCreatureEffect["iPositionY"]);
+							  local strCreatureAdd = startThread(TTHCS_THREAD.addCreature, iSide, itemCreatureEffect["iUnitType"], itemCreatureEffect["iUnitEffectNumber"], itemCreatureEffect["iPositionX"], itemCreatureEffect["iPositionY"]);
+							  local itemCreatureAdd = geneUnitStatus(strCreatureAdd);
+								itemCreatureAdd["iAtb"] = 1.25;
+								push(ListUnitSetATB, itemCreatureAdd);
 							  sleep(50);
 							elseif TTH_SKILL_UPGRADE_MASTERY_COMBAT_HERO[iSide] == 1 then
-							  startThread(TTHCS_THREAD.summonCreature2, iSide, itemCreatureEffect["iUnitType"], itemCreatureEffect["iUnitEffectNumber"], itemCreatureEffect["iPositionX"], itemCreatureEffect["iPositionY"]);
+							  local strCreatureSummon = startThread(TTHCS_THREAD.summonCreature, iSide, itemCreatureEffect["iUnitType"], itemCreatureEffect["iUnitEffectNumber"], itemCreatureEffect["iPositionX"], itemCreatureEffect["iPositionY"]);
+						    local itemCreatureSummon = geneUnitStatus(strCreatureSummon);
+						  	itemCreatureSummon["iAtb"] = 1.25;
+						  	push(ListUnitSetATB, itemCreatureSummon);
 							  sleep(50);
 							end;
 							ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], strCreatureEffect, 5);

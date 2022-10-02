@@ -21835,6 +21835,12 @@
                   [1] = HERO_SKILL_MASTER_OF_ANIMATION
                 }
               }
+              , [120] = { -- 西莱纳的回响
+                ["Id"] = HERO_SKILL_SUN_FIRE
+                , ["Text"] = "/Text/TTH/Skills/SummoningMagic/120-SunFire/Name.txt"
+                , ["IsAbsolute"] = TTH_ENUM.Yes
+              }
+
             }
           }
         -- 破坏魔法

@@ -104,7 +104,7 @@
 		<Item href="Skills/007-Defence/Detail/PerkPageX.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<Item href="Skills/007-Defence/Detail/PerkPageX1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<Item href="Skills/007-Defence/Detail/PerkPageX2.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="Skills/007-Defence/Detail/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Skills/007-Defence/Detail/PerkPageX3.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
 
 		<Item href="Skills/008-Sorcery/Page.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<Item href="Skills/008-Sorcery/Detail/PerkPage1.(WindowSimple).xdb#xpointer(/WindowSimple)"/>

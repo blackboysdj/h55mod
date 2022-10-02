@@ -1,3 +1,5 @@
+doFile("/scripts/H55-Library.lua")
+
 HUMAN = 0
 COMPUTER = 1
 
@@ -69,6 +71,8 @@ HERO_SKILL_FOREST_GUARD_EMBLEM = 115;
 HERO_SKILL_SORCERY = 8;
 HERO_SKILL_REMOTE_CONTROL = 126;
 HERO_SKILL_MARCH_OF_THE_MACHINES = 125;
+HERO_SKILL_MASTER_OF_SICKNESS = 48;
+HERO_SKILL_SUN_FIRE = 120;
 
 MAX_MANA = 1000;
 
@@ -201,6 +205,8 @@ TTH_SKILL_EFFECT_COMBAT = {
     , [32] = HERO_SKILL_SORCERY
     , [33] = HERO_SKILL_REMOTE_CONTROL
     , [34] = HERO_SKILL_MARCH_OF_THE_MACHINES
+    , [35] = HERO_SKILL_MASTER_OF_SICKNESS
+    , [36] = HERO_SKILL_SUN_FIRE
 };
 TTH_SKILL_EFFECT_COMBAT_ONCE = {
 };
@@ -1216,6 +1222,7 @@ end;
   CREATURE_200 = 200
   CREATURE_FORTRESS_TOOL = 200
   CREATURE_201 = 201
+  CREATURE_PRESERVE_TOOL = 201
   CREATURE_202 = 202
   CREATURE_203 = 203
   CREATURE_204 = 204
@@ -2705,6 +2712,10 @@ end;
           ["DebugText"] = "SPELL_PLAGUE"
           , ["SignText"] = "/Text/TTH/Spell/CombatSpells/014-Plague/Text.txt"
         }
+        , [SPELL_MASS_PLAGUE] = {
+          ["DebugText"] = "SPELL_MASS_PLAGUE"
+          , ["SignText"] = "/Text/TTH/Spell/CombatSpells/214-MassPlague/Text.txt"
+        }
         , [SPELL_CURSE] = {
           ["DebugText"] = "SPELL_CURSE"
           , ["SignText"] = "/Text/TTH/Spell/CombatSpells/011-Curse/Text.txt"
@@ -2712,6 +2723,10 @@ end;
         , [SPELL_DISRUPTING_RAY] = {
           ["DebugText"] = "SPELL_DISRUPTING_RAY"
           , ["SignText"] = "/Text/TTH/Spell/CombatSpells/013-DisruptingRay/Text.txt"
+        }
+        , [SPELL_MASS_DISRUPTING_RAY] = {
+          ["DebugText"] = "SPELL_MASS_DISRUPTING_RAY"
+          , ["SignText"] = "/Text/TTH/Spell/CombatSpells/211-MassDisruptingRay/Text.txt"
         }
         , [SPELL_WEAKNESS] = {
           ["DebugText"] = "SPELL_WEAKNESS"
@@ -2736,6 +2751,10 @@ end;
         , [SPELL_ABILITY_AVATAR_OF_DEATH] = {
           ["DebugText"] = "SPELL_ABILITY_AVATAR_OF_DEATH"
           , ["SignText"] = "/Text/TTH/Spell/CombatSpells/200-AvatarOfDeath/Text.txt"
+        }
+        , [SPELL_SUMMON_HIVE] = {
+          ["DebugText"] = "SPELL_SUMMON_HIVE"
+          , ["SignText"] = "/Text/TTH/Spell/CombatSpells/283-SummonHive/Text.txt"
         }
       }
 
@@ -12345,7 +12364,6 @@ end;
         , CREATURE_SNOW_APE
         , CREATURE_Itil_Unicorn
       };
-
     -- 森林远程生物
       TTHCS_TABLE.PreserveRangeCreature = {
         CREATURE_WOOD_ELF
@@ -12751,6 +12769,9 @@ end;
       function TTHCS_THREAD.unitCastAimedSpell(strCaster, iSpellId, strTarget)
         UnitCastAimedSpell(strCaster, iSpellId, strTarget);
       end;
+      function TTHCS_THREAD.unitCastAreaSpell(strCaster, iSpellId, iPosX, iPosY)
+        UnitCastAreaSpell(strCaster, iSpellId, iPosX, iPosY);
+      end;
       function TTHCS_THREAD.unitCastGlobalSpell(strCaster, iSpellId)
         UnitCastGlobalSpell(strCaster, iSpellId);
       end;
@@ -12794,6 +12815,41 @@ end;
           end;
         end;
         ShowFlyingSign(TTHCS_TABLE.Magic[iSpellId]["SignText"], strCaster, 5);
+        sleep(50);
+        SetUnitManaPoints(strCaster, iCurrentMana);
+        repeat sleep(1); until GetUnitManaPoints(strCaster) == iCurrentMana;
+        combatSetPause(nil);
+      end;
+
+    -- 施放范围魔法 
+      function TTHCS_THREAD.castAreaSpell(strCaster, iSpellId, listTarget)
+        combatSetPause(1);
+        local iCurrentMana = GetUnitManaPoints(strCaster);
+        SetUnitManaPoints(strCaster, TTHCS_FINAL.MAX_MANA);
+        repeat sleep(1); until GetUnitManaPoints(strCaster) == TTHCS_FINAL.MAX_MANA;
+        for i, strTarget in listTarget do
+          if TTHCS_GLOBAL.checkCombatCreature(strTarget) == TTHCS_ENUM.Yes then
+            local itemTarget = TTHCS_GLOBAL.geneUnitInfo(strTarget);
+            startThread(TTHCS_THREAD.unitCastAreaSpell, strCaster, iSpellId, itemTarget["PosX"], itemTarget["PosY"]);
+            print(strCaster.." cast "..TTHCS_TABLE.Magic[iSpellId]["DebugText"].." at "..itemTarget["PosX"].."-"..itemTarget["PosY"]);
+          end;
+        end;
+        ShowFlyingSign(TTHCS_TABLE.Magic[iSpellId]["SignText"], strCaster, 5);
+        sleep(50);
+        SetUnitManaPoints(strCaster, iCurrentMana);
+        repeat sleep(1); until GetUnitManaPoints(strCaster) == iCurrentMana;
+        combatSetPause(nil);
+      end;
+      function TTHCS_THREAD.castAreaSpell2(strCaster, iSpellId, iPosX, iPosY, bShowSign)
+        combatSetPause(1);
+        local iCurrentMana = GetUnitManaPoints(strCaster);
+        SetUnitManaPoints(strCaster, TTHCS_FINAL.MAX_MANA);
+        repeat sleep(1); until GetUnitManaPoints(strCaster) == TTHCS_FINAL.MAX_MANA;
+        startThread(TTHCS_THREAD.unitCastAreaSpell, strCaster, iSpellId, iPosX, iPosY);
+        print(strCaster.." cast "..TTHCS_TABLE.Magic[iSpellId]["DebugText"].." at "..iPosX.."-"..iPosY);
+        if bShowSign == TTHCS_ENUM.Yes then
+          ShowFlyingSign(TTHCS_TABLE.Magic[iSpellId]["SignText"], strCaster, 5);
+        end;
         sleep(50);
         SetUnitManaPoints(strCaster, iCurrentMana);
         repeat sleep(1); until GetUnitManaPoints(strCaster) == iCurrentMana;
@@ -13215,6 +13271,9 @@ end;
 
       TTHCS_PATH["Perk"][HERO_SKILL_REMOTE_CONTROL] = {};
       TTHCS_PATH["Perk"][HERO_SKILL_REMOTE_CONTROL]["Effect"] = "/Text/TTH/Skills/Leadership/115-ForestGuardEmblem/Combat/Effect.txt";
+
+      TTHCS_PATH["Perk"][HERO_SKILL_SUN_FIRE] = {};
+      TTHCS_PATH["Perk"][HERO_SKILL_SUN_FIRE]["Effect"] = "/Text/TTH/Skills/SummoningMagic/120-SunFire/Combat/Effect.txt";
 
     TTHCS_PATH["Mastery"] = {};
       TTHCS_PATH["Mastery"][HERO_SKILL_WAR_MACHINES] = {};

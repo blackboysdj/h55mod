@@ -2979,7 +2979,7 @@
 		<Item>
 			<ID>ARTIFACT_EIGHTFOLD</ID>
 			<obj>
-				<NameFileRef href="/Text/TTH/Artifact/125-Eightfold/Name.txt"/>
+				<NameFileRef href="/Text/TTH/Artifact/125-Eightfold/Text.txt"/>
 				<DescriptionFileRef href="/Text/TTH/Artifact/125-Eightfold/Description.txt"/>
 				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
 				<Type>ARTF_CLASS_RELIC</Type>

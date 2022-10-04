@@ -12501,7 +12501,7 @@
 						<dependenciesIDs>
 							<Item>HERO_SKILL_MASTER_OF_QUAKES</Item>
 							<Item>HERO_SKILL_DISTRACT</Item>
-							<Item>HERO_SKILL_RESISTANCE</Item>
+							<Item>HERO_SKILL_CHAOTIC_SPELLS</Item>
 						</dependenciesIDs>
 					</Item>
 				</SkillPrerequisites>

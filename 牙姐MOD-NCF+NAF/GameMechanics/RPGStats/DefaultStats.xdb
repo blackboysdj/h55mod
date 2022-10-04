@@ -1839,8 +1839,8 @@
 						<PerDividedLevel>1</PerDividedLevel>
 					</Suserain_CostDiscount>
 				</Training>
-				<Prayer_DefenceBonus>4</Prayer_DefenceBonus>
-				<Prayer_InitiativeBonus>0.4</Prayer_InitiativeBonus>
+				<Prayer_DefenceBonus>3</Prayer_DefenceBonus>
+				<Prayer_InitiativeBonus>0.3</Prayer_InitiativeBonus>
 				<WhiteKnight_PrayerMultiplier>1.5</WhiteKnight_PrayerMultiplier>
 				<Encourage_ATBIncrease>0.33</Encourage_ATBIncrease>
 				<Retribution_DamageBonusPerMorale>0.05</Retribution_DamageBonusPerMorale>
@@ -2761,33 +2761,33 @@
 				<Power>10000</Power>
 				<Initiative>
 					<Item>
-						<Base>2</Base>
-						<PerPower>0.25</PerPower>
+						<Base>5</Base>
+						<PerPower>0.1</PerPower>
 					</Item>
 					<Item>
 						<Base>5</Base>
-						<PerPower>0.25</PerPower>
+						<PerPower>0.2</PerPower>
 					</Item>
 					<Item>
-						<Base>5</Base>
-						<PerPower>0.25</PerPower>
+						<Base>7.5</Base>
+						<PerPower>0.2</PerPower>
 					</Item>
 					<Item>
 						<Base>10</Base>
-						<PerPower>0.25</PerPower>
+						<PerPower>0.4</PerPower>
 					</Item>
 				</Initiative>
 				<Health>
 					<Item>
-						<Base>10</Base>
+						<Base>100</Base>
 						<PerPower>0</PerPower>
 					</Item>
 					<Item>
-						<Base>25</Base>
+						<Base>100</Base>
 						<PerPower>0</PerPower>
 					</Item>
 					<Item>
-						<Base>50</Base>
+						<Base>100</Base>
 						<PerPower>0</PerPower>
 					</Item>
 					<Item>

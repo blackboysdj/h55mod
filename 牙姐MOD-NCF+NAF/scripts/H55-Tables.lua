@@ -992,6 +992,33 @@
         PERK_MASTER_OF_QUAKES
       }
     }
+    -- 高级召唤 + 西莱纳的回响 = 召唤蜂窝
+    , {
+      ["MAGIC"] = TTH_TABLE_SPELL[SPELL_SUMMON_HIVE]
+      , ["SKILL_MASTERY"] = {
+        {
+          ["MASTERY"] = SKILL_SUMMONING_MAGIC
+          , ["LEVEL"] = 2
+        }
+      }
+      , ["SKILL_PERK"] = {
+        HERO_SKILL_SUN_FIRE
+      }
+    }
+    -- 专家召唤 + 西莱纳的回响 + 符咒大师 = 召唤凤凰
+    , {
+      ["MAGIC"] = TTH_TABLE_SPELL[SPELL_CONJURE_PHOENIX]
+      , ["SKILL_MASTERY"] = {
+        {
+          ["MASTERY"] = SKILL_SUMMONING_MAGIC
+          , ["LEVEL"] = 2
+        }
+      }
+      , ["SKILL_PERK"] = {
+        HERO_SKILL_SUN_FIRE
+        , PERK_MASTER_OF_CREATURES
+      }
+    }
     -- 专家召唤 + 符咒大师 = 召唤元素
     , {
       ["MAGIC"] = TTH_TABLE_SPELL[SPELL_SUMMON_ELEMENTALS]
@@ -10283,9 +10310,6 @@
         }
         , [TTH_ENUM.FuncLevelUp] = {
           -- 其他
-            ["Vinrael"] = {
-              [TTH_ENUM.FuncAlways] = "TTH_TALENT.levelUpVinrael"
-            }
         }
         , [TTH_ENUM.FuncCombatResult] = {
           -- 转化

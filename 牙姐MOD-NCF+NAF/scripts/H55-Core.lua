@@ -2004,7 +2004,6 @@ doFile("/scripts/H55-Settings.lua");
 						GiveHeroSkill(strHero, HERO_SKILL_SORCERY);
 						GiveHeroSkill(strHero, HERO_SKILL_SORCERY);
 						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
-						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
 						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_MASTER_OF_QUAKES);
 						sleep(1);
@@ -2012,9 +2011,7 @@ doFile("/scripts/H55-Settings.lua");
 						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_DISTRACT);
 						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_LUCK_OF_THE_BARBARIAN);
-						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_RESISTANCE);
+						GiveHeroSkill(strHero, HERO_SKILL_CHAOTIC_SPELLS);
 						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_SUN_FIRE);
 					end;
@@ -12161,12 +12158,9 @@ doFile("/scripts/H55-Settings.lua");
       -- Elleshar 036 温利尔
       	function TTH_TALENT.calcTownValueElleshar(strHero, arrTown)
 					TTH_MAIN.debug("TTH_TALENT.calcTownValueElleshar", nil, strHero, arrTown);
-
 					local iTownValue = 0;
 					local strHeroElleshar = "Elleshar";
-					local iPlayer = TTH_GLOBAL.GetObjectOwner(strHero);
-					local arrHero = GetPlayerHeroes(iPlayer);
-					if contains(arrHero, strHeroElleshar) ~= nil then
+					if strHero == strHeroElleshar then
 						local iHeroLevel = GetHeroLevel(strHeroElleshar);
 						local iHeroKnowledge = GetHeroStat(strHeroElleshar, STAT_KNOWLEDGE);
 						iTownValue = iHeroLevel + iHeroKnowledge;
@@ -12218,14 +12212,6 @@ doFile("/scripts/H55-Settings.lua");
       		};
     			TTH_GLOBAL.sign(strHero, strPathMain);
       	end;
-
-			-- Vinrael 艾丽莎
-				function TTH_TALENT.levelUpVinrael(strHero)
-					local iPlayer = TTH_GLOBAL.GetObjectOwner(strHero);
-					TTH_MAIN.debug("TTH_TALENT.levelUpVinrael", iPlayer, strHero);
-
-					ChangeHeroStat(strHero, STAT_MANA_POINTS, TTH_FINAL.NUM_MAX);
-				end;
 
 		-- Academy
 			-- Isher 043 拉扎克

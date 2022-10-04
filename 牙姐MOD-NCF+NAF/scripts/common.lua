@@ -12494,6 +12494,15 @@ end;
         , SPELL_BLIND
       };
 
+    -- 战场开始时有特殊行动的英雄
+      TTHCS_TABLE.CombatStartSpecialHero = {
+        "Timerkhan"
+        , "RedHeavenHero05"
+        , "Arniel"
+        , "Orlando2"
+        , "Hero1"
+      }
+
   TTHCS_COMMON = {};
     -- 向下取整
       function TTHCS_COMMON.floor(n)
@@ -12779,7 +12788,6 @@ end;
     -- 临时工具单位
       function TTHCS_THREAD.castAimedSpell8Tool(iSide, iCreatureId, iCreatureNumber, iSpellId, strTarget)
         if TTHCS_GLOBAL.checkCombatCreature(strTarget) == TTHCS_ENUM.Yes then
-          combatSetPause(1);
           local iPositionX, iPositionY = TTHCS_GLOBAL.getTempPosition4Caster(iSide);
           local strCaster = TTHCS_THREAD.addCreature(iSide, iCreatureId, iCreatureNumber, iPositionX, iPositionY);
           if TTHCS_GLOBAL.checkCombatCreature(strCaster) == TTHCS_ENUM.Yes then
@@ -12787,11 +12795,9 @@ end;
             sleep(50);
             TTHCS_THREAD.removeCreature(strCaster);
           end;
-          combatSetPause(nil);
         end;
       end;
       function TTHCS_THREAD.castGlobalSpell8Tool(iSide, iCreatureId, iCreatureNumber, iSpellId)
-        combatSetPause(1);
         local iPositionX, iPositionY = TTHCS_GLOBAL.getTempPosition4Caster(iSide);
         local strCaster = TTHCS_THREAD.addCreature(iSide, iCreatureId, iCreatureNumber, iPositionX, iPositionY);
         if TTHCS_GLOBAL.checkCombatCreature(strCaster) == TTHCS_ENUM.Yes then
@@ -12799,12 +12805,10 @@ end;
           sleep(50);
           TTHCS_THREAD.removeCreature(strCaster);
         end;
-        combatSetPause(nil);
       end;
 
     -- 施放单体魔法
       function TTHCS_THREAD.castAimedSpell(strCaster, iSpellId, listTarget)
-        combatSetPause(1);
         local iCurrentMana = GetUnitManaPoints(strCaster);
         SetUnitManaPoints(strCaster, TTHCS_FINAL.MAX_MANA);
         repeat sleep(1); until GetUnitManaPoints(strCaster) == TTHCS_FINAL.MAX_MANA;
@@ -12818,12 +12822,10 @@ end;
         sleep(50);
         SetUnitManaPoints(strCaster, iCurrentMana);
         repeat sleep(1); until GetUnitManaPoints(strCaster) == iCurrentMana;
-        combatSetPause(nil);
       end;
 
     -- 施放范围魔法 
-      function TTHCS_THREAD.castAreaSpell(strCaster, iSpellId, listTarget)
-        combatSetPause(1);
+      function TTHCS_THREAD.castAreaSpell8Creature4List(strCaster, iSpellId, listTarget)
         local iCurrentMana = GetUnitManaPoints(strCaster);
         SetUnitManaPoints(strCaster, TTHCS_FINAL.MAX_MANA);
         repeat sleep(1); until GetUnitManaPoints(strCaster) == TTHCS_FINAL.MAX_MANA;
@@ -12838,10 +12840,8 @@ end;
         sleep(50);
         SetUnitManaPoints(strCaster, iCurrentMana);
         repeat sleep(1); until GetUnitManaPoints(strCaster) == iCurrentMana;
-        combatSetPause(nil);
       end;
-      function TTHCS_THREAD.castAreaSpell2(strCaster, iSpellId, iPosX, iPosY, bShowSign)
-        combatSetPause(1);
+      function TTHCS_THREAD.castAreaSpell8Position(strCaster, iSpellId, iPosX, iPosY, bShowSign)
         local iCurrentMana = GetUnitManaPoints(strCaster);
         SetUnitManaPoints(strCaster, TTHCS_FINAL.MAX_MANA);
         repeat sleep(1); until GetUnitManaPoints(strCaster) == TTHCS_FINAL.MAX_MANA;
@@ -12853,12 +12853,10 @@ end;
         sleep(50);
         SetUnitManaPoints(strCaster, iCurrentMana);
         repeat sleep(1); until GetUnitManaPoints(strCaster) == iCurrentMana;
-        combatSetPause(nil);
       end;
 
     -- 施放群体魔法
       function TTHCS_THREAD.castGlobalSpell(strCaster, iSpellId)
-        combatSetPause(1);
         local iCurrentMana = GetUnitManaPoints(strCaster);
         SetUnitManaPoints(strCaster, TTHCS_FINAL.MAX_MANA);
         repeat sleep(1); until GetUnitManaPoints(strCaster) == TTHCS_FINAL.MAX_MANA;
@@ -12868,7 +12866,6 @@ end;
         sleep(50);
         SetUnitManaPoints(strCaster, iCurrentMana);
         repeat sleep(1); until GetUnitManaPoints(strCaster) == iCurrentMana;
-        combatSetPause(nil);
       end;
 
     -- 添加生物
@@ -13258,6 +13255,9 @@ end;
 
       TTHCS_PATH["Talent"]["Kraal"] = {};
       TTHCS_PATH["Talent"]["Kraal"]["Effect"] = "/Text/TTH/Heroes/Specializations/Stronghold/146-Kraal/Combat/Effect.txt";
+
+      TTHCS_PATH["Talent"]["Vaniel"] = {};
+      TTHCS_PATH["Talent"]["Vaniel"]["Effect"] = "/Text/TTH/Heroes/Specializations/Preserve/038-Vaniel/Combat/Effect.txt";
 
     TTHCS_PATH["Perk"] = {};
       TTHCS_PATH["Perk"][HERO_SKILL_SEAL_OF_PROTECTION] = {};

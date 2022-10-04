@@ -118,7 +118,6 @@ TTH_TABLE.Artifacts4Map10W = {
     , [12] = ARTIFACT_BOOTS_OF_INTERFERENCE
     , [13] = ARTIFACT_RIGID_MANTLE
     , [14] = ARTIFACT_BEARHIDE_WRAPS
-    , [15] = ARTIFACT_RING_OF_UNSUMMONING
   }
   , [2] = {
     [0] = ARTIFACT_TITANS_TRIDENT
@@ -249,8 +248,8 @@ function TTH_MAP10W.initArtifact(iPlayer)
 				iArtifactId = TTH_TABLE.Artifacts4Map10W[iLevel][iRandom];
 			end;
 			TTH_VARI.filterRepeatArtifact410W[iLevel] = TTH_COMMON.push(TTH_VARI.filterRepeatArtifact410W[iLevel], iArtifactId);
-			local iPosXGene = TTH_TABLE.positionArtifact410W[iPlayer]["PosX"] + (i - 1) * 3;
-			local iPosYGene = TTH_TABLE.positionArtifact410W[iPlayer]["PosY"] - (iLevel - 1) * 3;
+			local iPosXGene = TTH_TABLE.positionArtifact410W[iPlayer]["PosX"] + (i - 1) * 2;
+			local iPosYGene = TTH_TABLE.positionArtifact410W[iPlayer]["PosY"] - (iLevel - 1) * 2;
 			CreateArtifact("", iArtifactId, iPosXGene, iPosYGene, 0);
 		end;
 	end;
@@ -638,9 +637,7 @@ function TTH_MAP10W.initArmy(iPlayer)
     end;
     SetObjectDwellingCreatures(strSubTown, objCreature4SubTown["CreatureId"], 0);
     SetObjectDwellingCreatures(strRandomTown, objCreature4RandomTown["CreatureId"], 0);
-    if iMainTownRace == TOWN_PRESERVE then
-      AddObjectCreatures(strAvenger, objCreature4OppositeTown["CreatureId"], objCreature4OppositeTown["CreatureGrowth"] * 2);
-    end;
+    AddObjectCreatures(strAvenger, objCreature4OppositeTown["CreatureId"], objCreature4OppositeTown["CreatureGrowth"] * 2);
   end;
 end;
 

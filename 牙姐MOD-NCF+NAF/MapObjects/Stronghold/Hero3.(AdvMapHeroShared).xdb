@@ -37,8 +37,8 @@
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_DEMONIC_RAGE</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Stronghold55/Blooddrinker/Name.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Stronghold55/Blooddrinker/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Stronghold/145-Hero3/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Stronghold/145-Hero3/Description.txt"/>
 	<SpecializationIcon href="/UI/H5A2/Icons/Heroes_Specializations/Blooddrinker.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/UI/H5A2/Icons/Heroes/Portrets128x128/Stronghold_Garuna.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>
@@ -65,9 +65,9 @@
 			<Item>HERO_SKILL_FRENZY</Item>
 		</perkIDs>
 		<spellIDs/>
-		<Ballista>false</Ballista>
+		<Ballista>true</Ballista>
 		<FirstAidTent>false</FirstAidTent>
-		<AmmoCart>true</AmmoCart>
+		<AmmoCart>false</AmmoCart>
 		<FavoriteEnemies/>
 		<TalismanLevel>0</TalismanLevel>
 	</Editable>

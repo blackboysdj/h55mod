@@ -2,22 +2,30 @@
 <WindowSimpleShared ObjectRecordID="1000326">
 	<Crap>false</Crap>
 	<Children>
-		<Item href="006-Inferno/Detail/016-Inferno1/Class.(WindowTextView).xdb#xpointer(/WindowTextView)"/>
-		<Item href="006-Inferno/Detail/016-Inferno1/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="006-Inferno/Detail/016-Inferno1/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="006-Inferno/Detail/016-Inferno1/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="006-Inferno/Detail/016-Inferno1/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="006-Inferno/Detail/016-Inferno1/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<!-- <Item href="006-Inferno/Detail/016-Inferno1/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="006-Inferno/Detail/016-Inferno1/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="006-Inferno/Detail/017-Inferno2/Class.(WindowTextView).xdb#xpointer(/WindowTextView)"/> -->
-		<!-- <Item href="006-Inferno/Detail/017-Inferno2/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="006-Inferno/Detail/017-Inferno2/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="006-Inferno/Detail/017-Inferno2/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="006-Inferno/Detail/017-Inferno2/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="006-Inferno/Detail/017-Inferno2/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="006-Inferno/Detail/017-Inferno2/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="006-Inferno/Detail/017-Inferno2/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
+		<Item href="006-Inferno/Detail/016-GateKeeper/Class.(WindowTextView).xdb#xpointer(/WindowTextView)"/>
+		<Item href="006-Inferno/Detail/016-GateKeeper/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="006-Inferno/Detail/016-GateKeeper/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="006-Inferno/Detail/016-GateKeeper/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="006-Inferno/Detail/016-GateKeeper/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="006-Inferno/Detail/016-GateKeeper/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<!-- <Item href="006-Inferno/Detail/016-GateKeeper/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
+		<!-- <Item href="006-Inferno/Detail/016-GateKeeper/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
+		<Item href="006-Inferno/Detail/017-DemonLord/Class.(WindowTextView).xdb#xpointer(/WindowTextView)"/>
+		<Item href="006-Inferno/Detail/017-DemonLord/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="006-Inferno/Detail/017-DemonLord/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="006-Inferno/Detail/017-DemonLord/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="006-Inferno/Detail/017-DemonLord/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="006-Inferno/Detail/017-DemonLord/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<!-- <Item href="006-Inferno/Detail/017-DemonLord/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
+		<!-- <Item href="006-Inferno/Detail/017-DemonLord/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
+		<Item href="006-Inferno/Detail/018-Sorcerer/Class.(WindowTextView).xdb#xpointer(/WindowTextView)"/>
+		<Item href="006-Inferno/Detail/018-Sorcerer/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="006-Inferno/Detail/018-Sorcerer/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="006-Inferno/Detail/018-Sorcerer/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="006-Inferno/Detail/018-Sorcerer/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="006-Inferno/Detail/018-Sorcerer/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<!-- <Item href="006-Inferno/Detail/018-Sorcerer/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
+		<!-- <Item href="006-Inferno/Detail/018-Sorcerer/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
 	</Children>
 	<Background/>
 	<Foreground/>

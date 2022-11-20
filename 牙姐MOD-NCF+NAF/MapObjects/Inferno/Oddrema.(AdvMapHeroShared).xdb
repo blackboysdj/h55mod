@@ -29,11 +29,11 @@
 	<RazedStatic/>
 	<Icon128/>
 	<InternalName>Oddrema</InternalName>
-	<Class>HERO_CLASS_DEMON_LORD</Class>
+	<Class>HERO_CLASS_GATE_KEEPER</Class>
 	<Specialization>HERO_SPEC_SUCCUBUSES</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_GATING</SkillID>
+		<SkillID>HERO_SKILL_OFFENCE</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Inferno/109-Oddrema/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Inferno/109-Oddrema/Description.txt"/>

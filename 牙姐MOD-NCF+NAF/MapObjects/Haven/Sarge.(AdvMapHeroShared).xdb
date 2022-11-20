@@ -35,8 +35,8 @@
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_TRAINING</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Haven55/Jouster/Name.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Haven55/Jouster/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Heaven/005-Sarge/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Heaven/005-Sarge/Description.txt"/>
 	<SpecializationIcon href="/Textures/HeroScreen/Specializations/Haven/Jouster.xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Heaven/Heaven_Klaus_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>

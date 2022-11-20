@@ -260,7 +260,7 @@ end
 
 -- 多人游戏，单例模式校验
 	function dealSingleton4MultiPlayer()
-		print("dealSingleton4MultiPlayer-1")
-		doFile('/scripts/H55_CombatScript.lua');
+		print("dealSingleton4MultiPlayer-main")
+		doFile("/scripts/TTH_CombatCore.lua");
 	end;
 	dealSingleton4MultiPlayer();

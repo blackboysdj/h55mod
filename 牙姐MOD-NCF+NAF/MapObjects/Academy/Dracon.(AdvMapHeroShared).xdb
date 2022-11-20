@@ -33,7 +33,7 @@
 	<Specialization>HERO_SPEC_MAGES</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_SORCERY</SkillID>
+		<SkillID>HERO_SKILL_ARTIFICIER</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Academy/045-Dracon/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Academy/045-Dracon/Description.txt"/>
@@ -56,11 +56,11 @@
 		<skills>
 			<Item>
 				<Mastery>MASTERY_BASIC</Mastery>
-				<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
+				<SkillID>HERO_SKILL_SORCERY</SkillID>
 			</Item>
 		</skills>
 		<perkIDs>
-			<Item>HERO_SKILL_ENCOURAGE</Item>
+			<Item>HERO_SKILL_ELITE_CASTERS</Item>
 		</perkIDs>
 		<spellIDs>
 			<Item>SPELL_STONESKIN</Item>

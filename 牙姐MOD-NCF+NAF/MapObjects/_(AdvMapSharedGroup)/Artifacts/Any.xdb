@@ -54,15 +54,16 @@
 		<Item href="/MapObjects/Artifacts/ResCrystal.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
 		<Item href="/MapObjects/Artifacts/ResGem.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
 		<Item href="/MapObjects/Artifacts/ResMercury.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
-		<Item href="/MapObjects/Artifacts/LegionT1.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
-		<Item href="/MapObjects/Artifacts/LegionT2.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+		<Item href="/MapObjects/Artifacts/103-DimensionDoor.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+		<Item href="/MapObjects/Artifacts/104-LegionBasic.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
 		<Item href="/MapObjects/Artifacts/LegionT3.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
-		<Item href="/MapObjects/Artifacts/LegionT4.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
-		<Item href="/MapObjects/Artifacts/LegionT5.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
-		<Item href="/MapObjects/Artifacts/LegionT6.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
-		<Item href="/MapObjects/Artifacts/LegionT7.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+		<Item href="/MapObjects/Artifacts/106-DrumOfCharge.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+		<Item href="/MapObjects/Artifacts/107-HornOfCharge.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+		<Item href="/MapObjects/Artifacts/108-LegionAdvanced.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+		<Item href="/MapObjects/Artifacts/109-LegionExpert.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
 		<Item href="/MapObjects/Artifacts/Steadfast.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
 		<Item href="/MapObjects/Artifacts/Buckler.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+		<Item href="/MapObjects/Artifacts/112-Reincarnation.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
 		<Item href="/MapObjects/Artifacts/Life02.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
 		<Item href="/MapObjects/Artifacts/Life03.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
 		<Item href="/MapObjects/Artifacts/Life04.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
@@ -88,11 +89,11 @@
 		<Item href="/MapObjects/Artifacts/Medical02.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
 		<Item href="/MapObjects/Artifacts/Medical03.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
 		<Item href="/MapObjects/Artifacts/Medical04.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
-		<Item href="/MapObjects/Artifacts/Potion01.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
-		<Item href="/MapObjects/Artifacts/Potion02.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
-		<Item href="/MapObjects/Artifacts/Potion03.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
-		<Item href="/MapObjects/Artifacts/BookA1.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
-		<Item href="/MapObjects/Artifacts/BookA2.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+		<Item href="/MapObjects/Artifacts/137-PotionMana.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+		<Item href="/MapObjects/Artifacts/138-PotionEnergy.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+		<Item href="/MapObjects/Artifacts/139-PotionRevive.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+		<Item href="/MapObjects/Artifacts/140-BootsOfTheWalkingDead.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
+		<Item href="/MapObjects/Artifacts/141-FlagOfCharge.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
 		<Item href="/MapObjects/Artifacts/BookA3.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
 		<Item href="/MapObjects/Artifacts/BookA4.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
 		<Item href="/MapObjects/Artifacts/BookD1.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
@@ -195,5 +196,6 @@
 		<Item href="/MapObjects/Artifacts/H5A2/Ring_Of_Machine.xdb#xpointer(/AdvMapArtifactShared)"/>
 		<Item href="/MapObjects/Artifacts/H5A2/Ring_Of_Unsummoning.xdb#xpointer(/AdvMapArtifactShared)"/>
 		<Item href="/MapObjects/Artifacts/H5A2/Treeborn_Quiver.xdb#xpointer(/AdvMapArtifactShared)"/>
+		<Item href="/MapObjects/Artifacts/053-Graal.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>
 	</links>
 </AdvMapSharedGroup>

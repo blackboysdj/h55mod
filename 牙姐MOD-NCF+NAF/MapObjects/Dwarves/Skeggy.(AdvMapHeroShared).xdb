@@ -35,8 +35,8 @@
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_WAR_MACHINES</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Fortress55/Axe_Master/Name.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Fortress55/Axe_Master/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Fortress/119-Skeggy/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Fortress/119-Skeggy/Description.txt"/>
 	<SpecializationIcon href="/UI/H5A1/Icons/Abilites/Heroes_Abillites/128x128/Axe_master.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/UI/H5A1/Icons/Heroes/Portrets128x128/Skeggy.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>
@@ -63,9 +63,9 @@
 			<Item>HERO_SKILL_LUCKY_STRIKE</Item>
 		</perkIDs>
 		<spellIDs/>
-		<Ballista>false</Ballista>
+		<Ballista>true</Ballista>
 		<FirstAidTent>false</FirstAidTent>
-		<AmmoCart>true</AmmoCart>
+		<AmmoCart>false</AmmoCart>
 		<FavoriteEnemies/>
 	</Editable>
 	<ArrowButtonState>0</ArrowButtonState>

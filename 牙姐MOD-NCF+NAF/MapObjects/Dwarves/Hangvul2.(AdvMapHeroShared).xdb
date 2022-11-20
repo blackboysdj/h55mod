@@ -32,13 +32,13 @@
 	<Icon128 href="/UI/H5A1/Icons/Heroes/Portrets128x128/Hangvul.(Texture).xdb#xpointer(/Texture)"/>
 	<InternalName>Hangvul2</InternalName>
 	<Class>HERO_CLASS_RUNEMAGE</Class>
-	<Specialization>HERO_SPEC_WEILDER_OF_FIRE</Specialization>
+	<Specialization/>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_RUNELORE</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Fortress55/MarkOfFire/Name.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Fortress55/MarkOfFire/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Fortress/127-Hangvul2/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Fortress/127-Hangvul2/Description.txt"/>
 	<SpecializationIcon href="/Textures/HeroScreen/Feats/Ranger/DestructiveMagic_SunFire.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Fortress/Fortress_Hangvul2_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>
@@ -65,8 +65,8 @@
 			<Item>HERO_SKILL_MASTER_OF_FIRE</Item>
 		</perkIDs>
 		<spellIDs>
-			<Item>SPELL_FIREBALL</Item>
-			<Item>SPELL_RUNE_OF_BERSERKING</Item>
+			<Item>SPELL_FIREWALL</Item>
+			<Item>SPELL_RUNE_OF_MAGIC_CONTROL</Item>
 		</spellIDs>
 		<Ballista>false</Ballista>
 		<FirstAidTent>false</FirstAidTent>

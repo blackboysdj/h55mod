@@ -35,8 +35,8 @@
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_ARTIFICIER</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Academy55/Time_Shifter/Name.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Academy55/Time_Shifter/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Academy/051-Timerkhan/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Academy/051-Timerkhan/Description.txt"/>
 	<SpecializationIcon href="/Textures/HeroScreen/Specializations/Academy/TimeShift.xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Academy/Academy_Temkhan_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall href="/Textures/Icons/Heroes/Academy/Academy_Temkhan_128x128_64.(Texture).xdb#xpointer(/Texture)"/>

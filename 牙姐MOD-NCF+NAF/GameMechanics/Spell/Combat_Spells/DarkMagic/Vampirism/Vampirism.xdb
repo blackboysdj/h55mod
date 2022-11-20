@@ -14,12 +14,12 @@
 	<TrainedCost>20</TrainedCost>
 	<damage>
 		<Item>
-			<Base>10</Base>
-			<PerPower>0.1</PerPower>
+			<Base>30</Base>
+			<PerPower>0</PerPower>
 		</Item>
 		<Item>
-			<Base>12</Base>
-			<PerPower>0.2</PerPower>
+			<Base>40</Base>
+			<PerPower>0.1</PerPower>
 		</Item>
 		<Item>
 			<Base>40</Base>

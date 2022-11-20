@@ -11,10 +11,6 @@
 	<Health>1201</Health>
 	<KnownSpells>
 		<Item>
-			<Spell>SPELL_MASS_BLESS</Spell>
-			<Mastery>MASTERY_ADVANCED</Mastery>
-		</Item>
-		<Item>
 			<Spell>SPELL_MASS_HASTE</Spell>
 			<Mastery>MASTERY_ADVANCED</Mastery>
 		</Item>
@@ -23,16 +19,12 @@
 			<Mastery>MASTERY_ADVANCED</Mastery>
 		</Item>
 		<Item>
-			<Spell>SPELL_MASS_STONESKIN</Spell>
+			<Spell>SPELL_MASS_DEFLECT_ARROWS</Spell>
 			<Mastery>MASTERY_ADVANCED</Mastery>
 		</Item>
 		<Item>
-			<Spell>SPELL_MASS_DEFLECT_ARROWS</Spell>
-			<Mastery>MASTERY_NONE</Mastery>
-		</Item>
-		<Item>
-			<Spell>SPELL_CELESTIAL_SHIELD</Spell>
-			<Mastery>MASTERY_NONE</Mastery>
+			<Spell>SPELL_MASS_STONESKIN</Spell>
+			<Mastery>MASTERY_ADVANCED</Mastery>
 		</Item>
 	</KnownSpells>
 	<SpellPoints>1</SpellPoints>

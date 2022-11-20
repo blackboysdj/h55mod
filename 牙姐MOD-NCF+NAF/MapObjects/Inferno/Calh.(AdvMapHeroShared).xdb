@@ -35,8 +35,8 @@
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_GATING</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Inferno/Calh/Text.txt"/>
-	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Inferno/Calh/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Inferno/099-Calh/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Inferno/099-Calh/Description.txt"/>
 	<SpecializationIcon href="/Textures/TTH/Heroes/Inferno/Calh/Talent64.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/TTH/Heroes/Inferno/Calh/Face128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall href="/Textures/TTH/Heroes/Inferno/Calh/Face64.(Texture).xdb#xpointer(/Texture)"/>

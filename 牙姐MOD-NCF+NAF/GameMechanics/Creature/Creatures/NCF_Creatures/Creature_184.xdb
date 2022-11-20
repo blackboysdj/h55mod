@@ -15,11 +15,11 @@
 			<Mastery>MASTERY_ADVANCED</Mastery>
 		</Item>
 		<Item>
-			<Spell>SPELL_MASS_SLOW</Spell>
+			<Spell>SPELL_MASS_WEAKNESS</Spell>
 			<Mastery>MASTERY_ADVANCED</Mastery>
 		</Item>
 		<Item>
-			<Spell>SPELL_MASS_WEAKNESS</Spell>
+			<Spell>SPELL_MASS_SLOW</Spell>
 			<Mastery>MASTERY_ADVANCED</Mastery>
 		</Item>
 	</KnownSpells>

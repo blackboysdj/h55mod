@@ -2618,7 +2618,7 @@
 				<Item>ARTIFACT_LEGION_BASIC</Item>
 				<Item>ARTIFACT_LEGION_T3</Item>
 				<Item>ARTIFACT_DRUM_OF_CHARGE</Item>
-				<Item>ARTIFACT_LEGION_T5</Item>
+				<Item>ARTIFACT_HORN_OF_CHARGE</Item>
 				<Item>ARTIFACT_LEGION_ADVANCED</Item>
 				<Item>ARTIFACT_LEGION_EXPERT</Item>	
 				<Item>ARTIFACT_STEADFAST</Item>	
@@ -2651,8 +2651,8 @@
 				<Item>ARTIFACT_POTION_MANA</Item>	
 				<Item>ARTIFACT_POTION_ENERGY</Item>
 				<Item>ARTIFACT_POTION_REVIVE</Item>		
-				<Item>ARTIFACT_BOOK_A1</Item>	
-				<Item>ARTIFACT_BOOK_A2</Item>	
+				<Item>ARTIFACT_BOOTS_OF_THE_WALKING_DEAD</Item>	
+				<Item>ARTIFACT_FLAG_OF_CHARGE</Item>	
 				<Item>ARTIFACT_BOOK_A3</Item>	
 				<Item>ARTIFACT_BOOK_A4</Item>	
 				<Item>ARTIFACT_BOOK_D1</Item>	
@@ -18401,7 +18401,7 @@
 					<Value>106</Value>
 				</Item>	
 				<Item>
-					<Name>ARTIFACT_LEGION_T5</Name>
+					<Name>ARTIFACT_HORN_OF_CHARGE</Name>
 					<Value>107</Value>
 				</Item>	
 				<Item>
@@ -18533,11 +18533,11 @@
 					<Value>139</Value>
 				</Item>	
 				<Item>
-					<Name>ARTIFACT_BOOK_A1</Name>
+					<Name>ARTIFACT_BOOTS_OF_THE_WALKING_DEAD</Name>
 					<Value>140</Value>
 				</Item>	
 				<Item>
-					<Name>ARTIFACT_BOOK_A2</Name>
+					<Name>ARTIFACT_FLAG_OF_CHARGE</Name>
 					<Value>141</Value>
 				</Item>	
 				<Item>

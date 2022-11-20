@@ -4,7 +4,7 @@
 	<DefenceSkill>20</DefenceSkill>
 	<Shots>0</Shots>
 	<MinDamage>6</MinDamage>
-	<MaxDamage>30</MaxDamage>
+	<MaxDamage>36</MaxDamage>
 	<Speed>5</Speed>
 	<Initiative>11</Initiative>
 	<Flying>false</Flying>
@@ -44,7 +44,6 @@
 	<BaseCreature>CREATURE_FOOTMAN</BaseCreature>
 	<Upgrades/>
 	<Abilities>
-		<Item>ABILITY_BERSERKER_RAGE</Item>
 		<Item>ABILITY_WEAKENING_AURA</Item>
 		<Item>ABILITY_ARMORED</Item>
 		<Item>ABILITY_WHIRLWIND</Item>

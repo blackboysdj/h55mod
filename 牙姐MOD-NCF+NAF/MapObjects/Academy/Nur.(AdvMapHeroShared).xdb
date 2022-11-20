@@ -35,8 +35,8 @@
 		<Mastery>MASTERY_ADVANCED</Mastery>
 		<SkillID>HERO_SKILL_DESTRUCTIVE_MAGIC</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Academy55/Weilder_of_Fire/Name.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Academy55/Weilder_of_Fire/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Academy/054-Nur/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Academy/054-Nur/Description.txt"/>
 	<SpecializationIcon href="/Textures/HeroScreen/Specializations/Academy/Weilder_of_Fire.xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Academy/Academy_Nathir_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>

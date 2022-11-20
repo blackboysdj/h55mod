@@ -37,8 +37,8 @@
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_DESTRUCTIVE_MAGIC</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Inferno55/Power_Bargain/Name.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Inferno55/Power_Bargain/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Inferno/116-Sheltem/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Inferno/116-Sheltem/Description.txt"/>
 	<SpecializationIcon href="/Textures/Heroes_Abillites/Inferno55/Power_Bargain.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Inferno/Inferno_Sheltem_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>

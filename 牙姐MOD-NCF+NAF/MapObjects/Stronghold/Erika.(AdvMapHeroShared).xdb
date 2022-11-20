@@ -37,8 +37,8 @@
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_DEMONIC_RAGE</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Stronghold55/WarFear/Name.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Stronghold55/WarFear/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Stronghold/153-Erika/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Stronghold/153-Erika/Description.txt"/>
 	<SpecializationIcon href="/UI/H5A2/Icons/Spells/WarCry/Shout_Of_Many_Ability.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Stronghold/Stronghold_Erika_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>

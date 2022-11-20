@@ -35,8 +35,8 @@
 		<Mastery>MASTERY_ADVANCED</Mastery>
 		<SkillID>HERO_SKILL_DESTRUCTIVE_MAGIC</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Academy55/Stormcaller/Name.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Academy55/Stormcaller/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Academy/058-Solmyr/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Academy/058-Solmyr/Description.txt"/>
 	<SpecializationIcon href="/Textures/Heroes_Abillites/Academy55/Stormcaller.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Academy/Academy_Solmyr_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>

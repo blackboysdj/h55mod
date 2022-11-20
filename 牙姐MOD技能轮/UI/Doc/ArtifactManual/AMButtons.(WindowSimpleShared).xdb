@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WindowSimpleShared ObjectRecordID="1000860">
+	<Crap>false</Crap>
+	<Children>
+		<Item href="ExitButton.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+
+		<Item href="Level/001/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Level/002/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Level/003/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Level/004/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Level/005/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Level/006/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Level/007/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Level/008/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+
+		<Item href="Level/001/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Level/002/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Level/003/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Level/004/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Level/005/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Level/006/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Level/007/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Level/008/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+
+		<Item href="Combine/001/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Combine/002/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Combine/003/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Combine/004/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Combine/005/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Combine/006/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Combine/007/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Combine/008/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Combine/009/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Combine/010/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Combine/011/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Combine/012/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Combine/013/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Combine/014/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Combine/015/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Combine/016/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Combine/101/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Combine/102/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Combine/103/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+
+		<Item href="Combine/001/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Combine/002/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Combine/003/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Combine/004/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Combine/005/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Combine/006/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Combine/007/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Combine/008/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Combine/009/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Combine/010/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Combine/011/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Combine/012/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Combine/013/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Combine/014/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Combine/015/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Combine/016/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Combine/101/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Combine/102/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Combine/103/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+	</Children>
+	<Background href="Background.(BackgroundSimpleScallingTexture).xdb#xpointer(/BackgroundSimpleScallingTexture)"/>
+	<Foreground/>
+	<Flags>
+		<Transparent>false</Transparent>
+	</Flags>
+	<Placement>
+		<Position>
+			<First>
+				<x>0</x>
+				<y>0</y>
+			</First>
+			<Second>false</Second>
+		</Position>
+		<VerAllign>
+			<First>EPA_LOW_END</First>
+			<Second>false</Second>
+		</VerAllign>
+		<HorAllign>
+			<First>EPA_LOW_END</First>
+			<Second>false</Second>
+		</HorAllign>
+		<Size>
+			<First>
+				<x>0</x>
+				<y>0</y>
+			</First>
+			<Second>false</Second>
+		</Size>
+		<LowerMargin>
+			<First>
+				<x>0</x>
+				<y>0</y>
+			</First>
+			<Second>false</Second>
+		</LowerMargin>
+		<UpperMargin>
+			<First>
+				<x>0</x>
+				<y>0</y>
+			</First>
+			<Second>false</Second>
+		</UpperMargin>
+	</Placement>
+	<ActiveArea/>
+	<IgnoreDblClick>false</IgnoreDblClick>
+	<ActiveMask/>
+</WindowSimpleShared>

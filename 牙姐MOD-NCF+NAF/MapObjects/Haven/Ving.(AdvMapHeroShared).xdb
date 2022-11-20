@@ -35,8 +35,8 @@
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_TRAINING</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Haven55/Griffon_Commander/Name.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Haven55/Griffon_Commander/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Heaven/004-Ving/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Heaven/004-Ving/Description.txt"/>
 	<SpecializationIcon href="/Textures/HeroScreen/Specializations/Haven/Griffon_Commander.xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Heaven/Heaven_Irina_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>

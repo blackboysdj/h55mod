@@ -32,8 +32,8 @@
 	<Class>HERO_CLASS_FLAMEKEEPERA</Class>
 	<Specialization>HERO_SPEC_COURTIER</Specialization>
 	<PrimarySkill>
-		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_TRAINING</SkillID>
+		<Mastery>MASTERY_ADVANCED</Mastery>
+		<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Fortress/132-Rolf/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Fortress/132-Rolf/Description.txt"/>
@@ -53,19 +53,14 @@
 		<Defence>2</Defence>
 		<Spellpower>1</Spellpower>
 		<Knowledge>1</Knowledge>
-		<skills>
-			<Item>
-				<Mastery>MASTERY_BASIC</Mastery>
-				<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
-			</Item>
-		</skills>
+		<skills/>
 		<perkIDs>
 			<Item>HERO_SKILL_DIPLOMACY</Item>
 		</perkIDs>
 		<spellIDs/>
-		<Ballista>true</Ballista>
-		<FirstAidTent>false</FirstAidTent>
-		<AmmoCart>true</AmmoCart>
+		<Ballista>false</Ballista>
+		<FirstAidTent>true</FirstAidTent>
+		<AmmoCart>false</AmmoCart>
 		<FavoriteEnemies/>
 	</Editable>
 	<ArrowButtonState>0</ArrowButtonState>

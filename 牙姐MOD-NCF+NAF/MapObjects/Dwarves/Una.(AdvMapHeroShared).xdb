@@ -36,7 +36,7 @@
 		<SkillID>HERO_SKILL_RUNELORE</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Fortress/128-Una/Text.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Fortress55/Researcher/Description.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Fortress/128-Una/Description.txt"/>
 	<SpecializationIcon href="/UI/H5A1/Icons/Abilites/Heroes_Abillites/128x128/Researcher.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/UI/H5A1/Icons/Heroes/Portrets128x128/Una.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>

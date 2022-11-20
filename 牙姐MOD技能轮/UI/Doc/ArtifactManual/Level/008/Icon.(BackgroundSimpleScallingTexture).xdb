@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BackgroundSimpleScallingTexture ObjectRecordID="1000087">
+	<ClassTypeID>285694784</ClassTypeID>
+	<Texture href="/Textures/Interface/MPWait/PlayersList/Item/team_tan.(Texture).xdb#xpointer(/Texture)"/>
+	<Color>-1</Color>
+	<Size>
+		<x>55</x>
+		<y>55</y>
+	</Size>
+</BackgroundSimpleScallingTexture>

@@ -35,8 +35,8 @@
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_WAR_MACHINES</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Fortress55/Evasive/Name.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Fortress55/Evasive/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Fortress/121-Vilma/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Fortress/121-Vilma/Description.txt"/>
 	<SpecializationIcon href="/UI/H5A1/Icons/Abilites/Skills/128x128/Defencive_Formation.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Fortress/Fortress_Vilma_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>
@@ -62,11 +62,9 @@
 		<perkIDs>
 			<Item>HERO_SKILL_EVASION</Item>
 		</perkIDs>
-		<spellIDs>
-			<Item>SPELL_DEFLECT_ARROWS</Item>
-		</spellIDs>
-		<Ballista>false</Ballista>
-		<FirstAidTent>true</FirstAidTent>
+		<spellIDs/>
+		<Ballista>true</Ballista>
+		<FirstAidTent>false</FirstAidTent>
 		<AmmoCart>false</AmmoCart>
 		<FavoriteEnemies/>
 	</Editable>

@@ -35,8 +35,8 @@
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_TRAINING</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Heaven/Nathaniel/Text.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Haven55/Squire/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Heaven/001-Nathaniel/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Heaven/001-Nathaniel/Description.txt"/>
 	<SpecializationIcon href="/Textures/HeroScreen/Specializations/Haven/Squire.xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Heaven/Heaven_Ellaine_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>

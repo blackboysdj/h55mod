@@ -34,11 +34,11 @@
 	<Class>HERO_CLASS_BARBARIAN</Class>
 	<Specialization>HERO_SPEC_DEMON_HUNTER</Specialization>
 	<PrimarySkill>
-		<Mastery>MASTERY_ADVANCED</Mastery>
+		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_DEMONIC_RAGE</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Stronghold55/DemonHunter/Name.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Stronghold55/DemonHunter/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Stronghold/147-KujinMP/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Stronghold/147-KujinMP/Description.txt"/>
 	<SpecializationIcon href="/UI/H5A2/Icons/Heroes_Specializations/Demon_Hunter.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/UI/H5A2/Icons/Heroes/Portrets128x128/Stronghold_Kujin.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>
@@ -55,7 +55,12 @@
 		<Defence>0</Defence>
 		<Spellpower>1</Spellpower>
 		<Knowledge>1</Knowledge>
-		<skills/>
+		<skills>
+			<Item>
+				<Mastery>MASTERY_BASIC</Mastery>
+				<SkillID>HERO_SKILL_BARBARIAN_LEARNING</SkillID>
+			</Item>
+		</skills>
 		<perkIDs>
 			<Item>HERO_SKILL_POWER_OF_BLOOD</Item>
 		</perkIDs>

@@ -59,6 +59,8 @@
 				<Commands>
 					<Item href="SkillsShow.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
 					<Item href="SWButtonsShow.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/ArtifactManualHide.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/AMButtonsHide.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
 				</Commands>
 				<Reversable>false</Reversable>
 			</CommandsOnEnterState>

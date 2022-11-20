@@ -37,8 +37,8 @@
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_DEMONIC_RAGE</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Stronghold55/WarLeader/Name.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Stronghold55/WarLeader/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Stronghold/142-Gottai/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Stronghold/142-Gottai/Description.txt"/>
 	<SpecializationIcon href="/UI/H5A2/Icons/Heroes_Specializations/War_Leader.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/UI/H5A2/Icons/Heroes/Portrets128x128/Stronghold_Gotai.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>
@@ -65,7 +65,7 @@
 			<Item>HERO_SKILL_VOICE_TRAINING</Item>
 		</perkIDs>
 		<spellIDs>
-			<Item>SPELL_WARCRY_BATTLECRY</Item>
+			<Item>SPELL_WARCRY_RALLING_CRY</Item>
 		</spellIDs>
 		<Ballista>false</Ballista>
 		<FirstAidTent>false</FirstAidTent>

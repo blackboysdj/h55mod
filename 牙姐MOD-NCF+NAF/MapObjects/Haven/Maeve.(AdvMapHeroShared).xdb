@@ -35,8 +35,8 @@
 		<Mastery>MASTERY_ADVANCED</Mastery>
 		<SkillID>HERO_SKILL_LIGHT_MAGIC</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Haven55/Expediter/Name.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Haven55/Expediter/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Heaven/016-Maeve/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Heaven/016-Maeve/Description.txt"/>
 	<SpecializationIcon href="/Textures/HeroScreen/Specializations/Haven/Expediter.xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Heaven/Heaven_Maeve_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>

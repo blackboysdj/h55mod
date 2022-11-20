@@ -20,7 +20,9 @@
 		<Item href="/UI/Doc/SkillWheel/SkillWheel.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<Item href="/UI/Doc/SkillWheel/SWButtons.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<Item href="/UI/Doc/SkillWheel/Button_LU.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		
+		<Item href="/UI/Doc/ArtifactManual/ArtifactManual.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="/UI/Doc/ArtifactManual/AMButtons.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="/UI/Doc/ArtifactManual/Button_LU.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 	</Children>
 	<Background/>
 	<Foreground/>

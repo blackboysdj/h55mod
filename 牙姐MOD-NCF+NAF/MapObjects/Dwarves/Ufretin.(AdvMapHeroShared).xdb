@@ -32,11 +32,11 @@
 	<Class>HERO_CLASS_FLAMEKEEPERA</Class>
 	<Specialization>HERO_SPEC_SUZERAIN</Specialization>
 	<PrimarySkill>
-		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_TRAINING</SkillID>
+		<Mastery>MASTERY_ADVANCED</Mastery>
+		<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Fortress/Ufretin/Text.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Fortress55/Builder/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Fortress/133-Ufretin/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Fortress/133-Ufretin/Description.txt"/>
 	<SpecializationIcon href="/UI/H5A1/Icons/Abilites/Heroes_Abillites/128x128/Researcher.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Fortress/Fortress_Ufretin_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>
@@ -53,19 +53,14 @@
 		<Defence>2</Defence>
 		<Spellpower>1</Spellpower>
 		<Knowledge>2</Knowledge>
-		<skills>
-			<Item>
-				<Mastery>MASTERY_BASIC</Mastery>
-				<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
-			</Item>
-		</skills>
+		<skills/>
 		<perkIDs>
 			<Item>HERO_SKILL_ESTATES</Item>
 		</perkIDs>
 		<spellIDs/>
 		<Ballista>false</Ballista>
 		<FirstAidTent>true</FirstAidTent>
-		<AmmoCart>true</AmmoCart>
+		<AmmoCart>false</AmmoCart>
 		<FavoriteEnemies/>
 	</Editable>
 	<ArrowButtonState>0</ArrowButtonState>

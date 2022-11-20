@@ -8,7 +8,7 @@
 		<Item href="005-Necromancy/Detail/013-DeathKnight/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="005-Necromancy/Detail/013-DeathKnight/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="005-Necromancy/Detail/013-DeathKnight/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<!-- <Item href="005-Necromancy/Detail/013-DeathKnight/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
+		<Item href="005-Necromancy/Detail/013-DeathKnight/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<!-- <Item href="005-Necromancy/Detail/013-DeathKnight/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
 		<Item href="005-Necromancy/Detail/014-Reaver/Class.(WindowTextView).xdb#xpointer(/WindowTextView)"/>
 		<Item href="005-Necromancy/Detail/014-Reaver/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
@@ -23,7 +23,7 @@
 		<Item href="005-Necromancy/Detail/015-Necromancer/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="005-Necromancy/Detail/015-Necromancer/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="005-Necromancy/Detail/015-Necromancer/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<!-- <Item href="005-Necromancy/Detail/015-Necromancer/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
+		<Item href="005-Necromancy/Detail/015-Necromancer/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<!-- <Item href="005-Necromancy/Detail/015-Necromancer/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
 		<!-- <Item href="005-Necromancy/Detail/015-Necromancer/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
 	</Children>

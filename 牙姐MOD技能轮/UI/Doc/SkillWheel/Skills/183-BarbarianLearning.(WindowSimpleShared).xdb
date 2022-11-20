@@ -12,7 +12,7 @@
 		<Item href="183-BarbarianLearning/Detail/PerkButton8.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="183-BarbarianLearning/Detail/PerkButton9.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="183-BarbarianLearning/Detail/PerkButtonX.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="183-BarbarianLearning/Detail/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<!-- <Item href="183-BarbarianLearning/Detail/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
 		<!-- <Item href="183-BarbarianLearning/Detail/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
 		<!-- <Item href="183-BarbarianLearning/Detail/PerkButtonX3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
 	</Children>

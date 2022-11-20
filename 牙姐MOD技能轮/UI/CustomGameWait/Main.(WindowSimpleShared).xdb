@@ -9,7 +9,7 @@
 		<Item href="ScreenHeader.(WindowTextView).xdb#xpointer(/WindowTextView)"/>
 
 		<Item href="/UI/Doc/SkillWheel/Button_CG.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-				
+		<Item href="/UI/Doc/ArtifactManual/Button_CG.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 	</Children>
 	<Background/>
 	<Foreground/>

@@ -33,7 +33,7 @@
 	<Specialization>HERO_SPEC_FOOTMEN</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_LIGHT_MAGIC</SkillID>
+		<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Heaven/155-OrtanCassius/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Heaven/155-OrtanCassius/Description.txt"/>
@@ -56,7 +56,7 @@
 		<skills>
 			<Item>
 				<Mastery>MASTERY_BASIC</Mastery>
-				<SkillID>HERO_SKILL_OFFENCE</SkillID>
+				<SkillID>HERO_SKILL_LIGHT_MAGIC</SkillID>
 			</Item>
 		</skills>
 		<perkIDs>

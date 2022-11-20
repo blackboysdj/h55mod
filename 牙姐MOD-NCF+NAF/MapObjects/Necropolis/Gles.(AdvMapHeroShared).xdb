@@ -65,6 +65,7 @@
 		<spellIDs>
 			<Item>SPELL_ANIMATE_DEAD</Item>
 			<Item>SPELL_CELESTIAL_SHIELD</Item>
+			<Item>SPELL_SORROW</Item>
 		</spellIDs>
 		<Ballista>false</Ballista>
 		<FirstAidTent>true</FirstAidTent>

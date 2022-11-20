@@ -35,8 +35,8 @@
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_INVOCATION</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Dungeon55/Stormcaller/Name.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Dungeon55/Stormcaller/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Dungeon/070-Agbeth/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Dungeon/070-Agbeth/Description.txt"/>
 	<SpecializationIcon href="/Textures/Heroes_Abillites/Dungeon55/Stormcaller.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/UI/H5A2/Icons/Heroes/Portrets128x128/Dungeon_Agbeth_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Creature>
-	<AttackSkill>12</AttackSkill>
-	<DefenceSkill>10</DefenceSkill>
-	<Shots>6</Shots>
-	<MinDamage>9</MinDamage>
-	<MaxDamage>15</MaxDamage>
-	<Speed>4</Speed>
-	<Initiative>10</Initiative>
+	<AttackSkill>0</AttackSkill>
+	<DefenceSkill>9999</DefenceSkill>
+	<Shots>100</Shots>
+	<MinDamage>0</MinDamage>
+	<MaxDamage>0</MaxDamage>
+	<Speed>1</Speed>
+	<Initiative>1</Initiative>
 	<Flying>false</Flying>
-	<Health>60</Health>
+	<Health>10000</Health>
 	<KnownSpells>
 		<Item>
 			<Spell>SPELL_ABILITY_RANDOM_CAST_DARK_LIGHT</Spell>
@@ -21,7 +21,7 @@
 	<Exp>160</Exp>
 	<Power>1798</Power>
 	<TimeToCommand>10</TimeToCommand>
-	<CreatureTier>6</CreatureTier>
+	<CreatureTier>8</CreatureTier>
 	<Upgrade>true</Upgrade>
 	<PairCreature>CREATURE_UNKNOWN</PairCreature>
 	<CreatureTown>TOWN_NO_TYPE</CreatureTown>
@@ -29,7 +29,7 @@
 		<First>ELEMENT_FIRE</First>
 		<Second>ELEMENT_EARTH</Second>
 	</MagicElement>
-	<WeeklyGrowth>2</WeeklyGrowth>
+	<WeeklyGrowth>1</WeeklyGrowth>
 	<Cost>
 		<Wood>0</Wood>
 		<Ore>0</Ore>

@@ -35,8 +35,8 @@
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_WAR_MACHINES</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Fortress55/Defense/Name.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Fortress55/Defense/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Fortress/120-Tazar/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Fortress/120-Tazar/Description.txt"/>
 	<SpecializationIcon href="/Textures/HeroScreen/Skills/Defence_3.xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Fortress/Fortress_Tazar_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>
@@ -63,8 +63,8 @@
 			<Item>HERO_SKILL_TOUGHNESS</Item>
 		</perkIDs>
 		<spellIDs/>
-		<Ballista>false</Ballista>
-		<FirstAidTent>true</FirstAidTent>
+		<Ballista>true</Ballista>
+		<FirstAidTent>false</FirstAidTent>
 		<AmmoCart>false</AmmoCart>
 		<FavoriteEnemies/>
 	</Editable>

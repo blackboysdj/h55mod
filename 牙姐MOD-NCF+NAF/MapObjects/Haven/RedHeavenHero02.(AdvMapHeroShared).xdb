@@ -35,8 +35,8 @@
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_TRAINING</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Haven55/Furious/Name.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Haven55/Furious/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Heaven/008-RedHeavenHero02/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Heaven/008-RedHeavenHero02/Description.txt"/>
 	<SpecializationIcon href="/Textures/HeroScreen/Specializations/Inferno/Furious.xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/UI/H5A1/Icons/Heroes/Portrets128x128/RedHaven_Andreas.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall href="/UI/H5A1/Icons/Heroes/Portrets128x128/RedHaven_Andreas.(Texture).xdb#xpointer(/Texture)"/>

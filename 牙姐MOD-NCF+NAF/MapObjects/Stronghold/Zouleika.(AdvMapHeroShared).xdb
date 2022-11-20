@@ -32,13 +32,13 @@
 	<Icon128/>
 	<InternalName>Zouleika</InternalName>
 	<Class>HERO_CLASS_BARBARIAN</Class>
-	<Specialization/>
+	<Specialization>HERO_SPEC_WAR_LEADER</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_DEMONIC_RAGE</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Stronghold55/DemonRageChain/Name.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Stronghold55/DemonRageChain/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Stronghold/152-Zouleika/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Stronghold/152-Zouleika/Description.txt"/>
 	<SpecializationIcon href="/UI/H5A2/Icons/Heroes_Skills/Blood_Rage/Perk_Powerfull_Blow.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Stronghold/Stronghold_Zouleika_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>
@@ -62,9 +62,11 @@
 			</Item>
 		</skills>
 		<perkIDs>
-			<Item>HERO_SKILL_POWER_OF_BLOOD</Item>
+			<Item>HERO_SKILL_MIGHTY_VOICE</Item>
 		</perkIDs>
-		<spellIDs/>
+		<spellIDs>
+			<Item>SPELL_WARCRY_WORD_OF_THE_CHIEF</Item>
+		</spellIDs>
 		<Ballista>false</Ballista>
 		<FirstAidTent>false</FirstAidTent>
 		<AmmoCart>true</AmmoCart>

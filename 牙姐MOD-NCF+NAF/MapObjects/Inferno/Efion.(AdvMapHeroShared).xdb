@@ -29,11 +29,11 @@
 	<RazedStatic/>
 	<Icon128/>
 	<InternalName>Efion</InternalName>
-	<Class>HERO_CLASS_DEMON_LORD</Class>
+	<Class>HERO_CLASS_GATE_KEEPER</Class>
 	<Specialization>HERO_SPEC_HYPNOTIST</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_GATING</SkillID>
+		<SkillID>HERO_SKILL_OFFENCE</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Inferno/105-Efion/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Inferno/105-Efion/Description.txt"/>
@@ -63,7 +63,7 @@
 			<Item>HERO_SKILL_MASTER_OF_MIND</Item>
 		</perkIDs>
 		<spellIDs>
-			<Item>SPELL_FORGETFULNESS</Item>		
+			<Item>SPELL_FORGETFULNESS</Item>
 		</spellIDs>
 		<Ballista>false</Ballista>
 		<FirstAidTent>false</FirstAidTent>

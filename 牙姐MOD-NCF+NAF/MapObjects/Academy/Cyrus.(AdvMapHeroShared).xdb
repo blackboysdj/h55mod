@@ -33,7 +33,7 @@
 	<Specialization/>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_ARTIFICIER</SkillID>
+		<SkillID>HERO_SKILL_WAR_MACHINES</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Academy/049-Cyrus/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Academy/049-Cyrus/Description.txt"/>
@@ -56,7 +56,7 @@
 		<skills>
 			<Item>
 				<Mastery>MASTERY_BASIC</Mastery>
-				<SkillID>HERO_SKILL_WAR_MACHINES</SkillID>
+				<SkillID>HERO_SKILL_ARTIFICIER</SkillID>
 			</Item>
 		</skills>
 		<perkIDs>

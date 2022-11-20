@@ -32,13 +32,13 @@
 	<Icon128/>
 	<InternalName>Mokka</InternalName>
 	<Class>HERO_CLASS_BARBARIAN</Class>
-	<Specialization/>
+	<Specialization>HERO_SPEC_WAR_LEADER</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_DEMONIC_RAGE</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Stronghold55/WarcryOfHorde/Name.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Stronghold55/WarcryOfHorde/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Stronghold/154-Mokka/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Stronghold/154-Mokka/Description.txt"/>
 	<SpecializationIcon href="/UI/H5A2/Icons/Heroes_Skills/Voice/Expert_Voice.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Stronghold/Stronghold_Mokka_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>
@@ -64,7 +64,9 @@
 		<perkIDs>
 			<Item>HERO_SKILL_VOICE_OF_RAGE</Item>
 		</perkIDs>
-		<spellIDs/>
+		<spellIDs>
+			<Item>SPELL_WARCRY_FEAR_MY_ROAR</Item>
+		</spellIDs>
 		<Ballista>false</Ballista>
 		<FirstAidTent>false</FirstAidTent>
 		<AmmoCart>true</AmmoCart>

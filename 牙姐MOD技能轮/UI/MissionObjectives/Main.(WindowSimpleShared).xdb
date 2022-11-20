@@ -5,8 +5,9 @@
 		<Item href="MissionBox.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 
 		<Item href="/UI/Doc/SkillWheel/SkillWheel.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="/UI/Doc/SkillWheel/SWButtons.(WindowSimple).xdb#xpointer(/WindowSimple)"/>					
-		
+		<Item href="/UI/Doc/SkillWheel/SWButtons.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="/UI/Doc/ArtifactManual/ArtifactManual.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="/UI/Doc/ArtifactManual/AMButtons.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 	</Children>
 	<Background href="/UI/Common/InactiveBg.(BackgroundSimpleTexture).xdb#xpointer(/BackgroundSimpleTexture)"/>
 	<Foreground/>

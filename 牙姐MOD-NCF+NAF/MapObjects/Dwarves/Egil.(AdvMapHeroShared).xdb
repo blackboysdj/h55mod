@@ -56,7 +56,7 @@
 		<skills>
 			<Item>
 				<Mastery>MASTERY_BASIC</Mastery>
-				<SkillID>HERO_SKILL_SORCERY</SkillID>
+				<SkillID>HERO_SKILL_OFFENCE</SkillID>
 			</Item>
 		</skills>
 		<perkIDs>

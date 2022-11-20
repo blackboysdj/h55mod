@@ -3,8 +3,9 @@
 	<Crap>false</Crap>
 	<Children>
 		<Item href="HeaderSkills.(WindowStaticText).xdb#xpointer(/WindowStaticText)"/>
-		
+
 		<Item href="/UI/Doc/SkillWheel/Button_HS.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="/UI/Doc/ArtifactManual/Button_HS.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 	</Children>
 	<Background href="Skills.(BackgroundSimpleTexture).xdb#xpointer(/BackgroundSimpleTexture)"/>
 	<Foreground/>

@@ -2,6 +2,8 @@
 <WindowSimpleShared ObjectRecordID="1000860">
 	<Crap>false</Crap>
 	<Children>
+		<Item href="ExitButton.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+
 		<Item href="Skills/001-Logistics/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="Skills/002-WarMachines/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="Skills/003-Learning/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
@@ -74,7 +76,7 @@
 		<Item href="Town/007-Fortress/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="Town/008-Stronghold/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 	</Children>
-	<Background/>
+	<Background href="Background.(BackgroundSimpleScallingTexture).xdb#xpointer(/BackgroundSimpleScallingTexture)"/>
 	<Foreground/>
 	<Flags>
 		<Transparent>false</Transparent>

@@ -35,8 +35,8 @@
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_TRAINING</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Necropolis55/Vamipre_Princess/Name.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Necropolis55/Vamipre_Princess/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Necromancy/082-Tamika/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Necromancy/082-Tamika/Description.txt"/>
 	<SpecializationIcon href="/Textures/HeroScreen/Specializations/Necropolis/Vampire_Princess.xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Necropolis/Necropolis_Lucretia_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>
@@ -60,7 +60,7 @@
 			</Item>
 		</skills>
 		<perkIDs>
-			<Item>HERO_SKILL_POWERFULL_BLOW</Item>
+			<Item>HERO_SKILL_HOLY_CHARGE</Item>
 		</perkIDs>
 		<spellIDs>
 			<Item>SPELL_ANIMATE_DEAD</Item>

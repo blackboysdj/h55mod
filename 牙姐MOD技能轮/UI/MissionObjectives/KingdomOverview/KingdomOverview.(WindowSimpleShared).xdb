@@ -9,8 +9,9 @@
 		<Item href="Kingdom_Allies.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<Item href="Kingdom_Towns.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="Kingdom_Heroes.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		
+
 		<Item href="/UI/Doc/SkillWheel/Button_KO.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="/UI/Doc/ArtifactManual/Button_KO.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 	</Children>
 	<Background href="Kingdom_Back.(BackgroundSimpleTexture).xdb#xpointer(/BackgroundSimpleTexture)"/>
 	<Foreground/>

@@ -33,10 +33,10 @@
 	<Specialization/>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_DARK_MAGIC</SkillID>
+		<SkillID>HERO_SKILL_NECROMANCY</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Necropolis55/Vampirism/Name.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Necropolis55/Vampirism/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Necromancy/087-Giovanni/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Necromancy/087-Giovanni/Description.txt"/>
 	<SpecializationIcon href="/UI/H5A2/Icons/Spells/Vampirism.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/UI/H5A1/Icons/Heroes/Portrets128x128/Giovanni.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>
@@ -55,8 +55,8 @@
 		<Knowledge>2</Knowledge>
 		<skills>
 			<Item>
-				<Mastery>MASTERY_BASIC</Mastery>
-				<SkillID>HERO_SKILL_NECROMANCY</SkillID>
+				<Mastery>MASTERY_ADVANCED</Mastery>
+				<SkillID>HERO_SKILL_DARK_MAGIC</SkillID>
 			</Item>
 		</skills>
 		<perkIDs/>

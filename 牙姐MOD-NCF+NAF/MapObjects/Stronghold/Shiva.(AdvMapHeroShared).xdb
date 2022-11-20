@@ -37,8 +37,8 @@
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_DEMONIC_RAGE</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Stronghold55/DemonRageZealot/Name.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Stronghold55/DemonRageZealot/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Stronghold/151-Shiva/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Stronghold/151-Shiva/Description.txt"/>
 	<SpecializationIcon href="/UI/H5A2/Icons/Heroes_Skills/Other_Perks/Power_of_Blood.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Stronghold/Stronghold_Shiva_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>
@@ -62,7 +62,7 @@
 			</Item>
 		</skills>
 		<perkIDs>
-			<Item>HERO_SKILL_POWER_OF_BLOOD</Item>
+			<Item>HERO_SKILL_BARBARIAN_INTELLIGENCE</Item>
 		</perkIDs>
 		<spellIDs/>
 		<Ballista>false</Ballista>

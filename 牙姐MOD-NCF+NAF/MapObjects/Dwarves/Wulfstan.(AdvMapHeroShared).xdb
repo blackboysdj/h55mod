@@ -33,7 +33,7 @@
 	<Specialization>HERO_SPEC_BORDERGUARD</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_TRAINING</SkillID>
+		<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Fortress/134-Wulfstan/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Fortress/134-Wulfstan/Description.txt"/>

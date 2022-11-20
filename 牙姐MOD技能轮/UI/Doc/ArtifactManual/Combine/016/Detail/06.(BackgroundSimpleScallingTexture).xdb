@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BackgroundSimpleScallingTexture ObjectRecordID="1000167">
+	<ClassTypeID>285694784</ClassTypeID>
+	<Texture href="/UI/H5A1/Icons/Artefacts/128x128/Runic_War_Axe.(Texture).xdb#xpointer(/Texture)"/>
+	<Color>-1</Color>
+	<Size>
+		<x>64</x>
+		<y>64</y>
+	</Size>
+</BackgroundSimpleScallingTexture>

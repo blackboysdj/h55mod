@@ -2,7 +2,7 @@
 <Creature>
 	<AttackSkill>22</AttackSkill>
 	<DefenceSkill>18</DefenceSkill>
-	<Shots>0</Shots>
+	<Shots>5</Shots>
 	<MinDamage>15</MinDamage>
 	<MaxDamage>25</MaxDamage>
 	<Speed>6</Speed>
@@ -49,10 +49,11 @@
 	<PatternAttack/>
 	<flybySequence/>
 	<Visual href="/GameMechanics/CreatureVisual/Creatures/NCF_Creatures/Creature_188.xdb#xpointer(/CreatureVisual)"/>
-	<Range>0</Range>
+	<Range>-2</Range>
 	<BaseCreature>CREATURE_FOOTMAN</BaseCreature>
 	<Upgrades/>
 	<Abilities>
+		<Item>ABILITY_NO_MELEE_PENALTY</Item>
 		<Item>ABILITY_TAUNT</Item>
 		<Item>ABILITY_SUMMON_OTHER</Item>
 		<Item>ABILITY_PURGER</Item>

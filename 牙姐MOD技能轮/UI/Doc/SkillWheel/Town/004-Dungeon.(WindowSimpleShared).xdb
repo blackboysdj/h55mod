@@ -8,7 +8,7 @@
 		<Item href="004-Dungeon/Detail/010-BeastMaster/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="004-Dungeon/Detail/010-BeastMaster/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="004-Dungeon/Detail/010-BeastMaster/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="004-Dungeon/Detail/010-BeastMaster/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<!-- <Item href="004-Dungeon/Detail/010-BeastMaster/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
 		<!-- <Item href="004-Dungeon/Detail/010-BeastMaster/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
 		<Item href="004-Dungeon/Detail/011-Seer/Class.(WindowTextView).xdb#xpointer(/WindowTextView)"/>
 		<Item href="004-Dungeon/Detail/011-Seer/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
@@ -25,7 +25,7 @@
 		<Item href="004-Dungeon/Detail/012-Warlock/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="004-Dungeon/Detail/012-Warlock/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="004-Dungeon/Detail/012-Warlock/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<!-- <Item href="004-Dungeon/Detail/012-Warlock/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
+		<Item href="004-Dungeon/Detail/012-Warlock/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 	</Children>
 	<Background/>
 	<Foreground/>

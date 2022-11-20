@@ -29,11 +29,11 @@
 	<RazedStatic/>
 	<Icon128/>
 	<InternalName>Nadaur</InternalName>
-	<Class>HERO_CLASS_RANGER</Class>
+	<Class>HERO_CLASS_WARDEN</Class>
 	<Specialization>HERO_SPEC_ELVEN_FURY</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_AVENGER</SkillID>
+		<SkillID>HERO_SKILL_DEFENCE</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Preserve/024-Nadaur/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Preserve/024-Nadaur/Description.txt"/>
@@ -49,8 +49,8 @@
 	<Editable>
 		<NameFileRef href="/Text/Game/Heroes/Persons/Preserve/Nadaur/Name.txt"/>
 		<BiographyFileRef href="/Text/Game/Heroes/Persons/Preserve/Nadaur/Bio.txt"/>
-		<Offence>3</Offence>
-		<Defence>0</Defence>
+		<Offence>2</Offence>
+		<Defence>1</Defence>
 		<Spellpower>1</Spellpower>
 		<Knowledge>1</Knowledge>
 		<skills>
@@ -64,8 +64,8 @@
 		</perkIDs>
 		<spellIDs/>
 		<Ballista>false</Ballista>
-		<FirstAidTent>false</FirstAidTent>
-		<AmmoCart>true</AmmoCart>
+		<FirstAidTent>true</FirstAidTent>
+		<AmmoCart>false</AmmoCart>
 		<FavoriteEnemies/>
 	</Editable>
 	<ArrowButtonState>0</ArrowButtonState>

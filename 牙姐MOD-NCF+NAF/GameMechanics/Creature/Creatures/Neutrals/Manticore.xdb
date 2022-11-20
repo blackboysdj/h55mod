@@ -45,5 +45,7 @@
 	<Upgrades/>
 	<Abilities>
 		<Item>ABILITY_POISONOUS_ATTACK</Item>
+		<Item>ABILITY_ENTANGLING_ROOTS</Item>
+		<Item>ABILITY_REGENERATION</Item>
 	</Abilities>
 </Creature>

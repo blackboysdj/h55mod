@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WindowMSButton ObjectRecordID="1000223">
+	<ClassTypeID>285694855</ClassTypeID>
+	<Shared href="Button.(WindowMSButtonShared).xdb#xpointer(/WindowMSButtonShared)"/>
+	<Name>ClassButton</Name>
+	<TooltipFileRef href="Button.txt"/>
+	<Visible>true</Visible>
+	<Priority>30</Priority>
+	<GameMessageReactions/>
+	<Placement>
+		<Position>
+			<First>
+				<x>515</x>
+				<y>370</y>
+			</First>
+			<Second>true</Second>
+		</Position>
+		<VerAllign>
+			<First>EPA_LOW_END</First>
+			<Second>false</Second>
+		</VerAllign>
+		<HorAllign>
+			<First>EPA_LOW_END</First>
+			<Second>false</Second>
+		</HorAllign>
+		<Size>
+			<First>
+				<x>0</x>
+				<y>0</y>
+			</First>
+			<Second>false</Second>
+		</Size>
+		<LowerMargin>
+			<First>
+				<x>0</x>
+				<y>0</y>
+			</First>
+			<Second>false</Second>
+		</LowerMargin>
+		<UpperMargin>
+			<First>
+				<x>0</x>
+				<y>0</y>
+			</First>
+			<Second>false</Second>
+		</UpperMargin>
+	</Placement>
+	<Enabled>true</Enabled>
+	<TextString/>
+	<relatedTexts/>
+	<relatedTextures/>
+	<Flags>
+		<SuperActive>false</SuperActive>
+	</Flags>
+	<ButtonStates>
+		<Item>
+			<MessageOnEnterState/>
+			<CommandsOnEnterState>
+				<Commands>
+					<Item href="SwitchOn.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="Selected.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+
+					<Item href="/UI/Doc/ArtifactManual/Level/001/SwitchOff.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Level/001/Released.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<!-- <Item href="/UI/Doc/ArtifactManual/Level/002/SwitchOff.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/> -->
+					<!-- <Item href="/UI/Doc/ArtifactManual/Level/002/Released.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/> -->
+ 					<Item href="/UI/Doc/ArtifactManual/Level/003/SwitchOff.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Level/003/Released.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Level/004/SwitchOff.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Level/004/Released.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Level/005/SwitchOff.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Level/005/Released.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Level/006/SwitchOff.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Level/006/Released.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Level/007/SwitchOff.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Level/007/Released.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Level/008/SwitchOff.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Level/008/Released.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+
+					<Item href="/UI/Doc/ArtifactManual/Combine/001/SwitchOff.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Combine/001/Released.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Combine/002/SwitchOff.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Combine/002/Released.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+ 					<Item href="/UI/Doc/ArtifactManual/Combine/003/SwitchOff.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Combine/003/Released.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Combine/004/SwitchOff.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Combine/004/Released.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Combine/005/SwitchOff.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Combine/005/Released.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Combine/006/SwitchOff.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Combine/006/Released.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Combine/007/SwitchOff.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Combine/007/Released.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Combine/008/SwitchOff.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Combine/008/Released.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Combine/009/SwitchOff.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Combine/009/Released.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Combine/010/SwitchOff.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Combine/010/Released.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Combine/011/SwitchOff.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Combine/011/Released.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Combine/012/SwitchOff.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Combine/012/Released.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Combine/013/SwitchOff.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Combine/013/Released.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Combine/014/SwitchOff.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Combine/014/Released.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Combine/015/SwitchOff.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Combine/015/Released.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Combine/016/SwitchOff.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Combine/016/Released.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Combine/101/SwitchOff.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Combine/101/Released.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Combine/102/SwitchOff.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Combine/102/Released.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Combine/103/SwitchOff.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+					<Item href="/UI/Doc/ArtifactManual/Combine/103/Released.(UISSendUIMessage).xdb#xpointer(/UISSendUIMessage)"/>
+				</Commands>
+				<Reversable>false</Reversable>
+			</CommandsOnEnterState>
+			<CommandsOnRightClick>
+				<Commands/>
+				<Reversable>false</Reversable>
+			</CommandsOnRightClick>
+			<commandsOnLDblKlick>
+				<Commands/>
+				<Reversable>false</Reversable>
+			</commandsOnLDblKlick>
+			<WaitVisual>false</WaitVisual>
+			<ReverseCommands>false</ReverseCommands>
+			<Name/>
+		</Item>
+	</ButtonStates>
+	<ButtonGroupID>0</ButtonGroupID>
+	<AutoChangeState>false</AutoChangeState>
+	<PushEffect>
+		<Commands/>
+		<Reversable>false</Reversable>
+	</PushEffect>
+	<State>0</State>
+	<TextFileRef href=""/>
+	<TextFormat/>
+</WindowMSButton>

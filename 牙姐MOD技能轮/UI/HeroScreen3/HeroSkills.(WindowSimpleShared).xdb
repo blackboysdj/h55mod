@@ -20,9 +20,6 @@
 		<Item href="Skills/Racial_Desc.(WindowStaticText).xdb#xpointer(/WindowStaticText)"/>
 		<Item href="SkillSelection.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<Item href="TableSkillSelection.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		
-		
-
 	</Children>
 	<Background/>
 	<Foreground/>

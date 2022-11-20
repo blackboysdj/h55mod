@@ -63,7 +63,7 @@
 			<Item>HERO_SKILL_SCOUTING</Item>
 		</perkIDs>
 		<spellIDs>
-			<Item>SPELL_PLAGUE</Item>
+			<Item>SPELL_FORGETFULNESS</Item>
 		</spellIDs>
 		<Ballista>false</Ballista>
 		<FirstAidTent>false</FirstAidTent>

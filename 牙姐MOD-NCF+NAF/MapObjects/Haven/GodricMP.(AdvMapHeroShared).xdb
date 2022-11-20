@@ -29,14 +29,14 @@
 	<RazedStatic/>
 	<Icon128 href="/Textures/Icons/Heroes/Heaven/Heaven_Godric_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<InternalName>GodricMP</InternalName>
-	<Class>HERO_CLASS_PALADIN</Class>
+	<Class>HERO_CLASS_KNIGHT</Class>
 	<Specialization>HERO_SPEC_WHITE_KNIGHT</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_LIGHT_MAGIC</SkillID>
+		<SkillID>HERO_SKILL_TRAINING</SkillID>
 	</PrimarySkill>
-	<SpecializationNameFileRef href="/Text/Game/Heroes/Specializations/Haven55/White_Knight/Name.txt"/>
-	<SpecializationDescFileRef href="/Text/Game/Heroes/Specializations/Haven55/White_Knight/Description.txt"/>
+	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Heaven/012-GodricMP/Text.txt"/>
+	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Heaven/012-GodricMP/Description.txt"/>
 	<SpecializationIcon href="/Textures/HeroScreen/Specializations/Haven/White_Khight.xdb#xpointer(/Texture)"/>
 	<FaceTexture href="/Textures/Icons/Heroes/Heaven/Heaven_Godric_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<FaceTextureSmall/>
@@ -53,15 +53,13 @@
 		<Defence>2</Defence>
 		<Spellpower>1</Spellpower>
 		<Knowledge>2</Knowledge>
-		<skills>	
+		<skills>
 			<Item>
-				<Mastery>MASTERY_BASIC</Mastery>
-				<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
-			</Item>	
-		</skills>	
-		<perkIDs>
-			<Item>HERO_SKILL_ENCOURAGE</Item>
-		</perkIDs>
+				<Mastery>MASTERY_ADVANCED</Mastery>
+				<SkillID>HERO_SKILL_LIGHT_MAGIC</SkillID>
+			</Item>
+		</skills>
+		<perkIDs/>
 		<spellIDs>
 			<Item>SPELL_BLESS</Item>
 		</spellIDs>

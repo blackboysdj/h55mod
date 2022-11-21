@@ -5857,8 +5857,8 @@
 
   -- 初高神-分档
     ARTF_CLASS_MINOR 初级 1~3 初始奖励选择宝物时可指定
-    ARTF_CLASS_MAJOR 高级 4~6
-    ARTF_CLASS_RELIC 神器 7
+    ARTF_CLASS_MAJOR 高级 4~5
+    ARTF_CLASS_RELIC 神器 6~7
 
   -- 价格
     1档-12000

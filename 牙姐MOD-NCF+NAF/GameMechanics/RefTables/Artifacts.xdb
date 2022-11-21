@@ -132,7 +132,7 @@
 				<NameFileRef href="/Text/TTH/Artifact/101-PendantOfBlind/Text.txt"/>
 				<DescriptionFileRef href="/Text/TTH/Artifact/101-PendantOfBlind/Description.txt"/>
 				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
-				<Type>ARTF_CLASS_MAJOR</Type>
+				<Type>ARTF_CLASS_RELIC</Type>
 				<Slot>HEAD</Slot>
 				<Icon href="/Textures/HeroScreen/Artifacts/ResGem.xdb#xpointer(/Texture)"/>
 				<CostOfGold>36000</CostOfGold>
@@ -157,7 +157,7 @@
 				<NameFileRef href="/Text/TTH/Artifact/102-GemOfPhantom/Text.txt"/>
 				<DescriptionFileRef href="/Text/TTH/Artifact/102-GemOfPhantom/Description.txt"/>
 				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
-				<Type>ARTF_CLASS_MAJOR</Type>
+				<Type>ARTF_CLASS_RELIC</Type>
 				<Slot>NECK</Slot>
 				<Icon href="/Textures/HeroScreen/Artifacts/ResMercury.xdb#xpointer(/Texture)"/>
 				<CostOfGold>36000</CostOfGold>
@@ -2232,7 +2232,7 @@
 				<NameFileRef href="/Text/TTH/Artifact/109-LegionExpert/Text.txt"/>
 				<DescriptionFileRef href="/Text/TTH/Artifact/109-LegionExpert/Description.txt"/>
 				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
-				<Type>ARTF_CLASS_MAJOR</Type>
+				<Type>ARTF_CLASS_RELIC</Type>
 				<Slot>INVENTORY</Slot>
 				<Icon href="/Textures/HeroScreen/Artifacts/109-LegionExpert.xdb#xpointer(/Texture)"/>
 				<CostOfGold>36000</CostOfGold>
@@ -4232,7 +4232,7 @@
 				<NameFileRef href="/Text/TTH/Artifact/169-RingOfHolyGriffin/Text.txt"/>
 				<DescriptionFileRef href="/Text/TTH/Artifact/169-RingOfHolyGriffin/Description.txt"/>
 				<Model href="/_(Model)/TerrainObjects/Water/SeaChest.(Model).xdb#xpointer(/Model)"/>
-				<Type>ARTF_CLASS_MAJOR</Type>
+				<Type>ARTF_CLASS_RELIC</Type>
 				<Slot>FINGER</Slot>
 				<Icon href="/Textures/HeroScreen/Artifacts/169-RingOfHolyGriffin.xdb#xpointer(/Texture)"/>
 				<CostOfGold>36000</CostOfGold>

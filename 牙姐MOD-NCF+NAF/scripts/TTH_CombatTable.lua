@@ -1345,6 +1345,7 @@
         end;
         local arrTarget = TTHCS_GLOBAL.listUnitInArea(itemCaster, 1, iOppositeSide, TCS_ENUM.Switch.No);
         startThread(TTHCS_THREAD.unitAttack, sidCaster, sidTarget);
+        sleep(50);
         if contains(arrTarget, sidTarget) == nil then
           local itemCasterCurrent = {};
           local bExistCasterCurrent = not nil;
@@ -1410,7 +1411,7 @@
 
     -- 单位远程攻击
       function TTHCS_THREAD.shoot(sidCaster, sidTarget)
-        if TTHCS_GLOBAL.checkCombatCreature(sidTarget) == TCS_ENUM.Switch.Yes then
+        if TTHCS_GLOBAL.checkCombatCreature(sidTarget) then
           startThread(TTHCS_THREAD.unitShoot, sidCaster, sidTarget);
           print(sidCaster.." shoot to "..sidTarget);
           sleep(20);

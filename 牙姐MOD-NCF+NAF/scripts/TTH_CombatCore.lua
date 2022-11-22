@@ -1626,8 +1626,8 @@ print("TTH_CombatCore loading...");
                 local listCreatureHunter = TTHCS_GLOBAL.sort4CreatureType8Number2desc(iSide, CREATURE_WOOD_ELF);
                 local listCreatureDruid = TTHCS_GLOBAL.sort4CreatureType8Number2desc(iSide, CREATURE_DRUID);
                 if length(listCreatureDancer) > 0
-                  and length(listCreatureHunter) > 0
-                  and length(listCreatureDruid) > 0 then
+                  or length(listCreatureHunter) > 0
+                  or length(listCreatureDruid) > 0 then
                   TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Nadaur.trigger");
                   if length(listCreatureDancer) > 0 then
@@ -1637,6 +1637,7 @@ print("TTH_CombatCore loading...");
                       TCS_FUNC.Atb.record(itemCreatureCaster["UnitName"], TCS_ENUM.Atb.max);
                     end;
                     ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], itemCreatureCaster["UnitName"], 5);
+                    sleep(50);
                   end;
                   if length(listCreatureHunter) > 0 then
                     local itemCreatureCaster = listCreatureHunter[0];
@@ -1645,6 +1646,7 @@ print("TTH_CombatCore loading...");
                       TCS_FUNC.Atb.record(itemCreatureCaster["UnitName"], TCS_ENUM.Atb.max);
                     end;
                     ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], itemCreatureCaster["UnitName"], 5);
+                    sleep(50);
                   end;
                   if length(listCreatureDruid) > 0 then
                     local itemCreatureCaster = listCreatureDruid[0];

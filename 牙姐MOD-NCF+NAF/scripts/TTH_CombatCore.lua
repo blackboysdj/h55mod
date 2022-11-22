@@ -4439,15 +4439,13 @@ print("TTH_CombatCore loading...");
             local strHero = GetHeroName(sidHero);
             if strHero == TCS_FUNC.Talent.Efion.strHero then
               if itemUnitLast ~= nil and itemUnitLast["UnitName"] == sidHero
+                and TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1
                 and itemHeroMana[iSide] == TCS_ENUM.Snapshot.Hero.Mana.Unchanged
                 and length(listCreatureNumberDecrease[iOppositeSide]) > 0 then
                 TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Efion.trigger");
                 for i, sidCreatureTarget in listCreatureNumberDecrease[iOppositeSide] do
-                  TTHCS_THREAD.castAimedSpell4Mana(sidHero, SPELL_FORGETFULNESS, sidCreatureTarget, TCS_ENUM.Switch.No);
-                  if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-                    TTHCS_THREAD.castAimedSpell4Mana(sidHero, SPELL_HYPNOTIZE, sidCreatureTarget, TCS_ENUM.Switch.No);
-                  end;
+                  TTHCS_THREAD.castAimedSpell4Mana(sidHero, SPELL_HYPNOTIZE, sidCreatureTarget, TCS_ENUM.Switch.No);
                   if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
                     TTHCS_THREAD.castAimedSpell4Mana(sidHero, SPELL_BERSERK, sidCreatureTarget, TCS_ENUM.Switch.No);
                   end;
@@ -6442,6 +6440,7 @@ print("TTH_CombatCore loading...");
     -- HERO_SKILL_DEAD_LUCK 103 恶灵诅咒
       TCS_FUNC.Skill.DeadLuck = {};
       TCS_FUNC.Skill.DeadLuck.flag = {};
+      TCS_FUNC.Skill.DeadLuck.flagSpecailHero = {};
       TCS_FUNC.Skill.DeadLuck.arrSpellId = { [0] = 11, [1] = 13, [2] = 15, [3] = 14, [4] = 277, [5] = 18, [6] = 19 };
       TCS_FUNC.Skill.DeadLuck.move = function(iSide, itemUnit)
         local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
@@ -6454,6 +6453,11 @@ print("TTH_CombatCore loading...");
               TCS_VARI.Info.HeroSkill[strHero][HERO_SKILL_DEAD_LUCK] == 1
               or TCS_VARI.Info.HeroArtifact[strHero][ARTIFACT_BOOTS_OF_THE_WALKING_DEAD] == 1
             ) then
+            if contains(TTHCS_TABLE.CombatStartSpecialHero, strHero) ~= nil
+              and TCS_FUNC.Skill.DeadLuck.flagSpecailHero[strHero] == nil then
+              TCS_FUNC.Skill.DeadLuck.flagSpecailHero[strHero] = TCS_ENUM.Switch.Yes;
+              return nil;
+            end;
             if TCS_FUNC.Skill.DeadLuck.flag[strHero] == nil then
               TCS_FUNC.Skill.DeadLuck.flag[strHero] = TCS_ENUM.Switch.Yes;
             end;
@@ -7216,6 +7220,7 @@ print("TTH_CombatCore loading...");
     -- ARTIFACT_PENDANT_OF_BLIND 101 闪耀权冠
       TCS_FUNC.Artifact.PendantOfBlind = {};
       TCS_FUNC.Artifact.PendantOfBlind.flag = {};
+      TCS_FUNC.Artifact.PendantOfBlind.flagSpecailHero = {};
       TCS_FUNC.Artifact.PendantOfBlind.first = function(iSide, itemUnit)
         local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
         local sidHero = GetHero(iSide);
@@ -7224,6 +7229,11 @@ print("TTH_CombatCore loading...");
           if itemUnit["UnitName"] == sidHero
             and TCS_VARI.Info.HeroArtifact[strHero][ARTIFACT_PENDANT_OF_BLIND] == 1
             and TTH_TABLE.Hero[strHero]["Race"] ~= TOWN_STRONGHOLD then
+            if contains(TTHCS_TABLE.CombatStartSpecialHero, strHero) ~= nil
+              and TCS_FUNC.Artifact.PendantOfBlind.flagSpecailHero[strHero] == nil then
+              TCS_FUNC.Artifact.PendantOfBlind.flagSpecailHero[strHero] = TCS_ENUM.Switch.Yes;
+              return nil;
+            end;
             if TCS_FUNC.Artifact.PendantOfBlind.flag[strHero] == nil then
               TCS_FUNC.Artifact.PendantOfBlind.flag[strHero] = TCS_ENUM.Switch.Yes;
               TCS_FUNC.Battle.pause();
@@ -7244,6 +7254,7 @@ print("TTH_CombatCore loading...");
     -- ARTIFACT_CODEX 126 大法师之典
       TCS_FUNC.Artifact.Codex = {};
       TCS_FUNC.Artifact.Codex.flag = {};
+      TCS_FUNC.Artifact.Codex.flagSpecailHero = {};
       TCS_FUNC.Artifact.Codex.first = function(iSide, itemUnit)
         local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
         local sidHero = GetHero(iSide);
@@ -7252,6 +7263,11 @@ print("TTH_CombatCore loading...");
           if itemUnit["UnitName"] == sidHero
             and TCS_VARI.Info.HeroArtifact[strHero][ARTIFACT_CODEX] == 1
             and TTH_TABLE.Hero[strHero]["Race"] ~= TOWN_STRONGHOLD then
+            if contains(TTHCS_TABLE.CombatStartSpecialHero, strHero) ~= nil
+              and TCS_FUNC.Artifact.Codex.flagSpecailHero[strHero] == nil then
+              TCS_FUNC.Artifact.Codex.flagSpecailHero[strHero] = TCS_ENUM.Switch.Yes;
+              return nil;
+            end;
             if TCS_FUNC.Artifact.Codex.flag[strHero] == nil then
               TCS_FUNC.Artifact.Codex.flag[strHero] = TCS_ENUM.Switch.Yes;
               TCS_FUNC.Battle.pause();
@@ -8121,7 +8137,9 @@ print("TTH_CombatCore loading...");
 
       -- 正常执行
         print("normal");
-        TCS_FUNC.Pasted.set(itemUnit);
+        if TCS_FUNC.Battle.hasDealStart == TCS_ENUM.Switch.Yes then
+          TCS_FUNC.Pasted.set(itemUnit);
+        end;
         push(TCS_VARI.Unit.trigger, itemUnit);
 
       -- 获取上个行动单位

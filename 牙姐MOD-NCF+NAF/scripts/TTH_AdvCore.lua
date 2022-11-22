@@ -19838,11 +19838,13 @@ doFile("/scripts/H55-Settings.lua");
 			GiveArtefact(strHero, 15)
 			GiveArtefact(strHero, 163)
 			GiveArtefact(strHero, 113)
+			GiveArtefact(strHero, 140)
+			GiveArtefact(strHero, 126)
+			GiveArtefact(strHero, 101)
 			GiveArtefact(strHero, 61)
 			GiveArtefact(strHero, 147)
 			GiveArtefact(strHero, 46)
 			GiveArtefact(strHero, 193)
-			GiveArtefact(strHero, 126)
 			TTH.see();
 			ExecConsoleCommand("enable_cheats");
 		end;

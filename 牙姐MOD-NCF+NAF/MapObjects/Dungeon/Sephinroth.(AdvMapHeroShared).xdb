@@ -63,7 +63,7 @@
 			<Item>HERO_SKILL_MASTER_OF_ICE</Item>
 		</perkIDs>
 		<spellIDs>
-			<Item>SPELL_ICE_BOLT</Item>
+			<Item>SPELL_FROST_RING</Item>
 			<Item>SPELL_ARCANE_CRYSTAL</Item>
 		</spellIDs>
 		<Ballista>false</Ballista>

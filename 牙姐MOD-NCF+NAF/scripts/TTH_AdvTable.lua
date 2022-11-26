@@ -2540,8 +2540,8 @@
           }
           , [HERO_SKILL_RAISE_ARCHERS] = {
             ["Text"] = TTH_PATH.Perk[HERO_SKILL_RAISE_ARCHERS]["Text"]
-            , [TTH_ENUM.FuncAtGate] = "TTH_PERK.active061"
-            , [TTH_ENUM.FuncNotAtGate] = "TTH_PERK.active061"
+            , [TTH_ENUM.FuncAtGate] = "TTH_PERK.raiseArchers.active.enter"
+            , [TTH_ENUM.FuncNotAtGate] = "TTH_PERK.raiseArchers.active.enter"
           }
           , [HERO_SKILL_FIRE_AFFINITY] = {
             ["Text"] = TTH_PATH.Perk[HERO_SKILL_FIRE_AFFINITY]["Text"]
@@ -2608,7 +2608,7 @@
             [TTH_ENUM.FuncAlways] = "TTH_PERK.resetWeekly068"
           }
           , [HERO_SKILL_RAISE_ARCHERS] = {
-            [TTH_ENUM.FuncAlways] = "TTH_PERK.resetWeekly061"
+            [TTH_ENUM.FuncAlways] = "TTH_PERK.raiseArchers.basic.resetWeekly"
           }
           , [HERO_SKILL_GRAIL_VISION] = {
             [TTH_ENUM.FuncAlways] = "TTH_PERK.resetWeekly080"

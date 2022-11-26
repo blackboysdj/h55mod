@@ -6791,8 +6791,6 @@ doFile("/scripts/H55-Settings.lua");
 							if iArtifactLevel > 7 then
 								iArtifactLevel = 7;
 							end;
-							print("iArtifactLevel")
-							print(iArtifactLevel)
 							local arrArtifact = {};
 							for i = 1, iArtifactLevel do
 								arrArtifact = TTH_COMMON.concat(arrArtifact, TTH_TABLE.Artifact8Level[i]);
@@ -18122,14 +18120,23 @@ doFile("/scripts/H55-Settings.lua");
 			end;
 
 		-- HERO_SKILL_RAISE_ARCHERS 061 宝物学者
-			TTH_VARI.recordRaiseArchers = {};
-			TTH_FINAL.RAISE_ARCHERS_COST = 0;
-			function TTH_PERK.init061(iPlayer, strHero)
-				TTH_MAIN.debug("TTH_PERK.init061", iPlayer, strHero);
+			TTH_PERK.raiseArchers = {};
+			TTH_PERK.raiseArchers.data = {
+				[1] = 4000
+				, [2] = 5000
+				, [3] = 6000
+				, [4] = 8000
+				, [5] = 10000
+				, [6] = 12000
+			};
+			TTH_PERK.raiseArchers.record = {};
+			TTH_PERK.raiseArchers.basic = {};
+			TTH_PERK.raiseArchers.basic.init = function(iPlayer, strHero)
+				TTH_MAIN.debug("TTH_PERK.raiseArchers.basic.init", iPlayer, strHero);
 
 				local iTimes = TTH_GLOBAL.getPerkOperTimes(HERO_SKILL_RAISE_ARCHERS);
-				if TTH_VARI.recordRaiseArchers[strHero] == nil then
-					TTH_VARI.recordRaiseArchers[strHero] = {
+				if TTH_PERK.raiseArchers.record[strHero] == nil then
+					TTH_PERK.raiseArchers.record[strHero] = {
 						["OperTimes"] = iTimes
 						, ["MaxOperTimes"] = iTimes
 						, ["Level"] = 0
@@ -18137,23 +18144,30 @@ doFile("/scripts/H55-Settings.lua");
 					};
 				end;
 			end;
-			function TTH_PERK.reset061(iPlayer, strHero)
-				TTH_MAIN.debug("TTH_PERK.reset061", iPlayer, strHero);
+			TTH_PERK.raiseArchers.basic.reset = function(iPlayer, strHero)
+				TTH_MAIN.debug("TTH_PERK.raiseArchers.basic.reset", iPlayer, strHero);
 
-				if TTH_VARI.recordRaiseArchers[strHero] ~= nil then
-					TTH_VARI.recordRaiseArchers[strHero]["Level"] = 0;
-					TTH_VARI.recordRaiseArchers[strHero]["ArtifactId"] = 0;
+				if TTH_PERK.raiseArchers.record[strHero] ~= nil then
+					TTH_PERK.raiseArchers.record[strHero]["Level"] = 0;
+					TTH_PERK.raiseArchers.record[strHero]["ArtifactId"] = 0;
 				end;
 			end;
-			function TTH_PERK.active061(iPlayer, strHero)
-				TTH_COMMON.nextNavi(TTH_PATH.Perk[HERO_SKILL_RAISE_ARCHERS]["Text"]);
+			TTH_PERK.raiseArchers.basic.resetWeekly = function(iPlayer, strHero)
+				TTH_MAIN.debug("TTH_PERK.raiseArchers.basic.resetWeekly", iPlayer, strHero);
 
-				TTH_PERK.init061(iPlayer, strHero);
-				TTH_PERK.checkPreActive0614NotEnoughTimes(iPlayer, strHero)
+				TTH_PERK.raiseArchers.basic.init(iPlayer, strHero);
+				TTH_PERK.raiseArchers.record[strHero]["OperTimes"] = TTH_PERK.raiseArchers.record[strHero]["MaxOperTimes"];
 			end;
-			function TTH_PERK.checkPreActive0614NotEnoughTimes(iPlayer, strHero)
+			TTH_PERK.raiseArchers.active = {};
+			TTH_PERK.raiseArchers.active.enter = function(iPlayer, strHero)
+				TTH_MAIN.debug("TTH_PERK.raiseArchers.active.enter", iPlayer, strHero);
+
+				TTH_PERK.raiseArchers.basic.init(iPlayer, strHero);
+				TTH_PERK.raiseArchers.active.check4Times(iPlayer, strHero);
+			end;
+			TTH_PERK.raiseArchers.active.check4Times = function(iPlayer, strHero)
 				local strText = TTH_PATH.Perk[HERO_SKILL_RAISE_ARCHERS]["NotEnoughTimes"];
-				if TTH_VARI.recordRaiseArchers[strHero]["OperTimes"] <= 0 then
+				if TTH_PERK.raiseArchers.record[strHero]["OperTimes"] <= 0 then
 					if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
 						if TTH_MANAGE.getRemainOperTimes(strHero) <= 0 then
 		    			TTH_GLOBAL.sign(strHero, strText);
@@ -18165,27 +18179,29 @@ doFile("/scripts/H55-Settings.lua");
 		  		end;
 				end;
 
-				TTH_PERK.radioActive0614Level(iPlayer, strHero)
+				TTH_PERK.raiseArchers.active.radio4Level(iPlayer, strHero)
 			end;
-			function TTH_PERK.radioActive0614Level(iPlayer, strHero)
+			TTH_PERK.raiseArchers.active.radio4Level = function(iPlayer, strHero)
 				local arrOption = {};
 				for i = 1, 6 do
+					local iGold = TTH_PERK.raiseArchers.data[i];
 					arrOption[i] = {
 						["Id"] = i
 						, ["Text"] = {
 								TTH_PATH.Perk[HERO_SKILL_RAISE_ARCHERS]["OptionTemplate4Level"]
 								;iLevel=i
+								,iGold=iGold
 							}
-						, ["Callback"] = "TTH_PERK.checkPreActive0614Gold"
+						, ["Callback"] = "TTH_PERK.raiseArchers.active.check4Gold"
 					};
 				end;
 
 				local strPathOption = TTH_PATH.Perk[HERO_SKILL_RAISE_ARCHERS]["RadioTips4Level"];
 				TTH_COMMON.optionRadio(iPlayer, strHero, arrOption, strPathOption);
 			end;
-			function TTH_PERK.checkPreActive0614Gold(iPlayer, strHero, iLevel)
-				TTH_VARI.recordRaiseArchers[strHero]["Level"] = iLevel;
-				local iGold = iLevel * 1000 + TTH_FINAL.RAISE_ARCHERS_COST;
+			TTH_PERK.raiseArchers.active.check4Gold = function(iPlayer, strHero, iLevel)
+				TTH_PERK.raiseArchers.record[strHero]["Level"] = iLevel;
+				local iGold = TTH_PERK.raiseArchers.data[iLevel];
 				if GetPlayerResource(iPlayer, GOLD) < iGold then
 					local strPathMain = {
 						TTH_PATH.Perk[HERO_SKILL_RAISE_ARCHERS]["NotEnoughGold"]
@@ -18195,10 +18211,10 @@ doFile("/scripts/H55-Settings.lua");
 					return nil;
 				end;
 
-				TTH_PERK.radioActive0614Artifact(iPlayer, strHero);
+				TTH_PERK.raiseArchers.active.radio4Artifact(iPlayer, strHero);
 			end;
-			function TTH_PERK.radioActive0614Artifact(iPlayer, strHero)
-				local iLevel = TTH_VARI.recordRaiseArchers[strHero]["Level"];
+			TTH_PERK.raiseArchers.active.radio4Artifact = function(iPlayer, strHero)
+				local iLevel = TTH_PERK.raiseArchers.record[strHero]["Level"];
 				local arrOption = {};
 				local arrArtifact = TTH_TABLE.Artifact8Level[iLevel];
 				local i = 1;
@@ -18207,7 +18223,7 @@ doFile("/scripts/H55-Settings.lua");
 						arrOption[i] = {
 							["Id"] = iArtifactId
 							, ["Text"] = TTH_TABLE.Artifact[iArtifactId]["Text"]
-							, ["Callback"] = "TTH_PERK.comfirmActive061"
+							, ["Callback"] = "TTH_PERK.raiseArchers.active.confirm"
 						};
 						i = i + 1;
 					end;
@@ -18225,48 +18241,42 @@ doFile("/scripts/H55-Settings.lua");
 				local strPathOption = TTH_PATH.Perk[HERO_SKILL_RAISE_ARCHERS]["RadioTips4Artifact"];
 				TTH_COMMON.optionRadio(iPlayer, strHero, arrOption, strPathOption);
 			end;
-			function TTH_PERK.comfirmActive061(iPlayer, strHero, iArtifactId)
-				TTH_VARI.recordRaiseArchers[strHero]["ArtifactId"] = iArtifactId;
-				local iLevel = TTH_VARI.recordRaiseArchers[strHero]["Level"];
-				local iGold = iLevel * 1000 + TTH_FINAL.RAISE_ARCHERS_COST;
+			TTH_PERK.raiseArchers.active.confirm = function(iPlayer, strHero, iArtifactId)
+				TTH_PERK.raiseArchers.record[strHero]["ArtifactId"] = iArtifactId;
+				local iLevel = TTH_PERK.raiseArchers.record[strHero]["Level"];
+				local iGold = TTH_PERK.raiseArchers.data[iLevel];
 
-				local strPathMain = {
+				local strText = {
 					TTH_PATH.Perk[HERO_SKILL_RAISE_ARCHERS]["Confirm"]
 					;strArtifactName=TTH_TABLE.Artifact[iArtifactId]["Text"]
 					,iLevel=iLevel
 					,iGold=iGold
 				};
-				local strCallbackOk = "TTH_PERK.implActive061("..iPlayer..","..TTH_COMMON.psp(strHero)..")";
+				local strCallbackOk = "TTH_PERK.raiseArchers.active.success("..iPlayer..","..TTH_COMMON.psp(strHero)..")";
 				local strCallbackCancel = "TTH_COMMON.cancelOption()";
-				TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
+				TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strText, strCallbackOk, strCallbackCancel);
 			end;
-			function TTH_PERK.implActive061(iPlayer, strHero)
-				if TTH_VARI.recordRaiseArchers[strHero]["OperTimes"] > 0 then
-					TTH_VARI.recordRaiseArchers[strHero]["OperTimes"] = TTH_VARI.recordRaiseArchers[strHero]["OperTimes"] - 1;
+			TTH_PERK.raiseArchers.active.success = function(iPlayer, strHero)
+				if TTH_PERK.raiseArchers.record[strHero]["OperTimes"] > 0 then
+					TTH_PERK.raiseArchers.record[strHero]["OperTimes"] = TTH_PERK.raiseArchers.record[strHero]["OperTimes"] - 1;
 				else
 					TTH_MANAGE.useOperTimes(strHero);
 				end;
 
-				local iLevel = TTH_VARI.recordRaiseArchers[strHero]["Level"];
-				local iArtifactId = TTH_VARI.recordRaiseArchers[strHero]["ArtifactId"];
-				local iGold = iLevel * 1000 + TTH_FINAL.RAISE_ARCHERS_COST;
+				local iLevel = TTH_PERK.raiseArchers.record[strHero]["Level"];
+				local iArtifactId = TTH_PERK.raiseArchers.record[strHero]["ArtifactId"];
+				local iGold = TTH_PERK.raiseArchers.data[iLevel];
 				TTH_GLOBAL.reduceResource(iPlayer, GOLD, iGold);
 				GiveArtefact(strHero, iArtifactId);
-				TTH_PERK.reset061(iPlayer, strHero);
+				TTH_PERK.raiseArchers.basic.reset(iPlayer, strHero);
 
-				local strPathMain = {
+				local strText = {
 					TTH_PATH.Perk[HERO_SKILL_RAISE_ARCHERS]["Success"]
 					;strArtifactName=TTH_TABLE.Artifact[iArtifactId]["Text"]
 					,iLevel=iLevel
 					,iGold=iGold
 				};
-				TTH_GLOBAL.sign(strHero, strPathMain);
-			end;
-			function TTH_PERK.resetWeekly061(iPlayer, strHero)
-				TTH_MAIN.debug("TTH_PERK.resetWeekly061", iPlayer, strHero);
-
-				TTH_PERK.init061(iPlayer, strHero);
-				TTH_VARI.recordRaiseArchers[strHero]["OperTimes"] = TTH_VARI.recordRaiseArchers[strHero]["MaxOperTimes"];
+				TTH_GLOBAL.sign(strHero, strText);
 			end;
 
 		-- HERO_SKILL_MELT_ARTIFACT 068 熔毁宝物

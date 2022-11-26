@@ -1198,6 +1198,7 @@
         end;
       end;
       function TTHCS_THREAD.castAreaSpell4SpellSpawn(iSide, iCreatureId, iCreatureNumber, sidCaster, iSpellId, iPosX, iPosY, bSign)
+        local iCurrentMana = GetUnitManaPoints(sidCaster);
         local iLenBefore = length(GetSpellSpawns(iSide));
         local iLenAfter = iLenBefore;
         local strCreatureTool = TTHCS_THREAD.addCreature(iSide, iCreatureId, iCreatureNumber, iPosX, iPosY);
@@ -1205,6 +1206,8 @@
         TTHCS_THREAD.removeCreature(strCreatureTool);
         startThread(TTHCS_THREAD.unitCastAreaSpell, sidCaster, iSpellId, itemCreatureTool["PosX"], itemCreatureTool["PosY"]);
         TTHCS_GLOBAL.signSpell(sidCaster, iSpellId, bSign);
+        sleep(50);
+        TTHCS_GLOBAL.resetMana(sidCaster, iCurrentMana);
         local iTimes = 0;
         repeat
           sleep(10);
@@ -2313,6 +2316,31 @@
         return enumEffect;
       end;
 
+    -- 获取两个水晶是否相邻
+      -- 参数: sidArcaneCrystalCaster, sidArcaneCrystalTarget
+      -- 返回值: enumEffect
+      function TTHCS_GLOBAL.isNearBy4ArcaneCrystal(sidArcaneCrystalCaster, sidArcaneCrystalTarget)
+        local enumEffect = TCS_ENUM.Switch.No;
+        local itemArcaneCrystalCaster = TTHCS_GLOBAL.geneUnitInfo(sidArcaneCrystalCaster);
+        local itemArcaneCrystalTarget = TTHCS_GLOBAL.geneUnitInfo(sidArcaneCrystalTarget);
+        if itemArcaneCrystalCaster == nil
+          or itemArcaneCrystalTarget == nil then
+          return enumEffect;
+        end;
+        local iCombatSizeCaster = 1;
+        local iDistance = 1;
+        local arrEffectPosition = TTHCS_COMMON.calcEffectArea(iCombatSizeCaster + iDistance * 2, itemArcaneCrystalCaster["PosX"], itemArcaneCrystalCaster["PosY"], itemArcaneCrystalCaster["UnitCategory"]);
+        for i, itemEffectPosition in arrEffectPosition do
+          local iEffectPosX = itemEffectPosition["PosX"];
+          local iEffectPosY = itemEffectPosition["PosY"];
+          local enumEffect = TTHCS_COMMON.isEffectUnit(sidArcaneCrystalTarget, iEffectPosX, iEffectPosY);
+          if enumEffect == TCS_ENUM.Switch.Yes then
+            return enumEffect;
+          end;
+        end;
+        return enumEffect;
+      end;
+
     -- 获取两个生物距离的平方
       -- 参数: sidCreatureCaster, sidCreatureTarget
       -- 返回值: iDistance
@@ -2470,6 +2498,42 @@
           bCheck = not nil;
         end;
         return bCheck;
+      end;
+
+    -- 获取单位占据坐标中的随机一个
+      -- 参数: sidUnit
+      -- 返回值: itemPosition
+      function TTHCS_GLOBAL.getUnitPosition4Random(sidUnit)
+        local itemPosition = {};
+        local itemUnit = TTHCS_GLOBAL.geneUnitInfo(sidUnit);
+        if itemUnit["UnitCategory"] == TTH_ENUM.CombatCreature then
+          local iCombatSize = TTH_TABLE.Creature[itemUnit["UnitType"]]["CombatSize"];
+          if iCombatSize == 1 then
+            itemPosition = {
+              ["PosX"] = itemUnit["PosX"]
+              , ["PosY"] = itemUnit["PosY"]
+            };
+          else
+            local arrPosition = {};
+            for x = -1, 0 do
+              for y = -1, 0 do
+                local itemPositionTemp = {
+                  ["PosX"] = itemUnit["PosX"] + x
+                  , ["PosY"] = itemUnit["PosY"] + y
+                };
+                push(arrPosition, itemPositionTemp);
+              end;
+            end;
+            local iRandomIndex = TTHCS_COMMON.getRandom(length(arrPosition));
+            itemPosition = arrPosition[iRandomIndex];
+          end;
+        else
+          itemPosition = {
+            ["PosX"] = itemUnit["PosX"]
+            , ["PosY"] = itemUnit["PosY"]
+          };
+        end;
+        return itemPosition;
       end;
 
   TTHCS_PATH = {};

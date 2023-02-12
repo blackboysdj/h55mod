@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AdvMapDwellingShared>
+	<Model href="/_(Model)/CombatArena/Necropolis_obj/Necropolis_CTower.xdb#xpointer(/Model)"/>
+	<AnimSet/>
+	<blockedTiles>
+		<Item>
+			<x>-1</x>
+			<y>-1</y>
+		</Item>
+		<Item>
+			<x>1</x>
+			<y>-1</y>
+		</Item>
+		<Item>
+			<x>0</x>
+			<y>-1</y>
+		</Item>
+		<Item>
+			<x>0</x>
+			<y>0</y>
+		</Item>
+		<Item>
+			<x>1</x>
+			<y>0</y>
+		</Item>
+		<Item>
+			<x>-1</x>
+			<y>1</y>
+		</Item>
+		<Item>
+			<x>0</x>
+			<y>1</y>
+		</Item>
+		<Item>
+			<x>1</x>
+			<y>1</y>
+		</Item>
+	</blockedTiles>
+	<holeTiles/>
+	<activeTiles>
+		<Item>
+			<x>-1</x>
+			<y>0</y>
+		</Item>
+	</activeTiles>
+	<passableTiles/>
+	<PossessionMarkerTile>
+		<x>0</x>
+		<y>-2</y>
+	</PossessionMarkerTile>
+	<Effect/>
+	<EffectWhenOwned/>
+	<messagesFileRef>
+		<Item href="/Text/Game/Dwellings/NeutralDK/name.txt"/>
+		<Item href="/Text/Game/Dwellings/NeutralDK/description.txt"/>
+		<Item href="/Text/Game/Dwellings/NeutralDK/FirstVisit.txt"/>
+		<Item href="/Text/Game/Dwellings/NeutralDK/SecondVisit.txt"/>
+		<Item href="/Text/Game/Dwellings/NeutralDK/FirstVisitNoHire.txt"/>
+		<Item href="/Text/Game/Dwellings/NeutralDK/SecondVisitNoHire.txt"/>
+	</messagesFileRef>
+	<WaterBased>false</WaterBased>
+	<ApplyHeroTrace>false</ApplyHeroTrace>
+	<SoundEffect/>
+	<flybyMessageFileRef href=""/>
+	<ObjectTypeFileRef href="/Text/Visibility_Types/Buildings.txt"/>
+	<TerrainAligned>false</TerrainAligned>
+	<FlyPassable>true</FlyPassable>
+	<AdventureSoundEffect/>
+	<RazedStatic/>
+	<Icon128 href="/UI/H5A1/Icons/Buildings/Adventures_Buildings/128x128/Necropolis_Military_Post.(Texture).xdb#xpointer(/Texture)"/>
+	<Type>BUILDING_NECROPOLIS_MILITARY_POST</Type>
+	<guards>
+		<Item>CREATURE_DEATH_KNIGHT</Item>
+		<Item>CREATURE_DEATH_KNIGHT</Item>
+		<Item>CREATURE_MUMMY</Item>
+		<Item>CREATURE_MUMMY</Item>
+		<Item>CREATURE_183</Item>
+		<Item>CREATURE_183</Item>
+	</guards>
+	<creatures>
+		<Item>CREATURE_184</Item>
+	</creatures>
+	<RandomType>DWELLING_TYPE_SPECIFIC</RandomType>
+</AdvMapDwellingShared>

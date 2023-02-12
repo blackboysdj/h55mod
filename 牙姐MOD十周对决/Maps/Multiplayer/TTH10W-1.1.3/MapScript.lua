@@ -1487,8 +1487,8 @@ function TTH_MAP10W.initDebuff4Garrison(iOldPlayer, iNewPlayer, strHero, strObje
   local iOppositeRace = TTH_GLOBAL.getRace8Town(strOppositeTown);
   local strRandomTown = TTH_TABLE.BuildingName410W["RandomTown"][iNewPlayer];
   local iRandomTownRace = TTH_GLOBAL.getRace8Town(strRandomTown);
-  if iMainTownRace == TOWN_ACADEMY and
-    (
+  if iMainTownRace == TOWN_ACADEMY
+    and (
       iOppositeRace == TOWN_DUNGEON
       or iOppositeRace == TOWN_INFERNO
     ) then
@@ -1500,6 +1500,16 @@ function TTH_MAP10W.initDebuff4Garrison(iOldPlayer, iNewPlayer, strHero, strObje
   end;
   if iRandomTownRace == TOWN_STRONGHOLD then
     TTH_GLOBAL.signChangeHeroStat(strHero, STAT_ATTACK, 2);
+  end;
+
+  if TTH_TABLE.Hero[strHero]["Class"] == TTH_ENUM.Enchanter
+    and (
+      iOppositeRace == TOWN_ACADEMY
+      or iOppositeRace == TOWN_NECROMANCY
+      or iOppositeRace == TOWN_FORTRESS
+    ) then
+    TTH_GLOBAL.signChangeHeroStat(strHero, STAT_ATTACK, 3);
+    TTH_GLOBAL.signChangeHeroStat(strHero, STAT_DEFENCE, 3);
   end;
 
   TTH_GLOBAL.setGameVar4HeroLevel(strHero);

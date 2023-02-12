@@ -935,22 +935,23 @@ print("TTH_CombatCore loading...");
       -- GodricMP 012 哥德里克
         TCS_FUNC.Talent.GodricMP = {};
         TCS_FUNC.Talent.GodricMP.strHero = "GodricMP";
-        TCS_FUNC.Talent.GodricMP.trigger = function(iSide, itemUnit, itemUnitLast, listCreatureStatusDeath)
+        TCS_FUNC.Talent.GodricMP.flag = TCS_ENUM.Switch.No;
+        TCS_FUNC.Talent.GodricMP.first = function(iSide, itemUnit)
           local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
           local sidHero = GetHero(iSide);
           if sidHero ~= nil then
             local strHero = GetHeroName(sidHero);
             if strHero == TCS_FUNC.Talent.GodricMP.strHero then
-              if itemUnitLast ~= nil
-                and (
-                  (TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 and length(listCreatureStatusDeath[iOppositeSide]) > 0)
-                  or (TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 and length(listCreatureStatusDeath[iSide]) > 0)
-                ) then
-                TCS_FUNC.Battle.pause();
-                TTHCS_GLOBAL.print("TCS_FUNC.Talent.GodricMP.trigger");
-                TTHCS_THREAD.castGlobalSpell4Mana(sidHero, SPELL_PRAYER, TCS_ENUM.Switch.Yes);
-                TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.max);
-                TCS_FUNC.Battle.proceed();
+              if itemUnit ~= nil and itemUnit["UnitName"] == sidHero
+                and TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
+                if TCS_FUNC.Talent.GodricMP.flag == TCS_ENUM.Switch.No then
+                  TCS_FUNC.Talent.GodricMP.flag = TCS_ENUM.Switch.Yes;
+                  TCS_FUNC.Battle.pause();
+                  TTHCS_GLOBAL.print("TCS_FUNC.Talent.GodricMP.first");
+                  TTHCS_THREAD.castGlobalSpell4Mana(sidHero, SPELL_PRAYER, TCS_ENUM.Switch.Yes);
+                  TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.immediate);
+                  TCS_FUNC.Battle.proceed();
+                end;
               end;
             end;
           end;
@@ -3553,10 +3554,10 @@ print("TTH_CombatCore loading...");
                     local bSuccess = TTHCS_THREAD.displace(sidCreatureNearBy, iNewPosX, iNewPosY);
                     if bSuccess then
                       if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-                        TCS_FUNC.Atb.record(sidCreatureNearBy, TCS_ENUM.Atb.max);
+                        TCS_FUNC.Continuous.increase(sidCreatureNearBy, iHeroLevel, itemUnitLast["UnitName"]);
                       end;
                       if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
-                        TCS_FUNC.Continuous.increase(sidCreatureNearBy, iHeroLevel, itemUnitLast["UnitName"]);
+                        TCS_FUNC.Atb.record(sidCreatureNearBy, TCS_ENUM.Atb.max);
                       end;
                     end;
                   end;
@@ -3953,11 +3954,7 @@ print("TTH_CombatCore loading...");
                 TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Nemor.trigger");
                 for i, sidCreatureTarget in listCreatureNumberDecrease[iOppositeSide] do
-                  if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 0 then
-                    TTHCS_THREAD.castAimedSpell5Mana(sidHero, SPELL_SORROW, sidCreatureTarget, TCS_ENUM.Switch.No);
-                  else
-                    TTHCS_THREAD.castAimedSpell4Mana(sidHero, SPELL_SORROW, sidCreatureTarget, TCS_ENUM.Switch.No);
-                  end;
+                  TTHCS_THREAD.castAimedSpell4Mana(sidHero, SPELL_SORROW, sidCreatureTarget, TCS_ENUM.Switch.No);
                 end;
                 if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
                   TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.max);
@@ -4035,7 +4032,6 @@ print("TTH_CombatCore loading...");
                   local iRandomIndex = TTHCS_COMMON.getRandom(length(arrCreatureTarget));
                   local strCreatureTarget = arrCreatureTarget[iRandomIndex];
                   TTHCS_THREAD.castAimedSpell4Mana(sidHero, SPELL_HYPNOTIZE, strCreatureTarget, TCS_ENUM.Switch.No);
-                  TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.immediate);
                   ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
                   TCS_FUNC.Battle.proceed();
                 end;
@@ -7367,6 +7363,11 @@ print("TTH_CombatCore loading...");
             local arrSpellId = { SPELL_MASS_HASTE, SPELL_MASS_BLESS };
             local bRemove = TCS_ENUM.Switch.Yes;
             TTHCS_THREAD.castGlobalSpell4God(iSide, CREATURE_CHERUBIN, iCreatureNumber, arrSpellId, ARTIFACT_ANGELIC_ALLIANCE, bRemove);
+            if strHero == "GodricMP" and TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
+              TCS_FUNC.Talent.GodricMP.flag = TCS_ENUM.Switch.Yes;
+              TTHCS_THREAD.castGlobalSpell4Mana(sidHero, SPELL_PRAYER, TCS_ENUM.Switch.Yes);
+              setATB(sidHero, TCS_ENUM.Atb.immediate);
+            end;
             if strHero == "Maeve" and TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
               TCS_FUNC.Talent.Maeve.flag = TCS_ENUM.Switch.Yes;
               TTHCS_THREAD.castGlobalSpell4Mana(sidHero, SPELL_MASS_HASTE, TCS_ENUM.Switch.Yes);
@@ -8186,6 +8187,9 @@ print("TTH_CombatCore loading...");
         for iSide = TCS_ENUM.Side.Attacker, TCS_ENUM.Side.Defender do
           -- 天赋
             -- Haven
+              -- GodricMP 012 哥德里克
+                TCS_FUNC.Talent.GodricMP.first(iSide, itemUnit);
+
               -- Maeve 016 玫芙
                 TCS_FUNC.Talent.Maeve.first(iSide, itemUnit);
 
@@ -8334,9 +8338,6 @@ print("TTH_CombatCore loading...");
 
                 -- Nicolai 011 尼克莱
                   TCS_FUNC.Talent.Nicolai.trigger(iSide, itemUnit, itemUnitLast, listCreatureNumberDecrease, listCreatureManaUnchanged);
-
-                -- GodricMP 012 哥德里克
-                  TCS_FUNC.Talent.GodricMP.trigger(iSide, itemUnit, itemUnitLast, listCreatureStatusDeath);
 
                 -- Maeve 016 玫芙
                   TCS_FUNC.Talent.Maeve.trigger(iSide, itemUnit, itemUnitLast, listCreatureStatusDeath);

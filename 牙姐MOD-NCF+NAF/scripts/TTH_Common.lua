@@ -812,8 +812,11 @@ doFile("/scripts/TTH_Library.lua")
     CREATURE_196 = 196
     CREATURE_SIREN_TOOL = 196;
     CREATURE_197 = 197
+    CREATURE_SKELETON_WARRIOR_KARISSA_0 = 197;
     CREATURE_198 = 198
+    CREATURE_SKELETON_WARRIOR_KARISSA_1 = 198;
     CREATURE_199 = 199
+    CREATURE_SKELETON_WARRIOR_KARISSA_2 = 199;
     CREATURE_200 = 200
     CREATURE_201 = 201
     CREATURE_202 = 202
@@ -2990,6 +2993,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Race"] = TOWN_NECROMANCY
               , ["Class"] = TTH_ENUM.DeathKnight
               , ["Group"] = TTH_ENUM.GroupMight
+              , ["Building"] = TOWN_BUILDING_DWELLING_1
               , ["Specialty"] = {
                 [1] = {
                   ["CreatureId"] = CREATURE_SKELETON
@@ -3677,7 +3681,7 @@ doFile("/scripts/TTH_Library.lua")
           , [TTH_ENUM.Warlock] = {"Agbeth","Almegir","Inagost","Kastore","Raelag","Ranleth","Sephinroth"}
         }
         , [TOWN_NECROMANCY] = {
-          [TTH_ENUM.DeathKnight] = {"LordHaart","Berein","Gles","Nikolay","Straker","Tamika","Xerxon"}
+          [TTH_ENUM.DeathKnight] = {"LordHaart","Berein","Gles","Nikolay","Straker","Tamika","Xerxon","Karissa"}
           , [TTH_ENUM.Reaver] = {"Aislinn","Effig","Giovanni","OrnellaNecro","Aberrar","Nimbus"}
           , [TTH_ENUM.Necromancer] = {"Muscip","Arantir","Nemor","Pelt","Sandro","Thant", "Adelaide","Vidomina"}
         }
@@ -8576,32 +8580,32 @@ doFile("/scripts/TTH_Library.lua")
           , ["Range"] = 0
         }
         , [197] = {
-          ["ID"] = CREATURE_197
+          ["ID"] = CREATURE_SKELETON_WARRIOR_KARISSA_0
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_197/Name.txt"
-          , ["Race"] = TOWN_NEUTRAL
-          , ["GROWTH"] = 1
+          , ["Race"] = TOWN_NECROMANCY
+          , ["GROWTH"] = 20
           , ["TIER"] = 1
-          , ["POWER"] = 0
+          , ["POWER"] = 94
           , ["CombatSize"] = 1
           , ["Range"] = 0
         }
         , [198] = {
-          ["ID"] = CREATURE_198
+          ["ID"] = CREATURE_SKELETON_WARRIOR_KARISSA_1
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_198/Name.txt"
-          , ["Race"] = TOWN_NEUTRAL
-          , ["GROWTH"] = 1
+          , ["Race"] = TOWN_NECROMANCY
+          , ["GROWTH"] = 20
           , ["TIER"] = 1
-          , ["POWER"] = 0
+          , ["POWER"] = 103
           , ["CombatSize"] = 1
           , ["Range"] = 0
         }
         , [199] = {
-          ["ID"] = CREATURE_199
+          ["ID"] = CREATURE_SKELETON_WARRIOR_KARISSA_2
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_199/Name.txt"
-          , ["Race"] = TOWN_NEUTRAL
-          , ["GROWTH"] = 1
+          , ["Race"] = TOWN_NECROMANCY
+          , ["GROWTH"] = 20
           , ["TIER"] = 1
-          , ["POWER"] = 0
+          , ["POWER"] = 113
           , ["CombatSize"] = 1
           , ["Range"] = 0
         }
@@ -17282,6 +17286,13 @@ doFile("/scripts/TTH_Library.lua")
           , ["Level"] = 1
           , ["Element"] = TTH_ENUM.Destructive
           , ["Empowered"] = SPELL_EMPOWERED_STONE_SPIKES
+        }
+        , [247] = {
+          ["Id"] = SPELL_ABILITY_STORMBOLT
+          , ["DebugText"] = "SPELL_ABILITY_STORMBOLT"
+          , ["Text"] = "/Text/TTH/Spell/247-Stormbolt/Text.txt"
+          , ["Level"] = 1
+          , ["Element"] = TTH_ENUM.Other
         }
         , [249] = {
           ["Id"] = SPELL_RUNE_OF_CHARGE

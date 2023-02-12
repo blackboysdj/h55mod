@@ -12389,13 +12389,15 @@ doFile("/scripts/H55-Settings.lua");
 					local iPlayer = TTH_GLOBAL.GetObjectOwner(strHero);
 					TTH_MAIN.debug("TTH_TALENT.initElleshar", iPlayer, strHero);
 
-					for iPotionId = TTH_ENUM.PotionMana, TTH_ENUM.PotionRevive do
-						local objBuy = TTH_TABLE.BuyConsumeInfo[iPotionId];
-						local iArtifactId = objBuy["ArtifactId"];
-						if HasArtefact(strHero, iArtifactId, 0) == nil then
-							GiveArtefact(strHero, iArtifactId, 1);
-							TTH_ARTI.initPotion(iPlayer, strHero, iPotionId);
-							TTH_VARI.recordPotion[iArtifactId][strHero]["RemainTimes"] = 1;
+					if TTH_GLOBAL.isAi(iPlayer) == TTH_ENUM.No then
+						for iPotionId = TTH_ENUM.PotionMana, TTH_ENUM.PotionRevive do
+							local objBuy = TTH_TABLE.BuyConsumeInfo[iPotionId];
+							local iArtifactId = objBuy["ArtifactId"];
+							if HasArtefact(strHero, iArtifactId, 0) == nil then
+								GiveArtefact(strHero, iArtifactId, 1);
+								TTH_ARTI.initPotion(iPlayer, strHero, iPotionId);
+								TTH_VARI.recordPotion[iArtifactId][strHero]["RemainTimes"] = 1;
+							end;
 						end;
 					end;
       	end;
@@ -13471,7 +13473,7 @@ doFile("/scripts/H55-Settings.lua");
 					local iCastNumber = iCreatureCount / infoPreCreature["GROWTH"] / 2;
 					local iPostNumber = TTH_COMMON.floor(iPreRemainNumber + iCastNumber);
 					local iPostRemainNumber = iPreRemainNumber + iCastNumber - iPostNumber;
-					TTH_VARI.talent[strHero]["RemainNumber"] = TTH_VARI.talent[strHero]["RemainNumber"] + iPostRemainNumber;
+					TTH_VARI.talent[strHero]["RemainNumber"] = iPostRemainNumber;
 					if iPostNumber == 0 then
 						local strText = TTH_PATH.Talent[strHero]["NotEnoughPostCreatureNumber"];
 	      		TTH_GLOBAL.reduceCreature4Hero8Sign(strHero, iCreatureId, iCreatureCount, strText);
@@ -14060,6 +14062,97 @@ doFile("/scripts/H55-Settings.lua");
       		end;
       		return iDistance;
       	end;
+
+      -- Karissa 084 卡里萨
+      	TTH_TALENT.Karissa = {};
+      	TTH_TALENT.Karissa.data = {};
+      	TTH_TALENT.Karissa.data.mapCast = {
+      		[0] = {
+      			[0] = {29, 30, 152}
+      			, [1] = 197
+      		}
+      		, [1] = {
+      			[0] = {29, 30, 152, 197}
+      			, [1] = 198
+      		}
+      		, [2] = {
+      			[0] = {29, 30, 152, 197, 198}
+      			, [1] = 199
+      		}
+      	};
+      	TTH_TALENT.Karissa.active = {};
+      	TTH_TALENT.Karissa.active.enter = function(iPlayer, strHero)
+      		TTH_COMMON.nextNavi(TTH_PATH.Talent[strHero]["Text"]);
+
+      		TTH_TALENT.Karissa.active.checkCreature(iPlayer, strHero);
+      	end;
+      	TTH_TALENT.Karissa.active.checkCreature = function(iPlayer, strHero)
+					local arrCreature4Hero = TTH_GLOBAL.getHeroCreatureInfo(strHero);
+					local arrPreCreature = {};
+					if TTH_VARI.record4UpgradeMastery[strHero] == nil then
+						arrPreCreature = TTH_TALENT.Karissa.data.mapCast[0][0];
+					elseif TTH_VARI.record4UpgradeShantiri[strHero] == nil then
+						arrPreCreature = TTH_TALENT.Karissa.data.mapCast[1][0];
+					else
+						arrPreCreature = TTH_TALENT.Karissa.data.mapCast[2][0];
+					end;
+					local i = 1;
+					local arrOption = {};
+					for iIndexSlot = 0, 6 do
+						local iSlotCreatureId = arrCreature4Hero[iIndexSlot]["Id"];
+						for iIndex, iPreCreatureId in arrPreCreature do
+							if iPreCreatureId == iSlotCreatureId then
+								arrOption[i] = {
+									["Id"] = iSlotCreatureId
+									, ["Text"] = TTH_TABLE.Creature[iPreCreatureId]["NAME"]
+									, ["Callback"] = "TTH_TALENT.Karissa.active.impl"
+								};
+								i = i + 1;
+							end;
+						end;
+					end;
+
+					if length(arrOption) == 0 then
+						local strText = {
+							TTH_PATH.Talent[strHero]["NoSuitableCreature"]
+						};
+	    			TTH_GLOBAL.sign(strHero, strText);
+						return nil;
+					end;
+
+					TTH_COMMON.optionRadio(iPlayer, strHero, arrOption);
+				end;
+      	TTH_TALENT.Karissa.active.impl = function(iPlayer, strHero, iPreCreatureId)
+	      	local arrCreature4Hero = TTH_GLOBAL.getHeroCreatureInfo(strHero);
+	      	local iPreCreatureNumber = 0;
+	      	for iIndexSlot = 0, 6 do
+	      		if iPreCreatureId == arrCreature4Hero[iIndexSlot]["Id"] then
+	      			iPreCreatureNumber = arrCreature4Hero[iIndexSlot]["Count"];
+	      			break;
+	      		end;
+	      	end;
+	      	local iPostCreatureId = {};
+	      	if TTH_VARI.record4UpgradeMastery[strHero] == nil then
+	      		iPostCreatureId = TTH_TALENT.Karissa.data.mapCast[0][1];
+	      	elseif TTH_VARI.record4UpgradeShantiri[strHero] == nil then
+	      		iPostCreatureId = TTH_TALENT.Karissa.data.mapCast[1][1];
+	      	else
+	      		iPostCreatureId = TTH_TALENT.Karissa.data.mapCast[2][1];
+	      	end;
+
+					TTH_GLOBAL.replaceCreature4Hero(strHero, iPreCreatureId, iPreCreatureNumber, iPostCreatureId, iPreCreatureNumber);
+
+					local strPreCreatureName = TTH_TABLE.Creature[iPreCreatureId]["NAME"];
+					local strPostCreatureName = TTH_TABLE.Creature[iPostCreatureId]["NAME"];
+					local strText = {
+						TTH_PATH.Talent[strHero]["Success"]
+						;iPreCreatureNumber=iPreCreatureNumber
+						,strPreCreatureName=strPreCreatureName
+						,iPostCreatureNumber=iPreCreatureNumber
+						,strPostCreatureName=strPostCreatureName
+					};
+					TTH_GLOBAL.sign(strHero, strText);
+				end;
 
       -- Muscip 091 纳蒂尔
       	function TTH_TALENT.initMuscip(strHero)
@@ -17606,7 +17699,7 @@ doFile("/scripts/H55-Settings.lua");
 			end;
 
 		-- HERO_SKILL_ESTATES 029 理财术
-			TTH_FINAL.ESTATES_COEF = 0.08;
+			TTH_FINAL.ESTATES_COEF = 0.003;
 			TTH_FINAL.ESTATES_MAX = 50000;
 			TTH_VARI.recordEstates = {};
 			TTH_TABLE.EstatesOption = {
@@ -17747,7 +17840,8 @@ doFile("/scripts/H55-Settings.lua");
 						iCoefJenova = 2;
 					end;
 				end;
-				local iExpectEstatesGold = TTH_COMMON.round(iEstatesGold * (1 + TTH_FINAL.ESTATES_COEF * iCoef * iCoefJenova * iDuration));
+				local iHeroLevel = GetHeroLevel(strHero);
+				local iExpectEstatesGold = TTH_COMMON.round(iEstatesGold * (1 + TTH_FINAL.ESTATES_COEF * iHeroLevel * iCoef * iCoefJenova * iDuration));
 				if iExpectEstatesGold > iEstatesGold + TTH_FINAL.ESTATES_MAX * iCoef * iCoefJenova then
 					iExpectEstatesGold = iEstatesGold + TTH_FINAL.ESTATES_MAX * iCoef * iCoefJenova
 				end;

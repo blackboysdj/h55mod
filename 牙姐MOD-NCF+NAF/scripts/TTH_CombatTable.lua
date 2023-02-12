@@ -622,6 +622,7 @@
         , "Arniel"
         , "Orlando2"
         , "Hero1"
+        , "Heam"
       }
 
   TTHCS_COMMON = {};
@@ -1099,7 +1100,10 @@
             if TTHCS_GLOBAL.checkCombatCreature(sidTarget)
               and iSide ~= itemTarget["Side"]
               and (
-                TTH_TABLE.Spell[iSpellId]["Element"] == TTH_ENUM.Destructive
+                (
+                  TTH_TABLE.Spell[iSpellId] ~= nil
+                  and TTH_TABLE.Spell[iSpellId]["Element"] == TTH_ENUM.Destructive
+                )
                 or iSpellId == SPELL_ABILITY_FLAMESTRIKE
               ) then
               local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
@@ -1130,7 +1134,10 @@
             if TTHCS_GLOBAL.checkCombatCreature(sidTarget)
               and iSide ~= itemTarget["Side"]
               and (
-                TTH_TABLE.Spell[iSpellId]["Element"] == TTH_ENUM.Destructive
+                (
+                  TTH_TABLE.Spell[iSpellId] ~= nil
+                  and TTH_TABLE.Spell[iSpellId]["Element"] == TTH_ENUM.Destructive
+                )
                 or iSpellId == SPELL_ABILITY_FLAMESTRIKE
               ) then
               local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);

@@ -1251,6 +1251,12 @@
         TTH_PATH.Talent["Nikolay"]["Text"] = TTH_PATH.Talent["Nikolay"]["Pre"].."Text.txt";
         TTH_PATH.Talent["Nikolay"]["NecTown"] = TTH_PATH.Talent["Nikolay"]["Pre"].."NecTown.txt";
         TTH_PATH.Talent["Nikolay"]["NotEnoughCombat"] = TTH_PATH.Talent["Nikolay"]["Pre"].."NotEnoughCombat.txt";
+      -- Karissa 084 卡里萨
+        TTH_PATH.Talent["Karissa"] = {};
+        TTH_PATH.Talent["Karissa"]["Pre"] = TTH_PATH.Talent["Pre"].."084-Karissa/";
+        TTH_PATH.Talent["Karissa"]["Text"] = TTH_PATH.Talent["Karissa"]["Pre"].."Text.txt";
+        TTH_PATH.Talent["Karissa"]["NoSuitableCreature"] = TTH_PATH.Talent["Karissa"]["Pre"].."NoSuitableCreature.txt";
+        TTH_PATH.Talent["Karissa"]["Success"] = TTH_PATH.Talent["Karissa"]["Pre"].."Success.txt";
       -- Pelt 094 弗拉基米尔
         TTH_PATH.Talent["Pelt"] = {};
         TTH_PATH.Talent["Pelt"]["Pre"] = TTH_PATH.Talent["Pre"].."094/";
@@ -2070,6 +2076,11 @@
               ["Text"] = TTH_PATH.Talent["Welygg"]["Text"]
               , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeWelygg"
               , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeWelygg"
+            }
+            , ["Karissa"] = {
+              ["Text"] = TTH_PATH.Talent["Karissa"]["Text"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.Karissa.active.enter"
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.Karissa.active.enter"
             }
         }
         , [TTH_ENUM.FuncLevelUp] = {

@@ -3,6 +3,9 @@
   DejaVu Sans Mono
 
 一个战术小队 一个侦查小队 一个无畏机甲 还有一个愤青突击队
+亿万大头手电筒 大头的战歌 勇气的赞歌
+主线我记不住了 记得是13章
+星界军
 
 -- 新版本调整
   死亡行军BUG
@@ -43,9 +46,6 @@
 
   霍拉 内政
   连动追加
-
-  随机坐骑
-  焦点心控
 
 -- 通用文案
   -- 自带
@@ -117,6 +117,10 @@
   -- 初始奖励
     <left><body_bright>初始奖励：
     <body_bright>所有英雄<color=yellow>【首次招募时】<body_bright>获得随机一项<color=0099FF>主技能<body_bright>等级+ <color=yellow>1<body_bright> 的提升
+
+-- 建筑
+  BUILDING_MEMORY_MENTOR
+  BUILDING_SIRENS
 
 -- 英雄主动技能标记
   - &m55_encourage           0.2 神圣指引 1

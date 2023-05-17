@@ -30,7 +30,7 @@
 	<Icon128/>
 	<InternalName>Elleshar</InternalName>
 	<Class>HERO_CLASS_ENCHANTER</Class>
-	<Specialization>HERO_SPEC_WEILDER_OF_FIRE</Specialization>
+	<Specialization/>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_LEARNING</SkillID>

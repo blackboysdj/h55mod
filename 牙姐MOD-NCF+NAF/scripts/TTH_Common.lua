@@ -2516,10 +2516,6 @@ doFile("/scripts/TTH_Library.lua")
               , ["Race"] = TOWN_PRESERVE
               , ["Class"] = TTH_ENUM.Enchanter
               , ["Group"] = TTH_ENUM.GroupMagic
-              , ["Attribute"] = {
-                ["Step"] = 3
-                , ["Type"] = STAT_KNOWLEDGE
-              }
             }
             , ["Ildar"] = {
               ["Id"] = 37

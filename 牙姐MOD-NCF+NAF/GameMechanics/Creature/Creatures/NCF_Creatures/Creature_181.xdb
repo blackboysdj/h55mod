@@ -62,6 +62,7 @@
 	<BaseCreature>CREATURE_UNKNOWN</BaseCreature>
 	<Upgrades/>
 	<Abilities>
+		<Item>ABILITY_ELEMENTAL</Item>
 		<Item>ABILITY_FRIGHTFUL_PRESENCE</Item>
 		<Item>ABILITY_CRYSTAL_SCALES</Item>
 		<Item>ABILITY_LARGE_SHIELD</Item>

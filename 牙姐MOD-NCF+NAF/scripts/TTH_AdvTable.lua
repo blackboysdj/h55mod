@@ -762,6 +762,10 @@
           ["Desc"] = TTH_PATH.Visit["Economic"]["Pre"].."WarmachineFactory/Desc.txt"
           , ["Confirm"] = TTH_PATH.Visit["Economic"]["Pre"].."WarmachineFactory/Confirm.txt"
         };
+        TTH_PATH.Visit["Economic"]["BUILDING_TRADING_POST"] = {
+          ["Desc"] = TTH_PATH.Visit["Economic"]["Pre"].."TradingPost/Desc.txt"
+          , ["Confirm"] = TTH_PATH.Visit["Economic"]["Pre"].."TradingPost/Confirm.txt"
+        };
       TTH_PATH.Visit["DwellingOnAdvMap"] = {};
         TTH_PATH.Visit["DwellingOnAdvMap"]["Pre"] = "/Text/Game/Scripts/TTH_Path/Visit/DwellingOnAdvMap/";
         TTH_PATH.Visit["DwellingOnAdvMap"]["Text"] = TTH_PATH.Visit["DwellingOnAdvMap"]["Pre"].."Text.txt";
@@ -1110,6 +1114,11 @@
         TTH_PATH.Talent["Melodia"]["Text"] = TTH_PATH.Talent["Melodia"]["Pre"].."Text.txt";
         TTH_PATH.Talent["Melodia"]["NotEnoughTimes"] = TTH_PATH.Talent["Melodia"]["Pre"].."NotEnoughTimes.txt";
         TTH_PATH.Talent["Melodia"]["Success"] = TTH_PATH.Talent["Melodia"]["Pre"].."Success.txt";
+      -- Elleshar 036 温利尔
+        TTH_PATH.Talent["Elleshar"] = {};
+        TTH_PATH.Talent["Elleshar"]["Pre"] = TTH_PATH.Talent["Pre"].."036-Elleshar/";
+        TTH_PATH.Talent["Elleshar"]["Cd"] = TTH_PATH.Talent["Elleshar"]["Pre"].."Cd.txt";
+        TTH_PATH.Talent["Elleshar"]["Recovery"] = TTH_PATH.Talent["Elleshar"]["Pre"].."Recovery.txt";
       -- Ildar 037 娜瑞莎
         TTH_ENUM.IldarLight = 0;
         TTH_ENUM.IldarDark = 1;
@@ -1568,19 +1577,6 @@
         TTH_PATH.Perk[HERO_SKILL_RECRUITMENT]["NoDwelling"] = TTH_PATH.Perk[HERO_SKILL_RECRUITMENT]["Pre"].."NoDwelling.txt";
         TTH_PATH.Perk[HERO_SKILL_RECRUITMENT]["NotEnoughTimes"] = TTH_PATH.Perk[HERO_SKILL_RECRUITMENT]["Pre"].."NotEnoughTimes.txt";
         TTH_PATH.Perk[HERO_SKILL_RECRUITMENT]["Confirm"] = TTH_PATH.Perk[HERO_SKILL_RECRUITMENT]["Pre"].."Confirm.txt";
-      -- HERO_SKILL_ESTATES 029 理财术
-        TTH_PATH.Perk[HERO_SKILL_ESTATES] = {};
-        TTH_PATH.Perk[HERO_SKILL_ESTATES]["Pre"] = TTH_PATH.Perk["Pre"] .."029/";
-        TTH_PATH.Perk[HERO_SKILL_ESTATES]["Text"] = TTH_PATH.Perk[HERO_SKILL_ESTATES]["Pre"].."Text.txt";
-        TTH_PATH.Perk[HERO_SKILL_ESTATES]["NotEnoughTimes"] = TTH_PATH.Perk[HERO_SKILL_ESTATES]["Pre"].."NotEnoughTimes.txt";
-        TTH_PATH.Perk[HERO_SKILL_ESTATES]["OptionTips"] = TTH_PATH.Perk[HERO_SKILL_ESTATES]["Pre"].."OptionTips.txt";
-        TTH_PATH.Perk[HERO_SKILL_ESTATES]["Coef20"] = TTH_PATH.Perk[HERO_SKILL_ESTATES]["Pre"].."Coef20.txt";
-        TTH_PATH.Perk[HERO_SKILL_ESTATES]["Coef50"] = TTH_PATH.Perk[HERO_SKILL_ESTATES]["Pre"].."Coef50.txt";
-        TTH_PATH.Perk[HERO_SKILL_ESTATES]["Coef80"] = TTH_PATH.Perk[HERO_SKILL_ESTATES]["Pre"].."Coef80.txt";
-        TTH_PATH.Perk[HERO_SKILL_ESTATES]["Coef100"] = TTH_PATH.Perk[HERO_SKILL_ESTATES]["Pre"].."Coef100.txt";
-        TTH_PATH.Perk[HERO_SKILL_ESTATES]["Confirm"] = TTH_PATH.Perk[HERO_SKILL_ESTATES]["Pre"].."Confirm.txt";
-        TTH_PATH.Perk[HERO_SKILL_ESTATES]["Success"] = TTH_PATH.Perk[HERO_SKILL_ESTATES]["Pre"].."Success.txt";
-        TTH_PATH.Perk[HERO_SKILL_ESTATES]["Repay"] = TTH_PATH.Perk[HERO_SKILL_ESTATES]["Pre"].."Repay.txt";
       -- HERO_SKILL_DIPLOMACY 030 外交术
         TTH_PATH.Perk[HERO_SKILL_DIPLOMACY] = {};
         TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Pre"] = TTH_PATH.Perk["Pre"] .."030/";
@@ -1866,7 +1862,7 @@
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.initIngvar"
             }
             , ["Elleshar"] = {
-              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initElleshar"
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.Elleshar.func.init"
             }
             , ["Welygg"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.initWelygg"
@@ -2119,6 +2115,9 @@
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultCastCreature"
             }
           -- 其他
+            , ["Elleshar"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.Elleshar.func.combat"
+            }
             , ["Pelt"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultPelt"
             }
@@ -2471,10 +2470,6 @@
             ["Text"] = TTH_PATH.Perk[HERO_SKILL_RECRUITMENT]["Text"]
             , [TTH_ENUM.FuncAtGate] = "TTH_PERK.active028"
           }
-          , [HERO_SKILL_ESTATES] = {
-            ["Text"] = TTH_PATH.Perk[HERO_SKILL_ESTATES]["Text"]
-            , [TTH_ENUM.FuncAtGate] = "TTH_PERK.active029"
-          }
           , [HERO_SKILL_DIPLOMACY] = {
             ["Text"] = TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Text"]
             , [TTH_ENUM.FuncAtGate] = "TTH_PERK.active030"
@@ -2577,9 +2572,6 @@
           }
         }
         , [TTH_ENUM.FuncDealWeekly] = {
-          [HERO_SKILL_ESTATES] = {
-            [TTH_ENUM.FuncAlways] = "TTH_PERK.dealWeekly029"
-          }
         }
         , [TTH_ENUM.FuncResetWeekly] = {
           [HERO_SKILL_SCOUTING] = {
@@ -2587,9 +2579,6 @@
           }
           , [HERO_SKILL_RECRUITMENT] = {
             [TTH_ENUM.FuncAlways] = "TTH_PERK.resetWeekly028"
-          }
-          , [HERO_SKILL_ESTATES] = {
-            [TTH_ENUM.FuncAlways] = "TTH_PERK.resetWeekly029"
           }
           , [HERO_SKILL_DIPLOMACY] = {
             [TTH_ENUM.FuncAlways] = "TTH_PERK.resetWeekly030"
@@ -2624,6 +2613,9 @@
           , [HERO_SKILL_GRAIL_VISION] = {
             [TTH_ENUM.FuncAlways] = "TTH_PERK.resetWeekly080"
           }
+          , [HERO_SKILL_FOREST_GUARD_EMBLEM] = {
+            [TTH_ENUM.FuncAlways] = "TTH_PERK.resetWeekly115"
+          }
         }
         , [TTH_ENUM.FuncDealDaily] = {
           [HERO_SKILL_GOBLIN_SUPPORT] = {
@@ -2645,12 +2637,6 @@
           }
           , [HERO_SKILL_TWILIGHT] = {
             [TTH_ENUM.FuncAlways] = "TTH_PERK.resetDaily109"
-          }
-          , [HERO_SKILL_GRAIL_VISION] = {
-            [TTH_ENUM.FuncAlways] = "TTH_PERK.resetDaily080"
-          }
-          , [HERO_SKILL_FOREST_GUARD_EMBLEM] = {
-            [TTH_ENUM.FuncAlways] = "TTH_PERK.resetDaily115"
           }
           , [HERO_SKILL_RECRUITMENT] = {
             [TTH_ENUM.FuncAlways] = "TTH_PERK.resetDaily028"

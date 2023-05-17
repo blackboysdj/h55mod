@@ -91,6 +91,7 @@ function TTH_MAP10W.init()
     print("TTH_MAP10W initVisitPrison410W-"..iPlayer);
     TTH_MAP10W.initDebuff(iPlayer);
     print("TTH_MAP10W initDebuff-"..iPlayer);
+    TTH_COMMON.consoleSetGameVar("TTH_MAP10W", 1);
 	end;
 
   TTH_MAP10W.initArtifact();
@@ -187,16 +188,14 @@ TTH_TABLE.Artifacts4Map10W8Relic = {
   , [27] = ARTIFACT_UNICORN_HORN_BOW
   , [28] = ARTIFACT_PLATE_MAIL_OF_STABILITY
   , [29] = ARTIFACT_CLOAK_OF_MOURNING
-  , [30] = ARTIFACT_STAFF_OF_MAGI
-  , [31] = ARTIFACT_RING_OF_MAGI
-  , [32] = ARTIFACT_SHAWL_OF_GREAT_LICH
-  , [33] = ARTIFACT_TOME_OF_DESTRUCTION
-  , [34] = ARTIFACT_TOME_OF_LIGHT_MAGIC
-  , [35] = ARTIFACT_TOME_OF_DARK_MAGIC
-  , [36] = ARTIFACT_TOME_OF_SUMMONING_MAGIC
-  , [37] = ARTIFACT_RING_OF_HOLY_GRIFFIN
-  , [38] = ARTIFACT_INHERITANCE
-  , [39] = ARTIFACT_FLAG_OF_CHARGE
+  , [30] = ARTIFACT_RING_OF_MAGI
+  , [31] = ARTIFACT_TOME_OF_DESTRUCTION
+  , [32] = ARTIFACT_TOME_OF_LIGHT_MAGIC
+  , [33] = ARTIFACT_TOME_OF_DARK_MAGIC
+  , [34] = ARTIFACT_TOME_OF_SUMMONING_MAGIC
+  , [35] = ARTIFACT_RING_OF_HOLY_GRIFFIN
+  , [36] = ARTIFACT_INHERITANCE
+  , [37] = ARTIFACT_FLAG_OF_CHARGE
 }
 TTH_TABLE.positionArtifact410W = {
 	[PLAYER_1] = {
@@ -409,22 +408,22 @@ TTH_TABLE.PlayerInitArmy = {
   , [TOWN_NECROMANCY] = {
     [1] = {
       ["CreatureId"] = 29
-      , ["CreatureNum"] = 920
+      , ["CreatureNum"] = 828
       , ["CreatureGrowth"] = 20
     }
     , [2] = {
       ["CreatureId"] = 31
-      , ["CreatureNum"] = 450
+      , ["CreatureNum"] = 405
       , ["CreatureGrowth"] = 15
     }
     , [3] = {
       ["CreatureId"] = 33
-      , ["CreatureNum"] = 256
+      , ["CreatureNum"] = 230
       , ["CreatureGrowth"] = 9
     }
     , [4] = {
       ["CreatureId"] = 35
-      , ["CreatureNum"] = 190
+      , ["CreatureNum"] = 171
       , ["CreatureGrowth"] = 5
     }
     , [5] = {

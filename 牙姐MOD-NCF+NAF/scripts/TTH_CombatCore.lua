@@ -97,6 +97,7 @@ print("TTH_CombatCore loading...");
     TCS_VARI.Info.HeroSkill = {}; -- 英雄技能
     TCS_VARI.Info.HeroArtifact = {}; -- 英雄宝物
     TCS_VARI.Info.HeroArtifactSet = {}; -- 英雄组合宝物
+    TCS_VARI.Info.TthMap10W = 0; -- 是否10周对决
 
 -- 函数
   TCS_FUNC = {};
@@ -259,6 +260,14 @@ print("TTH_CombatCore loading...");
               end;
             end;
           end;
+        end;
+      end;
+    -- 初始化是否10周对决
+      TCS_FUNC.Init.TthMap10W = function()
+        local strKey = "TTH_MAP10W";
+        local strValue = GetGameVar(strKey);
+        if strValue == "1" then
+          TCS_VARI.Info.TthMap10W = 1;
         end;
       end;
 
@@ -4603,10 +4612,8 @@ print("TTH_CombatCore loading...");
                 and length(listCreatureStatusDeath[iSide]) > 0 then
                 TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Zydar.trigger");
-                if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 0 then
-                  TTHCS_THREAD.castAimedSpell5Mana(sidHero, SPELL_BERSERK, itemUnitLast["UnitName"], TCS_ENUM.Switch.No);
-                else
-                  TTHCS_THREAD.castAimedSpell4Mana(sidHero, SPELL_BERSERK, itemUnitLast["UnitName"], TCS_ENUM.Switch.No);
+                TTHCS_THREAD.castAimedSpell4Mana(sidHero, SPELL_BERSERK, itemUnitLast["UnitName"], TCS_ENUM.Switch.No);
+                if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
                   TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.max);
                 end;
                 if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
@@ -6159,8 +6166,11 @@ print("TTH_CombatCore loading...");
             TTHCS_GLOBAL.print("TCS_FUNC.Skill.Pariah.start");
             local iHeroLevel = TCS_VARI.Info.HeroLevel[strHero];
             local iCreatureNumber = TTHCS_COMMON.ceil(iHeroLevel / 10);
-            if TCS_VARI.Info.HeroArtifact[strHero][ARTIFACT_CURSE_SHOULDER] == 1
-              or TCS_VARI.Info.HeroArtifact[strHero][ARTIFACT_BOOTS_OF_THE_WALKING_DEAD] == 1 then
+            if (
+                TCS_VARI.Info.HeroArtifact[strHero][ARTIFACT_CURSE_SHOULDER] == 1
+                or TCS_VARI.Info.HeroArtifact[strHero][ARTIFACT_BOOTS_OF_THE_WALKING_DEAD] == 1
+              )
+              and TCS_VARI.Info.TthMap10W ~= 1 then
               iCreatureId = CREATURE_DRAGON_KNIGHT;
               iCreatureNumber = 1;
             end;
@@ -6535,8 +6545,11 @@ print("TTH_CombatCore loading...");
             TTHCS_GLOBAL.print("TCS_FUNC.Skill.Twilight.start");
             local iHeroLevel = TCS_VARI.Info.HeroLevel[strHero];
             local iCreatureNumber = TTHCS_COMMON.ceil(iHeroLevel / 10);
-            if TCS_VARI.Info.HeroArtifact[strHero][ARTIFACT_ANGELIC_ALLIANCE] == 1
-              or TCS_VARI.Info.HeroArtifact[strHero][ARTIFACT_SENTINEL] == 1 then
+            if (
+                TCS_VARI.Info.HeroArtifact[strHero][ARTIFACT_ANGELIC_ALLIANCE] == 1
+                or TCS_VARI.Info.HeroArtifact[strHero][ARTIFACT_SENTINEL] == 1
+              )
+              and TCS_VARI.Info.TthMap10W ~= 1 then
               iCreatureId = CREATURE_CHERUBIN;
               iCreatureNumber = 1;
             end;
@@ -7988,6 +8001,7 @@ print("TTH_CombatCore loading...");
       TCS_FUNC.Init.HeroSkill();
       TCS_FUNC.Init.HeroArtifact();
       TCS_FUNC.Init.HeroArtifactSet();
+      TCS_FUNC.Init.TthMap10W();
       if TTHCS_GLOBAL.countSpecialHero() == 0 then
         TCS_FUNC.Battle.start();
       end;

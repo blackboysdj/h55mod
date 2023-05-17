@@ -15,6 +15,13 @@ doFile("/scripts/H55-Settings.lua");
 			function TTH_SUPPORT.dealIldar(iPlayer, strHero)
 			end;
 
+		-- @twx
+			TTH_SUPPORT.twx = {};
+
+			-- 增加玩家城镇可招募生物数量
+				TTH_SUPPORT.twx.increaseDwelling = function(strTown)
+				end;
+
 	-- 变量
 		TTH_VARI = {};
 
@@ -1329,6 +1336,9 @@ doFile("/scripts/H55-Settings.lua");
 					-- 初始化 斯芬克斯
 						TTH_VARI.arrBuilding["BUILDING_SPHINX"] = GetObjectNamesByType("BUILDING_SPHINX");
 
+					-- 初始化 记忆导师
+						TTH_VARI.arrBuilding["BUILDING_MEMORY_MENTOR"] = GetObjectNamesByType("BUILDING_MEMORY_MENTOR");
+
 					-- 初始化 BUFF建筑
 						TTH_VARI.arrBuilding["BUILDING_FONTAIN_OF_FORTUNE"] = GetObjectNamesByType("BUILDING_FONTAIN_OF_FORTUNE");
 						TTH_VARI.arrBuilding["BUILDING_TEMPLE"] = GetObjectNamesByType("BUILDING_TEMPLE");
@@ -1368,6 +1378,7 @@ doFile("/scripts/H55-Settings.lua");
 						TTH_VARI.arrBuilding["BUILDING_WINDMILL"] = GetObjectNamesByType("BUILDING_WINDMILL"); -- 矮人地穴
 						TTH_VARI.arrBuilding["BUILDING_WATER_WHEEL"] = GetObjectNamesByType("BUILDING_WATER_WHEEL"); -- 风车
 						TTH_VARI.arrBuilding["BUILDING_WARMACHINE_FACTORY"] = GetObjectNamesByType("BUILDING_WARMACHINE_FACTORY"); -- 战争机械工厂
+						TTH_VARI.arrBuilding["BUILDING_TRADING_POST"] = GetObjectNamesByType("BUILDING_TRADING_POST"); -- 交易站
 
 					-- 初始化 资源矿
 						TTH_VARI.arrBuilding["BUILDING_SAWMILL"] = GetObjectNamesByType("BUILDING_SAWMILL"); -- 木矿
@@ -1423,6 +1434,7 @@ doFile("/scripts/H55-Settings.lua");
 							TTH_COMMON.setTrigger2ObjectType("BUILDING_WINDMILL", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitWindmill", nil);
 							TTH_COMMON.setTrigger2ObjectType("BUILDING_WATER_WHEEL", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitWaterWheel", nil);
 							TTH_COMMON.setTrigger2ObjectType("BUILDING_WARMACHINE_FACTORY", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitWarmachineFactory", nil);
+							TTH_COMMON.setTrigger2ObjectType("BUILDING_TRADING_POST", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitTradingPost", nil);
 
 						-- 女巫小屋
 							TTH_COMMON.setTrigger2ObjectType("BUILDING_WITCH_HUT", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitWitchHut", nil);
@@ -2695,10 +2707,36 @@ doFile("/scripts/H55-Settings.lua");
 					end;
 				end;
 
+			-- 减少玩家资源（百分比）
+				function TTH_GLOBAL.reduceResource8Percent(iPlayer, enumResource, iPercent)
+					local iCurrentCount = GetPlayerResource(iPlayer, enumResource);
+					local iNewCount = TTH_COMMON.round(iCurrentCount * (1 + iPercent));
+					if iNewCount < 0 then
+						SetPlayerResource (iPlayer, enumResource, 0);
+					else
+						SetPlayerResource (iPlayer, enumResource, iNewCount);
+					end;
+				end;
+
 			-- 增加玩家资源
 				function TTH_GLOBAL.increaseResource(iPlayer, enumResource, iIncreasedCount, strHero)
 					local iCurrentCount = GetPlayerResource(iPlayer, enumResource);
 					local iNewCount = iCurrentCount + iIncreasedCount;
+					if iNewCount < 0 then
+						SetPlayerResource(iPlayer, enumResource, 0);
+					else
+						if strHero == nil then
+							SetPlayerResource(iPlayer, enumResource, iNewCount);
+						else
+							SetPlayerResource(iPlayer, enumResource, iNewCount, strHero);
+						end;
+					end;
+				end;
+
+			-- 增加玩家资源（百分比）
+				function TTH_GLOBAL.increaseResource8Percent(iPlayer, enumResource, iPercent, strHero)
+					local iCurrentCount = GetPlayerResource(iPlayer, enumResource);
+					local iNewCount = TTH_COMMON.round(iCurrentCount * (1 + iPercent));
 					if iNewCount < 0 then
 						SetPlayerResource(iPlayer, enumResource, 0);
 					else
@@ -4312,6 +4350,7 @@ doFile("/scripts/H55-Settings.lua");
 						strMain = TTH_GLOBAL.geneWidgetMain(iPlayer, strHero, strDetail);
 					end;
 					local strHeroInfo = TTH_GLOBAL.geneWidgetHeroInfo(iPlayer, strHero);
+					local strEconomic = TTH_GLOBAL.geneWidgetEconomic(iPlayer, strHero);
 					local strMayorExpedition = "";
 					local strMayorHero = "";
 					local strMayorTown = "";
@@ -4331,6 +4370,7 @@ doFile("/scripts/H55-Settings.lua");
 							;strNavigation=strNavigation
 							,strMain=strMain
 							,strHeroInfo=strHeroInfo
+							,strEconomic=strEconomic
 							,strMayorExpedition=strMayorExpedition
 							,strMayorHero=strMayorHero
 							,strMayorTown=strMayorTown
@@ -4452,23 +4492,78 @@ doFile("/scripts/H55-Settings.lua");
 					return strPath;
 				end;
 
+			-- 财政信息（控件）
+				-- <color=8B4513>================财政信息================
+				-- <color=yellow>理财支出:
+				-- <body_bright>是否开启<color=0099FF>招募指定英雄<body_bright>功能: <color=yellow><value=bEnableHireHero> <color=green><value=iPercentHireHero>‰
+				-- <body_bright>是否开启<color=0099FF>远程访问记忆导师<body_bright>功能: <color=yellow><value=bEnableVisitMemoryMentor> <color=green><value=iPercentVisitMemoryMentor>‰
+				-- <body_bright>远征中的内政官数量: <color=yellow><value=iCountMayorExpedition> <body_bright>位 <color=green><value=iPercentMayorExpedition>‰
+				-- <body_bright>降临版 <color=yellow>8<body_bright> 级生物数量: <color=yellow><value=iCountCreatureLv8Low> <body_bright>单位 <color=green><value=iPercentCreatureLv8Low>‰
+				-- <body_bright>完全体 <color=yellow>8<body_bright> 级生物数量: <color=yellow><value=iCountCreatureLv8High> <body_bright>单位 <color=green><value=iPercentCreatureLv8High>‰
+				-- <color=yellow>理财收益:
+				-- <body_bright>已习得<color=0099FF>理财术<body_bright>的英雄数量: <color=yellow><value=iCountPerkEstates> <body_bright>位 <color=red><value=iPercentPerkEstates>‰
+				-- <body_bright>己方城镇总<color=0099FF>市场<body_bright>等级: <color=yellow><value=iCountTownMarket> <body_bright>座 <color=red><value=iPercentTownMarket>‰
+				-- <body_bright>已占领<color=0099FF>交易站<body_bright>数量: <color=yellow><value=iCountTradingPost> <body_bright>座 <color=red><value=iPercentTradingPost>‰
+				-- <body_bright>是否招募<color=ff0033>杰诺娃<body_bright>: <color=yellow><value=bHasJenova> <color=red><value=iPercentHireJenova>‰
+				-- <color=yellow>理财汇总: 每日<color=0099FF>黄金<body_bright>收益 <color=yellow><value=iPercentTotal>‰
+				function TTH_GLOBAL.geneWidgetEconomic(iPlayer, strHero)
+					local bEnableHireHero = TTH_PATH.Switch[TTH_ECONOMIC.func.enableHireHero(iPlayer)];
+					local iPercentHireHero = TTH_ECONOMIC.func.calcHireHero(iPlayer);
+					local bEnableVisitMemoryMentor = TTH_PATH.Switch[TTH_ECONOMIC.func.enableVisitMemoryMentor(iPlayer)];
+					local iPercentVisitMemoryMentor = TTH_ECONOMIC.func.calcVisitMemoryMentor(iPlayer);
+					local iCountMayorExpedition = TTH_ECONOMIC.func.getCountHeroExpedition(iPlayer);
+					local iPercentMayorExpedition = TTH_ECONOMIC.func.calcHeroExpedition(iPlayer);
+					local iCountCreatureLv8Low = TTH_ECONOMIC.func.getCountCreatureLv8Low(iPlayer);
+					local iPercentCreatureLv8Low = TTH_ECONOMIC.func.calcCreatureLv8Low(iPlayer);
+					local iCountCreatureLv8High = TTH_ECONOMIC.func.getCountCreatureLv8High(iPlayer);
+					local iPercentCreatureLv8High = TTH_ECONOMIC.func.calcCreatureLv8High(iPlayer);
+					local iCountPerkEstates = TTH_ECONOMIC.func.getCountPerkEstates(iPlayer);
+					local iPercentPerkEstates = TTH_ECONOMIC.func.calcPerkEstates(iPlayer);
+					local iCountTownMarket = TTH_ECONOMIC.func.getCountTownMarket(iPlayer);
+					local iPercentTownMarket = TTH_ECONOMIC.func.calcTownMarket(iPlayer);
+					local iCountTradingPost = TTH_ECONOMIC.func.getCountTradingPost(iPlayer);
+					local iPercentTradingPost = TTH_ECONOMIC.func.calcTradingPost(iPlayer);
+					local bHasJenova = TTH_PATH.Switch[TTH_ECONOMIC.func.hasJenova(iPlayer)];
+					local iPercentHireJenova = TTH_ECONOMIC.func.calcBonusJenova(iPlayer);
+					local iPercentTotal = iPercentHireHero + iPercentVisitMemoryMentor + iPercentMayorExpedition + iPercentCreatureLv8Low + iPercentCreatureLv8High
+					 + iPercentPerkEstates + iPercentTownMarket + iPercentTradingPost + iPercentHireJenova;
+
+					local strPath = {
+						TTH_TABLE.KingManagePath["Widget"]["Economic"]["Text"]
+						;bEnableHireHero=bEnableHireHero
+						,iPercentHireHero=iPercentHireHero
+						,bEnableVisitMemoryMentor=bEnableVisitMemoryMentor
+						,iPercentVisitMemoryMentor=iPercentVisitMemoryMentor
+						,iCountMayorExpedition=iCountMayorExpedition
+						,iPercentMayorExpedition=iPercentMayorExpedition
+						,iCountCreatureLv8Low=iCountCreatureLv8Low
+						,iPercentCreatureLv8Low=iPercentCreatureLv8Low
+						,iCountCreatureLv8High=iCountCreatureLv8High
+						,iPercentCreatureLv8High=iPercentCreatureLv8High
+						,iCountPerkEstates=iCountPerkEstates
+						,iPercentPerkEstates=iPercentPerkEstates
+						,iCountTownMarket=iCountTownMarket
+						,iPercentTownMarket=iPercentTownMarket
+						,iCountTradingPost=iCountTradingPost
+						,iPercentTradingPost=iPercentTradingPost
+						,bHasJenova=bHasJenova
+						,iPercentHireJenova=iPercentHireJenova
+						,iPercentTotal=iPercentTotal
+					};
+					return strPath;
+				end;
+
 			-- 远征信息（控件）
 				-- <color=8B4513>================远征信息================
 				-- <body_bright>距离最近管辖城镇的距离: <color=yellow><value=iDistanceNearestTown>
 				-- <body_bright>是否远征: <color=yellow><value=bIsExpedition>
-				-- <body_bright>远征天数: <color=yellow><value=iExpeditionDuration>
-				-- <body_bright>每日远征军费: <color=yellow><value=iExpeditionCost>
 				function TTH_GLOBAL.geneWidgetMayorExpedition(iPlayer, strHero)
 					local iDistanceNearestTown = TTH_GLOBAL.getDistance4Hero2NearestMayorTown(strHero);
 					local bIsExpedition = TTH_PATH.Switch[TTH_MANAGE.getHeroExpeditionStatus(strHero)];
-					local iExpeditionDuration = TTH_MANAGE.getHeroExpeditionDuration(strHero);
-					local iExpeditionCost = TTH_MANAGE.getHeroExpeditionCost(strHero);
 					local strPath = {
 						TTH_TABLE.KingManagePath["Widget"]["MayorExpedition"]["Text"]
 						;iDistanceNearestTown=iDistanceNearestTown
 						,bIsExpedition=bIsExpedition
-						,iExpeditionDuration=iExpeditionDuration
-						,iExpeditionCost=iExpeditionCost
 					};
 					return strPath;
 				end;
@@ -4717,6 +4812,7 @@ doFile("/scripts/H55-Settings.lua");
 				, ["BUILDING_WINDMILL"] = {}
 				, ["BUILDING_WATER_WHEEL"] = {}
 				, ["BUILDING_WARMACHINE_FACTORY"] = {}
+				, ["BUILDING_TRADING_POST"] = {}
 			};
 
 			-- 访问
@@ -4725,7 +4821,7 @@ doFile("/scripts/H55-Settings.lua");
 					if TTH_GLOBAL.isAi(iPlayer) == TTH_ENUM.Yes then
 						TTH_VISIT.captureEconomicBuilding4Ai(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback);
 					else
-						TTH_VISIT.confirmEconomicBuilding4Human(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback);
+						TTH_VISIT.captureEconomicBuilding4Human(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback);
 					end;
 				end;
 
@@ -4745,7 +4841,8 @@ doFile("/scripts/H55-Settings.lua");
 				function TTH_VISIT.confirmEconomicBuilding4Human(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback)
 					if TTH_VARI.economicBuildingOwner[strBuildingType][strBuildingName] == iPlayer then
 						ShowFlyingSign(TTH_PATH.Visit["Economic"]["HasCapture"], strHero, iPlayer, 5);
-						if strBuildingType == "BUILDING_WARMACHINE_FACTORY" then
+						if strBuildingType == "BUILDING_WARMACHINE_FACTORY"
+							or strBuildingType == "BUILDING_TRADING_POST" then
 							TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
 						end;
 						return nil;
@@ -4759,12 +4856,12 @@ doFile("/scripts/H55-Settings.lua");
 
 			-- 执行人类占领
 				function TTH_VISIT.captureEconomicBuilding4Human(iPlayer, strHero, strBuildingName, strBuildingType, funcCallback)
-					if GetPlayerResource(iPlayer, GOLD) < 1000 then
-						ShowFlyingSign(TTH_PATH.Visit["Economic"]["NotEnoughRes"], strHero, iPlayer, 5);
-						TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
-						return nil;
-					end;
-					TTH_GLOBAL.reduceResource(iPlayer, GOLD, 1000);
+					-- if GetPlayerResource(iPlayer, GOLD) < 1000 then
+					-- 	ShowFlyingSign(TTH_PATH.Visit["Economic"]["NotEnoughRes"], strHero, iPlayer, 5);
+					-- 	TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
+					-- 	return nil;
+					-- end;
+					-- TTH_GLOBAL.reduceResource(iPlayer, GOLD, 1000);
 					TTH_VARI.economicBuildingOwner[strBuildingType][strBuildingName] = iPlayer;
 					OverrideObjectTooltipNameAndDescription(strBuildingName, TTH_PATH.Visit["Player"][iPlayer], TTH_PATH.Visit["Economic"][strBuildingType]["Desc"]);
 					MarkObjectAsVisited(strBuildingName, strHero);
@@ -4793,6 +4890,12 @@ doFile("/scripts/H55-Settings.lua");
 				function TTH_VISIT.visitWarmachineFactory(strHero, strBuildingName)
 					local strBuildingType = "BUILDING_WARMACHINE_FACTORY";
 					TTH_VISIT.visitEconomicBuilding(strHero, strBuildingName, strBuildingType, "TTH_VISIT.visitWarmachineFactory");
+				end;
+
+			--交易站
+				function TTH_VISIT.visitTradingPost(strHero, strBuildingName)
+					local strBuildingType = "BUILDING_TRADING_POST";
+					TTH_VISIT.visitEconomicBuilding(strHero, strBuildingName, strBuildingType, "TTH_VISIT.visitTradingPost");
 				end;
 
 		-- 女巫小屋
@@ -6901,10 +7004,29 @@ doFile("/scripts/H55-Settings.lua");
 					-- 高级宝屋下层额外宝物奖励
 						function TTH_VISIT.rewardBankExtraArtifact(strHero)
 							local iPlayer = GetObjectOwner(strHero);
-							for iLevel = 1, 6 do
-								local iLenArtifact = length(TTH_TABLE.Artifact8Level[iLevel]);
-								local iRandom = random(iLenArtifact);
-								local iArtifactId = TTH_TABLE.Artifact8Level[iLevel][iRandom];
+							do
+								for iLevel = 1, 6 do
+									local iLenArtifact = length(TTH_TABLE.Artifact8Level[iLevel]);
+									local iRandom = random(iLenArtifact);
+									local iArtifactId = TTH_TABLE.Artifact8Level[iLevel][iRandom];
+									TTH_GLOBAL.giveHeroArtifact(strHero, iArtifactId);
+								end;
+							end;
+							do
+								local arrArtifactNotExist = {};
+								for i, iArtifactId in TTH_TABLE.BankRewardPartOfRelic do
+									if HasArtefact(strHero, iArtifactId, 0) == nil then
+										arrArtifactNotExist = TTH_COMMON.push(arrArtifactNotExist, iArtifactId);
+									end;
+								end;
+								if length(arrArtifactNotExist) == 0 then
+									arrArtifactNotExist = TTH_TABLE.BankRewardPartOfRelic;
+								end;
+								local iRandom = random(length(arrArtifactNotExist));
+								local iArtifactId = arrArtifactNotExist[iRandom];
+								local strText = TTH_PATH.Visit["Bank"]["Reward"]["PartOfRelic"];
+								TTH_GLOBAL.sign(strHero, strText);
+								sleep(8);
 								TTH_GLOBAL.giveHeroArtifact(strHero, iArtifactId);
 							end;
 						end;
@@ -7726,1256 +7848,1236 @@ doFile("/scripts/H55-Settings.lua");
 		TTH_VARI.arrMayor = {}; -- 内政关系表
 		TTH_VARI.arrDefeatMayor = {}; --战败表
 
-		-- getter/setter/is
-			-- 获取城镇的内政官 nil: 无; strHero: 有
-				function TTH_MANAGE.getMayor8Town(strTown)
-					local strMayor = nil;
-					for strHero, objMayor in TTH_VARI.arrMayor do
-						local arrTown = objMayor["Town"];
-						if arrTown ~= nil and length(arrTown) > 0 then
-							for strTownHasMayor, objTownHasMayor in arrTown do
-								if strTownHasMayor == strTown then
-									strMayor = strHero;
-									return strMayor;
+		-- 方法
+			-- getter/setter/is
+				-- 获取城镇的内政官 nil: 无; strHero: 有
+					function TTH_MANAGE.getMayor8Town(strTown)
+						local strMayor = nil;
+						for strHero, objMayor in TTH_VARI.arrMayor do
+							local arrTown = objMayor["Town"];
+							if arrTown ~= nil and length(arrTown) > 0 then
+								for strTownHasMayor, objTownHasMayor in arrTown do
+									if strTownHasMayor == strTown then
+										strMayor = strHero;
+										return strMayor;
+									end;
 								end;
 							end;
 						end;
+						return strMayor;
 					end;
-					return strMayor;
-				end;
 
-			-- 英雄是否是内政官
-				function TTH_MANAGE.isMayor(strHero)
-					local objMayor = TTH_VARI.arrMayor[strHero];
-					local arrTown = objMayor["Town"];
-					local bIsMayor = TTH_ENUM.No;
-					if arrTown ~= nil and length(arrTown) > 0 then
-						bIsMayor = TTH_ENUM.Yes;
-					end;
-					return bIsMayor;
-				end;
-
-			-- 获取内城官所辖城镇评分总和
-				function TTH_MANAGE.totalTownValue4Mayor(strMayor)
-					local objMayor = TTH_VARI.arrMayor[strMayor];
-					local arrTown = objMayor["Town"];
-					local iTotalTownValue = 0;
-					for strTown, objTown in arrTown do
-						iTotalTownValue = iTotalTownValue + objTown["Value"];
-					end;
-					iTotalTownValue = iTotalTownValue + TTH_TALENT.calcTownValueKunyak(strMayor, arrTown);
-					return iTotalTownValue;
-				end;
-
-		-- 政绩
-			-- 获取玩家当前政绩
-				function TTH_MANAGE.getRecordPoint(iPlayer)
-					return TTH_VARI.arrRecordPoint[iPlayer]["RecordPoint"];
-				end;
-
-			-- 计算英雄每日获得政绩
-				function TTH_MANAGE.calcDailyRecordPoint(strHero)
-					local iRecordPoint = 0;
-					if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
-						local iTownValue = TTH_MANAGE.totalTownValue4Mayor(strHero);
-						local strHeroCalid2 = "Calid2";
-						if strHero == strHeroCalid2 then
-							local iCountPit = TTH_MANAGE.totalSacrificialPit4Mayor(strHero);
-							iTownValue = iTownValue + 100 * iCountPit;
+				-- 英雄是否是内政官
+					function TTH_MANAGE.isMayor(strHero)
+						local objMayor = TTH_VARI.arrMayor[strHero];
+						local arrTown = objMayor["Town"];
+						local bIsMayor = TTH_ENUM.No;
+						if arrTown ~= nil and length(arrTown) > 0 then
+							bIsMayor = TTH_ENUM.Yes;
 						end;
-						local iCoef = TTH_PERK.dealDaily099(nil, strHero);
-						iTownValue = iTownValue * iCoef;
-						iRecordPoint = iTownValue;
+						return bIsMayor;
 					end;
-					return iRecordPoint;
-				end;
 
-			-- 计算玩家每日获得政绩
-				function TTH_MANAGE.calcDailyRecordPoint8Daily(iPlayer)
-					local arrHero = GetPlayerHeroes(iPlayer);
-					local iRecordPoint = 0;
-					for i, strHero in arrHero do
-						iRecordPoint = iRecordPoint + TTH_MANAGE.calcDailyRecordPoint(strHero);
-					end
-					return iRecordPoint;
-				end;
-
-			-- 给予英雄每日政绩
-				function TTH_MANAGE.giveDailyRecordPoint(iPlayer, strHero, iCoef)
-					TTH_MAIN.debug("TTH_MANAGE.giveDailyRecordPoint", iPlayer, strHero);
-
-					local iRecordPoint = TTH_MANAGE.calcDailyRecordPoint(strHero);
-					if iCoef ~= nil then
-						iRecordPoint = TTH_COMMON.round(iRecordPoint * iCoef);
-					end;
-					if iRecordPoint ~= 0 then
-						TTH_VARI.arrRecordPoint[iPlayer]["RecordPoint"] = TTH_VARI.arrRecordPoint[iPlayer]["RecordPoint"] + iRecordPoint;
-					end;
-					return iRecordPoint;
-				end;
-
-			-- 给予玩家政绩
-				function TTH_MANAGE.addRecordPoint(iPlayer, strHero, iRecordPoint)
-					TTH_MAIN.debug("TTH_MANAGE.addRecordPoint", iPlayer, strHero, iRecordPoint);
-
-					if iRecordPoint ~= 0 then
-						local iCoef = TTH_PERK.dealDaily099(iPlayer, strHero);
-						TTH_VARI.arrRecordPoint[iPlayer]["RecordPoint"] = TTH_VARI.arrRecordPoint[iPlayer]["RecordPoint"] + iRecordPoint * iCoef;
-						local strText = {
-							TTH_TABLE.KingManagePath["ExchangeRecord"]["Increase"]["Text"]
-							;iRecordPoint=iRecordPoint
-						};
-						TTH_GLOBAL.sign(strHero, strText);
-					end;
-				end;
-
-			-- 英雄政绩兑换
-				function TTH_MANAGE.useRecordPoint(iPlayer, strHero, iRecordPoint)
-					if iRecordPoint ~= 0 then
-						TTH_VARI.iExchangeRecordTimes[iPlayer] = TTH_VARI.iExchangeRecordTimes[iPlayer] + 1;
-						TTH_VARI.arrRecordPoint[iPlayer]["RecordPoint"] = TTH_VARI.arrRecordPoint[iPlayer]["RecordPoint"] - iRecordPoint;
-					end;
-				end;
-
-		-- 经验
-			-- 获取内城官所辖城镇中有几座建造了献祭深坑的地狱建筑
-				function TTH_MANAGE.totalSacrificialPit4Mayor(strMayor)
-					if TTH_GLOBAL.getRace8Hero(strMayor) == TOWN_INFERNO then
+				-- 获取内城官所辖城镇评分总和
+					function TTH_MANAGE.totalTownValue4Mayor(strMayor)
 						local objMayor = TTH_VARI.arrMayor[strMayor];
 						local arrTown = objMayor["Town"];
-						local iPitCount = 0;
+						local iTotalTownValue = 0;
 						for strTown, objTown in arrTown do
-							if GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_5) >= 1 then
-								iPitCount = iPitCount + 1;
-							end;
-						end
-						return iPitCount;
-					end;
-					return 0;
-				end;
-
-			-- 计算内政官每日获得经验
-				function TTH_MANAGE.calcDailyExp4Mayor(strMayor)
-					local iExp = 0;
-					if TTH_MANAGE.isMayor(strMayor) == TTH_ENUM.Yes then
-						local iTownValue = TTH_MANAGE.totalTownValue4Mayor(strMayor);
-						local iHeroLevel = GetHeroLevel(strMayor);
-						local iCountPit = TTH_MANAGE.totalSacrificialPit4Mayor(strMayor);
-						iExp = 200 * (1 + iCountPit) + iTownValue * iHeroLevel * iHeroLevel / 9;
-						local iCoef = TTH_PERK.dealDaily099(nil, strMayor);
-						local strHeroCalid2 = "Calid2";
-						if strMayor == strHeroCalid2 then
-							iCoef = iCoef * 2;
+							iTotalTownValue = iTotalTownValue + objTown["Value"];
 						end;
-						iExp = iExp * iCoef;
+						iTotalTownValue = iTotalTownValue + TTH_TALENT.calcTownValueKunyak(strMayor, arrTown);
+						return iTotalTownValue;
 					end;
-					return iExp;
-				end;
 
-			-- 给予内政官每日经验
-				function TTH_MANAGE.giveDailyExp4Mayor(iPlayer, strMayor)
-					TTH_MAIN.debug("TTH_MANAGE.giveDailyExp4Mayor", iPlayer, strMayor);
+			-- 政绩
+				-- 获取玩家当前政绩
+					function TTH_MANAGE.getRecordPoint(iPlayer)
+						return TTH_VARI.arrRecordPoint[iPlayer]["RecordPoint"];
+					end;
 
-					local iExp = TTH_MANAGE.calcDailyExp4Mayor(strMayor);
-					TTH_GLOBAL.giveExp(strMayor, iExp);
-				end;
-
-		-- 初始化内政信息
-			function TTH_MANAGE.initMayor(strHero)
-				TTH_MAIN.debug("TTH_MANAGE.initMayor", nil, strHero);
-
-				-- 战败表中没有该英雄的记录
-					if TTH_VARI.arrDefeatMayor[strHero] == nil then
-						-- 没有内政信息
-							if TTH_VARI.arrMayor[strHero] == nil then
-								TTH_VARI.arrMayor[strHero] = {};
-								TTH_MANAGE.resetOperTimes(strHero);
-								TTH_MANAGE.constructData4Mayor(strHero);
-
-						-- 有内政信息
-							else
-								-- 内政信息中该英雄为战败状态
-									if TTH_VARI.arrMayor[strHero]["IsDefeat"] ~= nil then
-										-- 重置战败状态
-											TTH_VARI.arrMayor[strHero]["IsDefeat"] = {
-												["Status"] = TTH_ENUM.No
-												, ["Duration"] = 0
-											};
-
-										-- 处理内政官加成
-											TTH_MANAGE.dealMayorBonus(strHero);
-									end;
+				-- 计算英雄每日获得政绩
+					function TTH_MANAGE.calcDailyRecordPoint(strHero)
+						local iRecordPoint = 0;
+						if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
+							local iTownValue = TTH_MANAGE.totalTownValue4Mayor(strHero);
+							local strHeroCalid2 = "Calid2";
+							if strHero == strHeroCalid2 then
+								local iCountPit = TTH_MANAGE.totalSacrificialPit4Mayor(strHero);
+								iTownValue = iTownValue + 100 * iCountPit;
 							end;
-
-				-- 战败表中有该英雄的记录
-					else
-						-- 根据战败表中的信息更新英雄加成
-							TTH_MANAGE.implMayorBonus(strHero, TTH_VARI.arrMayor[strHero]["Bonus"], -1);
-
-						-- 从战败表中删除该英雄的记录
-							TTH_VARI.arrDefeatMayor[strHero] = nil;
+							local iCoef = TTH_PERK.dealDaily099(nil, strHero);
+							iTownValue = iTownValue * iCoef;
+							iRecordPoint = iTownValue;
+						end;
+						return iRecordPoint;
 					end;
-			end;
 
-		-- 每日刷新内政信息
-			function TTH_MANAGE.refreshDailyMayor(iPlayer, strHero)
-				TTH_MAIN.debug("TTH_MANAGE.refreshDailyMayor", iPlayer, strHero);
+				-- 计算玩家每日获得政绩
+					function TTH_MANAGE.calcDailyRecordPoint8Daily(iPlayer)
+						local arrHero = GetPlayerHeroes(iPlayer);
+						local iRecordPoint = 0;
+						for i, strHero in arrHero do
+							iRecordPoint = iRecordPoint + TTH_MANAGE.calcDailyRecordPoint(strHero);
+						end
+						return iRecordPoint;
+					end;
 
-				local objMayor = TTH_VARI.arrMayor[strHero];
-				-- 若英雄已战败3天，将英雄已加成属性记录到战败表中，否则战败时长增加1天
-					if objMayor["IsDefeat"]["Status"] == TTH_ENUM.Yes then
-						objMayor["IsDefeat"]["Duration"] = objMayor["IsDefeat"]["Duration"] + 1;
-						if objMayor["IsDefeat"]["Duration"] >= 3 then
-							TTH_VARI.arrDefeatMayor[strHero] = {
-								["Bonus"] = TTH_MANAGE.constructData4HeroHasBonus(strHero)
+				-- 给予英雄每日政绩
+					function TTH_MANAGE.giveDailyRecordPoint(iPlayer, strHero, iCoef)
+						TTH_MAIN.debug("TTH_MANAGE.giveDailyRecordPoint", iPlayer, strHero);
+
+						local iRecordPoint = TTH_MANAGE.calcDailyRecordPoint(strHero);
+						if iCoef ~= nil then
+							iRecordPoint = TTH_COMMON.round(iRecordPoint * iCoef);
+						end;
+						if iRecordPoint ~= 0 then
+							TTH_VARI.arrRecordPoint[iPlayer]["RecordPoint"] = TTH_VARI.arrRecordPoint[iPlayer]["RecordPoint"] + iRecordPoint;
+						end;
+						return iRecordPoint;
+					end;
+
+				-- 给予玩家政绩
+					function TTH_MANAGE.addRecordPoint(iPlayer, strHero, iRecordPoint)
+						TTH_MAIN.debug("TTH_MANAGE.addRecordPoint", iPlayer, strHero, iRecordPoint);
+
+						if iRecordPoint ~= 0 then
+							local iCoef = TTH_PERK.dealDaily099(iPlayer, strHero);
+							TTH_VARI.arrRecordPoint[iPlayer]["RecordPoint"] = TTH_VARI.arrRecordPoint[iPlayer]["RecordPoint"] + iRecordPoint * iCoef;
+							local strText = {
+								TTH_TABLE.KingManagePath["ExchangeRecord"]["Increase"]["Text"]
+								;iRecordPoint=iRecordPoint
 							};
-							TTH_MANAGE.constructData4Mayor(strHero);
+							TTH_GLOBAL.sign(strHero, strText);
 						end;
 					end;
 
-				-- 查验内政关系-解绑不属于玩家的城镇
-					local arrTown = objMayor["Town"];
-					local bIsMayor = TTH_ENUM.No;
-					if arrTown ~= nil and length(arrTown) > 0 then
-						for strTown, objTown in arrTown do
-							if GetObjectOwner(strTown) ~= iPlayer then
-								TTH_MANAGE.unbindTown2Hero(strHero, strTown);
-							else
-								bIsMayor = TTH_ENUM.Yes;
-								local objAnalysisTown = TTH_MANAGE.analysisTownBuildLevel(strTown);
-								local iTownValue = TTH_MANAGE.calcTownValue(objAnalysisTown);
-								TTH_MANAGE.bindTown2Hero(strHero, strTown, iTownValue);
-							end;
-						end
-					end;
-
-					TTH_MANAGE.dealMayorBonus(strHero); -- 处理内政官加成
-
-				 -- 更新远征状态
-					if bIsMayor == TTH_ENUM.Yes then
-						TTH_MANAGE.updateExpeditionStatus(iPlayer, strHero, TTH_ENUM.Yes);
-					end;
-			end;
-
-		-- 构造数据结构
-			-- 构造政绩加成的数据结构
-				function TTH_MANAGE.initConstructData4RecordPoint(iPlayer)
-					TTH_VARI.arrRecordPoint[iPlayer] = {
-					  ["RecordPoint"] = 0
-					  , ["OperTimes"] = 0
-					  , ["AbilityQuota"] = 0
-					  , ["TerritoryRadius"] = 0
-					  , ["MineMaxLevel"] = 0
-					  , ["PotionMaxTimes"] = 0
-					};
-				end;
-
-			-- 构造内政信息初始的数据结构
-				function TTH_MANAGE.constructData4Mayor(strHero)
-					TTH_VARI.arrMayor[strHero]["Town"] = {};
-					TTH_VARI.arrMayor[strHero]["Bonus"] = {
-						[STAT_ATTACK] = 0
-						, [STAT_DEFENCE] = 0
-						, [STAT_SPELL_POWER] = 0
-						, [STAT_KNOWLEDGE] = 0
-						, [STAT_LUCK] = 0
-						, [STAT_MORALE] = 0
-					};
-					TTH_VARI.arrMayor[strHero]["IsExpedition"] = {
-						["Status"] = TTH_ENUM.No
-						, ["Duration"] = 0
-					};
-					TTH_VARI.arrMayor[strHero]["IsDefeat"] = {
-						["Status"] = TTH_ENUM.No
-						, ["Duration"] = 0
-					};
-				end;
-
-			-- 构造英雄已加成属性的数据结构
-				function TTH_MANAGE.constructData4HeroHasBonus(strHero)
-					local bIsExpedition = TTH_VARI.arrMayor[strHero]["IsExpedition"]["Status"];
-					local objBonus = {
-						[STAT_ATTACK] = 0
-						, [STAT_DEFENCE] = 0
-						, [STAT_SPELL_POWER] = 0
-						, [STAT_KNOWLEDGE] = 0
-						, [STAT_LUCK] = 0
-						, [STAT_MORALE] = 0
-					};
-					if bIsExpedition == TTH_ENUM.No then
-						objBonus = TTH_VARI.arrMayor[strHero]["Bonus"];
-					end;
-					return objBonus;
-				end;
-
-			-- 构造英雄应加成属性的数据结构
-				function TTH_MANAGE.constructData4HeroShouldBonus(strHero)
-					local bIsExpedition = TTH_MANAGE.checkIsExpedition8Hero(strHero);
-					local objBonus = {
-						[STAT_ATTACK] = 0
-						, [STAT_DEFENCE] = 0
-						, [STAT_SPELL_POWER] = 0
-						, [STAT_KNOWLEDGE] = 0
-						, [STAT_LUCK] = 0
-						, [STAT_MORALE] = 0
-					};
-					if bIsExpedition == TTH_ENUM.No then
-						objBonus = TTH_MANAGE.getMayorBonus(strHero);
-					end;
-					return objBonus;
-				end;
-
-		-- 内政关系
-			-- 绑定内政关系
-				function TTH_MANAGE.bindTown2Hero(strHero, strTown, iTownValue)
-					TTH_VARI.arrMayor[strHero]["Town"][strTown] = {
-						["Value"] = iTownValue
-					};
-				end;
-
-			-- 解绑内政关系
-				function TTH_MANAGE.unbindTown2Hero(strHero, strTown)
-					TTH_VARI.arrMayor[strHero]["Town"] = TTH_COMMON.remove8Key(TTH_VARI.arrMayor[strHero]["Town"], strTown);
-				end;
-
-		-- 内政官加成
-			-- 处理内政官加成
-				function TTH_MANAGE.dealMayorBonus(strHero)
-					local bPreIsExpedition = TTH_VARI.arrMayor[strHero]["IsExpedition"]["Status"]; -- 获取内政表中该英雄的远征状态
-					local objPreBonus = TTH_MANAGE.constructData4HeroHasBonus(strHero); -- 获取已加成属性表
-					local bPostIsExpedition = TTH_MANAGE.checkIsExpedition8Hero(strHero); -- 获取当前远征状态
-					local objPostBonus = TTH_MANAGE.constructData4HeroShouldBonus(strHero); -- 获取应加成属性表
-
-					local objDiffBonus = TTH_COMMON.diffObject(objPostBonus, objPreBonus);
-					TTH_MANAGE.implMayorBonus(strHero, objDiffBonus, 1);
-					TTH_VARI.arrMayor[strHero]["Bonus"] = objPostBonus;
-				end;
-
-			-- 根据城镇建筑计算内政官加成
-				function TTH_MANAGE.calcMayorBonus(objTown)
-					local iTownRace = objTown["TownRace"];
-					local iAttack = 0;
-					local iDefence = objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_FORT];
-					local iSpellPower = 0;
-					local iKnowledge = 0;
-					local iLuck = 0;
-					local iMorale = 0;
-
-					-- 特殊建筑
-						if iTownRace == TOWN_HEAVEN then
-							iKnowledge = iKnowledge + objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD];
-							iAttack = iAttack + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] * 2;
-							iLuck = iLuck + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] * 1;
-							iAttack = iAttack + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_2] * 2;
-							iLuck = iLuck + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_2] * 1;
-						elseif iTownRace == TOWN_PRESERVE then
-							iKnowledge = iKnowledge + objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD];
-							iAttack = iAttack + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_3] * 2;
-							iMorale = iMorale + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_3] * 1;
-							iAttack = iAttack + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_0] * 2;
-							iMorale = iMorale + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_0] * 1;
-						elseif iTownRace == TOWN_ACADEMY then
-							iKnowledge = iKnowledge + objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD];
-							iSpellPower = iSpellPower + objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD] * objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1];
-						elseif iTownRace == TOWN_DUNGEON then
-							iKnowledge = iKnowledge + objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD];
-							iSpellPower = iSpellPower + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] * 2;
-						elseif iTownRace == TOWN_NECROMANCY then
-							iKnowledge = iKnowledge + objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD];
-							iSpellPower = iSpellPower + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] * 2;
-							iKnowledge = iKnowledge + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_2] * 2;
-						elseif iTownRace == TOWN_INFERNO then
-							iKnowledge = iKnowledge + objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD];
-							iSpellPower = iSpellPower + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] * 2;
-						elseif iTownRace == TOWN_FORTRESS then
-							iKnowledge = iKnowledge + objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD];
-							iDefence = iDefence + objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_FORT] * objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_4];
-							iSpellPower = iSpellPower + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1];
-						elseif iTownRace == TOWN_STRONGHOLD then
-							iKnowledge = iKnowledge + objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD];
-							iAttack = iAttack + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_4] * 2;
+				-- 英雄政绩兑换
+					function TTH_MANAGE.useRecordPoint(iPlayer, strHero, iRecordPoint)
+						if iRecordPoint ~= 0 then
+							TTH_VARI.iExchangeRecordTimes[iPlayer] = TTH_VARI.iExchangeRecordTimes[iPlayer] + 1;
+							TTH_VARI.arrRecordPoint[iPlayer]["RecordPoint"] = TTH_VARI.arrRecordPoint[iPlayer]["RecordPoint"] - iRecordPoint;
 						end;
+					end;
 
-					local objHeroBonus = {
-						[STAT_ATTACK] = iAttack
-						, [STAT_DEFENCE] = iDefence
-						, [STAT_SPELL_POWER] = iSpellPower
-						, [STAT_KNOWLEDGE] = iKnowledge
-						, [STAT_LUCK] = iLuck
-						, [STAT_MORALE] = iMorale
-					};
-					return objHeroBonus;
-				end;
-
-			-- 获取英雄所辖城镇加成总和
-				function TTH_MANAGE.getMayorBonus(strHero)
-					local objTotalBonus = {
-						[STAT_ATTACK] = 0
-						, [STAT_DEFENCE] = 0
-						, [STAT_SPELL_POWER] = 0
-						, [STAT_KNOWLEDGE] = 0
-						, [STAT_LUCK] = 0
-						, [STAT_MORALE] = 0
-					};
-					local objMayor = TTH_VARI.arrMayor[strHero];
-					if objMayor ~= nil then
-						local arrTown = objMayor["Town"];
-						if arrTown ~= nil then
+			-- 经验
+				-- 获取内城官所辖城镇中有几座建造了献祭深坑的地狱建筑
+					function TTH_MANAGE.totalSacrificialPit4Mayor(strMayor)
+						if TTH_GLOBAL.getRace8Hero(strMayor) == TOWN_INFERNO then
+							local objMayor = TTH_VARI.arrMayor[strMayor];
+							local arrTown = objMayor["Town"];
+							local iPitCount = 0;
 							for strTown, objTown in arrTown do
-								local objAnalysisTown = TTH_MANAGE.analysisTownBuildLevel(strTown);
-								local objBonus = TTH_MANAGE.calcMayorBonus(objAnalysisTown);
-								objTotalBonus = TTH_COMMON.combineObject(objTotalBonus, objBonus);
+								if GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_5) >= 1 then
+									iPitCount = iPitCount + 1;
+								end;
+							end
+							return iPitCount;
+						end;
+						return 0;
+					end;
+
+				-- 计算内政官每日获得经验
+					function TTH_MANAGE.calcDailyExp4Mayor(strMayor)
+						local iExp = 0;
+						if TTH_MANAGE.isMayor(strMayor) == TTH_ENUM.Yes then
+							local iTownValue = TTH_MANAGE.totalTownValue4Mayor(strMayor);
+							local iHeroLevel = GetHeroLevel(strMayor);
+							local iCountPit = TTH_MANAGE.totalSacrificialPit4Mayor(strMayor);
+							iExp = 200 * (1 + iCountPit) + iTownValue * iHeroLevel * iHeroLevel / 9;
+							local iCoef = TTH_PERK.dealDaily099(nil, strMayor);
+							local strHeroCalid2 = "Calid2";
+							if strMayor == strHeroCalid2 then
+								iCoef = iCoef * 2;
+							end;
+							iExp = iExp * iCoef;
+						end;
+						return iExp;
+					end;
+
+				-- 给予内政官每日经验
+					function TTH_MANAGE.giveDailyExp4Mayor(iPlayer, strMayor)
+						TTH_MAIN.debug("TTH_MANAGE.giveDailyExp4Mayor", iPlayer, strMayor);
+
+						local iExp = TTH_MANAGE.calcDailyExp4Mayor(strMayor);
+						TTH_GLOBAL.giveExp(strMayor, iExp);
+					end;
+
+			-- 初始化内政信息
+				function TTH_MANAGE.initMayor(strHero)
+					TTH_MAIN.debug("TTH_MANAGE.initMayor", nil, strHero);
+
+					-- 战败表中没有该英雄的记录
+						if TTH_VARI.arrDefeatMayor[strHero] == nil then
+							-- 没有内政信息
+								if TTH_VARI.arrMayor[strHero] == nil then
+									TTH_VARI.arrMayor[strHero] = {};
+									TTH_MANAGE.resetOperTimes(strHero);
+									TTH_MANAGE.constructData4Mayor(strHero);
+
+							-- 有内政信息
+								else
+									-- 内政信息中该英雄为战败状态
+										if TTH_VARI.arrMayor[strHero]["IsDefeat"] ~= nil then
+											-- 重置战败状态
+												TTH_VARI.arrMayor[strHero]["IsDefeat"] = {
+													["Status"] = TTH_ENUM.No
+													, ["Duration"] = 0
+												};
+
+											-- 处理内政官加成
+												TTH_MANAGE.dealMayorBonus(strHero);
+										end;
+								end;
+
+					-- 战败表中有该英雄的记录
+						else
+							-- 根据战败表中的信息更新英雄加成
+								TTH_MANAGE.implMayorBonus(strHero, TTH_VARI.arrMayor[strHero]["Bonus"], -1);
+
+							-- 从战败表中删除该英雄的记录
+								TTH_VARI.arrDefeatMayor[strHero] = nil;
+						end;
+				end;
+
+			-- 每日刷新内政信息
+				function TTH_MANAGE.refreshDailyMayor(iPlayer, strHero)
+					TTH_MAIN.debug("TTH_MANAGE.refreshDailyMayor", iPlayer, strHero);
+
+					local objMayor = TTH_VARI.arrMayor[strHero];
+					-- 若英雄已战败3天，将英雄已加成属性记录到战败表中，否则战败时长增加1天
+						if objMayor["IsDefeat"]["Status"] == TTH_ENUM.Yes then
+							objMayor["IsDefeat"]["Duration"] = objMayor["IsDefeat"]["Duration"] + 1;
+							if objMayor["IsDefeat"]["Duration"] >= 3 then
+								TTH_VARI.arrDefeatMayor[strHero] = {
+									["Bonus"] = TTH_MANAGE.constructData4HeroHasBonus(strHero)
+								};
+								TTH_MANAGE.constructData4Mayor(strHero);
 							end;
 						end;
-					end;
-					return objTotalBonus;
-				end;
 
-			-- 实装内政官加成数据
-				function TTH_MANAGE.implMayorBonus(strHero, objBonus, bDirection)
-					if objBonus[STAT_ATTACK] ~= 0 then
-						ChangeHeroStat(strHero, STAT_ATTACK, objBonus[STAT_ATTACK] * bDirection);
-					end;
-					if objBonus[STAT_DEFENCE] ~= 0 then
-						ChangeHeroStat(strHero, STAT_DEFENCE, objBonus[STAT_DEFENCE] * bDirection);
-					end;
-					if objBonus[STAT_SPELL_POWER] ~= 0 then
-						ChangeHeroStat(strHero, STAT_SPELL_POWER, objBonus[STAT_SPELL_POWER] * bDirection);
-					end;
-					if objBonus[STAT_KNOWLEDGE] ~= 0 then
-						ChangeHeroStat(strHero, STAT_KNOWLEDGE, objBonus[STAT_KNOWLEDGE] * bDirection);
-					end;
-					if objBonus[STAT_LUCK] ~= 0 then
-						ChangeHeroStat(strHero, STAT_LUCK, objBonus[STAT_LUCK] * bDirection);
-					end;
-					if objBonus[STAT_MORALE] ~= 0 then
-						ChangeHeroStat(strHero, STAT_MORALE, objBonus[STAT_MORALE] * bDirection);
-					end;
-				end;
-
-		-- 城镇兵种产量加成
-			TTH_TABLE.Coef8Mayor4TownDwellingCreature = {
-				[1] = 1.5
-				, [2] = 2
-				, [3] = 3
-				, [4] = 4
-				, [5] = 6
-				, [6] = 8
-				, [7] = 12
-			};
-			function TTH_MANAGE.bonusTownDwellingCreature8Mayor(strTown)
-				TTH_MAIN.debug("TTH_MANAGE.bonusTownDwellingCreature8Mayor", nil, nil, strTown);
-
-				local arrCreatureGrowth8Tier = TTH_MANAGE.calcTownDwellingCreature(strTown);
-				TTH_GLOBAL.updateTownDwellingCreature(strTown, arrCreatureGrowth8Tier);
-			end;
-			function TTH_MANAGE.calcTownDwellingCreature(strTown)
-				local arrCreatureGrowth8Tier = {
-					[1] = 0
-					, [2] = 0
-					, [3] = 0
-					, [4] = 0
-					, [5] = 0
-					, [6] = 0
-					, [7] = 0
-				};
-				if TTH_MANAGE.checkIsExpedition8Town(strTown) == TTH_ENUM.No then
-					local strMayor = TTH_MANAGE.getMayor8Town(strTown);
-					if strMayor ~= nil then
-						local iHeroLevel = GetHeroLevel(strMayor);
-						local iHeroKnowledge = GetHeroStat(strMayor, STAT_KNOWLEDGE);
-						for iTier = 1, 7 do
-							arrCreatureGrowth8Tier[iTier] = TTH_COMMON.round(iHeroLevel / TTH_TABLE.Coef8Mayor4TownDwellingCreature[iTier]);
+					-- 查验内政关系-解绑不属于玩家的城镇
+						local arrTown = objMayor["Town"];
+						local bIsMayor = TTH_ENUM.No;
+						if arrTown ~= nil and length(arrTown) > 0 then
+							for strTown, objTown in arrTown do
+								if GetObjectOwner(strTown) ~= iPlayer then
+									TTH_MANAGE.unbindTown2Hero(strHero, strTown);
+								else
+									bIsMayor = TTH_ENUM.Yes;
+									local objAnalysisTown = TTH_MANAGE.analysisTownBuildLevel(strTown);
+									local iTownValue = TTH_MANAGE.calcTownValue(objAnalysisTown);
+									TTH_MANAGE.bindTown2Hero(strHero, strTown, iTownValue);
+								end;
+							end
 						end;
-						if TTH_TABLE.Hero[strMayor]["Specialty"] ~= nil then
+
+						TTH_MANAGE.dealMayorBonus(strHero); -- 处理内政官加成
+
+					 -- 更新远征状态
+						if bIsMayor == TTH_ENUM.Yes then
+							TTH_MANAGE.updateExpeditionStatus(iPlayer, strHero, TTH_ENUM.Yes);
+						end;
+				end;
+
+			-- 构造数据结构
+				-- 构造政绩加成的数据结构
+					function TTH_MANAGE.initConstructData4RecordPoint(iPlayer)
+						TTH_VARI.arrRecordPoint[iPlayer] = {
+						  ["RecordPoint"] = 0
+						  , ["OperTimes"] = 0
+						  , ["AbilityQuota"] = 0
+						  , ["TerritoryRadius"] = 0
+						  , ["MineMaxLevel"] = 0
+						  , ["PotionMaxTimes"] = 0
+						};
+					end;
+
+				-- 构造内政信息初始的数据结构
+					function TTH_MANAGE.constructData4Mayor(strHero)
+						TTH_VARI.arrMayor[strHero]["Town"] = {};
+						TTH_VARI.arrMayor[strHero]["Bonus"] = {
+							[STAT_ATTACK] = 0
+							, [STAT_DEFENCE] = 0
+							, [STAT_SPELL_POWER] = 0
+							, [STAT_KNOWLEDGE] = 0
+							, [STAT_LUCK] = 0
+							, [STAT_MORALE] = 0
+						};
+						TTH_VARI.arrMayor[strHero]["IsExpedition"] = {
+							["Status"] = TTH_ENUM.No
+						};
+						TTH_VARI.arrMayor[strHero]["IsDefeat"] = {
+							["Status"] = TTH_ENUM.No
+							, ["Duration"] = 0
+						};
+					end;
+
+				-- 构造英雄已加成属性的数据结构
+					function TTH_MANAGE.constructData4HeroHasBonus(strHero)
+						local bIsExpedition = TTH_VARI.arrMayor[strHero]["IsExpedition"]["Status"];
+						local objBonus = {
+							[STAT_ATTACK] = 0
+							, [STAT_DEFENCE] = 0
+							, [STAT_SPELL_POWER] = 0
+							, [STAT_KNOWLEDGE] = 0
+							, [STAT_LUCK] = 0
+							, [STAT_MORALE] = 0
+						};
+						if bIsExpedition == TTH_ENUM.No then
+							objBonus = TTH_VARI.arrMayor[strHero]["Bonus"];
+						end;
+						return objBonus;
+					end;
+
+				-- 构造英雄应加成属性的数据结构
+					function TTH_MANAGE.constructData4HeroShouldBonus(strHero)
+						local bIsExpedition = TTH_MANAGE.checkIsExpedition8Hero(strHero);
+						local objBonus = {
+							[STAT_ATTACK] = 0
+							, [STAT_DEFENCE] = 0
+							, [STAT_SPELL_POWER] = 0
+							, [STAT_KNOWLEDGE] = 0
+							, [STAT_LUCK] = 0
+							, [STAT_MORALE] = 0
+						};
+						if bIsExpedition == TTH_ENUM.No then
+							objBonus = TTH_MANAGE.getMayorBonus(strHero);
+						end;
+						return objBonus;
+					end;
+
+			-- 内政关系
+				-- 绑定内政关系
+					function TTH_MANAGE.bindTown2Hero(strHero, strTown, iTownValue)
+						TTH_VARI.arrMayor[strHero]["Town"][strTown] = {
+							["Value"] = iTownValue
+						};
+					end;
+
+				-- 解绑内政关系
+					function TTH_MANAGE.unbindTown2Hero(strHero, strTown)
+						TTH_VARI.arrMayor[strHero]["Town"] = TTH_COMMON.remove8Key(TTH_VARI.arrMayor[strHero]["Town"], strTown);
+					end;
+
+			-- 内政官加成
+				-- 处理内政官加成
+					function TTH_MANAGE.dealMayorBonus(strHero)
+						local bPreIsExpedition = TTH_VARI.arrMayor[strHero]["IsExpedition"]["Status"]; -- 获取内政表中该英雄的远征状态
+						local objPreBonus = TTH_MANAGE.constructData4HeroHasBonus(strHero); -- 获取已加成属性表
+						local bPostIsExpedition = TTH_MANAGE.checkIsExpedition8Hero(strHero); -- 获取当前远征状态
+						local objPostBonus = TTH_MANAGE.constructData4HeroShouldBonus(strHero); -- 获取应加成属性表
+
+						local objDiffBonus = TTH_COMMON.diffObject(objPostBonus, objPreBonus);
+						TTH_MANAGE.implMayorBonus(strHero, objDiffBonus, 1);
+						TTH_VARI.arrMayor[strHero]["Bonus"] = objPostBonus;
+					end;
+
+				-- 根据城镇建筑计算内政官加成
+					function TTH_MANAGE.calcMayorBonus(objTown)
+						local iTownRace = objTown["TownRace"];
+						local iAttack = 0;
+						local iDefence = objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_FORT];
+						local iSpellPower = 0;
+						local iKnowledge = 0;
+						local iLuck = 0;
+						local iMorale = 0;
+
+						-- 特殊建筑
+							if iTownRace == TOWN_HEAVEN then
+								iKnowledge = iKnowledge + objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD];
+								iAttack = iAttack + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] * 2;
+								iLuck = iLuck + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] * 1;
+								iAttack = iAttack + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_2] * 2;
+								iLuck = iLuck + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_2] * 1;
+							elseif iTownRace == TOWN_PRESERVE then
+								iKnowledge = iKnowledge + objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD];
+								iAttack = iAttack + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_3] * 2;
+								iMorale = iMorale + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_3] * 1;
+								iAttack = iAttack + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_0] * 2;
+								iMorale = iMorale + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_0] * 1;
+							elseif iTownRace == TOWN_ACADEMY then
+								iKnowledge = iKnowledge + objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD];
+								iSpellPower = iSpellPower + objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD] * objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1];
+							elseif iTownRace == TOWN_DUNGEON then
+								iKnowledge = iKnowledge + objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD];
+								iSpellPower = iSpellPower + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] * 2;
+							elseif iTownRace == TOWN_NECROMANCY then
+								iKnowledge = iKnowledge + objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD];
+								iSpellPower = iSpellPower + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] * 2;
+								iKnowledge = iKnowledge + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_2] * 2;
+							elseif iTownRace == TOWN_INFERNO then
+								iKnowledge = iKnowledge + objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD];
+								iSpellPower = iSpellPower + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] * 2;
+							elseif iTownRace == TOWN_FORTRESS then
+								iKnowledge = iKnowledge + objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD];
+								iDefence = iDefence + objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_FORT] * objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_4];
+								iSpellPower = iSpellPower + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1];
+							elseif iTownRace == TOWN_STRONGHOLD then
+								iKnowledge = iKnowledge + objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD];
+								iAttack = iAttack + objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_4] * 2;
+							end;
+
+						local objHeroBonus = {
+							[STAT_ATTACK] = iAttack
+							, [STAT_DEFENCE] = iDefence
+							, [STAT_SPELL_POWER] = iSpellPower
+							, [STAT_KNOWLEDGE] = iKnowledge
+							, [STAT_LUCK] = iLuck
+							, [STAT_MORALE] = iMorale
+						};
+						return objHeroBonus;
+					end;
+
+				-- 获取英雄所辖城镇加成总和
+					function TTH_MANAGE.getMayorBonus(strHero)
+						local objTotalBonus = {
+							[STAT_ATTACK] = 0
+							, [STAT_DEFENCE] = 0
+							, [STAT_SPELL_POWER] = 0
+							, [STAT_KNOWLEDGE] = 0
+							, [STAT_LUCK] = 0
+							, [STAT_MORALE] = 0
+						};
+						local objMayor = TTH_VARI.arrMayor[strHero];
+						if objMayor ~= nil then
+							local arrTown = objMayor["Town"];
+							if arrTown ~= nil then
+								for strTown, objTown in arrTown do
+									local objAnalysisTown = TTH_MANAGE.analysisTownBuildLevel(strTown);
+									local objBonus = TTH_MANAGE.calcMayorBonus(objAnalysisTown);
+									objTotalBonus = TTH_COMMON.combineObject(objTotalBonus, objBonus);
+								end;
+							end;
+						end;
+						return objTotalBonus;
+					end;
+
+				-- 实装内政官加成数据
+					function TTH_MANAGE.implMayorBonus(strHero, objBonus, bDirection)
+						if objBonus[STAT_ATTACK] ~= 0 then
+							ChangeHeroStat(strHero, STAT_ATTACK, objBonus[STAT_ATTACK] * bDirection);
+						end;
+						if objBonus[STAT_DEFENCE] ~= 0 then
+							ChangeHeroStat(strHero, STAT_DEFENCE, objBonus[STAT_DEFENCE] * bDirection);
+						end;
+						if objBonus[STAT_SPELL_POWER] ~= 0 then
+							ChangeHeroStat(strHero, STAT_SPELL_POWER, objBonus[STAT_SPELL_POWER] * bDirection);
+						end;
+						if objBonus[STAT_KNOWLEDGE] ~= 0 then
+							ChangeHeroStat(strHero, STAT_KNOWLEDGE, objBonus[STAT_KNOWLEDGE] * bDirection);
+						end;
+						if objBonus[STAT_LUCK] ~= 0 then
+							ChangeHeroStat(strHero, STAT_LUCK, objBonus[STAT_LUCK] * bDirection);
+						end;
+						if objBonus[STAT_MORALE] ~= 0 then
+							ChangeHeroStat(strHero, STAT_MORALE, objBonus[STAT_MORALE] * bDirection);
+						end;
+					end;
+
+			-- 城镇兵种产量加成
+				TTH_TABLE.Coef8Mayor4TownDwellingCreature = {
+					[1] = 1.5
+					, [2] = 2
+					, [3] = 3
+					, [4] = 4
+					, [5] = 6
+					, [6] = 8
+					, [7] = 12
+				};
+				function TTH_MANAGE.bonusTownDwellingCreature8Mayor(strTown)
+					TTH_MAIN.debug("TTH_MANAGE.bonusTownDwellingCreature8Mayor", nil, nil, strTown);
+
+					local arrCreatureGrowth8Tier = TTH_MANAGE.calcTownDwellingCreature(strTown);
+					TTH_GLOBAL.updateTownDwellingCreature(strTown, arrCreatureGrowth8Tier);
+				end;
+				function TTH_MANAGE.calcTownDwellingCreature(strTown)
+					local arrCreatureGrowth8Tier = {
+						[1] = 0
+						, [2] = 0
+						, [3] = 0
+						, [4] = 0
+						, [5] = 0
+						, [6] = 0
+						, [7] = 0
+					};
+					if TTH_MANAGE.checkIsExpedition8Town(strTown) == TTH_ENUM.No then
+						local strMayor = TTH_MANAGE.getMayor8Town(strTown);
+						if strMayor ~= nil then
+							local iHeroLevel = GetHeroLevel(strMayor);
+							local iHeroKnowledge = GetHeroStat(strMayor, STAT_KNOWLEDGE);
 							for iTier = 1, 7 do
-								if TTH_TABLE.Hero[strMayor]["Specialty"] ~= nil then
-									local arrSpecialty = TTH_TABLE.Hero[strMayor]["Specialty"];
-									if arrSpecialty ~= nil then
-										for i, objSpecialty in arrSpecialty do
-											local iCreatureId = objSpecialty["CreatureId"];
-											local objCreature = TTH_TABLE.Creature[iCreatureId];
-											if objCreature["Upgrade"] ~= nil and objCreature["TIER"] == iTier then
-												local enumHeroStat = objSpecialty["Stat"];
-												local iHeroStat = GetHeroStat(strMayor, enumHeroStat);
-												arrCreatureGrowth8Tier[iTier] = TTH_COMMON.round((iHeroLevel + iHeroStat) / TTH_TABLE.Coef8Mayor4TownDwellingCreature[iTier]);
+								arrCreatureGrowth8Tier[iTier] = TTH_COMMON.round(iHeroLevel / TTH_TABLE.Coef8Mayor4TownDwellingCreature[iTier]);
+							end;
+							if TTH_TABLE.Hero[strMayor]["Specialty"] ~= nil then
+								for iTier = 1, 7 do
+									if TTH_TABLE.Hero[strMayor]["Specialty"] ~= nil then
+										local arrSpecialty = TTH_TABLE.Hero[strMayor]["Specialty"];
+										if arrSpecialty ~= nil then
+											for i, objSpecialty in arrSpecialty do
+												local iCreatureId = objSpecialty["CreatureId"];
+												local objCreature = TTH_TABLE.Creature[iCreatureId];
+												if objCreature["Upgrade"] ~= nil and objCreature["TIER"] == iTier then
+													local enumHeroStat = objSpecialty["Stat"];
+													local iHeroStat = GetHeroStat(strMayor, enumHeroStat);
+													arrCreatureGrowth8Tier[iTier] = TTH_COMMON.round((iHeroLevel + iHeroStat) / TTH_TABLE.Coef8Mayor4TownDwellingCreature[iTier]);
+												end;
 											end;
 										end;
 									end;
 								end;
 							end;
-						end;
-						if strMayor == "Cyrus" then
-							for iTier = 1, 7 do
-								arrCreatureGrowth8Tier[iTier] = TTH_COMMON.round((iHeroLevel + iHeroKnowledge) / TTH_TABLE.Coef8Mayor4TownDwellingCreature[iTier]);
+							if strMayor == "Cyrus" then
+								for iTier = 1, 7 do
+									arrCreatureGrowth8Tier[iTier] = TTH_COMMON.round((iHeroLevel + iHeroKnowledge) / TTH_TABLE.Coef8Mayor4TownDwellingCreature[iTier]);
+								end;
 							end;
 						end;
 					end;
-				end;
-				return arrCreatureGrowth8Tier;
-			end;
-
-		-- 远征
-			-- 获取英雄的领地半径
-				function TTH_MANAGE.getTerritoryRadius(iPlayer)
-					local iTerritoryRadius = TTH_MANAGE.getDefaultTerritoryRadius(iPlayer) + TTH_MANAGE.getExtraTerritoryRadius(iPlayer);
-					return iTerritoryRadius;
+					return arrCreatureGrowth8Tier;
 				end;
 
-			-- 获取因地图默认的领地半径
-				function TTH_MANAGE.getDefaultTerritoryRadius(iPlayer)
-					local iTerritoryRadius = TTH_VARI.TerritoryRadius;
-					return iTerritoryRadius;
-				end;
-
-			-- 获取政绩加成的额外领地半径
-				function TTH_MANAGE.getExtraTerritoryRadius(iPlayer)
-					local iTerritoryRadius = TTH_VARI.arrRecordPoint[iPlayer]["TerritoryRadius"];
-					return iTerritoryRadius;
-				end;
-
-			-- 通过政绩永久加成额外领地半径
-				function TTH_MANAGE.buffExtraTerritoryRadius(iPlayer, iRadius)
-					if iRadius == nil then
-						iRadius = 20;
+			-- 远征
+				-- 获取英雄的领地半径
+					function TTH_MANAGE.getTerritoryRadius(iPlayer)
+						local iTerritoryRadius = TTH_MANAGE.getDefaultTerritoryRadius(iPlayer) + TTH_MANAGE.getExtraTerritoryRadius(iPlayer);
+						return iTerritoryRadius;
 					end;
-					TTH_VARI.arrRecordPoint[iPlayer]["TerritoryRadius"] = TTH_VARI.arrRecordPoint[iPlayer]["TerritoryRadius"] + iRadius;
-				end;
 
-			-- 检测是否远征-英雄
-				function TTH_MANAGE.checkIsExpedition8Hero(strHero)
-					local iPlayer = TTH_GLOBAL.GetObjectOwner(strHero);
-					local iAlreadyMayor, arrMayorTown = TTH_MANAGE.getAlreadyMayorInfo(strHero);
-					local bIsExpedition = TTH_ENUM.Yes;
-					if iAlreadyMayor > 0 then
-						for strTown, objTown in arrMayorTown do
-							if TTH_GLOBAL.getDistance(strHero, strTown) <= TTH_MANAGE.getTerritoryRadius(iPlayer) then
+				-- 获取因地图默认的领地半径
+					function TTH_MANAGE.getDefaultTerritoryRadius(iPlayer)
+						local iTerritoryRadius = TTH_VARI.TerritoryRadius;
+						return iTerritoryRadius;
+					end;
+
+				-- 获取政绩加成的额外领地半径
+					function TTH_MANAGE.getExtraTerritoryRadius(iPlayer)
+						local iTerritoryRadius = TTH_VARI.arrRecordPoint[iPlayer]["TerritoryRadius"];
+						return iTerritoryRadius;
+					end;
+
+				-- 通过政绩永久加成额外领地半径
+					function TTH_MANAGE.buffExtraTerritoryRadius(iPlayer, iRadius)
+						if iRadius == nil then
+							iRadius = 20;
+						end;
+						TTH_VARI.arrRecordPoint[iPlayer]["TerritoryRadius"] = TTH_VARI.arrRecordPoint[iPlayer]["TerritoryRadius"] + iRadius;
+					end;
+
+				-- 检测是否远征-英雄
+					function TTH_MANAGE.checkIsExpedition8Hero(strHero)
+						local iPlayer = TTH_GLOBAL.GetObjectOwner(strHero);
+						local iAlreadyMayor, arrMayorTown = TTH_MANAGE.getAlreadyMayorInfo(strHero);
+						local bIsExpedition = TTH_ENUM.Yes;
+						if iAlreadyMayor > 0 then
+							for strTown, objTown in arrMayorTown do
+								if TTH_GLOBAL.getDistance(strHero, strTown) <= TTH_MANAGE.getTerritoryRadius(iPlayer) then
+									bIsExpedition = TTH_ENUM.No;
+									break;
+								end;
+							end
+							local bIsExpeditionMenel = TTH_TALENT.checkExpedition8Menel(iPlayer, strHero);
+							local bIsExpeditionNikolay = TTH_TALENT.checkExpedition8Nikolay(iPlayer, strHero);
+							local bIsExpeditionHangvul = TTH_TALENT.checkExpedition8Hangvul(iPlayer, strHero);
+							local bIsExpedition182 = TTH_PERK.checkExpedition8182(iPlayer, strHero);
+							if bIsExpedition == TTH_ENUM.No
+								or bIsExpeditionMenel == TTH_ENUM.No
+								or bIsExpeditionNikolay == TTH_ENUM.No
+								or bIsExpeditionHangvul == TTH_ENUM.No
+								or bIsExpedition182 == TTH_ENUM.No
+								then
 								bIsExpedition = TTH_ENUM.No;
-								break;
 							end;
-						end
-						local bIsExpeditionMenel = TTH_TALENT.checkExpedition8Menel(iPlayer, strHero);
-						local bIsExpeditionNikolay = TTH_TALENT.checkExpedition8Nikolay(iPlayer, strHero);
-						local bIsExpeditionHangvul = TTH_TALENT.checkExpedition8Hangvul(iPlayer, strHero);
-						local bIsExpedition182 = TTH_PERK.checkExpedition8182(iPlayer, strHero);
-						if bIsExpedition == TTH_ENUM.No
-							or bIsExpeditionMenel == TTH_ENUM.No
-							or bIsExpeditionNikolay == TTH_ENUM.No
-							or bIsExpeditionHangvul == TTH_ENUM.No
-							or bIsExpedition182 == TTH_ENUM.No
-							then
+						else
 							bIsExpedition = TTH_ENUM.No;
 						end;
-					else
-						bIsExpedition = TTH_ENUM.No;
+						return bIsExpedition;
 					end;
-					return bIsExpedition;
-				end;
 
-			-- 检测是否远征-城镇
-				function TTH_MANAGE.checkIsExpedition8Town(strTown)
-					local iPlayer = GetObjectOwner(strTown);
-					local strHero = TTH_MANAGE.getMayor8Town(strTown);
-					local iAlreadyMayor, arrMayorTown = TTH_MANAGE.getAlreadyMayorInfo(strHero);
-					local bIsExpedition = TTH_ENUM.Yes;
-					if iAlreadyMayor > 0 then
-						for strTown, objTown in arrMayorTown do
-							if TTH_GLOBAL.getDistance(strHero, strTown) <= TTH_MANAGE.getTerritoryRadius(iPlayer) then
+				-- 检测是否远征-城镇
+					function TTH_MANAGE.checkIsExpedition8Town(strTown)
+						local iPlayer = GetObjectOwner(strTown);
+						local strHero = TTH_MANAGE.getMayor8Town(strTown);
+						local iAlreadyMayor, arrMayorTown = TTH_MANAGE.getAlreadyMayorInfo(strHero);
+						local bIsExpedition = TTH_ENUM.Yes;
+						if iAlreadyMayor > 0 then
+							for strTown, objTown in arrMayorTown do
+								if TTH_GLOBAL.getDistance(strHero, strTown) <= TTH_MANAGE.getTerritoryRadius(iPlayer) then
+									bIsExpedition = TTH_ENUM.No;
+									break;
+								end;
+							end
+							local bIsExpeditionMenel = TTH_TALENT.checkExpedition8Menel(iPlayer, strHero);
+							local bIsExpeditionNikolay = TTH_TALENT.checkExpedition8Nikolay(iPlayer, strHero);
+							local bIsExpeditionHangvul = TTH_TALENT.checkExpedition8Hangvul(iPlayer, strHero);
+							local bIsExpedition182 = TTH_PERK.checkExpedition8182(iPlayer, strHero);
+							if bIsExpedition == TTH_ENUM.No
+								or bIsExpeditionMenel == TTH_ENUM.No
+								or bIsExpeditionNikolay == TTH_ENUM.No
+								or bIsExpeditionHangvul == TTH_ENUM.No
+								or bIsExpedition182 == TTH_ENUM.No
+								then
 								bIsExpedition = TTH_ENUM.No;
-								break;
 							end;
-						end
-						local bIsExpeditionMenel = TTH_TALENT.checkExpedition8Menel(iPlayer, strHero);
-						local bIsExpeditionNikolay = TTH_TALENT.checkExpedition8Nikolay(iPlayer, strHero);
-						local bIsExpeditionHangvul = TTH_TALENT.checkExpedition8Hangvul(iPlayer, strHero);
-						local bIsExpedition182 = TTH_PERK.checkExpedition8182(iPlayer, strHero);
-						if bIsExpedition == TTH_ENUM.No
-							or bIsExpeditionMenel == TTH_ENUM.No
-							or bIsExpeditionNikolay == TTH_ENUM.No
-							or bIsExpeditionHangvul == TTH_ENUM.No
-							or bIsExpedition182 == TTH_ENUM.No
-							then
+						else
 							bIsExpedition = TTH_ENUM.No;
 						end;
-					else
-						bIsExpedition = TTH_ENUM.No;
+						return bIsExpedition;
 					end;
-					return bIsExpedition;
-				end;
 
-			-- 更新远征状态
-				function TTH_MANAGE.updateExpeditionStatus(iPlayer, strHero, bIsDaily)
-					local bPreIsExpedition = TTH_VARI.arrMayor[strHero]["IsExpedition"]["Status"];
-					local bIsExpedition = TTH_MANAGE.checkIsExpedition8Hero(strHero);
-					if bIsExpedition == TTH_ENUM.Yes then
+				-- 更新远征状态
+					function TTH_MANAGE.updateExpeditionStatus(iPlayer, strHero, bIsDaily)
+						local bPreIsExpedition = TTH_VARI.arrMayor[strHero]["IsExpedition"]["Status"];
+						local bIsExpedition = TTH_MANAGE.checkIsExpedition8Hero(strHero);
 						TTH_VARI.arrMayor[strHero]["IsExpedition"]["Status"] = bIsExpedition;
 						if bIsDaily == TTH_ENUM.Yes then
-							TTH_VARI.arrMayor[strHero]["IsExpedition"]["Duration"] = TTH_VARI.arrMayor[strHero]["IsExpedition"]["Duration"] + 1;
-							TTH_GLOBAL.putSettleResource(iPlayer, GOLD, -1 * TTH_VARI.arrMayor[strHero]["IsExpedition"]["Duration"] * TTH_FINAL.MILITARY_EXPEDITION)
-							local strText = {
-								TTH_PATH.Mayor["BeginExpedition"]
-								;iDuration=TTH_VARI.arrMayor[strHero]["IsExpedition"]["Duration"]
-							};
-							TTH_GLOBAL.sign(strHero, strText);
-						end;
-					else
-						TTH_VARI.arrMayor[strHero]["IsExpedition"]["Status"] = bIsExpedition;
-						TTH_VARI.arrMayor[strHero]["IsExpedition"]["Duration"] = 0;
-						if bIsExpedition ~= bPreIsExpedition then
-							if bIsDaily == TTH_ENUM.Yes then
-								TTH_GLOBAL.sign(strHero, TTH_PATH.Mayor["EndExpedition"]);
-							end;
+							if bIsExpedition == TTH_ENUM.Yes then
+									local strText = TTH_PATH.Mayor["BeginExpedition"];
+									TTH_GLOBAL.sign(strHero, strText);
+								end;
+							else
+								if bIsExpedition ~= bPreIsExpedition then
+									local strText = TTH_PATH.Mayor["EndExpedition"];
+									TTH_GLOBAL.sign(strHero, strText);
+								end;
 						end;
 					end;
-				end;
 
-			-- 获取英雄远征状态
-				function TTH_MANAGE.getHeroExpeditionStatus(strHero)
-					local bStatus = TTH_VARI.arrMayor[strHero]["IsExpedition"]["Status"];
-					return bStatus;
-				end;
-
-			-- 获取英雄远征天数
-				function TTH_MANAGE.getHeroExpeditionDuration(strHero)
-					local iDuration = TTH_VARI.arrMayor[strHero]["IsExpedition"]["Duration"];
-					return iDuration;
-				end;
-
-			-- 获取英雄远征军费
-				function TTH_MANAGE.getHeroExpeditionCost(strHero)
-					local iCost = TTH_VARI.arrMayor[strHero]["IsExpedition"]["Duration"] * TTH_FINAL.MILITARY_EXPEDITION;
-					return iCost;
-				end;
-
-		-- 内政操作次数
-			-- 获取内政操作次数（重置值）
-				function TTH_MANAGE.getOperTimes(strHero)
-					local iPlayer = TTH_GLOBAL.GetObjectOwner(strHero);
-					local iTimes = TTH_MANAGE.getDefaultOperTimes(strHero)
-						+ TTH_MANAGE.getExtraOperTimes8Player(iPlayer);
-					return iTimes;
-				end;
-
-			-- 获取内政操作次数（重置值）（基础值）
-				function TTH_MANAGE.getDefaultOperTimes(strHero)
-					local iHeroLevel = GetHeroLevel(strHero);
-					local iStep = 15;
-					local iTimes = TTH_COMMON.floor(iHeroLevel / iStep) + 1;
-					if strHero == "Hangvul" then
-						iTimes = iTimes * 2
+				-- 获取英雄远征状态
+					function TTH_MANAGE.getHeroExpeditionStatus(strHero)
+						local bStatus = TTH_VARI.arrMayor[strHero]["IsExpedition"]["Status"];
+						return bStatus;
 					end;
-					return iTimes;
-				end;
 
-			-- 获取内政操作次数（重置值）（通过政绩加成的额外值）
-				function TTH_MANAGE.getExtraOperTimes8Player(iPlayer)
-					local iTimes = TTH_VARI.arrRecordPoint[iPlayer]["OperTimes"];
-					return iTimes;
-				end;
-
-			-- 永久增强英雄的内政操作次数
-				function TTH_MANAGE.buffExtraOperTimes(iPlayer)
-					TTH_VARI.arrRecordPoint[iPlayer]["OperTimes"] = TTH_VARI.arrRecordPoint[iPlayer]["OperTimes"] + 1;
-					local arrHero = GetPlayerHeroes(iPlayer);
-					for i, strHero in arrHero do
-						TTH_MANAGE.addWeeklyOperTimes(strHero, 1);
-					end
-				end;
-
-			-- 获取内政操作次数（剩余值）
-				function TTH_MANAGE.getRemainOperTimes(strHero)
-					local iTimes = 0;
-					local objMayor = TTH_VARI.arrMayor[strHero];
-					if objMayor ~= nil then
-						iTimes = objMayor["Oper"]["MaxTimes"] - objMayor["Oper"]["UsedTimes"];
+			-- 内政操作次数
+				-- 获取内政操作次数（重置值）
+					function TTH_MANAGE.getOperTimes(strHero)
+						local iPlayer = TTH_GLOBAL.GetObjectOwner(strHero);
+						local iTimes = TTH_MANAGE.getDefaultOperTimes(strHero)
+							+ TTH_MANAGE.getExtraOperTimes8Player(iPlayer);
+						return iTimes;
 					end;
-					return iTimes;
-				end;
 
-			-- 增加本周内政操作次数最大值
-				function TTH_MANAGE.addWeeklyOperTimes(strHero, iTimes)
-					local objMayor = TTH_VARI.arrMayor[strHero];
-					if objMayor ~= nil then
-						objMayor["Oper"]["MaxTimes"] = objMayor["Oper"]["MaxTimes"] + 1;
+				-- 获取内政操作次数（重置值）（基础值）
+					function TTH_MANAGE.getDefaultOperTimes(strHero)
+						local iHeroLevel = GetHeroLevel(strHero);
+						local iStep = 15;
+						local iTimes = TTH_COMMON.floor(iHeroLevel / iStep) + 1;
+						if strHero == "Hangvul" then
+							iTimes = iTimes * 2
+						end;
+						return iTimes;
 					end;
-				end;
 
-			-- 重置内政操作次数
-				function TTH_MANAGE.resetOperTimes(strHero)
-					local iMaxTimes = TTH_MANAGE.getOperTimes(strHero);
-					TTH_VARI.arrMayor[strHero]["Oper"] = {
-						["MaxTimes"] = iMaxTimes
-						, ["UsedTimes"] = 0
-					};
-				end;
-
-			-- 更新内政操作次数上限
-				function TTH_MANAGE.updateMaxOperTimes(strHero)
-					TTH_MAIN.debug("TTH_MANAGE.updateMaxOperTimes", nil, strHero);
-
-					local iMaxTimes = TTH_MANAGE.getOperTimes(strHero);
-					TTH_VARI.arrMayor[strHero]["Oper"]["MaxTimes"] = iMaxTimes;
-				end;
-
-			-- 使用内政操作次数
-				function TTH_MANAGE.useOperTimes(strHero)
-					TTH_VARI.arrMayor[strHero]["Oper"]["UsedTimes"] = TTH_VARI.arrMayor[strHero]["Oper"]["UsedTimes"] + 1;
-				end;
-
-			-- 增加最大内政操作次数
-				function TTH_MANAGE.addMaxOperTimes(strHero)
-					TTH_VARI.arrMayor[strHero]["Oper"]["MaxTimes"] = TTH_VARI.arrMayor[strHero]["Oper"]["MaxTimes"] + 1;
-				end;
-
-		-- 管辖城镇
-			-- 获取英雄可管辖城镇的配额
-				function TTH_MANAGE.getAbilityQuota(strHero)
-					local iPlayer = TTH_GLOBAL.GetObjectOwner(strHero);
-					local iQuota = TTH_MANAGE.getDefaultAbilityQuota(strHero) + TTH_MANAGE.getExtraAbilityQuota(iPlayer);
-					if strHero == "Hangvul" and TTH_VARI.record4UpgradeShantiri[strHero] == TTH_ENUM.Yes then
-						iQuota = iQuota * 2
+				-- 获取内政操作次数（重置值）（通过政绩加成的额外值）
+					function TTH_MANAGE.getExtraOperTimes8Player(iPlayer)
+						local iTimes = TTH_VARI.arrRecordPoint[iPlayer]["OperTimes"];
+						return iTimes;
 					end;
-					return iQuota;
-				end;
 
-			-- 获取英雄可管辖城镇的配额（基础值）
-				function TTH_MANAGE.getDefaultAbilityQuota(strHero)
-					local iHeroLevel = GetHeroLevel(strHero);
-					local iStep = 15;
-					local iQuota = TTH_COMMON.floor(iHeroLevel / iStep) + 1;
-					return iQuota;
-				end;
-
-			-- 获取英雄可管辖城镇的配额（通过政绩加成的额外值）
-				function TTH_MANAGE.getExtraAbilityQuota(iPlayer)
-					local iQuota = TTH_VARI.arrRecordPoint[iPlayer]["AbilityQuota"];
-					return iQuota;
-				end;
-
-			-- 永久增强英雄可管辖城镇的配额
-				function TTH_MANAGE.buffExtraAbilityQuota(iPlayer)
-					TTH_VARI.arrRecordPoint[iPlayer]["AbilityQuota"] = TTH_VARI.arrRecordPoint[iPlayer]["AbilityQuota"] + 1;
-				end;
-
-			-- :TODO 获取英雄已管辖城镇的数量
-				function TTH_MANAGE.getAlreadyMayorInfo(strHero)
-					local objMayor = TTH_VARI.arrMayor[strHero];
-					local arrMayorTown = {};
-					local iAlreadyMayor = 0;
-					if objMayor ~= nil then
-						arrMayorTown = objMayor["Town"];
-						iAlreadyMayor = length(arrMayorTown);
+				-- 永久增强英雄的内政操作次数
+					function TTH_MANAGE.buffExtraOperTimes(iPlayer)
+						TTH_VARI.arrRecordPoint[iPlayer]["OperTimes"] = TTH_VARI.arrRecordPoint[iPlayer]["OperTimes"] + 1;
+						local arrHero = GetPlayerHeroes(iPlayer);
+						for i, strHero in arrHero do
+							TTH_MANAGE.addWeeklyOperTimes(strHero, 1);
+						end
 					end;
-					return iAlreadyMayor, arrMayorTown;
-				end;
 
-			-- 获取英雄所辖城镇评分总和
-				function TTH_MANAGE.getMayorValue(strHero)
-					local iValue = 0;
-					local objMayor = TTH_VARI.arrMayor[strHero];
-					if objMayor ~= nil then
-						local arrTown = objMayor["Town"];
-						if arrTown ~= nil then
-							for iIndexTown, objTown in arrTown do
-								iValue = iValue + objTown["Value"];
-							end;
+				-- 获取内政操作次数（剩余值）
+					function TTH_MANAGE.getRemainOperTimes(strHero)
+						local iTimes = 0;
+						local objMayor = TTH_VARI.arrMayor[strHero];
+						if objMayor ~= nil then
+							iTimes = objMayor["Oper"]["MaxTimes"] - objMayor["Oper"]["UsedTimes"];
+						end;
+						return iTimes;
+					end;
+
+				-- 增加本周内政操作次数最大值
+					function TTH_MANAGE.addWeeklyOperTimes(strHero, iTimes)
+						local objMayor = TTH_VARI.arrMayor[strHero];
+						if objMayor ~= nil then
+							objMayor["Oper"]["MaxTimes"] = objMayor["Oper"]["MaxTimes"] + 1;
 						end;
 					end;
-					return iValue;
-				end;
 
-			-- 获取玩家所辖城镇列表
-				function TTH_MANAGE.listMayorTown8Player(iPlayer)
-					local arrHero = GetPlayerHeroes(iPlayer);
-					local arrTown = {};
-					for i, strHero in arrHero do
-						for strTown, iTownValue in TTH_VARI.arrMayor[strHero]["Town"] do
-							if contains(arrTown, strTown) == nil then
-							 	TTH_COMMON.push(arrTown, strTown);
-							end;
-						end;
+				-- 重置内政操作次数
+					function TTH_MANAGE.resetOperTimes(strHero)
+						local iMaxTimes = TTH_MANAGE.getOperTimes(strHero);
+						TTH_VARI.arrMayor[strHero]["Oper"] = {
+							["MaxTimes"] = iMaxTimes
+							, ["UsedTimes"] = 0
+						};
 					end;
-					return arrTown;
-				end;
 
-			-- 获取英雄所辖城镇列表
-				function TTH_MANAGE.listMayorTown8Hero(strHero)
-					local arrRetTown = {};
-					local objMayor = TTH_VARI.arrMayor[strHero];
-					if objMayor ~= nil then
-						local arrTown = objMayor["Town"];
-						if arrTown ~= nil then
-							for strTown, objTown in arrTown do
-								if contains(arrRetTown, strTown) == nil then
-								 	TTH_COMMON.push(arrRetTown, strTown);
+				-- 更新内政操作次数上限
+					function TTH_MANAGE.updateMaxOperTimes(strHero)
+						TTH_MAIN.debug("TTH_MANAGE.updateMaxOperTimes", nil, strHero);
+
+						local iMaxTimes = TTH_MANAGE.getOperTimes(strHero);
+						TTH_VARI.arrMayor[strHero]["Oper"]["MaxTimes"] = iMaxTimes;
+					end;
+
+				-- 使用内政操作次数
+					function TTH_MANAGE.useOperTimes(strHero)
+						TTH_VARI.arrMayor[strHero]["Oper"]["UsedTimes"] = TTH_VARI.arrMayor[strHero]["Oper"]["UsedTimes"] + 1;
+					end;
+
+				-- 增加最大内政操作次数
+					function TTH_MANAGE.addMaxOperTimes(strHero)
+						TTH_VARI.arrMayor[strHero]["Oper"]["MaxTimes"] = TTH_VARI.arrMayor[strHero]["Oper"]["MaxTimes"] + 1;
+					end;
+
+			-- 管辖城镇
+				-- 获取英雄可管辖城镇的配额
+					function TTH_MANAGE.getAbilityQuota(strHero)
+						local iPlayer = TTH_GLOBAL.GetObjectOwner(strHero);
+						local iQuota = TTH_MANAGE.getDefaultAbilityQuota(strHero) + TTH_MANAGE.getExtraAbilityQuota(iPlayer);
+						if strHero == "Hangvul" and TTH_VARI.record4UpgradeShantiri[strHero] == TTH_ENUM.Yes then
+							iQuota = iQuota * 2
+						end;
+						return iQuota;
+					end;
+
+				-- 获取英雄可管辖城镇的配额（基础值）
+					function TTH_MANAGE.getDefaultAbilityQuota(strHero)
+						local iHeroLevel = GetHeroLevel(strHero);
+						local iStep = 15;
+						local iQuota = TTH_COMMON.floor(iHeroLevel / iStep) + 1;
+						return iQuota;
+					end;
+
+				-- 获取英雄可管辖城镇的配额（通过政绩加成的额外值）
+					function TTH_MANAGE.getExtraAbilityQuota(iPlayer)
+						local iQuota = TTH_VARI.arrRecordPoint[iPlayer]["AbilityQuota"];
+						return iQuota;
+					end;
+
+				-- 永久增强英雄可管辖城镇的配额
+					function TTH_MANAGE.buffExtraAbilityQuota(iPlayer)
+						TTH_VARI.arrRecordPoint[iPlayer]["AbilityQuota"] = TTH_VARI.arrRecordPoint[iPlayer]["AbilityQuota"] + 1;
+					end;
+
+				-- :TODO 获取英雄已管辖城镇的数量
+					function TTH_MANAGE.getAlreadyMayorInfo(strHero)
+						local objMayor = TTH_VARI.arrMayor[strHero];
+						local arrMayorTown = {};
+						local iAlreadyMayor = 0;
+						if objMayor ~= nil then
+							arrMayorTown = objMayor["Town"];
+							iAlreadyMayor = length(arrMayorTown);
+						end;
+						return iAlreadyMayor, arrMayorTown;
+					end;
+
+				-- 获取英雄所辖城镇评分总和
+					function TTH_MANAGE.getMayorValue(strHero)
+						local iValue = 0;
+						local objMayor = TTH_VARI.arrMayor[strHero];
+						if objMayor ~= nil then
+							local arrTown = objMayor["Town"];
+							if arrTown ~= nil then
+								for iIndexTown, objTown in arrTown do
+									iValue = iValue + objTown["Value"];
 								end;
 							end;
 						end;
+						return iValue;
 					end;
-					return arrRetTown;
-				end;
 
-		-- 资源矿加成
-			TTH_FINAL.MINE_MAX_LEVEL = 3;
-
-			-- 获取资源矿加成上限
-				function TTH_MANAGE.getMineMaxLevel(iPlayer)
-					local iMineMaxLevel = TTH_MANAGE.getDefaultMineMaxLevel() + TTH_MANAGE.getExtraMineMaxLevel(iPlayer);
-					return iMineMaxLevel;
-				end;
-
-			-- 获取默认的资源矿加成上限
-				function TTH_MANAGE.getDefaultMineMaxLevel()
-					local iMineMaxLevel = TTH_FINAL.MINE_MAX_LEVEL;
-					return iMineMaxLevel;
-				end;
-
-			-- 获取政绩加成的额外资源矿加成上限
-				function TTH_MANAGE.getExtraMineMaxLevel(iPlayer)
-					local iMineMaxLevel = TTH_VARI.arrRecordPoint[iPlayer]["MineMaxLevel"];
-					return iMineMaxLevel;
-				end;
-
-			-- 通过政绩永久加成额外资源矿加成上限
-				function TTH_MANAGE.buffExtraMineMaxLevel(iPlayer, iLevel)
-					if iLevel == nil then
-						iLevel = 1;
+				-- 获取玩家所辖城镇列表
+					function TTH_MANAGE.listMayorTown8Player(iPlayer)
+						local arrHero = GetPlayerHeroes(iPlayer);
+						local arrTown = {};
+						for i, strHero in arrHero do
+							for strTown, iTownValue in TTH_VARI.arrMayor[strHero]["Town"] do
+								if contains(arrTown, strTown) == nil then
+								 	TTH_COMMON.push(arrTown, strTown);
+								end;
+							end;
+						end;
+						return arrTown;
 					end;
-					TTH_VARI.arrRecordPoint[iPlayer]["MineMaxLevel"] = TTH_VARI.arrRecordPoint[iPlayer]["MineMaxLevel"] + iLevel;
-				end;
 
-		-- 药水容量
-			TTH_FINAL.POTION_MAX_TIMES = 3;
-
-			-- 获取药水容量上限
-				function TTH_MANAGE.getPotionMaxTimes(iPlayer)
-					local iPotionMaxTimes = TTH_MANAGE.getDefaultPotionMaxTimes() + TTH_MANAGE.getExtraPotionMaxTimes(iPlayer);
-					return iPotionMaxTimes;
-				end;
-
-			-- 获取默认的药水容量上限
-				function TTH_MANAGE.getDefaultPotionMaxTimes()
-					local iPotionMaxTimes = TTH_FINAL.POTION_MAX_TIMES;
-					return iPotionMaxTimes;
-				end;
-
-			-- 获取政绩加成的额外药水容量上限
-				function TTH_MANAGE.getExtraPotionMaxTimes(iPlayer)
-					local iPotionMaxTimes = TTH_VARI.arrRecordPoint[iPlayer]["PotionMaxTimes"];
-					return iPotionMaxTimes;
-				end;
-
-			-- 通过政绩永久加成额外药水容量上限
-				function TTH_MANAGE.buffExtraPotionMaxTimes(iPlayer, iTimes)
-					if iTimes == nil then
-						iTimes = 1;
+				-- 获取英雄所辖城镇列表
+					function TTH_MANAGE.listMayorTown8Hero(strHero)
+						local arrRetTown = {};
+						local objMayor = TTH_VARI.arrMayor[strHero];
+						if objMayor ~= nil then
+							local arrTown = objMayor["Town"];
+							if arrTown ~= nil then
+								for strTown, objTown in arrTown do
+									if contains(arrRetTown, strTown) == nil then
+									 	TTH_COMMON.push(arrRetTown, strTown);
+									end;
+								end;
+							end;
+						end;
+						return arrRetTown;
 					end;
-					TTH_VARI.arrRecordPoint[iPlayer]["PotionMaxTimes"] = TTH_VARI.arrRecordPoint[iPlayer]["PotionMaxTimes"] + iTimes;
-				end;
 
-		-- 城镇建筑
-			-- 建造城镇建筑
-				function TTH_MANAGE.constructTown(strTown, iLevel)
-					if IsObjectExists(strTown) == 1 then
-						local iRace = TTH_GLOBAL.getRace8Town(strTown);
-						if iLevel >= 0 then
-							-- 普通建筑
-								UpgradeTownBuilding(strTown, TOWN_BUILDING_MARKETPLACE, 1);
+			-- 资源矿加成
+				TTH_FINAL.MINE_MAX_LEVEL = 3;
+
+				-- 获取资源矿加成上限
+					function TTH_MANAGE.getMineMaxLevel(iPlayer)
+						local iMineMaxLevel = TTH_MANAGE.getDefaultMineMaxLevel() + TTH_MANAGE.getExtraMineMaxLevel(iPlayer);
+						return iMineMaxLevel;
+					end;
+
+				-- 获取默认的资源矿加成上限
+					function TTH_MANAGE.getDefaultMineMaxLevel()
+						local iMineMaxLevel = TTH_FINAL.MINE_MAX_LEVEL;
+						return iMineMaxLevel;
+					end;
+
+				-- 获取政绩加成的额外资源矿加成上限
+					function TTH_MANAGE.getExtraMineMaxLevel(iPlayer)
+						local iMineMaxLevel = TTH_VARI.arrRecordPoint[iPlayer]["MineMaxLevel"];
+						return iMineMaxLevel;
+					end;
+
+				-- 通过政绩永久加成额外资源矿加成上限
+					function TTH_MANAGE.buffExtraMineMaxLevel(iPlayer, iLevel)
+						if iLevel == nil then
+							iLevel = 1;
+						end;
+						TTH_VARI.arrRecordPoint[iPlayer]["MineMaxLevel"] = TTH_VARI.arrRecordPoint[iPlayer]["MineMaxLevel"] + iLevel;
+					end;
+
+			-- 药水容量
+				TTH_FINAL.POTION_MAX_TIMES = 3;
+
+				-- 获取药水容量上限
+					function TTH_MANAGE.getPotionMaxTimes(iPlayer)
+						local iPotionMaxTimes = TTH_MANAGE.getDefaultPotionMaxTimes() + TTH_MANAGE.getExtraPotionMaxTimes(iPlayer);
+						return iPotionMaxTimes;
+					end;
+
+				-- 获取默认的药水容量上限
+					function TTH_MANAGE.getDefaultPotionMaxTimes()
+						local iPotionMaxTimes = TTH_FINAL.POTION_MAX_TIMES;
+						return iPotionMaxTimes;
+					end;
+
+				-- 获取政绩加成的额外药水容量上限
+					function TTH_MANAGE.getExtraPotionMaxTimes(iPlayer)
+						local iPotionMaxTimes = TTH_VARI.arrRecordPoint[iPlayer]["PotionMaxTimes"];
+						return iPotionMaxTimes;
+					end;
+
+				-- 通过政绩永久加成额外药水容量上限
+					function TTH_MANAGE.buffExtraPotionMaxTimes(iPlayer, iTimes)
+						if iTimes == nil then
+							iTimes = 1;
+						end;
+						TTH_VARI.arrRecordPoint[iPlayer]["PotionMaxTimes"] = TTH_VARI.arrRecordPoint[iPlayer]["PotionMaxTimes"] + iTimes;
+					end;
+
+			-- 城镇建筑
+				-- 建造城镇建筑
+					function TTH_MANAGE.constructTown(strTown, iLevel)
+						if IsObjectExists(strTown) == 1 then
+							local iRace = TTH_GLOBAL.getRace8Town(strTown);
+							if iLevel >= 0 then
+								-- 普通建筑
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_MARKETPLACE, 1);
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_TAVERN, 1);
+							end;
+							if iLevel >= 1 then
+								-- 普通建筑
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_TOWN_HALL, 1);
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_BLACKSMITH, 1);
+								-- 魔法塔
+									if iRace ~= TOWN_STRONGHOLD then
+										UpgradeTownBuilding(strTown, TOWN_BUILDING_MAGIC_GUILD, 1);
+									else
+										UpgradeTownBuilding(strTown, TOWN_BUILDING_SPECIAL_1, 1);
+									end;
+							end;
+							if iLevel >= 2 then
+								-- 普通建筑
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_FORT, 1);
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_MARKETPLACE, 1);
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_1, 1);
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_2, 1);
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_3, 1);
+								-- 魔法塔
+									if iRace ~= TOWN_STRONGHOLD then
+										UpgradeTownBuilding(strTown, TOWN_BUILDING_MAGIC_GUILD, 1);
+									else
+										UpgradeTownBuilding(strTown, TOWN_BUILDING_SPECIAL_1, 1);
+									end;
+							end;
+							if iLevel >= 3 then
+								-- 普通建筑
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_TOWN_HALL, 1);
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_FORT, 1);
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_1, 1);
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_2, 1);
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_3, 1);
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_4, 1);
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_5, 1);
+								-- 魔法塔
+									if iRace ~= TOWN_STRONGHOLD then
+										UpgradeTownBuilding(strTown, TOWN_BUILDING_MAGIC_GUILD, 1);
+									else
+										UpgradeTownBuilding(strTown, TOWN_BUILDING_SPECIAL_1, 1);
+									end;
+							end;
+							if iLevel >= 4 then
+								-- 普通建筑
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_FORT, 1);
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_4, 1);
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_5, 1);
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_6, 1);
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_7, 1);
+								-- 魔法塔
+									if iRace ~= TOWN_STRONGHOLD then
+										UpgradeTownBuilding(strTown, TOWN_BUILDING_MAGIC_GUILD, 1);
+									else
+										UpgradeTownBuilding(strTown, TOWN_BUILDING_SPECIAL_3, 1);
+									end;
+							end;
+							if iLevel >= 5 then
+								-- 普通建筑
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_TOWN_HALL, 1);
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_6, 1);
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_7, 1);
+								-- 魔法塔
+									if iRace ~= TOWN_STRONGHOLD then
+										UpgradeTownBuilding(strTown, TOWN_BUILDING_MAGIC_GUILD, 1);
+									end;
+							end;
+							if iLevel >= 6 then
+								-- 特殊建筑
+									for i = 0, 6 do
+										if TTH_TABLE.SpecialBuilding[iRace][i] ~= nil then
+											UpgradeTownBuilding(strTown, TTH_TABLE.SpecialBuilding[iRace][i], 1);
+										end;
+									end;
+							end;
+							if iLevel >= 7 then
+								-- 眼泪
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_GRAIL, 1);
+							end;
+						end;
+					end;
+
+				-- 解析城镇建筑等级
+					function TTH_MANAGE.analysisTownBuildLevel(strTown)
+						local iTownRace = TTH_GLOBAL.getRace8Town(strTown);
+						local objTown = {
+							["TownRace"] = iTownRace
+							, [TTH_ENUM.TownBuildBasic] = {
+								[TOWN_BUILDING_TOWN_HALL] = GetTownBuildingLevel(strTown, TOWN_BUILDING_TOWN_HALL)
+								, [TOWN_BUILDING_FORT] = GetTownBuildingLevel(strTown, TOWN_BUILDING_FORT)
+								, [TOWN_BUILDING_MARKETPLACE] = GetTownBuildingLevel(strTown, TOWN_BUILDING_MARKETPLACE)
+								, [TOWN_BUILDING_SHIPYARD] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SHIPYARD)
+								, [TOWN_BUILDING_TAVERN] = GetTownBuildingLevel(strTown, TOWN_BUILDING_TAVERN)
+								, [TOWN_BUILDING_BLACKSMITH] = GetTownBuildingLevel(strTown, TOWN_BUILDING_BLACKSMITH)
+							}
+							, [TTH_ENUM.TownBuildDwelling] = {
+								[TOWN_BUILDING_DWELLING_1] = GetTownBuildingLevel(strTown, TOWN_BUILDING_DWELLING_1)
+								, [TOWN_BUILDING_DWELLING_2] = GetTownBuildingLevel(strTown, TOWN_BUILDING_DWELLING_2)
+								, [TOWN_BUILDING_DWELLING_3] = GetTownBuildingLevel(strTown, TOWN_BUILDING_DWELLING_3)
+								, [TOWN_BUILDING_DWELLING_4] = GetTownBuildingLevel(strTown, TOWN_BUILDING_DWELLING_4)
+								, [TOWN_BUILDING_DWELLING_5] = GetTownBuildingLevel(strTown, TOWN_BUILDING_DWELLING_5)
+								, [TOWN_BUILDING_DWELLING_6] = GetTownBuildingLevel(strTown, TOWN_BUILDING_DWELLING_6)
+								, [TOWN_BUILDING_DWELLING_7] = GetTownBuildingLevel(strTown, TOWN_BUILDING_DWELLING_7)
+							}
+							, [TTH_ENUM.TownBuildSpecial] = {
+								[TOWN_BUILDING_SPECIAL_0] = 0
+								, [TOWN_BUILDING_SPECIAL_1] = 0
+								, [TOWN_BUILDING_SPECIAL_2] = 0
+								, [TOWN_BUILDING_SPECIAL_3] = 0
+								, [TOWN_BUILDING_SPECIAL_4] = 0
+								, [TOWN_BUILDING_SPECIAL_5] = 0
+								, [TOWN_BUILDING_SPECIAL_6] = 0
+							}
+							, [TTH_ENUM.TownBuildGrail] = {
+								[TOWN_BUILDING_GRAIL] = GetTownBuildingLevel(strTown, TOWN_BUILDING_GRAIL)
+							}
+						};
+
+						-- 特殊建筑
+							if iTownRace == TOWN_HEAVEN then
+								objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD] = GetTownBuildingLevel(strTown, TOWN_BUILDING_MAGIC_GUILD);
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_0] = 0;
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_1);
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_2] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_2);
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_3] = 0;
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_4] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_4);
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_5] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_5);
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_6] = 0;
+							elseif iTownRace == TOWN_PRESERVE then
+								objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD] = GetTownBuildingLevel(strTown, TOWN_BUILDING_MAGIC_GUILD);
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_0] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_0);
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] = 0;
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_2] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_2);
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_3] = 0;
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_4] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_4);
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_5] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_5);
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_6] = 0;
+							elseif iTownRace == TOWN_ACADEMY then
+								objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD] = GetTownBuildingLevel(strTown, TOWN_BUILDING_MAGIC_GUILD);
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_0] = 0;
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_1);
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_2] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_2);
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_3] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_3);
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_4] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_4);
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_5] = 0;
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_6] = 0;
+							elseif iTownRace == TOWN_DUNGEON then
+								objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD] = GetTownBuildingLevel(strTown, TOWN_BUILDING_MAGIC_GUILD);
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_0] = 0;
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_1);
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_2] = 0;
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_3] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_3);
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_4] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_4);
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_5] = 0;
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_6] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_6);
+							elseif iTownRace == TOWN_NECROMANCY then
+								objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD] = GetTownBuildingLevel(strTown, TOWN_BUILDING_MAGIC_GUILD);
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_0] = 0;
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_1);
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_2] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_2);
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_3] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_3);
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_4] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_4);
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_5] = 0;
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_6] = 0;
+							elseif iTownRace == TOWN_INFERNO then
+								objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD] = GetTownBuildingLevel(strTown, TOWN_BUILDING_MAGIC_GUILD);
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_0] = 0;
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_1);
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_2] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_2);
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_3] = 0;
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_4] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_4);
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_5] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_5);
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_6] = 0;
+							elseif iTownRace == TOWN_FORTRESS then
+								objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD] = GetTownBuildingLevel(strTown, TOWN_BUILDING_MAGIC_GUILD);
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_0] = 0;
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_1);
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_2] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_2);
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_3] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_3);
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_4] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_4);
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_5] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_5);
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_6] = 0;
+							elseif iTownRace == TOWN_STRONGHOLD then
+								objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_1) + GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_3);
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_0] = 0;
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] = 0;
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_2] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_2);
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_3] = 0;
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_4] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_4);
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_5] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_5);
+								objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_6] = 0;
+							end;
+
+						return objTown;
+					end;
+
+				-- 计算内政点数（城镇评分）
+					function TTH_MANAGE.calcTownValue(objTown)
+						local iCalcValue = 0;
+
+						local arrTownBuildBasic = objTown[TTH_ENUM.TownBuildBasic];
+						local arrTownBuildDwelling = objTown[TTH_ENUM.TownBuildDwelling];
+						local arrTownBuildSpecial = objTown[TTH_ENUM.TownBuildSpecial];
+						local arrTownBuildGrail = objTown[TTH_ENUM.TownBuildGrail];
+						for iBuildId, iValue in arrTownBuildBasic do
+							iCalcValue = iCalcValue + iValue;
+						end;
+						for iBuildId, iValue in arrTownBuildDwelling do
+							if objTown["TownRace"] == TOWN_NECROMANCY then
+								iCalcValue = iCalcValue + iValue * 3;
+							else
+								iCalcValue = iCalcValue + iValue * 2;
+							end;
+						end;
+						for iBuildId, iValue in arrTownBuildSpecial do
+							if objTown["TownRace"] == TOWN_PRESERVE then
+								iCalcValue = iCalcValue + iValue * 5;
+							else
+								iCalcValue = iCalcValue + iValue * 3;
+							end;
+						end;
+						for iBuildId, iValue in arrTownBuildGrail do
+							iCalcValue = iCalcValue + iValue * 10;
+						end;
+
+						return iCalcValue;
+					end;
+
+				-- 计算城镇建筑总等级
+					function TTH_MANAGE.calcTownBuildingTotalLevel(objTown)
+						local iTotalLevel = 0;
+
+						local arrTownBuildBasic = objTown[TTH_ENUM.TownBuildBasic];
+						local arrTownBuildDwelling = objTown[TTH_ENUM.TownBuildDwelling];
+						local arrTownBuildSpecial = objTown[TTH_ENUM.TownBuildSpecial];
+						local arrTownBuildGrail = objTown[TTH_ENUM.TownBuildGrail];
+						for iBuildId, iValue in arrTownBuildBasic do
+							iTotalLevel = iTotalLevel + iValue;
+						end;
+						for iBuildId, iValue in arrTownBuildDwelling do
+							iTotalLevel = iTotalLevel + iValue;
+						end;
+						for iBuildId, iValue in arrTownBuildSpecial do
+							iTotalLevel = iTotalLevel + iValue;
+						end;
+						for iBuildId, iValue in arrTownBuildGrail do
+							iTotalLevel = iTotalLevel + iValue;
+						end;
+
+						return iTotalLevel;
+					end;
+
+				-- 重建城镇建筑
+					function TTH_MANAGE.rebuildTownBuilding(strTown, iRace, objTownConvert)
+						-- 普通建筑
+							for i = 2, 4 do
+								if objTownConvert[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_TOWN_HALL] >= i then
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_TOWN_HALL, 1);
+								end;
+							end;
+							for i = 1, 3 do
+								if objTownConvert[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_FORT] >= i then
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_FORT, 1);
+								end;
+							end;
+							for i = 1, 2 do
+								if objTownConvert[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MARKETPLACE] >= i then
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_MARKETPLACE, 1);
+								end;
+							end;
+							if objTownConvert[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_SHIPYARD] == 1 then
+								UpgradeTownBuilding(strTown, TOWN_BUILDING_SHIPYARD, 1);
+							end;
+							if objTownConvert[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_TAVERN] == 1 then
 								UpgradeTownBuilding(strTown, TOWN_BUILDING_TAVERN, 1);
-						end;
-						if iLevel >= 1 then
-							-- 普通建筑
-								UpgradeTownBuilding(strTown, TOWN_BUILDING_TOWN_HALL, 1);
+							end;
+							if objTownConvert[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_BLACKSMITH] == 1 then
 								UpgradeTownBuilding(strTown, TOWN_BUILDING_BLACKSMITH, 1);
-							-- 魔法塔
-								if iRace ~= TOWN_STRONGHOLD then
-									UpgradeTownBuilding(strTown, TOWN_BUILDING_MAGIC_GUILD, 1);
-								else
-									UpgradeTownBuilding(strTown, TOWN_BUILDING_SPECIAL_1, 1);
+							end;
+							for i = 1, 2 do
+								if objTownConvert[TTH_ENUM.TownBuildDwelling][TOWN_BUILDING_DWELLING_1] >= i then
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_1, 1);
 								end;
-						end;
-						if iLevel >= 2 then
-							-- 普通建筑
-								UpgradeTownBuilding(strTown, TOWN_BUILDING_FORT, 1);
-								UpgradeTownBuilding(strTown, TOWN_BUILDING_MARKETPLACE, 1);
-								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_1, 1);
-								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_2, 1);
-								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_3, 1);
-							-- 魔法塔
-								if iRace ~= TOWN_STRONGHOLD then
-									UpgradeTownBuilding(strTown, TOWN_BUILDING_MAGIC_GUILD, 1);
-								else
-									UpgradeTownBuilding(strTown, TOWN_BUILDING_SPECIAL_1, 1);
+							end;
+							for i = 1, 2 do
+								if objTownConvert[TTH_ENUM.TownBuildDwelling][TOWN_BUILDING_DWELLING_2] >= i then
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_2, 1);
 								end;
-						end;
-						if iLevel >= 3 then
-							-- 普通建筑
-								UpgradeTownBuilding(strTown, TOWN_BUILDING_TOWN_HALL, 1);
-								UpgradeTownBuilding(strTown, TOWN_BUILDING_FORT, 1);
-								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_1, 1);
-								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_2, 1);
-								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_3, 1);
-								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_4, 1);
-								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_5, 1);
-							-- 魔法塔
-								if iRace ~= TOWN_STRONGHOLD then
-									UpgradeTownBuilding(strTown, TOWN_BUILDING_MAGIC_GUILD, 1);
-								else
-									UpgradeTownBuilding(strTown, TOWN_BUILDING_SPECIAL_1, 1);
+							end;
+							for i = 1, 2 do
+								if objTownConvert[TTH_ENUM.TownBuildDwelling][TOWN_BUILDING_DWELLING_3] >= i then
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_3, 1);
 								end;
-						end;
-						if iLevel >= 4 then
-							-- 普通建筑
-								UpgradeTownBuilding(strTown, TOWN_BUILDING_FORT, 1);
-								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_4, 1);
-								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_5, 1);
-								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_6, 1);
-								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_7, 1);
-							-- 魔法塔
-								if iRace ~= TOWN_STRONGHOLD then
-									UpgradeTownBuilding(strTown, TOWN_BUILDING_MAGIC_GUILD, 1);
-								else
-									UpgradeTownBuilding(strTown, TOWN_BUILDING_SPECIAL_3, 1);
+							end;
+							for i = 1, 2 do
+								if objTownConvert[TTH_ENUM.TownBuildDwelling][TOWN_BUILDING_DWELLING_4] >= i then
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_4, 1);
 								end;
-						end;
-						if iLevel >= 5 then
-							-- 普通建筑
-								UpgradeTownBuilding(strTown, TOWN_BUILDING_TOWN_HALL, 1);
-								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_6, 1);
-								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_7, 1);
-							-- 魔法塔
-								if iRace ~= TOWN_STRONGHOLD then
-									UpgradeTownBuilding(strTown, TOWN_BUILDING_MAGIC_GUILD, 1);
+							end;
+							for i = 1, 2 do
+								if objTownConvert[TTH_ENUM.TownBuildDwelling][TOWN_BUILDING_DWELLING_5] >= i then
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_5, 1);
 								end;
-						end;
-						if iLevel >= 6 then
-							-- 特殊建筑
-								for i = 0, 6 do
+							end;
+							for i = 1, 2 do
+								if objTownConvert[TTH_ENUM.TownBuildDwelling][TOWN_BUILDING_DWELLING_6] >= i then
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_6, 1);
+								end;
+							end;
+							for i = 1, 2 do
+								if objTownConvert[TTH_ENUM.TownBuildDwelling][TOWN_BUILDING_DWELLING_7] >= i then
+									UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_7, 1);
+								end;
+							end;
+							if objTownConvert[TTH_ENUM.TownBuildGrail][TOWN_BUILDING_GRAIL] == 1 then
+								UpgradeTownBuilding(strTown, TOWN_BUILDING_GRAIL, 1);
+							end;
+
+						-- 魔法塔
+							if iRace ~= TOWN_STRONGHOLD then
+								for i = 1, 5 do
+									if objTownConvert[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD] >= i then
+										UpgradeTownBuilding(strTown, TOWN_BUILDING_MAGIC_GUILD, 1);
+									end;
+								end;
+							else
+								for i = 1, 5 do
+									if objTownConvert[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD] >= i then
+										if i <= 3 then
+											UpgradeTownBuilding(strTown, TOWN_BUILDING_SPECIAL_1, 1);
+										elseif i == 4 then
+											UpgradeTownBuilding(strTown, TOWN_BUILDING_SPECIAL_3, 1);
+										end;
+									end;
+								end;
+							end;
+
+						-- 特殊建筑
+							local iPlayer = GetObjectOwner(strTown);
+							TTH_GLOBAL.checkArtifactMerchant(iPlayer, strTown);
+
+							local iTotalLevelBuildingSpecial = 0;
+							for i = TOWN_BUILDING_SPECIAL_0, TOWN_BUILDING_SPECIAL_6 do
+								iTotalLevelBuildingSpecial = iTotalLevelBuildingSpecial + objTownConvert[TTH_ENUM.TownBuildSpecial][i];
+							end;
+							if iTotalLevelBuildingSpecial == 1 then
+								UpgradeTownBuilding(strTown, TTH_TABLE.SpecialBuilding[iRace][0], 1);
+							elseif iTotalLevelBuildingSpecial > 1 then
+								for i = 0, iTotalLevelBuildingSpecial - 1 do
 									if TTH_TABLE.SpecialBuilding[iRace][i] ~= nil then
 										UpgradeTownBuilding(strTown, TTH_TABLE.SpecialBuilding[iRace][i], 1);
 									end;
 								end;
-						end;
-						if iLevel >= 7 then
-							-- 眼泪
-								UpgradeTownBuilding(strTown, TOWN_BUILDING_GRAIL, 1);
-						end;
-					end;
-				end;
-
-			-- 解析城镇建筑等级
-				function TTH_MANAGE.analysisTownBuildLevel(strTown)
-					local iTownRace = TTH_GLOBAL.getRace8Town(strTown);
-					local objTown = {
-						["TownRace"] = iTownRace
-						, [TTH_ENUM.TownBuildBasic] = {
-							[TOWN_BUILDING_TOWN_HALL] = GetTownBuildingLevel(strTown, TOWN_BUILDING_TOWN_HALL)
-							, [TOWN_BUILDING_FORT] = GetTownBuildingLevel(strTown, TOWN_BUILDING_FORT)
-							, [TOWN_BUILDING_MARKETPLACE] = GetTownBuildingLevel(strTown, TOWN_BUILDING_MARKETPLACE)
-							, [TOWN_BUILDING_SHIPYARD] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SHIPYARD)
-							, [TOWN_BUILDING_TAVERN] = GetTownBuildingLevel(strTown, TOWN_BUILDING_TAVERN)
-							, [TOWN_BUILDING_BLACKSMITH] = GetTownBuildingLevel(strTown, TOWN_BUILDING_BLACKSMITH)
-						}
-						, [TTH_ENUM.TownBuildDwelling] = {
-							[TOWN_BUILDING_DWELLING_1] = GetTownBuildingLevel(strTown, TOWN_BUILDING_DWELLING_1)
-							, [TOWN_BUILDING_DWELLING_2] = GetTownBuildingLevel(strTown, TOWN_BUILDING_DWELLING_2)
-							, [TOWN_BUILDING_DWELLING_3] = GetTownBuildingLevel(strTown, TOWN_BUILDING_DWELLING_3)
-							, [TOWN_BUILDING_DWELLING_4] = GetTownBuildingLevel(strTown, TOWN_BUILDING_DWELLING_4)
-							, [TOWN_BUILDING_DWELLING_5] = GetTownBuildingLevel(strTown, TOWN_BUILDING_DWELLING_5)
-							, [TOWN_BUILDING_DWELLING_6] = GetTownBuildingLevel(strTown, TOWN_BUILDING_DWELLING_6)
-							, [TOWN_BUILDING_DWELLING_7] = GetTownBuildingLevel(strTown, TOWN_BUILDING_DWELLING_7)
-						}
-						, [TTH_ENUM.TownBuildSpecial] = {
-							[TOWN_BUILDING_SPECIAL_0] = 0
-							, [TOWN_BUILDING_SPECIAL_1] = 0
-							, [TOWN_BUILDING_SPECIAL_2] = 0
-							, [TOWN_BUILDING_SPECIAL_3] = 0
-							, [TOWN_BUILDING_SPECIAL_4] = 0
-							, [TOWN_BUILDING_SPECIAL_5] = 0
-							, [TOWN_BUILDING_SPECIAL_6] = 0
-						}
-						, [TTH_ENUM.TownBuildGrail] = {
-							[TOWN_BUILDING_GRAIL] = GetTownBuildingLevel(strTown, TOWN_BUILDING_GRAIL)
-						}
-					};
-
-					-- 特殊建筑
-						if iTownRace == TOWN_HEAVEN then
-							objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD] = GetTownBuildingLevel(strTown, TOWN_BUILDING_MAGIC_GUILD);
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_0] = 0;
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_1);
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_2] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_2);
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_3] = 0;
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_4] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_4);
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_5] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_5);
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_6] = 0;
-						elseif iTownRace == TOWN_PRESERVE then
-							objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD] = GetTownBuildingLevel(strTown, TOWN_BUILDING_MAGIC_GUILD);
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_0] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_0);
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] = 0;
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_2] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_2);
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_3] = 0;
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_4] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_4);
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_5] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_5);
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_6] = 0;
-						elseif iTownRace == TOWN_ACADEMY then
-							objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD] = GetTownBuildingLevel(strTown, TOWN_BUILDING_MAGIC_GUILD);
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_0] = 0;
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_1);
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_2] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_2);
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_3] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_3);
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_4] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_4);
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_5] = 0;
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_6] = 0;
-						elseif iTownRace == TOWN_DUNGEON then
-							objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD] = GetTownBuildingLevel(strTown, TOWN_BUILDING_MAGIC_GUILD);
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_0] = 0;
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_1);
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_2] = 0;
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_3] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_3);
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_4] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_4);
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_5] = 0;
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_6] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_6);
-						elseif iTownRace == TOWN_NECROMANCY then
-							objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD] = GetTownBuildingLevel(strTown, TOWN_BUILDING_MAGIC_GUILD);
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_0] = 0;
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_1);
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_2] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_2);
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_3] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_3);
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_4] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_4);
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_5] = 0;
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_6] = 0;
-						elseif iTownRace == TOWN_INFERNO then
-							objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD] = GetTownBuildingLevel(strTown, TOWN_BUILDING_MAGIC_GUILD);
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_0] = 0;
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_1);
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_2] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_2);
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_3] = 0;
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_4] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_4);
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_5] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_5);
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_6] = 0;
-						elseif iTownRace == TOWN_FORTRESS then
-							objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD] = GetTownBuildingLevel(strTown, TOWN_BUILDING_MAGIC_GUILD);
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_0] = 0;
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_1);
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_2] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_2);
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_3] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_3);
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_4] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_4);
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_5] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_5);
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_6] = 0;
-						elseif iTownRace == TOWN_STRONGHOLD then
-							objTown[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_1) + GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_3);
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_0] = 0;
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_1] = 0;
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_2] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_2);
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_3] = 0;
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_4] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_4);
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_5] = GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_5);
-							objTown[TTH_ENUM.TownBuildSpecial][TOWN_BUILDING_SPECIAL_6] = 0;
-						end;
-
-					return objTown;
-				end;
-
-			-- 计算内政点数（城镇评分）
-				function TTH_MANAGE.calcTownValue(objTown)
-					local iCalcValue = 0;
-
-					local arrTownBuildBasic = objTown[TTH_ENUM.TownBuildBasic];
-					local arrTownBuildDwelling = objTown[TTH_ENUM.TownBuildDwelling];
-					local arrTownBuildSpecial = objTown[TTH_ENUM.TownBuildSpecial];
-					local arrTownBuildGrail = objTown[TTH_ENUM.TownBuildGrail];
-					for iBuildId, iValue in arrTownBuildBasic do
-						iCalcValue = iCalcValue + iValue;
-					end;
-					for iBuildId, iValue in arrTownBuildDwelling do
-						if objTown["TownRace"] == TOWN_NECROMANCY then
-							iCalcValue = iCalcValue + iValue * 3;
-						else
-							iCalcValue = iCalcValue + iValue * 2;
-						end;
-					end;
-					for iBuildId, iValue in arrTownBuildSpecial do
-						if objTown["TownRace"] == TOWN_PRESERVE then
-							iCalcValue = iCalcValue + iValue * 5;
-						else
-							iCalcValue = iCalcValue + iValue * 3;
-						end;
-					end;
-					for iBuildId, iValue in arrTownBuildGrail do
-						iCalcValue = iCalcValue + iValue * 10;
+							end;
 					end;
 
-					return iCalcValue;
-				end;
-
-			-- 计算城镇建筑总等级
-				function TTH_MANAGE.calcTownBuildingTotalLevel(objTown)
-					local iTotalLevel = 0;
-
-					local arrTownBuildBasic = objTown[TTH_ENUM.TownBuildBasic];
-					local arrTownBuildDwelling = objTown[TTH_ENUM.TownBuildDwelling];
-					local arrTownBuildSpecial = objTown[TTH_ENUM.TownBuildSpecial];
-					local arrTownBuildGrail = objTown[TTH_ENUM.TownBuildGrail];
-					for iBuildId, iValue in arrTownBuildBasic do
-						iTotalLevel = iTotalLevel + iValue;
-					end;
-					for iBuildId, iValue in arrTownBuildDwelling do
-						iTotalLevel = iTotalLevel + iValue;
-					end;
-					for iBuildId, iValue in arrTownBuildSpecial do
-						iTotalLevel = iTotalLevel + iValue;
-					end;
-					for iBuildId, iValue in arrTownBuildGrail do
-						iTotalLevel = iTotalLevel + iValue;
+				-- 特殊英雄成为内政官后建造附带建筑
+					function TTH_MANAGE.attachBuilding(iPlayer, strHero, strTown)
+						if TTH_TABLE.Hero[strHero] == nil then
+							return nil;
+						end;
+						if TTH_TABLE.Hero[strHero]["Building"] ~= nil then
+							UpgradeTownBuilding(strTown, TTH_TABLE.Hero[strHero]["Building"], 1);
+						end;
 					end;
 
-					return iTotalLevel;
-				end;
-
-			-- 重建城镇建筑
-				function TTH_MANAGE.rebuildTownBuilding(strTown, iRace, objTownConvert)
-					-- 普通建筑
-						for i = 2, 4 do
-							if objTownConvert[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_TOWN_HALL] >= i then
-								UpgradeTownBuilding(strTown, TOWN_BUILDING_TOWN_HALL, 1);
-							end;
-						end;
-						for i = 1, 3 do
-							if objTownConvert[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_FORT] >= i then
-								UpgradeTownBuilding(strTown, TOWN_BUILDING_FORT, 1);
-							end;
-						end;
-						for i = 1, 2 do
-							if objTownConvert[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MARKETPLACE] >= i then
-								UpgradeTownBuilding(strTown, TOWN_BUILDING_MARKETPLACE, 1);
-							end;
-						end;
-						if objTownConvert[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_SHIPYARD] == 1 then
-							UpgradeTownBuilding(strTown, TOWN_BUILDING_SHIPYARD, 1);
-						end;
-						if objTownConvert[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_TAVERN] == 1 then
-							UpgradeTownBuilding(strTown, TOWN_BUILDING_TAVERN, 1);
-						end;
-						if objTownConvert[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_BLACKSMITH] == 1 then
-							UpgradeTownBuilding(strTown, TOWN_BUILDING_BLACKSMITH, 1);
-						end;
-						for i = 1, 2 do
-							if objTownConvert[TTH_ENUM.TownBuildDwelling][TOWN_BUILDING_DWELLING_1] >= i then
-								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_1, 1);
-							end;
-						end;
-						for i = 1, 2 do
-							if objTownConvert[TTH_ENUM.TownBuildDwelling][TOWN_BUILDING_DWELLING_2] >= i then
-								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_2, 1);
-							end;
-						end;
-						for i = 1, 2 do
-							if objTownConvert[TTH_ENUM.TownBuildDwelling][TOWN_BUILDING_DWELLING_3] >= i then
-								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_3, 1);
-							end;
-						end;
-						for i = 1, 2 do
-							if objTownConvert[TTH_ENUM.TownBuildDwelling][TOWN_BUILDING_DWELLING_4] >= i then
-								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_4, 1);
-							end;
-						end;
-						for i = 1, 2 do
-							if objTownConvert[TTH_ENUM.TownBuildDwelling][TOWN_BUILDING_DWELLING_5] >= i then
-								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_5, 1);
-							end;
-						end;
-						for i = 1, 2 do
-							if objTownConvert[TTH_ENUM.TownBuildDwelling][TOWN_BUILDING_DWELLING_6] >= i then
-								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_6, 1);
-							end;
-						end;
-						for i = 1, 2 do
-							if objTownConvert[TTH_ENUM.TownBuildDwelling][TOWN_BUILDING_DWELLING_7] >= i then
-								UpgradeTownBuilding(strTown, TOWN_BUILDING_DWELLING_7, 1);
-							end;
-						end;
-						if objTownConvert[TTH_ENUM.TownBuildGrail][TOWN_BUILDING_GRAIL] == 1 then
-							UpgradeTownBuilding(strTown, TOWN_BUILDING_GRAIL, 1);
-						end;
-
-					-- 魔法塔
-						if iRace ~= TOWN_STRONGHOLD then
-							for i = 1, 5 do
-								if objTownConvert[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD] >= i then
-									UpgradeTownBuilding(strTown, TOWN_BUILDING_MAGIC_GUILD, 1);
+			-- 根据玩家获取已经可定点传送的城镇列表 0: 没有; arrTown: 有
+				function TTH_MANAGE.listTeleportTown(iPlayer)
+					local arrTeleportTown = {};
+					for iIndexTown, strTown in TTH_VARI.arrTown do
+						if GetObjectOwner(strTown) == iPlayer then
+							local iTownRace = TTH_GLOBAL.getRace8Town(strTown);
+							local bEnoughMagic = 0;
+							if iTownRace == TOWN_STRONGHOLD then
+								if GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_1) >= 1
+									and GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_3) == 1 then
+									bEnoughMagic = 1;
+								end;
+							elseif iTownRace == TOWN_INFERNO then
+								if GetTownBuildingLevel(strTown, TOWN_BUILDING_MAGIC_GUILD) >= 2
+									and GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_1) == 1 then
+									bEnoughMagic = 1;
+								end;
+							else
+								if GetTownBuildingLevel(strTown, TOWN_BUILDING_MAGIC_GUILD) == 5 then
+									bEnoughMagic = 1;
 								end;
 							end;
-						else
-							for i = 1, 5 do
-								if objTownConvert[TTH_ENUM.TownBuildBasic][TOWN_BUILDING_MAGIC_GUILD] >= i then
-									if i <= 3 then
-										UpgradeTownBuilding(strTown, TOWN_BUILDING_SPECIAL_1, 1);
-									elseif i == 4 then
-										UpgradeTownBuilding(strTown, TOWN_BUILDING_SPECIAL_3, 1);
-									end;
-								end;
+							if bEnoughMagic == 1 then
+								TTH_COMMON.push(arrTeleportTown, strTown);
 							end;
 						end;
-
-					-- 特殊建筑
-						local iPlayer = GetObjectOwner(strTown);
-						TTH_GLOBAL.checkArtifactMerchant(iPlayer, strTown);
-
-						local iTotalLevelBuildingSpecial = 0;
-						for i = TOWN_BUILDING_SPECIAL_0, TOWN_BUILDING_SPECIAL_6 do
-							iTotalLevelBuildingSpecial = iTotalLevelBuildingSpecial + objTownConvert[TTH_ENUM.TownBuildSpecial][i];
-						end;
-						if iTotalLevelBuildingSpecial == 1 then
-							UpgradeTownBuilding(strTown, TTH_TABLE.SpecialBuilding[iRace][0], 1);
-						elseif iTotalLevelBuildingSpecial > 1 then
-							for i = 0, iTotalLevelBuildingSpecial - 1 do
-								if TTH_TABLE.SpecialBuilding[iRace][i] ~= nil then
-									UpgradeTownBuilding(strTown, TTH_TABLE.SpecialBuilding[iRace][i], 1);
-								end;
-							end;
-						end;
+					end
+					return arrTeleportTown;
 				end;
-
-			-- 特殊英雄成为内政官后建造附带建筑
-				function TTH_MANAGE.attachBuilding(iPlayer, strHero, strTown)
-					if TTH_TABLE.Hero[strHero] == nil then
-						return nil;
-					end;
-					if TTH_TABLE.Hero[strHero]["Building"] ~= nil then
-						UpgradeTownBuilding(strTown, TTH_TABLE.Hero[strHero]["Building"], 1);
-					end;
-				end;
-
-		-- 根据玩家获取已经可定点传送的城镇列表 0: 没有; arrTown: 有
-			function TTH_MANAGE.listTeleportTown(iPlayer)
-				local arrTeleportTown = {};
-				for iIndexTown, strTown in TTH_VARI.arrTown do
-					if GetObjectOwner(strTown) == iPlayer then
-						local iTownRace = TTH_GLOBAL.getRace8Town(strTown);
-						local bEnoughMagic = 0;
-						if iTownRace == TOWN_STRONGHOLD then
-							if GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_1) >= 1
-								and GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_3) == 1 then
-								bEnoughMagic = 1;
-							end;
-						elseif iTownRace == TOWN_INFERNO then
-							if GetTownBuildingLevel(strTown, TOWN_BUILDING_MAGIC_GUILD) >= 2
-								and GetTownBuildingLevel(strTown, TOWN_BUILDING_SPECIAL_1) == 1 then
-								bEnoughMagic = 1;
-							end;
-						else
-							if GetTownBuildingLevel(strTown, TOWN_BUILDING_MAGIC_GUILD) == 5 then
-								bEnoughMagic = 1;
-							end;
-						end;
-						if bEnoughMagic == 1 then
-							TTH_COMMON.push(arrTeleportTown, strTown);
-						end;
-					end;
-				end
-				return arrTeleportTown;
-			end;
 
 		TTH_ENUM.KingManage = 0; -- 王国管理
 		TTH_ENUM.ShowInfo = 1; -- 信息查询
@@ -8987,6 +9089,7 @@ doFile("/scripts/H55-Settings.lua");
 		TTH_ENUM.ConvertDwelling = 7; -- 转换野外生物巢穴
 		TTH_ENUM.EnableMultiScript = 8; -- 激活多人脚本
 		TTH_ENUM.BonusStartSkill = 9; -- 初始技能奖励
+		TTH_ENUM.VisitMemoryMentor = 10; -- 访问记忆导师
 
 		TTH_TABLE.KingManagePath = {
 			["Widget"] = {
@@ -9004,6 +9107,9 @@ doFile("/scripts/H55-Settings.lua");
 				}
 				, ["HeroInfo"] = {
 					["Text"] = "/Text/Game/Scripts/TTH_KingManage/Widget/HeroInfo.txt"
+				}
+				, ["Economic"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/Widget/Economic.txt"
 				}
 				, ["MayorExpedition"] = {
 					["Text"] = "/Text/Game/Scripts/TTH_KingManage/Widget/MayorExpedition.txt"
@@ -9248,23 +9354,30 @@ doFile("/scripts/H55-Settings.lua");
 			}
 			, ["HireHero"] = {
 				["Text"] = "/Text/Game/Scripts/TTH_KingManage/HireHero.txt"
-				, ["RaceRadioTips"] = {
-					["Text"] = "/Text/Game/Scripts/TTH_KingManage/HireHero/RaceRadioTips.txt"
+				, ["Enable"] = {
+					["Confirm"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/HireHero/Enable/Confirm.txt"
+					}
 				}
-				, ["ClassRadioTips"] = {
-					["Text"] = "/Text/Game/Scripts/TTH_KingManage/HireHero/ClassRadioTips.txt"
-				}
-				, ["HeroRadioTips"] = {
-					["Text"] = "/Text/Game/Scripts/TTH_KingManage/HireHero/HeroRadioTips.txt"
-				}
-				, ["HasExist"] = {
-					["Text"] = "/Text/Game/Scripts/TTH_KingManage/HireHero/HasExist.txt"
-				}
-				, ["Confirm"] = {
-					["Text"] = "/Text/Game/Scripts/TTH_KingManage/HireHero/Confirm.txt"
-				}
-				, ["Success"] = {
-					["Text"] = "/Text/Game/Scripts/TTH_KingManage/HireHero/Success.txt"
+				, ["Main"] = {
+					["RaceRadioTips"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/HireHero/Main/RaceRadioTips.txt"
+					}
+					, ["ClassRadioTips"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/HireHero/Main/ClassRadioTips.txt"
+					}
+					, ["HeroRadioTips"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/HireHero/Main/HeroRadioTips.txt"
+					}
+					, ["HasExist"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/HireHero/Main/HasExist.txt"
+					}
+					, ["Confirm"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/HireHero/Main/Confirm.txt"
+					}
+					, ["Success"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_KingManage/HireHero/Main/Success.txt"
+					}
 				}
 			}
 			, ["ConvertDwelling"] = {
@@ -9298,6 +9411,12 @@ doFile("/scripts/H55-Settings.lua");
 				}
 				, ["Success"] = {
 					["Text"] = "/Text/Game/Scripts/TTH_KingManage/BonusStartSkill/Success.txt"
+				}
+			}
+			, ["VisitMemoryMentor"] = {
+				["Text"] = "/Text/Game/Scripts/TTH_KingManage/VisitMemoryMentor.txt"
+				, ["Confirm"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_KingManage/VisitMemoryMentor/Confirm.txt"
 				}
 			}
 		};
@@ -9341,7 +9460,7 @@ doFile("/scripts/H55-Settings.lua");
 				, [6] = {
 					["Id"] = TTH_ENUM.HireHero
 					, ["Text"] = TTH_TABLE.KingManagePath["HireHero"]["Text"]
-					, ["Callback"] = "TTH_MANAGE.dealHireHero"
+					, ["Callback"] = "TTH_MANAGE.hireHero.func.enable.active"
 				}
 				, [7] = {
 					["Id"] = TTH_ENUM.ConvertDwelling
@@ -9379,6 +9498,16 @@ doFile("/scripts/H55-Settings.lua");
 						arrOption[i] = objKingManageOption;
 						i = i + 1;
 					end;
+				end;
+				if TTH_MAP10W.init == nil
+					and TTH_VARI.arrBuilding["BUILDING_MEMORY_MENTOR"] ~= nil
+					and length(TTH_VARI.arrBuilding["BUILDING_MEMORY_MENTOR"]) > 0 then
+					arrOption[i] = {
+						["Id"] = TTH_ENUM.VisitMemoryMentor
+						, ["Text"] = TTH_TABLE.KingManagePath["VisitMemoryMentor"]["Text"]
+						, ["Callback"] = "TTH_MANAGE.visitMemoryMentor.func.active"
+					};
+					i = i + 1;
 				end;
 				TTH_COMMON.optionRadio(iPlayer, strHero, arrOption);
 			end;
@@ -10470,108 +10599,138 @@ doFile("/scripts/H55-Settings.lua");
 				end;
 
 			-- 指定英雄
-				TTH_VARI.hireHero = {};
-				function TTH_MANAGE.initHireHero()
-					TTH_VARI.hireHero = {
-						["Race"] = TTH_ENUM.Default
-						, ["Class"] = TTH_ENUM.Default
-						, ["Hero"] = TTH_ENUM.Default
-					};
-				end;
-				function TTH_MANAGE.dealHireHero(iPlayer, strHero)
+				TTH_MANAGE.hireHero = {};
+
+				TTH_MANAGE.hireHero.final = {};
+
+				TTH_MANAGE.hireHero.data = {};
+				TTH_MANAGE.hireHero.data.enable4Player = {};
+				TTH_MANAGE.hireHero.data.param = {};
+
+				TTH_MANAGE.hireHero.func = {};
+				TTH_MANAGE.hireHero.func.enable = {};
+				TTH_MANAGE.hireHero.func.enable.active = function(iPlayer, strHero)
 					TTH_COMMON.nextNavi(TTH_TABLE.KingManagePath["HireHero"]["Text"]);
 
-					TTH_MANAGE.initHireHero();
-					TTH_MANAGE.radioHireHero4Race(iPlayer, strHero);
+					if TTH_MANAGE.hireHero.data.enable4Player[iPlayer] == nil then
+						TTH_MANAGE.hireHero.func.enable.confirm(iPlayer, strHero);
+					else
+						TTH_MANAGE.hireHero.func.main.deal(iPlayer, strHero);
+					end;
 				end;
-				function TTH_MANAGE.radioHireHero4Race(iPlayer, strHero)
-					local arrOption4HireHero4Race = {};
+				TTH_MANAGE.hireHero.func.enable.confirm = function(iPlayer, strHero)
+					local strText = {
+						TTH_TABLE.KingManagePath["HireHero"]["Enable"]["Confirm"]["Text"]
+						;iPercent=TTH_ECONOMIC.final.scale.hireHero
+					};
+					local strCallbackOk = "TTH_MANAGE.hireHero.func.enable.ok("..iPlayer..","..TTH_COMMON.psp(strHero)..")";
+					local strCallbackCancel = "TTH_COMMON.cancelOption()";
+					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strText, strCallbackOk, strCallbackCancel);
+				end;
+				TTH_MANAGE.hireHero.func.enable.ok = function(iPlayer, strHero)
+					TTH_MANAGE.hireHero.data.enable4Player[iPlayer] = TTH_ENUM.Yes;
+					TTH_MANAGE.hireHero.func.main.deal(iPlayer, strHero);
+				end;
+				TTH_MANAGE.hireHero.func.main = {};
+				TTH_MANAGE.hireHero.func.main.init = function()
+					TTH_MANAGE.hireHero.data.param = {
+							["Race"] = TTH_ENUM.Default
+							, ["Class"] = TTH_ENUM.Default
+							, ["Hero"] = TTH_ENUM.Default
+						};
+				end;
+				TTH_MANAGE.hireHero.func.main.deal = function(iPlayer, strHero)
+					TTH_MANAGE.hireHero.func.main.init();
+					TTH_MANAGE.hireHero.func.main.radio4Race(iPlayer, strHero);
+				end;
+				TTH_MANAGE.hireHero.func.main.radio4Race = function(iPlayer, strHero)
+					local arrOption = {};
 					local i = 1;
-					local strCallback = "TTH_MANAGE.radioHireHero4Class";
+					local strCallback = "TTH_MANAGE.hireHero.func.main.radio4Class";
 					for iHeroRace = TOWN_HEAVEN, TOWN_STRONGHOLD do
-						arrOption4HireHero4Race[i] = {
+						arrOption[i] = {
 							["Id"] = iHeroRace
 							, ["Text"] = TTH_PATH.Race[iHeroRace]
 							, ["Callback"] = strCallback
 						};
 						i = i + 1;
 					end;
-					local strRadioTips = TTH_TABLE.KingManagePath["HireHero"]["RaceRadioTips"]["Text"];
-					TTH_COMMON.optionRadio(iPlayer, strHero, arrOption4HireHero4Race, strRadioTips);
+					local strRadioTips = TTH_TABLE.KingManagePath["HireHero"]["Main"]["RaceRadioTips"]["Text"];
+					TTH_COMMON.optionRadio(iPlayer, strHero, arrOption, strRadioTips);
 				end;
-				function TTH_MANAGE.radioHireHero4Class(iPlayer, strHero, iHeroRace)
-					TTH_VARI.hireHero["Race"] = iHeroRace;
-					local arrOption4HireHero4Class = {};
+				TTH_MANAGE.hireHero.func.main.radio4Class = function(iPlayer, strHero, iHeroRace)
+					TTH_MANAGE.hireHero.data.param["Race"] = iHeroRace;
+					local arrOption = {};
 					local i = 1;
-					local strCallback = "TTH_MANAGE.radioHireHero4Hero";
+					local strCallback = "TTH_MANAGE.hireHero.func.main.radio4Hero";
 					for iHeroClass, objHeroClass in TTH_TABLE.Hero8RaceAndClass[iHeroRace] do
-						arrOption4HireHero4Class[i] = {
+						arrOption[i] = {
 							["Id"] = iHeroClass
 							, ["Text"] = TTH_PATH.HeroClass[iHeroClass]
 							, ["Callback"] = strCallback
 						};
 						i = i + 1;
 					end;
-					local strRadioTips = TTH_TABLE.KingManagePath["HireHero"]["ClassRadioTips"]["Text"];
-					TTH_COMMON.optionRadio(iPlayer, strHero, arrOption4HireHero4Class, strRadioTips);
+					local strRadioTips = TTH_TABLE.KingManagePath["HireHero"]["Main"]["ClassRadioTips"]["Text"];
+					TTH_COMMON.optionRadio(iPlayer, strHero, arrOption, strRadioTips);
 				end;
-				function TTH_MANAGE.radioHireHero4Hero(iPlayer, strHero, iHeroClass)
-					TTH_VARI.hireHero["Class"] = iHeroClass;
-					TTH_VARI.arrTeleportTown8Class = {};
-					local arrOption4HireHero4Hero = {};
+				TTH_MANAGE.hireHero.func.main.radio4Hero = function(iPlayer, strHero, iHeroClass)
+					local iHeroRace = TTH_MANAGE.hireHero.data.param["Race"];
+					TTH_MANAGE.hireHero.data.param["Class"] = iHeroClass;
+					local arrOption = {};
 					local i = 1;
-					local strCallback = "TTH_MANAGE.checkPreHireHero4HasExist";
-					for iHeroIndex, strHero in TTH_TABLE.Hero8RaceAndClass[TTH_VARI.hireHero["Race"]][iHeroClass] do
-						arrOption4HireHero4Hero[i] = {
+					local strCallback = "TTH_MANAGE.hireHero.func.main.check4HasHeroExist";
+					for iHeroIndex, strHero in TTH_TABLE.Hero8RaceAndClass[iHeroRace][iHeroClass] do
+						arrOption[i] = {
 							["Id"] = iHeroIndex
 							, ["Text"] = TTH_TABLE.Hero[strHero]["Text"]
 							, ["Callback"] = strCallback
 						};
 						i = i + 1;
 					end;
-					local strRadioTips = TTH_TABLE.KingManagePath["HireHero"]["HeroRadioTips"]["Text"];
-					TTH_COMMON.optionRadio(iPlayer, strHero, arrOption4HireHero4Hero, strRadioTips);
+					local strRadioTips = TTH_TABLE.KingManagePath["HireHero"]["Main"]["HeroRadioTips"]["Text"];
+					TTH_COMMON.optionRadio(iPlayer, strHero, arrOption, strRadioTips);
 				end;
-				function TTH_MANAGE.checkPreHireHero4HasExist(iPlayer, strHero, iHeroIndex)
-					local iHeroRace = TTH_VARI.hireHero["Race"];
-					local iHeroClass = TTH_VARI.hireHero["Class"];
-					TTH_VARI.hireHero["Hero"] = TTH_TABLE.Hero8RaceAndClass[iHeroRace][iHeroClass][iHeroIndex];
+				TTH_MANAGE.hireHero.func.main.check4HasHeroExist = function(iPlayer, strHero, iHeroIndex)
+					local iHeroRace = TTH_MANAGE.hireHero.data.param["Race"];
+					local iHeroClass = TTH_MANAGE.hireHero.data.param["Class"];
+					TTH_MANAGE.hireHero.data.param["Hero"] = TTH_TABLE.Hero8RaceAndClass[iHeroRace][iHeroClass][iHeroIndex];
 					for iPlayer = PLAYER_1, PLAYER_8 do
 						local arrHero = GetPlayerHeroes(iPlayer);
 						for iIndexHero, strExistHero in arrHero do
-							if strExistHero == TTH_VARI.hireHero["Hero"] then
-								local strText = TTH_TABLE.KingManagePath["HireHero"]["HasExist"]["Text"];
+							if strExistHero == TTH_MANAGE.hireHero.data.param["Hero"] then
+								local strText = TTH_TABLE.KingManagePath["HireHero"]["Main"]["HasExist"]["Text"];
 								TTH_GLOBAL.sign(strHero, strText);
 								return nil;
 							end;
 						end;
 					end;
 
-					TTH_MANAGE.comfirmHireHero(iPlayer, strHero);
+					TTH_MANAGE.hireHero.func.main.comfirm(iPlayer, strHero);
 				end;
-      	function TTH_MANAGE.comfirmHireHero(iPlayer, strHero)
-					local strHireHero = TTH_VARI.hireHero["Hero"];
+				TTH_MANAGE.hireHero.func.main.comfirm = function(iPlayer, strHero)
+					local strHireHero = TTH_MANAGE.hireHero.data.param["Hero"];
 					local strHireHeroName = TTH_TABLE.Hero[strHireHero]["Text"];
 
 					local strText = {
-						TTH_TABLE.KingManagePath["HireHero"]["Confirm"]["Text"]
+						TTH_TABLE.KingManagePath["HireHero"]["Main"]["Confirm"]["Text"]
 						;strHireHeroName=strHireHeroName
 					};
-					local strCallbackOk = "TTH_MANAGE.implHireHero("..iPlayer..","..TTH_COMMON.psp(strHero)..")";
+					local strCallbackOk = "TTH_MANAGE.hireHero.func.main.impl("..iPlayer..","..TTH_COMMON.psp(strHero)..")";
 					local strCallbackCancel = "TTH_COMMON.cancelOption()";
 					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strText, strCallbackOk, strCallbackCancel);
-      	end;
-      	function TTH_MANAGE.implHireHero(iPlayer, strHero)
-					local strHireHero = TTH_VARI.hireHero["Hero"];
+				end;
+				TTH_MANAGE.hireHero.func.main.impl = function(iPlayer, strHero)
+					local strHireHero = TTH_MANAGE.hireHero.data.param["Hero"];
 					local strHireHeroName = TTH_TABLE.Hero[strHireHero]["Text"];
 
-      		TTH.hero1(iPlayer, strHireHero);
-      		local strText = {
-						TTH_TABLE.KingManagePath["HireHero"]["Success"]["Text"]
+					TTH.hero1(iPlayer, strHireHero);
+					local strText = {
+						TTH_TABLE.KingManagePath["HireHero"]["Main"]["Success"]["Text"]
 						;strHireHeroName=strHireHeroName
 					};
-      		TTH_GLOBAL.sign(strHero, strText);
-      	end;
+					TTH_GLOBAL.sign(strHero, strText);
+				end;
 
       -- 转换野外生物巢穴
       	function TTH_MANAGE.dealConvertDwelling(iPlayer, strHero)
@@ -10673,6 +10832,42 @@ doFile("/scripts/H55-Settings.lua");
 						startThread(TTH_MAIN.init);
 						TTH_COMMON.consoleSetGameVar("TTH_Var_SwitchSingleton", TTH_VARI.switchSingleton);
 					end;
+				end;
+
+			-- 访问记忆导师
+				TTH_MANAGE.visitMemoryMentor = {};
+
+				TTH_MANAGE.visitMemoryMentor.final = {};
+
+				TTH_MANAGE.visitMemoryMentor.data = {};
+				TTH_MANAGE.visitMemoryMentor.data.enable4Player = {};
+
+				TTH_MANAGE.visitMemoryMentor.func = {};
+				TTH_MANAGE.visitMemoryMentor.func.active = function(iPlayer, strHero)
+					TTH_COMMON.nextNavi(TTH_TABLE.KingManagePath["VisitMemoryMentor"]["Text"]);
+
+					if TTH_MANAGE.visitMemoryMentor.data.enable4Player[iPlayer] == nil then
+						TTH_MANAGE.visitMemoryMentor.func.confirm(iPlayer, strHero);
+					else
+						TTH_MANAGE.visitMemoryMentor.func.visit(iPlayer, strHero);
+					end;
+				end;
+				TTH_MANAGE.visitMemoryMentor.func.confirm = function(iPlayer, strHero)
+					local strText = {
+						TTH_TABLE.KingManagePath["VisitMemoryMentor"]["Confirm"]["Text"]
+						;iPercent=TTH_ECONOMIC.final.scale.visitMemoryMentor
+					};
+					local strCallbackOk = "TTH_MANAGE.visitMemoryMentor.func.ok("..iPlayer..","..TTH_COMMON.psp(strHero)..")";
+					local strCallbackCancel = "TTH_COMMON.cancelOption()";
+					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strText, strCallbackOk, strCallbackCancel);
+				end;
+				TTH_MANAGE.visitMemoryMentor.func.ok = function(iPlayer, strHero)
+					TTH_MANAGE.visitMemoryMentor.data.enable4Player[iPlayer] = 1;
+					TTH_MANAGE.visitMemoryMentor.func.visit(iPlayer, strHero);
+				end;
+				TTH_MANAGE.visitMemoryMentor.func.visit = function(iPlayer, strHero)
+					local strMemoryMentor = TTH_VARI.arrBuilding["BUILDING_MEMORY_MENTOR"][0];
+					MakeHeroInteractWithObject(strHero, strMemoryMentor);
 				end;
 
 		-- 定点回城
@@ -11041,14 +11236,28 @@ doFile("/scripts/H55-Settings.lua");
 			doFile("/scripts/TTH_Trigger_HeroLevelUp.lua");
 
 		-- 玩家招募英雄触发器
-			TTH_VARI.hero8PlayerAdd = "";
+			TTH_VARI.hero8PlayerAdd1 = "";
+			TTH_VARI.hero8PlayerAdd2 = "";
 			function TTH_TRIGGER.playerAddHero(strHero)
 				print("Player add a Hero-"..strHero);
-				TTH_VARI.hero8PlayerAdd = strHero;
+				if TTH_VARI.hero8PlayerAdd1 == "" then
+					TTH_VARI.hero8PlayerAdd1 = strHero;
+				else
+					TTH_VARI.hero8PlayerAdd2 = strHero;
+				end;
 				startThread(TTH_TRIGGER.thread4PlayerAddHero);
 			end;
 			function TTH_TRIGGER.thread4PlayerAddHero()
-				local strHero = TTH_VARI.hero8PlayerAdd;
+				local strHero = "";
+				if TTH_VARI.hero8PlayerAdd2 ~= "" then
+					strHero = TTH_VARI.hero8PlayerAdd2;
+					TTH_VARI.hero8PlayerAdd2 = "";
+				else
+					if TTH_VARI.hero8PlayerAdd1 ~= "" then
+						strHero = TTH_VARI.hero8PlayerAdd1;
+						TTH_VARI.hero8PlayerAdd1 = "";
+					end;
+				end;
 
 				TTH_MAIN.debug("TTH_TRIGGER.playerAddHero", nil, strHero);
 
@@ -12385,9 +12594,13 @@ doFile("/scripts/H55-Settings.lua");
       	end;
 
       -- Elleshar 036 温利尔
-      	function TTH_TALENT.initElleshar(strHero)
+      	TTH_TALENT.Elleshar = {};
+      	TTH_TALENT.Elleshar.data = {};
+      	TTH_TALENT.Elleshar.data.cd = 5;
+      	TTH_TALENT.Elleshar.func = {};
+      	TTH_TALENT.Elleshar.func.init = function(strHero)
 					local iPlayer = TTH_GLOBAL.GetObjectOwner(strHero);
-					TTH_MAIN.debug("TTH_TALENT.initElleshar", iPlayer, strHero);
+					TTH_MAIN.debug("TTH_TALENT.Elleshar.func.init", iPlayer, strHero);
 
 					if TTH_GLOBAL.isAi(iPlayer) == TTH_ENUM.No then
 						for iPotionId = TTH_ENUM.PotionMana, TTH_ENUM.PotionRevive do
@@ -12400,6 +12613,55 @@ doFile("/scripts/H55-Settings.lua");
 							end;
 						end;
 					end;
+      	end;
+      	TTH_TALENT.Elleshar.func.combat = function(iPlayer, strHero, iCombatIndex)
+					TTH_MAIN.debug("TTH_TALENT.Elleshar.func.combat", iPlayer, strHero, iCombatIndex);
+
+					if TTH_GLOBAL.isAi(iPlayer) == TTH_ENUM.No then
+						TTH_TALENT.Elleshar.data.cd = TTH_TALENT.Elleshar.data.cd - 1;
+						if TTH_TALENT.Elleshar.data.cd <= 0 then
+							TTH_TALENT.Elleshar.data.cd = TTH_TALENT.Elleshar.func.calcCd(strHero);
+							local arrCompare = {};
+							local i = 0;
+							for iPotionId = TTH_ENUM.PotionMana, TTH_ENUM.PotionRevive do
+								local itemPotion = TTH_TABLE.BuyConsumeInfo[iPotionId];
+								local iArtifactId = itemPotion["ArtifactId"];
+								arrCompare[i] = {};
+								arrCompare[i]["id"] = iPotionId;
+								arrCompare[i]["value"] = TTH_VARI.recordPotion[iArtifactId][strHero]["RemainTimes"];
+								i = i + 1;
+							end;
+							local itemMinPotion = TTH_COMMON.min8key(arrCompare, "value");
+							local itemPotion = TTH_TABLE.BuyConsumeInfo[itemMinPotion["id"]];
+							local iArtifactId = itemPotion["ArtifactId"];
+							local strArtifactName = TTH_TABLE.Artifact[iArtifactId]["Text"];
+							local iMaxTimes = TTH_MANAGE.getPotionMaxTimes(iPlayer);
+							if TTH_VARI.recordPotion[iArtifactId][strHero]["RemainTimes"] < iMaxTimes then
+								TTH_VARI.recordPotion[iArtifactId][strHero]["RemainTimes"] = TTH_VARI.recordPotion[iArtifactId][strHero]["RemainTimes"] + 1;
+								local strText = {
+									TTH_PATH.Talent["Elleshar"]["Recovery"]
+									;strArtifactName=strArtifactName
+								};
+								TTH_GLOBAL.sign(strHero, strText);
+							end;
+						else
+							local strText = {
+								TTH_PATH.Talent["Elleshar"]["Cd"]
+								;iCd=TTH_TALENT.Elleshar.data.cd
+							};
+							TTH_GLOBAL.sign(strHero, strText);
+						end;
+					end;
+      	end;
+      	TTH_TALENT.Elleshar.func.calcCd = function(strHero)
+      		local iCd = 5;
+      		if TTH_VARI.record4UpgradeMastery[strHero] == TTH_ENUM.Yes then
+      			iCd = 3;
+      		end;
+      		if TTH_VARI.record4UpgradeShantiri[strHero] == TTH_ENUM.Yes then
+      			iCd = 1;
+      		end;
+      		return iCd;
       	end;
 
 			-- Ildar 037 娜瑞莎
@@ -17698,156 +17960,6 @@ doFile("/scripts/H55-Settings.lua");
     		TTH_VARI.recordRecruitment[strHero]["OperTimes"] = TTH_VARI.recordRecruitment[strHero]["MaxOperTimes"];
 			end;
 
-		-- HERO_SKILL_ESTATES 029 理财术
-			TTH_FINAL.ESTATES_COEF = 0.003;
-			TTH_FINAL.ESTATES_MAX = 50000;
-			TTH_VARI.recordEstates = {};
-			TTH_TABLE.EstatesOption = {
-				[1] = {
-					["Id"] = 0.2
-					, ["Text"] = TTH_PATH.Perk[HERO_SKILL_ESTATES]["Coef20"]
-					, ["Callback"] = "TTH_PERK.confirmActive029"
-				}
-				, [2] = {
-					["Id"] = 0.5
-					, ["Text"] = TTH_PATH.Perk[HERO_SKILL_ESTATES]["Coef50"]
-					, ["Callback"] = "TTH_PERK.confirmActive029"
-				}
-				, [3] = {
-					["Id"] = 0.8
-					, ["Text"] = TTH_PATH.Perk[HERO_SKILL_ESTATES]["Coef80"]
-					, ["Callback"] = "TTH_PERK.confirmActive029"
-				}
-				, [4] = {
-					["Id"] = 1
-					, ["Text"] = TTH_PATH.Perk[HERO_SKILL_ESTATES]["Coef100"]
-					, ["Callback"] = "TTH_PERK.confirmActive029"
-				}
-			};
-			function TTH_PERK.init029(iPlayer, strHero)
-				TTH_MAIN.debug("TTH_PERK.init029", iPlayer, strHero);
-
-				local iTimes = TTH_GLOBAL.getPerkOperTimes(HERO_SKILL_ESTATES);
-				TTH_VARI.recordEstates[strHero] = {
-					["EstatesGold"] = 0
-					, ["EstatesDay"] = 0
-					, ["OperTimes"] = iTimes
-					, ["MaxOperTimes"] = iTimes
-				};
-			end;
-			function TTH_PERK.active029(iPlayer, strHero)
-				TTH_COMMON.nextNavi(TTH_PATH.Perk[HERO_SKILL_ESTATES]["Text"]);
-
-				TTH_PERK.checkPreActive0294NotEnoughTimes(iPlayer, strHero)
-			end;
-			function TTH_PERK.checkPreActive0294NotEnoughTimes(iPlayer, strHero)
-				if TTH_VARI.recordEstates[strHero] == nil then
-					TTH_PERK.init029(iPlayer, strHero);
-				end;
-    		if TTH_VARI.recordEstates[strHero]["OperTimes"] <= 0 then
-					local strText = TTH_PATH.Perk[HERO_SKILL_ESTATES]["NotEnoughTimes"];
-					TTH_GLOBAL.sign(strHero, strText);
-					return nil;
-    		end;
-
-				local strPathOption = TTH_PATH.Perk[HERO_SKILL_ESTATES]["OptionTips"];
-				TTH_COMMON.optionRadio(iPlayer, strHero, TTH_TABLE.EstatesOption, strPathOption);
-			end;
-			function TTH_PERK.confirmActive029(iPlayer, strHero, iCoef)
-				local iPercent = TTH_COMMON.round(iCoef * 100);
-				local iGold = GetPlayerResource(iPlayer, GOLD);
-				local iEstatesGold = TTH_COMMON.round(iGold * iCoef);
-				local iDuration = 7 + 1 - TTH_VARI.dayOfWeek;
-				local iExpectGold = TTH_PERK.calcExpectEstatesGold(strHero, iEstatesGold, iDuration);
-
-				local strPathMain={
-					TTH_PATH.Perk[HERO_SKILL_ESTATES]["Confirm"]
-					;iPercent=iPercent
-					,iGold=iGold
-					,iEstatesGold=iEstatesGold
-					,iDuration=iDuration
-					,iExpectGold=iExpectGold
-				};
-				local strCallbackOk = "TTH_PERK.implActive029("..iPlayer..","..TTH_COMMON.psp(strHero)..","..iCoef..")";
-				local strCallbackCancel = "TTH_COMMON.cancelOption()";
-				TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strPathMain, strCallbackOk, strCallbackCancel);
-			end;
-			function TTH_PERK.implActive029(iPlayer, strHero, iCoef)
-    		if TTH_VARI.recordEstates[strHero]["OperTimes"] > 0 then
-    			TTH_VARI.recordEstates[strHero]["OperTimes"] = TTH_VARI.recordEstates[strHero]["OperTimes"] - 1;
-    		end;
-
-    		local iGold = GetPlayerResource(iPlayer, GOLD);
-    		local iEstatesGold = TTH_COMMON.round(iGold * iCoef);
-    		TTH_GLOBAL.reduceResource(iPlayer, GOLD, iEstatesGold);
-    		if TTH_VARI.recordEstates[strHero]["EstatesGold"] == 0 then
-	    		TTH_VARI.recordEstates[strHero]["EstatesGold"] = iEstatesGold;
-	    		TTH_VARI.recordEstates[strHero]["EstatesDay"] = TTH_VARI.day;
-    		else
-    			TTH_VARI.recordEstates[strHero]["EstatesGold"] = TTH_VARI.recordEstates[strHero]["EstatesGold"] + iEstatesGold;
-    		end;
-    		local strPathMain={
-    			TTH_PATH.Perk[HERO_SKILL_ESTATES]["Success"]
-    			;iEstatesGold=iEstatesGold
-    		};
-    		TTH_GLOBAL.sign(strHero, strPathMain);
-			end;
-			function TTH_PERK.dealWeekly029(iPlayer, strHero)
-				TTH_MAIN.debug("TTH_PERK.dealWeekly029", iPlayer, strHero);
-
-				if TTH_VARI.recordEstates ~= nil
-					and length(TTH_VARI.recordEstates) > 0 then
-					local iCurrentDay = TTH_VARI.day;
-					for strEstateHero, objEstates in TTH_VARI.recordEstates do
-						if strEstateHero == strHero
-							and objEstates["EstatesGold"] > 0 then
-							local iDuration = iCurrentDay - objEstates["EstatesDay"];
-							local iExpectGold = TTH_PERK.calcExpectEstatesGold(strHero, objEstates["EstatesGold"], iDuration);
-							objEstates["EstatesGold"] = 0;
-							objEstates["EstatesDay"] = 0;
-							TTH_GLOBAL.putSettleResource(iPlayer, GOLD, iExpectGold);
-							local strPathMain={
-								TTH_PATH.Perk[HERO_SKILL_ESTATES]["Repay"]
-								;iExpectGold=iExpectGold
-							};
-			    		TTH_GLOBAL.sign(strHero, strPathMain);
-
-			    		if strHero == "Jenova" and TTH_VARI.record4UpgradeMastery[strHero] == TTH_ENUM.Yes then
-			    			local iRecordPoint = TTH_COMMON.round((iExpectGold - objEstates["EstatesGold"]) / 100);
-			    			TTH_MANAGE.addRecordPoint(iPlayer, strHero, iRecordPoint);
-			    		end;
-						end;
-					end;
-				end;
-			end;
-			function TTH_PERK.resetWeekly029(iPlayer, strHero)
-				TTH_MAIN.debug("TTH_PERK.resetWeekly029", iPlayer, strHero);
-
-				if TTH_VARI.recordEstates[strHero] == nil then
-					TTH_PERK.init029(iPlayer, strHero);
-				end;
-    		TTH_VARI.recordEstates[strHero]["OperTimes"] = TTH_VARI.recordEstates[strHero]["MaxOperTimes"];
-			end;
-			function TTH_PERK.calcExpectEstatesGold(strHero, iEstatesGold, iDuration)
-				local iCoef = 1;
-				if HasArtefact(strHero, ARTIFACT_CROWN_OF_LEADER, 1) ~= nil then
-					iCoef = 1.5;
-				end;
-				local iCoefJenova = 1;
-				if strHero == "Jenova" then
-					iCoefJenova = 1.5;
-					if TTH_VARI.record4UpgradeShantiri[strHero] == TTH_ENUM.Yes then
-						iCoefJenova = 2;
-					end;
-				end;
-				local iHeroLevel = GetHeroLevel(strHero);
-				local iExpectEstatesGold = TTH_COMMON.round(iEstatesGold * (1 + TTH_FINAL.ESTATES_COEF * iHeroLevel * iCoef * iCoefJenova * iDuration));
-				if iExpectEstatesGold > iEstatesGold + TTH_FINAL.ESTATES_MAX * iCoef * iCoefJenova then
-					iExpectEstatesGold = iEstatesGold + TTH_FINAL.ESTATES_MAX * iCoef * iCoefJenova
-				end;
-				return iExpectEstatesGold;
-			end;
-
 		-- HERO_SKILL_DIPLOMACY 030 外交术
 			TTH_VARI.recordDiplomacy = {};
 			function TTH_PERK.init030(iPlayer, strHero)
@@ -18740,17 +18852,10 @@ doFile("/scripts/H55-Settings.lua");
 				TTH_PERK.checkPreActive1154NotEnoughTimes(iPlayer, strHero)
 			end;
 			function TTH_PERK.checkPreActive1154NotEnoughTimes(iPlayer, strHero)
-				local strText = TTH_PATH.Perk[HERO_SKILL_FOREST_GUARD_EMBLEM]["NotEnoughTimes"];
 				if TTH_VARI.recordForestGuardEmblem[strHero]["OperTimes"] <= 0 then
-					if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
-						if TTH_MANAGE.getRemainOperTimes(strHero) <= 0 then
-		    			TTH_GLOBAL.sign(strHero, strText);
-		  				return nil;
-						end;
-					else
-		  			TTH_GLOBAL.sign(strHero, strText);
-						return nil;
-		  		end;
+					local strText = TTH_PATH.Perk[HERO_SKILL_FOREST_GUARD_EMBLEM]["NotEnoughTimes"];
+	  			TTH_GLOBAL.sign(strHero, strText);
+					return nil;
 				end;
 
 				TTH_PERK.implActive115(iPlayer, strHero)
@@ -18758,8 +18863,6 @@ doFile("/scripts/H55-Settings.lua");
 			function TTH_PERK.implActive115(iPlayer, strHero)
     		if TTH_VARI.recordForestGuardEmblem[strHero]["OperTimes"] > 0 then
     			TTH_VARI.recordForestGuardEmblem[strHero]["OperTimes"] = TTH_VARI.recordForestGuardEmblem[strHero]["OperTimes"] - 1;
-    		else
-    			TTH_MANAGE.useOperTimes(strHero);
     		end;
     		TTH_PERK.enableActive115(iPlayer, strHero);
 				local strText = TTH_PATH.Perk[HERO_SKILL_FOREST_GUARD_EMBLEM]["Success"];
@@ -18771,8 +18874,8 @@ doFile("/scripts/H55-Settings.lua");
 				TTH_PERK.init115(iPlayer, strHero);
 				TTH_PERK.disableActive115(iPlayer, strHero);
 			end;
-			function TTH_PERK.resetDaily115(iPlayer, strHero)
-				TTH_MAIN.debug("TTH_PERK.resetDaily115", iPlayer, strHero);
+			function TTH_PERK.resetWeekly115(iPlayer, strHero)
+				TTH_MAIN.debug("TTH_PERK.resetWeekly115", iPlayer, strHero);
 
 				TTH_PERK.init115(iPlayer, strHero);
     		TTH_VARI.recordForestGuardEmblem[strHero]["OperTimes"] = TTH_VARI.recordForestGuardEmblem[strHero]["MaxOperTimes"];
@@ -18842,6 +18945,13 @@ doFile("/scripts/H55-Settings.lua");
 					end;
 				end;
 				if length(arrOptionShantiri) <= 0 then
+					for iIndex, strShantiri in TTH_VARI.arrBuilding["BUILDING_SHANTIRI"] do
+						if TTH_GLOBAL.getDistance(strHero, strShantiri) <= TTH_MANAGE.getTerritoryRadius(iPlayer) then
+							local iPosX, iPosY, iPosZ = GetObjectPosition(strShantiri);
+							OpenCircleFog(iPosX, iPosY, iPosZ, 5, iPlayer);
+						end;
+					end;
+
 					local strText = TTH_PATH.Perk[HERO_SKILL_GRAIL_VISION]["NoSuitableShantiri"];
 					TTH_GLOBAL.sign(strHero, strText);
 					return nil;
@@ -18867,18 +18977,6 @@ doFile("/scripts/H55-Settings.lua");
 				end;
 				local strText = TTH_PATH.Perk[HERO_SKILL_GRAIL_VISION]["Recovery"];
 				TTH_GLOBAL.sign(strHero, strText);
-
-				if strHero == "Elleshar" and TTH_VARI.record4UpgradeMastery[strHero] == TTH_ENUM.Yes then
-					TTH_MANAGE.addRecordPoint(iPlayer, strHero, iHasPotion * 100);
-				end;
-			end;
-			function TTH_PERK.resetDaily080(iPlayer, strHero)
-				TTH_MAIN.debug("TTH_PERK.resetDaily080", iPlayer, strHero);
-
-				if strHero == "Elleshar" and TTH_VARI.record4UpgradeShantiri[strHero] == TTH_ENUM.Yes then
-					TTH_PERK.init080(iPlayer, strHero);
-					TTH_VARI.recordShantiri[strHero]["OperTimes"] = TTH_VARI.recordShantiri[strHero]["MaxOperTimes"];
-				end;
 			end;
 			function TTH_PERK.resetWeekly080(iPlayer, strHero)
 				TTH_MAIN.debug("TTH_PERK.resetWeekly080", iPlayer, strHero);
@@ -19583,6 +19681,7 @@ doFile("/scripts/H55-Settings.lua");
 				end;
     		local strPostCreatureName = TTH_TABLE.Creature[iPostCreatureId]["NAME"];
     		local iAttenuation = TTH_PERK.calcAttenuation1814Player(iPlayer, strHero);
+    		local iRequireSetOgresCount = TTH_GLOBAL.getSetComponentCount(strHero, ARTIFACTSET_OGRES);
 				local iPostCreatureNumber = TTH_COMMON.round(iCreatureNumberGoblin / TTH_FINAL.DEFEND_US_ALL_SCALE / TTH_TABLE.CreatureOption181[iIndexId]["Scale"] * (1 + 0.4 * (TTH_GLOBAL.getSetComponentCount(strHero, ARTIFACTSET_OGRES) + iRequireSetOgresCount)) * iAttenuation);
 				if iPostCreatureNumber < 1 then
 					iPostCreatureNumber = 1;
@@ -19898,6 +19997,196 @@ doFile("/scripts/H55-Settings.lua");
 					TTH_VARI.recordDungeonSpecial1[strHero] = TTH_ENUM.Yes;
 					TTH_GLOBAL.giveHeroArtifact(strHero, iArtifactId);
 				end;
+
+	-- 经济系统
+		TTH_ECONOMIC = {};
+
+		-- 常量
+			TTH_ECONOMIC.final = {};
+
+			TTH_ECONOMIC.final.scale = {};
+			TTH_ECONOMIC.final.scale.hireHero = -100;
+			TTH_ECONOMIC.final.scale.visitMemoryMentor = -100;
+			TTH_ECONOMIC.final.scale.heroExpedition = -200;
+			TTH_ECONOMIC.final.scale.creatureLv8Low = -10;
+			TTH_ECONOMIC.final.scale.creatureLv8High = -200;
+			TTH_ECONOMIC.final.scale.perkEstates = 10;
+			TTH_ECONOMIC.final.scale.townMarket = 5;
+			TTH_ECONOMIC.final.scale.tradingPost = 20;
+			TTH_ECONOMIC.final.scale.bonusJenova = 1;
+			TTH_ECONOMIC.final.scale.bonusJenovaMastery = 3;
+			TTH_ECONOMIC.final.scale.bonusJenovaShantiri = 5;
+
+		-- 方法
+			TTH_ECONOMIC.func = {};
+			TTH_ECONOMIC.func.enableHireHero = function(iPlayer)
+				local bEnableHireHero = TTH_ENUM.No;
+				if TTH_MANAGE.hireHero.data.enable4Player[iPlayer] == TTH_ENUM.Yes then
+					bEnableHireHero = TTH_ENUM.Yes;
+				end;
+				return bEnableHireHero;
+			end;
+			TTH_ECONOMIC.func.calcHireHero = function(iPlayer)
+				return TTH_ECONOMIC.func.enableHireHero(iPlayer) * TTH_ECONOMIC.final.scale.hireHero;
+			end;
+			TTH_ECONOMIC.func.enableVisitMemoryMentor = function(iPlayer)
+				local bEnableVisitMemoryMentor = TTH_ENUM.No;
+				if TTH_MANAGE.visitMemoryMentor.data.enable4Player[iPlayer] == TTH_ENUM.Yes then
+					bEnableVisitMemoryMentor = TTH_ENUM.Yes;
+				end;
+				return bEnableVisitMemoryMentor;
+			end;
+			TTH_ECONOMIC.func.calcVisitMemoryMentor = function(iPlayer)
+				return TTH_ECONOMIC.func.enableVisitMemoryMentor(iPlayer) * TTH_ECONOMIC.final.scale.visitMemoryMentor;
+			end;
+			TTH_ECONOMIC.func.getCountHeroExpedition = function(iPlayer)
+				local iCountHeroExpedition = 0;
+				local arrHero = GetPlayerHeroes(iPlayer);
+				for iIndexHero, strHero in arrHero do
+					if TTH_VARI.arrMayor[strHero]["IsExpedition"]["Status"] == TTH_ENUM.Yes then
+						iCountHeroExpedition = iCountHeroExpedition + 1;
+					end;
+				end;
+				return iCountHeroExpedition;
+			end;
+			TTH_ECONOMIC.func.calcHeroExpedition = function(iPlayer)
+				return TTH_ECONOMIC.func.getCountHeroExpedition(iPlayer) * TTH_ECONOMIC.final.scale.heroExpedition;
+			end;
+			TTH_ECONOMIC.func.getCountCreatureLv8Low = function(iPlayer)
+				local iCountCreatureLv8Low = 0;
+				local arrHero = GetPlayerHeroes(iPlayer);
+				for iIndexHero, strHero in arrHero do
+					local arrCreature4Hero = TTH_GLOBAL.getHeroCreatureInfo(strHero);
+					for iIndexSlot = 0, 6 do
+						local iSlotCreatureId = arrCreature4Hero[iIndexSlot]["Id"];
+						if iSlotCreatureId == CREATURE_CHERUBIN_LESS
+							or iSlotCreatureId == CREATURE_DRAGON_KNIGHT_LESS then
+							iCountCreatureLv8Low = iCountCreatureLv8Low + arrCreature4Hero[iIndexSlot]["Count"];
+						end;
+					end;
+				end;
+				return iCountCreatureLv8Low;
+			end;
+			TTH_ECONOMIC.func.calcCreatureLv8Low = function(iPlayer)
+				return TTH_ECONOMIC.func.getCountCreatureLv8Low(iPlayer) * TTH_ECONOMIC.final.scale.creatureLv8Low;
+			end;
+			TTH_ECONOMIC.func.getCountCreatureLv8High = function(iPlayer)
+				local iCountCreatureLv8High = 0;
+				local arrHero = GetPlayerHeroes(iPlayer);
+				for iIndexHero, strHero in arrHero do
+					local arrCreature4Hero = TTH_GLOBAL.getHeroCreatureInfo(strHero);
+					for iIndexSlot = 0, 6 do
+						local iSlotCreatureId = arrCreature4Hero[iIndexSlot]["Id"];
+						if iSlotCreatureId == CREATURE_CHERUBIN
+							or iSlotCreatureId == CREATURE_DRAGON_KNIGHT then
+							iCountCreatureLv8High = iCountCreatureLv8High + arrCreature4Hero[iIndexSlot]["Count"];
+						end;
+					end;
+				end;
+				return iCountCreatureLv8High;
+			end;
+			TTH_ECONOMIC.func.calcCreatureLv8High = function(iPlayer)
+				return TTH_ECONOMIC.func.getCountCreatureLv8High(iPlayer) * TTH_ECONOMIC.final.scale.creatureLv8High;
+			end;
+			TTH_ECONOMIC.func.getCountPerkEstates = function(iPlayer)
+				local iCountPerkEstates = 0;
+				local arrHero = GetPlayerHeroes(iPlayer);
+				for iIndexHero, strHero in arrHero do
+					if HasHeroSkill(strHero, HERO_SKILL_ESTATES) then
+						iCountPerkEstates = iCountPerkEstates + 1;
+					end;
+				end;
+				return iCountPerkEstates;
+			end;
+			TTH_ECONOMIC.func.calcPerkEstates = function(iPlayer)
+				local iCountPerkEstates = 0;
+				local arrHero = GetPlayerHeroes(iPlayer);
+				for iIndexHero, strHero in arrHero do
+					if HasHeroSkill(strHero, HERO_SKILL_ESTATES) then
+						local iValue = 1;
+						if HasArtefact(strHero, ARTIFACT_CROWN_OF_LEADER, 1) ~= nil then
+							iValue = 2;
+						end;
+						iCountPerkEstates = iCountPerkEstates + iValue;
+					end;
+				end;
+				return iCountPerkEstates * TTH_ECONOMIC.final.scale.perkEstates;
+			end;
+			TTH_ECONOMIC.func.getCountTownMarket = function(iPlayer)
+				local iCountTownMarket = 0;
+				for i, strTown in TTH_VARI.arrTown do
+					if iPlayer == GetObjectOwner(strTown) then
+						iCountTownMarket = iCountTownMarket + GetTownBuildingLevel(strTown, TOWN_BUILDING_MARKETPLACE);
+					end;
+				end;
+				return iCountTownMarket;
+			end;
+			TTH_ECONOMIC.func.calcTownMarket = function(iPlayer)
+				return TTH_ECONOMIC.func.getCountTownMarket(iPlayer) * TTH_ECONOMIC.final.scale.townMarket;
+			end;
+			TTH_ECONOMIC.func.getCountTradingPost = function(iPlayer)
+				local iCountTradingPost = 0;
+				for i, strTradingPost in TTH_VARI.arrBuilding["BUILDING_TRADING_POST"] do
+					if iPlayer == TTH_VARI.economicBuildingOwner["BUILDING_TRADING_POST"][strTradingPost] then
+						iCountTradingPost = iCountTradingPost + 1;
+					end;
+				end;
+				return iCountTradingPost;
+			end;
+			TTH_ECONOMIC.func.calcTradingPost = function(iPlayer)
+				return TTH_ECONOMIC.func.getCountTradingPost(iPlayer) * TTH_ECONOMIC.final.scale.tradingPost;
+			end;
+			TTH_ECONOMIC.func.hasJenova = function(iPlayer)
+				local bHasJenova = TTH_ENUM.No;
+				local arrHero = GetPlayerHeroes(iPlayer);
+				for iIndexHero, strHero in arrHero do
+					if strHero == "Jenova" then
+						bHasJenova = TTH_ENUM.Yes;
+						break;
+					end;
+				end;
+				return bHasJenova;
+			end;
+			TTH_ECONOMIC.func.calcBonusJenova = function(iPlayer)
+				local iHeroLevel = 0;
+				local iBonusJenova = 0;
+				local strHero = "Jenova";
+				if TTH_ECONOMIC.func.hasJenova(iPlayer) == TTH_ENUM.Yes then
+					iHeroLevel = GetHeroLevel(strHero);
+					if TTH_VARI.record4UpgradeMastery[strHero] == nil then
+						iBonusJenova = iHeroLevel * TTH_ECONOMIC.final.scale.bonusJenova;
+					else
+						if TTH_VARI.record4UpgradeShantiri[strHero] == nil then
+							iBonusJenova = iHeroLevel * TTH_ECONOMIC.final.scale.bonusJenovaMastery;
+						else
+							iBonusJenova = iHeroLevel * TTH_ECONOMIC.final.scale.bonusJenovaShantiri;
+						end;
+					end;
+				end;
+				return iBonusJenova;
+			end;
+			TTH_ECONOMIC.func.deal = function(iPlayer)
+				local iPercentHireHero = TTH_ECONOMIC.func.calcHireHero(iPlayer);
+				local iPercentVisitMemoryMentor = TTH_ECONOMIC.func.calcVisitMemoryMentor(iPlayer);
+				local iPercentMayorExpedition = TTH_ECONOMIC.func.calcHeroExpedition(iPlayer);
+				local iPercentCreatureLv8Low = TTH_ECONOMIC.func.calcCreatureLv8Low(iPlayer);
+				local iPercentCreatureLv8High = TTH_ECONOMIC.func.calcCreatureLv8High(iPlayer);
+				local iPercentPerkEstates = TTH_ECONOMIC.func.calcPerkEstates(iPlayer);
+				local iPercentTownMarket = TTH_ECONOMIC.func.calcTownMarket(iPlayer);
+				local iPercentTradingPost = TTH_ECONOMIC.func.calcTradingPost(iPlayer);
+				local iPercentHireJenova = TTH_ECONOMIC.func.calcBonusJenova(iPlayer);
+				local iPercentTotal = iPercentHireHero + iPercentVisitMemoryMentor + iPercentMayorExpedition + iPercentCreatureLv8Low + iPercentCreatureLv8High
+					+ iPercentPerkEstates + iPercentTownMarket + iPercentTradingPost + iPercentHireJenova;
+
+				if iPercentTotal > 0 then
+					TTH_GLOBAL.increaseResource8Percent(iPlayer, GOLD, iPercentTotal / 1000);
+				end;
+				if iPercentTotal < 0 then
+					TTH_GLOBAL.reduceResource8Percent(iPlayer, GOLD, iPercentTotal / 1000);
+				end;
+			end;
+
+		-- :TODO 提示
 
 	-- test
 		TTH_TEST = {};
@@ -20367,6 +20656,7 @@ doFile("/scripts/H55-Settings.lua");
 						for i, strTown in TTH_VARI.arrTown do
 							if iPlayer == GetObjectOwner(strTown) then
 								TTH_ARTI.bonusTown8Economic(iPlayer, strTown); -- 每日城镇军团宝物经济结算
+								TTH_SUPPORT.twx.increaseDwelling(strTown); -- 增加玩家城镇可招募生物数量@twx
 							end;
 						end;
 
@@ -20377,6 +20667,9 @@ doFile("/scripts/H55-Settings.lua");
 							TTH_MANAGE.giveDailyExp4Mayor(iPlayer, strHero); -- 每日内政官经验
 							TTH_MANAGE.giveDailyRecordPoint(iPlayer, strHero); -- 每日内政官政绩
 						end;
+
+					-- :TODO 每日玩家金币锁定
+						TTH_ECONOMIC.func.deal(iPlayer);
 
 					TTH_GLOBAL.refreshBankRestDay(iPlayer); -- :TODO 更新银行时间剩余时间
 					if TTH_MAP10W.init == nil then
@@ -20476,3 +20769,4 @@ doFile("/scripts/H55-Settings.lua");
 	doFile("/scripts/mod/TTH_MOD_CombatResults4LoseCreature.lua");
 	doFile("/scripts/mod/TTH_MOD_CombatResults4ReviveCreature.lua");
 	doFile("/scripts/support/hanqing-core.lua");
+	doFile("/scripts/support/twx-core.lua");

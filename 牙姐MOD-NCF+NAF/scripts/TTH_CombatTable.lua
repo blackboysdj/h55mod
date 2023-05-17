@@ -1424,7 +1424,7 @@
         if TTHCS_GLOBAL.checkCombatCreature(sidTarget) then
           startThread(TTHCS_THREAD.unitShoot, sidCaster, sidTarget);
           print(sidCaster.." shoot to "..sidTarget);
-          sleep(20);
+          sleep(80);
         end;
       end;
       function TTHCS_THREAD.shoot8Tool(iSide, iCreatureId, iCreatureNumber, sidTarget)

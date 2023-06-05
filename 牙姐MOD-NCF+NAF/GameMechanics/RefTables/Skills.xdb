@@ -8182,19 +8182,19 @@
 					<Item>
 						<Class>HERO_CLASS_SORCERER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_GATING_MASTERY</Item>
+							<Item>HERO_SKILL_CONSUME_CORPSE</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_GATE_KEEPER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_GATING_MASTERY</Item>
+							<Item>HERO_SKILL_CONSUME_CORPSE</Item>
 						</dependenciesIDs>
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_DEMON_LORD</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_GATING_MASTERY</Item>
+							<Item>HERO_SKILL_CONSUME_CORPSE</Item>
 						</dependenciesIDs>
 					</Item>
 				</SkillPrerequisites>
@@ -16993,9 +16993,9 @@
 					<Item>
 						<Class>HERO_CLASS_SORCERER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_CONSUME_CORPSE</Item>
-							<Item>HERO_SKILL_SET_AFIRE</Item>
-							<Item>HERO_SKILL_WISDOM</Item>
+							<Item>HERO_SKILL_CRITICAL_GATING</Item>
+							<Item>HERO_SKILL_INSIGHTS</Item>
+							<Item>HERO_SKILL_CHAOTIC_SPELLS</Item>
 						</dependenciesIDs>
 					</Item>
 				</SkillPrerequisites>

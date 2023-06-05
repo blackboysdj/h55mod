@@ -1298,7 +1298,7 @@ doFile("/scripts/H55-Settings.lua");
 				TTH_VARI.TerritoryRadius = 68;
 				function TTH_GLOBAL.initTerritoryRadius()
 					local iMapSize = GetTerrainSize();
-					TTH_VARI.TerritoryRadius = TTH_COMMON.round(iMapSize / 4 - 12);
+					TTH_VARI.TerritoryRadius = TTH_COMMON.round(sqrt(iMapSize) * 4 - 4);
 				end;
 
 			-- 初始化城镇列表
@@ -1393,7 +1393,7 @@ doFile("/scripts/H55-Settings.lua");
 
 					-- 初始化 女巫小屋
 						TTH_VARI.arrBuilding["BUILDING_WITCH_HUT"] = GetObjectNamesByType("BUILDING_WITCH_HUT");
-						TTH_GLOBAL.initWitchHut();
+						TTH_VISIT.witch.common.init();
 
 					-- 初始化 先知小屋
 						TTH_VARI.arrBuilding["BUILDING_MERMAIDS"] = GetObjectNamesByType("BUILDING_MERMAIDS");
@@ -1437,7 +1437,7 @@ doFile("/scripts/H55-Settings.lua");
 							TTH_COMMON.setTrigger2ObjectType("BUILDING_TRADING_POST", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitTradingPost", nil);
 
 						-- 女巫小屋
-							TTH_COMMON.setTrigger2ObjectType("BUILDING_WITCH_HUT", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitWitchHut", nil);
+							TTH_COMMON.setTrigger2ObjectType("BUILDING_WITCH_HUT", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.witch.visit.active", nil);
 
 						-- 先知小屋
 							TTH_COMMON.setTrigger2ObjectType("BUILDING_MERMAIDS", OBJECT_TOUCH_TRIGGER, "TTH_VISIT.visitMermaids", nil);
@@ -2309,17 +2309,20 @@ doFile("/scripts/H55-Settings.lua");
 					if enumHeroClass == TTH_ENUM.Sorcerer then
 						GiveHeroSkill(strHero, HERO_SKILL_GATING);
 						GiveHeroSkill(strHero, HERO_SKILL_GATING);
+						GiveHeroSkill(strHero, HERO_SKILL_GATING);
 						GiveHeroSkill(strHero, HERO_SKILL_SORCERY);
-						GiveHeroSkill(strHero, HERO_SKILL_DESTRUCTIVE_MAGIC);
-						GiveHeroSkill(strHero, HERO_SKILL_DESTRUCTIVE_MAGIC);
+						GiveHeroSkill(strHero, HERO_SKILL_SORCERY);
+						GiveHeroSkill(strHero, HERO_SKILL_LUCK);
 						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_CONSUME_CORPSE);
 						sleep(1);
+						GiveHeroSkill(strHero, HERO_SKILL_CRITICAL_GATING);
+						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_WISDOM);
 						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_MASTER_OF_FIRE);
+						GiveHeroSkill(strHero, HERO_SKILL_INSIGHTS);
 						sleep(1);
-						GiveHeroSkill(strHero, HERO_SKILL_SET_AFIRE);
+						GiveHeroSkill(strHero, HERO_SKILL_CHAOTIC_SPELLS);
 						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_ELEMENTAL_OVERKILL);
 					end;
@@ -2422,6 +2425,7 @@ doFile("/scripts/H55-Settings.lua");
 				end;
 				function TTH_GLOBAL.signStartSkill(iPlayer)
 					TTH_VARI.startSkill4Player[iPlayer] = TTH_ENUM.Yes;
+					TTH_VISIT.witch.data.bStartSkill[iPlayer] = TTH_ENUM.Yes;
 				end;
 				function TTH_GLOBAL.confirmStartSkill(iPlayer, strHero)
 					if TTH_TABLE.Hero[strHero] == nil then
@@ -2601,14 +2605,19 @@ doFile("/scripts/H55-Settings.lua");
 					SetTrigger(PLAYER_REMOVE_HERO_TRIGGER, iPlayer, "TTH_TRIGGER.playerRemoveHero");
 				end;
 
-			-- 绑定英雄自定义技能4 王国管理
-				function TTH_GLOBAL.bindHeroCustomAbility4Hero(strHero)
-					ControlHeroCustomAbility(strHero, CUSTOM_ABILITY_4, CUSTOM_ABILITY_ENABLED);
+			-- 绑定英雄自定义技能2 王国管理
+				function TTH_GLOBAL.bindHeroCustomAbility2Hero(strHero)
+					ControlHeroCustomAbility(strHero, CUSTOM_ABILITY_2, CUSTOM_ABILITY_ENABLED);
 				end;
 
 			-- 绑定英雄自定义技能3 定点回城
 				function TTH_GLOBAL.bindHeroCustomAbility3Hero(strHero)
 					ControlHeroCustomAbility(strHero, CUSTOM_ABILITY_3, CUSTOM_ABILITY_ENABLED);
+				end;
+
+			-- 绑定英雄自定义技能4 作弊功能
+				function TTH_GLOBAL.bindHeroCustomAbility4Hero(strHero)
+					ControlHeroCustomAbility(strHero, CUSTOM_ABILITY_4, CUSTOM_ABILITY_ENABLED);
 				end;
 
 		-- 组队
@@ -2624,7 +2633,7 @@ doFile("/scripts/H55-Settings.lua");
 						for i = 1, 8 do
 							if TTH_VARI.playerStatus[i] == 0 then
 								if GetPlayerHeroes(i)[0] ~= nil then
-									TTH_GLOBAL.bindHeroCustomAbility4Hero(GetPlayerHeroes(i)[0]); -- 触发器: 王国管理
+									TTH_GLOBAL.bindHeroCustomAbility2Hero(GetPlayerHeroes(i)[0]); -- 触发器: 王国管理
 									break;
 								end;
 							end;
@@ -3399,6 +3408,8 @@ doFile("/scripts/H55-Settings.lua");
 					, [35] = HERO_SKILL_UNSUMMON
 					, [36] = HERO_SKILL_ELVEN_LUCK
 					, [37] = HERO_SKILL_ELEMENTAL_BALANCE
+					, [38] = HERO_SKILL_INTELLIGENCE
+					, [39] = HERO_SKILL_CONSUME_CORPSE
 				};
 				TTH_TABLE.CombatSkill2Special = {
 					[0] = HERO_SKILL_PARIAH
@@ -4495,22 +4506,15 @@ doFile("/scripts/H55-Settings.lua");
 			-- 财政信息（控件）
 				-- <color=8B4513>================财政信息================
 				-- <color=yellow>理财支出:
-				-- <body_bright>是否开启<color=0099FF>招募指定英雄<body_bright>功能: <color=yellow><value=bEnableHireHero> <color=green><value=iPercentHireHero>‰
-				-- <body_bright>是否开启<color=0099FF>远程访问记忆导师<body_bright>功能: <color=yellow><value=bEnableVisitMemoryMentor> <color=green><value=iPercentVisitMemoryMentor>‰
-				-- <body_bright>远征中的内政官数量: <color=yellow><value=iCountMayorExpedition> <body_bright>位 <color=green><value=iPercentMayorExpedition>‰
-				-- <body_bright>降临版 <color=yellow>8<body_bright> 级生物数量: <color=yellow><value=iCountCreatureLv8Low> <body_bright>单位 <color=green><value=iPercentCreatureLv8Low>‰
-				-- <body_bright>完全体 <color=yellow>8<body_bright> 级生物数量: <color=yellow><value=iCountCreatureLv8High> <body_bright>单位 <color=green><value=iPercentCreatureLv8High>‰
+				-- <body_bright>远征中的内政官数量: <color=yellow><value=iCountMayorExpedition> <body_bright>位 <color=green><value=iPercentMayorExpedition>%
+				-- <body_bright>降临版 <color=yellow>8<body_bright> 级生物数量: <color=yellow><value=iCountCreatureLv8Low> <body_bright>单位 <color=green><value=iPercentCreatureLv8Low>%
+				-- <body_bright>完全体 <color=yellow>8<body_bright> 级生物数量: <color=yellow><value=iCountCreatureLv8High> <body_bright>单位 <color=green><value=iPercentCreatureLv8High>%
 				-- <color=yellow>理财收益:
-				-- <body_bright>已习得<color=0099FF>理财术<body_bright>的英雄数量: <color=yellow><value=iCountPerkEstates> <body_bright>位 <color=red><value=iPercentPerkEstates>‰
-				-- <body_bright>己方城镇总<color=0099FF>市场<body_bright>等级: <color=yellow><value=iCountTownMarket> <body_bright>座 <color=red><value=iPercentTownMarket>‰
-				-- <body_bright>已占领<color=0099FF>交易站<body_bright>数量: <color=yellow><value=iCountTradingPost> <body_bright>座 <color=red><value=iPercentTradingPost>‰
-				-- <body_bright>是否招募<color=ff0033>杰诺娃<body_bright>: <color=yellow><value=bHasJenova> <color=red><value=iPercentHireJenova>‰
-				-- <color=yellow>理财汇总: 每日<color=0099FF>黄金<body_bright>收益 <color=yellow><value=iPercentTotal>‰
+				-- <body_bright>已习得<color=0099FF>理财术<body_bright>的英雄数量: <color=yellow><value=iCountPerkEstates> <body_bright>位 <color=red><value=iPercentPerkEstates>%
+				-- <body_bright>己方城镇<color=0099FF>资源仓库<body_bright>数量: <color=yellow><value=iCountTownMarket> <body_bright>座 <color=red><value=iPercentTownMarket>%
+				-- <body_bright>已占领<color=0099FF>交易站<body_bright>数量: <color=yellow><value=iCountTradingPost> <body_bright>座 <color=red><value=iPercentTradingPost>%
+				-- <color=yellow>理财汇总: 每日<color=0099FF>黄金<body_bright>收益 <color=yellow><value=iPercentTotal>%
 				function TTH_GLOBAL.geneWidgetEconomic(iPlayer, strHero)
-					local bEnableHireHero = TTH_PATH.Switch[TTH_ECONOMIC.func.enableHireHero(iPlayer)];
-					local iPercentHireHero = TTH_ECONOMIC.func.calcHireHero(iPlayer);
-					local bEnableVisitMemoryMentor = TTH_PATH.Switch[TTH_ECONOMIC.func.enableVisitMemoryMentor(iPlayer)];
-					local iPercentVisitMemoryMentor = TTH_ECONOMIC.func.calcVisitMemoryMentor(iPlayer);
 					local iCountMayorExpedition = TTH_ECONOMIC.func.getCountHeroExpedition(iPlayer);
 					local iPercentMayorExpedition = TTH_ECONOMIC.func.calcHeroExpedition(iPlayer);
 					local iCountCreatureLv8Low = TTH_ECONOMIC.func.getCountCreatureLv8Low(iPlayer);
@@ -4523,18 +4527,12 @@ doFile("/scripts/H55-Settings.lua");
 					local iPercentTownMarket = TTH_ECONOMIC.func.calcTownMarket(iPlayer);
 					local iCountTradingPost = TTH_ECONOMIC.func.getCountTradingPost(iPlayer);
 					local iPercentTradingPost = TTH_ECONOMIC.func.calcTradingPost(iPlayer);
-					local bHasJenova = TTH_PATH.Switch[TTH_ECONOMIC.func.hasJenova(iPlayer)];
-					local iPercentHireJenova = TTH_ECONOMIC.func.calcBonusJenova(iPlayer);
-					local iPercentTotal = iPercentHireHero + iPercentVisitMemoryMentor + iPercentMayorExpedition + iPercentCreatureLv8Low + iPercentCreatureLv8High
-					 + iPercentPerkEstates + iPercentTownMarket + iPercentTradingPost + iPercentHireJenova;
+					local iPercentTotal = iPercentMayorExpedition + iPercentCreatureLv8Low + iPercentCreatureLv8High
+					 + iPercentPerkEstates + iPercentTownMarket + iPercentTradingPost;
 
 					local strPath = {
 						TTH_TABLE.KingManagePath["Widget"]["Economic"]["Text"]
-						;bEnableHireHero=bEnableHireHero
-						,iPercentHireHero=iPercentHireHero
-						,bEnableVisitMemoryMentor=bEnableVisitMemoryMentor
-						,iPercentVisitMemoryMentor=iPercentVisitMemoryMentor
-						,iCountMayorExpedition=iCountMayorExpedition
+						;iCountMayorExpedition=iCountMayorExpedition
 						,iPercentMayorExpedition=iPercentMayorExpedition
 						,iCountCreatureLv8Low=iCountCreatureLv8Low
 						,iPercentCreatureLv8Low=iPercentCreatureLv8Low
@@ -4546,8 +4544,6 @@ doFile("/scripts/H55-Settings.lua");
 						,iPercentTownMarket=iPercentTownMarket
 						,iCountTradingPost=iCountTradingPost
 						,iPercentTradingPost=iPercentTradingPost
-						,bHasJenova=bHasJenova
-						,iPercentHireJenova=iPercentHireJenova
 						,iPercentTotal=iPercentTotal
 					};
 					return strPath;
@@ -4899,113 +4895,79 @@ doFile("/scripts/H55-Settings.lua");
 				end;
 
 		-- 女巫小屋
-			TTH_ENUM.WitchHutFixed = 1;
-			TTH_ENUM.WitchHutBonus = 2;
-			TTH_ENUM.WitchHutArtifact = 3;
-			TTH_VARI.recordBuildingName = {};
-			TTH_VARI.recordWitchHut = {};
-			TTH_VARI.recordTop3WitchHutHumanVisit = {};
-			TTH_FINAL.WITCHHUT_RESET_DAY = 14;
-			TTH_FINAL.WITCHHUT_BONUS_GOLD_COST = 5000;
-			TTH_FINAL.WITCHHUT_ARTIFACT_GOLD_COST = 30000;
-			TTH_TABLE.WitchHutMasteryGroupMight = {
-				["Class"] = {
-					TTH_ENUM.Knight
-					, TTH_ENUM.Paladin
-					, TTH_ENUM.Retribution
-					, TTH_ENUM.Ranger
-					, TTH_ENUM.Warden
-					, TTH_ENUM.GuildMaster
-					, TTH_ENUM.DemonLord
-					, TTH_ENUM.GateKeeper
-					, TTH_ENUM.DeathKnight
-					, TTH_ENUM.Reaver
-					, TTH_ENUM.Engineer
-					, TTH_ENUM.Flamekeepera
-					, TTH_ENUM.BeastMaster
-				}
-				, ["Mastery"] = {
-				  HERO_SKILL_LOGISTICS
-				  , HERO_SKILL_LEARNING
-				  , HERO_SKILL_OFFENCE
-				  , HERO_SKILL_DEFENCE
-				  , HERO_SKILL_LEADERSHIP
-				  , HERO_SKILL_LUCK
-				  , HERO_SKILL_WAR_MACHINES
-				  , HERO_SKILL_LIGHT_MAGIC
-				  , HERO_SKILL_DARK_MAGIC
-				  , HERO_SKILL_SUMMONING_MAGIC
-				  , HERO_SKILL_DESTRUCTIVE_MAGIC
-				  , HERO_SKILL_SORCERY
-				}
+			TTH_VISIT.witch = {};
+			TTH_VISIT.witch.enum = {};
+			TTH_VISIT.witch.enum.fixed = 1;
+			TTH_VISIT.witch.enum.choose = 1;
+			TTH_VISIT.witch.enum.bonus = 2;
+			TTH_VISIT.witch.enum.race = 3;
+			TTH_VISIT.witch.enum.artifact = 4;
+			TTH_VISIT.witch.data = {};
+			TTH_VISIT.witch.data.bStartSkill = {};
+			TTH_VISIT.witch.data.strCurrentVisit = "";
+			TTH_VISIT.witch.data.recordBuilding = {};
+			TTH_VISIT.witch.data.arrMastery4NotBarbarian = {
+			  [0] = HERO_SKILL_LOGISTICS
+			  , [1] = HERO_SKILL_LEARNING
+			  , [2] = HERO_SKILL_OFFENCE
+			  , [3] = HERO_SKILL_DEFENCE
+			  , [4] = HERO_SKILL_LEADERSHIP
+			  , [5] = HERO_SKILL_LUCK
+			  , [6] = HERO_SKILL_WAR_MACHINES
+			  , [7] = HERO_SKILL_LIGHT_MAGIC
+			  , [8] = HERO_SKILL_DARK_MAGIC
+			  , [9] = HERO_SKILL_SUMMONING_MAGIC
+			  , [10] = HERO_SKILL_DESTRUCTIVE_MAGIC
+			  , [11] = HERO_SKILL_SORCERY
 			};
-			TTH_TABLE.WitchHutMasteryGroupMagic = {
-				["Class"] = {
-					TTH_ENUM.Heretic
-					, TTH_ENUM.Enchanter
-					, TTH_ENUM.Wizard
-					, TTH_ENUM.ElementAlist
-					, TTH_ENUM.Sorcerer
-					, TTH_ENUM.Necromancer
-					, TTH_ENUM.Runemage
-					, TTH_ENUM.Seer
-					, TTH_ENUM.Warlock
-				}
-				, ["Mastery"] = {
-				  HERO_SKILL_LOGISTICS
-				  , HERO_SKILL_LEARNING
-				  , HERO_SKILL_OFFENCE
-				  , HERO_SKILL_DEFENCE
-				  , HERO_SKILL_LEADERSHIP
-				  , HERO_SKILL_LUCK
-				  , HERO_SKILL_WAR_MACHINES
-				  , HERO_SKILL_LIGHT_MAGIC
-				  , HERO_SKILL_DARK_MAGIC
-				  , HERO_SKILL_SUMMONING_MAGIC
-				  , HERO_SKILL_DESTRUCTIVE_MAGIC
-				  , HERO_SKILL_SORCERY
-				}
+			TTH_VISIT.witch.data.arrMastery4Barbarian = {
+			  [0] = HERO_SKILL_LOGISTICS
+			  , [1] = HERO_SKILL_BARBARIAN_LEARNING
+			  , [2] = HERO_SKILL_OFFENCE
+			  , [3] = HERO_SKILL_DEFENCE
+			  , [4] = HERO_SKILL_LEADERSHIP
+			  , [5] = HERO_SKILL_LUCK
+			  , [6] = HERO_SKILL_WAR_MACHINES
+			  , [7] = HERO_SKILL_SHATTER_LIGHT_MAGIC
+			  , [8] = HERO_SKILL_SHATTER_DARK_MAGIC
+			  , [9] = HERO_SKILL_SHATTER_SUMMONING_MAGIC
+			  , [10] = HERO_SKILL_SHATTER_DESTRUCTIVE_MAGIC
+			  , [11] = HERO_SKILL_VOICE
 			};
-			TTH_TABLE.WitchHutMasteryGroupBarbarian = {
-				["Class"] = {
-					TTH_ENUM.Barbarian
-				}
-				, ["Mastery"] = {
-				  HERO_SKILL_LOGISTICS
-				  , HERO_SKILL_BARBARIAN_LEARNING
-				  , HERO_SKILL_OFFENCE
-				  , HERO_SKILL_DEFENCE
-				  , HERO_SKILL_LEADERSHIP
-				  , HERO_SKILL_LUCK
-				  , HERO_SKILL_WAR_MACHINES
-				  , HERO_SKILL_SHATTER_LIGHT_MAGIC
-				  , HERO_SKILL_SHATTER_DARK_MAGIC
-				  , HERO_SKILL_SHATTER_SUMMONING_MAGIC
-				  , HERO_SKILL_SHATTER_DESTRUCTIVE_MAGIC
-				  , HERO_SKILL_VOICE
-				}
-			};
-			TTH_TABLE.WitchHutTypeOption = {
+			TTH_VISIT.witch.data.option = {
 				[1] = {
-					["Id"] = TTH_ENUM.WitchHutFixed
+					["Id"] = TTH_VISIT.witch.enum.fixed
 					, ["Text"] = TTH_PATH.Visit["WitchHut"]["Fixed"]["Option"]
-					, ["Callback"] = "TTH_VISIT.visitWitchHut2Fixed"
+					, ["Callback"] = "TTH_VISIT.witch.fixed.check"
 				}
 				, [2] = {
-					["Id"] = TTH_ENUM.WitchHutBonus
+					["Id"] = TTH_VISIT.witch.enum.bonus
 					, ["Text"] = TTH_PATH.Visit["WitchHut"]["Bonus"]["Option"]
-					, ["Callback"] = "TTH_VISIT.visitWitchHut2Bonus"
+					, ["Callback"] = "TTH_VISIT.witch.bonus.check"
 				}
 				, [3] = {
-					["Id"] = TTH_ENUM.WitchHutArtifact
+					["Id"] = TTH_VISIT.witch.enum.race
+					, ["Text"] = TTH_PATH.Visit["WitchHut"]["Race"]["Option"]
+					, ["Callback"] = "TTH_VISIT.witch.race.check"
+				}
+				, [4] = {
+					["Id"] = TTH_VISIT.witch.enum.artifact
 					, ["Text"] = TTH_PATH.Visit["WitchHut"]["Artifact"]["Option"]
-					, ["Callback"] = "TTH_VISIT.visitWitchHut2Artifact"
+					, ["Callback"] = "TTH_VISIT.witch.pedant.check"
 				}
 			};
-			function TTH_GLOBAL.initWitchHut(iPlayer, strHero)
+			TTH_VISIT.witch.final = {};
+			TTH_VISIT.witch.final.resetDay = 14;
+			TTH_VISIT.witch.final.costFixed = 0;
+			TTH_VISIT.witch.final.costBonus = 5000;
+			TTH_VISIT.witch.final.costRace = 10000;
+			TTH_VISIT.witch.final.costPedant = 30000;
+			TTH_VISIT.witch.common = {};
+			TTH_VISIT.witch.common.init = function(iPlayer, strHero)
+				print("TTH_VISIT.witch.common.init")
 				for i, strBuildingName in TTH_VARI.arrBuilding["BUILDING_WITCH_HUT"] do
-					TTH_VARI.recordWitchHut[strBuildingName] = {
-						["MasteryId"] = random(12) + 1
+					TTH_VISIT.witch.data.recordBuilding[strBuildingName] = {
+						["Index"] = random(13)
 						, ["ResetDay"] = 0
 					}
 					for iPlayer = PLAYER_1, PLAYER_8 do
@@ -5015,273 +4977,366 @@ doFile("/scripts/H55-Settings.lua");
 					end;
 				end;
 			end;
-			function TTH_GLOBAL.getMasteryId4WitchHut(strHero, iWitchHutMasteryId)
-				local iMasteryId = TTH_TABLE.WitchHutMasteryGroupMight["Mastery"][iWitchHutMasteryId];
-				if TTH_TABLE.Hero[strHero] == nil then
-					return iMasteryId;
+			TTH_VISIT.witch.common.countMastery = function(iPlayer, strHero)
+				print("TTH_VISIT.witch.common.countMastery")
+				local iCount = 0;
+				for i, itemMastery in TTH_TABLE.Mastery do
+					local iMasteryId = itemMastery["Id"];
+					if GetHeroSkillMastery(strHero, iMasteryId) > 0 then
+						iCount = iCount + 1;
+					end;
 				end;
+				return iCount;
+			end;
+			TTH_VISIT.witch.common.canStudyMastery = function(iPlayer, strHero, iMasteryId)
+				print("TTH_VISIT.witch.common.canStudyMastery")
+				local bCanStudy = not nil;
+				if GetHeroSkillMastery(strHero, iMasteryId) == 3
+					or (
+						TTH_VISIT.witch.common.countMastery(iPlayer, strHero) == 8
+						and GetHeroSkillMastery(strHero, iMasteryId) == 0
+					) then
+					bCanStudy = nil;
+				end;
+				return bCanStudy;
+			end;
+			TTH_VISIT.witch.common.getMasteryId = function(iPlayer, strHero, strBuildingName)
+				print("TTH_VISIT.witch.common.getMasteryId")
+				local iIndex = TTH_VISIT.witch.data.recordBuilding[strBuildingName]["Index"];
 				local enumHeroClass = TTH_TABLE.Hero[strHero]["Class"];
-				if contains(TTH_TABLE.WitchHutMasteryGroupMight["Class"], enumHeroClass) ~= nil then
-					iMasteryId = TTH_TABLE.WitchHutMasteryGroupMight["Mastery"][iWitchHutMasteryId];
-				elseif contains(TTH_TABLE.WitchHutMasteryGroupMagic["Class"], enumHeroClass) ~= nil then
-					iMasteryId = TTH_TABLE.WitchHutMasteryGroupMagic["Mastery"][iWitchHutMasteryId];
-				elseif contains(TTH_TABLE.WitchHutMasteryGroupBarbarian["Class"], enumHeroClass) ~= nil then
-					iMasteryId = TTH_TABLE.WitchHutMasteryGroupBarbarian["Mastery"][iWitchHutMasteryId];
+				local iMasteryId = TTH_VISIT.witch.data.arrMastery4NotBarbarian[iIndex];
+				if enumHeroClass == TTH_ENUM.Barbarian then
+					iMasteryId = TTH_VISIT.witch.data.arrMastery4Barbarian[iIndex];
 				end;
 				return iMasteryId;
 			end;
-			function TTH_VISIT.visitWitchHut(strHero, strBuildingName)
-				TTH_COMMON.initNavi(TTH_PATH.Visit["WitchHut"]["Text"]);
-
-				local funcCallback = "TTH_VISIT.visitWitchHut";
-				if TTH_MAP10W.init ~= nil then
-					TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
-					return nil;
-				end;
-				MarkObjectAsVisited(strBuildingName, strHero);
-				local iPlayer = GetObjectOwner(strHero);
-				if TTH_GLOBAL.isAi(iPlayer) == TTH_ENUM.Yes then
-					print("AI Player: "..iPlayer.." Visits Witch Hut");
-					TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
-				else
-					TTH_VISIT.checkPreWitchHut4HasLeave(iPlayer, strHero, strBuildingName);
-				end;
-			end;
-			function TTH_VISIT.checkPreWitchHut4HasLeave(iPlayer, strHero, strBuildingName)
-				if TTH_VARI.recordWitchHut[strBuildingName]["ResetDay"] > 0 then
-					local strPathMain = TTH_PATH.Visit["WitchHut"]["HasLeave"];
-					TTH_GLOBAL.sign(strHero, strPathMain);
-					return nil;
-				end;
-
-				TTH_VISIT.configureWitchHut4Top3(iPlayer, strHero, strBuildingName);
-			end;
-			function TTH_VISIT.configureWitchHut4Top3(iPlayer, strHero, strBuildingName)
-				if length(TTH_VARI.recordTop3WitchHutHumanVisit) == 0 then
-					if contains(TTH_VARI.recordTop3WitchHutHumanVisit, strBuildingName) == nil then
-						TTH_COMMON.push(TTH_VARI.recordTop3WitchHutHumanVisit, strBuildingName);
-						if H55_Witch_1_1 ~= 0 and H55_Witch_1_1 < 13 then
-							TTH_VARI.recordWitchHut[strBuildingName]["MasteryId"] = H55_Witch_1_1;
-						end;
-					end;
-				end;
-				if length(TTH_VARI.recordTop3WitchHutHumanVisit) == 1 then
-					if contains(TTH_VARI.recordTop3WitchHutHumanVisit, strBuildingName) == nil then
-						TTH_COMMON.push(TTH_VARI.recordTop3WitchHutHumanVisit, strBuildingName);
-						if H55_Witch_2_1 ~= 0 and H55_Witch_2_1 < 13 then
-							TTH_VARI.recordWitchHut[strBuildingName]["MasteryId"] = H55_Witch_2_1;
-						end;
-					end;
-				end;
-				if length(TTH_VARI.recordTop3WitchHutHumanVisit) == 2 then
-					if contains(TTH_VARI.recordTop3WitchHutHumanVisit, strBuildingName) == nil then
-						TTH_COMMON.push(TTH_VARI.recordTop3WitchHutHumanVisit, strBuildingName);
-						if H55_Witch_3_1 ~= 0 and H55_Witch_3_1 < 13 then
-							TTH_VARI.recordWitchHut[strBuildingName]["MasteryId"] = H55_Witch_3_1;
-						end;
-					end;
-				end;
-
-				local iWitchHutMasteryId = TTH_VARI.recordWitchHut[strBuildingName]["MasteryId"];
-				OverrideObjectTooltipNameAndDescription(strBuildingName, TTH_PATH.Visit["WitchHut"]["Title"], TTH_PATH.Visit["WitchHut"]["Mastery"][iWitchHutMasteryId]);
-
-				TTH_VISIT.radioWitchHut4Type(iPlayer, strHero, strBuildingName);
-			end;
-			function TTH_VISIT.radioWitchHut4Type(iPlayer, strHero, strBuildingName)
-				TTH_VARI.recordBuildingName = strBuildingName;
-				local iWitchHutMasteryId = TTH_VARI.recordWitchHut[strBuildingName]["MasteryId"];
-				local iMasteryId = TTH_GLOBAL.getMasteryId4WitchHut(strHero, iWitchHutMasteryId);
-				local strMasteryName = TTH_TABLE.Mastery[iMasteryId]["Text"];
-				TTH_TABLE.WitchHutTypeOption[1]["Text"] = {
-					TTH_PATH.Visit["WitchHut"]["Fixed"]["Option"]
-					;strMasteryName=strMasteryName
-				}
-				TTH_COMMON.optionRadio(iPlayer, strHero, TTH_TABLE.WitchHutTypeOption, TTH_PATH.Visit["WitchHut"]["RadioTips"]);
-			end;
-			function TTH_VISIT.resetWitchHut(strHero, strBuildingName)
-				TTH_VARI.recordWitchHut[strBuildingName] = {
-					["MasteryId"] = random(12) + 1
-					, ["ResetDay"] = TTH_FINAL.WITCHHUT_RESET_DAY
+			TTH_VISIT.witch.common.leave = function(iPlayer, strHero, strBuildingName)
+				print("TTH_VISIT.witch.common.leave")
+				local strBuildingName = TTH_VISIT.witch.data.strCurrentVisit;
+				TTH_VISIT.witch.data.recordBuilding[strBuildingName] = {
+					["Index"] = random(length(TTH_VISIT.witch.data.arrMastery4NotBarbarian))
+					, ["ResetDay"] = TTH_VISIT.witch.final.resetDay
 				};
-				local strPathMain = TTH_PATH.Visit["WitchHut"]["Success"];
-				TTH_GLOBAL.sign(strHero, strPathMain);
+				local strText = TTH_PATH.Visit["WitchHut"]["Success"];
+				TTH_GLOBAL.sign(strHero, strText);
 				OverrideObjectTooltipNameAndDescription(strBuildingName, TTH_PATH.Visit["WitchHut"]["Title"], TTH_PATH.Visit["WitchHut"]["Reset"][6]);
 			end;
-			function TTH_VISIT.refreshWitchHut(iPlayer)
-				TTH_MAIN.debug("TTH_VISIT.refreshWitchHut", iPlayer, nil);
+			TTH_VISIT.witch.common.dealDaily = function(iPlayer)
+				print("TTH_VISIT.witch.common.dealDaily")
+				TTH_MAIN.debug("TTH_VISIT.witch.common.dealDaily", iPlayer, nil);
 
 				for i, strBuildingName in TTH_VARI.arrBuilding["BUILDING_WITCH_HUT"] do
-					local iResetDay = TTH_VARI.recordWitchHut[strBuildingName]["ResetDay"];
+					local iResetDay = TTH_VISIT.witch.data.recordBuilding[strBuildingName]["ResetDay"];
 					if iResetDay > 0 then
 						iResetDay = iResetDay - 1;
-						TTH_VARI.recordWitchHut[strBuildingName]["ResetDay"] = iResetDay;
+						TTH_VISIT.witch.data.recordBuilding[strBuildingName]["ResetDay"] = iResetDay;
 					end;
 					if iResetDay > 0 and iResetDay <= 5 then
 						OverrideObjectTooltipNameAndDescription(strBuildingName, TTH_PATH.Visit["WitchHut"]["Title"], TTH_PATH.Visit["WitchHut"]["Reset"][iResetDay]);
 					elseif iResetDay > 5 then
 						OverrideObjectTooltipNameAndDescription(strBuildingName, TTH_PATH.Visit["WitchHut"]["Title"], TTH_PATH.Visit["WitchHut"]["Reset"][6]);
 					else
-						local iMasteryId = TTH_VARI.recordWitchHut[strBuildingName]["MasteryId"];
-						OverrideObjectTooltipNameAndDescription(strBuildingName, TTH_PATH.Visit["WitchHut"]["Title"], TTH_PATH.Visit["WitchHut"]["Mastery"][iMasteryId]);
+						local iIndex = TTH_VISIT.witch.data.recordBuilding[strBuildingName]["Index"];
+						OverrideObjectTooltipNameAndDescription(strBuildingName, TTH_PATH.Visit["WitchHut"]["Title"], TTH_PATH.Visit["WitchHut"]["Mastery"][iIndex]);
 					end;
 				end;
 			end;
-			-- 固定技能
-				function TTH_VISIT.visitWitchHut2Fixed(iPlayer, strHero)
-					TTH_VISIT.checkPreWitchHut2Fixed4NotEnoughSlot(iPlayer, strHero);
-				end;
-				function TTH_VISIT.checkPreWitchHut2Fixed4NotEnoughSlot(iPlayer, strHero)
-					if TTH_TABLE.Hero[strHero] == nil then
-						return nil;
-					end;
-					local enumHeroClass = TTH_TABLE.Hero[strHero]["Class"];
-					local arrMastery = {};
-					if contains(TTH_TABLE.WitchHutMasteryGroupMight["Class"], enumHeroClass) ~= nil then
-						arrMastery = TTH_TABLE.WitchHutMasteryGroupMight["Mastery"];
-					elseif contains(TTH_TABLE.WitchHutMasteryGroupMagic["Class"], enumHeroClass) ~= nil then
-						arrMastery = TTH_TABLE.WitchHutMasteryGroupMagic["Mastery"];
-					elseif contains(TTH_TABLE.WitchHutMasteryGroupBarbarian["Class"], enumHeroClass) ~= nil then
-						arrMastery = TTH_TABLE.WitchHutMasteryGroupBarbarian["Mastery"];
-					end;
-					local iCountMastery = 0;
-					local bExistSuitableMastery = 0;
-					local iWitchHutMasteryId = TTH_VARI.recordWitchHut[TTH_VARI.recordBuildingName]["MasteryId"];
-					local iSuitableMasteryId = TTH_GLOBAL.getMasteryId4WitchHut(strHero, iWitchHutMasteryId);
-					for iIndexId, iMasteryId in arrMastery do
-						if GetHeroSkillMastery(strHero, iMasteryId) > 0 then
-							iCountMastery = iCountMastery + 1;
-						end;
-						if GetHeroSkillMastery(strHero, iSuitableMasteryId) > 0 and GetHeroSkillMastery(strHero, iSuitableMasteryId) <= 2 then
-							bExistSuitableMastery = 1;
-						end;
-					end;
-					if iCountMastery == 8 and bExistSuitableMastery == 0 then
-						local strPathMain = TTH_PATH.Visit["WitchHut"]["Fixed"]["NotEnoughSlot"];
-						TTH_GLOBAL.sign(strHero, strPathMain);
-						return nil;
-					end;
+			TTH_VISIT.witch.visit = {};
+			TTH_VISIT.witch.visit.active = function(strHero, strBuildingName)
+				print("TTH_VISIT.witch.visit.active")
+				TTH_COMMON.initNavi(TTH_PATH.Visit["WitchHut"]["Text"]);
 
-					TTH_VISIT.confirmWitchHut2Fixed(iPlayer, strHero);
+				if TTH_TABLE.Hero[strHero] == nil then
+					return nil;
 				end;
-				function TTH_VISIT.confirmWitchHut2Fixed(iPlayer, strHero)
-					local iWitchHutMasteryId = TTH_VARI.recordWitchHut[TTH_VARI.recordBuildingName]["MasteryId"];
-					local iMasteryId = TTH_GLOBAL.getMasteryId4WitchHut(strHero, iWitchHutMasteryId);
-					local strMasteryName = TTH_TABLE.Mastery[iMasteryId]["Text"];
-					local strText = {
-						TTH_PATH.Visit["WitchHut"]["Fixed"]["Confirm"]
-						;strMasteryName=strMasteryName
+				local funcCallback = "TTH_VISIT.witch.visit.active";
+				if TTH_MAP10W.init ~= nil then
+					TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
+					return nil;
+				end;
+				TTH_VISIT.witch.data.strCurrentVisit = strBuildingName;
+				MarkObjectAsVisited(strBuildingName, strHero);
+				local iPlayer = GetObjectOwner(strHero);
+				if TTH_GLOBAL.isAi(iPlayer) == TTH_ENUM.Yes then
+					print("AI Player: "..iPlayer.." Visits Witch Hut");
+					TTH_VISIT.visitBuildingWithoutScript(strHero, strBuildingName, funcCallback);
+				else
+					TTH_VISIT.witch.visit.check(iPlayer, strHero, strBuildingName);
+				end;
+			end;
+			TTH_VISIT.witch.visit.check = function(iPlayer, strHero, strBuildingName)
+				print("TTH_VISIT.witch.visit.check")
+				if TTH_VISIT.witch.data.recordBuilding[strBuildingName]["ResetDay"] > 0 then
+					local strText = TTH_PATH.Visit["WitchHut"]["HasLeave"];
+					TTH_GLOBAL.sign(strHero, strText);
+					return nil;
+				end;
+
+				TTH_VISIT.witch.visit.radio(iPlayer, strHero, strBuildingName);
+			end;
+			TTH_VISIT.witch.visit.radio = function(iPlayer, strHero, strBuildingName)
+				print("TTH_VISIT.witch.visit.radio")
+				if TTH_VISIT.witch.data.bStartSkill[iPlayer] == TTH_ENUM.Yes then
+					TTH_VISIT.witch.data.option[1] = {
+						["Id"] = TTH_VISIT.witch.enum.choose
+						, ["Text"] = TTH_PATH.Visit["WitchHut"]["Choose"]["Option"]
+						, ["Callback"] = "TTH_VISIT.witch.choose.check"
 					};
-					local strCallbackOk = "TTH_VISIT.implWitchHut2Fixed("..iPlayer..","..TTH_COMMON.psp(strHero)..")";
-					local strCallbackCancel = "TTH_COMMON.cancelOption()";
-					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strText, strCallbackOk, strCallbackCancel);
-				end;
-				function TTH_VISIT.implWitchHut2Fixed(iPlayer, strHero)
-					local iWitchHutMasteryId = TTH_VARI.recordWitchHut[TTH_VARI.recordBuildingName]["MasteryId"];
-					local iMasteryId = TTH_GLOBAL.getMasteryId4WitchHut(strHero, iWitchHutMasteryId);
-					local strMasteryName = TTH_TABLE.Mastery[iMasteryId]["Text"];
-					GiveHeroSkill(strHero, iMasteryId);
-					sleep(1);
-					TTH_GLOBAL.dealSkillBonus8Hero(strHero); -- 英雄技能效果实装
-					local strPathMain = {
-						TTH_PATH.Visit["WitchHut"]["Fixed"]["Success"]
-						;strMasteryName=strMasteryName
-					}
-					TTH_GLOBAL.sign(strHero, strPathMain);
-					TTH_VISIT.resetWitchHut(strHero, TTH_VARI.recordBuildingName);
-				end;
-			-- 提升技能
-				function TTH_VISIT.visitWitchHut2Bonus(iPlayer, strHero)
-					TTH_VISIT.checkPreWitchHut2Bonus4NotEnoughSlot(iPlayer, strHero);
-				end;
-				function TTH_VISIT.checkPreWitchHut2Bonus4NotEnoughSlot(iPlayer, strHero)
-					local arrMasteryOption = {};
-					local i = 1;
-					local iCountMastery = 0;
-					if TTH_TABLE.Hero[strHero] == nil then
-						return nil;
-					end;
-					local enumHeroClass = TTH_TABLE.Hero[strHero]["Class"];
-					for iMasteryId, objMastery in TTH_TABLE.Mastery do
-						if GetHeroSkillMastery(strHero, iMasteryId) > 0	and GetHeroSkillMastery(strHero, iMasteryId) <= 2 then
-							arrMasteryOption[i] = {
-								["Id"] = iMasteryId
-								, ["Text"] = objMastery["Text"]
-								, ["Callback"] = "TTH_VISIT.checkPreWitchHut2Bonus4NotEnoughGold"
-							};
-							i = i + 1;
-						end;
-					end;
-
-					if arrMasteryOption == nil
-						or length(arrMasteryOption) == 0 then
-						local strText = TTH_PATH.Visit["WitchHut"]["Bonus"]["NotOptionMastery"]
-						TTH_GLOBAL.sign(strHero, strText);
-						return nil;
-					end;
-					TTH_COMMON.optionRadio(iPlayer, strHero, arrMasteryOption, TTH_PATH.Visit["WitchHut"]["Bonus"]["RadioTipsMastery"]);
-				end;
-				function TTH_VISIT.checkPreWitchHut2Bonus4NotEnoughGold(iPlayer, strHero, iMasteryId)
-					if GetPlayerResource(iPlayer, GOLD) < TTH_FINAL.WITCHHUT_BONUS_GOLD_COST then
-						local strPathMain = TTH_PATH.Visit["WitchHut"]["Bonus"]["NotEnoughGold"];
-						TTH_GLOBAL.sign(strHero, strPathMain);
-						return nil;
-					end;
-
-					TTH_VISIT.confirmWitchHut2Bonus(iPlayer, strHero, iMasteryId);
-				end;
-				function TTH_VISIT.confirmWitchHut2Bonus(iPlayer, strHero, iMasteryId)
-					local strMasteryName = TTH_TABLE.Mastery[iMasteryId]["Text"];
-					local strText = {
-						TTH_PATH.Visit["WitchHut"]["Bonus"]["Confirm"]
-						;strMasteryName=strMasteryName
+				else
+					local iFixedMasteryId = TTH_VISIT.witch.common.getMasteryId(iPlayer, strHero, strBuildingName);
+					local strFixedMasteryName = TTH_TABLE.Mastery[iFixedMasteryId]["Text"];
+					TTH_VISIT.witch.data.option[1] = {
+						["Id"] = TTH_VISIT.witch.enum.fixed
+						, ["Text"] = {
+							TTH_PATH.Visit["WitchHut"]["Fixed"]["Option"]
+							;strMasteryName=strFixedMasteryName
+						}
+						, ["Callback"] = "TTH_VISIT.witch.fixed.check"
 					};
-					local strCallbackOk = "TTH_VISIT.implWitchHut2Bonus("..iPlayer..","..TTH_COMMON.psp(strHero)..","..iMasteryId..")";
-					local strCallbackCancel = "TTH_COMMON.cancelOption()";
-					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strText, strCallbackOk, strCallbackCancel);
 				end;
-				function TTH_VISIT.implWitchHut2Bonus(iPlayer, strHero, iMasteryId)
-					TTH_GLOBAL.reduceResource(iPlayer, GOLD, TTH_FINAL.WITCHHUT_BONUS_GOLD_COST);
-					local strMasteryName = TTH_TABLE.Mastery[iMasteryId]["Text"];
-					GiveHeroSkill(strHero, iMasteryId);
-					sleep(1);
-					TTH_GLOBAL.dealSkillBonus8Hero(strHero); -- 英雄技能效果实装
-					local strPathMain = {
-						TTH_PATH.Visit["WitchHut"]["Bonus"]["Success"]
+				local iRaceMasteryId = TTH_TABLE.Hero[strHero]["Mastery"];
+				local strRaceMasteryName = TTH_TABLE.Mastery[iRaceMasteryId]["Text"];
+				TTH_VISIT.witch.data.option[3]["Text"] = {
+					TTH_PATH.Visit["WitchHut"]["Race"]["Option"]
+					;strMasteryName=strRaceMasteryName
+				}
+				TTH_COMMON.optionRadio(iPlayer, strHero, TTH_VISIT.witch.data.option, TTH_PATH.Visit["WitchHut"]["RadioTips"]);
+			end;
+			TTH_VISIT.witch.fixed = {};
+			TTH_VISIT.witch.fixed.check = function(iPlayer, strHero)
+				print("TTH_VISIT.witch.fixed.check ")
+				local enumHeroClass = TTH_TABLE.Hero[strHero]["Class"];
+				local arrMastery = TTH_VISIT.witch.data.arrMastery4NotBarbarian;
+				if enumHeroClass == TTH_ENUM.Barbarian then
+					arrMastery = TTH_VISIT.witch.data.arrMastery4Barbarian;
+				end;
+				local iCountMastery = TTH_VISIT.witch.common.countMastery;
+				local bExistSuitableMastery = 0;
+				local iMasteryId = TTH_VISIT.witch.common.getMasteryId(iPlayer, strHero, TTH_VISIT.witch.data.strCurrentVisit);
+				if TTH_VISIT.witch.common.canStudyMastery(iPlayer, strHero, iMasteryId) == nil then
+					local strText = TTH_PATH.Visit["WitchHut"]["Fixed"]["NotEnoughSlot"];
+					TTH_GLOBAL.sign(strHero, strText);
+					return nil;
+				end;
+
+				TTH_VISIT.witch.fixed.confirm(iPlayer, strHero, iMasteryId);
+			end;
+			TTH_VISIT.witch.fixed.confirm = function(iPlayer, strHero, iMasteryId)
+				print("TTH_VISIT.witch.fixed.confirm")
+				local strMasteryName = TTH_TABLE.Mastery[iMasteryId]["Text"];
+				local strText = {
+					TTH_PATH.Visit["WitchHut"]["Fixed"]["Confirm"]
+					;strMasteryName=strMasteryName
+				};
+				local strCallbackOk = "TTH_VISIT.witch.fixed.impl("..iPlayer..","..TTH_COMMON.psp(strHero)..","..iMasteryId..")";
+				local strCallbackCancel = "TTH_COMMON.cancelOption()";
+				TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strText, strCallbackOk, strCallbackCancel);
+			end;
+			TTH_VISIT.witch.fixed.impl = function(iPlayer, strHero, iMasteryId)
+				print("TTH_VISIT.witch.fixed.impl")
+				local strMasteryName = TTH_TABLE.Mastery[iMasteryId]["Text"];
+				GiveHeroSkill(strHero, iMasteryId);
+				sleep(1);
+				TTH_GLOBAL.dealSkillBonus8Hero(strHero); -- 英雄技能效果实装
+				local strText = {
+					TTH_PATH.Visit["WitchHut"]["Fixed"]["Success"]
+					;strMasteryName=strMasteryName
+				}
+				TTH_GLOBAL.sign(strHero, strText);
+				TTH_VISIT.witch.common.leave(iPlayer, strHero);
+			end;
+			TTH_VISIT.witch.choose = {};
+			TTH_VISIT.witch.choose.check = function(iPlayer, strHero)
+				print("TTH_VISIT.witch.choose.check")
+				local arrOption = {};
+				local i = 1;
+				local enumHeroClass = TTH_TABLE.Hero[strHero]["Class"];
+				local arrMastery = TTH_VISIT.witch.data.arrMastery4NotBarbarian;
+				if enumHeroClass == TTH_ENUM.Barbarian then
+					arrMastery = TTH_VISIT.witch.data.arrMastery4Barbarian;
+				end;
+				for iIndex, iMasteryId in arrMastery do
+					local iMasteryLevel = GetHeroSkillMastery(strHero, iMasteryId);
+					if iMasteryLevel <= 2 then
+						arrOption[i] = {
+							["Id"] = iMasteryId
+							, ["Text"] = TTH_TABLE.Mastery[iMasteryId]["Text"]
+							, ["Callback"] = "TTH_VISIT.witch.choose.confirm"
+						};
+						i = i + 1;
+					end;
+				end;
+				arrOption[i] = {
+					["Id"] = HERO_SKILL_TRAINING
+					, ["Text"] = TTH_TABLE.Mastery[HERO_SKILL_TRAINING]["Text"]
+					, ["Callback"] = "TTH_VISIT.witch.choose.confirm"
+				};
+				i = i + 1;
+
+				if arrOption == nil	or length(arrOption) == 0 then
+					local strText = TTH_PATH.Visit["WitchHut"]["Choose"]["NotOptionMastery"]
+					TTH_GLOBAL.sign(strHero, strText);
+					return nil;
+				end;
+				TTH_COMMON.optionRadio(iPlayer, strHero, arrOption, TTH_PATH.Visit["WitchHut"]["Choose"]["RadioTipsMastery"]);
+			end;
+			TTH_VISIT.witch.choose.confirm = function(iPlayer, strHero, iMasteryId)
+				print("TTH_VISIT.witch.choose.confirm")
+				local strMasteryName = TTH_TABLE.Mastery[iMasteryId]["Text"];
+				local strText = {
+					TTH_PATH.Visit["WitchHut"]["Choose"]["Confirm"]
+					;strMasteryName=strMasteryName
+				};
+				local strCallbackOk = "TTH_VISIT.witch.choose.impl("..iPlayer..","..TTH_COMMON.psp(strHero)..","..iMasteryId..")";
+				local strCallbackCancel = "TTH_COMMON.cancelOption()";
+				TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strText, strCallbackOk, strCallbackCancel);
+			end;
+			TTH_VISIT.witch.choose.impl = function(iPlayer, strHero, iMasteryId)
+				print("TTH_VISIT.witch.choose.imple")
+				local strMasteryName = TTH_TABLE.Mastery[iMasteryId]["Text"];
+				GiveHeroSkill(strHero, iMasteryId);
+				TTH_VISIT.witch.data.bStartSkill[iPlayer] = -1;
+				sleep(1);
+				TTH_GLOBAL.dealSkillBonus8Hero(strHero); -- 英雄技能效果实装
+				local strText = {
+					TTH_PATH.Visit["WitchHut"]["Choose"]["Success"]
+					;strMasteryName=strMasteryName
+				}
+				TTH_GLOBAL.sign(strHero, strText);
+				TTH_VISIT.witch.common.leave(iPlayer, strHero);
+			end;
+			TTH_VISIT.witch.bonus = {};
+			TTH_VISIT.witch.bonus.check = function(iPlayer, strHero)
+				print("TTH_VISIT.witch.bonus.check")
+				if GetPlayerResource(iPlayer, GOLD) < TTH_VISIT.witch.final.costBonus then
+					local strText = TTH_PATH.Visit["WitchHut"]["Bonus"]["NotEnoughGold"];
+					TTH_GLOBAL.sign(strHero, strText);
+					return nil;
+				end;
+
+				local arrOption = {};
+				local i = 1;
+				for iMasteryId, objMastery in TTH_TABLE.Mastery do
+					local iMasteryLevel = GetHeroSkillMastery(strHero, iMasteryId);
+					if iMasteryLevel > 0 and iMasteryLevel <= 2 then
+						arrOption[i] = {
+							["Id"] = iMasteryId
+							, ["Text"] = objMastery["Text"]
+							, ["Callback"] = "TTH_VISIT.witch.bonus.confirm"
+						};
+						i = i + 1;
+					end;
+				end;
+
+				if arrOption == nil	or length(arrOption) == 0 then
+					local strText = TTH_PATH.Visit["WitchHut"]["Bonus"]["NotOptionMastery"]
+					TTH_GLOBAL.sign(strHero, strText);
+					return nil;
+				end;
+				TTH_COMMON.optionRadio(iPlayer, strHero, arrOption, TTH_PATH.Visit["WitchHut"]["Bonus"]["RadioTipsMastery"]);
+			end;
+			TTH_VISIT.witch.bonus.confirm = function(iPlayer, strHero, iMasteryId)
+				print("TTH_VISIT.witch.bonus.confirm")
+				local strMasteryName = TTH_TABLE.Mastery[iMasteryId]["Text"];
+				local strText = {
+					TTH_PATH.Visit["WitchHut"]["Bonus"]["Confirm"]
+					;strMasteryName=strMasteryName
+				};
+				local strCallbackOk = "TTH_VISIT.witch.bonus.impl("..iPlayer..","..TTH_COMMON.psp(strHero)..","..iMasteryId..")";
+				local strCallbackCancel = "TTH_COMMON.cancelOption()";
+				TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strText, strCallbackOk, strCallbackCancel);
+			end;
+			TTH_VISIT.witch.bonus.impl = function(iPlayer, strHero, iMasteryId)
+				print("TTH_VISIT.witch.bonus.imple")
+				TTH_GLOBAL.reduceResource(iPlayer, GOLD, TTH_VISIT.witch.final.costBonus);
+				local strMasteryName = TTH_TABLE.Mastery[iMasteryId]["Text"];
+				GiveHeroSkill(strHero, iMasteryId);
+				sleep(1);
+				TTH_GLOBAL.dealSkillBonus8Hero(strHero); -- 英雄技能效果实装
+				local strText = {
+					TTH_PATH.Visit["WitchHut"]["Bonus"]["Success"]
+					;strMasteryName=strMasteryName
+				}
+				TTH_GLOBAL.sign(strHero, strText);
+				TTH_VISIT.witch.common.leave(iPlayer, strHero);
+			end;
+			TTH_VISIT.witch.race = {};
+			TTH_VISIT.witch.race.check = function(iPlayer, strHero)
+				print("TTH_VISIT.witch.race.check")
+				if GetPlayerResource(iPlayer, GOLD) < TTH_VISIT.witch.final.costRace then
+					local strText = TTH_PATH.Visit["WitchHut"]["Race"]["NotEnoughGold"];
+					TTH_GLOBAL.sign(strHero, strText);
+					return nil;
+				end;
+
+				local iMasteryId = TTH_TABLE.Hero[strHero]["Mastery"];
+				local strMasteryName = TTH_TABLE.Mastery[iMasteryId]["Text"];
+				if TTH_VISIT.witch.common.canStudyMastery(iPlayer, strHero, iMasteryId) == nil then
+					local strText = {
+						TTH_PATH.Visit["WitchHut"]["Race"]["NotEnoughSlot"]
 						;strMasteryName=strMasteryName
 					}
-					TTH_GLOBAL.sign(strHero, strPathMain);
-					TTH_VISIT.resetWitchHut(strHero, TTH_VARI.recordBuildingName);
+					TTH_GLOBAL.sign(strHero, strText);
+					return nil;
 				end;
-			-- 技能坠饰
-				function TTH_VISIT.visitWitchHut2Artifact(iPlayer, strHero)
-					TTH_VISIT.checkPreWitchHut2Artifact4NotEnoughGold(iPlayer, strHero);
-				end;
-				function TTH_VISIT.checkPreWitchHut2Artifact4NotEnoughGold(iPlayer, strHero)
-					if GetPlayerResource(iPlayer, GOLD) < TTH_FINAL.WITCHHUT_ARTIFACT_GOLD_COST then
-						local strPathMain = TTH_PATH.Visit["WitchHut"]["Artifact"]["NotEnoughGold"];
-						TTH_GLOBAL.sign(strHero, strPathMain);
-						return nil;
-					end;
 
-					TTH_VISIT.confirmWitchHut2Artifact(iPlayer, strHero);
+				TTH_VISIT.witch.race.confirm(iPlayer, strHero, iMasteryId);
+			end;
+			TTH_VISIT.witch.race.confirm = function(iPlayer, strHero, iMasteryId)
+				print("TTH_VISIT.witch.race.confirm")
+				local strMasteryName = TTH_TABLE.Mastery[iMasteryId]["Text"];
+				local strText = {
+					TTH_PATH.Visit["WitchHut"]["Race"]["Confirm"]
+					;strMasteryName=strMasteryName
+				};
+				local strCallbackOk = "TTH_VISIT.witch.race.impl("..iPlayer..","..TTH_COMMON.psp(strHero)..","..iMasteryId..")";
+				local strCallbackCancel = "TTH_COMMON.cancelOption()";
+				TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strText, strCallbackOk, strCallbackCancel);
+			end;
+			TTH_VISIT.witch.race.impl = function(iPlayer, strHero, iMasteryId)
+				print("TTH_VISIT.witch.race.impl")
+				TTH_GLOBAL.reduceResource(iPlayer, GOLD, TTH_VISIT.witch.final.costRace);
+				local strMasteryName = TTH_TABLE.Mastery[iMasteryId]["Text"];
+				GiveHeroSkill(strHero, iMasteryId);
+				sleep(1);
+				TTH_GLOBAL.dealSkillBonus8Hero(strHero); -- 英雄技能效果实装
+				local strText = {
+					TTH_PATH.Visit["WitchHut"]["Race"]["Success"]
+					;strMasteryName=strMasteryName
+				}
+				TTH_GLOBAL.sign(strHero, strText);
+				TTH_VISIT.witch.common.leave(iPlayer, strHero);
+			end;
+			TTH_VISIT.witch.pedant = {};
+			TTH_VISIT.witch.pedant.check = function(iPlayer, strHero)
+				print("TTH_VISIT.witch.pedant.check")
+				if GetPlayerResource(iPlayer, GOLD) < TTH_VISIT.witch.final.costPedant then
+					local strText = TTH_PATH.Visit["WitchHut"]["Artifact"]["NotEnoughGold"];
+					TTH_GLOBAL.sign(strHero, strText);
+					return nil;
 				end;
-				function TTH_VISIT.confirmWitchHut2Artifact(iPlayer, strHero)
-					local strText = TTH_PATH.Visit["WitchHut"]["Artifact"]["Confirm"];
-					local strCallbackOk = "TTH_VISIT.implWitchHut2Artifact("..iPlayer..","..TTH_COMMON.psp(strHero)..")";
-					local strCallbackCancel = "TTH_COMMON.cancelOption()";
-					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strText, strCallbackOk, strCallbackCancel);
-				end;
-				function TTH_VISIT.implWitchHut2Artifact(iPlayer, strHero)
-					TTH_GLOBAL.reduceResource(iPlayer, GOLD, TTH_FINAL.WITCHHUT_ARTIFACT_GOLD_COST);
-					GiveArtefact(strHero, ARTIFACT_PEDANT_OF_MASTERY);
-					local strArtifactName = TTH_TABLE.Artifact[ARTIFACT_PEDANT_OF_MASTERY]["Text"];
-					local strPathMain = {
-						TTH_PATH.Visit["WitchHut"]["Artifact"]["Success"]
-						;strArtifactName=strArtifactName
-					}
-					TTH_GLOBAL.sign(strHero, strPathMain);
-					TTH_VISIT.resetWitchHut(strHero, TTH_VARI.recordBuildingName);
-				end;
+
+				TTH_VISIT.witch.pedant.confirm(iPlayer, strHero);
+			end;
+			TTH_VISIT.witch.pedant.confirm = function(iPlayer, strHero)
+				print("TTH_VISIT.witch.pedant.confirm")
+				local strText = TTH_PATH.Visit["WitchHut"]["Artifact"]["Confirm"];
+				local strCallbackOk = "TTH_VISIT.witch.pedant.impl("..iPlayer..","..TTH_COMMON.psp(strHero)..")";
+				local strCallbackCancel = "TTH_COMMON.cancelOption()";
+				TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strText, strCallbackOk, strCallbackCancel);
+			end;
+			TTH_VISIT.witch.pedant.impl = function(iPlayer, strHero)
+				print("TTH_VISIT.witch.pedant.impl")
+				TTH_GLOBAL.reduceResource(iPlayer, GOLD, TTH_VISIT.witch.final.costPedant);
+				GiveArtefact(strHero, ARTIFACT_PEDANT_OF_MASTERY);
+				local strArtifactName = TTH_TABLE.Artifact[ARTIFACT_PEDANT_OF_MASTERY]["Text"];
+				local strText = {
+					TTH_PATH.Visit["WitchHut"]["Artifact"]["Success"]
+					;strArtifactName=strArtifactName
+				}
+				TTH_GLOBAL.sign(strHero, strText);
+				TTH_VISIT.witch.common.leave(iPlayer, strHero);
+			end;
 
 		-- 先知小屋
 			TTH_FINAL.MERMAIDS_FINE = 10000; -- 放弃任务的罚金
@@ -6949,12 +7004,18 @@ doFile("/scripts/H55-Settings.lua");
 					-- 试试手气
 						function TTH_VISIT.rewardBankHidden(iPlayer, strHero)
 							local arrOption = {};
-							for iOption = 1, 5 do
+							local enumHeroClass = TTH_TABLE.Hero[strHero]["Class"];
+							for iOptionIndex = 1, 5 do
+								local iOption = iOptionIndex;
+								if enumHeroClass == TTH_ENUM.Barbarian then
+									if iOptionIndex == TTH_ENUM.BankRewardSpell then
+										iOption = TTH_ENUM.BankRewardExp;
+									end;
+								end;
 								if iOption ~= TTH_VARI.recordTempRewardOption[1] and iOption ~= TTH_VARI.recordTempRewardOption[2] then
 									if TTH_TABLE.Hero[strHero] == nil then
 										return nil;
 									end;
-									local enumHeroClass = TTH_TABLE.Hero[strHero]["Class"];
 									if enumHeroClass == TTH_ENUM.Barbarian then
 										if iOption == TTH_ENUM.BankRewardSpell then
 											iOption = TTH_ENUM.BankRewardExp;
@@ -9352,34 +9413,6 @@ doFile("/scripts/H55-Settings.lua");
 					["Text"] = "/Text/Game/Scripts/TTH_KingManage/CombineArtifact/Success.txt"
 				}
 			}
-			, ["HireHero"] = {
-				["Text"] = "/Text/Game/Scripts/TTH_KingManage/HireHero.txt"
-				, ["Enable"] = {
-					["Confirm"] = {
-						["Text"] = "/Text/Game/Scripts/TTH_KingManage/HireHero/Enable/Confirm.txt"
-					}
-				}
-				, ["Main"] = {
-					["RaceRadioTips"] = {
-						["Text"] = "/Text/Game/Scripts/TTH_KingManage/HireHero/Main/RaceRadioTips.txt"
-					}
-					, ["ClassRadioTips"] = {
-						["Text"] = "/Text/Game/Scripts/TTH_KingManage/HireHero/Main/ClassRadioTips.txt"
-					}
-					, ["HeroRadioTips"] = {
-						["Text"] = "/Text/Game/Scripts/TTH_KingManage/HireHero/Main/HeroRadioTips.txt"
-					}
-					, ["HasExist"] = {
-						["Text"] = "/Text/Game/Scripts/TTH_KingManage/HireHero/Main/HasExist.txt"
-					}
-					, ["Confirm"] = {
-						["Text"] = "/Text/Game/Scripts/TTH_KingManage/HireHero/Main/Confirm.txt"
-					}
-					, ["Success"] = {
-						["Text"] = "/Text/Game/Scripts/TTH_KingManage/HireHero/Main/Success.txt"
-					}
-				}
-			}
 			, ["ConvertDwelling"] = {
 				["Text"] = "/Text/Game/Scripts/TTH_KingManage/ConvertDwelling.txt"
 				, ["OptionTemplate"] = {
@@ -9413,20 +9446,16 @@ doFile("/scripts/H55-Settings.lua");
 					["Text"] = "/Text/Game/Scripts/TTH_KingManage/BonusStartSkill/Success.txt"
 				}
 			}
-			, ["VisitMemoryMentor"] = {
-				["Text"] = "/Text/Game/Scripts/TTH_KingManage/VisitMemoryMentor.txt"
-				, ["Confirm"] = {
-					["Text"] = "/Text/Game/Scripts/TTH_KingManage/VisitMemoryMentor/Confirm.txt"
-				}
-			}
 		};
 
-		-- 英雄主动技能4
+		-- 英雄主动技能
 			function TTH_MANAGE.customAbility(strHero, CUSTOM_ABILITY_ID)
-				if CUSTOM_ABILITY_ID == CUSTOM_ABILITY_4 then
+				if CUSTOM_ABILITY_ID == CUSTOM_ABILITY_2 then
 					TTH_MANAGE.kingManage(strHero);
 				elseif CUSTOM_ABILITY_ID == CUSTOM_ABILITY_3 then
 					TTH_MANAGE.dealTeleport2AppointTown(strHero);
+				elseif CUSTOM_ABILITY_ID == CUSTOM_ABILITY_4 then
+					TTH_MANAGE.cheat.deal(strHero);
 				end;
 			end;
 
@@ -9458,11 +9487,6 @@ doFile("/scripts/H55-Settings.lua");
 					, ["Callback"] = "TTH_MANAGE.dealCombineArtifact"
 				}
 				, [6] = {
-					["Id"] = TTH_ENUM.HireHero
-					, ["Text"] = TTH_TABLE.KingManagePath["HireHero"]["Text"]
-					, ["Callback"] = "TTH_MANAGE.hireHero.func.enable.active"
-				}
-				, [7] = {
 					["Id"] = TTH_ENUM.ConvertDwelling
 					, ["Text"] = TTH_TABLE.KingManagePath["ConvertDwelling"]["Text"]
 					, ["Callback"] = "TTH_MANAGE.dealConvertDwelling"
@@ -9498,16 +9522,6 @@ doFile("/scripts/H55-Settings.lua");
 						arrOption[i] = objKingManageOption;
 						i = i + 1;
 					end;
-				end;
-				if TTH_MAP10W.init == nil
-					and TTH_VARI.arrBuilding["BUILDING_MEMORY_MENTOR"] ~= nil
-					and length(TTH_VARI.arrBuilding["BUILDING_MEMORY_MENTOR"]) > 0 then
-					arrOption[i] = {
-						["Id"] = TTH_ENUM.VisitMemoryMentor
-						, ["Text"] = TTH_TABLE.KingManagePath["VisitMemoryMentor"]["Text"]
-						, ["Callback"] = "TTH_MANAGE.visitMemoryMentor.func.active"
-					};
-					i = i + 1;
 				end;
 				TTH_COMMON.optionRadio(iPlayer, strHero, arrOption);
 			end;
@@ -10598,140 +10612,6 @@ doFile("/scripts/H55-Settings.lua");
 					TTH_GLOBAL.sign(strHero, strPathMain);
 				end;
 
-			-- 指定英雄
-				TTH_MANAGE.hireHero = {};
-
-				TTH_MANAGE.hireHero.final = {};
-
-				TTH_MANAGE.hireHero.data = {};
-				TTH_MANAGE.hireHero.data.enable4Player = {};
-				TTH_MANAGE.hireHero.data.param = {};
-
-				TTH_MANAGE.hireHero.func = {};
-				TTH_MANAGE.hireHero.func.enable = {};
-				TTH_MANAGE.hireHero.func.enable.active = function(iPlayer, strHero)
-					TTH_COMMON.nextNavi(TTH_TABLE.KingManagePath["HireHero"]["Text"]);
-
-					if TTH_MANAGE.hireHero.data.enable4Player[iPlayer] == nil then
-						TTH_MANAGE.hireHero.func.enable.confirm(iPlayer, strHero);
-					else
-						TTH_MANAGE.hireHero.func.main.deal(iPlayer, strHero);
-					end;
-				end;
-				TTH_MANAGE.hireHero.func.enable.confirm = function(iPlayer, strHero)
-					local strText = {
-						TTH_TABLE.KingManagePath["HireHero"]["Enable"]["Confirm"]["Text"]
-						;iPercent=TTH_ECONOMIC.final.scale.hireHero
-					};
-					local strCallbackOk = "TTH_MANAGE.hireHero.func.enable.ok("..iPlayer..","..TTH_COMMON.psp(strHero)..")";
-					local strCallbackCancel = "TTH_COMMON.cancelOption()";
-					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strText, strCallbackOk, strCallbackCancel);
-				end;
-				TTH_MANAGE.hireHero.func.enable.ok = function(iPlayer, strHero)
-					TTH_MANAGE.hireHero.data.enable4Player[iPlayer] = TTH_ENUM.Yes;
-					TTH_MANAGE.hireHero.func.main.deal(iPlayer, strHero);
-				end;
-				TTH_MANAGE.hireHero.func.main = {};
-				TTH_MANAGE.hireHero.func.main.init = function()
-					TTH_MANAGE.hireHero.data.param = {
-							["Race"] = TTH_ENUM.Default
-							, ["Class"] = TTH_ENUM.Default
-							, ["Hero"] = TTH_ENUM.Default
-						};
-				end;
-				TTH_MANAGE.hireHero.func.main.deal = function(iPlayer, strHero)
-					TTH_MANAGE.hireHero.func.main.init();
-					TTH_MANAGE.hireHero.func.main.radio4Race(iPlayer, strHero);
-				end;
-				TTH_MANAGE.hireHero.func.main.radio4Race = function(iPlayer, strHero)
-					local arrOption = {};
-					local i = 1;
-					local strCallback = "TTH_MANAGE.hireHero.func.main.radio4Class";
-					for iHeroRace = TOWN_HEAVEN, TOWN_STRONGHOLD do
-						arrOption[i] = {
-							["Id"] = iHeroRace
-							, ["Text"] = TTH_PATH.Race[iHeroRace]
-							, ["Callback"] = strCallback
-						};
-						i = i + 1;
-					end;
-					local strRadioTips = TTH_TABLE.KingManagePath["HireHero"]["Main"]["RaceRadioTips"]["Text"];
-					TTH_COMMON.optionRadio(iPlayer, strHero, arrOption, strRadioTips);
-				end;
-				TTH_MANAGE.hireHero.func.main.radio4Class = function(iPlayer, strHero, iHeroRace)
-					TTH_MANAGE.hireHero.data.param["Race"] = iHeroRace;
-					local arrOption = {};
-					local i = 1;
-					local strCallback = "TTH_MANAGE.hireHero.func.main.radio4Hero";
-					for iHeroClass, objHeroClass in TTH_TABLE.Hero8RaceAndClass[iHeroRace] do
-						arrOption[i] = {
-							["Id"] = iHeroClass
-							, ["Text"] = TTH_PATH.HeroClass[iHeroClass]
-							, ["Callback"] = strCallback
-						};
-						i = i + 1;
-					end;
-					local strRadioTips = TTH_TABLE.KingManagePath["HireHero"]["Main"]["ClassRadioTips"]["Text"];
-					TTH_COMMON.optionRadio(iPlayer, strHero, arrOption, strRadioTips);
-				end;
-				TTH_MANAGE.hireHero.func.main.radio4Hero = function(iPlayer, strHero, iHeroClass)
-					local iHeroRace = TTH_MANAGE.hireHero.data.param["Race"];
-					TTH_MANAGE.hireHero.data.param["Class"] = iHeroClass;
-					local arrOption = {};
-					local i = 1;
-					local strCallback = "TTH_MANAGE.hireHero.func.main.check4HasHeroExist";
-					for iHeroIndex, strHero in TTH_TABLE.Hero8RaceAndClass[iHeroRace][iHeroClass] do
-						arrOption[i] = {
-							["Id"] = iHeroIndex
-							, ["Text"] = TTH_TABLE.Hero[strHero]["Text"]
-							, ["Callback"] = strCallback
-						};
-						i = i + 1;
-					end;
-					local strRadioTips = TTH_TABLE.KingManagePath["HireHero"]["Main"]["HeroRadioTips"]["Text"];
-					TTH_COMMON.optionRadio(iPlayer, strHero, arrOption, strRadioTips);
-				end;
-				TTH_MANAGE.hireHero.func.main.check4HasHeroExist = function(iPlayer, strHero, iHeroIndex)
-					local iHeroRace = TTH_MANAGE.hireHero.data.param["Race"];
-					local iHeroClass = TTH_MANAGE.hireHero.data.param["Class"];
-					TTH_MANAGE.hireHero.data.param["Hero"] = TTH_TABLE.Hero8RaceAndClass[iHeroRace][iHeroClass][iHeroIndex];
-					for iPlayer = PLAYER_1, PLAYER_8 do
-						local arrHero = GetPlayerHeroes(iPlayer);
-						for iIndexHero, strExistHero in arrHero do
-							if strExistHero == TTH_MANAGE.hireHero.data.param["Hero"] then
-								local strText = TTH_TABLE.KingManagePath["HireHero"]["Main"]["HasExist"]["Text"];
-								TTH_GLOBAL.sign(strHero, strText);
-								return nil;
-							end;
-						end;
-					end;
-
-					TTH_MANAGE.hireHero.func.main.comfirm(iPlayer, strHero);
-				end;
-				TTH_MANAGE.hireHero.func.main.comfirm = function(iPlayer, strHero)
-					local strHireHero = TTH_MANAGE.hireHero.data.param["Hero"];
-					local strHireHeroName = TTH_TABLE.Hero[strHireHero]["Text"];
-
-					local strText = {
-						TTH_TABLE.KingManagePath["HireHero"]["Main"]["Confirm"]["Text"]
-						;strHireHeroName=strHireHeroName
-					};
-					local strCallbackOk = "TTH_MANAGE.hireHero.func.main.impl("..iPlayer..","..TTH_COMMON.psp(strHero)..")";
-					local strCallbackCancel = "TTH_COMMON.cancelOption()";
-					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strText, strCallbackOk, strCallbackCancel);
-				end;
-				TTH_MANAGE.hireHero.func.main.impl = function(iPlayer, strHero)
-					local strHireHero = TTH_MANAGE.hireHero.data.param["Hero"];
-					local strHireHeroName = TTH_TABLE.Hero[strHireHero]["Text"];
-
-					TTH.hero1(iPlayer, strHireHero);
-					local strText = {
-						TTH_TABLE.KingManagePath["HireHero"]["Main"]["Success"]["Text"]
-						;strHireHeroName=strHireHeroName
-					};
-					TTH_GLOBAL.sign(strHero, strText);
-				end;
-
       -- 转换野外生物巢穴
       	function TTH_MANAGE.dealConvertDwelling(iPlayer, strHero)
       		TTH_COMMON.nextNavi(TTH_TABLE.KingManagePath["ConvertDwelling"]["Text"]);
@@ -10832,42 +10712,6 @@ doFile("/scripts/H55-Settings.lua");
 						startThread(TTH_MAIN.init);
 						TTH_COMMON.consoleSetGameVar("TTH_Var_SwitchSingleton", TTH_VARI.switchSingleton);
 					end;
-				end;
-
-			-- 访问记忆导师
-				TTH_MANAGE.visitMemoryMentor = {};
-
-				TTH_MANAGE.visitMemoryMentor.final = {};
-
-				TTH_MANAGE.visitMemoryMentor.data = {};
-				TTH_MANAGE.visitMemoryMentor.data.enable4Player = {};
-
-				TTH_MANAGE.visitMemoryMentor.func = {};
-				TTH_MANAGE.visitMemoryMentor.func.active = function(iPlayer, strHero)
-					TTH_COMMON.nextNavi(TTH_TABLE.KingManagePath["VisitMemoryMentor"]["Text"]);
-
-					if TTH_MANAGE.visitMemoryMentor.data.enable4Player[iPlayer] == nil then
-						TTH_MANAGE.visitMemoryMentor.func.confirm(iPlayer, strHero);
-					else
-						TTH_MANAGE.visitMemoryMentor.func.visit(iPlayer, strHero);
-					end;
-				end;
-				TTH_MANAGE.visitMemoryMentor.func.confirm = function(iPlayer, strHero)
-					local strText = {
-						TTH_TABLE.KingManagePath["VisitMemoryMentor"]["Confirm"]["Text"]
-						;iPercent=TTH_ECONOMIC.final.scale.visitMemoryMentor
-					};
-					local strCallbackOk = "TTH_MANAGE.visitMemoryMentor.func.ok("..iPlayer..","..TTH_COMMON.psp(strHero)..")";
-					local strCallbackCancel = "TTH_COMMON.cancelOption()";
-					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strText, strCallbackOk, strCallbackCancel);
-				end;
-				TTH_MANAGE.visitMemoryMentor.func.ok = function(iPlayer, strHero)
-					TTH_MANAGE.visitMemoryMentor.data.enable4Player[iPlayer] = 1;
-					TTH_MANAGE.visitMemoryMentor.func.visit(iPlayer, strHero);
-				end;
-				TTH_MANAGE.visitMemoryMentor.func.visit = function(iPlayer, strHero)
-					local strMemoryMentor = TTH_VARI.arrBuilding["BUILDING_MEMORY_MENTOR"][0];
-					MakeHeroInteractWithObject(strHero, strMemoryMentor);
 				end;
 
 		-- 定点回城
@@ -11148,6 +10992,195 @@ doFile("/scripts/H55-Settings.lua");
 							TTH_GLOBAL.teleHero2TownGate(iPlayer, strHero, strTown);
 					end;
 
+		-- 作弊功能
+			TTH_MANAGE.cheat = {}
+			TTH_MANAGE.cheat.path = {
+				["Text"] = "/Text/Game/Scripts/TTH_Cheat/Text.txt"
+				, ["HireHero"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_Cheat/HireHero.txt"
+					, ["RaceRadioTips"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_Cheat/HireHero/Main/RaceRadioTips.txt"
+					}
+					, ["ClassRadioTips"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_Cheat/HireHero/Main/ClassRadioTips.txt"
+					}
+					, ["HeroRadioTips"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_Cheat/HireHero/Main/HeroRadioTips.txt"
+					}
+					, ["HasExist"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_Cheat/HireHero/Main/HasExist.txt"
+					}
+					, ["Confirm"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_Cheat/HireHero/Main/Confirm.txt"
+					}
+					, ["Success"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_Cheat/HireHero/Main/Success.txt"
+					}
+				}
+				, ["VisitMemoryMentor"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_Cheat/VisitMemoryMentor.txt"
+					, ["NotExist"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_Cheat/VisitMemoryMentor/NotExist.txt"
+					}
+				}
+			};
+			TTH_MANAGE.cheat.option = {
+				[1] = {
+					["Id"] = TTH_ENUM.HireHero
+					, ["Text"] = TTH_MANAGE.cheat.path["HireHero"]["Text"]
+					, ["Callback"] = "TTH_MANAGE.hireHero.func.deal"
+				}
+				, [2] = {
+					["Id"] = TTH_ENUM.VisitMemoryMentor
+					, ["Text"] = TTH_MANAGE.cheat.path["VisitMemoryMentor"]["Text"]
+					, ["Callback"] = "TTH_MANAGE.visitMemoryMentor.func.active"
+				}
+			};
+
+			TTH_MANAGE.cheat.deal = function(strHero)
+				TTH_COMMON.initNavi(TTH_MANAGE.cheat.path["Text"]);
+
+				local iPlayer = GetObjectOwner(strHero);
+				TTH_COMMON.optionRadio(iPlayer, strHero, TTH_MANAGE.cheat.option);
+			end;
+
+			-- 指定英雄
+				TTH_MANAGE.hireHero = {};
+
+				TTH_MANAGE.hireHero.final = {};
+
+				TTH_MANAGE.hireHero.data = {};
+				TTH_MANAGE.hireHero.data.param = {};
+
+				TTH_MANAGE.hireHero.func = {};
+				TTH_MANAGE.hireHero.func = {};
+				TTH_MANAGE.hireHero.func.init = function()
+					TTH_MANAGE.hireHero.data.param = {
+							["Race"] = TTH_ENUM.Default
+							, ["Class"] = TTH_ENUM.Default
+							, ["Hero"] = TTH_ENUM.Default
+						};
+				end;
+				TTH_MANAGE.hireHero.func.deal = function(iPlayer, strHero)
+					TTH_COMMON.nextNavi(TTH_MANAGE.cheat.path["HireHero"]["Text"]);
+
+					TTH_MANAGE.hireHero.func.init();
+					TTH_MANAGE.hireHero.func.radio4Race(iPlayer, strHero);
+				end;
+				TTH_MANAGE.hireHero.func.radio4Race = function(iPlayer, strHero)
+					local arrOption = {};
+					local i = 1;
+					local strCallback = "TTH_MANAGE.hireHero.func.radio4Class";
+					for iHeroRace = TOWN_HEAVEN, TOWN_STRONGHOLD do
+						arrOption[i] = {
+							["Id"] = iHeroRace
+							, ["Text"] = TTH_PATH.Race[iHeroRace]
+							, ["Callback"] = strCallback
+						};
+						i = i + 1;
+					end;
+					local strRadioTips = TTH_MANAGE.cheat.path["HireHero"]["RaceRadioTips"]["Text"];
+					TTH_COMMON.optionRadio(iPlayer, strHero, arrOption, strRadioTips);
+				end;
+				TTH_MANAGE.hireHero.func.radio4Class = function(iPlayer, strHero, iHeroRace)
+					TTH_MANAGE.hireHero.data.param["Race"] = iHeroRace;
+					local arrOption = {};
+					local i = 1;
+					local strCallback = "TTH_MANAGE.hireHero.func.radio4Hero";
+					for iHeroClass, objHeroClass in TTH_TABLE.Hero8RaceAndClass[iHeroRace] do
+						arrOption[i] = {
+							["Id"] = iHeroClass
+							, ["Text"] = TTH_PATH.HeroClass[iHeroClass]
+							, ["Callback"] = strCallback
+						};
+						i = i + 1;
+					end;
+					local strRadioTips = TTH_MANAGE.cheat.path["HireHero"]["ClassRadioTips"]["Text"];
+					TTH_COMMON.optionRadio(iPlayer, strHero, arrOption, strRadioTips);
+				end;
+				TTH_MANAGE.hireHero.func.radio4Hero = function(iPlayer, strHero, iHeroClass)
+					local iHeroRace = TTH_MANAGE.hireHero.data.param["Race"];
+					TTH_MANAGE.hireHero.data.param["Class"] = iHeroClass;
+					local arrOption = {};
+					local i = 1;
+					local strCallback = "TTH_MANAGE.hireHero.func.check4HasHeroExist";
+					for iHeroIndex, strHero in TTH_TABLE.Hero8RaceAndClass[iHeroRace][iHeroClass] do
+						arrOption[i] = {
+							["Id"] = iHeroIndex
+							, ["Text"] = TTH_TABLE.Hero[strHero]["Text"]
+							, ["Callback"] = strCallback
+						};
+						i = i + 1;
+					end;
+					local strRadioTips = TTH_MANAGE.cheat.path["HireHero"]["HeroRadioTips"]["Text"];
+					TTH_COMMON.optionRadio(iPlayer, strHero, arrOption, strRadioTips);
+				end;
+				TTH_MANAGE.hireHero.func.check4HasHeroExist = function(iPlayer, strHero, iHeroIndex)
+					local iHeroRace = TTH_MANAGE.hireHero.data.param["Race"];
+					local iHeroClass = TTH_MANAGE.hireHero.data.param["Class"];
+					TTH_MANAGE.hireHero.data.param["Hero"] = TTH_TABLE.Hero8RaceAndClass[iHeroRace][iHeroClass][iHeroIndex];
+					for iPlayer = PLAYER_1, PLAYER_8 do
+						local arrHero = GetPlayerHeroes(iPlayer);
+						for iIndexHero, strExistHero in arrHero do
+							if strExistHero == TTH_MANAGE.hireHero.data.param["Hero"] then
+								local strText = TTH_MANAGE.cheat.path["HireHero"]["HasExist"]["Text"];
+								TTH_GLOBAL.sign(strHero, strText);
+								return nil;
+							end;
+						end;
+					end;
+
+					TTH_MANAGE.hireHero.func.comfirm(iPlayer, strHero);
+				end;
+				TTH_MANAGE.hireHero.func.comfirm = function(iPlayer, strHero)
+					local strHireHero = TTH_MANAGE.hireHero.data.param["Hero"];
+					local strHireHeroName = TTH_TABLE.Hero[strHireHero]["Text"];
+
+					local strText = {
+						TTH_MANAGE.cheat.path["HireHero"]["Confirm"]["Text"]
+						;strHireHeroName=strHireHeroName
+					};
+					local strCallbackOk = "TTH_MANAGE.hireHero.func.impl("..iPlayer..","..TTH_COMMON.psp(strHero)..")";
+					local strCallbackCancel = "TTH_COMMON.cancelOption()";
+					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strText, strCallbackOk, strCallbackCancel);
+				end;
+				TTH_MANAGE.hireHero.func.impl = function(iPlayer, strHero)
+					local strHireHero = TTH_MANAGE.hireHero.data.param["Hero"];
+					local strHireHeroName = TTH_TABLE.Hero[strHireHero]["Text"];
+
+					TTH.hero1(iPlayer, strHireHero);
+					local strText = {
+						TTH_MANAGE.cheat.path["HireHero"]["Success"]["Text"]
+						;strHireHeroName=strHireHeroName
+					};
+					TTH_GLOBAL.sign(strHero, strText);
+				end;
+
+			-- 访问记忆导师
+				TTH_MANAGE.visitMemoryMentor = {};
+
+				TTH_MANAGE.visitMemoryMentor.final = {};
+
+				TTH_MANAGE.visitMemoryMentor.data = {};
+
+				TTH_MANAGE.visitMemoryMentor.func = {};
+				TTH_MANAGE.visitMemoryMentor.func.active = function(iPlayer, strHero)
+					TTH_COMMON.nextNavi(TTH_MANAGE.cheat.path["VisitMemoryMentor"]["Text"]);
+
+					if TTH_VARI.arrBuilding["BUILDING_MEMORY_MENTOR"] == nil
+						or length(TTH_VARI.arrBuilding["BUILDING_MEMORY_MENTOR"]) == 0 then
+						local strText = TTH_MANAGE.cheat.path["VisitMemoryMentor"]["NotExist"]["Text"];
+						TTH_GLOBAL.sign(strHero, strText);
+						return nil;
+					end;
+
+					TTH_MANAGE.visitMemoryMentor.func.visit(iPlayer, strHero);
+				end;
+				TTH_MANAGE.visitMemoryMentor.func.visit = function(iPlayer, strHero)
+					local strMemoryMentor = TTH_VARI.arrBuilding["BUILDING_MEMORY_MENTOR"][0];
+					MakeHeroInteractWithObject(strHero, strMemoryMentor);
+				end;
+
 	-- trigger
 		TTH_TRIGGER = {};
 
@@ -11263,8 +11296,9 @@ doFile("/scripts/H55-Settings.lua");
 
 				SetTrigger(HERO_LEVELUP_TRIGGER, strHero, "TTH_TRIGGER.heroLevelUp"..strHero);
 				TTH_GLOBAL.initHero4Specialty(strHero);
-				TTH_GLOBAL.bindHeroCustomAbility4Hero(strHero);
+				TTH_GLOBAL.bindHeroCustomAbility2Hero(strHero);
 				TTH_GLOBAL.bindHeroCustomAbility3Hero(strHero);
+				TTH_GLOBAL.bindHeroCustomAbility4Hero(strHero);
 				TTH_MANAGE.initMayor(strHero);
 				TTH_GLOBAL.setGameVar4HeroLevel(strHero);
 				TTH_GLOBAL.giveHero4Attribute(strHero);
@@ -11303,22 +11337,25 @@ doFile("/scripts/H55-Settings.lua");
 
 		-- 转化类英雄天赋
 			TTH_VARI.castCreatureGcd = {};
+			TTH_VARI.castCreatureSavedTimes = {};
 			function TTH_TALENT.initCastCreature(strHero)
 				TTH_MAIN.debug("TTH_TALENT.initCastCreature", nil, strHero);
 
-				TTH_VARI.castCreatureGcd[strHero] = 0;
+				TTH_VARI.castCreatureGcd[strHero] = TTH_TALENT.getMaxGcdCastCreature(strHero);
+				TTH_VARI.castCreatureSavedTimes[strHero] = 1;
 			end;
 			function TTH_TALENT.activeCastCreature(iPlayer, strHero)
 				TTH_COMMON.nextNavi(TTH_PATH.Talent["Cast"]["Hero"][strHero]);
 
-				TTH_TALENT.checkPreActiveCastCreature4Gcd(iPlayer, strHero);
+				TTH_TALENT.checkPreActiveCastCreature4SavedTimes(iPlayer, strHero);
 			end;
-			function TTH_TALENT.checkPreActiveCastCreature4Gcd(iPlayer, strHero)
+			function TTH_TALENT.checkPreActiveCastCreature4SavedTimes(iPlayer, strHero)
+				local iSavedTimes = TTH_VARI.castCreatureSavedTimes[strHero];
 				local iGcd = TTH_VARI.castCreatureGcd[strHero];
-    		if iGcd > 0 then
+    		if iSavedTimes == 0 then
     			local strCastType = TTH_PATH.CastCreatureType[TTH_TABLE.CastCreature[strHero]["CastType"]];
     			local strPathMain = {
-    				TTH_PATH.Talent["Cast"]["InGcd"]
+    				TTH_PATH.Talent["Cast"]["NoSavedTimes"]
     				;iGcd=iGcd
     				,strCastType=strCastType
     			};
@@ -11384,13 +11421,7 @@ doFile("/scripts/H55-Settings.lua");
 					local iCountCreature8Scale = TTH_COMMON.floor(iPreCreatureCount / objPreCreature["Scale"]);
 
 				-- 根据 英雄等级 计算 可转化生物数量（至少为1）
-					local iHeroStep = objPreCreature["HeroStep"];
-					if TTH_VARI.recordReincarnation4Step[strHero] ~= nil then
-						iHeroStep = iHeroStep - TTH_VARI.recordReincarnation4Step[strHero];
-						if iHeroStep < 1 then
-							iHeroStep = 1;
-						end;
-					end;
+					local iHeroStep = TTH_TALENT.getHeroStepCastCreature(strHero);
 					local iCountCreature8Step = TTH_COMMON.ceil(iHeroLevel / iHeroStep);
 
 				-- 根据 玩家资源及转化单个生物消耗 计算 可转化生物数量
@@ -11431,14 +11462,9 @@ doFile("/scripts/H55-Settings.lua");
 				local iCountSulfur = iPostCreatureNum * objRes[SULFUR];
 				local iCountGem = iPostCreatureNum * objRes[GEM];
 				local iCountGold = iPostCreatureNum * objRes[GOLD];
-				local iMaxGcd = objPreCreature["MaxGcd"];
-				if TTH_VARI.recordReincarnation4Gcd[strHero] ~= nil then
-					iMaxGcd = iMaxGcd - TTH_VARI.recordReincarnation4Gcd[strHero];
-					if iMaxGcd < 1 then
-						iMaxGcd = 1;
-					end;
-				end;
 
+				local iSavedTimes=TTH_VARI.castCreatureSavedTimes[strHero];
+				local iGcd = TTH_VARI.castCreatureGcd[strHero];
 				local strPathMain={
 					TTH_PATH.Talent["Cast"]["Confirm"]
 					;strCastType=strCastType
@@ -11453,7 +11479,8 @@ doFile("/scripts/H55-Settings.lua");
 					,iCountSulfur=iCountSulfur
 					,iCountGem=iCountGem
 					,iCountGold=iCountGold
-					,iMaxGcd=iMaxGcd
+					,iSavedTimes=iSavedTimes
+					,iGcd=iGcd
 				};
 				local strCallbackOk = "TTH_TALENT.implActiveCastCreature("..iPlayer..","..TTH_COMMON.psp(strHero)..","..iPreCreatureId..","..iPostCreatureNum..")";
 				local strCallbackCancel = "TTH_COMMON.cancelOption()";
@@ -11474,13 +11501,6 @@ doFile("/scripts/H55-Settings.lua");
 				local iCountSulfur = iPostCreatureNum * objRes[SULFUR];
 				local iCountGem = iPostCreatureNum * objRes[GEM];
 				local iCountGold = iPostCreatureNum * objRes[GOLD];
-				local iMaxGcd = objPreCreature["MaxGcd"];
-				if TTH_VARI.recordReincarnation4Gcd[strHero] ~= nil then
-					iMaxGcd = iMaxGcd - TTH_VARI.recordReincarnation4Gcd[strHero];
-					if iMaxGcd < 1 then
-						iMaxGcd = 1;
-					end;
-				end;
 
 				TTH_GLOBAL.reduceResource(iPlayer, WOOD, iCountWood);
 				TTH_GLOBAL.reduceResource(iPlayer, ORE, iCountOre);
@@ -11490,8 +11510,13 @@ doFile("/scripts/H55-Settings.lua");
 				TTH_GLOBAL.reduceResource(iPlayer, GEM, iCountGem);
 				TTH_GLOBAL.reduceResource(iPlayer, GOLD, iCountGold);
 				TTH_GLOBAL.replaceCreature4Hero(strHero, iPreCreatureId, iPreCreatureNum, iPostCreatureId, iPostCreatureNum);
-				TTH_VARI.castCreatureGcd[strHero] = iMaxGcd;
+				TTH_VARI.castCreatureSavedTimes[strHero] = TTH_VARI.castCreatureSavedTimes[strHero] - 1;
+				if TTH_VARI.castCreatureSavedTimes[strHero] < 0 then
+					TTH_VARI.castCreatureSavedTimes[strHero] = 0;
+				end;
 
+				local iSavedTimes=TTH_VARI.castCreatureSavedTimes[strHero];
+				local iGcd = TTH_VARI.castCreatureGcd[strHero];
 				local strText = {
 					TTH_PATH.Talent["Cast"]["Success"]
 					;strCastType=strCastType
@@ -11499,8 +11524,10 @@ doFile("/scripts/H55-Settings.lua");
 					,strPreCreatureName=strPreCreatureName
 					,iPostCreatureNum=iPostCreatureNum
 					,strPostCreatureName=strPostCreatureName
+					,iSavedTimes=iSavedTimes
+					,iGcd=iGcd
 				};
-				TTH_GLOBAL.sign(strHero, strText);
+				TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.MessageBox, strText);
 			end;
 			function TTH_TALENT.combatResultCastCreature(iPlayer, strHero, iCombatIndex)
 				TTH_MAIN.debug("TTH_TALENT.combatResultCastCreature", iPlayer, strHero, iCombatIndex);
@@ -11516,22 +11543,40 @@ doFile("/scripts/H55-Settings.lua");
 				if TTH_VARI.castCreatureGcd[strHero] > 0 then
 					TTH_VARI.castCreatureGcd[strHero] = TTH_VARI.castCreatureGcd[strHero] - 1;
 				end;
-				local strPathMain = "";
-				local strCastType = TTH_PATH.CastCreatureType[TTH_TABLE.CastCreature[strHero]["CastType"]];
-				local iGcd = TTH_VARI.castCreatureGcd[strHero];
-				if iGcd > 0 then
-					strPathMain = {
-						TTH_PATH.Talent["Cast"]["CantCast"]
-						;strCastType=strCastType
-						,iGcd=iGcd
-					};
-				else
-					strPathMain = {
-						TTH_PATH.Talent["Cast"]["CanCast"]
-						;strCastType=strCastType
-					};
+				if TTH_VARI.castCreatureGcd[strHero] <= 0 then
+					TTH_VARI.castCreatureGcd[strHero] = TTH_TALENT.getMaxGcdCastCreature(strHero);
+					TTH_VARI.castCreatureSavedTimes[strHero] = TTH_VARI.castCreatureSavedTimes[strHero] + 1;
 				end;
+				local strCastType = TTH_PATH.CastCreatureType[TTH_TABLE.CastCreature[strHero]["CastType"]];
+				local iSavedTimes=TTH_VARI.castCreatureSavedTimes[strHero];
+				local iGcd = TTH_VARI.castCreatureGcd[strHero];
+				local strPathMain = {
+					TTH_PATH.Talent["Cast"]["Gcd"]
+					;strCastType=strCastType
+					,iSavedTimes=iSavedTimes
+					,iGcd=iGcd
+				};
   			TTH_GLOBAL.sign(strHero, strPathMain);
+			end;
+			function TTH_TALENT.getMaxGcdCastCreature(strHero)
+				local iMaxGcd = TTH_TABLE.CastCreature[strHero]["MaxGcd"];
+				if TTH_VARI.recordReincarnation4Gcd[strHero] ~= nil then
+					iMaxGcd = iMaxGcd - TTH_VARI.recordReincarnation4Gcd[strHero];
+					if iMaxGcd < 1 then
+						iMaxGcd = 1;
+					end;
+				end;
+				return iMaxGcd;
+			end;
+			function TTH_TALENT.getHeroStepCastCreature(strHero)
+				local iHeroStep = TTH_TABLE.CastCreature[strHero]["HeroStep"];
+				if TTH_VARI.recordReincarnation4Step[strHero] ~= nil then
+					iHeroStep = iHeroStep - TTH_VARI.recordReincarnation4Step[strHero];
+					if iHeroStep < 1 then
+						iHeroStep = 1;
+					end;
+				end;
+				return iHeroStep;
 			end;
 
 		-- Heaven
@@ -13212,6 +13257,7 @@ doFile("/scripts/H55-Settings.lua");
 
       		TTH_VARI.talent[strHero] = {
 						["Manor"] = {}
+						, ["Capture"] = {}
 						, ["Index"] = 0
 					};
       	end;
@@ -13303,6 +13349,15 @@ doFile("/scripts/H55-Settings.lua");
 						if GetObjectOwner(strManor) ~= iPlayer then
 							TTH_VARI.talent[strHero]["Manor"] = TTH_COMMON.remove8Value(TTH_VARI.talent[strHero]["Manor"], strManor);
       				OverrideObjectTooltipNameAndDescription(strManor, TTH_PATH.Talent[strHero]["Daily"]["TitleCapture"], TTH_PATH.Talent[strHero]["Daily"]["DescCapture"]);
+							TTH_VARI.talent[strHero]["Capture"] = TTH_COMMON.push(TTH_VARI.talent[strHero]["Capture"], strManor);
+						end;
+					end
+					local arrCapture = TTH_VARI.talent[strHero]["Capture"];
+					for i, strCapture in arrCapture do
+						if GetObjectOwner(strCapture) ~= iPlayer then
+							TTH_VARI.talent[strHero]["Manor"] = TTH_COMMON.push(TTH_VARI.talent[strHero]["Manor"], strCapture);
+      				OverrideObjectTooltipNameAndDescription(strCapture, TTH_PATH.Talent[strHero]["Daily"]["Title"], TTH_PATH.Talent[strHero]["Daily"]["Desc"]);
+							TTH_VARI.talent[strHero]["Capture"] = TTH_COMMON.remove8Value(TTH_VARI.talent[strHero]["Capture"], strCapture);
 						end;
 					end
 				end;
@@ -15424,6 +15479,7 @@ doFile("/scripts/H55-Settings.lua");
 
 					TTH_VARI.talent[strHero] = {
 						["Boundary"] = {}
+						, ["Capture"] = {}
 						, ["Index"] = 0
 					};
 				end;
@@ -15512,6 +15568,15 @@ doFile("/scripts/H55-Settings.lua");
 						if GetObjectOwner(strBoundary) ~= iPlayer then
 							TTH_VARI.talent[strHero]["Boundary"] = TTH_COMMON.remove8Value(TTH_VARI.talent[strHero]["Boundary"], strBoundary);
 							OverrideObjectTooltipNameAndDescription(strBoundary, TTH_PATH.Talent[strHero]["Daily"]["TitleCapture"], TTH_PATH.Talent[strHero]["Daily"]["DescCapture"]);
+							TTH_VARI.talent[strHero]["Capture"] = TTH_COMMON.push(TTH_VARI.talent[strHero]["Capture"], strBoundary);
+						end;
+					end
+					local arrCapture = TTH_VARI.talent[strHero]["Capture"];
+					for i, strCapture in arrCapture do
+						if GetObjectOwner(strCapture) ~= iPlayer then
+							TTH_VARI.talent[strHero]["Boundary"] = TTH_COMMON.push(TTH_VARI.talent[strHero]["Boundary"], strCapture);
+							OverrideObjectTooltipNameAndDescription(strCapture, TTH_PATH.Talent[strHero]["Daily"]["Title"], TTH_PATH.Talent[strHero]["Daily"]["Desc"]);
+							TTH_VARI.talent[strHero]["Capture"] = TTH_COMMON.remove8Value(TTH_VARI.talent[strHero]["Capture"], strCapture);
 						end;
 					end
 				end;
@@ -17440,13 +17505,11 @@ doFile("/scripts/H55-Settings.lua");
 			end;
 			function TTH_ARTI.checkPreActive112Gcd4HasEnough(iPlayer, strHero)
 				if TTH_VARI.recordReincarnation4Gcd[strHero] ~= nil then
-					for i, objCast in TTH_TABLE.CastCreature[strHero]["PreCreature"] do
-						if objCast["MaxGcd"] - 1 <= TTH_VARI.recordReincarnation4Gcd[strHero] then
-							local strText = TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Gcd"]["HasEnough"];
-							TTH_GLOBAL.sign(strHero, strText);
-							return nil;
-						end;
-						break;
+					local iMaxGcd = TTH_TALENT.getMaxGcdCastCreature(strHero);
+					if iMaxGcd <= 1 then
+						local strText = TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Gcd"]["HasEnough"];
+						TTH_GLOBAL.sign(strHero, strText);
+						return nil;
 					end;
 				end;
 
@@ -17458,7 +17521,11 @@ doFile("/scripts/H55-Settings.lua");
 				end;
 				RemoveArtefact(strHero, ARTIFACT_REINCARNATION);
 				TTH_VARI.recordReincarnation4Gcd[strHero] = TTH_VARI.recordReincarnation4Gcd[strHero] + 1;
-				local strText = TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Gcd"]["Success"];
+				local iMaxGcd = TTH_TALENT.getMaxGcdCastCreature(strHero);
+				local strText = {
+					TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Gcd"]["Success"]
+					;iMaxGcd=iMaxGcd
+				};
 				TTH_GLOBAL.sign(strHero, strText);
 			end;
 			function TTH_ARTI.active112Step(iPlayer, strHero)
@@ -17477,17 +17544,16 @@ doFile("/scripts/H55-Settings.lua");
 			end;
 			function TTH_ARTI.checkPreActive112Step4HasEnough(iPlayer, strHero)
 				if TTH_VARI.recordReincarnation4Step[strHero] ~= nil then
-					for i, objCast in TTH_TABLE.CastCreature[strHero]["PreCreature"] do
-						if objCast["HeroStep"] - 1 <= TTH_VARI.recordReincarnation4Step[strHero] then
-							local strText = TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Step"]["HasEnough"];
-							TTH_GLOBAL.sign(strHero, strText);
-							return nil;
-						end;
-						break;
+					local iMaxStep = TTH_TALENT.getHeroStepCastCreature(strHero);
+					if iMaxStep <= 1 then
+						local strText = TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Step"]["HasEnough"];
+						TTH_GLOBAL.sign(strHero, strText);
+						return nil;
 					end;
 				end;
 
 				TTH_ARTI.implActive112Step(iPlayer, strHero)
+
 			end;
 			function TTH_ARTI.implActive112Step(iPlayer, strHero)
 				if TTH_VARI.recordReincarnation4Step[strHero] == nil then
@@ -17495,12 +17561,16 @@ doFile("/scripts/H55-Settings.lua");
 				end;
 				RemoveArtefact(strHero, ARTIFACT_REINCARNATION);
 				TTH_VARI.recordReincarnation4Step[strHero] = TTH_VARI.recordReincarnation4Step[strHero] + 1;
-				local strText = TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Step"]["Success"];
+				local iMaxStep = TTH_TALENT.getHeroStepCastCreature(strHero);
+				local strText = {
+					TTH_PATH.Artifact[ARTIFACT_REINCARNATION]["Step"]["Success"]
+					;iMaxStep=iMaxStep
+				};
 				TTH_GLOBAL.sign(strHero, strText);
 			end;
 
 		-- ARTIFACT_INHERITANCE 115 幸运护符
-			function TTH_ARTI.combatResult115(strHero)
+			function TTH_ARTI.combatResult115(iPlayer, strHero, iCombatIndex)
 				TTH_MAIN.debug("TTH_ARTI.combatResult115", nil, strHero);
 
 				if TTH_VARI.arrBuilding["BUILDING_FORTUITOUS_SANCTUARY"] ~= nil
@@ -17826,8 +17896,8 @@ doFile("/scripts/H55-Settings.lua");
 			function TTH_PERK.checkPreActive0284HasRecruit(iPlayer, strHero, strTown)
 				TTH_PERK.init0284Town(iPlayer, strHero, strTown);
 
-				local strHeroBiara = "Biara";
-				if strHero ~= strHeroBiara then
+				local strHeroJazaz = "Jazaz";
+				if strHero ~= strHeroJazaz then
 					if TTH_VARI.recordRecruitment[strTown]["HasRecruit"] == TTH_VARI.absoluteWeek then
 						local strText = TTH_PATH.Perk[HERO_SKILL_RECRUITMENT]["HasRecruit"];
 						TTH_GLOBAL.sign(strHero, strText);
@@ -17877,11 +17947,11 @@ doFile("/scripts/H55-Settings.lua");
 				local iTownRace = TTH_GLOBAL.getRace8Town(strTown);
 				local arrCreatureGrowth8Tier = {};
 				local iCoef = 1;
-				local strHeroBiara = "Biara";
+				local strHeroJazaz = "Jazaz";
 				if HasArtefact(strHero, ARTIFACT_CROWN_OF_LEADER, 1) ~= nil then
 					iCoef = iCoef * 1.5;
 				end;
-				if strHero == strHeroBiara then
+				if strHero == strHeroJazaz then
 					iCoef = iCoef * 1.5;
 				end;
 				for iTier = 1, 7 do
@@ -17912,14 +17982,14 @@ doFile("/scripts/H55-Settings.lua");
     			TTH_MANAGE.useOperTimes(strHero);
     		end;
 				local iCoef = 1;
-    		local strHeroBiara = "Biara";
-    		if strHero ~= strHeroBiara then
+    		local strHeroJazaz = "Jazaz";
+    		if strHero ~= strHeroJazaz then
 	    		TTH_VARI.recordRecruitment[strTown]["HasRecruit"] = TTH_VARI.absoluteWeek;
 	    	end;
 	    	if HasArtefact(strHero, ARTIFACT_CROWN_OF_LEADER, 1) ~= nil then
 	    		iCoef = iCoef * 1.5;
 	    	end;
-	    	if strHero == strHeroBiara then
+	    	if strHero == strHeroJazaz then
 	    		iCoef = iCoef * 1.5;
 	    	end;
 				local iTownRace = TTH_GLOBAL.getRace8Town(strTown);
@@ -17936,15 +18006,15 @@ doFile("/scripts/H55-Settings.lua");
 				TTH_GLOBAL.updateTownDwellingCreature(strTown, arrCreatureGrowth8Tier);
 				TTH_GLOBAL.signHero4TownRecruit(strHero);
 
-				if strHero == strHeroBiara and TTH_VARI.record4UpgradeMastery[strHero] == TTH_ENUM.Yes then
+				if strHero == strHeroJazaz and TTH_VARI.record4UpgradeMastery[strHero] == TTH_ENUM.Yes then
 					TTH_MANAGE.addRecordPoint(iPlayer, strHero, iCreatureNumber * 10);
 				end;
 			end;
 			function TTH_PERK.resetDaily028(iPlayer, strHero)
 				TTH_MAIN.debug("TTH_PERK.resetDaily028", iPlayer, strHero);
 
-    		local strHeroBiara = "Biara";
-				if strHero == strHeroBiara and TTH_VARI.record4UpgradeShantiri[strHero] == TTH_ENUM.Yes then
+    		local strHeroJazaz = "Jazaz";
+				if strHero == strHeroJazaz and TTH_VARI.record4UpgradeShantiri[strHero] == TTH_ENUM.Yes then
 					if TTH_VARI.recordRecruitment[strHero] == nil then
 						TTH_PERK.init028(iPlayer, strHero);
 					end;
@@ -19555,7 +19625,7 @@ doFile("/scripts/H55-Settings.lua");
 		-- HERO_SKILL_DEFEND_US_ALL 181 全体保卫
 			TTH_VARI.recordDefendUsAllHero = {};
 			TTH_VARI.recordDefendUsAllPlayer = {};
-			TTH_FINAL.DEFEND_US_ALL_SCALE = 10;
+			TTH_FINAL.DEFEND_US_ALL_SCALE = 100;
 			TTH_FINAL.DEFEND_US_ALL_ATTENUATION = 0.8;
 			TTH_FINAL.DEFEND_US_ALL_MIN = 0.4;
 			TTH_TABLE.CreatureOption181 = {
@@ -19564,56 +19634,48 @@ doFile("/scripts/H55-Settings.lua");
 					, ["CreatureId"] = CREATURE_GOBLIN
 					, ["Text"] = TTH_TABLE.Creature[CREATURE_GOBLIN]["NAME"]
 					, ["Callback"] = "TTH_PERK.comfirmActive181"
-					, ["Scale"] = 1.5
 				}
 				, [2] = {
 					["Id"] = 2
 					, ["CreatureId"] = CREATURE_CENTAUR
 					, ["Text"] = TTH_TABLE.Creature[CREATURE_CENTAUR]["NAME"]
 					, ["Callback"] = "TTH_PERK.comfirmActive181"
-					, ["Scale"] = 2
 				}
 				, [3] = {
 					["Id"] = 3
 					, ["CreatureId"] = CREATURE_ORC_WARRIOR
 					, ["Text"] = TTH_TABLE.Creature[CREATURE_ORC_WARRIOR]["NAME"]
 					, ["Callback"] = "TTH_PERK.comfirmActive181"
-					, ["Scale"] = 3
 				}
 				, [4] = {
 					["Id"] = 4
 					, ["CreatureId"] = CREATURE_SHAMAN
 					, ["Text"] = TTH_TABLE.Creature[CREATURE_SHAMAN]["NAME"]
 					, ["Callback"] = "TTH_PERK.comfirmActive181"
-					, ["Scale"] = 4
 				}
 				, [5] = {
 					["Id"] = 5
 					, ["CreatureId"] = CREATURE_ORCCHIEF_BUTCHER
 					, ["Text"] = TTH_TABLE.Creature[CREATURE_ORCCHIEF_BUTCHER]["NAME"]
 					, ["Callback"] = "TTH_PERK.comfirmActive181"
-					, ["Scale"] = 6
 				}
 				, [6] = {
 					["Id"] = 6
 					, ["CreatureId"] = CREATURE_WYVERN
 					, ["Text"] = TTH_TABLE.Creature[CREATURE_WYVERN]["NAME"]
 					, ["Callback"] = "TTH_PERK.comfirmActive181"
-					, ["Scale"] = 8
 				}
 				, [7] = {
 					["Id"] = 7
 					, ["CreatureId"] = CREATURE_CYCLOP
 					, ["Text"] = TTH_TABLE.Creature[CREATURE_CYCLOP]["NAME"]
 					, ["Callback"] = "TTH_PERK.comfirmActive181"
-					, ["Scale"] = 12
 				}
 				, [8] = {
 					["Id"] = 8
 					, ["CreatureId"] = CREATURE_WOLF
 					, ["Text"] = TTH_TABLE.Creature[CREATURE_WOLF]["NAME"]
 					, ["Callback"] = "TTH_PERK.comfirmActive181"
-					, ["Scale"] = 4
 				}
 			};
 			function TTH_PERK.init181(iPlayer, strHero)
@@ -19682,7 +19744,12 @@ doFile("/scripts/H55-Settings.lua");
     		local strPostCreatureName = TTH_TABLE.Creature[iPostCreatureId]["NAME"];
     		local iAttenuation = TTH_PERK.calcAttenuation1814Player(iPlayer, strHero);
     		local iRequireSetOgresCount = TTH_GLOBAL.getSetComponentCount(strHero, ARTIFACTSET_OGRES);
-				local iPostCreatureNumber = TTH_COMMON.round(iCreatureNumberGoblin / TTH_FINAL.DEFEND_US_ALL_SCALE / TTH_TABLE.CreatureOption181[iIndexId]["Scale"] * (1 + 0.4 * (TTH_GLOBAL.getSetComponentCount(strHero, ARTIFACTSET_OGRES) + iRequireSetOgresCount)) * iAttenuation);
+    		local iPostCreatureNumber = TTH_COMMON.round(
+    			iCreatureNumberGoblin
+    			/ TTH_FINAL.DEFEND_US_ALL_SCALE
+    			* TTH_TABLE.Creature[iPostCreatureId]["GROWTH"]
+    			* (1 + 0.4 * iRequireSetOgresCount) * iAttenuation
+    		);
 				if iPostCreatureNumber < 1 then
 					iPostCreatureNumber = 1;
 				end;
@@ -19805,6 +19872,7 @@ doFile("/scripts/H55-Settings.lua");
 				if TTH_VARI.recordPlayer182[iPlayer] == nil then
 					TTH_VARI.recordPlayer182[iPlayer] = {
 						["Support"] = {}
+						, ["Capture"] = {}
 						, ["Index"] = 0
 					};
 				end;
@@ -19889,6 +19957,14 @@ doFile("/scripts/H55-Settings.lua");
 				for i, strSupport in arrSupport do
 					if GetObjectOwner(strSupport) ~= iPlayer then
 						TTH_VARI.recordPlayer182[iPlayer]["Support"] = TTH_COMMON.remove8Value(TTH_VARI.recordPlayer182[iPlayer]["Support"], strSupport);
+    				TTH_VARI.recordPlayer182[iPlayer]["Capture"] = TTH_COMMON.push(TTH_VARI.recordPlayer182[iPlayer]["Capture"], strSupport);
+					end;
+				end
+				local arrCapture = TTH_VARI.recordPlayer182[iPlayer]["Capture"];
+				for i, strCapture in arrCapture do
+					if GetObjectOwner(strCapture) == iPlayer then
+						TTH_VARI.recordPlayer182[iPlayer]["Support"] = TTH_COMMON.push(TTH_VARI.recordPlayer182[iPlayer]["Support"], strCapture);
+    				TTH_VARI.recordPlayer182[iPlayer]["Capture"] = TTH_COMMON.remove8Value(TTH_VARI.recordPlayer182[iPlayer]["Capture"], strCapture);
 					end;
 				end
 			end;
@@ -20005,40 +20081,18 @@ doFile("/scripts/H55-Settings.lua");
 			TTH_ECONOMIC.final = {};
 
 			TTH_ECONOMIC.final.scale = {};
-			TTH_ECONOMIC.final.scale.hireHero = -100;
-			TTH_ECONOMIC.final.scale.visitMemoryMentor = -100;
-			TTH_ECONOMIC.final.scale.heroExpedition = -200;
-			TTH_ECONOMIC.final.scale.creatureLv8Low = -10;
-			TTH_ECONOMIC.final.scale.creatureLv8High = -200;
-			TTH_ECONOMIC.final.scale.perkEstates = 10;
-			TTH_ECONOMIC.final.scale.townMarket = 5;
-			TTH_ECONOMIC.final.scale.tradingPost = 20;
+			TTH_ECONOMIC.final.scale.heroExpedition = -20;
+			TTH_ECONOMIC.final.scale.creatureLv8Low = -1;
+			TTH_ECONOMIC.final.scale.creatureLv8High = -20;
+			TTH_ECONOMIC.final.scale.perkEstates = 1;
+			TTH_ECONOMIC.final.scale.townMarket = 1;
+			TTH_ECONOMIC.final.scale.tradingPost = 2;
 			TTH_ECONOMIC.final.scale.bonusJenova = 1;
 			TTH_ECONOMIC.final.scale.bonusJenovaMastery = 3;
 			TTH_ECONOMIC.final.scale.bonusJenovaShantiri = 5;
 
 		-- 方法
 			TTH_ECONOMIC.func = {};
-			TTH_ECONOMIC.func.enableHireHero = function(iPlayer)
-				local bEnableHireHero = TTH_ENUM.No;
-				if TTH_MANAGE.hireHero.data.enable4Player[iPlayer] == TTH_ENUM.Yes then
-					bEnableHireHero = TTH_ENUM.Yes;
-				end;
-				return bEnableHireHero;
-			end;
-			TTH_ECONOMIC.func.calcHireHero = function(iPlayer)
-				return TTH_ECONOMIC.func.enableHireHero(iPlayer) * TTH_ECONOMIC.final.scale.hireHero;
-			end;
-			TTH_ECONOMIC.func.enableVisitMemoryMentor = function(iPlayer)
-				local bEnableVisitMemoryMentor = TTH_ENUM.No;
-				if TTH_MANAGE.visitMemoryMentor.data.enable4Player[iPlayer] == TTH_ENUM.Yes then
-					bEnableVisitMemoryMentor = TTH_ENUM.Yes;
-				end;
-				return bEnableVisitMemoryMentor;
-			end;
-			TTH_ECONOMIC.func.calcVisitMemoryMentor = function(iPlayer)
-				return TTH_ECONOMIC.func.enableVisitMemoryMentor(iPlayer) * TTH_ECONOMIC.final.scale.visitMemoryMentor;
-			end;
 			TTH_ECONOMIC.func.getCountHeroExpedition = function(iPlayer)
 				local iCountHeroExpedition = 0;
 				local arrHero = GetPlayerHeroes(iPlayer);
@@ -20105,7 +20159,21 @@ doFile("/scripts/H55-Settings.lua");
 					if HasHeroSkill(strHero, HERO_SKILL_ESTATES) then
 						local iValue = 1;
 						if HasArtefact(strHero, ARTIFACT_CROWN_OF_LEADER, 1) ~= nil then
-							iValue = 2;
+							iValue = iValue * 2;
+						end;
+						if strHero == "Jenova" then
+							local iScaleJenova = 2;
+							local iHeroLevel = GetHeroLevel(strHero);
+							if TTH_VARI.record4UpgradeMastery[strHero] == nil then
+								iScaleJenova = 2;
+							else
+								if TTH_VARI.record4UpgradeShantiri[strHero] == nil then
+									iScaleJenova = 3 + TTH_COMMON.floor(iHeroLevel / 10);
+								else
+									iScaleJenova = 5 + TTH_COMMON.floor(iHeroLevel / 6);
+								end;
+							end;
+							iValue = iValue * iScaleJenova;
 						end;
 						iCountPerkEstates = iCountPerkEstates + iValue;
 					end;
@@ -20115,8 +20183,9 @@ doFile("/scripts/H55-Settings.lua");
 			TTH_ECONOMIC.func.getCountTownMarket = function(iPlayer)
 				local iCountTownMarket = 0;
 				for i, strTown in TTH_VARI.arrTown do
-					if iPlayer == GetObjectOwner(strTown) then
-						iCountTownMarket = iCountTownMarket + GetTownBuildingLevel(strTown, TOWN_BUILDING_MARKETPLACE);
+					if iPlayer == GetObjectOwner(strTown)
+						and GetTownBuildingLevel(strTown, TOWN_BUILDING_MARKETPLACE) == 2 then
+						iCountTownMarket = iCountTownMarket + 1;
 					end;
 				end;
 				return iCountTownMarket;
@@ -20136,57 +20205,23 @@ doFile("/scripts/H55-Settings.lua");
 			TTH_ECONOMIC.func.calcTradingPost = function(iPlayer)
 				return TTH_ECONOMIC.func.getCountTradingPost(iPlayer) * TTH_ECONOMIC.final.scale.tradingPost;
 			end;
-			TTH_ECONOMIC.func.hasJenova = function(iPlayer)
-				local bHasJenova = TTH_ENUM.No;
-				local arrHero = GetPlayerHeroes(iPlayer);
-				for iIndexHero, strHero in arrHero do
-					if strHero == "Jenova" then
-						bHasJenova = TTH_ENUM.Yes;
-						break;
-					end;
-				end;
-				return bHasJenova;
-			end;
-			TTH_ECONOMIC.func.calcBonusJenova = function(iPlayer)
-				local iHeroLevel = 0;
-				local iBonusJenova = 0;
-				local strHero = "Jenova";
-				if TTH_ECONOMIC.func.hasJenova(iPlayer) == TTH_ENUM.Yes then
-					iHeroLevel = GetHeroLevel(strHero);
-					if TTH_VARI.record4UpgradeMastery[strHero] == nil then
-						iBonusJenova = iHeroLevel * TTH_ECONOMIC.final.scale.bonusJenova;
-					else
-						if TTH_VARI.record4UpgradeShantiri[strHero] == nil then
-							iBonusJenova = iHeroLevel * TTH_ECONOMIC.final.scale.bonusJenovaMastery;
-						else
-							iBonusJenova = iHeroLevel * TTH_ECONOMIC.final.scale.bonusJenovaShantiri;
-						end;
-					end;
-				end;
-				return iBonusJenova;
-			end;
 			TTH_ECONOMIC.func.deal = function(iPlayer)
-				local iPercentHireHero = TTH_ECONOMIC.func.calcHireHero(iPlayer);
-				local iPercentVisitMemoryMentor = TTH_ECONOMIC.func.calcVisitMemoryMentor(iPlayer);
 				local iPercentMayorExpedition = TTH_ECONOMIC.func.calcHeroExpedition(iPlayer);
 				local iPercentCreatureLv8Low = TTH_ECONOMIC.func.calcCreatureLv8Low(iPlayer);
 				local iPercentCreatureLv8High = TTH_ECONOMIC.func.calcCreatureLv8High(iPlayer);
 				local iPercentPerkEstates = TTH_ECONOMIC.func.calcPerkEstates(iPlayer);
 				local iPercentTownMarket = TTH_ECONOMIC.func.calcTownMarket(iPlayer);
 				local iPercentTradingPost = TTH_ECONOMIC.func.calcTradingPost(iPlayer);
-				local iPercentHireJenova = TTH_ECONOMIC.func.calcBonusJenova(iPlayer);
-				local iPercentTotal = iPercentHireHero + iPercentVisitMemoryMentor + iPercentMayorExpedition + iPercentCreatureLv8Low + iPercentCreatureLv8High
-					+ iPercentPerkEstates + iPercentTownMarket + iPercentTradingPost + iPercentHireJenova;
+				local iPercentTotal = iPercentMayorExpedition + iPercentCreatureLv8Low + iPercentCreatureLv8High
+					+ iPercentPerkEstates + iPercentTownMarket + iPercentTradingPost;
 
 				if iPercentTotal > 0 then
-					TTH_GLOBAL.increaseResource8Percent(iPlayer, GOLD, iPercentTotal / 1000);
+					TTH_GLOBAL.increaseResource8Percent(iPlayer, GOLD, iPercentTotal / 100);
 				end;
 				if iPercentTotal < 0 then
-					TTH_GLOBAL.reduceResource8Percent(iPlayer, GOLD, iPercentTotal / 1000);
+					TTH_GLOBAL.reduceResource8Percent(iPlayer, GOLD, iPercentTotal / 100);
 				end;
 			end;
-
-		-- :TODO 提示
 
 	-- test
 		TTH_TEST = {};
@@ -20316,8 +20351,9 @@ doFile("/scripts/H55-Settings.lua");
 
 				local arrHero = GetPlayerHeroes(iPlayer);
 				for iIndexHero, strHero in arrHero do
-					TTH_GLOBAL.bindHeroCustomAbility4Hero(strHero); -- 触发器: 王国管理
+					TTH_GLOBAL.bindHeroCustomAbility2Hero(strHero); -- 触发器: 王国管理
 					TTH_GLOBAL.bindHeroCustomAbility3Hero(strHero); -- 触发器: 定点回城
+					TTH_GLOBAL.bindHeroCustomAbility4Hero(strHero); -- 触发器: 作弊功能
 					TTH_GLOBAL.triggerInitHeroLevelUp(strHero); -- 触发器: 英雄升级
 					TTH_GLOBAL.initHero4Specialty(strHero); -- 初始生物特奖励生物
 					TTH_MANAGE.initMayor(strHero); -- 初始内政官信息
@@ -20517,6 +20553,7 @@ doFile("/scripts/H55-Settings.lua");
 						for i, strTown in TTH_VARI.arrTown do
 							if iPlayer == GetObjectOwner(strTown) then
 								TTH_MANAGE.bonusTownDwellingCreature8Mayor(strTown); -- 内政官每周城镇产量增加
+								sleep(1)
 								TTH_ARTI.bonusTownDwellingCreature8Legion(strTown); -- 每周城镇生物周产结算
 							end;
 						end;
@@ -20673,7 +20710,7 @@ doFile("/scripts/H55-Settings.lua");
 
 					TTH_GLOBAL.refreshBankRestDay(iPlayer); -- :TODO 更新银行时间剩余时间
 					if TTH_MAP10W.init == nil then
-						TTH_VISIT.refreshWitchHut(iPlayer); -- 更新女巫小屋刷新时间
+						TTH_VISIT.witch.common.dealDaily(iPlayer); -- 更新女巫小屋刷新时间
 					end;
 				end;
 

@@ -32,7 +32,7 @@
 	<Icon128/>
 	<InternalName>Mokka</InternalName>
 	<Class>HERO_CLASS_BARBARIAN</Class>
-	<Specialization>HERO_SPEC_WAR_LEADER</Specialization>
+	<Specialization/>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_DEMONIC_RAGE</SkillID>

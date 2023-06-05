@@ -5,7 +5,6 @@
 		<Item href="Options/Header.(WindowTextView).xdb#xpointer(/WindowTextView)"/>
 		<Item href="TimeLimitBlock.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<Item href="DifficultyBlock.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="EE_lookahead_Block.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<Item href="EE_mercenaries_Block.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<Item href="EE_discount_Block.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 	</Children>

@@ -63,7 +63,7 @@
 			<Item>HERO_SKILL_SCHOLAR</Item>
 		</perkIDs>
 		<spellIDs>
-			<Item>SPELL_STONE_SPIKES</Item>
+			<Item>SPELL_UBER_METEOR_SHOWER</Item>
 		</spellIDs>
 		<Ballista>false</Ballista>
 		<FirstAidTent>false</FirstAidTent>

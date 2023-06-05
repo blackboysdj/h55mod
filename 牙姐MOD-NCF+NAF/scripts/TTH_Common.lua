@@ -1177,10 +1177,15 @@ doFile("/scripts/TTH_Library.lua")
     CREATURE_551 = 551
     CREATURE_INFERNO_TOOL = 551
     CREATURE_552 = 552
+    CREATURE_INFERNO_FAMILIAR = 552
     CREATURE_553 = 553
+    CREATURE_INFERNO_FAMILIAR_ZYDAR1 = 553
     CREATURE_554 = 554
+    CREATURE_INFERNO_FAMILIAR_ZYDAR2 = 554
     CREATURE_555 = 555
+    CREATURE_INFERNO_TOOL_Efion_Basic = 555
     CREATURE_556 = 556
+    CREATURE_INFERNO_TOOL_Efion_Expert = 556
     CREATURE_557 = 557
     CREATURE_INFERNO_TOOL_Jazaz_AbilityUpgradeMastery = 557
     CREATURE_558 = 558
@@ -2110,6 +2115,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Nathaniel/name.txt"
               , ["Race"] = TOWN_HEAVEN
               , ["Class"] = TTH_ENUM.Knight
+              , ["Mastery"] = HERO_SKILL_TRAINING
               , ["Group"] = TTH_ENUM.GroupMight
               , ["Building"] = TOWN_BUILDING_DWELLING_1
               , ["Specialty"] = {
@@ -2125,6 +2131,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Orrin/name.txt"
               , ["Race"] = TOWN_HEAVEN
               , ["Class"] = TTH_ENUM.Knight
+              , ["Mastery"] = HERO_SKILL_TRAINING
               , ["Group"] = TTH_ENUM.GroupMight
               , ["Building"] = TOWN_BUILDING_DWELLING_2
               , ["Specialty"] = {
@@ -2140,6 +2147,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Mardigo/name.txt"
               , ["Race"] = TOWN_HEAVEN
               , ["Class"] = TTH_ENUM.Knight
+              , ["Mastery"] = HERO_SKILL_TRAINING
               , ["Group"] = TTH_ENUM.GroupMight
               , ["Building"] = TOWN_BUILDING_DWELLING_3
               , ["Specialty"] = {
@@ -2155,6 +2163,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Ving/name.txt"
               , ["Race"] = TOWN_HEAVEN
               , ["Class"] = TTH_ENUM.Knight
+              , ["Mastery"] = HERO_SKILL_TRAINING
               , ["Group"] = TTH_ENUM.GroupMight
               , ["Building"] = TOWN_BUILDING_DWELLING_4
               , ["Specialty"] = {
@@ -2170,6 +2179,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Sarge/name.txt"
               , ["Race"] = TOWN_HEAVEN
               , ["Class"] = TTH_ENUM.Knight
+              , ["Mastery"] = HERO_SKILL_TRAINING
               , ["Group"] = TTH_ENUM.GroupMight
               , ["Building"] = TOWN_BUILDING_DWELLING_6
               , ["Specialty"] = {
@@ -2185,6 +2195,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Isabell/name.txt"
               , ["Race"] = TOWN_HEAVEN
               , ["Class"] = TTH_ENUM.Knight
+              , ["Mastery"] = HERO_SKILL_TRAINING
               , ["Group"] = TTH_ENUM.GroupMight
               , ["Building"] = TOWN_BUILDING_SPECIAL_1
             }
@@ -2193,6 +2204,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Christian/name.txt"
               , ["Race"] = TOWN_HEAVEN
               , ["Class"] = TTH_ENUM.Knight
+              , ["Mastery"] = HERO_SKILL_TRAINING
               , ["Group"] = TTH_ENUM.GroupMight
             }
             , ["RedHeavenHero02"] = {
@@ -2200,6 +2212,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/RedHeavenHero02/name.txt"
               , ["Race"] = TOWN_HEAVEN
               , ["Class"] = TTH_ENUM.Knight
+              , ["Mastery"] = HERO_SKILL_TRAINING
               , ["Group"] = TTH_ENUM.GroupMight
             }
             , ["RedHeavenHero05"] = {
@@ -2207,6 +2220,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/RedHeavenHero05/name.txt"
               , ["Race"] = TOWN_HEAVEN
               , ["Class"] = TTH_ENUM.Knight
+              , ["Mastery"] = HERO_SKILL_TRAINING
               , ["Group"] = TTH_ENUM.GroupMight
             }
             , ["GodricMP"] = {
@@ -2214,6 +2228,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/GodricMP/name.txt"
               , ["Race"] = TOWN_HEAVEN
               , ["Class"] = TTH_ENUM.Knight
+              , ["Mastery"] = HERO_SKILL_TRAINING
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
             }
           -- Paladin
@@ -2222,6 +2237,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Brem/name.txt"
               , ["Race"] = TOWN_HEAVEN
               , ["Class"] = TTH_ENUM.Paladin
+              , ["Mastery"] = HERO_SKILL_TRAINING
               , ["Group"] = TTH_ENUM.GroupMight
               , ["Building"] = TOWN_BUILDING_SPECIAL_4
             }
@@ -2230,6 +2246,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Nicolai/name.txt"
               , ["Race"] = TOWN_HEAVEN
               , ["Class"] = TTH_ENUM.Paladin
+              , ["Mastery"] = HERO_SKILL_TRAINING
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
             }
             , ["Alaric"] = {
@@ -2237,6 +2254,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Alaric/name.txt"
               , ["Race"] = TOWN_HEAVEN
               , ["Class"] = TTH_ENUM.Paladin
+              , ["Mastery"] = HERO_SKILL_TRAINING
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
             }
             , ["Axel"] = {
@@ -2244,6 +2262,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Axel/name.txt"
               , ["Race"] = TOWN_HEAVEN
               , ["Class"] = TTH_ENUM.Paladin
+              , ["Mastery"] = HERO_SKILL_TRAINING
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
             }
             , ["SaintIsabell"] = {
@@ -2251,6 +2270,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/SaintIsabell/name.txt"
               , ["Race"] = TOWN_HEAVEN
               , ["Class"] = TTH_ENUM.Paladin
+              , ["Mastery"] = HERO_SKILL_TRAINING
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
             }
             , ["Maeve"] = {
@@ -2258,6 +2278,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Maeve/name.txt"
               , ["Race"] = TOWN_HEAVEN
               , ["Class"] = TTH_ENUM.Paladin
+              , ["Mastery"] = HERO_SKILL_TRAINING
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
             }
             , ["RedHeavenHero06"] = {
@@ -2265,6 +2286,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/RedHeavenHero06/name.txt"
               , ["Race"] = TOWN_HEAVEN
               , ["Class"] = TTH_ENUM.Paladin
+              , ["Mastery"] = HERO_SKILL_TRAINING
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
             }
             , ["Caldwell"] = {
@@ -2272,6 +2294,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Caldwell/name.txt"
               , ["Race"] = TOWN_HEAVEN
               , ["Class"] = TTH_ENUM.Paladin
+              , ["Mastery"] = HERO_SKILL_TRAINING
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
             }
           -- Retribution
@@ -2280,6 +2303,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/OrtanCassius/name.txt"
               , ["Race"] = TOWN_HEAVEN
               , ["Class"] = TTH_ENUM.Retribution
+              , ["Mastery"] = HERO_SKILL_TRAINING
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
               , ["Building"] = TOWN_BUILDING_DWELLING_5
               , ["Specialty"] = {
@@ -2295,6 +2319,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Sanguinius/name.txt"
               , ["Race"] = TOWN_HEAVEN
               , ["Class"] = TTH_ENUM.Retribution
+              , ["Mastery"] = HERO_SKILL_TRAINING
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
               , ["Building"] = TOWN_BUILDING_DWELLING_3
               , ["Specialty"] = {
@@ -2310,6 +2335,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Avitus/name.txt"
               , ["Race"] = TOWN_HEAVEN
               , ["Class"] = TTH_ENUM.Retribution
+              , ["Mastery"] = HERO_SKILL_TRAINING
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
               , ["Building"] = TOWN_BUILDING_DWELLING_2
               , ["Specialty"] = {
@@ -2325,6 +2351,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Tarkus/name.txt"
               , ["Race"] = TOWN_HEAVEN
               , ["Class"] = TTH_ENUM.Paladin
+              , ["Mastery"] = HERO_SKILL_TRAINING
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
             }
           -- Heretic
@@ -2333,6 +2360,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/RedHeavenHero03/name.txt"
               , ["Race"] = TOWN_HEAVEN
               , ["Class"] = TTH_ENUM.Heretic
+              , ["Mastery"] = HERO_SKILL_TRAINING
               , ["Group"] = TTH_ENUM.GroupMagic
             }
             , ["Orlando"] = {
@@ -2340,6 +2368,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Orlando/name.txt"
               , ["Race"] = TOWN_HEAVEN
               , ["Class"] = TTH_ENUM.Heretic
+              , ["Mastery"] = HERO_SKILL_TRAINING
               , ["Group"] = TTH_ENUM.GroupMagic
             }
             , ["Markal"] = {
@@ -2347,6 +2376,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Markal/name.txt"
               , ["Race"] = TOWN_HEAVEN
               , ["Class"] = TTH_ENUM.Heretic
+              , ["Mastery"] = HERO_SKILL_TRAINING
               , ["Group"] = TTH_ENUM.GroupMagic
             }
         -- TOWN_PRESERVE
@@ -2356,6 +2386,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Metlirn/name.txt"
               , ["Race"] = TOWN_PRESERVE
               , ["Class"] = TTH_ENUM.Ranger
+              , ["Mastery"] = HERO_SKILL_AVENGER
               , ["Group"] = TTH_ENUM.GroupMight
               , ["Building"] = TOWN_BUILDING_SPECIAL_0
             }
@@ -2364,6 +2395,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Ossir/name.txt"
               , ["Race"] = TOWN_PRESERVE
               , ["Class"] = TTH_ENUM.Ranger
+              , ["Mastery"] = HERO_SKILL_AVENGER
               , ["Group"] = TTH_ENUM.GroupMight
               , ["Building"] = TOWN_BUILDING_DWELLING_3
               , ["Specialty"] = {
@@ -2379,6 +2411,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Linaas/name.txt"
               , ["Race"] = TOWN_PRESERVE
               , ["Class"] = TTH_ENUM.Ranger
+              , ["Mastery"] = HERO_SKILL_AVENGER
               , ["Group"] = TTH_ENUM.GroupMight
             }
             , ["Heam"] = {
@@ -2386,6 +2419,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Heam/name.txt"
               , ["Race"] = TOWN_PRESERVE
               , ["Class"] = TTH_ENUM.Ranger
+              , ["Mastery"] = HERO_SKILL_AVENGER
               , ["Group"] = TTH_ENUM.GroupMight
             }
             , ["Gelu"] = {
@@ -2393,6 +2427,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Gelu/name.txt"
               , ["Race"] = TOWN_PRESERVE
               , ["Class"] = TTH_ENUM.Ranger
+              , ["Mastery"] = HERO_SKILL_AVENGER
               , ["Group"] = TTH_ENUM.GroupMight
               , ["Building"] = TOWN_BUILDING_DWELLING_3
               , ["Specialty"] = {
@@ -2408,6 +2443,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Arniel/name.txt"
               , ["Race"] = TOWN_PRESERVE
               , ["Class"] = TTH_ENUM.Ranger
+              , ["Mastery"] = HERO_SKILL_AVENGER
               , ["Group"] = TTH_ENUM.GroupMight
             }
             , ["Kyrre"] = {
@@ -2415,6 +2451,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Kyrre/name.txt"
               , ["Race"] = TOWN_PRESERVE
               , ["Class"] = TTH_ENUM.Ranger
+              , ["Mastery"] = HERO_SKILL_AVENGER
               , ["Group"] = TTH_ENUM.GroupMight
             }
           -- Warden
@@ -2423,6 +2460,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Nadaur/name.txt"
               , ["Race"] = TOWN_PRESERVE
               , ["Class"] = TTH_ENUM.Warden
+              , ["Mastery"] = HERO_SKILL_AVENGER
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
               , ["Specialty"] = {
                 [1] = {
@@ -2451,6 +2489,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Gillion/name.txt"
               , ["Race"] = TOWN_PRESERVE
               , ["Class"] = TTH_ENUM.Warden
+              , ["Mastery"] = HERO_SKILL_AVENGER
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
               , ["Building"] = TOWN_BUILDING_DWELLING_2
               , ["Specialty"] = {
@@ -2466,6 +2505,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Itil/name.txt"
               , ["Race"] = TOWN_PRESERVE
               , ["Class"] = TTH_ENUM.Warden
+              , ["Mastery"] = HERO_SKILL_AVENGER
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
               , ["Building"] = TOWN_BUILDING_DWELLING_5
               , ["Specialty"] = {
@@ -2481,6 +2521,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Melodia/name.txt"
               , ["Race"] = TOWN_PRESERVE
               , ["Class"] = TTH_ENUM.Warden
+              , ["Mastery"] = HERO_SKILL_AVENGER
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
               , ["Building"] = TOWN_BUILDING_SPECIAL_2
             }
@@ -2489,6 +2530,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Jenova/name.txt"
               , ["Race"] = TOWN_PRESERVE
               , ["Class"] = TTH_ENUM.Warden
+              , ["Mastery"] = HERO_SKILL_AVENGER
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
             }
             , ["Mephala"] = {
@@ -2496,6 +2538,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Mephala/name.txt"
               , ["Race"] = TOWN_PRESERVE
               , ["Class"] = TTH_ENUM.Warden
+              , ["Mastery"] = HERO_SKILL_AVENGER
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
               , ["Attribute"] = {
                 ["Step"] = 3
@@ -2507,6 +2550,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Gem/name.txt"
               , ["Race"] = TOWN_PRESERVE
               , ["Class"] = TTH_ENUM.Warden
+              , ["Mastery"] = HERO_SKILL_AVENGER
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
             }
           -- Enchanter
@@ -2515,6 +2559,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Elleshar/name.txt"
               , ["Race"] = TOWN_PRESERVE
               , ["Class"] = TTH_ENUM.Enchanter
+              , ["Mastery"] = HERO_SKILL_AVENGER
               , ["Group"] = TTH_ENUM.GroupMagic
             }
             , ["Ildar"] = {
@@ -2522,6 +2567,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Ildar/name.txt"
               , ["Race"] = TOWN_PRESERVE
               , ["Class"] = TTH_ENUM.Enchanter
+              , ["Mastery"] = HERO_SKILL_AVENGER
               , ["Group"] = TTH_ENUM.GroupMagic
             }
             , ["Vaniel"] = {
@@ -2529,6 +2575,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Vaniel/name.txt"
               , ["Race"] = TOWN_PRESERVE
               , ["Class"] = TTH_ENUM.Enchanter
+              , ["Mastery"] = HERO_SKILL_AVENGER
               , ["Group"] = TTH_ENUM.GroupMagic
               , ["Building"] = TOWN_BUILDING_DWELLING_4
             }
@@ -2537,6 +2584,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Vinrael/name.txt"
               , ["Race"] = TOWN_PRESERVE
               , ["Class"] = TTH_ENUM.Enchanter
+              , ["Mastery"] = HERO_SKILL_AVENGER
               , ["Group"] = TTH_ENUM.GroupMagic
               , ["Attribute"] = {
                 ["Step"] = 3
@@ -2548,6 +2596,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Diraya/name.txt"
               , ["Race"] = TOWN_PRESERVE
               , ["Class"] = TTH_ENUM.Enchanter
+              , ["Mastery"] = HERO_SKILL_AVENGER
               , ["Group"] = TTH_ENUM.GroupMagic
             }
         -- TOWN_ACADEMY
@@ -2557,6 +2606,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Havez/name.txt"
               , ["Race"] = TOWN_ACADEMY
               , ["Class"] = TTH_ENUM.GuildMaster
+              , ["Mastery"] = HERO_SKILL_ARTIFICIER
               , ["Group"] = TTH_ENUM.GroupMight
               , ["Building"] = TOWN_BUILDING_DWELLING_1
               , ["Specialty"] = {
@@ -2572,6 +2622,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Minasli/name.txt"
               , ["Race"] = TOWN_ACADEMY
               , ["Class"] = TTH_ENUM.GuildMaster
+              , ["Mastery"] = HERO_SKILL_ARTIFICIER
               , ["Group"] = TTH_ENUM.GroupMight
             }
             , ["Isher"] = {
@@ -2579,6 +2630,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Isher/name.txt"
               , ["Race"] = TOWN_ACADEMY
               , ["Class"] = TTH_ENUM.GuildMaster
+              , ["Mastery"] = HERO_SKILL_ARTIFICIER
               , ["Group"] = TTH_ENUM.GroupMight
               , ["Building"] = TOWN_BUILDING_DWELLING_3
               , ["Specialty"] = {
@@ -2594,6 +2646,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Davius/name.txt"
               , ["Race"] = TOWN_ACADEMY
               , ["Class"] = TTH_ENUM.GuildMaster
+              , ["Mastery"] = HERO_SKILL_ARTIFICIER
               , ["Group"] = TTH_ENUM.GroupMight
               , ["Building"] = TOWN_BUILDING_DWELLING_6
               , ["Specialty"] = {
@@ -2609,6 +2662,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Cyrus/name.txt"
               , ["Race"] = TOWN_ACADEMY
               , ["Class"] = TTH_ENUM.GuildMaster
+              , ["Mastery"] = HERO_SKILL_ARTIFICIER
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
             }
           -- Wizard
@@ -2617,6 +2671,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Dracon/name.txt"
               , ["Race"] = TOWN_ACADEMY
               , ["Class"] = TTH_ENUM.Wizard
+              , ["Mastery"] = HERO_SKILL_ARTIFICIER
               , ["Group"] = TTH_ENUM.GroupMight
               , ["Building"] = TOWN_BUILDING_DWELLING_4
               , ["Specialty"] = {
@@ -2632,6 +2687,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Rissa/name.txt"
               , ["Race"] = TOWN_ACADEMY
               , ["Class"] = TTH_ENUM.Wizard
+              , ["Mastery"] = HERO_SKILL_ARTIFICIER
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
               , ["Building"] = TOWN_BUILDING_SPECIAL_4
             }
@@ -2640,6 +2696,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Razzak/name.txt"
               , ["Race"] = TOWN_ACADEMY
               , ["Class"] = TTH_ENUM.Wizard
+              , ["Mastery"] = HERO_SKILL_ARTIFICIER
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
               , ["Building"] = TOWN_BUILDING_DWELLING_4
               , ["Specialty"] = {
@@ -2655,6 +2712,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Sufi/name.txt"
               , ["Race"] = TOWN_ACADEMY
               , ["Class"] = TTH_ENUM.Wizard
+              , ["Mastery"] = HERO_SKILL_ARTIFICIER
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
             }
             , ["Maahir"] = {
@@ -2662,6 +2720,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Maahir/name.txt"
               , ["Race"] = TOWN_ACADEMY
               , ["Class"] = TTH_ENUM.Wizard
+              , ["Mastery"] = HERO_SKILL_ARTIFICIER
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
               , ["Attribute"] = {
                 ["Step"] = 3
@@ -2673,6 +2732,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Timerkhan/name.txt"
               , ["Race"] = TOWN_ACADEMY
               , ["Class"] = TTH_ENUM.Wizard
+              , ["Mastery"] = HERO_SKILL_ARTIFICIER
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
             }
             , ["Tan"] = {
@@ -2680,6 +2740,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Tan/name.txt"
               , ["Race"] = TOWN_ACADEMY
               , ["Class"] = TTH_ENUM.Wizard
+              , ["Mastery"] = HERO_SKILL_ARTIFICIER
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
             }
           -- ElementAlist
@@ -2688,6 +2749,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Emilia/name.txt"
               , ["Race"] = TOWN_ACADEMY
               , ["Class"] = TTH_ENUM.ElementAlist
+              , ["Mastery"] = HERO_SKILL_ARTIFICIER
               , ["Group"] = TTH_ENUM.GroupMagic
             }
             , ["Nur"] = {
@@ -2695,6 +2757,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Nur/name.txt"
               , ["Race"] = TOWN_ACADEMY
               , ["Class"] = TTH_ENUM.ElementAlist
+              , ["Mastery"] = HERO_SKILL_ARTIFICIER
               , ["Group"] = TTH_ENUM.GroupMagic
             }
             , ["Astral"] = {
@@ -2702,6 +2765,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Astral/name.txt"
               , ["Race"] = TOWN_ACADEMY
               , ["Class"] = TTH_ENUM.ElementAlist
+              , ["Mastery"] = HERO_SKILL_ARTIFICIER
               , ["Group"] = TTH_ENUM.GroupMagic
             }
             , ["Zehir"] = {
@@ -2709,6 +2773,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Zehir/name.txt"
               , ["Race"] = TOWN_ACADEMY
               , ["Class"] = TTH_ENUM.ElementAlist
+              , ["Mastery"] = HERO_SKILL_ARTIFICIER
               , ["Group"] = TTH_ENUM.GroupMagic
             }
             , ["Faiz"] = {
@@ -2716,6 +2781,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Faiz/name.txt"
               , ["Race"] = TOWN_ACADEMY
               , ["Class"] = TTH_ENUM.ElementAlist
+              , ["Mastery"] = HERO_SKILL_ARTIFICIER
               , ["Group"] = TTH_ENUM.GroupMagic
             }
             , ["Solmyr"] = {
@@ -2723,6 +2789,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Solmyr/name.txt"
               , ["Race"] = TOWN_ACADEMY
               , ["Class"] = TTH_ENUM.ElementAlist
+              , ["Mastery"] = HERO_SKILL_ARTIFICIER
               , ["Group"] = TTH_ENUM.GroupMagic
             }
         -- TOWN_DUNGEON
@@ -2732,6 +2799,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Urunir/name.txt"
               , ["Race"] = TOWN_DUNGEON
               , ["Class"] = TTH_ENUM.BeastMaster
+              , ["Mastery"] = HERO_SKILL_INVOCATION
               , ["Group"] = TTH_ENUM.GroupMight
               , ["Building"] = TOWN_BUILDING_DWELLING_2
               , ["Specialty"] = {
@@ -2747,6 +2815,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Menel/name.txt"
               , ["Race"] = TOWN_DUNGEON
               , ["Class"] = TTH_ENUM.BeastMaster
+              , ["Mastery"] = HERO_SKILL_INVOCATION
               , ["Group"] = TTH_ENUM.GroupMight
               , ["Building"] = TOWN_BUILDING_DWELLING_3
               , ["Specialty"] = {
@@ -2762,6 +2831,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Ferigl/name.txt"
               , ["Race"] = TOWN_DUNGEON
               , ["Class"] = TTH_ENUM.BeastMaster
+              , ["Mastery"] = HERO_SKILL_INVOCATION
               , ["Group"] = TTH_ENUM.GroupMight
               , ["Building"] = TOWN_BUILDING_DWELLING_4
               , ["Specialty"] = {
@@ -2777,6 +2847,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Sylsai/name.txt"
               , ["Race"] = TOWN_DUNGEON
               , ["Class"] = TTH_ENUM.BeastMaster
+              , ["Mastery"] = HERO_SKILL_INVOCATION
               , ["Group"] = TTH_ENUM.GroupMight
             }
             , ["Welygg"] = {
@@ -2784,6 +2855,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Welygg/name.txt"
               , ["Race"] = TOWN_DUNGEON
               , ["Class"] = TTH_ENUM.BeastMaster
+              , ["Mastery"] = HERO_SKILL_INVOCATION
               , ["Group"] = TTH_ENUM.GroupMight
               , ["Specialty"] = {
                 [1] = {
@@ -2799,6 +2871,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Ohtarig/name.txt"
               , ["Race"] = TOWN_DUNGEON
               , ["Class"] = TTH_ENUM.Seer
+              , ["Mastery"] = HERO_SKILL_INVOCATION
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
               , ["Building"] = TOWN_BUILDING_DWELLING_1
               , ["Specialty"] = {
@@ -2814,6 +2887,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Eruina/name.txt"
               , ["Race"] = TOWN_DUNGEON
               , ["Class"] = TTH_ENUM.Seer
+              , ["Mastery"] = HERO_SKILL_INVOCATION
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
               , ["Building"] = TOWN_BUILDING_DWELLING_6
               , ["Specialty"] = {
@@ -2829,6 +2903,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Dalom/name.txt"
               , ["Race"] = TOWN_DUNGEON
               , ["Class"] = TTH_ENUM.Seer
+              , ["Mastery"] = HERO_SKILL_INVOCATION
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
             }
             , ["Kelodin"] = {
@@ -2836,6 +2911,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Kelodin/name.txt"
               , ["Race"] = TOWN_DUNGEON
               , ["Class"] = TTH_ENUM.Seer
+              , ["Mastery"] = HERO_SKILL_INVOCATION
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
             }
             , ["Shadwyn"] = {
@@ -2843,6 +2919,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Shadwyn/name.txt"
               , ["Race"] = TOWN_DUNGEON
               , ["Class"] = TTH_ENUM.Seer
+              , ["Mastery"] = HERO_SKILL_INVOCATION
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
             }
             , ["Thralsai"] = {
@@ -2850,6 +2927,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Thralsai/name.txt"
               , ["Race"] = TOWN_DUNGEON
               , ["Class"] = TTH_ENUM.Seer
+              , ["Mastery"] = HERO_SKILL_INVOCATION
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
             }
           -- Warlock
@@ -2858,6 +2936,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Agbeth/name.txt"
               , ["Race"] = TOWN_DUNGEON
               , ["Class"] = TTH_ENUM.Warlock
+              , ["Mastery"] = HERO_SKILL_INVOCATION
               , ["Group"] = TTH_ENUM.GroupMagic
             }
             , ["Almegir"] = {
@@ -2865,6 +2944,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Almegir/name.txt"
               , ["Race"] = TOWN_DUNGEON
               , ["Class"] = TTH_ENUM.Warlock
+              , ["Mastery"] = HERO_SKILL_INVOCATION
               , ["Group"] = TTH_ENUM.GroupMagic
               , ["Attribute"] = {
                 ["Step"] = 3
@@ -2876,6 +2956,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Inagost/name.txt"
               , ["Race"] = TOWN_DUNGEON
               , ["Class"] = TTH_ENUM.Warlock
+              , ["Mastery"] = HERO_SKILL_INVOCATION
               , ["Group"] = TTH_ENUM.GroupMagic
             }
             , ["Kastore"] = {
@@ -2883,6 +2964,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Kastore/name.txt"
               , ["Race"] = TOWN_DUNGEON
               , ["Class"] = TTH_ENUM.Warlock
+              , ["Mastery"] = HERO_SKILL_INVOCATION
               , ["Group"] = TTH_ENUM.GroupMagic
             }
             , ["Raelag"] = {
@@ -2890,6 +2972,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Raelag/name.txt"
               , ["Race"] = TOWN_DUNGEON
               , ["Class"] = TTH_ENUM.Warlock
+              , ["Mastery"] = HERO_SKILL_INVOCATION
               , ["Group"] = TTH_ENUM.GroupMagic
             }
             , ["Ranleth"] = {
@@ -2897,6 +2980,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Ranleth/name.txt"
               , ["Race"] = TOWN_DUNGEON
               , ["Class"] = TTH_ENUM.Warlock
+              , ["Mastery"] = HERO_SKILL_INVOCATION
               , ["Group"] = TTH_ENUM.GroupMagic
             }
             , ["Sephinroth"] = {
@@ -2904,6 +2988,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Sephinroth/name.txt"
               , ["Race"] = TOWN_DUNGEON
               , ["Class"] = TTH_ENUM.Warlock
+              , ["Mastery"] = HERO_SKILL_INVOCATION
               , ["Group"] = TTH_ENUM.GroupMagic
             }
         -- TOWN_NECROMANCY
@@ -2913,6 +2998,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/LordHaart/name.txt"
               , ["Race"] = TOWN_NECROMANCY
               , ["Class"] = TTH_ENUM.DeathKnight
+              , ["Mastery"] = HERO_SKILL_NECROMANCY
               , ["Group"] = TTH_ENUM.GroupMight
               , ["Building"] = TOWN_BUILDING_DWELLING_2
               , ["Specialty"] = {
@@ -2928,6 +3014,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Berein/name.txt"
               , ["Race"] = TOWN_NECROMANCY
               , ["Class"] = TTH_ENUM.DeathKnight
+              , ["Mastery"] = HERO_SKILL_NECROMANCY
               , ["Group"] = TTH_ENUM.GroupMight
               , ["Building"] = TOWN_BUILDING_SPECIAL_2
             }
@@ -2936,6 +3023,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Gles/name.txt"
               , ["Race"] = TOWN_NECROMANCY
               , ["Class"] = TTH_ENUM.DeathKnight
+              , ["Mastery"] = HERO_SKILL_NECROMANCY
               , ["Group"] = TTH_ENUM.GroupMight
             }
             , ["Nikolay"] = {
@@ -2943,6 +3031,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Nikolay/name.txt"
               , ["Race"] = TOWN_NECROMANCY
               , ["Class"] = TTH_ENUM.DeathKnight
+              , ["Mastery"] = HERO_SKILL_NECROMANCY
               , ["Group"] = TTH_ENUM.GroupMight
               , ["Building"] = TOWN_BUILDING_SPECIAL_1
             }
@@ -2951,6 +3040,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Straker/name.txt"
               , ["Race"] = TOWN_NECROMANCY
               , ["Class"] = TTH_ENUM.DeathKnight
+              , ["Mastery"] = HERO_SKILL_NECROMANCY
               , ["Group"] = TTH_ENUM.GroupMight
               , ["Building"] = TOWN_BUILDING_DWELLING_2
               , ["Specialty"] = {
@@ -2966,6 +3056,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Tamika/name.txt"
               , ["Race"] = TOWN_NECROMANCY
               , ["Class"] = TTH_ENUM.DeathKnight
+              , ["Mastery"] = HERO_SKILL_NECROMANCY
               , ["Group"] = TTH_ENUM.GroupMight
               , ["Building"] = TOWN_BUILDING_DWELLING_4
               , ["Specialty"] = {
@@ -2981,6 +3072,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Xerxon/name.txt"
               , ["Race"] = TOWN_NECROMANCY
               , ["Class"] = TTH_ENUM.DeathKnight
+              , ["Mastery"] = HERO_SKILL_NECROMANCY
               , ["Group"] = TTH_ENUM.GroupMight
             }
             , ["Karissa"] = {
@@ -2988,6 +3080,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Karissa/name.txt"
               , ["Race"] = TOWN_NECROMANCY
               , ["Class"] = TTH_ENUM.DeathKnight
+              , ["Mastery"] = HERO_SKILL_NECROMANCY
               , ["Group"] = TTH_ENUM.GroupMight
               , ["Building"] = TOWN_BUILDING_DWELLING_1
               , ["Specialty"] = {
@@ -3004,6 +3097,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Aislinn/name.txt"
               , ["Race"] = TOWN_NECROMANCY
               , ["Class"] = TTH_ENUM.Reaver
+              , ["Mastery"] = HERO_SKILL_NECROMANCY
               , ["Group"] = TTH_ENUM.GroupBalanceNec
             }
             , ["Effig"] = {
@@ -3011,6 +3105,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Effig/name.txt"
               , ["Race"] = TOWN_NECROMANCY
               , ["Class"] = TTH_ENUM.Reaver
+              , ["Mastery"] = HERO_SKILL_NECROMANCY
               , ["Group"] = TTH_ENUM.GroupBalanceNec
             }
             , ["Giovanni"] = {
@@ -3018,6 +3113,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Giovanni/name.txt"
               , ["Race"] = TOWN_NECROMANCY
               , ["Class"] = TTH_ENUM.Reaver
+              , ["Mastery"] = HERO_SKILL_NECROMANCY
               , ["Group"] = TTH_ENUM.GroupBalanceNec
             }
             , ["OrnellaNecro"] = {
@@ -3025,6 +3121,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/OrnellaNecro/name.txt"
               , ["Race"] = TOWN_NECROMANCY
               , ["Class"] = TTH_ENUM.Reaver
+              , ["Mastery"] = HERO_SKILL_NECROMANCY
               , ["Group"] = TTH_ENUM.GroupBalanceNec
             }
             , ["Aberrar"] = {
@@ -3032,6 +3129,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Aberrar/name.txt"
               , ["Race"] = TOWN_NECROMANCY
               , ["Class"] = TTH_ENUM.Reaver
+              , ["Mastery"] = HERO_SKILL_NECROMANCY
               , ["Group"] = TTH_ENUM.GroupBalanceNec
             }
             , ["Nimbus"] = {
@@ -3039,6 +3137,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Nimbus/name.txt"
               , ["Race"] = TOWN_NECROMANCY
               , ["Class"] = TTH_ENUM.Reaver
+              , ["Mastery"] = HERO_SKILL_NECROMANCY
               , ["Group"] = TTH_ENUM.GroupBalanceNec
             }
           -- Necromancer
@@ -3047,6 +3146,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Muscip/name.txt"
               , ["Race"] = TOWN_NECROMANCY
               , ["Class"] = TTH_ENUM.Necromancer
+              , ["Mastery"] = HERO_SKILL_NECROMANCY
               , ["Group"] = TTH_ENUM.GroupMagic
               , ["Building"] = TOWN_BUILDING_DWELLING_3
             }
@@ -3055,6 +3155,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Arantir/name.txt"
               , ["Race"] = TOWN_NECROMANCY
               , ["Class"] = TTH_ENUM.Necromancer
+              , ["Mastery"] = HERO_SKILL_NECROMANCY
               , ["Group"] = TTH_ENUM.GroupMagic
             }
             , ["Nemor"] = {
@@ -3062,6 +3163,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Nemor/name.txt"
               , ["Race"] = TOWN_NECROMANCY
               , ["Class"] = TTH_ENUM.Necromancer
+              , ["Mastery"] = HERO_SKILL_NECROMANCY
               , ["Group"] = TTH_ENUM.GroupMagic
               , ["Building"] = TOWN_BUILDING_DWELLING_6
             }
@@ -3070,6 +3172,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Pelt/name.txt"
               , ["Race"] = TOWN_NECROMANCY
               , ["Class"] = TTH_ENUM.Necromancer
+              , ["Mastery"] = HERO_SKILL_NECROMANCY
               , ["Group"] = TTH_ENUM.GroupMagic
             }
             , ["Sandro"] = {
@@ -3077,6 +3180,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Sandro/name.txt"
               , ["Race"] = TOWN_NECROMANCY
               , ["Class"] = TTH_ENUM.Necromancer
+              , ["Mastery"] = HERO_SKILL_NECROMANCY
               , ["Group"] = TTH_ENUM.GroupMagic
             }
             , ["Thant"] = {
@@ -3084,6 +3188,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Thant/name.txt"
               , ["Race"] = TOWN_NECROMANCY
               , ["Class"] = TTH_ENUM.Necromancer
+              , ["Mastery"] = HERO_SKILL_NECROMANCY
               , ["Group"] = TTH_ENUM.GroupMagic
               , ["Building"] = TOWN_BUILDING_DWELLING_2
               , ["Specialty"] = {
@@ -3099,6 +3204,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Vidomina/name.txt"
               , ["Race"] = TOWN_NECROMANCY
               , ["Class"] = TTH_ENUM.Necromancer
+              , ["Mastery"] = HERO_SKILL_NECROMANCY
               , ["Group"] = TTH_ENUM.GroupMagic
             }
             , ["Adelaide"] = {
@@ -3106,6 +3212,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Adelaide/name.txt"
               , ["Race"] = TOWN_NECROMANCY
               , ["Class"] = TTH_ENUM.Necromancer
+              , ["Mastery"] = HERO_SKILL_NECROMANCY
               , ["Group"] = TTH_ENUM.GroupMagic
               , ["Building"] = TOWN_BUILDING_DWELLING_2
               , ["Specialty"] = {
@@ -3123,6 +3230,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Calid/name.txt"
               , ["Race"] = TOWN_INFERNO
               , ["Class"] = TTH_ENUM.GateKeeper
+              , ["Mastery"] = HERO_SKILL_GATING
               , ["Group"] = TTH_ENUM.GroupMight
               , ["Building"] = TOWN_BUILDING_DWELLING_3
               , ["Specialty"] = {
@@ -3138,6 +3246,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Deleb/name.txt"
               , ["Race"] = TOWN_INFERNO
               , ["Class"] = TTH_ENUM.GateKeeper
+              , ["Mastery"] = HERO_SKILL_GATING
               , ["Group"] = TTH_ENUM.GroupMight
             }
             , ["Jazaz"] = {
@@ -3145,6 +3254,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Jazaz/name.txt"
               , ["Race"] = TOWN_INFERNO
               , ["Class"] = TTH_ENUM.GateKeeper
+              , ["Mastery"] = HERO_SKILL_GATING
               , ["Group"] = TTH_ENUM.GroupMight
             }
             , ["Orlando2"] = {
@@ -3152,6 +3262,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Orlando2/name.txt"
               , ["Race"] = TOWN_INFERNO
               , ["Class"] = TTH_ENUM.GateKeeper
+              , ["Mastery"] = HERO_SKILL_GATING
               , ["Group"] = TTH_ENUM.GroupMight
             }
             , ["Efion"] = {
@@ -3159,13 +3270,23 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Efion/name.txt"
               , ["Race"] = TOWN_INFERNO
               , ["Class"] = TTH_ENUM.GateKeeper
+              , ["Mastery"] = HERO_SKILL_GATING
               , ["Group"] = TTH_ENUM.GroupMight
+              , ["Building"] = TOWN_BUILDING_DWELLING_2
+              , ["Specialty"] = {
+                [1] = {
+                  ["CreatureId"] = CREATURE_DEMON
+                  , ["Stat"] = STAT_KNOWLEDGE
+                  , ["ArtifactId"] = ARTIFACT_LEGION_BASIC
+                }
+              }
             }
             , ["Oddrema"] = {
               ["Id"] = 109
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Oddrema/name.txt"
               , ["Race"] = TOWN_INFERNO
               , ["Class"] = TTH_ENUM.GateKeeper
+              , ["Mastery"] = HERO_SKILL_GATING
               , ["Group"] = TTH_ENUM.GroupMight
               , ["Building"] = TOWN_BUILDING_DWELLING_4
               , ["Specialty"] = {
@@ -3182,6 +3303,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Marder/name.txt"
               , ["Race"] = TOWN_INFERNO
               , ["Class"] = TTH_ENUM.DemonLord
+              , ["Mastery"] = HERO_SKILL_GATING
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
             }
             , ["Calh"] = {
@@ -3189,6 +3311,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Calh/name.txt"
               , ["Race"] = TOWN_INFERNO
               , ["Class"] = TTH_ENUM.DemonLord
+              , ["Mastery"] = HERO_SKILL_GATING
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
               , ["Building"] = TOWN_BUILDING_DWELLING_6
               , ["Specialty"] = {
@@ -3204,6 +3327,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Grok/name.txt"
               , ["Race"] = TOWN_INFERNO
               , ["Class"] = TTH_ENUM.DemonLord
+              , ["Mastery"] = HERO_SKILL_GATING
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
             }
             , ["Malustar"] = {
@@ -3211,6 +3335,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Malustar/name.txt"
               , ["Race"] = TOWN_INFERNO
               , ["Class"] = TTH_ENUM.DemonLord
+              , ["Mastery"] = HERO_SKILL_GATING
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
             }
             , ["Nymus"] = {
@@ -3218,6 +3343,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Nymus/name.txt"
               , ["Race"] = TOWN_INFERNO
               , ["Class"] = TTH_ENUM.DemonLord
+              , ["Mastery"] = HERO_SKILL_GATING
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
               , ["Building"] = TOWN_BUILDING_SPECIAL_1
             }
@@ -3226,6 +3352,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Sovereign/name.txt"
               , ["Race"] = TOWN_INFERNO
               , ["Class"] = TTH_ENUM.DemonLord
+              , ["Mastery"] = HERO_SKILL_GATING
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
             }
             , ["Agrael"] = {
@@ -3233,6 +3360,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Agrael/name.txt"
               , ["Race"] = TOWN_INFERNO
               , ["Class"] = TTH_ENUM.DemonLord
+              , ["Mastery"] = HERO_SKILL_GATING
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
             }
             , ["Jeddite"] = {
@@ -3240,6 +3368,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Jeddite/name.txt"
               , ["Race"] = TOWN_INFERNO
               , ["Class"] = TTH_ENUM.DemonLord
+              , ["Mastery"] = HERO_SKILL_GATING
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
             }
           -- Sorcerer
@@ -3248,6 +3377,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Zydar/name.txt"
               , ["Race"] = TOWN_INFERNO
               , ["Class"] = TTH_ENUM.Sorcerer
+              , ["Mastery"] = HERO_SKILL_GATING
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
             }
             , ["Ash"] = {
@@ -3255,6 +3385,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Ash/name.txt"
               , ["Race"] = TOWN_INFERNO
               , ["Class"] = TTH_ENUM.Sorcerer
+              , ["Mastery"] = HERO_SKILL_GATING
               , ["Group"] = TTH_ENUM.GroupMagic
             }
             , ["Biara"] = {
@@ -3262,6 +3393,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Biara/name.txt"
               , ["Race"] = TOWN_INFERNO
               , ["Class"] = TTH_ENUM.Sorcerer
+              , ["Mastery"] = HERO_SKILL_GATING
               , ["Group"] = TTH_ENUM.GroupMagic
               , ["Building"] = TOWN_BUILDING_FORT
             }
@@ -3270,6 +3402,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Calid2/name.txt"
               , ["Race"] = TOWN_INFERNO
               , ["Class"] = TTH_ENUM.Sorcerer
+              , ["Mastery"] = HERO_SKILL_GATING
               , ["Group"] = TTH_ENUM.GroupMagic
               , ["Building"] = TOWN_BUILDING_SPECIAL_5
             }
@@ -3278,6 +3411,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Sheltem/name.txt"
               , ["Race"] = TOWN_INFERNO
               , ["Class"] = TTH_ENUM.Sorcerer
+              , ["Mastery"] = HERO_SKILL_GATING
               , ["Group"] = TTH_ENUM.GroupMagic
             }
         -- TOWN_FORTRESS
@@ -3287,6 +3421,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Bersy/name.txt"
               , ["Race"] = TOWN_FORTRESS
               , ["Class"] = TTH_ENUM.Engineer
+              , ["Mastery"] = HERO_SKILL_RUNELORE
               , ["Group"] = TTH_ENUM.GroupMight
               , ["Building"] = TOWN_BUILDING_DWELLING_3
               , ["Specialty"] = {
@@ -3302,6 +3437,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Maximus/name.txt"
               , ["Race"] = TOWN_FORTRESS
               , ["Class"] = TTH_ENUM.Engineer
+              , ["Mastery"] = HERO_SKILL_RUNELORE
               , ["Group"] = TTH_ENUM.GroupMight
             }
             , ["Skeggy"] = {
@@ -3309,6 +3445,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Skeggy/name.txt"
               , ["Race"] = TOWN_FORTRESS
               , ["Class"] = TTH_ENUM.Engineer
+              , ["Mastery"] = HERO_SKILL_RUNELORE
               , ["Group"] = TTH_ENUM.GroupMight
               , ["Building"] = TOWN_BUILDING_DWELLING_2
               , ["Specialty"] = {
@@ -3324,6 +3461,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Tazar/name.txt"
               , ["Race"] = TOWN_FORTRESS
               , ["Class"] = TTH_ENUM.Engineer
+              , ["Mastery"] = HERO_SKILL_RUNELORE
               , ["Group"] = TTH_ENUM.GroupMight
               , ["Attribute"] = {
                 ["Step"] = 3
@@ -3335,6 +3473,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Vilma/name.txt"
               , ["Race"] = TOWN_FORTRESS
               , ["Class"] = TTH_ENUM.Engineer
+              , ["Mastery"] = HERO_SKILL_RUNELORE
               , ["Group"] = TTH_ENUM.GroupMight
             }
           -- Runemage
@@ -3343,6 +3482,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Bart/name.txt"
               , ["Race"] = TOWN_FORTRESS
               , ["Class"] = TTH_ENUM.Runemage
+              , ["Mastery"] = HERO_SKILL_RUNELORE
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
               , ["Attribute"] = {
                 ["Step"] = 3
@@ -3354,6 +3494,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Brand/name.txt"
               , ["Race"] = TOWN_FORTRESS
               , ["Class"] = TTH_ENUM.Runemage
+              , ["Mastery"] = HERO_SKILL_RUNELORE
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
             }
             , ["Egil"] = {
@@ -3361,6 +3502,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Egil/name.txt"
               , ["Race"] = TOWN_FORTRESS
               , ["Class"] = TTH_ENUM.Runemage
+              , ["Mastery"] = HERO_SKILL_RUNELORE
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
               , ["Building"] = TOWN_BUILDING_DWELLING_5
               , ["Specialty"] = {
@@ -3376,6 +3518,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/KingTolghar/name.txt"
               , ["Race"] = TOWN_FORTRESS
               , ["Class"] = TTH_ENUM.Runemage
+              , ["Mastery"] = HERO_SKILL_RUNELORE
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
             }
             , ["Ottar"] = {
@@ -3383,6 +3526,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Ottar/name.txt"
               , ["Race"] = TOWN_FORTRESS
               , ["Class"] = TTH_ENUM.Runemage
+              , ["Mastery"] = HERO_SKILL_RUNELORE
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
             }
             , ["Hangvul2"] = {
@@ -3390,6 +3534,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Hangvul2/name.txt"
               , ["Race"] = TOWN_FORTRESS
               , ["Class"] = TTH_ENUM.Runemage
+              , ["Mastery"] = HERO_SKILL_RUNELORE
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
             }
             , ["Una"] = {
@@ -3397,6 +3542,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Una/name.txt"
               , ["Race"] = TOWN_FORTRESS
               , ["Class"] = TTH_ENUM.Runemage
+              , ["Mastery"] = HERO_SKILL_RUNELORE
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
               , ["Building"] = TOWN_BUILDING_SPECIAL_1
               , ["Attribute"] = {
@@ -3409,6 +3555,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Vegeyr/name.txt"
               , ["Race"] = TOWN_FORTRESS
               , ["Class"] = TTH_ENUM.Runemage
+              , ["Mastery"] = HERO_SKILL_RUNELORE
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
               , ["Building"] = TOWN_BUILDING_DWELLING_6
             }
@@ -3418,6 +3565,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Hangvul/name.txt"
               , ["Race"] = TOWN_FORTRESS
               , ["Class"] = TTH_ENUM.Flamekeepera
+              , ["Mastery"] = HERO_SKILL_RUNELORE
               , ["Group"] = TTH_ENUM.GroupMagic
             }
             , ["Ingvar"] = {
@@ -3425,6 +3573,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Ingvar/name.txt"
               , ["Race"] = TOWN_FORTRESS
               , ["Class"] = TTH_ENUM.Flamekeepera
+              , ["Mastery"] = HERO_SKILL_RUNELORE
               , ["Group"] = TTH_ENUM.GroupMagic
               , ["Building"] = TOWN_BUILDING_DWELLING_1
               , ["Specialty"] = {
@@ -3440,6 +3589,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Rolf/name.txt"
               , ["Race"] = TOWN_FORTRESS
               , ["Class"] = TTH_ENUM.Flamekeepera
+              , ["Mastery"] = HERO_SKILL_RUNELORE
               , ["Group"] = TTH_ENUM.GroupMagic
             }
             , ["Ufretin"] = {
@@ -3447,6 +3597,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Ufretin/name.txt"
               , ["Race"] = TOWN_FORTRESS
               , ["Class"] = TTH_ENUM.Flamekeepera
+              , ["Mastery"] = HERO_SKILL_RUNELORE
               , ["Group"] = TTH_ENUM.GroupMagic
             }
             , ["Wulfstan"] = {
@@ -3454,6 +3605,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Wulfstan/name.txt"
               , ["Race"] = TOWN_FORTRESS
               , ["Class"] = TTH_ENUM.Flamekeepera
+              , ["Mastery"] = HERO_SKILL_RUNELORE
               , ["Group"] = TTH_ENUM.GroupMagic
             }
         -- TOWN_STRONGHOLD
@@ -3463,6 +3615,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Hero9/name.txt"
               , ["Race"] = TOWN_STRONGHOLD
               , ["Class"] = TTH_ENUM.Barbarian
+              , ["Mastery"] = HERO_SKILL_DEMONIC_RAGE
               , ["Group"] = TTH_ENUM.GroupBarbarian
               , ["Building"] = TOWN_BUILDING_DWELLING_1
               , ["Specialty"] = {
@@ -3478,6 +3631,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Hero7/name.txt"
               , ["Race"] = TOWN_STRONGHOLD
               , ["Class"] = TTH_ENUM.Barbarian
+              , ["Mastery"] = HERO_SKILL_DEMONIC_RAGE
               , ["Group"] = TTH_ENUM.GroupBarbarian
               , ["Building"] = TOWN_BUILDING_DWELLING_2
               , ["Specialty"] = {
@@ -3493,6 +3647,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Hero8/name.txt"
               , ["Race"] = TOWN_STRONGHOLD
               , ["Class"] = TTH_ENUM.Barbarian
+              , ["Mastery"] = HERO_SKILL_DEMONIC_RAGE
               , ["Group"] = TTH_ENUM.GroupBarbarian
               , ["Building"] = TOWN_BUILDING_DWELLING_3
               , ["Specialty"] = {
@@ -3508,6 +3663,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Azar/name.txt"
               , ["Race"] = TOWN_STRONGHOLD
               , ["Class"] = TTH_ENUM.Barbarian
+              , ["Mastery"] = HERO_SKILL_DEMONIC_RAGE
               , ["Group"] = TTH_ENUM.GroupBarbarian
               , ["Building"] = TOWN_BUILDING_DWELLING_1
               , ["Specialty"] = {
@@ -3523,6 +3679,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Hero4/name.txt"
               , ["Race"] = TOWN_STRONGHOLD
               , ["Class"] = TTH_ENUM.Barbarian
+              , ["Mastery"] = HERO_SKILL_DEMONIC_RAGE
               , ["Group"] = TTH_ENUM.GroupBarbarian
               , ["Building"] = TOWN_BUILDING_DWELLING_5
               , ["Specialty"] = {
@@ -3538,6 +3695,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Hero6/name.txt"
               , ["Race"] = TOWN_STRONGHOLD
               , ["Class"] = TTH_ENUM.Barbarian
+              , ["Mastery"] = HERO_SKILL_DEMONIC_RAGE
               , ["Group"] = TTH_ENUM.GroupBarbarian
               , ["Building"] = TOWN_BUILDING_DWELLING_6
               , ["Specialty"] = {
@@ -3553,6 +3711,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Crag/name.txt"
               , ["Race"] = TOWN_STRONGHOLD
               , ["Class"] = TTH_ENUM.Barbarian
+              , ["Mastery"] = HERO_SKILL_DEMONIC_RAGE
               , ["Group"] = TTH_ENUM.GroupBarbarian
               , ["Attribute"] = {
                 ["Step"] = 3
@@ -3564,6 +3723,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Gottai/name.txt"
               , ["Race"] = TOWN_STRONGHOLD
               , ["Class"] = TTH_ENUM.Barbarian
+              , ["Mastery"] = HERO_SKILL_DEMONIC_RAGE
               , ["Group"] = TTH_ENUM.GroupBarbarian
             }
             , ["Hero1"] = {
@@ -3571,6 +3731,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Hero1/name.txt"
               , ["Race"] = TOWN_STRONGHOLD
               , ["Class"] = TTH_ENUM.Barbarian
+              , ["Mastery"] = HERO_SKILL_DEMONIC_RAGE
               , ["Group"] = TTH_ENUM.GroupBarbarian
             }
             , ["Hero2"] = {
@@ -3578,6 +3739,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Hero2/name.txt"
               , ["Race"] = TOWN_STRONGHOLD
               , ["Class"] = TTH_ENUM.Barbarian
+              , ["Mastery"] = HERO_SKILL_DEMONIC_RAGE
               , ["Group"] = TTH_ENUM.GroupBarbarian
             }
             , ["Hero3"] = {
@@ -3585,6 +3747,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Hero3/name.txt"
               , ["Race"] = TOWN_STRONGHOLD
               , ["Class"] = TTH_ENUM.Barbarian
+              , ["Mastery"] = HERO_SKILL_DEMONIC_RAGE
               , ["Group"] = TTH_ENUM.GroupBarbarian
             }
             , ["Kraal"] = {
@@ -3592,6 +3755,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Kraal/name.txt"
               , ["Race"] = TOWN_STRONGHOLD
               , ["Class"] = TTH_ENUM.Barbarian
+              , ["Mastery"] = HERO_SKILL_DEMONIC_RAGE
               , ["Group"] = TTH_ENUM.GroupBarbarian
             }
             , ["KujinMP"] = {
@@ -3599,6 +3763,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/KujinMP/name.txt"
               , ["Race"] = TOWN_STRONGHOLD
               , ["Class"] = TTH_ENUM.Barbarian
+              , ["Mastery"] = HERO_SKILL_DEMONIC_RAGE
               , ["Group"] = TTH_ENUM.GroupBarbarian
             }
             , ["Kunyak"] = {
@@ -3606,6 +3771,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Kunyak/name.txt"
               , ["Race"] = TOWN_STRONGHOLD
               , ["Class"] = TTH_ENUM.Barbarian
+              , ["Mastery"] = HERO_SKILL_DEMONIC_RAGE
               , ["Group"] = TTH_ENUM.GroupBarbarian
             }
             , ["Matewa"] = {
@@ -3613,6 +3779,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Matewa/name.txt"
               , ["Race"] = TOWN_STRONGHOLD
               , ["Class"] = TTH_ENUM.Barbarian
+              , ["Mastery"] = HERO_SKILL_DEMONIC_RAGE
               , ["Group"] = TTH_ENUM.GroupBarbarian
             }
             , ["Quroq"] = {
@@ -3620,6 +3787,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Quroq/name.txt"
               , ["Race"] = TOWN_STRONGHOLD
               , ["Class"] = TTH_ENUM.Barbarian
+              , ["Mastery"] = HERO_SKILL_DEMONIC_RAGE
               , ["Group"] = TTH_ENUM.GroupBarbarian
               , ["Building"] = TOWN_BUILDING_SPECIAL_5
             }
@@ -3628,6 +3796,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Shiva/name.txt"
               , ["Race"] = TOWN_STRONGHOLD
               , ["Class"] = TTH_ENUM.Barbarian
+              , ["Mastery"] = HERO_SKILL_DEMONIC_RAGE
               , ["Group"] = TTH_ENUM.GroupBarbarian
             }
             , ["Zouleika"] = {
@@ -3635,6 +3804,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Zouleika/name.txt"
               , ["Race"] = TOWN_STRONGHOLD
               , ["Class"] = TTH_ENUM.Barbarian
+              , ["Mastery"] = HERO_SKILL_DEMONIC_RAGE
               , ["Group"] = TTH_ENUM.GroupBarbarian
             }
             , ["Erika"] = {
@@ -3642,6 +3812,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Erika/name.txt"
               , ["Race"] = TOWN_STRONGHOLD
               , ["Class"] = TTH_ENUM.Barbarian
+              , ["Mastery"] = HERO_SKILL_DEMONIC_RAGE
               , ["Group"] = TTH_ENUM.GroupBarbarian
             }
             , ["Mokka"] = {
@@ -3649,6 +3820,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Mokka/name.txt"
               , ["Race"] = TOWN_STRONGHOLD
               , ["Class"] = TTH_ENUM.Barbarian
+              , ["Mastery"] = HERO_SKILL_DEMONIC_RAGE
               , ["Group"] = TTH_ENUM.GroupBarbarian
             }
       };
@@ -4426,7 +4598,7 @@ doFile("/scripts/TTH_Library.lua")
                 , ["Text"] = "/Text/TTH/Skills/Gating/098-AbsoluteGating/Name.txt"
                 , ["IsAbsolute"] = 1
               }
-              , [149] = { -- 恶魔印记（终极）
+              , [149] = { -- 混乱风暴（终极）
                 ["Id"] = HERO_SKILL_ELEMENTAL_OVERKILL
                 , ["Text"] = "/Text/TTH/Skills/Gating/149-ElementalOverkill/Name.txt"
                 , ["IsAbsolute"] = 1

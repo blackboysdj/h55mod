@@ -424,6 +424,19 @@
         , HERO_SKILL_MASTER_OF_ANIMATION
       }
     }
+    -- 专家异界传送 + 混乱风暴 = 流星火雨
+    , {
+      ["MAGIC"] = TTH_TABLE.Spell[SPELL_METEOR_SHOWER]
+      , ["SKILL_MASTERY"] = {
+        {
+          ["MASTERY"] = HERO_SKILL_GATING
+          , ["LEVEL"] = 3
+        }
+      }
+      , ["SKILL_PERK"] = {
+        HERO_SKILL_ELEMENTAL_OVERKILL
+      }
+    }
   };
 
 -- 非墓园生物-转化为对应墓园生物
@@ -901,19 +914,19 @@
         TTH_PATH.Visit["WitchHut"]["Success"] = TTH_PATH.Visit["WitchHut"]["Pre"].."Success.txt";
         TTH_PATH.Visit["WitchHut"]["Mastery"] = {};
         TTH_PATH.Visit["WitchHut"]["Mastery"]["Pre"] = TTH_PATH.Visit["WitchHut"]["Pre"].."Mastery/";
-        TTH_PATH.Visit["WitchHut"]["Mastery"][1] = TTH_PATH.Visit["WitchHut"]["Mastery"]["Pre"].."1_logistics.txt";
-        TTH_PATH.Visit["WitchHut"]["Mastery"][2] = TTH_PATH.Visit["WitchHut"]["Mastery"]["Pre"].."2_enlightment.txt";
-        TTH_PATH.Visit["WitchHut"]["Mastery"][3] = TTH_PATH.Visit["WitchHut"]["Mastery"]["Pre"].."3_offense.txt";
-        TTH_PATH.Visit["WitchHut"]["Mastery"][4] = TTH_PATH.Visit["WitchHut"]["Mastery"]["Pre"].."4_defense.txt";
-        TTH_PATH.Visit["WitchHut"]["Mastery"][5] = TTH_PATH.Visit["WitchHut"]["Mastery"]["Pre"].."5_leadership.txt";
-        TTH_PATH.Visit["WitchHut"]["Mastery"][6] = TTH_PATH.Visit["WitchHut"]["Mastery"]["Pre"].."6_luck.txt";
-        TTH_PATH.Visit["WitchHut"]["Mastery"][7] = TTH_PATH.Visit["WitchHut"]["Mastery"]["Pre"].."7_warmachines.txt";
-        TTH_PATH.Visit["WitchHut"]["Mastery"][8] = TTH_PATH.Visit["WitchHut"]["Mastery"]["Pre"].."8_lightmagic.txt";
-        TTH_PATH.Visit["WitchHut"]["Mastery"][9] = TTH_PATH.Visit["WitchHut"]["Mastery"]["Pre"].."9_darkmagic.txt";
-        TTH_PATH.Visit["WitchHut"]["Mastery"][10] = TTH_PATH.Visit["WitchHut"]["Mastery"]["Pre"].."10_summoningmagic.txt";
-        TTH_PATH.Visit["WitchHut"]["Mastery"][11] = TTH_PATH.Visit["WitchHut"]["Mastery"]["Pre"].."11_destructivemagic.txt";
-        TTH_PATH.Visit["WitchHut"]["Mastery"][12] = TTH_PATH.Visit["WitchHut"]["Mastery"]["Pre"].."12_sorcery.txt";
-        TTH_PATH.Visit["WitchHut"]["Mastery"][13] = TTH_PATH.Visit["WitchHut"]["Mastery"]["Pre"].."13_special.txt";
+        TTH_PATH.Visit["WitchHut"]["Mastery"][0] = TTH_PATH.Visit["WitchHut"]["Mastery"]["Pre"].."1_logistics.txt";
+        TTH_PATH.Visit["WitchHut"]["Mastery"][1] = TTH_PATH.Visit["WitchHut"]["Mastery"]["Pre"].."2_enlightment.txt";
+        TTH_PATH.Visit["WitchHut"]["Mastery"][2] = TTH_PATH.Visit["WitchHut"]["Mastery"]["Pre"].."3_offense.txt";
+        TTH_PATH.Visit["WitchHut"]["Mastery"][3] = TTH_PATH.Visit["WitchHut"]["Mastery"]["Pre"].."4_defense.txt";
+        TTH_PATH.Visit["WitchHut"]["Mastery"][4] = TTH_PATH.Visit["WitchHut"]["Mastery"]["Pre"].."5_leadership.txt";
+        TTH_PATH.Visit["WitchHut"]["Mastery"][5] = TTH_PATH.Visit["WitchHut"]["Mastery"]["Pre"].."6_luck.txt";
+        TTH_PATH.Visit["WitchHut"]["Mastery"][6] = TTH_PATH.Visit["WitchHut"]["Mastery"]["Pre"].."7_warmachines.txt";
+        TTH_PATH.Visit["WitchHut"]["Mastery"][7] = TTH_PATH.Visit["WitchHut"]["Mastery"]["Pre"].."8_lightmagic.txt";
+        TTH_PATH.Visit["WitchHut"]["Mastery"][8] = TTH_PATH.Visit["WitchHut"]["Mastery"]["Pre"].."9_darkmagic.txt";
+        TTH_PATH.Visit["WitchHut"]["Mastery"][9] = TTH_PATH.Visit["WitchHut"]["Mastery"]["Pre"].."10_summoningmagic.txt";
+        TTH_PATH.Visit["WitchHut"]["Mastery"][10] = TTH_PATH.Visit["WitchHut"]["Mastery"]["Pre"].."11_destructivemagic.txt";
+        TTH_PATH.Visit["WitchHut"]["Mastery"][11] = TTH_PATH.Visit["WitchHut"]["Mastery"]["Pre"].."12_sorcery.txt";
+        TTH_PATH.Visit["WitchHut"]["Mastery"][12] = TTH_PATH.Visit["WitchHut"]["Mastery"]["Pre"].."13_special.txt";
         TTH_PATH.Visit["WitchHut"]["Reset"] = {};
         TTH_PATH.Visit["WitchHut"]["Reset"]["Pre"] = TTH_PATH.Visit["WitchHut"]["Pre"].."Reset/";
         TTH_PATH.Visit["WitchHut"]["Reset"][1] = TTH_PATH.Visit["WitchHut"]["Reset"]["Pre"].."Day_1.txt";
@@ -929,6 +942,13 @@
         TTH_PATH.Visit["WitchHut"]["Fixed"]["NotEnoughSlot"] = TTH_PATH.Visit["WitchHut"]["Fixed"]["Pre"].."NotEnoughSlot.txt";
         TTH_PATH.Visit["WitchHut"]["Fixed"]["Confirm"] = TTH_PATH.Visit["WitchHut"]["Fixed"]["Pre"].."Confirm.txt";
         TTH_PATH.Visit["WitchHut"]["Fixed"]["Success"] = TTH_PATH.Visit["WitchHut"]["Fixed"]["Pre"].."Success.txt";
+        TTH_PATH.Visit["WitchHut"]["Choose"] = {};
+        TTH_PATH.Visit["WitchHut"]["Choose"]["Pre"] = TTH_PATH.Visit["WitchHut"]["Pre"].."Choose/";
+        TTH_PATH.Visit["WitchHut"]["Choose"]["Text"] = TTH_PATH.Visit["WitchHut"]["Choose"]["Pre"].."Text.txt";
+        TTH_PATH.Visit["WitchHut"]["Choose"]["Option"] = TTH_PATH.Visit["WitchHut"]["Choose"]["Pre"].."Option.txt";
+        TTH_PATH.Visit["WitchHut"]["Choose"]["NotOptionMastery"] = TTH_PATH.Visit["WitchHut"]["Choose"]["Pre"].."NotOptionMastery.txt";
+        TTH_PATH.Visit["WitchHut"]["Choose"]["Confirm"] = TTH_PATH.Visit["WitchHut"]["Choose"]["Pre"].."Confirm.txt";
+        TTH_PATH.Visit["WitchHut"]["Choose"]["Success"] = TTH_PATH.Visit["WitchHut"]["Choose"]["Pre"].."Success.txt";
         TTH_PATH.Visit["WitchHut"]["Bonus"] = {};
         TTH_PATH.Visit["WitchHut"]["Bonus"]["Pre"] = TTH_PATH.Visit["WitchHut"]["Pre"].."Bonus/";
         TTH_PATH.Visit["WitchHut"]["Bonus"]["Text"] = TTH_PATH.Visit["WitchHut"]["Bonus"]["Pre"].."Text.txt";
@@ -937,6 +957,14 @@
         TTH_PATH.Visit["WitchHut"]["Bonus"]["NotEnoughGold"] = TTH_PATH.Visit["WitchHut"]["Bonus"]["Pre"].."NotEnoughGold.txt";
         TTH_PATH.Visit["WitchHut"]["Bonus"]["Confirm"] = TTH_PATH.Visit["WitchHut"]["Bonus"]["Pre"].."Confirm.txt";
         TTH_PATH.Visit["WitchHut"]["Bonus"]["Success"] = TTH_PATH.Visit["WitchHut"]["Bonus"]["Pre"].."Success.txt";
+        TTH_PATH.Visit["WitchHut"]["Race"] = {};
+        TTH_PATH.Visit["WitchHut"]["Race"]["Pre"] = TTH_PATH.Visit["WitchHut"]["Pre"].."Race/";
+        TTH_PATH.Visit["WitchHut"]["Race"]["Text"] = TTH_PATH.Visit["WitchHut"]["Race"]["Pre"].."Text.txt";
+        TTH_PATH.Visit["WitchHut"]["Race"]["Option"] = TTH_PATH.Visit["WitchHut"]["Race"]["Pre"].."Option.txt";
+        TTH_PATH.Visit["WitchHut"]["Race"]["NotEnoughSlot"] = TTH_PATH.Visit["WitchHut"]["Race"]["Pre"].."NotEnoughSlot.txt";
+        TTH_PATH.Visit["WitchHut"]["Race"]["NotEnoughGold"] = TTH_PATH.Visit["WitchHut"]["Race"]["Pre"].."NotEnoughGold.txt";
+        TTH_PATH.Visit["WitchHut"]["Race"]["Confirm"] = TTH_PATH.Visit["WitchHut"]["Race"]["Pre"].."Confirm.txt";
+        TTH_PATH.Visit["WitchHut"]["Race"]["Success"] = TTH_PATH.Visit["WitchHut"]["Race"]["Pre"].."Success.txt";
         TTH_PATH.Visit["WitchHut"]["Artifact"] = {};
         TTH_PATH.Visit["WitchHut"]["Artifact"]["Pre"] = TTH_PATH.Visit["WitchHut"]["Pre"].."Artifact/";
         TTH_PATH.Visit["WitchHut"]["Artifact"]["Text"] = TTH_PATH.Visit["WitchHut"]["Artifact"]["Pre"].."Text.txt";
@@ -996,9 +1024,8 @@
       -- Cast
         TTH_PATH.Talent["Cast"] = {};
         TTH_PATH.Talent["Cast"]["Pre"] = TTH_PATH.Talent["Pre"].."Cast/";
-        TTH_PATH.Talent["Cast"]["InGcd"] = TTH_PATH.Talent["Cast"]["Pre"].."InGcd.txt";
-        TTH_PATH.Talent["Cast"]["CanCast"] = TTH_PATH.Talent["Cast"]["Pre"].."CanCast.txt";
-        TTH_PATH.Talent["Cast"]["CantCast"] = TTH_PATH.Talent["Cast"]["Pre"].."CantCast.txt";
+        TTH_PATH.Talent["Cast"]["Gcd"] = TTH_PATH.Talent["Cast"]["Pre"].."Gcd.txt";
+        TTH_PATH.Talent["Cast"]["NoSavedTimes"] = TTH_PATH.Talent["Cast"]["Pre"].."NoSavedTimes.txt";
         TTH_PATH.Talent["Cast"]["NoSuitableCreature"] = TTH_PATH.Talent["Cast"]["Pre"].."NoSuitableCreature.txt";
         TTH_PATH.Talent["Cast"]["Limit"] = TTH_PATH.Talent["Cast"]["Pre"].."Limit.txt";
         TTH_PATH.Talent["Cast"]["Confirm"] = TTH_PATH.Talent["Cast"]["Pre"].."Confirm.txt";
@@ -8655,12 +8682,12 @@
       TTH_TABLE.CastCreature = {
         ["OrtanCassius"] = {
           ["CastType"] = TTH_ENUM.Training
+          , ["MaxGcd"] = 5
+          , ["HeroStep"] = 5
           , ["PreCreature"] = {
             [CREATURE_PEASANT] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_JUSTICAR
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 1
@@ -8674,8 +8701,6 @@
             , [CREATURE_MILITIAMAN] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_JUSTICAR
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 1
@@ -8689,8 +8714,6 @@
             , [CREATURE_LANDLORD] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_JUSTICAR
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 1
@@ -8704,8 +8727,6 @@
             , [CREATURE_ARCHER] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_JUSTICAR
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -8719,8 +8740,6 @@
             , [CREATURE_MARKSMAN] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_JUSTICAR
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -8734,8 +8753,6 @@
             , [CREATURE_LONGBOWMAN] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_JUSTICAR
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -8749,8 +8766,6 @@
             , [CREATURE_FOOTMAN] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_JUSTICAR
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -8764,8 +8779,6 @@
             , [CREATURE_SWORDSMAN] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_JUSTICAR
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -8779,8 +8792,6 @@
             , [CREATURE_VINDICATOR] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_JUSTICAR
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -8794,8 +8805,6 @@
             , [CREATURE_PRIEST] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_JUSTICAR
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -8809,8 +8818,6 @@
             , [CREATURE_CLERIC] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_JUSTICAR
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -8824,8 +8831,6 @@
             , [CREATURE_ZEALOT] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_JUSTICAR
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -8840,12 +8845,12 @@
         }
         , ["Sanguinius"] = {
           ["CastType"] = TTH_ENUM.Training
+          , ["MaxGcd"] = 6
+          , ["HeroStep"] = 6
           , ["PreCreature"] = {
             [CREATURE_FOOTMAN] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_LEGATE
-              , ["MaxGcd"] = 6
-              , ["HeroStep"] = 6
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -8859,8 +8864,6 @@
             , [CREATURE_SWORDSMAN] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_LEGATE
-              , ["MaxGcd"] = 6
-              , ["HeroStep"] = 6
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -8874,8 +8877,6 @@
             , [CREATURE_VINDICATOR] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_LEGATE
-              , ["MaxGcd"] = 6
-              , ["HeroStep"] = 6
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -8890,12 +8891,12 @@
         }
         , ["Avitus"] = {
           ["CastType"] = TTH_ENUM.Training
+          , ["MaxGcd"] = 4
+          , ["HeroStep"] = 4
           , ["PreCreature"] = {
             [CREATURE_ARCHER] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_CROSSBOW
-              , ["MaxGcd"] = 4
-              , ["HeroStep"] = 4
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 1
@@ -8909,8 +8910,6 @@
             , [CREATURE_MARKSMAN] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_CROSSBOW
-              , ["MaxGcd"] = 4
-              , ["HeroStep"] = 4
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 1
@@ -8924,8 +8923,6 @@
             , [CREATURE_LONGBOWMAN] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_CROSSBOW
-              , ["MaxGcd"] = 4
-              , ["HeroStep"] = 4
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 1
@@ -8940,12 +8937,12 @@
         }
         , ["Gelu"] = {
           ["CastType"] = TTH_ENUM.Training
+          , ["MaxGcd"] = 6
+          , ["HeroStep"] = 6
           , ["PreCreature"] = {
             [CREATURE_ARCHER] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_SNOW_APE
-              , ["MaxGcd"] = 6
-              , ["HeroStep"] = 6
               , ["Res"] = {
                 [WOOD] = 1
                 , [ORE] = 0
@@ -8959,8 +8956,6 @@
             , [CREATURE_MARKSMAN] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_SNOW_APE
-              , ["MaxGcd"] = 6
-              , ["HeroStep"] = 6
               , ["Res"] = {
                 [WOOD] = 1
                 , [ORE] = 0
@@ -8974,8 +8969,6 @@
             , [CREATURE_LONGBOWMAN] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_SNOW_APE
-              , ["MaxGcd"] = 6
-              , ["HeroStep"] = 6
               , ["Res"] = {
                 [WOOD] = 1
                 , [ORE] = 0
@@ -8989,8 +8982,6 @@
             , [CREATURE_AXE_FIGHTER] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_SNOW_APE
-              , ["MaxGcd"] = 6
-              , ["HeroStep"] = 6
               , ["Res"] = {
                 [WOOD] = 1
                 , [ORE] = 0
@@ -9004,8 +8995,6 @@
             , [CREATURE_AXE_THROWER] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_SNOW_APE
-              , ["MaxGcd"] = 6
-              , ["HeroStep"] = 6
               , ["Res"] = {
                 [WOOD] = 1
                 , [ORE] = 0
@@ -9019,8 +9008,6 @@
             , [CREATURE_HARPOONER] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_SNOW_APE
-              , ["MaxGcd"] = 6
-              , ["HeroStep"] = 6
               , ["Res"] = {
                 [WOOD] = 1
                 , [ORE] = 0
@@ -9034,8 +9021,6 @@
             , [CREATURE_WOOD_ELF] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_SNOW_APE
-              , ["MaxGcd"] = 6
-              , ["HeroStep"] = 6
               , ["Res"] = {
                 [WOOD] = 1
                 , [ORE] = 0
@@ -9049,8 +9034,6 @@
             , [CREATURE_GRAND_ELF] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_SNOW_APE
-              , ["MaxGcd"] = 6
-              , ["HeroStep"] = 6
               , ["Res"] = {
                 [WOOD] = 1
                 , [ORE] = 0
@@ -9064,8 +9047,6 @@
             , [CREATURE_SHARP_SHOOTER] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_SNOW_APE
-              , ["MaxGcd"] = 6
-              , ["HeroStep"] = 6
               , ["Res"] = {
                 [WOOD] = 1
                 , [ORE] = 0
@@ -9080,12 +9061,12 @@
         }
         , ["Itil"] = {
           ["CastType"] = TTH_ENUM.Guide
+          , ["MaxGcd"] = 6
+          , ["HeroStep"] = 6
           , ["PreCreature"] = {
             [CREATURE_UNICORN] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_WING_UNICORN
-              , ["MaxGcd"] = 6
-              , ["HeroStep"] = 6
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9099,8 +9080,6 @@
             , [CREATURE_WAR_UNICORN] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_WING_UNICORN
-              , ["MaxGcd"] = 6
-              , ["HeroStep"] = 6
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9114,8 +9093,6 @@
             , [CREATURE_WHITE_UNICORN] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_WING_UNICORN
-              , ["MaxGcd"] = 6
-              , ["HeroStep"] = 6
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9130,12 +9107,12 @@
         }
         , ["Dracon"] = {
           ["CastType"] = TTH_ENUM.Training
+          , ["MaxGcd"] = 5
+          , ["HeroStep"] = 5
           , ["PreCreature"] = {
             [CREATURE_PRIEST] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_ENCHANTER_ACADEMY
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9149,8 +9126,6 @@
             , [CREATURE_CLERIC] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_ENCHANTER_ACADEMY
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9164,8 +9139,6 @@
             , [CREATURE_ZEALOT] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_ENCHANTER_ACADEMY
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9179,8 +9152,6 @@
             , [CREATURE_RUNE_MAGE] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_ENCHANTER_ACADEMY
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9194,8 +9165,6 @@
             , [CREATURE_FLAME_MAGE] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_ENCHANTER_ACADEMY
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9209,8 +9178,6 @@
             , [CREATURE_FLAME_KEEPER] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_ENCHANTER_ACADEMY
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9224,8 +9191,6 @@
             , [CREATURE_MAGI] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_ENCHANTER_ACADEMY
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9239,8 +9204,6 @@
             , [CREATURE_ARCH_MAGI] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_ENCHANTER_ACADEMY
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9254,8 +9217,6 @@
             , [CREATURE_COMBAT_MAGE] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_ENCHANTER_ACADEMY
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9269,8 +9230,6 @@
             , [CREATURE_DRUID] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_ENCHANTER_ACADEMY
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9284,8 +9243,6 @@
             , [CREATURE_DRUID_ELDER] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_ENCHANTER_ACADEMY
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9299,8 +9256,6 @@
             , [CREATURE_HIGH_DRUID] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_ENCHANTER_ACADEMY
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9315,12 +9270,12 @@
         }
         , ["Adelaide"] = {
           ["CastType"] = TTH_ENUM.Cast
+          , ["MaxGcd"] = 4
+          , ["HeroStep"] = 4
           , ["PreCreature"] = {
             [CREATURE_SKELETON] = {
               ["Scale"] = 3
               , ["PostCreatureId"] = CREATURE_SIREN
-              , ["MaxGcd"] = 4
-              , ["HeroStep"] = 4
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9334,8 +9289,6 @@
             , [CREATURE_SKELETON_ARCHER] = {
               ["Scale"] = 3
               , ["PostCreatureId"] = CREATURE_SIREN
-              , ["MaxGcd"] = 4
-              , ["HeroStep"] = 4
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9349,8 +9302,6 @@
             , [CREATURE_SKELETON_WARRIOR] = {
               ["Scale"] = 3
               , ["PostCreatureId"] = CREATURE_SIREN
-              , ["MaxGcd"] = 4
-              , ["HeroStep"] = 4
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9364,8 +9315,6 @@
             , [CREATURE_WALKING_DEAD] = {
               ["Scale"] = 2
               , ["PostCreatureId"] = CREATURE_SIREN
-              , ["MaxGcd"] = 4
-              , ["HeroStep"] = 4
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9379,8 +9328,6 @@
             , [CREATURE_ZOMBIE] = {
               ["Scale"] = 2
               , ["PostCreatureId"] = CREATURE_SIREN
-              , ["MaxGcd"] = 4
-              , ["HeroStep"] = 4
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9394,8 +9341,6 @@
             , [CREATURE_DISEASE_ZOMBIE] = {
               ["Scale"] = 2
               , ["PostCreatureId"] = CREATURE_SIREN
-              , ["MaxGcd"] = 4
-              , ["HeroStep"] = 4
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9409,8 +9354,6 @@
             , [CREATURE_MANES] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_SIREN
-              , ["MaxGcd"] = 4
-              , ["HeroStep"] = 4
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9424,8 +9367,6 @@
             , [CREATURE_GHOST] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_SIREN
-              , ["MaxGcd"] = 4
-              , ["HeroStep"] = 4
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9439,8 +9380,6 @@
             , [CREATURE_POLTERGEIST] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_SIREN
-              , ["MaxGcd"] = 4
-              , ["HeroStep"] = 4
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9454,8 +9393,6 @@
             , [CREATURE_VAMPIRE] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_SIREN
-              , ["MaxGcd"] = 4
-              , ["HeroStep"] = 4
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9469,8 +9406,6 @@
             , [CREATURE_VAMPIRE_LORD] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_SIREN
-              , ["MaxGcd"] = 4
-              , ["HeroStep"] = 4
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9484,8 +9419,6 @@
             , [CREATURE_NOSFERATU] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_SIREN
-              , ["MaxGcd"] = 4
-              , ["HeroStep"] = 4
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9499,8 +9432,6 @@
             , [CREATURE_LICH] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_SIREN
-              , ["MaxGcd"] = 4
-              , ["HeroStep"] = 4
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9514,8 +9445,6 @@
             , [CREATURE_DEMILICH] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_SIREN
-              , ["MaxGcd"] = 4
-              , ["HeroStep"] = 4
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9529,8 +9458,6 @@
             , [CREATURE_LICH_MASTER] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_SIREN
-              , ["MaxGcd"] = 4
-              , ["HeroStep"] = 4
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9544,8 +9471,6 @@
             , [CREATURE_WIGHT] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_SIREN
-              , ["MaxGcd"] = 4
-              , ["HeroStep"] = 4
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9559,8 +9484,6 @@
             , [CREATURE_WRAITH] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_SIREN
-              , ["MaxGcd"] = 4
-              , ["HeroStep"] = 4
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9574,8 +9497,6 @@
             , [CREATURE_BANSHEE] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_SIREN
-              , ["MaxGcd"] = 4
-              , ["HeroStep"] = 4
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9589,8 +9510,6 @@
             , [CREATURE_BONE_DRAGON] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_SIREN
-              , ["MaxGcd"] = 4
-              , ["HeroStep"] = 4
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9604,8 +9523,6 @@
             , [CREATURE_SHADOW_DRAGON] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_SIREN
-              , ["MaxGcd"] = 4
-              , ["HeroStep"] = 4
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9619,8 +9536,6 @@
             , [CREATURE_HORROR_DRAGON] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_SIREN
-              , ["MaxGcd"] = 4
-              , ["HeroStep"] = 4
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9635,12 +9550,12 @@
         }
         , ["Thant"] = {
           ["CastType"] = TTH_ENUM.Cast
+          , ["MaxGcd"] = 5
+          , ["HeroStep"] = 5
           , ["PreCreature"] = {
             [CREATURE_SKELETON] = {
               ["Scale"] = 5
               , ["PostCreatureId"] = CREATURE_MUMMY
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9654,8 +9569,6 @@
             , [CREATURE_SKELETON_ARCHER] = {
               ["Scale"] = 5
               , ["PostCreatureId"] = CREATURE_MUMMY
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9669,8 +9582,6 @@
             , [CREATURE_SKELETON_WARRIOR] = {
               ["Scale"] = 5
               , ["PostCreatureId"] = CREATURE_MUMMY
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9684,8 +9595,6 @@
             , [CREATURE_WALKING_DEAD] = {
               ["Scale"] = 4
               , ["PostCreatureId"] = CREATURE_MUMMY
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9699,8 +9608,6 @@
             , [CREATURE_ZOMBIE] = {
               ["Scale"] = 4
               , ["PostCreatureId"] = CREATURE_MUMMY
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9714,8 +9621,6 @@
             , [CREATURE_DISEASE_ZOMBIE] = {
               ["Scale"] = 4
               , ["PostCreatureId"] = CREATURE_MUMMY
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9729,8 +9634,6 @@
             , [CREATURE_MANES] = {
               ["Scale"] = 3
               , ["PostCreatureId"] = CREATURE_MUMMY
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9744,8 +9647,6 @@
             , [CREATURE_GHOST] = {
               ["Scale"] = 3
               , ["PostCreatureId"] = CREATURE_MUMMY
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9759,8 +9660,6 @@
             , [CREATURE_POLTERGEIST] = {
               ["Scale"] = 3
               , ["PostCreatureId"] = CREATURE_MUMMY
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9774,8 +9673,6 @@
             , [CREATURE_VAMPIRE] = {
               ["Scale"] = 2
               , ["PostCreatureId"] = CREATURE_MUMMY
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9789,8 +9686,6 @@
             , [CREATURE_VAMPIRE_LORD] = {
               ["Scale"] = 2
               , ["PostCreatureId"] = CREATURE_MUMMY
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9804,8 +9699,6 @@
             , [CREATURE_NOSFERATU] = {
               ["Scale"] = 2
               , ["PostCreatureId"] = CREATURE_MUMMY
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9819,8 +9712,6 @@
             , [CREATURE_LICH] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_MUMMY
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9834,8 +9725,6 @@
             , [CREATURE_DEMILICH] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_MUMMY
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9849,8 +9738,6 @@
             , [CREATURE_LICH_MASTER] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_MUMMY
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9864,8 +9751,6 @@
             , [CREATURE_WIGHT] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_MUMMY
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9879,8 +9764,6 @@
             , [CREATURE_WRAITH] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_MUMMY
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9894,8 +9777,6 @@
             , [CREATURE_BANSHEE] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_MUMMY
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9909,8 +9790,6 @@
             , [CREATURE_BONE_DRAGON] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_MUMMY
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9924,8 +9803,6 @@
             , [CREATURE_SHADOW_DRAGON] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_MUMMY
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9939,8 +9816,6 @@
             , [CREATURE_HORROR_DRAGON] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_MUMMY
-              , ["MaxGcd"] = 5
-              , ["HeroStep"] = 5
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9955,12 +9830,12 @@
         }
         , ["LordHaart"] = {
           ["CastType"] = TTH_ENUM.Cast
+          , ["MaxGcd"] = 6
+          , ["HeroStep"] = 6
           , ["PreCreature"] = {
             [CREATURE_SKELETON] = {
               ["Scale"] = 6
               , ["PostCreatureId"] = CREATURE_DEATH_KNIGHT
-              , ["MaxGcd"] = 6
-              , ["HeroStep"] = 6
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9974,8 +9849,6 @@
             , [CREATURE_SKELETON_ARCHER] = {
               ["Scale"] = 6
               , ["PostCreatureId"] = CREATURE_DEATH_KNIGHT
-              , ["MaxGcd"] = 6
-              , ["HeroStep"] = 6
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -9989,8 +9862,6 @@
             , [CREATURE_SKELETON_WARRIOR] = {
               ["Scale"] = 6
               , ["PostCreatureId"] = CREATURE_DEATH_KNIGHT
-              , ["MaxGcd"] = 6
-              , ["HeroStep"] = 6
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -10004,8 +9875,6 @@
             , [CREATURE_WALKING_DEAD] = {
               ["Scale"] = 5
               , ["PostCreatureId"] = CREATURE_DEATH_KNIGHT
-              , ["MaxGcd"] = 6
-              , ["HeroStep"] = 6
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -10019,8 +9888,6 @@
             , [CREATURE_ZOMBIE] = {
               ["Scale"] = 5
               , ["PostCreatureId"] = CREATURE_DEATH_KNIGHT
-              , ["MaxGcd"] = 6
-              , ["HeroStep"] = 6
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -10034,8 +9901,6 @@
             , [CREATURE_DISEASE_ZOMBIE] = {
               ["Scale"] = 5
               , ["PostCreatureId"] = CREATURE_DEATH_KNIGHT
-              , ["MaxGcd"] = 6
-              , ["HeroStep"] = 6
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -10049,8 +9914,6 @@
             , [CREATURE_MANES] = {
               ["Scale"] = 4
               , ["PostCreatureId"] = CREATURE_DEATH_KNIGHT
-              , ["MaxGcd"] = 6
-              , ["HeroStep"] = 6
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -10064,8 +9927,6 @@
             , [CREATURE_GHOST] = {
               ["Scale"] = 4
               , ["PostCreatureId"] = CREATURE_DEATH_KNIGHT
-              , ["MaxGcd"] = 6
-              , ["HeroStep"] = 6
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -10079,8 +9940,6 @@
             , [CREATURE_POLTERGEIST] = {
               ["Scale"] = 4
               , ["PostCreatureId"] = CREATURE_DEATH_KNIGHT
-              , ["MaxGcd"] = 6
-              , ["HeroStep"] = 6
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -10094,8 +9953,6 @@
             , [CREATURE_VAMPIRE] = {
               ["Scale"] = 3
               , ["PostCreatureId"] = CREATURE_DEATH_KNIGHT
-              , ["MaxGcd"] = 6
-              , ["HeroStep"] = 6
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -10109,8 +9966,6 @@
             , [CREATURE_VAMPIRE_LORD] = {
               ["Scale"] = 3
               , ["PostCreatureId"] = CREATURE_DEATH_KNIGHT
-              , ["MaxGcd"] = 6
-              , ["HeroStep"] = 6
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -10124,8 +9979,6 @@
             , [CREATURE_NOSFERATU] = {
               ["Scale"] = 3
               , ["PostCreatureId"] = CREATURE_DEATH_KNIGHT
-              , ["MaxGcd"] = 6
-              , ["HeroStep"] = 6
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -10139,8 +9992,6 @@
             , [CREATURE_LICH] = {
               ["Scale"] = 2
               , ["PostCreatureId"] = CREATURE_DEATH_KNIGHT
-              , ["MaxGcd"] = 6
-              , ["HeroStep"] = 6
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -10154,8 +10005,6 @@
             , [CREATURE_DEMILICH] = {
               ["Scale"] = 2
               , ["PostCreatureId"] = CREATURE_DEATH_KNIGHT
-              , ["MaxGcd"] = 6
-              , ["HeroStep"] = 6
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -10169,8 +10018,6 @@
             , [CREATURE_LICH_MASTER] = {
               ["Scale"] = 2
               , ["PostCreatureId"] = CREATURE_DEATH_KNIGHT
-              , ["MaxGcd"] = 6
-              , ["HeroStep"] = 6
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -10184,8 +10031,6 @@
             , [CREATURE_WIGHT] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_DEATH_KNIGHT
-              , ["MaxGcd"] = 6
-              , ["HeroStep"] = 6
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -10199,8 +10044,6 @@
             , [CREATURE_WRAITH] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_DEATH_KNIGHT
-              , ["MaxGcd"] = 6
-              , ["HeroStep"] = 6
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -10214,8 +10057,6 @@
             , [CREATURE_BANSHEE] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_DEATH_KNIGHT
-              , ["MaxGcd"] = 6
-              , ["HeroStep"] = 6
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -10229,8 +10070,6 @@
             , [CREATURE_BONE_DRAGON] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_DEATH_KNIGHT
-              , ["MaxGcd"] = 6
-              , ["HeroStep"] = 6
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -10244,8 +10083,6 @@
             , [CREATURE_SHADOW_DRAGON] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_DEATH_KNIGHT
-              , ["MaxGcd"] = 6
-              , ["HeroStep"] = 6
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -10259,8 +10096,6 @@
             , [CREATURE_HORROR_DRAGON] = {
               ["Scale"] = 1
               , ["PostCreatureId"] = CREATURE_DEATH_KNIGHT
-              , ["MaxGcd"] = 6
-              , ["HeroStep"] = 6
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
@@ -10275,12 +10110,12 @@
         }
         , ["Azar"] = {
           ["CastType"] = TTH_ENUM.Cast
+          , ["MaxGcd"] = 4
+          , ["HeroStep"] = 4
           , ["PreCreature"] = {
             [CREATURE_GOBLIN] = {
               ["Scale"] = 4
               , ["PostCreatureId"] = CREATURE_WOLF
-              , ["MaxGcd"] = 4
-              , ["HeroStep"] = 4
               , ["Res"] = {
                 [WOOD] = 1
                 , [ORE] = 0
@@ -10294,8 +10129,6 @@
             , [CREATURE_GOBLIN_TRAPPER] = {
               ["Scale"] = 4
               , ["PostCreatureId"] = CREATURE_WOLF
-              , ["MaxGcd"] = 4
-              , ["HeroStep"] = 4
               , ["Res"] = {
                 [WOOD] = 1
                 , [ORE] = 0
@@ -10309,8 +10142,6 @@
             , [CREATURE_GOBLIN_DEFILER] = {
               ["Scale"] = 4
               , ["PostCreatureId"] = CREATURE_WOLF
-              , ["MaxGcd"] = 4
-              , ["HeroStep"] = 4
               , ["Res"] = {
                 [WOOD] = 1
                 , [ORE] = 0

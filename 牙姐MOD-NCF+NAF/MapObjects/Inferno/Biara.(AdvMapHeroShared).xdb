@@ -32,7 +32,7 @@
 	<Icon128 href="/Textures/Icons/Heroes/Inferno/Inferno_Biara_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<InternalName>Biara</InternalName>
 	<Class>HERO_CLASS_SORCERER</Class>
-	<Specialization/>
+	<Specialization>HERO_SPEC_STORMCALLER</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
 		<SkillID>HERO_SKILL_SORCERY</SkillID>
@@ -58,14 +58,15 @@
 		<skills>
 			<Item>
 				<Mastery>MASTERY_BASIC</Mastery>
-				<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
+				<SkillID>HERO_SKILL_DESTRUCTIVE_MAGIC</SkillID>
 			</Item>
 		</skills>
 		<perkIDs>
-			<Item>HERO_SKILL_RECRUITMENT</Item>
+			<Item>HERO_SKILL_MASTER_OF_LIGHTNINGS</Item>
 		</perkIDs>
 		<spellIDs>
 			<Item>SPELL_LIGHTNING_BOLT</Item>
+			<Item>SPELL_UBER_CHAIN_LIGHTNING</Item>
 		</spellIDs>
 		<Ballista>false</Ballista>
 		<FirstAidTent>false</FirstAidTent>

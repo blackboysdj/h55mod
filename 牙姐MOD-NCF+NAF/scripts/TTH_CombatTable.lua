@@ -66,6 +66,8 @@
         , [42] = HERO_SKILL_UNSUMMON
         , [43] = HERO_SKILL_ELVEN_LUCK
         , [44] = HERO_SKILL_ELEMENTAL_BALANCE
+        , [45] = HERO_SKILL_INTELLIGENCE
+        , [46] = HERO_SKILL_CONSUME_CORPSE
       };
 
     -- 宝物
@@ -1100,11 +1102,10 @@
             if TTHCS_GLOBAL.checkCombatCreature(sidTarget)
               and iSide ~= itemTarget["Side"]
               and (
-                (
-                  TTH_TABLE.Spell[iSpellId] ~= nil
-                  and TTH_TABLE.Spell[iSpellId]["Element"] == TTH_ENUM.Destructive
-                )
-                or iSpellId == SPELL_ABILITY_FLAMESTRIKE
+                iSpellId == SPELL_LIGHTNING_BOLT
+                or iSpellId == SPELL_CHAIN_LIGHTNING
+                or iSpellId == SPELL_EMPOWERED_LIGHTNING_BOLT
+                or iSpellId == SPELL_EMPOWERED_CHAIN_LIGHTNING
               ) then
               local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
               local arrCreatureTarget = GetCreatures(iOppositeSide);
@@ -1134,11 +1135,10 @@
             if TTHCS_GLOBAL.checkCombatCreature(sidTarget)
               and iSide ~= itemTarget["Side"]
               and (
-                (
-                  TTH_TABLE.Spell[iSpellId] ~= nil
-                  and TTH_TABLE.Spell[iSpellId]["Element"] == TTH_ENUM.Destructive
-                )
-                or iSpellId == SPELL_ABILITY_FLAMESTRIKE
+                iSpellId == SPELL_LIGHTNING_BOLT
+                or iSpellId == SPELL_CHAIN_LIGHTNING
+                or iSpellId == SPELL_EMPOWERED_LIGHTNING_BOLT
+                or iSpellId == SPELL_EMPOWERED_CHAIN_LIGHTNING
               ) then
               local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
               local arrCreatureTarget = GetCreatures(iOppositeSide);
@@ -1169,9 +1169,11 @@
         TTHCS_GLOBAL.resetMana(sidCaster, iCurrentMana);
       end;
       function TTHCS_THREAD.castAreaSpell5Mana(sidCaster, iSpellId, iPosX, iPosY, bSign)
+        local iCurrentMana = GetUnitManaPoints(sidCaster);
         startThread(TTHCS_THREAD.unitCastAreaSpell, sidCaster, iSpellId, iPosX, iPosY);
         TTHCS_GLOBAL.signSpell(sidCaster, iSpellId, bSign);
-        sleep(50);
+        -- repeat sleep(1); until GetUnitManaPoints(sidCaster) < iCurrentMana;
+        sleep(20);
       end;
       function TTHCS_THREAD.castAreaSpell8Tool(iSide, iCreatureId, iCreatureNumber, iSpellId, iTargetPosX, iTargetPosY, bSign)
         local iPosX, iPosY = TTHCS_GLOBAL.getTempPosition4Caster(iSide);
@@ -1189,6 +1191,7 @@
         local sidCaster = nil;
         local itemCaster = {};
         repeat
+          sleep(10);
           if sidCaster ~= nil then
             TTHCS_THREAD.removeCreature(sidCaster);
           end;
@@ -1225,6 +1228,182 @@
           return nil;
         else
           return GetSpellSpawns(iSide)[iLenAfter - 1];
+        end;
+      end;
+
+    -- 施放法术
+      TTHCS_THREAD.cast = {};
+      TTHCS_THREAD.cast.aimed = {};
+      TTHCS_THREAD.cast.aimed.impl = function(sidCaster, iSpellId, sidAimed, iPercentExtraMana, bShakeGround, bSign)
+        local bSuccess = TCS_ENUM.Switch.Yes;
+        local iBeforeMana = GetUnitManaPoints(sidCaster);
+        startThread(TTHCS_THREAD.unitCastAimedSpell, sidCaster, iSpellId, sidAimed);
+        TTHCS_GLOBAL.signSpell(sidCaster, iSpellId, bSign);
+        local iTimes = 0; -- 循环执行次数
+        repeat
+          sleep(10);
+          iTimes = iTimes + 1;
+        until GetUnitManaPoints(sidCaster) < iBeforeMana
+          or iTimes >= 10;
+        if iTimes >= 10 then
+          bSuccess = TCS_ENUM.Switch.No;
+        end;
+        local iAfterMana = GetUnitManaPoints(sidCaster);
+        local iDecreaseMana = iBeforeMana - iAfterMana;
+        TTHCS_GLOBAL.setHeroMana(sidCaster, iBeforeMana);
+        local iCostMana = TTHCS_COMMON.round(iDecreaseMana * iPercentExtraMana);
+        local iResultMana = iBeforeMana - iCostMana;
+        if iResultMana < 0 then
+          iResultMana = 0;
+        end;
+        TTHCS_GLOBAL.setHeroMana(sidCaster, iResultMana);
+        if bShakeGround == TCS_ENUM.Switch.Yes then
+          TTHCS_THREAD.cast.aimed.shakeGround(sidCaster, iSpellId, sidAimed, iPercentExtraMana, bSign);
+        end;
+        return bSuccess;
+      end;
+      TTHCS_THREAD.cast.aimed.shakeGround = function(sidCaster, iSpellId, sidAimed, iPercentExtraMana, bSign)
+        local bShakeGround = TCS_ENUM.Switch.No;
+        local itemCaster = TTHCS_GLOBAL.geneUnitInfo(sidCaster);
+        if itemCaster["UnitCategory"] == TTH_ENUM.CombatHero then
+          if TCS_VARI.Info.HeroSkill[itemCaster["UnitType"]][HERO_SKILL_SHAKE_GROUND] == 1 then
+            if iSpellId == SPELL_LIGHTNING_BOLT
+              or iSpellId == SPELL_CHAIN_LIGHTNING
+              or iSpellId == SPELL_EMPOWERED_LIGHTNING_BOLT
+              or iSpellId == SPELL_EMPOWERED_CHAIN_LIGHTNING then
+              local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(itemCaster["Side"]);
+              local arrCreatureTarget = GetCreatures(iOppositeSide);
+              local arrCreatureFilter = {};
+              for i, sidTarget in arrCreatureTarget do
+                if sidTarget ~= sidAimed then
+                  push(arrCreatureFilter, sidTarget);
+                end;
+              end;
+              if length(arrCreatureFilter) > 0 then
+                local iRandomIndex = TTHCS_COMMON.getRandom(length(arrCreatureFilter));
+                local sidShakeGround = arrCreatureFilter[iRandomIndex];
+                local bSuccess = TTHCS_THREAD.cast.aimed.impl(sidCaster, iSpellId, sidShakeGround, iPercentExtraMana, bShakeGround, bSign);
+                if bSuccess == TCS_ENUM.Switch.Yes then
+                  ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_SHAKE_GROUND]["Effect"], sidShakeGround, 5);
+                end;
+              end;
+            end;
+          end;
+        end;
+      end;
+      TTHCS_THREAD.cast.aimed.leap = {};
+      TTHCS_THREAD.cast.aimed.leap.impl = function(iSide, sidCaster, sidTarget)
+        local bCheck = nil;
+        local iCheckIndex = 0;
+        local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
+        local itemCaster = TTHCS_GLOBAL.geneUnitInfo(sidCaster);
+        local itemTarget = TTHCS_GLOBAL.geneUnitInfo(sidTarget);
+        if TTHCS_GLOBAL.checkCombatCreature(sidCaster) == nil
+          or TTHCS_GLOBAL.checkCombatCreature(sidTarget) == nil then
+          return bCheck;
+        end;
+        local arrTarget = TTHCS_GLOBAL.listUnitInArea(itemCaster, 1, iOppositeSide, TCS_ENUM.Switch.No);
+        if contains(arrTarget, sidTarget) == nil then
+          startThread(TTHCS_THREAD.unitCastAimedSpell, sidCaster, SPELL_ABILITY_LEAP, sidTarget);
+          local arrCaster = {}; -- 被攻击方相临单位
+          local iTimes = 0; -- 循环执行次数
+          repeat
+            sleep(10);
+            iTimes = iTimes + 1;
+            arrCaster = TTHCS_GLOBAL.listUnitInArea(itemTarget, 1, iSide, TCS_ENUM.Switch.No);
+          until contains(arrCaster, sidCaster) ~= nil
+            or iTimes >= 20;
+          if contains(arrCaster, sidCaster) ~= nil then
+            bCheck = not nil; -- 攻击成功
+          else
+            bCheck = nil; -- 攻击失败
+          end;
+        else
+          startThread(TTHCS_THREAD.attack, sidCaster, sidTarget);
+          bCheck = not nil; -- 攻击成功
+        end;
+        if bCheck then
+          print(sidCaster.." success "..iCheckIndex.." leap to "..sidTarget.." at "..itemTarget["PosX"].."-"..itemTarget["PosY"]);
+        else
+          print(sidCaster.." failure "..iCheckIndex.." leap to "..sidTarget.." at "..itemTarget["PosX"].."-"..itemTarget["PosY"]);
+        end;
+        sleep(20);
+        return bCheck;
+      end;
+      TTHCS_THREAD.cast.aimed.leap.check = function(iSide, sidCreatureCaster, sidCreatureTarget)
+        local bMatch = nil;
+        local itemCreatureCaster = TTHCS_GLOBAL.geneUnitInfo(sidCreatureCaster);
+        local itemCreatureTarget = TTHCS_GLOBAL.geneUnitInfo(sidCreatureTarget);
+        local iCombatSizeTarget = TTH_TABLE.Creature[itemCreatureTarget["UnitType"]]["CombatSize"];
+
+        local arrPositionCaster = TTHCS_COMMON.calcLeapArea4Creature(sidCreatureCaster);
+        local arrPositionTarget = TTHCS_COMMON.calcNearByArea4Creature(sidCreatureTarget);
+        local arrPositionCoincide = TTHCS_COMMON.calcCoincidePosition(arrPositionCaster, arrPositionTarget);
+
+        print("====match-begin====")
+        if arrPositionCoincide ~= nil and length(arrPositionCoincide) > 0 then
+          for i, itemPosition in arrPositionCoincide do
+            print(itemPosition["PosX"].."-"..itemPosition["PosY"])
+            local sidCreatureTool = TTHCS_THREAD.addCreature(iSide, CREATURE_INFERNO_TOOL_Efion_Basic, 1, itemPosition["PosX"], itemPosition["PosY"]);
+            local bCheck = TTHCS_COMMON.checkPosition(arrPositionCoincide, sidCreatureTool);
+            TTHCS_THREAD.removeCreature(sidCreatureTool);
+            if bCheck then
+              bMatch = not nil;
+              break;
+            end;
+          end;
+        end;
+        print("====match-end====")
+        return bMatch;
+      end;
+
+      TTHCS_THREAD.cast.area = {};
+      TTHCS_THREAD.cast.area.cost = function(sidCaster, iSpellId, iPosX, iPosY, iPercentExtraMana, bSign, bIgnoreShakeGround)
+        local iBeforeMana = GetUnitManaPoints(sidCaster);
+        startThread(TTHCS_THREAD.unitCastAreaSpell, sidCaster, iSpellId, iPosX, iPosY);
+        TTHCS_GLOBAL.signSpell(sidCaster, iSpellId, bSign);
+        repeat sleep(1); until GetUnitManaPoints(sidCaster) < iBeforeMana;
+        if iPercentExtraMana ~= 1 then
+          local iAfterMana = GetUnitManaPoints(sidCaster);
+          local iDecreaseMana = iBeforeMana - iAfterMana;
+          local iExtraMana = TTHCS_COMMON.round(iDecreaseMana * iPercentExtraMana);
+          local iResultMana = iAfterMana - iExtraMana;
+          if iResultMana < 0 then
+            iResultMana = 0;
+          end;
+          TTHCS_GLOBAL.setHeroMana(sidCaster, iResultMana);
+        end;
+        if bIgnoreShakeGround ~= TCS_ENUM.Switch.Yes then
+          TTHCS_THREAD.cast.area.shakeGround(sidCaster, iSpellId, iPosX, iPosY, iPercentExtraMana, bSign);
+        end;
+      end;
+      TTHCS_THREAD.cast.area.shakeGround = function(sidCaster, iSpellId, iPosX, iPosY, iPercentExtraMana, bSign)
+        local bIgnoreShakeGround = TCS_ENUM.Switch.Yes;
+        local itemCaster = TTHCS_GLOBAL.geneUnitInfo(sidCaster);
+        if itemCaster["UnitCategory"] == TTH_ENUM.CombatHero then
+          if TCS_VARI.Info.HeroSkill[itemCaster["UnitType"]][HERO_SKILL_SHAKE_GROUND] == 1 then
+            if iSpellId == SPELL_LIGHTNING_BOLT
+              or iSpellId == SPELL_CHAIN_LIGHTNING
+              or iSpellId == SPELL_EMPOWERED_LIGHTNING_BOLT
+              or iSpellId == SPELL_EMPOWERED_CHAIN_LIGHTNING then
+              local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(itemCaster["Side"]);
+              local arrCreatureTarget = GetCreatures(iOppositeSide);
+              local arrCreatureFilter = {};
+              for i, sidTarget in arrCreatureTarget do
+                local itemTarget = TTHCS_GLOBAL.geneUnitInfo(sidTarget);
+                if itemTarget["PosX"] ~= iPosX
+                  or itemTarget["PosY"] ~= iPosY then
+                  push(arrCreatureFilter, sidTarget);
+                end;
+              end;
+              if length(arrCreatureFilter) > 0 then
+                local iRandomIndex = TTHCS_COMMON.getRandom(length(arrCreatureFilter));
+                local sidShakeGround = arrCreatureFilter[iRandomIndex];
+                local itemShakeGround = TTHCS_GLOBAL.geneUnitInfo(sidShakeGround);
+                TTHCS_THREAD.cast.area.cost(sidCaster, iSpellId, itemShakeGround["PosX"], itemShakeGround["PosY"], iPercentExtraMana, bSign, bIgnoreShakeGround)
+              end;
+            end;
+          end;
         end;
       end;
 
@@ -1321,12 +1500,22 @@
         end;
         local iLenBefore = length(GetCreatures(iSide));
         local iLenAfter = iLenBefore;
+        local iTimes = 0;
         SummonCreature(iSide, iUnitType, iUnitNumberbDebuff, iPositionX, iPositionY);
         repeat
-          sleep(1);
+          sleep(10);
           iLenAfter = length(GetCreatures(iSide));
-        until iLenAfter > iLenBefore;
-        return GetCreatures(iSide)[iLenAfter - 1];
+          iTimes = iTimes + 1;
+        until iLenAfter > iLenBefore
+          or (
+            iLenAfter == iLenBefore
+            and iTimes >= 20
+          );
+        if iTimes >= 20 then
+          return nil;
+        else
+          return GetCreatures(iSide)[iLenAfter - 1];
+        end;
       end;
 
     -- 移除单位
@@ -1345,7 +1534,7 @@
       end;
       function TTHCS_THREAD.attack8CheckPosition(iSide, sidCaster, sidTarget)
         local bCheck = nil;
-        local iCheckIndex = -1;
+        local iCheckIndex = 0;
         local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
         local itemCaster = TTHCS_GLOBAL.geneUnitInfo(sidCaster);
         local itemTarget = TTHCS_GLOBAL.geneUnitInfo(sidTarget);
@@ -1355,49 +1544,59 @@
         end;
         local arrTarget = TTHCS_GLOBAL.listUnitInArea(itemCaster, 1, iOppositeSide, TCS_ENUM.Switch.No);
         startThread(TTHCS_THREAD.unitAttack, sidCaster, sidTarget);
-        sleep(50);
+        sleep(100);
+        -- 攻击方和被攻击方未相临
         if contains(arrTarget, sidTarget) == nil then
-          local itemCasterCurrent = {};
-          local bExistCasterCurrent = not nil;
-          local arrCaster = {};
+          local itemCasterCurrent = {}; -- 攻击方信息
+          local bExistCasterCurrent = not nil; -- 攻击方是否存活
+          local arrCaster = {}; -- 被攻击方相临单位
+          local iTimes = 0; -- 循环执行次数
           repeat
             sleep(10);
-            itemCasterCurrent = TTHCS_GLOBAL.geneUnitInfo(sidCaster);
             bExistCasterCurrent = TTHCS_GLOBAL.checkCombatCreature(sidCaster);
+            iTimes = iTimes + 1;
+            itemCasterCurrent = TTHCS_GLOBAL.geneUnitInfo(sidCaster);
             arrCaster = TTHCS_GLOBAL.listUnitInArea(itemTarget, 1, iSide, TCS_ENUM.Switch.No);
-          until bExistCasterCurrent == nil
-            or contains(arrCaster, sidCaster) ~= nil
+          until bExistCasterCurrent == nil -- 攻击方未存活
+            or contains(arrCaster, sidCaster) ~= nil -- 已抵达预设目标
             or (
               itemCasterCurrent["PosX"] == itemCaster["PosX"]
               and itemCasterCurrent["PosY"] == itemCaster["PosY"]
-            )
-            or contains(TTHCS_TABLE.GodCreature, itemTarget["UnitType"]) ~= nil;
+            ) -- 无法到达预设目标，攻击方未移动
+            or (
+              TCS_VARI.Info.TownBattle == 1
+              and iTimes >= 20
+            ) -- 攻城战未抵达预设目标且循环达到20次
+            or contains(TTHCS_TABLE.GodCreature, itemTarget["UnitType"]) ~= nil; -- 未抵达预设目标且攻击目标为天神，被恐惧
           if bExistCasterCurrent == nil then
-            bCheck = not nil;
-            iCheckIndex = 0;
+            bCheck = nil; -- 攻击失败
+            iCheckIndex = -1; --  攻击方未存活
           else
-            if contains(arrCaster, sidCaster) == nil then
+            if contains(arrCaster, sidCaster) ~= nil then
+              bCheck = not nil; -- 攻击成功
+              iCheckIndex = 1;
+            else
               if itemCasterCurrent["PosX"] == itemCaster["PosX"]
                 and itemCasterCurrent["PosY"] == itemCaster["PosY"] then
-                bCheck = nil;
-                iCheckIndex = 1;
+                bCheck = nil; -- 攻击失败
+                iCheckIndex = -2; -- 无法到达预设目标，攻击方未移动
               else
-                if contains(TTHCS_TABLE.GodCreature, itemTarget["UnitType"]) == nil then
-                  bCheck = nil;
-                  iCheckIndex = 2;
+                if contains(TTHCS_TABLE.GodCreature, itemTarget["UnitType"]) ~= nil then
+                  bCheck = nil; -- 攻击失败
+                  iCheckIndex = -3; -- 未抵达预设目标且攻击目标为天神，被恐惧
+                elseif TCS_VARI.Info.TownBattle == 1 and iTimes >= 20 then
+                  bCheck = nil; -- 攻击失败
+                  iCheckIndex = -4; -- 攻城战未抵达预设目标且循环达到20次
                 else
-                  bCheck = not nil;
-                  iCheckIndex = 3;
+                  bCheck = nil; -- 攻击失败
+                  iCheckIndex = -5; -- 未知原因
                 end;
               end;
-            else
-              bCheck = not nil;
-              iCheckIndex = 4;
             end;
           end;
-        else
+        else -- 初始就相临的，默认成功
           bCheck = not nil;
-          iCheckIndex = 5;
+          iCheckIndex = 2;
         end;
         if bCheck then
           print(sidCaster.." success "..iCheckIndex.." attack to "..sidTarget.." at "..itemTarget["PosX"].."-"..itemTarget["PosY"]);
@@ -1737,17 +1936,25 @@
               end;
               if itemCreatureLast ~= nil and itemCreatureLast["UnitNumber"] > 0
                 and itemCreatureInit == nil and itemCreatureBefore == nil then
-                listSnapshotDiff[TTH_ENUM.CombatCreature][iSide][sidCreature][TCS_ENUM.Snapshot.Status] = TCS_ENUM.Snapshot.Creature.Status.Summon;
+                if listSnapshotDiff[TTH_ENUM.CombatHero][iSide] ~= nil
+                  and listSnapshotDiff[TTH_ENUM.CombatHero][iSide][TCS_ENUM.Snapshot.Mana] ~= TCS_ENUM.Snapshot.Hero.Mana.Decrease -- 英雄未消耗魔法值
+                  and TTH_TABLE.Creature[itemCreatureLast["UnitType"]]["Race"] == TOWN_INFERNO -- 地狱生物
+                  then
+                  listSnapshotDiff[TTH_ENUM.CombatCreature][iSide][sidCreature][TCS_ENUM.Snapshot.Status] = TCS_ENUM.Snapshot.Creature.Status.Gating;
+                else
+                  listSnapshotDiff[TTH_ENUM.CombatCreature][iSide][sidCreature][TCS_ENUM.Snapshot.Status] = TCS_ENUM.Snapshot.Creature.Status.Summon;
+                end;
               end;
             end;
-            -- for sidCreature, itemCreatureBefore in listCreatureBefore do
-            --   local itemCreatureLast = listCreatureLast[sidCreature];
-            --   if itemCreatureLast == nil
-            --     and itemCreatureBefore ~= nil and itemCreatureBefore["UnitNumber"] == 0 then
-            --     listSnapshotDiff[TTH_ENUM.CombatCreature][iSide][sidCreature] = {};
-            --     listSnapshotDiff[TTH_ENUM.CombatCreature][iSide][sidCreature][TCS_ENUM.Snapshot.Status] = TCS_ENUM.Snapshot.Creature.Status.Consume;
-            --   end;
-            -- end;
+            for sidCreature, itemCreatureInit in listCreatureInit do
+              local itemCreatureBefore = listCreatureBefore[sidCreature];
+              local itemCreatureLast = listCreatureLast[sidCreature];
+              if itemCreatureBefore ~= nil and itemCreatureBefore["UnitNumber"] == 0
+                and itemCreatureLast == nil then
+                listSnapshotDiff[TTH_ENUM.CombatCreature][iSide][sidCreature] = {};
+                listSnapshotDiff[TTH_ENUM.CombatCreature][iSide][sidCreature][TCS_ENUM.Snapshot.Status] = TCS_ENUM.Snapshot.Creature.Status.Consume;
+              end;
+            end;
             for sidCreature, itemCreature in listSnapshotDiff[TTH_ENUM.CombatCreature][iSide] do
               if itemCreature[TCS_ENUM.Snapshot.Status] == TCS_ENUM.Snapshot.Creature.Status.Unchanged then
                 local itemCreatureBefore = listCreatureBefore[sidCreature];
@@ -2148,6 +2355,262 @@
           end;
         end;
         return arrPosition;
+      end;
+
+    -- 计算生物相邻的坐标
+      -- 参数: sidCreature
+      -- 返回值: arrPosition
+      function TTHCS_COMMON.calcNearByArea4Creature(sidCreature)
+        local arrPosition = {};
+        local enumBattleFieldSize = TTHCS_GLOBAL.getBattleFieldSize();
+        local itemCreature = TTHCS_GLOBAL.geneUnitInfo(sidCreature);
+        local iPosX = itemCreature["PosX"];
+        local iPosY = itemCreature["PosY"];
+        local iCombatSize = TTH_TABLE.Creature[itemCreature["UnitType"]]["CombatSize"];
+        local iLeft = 1;
+        if iCombatSize == 2 then
+          iLeft = 2;
+        end;
+        for x = iPosX - iLeft, iPosX + 1 do
+          for y = iPosY - iLeft, iPosY + 1 do
+            if x ~= iPosX or y ~= iPosY then
+              if iPosX >= TTHCS_TABLE.BattleEffectField[enumBattleFieldSize]["PosX"]["Min"]
+                and iPosX <= TTHCS_TABLE.BattleEffectField[enumBattleFieldSize]["PosX"]["Max"]
+                and iPosY >= TTHCS_TABLE.BattleEffectField[enumBattleFieldSize]["PosY"]["Min"]
+                and iPosY <= TTHCS_TABLE.BattleEffectField[enumBattleFieldSize]["PosY"]["Max"] then
+                arrPosition[length(arrPosition)] = {
+                  ["PosX"] = x
+                  , ["PosY"] = y
+                };
+              end;
+            end;
+          end;
+        end;
+        return arrPosition;
+      end;
+
+    -- 计算生物跳跃攻击的坐标
+      -- 参数: sidCreature
+      -- 返回值: arrPosition
+      TTHCS_COMMON.mapLeapPosition = {
+        [1] = {["iDiffX"] = 3, ["iDiffY"] = 0}
+        , [2] = {["iDiffX"] = -3, ["iDiffY"] = 0}
+        , [3] = {["iDiffX"] = 4, ["iDiffY"] = 0}
+        , [4] = {["iDiffX"] = -4, ["iDiffY"] = 0}
+        , [5] = {["iDiffX"] = 5, ["iDiffY"] = 0}
+        , [6] = {["iDiffX"] = -5, ["iDiffY"] = 0}
+        , [7] = {["iDiffX"] = 6, ["iDiffY"] = 0}
+        , [8] = {["iDiffX"] = -6, ["iDiffY"] = 0}
+        , [9] = {["iDiffX"] = 7, ["iDiffY"] = 0}
+        , [10] = {["iDiffX"] = -7, ["iDiffY"] = 0}
+        , [11] = {["iDiffX"] = 8, ["iDiffY"] = 0}
+        , [12] = {["iDiffX"] = -8, ["iDiffY"] = 0}
+        , [13] = {["iDiffX"] = 2, ["iDiffY"] = 1}
+        , [14] = {["iDiffX"] = 2, ["iDiffY"] = -1}
+        , [15] = {["iDiffX"] = -2, ["iDiffY"] = 1}
+        , [16] = {["iDiffX"] = -2, ["iDiffY"] = -1}
+        , [17] = {["iDiffX"] = 3, ["iDiffY"] = 1}
+        , [18] = {["iDiffX"] = 3, ["iDiffY"] = -1}
+        , [19] = {["iDiffX"] = -3, ["iDiffY"] = 1}
+        , [20] = {["iDiffX"] = -3, ["iDiffY"] = -1}
+        , [21] = {["iDiffX"] = 4, ["iDiffY"] = 1}
+        , [22] = {["iDiffX"] = 4, ["iDiffY"] = -1}
+        , [23] = {["iDiffX"] = -4, ["iDiffY"] = 1}
+        , [24] = {["iDiffX"] = -4, ["iDiffY"] = -1}
+        , [25] = {["iDiffX"] = 5, ["iDiffY"] = 1}
+        , [26] = {["iDiffX"] = 5, ["iDiffY"] = -1}
+        , [27] = {["iDiffX"] = -5, ["iDiffY"] = 1}
+        , [28] = {["iDiffX"] = -5, ["iDiffY"] = -1}
+        , [29] = {["iDiffX"] = 6, ["iDiffY"] = 1}
+        , [30] = {["iDiffX"] = 6, ["iDiffY"] = -1}
+        , [31] = {["iDiffX"] = -6, ["iDiffY"] = 1}
+        , [32] = {["iDiffX"] = -6, ["iDiffY"] = -1}
+        , [33] = {["iDiffX"] = 7, ["iDiffY"] = 1}
+        , [34] = {["iDiffX"] = 7, ["iDiffY"] = -1}
+        , [35] = {["iDiffX"] = -7, ["iDiffY"] = 1}
+        , [36] = {["iDiffX"] = -7, ["iDiffY"] = -1}
+        , [37] = {["iDiffX"] = 1, ["iDiffY"] = 2}
+        , [38] = {["iDiffX"] = 1, ["iDiffY"] = -2}
+        , [39] = {["iDiffX"] = -1, ["iDiffY"] = 2}
+        , [40] = {["iDiffX"] = -1, ["iDiffY"] = -2}
+        , [41] = {["iDiffX"] = 2, ["iDiffY"] = 2}
+        , [42] = {["iDiffX"] = 2, ["iDiffY"] = -2}
+        , [43] = {["iDiffX"] = -2, ["iDiffY"] = 2}
+        , [44] = {["iDiffX"] = -2, ["iDiffY"] = -2}
+        , [45] = {["iDiffX"] = 3, ["iDiffY"] = 2}
+        , [46] = {["iDiffX"] = 3, ["iDiffY"] = -2}
+        , [47] = {["iDiffX"] = -3, ["iDiffY"] = 2}
+        , [48] = {["iDiffX"] = -3, ["iDiffY"] = -2}
+        , [49] = {["iDiffX"] = 4, ["iDiffY"] = 2}
+        , [50] = {["iDiffX"] = 4, ["iDiffY"] = -2}
+        , [51] = {["iDiffX"] = -4, ["iDiffY"] = 2}
+        , [52] = {["iDiffX"] = -4, ["iDiffY"] = -2}
+        , [53] = {["iDiffX"] = 5, ["iDiffY"] = 2}
+        , [54] = {["iDiffX"] = 5, ["iDiffY"] = -2}
+        , [55] = {["iDiffX"] = -5, ["iDiffY"] = 2}
+        , [56] = {["iDiffX"] = -5, ["iDiffY"] = -2}
+        , [57] = {["iDiffX"] = 6, ["iDiffY"] = 2}
+        , [58] = {["iDiffX"] = 6, ["iDiffY"] = -2}
+        , [59] = {["iDiffX"] = -6, ["iDiffY"] = 2}
+        , [60] = {["iDiffX"] = -6, ["iDiffY"] = -2}
+        , [61] = {["iDiffX"] = 7, ["iDiffY"] = 2}
+        , [62] = {["iDiffX"] = 7, ["iDiffY"] = -2}
+        , [63] = {["iDiffX"] = -7, ["iDiffY"] = 2}
+        , [64] = {["iDiffX"] = -7, ["iDiffY"] = -2}
+        , [65] = {["iDiffX"] = 0, ["iDiffY"] = 3}
+        , [66] = {["iDiffX"] = 0, ["iDiffY"] = -3}
+        , [67] = {["iDiffX"] = 1, ["iDiffY"] = 3}
+        , [68] = {["iDiffX"] = 1, ["iDiffY"] = -3}
+        , [69] = {["iDiffX"] = -1, ["iDiffY"] = 3}
+        , [70] = {["iDiffX"] = -1, ["iDiffY"] = -3}
+        , [71] = {["iDiffX"] = 2, ["iDiffY"] = 3}
+        , [72] = {["iDiffX"] = 2, ["iDiffY"] = -3}
+        , [73] = {["iDiffX"] = -2, ["iDiffY"] = 3}
+        , [74] = {["iDiffX"] = -2, ["iDiffY"] = -3}
+        , [75] = {["iDiffX"] = 3, ["iDiffY"] = 3}
+        , [76] = {["iDiffX"] = 3, ["iDiffY"] = -3}
+        , [77] = {["iDiffX"] = -3, ["iDiffY"] = 3}
+        , [78] = {["iDiffX"] = -3, ["iDiffY"] = -3}
+        , [79] = {["iDiffX"] = 4, ["iDiffY"] = 3}
+        , [80] = {["iDiffX"] = 4, ["iDiffY"] = -3}
+        , [81] = {["iDiffX"] = -4, ["iDiffY"] = 3}
+        , [82] = {["iDiffX"] = -4, ["iDiffY"] = -3}
+        , [83] = {["iDiffX"] = 5, ["iDiffY"] = 3}
+        , [84] = {["iDiffX"] = 5, ["iDiffY"] = -3}
+        , [85] = {["iDiffX"] = -5, ["iDiffY"] = 3}
+        , [86] = {["iDiffX"] = -5, ["iDiffY"] = -3}
+        , [87] = {["iDiffX"] = 6, ["iDiffY"] = 3}
+        , [88] = {["iDiffX"] = 6, ["iDiffY"] = -3}
+        , [89] = {["iDiffX"] = -6, ["iDiffY"] = 3}
+        , [90] = {["iDiffX"] = -6, ["iDiffY"] = -3}
+        , [91] = {["iDiffX"] = 0, ["iDiffY"] = 4}
+        , [92] = {["iDiffX"] = 0, ["iDiffY"] = -4}
+        , [93] = {["iDiffX"] = 1, ["iDiffY"] = 4}
+        , [94] = {["iDiffX"] = 1, ["iDiffY"] = -4}
+        , [95] = {["iDiffX"] = -1, ["iDiffY"] = 4}
+        , [96] = {["iDiffX"] = -1, ["iDiffY"] = -4}
+        , [97] = {["iDiffX"] = 2, ["iDiffY"] = 4}
+        , [98] = {["iDiffX"] = 2, ["iDiffY"] = -4}
+        , [99] = {["iDiffX"] = -2, ["iDiffY"] = 4}
+        , [100] = {["iDiffX"] = -2, ["iDiffY"] = -4}
+        , [101] = {["iDiffX"] = 3, ["iDiffY"] = 4}
+        , [102] = {["iDiffX"] = 3, ["iDiffY"] = -4}
+        , [103] = {["iDiffX"] = -3, ["iDiffY"] = 4}
+        , [104] = {["iDiffX"] = -3, ["iDiffY"] = -4}
+        , [105] = {["iDiffX"] = 4, ["iDiffY"] = 4}
+        , [106] = {["iDiffX"] = 4, ["iDiffY"] = -4}
+        , [107] = {["iDiffX"] = -4, ["iDiffY"] = 4}
+        , [108] = {["iDiffX"] = -4, ["iDiffY"] = -4}
+        , [109] = {["iDiffX"] = 5, ["iDiffY"] = 4}
+        , [110] = {["iDiffX"] = 5, ["iDiffY"] = -4}
+        , [111] = {["iDiffX"] = -5, ["iDiffY"] = 4}
+        , [112] = {["iDiffX"] = -5, ["iDiffY"] = -4}
+        , [113] = {["iDiffX"] = 0, ["iDiffY"] = 5}
+        , [114] = {["iDiffX"] = 0, ["iDiffY"] = -5}
+        , [115] = {["iDiffX"] = 1, ["iDiffY"] = 5}
+        , [116] = {["iDiffX"] = 1, ["iDiffY"] = -5}
+        , [117] = {["iDiffX"] = -1, ["iDiffY"] = 5}
+        , [118] = {["iDiffX"] = -1, ["iDiffY"] = -5}
+        , [119] = {["iDiffX"] = 2, ["iDiffY"] = 5}
+        , [120] = {["iDiffX"] = 2, ["iDiffY"] = -5}
+        , [121] = {["iDiffX"] = -2, ["iDiffY"] = 5}
+        , [122] = {["iDiffX"] = -2, ["iDiffY"] = -5}
+        , [123] = {["iDiffX"] = 3, ["iDiffY"] = 5}
+        , [124] = {["iDiffX"] = 3, ["iDiffY"] = -5}
+        , [125] = {["iDiffX"] = -3, ["iDiffY"] = 5}
+        , [126] = {["iDiffX"] = -3, ["iDiffY"] = -5}
+        , [127] = {["iDiffX"] = 4, ["iDiffY"] = 5}
+        , [128] = {["iDiffX"] = 4, ["iDiffY"] = -5}
+        , [129] = {["iDiffX"] = -4, ["iDiffY"] = 5}
+        , [130] = {["iDiffX"] = -4, ["iDiffY"] = -5}
+        , [131] = {["iDiffX"] = 5, ["iDiffY"] = 5}
+        , [132] = {["iDiffX"] = 5, ["iDiffY"] = -5}
+        , [133] = {["iDiffX"] = -5, ["iDiffY"] = 5}
+        , [134] = {["iDiffX"] = -5, ["iDiffY"] = -5}
+        , [135] = {["iDiffX"] = 0, ["iDiffY"] = 6}
+        , [136] = {["iDiffX"] = 0, ["iDiffY"] = -6}
+        , [137] = {["iDiffX"] = 1, ["iDiffY"] = 6}
+        , [138] = {["iDiffX"] = 1, ["iDiffY"] = -6}
+        , [139] = {["iDiffX"] = -1, ["iDiffY"] = 6}
+        , [140] = {["iDiffX"] = -1, ["iDiffY"] = -6}
+        , [141] = {["iDiffX"] = 2, ["iDiffY"] = 6}
+        , [142] = {["iDiffX"] = 2, ["iDiffY"] = -6}
+        , [143] = {["iDiffX"] = -2, ["iDiffY"] = 6}
+        , [144] = {["iDiffX"] = -2, ["iDiffY"] = -6}
+        , [145] = {["iDiffX"] = 3, ["iDiffY"] = 6}
+        , [146] = {["iDiffX"] = 3, ["iDiffY"] = -6}
+        , [147] = {["iDiffX"] = -3, ["iDiffY"] = 6}
+        , [148] = {["iDiffX"] = -3, ["iDiffY"] = -6}
+        , [149] = {["iDiffX"] = 4, ["iDiffY"] = 6}
+        , [150] = {["iDiffX"] = 4, ["iDiffY"] = -6}
+        , [151] = {["iDiffX"] = -4, ["iDiffY"] = 6}
+        , [152] = {["iDiffX"] = -4, ["iDiffY"] = -6}
+        , [153] = {["iDiffX"] = 0, ["iDiffY"] = 7}
+        , [154] = {["iDiffX"] = 0, ["iDiffY"] = -7}
+        , [155] = {["iDiffX"] = 1, ["iDiffY"] = 7}
+        , [156] = {["iDiffX"] = 1, ["iDiffY"] = -7}
+        , [157] = {["iDiffX"] = -1, ["iDiffY"] = 7}
+        , [158] = {["iDiffX"] = -1, ["iDiffY"] = -7}
+        , [159] = {["iDiffX"] = 2, ["iDiffY"] = 7}
+        , [160] = {["iDiffX"] = 2, ["iDiffY"] = -7}
+        , [161] = {["iDiffX"] = -2, ["iDiffY"] = 7}
+        , [162] = {["iDiffX"] = -2, ["iDiffY"] = -7}
+        , [163] = {["iDiffX"] = 0, ["iDiffY"] = 8}
+        , [164] = {["iDiffX"] = 0, ["iDiffY"] = -8}
+      };
+      function TTHCS_COMMON.calcLeapArea4Creature(sidCreature)
+        local arrPosition = {};
+        local enumBattleFieldSize = TTHCS_GLOBAL.getBattleFieldSize();
+        local itemCreature = TTHCS_GLOBAL.geneUnitInfo(sidCreature);
+        for i, itemPositionDiff in TTHCS_COMMON.mapLeapPosition do
+          local iPosX = itemCreature["PosX"] + itemPositionDiff["iDiffX"];
+          local iPosY = itemCreature["PosY"] + itemPositionDiff["iDiffY"];
+          if iPosX >= TTHCS_TABLE.BattleEffectField[enumBattleFieldSize]["PosX"]["Min"]
+            and iPosX <= TTHCS_TABLE.BattleEffectField[enumBattleFieldSize]["PosX"]["Max"]
+            and iPosY >= TTHCS_TABLE.BattleEffectField[enumBattleFieldSize]["PosY"]["Min"]
+            and iPosY <= TTHCS_TABLE.BattleEffectField[enumBattleFieldSize]["PosY"]["Max"] then
+            arrPosition[length(arrPosition)] = {
+              ["PosX"] = iPosX
+              , ["PosY"] = iPosY
+            };
+          end;
+        end;
+        return arrPosition;
+      end;
+
+    -- 计算重合坐标
+      -- 参数: arrPosition1, arrPosition2
+      -- 返回值: arrPosition
+      function TTHCS_COMMON.calcCoincidePosition(arrPosition1, arrPosition2)
+        local arrPosition = {};
+        for i, itemPosition1 in arrPosition1 do
+          for i, itemPosition2 in arrPosition2 do
+            if itemPosition1["PosX"] == itemPosition2["PosX"]
+              and itemPosition1["PosY"] == itemPosition2["PosY"] then
+              arrPosition[length(arrPosition)] = {
+                ["PosX"] = itemPosition1["PosX"]
+                , ["PosY"] = itemPosition1["PosY"]
+              };
+            end;
+          end;
+        end;
+        return arrPosition;
+      end;
+
+    -- 生物是否在坐标中
+      -- 参数: arrPosition, sidCreature
+      -- 返回值: bMatch
+      function TTHCS_COMMON.checkPosition(arrPosition, sidCreature)
+        local bMatch = nil;
+        local itemCreature = TTHCS_GLOBAL.geneUnitInfo(sidCreature);
+        for i, itemPosition in arrPosition do
+          if itemPosition["PosX"] == itemCreature["PosX"]
+            and itemPosition["PosY"] == itemCreature["PosY"] then
+            bMatch = not nil;
+            break;
+          end;
+        end;
+        return bMatch;
       end;
 
     -- 计算单位是否受坐标影响
@@ -2723,6 +3186,10 @@
       -- Ash 113 艾许
         TTHCS_PATH["Talent"]["Ash"] = {};
         TTHCS_PATH["Talent"]["Ash"]["Effect"] = "/Text/TTH/Heroes/Specializations/Inferno/113-Ash/Combat/Effect.txt";
+      -- Biara 114 拜娅拉
+        TTHCS_PATH["Talent"]["Biara"] = {};
+        TTHCS_PATH["Talent"]["Biara"]["EffectSign"] = "/Text/TTH/Heroes/Specializations/Inferno/114-Biara/Combat/EffectSign.txt";
+        TTHCS_PATH["Talent"]["Biara"]["EffectTrigger"] = "/Text/TTH/Heroes/Specializations/Inferno/114-Biara/Combat/EffectTrigger.txt";
       -- Bersy 117 艾巴
         TTHCS_PATH["Talent"]["Bersy"] = {};
         TTHCS_PATH["Talent"]["Bersy"]["Effect"] = "/Text/TTH/Heroes/Specializations/Fortress/117-Bersy/Combat/Effect.txt";
@@ -2832,7 +3299,7 @@
       -- HERO_SKILL_DEMONIC_RETALIATION 092 领主之怒
         TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_RETALIATION] = {};
         TTHCS_PATH["Perk"][HERO_SKILL_DEMONIC_RETALIATION]["Effect"] = "/Text/TTH/Skills/Gating/092-DemonicRetaliation/Combat/Effect.txt";
-      -- HERO_SKILL_ELEMENTAL_OVERKILL 149 恶魔印记
+      -- HERO_SKILL_ELEMENTAL_OVERKILL 149 混乱风暴
         TTHCS_PATH["Perk"][HERO_SKILL_ELEMENTAL_OVERKILL] = {};
         TTHCS_PATH["Perk"][HERO_SKILL_ELEMENTAL_OVERKILL]["Effect"] = "/Text/TTH/Skills/Gating/149-ElementalOverkill/Combat/Effect.txt";
       -- HERO_SKILL_DEATH_TREAD 099 攻城大师

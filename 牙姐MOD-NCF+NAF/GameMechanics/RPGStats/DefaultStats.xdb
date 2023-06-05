@@ -1278,7 +1278,7 @@
 					<DamagePerSpellPower>10</DamagePerSpellPower>
 					<ManaCost>3</ManaCost>
 				</DemonicFire>
-				<ConsumeCorpseHPForOneMana>3</ConsumeCorpseHPForOneMana>
+				<ConsumeCorpseHPForOneMana>5</ConsumeCorpseHPForOneMana>
 				<CriticalStrike_ChanceToWork>30</CriticalStrike_ChanceToWork>
 			</DemonLord>
 			<Necromancer>
@@ -1869,7 +1869,7 @@
 				<DeathTread>
 					<SpeedBonus>4</SpeedBonus>
 				</DeathTread>
-				<SpiritLink_HPForOneMana>15</SpiritLink_HPForOneMana>
+				<SpiritLink_HPForOneMana>8</SpiritLink_HPForOneMana>
 				<DeathScream_MoralePenalty>1</DeathScream_MoralePenalty>
 				<DeathScream_InitiativePenalty>0.1</DeathScream_InitiativePenalty>
 				<DarkEissary_DeathScreamMultiplier>2</DarkEissary_DeathScreamMultiplier>

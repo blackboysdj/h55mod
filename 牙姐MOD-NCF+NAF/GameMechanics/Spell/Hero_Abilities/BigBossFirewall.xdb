@@ -4,7 +4,10 @@
 	<LongDescriptionFileRef href="/Text/Game/Spells/Combat/BigBossFirewall/Long_Description.txt"/>
 	<Texture href="/Textures/SpellBook______2618/Spells/Spell_Boss_Firewall.xdb#xpointer(/Texture)"/>
 	<EffectTexture/>
-	<SpellBookPredictions/>
+	<SpellBookPredictions>
+		<Item href="/Text/Game/Spells/SpellBookPredictions/DirectDamage.txt"/>
+		<Item href="/Text/Game/Spells/SpellBookPredictions/DirectDamageMasterOfFire.txt"/>
+	</SpellBookPredictions>
 	<CombatLogTexts/>
 	<Level>6</Level>
 	<MagicSchool>MAGIC_SCHOOL_SPECIAL</MagicSchool>
@@ -12,6 +15,10 @@
 	<IsAimed>false</IsAimed>
 	<TrainedCost>0</TrainedCost>
 	<damage>
+		<Item>
+			<Base>15</Base>
+			<PerPower>15</PerPower>
+		</Item>
 		<Item>
 			<Base>15</Base>
 			<PerPower>15</PerPower>

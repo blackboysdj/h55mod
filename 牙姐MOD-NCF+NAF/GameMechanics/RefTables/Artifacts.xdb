@@ -2258,7 +2258,7 @@
 				<DescriptionFileRef href="/Text/TTH/Artifact/004-UnicornHornBow/Description.txt"/>
 				<Model href="/_(Model)/Artefacts/Unicorn_Horn_Bow.(Model).xdb#xpointer(/Model)"/>
 				<Type>ARTF_CLASS_RELIC</Type>
-				<Slot>SECONDARY</Slot>
+				<Slot>PRIMARY</Slot>
 				<Icon href="/Textures/HeroScreen/Artifacts/Unicorn_Horn_Bow.xdb#xpointer(/Texture)"/>
 				<CostOfGold>36000</CostOfGold>
 				<AIValue>12000</AIValue>

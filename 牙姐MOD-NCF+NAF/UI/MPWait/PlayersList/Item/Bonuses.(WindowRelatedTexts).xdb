@@ -32,7 +32,7 @@
 		</Item>
 		<Item>
 			<TextName>bonus_tooltip_resource</TextName>
-			<text href="bonus_tooltip_resource.txt"/>
+			<text href="bonus_tooltip_creature.txt"/>
 		</Item>
 		<Item>
 			<TextName>EE_equal_resources</TextName>

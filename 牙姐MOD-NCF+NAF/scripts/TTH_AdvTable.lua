@@ -905,6 +905,7 @@
           TTH_PATH.Visit["Bank"]["Reward"]["PartOfRelic"] = TTH_PATH.Visit["Bank"]["Reward"]["Pre"].."PartOfRelic.txt";
           TTH_PATH.Visit["Bank"]["Reward"]["RadioTips"] = TTH_PATH.Visit["Bank"]["Reward"]["Pre"].."RadioTips.txt";
           TTH_PATH.Visit["Bank"]["Reward"]["RewardSpellFail"] = TTH_PATH.Visit["Bank"]["Reward"]["Pre"].."RewardSpellFail.txt";
+          TTH_PATH.Visit["Bank"]["Reward"]["RewardSpellMastery"] = TTH_PATH.Visit["Bank"]["Reward"]["Pre"].."RewardSpellMastery.txt";
       TTH_PATH.Visit["WitchHut"] = {};
         TTH_PATH.Visit["WitchHut"]["Pre"] = "/Text/Game/Scripts/TTH_Path/Visit/WitchHut/";
         TTH_PATH.Visit["WitchHut"]["Text"] = TTH_PATH.Visit["WitchHut"]["Pre"].."Text.txt";
@@ -5803,7 +5804,7 @@
             , [19] = {
               ["Id"] = TOWN_BUILDING_SPECIAL_3
               , ["Level"] = 1
-              , ["TownLevel"] = 3
+              , ["TownLevel"] = 6
               , ["Text"] = "/Text/Game/Scripts/TTH_Path/Buildings/Necromancy/UNEARHED_GRAVES.txt"
               , ["Base"] = {
                 ["Id"] = TOWN_BUILDING_DWELLING_1
@@ -6072,7 +6073,7 @@
             , [34] = {
               ["Id"] = TOWN_BUILDING_SPECIAL_4
               , ["Level"] = 1
-              , ["TownLevel"] = 3
+              , ["TownLevel"] = 15
               , ["Text"] = "/Text/Game/Scripts/TTH_Path/Buildings/Necromancy/DRAGON_TOMBSTONE.txt"
               , ["Base"] = {
                 ["Id"] = TOWN_BUILDING_DWELLING_7
@@ -8847,6 +8848,7 @@
           ["CastType"] = TTH_ENUM.Training
           , ["MaxGcd"] = 6
           , ["HeroStep"] = 6
+          , ["PostCreatureId"] = CREATURE_LEGATE
           , ["PreCreature"] = {
             [CREATURE_FOOTMAN] = {
               ["Scale"] = 1
@@ -8939,6 +8941,7 @@
           ["CastType"] = TTH_ENUM.Training
           , ["MaxGcd"] = 6
           , ["HeroStep"] = 6
+          , ["PostCreatureId"] = CREATURE_SNOW_APE
           , ["PreCreature"] = {
             [CREATURE_ARCHER] = {
               ["Scale"] = 1
@@ -9063,6 +9066,7 @@
           ["CastType"] = TTH_ENUM.Guide
           , ["MaxGcd"] = 6
           , ["HeroStep"] = 6
+          , ["PostCreatureId"] = CREATURE_WING_UNICORN
           , ["PreCreature"] = {
             [CREATURE_UNICORN] = {
               ["Scale"] = 1
@@ -9832,6 +9836,7 @@
           ["CastType"] = TTH_ENUM.Cast
           , ["MaxGcd"] = 6
           , ["HeroStep"] = 6
+          , ["PostCreatureId"] = CREATURE_DEATH_KNIGHT
           , ["PreCreature"] = {
             [CREATURE_SKELETON] = {
               ["Scale"] = 6

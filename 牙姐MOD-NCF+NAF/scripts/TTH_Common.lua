@@ -578,6 +578,7 @@ doFile("/scripts/TTH_Library.lua")
     ARTIFACT_ORB_FIRE = 194
     ARTIFACT_ORB_WATER = 195
     ARTIFACT_ARTIFACT_EFFECT_COUNT = 195
+    ARTIFACT_MAX_COUNT = 195
 
   -- 组合宝物
     ARTIFACTSET_CUSTOM = 0
@@ -1177,9 +1178,9 @@ doFile("/scripts/TTH_Library.lua")
     CREATURE_551 = 551
     CREATURE_INFERNO_TOOL = 551
     CREATURE_552 = 552
-    CREATURE_INFERNO_FAMILIAR = 552
+    CREATURE_INFERNO_TOOL_ConsumeCorpse = 552
     CREATURE_553 = 553
-    CREATURE_INFERNO_FAMILIAR_ZYDAR1 = 553
+    CREATURE_INFERNO_TOOL_ConsumeCorpse_Zydar = 553
     CREATURE_554 = 554
     CREATURE_INFERNO_FAMILIAR_ZYDAR2 = 554
     CREATURE_555 = 555
@@ -3249,14 +3250,6 @@ doFile("/scripts/TTH_Library.lua")
               , ["Mastery"] = HERO_SKILL_GATING
               , ["Group"] = TTH_ENUM.GroupMight
             }
-            , ["Jazaz"] = {
-              ["Id"] = 102
-              , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Jazaz/name.txt"
-              , ["Race"] = TOWN_INFERNO
-              , ["Class"] = TTH_ENUM.GateKeeper
-              , ["Mastery"] = HERO_SKILL_GATING
-              , ["Group"] = TTH_ENUM.GroupMight
-            }
             , ["Orlando2"] = {
               ["Id"] = 104
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Orlando2/name.txt"
@@ -3298,6 +3291,14 @@ doFile("/scripts/TTH_Library.lua")
               }
             }
           -- DemonLord
+            , ["Jazaz"] = {
+              ["Id"] = 102
+              , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Jazaz/name.txt"
+              , ["Race"] = TOWN_INFERNO
+              , ["Class"] = TTH_ENUM.DemonLord
+              , ["Mastery"] = HERO_SKILL_GATING
+              , ["Group"] = TTH_ENUM.GroupBalanceNotNec
+            }
             , ["Marder"] = {
               ["Id"] = 103
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Marder/name.txt"
@@ -3854,8 +3855,8 @@ doFile("/scripts/TTH_Library.lua")
           , [TTH_ENUM.Necromancer] = {"Muscip","Arantir","Nemor","Pelt","Sandro","Thant", "Adelaide","Vidomina"}
         }
         , [TOWN_INFERNO] = {
-          [TTH_ENUM.GateKeeper] = {"Calid","Deleb","Jazaz","Orlando2","Efion","Oddrema"}
-          , [TTH_ENUM.DemonLord] = {"Marder","Calh","Grok","Malustar","Nymus","Sovereign","Agrael"}
+          [TTH_ENUM.GateKeeper] = {"Calid","Deleb","Orlando2","Efion","Oddrema"}
+          , [TTH_ENUM.DemonLord] = {"Jazaz","Marder","Calh","Grok","Malustar","Nymus","Sovereign","Agrael"}
           , [TTH_ENUM.Sorcerer] = {"Zydar","Ash","Biara","Calid2","Sheltem"}
         }
         , [TOWN_FORTRESS] = {
@@ -5076,6 +5077,14 @@ doFile("/scripts/TTH_Library.lua")
               , [123] = { -- 迷雾之墙
                 ["Id"] = HERO_SKILL_FOG_VEIL
                 , ["Text"] = "/Text/TTH/Skills/SummoningMagic/123-FogVeil/Name.txt"
+                , ["DependType"] = TTH_ENUM.SkillSimple
+                , ["Depend"] = {
+                  [1] = HERO_SKILL_MASTER_OF_QUAKES
+                }
+              }
+              , [105] = { -- 共振
+                ["Id"] = HERO_SKILL_CHILLING_BONES
+                , ["Text"] = "/Text/TTH/Skills/SummoningMagic/105-chillingBones/Name.txt"
                 , ["DependType"] = TTH_ENUM.SkillSimple
                 , ["Depend"] = {
                   [1] = HERO_SKILL_MASTER_OF_QUAKES
@@ -6435,7 +6444,7 @@ doFile("/scripts/TTH_Library.lua")
           ["ID"] = CREATURE_PEASANT
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_1/Name.txt"
           , ["Race"] = TOWN_HEAVEN
-          , ["GROWTH"] = 27
+          , ["GROWTH"] = 22
           , ["TIER"] = 1
           , ["POWER"] = 41
           , ["CombatSize"] = 1
@@ -6449,7 +6458,7 @@ doFile("/scripts/TTH_Library.lua")
           ["ID"] = CREATURE_MILITIAMAN
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_2/Name.txt"
           , ["Race"] = TOWN_HEAVEN
-          , ["GROWTH"] = 27
+          , ["GROWTH"] = 22
           , ["TIER"] = 1
           , ["POWER"] = 72
           , ["CombatSize"] = 1
@@ -6635,7 +6644,7 @@ doFile("/scripts/TTH_Library.lua")
           ["ID"] = CREATURE_DEMON
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_17/Name.txt"
           , ["Race"] = TOWN_INFERNO
-          , ["GROWTH"] = 17
+          , ["GROWTH"] = 15
           , ["TIER"] = 2
           , ["POWER"] = 106
           , ["CombatSize"] = 1
@@ -6649,7 +6658,7 @@ doFile("/scripts/TTH_Library.lua")
           ["ID"] = CREATURE_HORNED_DEMON
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_18/Name.txt"
           , ["Race"] = TOWN_INFERNO
-          , ["GROWTH"] = 17
+          , ["GROWTH"] = 15
           , ["TIER"] = 2
           , ["POWER"] = 150
           , ["CombatSize"] = 1
@@ -6710,7 +6719,7 @@ doFile("/scripts/TTH_Library.lua")
           ["ID"] = CREATURE_NIGHTMARE
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_23/Name.txt"
           , ["Race"] = TOWN_INFERNO
-          , ["GROWTH"] = 4
+          , ["GROWTH"] = 3
           , ["TIER"] = 5
           , ["POWER"] = 1069
           , ["CombatSize"] = 2
@@ -6724,7 +6733,7 @@ doFile("/scripts/TTH_Library.lua")
           ["ID"] = CREATURE_FRIGHTFUL_NIGHTMARE
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_24/Name.txt"
           , ["Race"] = TOWN_INFERNO
-          , ["GROWTH"] = 4
+          , ["GROWTH"] = 3
           , ["TIER"] = 5
           , ["POWER"] = 1415
           , ["CombatSize"] = 2
@@ -6785,7 +6794,7 @@ doFile("/scripts/TTH_Library.lua")
           ["ID"] = CREATURE_SKELETON
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_29/Name.txt"
           , ["Race"] = TOWN_NECROMANCY
-          , ["GROWTH"] = 26
+          , ["GROWTH"] = 20
           , ["TIER"] = 1
           , ["POWER"] = 54
           , ["CombatSize"] = 1
@@ -6799,7 +6808,7 @@ doFile("/scripts/TTH_Library.lua")
           ["ID"] = CREATURE_SKELETON_ARCHER
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_30/Name.txt"
           , ["Race"] = TOWN_NECROMANCY
-          , ["GROWTH"] = 26
+          , ["GROWTH"] = 20
           , ["TIER"] = 1
           , ["POWER"] = 84
           , ["CombatSize"] = 1
@@ -6935,7 +6944,7 @@ doFile("/scripts/TTH_Library.lua")
           ["ID"] = CREATURE_BONE_DRAGON
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_41/Name.txt"
           , ["Race"] = TOWN_NECROMANCY
-          , ["GROWTH"] = 2
+          , ["GROWTH"] = 1
           , ["TIER"] = 7
           , ["POWER"] = 3174
           , ["CombatSize"] = 2
@@ -6949,7 +6958,7 @@ doFile("/scripts/TTH_Library.lua")
           ["ID"] = CREATURE_SHADOW_DRAGON
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_42/Name.txt"
           , ["Race"] = TOWN_NECROMANCY
-          , ["GROWTH"] = 2
+          , ["GROWTH"] = 1
           , ["TIER"] = 7
           , ["POWER"] = 3905
           , ["CombatSize"] = 2
@@ -6960,7 +6969,7 @@ doFile("/scripts/TTH_Library.lua")
           ["ID"] = CREATURE_PIXIE
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_43/Name.txt"
           , ["Race"] = TOWN_PRESERVE
-          , ["GROWTH"] = 14
+          , ["GROWTH"] = 10
           , ["TIER"] = 1
           , ["POWER"] = 100
           , ["CombatSize"] = 1
@@ -6974,7 +6983,7 @@ doFile("/scripts/TTH_Library.lua")
           ["ID"] = CREATURE_SPRITE
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_44/Name.txt"
           , ["Race"] = TOWN_PRESERVE
-          , ["GROWTH"] = 14
+          , ["GROWTH"] = 10
           , ["TIER"] = 1
           , ["POWER"] = 169
           , ["CombatSize"] = 1
@@ -7085,7 +7094,7 @@ doFile("/scripts/TTH_Library.lua")
           ["ID"] = CREATURE_TREANT
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_53/Name.txt"
           , ["Race"] = TOWN_PRESERVE
-          , ["GROWTH"] = 3
+          , ["GROWTH"] = 2
           , ["TIER"] = 6
           , ["POWER"] = 1717
           , ["CombatSize"] = 2
@@ -7099,7 +7108,7 @@ doFile("/scripts/TTH_Library.lua")
           ["ID"] = CREATURE_TREANT_GUARDIAN
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_54/Name.txt"
           , ["Race"] = TOWN_PRESERVE
-          , ["GROWTH"] = 3
+          , ["GROWTH"] = 2
           , ["TIER"] = 6
           , ["POWER"] = 1993
           , ["CombatSize"] = 2
@@ -7235,7 +7244,7 @@ doFile("/scripts/TTH_Library.lua")
           ["ID"] = CREATURE_GENIE
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_65/Name.txt"
           , ["Race"] = TOWN_ACADEMY
-          , ["GROWTH"] = 5
+          , ["GROWTH"] = 3
           , ["TIER"] = 5
           , ["POWER"] = 839
           , ["CombatSize"] = 2
@@ -7249,7 +7258,7 @@ doFile("/scripts/TTH_Library.lua")
           ["ID"] = CREATURE_MASTER_GENIE
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_66/Name.txt"
           , ["Race"] = TOWN_ACADEMY
-          , ["GROWTH"] = 5
+          , ["GROWTH"] = 3
           , ["TIER"] = 5
           , ["POWER"] = 1126
           , ["CombatSize"] = 2
@@ -7631,7 +7640,7 @@ doFile("/scripts/TTH_Library.lua")
           ["ID"] = CREATURE_BROWLER
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_98/Name.txt"
           , ["Race"] = TOWN_FORTRESS
-          , ["GROWTH"] = 10
+          , ["GROWTH"] = 6
           , ["TIER"] = 4
           , ["POWER"] = 304
           , ["CombatSize"] = 1
@@ -7645,7 +7654,7 @@ doFile("/scripts/TTH_Library.lua")
           ["ID"] = CREATURE_BERSERKER
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_99/Name.txt"
           , ["Race"] = TOWN_FORTRESS
-          , ["GROWTH"] = 10
+          , ["GROWTH"] = 6
           , ["TIER"] = 4
           , ["POWER"] = 420
           , ["CombatSize"] = 1
@@ -7656,7 +7665,7 @@ doFile("/scripts/TTH_Library.lua")
           ["ID"] = CREATURE_RUNE_MAGE
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_100/Name.txt"
           , ["Race"] = TOWN_FORTRESS
-          , ["GROWTH"] = 4
+          , ["GROWTH"] = 3
           , ["TIER"] = 5
           , ["POWER"] = 932
           , ["CombatSize"] = 1
@@ -7670,7 +7679,7 @@ doFile("/scripts/TTH_Library.lua")
           ["ID"] = CREATURE_FLAME_MAGE
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_101/Name.txt"
           , ["Race"] = TOWN_FORTRESS
-          , ["GROWTH"] = 4
+          , ["GROWTH"] = 3
           , ["TIER"] = 5
           , ["POWER"] = 1308
           , ["CombatSize"] = 1
@@ -7731,7 +7740,7 @@ doFile("/scripts/TTH_Library.lua")
           ["ID"] = CREATURE_LANDLORD
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_106/Name.txt"
           , ["Race"] = TOWN_HEAVEN
-          , ["GROWTH"] = 27
+          , ["GROWTH"] = 22
           , ["TIER"] = 1
           , ["POWER"] = 72
           , ["CombatSize"] = 1
@@ -7849,7 +7858,7 @@ doFile("/scripts/TTH_Library.lua")
           ["ID"] = CREATURE_GOBLIN
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_117/Name.txt"
           , ["Race"] = TOWN_STRONGHOLD
-          , ["GROWTH"] = 31
+          , ["GROWTH"] = 25
           , ["TIER"] = 1
           , ["POWER"] = 42
           , ["CombatSize"] = 1
@@ -7864,7 +7873,7 @@ doFile("/scripts/TTH_Library.lua")
           ["ID"] = CREATURE_GOBLIN_TRAPPER
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_118/Name.txt"
           , ["Race"] = TOWN_STRONGHOLD
-          , ["GROWTH"] = 31
+          , ["GROWTH"] = 25
           , ["TIER"] = 1
           , ["POWER"] = 69
           , ["CombatSize"] = 1
@@ -8047,7 +8056,7 @@ doFile("/scripts/TTH_Library.lua")
           ["ID"] = CREATURE_HORNED_LEAPER
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_132/Name.txt"
           , ["Race"] = TOWN_INFERNO
-          , ["GROWTH"] = 17
+          , ["GROWTH"] = 15
           , ["TIER"] = 2
           , ["POWER"] = 149
           , ["CombatSize"] = 1
@@ -8080,7 +8089,7 @@ doFile("/scripts/TTH_Library.lua")
           ["ID"] = CREATURE_HELLMARE
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_135/Name.txt"
           , ["Race"] = TOWN_INFERNO
-          , ["GROWTH"] = 4
+          , ["GROWTH"] = 3
           , ["TIER"] = 5
           , ["POWER"] = 1434
           , ["CombatSize"] = 2
@@ -8190,7 +8199,7 @@ doFile("/scripts/TTH_Library.lua")
           ["ID"] = CREATURE_DRYAD
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_145/Name.txt"
           , ["Race"] = TOWN_PRESERVE
-          , ["GROWTH"] = 14
+          , ["GROWTH"] = 10
           , ["TIER"] = 1
           , ["POWER"] = 174
           , ["CombatSize"] = 1
@@ -8245,7 +8254,7 @@ doFile("/scripts/TTH_Library.lua")
           ["ID"] = CREATURE_ANGER_TREANT
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_150/Name.txt"
           , ["Race"] = TOWN_PRESERVE
-          , ["GROWTH"] = 3
+          , ["GROWTH"] = 2
           , ["TIER"] = 6
           , ["POWER"] = 2032
           , ["CombatSize"] = 2
@@ -8267,7 +8276,7 @@ doFile("/scripts/TTH_Library.lua")
           ["ID"] = CREATURE_SKELETON_WARRIOR
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_152/Name.txt"
           , ["Race"] = TOWN_NECROMANCY
-          , ["GROWTH"] = 26
+          , ["GROWTH"] = 20
           , ["TIER"] = 1
           , ["POWER"] = 85
           , ["CombatSize"] = 1
@@ -8333,7 +8342,7 @@ doFile("/scripts/TTH_Library.lua")
           ["ID"] = CREATURE_HORROR_DRAGON
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_158/Name.txt"
           , ["Race"] = TOWN_NECROMANCY
-          , ["GROWTH"] = 2
+          , ["GROWTH"] = 1
           , ["TIER"] = 7
           , ["POWER"] = 3872
           , ["CombatSize"] = 2
@@ -8388,7 +8397,7 @@ doFile("/scripts/TTH_Library.lua")
           ["ID"] = CREATURE_DJINN_VIZIER
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_163/Name.txt"
           , ["Race"] = TOWN_ACADEMY
-          , ["GROWTH"] = 5
+          , ["GROWTH"] = 3
           , ["TIER"] = 5
           , ["POWER"] = 1096
           , ["CombatSize"] = 2
@@ -8454,7 +8463,7 @@ doFile("/scripts/TTH_Library.lua")
           ["ID"] = CREATURE_BATTLE_RAGER
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_169/Name.txt"
           , ["Race"] = TOWN_FORTRESS
-          , ["GROWTH"] = 10
+          , ["GROWTH"] = 6
           , ["TIER"] = 4
           , ["POWER"] = 420
           , ["CombatSize"] = 1
@@ -8465,7 +8474,7 @@ doFile("/scripts/TTH_Library.lua")
           ["ID"] = CREATURE_FLAME_KEEPER
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_170/Name.txt"
           , ["Race"] = TOWN_FORTRESS
-          , ["GROWTH"] = 4
+          , ["GROWTH"] = 3
           , ["TIER"] = 5
           , ["POWER"] = 1329
           , ["CombatSize"] = 1
@@ -8498,7 +8507,7 @@ doFile("/scripts/TTH_Library.lua")
           ["ID"] = CREATURE_GOBLIN_DEFILER
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_173/Name.txt"
           , ["Race"] = TOWN_STRONGHOLD
-          , ["GROWTH"] = 31
+          , ["GROWTH"] = 25
           , ["TIER"] = 1
           , ["POWER"] = 66
           , ["CombatSize"] = 1

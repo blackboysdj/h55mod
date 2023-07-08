@@ -68,6 +68,7 @@
         , [44] = HERO_SKILL_ELEMENTAL_BALANCE
         , [45] = HERO_SKILL_INTELLIGENCE
         , [46] = HERO_SKILL_CONSUME_CORPSE
+        , [47] = HERO_SKILL_CHILLING_BONES
       };
 
     -- 宝物
@@ -137,6 +138,25 @@
       end
       return -1;
   end;
+  function pop(array, index)
+      local new_array = {};
+      local len_array = length(array);
+      local ret_element;
+      if array ~= nil and len_array > index then
+          for i = 0, len_array - 1 do
+              if i == index then
+                  ret_element = array[i];
+              else
+                  new_array[length(new_array)] = array[i];
+              end;
+          end;
+      end;
+      return new_array, ret_element;
+  end;
+  function push(array, element)
+      array[length(array)] = element;
+      return array;
+  end;
   function WaitForTutorialMessageBox()
       while IsTutorialMessageBoxOpen() do
           sleep(1);
@@ -164,25 +184,6 @@
           repeat n = n - m; until n < m;
       end;
       return n;
-  end;
-  function pop(array, index)
-      local new_array = {};
-      local len_array = length(array);
-      local ret_element;
-      if array ~= nil and len_array > index then
-          for i = 0, len_array - 1 do
-              if i == index then
-                  ret_element = array[i];
-              else
-                  new_array[length(new_array)] = array[i];
-              end;
-          end;
-      end;
-      return new_array, ret_element;
-  end;
-  function push(array, element)
-      array[length(array)] = element;
-      return array;
   end;
 
 -- TTH环境
@@ -1207,90 +1208,300 @@
           sleep(20);
         end;
       end;
-      function TTHCS_THREAD.castAreaSpell4SpellSpawn(iSide, iCreatureId, iCreatureNumber, sidCaster, iSpellId, iPosX, iPosY, bSign)
-        local iCurrentMana = GetUnitManaPoints(sidCaster);
-        local iLenBefore = length(GetSpellSpawns(iSide));
-        local iLenAfter = iLenBefore;
-        local strCreatureTool = TTHCS_THREAD.addCreature(iSide, iCreatureId, iCreatureNumber, iPosX, iPosY);
-        local itemCreatureTool = TTHCS_GLOBAL.geneUnitInfo(strCreatureTool);
-        TTHCS_THREAD.removeCreature(strCreatureTool);
-        startThread(TTHCS_THREAD.unitCastAreaSpell, sidCaster, iSpellId, itemCreatureTool["PosX"], itemCreatureTool["PosY"]);
-        TTHCS_GLOBAL.signSpell(sidCaster, iSpellId, bSign);
-        sleep(50);
-        TTHCS_GLOBAL.resetMana(sidCaster, iCurrentMana);
-        local iTimes = 0;
-        repeat
-          sleep(10);
-          iLenAfter = length(GetSpellSpawns(iSide));
-          iTimes = iTimes + 1;
-        until iLenAfter > iLenBefore or iTimes > 10;
-        if iTimes > 10 then
-          return nil;
-        else
-          return GetSpellSpawns(iSide)[iLenAfter - 1];
-        end;
-      end;
 
     -- 施放法术
       TTHCS_THREAD.cast = {};
-      TTHCS_THREAD.cast.aimed = {};
-      TTHCS_THREAD.cast.aimed.impl = function(sidCaster, iSpellId, sidAimed, iPercentExtraMana, bShakeGround, bSign)
-        local bSuccess = TCS_ENUM.Switch.Yes;
-        local iBeforeMana = GetUnitManaPoints(sidCaster);
-        startThread(TTHCS_THREAD.unitCastAimedSpell, sidCaster, iSpellId, sidAimed);
-        TTHCS_GLOBAL.signSpell(sidCaster, iSpellId, bSign);
-        local iTimes = 0; -- 循环执行次数
-        repeat
-          sleep(10);
-          iTimes = iTimes + 1;
-        until GetUnitManaPoints(sidCaster) < iBeforeMana
-          or iTimes >= 10;
-        if iTimes >= 10 then
-          bSuccess = TCS_ENUM.Switch.No;
+      TTHCS_THREAD.cast.append = {};
+      TTHCS_THREAD.cast.append.shakeGround = {};
+      TTHCS_THREAD.cast.append.shakeGround.arrSpell = {
+        [0] = SPELL_LIGHTNING_BOLT
+        , [1] = SPELL_CHAIN_LIGHTNING
+        , [2] = SPELL_EMPOWERED_LIGHTNING_BOLT
+        , [3] = SPELL_EMPOWERED_CHAIN_LIGHTNING
+      };
+      TTHCS_THREAD.cast.append.shakeGround.checkSpell = function(iCheckSpellId)
+        print("TTHCS_THREAD.cast.append.shakeGround.checkSpell")
+        local bCheck = nil;
+        for i, iSpellId in TTHCS_THREAD.cast.append.shakeGround.arrSpell do
+          if iCheckSpellId == iSpellId then
+            bCheck = not nil;
+            break;
+          end;
         end;
-        local iAfterMana = GetUnitManaPoints(sidCaster);
-        local iDecreaseMana = iBeforeMana - iAfterMana;
-        TTHCS_GLOBAL.setHeroMana(sidCaster, iBeforeMana);
-        local iCostMana = TTHCS_COMMON.round(iDecreaseMana * iPercentExtraMana);
-        local iResultMana = iBeforeMana - iCostMana;
-        if iResultMana < 0 then
-          iResultMana = 0;
-        end;
-        TTHCS_GLOBAL.setHeroMana(sidCaster, iResultMana);
-        if bShakeGround == TCS_ENUM.Switch.Yes then
-          TTHCS_THREAD.cast.aimed.shakeGround(sidCaster, iSpellId, sidAimed, iPercentExtraMana, bSign);
-        end;
-        return bSuccess;
+        return bCheck;
       end;
-      TTHCS_THREAD.cast.aimed.shakeGround = function(sidCaster, iSpellId, sidAimed, iPercentExtraMana, bSign)
-        local bShakeGround = TCS_ENUM.Switch.No;
+      -- * [impl 感电实现方法]
+        -- * @param  {[type]} sidCaster [施法单位]
+        -- * @param  {[type]} iSpellId  [追加的魔法]
+        -- * @param  {[type]} sidAimed  [被追加魔法的生物]
+        -- * @param  {[type]} bCost     [是否消耗魔法值]
+        -- * @return {[type]}           [无返回值]
+      TTHCS_THREAD.cast.append.shakeGround.impl = function(sidCaster, iSpellId, sidAimed, bCost)
+        TTHCS_GLOBAL.print("TTHCS_THREAD.cast.append.shakeGround.impl")
         local itemCaster = TTHCS_GLOBAL.geneUnitInfo(sidCaster);
-        if itemCaster["UnitCategory"] == TTH_ENUM.CombatHero then
-          if TCS_VARI.Info.HeroSkill[itemCaster["UnitType"]][HERO_SKILL_SHAKE_GROUND] == 1 then
-            if iSpellId == SPELL_LIGHTNING_BOLT
-              or iSpellId == SPELL_CHAIN_LIGHTNING
-              or iSpellId == SPELL_EMPOWERED_LIGHTNING_BOLT
-              or iSpellId == SPELL_EMPOWERED_CHAIN_LIGHTNING then
-              local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(itemCaster["Side"]);
-              local arrCreatureTarget = GetCreatures(iOppositeSide);
-              local arrCreatureFilter = {};
-              for i, sidTarget in arrCreatureTarget do
-                if sidTarget ~= sidAimed then
-                  push(arrCreatureFilter, sidTarget);
+        if itemCaster["UnitCategory"] == TTH_ENUM.CombatHero then -- 施法单位是否为英雄
+          local iSide = itemCaster["Side"];
+          local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
+          local strHero = itemCaster["UnitType"];
+          if TCS_VARI.Info.HeroSkill[strHero][HERO_SKILL_SHAKE_GROUND] == 1 -- 英雄是否习得感电技能
+            and TTHCS_THREAD.cast.append.shakeGround.checkSpell(iSpellId) then -- 追加的魔法是否触发感电
+            local iLenEffect = 1;
+            if TCS_VARI.Info.HeroArtifactSet[strHero][ARTIFACTSET_ELEMENT_AIR] >= 3 then -- 是否携带雷电迅捷 3 件套
+              iLenEffect = iLenEffect + 1;
+            end;
+            if strHero == "Solmyr" and TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then -- 是否特长精通的索姆拉
+              iLenEffect = iLenEffect * 2;
+            end;
+            local arrCreatureFilter = {}; -- 敌方可感电的生物列表
+            local i = 0; -- 感电次数
+            repeat
+              -- 剔除当前被追加魔法的生物
+                local arrCreatureTarget = GetCreatures(iOppositeSide);
+                local iIndexAimed = index(arrCreatureTarget, sidAimed);
+                print("iIndexAimed")
+                print(iIndexAimed)
+                if iIndexAimed > -1 then
+                  arrCreatureFilter = pop(arrCreatureTarget, iIndexAimed);
+                else
+                  arrCreatureFilter = arrCreatureTarget;
                 end;
-              end;
               if length(arrCreatureFilter) > 0 then
-                local iRandomIndex = TTHCS_COMMON.getRandom(length(arrCreatureFilter));
-                local sidShakeGround = arrCreatureFilter[iRandomIndex];
-                local bSuccess = TTHCS_THREAD.cast.aimed.impl(sidCaster, iSpellId, sidShakeGround, iPercentExtraMana, bShakeGround, bSign);
-                if bSuccess == TCS_ENUM.Switch.Yes then
-                  ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_SHAKE_GROUND]["Effect"], sidShakeGround, 5);
+                -- 将相同的魔法施放于随机可感电生物
+                  local iRandomIndex = TTHCS_COMMON.getRandom(length(arrCreatureFilter));
+                  local sidShakeGround = arrCreatureFilter[iRandomIndex];
+                  if TTHCS_GLOBAL.checkCombatCreature(sidShakeGround) then
+                    TTHCS_THREAD.cast.aimed.impl(sidCaster, iSpellId, sidShakeGround, bCost, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No);
+                    ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_SHAKE_GROUND]["Effect"], sidShakeGround, 5);
+                    sleep(50)
+                  end;
+              end;
+              i = i + 1;
+            until i == iLenEffect or arrCreatureFilter == nil or length(arrCreatureFilter) == 0; -- 感电次数到达上限或无可感电生物
+          end;
+        end;
+      end;
+
+      TTHCS_THREAD.cast.append.chillingBones = {};
+      TTHCS_THREAD.cast.append.chillingBones.arrSpell = {
+        [0] = SPELL_ARCANE_CRYSTAL
+        , [1] = SPELL_STONE_SPIKES
+        , [2] = SPELL_EMPOWERED_STONE_SPIKES
+        , [3] = SPELL_METEOR_SHOWER
+        , [4] = SPELL_EMPOWERED_METEOR_SHOWER
+        , [5] = SPELL_IMPLOSION
+        , [6] = SPELL_EMPOWERED_IMPLOSION
+        , [7] = SPELL_UBER_METEOR_SHOWER
+        , [8] = SPELL_LAND_MINE
+      };
+      TTHCS_THREAD.cast.append.chillingBones.checkSpell = function(iCheckSpellId)
+        print("TTHCS_THREAD.cast.append.chillingBones.checkSpell")
+        local bCheck = nil;
+        for i, iSpellId in TTHCS_THREAD.cast.append.chillingBones.arrSpell do
+          if iCheckSpellId == iSpellId then
+            bCheck = not nil;
+            break;
+          end;
+        end;
+        return bCheck;
+      end;
+      -- [impl 共振实现方法]
+        -- @param  {[type]} sidCaster [施法单位]
+        -- @param  {[type]} iSpellId  [追加的魔法]
+        -- @param  {[type]} iPosX     [追加魔法的坐标 X]
+        -- @param  {[type]} iPosY     [追加魔法的坐标 Y]
+        -- @param  {[type]} bCost     [是否消耗魔法值]
+        -- @return {[type]}           [无返回值]
+      TTHCS_THREAD.cast.append.chillingBones.impl = function(sidCaster, iSpellId, iPosX, iPosY, bCost)
+        TTHCS_GLOBAL.print("TTHCS_THREAD.cast.append.chillingBones.impl")
+        local itemCaster = TTHCS_GLOBAL.geneUnitInfo(sidCaster);
+        if itemCaster["UnitCategory"] == TTH_ENUM.CombatHero then -- 施法单位是否为英雄
+          local iSide = itemCaster["Side"];
+          local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
+          local strHero = itemCaster["UnitType"];
+          if TCS_VARI.Info.HeroSkill[strHero][HERO_SKILL_CHILLING_BONES] == 1 -- 英雄是否习得共振技能
+            and TTHCS_THREAD.cast.append.chillingBones.checkSpell(iSpellId) then -- 追加的魔法是否触发共振
+            local iLenEffect = 2;
+            if TCS_VARI.Info.HeroArtifactSet[strHero][ARTIFACTSET_ELEMENT_EARTH] >= 3 then -- 是否携带大地之力 3 件套
+              iLenEffect = iLenEffect + 1;
+            end;
+            if strHero == "Sephinroth" and TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then -- 是否特长精通的萨费罗斯
+              iLenEffect = iLenEffect * 2;
+            end;
+            -- 获取战场上所有己方水晶
+              local arrArcaneCrystal = {};
+              local arrSpellSpawn = GetSpellSpawns(iSide);
+              for i, sidSpellSpawn in arrSpellSpawn do
+                if string.match(sidSpellSpawn, "SPELL_ARCANE_CRYSTAL") ~= nil then
+                  push(arrArcaneCrystal, sidSpellSpawn);
                 end;
               end;
+
+            -- 获取战场上所有己方地元素
+              local arrEarth = {};
+              local arrCreature = GetCreatures(iSide);
+              for i, sidCreature in arrCreature do
+                local itemCreature = TTHCS_GLOBAL.geneUnitInfo(sidCreature);
+                if itemCreature["UnitType"] == CREATURE_EARTH_ELEMENTAL
+                  or itemCreature["UnitType"] == CREATURE_EARTH_MECHANICAL then
+                  push(arrEarth, sidCreature);
+                end;
+              end;
+
+            -- 计算所有共振召唤物的距离
+              local listSortDistance = {};
+              for i, sidEarth in arrEarth do
+                local itemEarth = TTHCS_GLOBAL.geneUnitInfo(sidEarth);
+                local iDistanceX = iPosX - itemEarth["PosX"];
+                local iDistanceY = iPosY - itemEarth["PosY"];
+                itemEarth["Distance"] = iDistanceX * iDistanceX +  iDistanceY * iDistanceY;
+                if itemEarth["Distance"] <= 36 then
+                  push(listSortDistance, itemEarth);
+                end;
+              end;
+              for i, sidArcaneCrystal in arrArcaneCrystal do
+                local itemArcaneCrystal = TTHCS_GLOBAL.geneUnitInfo(sidArcaneCrystal);
+                local iDistanceX = iPosX - itemArcaneCrystal["PosX"];
+                local iDistanceY = iPosY - itemArcaneCrystal["PosY"];
+                itemArcaneCrystal["Distance"] = iDistanceX * iDistanceX +  iDistanceY * iDistanceY;
+                if itemArcaneCrystal["Distance"] <= 36 then
+                  push(listSortDistance, itemArcaneCrystal);
+                end;
+              end;
+
+            if length(listSortDistance) > 0 then
+              -- 按共振触发点由近及远排序
+                listSortDistance = TTHCS_COMMON.asc8key(listSortDistance, "Distance");
+
+              -- 结算共振召唤物生效个数
+                local listEffect = {};
+                local iIndexEffect = 0;
+                for i, itemSortDistance in listSortDistance do
+                  if iIndexEffect < iLenEffect then
+                    push(listEffect, itemSortDistance);
+                  end;
+                  iIndexEffect = iIndexEffect + 1;
+                end;
+
+              -- 记录与生效共振召唤物相邻的生物列表
+                local arrEffectEarth = {};
+                local arrEffectArcaneCrystal = {};
+                local arrCreatureTarget = GetCreatures(iOppositeSide);
+                for i, sidCreatureTarget in arrCreatureTarget do
+                  local listPosition = TTHCS_COMMON.calcNearByArea4Creature(sidCreatureTarget);
+                  for j, itemPosition in listPosition do
+                    for k, itemEffect in listEffect do
+                      if itemPosition["PosX"] == itemEffect["PosX"]
+                        and itemPosition["PosY"] == itemEffect["PosY"] then
+                        if itemEffect["UnitCategory"] == TTH_ENUM.CombatSpellSpawn then
+                          push(arrEffectArcaneCrystal, sidCreatureTarget);
+                        end;
+                        if itemEffect["UnitCategory"] == TTH_ENUM.CombatCreature then
+                          push(arrEffectEarth, sidCreatureTarget);
+                        end;
+                      end;
+                    end;
+                  end;
+                end;
+
+              -- 在生效的共振召唤物的四个斜角各施放 1 次乱石利刺
+                for i, itemEffect in listEffect do
+                  if TTHCS_GLOBAL.useHeroMana(sidCaster, 2) then
+                    sleep(50);
+                    TTHCS_THREAD.cast.area.impl(sidCaster, SPELL_STONE_SPIKES, itemEffect["PosX"] - 1, itemEffect["PosY"] + 1, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No);
+                    TTHCS_THREAD.cast.area.impl(sidCaster, SPELL_STONE_SPIKES, itemEffect["PosX"] + 1, itemEffect["PosY"] + 1, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No);
+                    TTHCS_THREAD.cast.area.impl(sidCaster, SPELL_STONE_SPIKES, itemEffect["PosX"] + 1, itemEffect["PosY"] - 1, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No);
+                    TTHCS_THREAD.cast.area.impl(sidCaster, SPELL_STONE_SPIKES, itemEffect["PosX"] - 1, itemEffect["PosY"] - 1, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No);
+                    if IsCombatUnit(itemEffect["UnitName"]) ~= nil then
+                      ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_CHILLING_BONES]["Effect"], itemEffect["UnitName"], 5);
+                    end;
+                  else
+                    break;
+                  end;
+                end;
+
+              -- 特长熟练的萨费罗斯，共振触发时会对同时与共振中的神秘水晶和地元素相邻的敌方生物施放内向爆裂
+                if strHero == "Sephinroth" and TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
+                  local arrEffectDouble = {};
+                  for i, sidEffectEarth in arrEffectEarth do
+                    for i, sidEffectArcaneCrystal in arrEffectArcaneCrystal do
+                      if sidEffectEarth == sidEffectArcaneCrystal then
+                        if contains(arrEffectDouble, sidEffectEarth) == nil then
+                          push(arrEffectDouble, sidEffectEarth);
+                        end;
+                      end;
+                    end;
+                  end;
+                  for i, sidEffectDouble in arrEffectDouble do
+                    sleep(50);
+                    TTHCS_THREAD.cast.aimed.impl(sidCaster, SPELL_IMPLOSION, sidEffectDouble, TCS_ENUM.Switch.Yes, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No);
+                    ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_CHILLING_BONES]["Effect"], sidEffectDouble, 5);
+                  end;
+                end;
             end;
           end;
         end;
       end;
+
+      TTHCS_THREAD.cast.spellSpawn = {};
+      TTHCS_THREAD.cast.spellSpawn.arcaneCrystal = function(sidCaster, iPosX, iPosY, bCost, bAppend, bSign)
+        print("TTHCS_THREAD.cast.spellSpawn.arcaneCrystal")
+        local iSpellId = SPELL_ARCANE_CRYSTAL;
+        local iBeforeMana = GetUnitManaPoints(sidCaster);
+        if bCost == TCS_ENUM.Switch.No then
+          TTHCS_GLOBAL.maxMana(sidCaster);
+        end;
+
+        local itemCaster = TTHCS_GLOBAL.geneUnitInfo(sidCaster);
+        local sidCreatureTool = TTHCS_THREAD.addCreature(itemCaster["Side"], CREATURE_DUNGEON_TOOL, 1, iPosX, iPosY);
+        local itemCreatureTool = TTHCS_GLOBAL.geneUnitInfo(sidCreatureTool);
+        TTHCS_THREAD.removeCreature(sidCreatureTool);
+        startThread(TTHCS_THREAD.unitCastAreaSpell, sidCaster, SPELL_ARCANE_CRYSTAL, itemCreatureTool["PosX"], itemCreatureTool["PosY"]);
+        sleep(50);
+
+        TTHCS_GLOBAL.signSpell(sidCaster, iSpellId, bSign);
+        if bCost == TCS_ENUM.Switch.No then
+          TTHCS_GLOBAL.resetMana(sidCaster, iBeforeMana);
+        end;
+        if bAppend == TCS_ENUM.Switch.Yes then
+          TTHCS_THREAD.cast.append.chillingBones.impl(sidCaster, iSpellId, iPosX, iPosY, bCost);
+        end;
+      end;
+
+      TTHCS_THREAD.cast.aimed = {};
+      TTHCS_THREAD.cast.aimed.impl = function(sidCaster, iSpellId, sidAimed, bCost, bAppend, bSign)
+        local iBeforeMana = GetUnitManaPoints(sidCaster);
+        if bCost == TCS_ENUM.Switch.No then
+          TTHCS_GLOBAL.maxMana(sidCaster);
+        end;
+
+        startThread(TTHCS_THREAD.unitCastAimedSpell, sidCaster, iSpellId, sidAimed);
+        sleep(50);
+
+        TTHCS_GLOBAL.signSpell(sidCaster, iSpellId, bSign);
+        if bCost == TCS_ENUM.Switch.No then
+          TTHCS_GLOBAL.resetMana(sidCaster, iBeforeMana);
+        end;
+        if bAppend == TCS_ENUM.Switch.Yes then
+          TTHCS_THREAD.cast.append.shakeGround.impl(sidCaster, iSpellId, sidAimed, bCost);
+        end;
+      end;
+      TTHCS_THREAD.cast.aimed.tool = function(iSide, iCreatureId, iCreatureNumber, iSpellId, sidAimed, bSign)
+        if TTHCS_GLOBAL.checkCombatCreature(sidAimed) then
+          local iPosX, iPosY = TTHCS_GLOBAL.getTempPosition4Caster(iSide);
+          local sidCaster = TTHCS_THREAD.addCreature(iSide, iCreatureId, iCreatureNumber, iPosX, iPosY);
+          if TTHCS_GLOBAL.checkCombatCreature(sidCaster) then
+            startThread(TTHCS_THREAD.unitCastAimedSpell, sidCaster, iSpellId, sidAimed);
+            sleep(50);
+
+            TTHCS_GLOBAL.signSpell(sidCaster, iSpellId, bSign);
+            sleep(50);
+
+            TTHCS_THREAD.removeCreature(sidCaster);
+            sleep(20);
+          end;
+        end;
+      end;
+
       TTHCS_THREAD.cast.aimed.leap = {};
       TTHCS_THREAD.cast.aimed.leap.impl = function(iSide, sidCaster, sidTarget)
         local bCheck = nil;
@@ -1358,52 +1569,21 @@
       end;
 
       TTHCS_THREAD.cast.area = {};
-      TTHCS_THREAD.cast.area.cost = function(sidCaster, iSpellId, iPosX, iPosY, iPercentExtraMana, bSign, bIgnoreShakeGround)
+      TTHCS_THREAD.cast.area.impl = function(sidCaster, iSpellId, iPosX, iPosY, bCost, bAppend, bSign)
         local iBeforeMana = GetUnitManaPoints(sidCaster);
+        if bCost == TCS_ENUM.Switch.No then
+          TTHCS_GLOBAL.maxMana(sidCaster);
+        end;
+
         startThread(TTHCS_THREAD.unitCastAreaSpell, sidCaster, iSpellId, iPosX, iPosY);
+        sleep(50);
+
         TTHCS_GLOBAL.signSpell(sidCaster, iSpellId, bSign);
-        repeat sleep(1); until GetUnitManaPoints(sidCaster) < iBeforeMana;
-        if iPercentExtraMana ~= 1 then
-          local iAfterMana = GetUnitManaPoints(sidCaster);
-          local iDecreaseMana = iBeforeMana - iAfterMana;
-          local iExtraMana = TTHCS_COMMON.round(iDecreaseMana * iPercentExtraMana);
-          local iResultMana = iAfterMana - iExtraMana;
-          if iResultMana < 0 then
-            iResultMana = 0;
-          end;
-          TTHCS_GLOBAL.setHeroMana(sidCaster, iResultMana);
+        if bCost == TCS_ENUM.Switch.No then
+          TTHCS_GLOBAL.resetMana(sidCaster, iBeforeMana);
         end;
-        if bIgnoreShakeGround ~= TCS_ENUM.Switch.Yes then
-          TTHCS_THREAD.cast.area.shakeGround(sidCaster, iSpellId, iPosX, iPosY, iPercentExtraMana, bSign);
-        end;
-      end;
-      TTHCS_THREAD.cast.area.shakeGround = function(sidCaster, iSpellId, iPosX, iPosY, iPercentExtraMana, bSign)
-        local bIgnoreShakeGround = TCS_ENUM.Switch.Yes;
-        local itemCaster = TTHCS_GLOBAL.geneUnitInfo(sidCaster);
-        if itemCaster["UnitCategory"] == TTH_ENUM.CombatHero then
-          if TCS_VARI.Info.HeroSkill[itemCaster["UnitType"]][HERO_SKILL_SHAKE_GROUND] == 1 then
-            if iSpellId == SPELL_LIGHTNING_BOLT
-              or iSpellId == SPELL_CHAIN_LIGHTNING
-              or iSpellId == SPELL_EMPOWERED_LIGHTNING_BOLT
-              or iSpellId == SPELL_EMPOWERED_CHAIN_LIGHTNING then
-              local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(itemCaster["Side"]);
-              local arrCreatureTarget = GetCreatures(iOppositeSide);
-              local arrCreatureFilter = {};
-              for i, sidTarget in arrCreatureTarget do
-                local itemTarget = TTHCS_GLOBAL.geneUnitInfo(sidTarget);
-                if itemTarget["PosX"] ~= iPosX
-                  or itemTarget["PosY"] ~= iPosY then
-                  push(arrCreatureFilter, sidTarget);
-                end;
-              end;
-              if length(arrCreatureFilter) > 0 then
-                local iRandomIndex = TTHCS_COMMON.getRandom(length(arrCreatureFilter));
-                local sidShakeGround = arrCreatureFilter[iRandomIndex];
-                local itemShakeGround = TTHCS_GLOBAL.geneUnitInfo(sidShakeGround);
-                TTHCS_THREAD.cast.area.cost(sidCaster, iSpellId, itemShakeGround["PosX"], itemShakeGround["PosY"], iPercentExtraMana, bSign, bIgnoreShakeGround)
-              end;
-            end;
-          end;
+        if bAppend == TCS_ENUM.Switch.Yes then
+          TTHCS_THREAD.cast.append.chillingBones.impl(sidCaster, iSpellId, iPosX, iPosY, bCost);
         end;
       end;
 
@@ -1754,8 +1934,11 @@
   TTHCS_GLOBAL = {};
     -- 设置单位魔法值到原数值
       function TTHCS_GLOBAL.resetMana(sidCaster, iCurrentMana)
-        SetUnitManaPoints(sidCaster, iCurrentMana);
-        repeat sleep(1); until GetUnitManaPoints(sidCaster) == iCurrentMana;
+        local itemCaster = TTHCS_GLOBAL.geneUnitInfo(sidCaster);
+        if itemCaster["MaxMana"] > 0 then
+          SetUnitManaPoints(sidCaster, iCurrentMana);
+          repeat sleep(1); until GetUnitManaPoints(sidCaster) == iCurrentMana;
+        end;
       end;
 
     -- 设置单位魔法值到9999
@@ -1765,6 +1948,46 @@
           SetUnitManaPoints(sidCaster, TTHCS_FINAL.MAX_MANA);
           repeat sleep(1); until GetUnitManaPoints(sidCaster) == TTHCS_FINAL.MAX_MANA;
         end;
+      end;
+
+    -- 回复英雄魔法值
+      function TTHCS_GLOBAL.recoveryHeroMana(sidUnit, iManaPoint)
+        local itemUnit = TTHCS_GLOBAL.geneUnitInfo(sidUnit);
+        local iRecoveryMana = iManaPoint;
+        if itemUnit["UnitCategory"] == TTH_ENUM.CombatHero then
+          local strHero = GetHeroName(sidUnit);
+          if TCS_VARI.Info.HeroSkill[strHero][HERO_SKILL_MYSTICISM] == 1
+            or TCS_VARI.Info.HeroSkill[strHero][HERO_SKILL_BARBARIAN_MYSTICISM] == 1 then
+            iRecoveryMana = iRecoveryMana * 2;
+          end;
+        end;
+        local iResultMana = GetUnitManaPoints(sidUnit) + iRecoveryMana;
+        SetUnitManaPoints(sidUnit, iResultMana);
+        print(sidUnit.." recovery "..iRecoveryMana.." mana");
+        repeat sleep(1); until GetUnitManaPoints(sidUnit) == iResultMana;
+      end;
+
+    -- 设置英雄魔法值
+      function TTHCS_GLOBAL.setHeroMana(sidUnit, iManaPoint)
+        SetUnitManaPoints(sidUnit, iManaPoint);
+        print(sidUnit.." set "..iManaPoint.." mana");
+        repeat sleep(1); until GetUnitManaPoints(sidUnit) == iManaPoint;
+      end;
+
+    -- 消耗英雄魔法值
+      function TTHCS_GLOBAL.useHeroMana(sidUnit, iManaPoint)
+        local iCurrentMana = GetUnitManaPoints(sidUnit);
+        local bSuccess = nil;
+        if iCurrentMana < iManaPoint then
+          bSuccess = nil;
+        else
+          local iPostMana = iCurrentMana - iManaPoint;
+          SetUnitManaPoints(sidUnit, iPostMana);
+          print(sidUnit.." use "..iManaPoint.." mana");
+          repeat sleep(1); until GetUnitManaPoints(sidUnit) == iPostMana;
+          bSuccess = not nil;
+        end;
+        return bSuccess;
       end;
 
     -- 打印魔法并提示
@@ -2904,30 +3127,6 @@
         return listCreatureSorted8Distance;
       end;
 
-    -- 回复英雄魔法值
-      function TTHCS_GLOBAL.recoveryHeroMana(sidUnit, iManaPoint)
-        local itemUnit = TTHCS_GLOBAL.geneUnitInfo(sidUnit);
-        local iRecoveryMana = iManaPoint;
-        if itemUnit["UnitCategory"] == TTH_ENUM.CombatHero then
-          local strHero = GetHeroName(sidUnit);
-          if TCS_VARI.Info.HeroSkill[strHero][HERO_SKILL_MYSTICISM] == 1
-            or TCS_VARI.Info.HeroSkill[strHero][HERO_SKILL_BARBARIAN_MYSTICISM] == 1 then
-            iRecoveryMana = iRecoveryMana * 2;
-          end;
-        end;
-        local iResultMana = GetUnitManaPoints(sidUnit) + iRecoveryMana;
-        SetUnitManaPoints(sidUnit, iResultMana);
-        print(sidUnit.." recovery "..iRecoveryMana.." mana");
-        repeat sleep(1); until GetUnitManaPoints(sidUnit) == iResultMana;
-      end;
-
-    -- 设置英雄魔法值
-      function TTHCS_GLOBAL.setHeroMana(sidUnit, iManaPoint)
-        SetUnitManaPoints(sidUnit, iManaPoint);
-        print(sidUnit.." set "..iManaPoint.." mana");
-        repeat sleep(1); until GetUnitManaPoints(sidUnit) == iManaPoint;
-      end;
-
     -- 返回两个单位的距离
       -- 参数: itemUnit1, itemUnit2
       -- 返回值: 对角线长度
@@ -3343,6 +3542,9 @@
       -- HERO_SKILL_BARBARIAN_ELITE_CASTERS 214 精炼魔力
         TTHCS_PATH["Perk"][HERO_SKILL_ELITE_CASTERS] = {};
         TTHCS_PATH["Perk"][HERO_SKILL_ELITE_CASTERS]["Effect"] = "/Text/TTH/Skills/Sorcery/148-EliteCasters/Combat/Effect.txt";
+      -- HERO_SKILL_CHILLING_BONES 105 共振
+        TTHCS_PATH["Perk"][HERO_SKILL_CHILLING_BONES] = {};
+        TTHCS_PATH["Perk"][HERO_SKILL_CHILLING_BONES]["Effect"] = "/Text/TTH/Skills/SummoningMagic/105-ChillingBones/Combat/Effect.txt";
 
     TTHCS_PATH["Mastery"] = {};
       -- HERO_SKILL_WAR_MACHINES 002 战争机械

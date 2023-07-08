@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Sound ObjectRecordID="1001413">
+	<SrcName>Sounds\Creatures\Sylvan\DendroidSoldier\DendroidSoldier_Specability.wav</SrcName>
+	<uid>B8AE3565-B673-4939-915F-364D888BAAAF</uid>
+	<Loop>false</Loop>
+	<Is3D>true</Is3D>
+	<MinDistance>30</MinDistance>
+	<MaxDistance>10000</MaxDistance>
+	<Priority>0</Priority>
+	<EndingSamples>0</EndingSamples>
+	<StartSamples>0</StartSamples>
+	<FrequencyVar>0</FrequencyVar>
+	<VolumeBase>1</VolumeBase>
+	<VolumeVar>0</VolumeVar>
+	<FinalSound/>
+</Sound>

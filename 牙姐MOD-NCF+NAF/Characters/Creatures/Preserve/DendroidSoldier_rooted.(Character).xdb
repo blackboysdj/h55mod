@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Character ObjectRecordID="1000100">
+	<Model href="DendroidSoldier_rooted.xdb#xpointer(/Model)"/>
+	<ArenaAnimSet href="DendroidSoldier_rooted-arena.xdb#xpointer(/AnimSet)"/>
+	<AdvMapAnimSet/>
+	<ColourModels/>
+</Character>

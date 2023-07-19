@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Geometry>
+	<SrcName href="/Legs.mb"/>
+	<uid>0A7A165D-463E-48FA-9D0D-71A06E17F3A6</uid>
+	<RootMesh/>
+	<RootJoint>Legs</RootJoint>
+	<Size>
+		<x>1.31157</x>
+		<y>1.33602</y>
+		<z>2.34968</z>
+	</Size>
+	<Center>
+		<x>-0.0258873</x>
+		<y>-0.342052</y>
+		<z>-0.620939</z>
+	</Center>
+	<BestFitPoint>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+	</BestFitPoint>
+	<Dir>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+		<w>0</w>
+	</Dir>
+	<AIGeometry/>
+	<NumMeshes>1</NumMeshes>
+	<MaterialQuantities>
+		<Item>1</Item>
+	</MaterialQuantities>
+	<MeshNames>
+		<Item>LegsShape</Item>
+	</MeshNames>
+	<MeshAnimated/>
+	<MeshWindAffected/>
+</Geometry>

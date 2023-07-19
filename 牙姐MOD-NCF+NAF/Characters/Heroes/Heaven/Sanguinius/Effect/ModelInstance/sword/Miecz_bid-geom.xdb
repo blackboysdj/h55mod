@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Geometry>
+	<SrcName/>
+	<uid>0648A461-241B-475D-B618-6BB9E1D15D8B</uid>
+	<RootMesh/>
+	<RootJoint>Miecz</RootJoint>
+	<Size>
+		<x>0.27097</x>
+		<y>1.05864</y>
+		<z>0.0471657</z>
+	</Size>
+	<Center>
+		<x>0.000369444</x>
+		<y>-0.372841</y>
+		<z>0.00201476</z>
+	</Center>
+	<BestFitPoint>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+	</BestFitPoint>
+	<Dir>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+		<w>0</w>
+	</Dir>
+	<AIGeometry/>
+	<NumMeshes>1</NumMeshes>
+	<MaterialQuantities>
+		<Item>1</Item>
+	</MaterialQuantities>
+	<MeshNames>
+		<Item>Miecz</Item>
+	</MeshNames>
+	<MeshAnimated/>
+	<MeshWindAffected/>
+</Geometry>

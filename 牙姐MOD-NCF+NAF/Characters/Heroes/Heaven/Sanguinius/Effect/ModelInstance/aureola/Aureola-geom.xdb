@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Geometry>
+	<SrcName href="/Aureola.mb"/>
+	<uid>88AF7B11-867D-460A-B4BA-08007040CC92</uid>
+	<RootMesh/>
+	<RootJoint>halo01</RootJoint>
+	<Size>
+		<x>3.04388</x>
+		<y>0.136221</y>
+		<z>2.04363</z>
+	</Size>
+	<Center>
+		<x>4.50015e-005</x>
+		<y>0.00876801</y>
+		<z>0.521707</z>
+	</Center>
+	<BestFitPoint>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+	</BestFitPoint>
+	<Dir>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+		<w>0</w>
+	</Dir>
+	<AIGeometry/>
+	<NumMeshes>1</NumMeshes>
+	<MaterialQuantities>
+		<Item>1</Item>
+	</MaterialQuantities>
+	<MeshNames>
+		<Item>halo01Shape</Item>
+	</MeshNames>
+	<MeshAnimated/>
+	<MeshWindAffected/>
+</Geometry>

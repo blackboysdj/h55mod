@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Geometry>
+	<SrcName href="/L_ForeArm.mb"/>
+	<uid>F85B1819-49C6-494C-940F-720D4519B59F</uid>
+	<RootMesh/>
+	<RootJoint>L_ForeArm</RootJoint>
+	<Size>
+		<x>0.758775</x>
+		<y>0.397411</y>
+		<z>0.380104</z>
+	</Size>
+	<Center>
+		<x>-0.0641681</x>
+		<y>0.06251</y>
+		<z>0.0238292</z>
+	</Center>
+	<BestFitPoint>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+	</BestFitPoint>
+	<Dir>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+		<w>0</w>
+	</Dir>
+	<AIGeometry/>
+	<NumMeshes>1</NumMeshes>
+	<MaterialQuantities>
+		<Item>1</Item>
+	</MaterialQuantities>
+	<MeshNames>
+		<Item>L_ForeArmShape</Item>
+	</MeshNames>
+	<MeshAnimated/>
+	<MeshWindAffected/>
+</Geometry>

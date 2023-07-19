@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Particle>
+	<SrcName href="/H5A2/Creatures/AlternativeUpgrades/Inferno/T6_Pit_Spawn/Effects/FX_Pit_Spawn.idle00.mb"/>
+	<ExportPrefix>FX</ExportPrefix>
+	<WrapSize>
+		<x>0</x>
+		<y>0</y>
+	</WrapSize>
+	<Bound>a4b905bf23d212bfdd916e3f2eeb3640fbfdbe3f461af73f1386be3f</Bound>
+	<PerParticleFog>false</PerParticleFog>
+	<uid>1C561601-131D-48CD-A3FD-EFE55D463688</uid>
+</Particle>

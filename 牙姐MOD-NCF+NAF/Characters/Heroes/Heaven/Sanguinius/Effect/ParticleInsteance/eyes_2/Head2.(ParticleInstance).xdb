@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ParticleInstance>
+	<SrcName/>
+	<Light>L_NORMAL</Light>
+	<Particle href="/Effects/_(Effect)/Characters/Creatures/Dwarves/Alternative_Upgrade/T6_ThunderThane/Bone/Head_Fire_R.(Particle).xdb#xpointer(/Particle)"/>
+	<Position>
+		<x>0</x>
+		<y>0.03</y>
+		<z>0.015</z>
+	</Position>
+	<Rotation>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+		<w>1</w>
+	</Rotation>
+	<Scale>0.92</Scale>
+	<Speed>0.5</Speed>
+	<Offset>1</Offset>
+	<EndCycle>2.5</EndCycle>
+	<CycleCount>0</CycleCount>
+	<Pivot>
+		<x>0</x>
+		<y>0</y>
+	</Pivot>
+	<Textures>
+		<Item/>
+		<Item href="/Characters/Creatures/Heaven/LivingSaint/Effect/ParticleInsteance/eyes/White/FireSic0.(Texture).xdb#xpointer(/Texture)"/>
+		<Item href="/Characters/Creatures/Heaven/LivingSaint/Effect/ParticleInsteance/eyes/White/FireSic1.(Texture).xdb#xpointer(/Texture)"/>
+		<Item href="/Characters/Creatures/Heaven/LivingSaint/Effect/ParticleInsteance/eyes/White/FireSic2.(Texture).xdb#xpointer(/Texture)"/>
+		<Item href="/Characters/Creatures/Heaven/LivingSaint/Effect/ParticleInsteance/eyes/White/FireSic3.(Texture).xdb#xpointer(/Texture)"/>
+		<Item href="/Characters/Creatures/Heaven/LivingSaint/Effect/ParticleInsteance/eyes/White/FireSic4.(Texture).xdb#xpointer(/Texture)"/>
+		<Item href="/Characters/Creatures/Heaven/LivingSaint/Effect/ParticleInsteance/eyes/White/FireSic5.(Texture).xdb#xpointer(/Texture)"/>
+		<Item href="/Characters/Creatures/Heaven/LivingSaint/Effect/ParticleInsteance/eyes/White/FireSic6.(Texture).xdb#xpointer(/Texture)"/>
+		<Item href="/Characters/Creatures/Heaven/LivingSaint/Effect/ParticleInsteance/eyes/White/FireSic7.(Texture).xdb#xpointer(/Texture)"/>
+		<Item href="/Characters/Creatures/Heaven/LivingSaint/Effect/ParticleInsteance/eyes/White/FireSic8.(Texture).xdb#xpointer(/Texture)"/>
+		<Item href="/Characters/Creatures/Heaven/LivingSaint/Effect/ParticleInsteance/eyes/White/FireSic9.(Texture).xdb#xpointer(/Texture)"/>
+	</Textures>
+	<IsCrown>false</IsCrown>
+	<Static>P_STATIC</Static>
+	<DoesCastShadow>false</DoesCastShadow>
+	<GlueToBone>0</GlueToBone>
+	<GlueToNamedBone>Head</GlueToNamedBone>
+	<LeaveParticlesWhereStarted>false</LeaveParticlesWhereStarted>
+	<Priority>0</Priority>
+</ParticleInstance>

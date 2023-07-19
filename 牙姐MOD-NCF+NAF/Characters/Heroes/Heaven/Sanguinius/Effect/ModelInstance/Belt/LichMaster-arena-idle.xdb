@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BasicSkelAnim>
+	<SrcName href="/H5A2/Creatures/AlternativeUpgrades/Necropolis/T5_Lichmaster/LichMaster.mb"/>
+	<uid>79C30035-A46E-488E-AE7F-0A2CAAE1F73A</uid>
+	<ExpSrcClip href="/H5A2/Creatures/AlternativeUpgrades/Necropolis/T5_Lichmaster/Animations/Clip/xxx.idle.ma"/>
+	<ExpRootTransform>Global</ExpRootTransform>
+	<ExpFrameFirst>0</ExpFrameFirst>
+	<ExpFrameLast>0</ExpFrameLast>
+	<ExpSettingsFile href=""/>
+	<MovementSpeed>0</MovementSpeed>
+	<SpeedFactor>1</SpeedFactor>
+	<Sound/>
+	<Effect/>
+	<SpeedLineFallTime>250</SpeedLineFallTime>
+	<SpeedLineMaterial/>
+</BasicSkelAnim>

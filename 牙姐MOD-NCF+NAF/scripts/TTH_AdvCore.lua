@@ -1581,9 +1581,17 @@ doFile("/scripts/H55-Settings.lua");
 									TTH_GLOBAL.teachSkillAbsolute(strHero);
 									print("AbsoluteSkill has been teached!");
 								end;
+								-- if H55_AISkillBonusBasic == 1 then
+								-- 	TTH_GLOBAL.teachSkillBasic(strHero);
+								-- 	print("BasicSkill has been teached!");
+								-- end;
+								-- if H55_AISkillBonusMatch == 1 then
+								-- 	TTH_SETTING.match.gene(strHero);
+								-- 	print("MatchSkill has been teached!");
+								-- end;
 								if H55_AISkillBonusBasic == 1 then
-									TTH_GLOBAL.teachSkillBasic(strHero);
-									print("BasicSkill has been teached!");
+									TTH_SETTING.match.gene(strHero);
+									print("MatchSkill has been teached!");
 								end;
 							end;
 						end;
@@ -1628,9 +1636,17 @@ doFile("/scripts/H55-Settings.lua");
 									TTH_GLOBAL.teachSkillAbsolute(strHero);
 									print("AbsoluteSkill has been teached!");
 								end;
+								-- if H55_PlayerSkillBonusBasic == 1 then
+								-- 	TTH_GLOBAL.teachSkillBasic(strHero);
+								-- 	print("BasicSkill has been teached!");
+								-- end;
+								-- if H55_PlayerSkillBonusMatch == 1 then
+								-- 	TTH_SETTING.match.gene(strHero);
+								-- 	print("MatchSkill has been teached!");
+								-- end;
 								if H55_PlayerSkillBonusBasic == 1 then
-									TTH_GLOBAL.teachSkillBasic(strHero);
-									print("BasicSkill has been teached!");
+									TTH_SETTING.match.gene(strHero);
+									print("MatchSkill has been teached!");
 								end;
 							end;
 						end;
@@ -2432,6 +2448,662 @@ doFile("/scripts/H55-Settings.lua");
 						GiveHeroSkill(strHero, HERO_SKILL_MIGHTY_VOICE);
 						sleep(1);
 						GiveHeroSkill(strHero, HERO_SKILL_ABSOLUTE_RAGE);
+					end;
+				end;
+				TTH_SETTING = {};
+				TTH_SETTING.match = {};
+				TTH_SETTING.match.data = {
+					[TTH_ENUM.Knight] = {
+					  ["SkillMastery"] = {
+					    [0] = HERO_SKILL_LOGISTICS	-- 后勤学
+					    , [1] = HERO_SKILL_LOGISTICS	-- 后勤学
+					    , [2] = HERO_SKILL_SHATTER_LIGHT_MAGIC	-- 反光明魔法
+					    , [3] = HERO_SKILL_SHATTER_LIGHT_MAGIC	-- 反光明魔法
+					  }
+					  , ["SkillPerk"] = {
+					    [0] = HERO_SKILL_SCOUTING	-- 侦察术
+					    , [1] = HERO_SKILL_QUICKNESS_OF_MIND	-- 闪电思维
+					    , [2] = HERO_SKILL_DETAIN_LIGHT	-- 延迟光明
+					    , [3] = HERO_SKILL_BARBARIAN_STORM_WIND	-- 暴风来袭
+					  }
+					  , ["Artifact"] = {
+					    [0] = ARTIFACT_ANGELIC_ALLIANCE	-- 天使联盟
+					    , [1] = ARTIFACT_RING_OF_HASTE	-- 速度指环
+					    , [2] = ARTIFACT_RING_OF_CELERITY	-- 迅捷指环
+					    , [3] = ARTIFACT_HELMET_OF_HEAVENLY_ENLIGHTENMENT	-- 天启头盔
+					    , [4] = ARTIFACT_DRACONIC    -- 龙神胸甲
+					    , [5] = ARTIFACT_BOOTS_OF_SPEED    -- 快速旅行长靴
+					    , [6] = ARTIFACT_SENTINEL    -- 哨兵之盾
+					    , [7] = ARTIFACT_FLAG_OF_CHARGE    -- 冲锋战旗
+					    , [8] = ARTIFACT_SHACKLES_OF_WAR    -- 末日勇士桎梏
+					    , [9] = ARTIFACT_PENDANT_OF_STARDUST    -- 星尘坠饰
+					  }
+					}
+					, [TTH_ENUM.Paladin] = {
+					  ["SkillMastery"] = {
+					    [0] = HERO_SKILL_LOGISTICS	-- 后勤学
+					    , [1] = HERO_SKILL_LOGISTICS	-- 后勤学
+					    , [2] = HERO_SKILL_SHATTER_LIGHT_MAGIC	-- 反光明魔法
+					    , [3] = HERO_SKILL_SHATTER_LIGHT_MAGIC	-- 反光明魔法
+					  }
+					  , ["SkillPerk"] = {
+					    [0] = HERO_SKILL_SCOUTING	-- 侦察术
+					    , [1] = HERO_SKILL_QUICKNESS_OF_MIND	-- 闪电思维
+					    , [2] = HERO_SKILL_DETAIN_LIGHT	-- 延迟光明
+					    , [3] = HERO_SKILL_BARBARIAN_STORM_WIND	-- 暴风来袭
+					  }
+					  , ["Artifact"] = {
+					    [0] = ARTIFACT_STAFF_OF_VEXINGS	-- 冥界手杖
+					    , [1] = ARTIFACT_RING_OF_HASTE	-- 速度指环
+					    , [2] = ARTIFACT_RING_OF_CELERITY	-- 迅捷指环
+					    , [3] = ARTIFACT_HELMET_OF_HEAVENLY_ENLIGHTENMENT	-- 天启头盔
+					    , [4] = ARTIFACT_DRACONIC    -- 龙神胸甲
+					    , [5] = ARTIFACT_BOOTS_OF_SPEED    -- 快速旅行长靴
+					    , [6] = ARTIFACT_SENTINEL    -- 哨兵之盾
+					    , [7] = ARTIFACT_FLAG_OF_CHARGE    -- 冲锋战旗
+					    , [8] = ARTIFACT_SHACKLES_OF_WAR    -- 末日勇士桎梏
+					    , [9] = ARTIFACT_PENDANT_OF_STARDUST    -- 星尘坠饰
+					  }
+					}
+					, [TTH_ENUM.Retribution] = {
+					  ["SkillMastery"] = {
+					    [0] = HERO_SKILL_LOGISTICS	-- 后勤学
+					    , [1] = HERO_SKILL_LOGISTICS	-- 后勤学
+					    , [2] = HERO_SKILL_SHATTER_LIGHT_MAGIC	-- 反光明魔法
+					    , [3] = HERO_SKILL_SHATTER_LIGHT_MAGIC	-- 反光明魔法
+					  }
+					  , ["SkillPerk"] = {
+					    [0] = HERO_SKILL_SCOUTING	-- 侦察术
+					    , [1] = HERO_SKILL_QUICKNESS_OF_MIND	-- 闪电思维
+					    , [2] = HERO_SKILL_DETAIN_LIGHT	-- 延迟光明
+					    , [3] = HERO_SKILL_BARBARIAN_STORM_WIND	-- 暴风来袭
+					  }
+					  , ["Artifact"] = {
+					    [0] = ARTIFACT_ANGELIC_ALLIANCE	-- 天使联盟
+					    , [1] = ARTIFACT_RING_OF_HASTE	-- 速度指环
+					    , [2] = ARTIFACT_RING_OF_CELERITY	-- 迅捷指环
+					    , [3] = ARTIFACT_HELMET_OF_HEAVENLY_ENLIGHTENMENT	-- 天启头盔
+					    , [4] = ARTIFACT_DRACONIC    -- 龙神胸甲
+					    , [5] = ARTIFACT_BOOTS_OF_SPEED    -- 快速旅行长靴
+					    , [6] = ARTIFACT_SENTINEL    -- 哨兵之盾
+					    , [7] = ARTIFACT_FLAG_OF_CHARGE    -- 冲锋战旗
+					    , [8] = ARTIFACT_SHACKLES_OF_WAR    -- 末日勇士桎梏
+					    , [9] = ARTIFACT_PENDANT_OF_STARDUST    -- 星尘坠饰
+					  }
+					}
+					, [TTH_ENUM.Heretic] = {
+					  ["SkillMastery"] = {
+					    [0] = HERO_SKILL_LOGISTICS	-- 后勤学
+					    , [1] = HERO_SKILL_LOGISTICS	-- 后勤学
+					    , [2] = HERO_SKILL_SHATTER_LIGHT_MAGIC	-- 反光明魔法
+					    , [3] = HERO_SKILL_SHATTER_LIGHT_MAGIC	-- 反光明魔法
+					  }
+					  , ["SkillPerk"] = {
+					    [0] = HERO_SKILL_SCOUTING	-- 侦察术
+					    , [1] = HERO_SKILL_QUICKNESS_OF_MIND	-- 闪电思维
+					    , [2] = HERO_SKILL_DETAIN_LIGHT	-- 延迟光明
+					    , [3] = HERO_SKILL_BARBARIAN_STORM_WIND	-- 暴风来袭
+					  }
+					  , ["Artifact"] = {
+					    [0] = ARTIFACT_ANGELIC_ALLIANCE	-- 天使联盟
+					    , [1] = ARTIFACT_RING_OF_HASTE	-- 速度指环
+					    , [2] = ARTIFACT_RING_OF_CELERITY	-- 迅捷指环
+					    , [3] = ARTIFACT_HELMET_OF_HEAVENLY_ENLIGHTENMENT	-- 天启头盔
+					    , [4] = ARTIFACT_DRACONIC    -- 龙神胸甲
+					    , [5] = ARTIFACT_BOOTS_OF_SPEED    -- 快速旅行长靴
+					    , [6] = ARTIFACT_SENTINEL    -- 哨兵之盾
+					    , [7] = ARTIFACT_FLAG_OF_CHARGE    -- 冲锋战旗
+					    , [8] = ARTIFACT_SHACKLES_OF_WAR    -- 末日勇士桎梏
+					    , [9] = ARTIFACT_PENDANT_OF_STARDUST    -- 星尘坠饰
+					  }
+					}
+
+					, [TTH_ENUM.Ranger] = {
+					  ["SkillMastery"] = {
+					    [0] = HERO_SKILL_LOGISTICS	-- 后勤学
+					    , [1] = HERO_SKILL_LOGISTICS	-- 后勤学
+					    , [2] = HERO_SKILL_SHATTER_DESTRUCTIVE_MAGIC	-- 反破坏魔法
+					    , [3] = HERO_SKILL_SHATTER_DESTRUCTIVE_MAGIC	-- 反破坏魔法
+					  }
+					  , ["SkillPerk"] = {
+					    [0] = HERO_SKILL_SCOUTING	-- 侦察术
+					    , [1] = HERO_SKILL_QUICKNESS_OF_MIND	-- 闪电思维
+					    , [2] = HERO_SKILL_DETAIN_DESTRUCTIVE	-- 延迟破坏
+					    , [3] = HERO_SKILL_BARBARIAN_SUN_FIRE	-- 魔力爆发
+					  }
+					  , ["Artifact"] = {
+					    [0] = ARTIFACT_ANGELIC_ALLIANCE	-- 天使联盟
+					    , [1] = ARTIFACT_RING_OF_HASTE	-- 速度指环
+					    , [2] = ARTIFACT_RING_OF_CELERITY	-- 迅捷指环
+					    , [3] = ARTIFACT_HELMET_OF_HEAVENLY_ENLIGHTENMENT	-- 天启头盔
+					    , [4] = ARTIFACT_DRACONIC    -- 龙神胸甲
+					    , [5] = ARTIFACT_BOOTS_OF_SWIFTNESS    -- 疾风靴
+					    , [6] = ARTIFACT_DWARVEN_MITHRAL_SHIELD    -- 矮人王护盾
+					    , [7] = ARTIFACT_FLAG_OF_CHARGE    -- 冲锋战旗
+					    , [8] = ARTIFACT_SHACKLES_OF_WAR    -- 末日勇士桎梏
+					    , [9] = ARTIFACT_PENDANT_OF_STARDUST    -- 星尘坠饰
+					  }
+					}
+					, [TTH_ENUM.Warden] = {
+					  ["SkillMastery"] = {
+					    [0] = HERO_SKILL_LOGISTICS	-- 后勤学
+					    , [1] = HERO_SKILL_LOGISTICS	-- 后勤学
+					    , [2] = HERO_SKILL_SHATTER_DESTRUCTIVE_MAGIC	-- 反破坏魔法
+					    , [3] = HERO_SKILL_SHATTER_DESTRUCTIVE_MAGIC	-- 反破坏魔法
+					  }
+					  , ["SkillPerk"] = {
+					    [0] = HERO_SKILL_SCOUTING	-- 侦察术
+					    , [1] = HERO_SKILL_QUICKNESS_OF_MIND	-- 闪电思维
+					    , [2] = HERO_SKILL_DETAIN_DESTRUCTIVE	-- 延迟破坏
+					    , [3] = HERO_SKILL_BARBARIAN_SUN_FIRE	-- 魔力爆发
+					  }
+					  , ["Artifact"] = {
+					    [0] = ARTIFACT_ANGELIC_ALLIANCE	-- 天使联盟
+					    , [1] = ARTIFACT_RING_OF_HASTE	-- 速度指环
+					    , [2] = ARTIFACT_RING_OF_CELERITY	-- 迅捷指环
+					    , [3] = ARTIFACT_HELMET_OF_HEAVENLY_ENLIGHTENMENT	-- 天启头盔
+					    , [4] = ARTIFACT_DRACONIC    -- 龙神胸甲
+					    , [5] = ARTIFACT_BOOTS_OF_SWIFTNESS    -- 疾风靴
+					    , [6] = ARTIFACT_DWARVEN_MITHRAL_SHIELD    -- 矮人王护盾
+					    , [7] = ARTIFACT_FLAG_OF_CHARGE    -- 冲锋战旗
+					    , [8] = ARTIFACT_SHACKLES_OF_WAR    -- 末日勇士桎梏
+					    , [9] = ARTIFACT_PENDANT_OF_STARDUST    -- 星尘坠饰
+					  }
+					}
+					, [TTH_ENUM.Enchanter] = {
+					  ["SkillMastery"] = {
+					    [0] = HERO_SKILL_LOGISTICS	-- 后勤学
+					    , [1] = HERO_SKILL_LOGISTICS	-- 后勤学
+					    , [2] = HERO_SKILL_SHATTER_DESTRUCTIVE_MAGIC	-- 反破坏魔法
+					    , [3] = HERO_SKILL_SHATTER_DESTRUCTIVE_MAGIC	-- 反破坏魔法
+					  }
+					  , ["SkillPerk"] = {
+					    [0] = HERO_SKILL_SCOUTING	-- 侦察术
+					    , [1] = HERO_SKILL_QUICKNESS_OF_MIND	-- 闪电思维
+					    , [2] = HERO_SKILL_DETAIN_DESTRUCTIVE	-- 延迟破坏
+					    , [3] = HERO_SKILL_BARBARIAN_SUN_FIRE	-- 魔力爆发
+					  }
+					  , ["Artifact"] = {
+					    [0] = ARTIFACT_ANGELIC_ALLIANCE	-- 天使联盟
+					    , [1] = ARTIFACT_RING_OF_HASTE	-- 速度指环
+					    , [2] = ARTIFACT_RING_OF_CELERITY	-- 迅捷指环
+					    , [3] = ARTIFACT_HELMET_OF_HEAVENLY_ENLIGHTENMENT	-- 天启头盔
+					    , [4] = ARTIFACT_DRACONIC    -- 龙神胸甲
+					    , [5] = ARTIFACT_BOOTS_OF_SWIFTNESS    -- 疾风靴
+					    , [6] = ARTIFACT_DWARVEN_MITHRAL_SHIELD    -- 矮人王护盾
+					    , [7] = ARTIFACT_FLAG_OF_CHARGE    -- 冲锋战旗
+					    , [8] = ARTIFACT_SHACKLES_OF_WAR    -- 末日勇士桎梏
+					    , [9] = ARTIFACT_PENDANT_OF_STARDUST    -- 星尘坠饰
+					  }
+					}
+
+					, [TTH_ENUM.GuildMaster] = {
+					  ["SkillMastery"] = {
+					    [0] = HERO_SKILL_LOGISTICS	-- 后勤学
+					    , [1] = HERO_SKILL_LOGISTICS	-- 后勤学
+					    , [2] = HERO_SKILL_LIGHT_MAGIC	-- 光明魔法
+					    , [3] = HERO_SKILL_LIGHT_MAGIC	-- 光明魔法
+					  }
+					  , ["SkillPerk"] = {
+					    [0] = HERO_SKILL_SCOUTING	-- 侦察术
+					    , [1] = HERO_SKILL_QUICKNESS_OF_MIND	-- 闪电思维
+					    , [2] = HERO_SKILL_MASTER_OF_WRATH	-- 愤怒大师
+					    , [3] = HERO_SKILL_STORM_WIND	-- 暴风来袭
+					  }
+					  , ["Artifact"] = {
+					    [0] = ARTIFACT_UNICORN_HORN_BOW	-- 独角兽角弓
+					    , [1] = ARTIFACT_RING_OF_HASTE	-- 速度指环
+					    , [2] = ARTIFACT_RING_OF_CELERITY	-- 迅捷指环
+					    , [3] = ARTIFACT_CROWN_OF_COURAGE	-- 狮冠
+					    , [4] = ARTIFACT_DRACONIC    -- 龙神胸甲
+					    , [5] = ARTIFACT_BOOTS_OF_THE_WALKING_DEAD    -- 恶灵长靴
+					    , [6] = ARTIFACT_SENTINEL    -- 哨兵之盾
+					    , [7] = ARTIFACT_LION_HIDE_CAPE    -- 狮鬃披风
+					    , [8] = ARTIFACT_SHACKLES_OF_WAR    -- 末日勇士桎梏
+					    , [9] = ARTIFACT_PENDANT_OF_STARDUST    -- 星尘坠饰
+					  }
+					}
+					, [TTH_ENUM.Wizard] = {
+					  ["SkillMastery"] = {
+					    [0] = HERO_SKILL_LOGISTICS	-- 后勤学
+					    , [1] = HERO_SKILL_LOGISTICS	-- 后勤学
+					    , [2] = HERO_SKILL_OFFENCE	-- 攻击术
+					    , [3] = HERO_SKILL_OFFENCE	-- 攻击术
+					  }
+					  , ["SkillPerk"] = {
+					    [0] = HERO_SKILL_SCOUTING	-- 侦察术
+					    , [1] = HERO_SKILL_QUICKNESS_OF_MIND	-- 闪电思维
+					    , [2] = HERO_SKILL_FRENZY	-- 战争狂人
+					    , [3] = HERO_SKILL_RETRIBUTION	-- 报偿
+					  }
+					  , ["Artifact"] = {
+					    [0] = ARTIFACT_UNICORN_HORN_BOW	-- 独角兽角弓
+					    , [1] = ARTIFACT_RING_OF_HASTE	-- 速度指环
+					    , [2] = ARTIFACT_RING_OF_CELERITY	-- 迅捷指环
+					    , [3] = ARTIFACT_CROWN_OF_COURAGE	-- 狮冠
+					    , [4] = ARTIFACT_DRACONIC    -- 龙神胸甲
+					    , [5] = ARTIFACT_BOOTS_OF_THE_WALKING_DEAD    -- 恶灵长靴
+					    , [6] = ARTIFACT_SENTINEL    -- 哨兵之盾
+					    , [7] = ARTIFACT_LION_HIDE_CAPE    -- 狮鬃披风
+					    , [8] = ARTIFACT_SHACKLES_OF_WAR    -- 末日勇士桎梏
+					    , [9] = ARTIFACT_PENDANT_OF_STARDUST    -- 星尘坠饰
+					  }
+					}
+					, [TTH_ENUM.ElementAlist] = {
+					  ["SkillMastery"] = {
+					    [0] = HERO_SKILL_LOGISTICS	-- 后勤学
+					    , [1] = HERO_SKILL_LOGISTICS	-- 后勤学
+					    , [2] = HERO_SKILL_SHATTER_LIGHT_MAGIC	-- 反光明魔法
+					    , [3] = HERO_SKILL_SHATTER_LIGHT_MAGIC	-- 反光明魔法
+					  }
+					  , ["SkillPerk"] = {
+					    [0] = HERO_SKILL_SCOUTING	-- 侦察术
+					    , [1] = HERO_SKILL_QUICKNESS_OF_MIND	-- 闪电思维
+					    , [2] = HERO_SKILL_DETAIN_LIGHT	-- 延迟光明
+					    , [3] = HERO_SKILL_BARBARIAN_STORM_WIND	-- 暴风来袭
+					  }
+					  , ["Artifact"] = {
+					    [0] = ARTIFACT_UNICORN_HORN_BOW	-- 独角兽角弓
+					    , [1] = ARTIFACT_RING_OF_HASTE	-- 速度指环
+					    , [2] = ARTIFACT_RING_OF_CELERITY	-- 迅捷指环
+					    , [3] = ARTIFACT_CROWN_OF_COURAGE	-- 狮冠
+					    , [4] = ARTIFACT_DRACONIC    -- 龙神胸甲
+					    , [5] = ARTIFACT_BOOTS_OF_THE_WALKING_DEAD    -- 恶灵长靴
+					    , [6] = ARTIFACT_SENTINEL    -- 哨兵之盾
+					    , [7] = ARTIFACT_LION_HIDE_CAPE    -- 狮鬃披风
+					    , [8] = ARTIFACT_SHACKLES_OF_WAR    -- 末日勇士桎梏
+					    , [9] = ARTIFACT_PENDANT_OF_STARDUST    -- 星尘坠饰
+					  }
+					}
+
+					, [TTH_ENUM.BeastMaster] = {
+					  ["SkillMastery"] = {
+					    [0] = HERO_SKILL_LOGISTICS	-- 后勤学
+					    , [1] = HERO_SKILL_LOGISTICS	-- 后勤学
+					    , [2] = HERO_SKILL_SHATTER_LIGHT_MAGIC	-- 反光明魔法
+					    , [3] = HERO_SKILL_SHATTER_LIGHT_MAGIC	-- 反光明魔法
+					  }
+					  , ["SkillPerk"] = {
+					    [0] = HERO_SKILL_SCOUTING	-- 侦察术
+					    , [1] = HERO_SKILL_QUICKNESS_OF_MIND	-- 闪电思维
+					    , [2] = HERO_SKILL_DETAIN_LIGHT	-- 延迟光明
+					    , [3] = HERO_SKILL_BARBARIAN_STORM_WIND	-- 暴风来袭
+					  }
+					  , ["Artifact"] = {
+					    [0] = ARTIFACT_ANGELIC_ALLIANCE	-- 天使联盟
+					    , [1] = ARTIFACT_RING_OF_HASTE	-- 速度指环
+					    , [2] = ARTIFACT_RING_OF_CELERITY	-- 迅捷指环
+					    , [3] = ARTIFACT_HELMET_OF_HEAVENLY_ENLIGHTENMENT	-- 天启头盔
+					    , [4] = ARTIFACT_DRACONIC    -- 龙神胸甲
+					    , [5] = ARTIFACT_BOOTS_OF_SWIFTNESS    -- 疾风靴
+					    , [6] = ARTIFACT_DWARVEN_MITHRAL_SHIELD    -- 矮人王护盾
+					    , [7] = ARTIFACT_FLAG_OF_CHARGE    -- 冲锋战旗
+					    , [8] = ARTIFACT_SHACKLES_OF_WAR    -- 末日勇士桎梏
+					    , [9] = ARTIFACT_PENDANT_OF_STARDUST    -- 星尘坠饰
+					  }
+					}
+					, [TTH_ENUM.Seer] = {
+					  ["SkillMastery"] = {
+					    [0] = HERO_SKILL_LOGISTICS	-- 后勤学
+					    , [1] = HERO_SKILL_LOGISTICS	-- 后勤学
+					    , [2] = HERO_SKILL_SHATTER_LIGHT_MAGIC	-- 反光明魔法
+					    , [3] = HERO_SKILL_SHATTER_LIGHT_MAGIC	-- 反光明魔法
+					  }
+					  , ["SkillPerk"] = {
+					    [0] = HERO_SKILL_SCOUTING	-- 侦察术
+					    , [1] = HERO_SKILL_QUICKNESS_OF_MIND	-- 闪电思维
+					    , [2] = HERO_SKILL_DETAIN_LIGHT	-- 延迟光明
+					    , [3] = HERO_SKILL_BARBARIAN_STORM_WIND	-- 暴风来袭
+					  }
+					  , ["Artifact"] = {
+					    [0] = ARTIFACT_EIGHTFOLD	-- 亚莎之八重杖
+					    , [1] = ARTIFACT_RING_OF_HASTE	-- 速度指环
+					    , [2] = ARTIFACT_RING_OF_CELERITY	-- 迅捷指环
+					    , [3] = ARTIFACT_HELMET_OF_HEAVENLY_ENLIGHTENMENT	-- 天启头盔
+					    , [4] = ARTIFACT_DRACONIC    -- 龙神胸甲
+					    , [5] = ARTIFACT_BOOTS_OF_SPEED    -- 快速旅行长靴
+					    , [6] = ARTIFACT_SENTINEL    -- 哨兵之盾
+					    , [7] = ARTIFACT_FLAG_OF_CHARGE    -- 冲锋战旗
+					    , [8] = ARTIFACT_BOOK_OF_MALASSA    -- 玛拉萨之书
+					    , [9] = ARTIFACT_PENDANT_OF_STARDUST    -- 星尘坠饰
+					  }
+					}
+					, [TTH_ENUM.Warlock] = {
+					  ["SkillMastery"] = {
+					    [0] = HERO_SKILL_LOGISTICS	-- 后勤学
+					    , [1] = HERO_SKILL_LOGISTICS	-- 后勤学
+					    , [2] = HERO_SKILL_SHATTER_LIGHT_MAGIC	-- 反光明魔法
+					    , [3] = HERO_SKILL_SHATTER_LIGHT_MAGIC	-- 反光明魔法
+					  }
+					  , ["SkillPerk"] = {
+					    [0] = HERO_SKILL_SCOUTING	-- 侦察术
+					    , [1] = HERO_SKILL_QUICKNESS_OF_MIND	-- 闪电思维
+					    , [2] = HERO_SKILL_DETAIN_LIGHT	-- 延迟光明
+					    , [3] = HERO_SKILL_BARBARIAN_STORM_WIND	-- 暴风来袭
+					  }
+					  , ["Artifact"] = {
+					    [0] = ARTIFACT_EIGHTFOLD	-- 亚莎之八重杖
+					    , [1] = ARTIFACT_RING_OF_HASTE	-- 速度指环
+					    , [2] = ARTIFACT_RING_OF_CELERITY	-- 迅捷指环
+					    , [3] = ARTIFACT_HELMET_OF_HEAVENLY_ENLIGHTENMENT	-- 天启头盔
+					    , [4] = ARTIFACT_DRACONIC    -- 龙神胸甲
+					    , [5] = ARTIFACT_BOOTS_OF_SPEED    -- 快速旅行长靴
+					    , [6] = ARTIFACT_SENTINEL    -- 哨兵之盾
+					    , [7] = ARTIFACT_FLAG_OF_CHARGE    -- 冲锋战旗
+					    , [8] = ARTIFACT_BOOK_OF_MALASSA    -- 玛拉萨之书
+					    , [9] = ARTIFACT_PENDANT_OF_STARDUST    -- 星尘坠饰
+					  }
+					}
+
+					, [TTH_ENUM.DeathKnight] = {
+					  ["SkillMastery"] = {
+					    [0] = HERO_SKILL_LOGISTICS	-- 后勤学
+					    , [1] = HERO_SKILL_LOGISTICS	-- 后勤学
+					    , [2] = HERO_SKILL_DEFENCE	-- 防御学
+					    , [3] = HERO_SKILL_DEFENCE	-- 防御学
+					  }
+					  , ["SkillPerk"] = {
+					    [0] = HERO_SKILL_SCOUTING	-- 侦察术
+					    , [1] = HERO_SKILL_QUICKNESS_OF_MIND	-- 闪电思维
+					    , [2] = HERO_SKILL_TOUGHNESS	-- 活力无限
+					    , [3] = HERO_SKILL_POWER_OF_STONE	-- 耐力持久
+					  }
+					  , ["Artifact"] = {
+					    [0] = ARTIFACT_STAFF_OF_VEXINGS	-- 冥界手杖
+					    , [1] = ARTIFACT_RING_OF_HASTE	-- 速度指环
+					    , [2] = ARTIFACT_RING_OF_HOLY_GRIFFIN	-- 神圣狮鹫指环
+					    , [3] = ARTIFACT_HELMET_OF_HEAVENLY_ENLIGHTENMENT	-- 天启头盔
+					    , [4] = ARTIFACT_DRACONIC    -- 龙神胸甲
+					    , [5] = ARTIFACT_BOOTS_OF_SPEED    -- 快速旅行长靴
+					    , [6] = ARTIFACT_SENTINEL    -- 哨兵之盾
+					    , [7] = ARTIFACT_CLOAK_OF_MOURNING    -- 死亡阴影斗篷
+					    , [8] = ARTIFACT_SHACKLES_OF_WAR    -- 末日勇士桎梏
+					    , [9] = ARTIFACT_PENDANT_OF_STARDUST    -- 星尘坠饰
+					  }
+					}
+					, [TTH_ENUM.Reaver] = {
+					  ["SkillMastery"] = {
+					    [0] = HERO_SKILL_LOGISTICS	-- 后勤学
+					    , [1] = HERO_SKILL_LOGISTICS	-- 后勤学
+					    , [2] = HERO_SKILL_DEFENCE	-- 防御学
+					    , [3] = HERO_SKILL_DEFENCE	-- 防御学
+					  }
+					  , ["SkillPerk"] = {
+					    [0] = HERO_SKILL_SCOUTING	-- 侦察术
+					    , [1] = HERO_SKILL_QUICKNESS_OF_MIND	-- 闪电思维
+					    , [2] = HERO_SKILL_TOUGHNESS	-- 活力无限
+					    , [3] = HERO_SKILL_POWER_OF_STONE	-- 耐力持久
+					  }
+					  , ["Artifact"] = {
+					    [0] = ARTIFACT_STAFF_OF_VEXINGS	-- 冥界手杖
+					    , [1] = ARTIFACT_RING_OF_HASTE	-- 速度指环
+					    , [2] = ARTIFACT_RING_OF_HOLY_GRIFFIN	-- 神圣狮鹫指环
+					    , [3] = ARTIFACT_HELMET_OF_HEAVENLY_ENLIGHTENMENT	-- 天启头盔
+					    , [4] = ARTIFACT_DRACONIC    -- 龙神胸甲
+					    , [5] = ARTIFACT_BOOTS_OF_SPEED    -- 快速旅行长靴
+					    , [6] = ARTIFACT_SENTINEL    -- 哨兵之盾
+					    , [7] = ARTIFACT_CLOAK_OF_MOURNING    -- 死亡阴影斗篷
+					    , [8] = ARTIFACT_SHACKLES_OF_WAR    -- 末日勇士桎梏
+					    , [9] = ARTIFACT_PENDANT_OF_STARDUST    -- 星尘坠饰
+					  }
+					}
+					, [TTH_ENUM.Necromancer] = {
+					  ["SkillMastery"] = {
+					    [0] = HERO_SKILL_LOGISTICS	-- 后勤学
+					    , [1] = HERO_SKILL_LOGISTICS	-- 后勤学
+					    , [2] = HERO_SKILL_DEFENCE	-- 防御学
+					    , [3] = HERO_SKILL_DEFENCE	-- 防御学
+					  }
+					  , ["SkillPerk"] = {
+					    [0] = HERO_SKILL_SCOUTING	-- 侦察术
+					    , [1] = HERO_SKILL_QUICKNESS_OF_MIND	-- 闪电思维
+					    , [2] = HERO_SKILL_TOUGHNESS	-- 活力无限
+					    , [3] = HERO_SKILL_POWER_OF_STONE	-- 耐力持久
+					  }
+					  , ["Artifact"] = {
+					    [0] = ARTIFACT_STAFF_OF_VEXINGS	-- 冥界手杖
+					    , [1] = ARTIFACT_RING_OF_HASTE	-- 速度指环
+					    , [2] = ARTIFACT_RING_OF_HOLY_GRIFFIN	-- 神圣狮鹫指环
+					    , [3] = ARTIFACT_HELMET_OF_HEAVENLY_ENLIGHTENMENT	-- 天启头盔
+					    , [4] = ARTIFACT_DRACONIC    -- 龙神胸甲
+					    , [5] = ARTIFACT_BOOTS_OF_SPEED    -- 快速旅行长靴
+					    , [6] = ARTIFACT_SENTINEL    -- 哨兵之盾
+					    , [7] = ARTIFACT_CLOAK_OF_MOURNING    -- 死亡阴影斗篷
+					    , [8] = ARTIFACT_SHACKLES_OF_WAR    -- 末日勇士桎梏
+					    , [9] = ARTIFACT_PENDANT_OF_STARDUST    -- 星尘坠饰
+					  }
+					}
+
+					, [TTH_ENUM.GateKeeper] = {
+					  ["SkillMastery"] = {
+					    [0] = HERO_SKILL_LEADERSHIP	-- 领导术
+					    , [1] = HERO_SKILL_LEADERSHIP	-- 领导术
+					    , [2] = HERO_SKILL_DEFENCE	-- 防御学
+					    , [3] = HERO_SKILL_DEFENCE	-- 防御学
+					  }
+					  , ["SkillPerk"] = {
+					    [0] = HERO_SKILL_ENCOURAGE	-- 神圣指引
+					    , [1] = HERO_SKILL_ARTIFICIAL_GLORY	-- 人造荣耀
+					    , [2] = HERO_SKILL_EVASION	-- 闪避
+					    , [3] = HERO_SKILL_DEFENSIVE_FORMATION	-- 防御编队
+					  }
+					  , ["Artifact"] = {
+					    [0] = ARTIFACT_ANGELIC_ALLIANCE	-- 天使联盟
+					    , [1] = ARTIFACT_RING_OF_HASTE	-- 速度指环
+					    , [2] = ARTIFACT_RING_OF_CELERITY	-- 迅捷指环
+					    , [3] = ARTIFACT_HELMET_OF_HEAVENLY_ENLIGHTENMENT	-- 天启头盔
+					    , [4] = ARTIFACT_DRACONIC    -- 龙神胸甲
+					    , [5] = ARTIFACT_BOOTS_OF_THE_WALKING_DEAD    -- 恶灵长靴
+					    , [6] = ARTIFACT_SENTINEL    -- 哨兵之盾
+					    , [7] = ARTIFACT_FLAG_OF_CHARGE    -- 冲锋战旗
+					    , [8] = ARTIFACT_SHACKLES_OF_WAR    -- 末日勇士桎梏
+					    , [9] = ARTIFACT_PENDANT_OF_STARDUST    -- 星尘坠饰
+					  }
+					}
+					, [TTH_ENUM.DemonLord] = {
+					  ["SkillMastery"] = {
+					    [0] = HERO_SKILL_LEADERSHIP	-- 领导术
+					    , [1] = HERO_SKILL_LEADERSHIP	-- 领导术
+					    , [2] = HERO_SKILL_DEFENCE	-- 防御学
+					    , [3] = HERO_SKILL_DEFENCE	-- 防御学
+					  }
+					  , ["SkillPerk"] = {
+					    [0] = HERO_SKILL_ENCOURAGE	-- 神圣指引
+					    , [1] = HERO_SKILL_ARTIFICIAL_GLORY	-- 人造荣耀
+					    , [2] = HERO_SKILL_EVASION	-- 闪避
+					    , [3] = HERO_SKILL_DEFENSIVE_FORMATION	-- 防御编队
+					  }
+					  , ["Artifact"] = {
+					    [0] = ARTIFACT_ANGELIC_ALLIANCE	-- 天使联盟
+					    , [1] = ARTIFACT_RING_OF_HASTE	-- 速度指环
+					    , [2] = ARTIFACT_RING_OF_CELERITY	-- 迅捷指环
+					    , [3] = ARTIFACT_HELMET_OF_HEAVENLY_ENLIGHTENMENT	-- 天启头盔
+					    , [4] = ARTIFACT_DRACONIC    -- 龙神胸甲
+					    , [5] = ARTIFACT_BOOTS_OF_THE_WALKING_DEAD    -- 恶灵长靴
+					    , [6] = ARTIFACT_SENTINEL    -- 哨兵之盾
+					    , [7] = ARTIFACT_FLAG_OF_CHARGE    -- 冲锋战旗
+					    , [8] = ARTIFACT_SHACKLES_OF_WAR    -- 末日勇士桎梏
+					    , [9] = ARTIFACT_PENDANT_OF_STARDUST    -- 星尘坠饰
+					  }
+					}
+					, [TTH_ENUM.Sorcerer] = {
+					  ["SkillMastery"] = {
+					    [0] = HERO_SKILL_LEADERSHIP	-- 领导术
+					    , [1] = HERO_SKILL_LEADERSHIP	-- 领导术
+					    , [2] = HERO_SKILL_DEFENCE	-- 防御学
+					    , [3] = HERO_SKILL_DEFENCE	-- 防御学
+					  }
+					  , ["SkillPerk"] = {
+					    [0] = HERO_SKILL_ENCOURAGE	-- 神圣指引
+					    , [1] = HERO_SKILL_ARTIFICIAL_GLORY	-- 人造荣耀
+					    , [2] = HERO_SKILL_EVASION	-- 闪避
+					    , [3] = HERO_SKILL_DEFENSIVE_FORMATION	-- 防御编队
+					  }
+					  , ["Artifact"] = {
+					    [0] = ARTIFACT_ANGELIC_ALLIANCE	-- 天使联盟
+					    , [1] = ARTIFACT_RING_OF_HASTE	-- 速度指环
+					    , [2] = ARTIFACT_RING_OF_CELERITY	-- 迅捷指环
+					    , [3] = ARTIFACT_HELMET_OF_HEAVENLY_ENLIGHTENMENT	-- 天启头盔
+					    , [4] = ARTIFACT_DRACONIC    -- 龙神胸甲
+					    , [5] = ARTIFACT_BOOTS_OF_THE_WALKING_DEAD    -- 恶灵长靴
+					    , [6] = ARTIFACT_SENTINEL    -- 哨兵之盾
+					    , [7] = ARTIFACT_FLAG_OF_CHARGE    -- 冲锋战旗
+					    , [8] = ARTIFACT_SHACKLES_OF_WAR    -- 末日勇士桎梏
+					    , [9] = ARTIFACT_PENDANT_OF_STARDUST    -- 星尘坠饰
+					  }
+					}
+
+					, [TTH_ENUM.Engineer] = {
+					  ["SkillMastery"] = {
+					    [0] = HERO_SKILL_LIGHT_MAGIC	-- 光明魔法
+					    , [1] = HERO_SKILL_LIGHT_MAGIC	-- 光明魔法
+					    , [2] = HERO_SKILL_SHATTER_LIGHT_MAGIC	-- 反光明魔法
+					    , [3] = HERO_SKILL_SHATTER_LIGHT_MAGIC	-- 反光明魔法
+					  }
+					  , ["SkillPerk"] = {
+					    [0] = HERO_SKILL_MASTER_OF_ABJURATION	-- 防护大师
+					    , [1] = HERO_SKILL_TWILIGHT	-- 微光黎明
+					    , [2] = HERO_SKILL_DETAIN_LIGHT	-- 延迟光明
+					    , [3] = HERO_SKILL_BARBARIAN_STORM_WIND	-- 暴风来袭
+					  }
+					  , ["Artifact"] = {
+					    [0] = ARTIFACT_ANGELIC_ALLIANCE	-- 天使联盟
+					    , [1] = ARTIFACT_RING_OF_HASTE	-- 速度指环
+					    , [2] = ARTIFACT_RING_OF_CELERITY	-- 迅捷指环
+					    , [3] = ARTIFACT_HELMET_OF_HEAVENLY_ENLIGHTENMENT	-- 天启头盔
+					    , [4] = ARTIFACT_DRACONIC    -- 龙神胸甲
+					    , [5] = ARTIFACT_BOOTS_OF_SPEED    -- 快速旅行长靴
+					    , [6] = ARTIFACT_SENTINEL    -- 哨兵之盾
+					    , [7] = ARTIFACT_FLAG_OF_CHARGE    -- 冲锋战旗
+					    , [8] = ARTIFACT_SHACKLES_OF_WAR    -- 末日勇士桎梏
+					    , [9] = ARTIFACT_PENDANT_OF_STARDUST    -- 星尘坠饰
+					  }
+					}
+					, [TTH_ENUM.Runemage] = {
+					  ["SkillMastery"] = {
+					    [0] = HERO_SKILL_LUCK	-- 幸运术
+					    , [1] = HERO_SKILL_LUCK	-- 幸运术
+					    , [2] = HERO_SKILL_SHATTER_LIGHT_MAGIC	-- 反光明魔法
+					    , [3] = HERO_SKILL_SHATTER_LIGHT_MAGIC	-- 反光明魔法
+					  }
+					  , ["SkillPerk"] = {
+					    [0] = HERO_SKILL_LUCK_OF_THE_BARBARIAN	-- 勇士之幸
+					    , [1] = HERO_SKILL_RESISTANCE	-- 抗魔大法
+					    , [2] = HERO_SKILL_DETAIN_LIGHT	-- 延迟光明
+					    , [3] = HERO_SKILL_BARBARIAN_STORM_WIND	-- 暴风来袭
+					  }
+					  , ["Artifact"] = {
+					    [0] = ARTIFACT_ANGELIC_ALLIANCE	-- 天使联盟
+					    , [1] = ARTIFACT_RING_OF_HASTE	-- 速度指环
+					    , [2] = ARTIFACT_RING_OF_CELERITY	-- 迅捷指环
+					    , [3] = ARTIFACT_HELMET_OF_HEAVENLY_ENLIGHTENMENT	-- 天启头盔
+					    , [4] = ARTIFACT_DRACONIC    -- 龙神胸甲
+					    , [5] = ARTIFACT_BOOTS_OF_SPEED    -- 快速旅行长靴
+					    , [6] = ARTIFACT_SENTINEL    -- 哨兵之盾
+					    , [7] = ARTIFACT_FLAG_OF_CHARGE    -- 冲锋战旗
+					    , [8] = ARTIFACT_SHACKLES_OF_WAR    -- 末日勇士桎梏
+					    , [9] = ARTIFACT_PENDANT_OF_STARDUST    -- 星尘坠饰
+					  }
+					}
+					, [TTH_ENUM.Flamekeepera] = {
+					  ["SkillMastery"] = {
+					    [0] = HERO_SKILL_LIGHT_MAGIC	-- 光明魔法
+					    , [1] = HERO_SKILL_LIGHT_MAGIC	-- 光明魔法
+					    , [2] = HERO_SKILL_SHATTER_LIGHT_MAGIC	-- 反光明魔法
+					    , [3] = HERO_SKILL_SHATTER_LIGHT_MAGIC	-- 反光明魔法
+					  }
+					  , ["SkillPerk"] = {
+					    [0] = HERO_SKILL_MASTER_OF_ABJURATION	-- 防护大师
+					    , [1] = HERO_SKILL_TWILIGHT	-- 微光黎明
+					    , [2] = HERO_SKILL_DETAIN_LIGHT	-- 延迟光明
+					    , [3] = HERO_SKILL_BARBARIAN_STORM_WIND	-- 暴风来袭
+					  }
+					  , ["Artifact"] = {
+					    [0] = ARTIFACT_ANGELIC_ALLIANCE	-- 天使联盟
+					    , [1] = ARTIFACT_RING_OF_HASTE	-- 速度指环
+					    , [2] = ARTIFACT_RING_OF_CELERITY	-- 迅捷指环
+					    , [3] = ARTIFACT_HELMET_OF_HEAVENLY_ENLIGHTENMENT	-- 天启头盔
+					    , [4] = ARTIFACT_DRACONIC    -- 龙神胸甲
+					    , [5] = ARTIFACT_BOOTS_OF_SPEED    -- 快速旅行长靴
+					    , [6] = ARTIFACT_SENTINEL    -- 哨兵之盾
+					    , [7] = ARTIFACT_FLAG_OF_CHARGE    -- 冲锋战旗
+					    , [8] = ARTIFACT_SHACKLES_OF_WAR    -- 末日勇士桎梏
+					    , [9] = ARTIFACT_PENDANT_OF_STARDUST    -- 星尘坠饰
+					  }
+					}
+
+					, [TTH_ENUM.Barbarian] = {
+					  ["SkillMastery"] = {
+					    [0] = HERO_SKILL_SHATTER_DARK_MAGIC	-- 反黑暗魔法
+					    , [1] = HERO_SKILL_SHATTER_DARK_MAGIC	-- 反黑暗魔法
+					    , [2] = HERO_SKILL_SHATTER_LIGHT_MAGIC	-- 反光明魔法
+					    , [3] = HERO_SKILL_SHATTER_LIGHT_MAGIC	-- 反光明魔法
+					  }
+					  , ["SkillPerk"] = {
+					    [0] = HERO_SKILL_DETAIN_DARK	-- 延迟黑暗
+					    , [1] = HERO_SKILL_BARBARIAN_SOIL_BURN	-- 腐败土壤
+					    , [2] = HERO_SKILL_DETAIN_LIGHT	-- 延迟光明
+					    , [3] = HERO_SKILL_BARBARIAN_STORM_WIND	-- 暴风来袭
+					  }
+					  , ["Artifact"] = {
+					    [0] = ARTIFACT_ANGELIC_ALLIANCE	-- 天使联盟
+					    , [1] = ARTIFACT_RING_OF_HASTE	-- 速度指环
+					    , [2] = ARTIFACT_RING_OF_CELERITY	-- 迅捷指环
+					    , [3] = ARTIFACT_HELMET_OF_HEAVENLY_ENLIGHTENMENT	-- 天启头盔
+					    , [4] = ARTIFACT_DRACONIC    -- 龙神胸甲
+					    , [5] = ARTIFACT_BOOTS_OF_SWIFTNESS    -- 疾风靴
+					    , [6] = ARTIFACT_DWARVEN_MITHRAL_SHIELD    -- 矮人王护盾
+					    , [7] = ARTIFACT_FLAG_OF_CHARGE    -- 冲锋战旗
+					    , [8] = ARTIFACT_SHACKLES_OF_WAR    -- 末日勇士桎梏
+					    , [9] = ARTIFACT_PEDANT_OF_MASTERY    -- 技能坠饰
+					  }
+					}
+				};
+				TTH_SETTING.match.flag = {};
+				TTH_SETTING.match.gene = function(strHero)
+					print("TTH_SETTING.match.gene")
+					local iPlayer = TTH_GLOBAL.GetObjectOwner(strHero);
+					if TTH_TABLE.Hero[strHero] == nil then
+						return nil;
+					end;
+					local enumHeroClass = TTH_TABLE.Hero[strHero]["Class"];
+					local dataMatch = TTH_SETTING.match.data[enumHeroClass];
+					if dataMatch == nil then
+						return nil;
+					end;
+					TTH_SETTING.match.flag[iPlayer] = strHero;
+					local arrSkillMastery = dataMatch["SkillMastery"];
+					for i, iMasteryId in arrSkillMastery do
+						GiveHeroSkill(strHero, iMasteryId);
+					end;
+					local arrSkillPerk = dataMatch["SkillPerk"];
+					for i, iPerkId in arrSkillPerk do
+						sleep(1);
+						GiveHeroSkill(strHero, iPerkId);
+					end;
+					local arrArtifact = dataMatch["Artifact"];
+					for i, iArtifactId in arrArtifact do
+						GiveArtefact(strHero, iArtifactId, 1);
+					end;
+
+				end;
+				TTH_SETTING.match.remove = function(iPlayerWinner, strHeroWinner, iPlayerLoser, strHeroLoser)
+					print("TTH_SETTING.match.remove")
+					print("iPlayerLoser")
+					print(iPlayerLoser)
+					print("strHeroLoser")
+					print(strHeroLoser)
+					if TTH_SETTING.match.flag[iPlayerLoser] == strHeroLoser then
+						TTH_SETTING.match.flag[iPlayerLoser] = nil;
+						local enumHeroClass = TTH_TABLE.Hero[strHeroLoser]["Class"];
+						local dataMatch = TTH_SETTING.match.data[enumHeroClass];
+						if dataMatch == nil then
+							return nil;
+						end;
+						local arrArtifact = dataMatch["Artifact"];
+						for i, iArtifactId in arrArtifact do
+							RemoveArtefact(strHeroWinner, iArtifactId);
+						end;
 					end;
 				end;
 
@@ -4597,11 +5269,17 @@ doFile("/scripts/H55-Settings.lua");
 				-- <body_bright>额外知识: <color=yellow><value=iBuffKnowledge>
 				-- <body_bright>额外士气: <color=yellow><value=iBuffMorale>
 				-- <body_bright>额外幸运: <color=yellow><value=iBuffLuck>
+				-- <body_bright>英雄每周内政操作次数: <color=yellow><value=iDefaultOperTimes> <body_bright>+ <color=green><value=iExtraOperTimes> <body_bright>次
+				-- <body_bright>英雄内政管辖城镇数: <color=yellow><value=iDefaultAbilityQuota> <body_bright>+ <color=green><value=iExtraAbilityQuota> <body_bright>座
 				function TTH_GLOBAL.geneWidgetMayorHero(iPlayer, strHero)
 					local iTotalTownValue = TTH_MANAGE.totalTownValue4Mayor(strHero);
 					local iReportPoint8Day = TTH_MANAGE.calcDailyRecordPoint(strHero);
 					local iExp8Day = TTH_MANAGE.calcDailyExp4Mayor(strHero);
 					local objBuff = TTH_MANAGE.getMayorBonus(strHero);
+					local iDefaultOperTimes = TTH_MANAGE.getDefaultOperTimes(strHero);
+					local iExtraOperTimes = TTH_MANAGE.getExtraOperTimes8Player(iPlayer);
+					local iDefaultAbilityQuota = TTH_MANAGE.getDefaultAbilityQuota(strHero);
+					local iExtraAbilityQuota = TTH_MANAGE.getExtraAbilityQuota(iPlayer);
 					local strPath = {
 						TTH_TABLE.KingManagePath["Widget"]["MayorHero"]["Text"]
 						;iTotalTownValue=iTotalTownValue
@@ -4613,6 +5291,10 @@ doFile("/scripts/H55-Settings.lua");
 						,iBuffKnowledge=objBuff[STAT_KNOWLEDGE]
 						,iBuffMorale=objBuff[STAT_LUCK]
 						,iBuffLuck=objBuff[STAT_MORALE]
+						,iDefaultOperTimes=iDefaultOperTimes
+						,iExtraOperTimes=iExtraOperTimes
+						,iDefaultAbilityQuota=iDefaultAbilityQuota
+						,iExtraAbilityQuota=iExtraAbilityQuota
 					};
 					return strPath;
 				end;
@@ -6150,10 +6832,10 @@ doFile("/scripts/H55-Settings.lua");
 						return nil;
 					end;
 					local iHeroGroup = TTH_TABLE.Hero[strHero]["Group"];
-		  		if iHeroGroup == GroupMight
-		  			or iHeroRace == GroupBalanceNotNec
-		  			or iHeroRace == GroupBalanceNec
-		  			or iHeroRace == GroupBarbarian then
+		  		if iHeroGroup == TTH_ENUM.GroupMight
+		  			or iHeroGroup == TTH_ENUM.GroupBalanceNotNec
+		  			or iHeroGroup == TTH_ENUM.GroupBalanceNec
+		  			or iHeroGroup == TTH_ENUM.GroupBarbarian then
 						StartCombat(strHero, strEnemyHero, 7
 							, CREATURE_CHERUBIN, 1
 							, CREATURE_RAINBOW_DRAGON, TTH_TABLE.Creature[CREATURE_RAINBOW_DRAGON]["GROWTH"] * iCoef
@@ -6166,7 +6848,7 @@ doFile("/scripts/H55-Settings.lua");
 							, strCallbackWin
 							, strPathCombatLink
 							, 1);
-		  		elseif iHeroGroup == GroupMagic then
+		  		elseif iHeroGroup == TTH_ENUM.GroupMagic then
 						StartCombat(strHero, strEnemyHero, 7
 							, CREATURE_DRAGON_KNIGHT, 1
 							, CREATURE_IMP, TTH_TABLE.Creature[CREATURE_IMP]["GROWTH"] * iCoefMagic
@@ -11311,6 +11993,9 @@ doFile("/scripts/H55-Settings.lua");
 			TTH_TRIGGER.pushNewDay = function(strFunc)
 				TTH_COMMON.push(TTH_TRIGGER.listNewDay, strFunc);
 			end;
+			TTH_TRIGGER.removeNewDay = function(strFunc)
+				TTH_COMMON.remove8Value(TTH_TRIGGER.listNewDay, strFunc);
+			end;
 			TTH_TRIGGER.triggerNewDay = function()
 				if TTH_TRIGGER.listNewDay ~= nil and length(TTH_TRIGGER.listNewDay) > 0 then
 					for i, strFunc in TTH_TRIGGER.listNewDay do
@@ -11338,7 +12023,6 @@ doFile("/scripts/H55-Settings.lua");
 				print("Day of Week "..TTH_VARI.dayOfWeek);
 			end;
 
-
 		-- 战斗结束触发器
 			TTH_VARI.combatIndex = -1;
 			function TTH_TRIGGER.combatResults(iCombatIndex)
@@ -11349,7 +12033,9 @@ doFile("/scripts/H55-Settings.lua");
 				local iCombatIndex = TTH_VARI.combatIndex;
 
 				local iPlayerWinner = GetSavedCombatArmyPlayer(iCombatIndex, 1);
+				local iPlayerLoser = GetSavedCombatArmyPlayer(iCombatIndex, 0);
 				local strHeroWinner = GetSavedCombatArmyHero(iCombatIndex, 1);
+				local strHeroLoser = GetSavedCombatArmyHero(iCombatIndex, 0);
 
 				TTH_MAIN.debug("TTH_TRIGGER.combatResults", iPlayerWinner, strHeroWinner);
 
@@ -11378,6 +12064,10 @@ doFile("/scripts/H55-Settings.lua");
 							if HasHeroSkill(strHeroWinner, iKey) then
 								TTH_COMMON.parse(objItem[TTH_ENUM.FuncAlways], iPlayerWinner, strHeroWinner, iCombatIndex);
 							end;
+						end;
+
+						if strHeroLoser ~= nil then
+							TTH_SETTING.match.remove(iPlayerWinner, strHeroWinner, iPlayerLoser, strHeroLoser);
 						end;
 					end;
 
@@ -19603,7 +20293,7 @@ doFile("/scripts/H55-Settings.lua");
 		-- HERO_SKILL_MARCH_OF_THE_MACHINES 125 魔像行进
 			TTH_VARI.recordMarchOfTheMachinesHero = {};
 			TTH_VARI.recordMarchOfTheMachinesPlayer = {};
-			TTH_FINAL.MARCH_OF_THE_MACHINES_SCALE = 6;
+			TTH_FINAL.MARCH_OF_THE_MACHINES_SCALE = 100;
 			TTH_FINAL.MARCH_OF_THE_MACHINES_ATTENUATION = 0.8;
 			TTH_FINAL.MARCH_OF_THE_MACHINES_MIN = 0.4;
 			TTH_FINAL.MARCH_OF_THE_MACHINES_SET_MAGIS = 4;
@@ -19728,7 +20418,13 @@ doFile("/scripts/H55-Settings.lua");
 				end;
 				local strPostCreatureName = TTH_TABLE.Creature[iPostCreatureId]["NAME"];
 				local iAttenuation = TTH_PERK.calcAttenuation1254Player(iPlayer, strHero);
-				local iPostCreatureNumber = TTH_COMMON.round(iCreatureNumberGremlin / TTH_FINAL.MARCH_OF_THE_MACHINES_SCALE / TTH_TABLE.CreatureOption125[iIndexId]["Scale"] * (1 + 0.2 * (TTH_GLOBAL.getSetComponentCount(strHero, ARTIFACTSET_MAGIS))) * iAttenuation);
+				local iPostCreatureNumber = TTH_COMMON.round(
+					iCreatureNumberGremlin
+					/ TTH_FINAL.MARCH_OF_THE_MACHINES_SCALE
+    			* TTH_TABLE.Creature[iPostCreatureId]["GROWTH"]
+					* (1 + 0.2 * (TTH_GLOBAL.getSetComponentCount(strHero, ARTIFACTSET_MAGIS)))
+					* iAttenuation
+				);
 				if iPostCreatureNumber < 1 then
 					iPostCreatureNumber = 1;
 				end;
@@ -20005,7 +20701,8 @@ doFile("/scripts/H55-Settings.lua");
     			iCreatureNumberGoblin
     			/ TTH_FINAL.DEFEND_US_ALL_SCALE
     			* TTH_TABLE.Creature[iPostCreatureId]["GROWTH"]
-    			* (1 + 0.4 * iRequireSetOgresCount) * iAttenuation
+    			* (1 + 0.4 * iRequireSetOgresCount)
+    			* iAttenuation
     		);
 				if iPostCreatureNumber < 1 then
 					iPostCreatureNumber = 1;

@@ -2132,6 +2132,9 @@ print("TTH_CombatCore loading...");
 
                   -- ARTIFACT_EIGHTFOLD 125 亚莎之八重杖
                     TCS_FUNC.Artifact.Eightfold.trigger(iSide, itemUnit, itemHeroLastTemp, itemHeroManaTemp);
+
+                  -- ARTIFACTSET_ELEMENT_WATER 018 流水之蕴 ElementWater
+                    TCS_FUNC.ArtifactSet.ElementWater.trigger(iSide, itemUnit, itemHeroManaTemp);
                 end;
 
                 if length(listCreatureNumberDecrease[iOppositeSide]) > 0 then
@@ -2151,9 +2154,6 @@ print("TTH_CombatCore loading...");
 
                   -- ARTIFACTSET_ELEMENT_FIRE 017 附骨之焰 ElementFire
                     TCS_FUNC.ArtifactSet.ElementFire.trigger(iSide, itemUnit, itemHeroLastTemp, itemHeroManaTemp, listCreatureNumberDecrease);
-
-                  -- ARTIFACTSET_ELEMENT_WATER 018 流水之蕴 ElementWater
-                    TCS_FUNC.ArtifactSet.ElementWater.trigger(iSide, itemUnit, itemHeroLastTemp, itemHeroManaTemp, listCreatureNumberDecrease);
                 end;
               end;
             end;
@@ -4185,36 +4185,6 @@ print("TTH_CombatCore loading...");
                     end;
                   end;
                 end;
-                TCS_FUNC.Battle.proceed();
-              end;
-            end;
-          end;
-        end;
-
-      -- Adelaide 098 艾德里德
-        TCS_FUNC.Talent.Adelaide = {};
-        TCS_FUNC.Talent.Adelaide.strHero = "Adelaide";
-        TCS_FUNC.Talent.Adelaide.trigger = function(iSide, itemUnit, itemUnitLast, listCreatureNumberDecrease)
-          local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
-          local sidHero = GetHero(iSide);
-          if sidHero ~= nil then
-            local strHero = GetHeroName(sidHero);
-            if strHero == TCS_FUNC.Talent.Adelaide.strHero then
-              if itemUnitLast ~= nil and itemUnitLast["Side"] == iSide and itemUnitLast["UnitType"] == CREATURE_SIREN
-                and length(listCreatureNumberDecrease[iOppositeSide]) > 0 then
-                TCS_FUNC.Battle.pause();
-                TTHCS_GLOBAL.print("TCS_FUNC.Talent.Adelaide.trigger");
-                for i, sidCreatureTarget in listCreatureNumberDecrease[iOppositeSide] do
-                  local itemCreatureTarget = TTHCS_GLOBAL.geneUnitInfo(sidCreatureTarget);
-                  TTHCS_THREAD.castAimedSpell8Tool(iSide, CREATURE_SIREN_TOOL, itemUnitLast["UnitNumber"], SPELL_ICE_BOLT, sidCreatureTarget, TCS_ENUM.Switch.No);
-                  if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-                    TTHCS_THREAD.castAreaSpell8Tool(iSide, CREATURE_SIREN_TOOL, itemUnitLast["UnitNumber"], SPELL_FROST_RING, itemCreatureTarget["PosX"], itemCreatureTarget["PosY"], TCS_ENUM.Switch.No);
-                  end;
-                  if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
-                    TTHCS_THREAD.castAimedSpell8Tool(iSide, CREATURE_SIREN_TOOL, itemUnitLast["UnitNumber"], SPELL_DEEP_FREEZE, sidCreatureTarget, TCS_ENUM.Switch.No);
-                  end;
-                end;
-                ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], itemUnitLast["UnitName"], 5);
                 TCS_FUNC.Battle.proceed();
               end;
             end;
@@ -7858,15 +7828,13 @@ print("TTH_CombatCore loading...");
 
     -- ARTIFACTSET_ELEMENT_WATER 018 流水之蕴 ElementWater
       TCS_FUNC.ArtifactSet.ElementWater = {};
-      TCS_FUNC.ArtifactSet.ElementWater.trigger = function(iSide, itemUnit, itemUnitLast, itemHeroMana, listCreatureNumberDecrease)
+      TCS_FUNC.ArtifactSet.ElementWater.trigger = function(iSide, itemUnit, itemHeroMana)
         local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
         local sidHero = GetHero(iSide);
         if sidHero ~= nil then
           local strHero = GetHeroName(sidHero);
-          if itemUnitLast ~= nil and itemUnitLast["UnitName"] == sidHero
-            and itemHeroMana[iSide] == TCS_ENUM.Snapshot.Hero.Mana.Decrease
-            and TCS_VARI.Info.HeroArtifactSet[strHero][ARTIFACTSET_ELEMENT_WATER] >= 2
-            and length(listCreatureNumberDecrease[iOppositeSide]) > 0 then
+          if itemHeroMana[iSide] == TCS_ENUM.Snapshot.Hero.Mana.Decrease
+            and TCS_VARI.Info.HeroArtifactSet[strHero][ARTIFACTSET_ELEMENT_WATER] >= 2 then
             TCS_FUNC.Battle.pause();
             TTHCS_GLOBAL.print("TCS_FUNC.ArtifactSet.ElementWater.trigger");
             local iManaPoint = 3;
@@ -8020,6 +7988,61 @@ print("TTH_CombatCore loading...");
           TTHCS_THREAD.attack8Tool(iOppositeSide, CREATURE_LEGATE_SHADOW, 1, itemCreatureCurrent["PosX"], itemCreatureCurrent["PosY"], itemCreatureCurrent["UnitName"], 1);
           TCS_FUNC.Talent.Sanguinius.move(iSide, itemUnit);
           TCS_FUNC.Battle.proceed();
+        end;
+      end;
+
+    -- CREATURE_SIREN 195 女妖
+      TCS_FUNC.Creature.Siren = {};
+      TCS_FUNC.Creature.Siren.strHero = "Adelaide";
+      TCS_FUNC.Creature.Siren.flag = {};
+      TCS_FUNC.Creature.Siren.trigger = function(iSide, itemUnit, itemUnitLast, listCreatureNumberDecrease)
+        local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
+        local sidHero = GetHero(iSide);
+        local strHero = "";
+        if sidHero ~= nil then
+          strHero = GetHeroName(sidHero);
+        end;
+        if itemUnitLast ~= nil and itemUnitLast["Side"] == iSide and itemUnitLast["UnitType"] == CREATURE_SIREN
+          and length(listCreatureNumberDecrease[iOppositeSide]) > 0 then
+          TCS_FUNC.Battle.pause();
+          TTHCS_GLOBAL.print("TCS_FUNC.Creature.Siren.trigger");
+          for i, sidTargetDecrease in listCreatureNumberDecrease[iOppositeSide] do
+            local itemCreatureTarget = TTHCS_GLOBAL.geneUnitInfo(sidTargetDecrease);
+            TTHCS_THREAD.castAimedSpell8Tool(iSide, CREATURE_SIREN_TOOL, itemUnitLast["UnitNumber"], SPELL_ICE_BOLT, sidTargetDecrease, TCS_ENUM.Switch.No);
+            if strHero == TCS_FUNC.Creature.Siren.strHero then
+              if TCS_FUNC.Creature.Siren.flag[strHero] == nil then
+                TCS_FUNC.Creature.Siren.flag[strHero] = 2;
+              end;
+              if TCS_FUNC.Creature.Siren.flag[strHero] >= 2 then
+                TCS_FUNC.Creature.Siren.flag[strHero] = 0;
+                TTHCS_THREAD.cast.aimed.impl(sidHero, SPELL_ICE_BOLT, sidTargetDecrease, TCS_ENUM.Switch.Yes, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No);
+                if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
+                  TTHCS_THREAD.cast.area.impl(sidHero, SPELL_FROST_RING, itemCreatureTarget["PosX"], itemCreatureTarget["PosY"], TCS_ENUM.Switch.Yes, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No);
+                end;
+                if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
+                  TTHCS_THREAD.cast.aimed.impl(sidHero, SPELL_DEEP_FREEZE, sidTargetDecrease, TCS_ENUM.Switch.Yes, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No);
+                end;
+                TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.max);
+                ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
+              end;
+            end;
+          end;
+          ShowFlyingSign(TTH_TABLE.Spell[SPELL_ICE_BOLT]["Text"], itemUnitLast["UnitName"], 5);
+          TCS_FUNC.Battle.proceed();
+        end;
+      end;
+      TCS_FUNC.Creature.Siren.charge = function(iSide, itemUnit, itemUnitLast)
+        local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
+        local sidHero = GetHero(iSide);
+        if sidHero ~= nil then
+          local strHero = GetHeroName(sidHero);
+          if itemUnitLast ~= nil and itemUnitLast["UnitName"] == sidHero then
+            TTHCS_GLOBAL.print("TCS_FUNC.Creature.Siren.charge");
+            if TCS_FUNC.Creature.Siren.flag[strHero] == nil then
+              TCS_FUNC.Creature.Siren.flag[strHero] = 2;
+            end;
+            TCS_FUNC.Creature.Siren.flag[strHero] = TCS_FUNC.Creature.Siren.flag[strHero] + 1;
+          end;
         end;
       end;
 
@@ -8649,9 +8672,6 @@ print("TTH_CombatCore loading...");
                 -- Vidomina 097 维德尼娜
                   TCS_FUNC.Talent.Vidomina.trigger(iSide, itemUnit, listCreatureStatusDeath);
 
-                -- Adelaide 098 艾德里德
-                  TCS_FUNC.Talent.Adelaide.trigger(iSide, itemUnit, itemUnitLast, listCreatureNumberDecrease);
-
               -- Inferno
                 -- Calh 099 艾丹
                   TCS_FUNC.Talent.Calh.trigger(iSide, itemUnit, listCreatureStatusDeath);
@@ -8854,7 +8874,7 @@ print("TTH_CombatCore loading...");
                 TCS_FUNC.ArtifactSet.ElementFire.trigger(iSide, itemUnit, itemUnitLast, itemHeroMana, listCreatureNumberDecrease);
 
               -- ARTIFACTSET_ELEMENT_WATER 018 流水之蕴 ElementWater
-                TCS_FUNC.ArtifactSet.ElementWater.trigger(iSide, itemUnit, itemUnitLast, itemHeroMana, listCreatureNumberDecrease);
+                TCS_FUNC.ArtifactSet.ElementWater.trigger(iSide, itemUnit, itemHeroMana);
 
             -- 生物
               -- CREATURE_DEATH_KNIGHT 090 死亡骑士
@@ -8875,6 +8895,10 @@ print("TTH_CombatCore loading...");
 
               -- CREATURE_LEGATE 190 圣血剑士
                 TCS_FUNC.Creature.Legate.trigger(iSide, itemUnit, itemUnitLast);
+
+              -- CREATURE_SIREN 195 女妖
+                TCS_FUNC.Creature.Siren.trigger(iSide, itemUnit, itemUnitLast, listCreatureNumberDecrease);
+                TCS_FUNC.Creature.Siren.charge(iSide, itemUnit, itemUnitLast);
           end;
         end;
 

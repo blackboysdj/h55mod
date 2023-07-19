@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Skeleton>
+	<SrcName href="/R_Hand.mb"/>
+	<RootJoint>R_Hand</RootJoint>
+	<MSRFormat>true</MSRFormat>
+	<Animations/>
+	<uid>95AE90AB-9D9E-4AA2-84D5-B9954FE36563</uid>
+</Skeleton>

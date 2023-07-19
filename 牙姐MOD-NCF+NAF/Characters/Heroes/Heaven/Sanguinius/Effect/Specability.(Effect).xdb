@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Effect>
+	<Instances>	
+
+	**************************Wskrzeszenie Efekty*********************
+		<Item href="#n:inline(ParticleInstance)" id="item_cf112683-5ce7-4032-ac3d-908d1d7706ca">
+			<ParticleInstance ObjectRecordID="1000228">
+				<SrcName/>
+				<Light>L_NORMAL</Light>
+				<Particle href="#n:inline(Particle)" id="item_9601c31b-d278-4283-a997-d10b1de79730">
+					<Particle ObjectRecordID="1000191">
+						<SrcName href="/Effects/Spells/Resurrect.mb"/>
+						<ExportPrefix>Resurrect</ExportPrefix>
+						<WrapSize>
+							<x>0</x>
+							<y>0</y>
+						</WrapSize>
+						<Bound>0099d93e0074223db0a533405e3a37421c2edd41040eda41387ac241</Bound>
+						<PerParticleFog>false</PerParticleFog>
+						<uid>F150E394-6608-49B2-A1A5-20D8277DAFB1</uid>
+					</Particle>
+				</Particle>
+				<Position>
+					<x>0</x>
+					<y>0</y>
+					<z>0</z>
+				</Position>
+				<Rotation>
+					<x>0</x>
+					<y>0</y>
+					<z>0</z>
+					<w>1</w>
+				</Rotation>
+				<Scale>1</Scale>
+				<Speed>1</Speed>
+				<Offset>-1</Offset>
+				<EndCycle>1</EndCycle>
+				<CycleCount>1</CycleCount>
+				<Pivot>
+					<x>0</x>
+					<y>0</y>
+				</Pivot>
+				<Textures>
+					<Item href="/Textures/Effects/FireSequence/Red/Fire00.xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/Effects/FireSequence/Red/Fire01.xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/Effects/FireSequence/Red/Fire02.xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/Effects/FireSequence/Red/Fire03.xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/Effects/FireSequence/Red/Fire04.xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/Effects/FireSequence/Red/Fire05.xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/Effects/FireSequence/Red/Fire06.xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/Effects/FireSequence/Red/Fire07.xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/Effects/FireSequence/Red/Fire08.xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/Effects/FireSequence/Red/Fire09.xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/Effects/FireSequence/Red/Fire10.xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/Effects/Spells/RaysGold04.xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/Effects/FireSequence/Red/Colorless/Fire00.xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/Effects/FireSequence/Red/Colorless/Fire02.xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/Effects/FireSequence/Red/Colorless/Fire04.xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/Effects/FireSequence/Red/Colorless/Fire06.xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/Effects/FireSequence/fire02.(Texture).xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/Effects/_Various/Glow10.xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/Effects/_Various/Glow05.xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/Effects/FireSequence/Red2/FireSic02.(Texture).xdb#xpointer(/Texture)"/>
+				</Textures>
+				<IsCrown>false</IsCrown>
+				<Static>P_STATIC</Static>
+				<DoesCastShadow>false</DoesCastShadow>
+				<GlueToBone>0</GlueToBone>
+				<GlueToNamedBone/>
+				<LeaveParticlesWhereStarted>false</LeaveParticlesWhereStarted>
+				<Priority>0</Priority>
+			</ParticleInstance>
+		</Item>
+		
+		</Instances>
+	<Lights>
+		<Item href="Resurrect.(LightInstance).xdb#xpointer(/LightInstance)"/>
+	</Lights>
+	<Models>
+		
+		<Item href="ModelInstance/wings/Model_Global.xdb#xpointer(/ModelInstance)"/>
+				
+		<Item href="ModelInstance/aureola/Model_Global.xdb#xpointer(/ModelInstance)"/>
+		<Item href="ModelInstance/armor/Model_Global.xdb#xpointer(/ModelInstance)"/>
+		<Item href="ModelInstance/Belt/Model_Global.xdb#xpointer(/ModelInstance)"/>
+		<Item href="ModelInstance/Belt/Part_2/Model_Global.xdb#xpointer(/ModelInstance)"/>
+		<Item href="ModelInstance/R_shoulder/Model_Global.xdb#xpointer(/ModelInstance)"/>
+		<Item href="ModelInstance/L_shoulder/Model_Global.xdb#xpointer(/ModelInstance)"/>
+		<Item href="ModelInstance/legs/Model_Global.xdb#xpointer(/ModelInstance)"/>
+		
+		<Item href="ModelInstance/hair/Model_Global.xdb#xpointer(/ModelInstance)"/>
+		<Item href="ModelInstance/head/Model_Global.xdb#xpointer(/ModelInstance)"/>
+
+		<Item href="ModelInstance/R_arm/Model_Global.xdb#xpointer(/ModelInstance)"/>
+		<Item href="ModelInstance/R_forearm/Model_Global.xdb#xpointer(/ModelInstance)"/>
+		<Item href="ModelInstance/R_hand/Model_Global.xdb#xpointer(/ModelInstance)"/>
+		
+		<Item href="ModelInstance/L_arm/Model_Global.xdb#xpointer(/ModelInstance)"/>
+		<Item href="ModelInstance/L_forearm/Model_Global.xdb#xpointer(/ModelInstance)"/>
+		<Item href="ModelInstance/L_hand/Model_Global.xdb#xpointer(/ModelInstance)"/>
+		
+		<Item href="ModelInstance/sword/Model_Global.xdb#xpointer(/ModelInstance)"/>	
+		
+		****************************Wskrzeszenie Efekty******************************
+		<Item href="#n:inline(ModelInstance)" id="item_8d53ce7f-36b4-4944-b655-a57a57025bd5">
+			<ModelInstance ObjectRecordID="1000069">
+				<Model href="/_(Model)/Effects/Spells/Rsurrect.xdb#xpointer(/Model)"/>
+				<SkelAnim href="/_(BasicSkelAnim)/Effects/Spells/Resurrect.xdb#xpointer(/BasicSkelAnim)"/>
+				<Position>
+					<x>0</x>
+					<y>0</y>
+					<z>0</z>
+				</Position>
+				<Rotation>
+					<x>0</x>
+					<y>0</y>
+					<z>0</z>
+					<w>1</w>
+				</Rotation>
+				<Scale>1</Scale>
+				<Offset>-1.5</Offset>
+				<CycleLength>0</CycleLength>
+				<CycleCount>1</CycleCount>
+				<GlueToBone>0</GlueToBone>
+			</ModelInstance>
+		</Item>
+	</Models>
+	<WindAffected>false</WindAffected>
+	<WindPower>1</WindPower>
+	<Duration>2.5</Duration>
+</Effect>

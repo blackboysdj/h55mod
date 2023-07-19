@@ -1258,8 +1258,6 @@
               -- 剔除当前被追加魔法的生物
                 local arrCreatureTarget = GetCreatures(iOppositeSide);
                 local iIndexAimed = index(arrCreatureTarget, sidAimed);
-                print("iIndexAimed")
-                print(iIndexAimed)
                 if iIndexAimed > -1 then
                   arrCreatureFilter = pop(arrCreatureTarget, iIndexAimed);
                 else
@@ -1481,6 +1479,7 @@
         if bCost == TCS_ENUM.Switch.No then
           TTHCS_GLOBAL.resetMana(sidCaster, iBeforeMana);
         end;
+
         if bAppend == TCS_ENUM.Switch.Yes then
           TTHCS_THREAD.cast.append.shakeGround.impl(sidCaster, iSpellId, sidAimed, bCost);
         end;
@@ -1582,6 +1581,7 @@
         if bCost == TCS_ENUM.Switch.No then
           TTHCS_GLOBAL.resetMana(sidCaster, iBeforeMana);
         end;
+
         if bAppend == TCS_ENUM.Switch.Yes then
           TTHCS_THREAD.cast.append.chillingBones.impl(sidCaster, iSpellId, iPosX, iPosY, bCost);
         end;

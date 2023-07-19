@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Geometry>
+	<SrcName href="/H5A1/Effects/Heroes/RuneMageHero.mb"/>
+	<uid>7F31C35D-1D72-4940-8D61-5E730415FABD</uid>
+	<RootMesh>Global1</RootMesh>
+	<RootJoint>Global1</RootJoint>
+	<Size>
+		<x>1.16359</x>
+		<y>1</y>
+		<z>10.6381</z>
+	</Size>
+	<Center>
+		<x>-0.0647096</x>
+		<y>-0.0465516</y>
+		<z>-0.755992</z>
+	</Center>
+	<BestFitPoint>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+	</BestFitPoint>
+	<Dir>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+		<w>0</w>
+	</Dir>
+	<AIGeometry/>
+	<NumMeshes>2</NumMeshes>
+	<MaterialQuantities>
+		<Item>1</Item>
+		<Item>1</Item>
+	</MaterialQuantities>
+	<MeshNames>
+		<Item>pPlaneShape3</Item>
+		<Item>polySurfaceShape29</Item>
+	</MeshNames>
+	<MeshAnimated/>
+	<MeshWindAffected/>
+</Geometry>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Skeleton>
+	<SrcName href="/Head.mb"/>
+	<RootJoint>Head</RootJoint>
+	<MSRFormat>true</MSRFormat>
+	<Animations/>
+	<uid>48C6E863-A204-48E8-AEFE-4F37E953BACC</uid>
+</Skeleton>

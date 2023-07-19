@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Geometry>
+	<SrcName href="/L_Hand.mb"/>
+	<uid>B61860EE-80EF-4294-8959-84586CEEDDDF</uid>
+	<RootMesh/>
+	<RootJoint>L_Hand</RootJoint>
+	<Size>
+		<x>0.331133</x>
+		<y>0.271247</y>
+		<z>0.267543</z>
+	</Size>
+	<Center>
+		<x>0.0127549</x>
+		<y>-0.0276363</y>
+		<z>-0.068444</z>
+	</Center>
+	<BestFitPoint>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+	</BestFitPoint>
+	<Dir>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+		<w>0</w>
+	</Dir>
+	<AIGeometry/>
+	<NumMeshes>1</NumMeshes>
+	<MaterialQuantities>
+		<Item>1</Item>
+	</MaterialQuantities>
+	<MeshNames>
+		<Item>L_HandShape</Item>
+	</MeshNames>
+	<MeshAnimated/>
+	<MeshWindAffected/>
+</Geometry>

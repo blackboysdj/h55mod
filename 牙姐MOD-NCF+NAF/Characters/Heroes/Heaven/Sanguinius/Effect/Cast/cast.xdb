@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Model>
+	<Materials>
+		<Item href="cast-lambert18.(Material).xdb#xpointer(/Material)"/>
+		<Item href="cast-lambert17.(Material).xdb#xpointer(/Material)"/>
+	</Materials>
+	<Skeleton href="cast-skel.xdb#xpointer(/Skeleton)"/>
+	<Geometry href="cast-geom.xdb#xpointer(/Geometry)"/>
+	<Animations/>
+	<WindPower>1</WindPower>
+</Model>

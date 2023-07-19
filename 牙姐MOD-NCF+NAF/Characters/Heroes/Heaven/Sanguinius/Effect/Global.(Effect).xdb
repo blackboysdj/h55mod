@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Effect>
+	<Instances>	
+	
+		<Item href="ParticleInsteance/eyes/Head.(ParticleInstance).xdb#xpointer(/ParticleInstance)"/>
+		<Item href="ParticleInsteance/eyes/Head_part2.(ParticleInstance).xdb#xpointer(/ParticleInstance)"/>	
+		<Item href="ParticleInsteance/eyes_2/Head2.(ParticleInstance).xdb#xpointer(/ParticleInstance)"/>
+		
+		<Item href="ParticleInsteance/aureola/aureola.xdb#xpointer(/ParticleInstance)"/>
+
+		<Item href="ParticleInsteance/Armor/Saint.xdb#xpointer(/ParticleInstance)"/>
+		<Item href="ParticleInsteance/Armor/Saint_part2.xdb#xpointer(/ParticleInstance)"/>
+		
+		<Item href="ParticleInsteance/Wings/L_Wing.xdb#xpointer(/ParticleInstance)"/>		
+		<Item href="ParticleInsteance/Wings/R_Wing.xdb#xpointer(/ParticleInstance)"/>		
+		
+		<Item href="ParticleInsteance/sword/sword_part1.(ParticleInstance).xdb#xpointer(/ParticleInstance)"/>
+		<Item href="ParticleInsteance/sword/sword_part2.(ParticleInstance).xdb#xpointer(/ParticleInstance)"/>
+		<Item href="ParticleInsteance/sword/sword_part3.(ParticleInstance).xdb#xpointer(/ParticleInstance)"/>
+		<Item href="ParticleInsteance/sword/sword_part4.(ParticleInstance).xdb#xpointer(/ParticleInstance)"/>
+		<Item href="ParticleInsteance/sword/sword_part5.(ParticleInstance).xdb#xpointer(/ParticleInstance)"/>
+
+	</Instances>
+	<Lights/>
+	<Models>
+		
+		<Item href="ModelInstance/wings/Model_Global.xdb#xpointer(/ModelInstance)"/>
+				
+		<Item href="ModelInstance/aureola/Model_Global.xdb#xpointer(/ModelInstance)"/>
+		<Item href="ModelInstance/armor/Model_Global.xdb#xpointer(/ModelInstance)"/>
+		<Item href="ModelInstance/Belt/Model_Global.xdb#xpointer(/ModelInstance)"/>
+		<Item href="ModelInstance/Belt/Part_2/Model_Global.xdb#xpointer(/ModelInstance)"/>
+		<Item href="ModelInstance/R_shoulder/Model_Global.xdb#xpointer(/ModelInstance)"/>
+		<Item href="ModelInstance/L_shoulder/Model_Global.xdb#xpointer(/ModelInstance)"/>
+		<Item href="ModelInstance/legs/Model_Global.xdb#xpointer(/ModelInstance)"/>
+		
+		<Item href="ModelInstance/hair/Model_Global.xdb#xpointer(/ModelInstance)"/>
+		<Item href="ModelInstance/head/Model_Global.xdb#xpointer(/ModelInstance)"/>
+
+		<Item href="ModelInstance/R_arm/Model_Global.xdb#xpointer(/ModelInstance)"/>
+		<Item href="ModelInstance/R_forearm/Model_Global.xdb#xpointer(/ModelInstance)"/>
+		<Item href="ModelInstance/R_hand/Model_Global.xdb#xpointer(/ModelInstance)"/>
+		
+		<Item href="ModelInstance/L_arm/Model_Global.xdb#xpointer(/ModelInstance)"/>
+		<Item href="ModelInstance/L_forearm/Model_Global.xdb#xpointer(/ModelInstance)"/>
+		<Item href="ModelInstance/L_hand/Model_Global.xdb#xpointer(/ModelInstance)"/>
+		
+		<Item href="ModelInstance/sword/Model_Global.xdb#xpointer(/ModelInstance)"/>	
+		
+	<WindAffected>false</WindAffected>
+	<WindPower>1</WindPower>
+	<Duration>2.5</Duration>
+</Effect>

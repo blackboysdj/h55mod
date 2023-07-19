@@ -3215,7 +3215,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Class"] = TTH_ENUM.Necromancer
               , ["Mastery"] = HERO_SKILL_NECROMANCY
               , ["Group"] = TTH_ENUM.GroupMagic
-              , ["Building"] = TOWN_BUILDING_DWELLING_2
+              , ["Building"] = TOWN_BUILDING_DWELLING_3
               , ["Specialty"] = {
                 [1] = {
                   ["CreatureId"] = CREATURE_SIREN
@@ -5689,7 +5689,7 @@ doFile("/scripts/TTH_Library.lua")
         }
         , [ARTIFACT_RING_OF_THE_SHADOWBRAND] = {
           ["Id"] = ARTIFACT_RING_OF_THE_SHADOWBRAND
-          , ["Text"] = "/Text/TTH/Artifact/063-JinxingBand/Text.txt"
+          , ["Text"] = "/Text/TTH/Artifact/073-RingOfTheShadowbrand/Text.txt"
         }
         , [ARTIFACT_BONESTUDDED_LEATHER] = {
           ["Id"] = ARTIFACT_BONESTUDDED_LEATHER
@@ -5729,7 +5729,7 @@ doFile("/scripts/TTH_Library.lua")
         }
         , [ARTIFACT_JINXING_BAND] = {
           ["Id"] = ARTIFACT_JINXING_BAND
-          , ["Text"] = "/Text/TTH/Artifact/073-RingOfTheShadowbrand/Text.txt"
+          , ["Text"] = "/Text/TTH/Artifact/063-JinxingBand/Text.txt"
         }
         , [ARTIFACT_OGRE_CLUB] = {
           ["Id"] = ARTIFACT_OGRE_CLUB
@@ -8740,21 +8740,21 @@ doFile("/scripts/TTH_Library.lua")
           ["ID"] = CREATURE_195
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_195/Name.txt"
           , ["Race"] = TOWN_NECROMANCY
-          , ["GROWTH"] = 1
-          , ["TIER"] = 1
-          , ["POWER"] = 0
+          , ["GROWTH"] = 5
+          , ["TIER"] = 4
+          , ["POWER"] = 800
           , ["CombatSize"] = 1
-          , ["Range"] = 0
+          , ["Range"] = 1
         }
         , [196] = {
           ["ID"] = CREATURE_196
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_196/Name.txt"
           , ["Race"] = TOWN_NECROMANCY
-          , ["GROWTH"] = 1
-          , ["TIER"] = 1
-          , ["POWER"] = 0
+          , ["GROWTH"] = 5
+          , ["TIER"] = 4
+          , ["POWER"] = 800
           , ["CombatSize"] = 1
-          , ["Range"] = 0
+          , ["Range"] = 1
         }
         , [197] = {
           ["ID"] = CREATURE_SKELETON_WARRIOR_KARISSA_0

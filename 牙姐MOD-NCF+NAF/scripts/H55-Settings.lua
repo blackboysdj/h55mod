@@ -28,6 +28,7 @@ H55_AISetBonus_Phoenix = 0; 				-- 是否送大法师之书：0是不送 1是送
 H55_AISetBonus_Draconic = 0; 				-- 是否送龙神胸甲：0是不送 1是送
 H55_AISkillBonusBasic = 0; 					-- 是否送初始技能：0是不送 1是送
 H55_AISkillBonusAbsolute = 0; 				-- 是否送终极技能：0是不送 1是送
+H55_AISkillBonusMatch = 0; 				-- 地狱难度配置：0是不送 1是送
 H55_AITownLevel = 1; 						-- AI城镇的建筑等级：选择范围0~5 默认为1 0就是1级城建 1就是6级城建（有1级魔法塔、铁匠铺、市场、酒馆） 每高一级，多5级左右城建
 H55_AICheats = 0; 							-- 该部分选项是否生效：0是不生效，1是生效
 -- ☆☆☆☆☆☆☆☆☆☆☆☆
@@ -43,6 +44,7 @@ H55_PlayerSetBonus_Phoenix = 0; 			-- 是否送大法师之书：0是不送 1是
 H55_PlayerSetBonus_Draconic = 0; 			-- 是否送龙神胸甲：0是不送 1是送
 H55_PlayerSkillBonusBasic = 0; 				-- 是否送初始技能：0是不送 1是送
 H55_PlayerSkillBonusAbsolute = 0; 			-- 是否送终极技能：0是不送 1是送
+H55_PlayerSkillBonusMatch = 0; 			-- 地狱难度配置：0是不送 1是送
 H55_PlayerTownLevel = 0; 					-- 玩家城镇的建筑等级：选择范围0~5 默认为0 0就是1级城建 1就是6级城建（有1级魔法塔、铁匠铺、市场、酒馆） 每高一级，多5级左右城建
 H55_PlayerCheats = 0; 						-- 该部分选项是否生效：0是不生效，1是生效
 -- ☆☆☆☆☆☆☆☆☆☆☆☆

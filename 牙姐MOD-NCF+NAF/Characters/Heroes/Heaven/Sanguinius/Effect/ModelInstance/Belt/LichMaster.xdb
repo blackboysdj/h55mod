@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Model>
+	<Materials>
+		<Item href="LichMaster-pasted__G3_Lich_lambert.(Material).xdb#xpointer(/Material)"/>
+		<Item href="LichMaster-pasted__G3_Lich_add_lambert.(Material).xdb#xpointer(/Material)"/>
+		<Item href="LichMaster-pasted__G3_Lich_lambert.(Material).xdb#xpointer(/Material)"/>
+		<Item href="LichMaster-pasted__G3_Lich_add_lambert.(Material).xdb#xpointer(/Material)"/>
+	</Materials>
+	<Skeleton href="LichMaster-skel.xdb#xpointer(/Skeleton)"/>
+	<Geometry href="LichMaster-geom.xdb#xpointer(/Geometry)"/>
+	<Animations/>
+	<WindPower>1</WindPower>
+</Model>

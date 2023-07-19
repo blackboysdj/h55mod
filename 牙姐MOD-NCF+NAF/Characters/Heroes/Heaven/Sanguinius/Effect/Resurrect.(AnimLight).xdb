@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AnimLight ObjectRecordID="1000121">
+	<SrcName href="/Effects/Spells/Resurrect.mb"/>
+	<SelectNode>CastLight</SelectNode>
+	<uid>E682E5E6-B1E3-4222-B035-628E6069C4FA</uid>
+</AnimLight>

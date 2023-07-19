@@ -9287,7 +9287,7 @@
                 , [CRYSTAL] = 1
                 , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 1100
+                , [GOLD] = 600
               }
             }
             , [CREATURE_SKELETON_ARCHER] = {
@@ -9300,7 +9300,7 @@
                 , [CRYSTAL] = 1
                 , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 1100
+                , [GOLD] = 600
               }
             }
             , [CREATURE_SKELETON_WARRIOR] = {
@@ -9313,7 +9313,7 @@
                 , [CRYSTAL] = 1
                 , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 1100
+                , [GOLD] = 600
               }
             }
             , [CREATURE_WALKING_DEAD] = {
@@ -9326,7 +9326,7 @@
                 , [CRYSTAL] = 1
                 , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 600
+                , [GOLD] = 200
               }
             }
             , [CREATURE_ZOMBIE] = {
@@ -9339,7 +9339,7 @@
                 , [CRYSTAL] = 1
                 , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 600
+                , [GOLD] = 200
               }
             }
             , [CREATURE_DISEASE_ZOMBIE] = {
@@ -9352,7 +9352,7 @@
                 , [CRYSTAL] = 1
                 , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 600
+                , [GOLD] = 200
               }
             }
             , [CREATURE_MANES] = {
@@ -9362,10 +9362,10 @@
                 [WOOD] = 0
                 , [ORE] = 0
                 , [MERCURY] = 0
-                , [CRYSTAL] = 1
+                , [CRYSTAL] = 0
                 , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 200
+                , [GOLD] = 300
               }
             }
             , [CREATURE_GHOST] = {
@@ -9375,10 +9375,10 @@
                 [WOOD] = 0
                 , [ORE] = 0
                 , [MERCURY] = 0
-                , [CRYSTAL] = 1
+                , [CRYSTAL] = 0
                 , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 200
+                , [GOLD] = 300
               }
             }
             , [CREATURE_POLTERGEIST] = {
@@ -9388,10 +9388,10 @@
                 [WOOD] = 0
                 , [ORE] = 0
                 , [MERCURY] = 0
-                , [CRYSTAL] = 1
+                , [CRYSTAL] = 0
                 , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 200
+                , [GOLD] = 300
               }
             }
             , [CREATURE_VAMPIRE] = {
@@ -9401,10 +9401,10 @@
                 [WOOD] = 0
                 , [ORE] = 0
                 , [MERCURY] = 0
-                , [CRYSTAL] = 1
+                , [CRYSTAL] = 0
                 , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 0
+                , [GOLD] = 100
               }
             }
             , [CREATURE_VAMPIRE_LORD] = {
@@ -9414,10 +9414,10 @@
                 [WOOD] = 0
                 , [ORE] = 0
                 , [MERCURY] = 0
-                , [CRYSTAL] = 1
+                , [CRYSTAL] = 0
                 , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 0
+                , [GOLD] = 100
               }
             }
             , [CREATURE_NOSFERATU] = {
@@ -9427,10 +9427,10 @@
                 [WOOD] = 0
                 , [ORE] = 0
                 , [MERCURY] = 0
-                , [CRYSTAL] = 1
+                , [CRYSTAL] = 0
                 , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 0
+                , [GOLD] = 100
               }
             }
             , [CREATURE_LICH] = {
@@ -9443,7 +9443,7 @@
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 100
+                , [GOLD] = 0
               }
             }
             , [CREATURE_DEMILICH] = {
@@ -9456,7 +9456,7 @@
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 100
+                , [GOLD] = 0
               }
             }
             , [CREATURE_LICH_MASTER] = {
@@ -9469,7 +9469,7 @@
                 , [CRYSTAL] = 0
                 , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 100
+                , [GOLD] = 0
               }
             }
             , [CREATURE_WIGHT] = {

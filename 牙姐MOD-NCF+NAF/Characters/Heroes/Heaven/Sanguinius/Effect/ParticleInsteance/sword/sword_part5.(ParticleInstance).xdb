@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ParticleInstance>
+	<SrcName/>
+	<Light>L_NORMAL</Light>
+	<Particle href="/Effects/_(Effect)/Characters/Creatures/Dwarves/Alternative_Upgrade/T6_ThunderThane/Bone/R_Hand_Glow.(Particle).xdb#xpointer(/Particle)"/>
+	<Position>
+		<x>0.15</x>
+		<y>-1.6</y>
+		<z>0</z>
+	</Position>
+	<Rotation>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+		<w>1</w>
+	</Rotation>
+	<Scale>0.8</Scale>
+	<Speed>1</Speed>
+	<Offset>0</Offset>
+	<EndCycle>5</EndCycle>
+	<CycleCount>0</CycleCount>
+	<Pivot>
+		<x>0</x>
+		<y>0</y>
+	</Pivot>
+	<Textures>
+		<Item href="Textures/Lightning00.xdb#xpointer(/Texture)"/>
+		<Item href="Textures/Lightning01.xdb#xpointer(/Texture)"/>
+		<Item href="Textures/Lightning02.xdb#xpointer(/Texture)"/>
+		<Item href="Textures/Lightning03.xdb#xpointer(/Texture)"/>
+		<Item href="/Textures/Effects/_Various/Glow10.xdb#xpointer(/Texture)"/>
+		<Item href="/Textures/Effects/Spells/RaysBlue00_Light.(Texture).xdb#xpointer(/Texture)"/>
+	</Textures>
+	<IsCrown>false</IsCrown>
+	<Static>P_STATIC</Static>
+	<DoesCastShadow>false</DoesCastShadow>
+	<GlueToBone>0</GlueToBone>
+	<GlueToNamedBone>Sword_joint</GlueToNamedBone>
+	<LeaveParticlesWhereStarted>false</LeaveParticlesWhereStarted>
+	<Priority>0</Priority>
+</ParticleInstance>

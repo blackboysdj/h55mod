@@ -3298,6 +3298,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Class"] = TTH_ENUM.DemonLord
               , ["Mastery"] = HERO_SKILL_GATING
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
+              , ["Building"] = TOWN_BUILDING_FORT
             }
             , ["Marder"] = {
               ["Id"] = 103
@@ -3396,7 +3397,6 @@ doFile("/scripts/TTH_Library.lua")
               , ["Class"] = TTH_ENUM.Sorcerer
               , ["Mastery"] = HERO_SKILL_GATING
               , ["Group"] = TTH_ENUM.GroupMagic
-              , ["Building"] = TOWN_BUILDING_FORT
             }
             , ["Calid2"] = {
               ["Id"] = 115

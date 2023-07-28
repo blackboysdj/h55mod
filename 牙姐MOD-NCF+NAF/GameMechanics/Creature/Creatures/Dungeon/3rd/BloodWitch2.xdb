@@ -10,8 +10,8 @@
 	<Flying>false</Flying>
 	<Health>21</Health>
 	<KnownSpells/>
-	<SpellPoints>0</SpellPoints>
-	<SpellPoints1>0</SpellPoints1>
+	<SpellPoints>1</SpellPoints>
+	<SpellPoints1>999</SpellPoints1>
 	<SpellPoints2>0</SpellPoints2>
 	<Exp>34</Exp>
 	<Power>477</Power>
@@ -47,5 +47,6 @@
 		<Item>ABILITY_NO_ENEMY_RETALIATION</Item>
 		<Item>ABILITY_STRIKE_AND_RETURN</Item>
 		<Item>ABILITY_IMMUNITY_TO_CURSE</Item>
+		<Item>ABILITY_INVISIBILITY</Item>
 	</Abilities>
 </Creature>

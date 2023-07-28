@@ -49,5 +49,6 @@
 		<Item>ABILITY_LUCK_GAMBLER</Item>
 		<Item>ABILITY_PURGER</Item>
 		<Item>ABILITY_SORROW_STRIKE</Item>
+		<Item>ABILITY_UNDEAD</Item>
 	</Abilities>
 </Creature>

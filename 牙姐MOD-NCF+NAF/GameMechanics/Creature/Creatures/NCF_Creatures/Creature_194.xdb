@@ -66,5 +66,6 @@
 		<Item>ABILITY_CROSS_ATTACK</Item>
 		<Item>ABILITY_PREPARED_POSITION</Item>
 		<Item>ABILITY_IMMUNITY_TO_MAGIC</Item>
+		<Item>ABILITY_UNDEAD</Item>
 	</Abilities>
 </Creature>

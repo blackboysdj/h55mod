@@ -57,5 +57,6 @@
 		<Item>ABILITY_DEMONIC</Item>
 		<Item>ABILITY_MANA_DESTROYER</Item>
 		<Item>ABILITY_SEARING_AURA</Item>
+		<Item>ABILITY_UNDEAD</Item>
 	</Abilities>
 </Creature>

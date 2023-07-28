@@ -1763,7 +1763,7 @@
           TTH_PATH.Building[TOWN_DUNGEON][TOWN_BUILDING_SPECIAL_1]["NotEnoughHeroLevel"] = TTH_PATH.Building[TOWN_DUNGEON][TOWN_BUILDING_SPECIAL_1]["Pre"].."NotEnoughHeroLevel.txt";
 
   -- 数据表
-    -- 技能池: 英雄天赋/主动宝物/主动技能/城镇建筑
+    -- 技能池: 英雄特长/主动宝物/主动技能/城镇建筑
       TTH_TABLE.FuncTalent = {
         [TTH_ENUM.FuncInit] = {
           -- 转化
@@ -10174,6 +10174,7 @@
         , SPELL_IMPLOSION
         , SPELL_ARMAGEDDON
         , SPELL_STONE_SPIKES
+        , SPELL_DEEP_FREEZE
       };
 
     -- 注魔弩可关联魔法
@@ -10524,7 +10525,7 @@
         }
       }
 
-    -- 默认英雄天赋提升
+    -- 默认英雄特长提升
       TTH_TABLE.HeroDefaultTalent = {
         "RedHeavenHero02"
         , "Axel"

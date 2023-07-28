@@ -49,5 +49,6 @@
 		<Item>ABILITY_CALL_STORM</Item>
 		<Item>ABILITY_REPAIR</Item>
 		<Item>ABILITY_POWER_FEED</Item>
+		<Item>ABILITY_UNDEAD</Item>
 	</Abilities>
 </Creature>

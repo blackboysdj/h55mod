@@ -347,7 +347,7 @@
 				<RiderCharge_DefenceReducePerPathCell>0.2</RiderCharge_DefenceReducePerPathCell>
 				<AcidicHydraPattern href="/GameMechanics/Creature/Creatures/Dungeon/AcidBlood.xdb#xpointer(/PatternAttack)"/>
 				<AuraOfBraveryMoraleMin>1</AuraOfBraveryMoraleMin>
-				<Invisibility_DurationInRounds>3</Invisibility_DurationInRounds>
+				<Invisibility_DurationInRounds>2.5</Invisibility_DurationInRounds>
 				<IncinerateCoef>1.5</IncinerateCoef>
 				<RideByAttack_DamageCoef>0.25</RideByAttack_DamageCoef>
 				<RideByAttack_LastPointsToExclude>1</RideByAttack_LastPointsToExclude>

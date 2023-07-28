@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AnimSet>
+	<animations>
+		<Item>
+			<Kind>attack00</Kind>
+			<Anim href="T1_BloodWitch-arena-attack00.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>death</Kind>
+			<Anim href="T1_BloodWitch-arena-death.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>happy</Kind>
+			<Anim href="T1_BloodWitch-arena-happy.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>hit</Kind>
+			<Anim href="T1_BloodWitch-arena-hit.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>idle00</Kind>
+			<Anim href="T1_BloodWitch-arena-idle00.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>move</Kind>
+			<Anim href="T1_BloodWitch-arena-move.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>spneutral</Kind>
+			<Anim href="T1_BloodWitch-arena-spneutral.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>stir00</Kind>
+			<Anim href="T1_BloodWitch-arena-stir00.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+		<Item>
+			<Kind>specability</Kind>
+			<Anim href="T1_BloodWitch-arena-happy.xdb#xpointer(/BasicSkelAnim)"/>
+		</Item>
+	</animations>
+	<ExpSrcScene href="/H5A2/Creatures/AlternativeUpgrades/Dangeon/T2_BloodWitch/BloodyWitch.mb"/>
+	<ExpSrcClipFolder href="/H5A2/Creatures/AlternativeUpgrades/Dangeon/T2_BloodWitch/Animations/Clip/"/>
+	<ExpRootTransform>Global</ExpRootTransform>
+</AnimSet>

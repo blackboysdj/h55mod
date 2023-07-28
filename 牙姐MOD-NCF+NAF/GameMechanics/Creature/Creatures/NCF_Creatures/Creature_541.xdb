@@ -68,5 +68,6 @@
 		<Item>ABILITY_IMMUNITY_TO_MAGIC</Item>
 		<Item>ABILITY_NO_ENEMY_RETALIATION</Item>
 		<Item>ABILITY_WEAKENING_STRIKE</Item>
+		<Item>ABILITY_UNDEAD</Item>
 	</Abilities>
 </Creature>

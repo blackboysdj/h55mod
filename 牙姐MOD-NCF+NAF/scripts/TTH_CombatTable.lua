@@ -4,7 +4,7 @@
   -- 战场特效
     TCS_TABLE.Effect = {};
 
-    -- 天赋
+    -- 特长
       TCS_TABLE.Effect.Talent = {
         [0] = "Ildar"
         , [1] = "Razzak"
@@ -507,6 +507,7 @@
           , SPELL_ICE_BOLT
           , SPELL_CHAIN_LIGHTNING
           , SPELL_IMPLOSION
+          , SPELL_DEEP_FREEZE
         };
     -- 元素魔法（范围）
         TTHCS_TABLE.ElementMagicArea = {
@@ -2276,7 +2277,7 @@
         return 1 - iSide;
       end;
 
-    -- 校验开场生效的英雄天赋数量 沙漏大师/粉碎者
+    -- 校验开场生效的英雄特长数量 沙漏大师/粉碎者
       function TTHCS_GLOBAL.countSpecialHero()
         local iCountSpecialHero = 0;
         for iSide = TCS_ENUM.Side.Attacker, TCS_ENUM.Side.Defender do

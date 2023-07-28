@@ -48,5 +48,6 @@
 		<Item>ABILITY_NO_ENEMY_RETALIATION</Item>
 		<Item>ABILITY_LUCK_GAMBLER</Item>
 		<Item>ABILITY_PURGER</Item>
+		<Item>ABILITY_UNDEAD</Item>
 	</Abilities>
 </Creature>

@@ -73,5 +73,6 @@
 		<Item>ABILITY_NO_ENEMY_RETALIATION</Item>
 		<Item>ABILITY_RESURRECT_ALLIES</Item>
 		<Item>ABILITY_ORDER_OF_THE_CHIEF</Item>
+		<Item>ABILITY_UNDEAD</Item>
 	</Abilities>
 </Creature>

@@ -65,5 +65,6 @@
 		<Item>ABILITY_NO_ENEMY_RETALIATION</Item>
 		<Item>ABILITY_SET_SNARES</Item>
 		<Item>ABILITY_RESURRECT_ALLIES</Item>
+		<Item>ABILITY_UNDEAD</Item>
 	</Abilities>
 </Creature>

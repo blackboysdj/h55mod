@@ -5137,8 +5137,8 @@ doFile("/scripts/H55-Settings.lua");
 				-- <body_bright>英雄战力: <color=yellow><value=iPower>
 				-- <body_bright>英雄移动力: <color=yellow><value=iMovePoint>
 				-- <body_bright>英雄魔法值: <color=yellow><value=iManaPoint>
-				-- <body_bright>天赋提升-高: <color=yellow><value=iManaPoint>
-				-- <body_bright>天赋提升-终: <color=yellow><value=bUpgradeMastery>
+				-- <body_bright>特长提升-熟练: <color=yellow><value=iManaPoint>
+				-- <body_bright>特长提升-精通: <color=yellow><value=bUpgradeMastery>
 				-- <body_bright>法力药水: <color=yellow><value=iPotionManaRemainTimes><body_bright> / <color=yellow><value=iPotionManaMaxTimes>
 				-- <body_bright>能量药水: <color=yellow><value=iPotionEnergyRemainTimes><body_bright> / <color=yellow><value=iPotionEnergyMaxTimes>
 				-- <body_bright>复活药水: <color=yellow><value=iPotionReviveRemainTimes><body_bright> / <color=yellow><value=iPotionReviveMaxTimes>
@@ -7583,6 +7583,9 @@ doFile("/scripts/H55-Settings.lua");
 							end;
 							TTH_COMMON.push(arrLevel, iNoMasteryLevel);
 							local iSpellTypeLevel = TTH_COMMON.max(arrLevel);
+							if iSpellTypeLevel > 5 then
+								iSpellTypeLevel = 5;
+							end;
 							return iSpellTypeLevel;
 						end;
 						TTH_VISIT.bank.reward.spell.hasMainSkill = function(iPlayer, strHero, iSpellTypeId)
@@ -12186,10 +12189,10 @@ doFile("/scripts/H55-Settings.lua");
 				TTH_GLOBAL.removeGameVar4HeroSkill(strHero);
 			end;
 
-	-- 英雄天赋
+	-- 英雄特长
 		TTH_TALENT = {};
 
-		-- 转化类英雄天赋
+		-- 转化类英雄特长
 			TTH_VARI.castCreatureGcd = {};
 			TTH_VARI.castCreatureSavedTimes = {};
 			function TTH_TALENT.initCastCreature(strHero)
@@ -19378,8 +19381,12 @@ doFile("/scripts/H55-Settings.lua");
 			TTH_PERK.raiseArchers.basic.resetWeekly = function(iPlayer, strHero)
 				TTH_MAIN.debug("TTH_PERK.raiseArchers.basic.resetWeekly", iPlayer, strHero);
 
-				TTH_PERK.raiseArchers.basic.init(iPlayer, strHero);
-				TTH_PERK.raiseArchers.record[strHero]["OperTimes"] = TTH_PERK.raiseArchers.record[strHero]["MaxOperTimes"];
+				local strHeroTan = "Tan";
+				if strHero == strHeroTan
+					and TTH_VARI.record4UpgradeMastery[strHero] == TTH_ENUM.Yes then
+					TTH_PERK.raiseArchers.basic.init(iPlayer, strHero);
+	    		TTH_PERK.raiseArchers.record[strHero]["OperTimes"] = TTH_PERK.raiseArchers.record[strHero]["MaxOperTimes"];
+				end;
 			end;
 			TTH_PERK.raiseArchers.active = {};
 			TTH_PERK.raiseArchers.active.enter = function(iPlayer, strHero)
@@ -19391,15 +19398,8 @@ doFile("/scripts/H55-Settings.lua");
 			TTH_PERK.raiseArchers.active.check4Times = function(iPlayer, strHero)
 				local strText = TTH_PATH.Perk[HERO_SKILL_RAISE_ARCHERS]["NotEnoughTimes"];
 				if TTH_PERK.raiseArchers.record[strHero]["OperTimes"] <= 0 then
-					if TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes then
-						if TTH_MANAGE.getRemainOperTimes(strHero) <= 0 then
-		    			TTH_GLOBAL.sign(strHero, strText);
-		  				return nil;
-						end;
-					else
-		  			TTH_GLOBAL.sign(strHero, strText);
-						return nil;
-		  		end;
+	  			TTH_GLOBAL.sign(strHero, strText);
+					return nil;
 				end;
 
 				TTH_PERK.raiseArchers.active.radio4Level(iPlayer, strHero)

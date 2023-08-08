@@ -49,14 +49,14 @@
         , [25] = HERO_SKILL_WAR_MACHINES
         , [26] = HERO_SKILL_CASTER_CERTIFICATE
         , [27] = HERO_SKILL_PAYBACK
-        , [28] = HERO_SKILL_PATHFINDING
+        , [28] = HERO_SKILL_MAGIC_BALANCE
         , [29] = HERO_SKILL_LAST_STAND
         , [30] = HERO_SKILL_FOREST_GUARD_EMBLEM
         , [31] = HERO_SKILL_SORCERY
         , [32] = HERO_SKILL_REMOTE_CONTROL
         , [33] = HERO_SKILL_MARCH_OF_THE_MACHINES
         , [34] = HERO_SKILL_MASTER_OF_SICKNESS
-        , [35] = HERO_SKILL_SUN_FIRE
+        , [35] = HERO_SKILL_ECHO_OF_SYLANNA
         , [36] = HERO_SKILL_ELEMENTAL_OVERKILL
         , [37] = HERO_SKILL_TAP_RUNES
         , [38] = HERO_SKILL_RUNIC_MACHINES
@@ -64,11 +64,13 @@
         , [40] = HERO_SKILL_SHAKE_GROUND
         , [41] = HERO_SKILL_MASTER_OF_BLESSING
         , [42] = HERO_SKILL_UNSUMMON
-        , [43] = HERO_SKILL_ELVEN_LUCK
+        , [43] = HERO_SKILL_SHARP_STRIKE
         , [44] = HERO_SKILL_ELEMENTAL_BALANCE
         , [45] = HERO_SKILL_INTELLIGENCE
         , [46] = HERO_SKILL_CONSUME_CORPSE
         , [47] = HERO_SKILL_CHILLING_BONES
+        , [48] = HERO_SKILL_REPAIR_MACHINES
+        , [49] = HERO_SKILL_ENCHANT_MACHINES
       };
 
     -- 宝物
@@ -1345,9 +1347,26 @@
                   push(arrEarth, sidCreature);
                 end;
               end;
+            -- 获取战场上所有己方蜂巢
+              local arrSummonHive = {};
+              local arrSpellSpawn = GetSpellSpawns(iSide);
+              for i, sidSpellSpawn in arrSpellSpawn do
+                if string.match(sidSpellSpawn, "SPELL_SUMMON_HIVE") ~= nil then
+                  push(arrSummonHive, sidSpellSpawn);
+                end;
+              end;
 
             -- 计算所有共振召唤物的距离
               local listSortDistance = {};
+              for i, sidArcaneCrystal in arrArcaneCrystal do
+                local itemArcaneCrystal = TTHCS_GLOBAL.geneUnitInfo(sidArcaneCrystal);
+                local iDistanceX = iPosX - itemArcaneCrystal["PosX"];
+                local iDistanceY = iPosY - itemArcaneCrystal["PosY"];
+                itemArcaneCrystal["Distance"] = iDistanceX * iDistanceX +  iDistanceY * iDistanceY;
+                if itemArcaneCrystal["Distance"] <= 36 then
+                  push(listSortDistance, itemArcaneCrystal);
+                end;
+              end;
               for i, sidEarth in arrEarth do
                 local itemEarth = TTHCS_GLOBAL.geneUnitInfo(sidEarth);
                 local iDistanceX = iPosX - itemEarth["PosX"];
@@ -1357,13 +1376,13 @@
                   push(listSortDistance, itemEarth);
                 end;
               end;
-              for i, sidArcaneCrystal in arrArcaneCrystal do
-                local itemArcaneCrystal = TTHCS_GLOBAL.geneUnitInfo(sidArcaneCrystal);
-                local iDistanceX = iPosX - itemArcaneCrystal["PosX"];
-                local iDistanceY = iPosY - itemArcaneCrystal["PosY"];
-                itemArcaneCrystal["Distance"] = iDistanceX * iDistanceX +  iDistanceY * iDistanceY;
-                if itemArcaneCrystal["Distance"] <= 36 then
-                  push(listSortDistance, itemArcaneCrystal);
+              for i, sidSummonHive in arrSummonHive do
+                local itemSummonHive = TTHCS_GLOBAL.geneUnitInfo(sidSummonHive);
+                local iDistanceX = iPosX - itemSummonHive["PosX"];
+                local iDistanceY = iPosY - itemSummonHive["PosY"];
+                itemSummonHive["Distance"] = iDistanceX * iDistanceX +  iDistanceY * iDistanceY;
+                if itemSummonHive["Distance"] <= 36 then
+                  push(listSortDistance, itemSummonHive);
                 end;
               end;
 
@@ -2132,13 +2151,14 @@
               listSnapshotDiff[TTH_ENUM.CombatHero][iSide] = {};
               local itemHeroBefore = listSnapshotBefore[TTH_ENUM.CombatHero][iSide];
               local itemHeroLast = listSnapshotLast[TTH_ENUM.CombatHero][iSide];
-              if itemHeroLast["CurrentMana"] - itemHeroBefore["CurrentMana"] == 0 then
-                listSnapshotDiff[TTH_ENUM.CombatHero][iSide][TCS_ENUM.Snapshot.Mana] = TCS_ENUM.Snapshot.Hero.Mana.Unchanged;
-              elseif itemHeroLast["CurrentMana"] - itemHeroBefore["CurrentMana"] > 0 then
-                listSnapshotDiff[TTH_ENUM.CombatHero][iSide][TCS_ENUM.Snapshot.Mana] = TCS_ENUM.Snapshot.Hero.Mana.Increase;
-              else
-                listSnapshotDiff[TTH_ENUM.CombatHero][iSide][TCS_ENUM.Snapshot.Mana] = TCS_ENUM.Snapshot.Hero.Mana.Decrease;
-              end;
+              listSnapshotDiff[TTH_ENUM.CombatHero][iSide][TCS_ENUM.Snapshot.Mana] = itemHeroLast["CurrentMana"] - itemHeroBefore["CurrentMana"];
+              -- if itemHeroLast["CurrentMana"] - itemHeroBefore["CurrentMana"] == 0 then
+              --   listSnapshotDiff[TTH_ENUM.CombatHero][iSide][TCS_ENUM.Snapshot.Mana] = TCS_ENUM.Snapshot.Hero.Mana.Unchanged;
+              -- elseif itemHeroLast["CurrentMana"] - itemHeroBefore["CurrentMana"] > 0 then
+              --   listSnapshotDiff[TTH_ENUM.CombatHero][iSide][TCS_ENUM.Snapshot.Mana] = TCS_ENUM.Snapshot.Hero.Mana.Increase;
+              -- else
+              --   listSnapshotDiff[TTH_ENUM.CombatHero][iSide][TCS_ENUM.Snapshot.Mana] = TCS_ENUM.Snapshot.Hero.Mana.Decrease;
+              -- end;
             end;
           -- Creature
             listSnapshotDiff[TTH_ENUM.CombatCreature][iSide] = {};
@@ -3481,9 +3501,9 @@
 
 
     TTHCS_PATH["Perk"] = {};
-      -- HERO_SKILL_PATHFINDING 019 魔力平衡
-        TTHCS_PATH["Perk"][HERO_SKILL_PATHFINDING] = {};
-        TTHCS_PATH["Perk"][HERO_SKILL_PATHFINDING]["Effect"] = "/Text/TTH/Skills/Artificier/019-Pathfinding/Combat/Effect.txt";
+      -- HERO_SKILL_MAGIC_BALANCE 314 魔力平衡
+        TTHCS_PATH["Perk"][HERO_SKILL_MAGIC_BALANCE] = {};
+        TTHCS_PATH["Perk"][HERO_SKILL_MAGIC_BALANCE]["Effect"] = "/Text/TTH/Skills/Artificier/314-MagicBalance/Combat/Effect.txt";
       -- HERO_SKILL_CASTER_CERTIFICATE 081 神秘精髓
         TTHCS_PATH["Perk"][HERO_SKILL_CASTER_CERTIFICATE] = {};
         TTHCS_PATH["Perk"][HERO_SKILL_CASTER_CERTIFICATE]["Effect"] = "/Text/TTH/Skills/Sorcery/081-CasterCertificate/Combat/Effect.txt";
@@ -3514,12 +3534,12 @@
       -- HERO_SKILL_FOREST_GUARD_EMBLEM 115 战地支援
         TTHCS_PATH["Perk"][HERO_SKILL_FOREST_GUARD_EMBLEM] = {};
         TTHCS_PATH["Perk"][HERO_SKILL_FOREST_GUARD_EMBLEM]["Effect"] = "/Text/TTH/Skills/Leadership/115-ForestGuardEmblem/Combat/Effect.txt";
-      -- HERO_SKILL_ELVEN_LUCK 116 锐利一击
-        TTHCS_PATH["Perk"][HERO_SKILL_ELVEN_LUCK] = {};
-        TTHCS_PATH["Perk"][HERO_SKILL_ELVEN_LUCK]["Effect"] = "/Text/TTH/Skills/Avenger/116-ElvenLuck/Combat/Effect.txt";
-      -- HERO_SKILL_SUN_FIRE 120 西莱纳的回响
-        TTHCS_PATH["Perk"][HERO_SKILL_SUN_FIRE] = {};
-        TTHCS_PATH["Perk"][HERO_SKILL_SUN_FIRE]["Effect"] = "/Text/TTH/Skills/Avenger/120-SunFire/Combat/Effect.txt";
+      -- HERO_SKILL_SHARP_STRIKE 320 锐利一击
+        TTHCS_PATH["Perk"][HERO_SKILL_SHARP_STRIKE] = {};
+        TTHCS_PATH["Perk"][HERO_SKILL_SHARP_STRIKE]["Effect"] = "/Text/TTH/Skills/Avenger/320-SharpStrike/Combat/Effect.txt";
+      -- HERO_SKILL_ECHO_OF_SYLANNA 315 西莱纳的回响
+        TTHCS_PATH["Perk"][HERO_SKILL_ECHO_OF_SYLANNA] = {};
+        TTHCS_PATH["Perk"][HERO_SKILL_ECHO_OF_SYLANNA]["Effect"] = "/Text/TTH/Skills/Avenger/315-EchoOfSylanna/Combat/Effect.txt";
       -- HERO_SKILL_REMOTE_CONTROL 126 附魔机械
         TTHCS_PATH["Perk"][HERO_SKILL_REMOTE_CONTROL] = {};
         TTHCS_PATH["Perk"][HERO_SKILL_REMOTE_CONTROL]["Effect"] = "/Text/TTH/Skills/Artificier/126-RemoteControl/Combat/Effect.txt";
@@ -3546,6 +3566,9 @@
       -- HERO_SKILL_CHILLING_BONES 105 共振
         TTHCS_PATH["Perk"][HERO_SKILL_CHILLING_BONES] = {};
         TTHCS_PATH["Perk"][HERO_SKILL_CHILLING_BONES]["Effect"] = "/Text/TTH/Skills/SummoningMagic/105-ChillingBones/Combat/Effect.txt";
+      -- HERO_SKILL_REPAIR_MACHINES 317 战地修理
+        TTHCS_PATH["Perk"][HERO_SKILL_REPAIR_MACHINES] = {};
+        TTHCS_PATH["Perk"][HERO_SKILL_REPAIR_MACHINES]["Effect"] = "/Text/TTH/Skills/WarMachines/317-RepairMachines/Combat/Effect.txt";
 
     TTHCS_PATH["Mastery"] = {};
       -- HERO_SKILL_WAR_MACHINES 002 战争机械
@@ -3559,12 +3582,18 @@
       -- ARTIFACT_GEM_OF_PHANTOM 102 幻影宝石
         TTHCS_PATH["Artifact"][ARTIFACT_GEM_OF_PHANTOM] = {};
         TTHCS_PATH["Artifact"][ARTIFACT_GEM_OF_PHANTOM]["Effect"] = "/Text/TTH/Artifact/102-GemOfPhantom/Combat/Effect.txt";
+      -- ARTIFACT_WAYFARER_BOOTS 026 储能长靴
+        TTHCS_PATH["Artifact"][ARTIFACT_WAYFARER_BOOTS] = {};
+        TTHCS_PATH["Artifact"][ARTIFACT_WAYFARER_BOOTS]["Effect"] = "/Text/TTH/Artifact/026-WayfarerBoots/Combat/Effect.txt";
       -- ARTIFACT_DRUM_OF_CHARGE 106 冲锋战鼓
         TTHCS_PATH["Artifact"][ARTIFACT_DRUM_OF_CHARGE] = {};
         TTHCS_PATH["Artifact"][ARTIFACT_DRUM_OF_CHARGE]["Effect"] = "/Text/TTH/Artifact/106-DrumOfCharge/Combat/Effect.txt";
       -- ARTIFACT_HORN_OF_CHARGE 107 冲锋号角
         TTHCS_PATH["Artifact"][ARTIFACT_HORN_OF_CHARGE] = {};
         TTHCS_PATH["Artifact"][ARTIFACT_HORN_OF_CHARGE]["Effect"] = "/Text/TTH/Artifact/107-HornOfCharge/Combat/Effect.txt";
+      -- ARTIFACT_FLAG_OF_CHARGE 141 冲锋战旗
+        TTHCS_PATH["Artifact"][ARTIFACT_FLAG_OF_CHARGE] = {};
+        TTHCS_PATH["Artifact"][ARTIFACT_FLAG_OF_CHARGE]["Effect"] = "/Text/TTH/Artifact/141-FlagOfCharge/Combat/Effect.txt";
       -- ARTIFACT_ANGELIC_ALLIANCE 068 天使联盟
         TTHCS_PATH["Artifact"][ARTIFACT_ANGELIC_ALLIANCE] = {};
         TTHCS_PATH["Artifact"][ARTIFACT_ANGELIC_ALLIANCE]["Effect"] = "/Text/TTH/Artifact/068-AngelicAlliance/Combat/Effect.txt";
@@ -3574,6 +3603,9 @@
       -- ARTIFACT_CURSE_SHOULDER 114 诅咒斗篷
         TTHCS_PATH["Artifact"][ARTIFACT_CURSE_SHOULDER] = {};
         TTHCS_PATH["Artifact"][ARTIFACT_CURSE_SHOULDER]["Effect"] = "/Text/TTH/Artifact/114-CurseShoulder/Combat/Effect.txt";
+      -- ARTIFACT_EIGHTFOLD = 125 --亚莎之八重杖
+        TTHCS_PATH["Artifact"][ARTIFACT_EIGHTFOLD] = {};
+        TTHCS_PATH["Artifact"][ARTIFACT_EIGHTFOLD]["Effect"] = "/Text/TTH/Artifact/125-Eightfold/Combat/Effect.txt";
       -- ARTIFACT_BOOTS_OF_THE_WALKING_DEAD 140 恶灵长靴
         TTHCS_PATH["Artifact"][ARTIFACT_BOOTS_OF_THE_WALKING_DEAD] = {};
         TTHCS_PATH["Artifact"][ARTIFACT_BOOTS_OF_THE_WALKING_DEAD]["Effect"] = "/Text/TTH/Artifact/140-BootsOfTheWalkingDead/Combat/Effect.txt";
@@ -3601,6 +3633,9 @@
       -- ARTIFACTSET_ELEMENT_WATER 018 流水之蕴 ElementWater
         TTHCS_PATH["ArtifactSet"][ARTIFACTSET_ELEMENT_WATER.."_"..2] = {};
         TTHCS_PATH["ArtifactSet"][ARTIFACTSET_ELEMENT_WATER.."_"..2]["Effect"] = "/Text/TTH/ArtifactSet/018-ElementWater/Combat/Effect2.txt";
+      -- ARTIFACTSET_CHARGE 020 冲锋陷阵 Charge
+        TTHCS_PATH["ArtifactSet"][ARTIFACTSET_CHARGE.."_"..3] = {};
+        TTHCS_PATH["ArtifactSet"][ARTIFACTSET_CHARGE.."_"..3]["Effect"] = "/Text/TTH/ArtifactSet/020-Charge/Combat/Effect3.txt";
 
     TTHCS_PATH["Creature"] = {};
     -- CREATURE_LEGATE 190 圣血剑士

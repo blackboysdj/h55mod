@@ -13,7 +13,7 @@
 		<Item href="012-SummoningMagic/Detail/PerkButton9.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="012-SummoningMagic/Detail/PerkButtonX.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="012-SummoningMagic/Detail/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<!-- <Item href="012-SummoningMagic/Detail/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
+		<Item href="012-SummoningMagic/Detail/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<!-- <Item href="012-SummoningMagic/Detail/PerkButtonX3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
 	</Children>
 	<Background/>

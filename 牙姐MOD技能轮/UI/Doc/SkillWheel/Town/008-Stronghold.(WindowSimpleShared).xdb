@@ -10,6 +10,22 @@
 		<Item href="008-Stronghold/Detail/022-Barbarian/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<!-- <Item href="008-Stronghold/Detail/022-Barbarian/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
 		<!-- <Item href="008-Stronghold/Detail/022-Barbarian/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
+		<Item href="008-Stronghold/Detail/022-Barbarian-2/Class.(WindowTextView).xdb#xpointer(/WindowTextView)"/>
+		<Item href="008-Stronghold/Detail/022-Barbarian-2/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="008-Stronghold/Detail/022-Barbarian-2/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="008-Stronghold/Detail/022-Barbarian-2/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="008-Stronghold/Detail/022-Barbarian-2/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="008-Stronghold/Detail/022-Barbarian-2/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<!-- <Item href="008-Stronghold/Detail/022-Barbarian-2/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
+		<!-- <Item href="008-Stronghold/Detail/022-Barbarian-2/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
+		<Item href="008-Stronghold/Detail/022-Barbarian-3/Class.(WindowTextView).xdb#xpointer(/WindowTextView)"/>
+		<Item href="008-Stronghold/Detail/022-Barbarian-3/PerkButton1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="008-Stronghold/Detail/022-Barbarian-3/PerkButton2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="008-Stronghold/Detail/022-Barbarian-3/PerkButton3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="008-Stronghold/Detail/022-Barbarian-3/PerkButton4.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="008-Stronghold/Detail/022-Barbarian-3/PerkButton5.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<!-- <Item href="008-Stronghold/Detail/022-Barbarian-3/PerkButton6.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
+		<!-- <Item href="008-Stronghold/Detail/022-Barbarian-3/PerkButton7.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
 	</Children>
 	<Background/>
 	<Foreground/>

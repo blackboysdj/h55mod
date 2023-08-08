@@ -380,6 +380,106 @@ doFile("/scripts/TTH_Library.lua")
     HERO_SKILL_BARBARIAN_DISTRACT = 218
     HERO_SKILL_BARBARIAN_DARK_REVELATION = 219
     HERO_SKILL_BARBARIAN_MENTORING = 220
+    HERO_SKILL_EMPTY_SLOT001 = 221
+    HERO_SKILL_EMPTY_SLOT002 = 222
+    HERO_SKILL_EMPTY_SLOT003 = 223
+    HERO_SKILL_EMPTY_SLOT004 = 224
+    HERO_SKILL_EMPTY_SLOT005 = 225
+    HERO_SKILL_EMPTY_SLOT006 = 226
+    HERO_SKILL_EMPTY_SLOT007 = 227
+    HERO_SKILL_EMPTY_SLOT008 = 228
+    HERO_SKILL_EMPTY_SLOT009 = 229
+    HERO_SKILL_EMPTY_SLOT010 = 230
+    HERO_SKILL_EMPTY_SLOT011 = 231
+    HERO_SKILL_EMPTY_SLOT012 = 232
+    HERO_SKILL_EMPTY_SLOT013 = 233
+    HERO_SKILL_EMPTY_SLOT014 = 234
+    HERO_SKILL_EMPTY_SLOT015 = 235
+    HERO_SKILL_EMPTY_SLOT016 = 236
+    HERO_SKILL_EMPTY_SLOT017 = 237
+    HERO_SKILL_EMPTY_SLOT018 = 238
+    HERO_SKILL_EMPTY_SLOT019 = 239
+    HERO_SKILL_EMPTY_SLOT020 = 240
+    HERO_SKILL_EMPTY_SLOT021 = 241
+    HERO_SKILL_EMPTY_SLOT022 = 242
+    HERO_SKILL_EMPTY_SLOT023 = 243
+    HERO_SKILL_EMPTY_SLOT024 = 244
+    HERO_SKILL_EMPTY_SLOT025 = 245
+    HERO_SKILL_EMPTY_SLOT026 = 246
+    HERO_SKILL_EMPTY_SLOT027 = 247
+    HERO_SKILL_EMPTY_SLOT028 = 248
+    HERO_SKILL_EMPTY_SLOT029 = 249
+    HERO_SKILL_EMPTY_SLOT030 = 250
+    HERO_SKILL_EMPTY_SLOT031 = 251
+    HERO_SKILL_EMPTY_SLOT032 = 252
+    HERO_SKILL_EMPTY_SLOT033 = 253
+    HERO_SKILL_EMPTY_SLOT034 = 254
+    HERO_SKILL_EMPTY_SLOT035 = 255
+    HERO_SKILL_EMPTY_SLOT036 = 256
+    HERO_SKILL_EMPTY_SLOT037 = 257
+    HERO_SKILL_EMPTY_SLOT038 = 258
+    HERO_SKILL_EMPTY_SLOT039 = 259
+    HERO_SKILL_EMPTY_SLOT040 = 260
+    HERO_SKILL_EMPTY_SLOT041 = 261
+    HERO_SKILL_EMPTY_SLOT042 = 262
+    HERO_SKILL_EMPTY_SLOT043 = 263
+    HERO_SKILL_EMPTY_SLOT044 = 264
+    HERO_SKILL_EMPTY_SLOT045 = 265
+    HERO_SKILL_EMPTY_SLOT046 = 266
+    HERO_SKILL_EMPTY_SLOT047 = 267
+    HERO_SKILL_EMPTY_SLOT048 = 268
+    HERO_SKILL_EMPTY_SLOT049 = 269
+    HERO_SKILL_EMPTY_SLOT050 = 270
+    HERO_SKILL_EMPTY_SLOT051 = 271
+    HERO_SKILL_EMPTY_SLOT052 = 272
+    HERO_SKILL_EMPTY_SLOT053 = 273
+    HERO_SKILL_EMPTY_SLOT054 = 274
+    HERO_SKILL_EMPTY_SLOT055 = 275
+    HERO_SKILL_EMPTY_SLOT056 = 276
+    HERO_SKILL_EMPTY_SLOT057 = 277
+    HERO_SKILL_EMPTY_SLOT058 = 278
+    HERO_SKILL_EMPTY_SLOT059 = 279
+    HERO_SKILL_EMPTY_SLOT060 = 280
+    HERO_SKILL_EMPTY_SLOT061 = 281
+    HERO_SKILL_EMPTY_SLOT062 = 282
+    HERO_SKILL_EMPTY_SLOT063 = 283
+    HERO_SKILL_EMPTY_SLOT064 = 284
+    HERO_SKILL_EMPTY_SLOT065 = 285
+    HERO_SKILL_EMPTY_SLOT066 = 286
+    HERO_SKILL_EMPTY_SLOT067 = 287
+    HERO_SKILL_EMPTY_SLOT068 = 288
+    HERO_SKILL_EMPTY_SLOT069 = 289
+    HERO_SKILL_EMPTY_SLOT070 = 290
+    HERO_SKILL_EMPTY_SLOT071 = 291
+    HERO_SKILL_EMPTY_SLOT072 = 292
+    HERO_SKILL_EMPTY_SLOT073 = 293
+    HERO_SKILL_EMPTY_SLOT074 = 294
+    HERO_SKILL_EMPTY_SLOT075 = 295
+    HERO_SKILL_EMPTY_SLOT076 = 296
+    HERO_SKILL_EMPTY_SLOT077 = 297
+    HERO_SKILL_EMPTY_SLOT078 = 298
+    HERO_SKILL_EMPTY_SLOT079 = 299
+    HERO_SKILL_EMPTY_SLOT080 = 300
+    HERO_SKILL_EMPTY_SLOT081 = 301
+    HERO_SKILL_EMPTY_SLOT082 = 302
+    HERO_SKILL_EMPTY_SLOT083 = 303
+    HERO_SKILL_EMPTY_SLOT084 = 304
+    HERO_SKILL_EMPTY_SLOT085 = 305
+    HERO_SKILL_EMPTY_SLOT086 = 306
+    HERO_SKILL_EMPTY_SLOT087 = 307
+    HERO_SKILL_EMPTY_SLOT088 = 308
+    HERO_SKILL_EMPTY_SLOT089 = 309
+    HERO_SKILL_EMPTY_SLOT090 = 310
+    HERO_SKILL_EMPTY_SLOT091 = 311
+    HERO_SKILL_RAGE_RUSH = 312
+    HERO_SKILL_ANTI_MAGIC = 313
+    HERO_SKILL_MAGIC_BALANCE = 314
+    HERO_SKILL_ECHO_OF_SYLANNA = 315
+    HERO_SKILL_ENCHANT_MACHINES = 316
+    HERO_SKILL_REPAIR_MACHINES = 317
+    HERO_SKILL_MAYOR_OPERER = 318
+    HERO_SKILL_BUILDING_MASTER = 319
+    HERO_SKILL_SHARP_STRIKE = 320
 
   -- 宝物
     ARTIFACT_SWORD_OF_RUINS = 1
@@ -3896,16 +3996,20 @@ doFile("/scripts/TTH_Library.lua")
                   [1] = HERO_SKILL_SCOUTING
                 }
               }
-              , [129] = { -- 战争掠劫
-                ["Id"] = HERO_SKILL_SPOILS_OF_WAR
-                , ["Text"] = "/Text/TTH/Skills/Logistics/129-SpoilsOfWar/Name.txt"
+              , [019] = { -- 探路术
+                ["Id"] = HERO_SKILL_PATHFINDING
+                , ["Text"] = "/Text/TTH/Skills/Logistics/019-Pathfinding/Name.txt"
               }
+              -- , [129] = { -- 战争掠劫
+              --   ["Id"] = HERO_SKILL_SPOILS_OF_WAR
+              --   , ["Text"] = "/Text/TTH/Skills/Logistics/129-SpoilsOfWar/Name.txt"
+              -- }
               , [177] = { -- 战争之路
                 ["Id"] = HERO_SKILL_PATH_OF_WAR
                 , ["Text"] = "/Text/TTH/Skills/Logistics/177-PathOfWar/Name.txt"
                 , ["DependType"] = TTH_ENUM.SkillSimple
                 , ["Depend"] = {
-                  [1] = HERO_SKILL_SPOILS_OF_WAR
+                  [1] = HERO_SKILL_PATHFINDING
                 }
               }
               , [168] = { -- 攫取
@@ -3963,6 +4067,10 @@ doFile("/scripts/TTH_Library.lua")
                   [1] = HERO_SKILL_BALLISTA
                 }
               }
+              , [317] = { -- 战地修理
+                ["Id"] = HERO_SKILL_REPAIR_MACHINES
+                , ["Text"] = "/Text/TTH/Skills/WarMachines/317-RepairMachines/Name.txt"
+              }
             }
           }
         -- 领导术
@@ -3994,24 +4102,40 @@ doFile("/scripts/TTH_Library.lua")
                 ["Id"] = HERO_SKILL_ESTATES
                 , ["Text"] = "/Text/TTH/Skills/Leadership/029-Estates/Name.txt"
               }
-              , [30] = { -- 外交术
-                ["Id"] = HERO_SKILL_DIPLOMACY
-                , ["Text"] = "/Text/TTH/Skills/Leadership/030-Diplomacy/Name.txt"
+              , [318] = { -- 内政专员
+                ["Id"] = HERO_SKILL_MAYOR_OPERER
+                , ["Text"] = "/Text/TTH/Skills/Leadership/318-MayorOperer/Name.txt"
                 , ["DependType"] = TTH_ENUM.SkillSimple
                 , ["Depend"] = {
                   [1] = HERO_SKILL_ESTATES
                 }
               }
+              , [319] = { -- 建筑大师
+                ["Id"] = HERO_SKILL_BUILDING_MASTER
+                , ["Text"] = "/Text/TTH/Skills/Leadership/319-BuildingMaster/Name.txt"
+                , ["DependType"] = TTH_ENUM.SkillSimple
+                , ["Depend"] = {
+                  [1] = HERO_SKILL_ESTATES
+                }
+              }
+              , [30] = { -- 外交术
+                ["Id"] = HERO_SKILL_DIPLOMACY
+                , ["Text"] = "/Text/TTH/Skills/Leadership/030-Diplomacy/Name.txt"
+              }
               , [75] = { -- 神圣指引
                 ["Id"] = HERO_SKILL_ENCOURAGE
                 , ["Text"] = "/Text/TTH/Skills/Leadership/075-Encourage/Name.txt"
+                , ["DependType"] = TTH_ENUM.SkillSimple
+                , ["Depend"] = {
+                  [1] = HERO_SKILL_DIPLOMACY
+                }
               }
               , [128] = { -- 人造荣耀
                 ["Id"] = HERO_SKILL_ARTIFICIAL_GLORY
                 , ["Text"] = "/Text/TTH/Skills/Leadership/128-ArtificialGlory/Name.txt"
                 , ["DependType"] = TTH_ENUM.SkillSimple
                 , ["Depend"] = {
-                  [1] = HERO_SKILL_ENCOURAGE
+                  [1] = HERO_SKILL_DIPLOMACY
                 }
               }
               , [170] = { -- 入神
@@ -4019,7 +4143,7 @@ doFile("/scripts/TTH_Library.lua")
                 , ["Text"] = "/Text/TTH/Skills/Leadership/170-Empathy/Name.txt"
                 , ["DependType"] = TTH_ENUM.SkillSimple
                 , ["Depend"] = {
-                  [1] = HERO_SKILL_ARTIFICIAL_GLORY
+                  [1] = HERO_SKILL_ENCOURAGE
                 }
               }
             }
@@ -4041,6 +4165,14 @@ doFile("/scripts/TTH_Library.lua")
                   [1] = HERO_SKILL_LUCKY_STRIKE
                 }
               }
+              -- , [116] = { -- 幸运一击
+              --   ["Id"] = HERO_SKILL_ELVEN_LUCK
+              --   , ["Text"] = "/Text/TTH/Skills/Luck/116-ElvenLuck/Name.txt"
+              --   , ["DependType"] = TTH_ENUM.SkillSimple
+              --   , ["Depend"] = {
+              --     [1] = HERO_SKILL_LUCKY_STRIKE
+              --   }
+              -- }
               , [179] = { -- 勇士之幸
                 ["Id"] = HERO_SKILL_LUCK_OF_THE_BARBARIAN
                 , ["Text"] = "/Text/TTH/Skills/Luck/179-LuckOfTheBarbarian/Name.txt"
@@ -4339,21 +4471,21 @@ doFile("/scripts/TTH_Library.lua")
                   [1] = HERO_SKILL_SNIPE_DEAD
                 }
               }
+              , [64] = { -- 箭如雨下
+                ["Id"] = HERO_SKILL_MULTISHOT
+                , ["Text"] = "/Text/TTH/Skills/Avenger/064-Multishot/Name.txt"
+              }
               , [114] = { -- 知己知彼
                 ["Id"] = HERO_SKILL_CUNNING_OF_THE_WOODS
                 , ["Text"] = "/Text/TTH/Skills/Avenger/114-CunningOfTheWoods/Name.txt"
                 , ["DependType"] = TTH_ENUM.SkillSimple
                 , ["Depend"] = {
-                  [1] = HERO_SKILL_SNIPE_DEAD
+                  [1] = HERO_SKILL_MULTISHOT
                 }
               }
-              , [64] = { -- 箭如雨下
-                ["Id"] = HERO_SKILL_MULTISHOT
-                , ["Text"] = "/Text/TTH/Skills/Avenger/064-Multishot/Name.txt"
-              }
-              , [116] = { -- 锐利一击（终极）
-                ["Id"] = HERO_SKILL_ELVEN_LUCK
-                , ["Text"] = "/Text/TTH/Skills/Avenger/116-ElvenLuck/Name.txt"
+              , [320] = { -- 锐利一击（终极）
+                ["Id"] = HERO_SKILL_SHARP_STRIKE
+                , ["Text"] = "/Text/TTH/Skills/Avenger/320-SharpStrike/Name.txt"
                 , ["IsAbsolute"] = 1
               }
               , [124] = { -- 自然之幸（终极）
@@ -4362,8 +4494,8 @@ doFile("/scripts/TTH_Library.lua")
                 , ["IsAbsolute"] = 1
               }
               , [120] = { -- 西莱纳的回响（终极）
-                ["Id"] = HERO_SKILL_SUN_FIRE
-                , ["Text"] = "/Text/TTH/Skills/Avenger/120-SunFire/Name.txt"
+                ["Id"] = HERO_SKILL_ECHO_OF_SYLANNA
+                , ["Text"] = "/Text/TTH/Skills/Avenger/315-EchoOfSylanna/Name.txt"
                 , ["IsAbsolute"] = 1
               }
             }
@@ -4390,12 +4522,16 @@ doFile("/scripts/TTH_Library.lua")
                   [1] = HERO_SKILL_MELT_ARTIFACT
                 }
               }
+              , [126] = { -- 远程控制
+                ["Id"] = HERO_SKILL_REMOTE_CONTROL
+                , ["Text"] = "/Text/TTH/Skills/Artificier/126-RemoteControl/Name.txt"
+              }
               , [125] = { -- 魔像行进
                 ["Id"] = HERO_SKILL_MARCH_OF_THE_MACHINES
                 , ["Text"] = "/Text/TTH/Skills/Artificier/125-MarchOfTheMachines/Name.txt"
                 , ["DependType"] = TTH_ENUM.SkillSimple
                 , ["Depend"] = {
-                  [1] = HERO_SKILL_MELT_ARTIFACT
+                  [1] = HERO_SKILL_REMOTE_CONTROL
                 }
               }
               , [61] = { -- 宝物学者
@@ -4410,9 +4546,9 @@ doFile("/scripts/TTH_Library.lua")
                   [1] = HERO_SKILL_RAISE_ARCHERS
                 }
               }
-              , [126] = { -- 附魔机械（终极）
-                ["Id"] = HERO_SKILL_REMOTE_CONTROL
-                , ["Text"] = "/Text/TTH/Skills/Artificier/126-RemoteControl/Name.txt"
+              , [316] = { -- 附魔机械（终极）
+                ["Id"] = HERO_SKILL_ENCHANT_MACHINES
+                , ["Text"] = "/Text/TTH/Skills/Artificier/316-EnchantMachines/Name.txt"
                 , ["IsAbsolute"] = 1
               }
               , [137] = { -- 神秘全知（终极）
@@ -4420,9 +4556,9 @@ doFile("/scripts/TTH_Library.lua")
                 , ["Text"] = "/Text/TTH/Skills/Artificier/137-AbsoluteWizardy/Name.txt"
                 , ["IsAbsolute"] = 1
               }
-              , [19] = { -- 魔力平衡（终极）
-                ["Id"] = HERO_SKILL_PATHFINDING
-                , ["Text"] = "/Text/TTH/Skills/Artificier/019-Pathfinding/Name.txt"
+              , [314] = { -- 魔力平衡（终极）
+                ["Id"] = HERO_SKILL_MAGIC_BALANCE
+                , ["Text"] = "/Text/TTH/Skills/Artificier/314-MagicBalance/Name.txt"
                 , ["IsAbsolute"] = 1
               }
             }
@@ -4676,10 +4812,6 @@ doFile("/scripts/TTH_Library.lua")
               , [173] = { -- 抑魔之力
                 ["Id"] = HERO_SKILL_MIGHT_OVER_MAGIC
                 , ["Text"] = "/Text/TTH/Skills/DemonicRage/173-MightOverMagic/Name.txt"
-                , ["DependType"] = TTH_ENUM.SkillSimple
-                , ["Depend"] = {
-                  [1] = HERO_SKILL_GOBLIN_SUPPORT
-                }
               }
               , [174] = { -- 血统记忆
                 ["Id"] = HERO_SKILL_MEMORY_OF_OUR_BLOOD
@@ -4696,6 +4828,16 @@ doFile("/scripts/TTH_Library.lua")
               , [176] = { -- 绝对狂暴（终极）
                 ["Id"] = HERO_SKILL_ABSOLUTE_RAGE
                 , ["Text"] = "/Text/TTH/Skills/DemonicRage/176-AbsoluteRage/Name.txt"
+                , ["IsAbsolute"] = 1
+              }
+              , [312] = { -- 狂怒冲锋（终极）
+                ["Id"] = HERO_SKILL_RAGE_RUSH
+                , ["Text"] = "/Text/TTH/Skills/DemonicRage/312-RageRush/Name.txt"
+                , ["IsAbsolute"] = 1
+              }
+              , [313] = { -- 魔力豁免（终极）
+                ["Id"] = HERO_SKILL_ANTI_MAGIC
+                , ["Text"] = "/Text/TTH/Skills/DemonicRage/313-AntiMagic/Name.txt"
                 , ["IsAbsolute"] = 1
               }
             }

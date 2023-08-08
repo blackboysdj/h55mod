@@ -13,8 +13,8 @@
 		<Item href="004-Leadership/Detail/PerkButton9.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="004-Leadership/Detail/PerkButtonX.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="004-Leadership/Detail/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<!-- <Item href="004-Leadership/Detail/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="004-Leadership/Detail/PerkButtonX3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
+		<Item href="004-Leadership/Detail/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="004-Leadership/Detail/PerkButtonX3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 	</Children>
 	<Background/>
 	<Foreground/>

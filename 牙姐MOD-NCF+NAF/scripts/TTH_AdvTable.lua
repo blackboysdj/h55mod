@@ -240,7 +240,7 @@
         }
       }
       , ["SKILL_PERK"] = {
-        HERO_SKILL_SUN_FIRE
+        HERO_SKILL_ECHO_OF_SYLANNA
       }
     }
     -- 专家召唤 + 西莱纳的回响 + 符咒大师 = 召唤凤凰
@@ -253,7 +253,7 @@
         }
       }
       , ["SKILL_PERK"] = {
-        HERO_SKILL_SUN_FIRE
+        HERO_SKILL_ECHO_OF_SYLANNA
         , PERK_MASTER_OF_CREATURES
       }
     }
@@ -420,7 +420,7 @@
         }
       }
       , ["SKILL_PERK"] = {
-        HERO_SKILL_REMOTE_CONTROL
+        HERO_SKILL_ENCHANT_MACHINES
         , HERO_SKILL_MASTER_OF_ANIMATION
       }
     }
@@ -1591,6 +1591,17 @@
     TTH_PATH.Perk = {};
     TTH_PATH.Perk["Pre"] = TTH_PATH.FuncPre.."Perk/";
     -- Perk 3
+      -- HERO_SKILL_PATHFINDING 019 探路术
+        TTH_PATH.Perk[HERO_SKILL_PATHFINDING] = {};
+        TTH_PATH.Perk[HERO_SKILL_PATHFINDING]["Pre"] = TTH_PATH.Perk["Pre"] .."019-PathFinding/";
+        TTH_PATH.Perk[HERO_SKILL_PATHFINDING]["Text"] = TTH_PATH.Perk[HERO_SKILL_PATHFINDING]["Pre"].."Text.txt";
+        TTH_PATH.Perk[HERO_SKILL_PATHFINDING]["Sign"] = TTH_PATH.Perk[HERO_SKILL_PATHFINDING]["Pre"].."Sign.txt";
+        TTH_PATH.Perk[HERO_SKILL_PATHFINDING]["Callback"] = TTH_PATH.Perk[HERO_SKILL_PATHFINDING]["Pre"].."Callback.txt";
+        TTH_PATH.Perk[HERO_SKILL_PATHFINDING]["HasSign"] = TTH_PATH.Perk[HERO_SKILL_PATHFINDING]["Pre"].."HasSign.txt";
+        TTH_PATH.Perk[HERO_SKILL_PATHFINDING]["SignSuccess"] = TTH_PATH.Perk[HERO_SKILL_PATHFINDING]["Pre"].."SignSuccess.txt";
+        TTH_PATH.Perk[HERO_SKILL_PATHFINDING]["NotEnoughTimes"] = TTH_PATH.Perk[HERO_SKILL_PATHFINDING]["Pre"].."NotEnoughTimes.txt";
+        TTH_PATH.Perk[HERO_SKILL_PATHFINDING]["NoSign"] = TTH_PATH.Perk[HERO_SKILL_PATHFINDING]["Pre"].."NoSign.txt";
+        TTH_PATH.Perk[HERO_SKILL_PATHFINDING]["CallbackSuccess"] = TTH_PATH.Perk[HERO_SKILL_PATHFINDING]["Pre"].."CallbackSuccess.txt";
       -- HERO_SKILL_SCOUTING 020 侦察术
         TTH_PATH.Perk[HERO_SKILL_SCOUTING] = {};
         TTH_PATH.Perk[HERO_SKILL_SCOUTING]["Pre"] = TTH_PATH.Perk["Pre"] .."020-Scouting/";
@@ -2489,7 +2500,11 @@
         [TTH_ENUM.FuncInit] = {
         }
         , [TTH_ENUM.FuncActive] = {
-          [HERO_SKILL_SCOUTING] = {
+          [HERO_SKILL_PATHFINDING] = {
+            ["Text"] = TTH_PATH.Perk[HERO_SKILL_PATHFINDING]["Text"]
+            , [TTH_ENUM.FuncNotAtGate] = "TTH_PERK.pathFinding.active"
+          }
+          , [HERO_SKILL_SCOUTING] = {
             ["Text"] = TTH_PATH.Perk[HERO_SKILL_SCOUTING]["Text"]
             , [TTH_ENUM.FuncAtGate] = "TTH_PERK.active020"
             , [TTH_ENUM.FuncNotAtGate] = "TTH_PERK.active020"
@@ -2602,7 +2617,10 @@
         , [TTH_ENUM.FuncDealWeekly] = {
         }
         , [TTH_ENUM.FuncResetWeekly] = {
-          [HERO_SKILL_SCOUTING] = {
+          [HERO_SKILL_PATHFINDING] = {
+            [TTH_ENUM.FuncAlways] = "TTH_PERK.pathFinding.resetWeekly"
+          }
+          , [HERO_SKILL_SCOUTING] = {
             [TTH_ENUM.FuncAlways] = "TTH_PERK.resetWeekly020"
           }
           , [HERO_SKILL_RECRUITMENT] = {
@@ -2651,7 +2669,10 @@
           }
         }
         , [TTH_ENUM.FuncResetDaily] = {
-          [HERO_SKILL_SCOUTING] = {
+          [HERO_SKILL_PATHFINDING] = {
+            [TTH_ENUM.FuncAlways] = "TTH_PERK.pathFinding.resetDaily"
+          }
+          , [HERO_SKILL_SCOUTING] = {
             [TTH_ENUM.FuncAlways] = "TTH_PERK.resetDaily020"
           }
           , [HERO_SKILL_POWER_OF_HASTE] = {
@@ -10526,7 +10547,7 @@
       }
 
     -- 默认英雄特长提升
-      TTH_TABLE.HeroDefaultTalent = {
+      TTH_TABLE.HeroMasteryTalent = {
         "RedHeavenHero02"
         , "Axel"
         , "SaintIsabell"
@@ -10541,5 +10562,51 @@
         , "Brand"
         , "KingTolghar"
         , "Una"
+        , "KujinMP"
+      };
+      TTH_TABLE.HeroShantiriTalent = {
+        "RedHeavenHero02"
+        , "Axel"
+        , "SaintIsabell"
+        , "Linaas"
+        , "Sufi"
+        , "Timerkhan"
+        , "Dalom"
+        , "Raelag"
+        , "Ranleth"
+        , "Aberrar"
+        , "Agrael"
+        , "Brand"
+        , "KingTolghar"
+        , "Una"
+        , "Hero2"
+        , "KujinMP"
       };
 
+    -- 野蛮人终极分类
+      TTH_TABLE.StrongholdAbsolute1 = {
+        "Hero9"
+        , "Hero7"
+        , "Hero8"
+        , "Azar"
+        , "Hero4"
+        , "Hero2"
+        , "Matewa"
+      };
+      TTH_TABLE.StrongholdAbsolute2 = {
+        "Crag"
+        , "Gottai"
+        , "Hero1"
+        , "Hero3"
+        , "KujinMP"
+        , "Kunyak"
+      };
+      TTH_TABLE.StrongholdAbsolute3 = {
+        "Kraal"
+        , "Hero6"
+        , "Quroq"
+        , "Shiva"
+        , "Zouleika"
+        , "Erika"
+        , "Mokka"
+      };

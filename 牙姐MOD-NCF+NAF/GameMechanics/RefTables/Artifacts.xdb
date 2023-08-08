@@ -3539,11 +3539,11 @@
 				<AIValue>10000</AIValue>
 				<CanBeGeneratedToSell>true</CanBeGeneratedToSell>
 				<HeroStatsModif>
-					<Attack>2</Attack>
+					<Attack>1</Attack>
 					<Defence>0</Defence>
 					<Knowledge>0</Knowledge>
 					<SpellPower>0</SpellPower>
-					<Morale>2</Morale>
+					<Morale>1</Morale>
 					<Luck>0</Luck>
 				</HeroStatsModif>
 				<ArtifactShared href="/MapObjects/Artifacts/141-FlagOfCharge.(AdvMapArtifactShared).xdb#xpointer(/AdvMapArtifactShared)"/>

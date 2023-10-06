@@ -75,6 +75,7 @@ print("TTH_CombatCore loading...");
 -- 变量
   TCS_VARI = {};
   TCS_VARI.debug = TCS_ENUM.Switch.Yes;
+  TCS_VARI.isAutoFinish = 1;
 
   -- 快照
     TCS_VARI.Snapshot = {};
@@ -85,7 +86,6 @@ print("TTH_CombatCore loading...");
   -- 单位列表
     TCS_VARI.Unit = {};
     TCS_VARI.Unit.setAtb = {}; -- 需要设置ATB
-    TCS_VARI.Unit.pasted = {}; -- 跳过结算
     TCS_VARI.Unit.trigger = {}; -- 进入结算
     TCS_VARI.Unit.continuous = {}; -- 单位连动
 
@@ -101,509 +101,184 @@ print("TTH_CombatCore loading...");
     TCS_VARI.Info.TownBattle = 0; -- 是否攻城战
     TCS_VARI.Info.TthMap10W = 0; -- 是否10周对决
 
+-- 初始化
+  TCS_INIT = {};
+
+  -- 初始化快照
+    TCS_INIT.Snapshot = function()
+      TCS_VARI.Snapshot.init = TTHCS_GLOBAL.geneSnapshot(TCS_ENUM.Switch.Yes);
+    end;
+  -- 初始化英雄等级
+    TCS_INIT.HeroLevel = function()
+      for strHero, itemHeroInfo in TTH_TABLE.Hero do
+        local strHeroLevel = GetGameVar(TTH_GAMEVAR.HeroLevel..strHero);
+        if strHeroLevel == "" then
+          TCS_VARI.Info.HeroLevel[strHero] = 1;
+        else
+          TCS_VARI.Info.HeroLevel[strHero] = strHeroLevel + 0;
+        end;
+      end;
+      local strAttackerHero = GetHero(TCS_ENUM.Side.Attacker);
+      local strDefenderHero = GetHero(TCS_ENUM.Side.Defender);
+      if strDefenderHero ~= nil then
+        local strAttackerHeroName = GetHeroName(strAttackerHero);
+        local strDefenderHeroName = GetHeroName(strDefenderHero);
+        if TCS_VARI.Info.HeroLevel[strDefenderHeroName] == 0 then
+          TCS_VARI.Info.HeroLevel[strDefenderHeroName] = TCS_VARI.Info.HeroLevel[strAttackerHeroName] + 3;
+          if TCS_VARI.Info.HeroLevel[strDefenderHeroName] > 40 then
+            TCS_VARI.Info.HeroLevel[strDefenderHeroName] = 40;
+          end;
+        end;
+      end;
+    end;
+  -- 初始化英雄属性
+    TCS_INIT.HeroAttribute = function()
+      for iSide = TCS_ENUM.Side.Attacker, TCS_ENUM.Side.Defender do
+        local sidHero = GetHero(iSide);
+        if sidHero ~= nil then
+          local strHero = GetHeroName(sidHero);
+          for iIndex, iAttributeId in TCS_TABLE.Effect.Attribute do
+            local strKey = TTH_GAMEVAR.Attribute..strHero.."_"..iAttributeId;
+            local strValue = GetGameVar(strKey);
+            if strValue ~= "" then
+              if TCS_VARI.Info.HeroAttribute[strHero] == nil then
+                TCS_VARI.Info.HeroAttribute[strHero] = {};
+              end;
+              TCS_VARI.Info.HeroAttribute[strHero][iAttributeId] = strValue + 0;
+            end;
+          end;
+        end;
+      end;
+    end;
+  -- 初始化英雄特长
+    TCS_INIT.HeroTalent = function()
+      for iSide = TCS_ENUM.Side.Attacker, TCS_ENUM.Side.Defender do
+        local sidHero = GetHero(iSide);
+        if sidHero ~= nil then
+          local strHero = GetHeroName(sidHero);
+          local strKey = TTH_GAMEVAR.Talent..strHero;
+          local strValue = GetGameVar(strKey);
+          if strValue == "" then
+            TCS_VARI.Info.HeroTalent[strHero] = 0;
+          else
+            TCS_VARI.Info.HeroTalent[strHero] = strValue + 0;
+          end;
+        end;
+      end;
+    end;
+  -- 初始化英雄特长提升-熟练
+    TCS_INIT.HeroUpgradeMastery = function()
+      for iSide = TCS_ENUM.Side.Attacker, TCS_ENUM.Side.Defender do
+        local sidHero = GetHero(iSide);
+        if sidHero ~= nil then
+          local strHero = GetHeroName(sidHero);
+          local strKey = TTH_GAMEVAR.Mastery..strHero;
+          local strValue = GetGameVar(strKey);
+          if strValue == "" then
+            TCS_VARI.Info.HeroUpgradeMastery[strHero] = 0;
+          else
+            TCS_VARI.Info.HeroUpgradeMastery[strHero] = strValue + 0;
+          end;
+        end;
+      end;
+    end;
+  -- 初始化英雄特长提升-精通
+    TCS_INIT.HeroUpgradeShantiri = function()
+      for iSide = TCS_ENUM.Side.Attacker, TCS_ENUM.Side.Defender do
+        local sidHero = GetHero(iSide);
+        if sidHero ~= nil then
+          local strHero = GetHeroName(sidHero);
+          local strKey = TTH_GAMEVAR.Shantiri..strHero;
+          local strValue = GetGameVar(strKey);
+          if strValue == "" then
+            TCS_VARI.Info.HeroUpgradeShantiri[strHero] = 0;
+          else
+            TCS_VARI.Info.HeroUpgradeShantiri[strHero] = strValue + 0;
+          end;
+        end;
+      end;
+    end;
+  -- 初始化英雄技能
+    TCS_INIT.HeroSkill = function()
+      for iSide = TCS_ENUM.Side.Attacker, TCS_ENUM.Side.Defender do
+        local sidHero = GetHero(iSide);
+        if sidHero ~= nil then
+          local strHero = GetHeroName(sidHero);
+          for iIndex, iSkillId in TCS_TABLE.Effect.Skill do
+            local strKey = TTH_GAMEVAR.Skill..strHero.."_"..iSkillId;
+            local strValue = GetGameVar(strKey);
+            if TCS_VARI.Info.HeroSkill[strHero] == nil then
+              TCS_VARI.Info.HeroSkill[strHero] = {};
+            end;
+            if strValue == "" then
+              TCS_VARI.Info.HeroSkill[strHero][iSkillId] = 0;
+            else
+              TCS_VARI.Info.HeroSkill[strHero][iSkillId] = strValue + 0;
+            end;
+          end;
+        end;
+      end;
+    end;
+  -- 初始化英雄宝物
+    TCS_INIT.HeroArtifact = function()
+      for iSide = TCS_ENUM.Side.Attacker, TCS_ENUM.Side.Defender do
+        local sidHero = GetHero(iSide);
+        if sidHero ~= nil then
+          local strHero = GetHeroName(sidHero);
+          for iIndex, iArtifactId in TCS_TABLE.Effect.Artifact do
+            local strKey = TTH_GAMEVAR.Artifact..strHero.."_"..iArtifactId;
+            local strValue = GetGameVar(strKey);
+            if TCS_VARI.Info.HeroArtifact[strHero] == nil then
+              TCS_VARI.Info.HeroArtifact[strHero] = {};
+            end;
+            if strValue == "" then
+              TCS_VARI.Info.HeroArtifact[strHero][iArtifactId] = 0;
+            else
+              TCS_VARI.Info.HeroArtifact[strHero][iArtifactId] = strValue + 0;
+            end;
+          end;
+        end;
+      end;
+    end;
+  -- 初始化英雄组合宝物
+    TCS_INIT.HeroArtifactSet = function()
+      for iSide = TCS_ENUM.Side.Attacker, TCS_ENUM.Side.Defender do
+        local sidHero = GetHero(iSide);
+        if sidHero ~= nil then
+          local strHero = GetHeroName(sidHero);
+          for iIndex, iArtifactSetId in TCS_TABLE.Effect.ArtifactSet do
+            local strKey = TTH_GAMEVAR.ArtifactSet..strHero.."_"..iArtifactSetId;
+            local strValue = GetGameVar(strKey);
+            if TCS_VARI.Info.HeroArtifactSet[strHero] == nil then
+              TCS_VARI.Info.HeroArtifactSet[strHero] = {};
+            end;
+            if strValue == "" then
+              TCS_VARI.Info.HeroArtifactSet[strHero][iArtifactSetId] = 0;
+            else
+              TCS_VARI.Info.HeroArtifactSet[strHero][iArtifactSetId] = strValue + 0;
+            end;
+          end;
+        end;
+      end;
+    end;
+  -- 初始化是否攻城战
+    TCS_INIT.TownBattle = function()
+      local arrBuilding = GetBuildings(TCS_ENUM.Side.Defender);
+      if arrBuilding ~= nil and length(arrBuilding) > 0 then
+        TCS_VARI.Info.TownBattle = 1;
+      end;
+    end;
+  -- 初始化是否10周对决
+    TCS_INIT.TthMap10W = function()
+      local strKey = "TTH_MAP10W";
+      local strValue = GetGameVar(strKey);
+      if strValue == "1" then
+        TCS_VARI.Info.TthMap10W = 1;
+      end;
+    end;
+
 -- 函数
   TCS_FUNC = {};
-
-  -- 初始化
-    TCS_FUNC.Init = {};
-
-    -- 初始化快照
-      TCS_FUNC.Init.Snapshot = function()
-        TCS_VARI.Snapshot.init = TTHCS_GLOBAL.geneSnapshot(TCS_ENUM.Switch.Yes);
-      end;
-    -- 初始化英雄等级
-      TCS_FUNC.Init.HeroLevel = function()
-        for strHero, itemHeroInfo in TTH_TABLE.Hero do
-          local strHeroLevel = GetGameVar(TTH_GAMEVAR.HeroLevel..strHero);
-          if strHeroLevel == "" then
-            TCS_VARI.Info.HeroLevel[strHero] = 1;
-          else
-            TCS_VARI.Info.HeroLevel[strHero] = strHeroLevel + 0;
-          end;
-        end;
-        local strAttackerHero = GetHero(TCS_ENUM.Side.Attacker);
-        local strDefenderHero = GetHero(TCS_ENUM.Side.Defender);
-        if strDefenderHero ~= nil then
-          local strAttackerHeroName = GetHeroName(strAttackerHero);
-          local strDefenderHeroName = GetHeroName(strDefenderHero);
-          if TCS_VARI.Info.HeroLevel[strDefenderHeroName] == 0 then
-            TCS_VARI.Info.HeroLevel[strDefenderHeroName] = TCS_VARI.Info.HeroLevel[strAttackerHeroName] + 3;
-            if TCS_VARI.Info.HeroLevel[strDefenderHeroName] > 40 then
-              TCS_VARI.Info.HeroLevel[strDefenderHeroName] = 40;
-            end;
-          end;
-        end;
-      end;
-    -- 初始化英雄属性
-      TCS_FUNC.Init.HeroAttribute = function()
-        for iSide = TCS_ENUM.Side.Attacker, TCS_ENUM.Side.Defender do
-          local sidHero = GetHero(iSide);
-          if sidHero ~= nil then
-            local strHero = GetHeroName(sidHero);
-            for iIndex, iAttributeId in TCS_TABLE.Effect.Attribute do
-              local strKey = TTH_GAMEVAR.Attribute..strHero.."_"..iAttributeId;
-              local strValue = GetGameVar(strKey);
-              if strValue ~= "" then
-                if TCS_VARI.Info.HeroAttribute[strHero] == nil then
-                  TCS_VARI.Info.HeroAttribute[strHero] = {};
-                end;
-                TCS_VARI.Info.HeroAttribute[strHero][iAttributeId] = strValue + 0;
-              end;
-            end;
-          end;
-        end;
-      end;
-    -- 初始化英雄特长
-      TCS_FUNC.Init.HeroTalent = function()
-        for iSide = TCS_ENUM.Side.Attacker, TCS_ENUM.Side.Defender do
-          local sidHero = GetHero(iSide);
-          if sidHero ~= nil then
-            local strHero = GetHeroName(sidHero);
-            local strKey = TTH_GAMEVAR.Talent..strHero;
-            local strValue = GetGameVar(strKey);
-            if strValue == "" then
-              TCS_VARI.Info.HeroTalent[strHero] = 0;
-            else
-              TCS_VARI.Info.HeroTalent[strHero] = strValue + 0;
-            end;
-          end;
-        end;
-      end;
-    -- 初始化英雄特长提升-熟练
-      TCS_FUNC.Init.HeroUpgradeMastery = function()
-        for iSide = TCS_ENUM.Side.Attacker, TCS_ENUM.Side.Defender do
-          local sidHero = GetHero(iSide);
-          if sidHero ~= nil then
-            local strHero = GetHeroName(sidHero);
-            local strKey = TTH_GAMEVAR.Mastery..strHero;
-            local strValue = GetGameVar(strKey);
-            if strValue == "" then
-              TCS_VARI.Info.HeroUpgradeMastery[strHero] = 0;
-            else
-              TCS_VARI.Info.HeroUpgradeMastery[strHero] = strValue + 0;
-            end;
-          end;
-        end;
-      end;
-    -- 初始化英雄特长提升-精通
-      TCS_FUNC.Init.HeroUpgradeShantiri = function()
-        for iSide = TCS_ENUM.Side.Attacker, TCS_ENUM.Side.Defender do
-          local sidHero = GetHero(iSide);
-          if sidHero ~= nil then
-            local strHero = GetHeroName(sidHero);
-            local strKey = TTH_GAMEVAR.Shantiri..strHero;
-            local strValue = GetGameVar(strKey);
-            if strValue == "" then
-              TCS_VARI.Info.HeroUpgradeShantiri[strHero] = 0;
-            else
-              TCS_VARI.Info.HeroUpgradeShantiri[strHero] = strValue + 0;
-            end;
-          end;
-        end;
-      end;
-    -- 初始化英雄技能
-      TCS_FUNC.Init.HeroSkill = function()
-        for iSide = TCS_ENUM.Side.Attacker, TCS_ENUM.Side.Defender do
-          local sidHero = GetHero(iSide);
-          if sidHero ~= nil then
-            local strHero = GetHeroName(sidHero);
-            for iIndex, iSkillId in TCS_TABLE.Effect.Skill do
-              local strKey = TTH_GAMEVAR.Skill..strHero.."_"..iSkillId;
-              local strValue = GetGameVar(strKey);
-              if TCS_VARI.Info.HeroSkill[strHero] == nil then
-                TCS_VARI.Info.HeroSkill[strHero] = {};
-              end;
-              if strValue == "" then
-                TCS_VARI.Info.HeroSkill[strHero][iSkillId] = 0;
-              else
-                TCS_VARI.Info.HeroSkill[strHero][iSkillId] = strValue + 0;
-              end;
-            end;
-          end;
-        end;
-      end;
-    -- 初始化英雄宝物
-      TCS_FUNC.Init.HeroArtifact = function()
-        for iSide = TCS_ENUM.Side.Attacker, TCS_ENUM.Side.Defender do
-          local sidHero = GetHero(iSide);
-          if sidHero ~= nil then
-            local strHero = GetHeroName(sidHero);
-            for iIndex, iArtifactId in TCS_TABLE.Effect.Artifact do
-              local strKey = TTH_GAMEVAR.Artifact..strHero.."_"..iArtifactId;
-              local strValue = GetGameVar(strKey);
-              if TCS_VARI.Info.HeroArtifact[strHero] == nil then
-                TCS_VARI.Info.HeroArtifact[strHero] = {};
-              end;
-              if strValue == "" then
-                TCS_VARI.Info.HeroArtifact[strHero][iArtifactId] = 0;
-              else
-                TCS_VARI.Info.HeroArtifact[strHero][iArtifactId] = strValue + 0;
-              end;
-            end;
-          end;
-        end;
-      end;
-    -- 初始化英雄组合宝物
-      TCS_FUNC.Init.HeroArtifactSet = function()
-        for iSide = TCS_ENUM.Side.Attacker, TCS_ENUM.Side.Defender do
-          local sidHero = GetHero(iSide);
-          if sidHero ~= nil then
-            local strHero = GetHeroName(sidHero);
-            for iIndex, iArtifactSetId in TCS_TABLE.Effect.ArtifactSet do
-              local strKey = TTH_GAMEVAR.ArtifactSet..strHero.."_"..iArtifactSetId;
-              local strValue = GetGameVar(strKey);
-              if TCS_VARI.Info.HeroArtifactSet[strHero] == nil then
-                TCS_VARI.Info.HeroArtifactSet[strHero] = {};
-              end;
-              if strValue == "" then
-                TCS_VARI.Info.HeroArtifactSet[strHero][iArtifactSetId] = 0;
-              else
-                TCS_VARI.Info.HeroArtifactSet[strHero][iArtifactSetId] = strValue + 0;
-              end;
-            end;
-          end;
-        end;
-      end;
-    -- 初始化是否攻城战
-      TCS_FUNC.Init.TownBattle = function()
-        local arrBuilding = GetBuildings(TCS_ENUM.Side.Defender);
-        if arrBuilding ~= nil and length(arrBuilding) > 0 then
-          TCS_VARI.Info.TownBattle = 1;
-        end;
-      end;
-    -- 初始化是否10周对决
-      TCS_FUNC.Init.TthMap10W = function()
-        local strKey = "TTH_MAP10W";
-        local strValue = GetGameVar(strKey);
-        if strValue == "1" then
-          TCS_VARI.Info.TthMap10W = 1;
-        end;
-      end;
-
-  -- 战场
-    TCS_FUNC.Battle = {};
-
-    -- 战斗开始时特效触发入口
-      TCS_FUNC.Battle.hasDealStart = TCS_ENUM.Switch.No;
-      TCS_FUNC.Battle.start = function()
-        print("dealStart");
-        TCS_FUNC.Battle.hasDealStart = TCS_ENUM.Switch.Yes;
-        for iSide = TCS_ENUM.Side.Attacker, TCS_ENUM.Side.Defender do
-          -- 特长
-            -- Haven
-              -- Ving 004 艾莲娜
-                TCS_FUNC.Talent.Ving.start(iSide);
-
-              -- Sarge 005 克劳斯
-                TCS_FUNC.Talent.Sarge.start(iSide);
-
-              -- Tarkus 158 塔库斯
-                TCS_FUNC.Talent.Tarkus.start(iSide);
-
-            -- Sylvan
-              -- Ildar 037 娜瑞莎
-                TCS_FUNC.Talent.Ildar.start(iSide);
-
-              -- Vaniel 038 蒂耶鲁
-                TCS_FUNC.Talent.Vaniel.start(iSide);
-
-            -- Academy
-              -- Solmyr 058 索姆拉
-                TCS_FUNC.Talent.Solmyr.start(iSide);
-
-            -- Dungeon
-              -- Shadwyn 068 伊拉娅
-                TCS_FUNC.Talent.Shadwyn.start(iSide);
-
-              -- Kastore 073 卡斯托雷
-                TCS_FUNC.Talent.Kastore.masterOfIce.start(iSide);
-                TCS_FUNC.Talent.Kastore.masterOfFire.start(iSide);
-                TCS_FUNC.Talent.Kastore.masterOfLightnings.start(iSide);
-
-            -- Necropolis
-              -- Sandro 095 山德鲁
-                TCS_FUNC.Talent.Sandro.trigger.HolyWord(iSide);
-
-            -- Inferno
-
-            -- Fortress
-              -- Tazar 120 泰泽
-                TCS_FUNC.Talent.Tazar.start(iSide);
-
-              -- Hangvul2 127 尤兰德
-                TCS_FUNC.Talent.Hangvul2.start(iSide);
-
-              -- Vegeyr 129 斯威
-                TCS_FUNC.Talent.Vegeyr.start(iSide);
-
-            -- Stronghold
-              -- Azar 138 艾扎-埃克
-                TCS_FUNC.Talent.Azar.start(iSide);
-
-              -- Hero4 139 哥沙克
-                TCS_FUNC.Talent.Hero4.start(iSide);
-
-              -- KujinMP 147 库金
-                TCS_FUNC.Talent.KujinMP.start(iSide);
-
-              -- Shiva 151 希娃
-                TCS_FUNC.Talent.Shiva.start(iSide);
-
-          -- 技能
-            -- HERO_SKILL_CASTER_CERTIFICATE 081 神秘精髓
-              TCS_FUNC.Skill.CasterCertificate.start(iSide);
-
-            -- HERO_SKILL_FOREST_GUARD_EMBLEM 115 战地支援
-              TCS_FUNC.Skill.ForestGuardEmblem.start(iSide);
-
-            -- HERO_SKILL_PARIAH 083 堕落骑士
-              TCS_FUNC.Skill.Pariah.start(iSide);
-
-            -- HERO_SKILL_TWILIGHT 109 微光黎明
-              TCS_FUNC.Skill.Twilight.start(iSide);
-
-          -- 宝物
-            -- ARTIFACT_BAND_OF_CONJURER 060 元素腕带
-              TCS_FUNC.Artifact.BandOfConjurer.start(iSide);
-
-            -- ARTIFACT_GEM_OF_PHANTOM 102 幻影宝石
-              TCS_FUNC.Artifact.GemOfPhantom.start(iSide);
-
-            -- ARTIFACT_DRUM_OF_CHARGE 106 冲锋战鼓
-              TCS_FUNC.Artifact.DrumOfCharge.start(iSide);
-
-            -- ARTIFACT_ANGELIC_ALLIANCE 068 天使联盟
-              TCS_FUNC.Artifact.AngelicAlliance.start(iSide);
-
-            -- ARTIFACT_CURSE_SHOULDER 114 诅咒斗篷
-              TCS_FUNC.Artifact.CurseShoulder.start(iSide);
-
-            -- ARTIFACT_SENTINEL 124 哨兵之盾
-              TCS_FUNC.Artifact.Sentinel.start(iSide);
-
-          -- 组合宝物
-
-          -- 生物
-        end;
-      end;
-
-    -- 暂停
-      TCS_FUNC.Battle.pause = function(bStart)
-        combatSetPause(1);
-        if bStart == nil then
-          TCS_FUNC.Pasted.pause();
-        end;
-        local sidHero = GetHero(TCS_ENUM.Side.Attacker);
-        TTHCS_GLOBAL.setHeroMana(sidHero, GetUnitManaPoints(sidHero));
-      end;
-
-    -- 继续
-      TCS_FUNC.Battle.proceed = function()
-        combatSetPause(nil);
-      end;
-
-    -- 记录快照
-      TCS_FUNC.Battle.snapshot = function()
-        if TCS_VARI.Snapshot.last ~= nil then
-          TCS_VARI.Snapshot.before = TCS_VARI.Snapshot.last;
-        else
-          TCS_VARI.Snapshot.before = TCS_VARI.Snapshot.init;
-        end;
-        TCS_VARI.Snapshot.last = TTHCS_GLOBAL.geneSnapshot(TCS_ENUM.Switch.No);
-      end;
-
-  -- 跳过结算相关
-    TCS_FUNC.Pasted = {};
-
-    -- 记录
-      TCS_FUNC.Pasted.set = function(itemUnit)
-        TCS_VARI.Unit.pasted = itemUnit;
-      end;
-    -- 执行
-      TCS_FUNC.Pasted.check = function(itemUnit)
-        local bCheck = nil;
-        if itemUnit["UnitName"] == TCS_VARI.Unit.pasted["UnitName"] then
-          bCheck = not nil;
-        end;
-        return bCheck;
-      end;
-    -- 清空
-      TCS_FUNC.Pasted.reset = function()
-        TCS_VARI.Unit.pasted = {};
-      end;
-    -- 游戏上回合是否结算并暂停过
-      TCS_VARI.Unit.bPause = 0;
-      TCS_FUNC.Pasted.pause = function()
-        TCS_VARI.Unit.bPause = TCS_ENUM.Switch.Yes;
-      end;
-      TCS_FUNC.Pasted.isPause = function()
-        local bCheck = nil;
-        if TCS_VARI.Unit.bPause == TCS_ENUM.Switch.Yes then
-          bCheck = not nil;
-        end;
-        return bCheck;
-      end;
-      TCS_FUNC.Pasted.clear = function()
-        TCS_VARI.Unit.bPause = TCS_ENUM.Switch.No;
-      end;
-
-  -- ATB相关
-    TCS_FUNC.Atb = {};
-
-    -- 记录
-      TCS_FUNC.Atb.record = function(sidUnit, iAtb)
-        local itemAtb = {};
-        itemAtb["UnitName"] = sidUnit;
-        itemAtb["ATB"] = iAtb;
-        push(TCS_VARI.Unit.setAtb, itemAtb);
-      end;
-    -- 执行
-      TCS_FUNC.Atb.deal = function()
-        for i, itemAtb in TCS_VARI.Unit.setAtb do
-          if IsCombatUnit(itemAtb["UnitName"]) ~= nil then
-            setATB(itemAtb["UnitName"], itemAtb["ATB"]);
-          end;
-        end;
-        TCS_VARI.Unit.setAtb = {};
-      end;
-
-  -- 单位连动相关
-    TCS_FUNC.Continuous = {};
-
-    -- 执行
-      TCS_FUNC.Continuous.deal = function(itemUnit, itemUnitLast)
-        if itemUnitLast ~= nil then
-          local sidUnit = itemUnitLast["UnitName"]
-          if IsCombatUnit(sidUnit) == nil then
-            return nil;
-          end;
-          local iChance = TCS_FUNC.Continuous.get(sidUnit);
-          if iChance ~= nil and iChance > 0 then
-            if TTHCS_COMMON.getRandom(100) <= iChance then
-              TCS_FUNC.Battle.pause();
-              TTHCS_GLOBAL.print("TCS_FUNC.Continuous.deal: "..sidUnit.." continuous");
-              if iChance < 100 then
-                iChance = 0;
-              else
-                iChance = iChance - 100;
-              end;
-              TCS_FUNC.Continuous.set(sidUnit, iChance);
-
-              local iSide = itemUnitLast["Side"];
-              local sidHero = GetHero(iSide);
-              if sidHero ~= nil then
-                local strHero = GetHeroName(sidHero);
-                if strHero == "Mephala"
-                  and TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-                  TTHCS_THREAD.defend(sidUnit);
-                  ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidUnit, 5);
-                else
-                  TCS_FUNC.Atb.record(sidUnit, TCS_ENUM.Atb.max);
-                  ShowFlyingSign(TTHCS_PATH["Continuous"]["Effect"], sidUnit, 5);
-                end;
-              else
-                TCS_FUNC.Atb.record(sidUnit, TCS_ENUM.Atb.max);
-                ShowFlyingSign(TTHCS_PATH["Continuous"]["Effect"], sidUnit, 5);
-              end;
-              TCS_FUNC.Battle.proceed();
-            else
-              TCS_FUNC.Continuous.sign(sidUnit, iChance);
-            end;
-          end;
-        end;
-      end;
-    -- 获取
-      TCS_FUNC.Continuous.get = function(sidUnit)
-        return TCS_VARI.Unit.continuous[sidUnit];
-      end;
-    -- 设置
-      TCS_FUNC.Continuous.set = function(sidUnit, iChance)
-        TCS_VARI.Unit.continuous[sidUnit] = iChance;
-      end;
-    -- 增加
-      TCS_FUNC.Continuous.increase = function(sidUnit, iChance, sidUnitLast)
-        local itemUnit = TTHCS_GLOBAL.geneUnitInfo(sidUnit);
-        if itemUnit["UnitCategory"] == TTH_ENUM.CombatCreature then
-          local iSide = itemUnit["Side"];
-          local sidHero = GetHero(iSide);
-          if sidHero ~= nil then
-            local strHero = GetHeroName(sidHero);
-            if strHero == "Crag"
-              and TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
-              iChance = iChance * 1.5;
-            end;
-            if strHero == "Mardigo"
-              and TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
-              iChance = iChance * 1.5;
-            end;
-            if strHero == "Arniel"
-              and TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
-              iChance = iChance * 1.5;
-            end;
-            if strHero == "Mephala"
-              and TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-              iChance = iChance * 3;
-            end;
-            if TCS_VARI.Info.HeroArtifactSet[strHero][ARTIFACTSET_CHARGE] >= 2 then
-              iChance = iChance * (1 + 0.1 * TCS_VARI.Info.HeroArtifactSet[strHero][ARTIFACTSET_CHARGE]);
-            end;
-          end;
-        elseif itemUnit["UnitCategory"] == TTH_ENUM.CombatHero then
-        end;
-        iChance = TTHCS_COMMON.floor(iChance);
-        if TCS_VARI.Unit.continuous[sidUnit] == nil then
-          TCS_VARI.Unit.continuous[sidUnit] = 0;
-        end;
-        TCS_VARI.Unit.continuous[sidUnit] = TCS_VARI.Unit.continuous[sidUnit] + iChance;
-        if sidUnit ~= sidUnitLast then
-          TCS_FUNC.Continuous.sign(sidUnit, TCS_VARI.Unit.continuous[sidUnit]);
-        end;
-      end;
-    -- 提示
-      TCS_FUNC.Continuous.sign = function(sidUnit, iChance)
-        if iChance == 0 then
-        elseif iChance <= 5 then
-          ShowFlyingSign(TTHCS_PATH["Continuous"]["Effect005"], sidUnit, 5);
-        elseif iChance <= 10 then
-          ShowFlyingSign(TTHCS_PATH["Continuous"]["Effect010"], sidUnit, 5);
-        elseif iChance <= 15 then
-          ShowFlyingSign(TTHCS_PATH["Continuous"]["Effect015"], sidUnit, 5);
-        elseif iChance <= 20 then
-          ShowFlyingSign(TTHCS_PATH["Continuous"]["Effect020"], sidUnit, 5);
-        elseif iChance <= 25 then
-          ShowFlyingSign(TTHCS_PATH["Continuous"]["Effect025"], sidUnit, 5);
-        elseif iChance <= 30 then
-          ShowFlyingSign(TTHCS_PATH["Continuous"]["Effect030"], sidUnit, 5);
-        elseif iChance <= 35 then
-          ShowFlyingSign(TTHCS_PATH["Continuous"]["Effect035"], sidUnit, 5);
-        elseif iChance <= 40 then
-          ShowFlyingSign(TTHCS_PATH["Continuous"]["Effect040"], sidUnit, 5);
-        elseif iChance <= 45 then
-          ShowFlyingSign(TTHCS_PATH["Continuous"]["Effect045"], sidUnit, 5);
-        elseif iChance <= 50 then
-          ShowFlyingSign(TTHCS_PATH["Continuous"]["Effect050"], sidUnit, 5);
-        elseif iChance <= 55 then
-          ShowFlyingSign(TTHCS_PATH["Continuous"]["Effect055"], sidUnit, 5);
-        elseif iChance <= 60 then
-          ShowFlyingSign(TTHCS_PATH["Continuous"]["Effect060"], sidUnit, 5);
-        elseif iChance <= 65 then
-          ShowFlyingSign(TTHCS_PATH["Continuous"]["Effect065"], sidUnit, 5);
-        elseif iChance <= 70 then
-          ShowFlyingSign(TTHCS_PATH["Continuous"]["Effect070"], sidUnit, 5);
-        elseif iChance <= 75 then
-          ShowFlyingSign(TTHCS_PATH["Continuous"]["Effect075"], sidUnit, 5);
-        elseif iChance <= 80 then
-          ShowFlyingSign(TTHCS_PATH["Continuous"]["Effect080"], sidUnit, 5);
-        elseif iChance <= 85 then
-          ShowFlyingSign(TTHCS_PATH["Continuous"]["Effect085"], sidUnit, 5);
-        elseif iChance <= 90 then
-          ShowFlyingSign(TTHCS_PATH["Continuous"]["Effect090"], sidUnit, 5);
-        elseif iChance <= 95 then
-          ShowFlyingSign(TTHCS_PATH["Continuous"]["Effect095"], sidUnit, 5);
-        else
-          ShowFlyingSign(TTHCS_PATH["Continuous"]["Effect100"], sidUnit, 5);
-        end;
-      end;
 
   -- 英雄特长
     TCS_FUNC.Talent = {};
@@ -631,7 +306,6 @@ print("TTH_CombatCore loading...");
                 end;
                 listCreatureCaster = TTHCS_COMMON.desc8key(listCreatureCaster, "UnitNumber");
                 if length(listCreatureCaster) > 0 then
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Orrin.trigger");
                   if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 0 then
                     listCreatureCaster = { [0] = listCreatureCaster[0] };
@@ -641,12 +315,11 @@ print("TTH_CombatCore loading...");
                       local itemCreatureTarget = TTHCS_GLOBAL.geneUnitInfo(sidCreatureTarget);
                       TTHCS_THREAD.cast.area.impl(itemCreatureCaster["UnitName"], SPELL_ABILITY_SCATTER_SHOT, itemCreatureTarget["PosX"], itemCreatureTarget["PosY"], TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No);
                       if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-                        TCS_FUNC.Atb.record(itemCreatureCaster["UnitName"], TCS_ENUM.Atb.max);
+                        TCS_BATTLE.atb.record(itemCreatureCaster["UnitName"], TCS_ENUM.Atb.max);
                       end;
                       ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], itemCreatureCaster["UnitName"], 5);
                     end;
                   end;
-                  TCS_FUNC.Battle.proceed();
                 end;
               end;
             end;
@@ -656,56 +329,75 @@ print("TTH_CombatCore loading...");
       -- Mardigo 003 拉兹罗
         TCS_FUNC.Talent.Mardigo = {};
         TCS_FUNC.Talent.Mardigo.strHero = "Mardigo";
-        TCS_FUNC.Talent.Mardigo.decrease = function(iSide, itemUnit, itemUnitLast, listCreatureNumberDecrease)
-          local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
-          local sidHero = GetHero(iSide);
-          if sidHero ~= nil then
-            local strHero = GetHeroName(sidHero);
-            if strHero == TCS_FUNC.Talent.Mardigo.strHero
-              and TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-              if length(listCreatureNumberDecrease[iSide]) > 0 then
-                local listCreatureFootman = TTHCS_GLOBAL.sort4CreatureType8Number2desc(iSide, CREATURE_FOOTMAN);
-                if length(listCreatureFootman) > 0 then
-                  local itemCreatureFootman = listCreatureFootman[0];
-                  local iContinuousNumber = 0;
-                  local iContinuousStep = 8;
-                  for i, sidCreatureDecrease in listCreatureNumberDecrease[iSide] do
-                    if TTHCS_GLOBAL.getDistance4Creature(sidCreatureDecrease, itemCreatureFootman["UnitName"]) <= 16 then
-                      iContinuousNumber = iContinuousNumber + iContinuousStep;
-                    end;
-                  end;
-                  if iContinuousNumber > 0 then
-                    TTHCS_GLOBAL.print("TCS_FUNC.Talent.Mardigo.decrease");
-                    TCS_FUNC.Continuous.increase(itemCreatureFootman["UnitName"], iContinuousNumber, itemUnitLast["UnitName"]);
-                  end;
-                end;
-              end;
+        TCS_FUNC.Talent.Mardigo.getArea = function()
+          TTHCS_GLOBAL.print("TCS_FUNC.Talent.Mardigo.getArea")
+          local strHero = TCS_FUNC.Talent.Mardigo.strHero;
+          local iArea = 2;
+          if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
+            iArea = iArea + 2;
+            if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
+              iArea = iArea + 2;
             end;
           end;
+          if TCS_VARI.Info.HeroSkill[strHero][HERO_SKILL_FAST_AND_FURIOUS] == 1 then
+            iArea = iArea + 1;
+          end;
+          if TCS_VARI.Info.HeroSkill[strHero][HERO_SKILL_ABSOLUTE_CHARGE] == 1 then
+            iArea = iArea + 1;
+          end;
+          if TCS_VARI.Info.HeroArtifact[strHero][ARTIFACT_BOOTS_OF_SWIFTNESS] == 1 then
+            iArea = iArea + 1;
+          end;
+          return iArea;
         end;
-        TCS_FUNC.Talent.Mardigo.death = function(iSide, itemUnit, itemUnitLast, listCreatureStatusDeath)
+        TCS_FUNC.Talent.Mardigo.checkDistance = function(objCreatureMain, objUnitTarget)
+          TTHCS_GLOBAL.print("TCS_FUNC.Talent.Mardigo.checkDistance")
+          local bCheck = nil;
+          local iArea = TCS_FUNC.Talent.Mardigo.getArea();
+          if TTHCS_GLOBAL.getDistance4Creature(objCreatureMain["UnitName"], objUnitTarget["UnitName"]) <= iArea * iArea then
+            bCheck = not nil;
+          end;
+          return bCheck;
+        end;
+        TCS_FUNC.Talent.Mardigo.checkSelf = function(iSide, objCreatureMain, listCreatureNumberDecrease)
+          TTHCS_GLOBAL.print("TCS_FUNC.Talent.Mardigo.checkSelf")
+          local bCheck = not nil;
+          if 1 == 1
+            and length(listCreatureNumberDecrease[iSide]) == 1
+            and listCreatureNumberDecrease[iSide][0] == objCreatureMain["UnitName"]
+          then
+            bCheck = nil;
+          end;
+          return bCheck;
+        end;
+        TCS_FUNC.Talent.Mardigo.trigger = function(iSide, itemUnit, itemUnitLast, listCreatureNumberDecrease, listCreatureStatusDeath)
           local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
-          local sidHero = GetHero(iSide);
-          if sidHero ~= nil then
-            local strHero = GetHeroName(sidHero);
-            if strHero == TCS_FUNC.Talent.Mardigo.strHero then
-              if length(listCreatureStatusDeath[iSide]) > 0 then
-                local listCreatureFootman = TTHCS_GLOBAL.sort4CreatureType8Number2desc(iSide, CREATURE_FOOTMAN);
-                if length(listCreatureFootman) > 0 then
-                  local itemCreatureFootman = listCreatureFootman[0];
-                  local iContinuousNumber = 0;
-                  local iContinuousStep = 30;
-                  for i, sidCreatureDeath in listCreatureStatusDeath[iSide] do
-                    if TTHCS_GLOBAL.getDistance4Creature(sidCreatureDeath, itemCreatureFootman["UnitName"]) <= 16 then
-                      iContinuousNumber = iContinuousNumber + iContinuousStep;
-                    end;
-                  end;
-                  if iContinuousNumber > 0 then
-                    TTHCS_GLOBAL.print("TCS_FUNC.Talent.Mardigo.death");
-                    TCS_FUNC.Continuous.increase(itemCreatureFootman["UnitName"], iContinuousNumber, itemUnitLast["UnitName"]);
-                  end;
-                end;
-              end;
+          local objCreatureMain = TTHCS_GLOBAL.getCreatureMain(iSide, CREATURE_FOOTMAN);
+          local objUnitLast = TTHCS_GLOBAL.geneUnitInfo(itemUnitLast["UnitName"]);
+          if 1 == 1
+            and GetHero(iSide) ~= nil
+            and GetHeroName(GetHero(iSide)) == TCS_FUNC.Talent.Mardigo.strHero
+            and (
+              1 ~= 1
+              or length(listCreatureNumberDecrease[iSide]) > 0
+              or length(listCreatureStatusDeath[iSide]) > 0
+            )
+            and objUnitLast["Side"] == iOppositeSide
+            and objUnitLast["UnitNumber"] ~= nil
+            and objUnitLast["UnitNumber"] > 0
+            and objCreatureMain ~= nil
+            and TCS_FUNC.Talent.Mardigo.checkDistance(objCreatureMain, objUnitLast)
+            and TCS_FUNC.Talent.Mardigo.checkSelf(iSide, objCreatureMain, listCreatureNumberDecrease)
+          then
+            TTHCS_GLOBAL.print("TCS_FUNC.Talent.Mardigo.trigger");
+            TTHCS_THREAD.attack8Tool(iSide, CREATURE_HEAVEN_MARDIGO_TOOL, 1, objUnitLast["PosX"], objUnitLast["PosY"], objUnitLast["UnitName"], 1);
+            sleep(100);
+            TTHCS_THREAD.attack8CheckPosition(iSide, objCreatureMain["UnitName"], objUnitLast["UnitName"]);
+            ShowFlyingSign(TTHCS_PATH["Talent"][TCS_FUNC.Talent.Mardigo.strHero]["Effect"], objCreatureMain["UnitName"], 5);
+            if IsHuman(itemUnit["Side"]) then
+              TCS_BATTLE.atb.record(objCreatureMain["UnitName"], TCS_ENUM.Atb.max);
+            else
+              TCS_BATTLE.atb.record(objCreatureMain["UnitName"], TCS_ENUM.Atb.immediate);
             end;
           end;
         end;
@@ -763,7 +455,6 @@ print("TTH_CombatCore loading...");
                   end;
                 end;
                 if bMatch == TCS_ENUM.Switch.No then
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Ving.trigger");
                   local arrCreatureTarget = listCreatureNumberDecrease[iOppositeSide];
                   local iRandomIndex = TTHCS_COMMON.getRandom(length(arrCreatureTarget));
@@ -771,10 +462,9 @@ print("TTH_CombatCore loading...");
                   local itemCreatureTarget = TTHCS_GLOBAL.geneUnitInfo(sidCreatureTarget);
                   TTHCS_THREAD.cast.area.impl(TCS_FUNC.Talent.Ving.sidCreature, SPELL_ABILITY_BATTLE_DIVE_FINISH, itemCreatureTarget["PosX"], itemCreatureTarget["PosY"], TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No);
                   if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
-                    TCS_FUNC.Atb.record(TCS_FUNC.Talent.Ving.sidCreature, TCS_ENUM.Atb.max);
+                    TCS_BATTLE.atb.record(TCS_FUNC.Talent.Ving.sidCreature, TCS_ENUM.Atb.max);
                   end;
                   ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], itemCreatureTarget["UnitName"], 5);
-                  TCS_FUNC.Battle.proceed();
                 end;
               end;
             end;
@@ -791,7 +481,6 @@ print("TTH_CombatCore loading...");
             local strHero = GetHeroName(sidHero);
             if strHero == TCS_FUNC.Talent.Sarge.strHero
               and TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-              TCS_FUNC.Battle.pause(1);
               TTHCS_GLOBAL.print("TCS_FUNC.Talent.Sarge.trigger");
               local listCreatureCaster = {};
               local arrCreature = GetCreatures(iSide);
@@ -821,7 +510,6 @@ print("TTH_CombatCore loading...");
                 end;
                 ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidCreatureTarget, 5);
               end;
-              TCS_FUNC.Battle.proceed();
             end;
           end;
         end;
@@ -829,38 +517,49 @@ print("TTH_CombatCore loading...");
       -- Christian 007 维托利奥
         TCS_FUNC.Talent.Christian = {};
         TCS_FUNC.Talent.Christian.strHero = "Christian";
-        TCS_FUNC.Talent.Christian.trigger = function(iSide, itemUnit, itemUnitLast)
+        TCS_FUNC.Talent.Christian.trigger = function(iSide, itemUnit, itemUnitLast, listCreatureNumberDecrease, listCreatureStatusDeath)
+          local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
           local sidHero = GetHero(iSide);
           if sidHero ~= nil then
             local strHero = GetHeroName(sidHero);
             if strHero == TCS_FUNC.Talent.Christian.strHero then
-              if itemUnitLast ~= nil then
-                if itemUnitLast["UnitName"] == sidHero then
-                  TTHCS_GLOBAL.print("TCS_FUNC.Talent.Christian.trigger.hero");
-                  local arrWarMachine = GetWarMachines(iSide);
-                  local iHeroLevel = TCS_VARI.Info.HeroLevel[strHero];
-                  for i, strWarMachine in arrWarMachine do
-                    if GetWarMachineType(strWarMachine) ~= TTH_ENUM.WarmachineAmmoCart then
-                      local iContinuousNumber = TTHCS_COMMON.ceil(iHeroLevel / 3);
-                      if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-                        iContinuousNumber = TTHCS_COMMON.ceil(iHeroLevel / 2);
-                      end;
-                      if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
-                        iContinuousNumber = iHeroLevel;
-                      end;
-                      TCS_FUNC.Continuous.increase(strWarMachine, iContinuousNumber, itemUnitLast["UnitName"]);
+              if itemUnitLast ~= nil
+                and itemUnitLast["Side"] == iSide
+                and itemUnitLast["UnitType"] == TTH_ENUM.WarmachineBallista then
+                if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1
+                  and (
+                    length(listCreatureNumberDecrease[iOppositeSide]) > 0
+                    or length(listCreatureStatusDeath[iOppositeSide]) > 0
+                  ) then
+                  local sidCreatureBeEffected = "";
+                  if length(listCreatureNumberDecrease[iOppositeSide]) > 0 then
+                    sidCreatureBeEffected = listCreatureNumberDecrease[iOppositeSide][0];
+                  end;
+                  if length(listCreatureStatusDeath[iOppositeSide]) > 0 then
+                    sidCreatureBeEffected = listCreatureStatusDeath[iOppositeSide][0];
+                  end;
+                  local itemCreatureBeEffected = TTHCS_GLOBAL.geneUnitInfo(sidCreatureBeEffected);
+                  local arrCreatureTarget = GetCreatures(iSide);
+                  local listSortDistance = {};
+                  for i, sidCreatureTarget in arrCreatureTarget do
+                    local itemCreatureTarget = TTHCS_GLOBAL.geneUnitInfo(sidCreatureTarget);
+                    local iDistanceX = itemCreatureBeEffected["PosX"] - itemCreatureTarget["PosX"];
+                    local iDistanceY = itemCreatureBeEffected["PosY"] - itemCreatureTarget["PosY"];
+                    itemCreatureTarget["Distance"] = iDistanceX * iDistanceX +  iDistanceY * iDistanceY;
+                    push(listSortDistance, itemCreatureTarget);
+                  end;
+                  if length(listSortDistance) > 0 then
+                    TTHCS_GLOBAL.print("TCS_FUNC.Talent.Christian.trigger");
+                    listSortDistance = TTHCS_COMMON.asc8key(listSortDistance, "Distance");
+                    local itemCreatureNearest = listSortDistance[0];
+                    TCS_BATTLE.atb.record(itemCreatureNearest["UnitName"], TCS_ENUM.Atb.immediate);
+                    ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], itemCreatureNearest["UnitName"], 5);
+                    if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
+                      local itemCreatureFarest = listSortDistance[length(listSortDistance) - 1];
+                      TCS_BATTLE.atb.record(itemCreatureFarest["UnitName"], TCS_ENUM.Atb.immediate);
+                      ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], itemCreatureFarest["UnitName"], 5);
                     end;
                   end;
-                elseif itemUnitLast["Side"] == iSide and itemUnitLast["UnitCategory"] == TTH_ENUM.CombatWarMachine then
-                  TTHCS_GLOBAL.print("TCS_FUNC.Talent.Christian.trigger.warMachine");
-                  local iContinuousNumber = 5;
-                  if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-                    iContinuousNumber = 8;
-                  end;
-                  if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
-                    iContinuousNumber = 10;
-                  end;
-                  TCS_FUNC.Continuous.increase(sidHero, iContinuousNumber, itemUnitLast["UnitName"]);
                 end;
               end;
             end;
@@ -882,7 +581,6 @@ print("TTH_CombatCore loading...");
                   or TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1
                 )
                 and length(listCreatureNumberDecrease[iOppositeSide]) > 0 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.RedHeavenHero05.trigger");
                 local iSpellId = SPELL_DISRUPTING_RAY;
                 if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
@@ -897,7 +595,6 @@ print("TTH_CombatCore loading...");
                   end;
                 end;
                 ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -938,20 +635,18 @@ print("TTH_CombatCore loading...");
                   end;
                   if length(arrCreatureTarget) > 0 then
                     if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-                      TCS_FUNC.Battle.pause();
                       TTHCS_GLOBAL.print("TCS_FUNC.Talent.Nicolai.trigger");
                       for i, sidCreatureTarget in arrCreatureTarget do
                         local iHeroLevel = TCS_VARI.Info.HeroLevel[strHero];
                         local iAtb = 0.1 + 0.01 * iHeroLevel;
                         TTHCS_THREAD.defend(sidCreatureTarget);
-                        TCS_FUNC.Atb.record(sidCreatureTarget, iAtb);
+                        TCS_BATTLE.atb.record(sidCreatureTarget, iAtb);
                         if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
                           local iChance = TTHCS_COMMON.ceil(5 + 0.5 * iHeroLevel);
-                          TCS_FUNC.Continuous.increase(sidCreatureTarget, iChance, itemUnitLast["UnitName"]);
-                          TCS_FUNC.Continuous.increase(sidHero, iChance, itemUnitLast["UnitName"]);
+                          -- TCS_FUNC.Continuous.increase(sidCreatureTarget, iChance, itemUnitLast["UnitName"]);
+                          -- TCS_FUNC.Continuous.increase(sidHero, iChance, itemUnitLast["UnitName"]);
                         end;
                         ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidCreatureTarget, 5);
-                        TCS_FUNC.Battle.proceed();
                       end;
                     end;
                   end;
@@ -975,11 +670,9 @@ print("TTH_CombatCore loading...");
                 and TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
                 if TCS_FUNC.Talent.GodricMP.flag == TCS_ENUM.Switch.No then
                   TCS_FUNC.Talent.GodricMP.flag = TCS_ENUM.Switch.Yes;
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.GodricMP.first");
                   TTHCS_THREAD.castGlobalSpell4Mana(sidHero, SPELL_PRAYER, TCS_ENUM.Switch.Yes);
-                  TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.immediate);
-                  TCS_FUNC.Battle.proceed();
+                  TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.immediate);
                 end;
               end;
             end;
@@ -999,11 +692,9 @@ print("TTH_CombatCore loading...");
               if itemUnit ~= nil and itemUnit["UnitName"] == sidHero then
                 if TCS_FUNC.Talent.Maeve.flag == TCS_ENUM.Switch.No then
                   TCS_FUNC.Talent.Maeve.flag = TCS_ENUM.Switch.Yes;
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Maeve.first");
                   TTHCS_THREAD.castGlobalSpell4Mana(sidHero, SPELL_MASS_HASTE, TCS_ENUM.Switch.Yes);
-                  TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.immediate);
-                  TCS_FUNC.Battle.proceed();
+                  TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.immediate);
                 end;
               end;
             end;
@@ -1018,11 +709,9 @@ print("TTH_CombatCore loading...");
               if itemUnitLast ~= nil
                 and TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1
                 and length(listCreatureStatusDeath[iOppositeSide]) > 0 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Maeve.trigger");
                 TTHCS_THREAD.castGlobalSpell4Mana(sidHero, SPELL_MASS_HASTE, TCS_ENUM.Switch.Yes);
-                TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.max);
-                TCS_FUNC.Battle.proceed();
+                TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.max);
               end;
             end;
           end;
@@ -1041,7 +730,6 @@ print("TTH_CombatCore loading...");
               if itemUnit ~= nil and itemUnit["UnitName"] == sidHero then
                 if TCS_FUNC.Talent.RedHeavenHero03.flag == TCS_ENUM.Switch.No then
                   TCS_FUNC.Talent.RedHeavenHero03.flag = TCS_ENUM.Switch.Yes;
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.RedHeavenHero03.first");
                   local arrCreatureTarget = GetCreatures(iOppositeSide);
                   if arrCreatureTarget ~= nil and length(arrCreatureTarget) > 0 then
@@ -1049,9 +737,8 @@ print("TTH_CombatCore loading...");
                     local strCreatureTarget = arrCreatureTarget[iRandomIndex];
                     local itemCreatureTarget = TTHCS_GLOBAL.geneUnitInfo(strCreatureTarget);
                     TTHCS_THREAD.cast.area.impl(sidHero, SPELL_MASS_DISRUPTING_RAY, itemCreatureTarget["PosX"], itemCreatureTarget["PosY"], TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.Yes);
-                    TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.immediate);
+                    TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.immediate);
                   end;
-                  TCS_FUNC.Battle.proceed();
                 end;
               end;
             end;
@@ -1066,7 +753,6 @@ print("TTH_CombatCore loading...");
               if itemUnitLast ~= nil
                 and TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1
                 and length(listCreatureStatusDeath[iOppositeSide]) > 0 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.RedHeavenHero03.trigger");
                 if length(listCreatureStatusDeath[iOppositeSide]) > 0 then
                   for i, sidCreatureTarget in listCreatureStatusDeath[iOppositeSide] do
@@ -1074,8 +760,7 @@ print("TTH_CombatCore loading...");
                     TTHCS_THREAD.cast.area.impl(sidHero, SPELL_MASS_DISRUPTING_RAY, itemCreatureTarget["PosX"], itemCreatureTarget["PosY"], TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.Yes);
                   end;
                 end;
-                TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.max);
-                TCS_FUNC.Battle.proceed();
+                TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.max);
               end;
             end;
           end;
@@ -1094,11 +779,9 @@ print("TTH_CombatCore loading...");
               if itemUnit ~= nil and itemUnit["UnitName"] == sidHero then
                 if TCS_FUNC.Talent.Orlando.flag == TCS_ENUM.Switch.No then
                   TCS_FUNC.Talent.Orlando.flag = TCS_ENUM.Switch.Yes;
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Orlando.first");
                   TTHCS_THREAD.castGlobalSpell4Mana(sidHero, SPELL_MASS_CURSE, TCS_ENUM.Switch.Yes);
-                  TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.immediate);
-                  TCS_FUNC.Battle.proceed();
+                  TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.immediate);
                 end;
               end;
             end;
@@ -1113,11 +796,9 @@ print("TTH_CombatCore loading...");
               if itemUnitLast ~= nil
                 and TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1
                 and length(listCreatureStatusDeath[iOppositeSide]) > 0 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Orlando.trigger");
                 TTHCS_THREAD.castGlobalSpell4Mana(sidHero, SPELL_MASS_CURSE, TCS_ENUM.Switch.Yes);
-                TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.max);
-                TCS_FUNC.Battle.proceed();
+                TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.max);
               end;
             end;
           end;
@@ -1158,16 +839,14 @@ print("TTH_CombatCore loading...");
                     end;
                   end;
                   if length(arrCreatureTarget) > 0 then
-                    TCS_FUNC.Battle.pause();
                     TTHCS_GLOBAL.print("TCS_FUNC.Talent.OrtanCassius.trigger");
                     for i, sidCreatureTarget in arrCreatureTarget do
                       TTHCS_THREAD.cast.aimed.impl(itemCreatureCaster["UnitName"], SPELL_ABILITY_SUMMON_OTHER, sidCreatureTarget, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No);
                       TTHCS_THREAD.cast.aimed.impl(itemCreatureCaster["UnitName"], SPELL_ABILITY_LAY_HANDS, sidCreatureTarget, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.Yes);
                       if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
-                        TCS_FUNC.Continuous.increase(itemUnitLast["UnitName"], iContinuousNumber, itemUnitLast["UnitName"]);
+                        -- TCS_FUNC.Continuous.increase(itemUnitLast["UnitName"], iContinuousNumber, itemUnitLast["UnitName"]);
                       end;
                     end;
-                    TCS_FUNC.Battle.proceed();
                   end;
                 end;
               end;
@@ -1179,7 +858,7 @@ print("TTH_CombatCore loading...");
         TCS_FUNC.Talent.Sanguinius = {};
         TCS_FUNC.Talent.Sanguinius.strHero = "Sanguinius";
         TCS_FUNC.Talent.Sanguinius.flag = TCS_ENUM.Switch.Yes;
-        TCS_FUNC.Talent.Sanguinius.move = function(iSide, itemUnit, itemUnitLast)
+        TCS_FUNC.Talent.Sanguinius.move = function(iSide, itemUnit)
           local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
           local sidHero = GetHero(iSide);
           if sidHero ~= nil then
@@ -1187,12 +866,8 @@ print("TTH_CombatCore loading...");
             if strHero == TCS_FUNC.Talent.Sanguinius.strHero then
               if itemUnit ~= nil and itemUnit["UnitName"] == sidHero
                 and TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-                if itemUnitLast ~= nil and itemUnitLast["Side"] == iSide and itemUnitLast["UnitType"] == CREATURE_LEGATE then
-                  return nil;
-                end;
                 if TCS_FUNC.Talent.Sanguinius.flag == TCS_ENUM.Switch.Yes then
                   TCS_FUNC.Talent.Sanguinius.flag = TCS_ENUM.Switch.No;
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Sanguinius.move");
                   local arrCreatureTarget = GetCreatures(iSide);
                   if arrCreatureTarget ~= nil and length(arrCreatureTarget) > 0 then
@@ -1206,8 +881,7 @@ print("TTH_CombatCore loading...");
                       end;
                     end;
                   end;
-                  TCS_FUNC.Atb.record(itemUnit["UnitName"], TCS_ENUM.Atb.immediate);
-                  TCS_FUNC.Battle.proceed();
+                  TCS_BATTLE.atb.record(itemUnit["UnitName"], TCS_ENUM.Atb.immediate);
                 end;
               end;
             end;
@@ -1221,248 +895,8 @@ print("TTH_CombatCore loading...");
             if strHero == TCS_FUNC.Talent.Sanguinius.strHero then
               if itemUnitLast ~= nil and itemUnitLast["UnitName"] == sidHero
                 and itemHeroMana[iSide] < 0 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Sanguinius.charge");
                 TCS_FUNC.Talent.Sanguinius.flag = TCS_ENUM.Switch.Yes;
-                TCS_FUNC.Battle.proceed();
-              end;
-            end;
-          end;
-        end;
-
-      -- Avitus 157 阿维图斯
-        TCS_FUNC.Talent.Avitus = {};
-        TCS_FUNC.Talent.Avitus.strHero = "Avitus";
-        TCS_FUNC.Talent.Avitus.check = function(strHero, iSkillId)
-          local bCheck = nil;
-          if strHero == TCS_FUNC.Talent.Avitus.strHero
-            and (
-              iSkillId == TCS_VARI.Info.HeroTalent[strHero]
-              or iSkillId == TCS_VARI.Info.HeroUpgradeMastery[strHero]
-              or iSkillId == TCS_VARI.Info.HeroUpgradeShantiri[strHero]
-            ) then
-            bCheck = not nil;
-          end;
-          return bCheck;
-        end;
-        TCS_FUNC.Talent.Avitus.firstAid = {};
-        TCS_FUNC.Talent.Avitus.firstAid.count = 3;
-        TCS_FUNC.Talent.Avitus.firstAid.trigger = function(iSide, itemUnit, itemUnitLast, listCreatureNumberDecrease)
-          local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
-          local sidHero = GetHero(iSide);
-          if sidHero ~= nil then
-            local strHero = GetHeroName(sidHero);
-            if strHero == TCS_FUNC.Talent.Avitus.strHero
-              and TCS_FUNC.Talent.Avitus.check(strHero, HERO_SKILL_FIRST_AID) then
-              if itemUnitLast ~= nil
-                and length(listCreatureNumberDecrease[iSide]) > 0 then
-                local arrCreatureRevive = {};
-                for i, sidCreatureDecrease in listCreatureNumberDecrease[iSide] do
-                  local itemCreatureDecrease = TTHCS_GLOBAL.geneUnitInfo(sidCreatureDecrease);
-                  if itemCreatureDecrease["UnitType"] == CREATURE_CROSSBOW then
-                    push(arrCreatureRevive, sidCreatureDecrease);
-                  end;
-                end;
-                if length(arrCreatureRevive) > 0 and TCS_FUNC.Talent.Avitus.firstAid.count > 0 then
-                  TCS_FUNC.Battle.pause();
-                  TTHCS_GLOBAL.print("TCS_FUNC.Talent.Avitus.firstAid.trigger");
-                  for i, sidCreatureRevive in arrCreatureRevive do
-                    if TCS_FUNC.Talent.Avitus.firstAid.count > 0 then
-                      TCS_FUNC.Talent.Avitus.firstAid.count = TCS_FUNC.Talent.Avitus.firstAid.count - 1;
-                      TTHCS_THREAD.castAimedSpell8Tool(iSide, CREATURE_HEAVEN_TOOL, 1, SPELL_ABILITY_RESURRECT_ALLIES, sidCreatureRevive, TCS_ENUM.Switch.Yes);
-                    end;
-                  end;
-                  TCS_FUNC.Battle.proceed();
-                end;
-              end;
-            end;
-          end;
-        end;
-        TCS_FUNC.Talent.Avitus.catapult = {};
-        TCS_FUNC.Talent.Avitus.catapult.trigger = function(iSide, itemUnit, itemUnitLast, listCreatureNumberDecrease)
-          local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
-          local sidHero = GetHero(iSide);
-          if sidHero ~= nil then
-            local strHero = GetHeroName(sidHero);
-            if strHero == TCS_FUNC.Talent.Avitus.strHero
-              and TCS_FUNC.Talent.Avitus.check(strHero, HERO_SKILL_CATAPULT) then
-              if itemUnitLast ~= nil and itemUnitLast["Side"] == iSide and itemUnitLast["UnitType"] == CREATURE_CROSSBOW
-                and length(listCreatureNumberDecrease[iOppositeSide]) > 0 then
-                TCS_FUNC.Battle.pause();
-                TTHCS_GLOBAL.print("TCS_FUNC.Talent.Avitus.catapult.trigger");
-                local iRandomIndex = TTHCS_COMMON.getRandom(length(listCreatureNumberDecrease[iOppositeSide]));
-                local sidCreatureTarget = listCreatureNumberDecrease[iOppositeSide][iRandomIndex];
-                local itemCreatureTarget = TTHCS_GLOBAL.geneUnitInfo(sidCreatureTarget);
-                TTHCS_THREAD.cast.area.impl(itemUnitLast["UnitName"], SPELL_ABILITY_SCATTER_SHOT, itemCreatureTarget["PosX"], itemCreatureTarget["PosY"], TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.Yes);
-                TCS_FUNC.Battle.proceed();
-              end;
-            end;
-          end;
-        end;
-        TCS_FUNC.Talent.Avitus.ballista = {};
-        TCS_FUNC.Talent.Avitus.ballista.trigger = function(iSide, itemUnit, itemUnitLast, listCreatureNumberDecrease)
-          local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
-          local sidHero = GetHero(iSide);
-          if sidHero ~= nil then
-            local strHero = GetHeroName(sidHero);
-            if strHero == TCS_FUNC.Talent.Avitus.strHero
-              and TCS_FUNC.Talent.Avitus.check(strHero, HERO_SKILL_BALLISTA) then
-              if itemUnitLast ~= nil and itemUnitLast["Side"] == iSide and itemUnitLast["UnitType"] == CREATURE_CROSSBOW
-                and length(listCreatureNumberDecrease[iOppositeSide]) > 0 then
-                TCS_FUNC.Battle.pause();
-                TTHCS_GLOBAL.print("TCS_FUNC.Talent.Avitus.ballista.trigger");
-                local iRandomIndex = TTHCS_COMMON.getRandom(length(listCreatureNumberDecrease[iOppositeSide]));
-                local sidCreatureTarget = listCreatureNumberDecrease[iOppositeSide][iRandomIndex];
-                TTHCS_THREAD.shoot(itemUnitLast["UnitName"], sidCreatureTarget);
-                ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], itemUnitLast["UnitName"], 5);
-                TCS_FUNC.Battle.proceed();
-              end;
-            end;
-          end;
-        end;
-        TCS_FUNC.Talent.Avitus.ancientSmithy = {};
-        TCS_FUNC.Talent.Avitus.ancientSmithy.trigger = function(iSide, itemUnit, itemUnitLast, listCreatureNumberDecrease)
-          local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
-          local sidHero = GetHero(iSide);
-          if sidHero ~= nil then
-            local strHero = GetHeroName(sidHero);
-            if strHero == TCS_FUNC.Talent.Avitus.strHero
-              and TCS_FUNC.Talent.Avitus.check(strHero, HERO_SKILL_ANCIENT_SMITHY) then
-              if itemUnitLast ~= nil and itemUnitLast["Side"] == iSide and itemUnitLast["UnitType"] == CREATURE_CROSSBOW
-                and length(listCreatureNumberDecrease[iOppositeSide]) > 0 then
-                TCS_FUNC.Battle.pause();
-                TTHCS_GLOBAL.print("TCS_FUNC.Talent.Avitus.ancientSmithy.trigger");
-                local iRandomIndex = TTHCS_COMMON.getRandom(length(listCreatureNumberDecrease[iOppositeSide]));
-                local sidCreatureTarget = listCreatureNumberDecrease[iOppositeSide][iRandomIndex];
-                local itemCreatureTarget = TTHCS_GLOBAL.geneUnitInfo(sidCreatureTarget);
-                TTHCS_THREAD.castAreaSpell8Tool(iSide, CREATURE_CROSSBOW_TOOL, itemUnitLast["UnitNumber"], SPELL_FIREWALL, itemCreatureTarget["PosX"], itemCreatureTarget["PosY"], TCS_ENUM.Switch.Yes);
-                TCS_FUNC.Battle.proceed();
-              end;
-            end;
-          end;
-        end;
-        TCS_FUNC.Talent.Avitus.chillingSteel = {};
-        TCS_FUNC.Talent.Avitus.chillingSteel.trigger = function(iSide, itemUnit, itemUnitLast, listCreatureNumberDecrease)
-          local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
-          local sidHero = GetHero(iSide);
-          if sidHero ~= nil then
-            local strHero = GetHeroName(sidHero);
-            if strHero == TCS_FUNC.Talent.Avitus.strHero
-              and TCS_FUNC.Talent.Avitus.check(strHero, HERO_SKILL_CHILLING_STEEL) then
-              if itemUnitLast ~= nil and itemUnitLast["Side"] == iSide and itemUnitLast["UnitType"] == CREATURE_CROSSBOW
-                and length(listCreatureNumberDecrease[iOppositeSide]) > 0 then
-                TCS_FUNC.Battle.pause();
-                TTHCS_GLOBAL.print("TCS_FUNC.Talent.Avitus.chillingSteel.trigger");
-                local iRandomIndex = TTHCS_COMMON.getRandom(length(listCreatureNumberDecrease[iOppositeSide]));
-                local sidCreatureTarget = listCreatureNumberDecrease[iOppositeSide][iRandomIndex];
-                local itemCreatureTarget = TTHCS_GLOBAL.geneUnitInfo(sidCreatureTarget);
-                TTHCS_THREAD.castAreaSpell8Tool(iSide, CREATURE_CROSSBOW_TOOL, itemUnitLast["UnitNumber"], SPELL_FROST_RING, itemCreatureTarget["PosX"], itemCreatureTarget["PosY"], TCS_ENUM.Switch.Yes);
-                TCS_FUNC.Battle.proceed();
-              end;
-            end;
-          end;
-        end;
-        TCS_FUNC.Talent.Avitus.wildfire = {};
-        TCS_FUNC.Talent.Avitus.wildfire.trigger = function(iSide, itemUnit, itemUnitLast, listCreatureNumberDecrease)
-          local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
-          local sidHero = GetHero(iSide);
-          if sidHero ~= nil then
-            local strHero = GetHeroName(sidHero);
-            if strHero == TCS_FUNC.Talent.Avitus.strHero
-              and TCS_FUNC.Talent.Avitus.check(strHero, HERO_SKILL_WILDFIRE) then
-              if itemUnitLast ~= nil and itemUnitLast["Side"] == iSide and itemUnitLast["UnitType"] == CREATURE_CROSSBOW
-                and length(listCreatureNumberDecrease[iOppositeSide]) > 0 then
-                TCS_FUNC.Battle.pause();
-                TTHCS_GLOBAL.print("TCS_FUNC.Talent.Avitus.wildfire.trigger");
-                local iRandomIndex = TTHCS_COMMON.getRandom(length(listCreatureNumberDecrease[iOppositeSide]));
-                local sidCreatureTarget = listCreatureNumberDecrease[iOppositeSide][iRandomIndex];
-                local itemCreatureTarget = TTHCS_GLOBAL.geneUnitInfo(sidCreatureTarget);
-                TTHCS_THREAD.castAreaSpell8Tool(iSide, CREATURE_CROSSBOW_TOOL, itemUnitLast["UnitNumber"], SPELL_FIREBALL, itemCreatureTarget["PosX"], itemCreatureTarget["PosY"], TCS_ENUM.Switch.Yes);
-                TCS_FUNC.Battle.proceed();
-              end;
-            end;
-          end;
-        end;
-        TCS_FUNC.Talent.Avitus.artificialGlory = {};
-        TCS_FUNC.Talent.Avitus.artificialGlory.flag = TCS_ENUM.Switch.Yes;
-        TCS_FUNC.Talent.Avitus.artificialGlory.move = function(iSide, itemUnit, itemUnitLast)
-          local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
-          local sidHero = GetHero(iSide);
-          if sidHero ~= nil then
-            local strHero = GetHeroName(sidHero);
-            if strHero == TCS_FUNC.Talent.Avitus.strHero then
-              if itemUnit ~= nil and itemUnit["UnitName"] == sidHero
-                and TCS_FUNC.Talent.Avitus.check(strHero, HERO_SKILL_ARTIFICIAL_GLORY) then
-                local listCreatureTarget = {};
-                local arrCreature = GetCreatures(iSide);
-                for i, sidCreature in arrCreature do
-                  local itemCreature = TTHCS_GLOBAL.geneUnitInfo(sidCreature);
-                  if itemCreature["UnitType"] == CREATURE_CROSSBOW then
-                    push(listCreatureTarget, itemCreature);
-                  end;
-                end;
-                listCreatureTarget = TTHCS_COMMON.desc8key(listCreatureTarget, "UnitNumber");
-                if length(listCreatureTarget) > 0 then
-                  if TCS_FUNC.Talent.Avitus.artificialGlory.flag == TCS_ENUM.Switch.Yes then
-                    TCS_FUNC.Talent.Avitus.artificialGlory.flag = TCS_ENUM.Switch.No;
-                    TCS_FUNC.Battle.pause();
-                    TTHCS_GLOBAL.print("TCS_FUNC.Talent.Avitus.artificialGlory.move");
-                    local itemCreatureTarget = listCreatureTarget[0];
-                    TTHCS_THREAD.cast.aimed.impl(sidHero, SPELL_ENCOURAGE, itemCreatureTarget["UnitName"], TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.Yes);
-                    TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.immediate);
-                    TCS_FUNC.Battle.proceed();
-                  end;
-                end;
-              end;
-            end;
-          end;
-        end;
-        TCS_FUNC.Talent.Avitus.artificialGlory.charge = function(iSide, itemUnit, itemUnitLast, itemHeroMana)
-          local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
-          local sidHero = GetHero(iSide);
-          if sidHero ~= nil then
-            local strHero = GetHeroName(sidHero);
-            if strHero == TCS_FUNC.Talent.Avitus.strHero then
-              if itemUnitLast ~= nil and itemUnitLast["UnitName"] == sidHero
-                and itemHeroMana[iSide] < 0 then
-                TCS_FUNC.Battle.pause();
-                TTHCS_GLOBAL.print("TCS_FUNC.Talent.Avitus.artificialGlory.charge");
-                TCS_FUNC.Talent.Avitus.artificialGlory.flag = TCS_ENUM.Switch.Yes;
-                TCS_FUNC.Battle.proceed();
-              end;
-            end;
-          end;
-        end;
-        TCS_FUNC.Talent.Avitus.stunningBlow = {};
-        TCS_FUNC.Talent.Avitus.stunningBlow.trigger = function(iSide, itemUnit, itemUnitLast, itemHeroMana, listCreatureNumberDecrease)
-          local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
-          local sidHero = GetHero(iSide);
-          if sidHero ~= nil then
-            local strHero = GetHeroName(sidHero);
-            if strHero == TCS_FUNC.Talent.Avitus.strHero
-              and TCS_FUNC.Talent.Avitus.check(strHero, HERO_SKILL_STUNNING_BLOW) then
-              if itemUnitLast ~= nil and itemUnitLast["UnitName"] == sidHero
-                and itemHeroMana[iSide] == 0
-                and length(listCreatureNumberDecrease[iOppositeSide]) > 0 then
-                local listCreatureCaster = {};
-                local arrCreature = GetCreatures(iSide);
-                for i, sidCreature in arrCreature do
-                  local itemCreature = TTHCS_GLOBAL.geneUnitInfo(sidCreature);
-                  if itemCreature["UnitType"] == CREATURE_CROSSBOW then
-                    push(listCreatureCaster, itemCreature);
-                  end;
-                end;
-                listCreatureCaster = TTHCS_COMMON.desc8key(listCreatureCaster, "UnitNumber");
-                if length(listCreatureCaster) > 0 then
-                  TCS_FUNC.Battle.pause();
-                  TTHCS_GLOBAL.print("TCS_FUNC.Talent.Avitus.stunningBlow.trigger");
-                  local itemCreatureCaster = listCreatureCaster[0];
-                  for i, sidCreatureTarget in listCreatureNumberDecrease[iOppositeSide] do
-                    TTHCS_THREAD.shoot(itemCreatureCaster["UnitName"], sidCreatureTarget);
-                    ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], itemCreatureCaster["UnitName"], 5);
-                  end;
-                  TCS_FUNC.Battle.proceed();
-                end;
               end;
             end;
           end;
@@ -1488,7 +922,6 @@ print("TTH_CombatCore loading...");
           if sidHero ~= nil then
             local strHero = GetHeroName(sidHero);
             if strHero == TCS_FUNC.Talent.Tarkus.strHero then
-              TCS_FUNC.Battle.pause(1);
               TTHCS_GLOBAL.print("TCS_FUNC.Talent.Tarkus.start");
               ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
               local iBattleFieldSize = TTHCS_GLOBAL.getBattleFieldSize();
@@ -1559,7 +992,6 @@ print("TTH_CombatCore loading...");
                 TTHCS_THREAD.castAreaSpell8Tool(iSide, CREATURE_HEAVEN_TOOL, 1, SPELL_ABILITY_SET_SNARES, objPostion["PosX"], objPostion["PosY"], TCS_ENUM.Switch.No);
                 print("Defend: "..objPostion["PosX"].."-"..objPostion["PosY"]);
               end;
-              TCS_FUNC.Battle.proceed();
             end;
           end;
         end;
@@ -1581,7 +1013,6 @@ print("TTH_CombatCore loading...");
                     end;
                   end;
                   if bMatch == 1 then
-                    TCS_FUNC.Battle.pause();
                     TTHCS_GLOBAL.print("TCS_FUNC.Talent.Tarkus.trigger.attack");
                     bAttack = 1;
                     local objPosition = {};
@@ -1589,11 +1020,10 @@ print("TTH_CombatCore loading...");
                     local strCreatureSummon = TTHCS_THREAD.summonCreature(iSide, objUnitTrigger["UnitType"], objUnitTrigger["UnitNumber"], objPosition["PosX"], objPosition["PosY"]);
                     if strCreatureSummon ~= nil then
                       local objCreatureSummon = TTHCS_GLOBAL.geneUnitInfo(strCreatureSummon);
-                      -- TCS_FUNC.Atb.record(objCreatureSummon["UnitName"], TCS_ENUM.Atb.max);
+                      -- TCS_BATTLE.atb.record(objCreatureSummon["UnitName"], TCS_ENUM.Atb.max);
                       print(objUnitTrigger["UnitName"].." arrive tactics target and clone "..objCreatureSummon["UnitName"]);
                       ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["EffectAttack"], objUnitTrigger["UnitName"], 5);
                     end;
-                    TCS_FUNC.Battle.proceed();
                   end;
                 end;
               end;
@@ -1611,17 +1041,15 @@ print("TTH_CombatCore loading...");
                     end;
                   end;
                   if bMatch == 1 then
-                    TCS_FUNC.Battle.pause();
                     TTHCS_GLOBAL.print("TCS_FUNC.Talent.Tarkus.trigger.defend");
                     bDefend = 1;
                     local objPosition = {};
                     TCS_FUNC.Talent.Tarkus.listDefend, objPosition = pop(TCS_FUNC.Talent.Tarkus.listDefend, iIndex);
                     for i, strCreature in GetCreatures(iSide) do
-                      TCS_FUNC.Atb.record(strCreature, TCS_ENUM.Atb.max);
+                      TCS_BATTLE.atb.record(strCreature, TCS_ENUM.Atb.max);
                       print(objUnitTrigger["UnitName"].." fall into a trap");
                       ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["EffectDefend"], objUnitTrigger["UnitName"], 5);
                     end;
-                    TCS_FUNC.Battle.proceed();
                   end;
                 end;
               end;
@@ -1636,49 +1064,29 @@ print("TTH_CombatCore loading...");
         TCS_FUNC.Talent.Nadaur.trigger = function(iSide, itemUnit, itemUnitLast, listCreatureStatusDeath)
           local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
           local sidHero = GetHero(iSide);
-          if sidHero ~= nil then
-            local strHero = GetHeroName(sidHero);
-            if strHero == TCS_FUNC.Talent.Nadaur.strHero
-              and TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-              if itemUnitLast ~= nil and itemUnitLast["Side"] == iOppositeSide and itemUnitLast["UnitCategory"] == TTH_ENUM.CombatCreature
-                and length(listCreatureStatusDeath[iSide]) > 0 then
-                local listCreatureDancer = TTHCS_GLOBAL.sort4CreatureType8Number2desc(iSide, CREATURE_BLADE_JUGGLER);
-                local listCreatureHunter = TTHCS_GLOBAL.sort4CreatureType8Number2desc(iSide, CREATURE_WOOD_ELF);
-                local listCreatureDruid = TTHCS_GLOBAL.sort4CreatureType8Number2desc(iSide, CREATURE_DRUID);
-                if length(listCreatureDancer) > 0
-                  or length(listCreatureHunter) > 0
-                  or length(listCreatureDruid) > 0 then
-                  TCS_FUNC.Battle.pause();
-                  TTHCS_GLOBAL.print("TCS_FUNC.Talent.Nadaur.trigger");
-                  if length(listCreatureDancer) > 0 then
-                    local itemCreatureCaster = listCreatureDancer[0];
-                    TTHCS_THREAD.attack8CheckPosition(iSide, itemCreatureCaster["UnitName"], itemUnitLast["UnitName"]);
-                    if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
-                      TCS_FUNC.Atb.record(itemCreatureCaster["UnitName"], TCS_ENUM.Atb.max);
-                    end;
-                    ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], itemCreatureCaster["UnitName"], 5);
-                    sleep(50);
-                  end;
-                  if length(listCreatureHunter) > 0 then
-                    local itemCreatureCaster = listCreatureHunter[0];
-                    TTHCS_THREAD.shoot(itemCreatureCaster["UnitName"], itemUnitLast["UnitName"]);
-                    if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
-                      TCS_FUNC.Atb.record(itemCreatureCaster["UnitName"], TCS_ENUM.Atb.max);
-                    end;
-                    ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], itemCreatureCaster["UnitName"], 5);
-                    sleep(50);
-                  end;
-                  if length(listCreatureDruid) > 0 then
-                    local itemCreatureCaster = listCreatureDruid[0];
-                    TTHCS_THREAD.shoot(itemCreatureCaster["UnitName"], itemUnitLast["UnitName"]);
-                    if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
-                      TCS_FUNC.Atb.record(itemCreatureCaster["UnitName"], TCS_ENUM.Atb.max);
-                    end;
-                    ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], itemCreatureCaster["UnitName"], 5);
-                  end;
-                  TCS_FUNC.Battle.proceed();
-                end;
-              end;
+          local strHero = TCS_FUNC.Talent.Nadaur.strHero;
+          if 1 == 1
+            and GetHero(iSide) ~= nil
+            and GetHeroName(GetHero(iSide)) == strHero
+            and TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1
+            and length(listCreatureStatusDeath[iSide]) > 0
+            and itemUnitLast ~= nil
+            and itemUnitLast["Side"] == iOppositeSide
+          then
+            local objCreatureMainBladeJuggler = TTHCS_GLOBAL.getCreatureMain(iSide, CREATURE_BLADE_JUGGLER);
+            if objCreatureMainBladeJuggler ~= nil then
+              TTHCS_GLOBAL.moveImmediate(objCreatureMainBladeJuggler["UnitName"]);
+              ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], objCreatureMainBladeJuggler["UnitName"], 5);
+            end;
+            local objCreatureMainWoodElf = TTHCS_GLOBAL.getCreatureMain(iSide, CREATURE_WOOD_ELF);
+            if objCreatureMainWoodElf ~= nil then
+              TTHCS_GLOBAL.moveImmediate(objCreatureMainWoodElf["UnitName"]);
+              ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], objCreatureMainWoodElf["UnitName"], 5);
+            end;
+            local objCreatureMainDruid = TTHCS_GLOBAL.getCreatureMain(iSide, CREATURE_DRUID);
+            if objCreatureMainDruid ~= nil then
+              TTHCS_GLOBAL.moveImmediate(objCreatureMainDruid["UnitName"]);
+              ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], objCreatureMainDruid["UnitName"], 5);
             end;
           end;
         end;
@@ -1697,15 +1105,13 @@ print("TTH_CombatCore loading...");
                 and TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
                 if TCS_FUNC.Talent.Gelu.flag[itemUnit["UnitName"]] == nil then
                   TCS_FUNC.Talent.Gelu.flag[itemUnit["UnitName"]] = TCS_ENUM.Switch.Yes;
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Gelu.first");
                   local arrCreatureTarget = GetCreatures(iOppositeSide);
                   local iRandomIndex = TTHCS_COMMON.getRandom(length(arrCreatureTarget));
                   local strCreatureTarget = arrCreatureTarget[iRandomIndex];
                   local itemCreatureTarget = TTHCS_GLOBAL.geneUnitInfo(strCreatureTarget);
                   TTHCS_THREAD.shoot(itemUnit["UnitName"], itemCreatureTarget["UnitName"]);
-                  TCS_FUNC.Atb.record(itemUnit["UnitName"], TCS_ENUM.Atb.immediate);
-                  TCS_FUNC.Battle.proceed();
+                  TCS_BATTLE.atb.record(itemUnit["UnitName"], TCS_ENUM.Atb.immediate);
                 end;
               end;
             end;
@@ -1713,7 +1119,7 @@ print("TTH_CombatCore loading...");
         end;
         TCS_FUNC.Talent.Gelu.encourage = {};
         TCS_FUNC.Talent.Gelu.encourage.flag = TCS_ENUM.Switch.Yes;
-        TCS_FUNC.Talent.Gelu.encourage.move = function(iSide, itemUnit, itemUnitLast)
+        TCS_FUNC.Talent.Gelu.encourage.move = function(iSide, itemUnit)
           local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
           local sidHero = GetHero(iSide);
           if sidHero ~= nil then
@@ -1733,12 +1139,10 @@ print("TTH_CombatCore loading...");
                 if length(listCreatureTarget) > 0 then
                   if TCS_FUNC.Talent.Gelu.encourage.flag == TCS_ENUM.Switch.Yes then
                     TCS_FUNC.Talent.Gelu.encourage.flag = TCS_ENUM.Switch.No;
-                    TCS_FUNC.Battle.pause();
                     TTHCS_GLOBAL.print("TCS_FUNC.Talent.Gelu.encourage.move");
                     local itemCreatureTarget = listCreatureTarget[0];
                     TTHCS_THREAD.cast.aimed.impl(sidHero, SPELL_ENCOURAGE, itemCreatureTarget["UnitName"], TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.Yes);
-                    TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.immediate);
-                    TCS_FUNC.Battle.proceed();
+                    TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.immediate);
                   end;
                 end;
               end;
@@ -1753,10 +1157,8 @@ print("TTH_CombatCore loading...");
             if strHero == TCS_FUNC.Talent.Gelu.strHero then
               if itemUnitLast ~= nil and itemUnitLast["UnitName"] == sidHero
                 and itemHeroMana[iSide] < 0 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Gelu.encourage.charge");
                 TCS_FUNC.Talent.Gelu.encourage.flag = TCS_ENUM.Switch.Yes;
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -1776,16 +1178,14 @@ print("TTH_CombatCore loading...");
                 and itemHeroMana[iSide] == 0
                 and length(listCreatureNumberDecrease[iOppositeSide]) > 0 then
                 if length(TCS_FUNC.Talent.Arniel.arrSignCreature) == 0 then
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Arniel.sign");
                   for i, sidCreatureDecrease in listCreatureNumberDecrease[iOppositeSide] do
                     push(TCS_FUNC.Talent.Arniel.arrSignCreature, sidCreatureDecrease);
                     if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-                      TCS_FUNC.Atb.record(sidCreatureDecrease, TCS_ENUM.Atb.min);
+                      TCS_BATTLE.atb.record(sidCreatureDecrease, TCS_ENUM.Atb.min);
                     end;
                   end;
                   ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-                  TCS_FUNC.Battle.proceed();
                 end;
               end;
             end;
@@ -1810,9 +1210,10 @@ print("TTH_CombatCore loading...");
                   end;
                 end;
                 if bCheck == TCS_ENUM.Switch.Yes then
+                  TTHCS_GLOBAL.print("TCS_FUNC.Talent.Arniel.sign");
                   local iHeroLevel = TCS_VARI.Info.HeroLevel[strHero];
                   local iContinuousNumber = TTHCS_COMMON.ceil(iHeroLevel / 3);
-                  TCS_FUNC.Continuous.increase(itemUnitLast["UnitName"], iContinuousNumber);
+                  -- TCS_FUNC.Continuous.increase(itemUnitLast["UnitName"], iContinuousNumber);
                 end;
               end;
             end;
@@ -1846,7 +1247,6 @@ print("TTH_CombatCore loading...");
                 end;
               end;
               if length(arrCreatureUnicorn) > 0 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Itil.trigger");
                 local iHeroLevel = TCS_VARI.Info.HeroLevel[strHero];
                 for i, strCreatureUnicorn in arrCreatureUnicorn do
@@ -1855,32 +1255,9 @@ print("TTH_CombatCore loading...");
                     TTHCS_THREAD.castAreaSpell8Tool(iSide, CREATURE_PRESERVE_TOOL, iHeroLevel, SPELL_MASS_DISPEL, itemCreatureUnicorn["PosX"] - 1, itemCreatureUnicorn["PosY"] - 1, TCS_ENUM.Switch.No);
                   else
                     TTHCS_THREAD.cast.area.impl(sidHero, SPELL_MASS_DISPEL, itemCreatureUnicorn["PosX"] - 1, itemCreatureUnicorn["PosY"] - 1, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No);
-                    TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.max);
+                    TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.max);
                   end;
                   ShowFlyingSign(TTH_TABLE.Spell[SPELL_MASS_DISPEL]["Text"], itemCreatureUnicorn["UnitName"], 5);
-                end;
-                TCS_FUNC.Battle.proceed();
-              end;
-            end;
-          end;
-        end;
-
-      -- Mephala 034 孟斐拉
-        TCS_FUNC.Talent.Mephala = {};
-        TCS_FUNC.Talent.Mephala.strHero = "Mephala";
-        TCS_FUNC.Talent.Mephala.trigger = function(iSide, itemUnit, itemUnitLast, listCreatureNumberDecrease)
-          local sidHero = GetHero(iSide);
-          if sidHero ~= nil then
-            local strHero = GetHeroName(sidHero);
-            if strHero == TCS_FUNC.Talent.Mephala.strHero
-              and TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
-              if itemUnitLast ~= nil
-                and length(listCreatureNumberDecrease[iSide]) > 0 then
-                TTHCS_GLOBAL.print("TCS_FUNC.Talent.Mephala.trigger");
-                local iHeroLevel = TCS_VARI.Info.HeroLevel[strHero];
-                local iContinuousNumber = TTHCS_COMMON.ceil(iHeroLevel / 3);
-                for i, sidCreature in listCreatureNumberDecrease[iSide] do
-                  TCS_FUNC.Continuous.increase(sidCreature, iContinuousNumber, itemUnitLast["UnitName"]);
                 end;
               end;
             end;
@@ -1900,26 +1277,22 @@ print("TTH_CombatCore loading...");
             if strHero == TCS_FUNC.Talent.Gem.strHero then
               if itemUnit ~= nil and itemUnit["UnitName"] == sidHero then
                 if length(TCS_FUNC.Talent.Gem.arrCreatureIncrease) > 0 then
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Gem.move.increase");
                   for i, sidCreatureIncrease in TCS_FUNC.Talent.Gem.arrCreatureIncrease do
                     TTHCS_THREAD.cast.aimed.impl(sidHero, SPELL_REGENERATION, sidCreatureIncrease, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No);
                   end;
                   TCS_FUNC.Talent.Gem.arrCreatureIncrease = {};
-                  TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.immediate);
+                  TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.immediate);
                   ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-                  TCS_FUNC.Battle.proceed();
                 end;
                 if length(TCS_FUNC.Talent.Gem.arrCreatureDecrease) > 0 then
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Gem.move.decrease");
                   for i, sidCreatureDecrease in TCS_FUNC.Talent.Gem.arrCreatureDecrease do
                     TTHCS_THREAD.cast.aimed.impl(sidHero, SPELL_PLAGUE, sidCreatureDecrease, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No);
                   end;
                   TCS_FUNC.Talent.Gem.arrCreatureDecrease = {};
-                  TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.immediate);
+                  TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.immediate);
                   ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-                  TCS_FUNC.Battle.proceed();
                 end;
               end;
             end;
@@ -1938,14 +1311,12 @@ print("TTH_CombatCore loading...");
                       push(TCS_FUNC.Talent.Gem.arrCreatureIncrease, sidCreatureIncrease);
                     end;
                   else
-                    TCS_FUNC.Battle.pause();
                     TTHCS_GLOBAL.print("TCS_FUNC.Talent.Gem.trigger.increase");
                     for i, sidCreatureIncrease in listCreatureNumberIncrease[iSide] do
                       TTHCS_THREAD.cast.aimed.impl(sidHero, SPELL_REGENERATION, sidCreatureIncrease, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No);
                     end;
-                    TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.max);
+                    TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.max);
                     ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-                    TCS_FUNC.Battle.proceed();
                   end;
                 end;
                 if length(listCreatureNumberDecrease[iOppositeSide]) > 0
@@ -1955,14 +1326,12 @@ print("TTH_CombatCore loading...");
                       push(TCS_FUNC.Talent.Gem.arrCreatureDecrease, sidCreatureDecrease);
                     end;
                   else
-                    TCS_FUNC.Battle.pause();
                     TTHCS_GLOBAL.print("TCS_FUNC.Talent.Gem.trigger.decrease");
                     for i, sidCreatureDecrease in listCreatureNumberDecrease[iOppositeSide] do
                       TTHCS_THREAD.cast.aimed.impl(sidHero, SPELL_PLAGUE, sidCreatureDecrease, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No);
                     end;
-                    TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.max);
+                    TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.max);
                     ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-                    TCS_FUNC.Battle.proceed();
                   end;
                 end;
               end;
@@ -1983,7 +1352,6 @@ print("TTH_CombatCore loading...");
           if sidHero ~= nil then
             local strHero = GetHeroName(sidHero);
             if strHero == TCS_FUNC.Talent.Ildar.strHero then
-              TCS_FUNC.Battle.pause(1);
               TTHCS_GLOBAL.print("TCS_FUNC.Talent.Ildar.start");
               local iHeroLevel = TCS_VARI.Info.HeroLevel[strHero];
               local iCreatureIndex = TTHCS_COMMON.ceil(iHeroLevel / 5);
@@ -1994,10 +1362,9 @@ print("TTH_CombatCore loading...");
               local sidCreatureTarget = TTHCS_THREAD.summonCreature(iSide, iCreatureId, iCreatureNumber, iPosX, iPosY);
               TCS_FUNC.Talent.Ildar.sidCreature = sidCreatureTarget;
               if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
-                TCS_FUNC.Atb.record(sidCreatureTarget, TCS_ENUM.Atb.immediate);
+                TCS_BATTLE.atb.record(sidCreatureTarget, TCS_ENUM.Atb.immediate);
               end;
               ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidCreatureTarget, 5);
-              TCS_FUNC.Battle.proceed();
             end;
           end;
         end;
@@ -2028,14 +1395,16 @@ print("TTH_CombatCore loading...");
               local arrCreature = GetCreatures(iSide);
               for i, sidCreature in arrCreature do
                 local itemCreature = TTHCS_GLOBAL.geneUnitInfo(sidCreature);
-                if itemCreature["UnitType"] == CREATURE_DRUID_ELDER
-                  or itemCreature["UnitType"] == CREATURE_HIGH_DRUID then
+                if 1 ~= 1
+                  or itemCreature["UnitType"] == CREATURE_DRUID
+                  or itemCreature["UnitType"] == CREATURE_DRUID_ELDER
+                  or itemCreature["UnitType"] == CREATURE_HIGH_DRUID
+                  then
                   push(listCreatureCaster, itemCreature);
                 end;
               end;
               listCreatureCaster = TTHCS_COMMON.desc8key(listCreatureCaster, "UnitNumber");
               if length(listCreatureCaster) > 0 then
-                TCS_FUNC.Battle.pause(1);
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Vaniel.start");
                 local itemCreatureCaster = listCreatureCaster[0];
                 if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 0 then
@@ -2043,13 +1412,18 @@ print("TTH_CombatCore loading...");
                     TTHCS_THREAD.castGlobalSpell8Tool(iSide, CREATURE_HIGH_DRUID, itemCreatureCaster["UnitNumber"], SPELL_ABILITY_POWER_FEED, TCS_ENUM.Switch.No);
                   elseif  itemCreatureCaster["UnitType"] == CREATURE_HIGH_DRUID then
                     TTHCS_THREAD.castGlobalSpell8Tool(iSide, CREATURE_DRUID_ELDER, itemCreatureCaster["UnitNumber"], SPELL_ABILITY_MANA_FEED, TCS_ENUM.Switch.No);
+                    if itemCreatureCaster["UnitNumber"] >= 10 then
+                      setATB(sidHero, TCS_ENUM.Atb.immediate);
+                    end;
                   end;
                 else
                   TTHCS_THREAD.castGlobalSpell8Tool(iSide, CREATURE_HIGH_DRUID, itemCreatureCaster["UnitNumber"], SPELL_ABILITY_POWER_FEED, TCS_ENUM.Switch.No);
                   TTHCS_THREAD.castGlobalSpell8Tool(iSide, CREATURE_DRUID_ELDER, itemCreatureCaster["UnitNumber"], SPELL_ABILITY_MANA_FEED, TCS_ENUM.Switch.No);
+                  if itemCreatureCaster["UnitNumber"] >= 10 then
+                    setATB(sidHero, TCS_ENUM.Atb.immediate);
+                  end;
                 end;
                 ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -2066,11 +1440,9 @@ print("TTH_CombatCore loading...");
                   local itemHeroLast = TCS_VARI.Snapshot.last[TTH_ENUM.CombatHero][iSide];
                   local iDiffMana = itemHeroLast["CurrentMana"] - itemHeroBefore["CurrentMana"];
                   if iDiffMana >= 10 or iDiffMana < -5 then
-                    TCS_FUNC.Battle.pause();
                     TTHCS_GLOBAL.print("TCS_FUNC.Talent.Vaniel.trigger");
-                    TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.max);
+                    TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.max);
                     ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-                    TCS_FUNC.Battle.proceed();
                   end;
                 end;
               end;
@@ -2189,7 +1561,6 @@ print("TTH_CombatCore loading...");
                 end;
               end;
               if length(arrCreatureTarget) > 0 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Isher.trigger");
                 for i, sidCreatureTarget in arrCreatureTarget do
                   local itemCreatureTarget = TTHCS_GLOBAL.geneUnitInfo(sidCreatureTarget);
@@ -2197,7 +1568,6 @@ print("TTH_CombatCore loading...");
                   TTHCS_THREAD.castAimedSpell8Tool(iSide, CREATURE_ACADEMY_TOOL, iCreatureNumberCaster, SPELL_ABILITY_REPAIR, sidCreatureTarget, TCS_ENUM.Switch.No);
                   ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidCreatureTarget, 5);
                 end;
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -2217,11 +1587,9 @@ print("TTH_CombatCore loading...");
                 and TTHCS_GLOBAL.checkCreatureType(itemUnit, CREATURE_RAKSHASA) then
                 if TCS_FUNC.Talent.Davius.flag[itemUnit["UnitName"]] == nil then
                   TCS_FUNC.Talent.Davius.flag[itemUnit["UnitName"]] = TCS_ENUM.Switch.Yes;
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Davius.first");
                   TTHCS_THREAD.castGlobalSpell5Mana(itemUnit["UnitName"], SPELL_ABILITY_DASH, TCS_ENUM.Switch.Yes);
-                  TCS_FUNC.Atb.record(itemUnit["UnitName"], TCS_ENUM.Atb.immediate);
-                  TCS_FUNC.Battle.proceed();
+                  TCS_BATTLE.atb.record(itemUnit["UnitName"], TCS_ENUM.Atb.immediate);
                 end;
               end;
             end;
@@ -2236,11 +1604,9 @@ print("TTH_CombatCore loading...");
               if itemUnitLast ~= nil and itemUnitLast["Side"] == iSide
                 and TTHCS_GLOBAL.checkCreatureType(itemUnitLast, CREATURE_RAKSHASA)
                 and length(listCreatureStatusDeath[iOppositeSide]) > 0 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Davius.trigger");
                 TTHCS_THREAD.castGlobalSpell5Mana(itemUnitLast["UnitName"], SPELL_ABILITY_DASH, TCS_ENUM.Switch.Yes);
-                TCS_FUNC.Atb.record(itemUnitLast["UnitName"], TCS_ENUM.Atb.max);
-                TCS_FUNC.Battle.proceed();
+                TCS_BATTLE.atb.record(itemUnitLast["UnitName"], TCS_ENUM.Atb.max);
               end;
             end;
           end;
@@ -2262,7 +1628,6 @@ print("TTH_CombatCore loading...");
                 and TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
                 local iSpellId = TCS_VARI.Info.HeroTalent[strHero];
                 if iSpellId ~= 0 then
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Razzak.trigger");
                   for i, sidCreatureTarget in listCreatureNumberDecrease[iOppositeSide] do
                     if contains(TTHCS_TABLE.ImbueBallistaSpellAimed, iSpellId) ~= nil then
@@ -2281,10 +1646,9 @@ print("TTH_CombatCore loading...");
                     end;
                   end;
                   if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
-                    TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.max);
+                    TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.max);
                   end;
                   ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-                  TCS_FUNC.Battle.proceed();
                 end;
               end;
             end;
@@ -2322,7 +1686,6 @@ print("TTH_CombatCore loading...");
                 if length(TCS_FUNC.Talent.Tan.arrCreature) < iMaxCount then
                   if TCS_FUNC.Talent.Tan.flag == TCS_ENUM.Switch.Yes then
                     TCS_FUNC.Talent.Tan.flag = TCS_ENUM.Switch.No;
-                    TCS_FUNC.Battle.pause();
                     TTHCS_GLOBAL.print("TCS_FUNC.Talent.Tan.move");
                     local arrCreatureCaster = GetCreatures(iSide);
                     local iRandomIndex = TTHCS_COMMON.getRandom(length(arrCreatureCaster));
@@ -2335,7 +1698,6 @@ print("TTH_CombatCore loading...");
                       push(TCS_FUNC.Talent.Tan.arrCreature, sidCreatureTarget);
                       ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidCreatureTarget, 5);
                     end;
-                    TCS_FUNC.Battle.proceed();
                   end;
                 end;
               end;
@@ -2350,10 +1712,8 @@ print("TTH_CombatCore loading...");
             if strHero == TCS_FUNC.Talent.Tan.strHero then
               if itemUnitLast ~= nil and itemUnitLast["UnitName"] == sidHero
                 and itemHeroMana[iSide] < 0 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Tan.charge");
                 TCS_FUNC.Talent.Tan.flag = TCS_ENUM.Switch.Yes;
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -2377,7 +1737,6 @@ print("TTH_CombatCore loading...");
                   end;
                 end;
                 if length(arrCrystal) > 0 then
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Emilia.trigger");
                   for i, sidCrystal in arrCrystal do
                     local itemCrystal = TTHCS_GLOBAL.geneUnitInfo(sidCrystal);
@@ -2408,13 +1767,12 @@ print("TTH_CombatCore loading...");
                       local arrUnitTarget = TTHCS_GLOBAL.listUnitInArea(itemCrystal, 3, iOppositeSide, TCS_ENUM.Switch.Yes);
                       if length(arrUnitTarget) > 0 then
                         for j, sidUnitTarget in arrUnitTarget do
-                          TCS_FUNC.Atb.record(sidUnitTarget, TCS_ENUM.Atb.min);
+                          TCS_BATTLE.atb.record(sidUnitTarget, TCS_ENUM.Atb.min);
                         end;
                         ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["EffectAtb"], sidCrystal, 5);
                       end;
                     end;
                   end;
-                  TCS_FUNC.Battle.proceed();
                 end;
               end;
             end;
@@ -2434,7 +1792,6 @@ print("TTH_CombatCore loading...");
               if itemUnit ~= nil and itemUnit["UnitName"] == sidHero then
                 if TCS_FUNC.Talent.Nur.flag == TCS_ENUM.Switch.Yes then
                   TCS_FUNC.Talent.Nur.flag = TCS_ENUM.Switch.No;
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Nur.move");
                   local iSpellId = SPELL_FIREBALL;
                   if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
@@ -2452,8 +1809,7 @@ print("TTH_CombatCore loading...");
                       TTHCS_THREAD.cast.area.impl(sidHero, iSpellId, objMaxPositionArea3["PosX"], objMaxPositionArea3["PosY"], TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No);
                     end;
                   end;
-                  TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.immediate);
-                  TCS_FUNC.Battle.proceed();
+                  TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.immediate);
                 end;
               end;
             end;
@@ -2467,10 +1823,8 @@ print("TTH_CombatCore loading...");
             if strHero == TCS_FUNC.Talent.Nur.strHero then
               if itemUnitLast ~= nil and itemUnitLast["UnitName"] == sidHero
                 and itemHeroMana[iSide] < 0 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Nur.charge");
                 TCS_FUNC.Talent.Nur.flag = TCS_ENUM.Switch.Yes;
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -2487,12 +1841,10 @@ print("TTH_CombatCore loading...");
             if strHero == TCS_FUNC.Talent.Astral.strHero then
               if itemUnitLast ~= nil and itemUnitLast["UnitName"] == sidHero
                 and itemHeroMana[iSide] < 0 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Astral.trigger");
                 local iManaPoint = TCS_VARI.Info.HeroTalent[strHero];
                 TTHCS_GLOBAL.recoveryHeroMana(sidHero, iManaPoint);
                 ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -2511,7 +1863,7 @@ print("TTH_CombatCore loading...");
             if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
               iAtb = TCS_ENUM.Atb.immediate;
             end;
-            TCS_FUNC.Atb.record(sidCreature, iAtb);
+            TCS_BATTLE.atb.record(sidCreature, iAtb);
             ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidCreature, 5);
           end;
         end;
@@ -2524,7 +1876,6 @@ print("TTH_CombatCore loading...");
               if itemUnitLast ~= nil
                 and length(listCreatureStatusSummon) > 0
                 and TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Zehir.trigger");
                 local iAtb = TCS_ENUM.Atb.mid;
                 if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
@@ -2536,7 +1887,6 @@ print("TTH_CombatCore loading...");
                     TCS_FUNC.Talent.Zehir.buff(iSide, sidSummon);
                   end;
                 end;
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -2554,7 +1904,6 @@ print("TTH_CombatCore loading...");
             if strHero == TCS_FUNC.Talent.Faiz.strHero then
               if itemUnit ~= nil and itemUnit["UnitName"] == sidHero then
                 if length(TCS_FUNC.Talent.Faiz.arrSignCreature) > 0 then
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Faiz.move");
                   local iSpellId = SPELL_DISRUPTING_RAY;
                   if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1
@@ -2576,9 +1925,8 @@ print("TTH_CombatCore loading...");
                     end;
                   end;
                   TCS_FUNC.Talent.Faiz.arrSignCreature = {};
-                  TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.immediate);
+                  TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.immediate);
                   ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-                  TCS_FUNC.Battle.proceed();
                 end;
               end;
             end;
@@ -2591,14 +1939,12 @@ print("TTH_CombatCore loading...");
             local strHero = GetHeroName(sidHero);
             if strHero == TCS_FUNC.Talent.Faiz.strHero then
               if listCreaturePositionMove[iOppositeSide] ~= nil and length(listCreaturePositionMove[iOppositeSide]) > 0 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Faiz.trigger");
                 for i, sidCreatureTarget in listCreaturePositionMove[iOppositeSide] do
                   if contains(TCS_FUNC.Talent.Faiz.arrSignCreature, sidCreatureTarget) == nil then
                     push(TCS_FUNC.Talent.Faiz.arrSignCreature, sidCreatureTarget);
                   end;
                 end;
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -2698,7 +2044,6 @@ print("TTH_CombatCore loading...");
           if sidHero ~= nil then
             local strHero = GetHeroName(sidHero);
             if strHero == TCS_FUNC.Talent.Solmyr.strHero then
-              TCS_FUNC.Battle.pause(1);
               TTHCS_GLOBAL.print("TCS_FUNC.Talent.Solmyr.start");
               ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
               local iBattleFieldSize = TTHCS_GLOBAL.getBattleFieldSize();
@@ -2707,7 +2052,6 @@ print("TTH_CombatCore loading...");
               for i, itemPosition in listPosition do
                 TTHCS_THREAD.castAreaSpell8Tool(iSide, CREATURE_ACADEMY_TOOL, iHeroLevel, SPELL_ABILITY_CALL_STORM, itemPosition["PosX"], itemPosition["PosY"], TCS_ENUM.Switch.No);
               end;
-              TCS_FUNC.Battle.proceed();
             end;
           end;
         end;
@@ -2727,11 +2071,9 @@ print("TTH_CombatCore loading...");
                 and TTHCS_GLOBAL.checkCreatureType(itemUnit, CREATURE_WITCH) then
                 if TCS_FUNC.Talent.Urunir.flag[itemUnit["UnitName"]] == nil then
                   TCS_FUNC.Talent.Urunir.flag[itemUnit["UnitName"]] = TCS_ENUM.Switch.Yes;
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Urunir.move");
                   TTHCS_THREAD.castGlobalSpell4Mana(itemUnit["UnitName"], SPELL_ABILITY_INVISIBILITY, TCS_ENUM.Switch.No);
-                  TCS_FUNC.Atb.record(itemUnit["UnitName"], TCS_ENUM.Atb.immediate);
-                  TCS_FUNC.Battle.proceed();
+                  TCS_BATTLE.atb.record(itemUnit["UnitName"], TCS_ENUM.Atb.immediate);
                 end;
               end;
             end;
@@ -2787,15 +2129,13 @@ print("TTH_CombatCore loading...");
                   itemCreatureFront = TTHCS_COMMON.min8key(listCreature, "PosX");
                 end;
                 if itemCreatureFront ~= nil and itemCreatureFront["UnitName"] == itemUnitLast["UnitName"] then
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Menel.trigger");
                   for i, sidCreature in arrCreature do
                     if sidCreature ~= itemUnitLast["UnitName"] then
-                      TCS_FUNC.Atb.record(sidCreature, TCS_ENUM.Atb.max);
+                      TCS_BATTLE.atb.record(sidCreature, TCS_ENUM.Atb.max);
                     end;
                   end;
                   ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], itemUnitLast["UnitName"], 5);
-                  TCS_FUNC.Battle.proceed();
                 end;
               end;
             end;
@@ -2805,42 +2145,85 @@ print("TTH_CombatCore loading...");
       -- Ferigl 061 索戈尔
         TCS_FUNC.Talent.Ferigl = {};
         TCS_FUNC.Talent.Ferigl.strHero = "Ferigl";
-        TCS_FUNC.Talent.Ferigl.trigger = function(iSide, itemUnit, itemUnitLast, itemHeroMana, listCreatureStatusDeath)
+        TCS_FUNC.Talent.Ferigl.check = function(objCreatureMain, objUnitLast, arrCreatureTarget)
+          local bCheck = nil;
+          if 1 == 1
+            and arrCreatureTarget ~= nil
+            and length(arrCreatureTarget) > 0
+          then
+            for i, sidCreatureTarget in arrCreatureTarget do
+              local enumEffectMain = TTHCS_GLOBAL.isNearBy4Creature(objCreatureMain["UnitName"], sidCreatureTarget);
+              local enumEffectLast = TTHCS_GLOBAL.isNearBy4Creature(objUnitLast["UnitName"], sidCreatureTarget);
+              if 1 == 1
+                and enumEffectMain == TCS_ENUM.Switch.Yes
+                and enumEffectLast == TCS_ENUM.Switch.Yes
+              then
+                bCheck = not nil;
+                break;
+              end;
+            end;
+          end;
+          return bCheck;
+        end;
+        TCS_FUNC.Talent.Ferigl.trigger = function(iSide, itemUnit, itemUnitLast, listCreatureNumberDecrease, listCreatureStatusDeath)
           local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
           local sidHero = GetHero(iSide);
           if sidHero ~= nil then
             local strHero = GetHeroName(sidHero);
-            if strHero == TCS_FUNC.Talent.Ferigl.strHero then
-              if itemUnitLast ~= nil
-                and (
-                  itemUnitLast["UnitName"] == sidHero and itemHeroMana[iSide] < 0
-                  or (TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 and length(listCreatureStatusDeath[iOppositeSide]) > 0)
-                  or (TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 and length(listCreatureStatusDeath[iSide]) > 0)
-                )
-                then
-                TCS_FUNC.Battle.pause();
-                TTHCS_GLOBAL.print("TCS_FUNC.Talent.Ferigl.trigger");
-                local arrCreatureCaster = GetCreatures(iSide);
-                local arrCreatureTarget = {};
-                for i, sidCreatureCaster in arrCreatureCaster do
-                  local itemCreatureCaster = TTHCS_GLOBAL.geneUnitInfo(sidCreatureCaster);
-                  if TTHCS_GLOBAL.checkCreatureType(itemCreatureCaster, CREATURE_RIDER) then
-                    local arrCreatureNearBy = TTHCS_GLOBAL.listUnitInArea(itemCreatureCaster, 1, iOppositeSide, TCS_ENUM.Switch.No);
-                    for i, sidCreatureNearBy in arrCreatureNearBy do
-                      if contains(arrCreatureTarget, sidCreatureNearBy) == nil then
-                        push(arrCreatureTarget, sidCreatureNearBy);
-                      end;
-                    end
-                  end;
+            local objCreatureMain = TTHCS_GLOBAL.getCreatureMain(iSide, CREATURE_RIDER);
+            if 1 == 1
+              and strHero == TCS_FUNC.Talent.Ferigl.strHero
+              and itemUnitLast ~= nil
+              and itemUnitLast["Side"] == iSide
+              and itemUnitLast["UnitCategory"] == TTH_ENUM.CombatCreature
+              and objCreatureMain ~= nil
+              and itemUnitLast["UnitName"] ~= objCreatureMain["UnitName"]
+              and (
+                1 ~= 1
+                or TCS_FUNC.Talent.Ferigl.check(objCreatureMain, itemUnitLast, listCreatureNumberDecrease[iOppositeSide])
+                or TCS_FUNC.Talent.Ferigl.check(objCreatureMain, itemUnitLast, listCreatureStatusDeath[iOppositeSide])
+              )
+            then
+              TTHCS_GLOBAL.print("TCS_FUNC.Talent.Ferigl.trigger");
+              TTHCS_THREAD.cast.aimed.tool(iSide, CREATURE_DUNGEON_TOOL_FERIGL1, objCreatureMain["UnitNumber"], SPELL_REGENERATION, objCreatureMain["UnitName"], TCS_ENUM.Switch.No);
+              ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["EffectBasic"], objCreatureMain["UnitName"], 5);
+            end;
+          end;
+        end;
+        TCS_FUNC.Talent.Ferigl.cast = function(iSide, itemUnit, itemUnitLast, itemHeroMana)
+          local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
+          local sidHero = GetHero(iSide);
+          if sidHero ~= nil then
+            local strHero = GetHeroName(sidHero);
+            local objCreatureMain = TTHCS_GLOBAL.getCreatureMain(iSide, CREATURE_RIDER);
+            if 1 == 1
+              and strHero == TCS_FUNC.Talent.Ferigl.strHero
+              and itemUnitLast ~= nil
+              and itemUnitLast["UnitName"] == sidHero
+              and itemHeroMana[iSide] < 0
+              and TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1
+              and objCreatureMain ~= nil
+            then
+              TTHCS_GLOBAL.print("TCS_FUNC.Talent.Ferigl.cast");
+              local arrCreatureTarget = {};
+              local arrCreatureNearBy = TTHCS_GLOBAL.listUnitInArea(objCreatureMain, 1, iOppositeSide, TCS_ENUM.Switch.No);
+              for i, sidCreatureNearBy in arrCreatureNearBy do
+                if contains(arrCreatureTarget, sidCreatureNearBy) == nil then
+                  push(arrCreatureTarget, sidCreatureNearBy);
                 end;
-                for i, sidCreatureTarget in arrCreatureTarget do
-                  local itemCreatureTarget = TTHCS_GLOBAL.geneUnitInfo(sidCreatureTarget);
-                  TTHCS_THREAD.attack8Tool(iSide, CREATURE_DUNGEON_TOOL, 1, itemCreatureTarget["PosX"], itemCreatureTarget["PosY"], sidCreatureTarget, 1);
-                end;
-                if length(arrCreatureTarget) > 0 then
-                  ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-                end;
-                TCS_FUNC.Battle.proceed();
+              end;
+              local iToolCreatureId = CREATURE_DUNGEON_TOOL_FERIGL1;
+              local strText = TTHCS_PATH["Talent"][strHero]["EffectAdvanced"];
+              if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
+                iToolCreatureId = CREATURE_DUNGEON_TOOL_FERIGL2;
+                strText = TTHCS_PATH["Talent"][strHero]["EffectExpert"];
+              end;
+              for i, sidCreatureTarget in arrCreatureTarget do
+                local itemCreatureTarget = TTHCS_GLOBAL.geneUnitInfo(sidCreatureTarget);
+                TTHCS_THREAD.attack8Tool(iSide, iToolCreatureId, objCreatureMain["UnitNumber"], itemCreatureTarget["PosX"], itemCreatureTarget["PosY"], sidCreatureTarget, 1);
+              end;
+              if length(arrCreatureTarget) > 0 then
+                ShowFlyingSign(strText, objCreatureMain["UnitName"], 5);
               end;
             end;
           end;
@@ -2860,11 +2243,9 @@ print("TTH_CombatCore loading...");
                 and contains(listCreatureNumberDecrease[iSide], itemUnitLast["UnitName"]) == nil then
                 local sidCreatureTarget = listCreatureNumberDecrease[iOppositeSide][0];
                 if TTHCS_GLOBAL.isBehindCreature(iSide, itemUnitLast["UnitName"], sidCreatureTarget) == TCS_ENUM.Switch.Yes then
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Ohtarig.trigger");
                   TTHCS_THREAD.attack(itemUnitLast["UnitName"], sidCreatureTarget);
                   ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], itemUnitLast["UnitName"], 5);
-                  TCS_FUNC.Battle.proceed();
                 end;
               end;
             end;
@@ -2883,7 +2264,6 @@ print("TTH_CombatCore loading...");
               if itemUnitLast ~= nil and itemUnitLast["UnitName"] == sidHero
                 and itemHeroMana[iSide] < 0
                 and length(listCreatureNumberDecrease[iOppositeSide]) == 1 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Eruina.trigger");
                 local arrSpellId = {};
                 push(arrSpellId, SPELL_MAGIC_ARROW);
@@ -2898,7 +2278,6 @@ print("TTH_CombatCore loading...");
                   TTHCS_THREAD.cast.aimed.impl(sidHero, iSpellId, sidCreatureDecrease, 1, TCS_ENUM.Switch.Yes, TCS_ENUM.Switch.No);
                 end;
                 ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], itemUnitLast["UnitName"], 5);
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -2939,13 +2318,11 @@ print("TTH_CombatCore loading...");
                   end;
                   if length(arrCreatureTarget) > 0 then
                     if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 and itemUnitLast["UnitCategory"] == TTH_ENUM.CombatCreature then
-                      TCS_FUNC.Battle.pause();
                       TTHCS_GLOBAL.print("TCS_FUNC.Talent.Kelodin.revenge");
                       local iHeroLevel = TCS_VARI.Info.HeroLevel[strHero];
                       local iCreatureNumber = iHeroLevel * 10;
                       TTHCS_THREAD.debuff.trigger(iSide, CREATURE_DUNGEON_TOOL, iCreatureNumber, itemUnitLast["UnitName"]);
                       ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-                      TCS_FUNC.Battle.proceed();
                     end;
                     if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
                       TTHCS_GLOBAL.print("TCS_FUNC.Talent.Kelodin.nearBy");
@@ -2956,7 +2333,7 @@ print("TTH_CombatCore loading...");
                         local arrCreatureNearBy = TTHCS_GLOBAL.listUnitInArea(itemCreatureTarget, 1, iSide, TCS_ENUM.Switch.No);
                         for j, sidCreatureNearBy in arrCreatureNearBy do
                           if sidCreatureNearBy ~= sidCreatureTarget then
-                            TCS_FUNC.Continuous.increase(sidCreatureNearBy, iContinuousNumber, itemUnitLast["UnitName"]);
+                            -- TCS_FUNC.Continuous.increase(sidCreatureNearBy, iContinuousNumber, itemUnitLast["UnitName"]);
                           end;
                         end;
                       end;
@@ -2977,7 +2354,6 @@ print("TTH_CombatCore loading...");
           if sidHero ~= nil then
             local strHero = GetHeroName(sidHero);
             if strHero == TCS_FUNC.Talent.Shadwyn.strHero then
-              TCS_FUNC.Battle.pause(1);
               TTHCS_GLOBAL.print("TCS_FUNC.Talent.Shadwyn.trigger");
               local listCreatureTarget = {};
               local arrCreature = GetCreatures(iOppositeSide);
@@ -2999,7 +2375,6 @@ print("TTH_CombatCore loading...");
                 end;
                 ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidCreatureTarget, 5);
               end;
-              TCS_FUNC.Battle.proceed();
             end;
           end;
         end;
@@ -3016,7 +2391,6 @@ print("TTH_CombatCore loading...");
               if itemUnitLast ~= nil and itemUnitLast["UnitName"] == sidHero
                 and itemHeroMana[iSide] < 0
                 and length(listCreaturePositionMove[iSide]) == 1 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Thralsai.trigger");
                 local sidCreatureMove = listCreaturePositionMove[iSide][0];
                 local itemCreatureMove = TTHCS_GLOBAL.geneUnitInfo(sidCreatureMove);
@@ -3030,11 +2404,10 @@ print("TTH_CombatCore loading...");
                 local sidCreatureTarget = TTHCS_THREAD.summonCreature(iSide, itemCreatureMove["UnitType"], iUnitNumber, itemCreatureMove["PosX"], itemCreatureMove["PosY"]);
                 if sidCreatureTarget ~= nil then
                   if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-                    TCS_FUNC.Atb.record(sidCreatureTarget, TCS_ENUM.Atb.max);
+                    TCS_BATTLE.atb.record(sidCreatureTarget, TCS_ENUM.Atb.max);
                   end;
                   ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidCreatureTarget, 5);
                 end;
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -3062,13 +2435,11 @@ print("TTH_CombatCore loading...");
                   arrCreatureTarget = listCreatureNumberDecrease[iOppositeSide];
                 end;
                 if length(arrCreatureTarget) > 0 then
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Agbeth.trigger");
                   for i, sidCreatureTarget in arrCreatureTarget do
                     TTHCS_THREAD.cast.aimed.impl(sidHero, SPELL_LIGHTNING_BOLT, sidCreatureTarget, TCS_ENUM.Switch.Yes, TCS_ENUM.Switch.Yes, TCS_ENUM.Switch.No);
                   end;
                   ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], itemUnitLast["UnitName"], 5);
-                  TCS_FUNC.Battle.proceed();
                 end;
               end;
             end;
@@ -3085,12 +2456,10 @@ print("TTH_CombatCore loading...");
             local strHero = GetHeroName(sidHero);
             if strHero == TCS_FUNC.Talent.Almegir.strHero
               and itemHeroMana[iSide] < 0 then
-              TCS_FUNC.Battle.pause();
               TTHCS_GLOBAL.print("TCS_FUNC.Talent.Almegir.trigger");
               local iHeroLevel = TCS_VARI.Info.HeroLevel[strHero];
               local iManaPoint = 1 + TTHCS_COMMON.floor(iHeroLevel / 6);
               TTHCS_GLOBAL.recoveryHeroMana(sidHero, iManaPoint);
-              TCS_FUNC.Battle.proceed();
             end;
           end;
         end;
@@ -3128,7 +2497,7 @@ print("TTH_CombatCore loading...");
           local iHeroLevel = TCS_VARI.Info.HeroLevel[strHero];
           local iCreatureNumber = iHeroLevel;
           if TCS_FUNC.Talent.Kastore.check(strHero, HERO_SKILL_ENCOURAGE) then
-            TCS_FUNC.Atb.record(sidCreature, TCS_ENUM.Atb.min + 0.33);
+            TCS_BATTLE.atb.record(sidCreature, TCS_ENUM.Atb.min + 0.33);
             ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["EffectEncourage"], sidCreature, 5);
           end;
           if TCS_FUNC.Talent.Kastore.check(strHero, HERO_SKILL_MASTER_OF_ANIMATION) then
@@ -3149,13 +2518,11 @@ print("TTH_CombatCore loading...");
               and TCS_FUNC.Talent.Kastore.check(strHero, HERO_SKILL_ENCOURAGE) then
               if itemUnitLast ~= nil
                 and length(listCreatureStatusSummon[iSide]) > 0 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Kastore.Encourage.trigger");
                 for i, sidCreature in listCreatureStatusSummon[iSide] do
-                  TCS_FUNC.Atb.record(sidCreature, TCS_ENUM.Atb.min + 0.33);
+                  TCS_BATTLE.atb.record(sidCreature, TCS_ENUM.Atb.min + 0.33);
                   ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["EffectEncourage"], sidCreature, 5);
                 end;
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -3171,12 +2538,10 @@ print("TTH_CombatCore loading...");
               if itemUnit ~= nil and itemUnit["UnitName"] == sidHero then
                 if TCS_FUNC.Talent.Kastore.masterOfQuakes.flag == TCS_ENUM.Switch.No then
                   TCS_FUNC.Talent.Kastore.masterOfQuakes.flag = TCS_ENUM.Switch.Yes;
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Kastore.masterOfQuakes.first");
                   local itemPosition = TCS_FUNC.Talent.Kastore.genePosition();
                   TTHCS_THREAD.cast.area.impl(sidHero, SPELL_LAND_MINE, itemPosition["PosX"], itemPosition["PosY"], TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.Yes);
-                  TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.immediate);
-                  TCS_FUNC.Battle.proceed();
+                  TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.immediate);
                 end;
               end;
             end;
@@ -3193,7 +2558,6 @@ print("TTH_CombatCore loading...");
               if itemUnit ~= nil and itemUnit["UnitName"] == sidHero then
                 if TCS_FUNC.Talent.Kastore.fireAffinity.flag == TCS_ENUM.Switch.No then
                   TCS_FUNC.Talent.Kastore.fireAffinity.flag = TCS_ENUM.Switch.Yes;
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Kastore.fireAffinity.first");
                   local sidCreature = TTHCS_THREAD.castGlobalSpell4Mana4Creature(iSide, sidHero, SPELL_SUMMON_ELEMENTALS, TCS_ENUM.Switch.Yes);
 
@@ -3209,8 +2573,7 @@ print("TTH_CombatCore loading...");
                   -- HERO_SKILL_FIRE_AFFINITY 097 元素勇士
                     TCS_FUNC.Skill.FireAffinity.trigger(iSide, itemUnit, itemUnitLastTemp, itemHeroManaTemp, listCreatureStatusSummonTemp, listCreatureStatusDeathTemp);
 
-                  TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.immediate);
-                  TCS_FUNC.Battle.proceed();
+                  TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.immediate);
                 end;
               end;
             end;
@@ -3225,7 +2588,6 @@ print("TTH_CombatCore loading...");
               and TCS_FUNC.Talent.Kastore.check(strHero, HERO_SKILL_MASTER_OF_ANIMATION) then
               if itemUnitLast ~= nil
                 and length(listCreatureStatusSummon[iSide]) > 0 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Kastore.masterOfAnimation.trigger");
                 for i, sidCreature in listCreatureStatusSummon[iSide] do
                   local iHeroLevel = TCS_VARI.Info.HeroLevel[strHero];
@@ -3233,7 +2595,6 @@ print("TTH_CombatCore loading...");
                   TTHCS_THREAD.castAimedSpell8Tool(iSide, CREATURE_DUNGEON_TOOL_KASTORE, iCreatureNumber, SPELL_REGENERATION, sidCreature, TCS_ENUM.Switch.No);
                   ShowFlyingSign(TTH_TABLE.Spell[SPELL_REGENERATION]["Text"], sidCreature, 5);
                 end;
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -3247,7 +2608,6 @@ print("TTH_CombatCore loading...");
               and TCS_FUNC.Talent.Kastore.check(strHero, HERO_SKILL_RUNIC_ARMOR) then
               if itemUnitLast ~= nil
                 and length(listCreatureStatusSummon[iSide]) > 0 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Kastore.runicArmor.trigger");
                 for i, sidCreature in listCreatureStatusSummon[iSide] do
                   local iHeroLevel = TCS_VARI.Info.HeroLevel[strHero];
@@ -3255,7 +2615,6 @@ print("TTH_CombatCore loading...");
                   TTHCS_THREAD.castAimedSpell8Tool(iSide, CREATURE_DUNGEON_TOOL_KASTORE, iCreatureNumber, SPELL_CELESTIAL_SHIELD, sidCreature, TCS_ENUM.Switch.No);
                   ShowFlyingSign(TTH_TABLE.Spell[SPELL_CELESTIAL_SHIELD]["Text"], sidCreature, 5);
                 end;
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -3267,7 +2626,6 @@ print("TTH_CombatCore loading...");
             local strHero = GetHeroName(sidHero);
             if strHero == TCS_FUNC.Talent.Kastore.strHero
               and TCS_FUNC.Talent.Kastore.check(strHero, HERO_SKILL_MASTER_OF_ICE) then
-              TCS_FUNC.Battle.pause(1);
               TTHCS_GLOBAL.print("TCS_FUNC.Talent.Kastore.masterOfIce.start");
               local iHeroLevel = TCS_VARI.Info.HeroLevel[strHero];
               local iCreatureNumber = iHeroLevel;
@@ -3275,7 +2633,6 @@ print("TTH_CombatCore loading...");
               local sidCreature = TTHCS_THREAD.summonCreature(iSide, CREATURE_WATER_ELEMENTAL, iCreatureNumber, itemPosition["PosX"], itemPosition["PosY"]);
               ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["EffectMasterOfIce"], sidCreature, 5);
               TCS_FUNC.Summon.trigger(iSide, sidCreature);
-              TCS_FUNC.Battle.proceed();
             end;
           end;
         end;
@@ -3286,7 +2643,6 @@ print("TTH_CombatCore loading...");
             local strHero = GetHeroName(sidHero);
             if strHero == TCS_FUNC.Talent.Kastore.strHero
               and TCS_FUNC.Talent.Kastore.check(strHero, HERO_SKILL_MASTER_OF_FIRE) then
-              TCS_FUNC.Battle.pause(1);
               TTHCS_GLOBAL.print("TCS_FUNC.Talent.Kastore.masterOfFire.start");
               local iHeroLevel = TCS_VARI.Info.HeroLevel[strHero];
               local iCreatureNumber = iHeroLevel;
@@ -3294,7 +2650,6 @@ print("TTH_CombatCore loading...");
               local sidCreature = TTHCS_THREAD.summonCreature(iSide, CREATURE_FIRE_ELEMENTAL, iCreatureNumber, itemPosition["PosX"], itemPosition["PosY"]);
               ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["EffectMasterOfFire"], sidCreature, 5);
               TCS_FUNC.Summon.trigger(iSide, sidCreature);
-              TCS_FUNC.Battle.proceed();
             end;
           end;
         end;
@@ -3305,7 +2660,6 @@ print("TTH_CombatCore loading...");
             local strHero = GetHeroName(sidHero);
             if strHero == TCS_FUNC.Talent.Kastore.strHero
               and TCS_FUNC.Talent.Kastore.check(strHero, HERO_SKILL_MASTER_OF_LIGHTNINGS) then
-              TCS_FUNC.Battle.pause(1);
               TTHCS_GLOBAL.print("TCS_FUNC.Talent.Kastore.masterOfLightnings.start");
               local iHeroLevel = TCS_VARI.Info.HeroLevel[strHero];
               local iCreatureNumber = iHeroLevel;
@@ -3313,7 +2667,6 @@ print("TTH_CombatCore loading...");
               local sidCreature = TTHCS_THREAD.summonCreature(iSide, CREATURE_AIR_ELEMENTAL, iCreatureNumber, itemPosition["PosX"], itemPosition["PosY"]);
               ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["EffectMasterOfLightnings"], sidCreature, 5);
               TCS_FUNC.Summon.trigger(iSide, sidCreature);
-              TCS_FUNC.Battle.proceed();
             end;
           end;
         end;
@@ -3331,14 +2684,12 @@ print("TTH_CombatCore loading...");
                 and itemHeroMana[iSide] < 0
                 and length(listCreatureStatusDeath[iOppositeSide]) == 1
                 and TCS_VARI.Info.HeroSkill[strHero][HERO_SKILL_FIRE_AFFINITY] == CREATURE_EARTH_ELEMENTAL then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Sephinroth.trigger");
                 local sidCreatureTarget = listCreatureStatusDeath[iOppositeSide][0];
                 local itemCreatureTarget = TTHCS_GLOBAL.geneUnitInfo(sidCreatureTarget);
                 local iHeroLevel = TCS_VARI.Info.HeroLevel[strHero];
                 local iCreatureNumber = 1 + TTHCS_COMMON.floor(iHeroLevel / 15);
                 TTHCS_THREAD.summonCreature(iSide, CREATURE_EARTH_ELEMENTAL, iCreatureNumber, itemCreatureTarget["PosX"], itemCreatureTarget["PosY"]);
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -3352,19 +2703,40 @@ print("TTH_CombatCore loading...");
               if itemUnitLast ~= nil and itemUnitLast["UnitName"] == sidHero
                 and itemHeroMana[iSide] < 0
                 and length(listCreatureNumberDecrease[iOppositeSide]) == 1 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Sephinroth.trigger");
                 local sidCreatureTarget = listCreatureNumberDecrease[iOppositeSide][0];
                 local itemCreatureTarget = TTHCS_GLOBAL.geneUnitInfo(sidCreatureTarget);
                 TTHCS_THREAD.cast.spellSpawn.arcaneCrystal(sidHero, itemCreatureTarget["PosX"], itemCreatureTarget["PosY"], TCS_ENUM.Switch.No, TCS_ENUM.Switch.Yes, TCS_ENUM.Switch.No);
                 ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], itemUnitLast["UnitName"], 5);
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
         end;
 
     -- Necropolis
+      -- LordHaart 077 罗德·哈特
+        TCS_FUNC.Talent.LordHaart = {};
+        TCS_FUNC.Talent.LordHaart.strHero = "LordHaart";
+        TCS_FUNC.Talent.LordHaart.start = function(iSide)
+          local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
+          local sidHero = GetHero(iSide);
+          if sidHero ~= nil then
+            local strHero = GetHeroName(sidHero);
+            if 1 == 1
+              and strHero == TCS_FUNC.Talent.LordHaart.strHero
+              and TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1
+            then
+              TTHCS_GLOBAL.print("TCS_FUNC.Talent.LordHaart.start");
+              local arrCreatureTarget = GetCreatures(iOppositeSide);
+              for i, sidCreatureTarget in arrCreatureTarget do
+                local itemCreatureTarget = TTHCS_GLOBAL.geneUnitInfo(sidCreatureTarget);
+                TTHCS_THREAD.attack8Tool(iSide, CREATURE_NECROMANCY_TOOL_LORDHAART, 1, itemCreatureTarget["PosX"], itemCreatureTarget["PosY"], sidCreatureTarget, 1);
+              end;
+              ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
+            end;
+          end;
+        end;
+
       -- Gles 079 卡斯帕
         TCS_FUNC.Talent.Gles = {};
         TCS_FUNC.Talent.Gles.strHero = "Gles";
@@ -3378,26 +2750,22 @@ print("TTH_CombatCore loading...");
             if strHero == TCS_FUNC.Talent.Gles.strHero then
               if itemUnit ~= nil and itemUnit["UnitName"] == sidHero then
                 if length(TCS_FUNC.Talent.Gles.arrCreatureIncrease) > 0 then
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Gles.move.increase");
                   for i, sidCreatureIncrease in TCS_FUNC.Talent.Gles.arrCreatureIncrease do
                     TTHCS_THREAD.cast.aimed.impl(sidHero, SPELL_CELESTIAL_SHIELD, sidCreatureIncrease, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No);
                   end;
                   TCS_FUNC.Talent.Gles.arrCreatureIncrease = {};
-                  TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.immediate);
+                  TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.immediate);
                   ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-                  TCS_FUNC.Battle.proceed();
                 end;
                 if length(TCS_FUNC.Talent.Gles.arrCreatureDecrease) > 0 then
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Gles.move.decrease");
                   for i, sidCreatureDecrease in TCS_FUNC.Talent.Gles.arrCreatureDecrease do
                     TTHCS_THREAD.cast.aimed.impl(sidHero, SPELL_SORROW, sidCreatureDecrease, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No);
                   end;
                   TCS_FUNC.Talent.Gles.arrCreatureDecrease = {};
-                  TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.immediate);
+                  TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.immediate);
                   ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-                  TCS_FUNC.Battle.proceed();
                 end;
               end;
             end;
@@ -3416,14 +2784,12 @@ print("TTH_CombatCore loading...");
                       push(TCS_FUNC.Talent.Gles.arrCreatureIncrease, sidCreatureIncrease);
                     end;
                   else
-                    TCS_FUNC.Battle.pause();
                     TTHCS_GLOBAL.print("TCS_FUNC.Talent.Gles.trigger.increase");
                     for i, sidCreatureIncrease in listCreatureNumberIncrease[iSide] do
                       TTHCS_THREAD.cast.aimed.impl(sidHero, SPELL_CELESTIAL_SHIELD, sidCreatureIncrease, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No);
                     end;
-                    TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.max);
+                    TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.max);
                     ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-                    TCS_FUNC.Battle.proceed();
                   end;
                 end;
                 if length(listCreatureNumberDecrease[iOppositeSide]) > 0
@@ -3433,14 +2799,12 @@ print("TTH_CombatCore loading...");
                       push(TCS_FUNC.Talent.Gles.arrCreatureDecrease, sidCreatureDecrease);
                     end;
                   else
-                    TCS_FUNC.Battle.pause();
                     TTHCS_GLOBAL.print("TCS_FUNC.Talent.Gles.trigger.decrease");
                     for i, sidCreatureDecrease in listCreatureNumberDecrease[iOppositeSide] do
                       TTHCS_THREAD.cast.aimed.impl(sidHero, SPELL_SORROW, sidCreatureDecrease, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No);
                     end;
-                    TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.max);
+                    TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.max);
                     ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-                    TCS_FUNC.Battle.proceed();
                   end;
                 end;
               end;
@@ -3459,7 +2823,6 @@ print("TTH_CombatCore loading...");
             if strHero == TCS_FUNC.Talent.Straker.strHero then
               if itemUnitLast ~= nil and itemUnitLast["UnitName"] == sidHero
                 and itemHeroMana[iSide] < 0 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Straker.trigger");
                 local arrCreatureTarget = GetCreatures(iOppositeSide);
                 local iTimes = 1;
@@ -3474,7 +2837,6 @@ print("TTH_CombatCore loading...");
                   TTHCS_THREAD.attack8Tool(iSide, CREATURE_NECROMANCY_TOOL, 1, itemCreatureTarget["PosX"], itemCreatureTarget["PosY"], sidCreatureTarget, iTimes);
                 end;
                 ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -3486,54 +2848,52 @@ print("TTH_CombatCore loading...");
         TCS_FUNC.Talent.Tamika.trigger = function(iSide, itemUnit, itemUnitLast, listCreatureNumberDecrease)
           local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
           local sidHero = GetHero(iSide);
-          if sidHero ~= nil then
-            local strHero = GetHeroName(sidHero);
-            if strHero == TCS_FUNC.Talent.Tamika.strHero then
-              if itemUnitLast ~= nil and itemUnitLast["Side"] == iSide
-                and length(listCreatureNumberDecrease[iOppositeSide]) == 1
-                and contains(listCreatureNumberDecrease[iSide], itemUnitLast["UnitName"]) == nil then
-                local sidCreatureDecrease = listCreatureNumberDecrease[iOppositeSide][0];
-                if TTHCS_GLOBAL.isNearBy4Creature(itemUnitLast["UnitName"], sidCreatureDecrease) == TCS_ENUM.Switch.Yes then
-                  local itemCreatureDecrease = TTHCS_GLOBAL.geneUnitInfo(sidCreatureDecrease);
-                  local arrCreatureNearBy = TTHCS_GLOBAL.listUnitInArea(itemCreatureDecrease, 1, iSide, TCS_ENUM.Switch.No);
-                  if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1
-                    and TTHCS_GLOBAL.checkCreatureType(itemUnitLast, CREATURE_VAMPIRE) then
-                    local arrCreatureCaster = {};
-                    for i, sidCreatureNearBy in arrCreatureNearBy do
-                      local itemCreatureNearBy = TTHCS_GLOBAL.geneUnitInfo(sidCreatureNearBy);
-                      if TTHCS_GLOBAL.checkCreatureType(itemCreatureNearBy, CREATURE_VAMPIRE) == nil then
-                        push(arrCreatureCaster, sidCreatureNearBy);
-                      end;
-                    end;
-                    if length(arrCreatureCaster) > 0 then
-                      TCS_FUNC.Battle.pause();
-                      TTHCS_GLOBAL.print("TCS_FUNC.Talent.Tamika.trigger.vampire");
-                      for i, sidCreatureCaster in arrCreatureCaster do
-                        TTHCS_THREAD.attack(sidCreatureCaster, sidCreatureDecrease);
-                      end;
-                      ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], itemUnitLast["UnitName"], 5);
-                      TCS_FUNC.Battle.proceed();
-                    end;
+          local strHero = TCS_FUNC.Talent.Tamika.strHero;
+          if 1 == 1
+            and sidHero ~= nil
+            and GetHeroName(sidHero) == strHero
+            and itemUnitLast ~= nil
+            and itemUnitLast["Side"] == iSide
+            and itemUnitLast["UnitCategory"] == TTH_ENUM.CombatCreature
+            and length(listCreatureNumberDecrease[iOppositeSide]) == 1
+            and contains(listCreatureNumberDecrease[iSide], itemUnitLast["UnitName"]) == nil
+          then
+            local sidCreatureDecrease = listCreatureNumberDecrease[iOppositeSide][0];
+            if TTHCS_GLOBAL.isNearBy4Creature(itemUnitLast["UnitName"], sidCreatureDecrease) == TCS_ENUM.Switch.Yes then
+              local itemCreatureDecrease = TTHCS_GLOBAL.geneUnitInfo(sidCreatureDecrease);
+              local arrCreatureNearBy = TTHCS_GLOBAL.listUnitInArea(itemCreatureDecrease, 1, iSide, TCS_ENUM.Switch.No);
+              if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1
+                and TTHCS_GLOBAL.checkCreatureType(itemUnitLast, CREATURE_VAMPIRE) then
+                local arrCreatureCaster = {};
+                for i, sidCreatureNearBy in arrCreatureNearBy do
+                  local itemCreatureNearBy = TTHCS_GLOBAL.geneUnitInfo(sidCreatureNearBy);
+                  if TTHCS_GLOBAL.checkCreatureType(itemCreatureNearBy, CREATURE_VAMPIRE) == nil then
+                    push(arrCreatureCaster, sidCreatureNearBy);
                   end;
-                  if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1
-                    and TTHCS_GLOBAL.checkCreatureType(itemUnitLast, CREATURE_VAMPIRE) == nil then
-                    local arrCreatureCaster = {};
-                    for i, sidCreatureNearBy in arrCreatureNearBy do
-                      local itemCreatureNearBy = TTHCS_GLOBAL.geneUnitInfo(sidCreatureNearBy);
-                      if TTHCS_GLOBAL.checkCreatureType(itemCreatureNearBy, CREATURE_VAMPIRE) then
-                        push(arrCreatureCaster, sidCreatureNearBy);
-                      end;
-                    end;
-                    if length(arrCreatureCaster) > 0 then
-                      TCS_FUNC.Battle.pause();
-                      TTHCS_GLOBAL.print("TCS_FUNC.Talent.Tamika.trigger.notVampire");
-                      for i, sidCreatureCaster in arrCreatureCaster do
-                        TTHCS_THREAD.attack(sidCreatureCaster, sidCreatureDecrease);
-                      end;
-                      ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], itemUnitLast["UnitName"], 5);
-                      TCS_FUNC.Battle.proceed();
-                    end;
+                end;
+                if length(arrCreatureCaster) > 0 then
+                  TTHCS_GLOBAL.print("TCS_FUNC.Talent.Tamika.trigger.vampire");
+                  for i, sidCreatureCaster in arrCreatureCaster do
+                    TTHCS_THREAD.attack(sidCreatureCaster, sidCreatureDecrease);
                   end;
+                  ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], itemUnitLast["UnitName"], 5);
+                end;
+              end;
+              if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1
+                and TTHCS_GLOBAL.checkCreatureType(itemUnitLast, CREATURE_VAMPIRE) == nil then
+                local arrCreatureCaster = {};
+                for i, sidCreatureNearBy in arrCreatureNearBy do
+                  local itemCreatureNearBy = TTHCS_GLOBAL.geneUnitInfo(sidCreatureNearBy);
+                  if TTHCS_GLOBAL.checkCreatureType(itemCreatureNearBy, CREATURE_VAMPIRE) then
+                    push(arrCreatureCaster, sidCreatureNearBy);
+                  end;
+                end;
+                if length(arrCreatureCaster) > 0 then
+                  TTHCS_GLOBAL.print("TCS_FUNC.Talent.Tamika.trigger.notVampire");
+                  for i, sidCreatureCaster in arrCreatureCaster do
+                    TTHCS_THREAD.attack(sidCreatureCaster, sidCreatureDecrease);
+                  end;
+                  ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], itemUnitLast["UnitName"], 5);
                 end;
               end;
             end;
@@ -3552,7 +2912,6 @@ print("TTH_CombatCore loading...");
               if itemUnitLast ~= nil and itemUnitLast["UnitName"] == sidHero
                 and itemHeroMana[iSide] < 0
                 and length(listCreaturePositionMove[iSide]) == 1 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Xerxon.trigger");
                 local sidCreatureMove = listCreaturePositionMove[iSide][0];
                 local itemCreatureMove = TTHCS_GLOBAL.geneUnitInfo(sidCreatureMove);
@@ -3567,10 +2926,10 @@ print("TTH_CombatCore loading...");
                     local bSuccess = TTHCS_THREAD.displace(sidCreatureNearBy, iNewPosX, iNewPosY);
                     if bSuccess then
                       if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-                        TCS_FUNC.Continuous.increase(sidCreatureNearBy, iHeroLevel, itemUnitLast["UnitName"]);
+                        -- TCS_FUNC.Continuous.increase(sidCreatureNearBy, iHeroLevel, itemUnitLast["UnitName"]);
                       end;
                       if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
-                        TCS_FUNC.Atb.record(sidCreatureNearBy, TCS_ENUM.Atb.max);
+                        TCS_BATTLE.atb.record(sidCreatureNearBy, TCS_ENUM.Atb.max);
                       end;
                     end;
                   end;
@@ -3578,7 +2937,6 @@ print("TTH_CombatCore loading...");
                 if length(arrCreatureNearBy) > 0 then
                   ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
                 end;
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -3599,16 +2957,16 @@ print("TTH_CombatCore loading...");
                   length(listCreatureStatusRevive[iSide]) > 0
                   or length(listCreatureNumberIncrease[iSide]) > 0
                 ) then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Aislinn.trigger");
                 for i, strCreatureCurrent in listCreatureStatusRevive[iSide] do
                   local itemCreatureCurrent = TTHCS_GLOBAL.geneUnitInfo(strCreatureCurrent);
                   local iUnitNumber = itemCreatureCurrent["UnitNumber"];
-                  TCS_FUNC.Atb.record(strCreatureCurrent, TCS_ENUM.Atb.max);
+                  TCS_BATTLE.atb.record(strCreatureCurrent, TCS_ENUM.Atb.max);
                   if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
                     if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 0 then
                       TTHCS_THREAD.summonCreature(iSide, itemCreatureCurrent["UnitType"], iUnitNumber, itemCreatureCurrent["PosX"], itemCreatureCurrent["PosY"]);
                     else
+                      iUnitNumber = 1;
                       TTHCS_THREAD.addCreature(iSide, itemCreatureCurrent["UnitType"], iUnitNumber, itemCreatureCurrent["PosX"], itemCreatureCurrent["PosY"]);
                     end;
                   end;
@@ -3617,17 +2975,17 @@ print("TTH_CombatCore loading...");
                   local itemCreatureCurrent = TTHCS_GLOBAL.geneUnitInfo(strCreatureCurrent);
                   local itemCreatureBefore = TCS_VARI.Snapshot.before[TTH_ENUM.CombatCreature][iSide][strCreatureCurrent];
                   local iUnitNumber = itemCreatureCurrent["UnitNumber"] - itemCreatureBefore["UnitNumber"];
-                  TCS_FUNC.Atb.record(strCreatureCurrent, TCS_ENUM.Atb.max);
+                  TCS_BATTLE.atb.record(strCreatureCurrent, TCS_ENUM.Atb.max);
                   if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
                     if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 0 then
                       TTHCS_THREAD.summonCreature(iSide, itemCreatureCurrent["UnitType"], iUnitNumber, itemCreatureCurrent["PosX"], itemCreatureCurrent["PosY"]);
                     else
+                      iUnitNumber = 1;
                       TTHCS_THREAD.addCreature(iSide, itemCreatureCurrent["UnitType"], iUnitNumber, itemCreatureCurrent["PosX"], itemCreatureCurrent["PosY"]);
                     end;
                   end;
                 end;
                 ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -3660,7 +3018,6 @@ print("TTH_CombatCore loading...");
                 if length(arrCreatureTarget) > 0 then
                   if TCS_FUNC.Talent.Giovanni.flag == TCS_ENUM.Switch.Yes then
                     TCS_FUNC.Talent.Giovanni.flag = TCS_ENUM.Switch.No;
-                    TCS_FUNC.Battle.pause();
                     TTHCS_GLOBAL.print("TCS_FUNC.Talent.Giovanni.move");
                     for i, sidCreatureTarget in arrCreatureTarget do
                       if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 0 then
@@ -3668,15 +3025,14 @@ print("TTH_CombatCore loading...");
                       else
                         TTHCS_THREAD.cast.aimed.impl(sidHero, SPELL_VAMPIRISM, sidCreatureTarget, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No);
                         if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
-                          TCS_FUNC.Atb.record(sidCreatureTarget, TCS_ENUM.Atb.max);
+                          TCS_BATTLE.atb.record(sidCreatureTarget, TCS_ENUM.Atb.max);
                         end;
                       end;
                       ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidCreatureTarget, 5);
                     end;
                     if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-                      TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.immediate);
+                      TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.immediate);
                     end;
-                    TCS_FUNC.Battle.proceed();
                   end;
                 end;
               end;
@@ -3691,10 +3047,8 @@ print("TTH_CombatCore loading...");
             if strHero == TCS_FUNC.Talent.Giovanni.strHero then
               if itemUnitLast ~= nil and itemUnitLast["UnitName"] == sidHero
                 and itemHeroMana[iSide] < 0 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Giovanni.charge");
                 TCS_FUNC.Talent.Giovanni.flag = TCS_ENUM.Switch.Yes;
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -3716,7 +3070,6 @@ print("TTH_CombatCore loading...");
               if itemUnit ~= nil and itemUnit["UnitName"] == sidHero then
                 if TCS_FUNC.Talent.OrnellaNecro.flag == TCS_ENUM.Switch.Yes then
                   TCS_FUNC.Talent.OrnellaNecro.flag = TCS_ENUM.Switch.No;
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.OrnellaNecro.move");
                   local arrSpellId = TCS_FUNC.Talent.OrnellaNecro.arrNormalSpellId;
                   if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
@@ -3735,14 +3088,13 @@ print("TTH_CombatCore loading...");
                     else
                       TTHCS_THREAD.castGlobalSpell4Mana(sidHero, iSpellId, TCS_ENUM.Switch.No);
                     end;
-                    TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.immediate);
+                    TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.immediate);
                   end;
                   local arrSpellIdOpposite = TCS_FUNC.Talent.OrnellaNecro.arrNormalSpellId;
                   local iRandomIndexOpposite = TTHCS_COMMON.getRandom(length(arrSpellIdOpposite));
                   local iSpellIdOpposite = arrSpellIdOpposite[iRandomIndexOpposite];
                   TTHCS_THREAD.castGlobalSpell8Tool(iOppositeSide, CREATURE_NECROMANCY_TOOL, 1, iSpellIdOpposite, TCS_ENUM.Switch.No);
                   ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-                  TCS_FUNC.Battle.proceed();
                 end;
               end;
             end;
@@ -3756,10 +3108,8 @@ print("TTH_CombatCore loading...");
             if strHero == TCS_FUNC.Talent.OrnellaNecro.strHero then
               if itemUnitLast ~= nil and itemUnitLast["UnitName"] == sidHero
                 and itemHeroMana[iSide] < 0 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.OrnellaNecro.charge");
                 TCS_FUNC.Talent.OrnellaNecro.flag = TCS_ENUM.Switch.Yes;
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -3777,7 +3127,6 @@ print("TTH_CombatCore loading...");
               if itemHeroMana[iOppositeSide] < 0
                 or length(listCreatureManaDecrease[iSide]) > 0
                 or length(listCreatureManaDecrease[iOppositeSide]) > 0 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Nimbus.trigger");
                 local iStep = 8;
                 if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
@@ -3789,9 +3138,8 @@ print("TTH_CombatCore loading...");
                 local iHeroLevel = TCS_VARI.Info.HeroLevel[strHero];
                 local iRecoveryMana = TTHCS_COMMON.ceil(iHeroLevel / iStep);
                 TTHCS_GLOBAL.recoveryHeroMana(sidHero, iRecoveryMana);
-                TCS_FUNC.Continuous.increase(sidHero, iRecoveryMana, itemUnitLast["UnitName"]);
+                -- TCS_FUNC.Continuous.increase(sidHero, iRecoveryMana, itemUnitLast["UnitName"]);
                 ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -3814,7 +3162,6 @@ print("TTH_CombatCore loading...");
                 end;
                 if TCS_FUNC.Talent.Muscip.flag[itemUnitLast["UnitName"]] == TCS_ENUM.Switch.Yes then
                   TCS_FUNC.Talent.Muscip.flag[itemUnitLast["UnitName"]] = TCS_ENUM.Switch.No;
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Muscip.after");
                   local iManaSteal = 0;
                   local arrCreatureTarget = GetCreatures(iOppositeSide);
@@ -3845,7 +3192,6 @@ print("TTH_CombatCore loading...");
                     TTHCS_GLOBAL.recoveryHeroMana(sidHero, iManaSteal);
                     ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
                   end;
-                  TCS_FUNC.Battle.proceed();
                 end;
               end;
             end;
@@ -3863,10 +3209,8 @@ print("TTH_CombatCore loading...");
                   length(listCreatureNumberDecrease[iOppositeSide]) > 0
                   or length(listCreatureStatusDeath[iOppositeSide]) > 0
                 ) then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Muscip.charge");
                 TCS_FUNC.Talent.Muscip.flag[itemUnitLast["UnitName"]] = TCS_ENUM.Switch.Yes;
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -3879,22 +3223,20 @@ print("TTH_CombatCore loading...");
             if strHero == TCS_FUNC.Talent.Muscip.strHero then
               if length(listCreatureStatusSummon[iSide]) > 0
                 and TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Muscip.trigger");
                 local bCheck = TCS_ENUM.Switch.No;
                 for i, sidCreature in listCreatureStatusSummon[iSide] do
                   local itemCreature = TTHCS_GLOBAL.geneUnitInfo(sidCreature);
                   if TTHCS_GLOBAL.checkCreatureType(itemCreature, CREATURE_MANES) then
                     bCheck = TCS_ENUM.Switch.Yes;
-                    TCS_FUNC.Atb.record(sidCreature, TCS_ENUM.Atb.max);
+                    TCS_BATTLE.atb.record(sidCreature, TCS_ENUM.Atb.max);
                     ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidCreature, 5);
                   end;
                 end;
                 if bCheck == TCS_ENUM.Switch.Yes and TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
-                  TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.max);
+                  TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.max);
                   ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
                 end;
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -3913,23 +3255,19 @@ print("TTH_CombatCore loading...");
               if itemUnit ~= nil and itemUnit["UnitName"] == sidHero then
                 if TCS_FUNC.Talent.Arantir.flag == TCS_ENUM.Switch.No then
                   TCS_FUNC.Talent.Arantir.flag = TCS_ENUM.Switch.Yes;
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Arantir.move");
                   if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
                     TTHCS_THREAD.castGlobalSpell4Mana(sidHero, SPELL_ABILITY_AVATAR_OF_DEATH, TCS_ENUM.Switch.Yes);
                     TCS_FUNC.Talent.Arantir.sidCreature = GetCreatures(iSide)[length(GetCreatures(iSide)) - 1];
-                    TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.immediate);
+                    TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.immediate);
                   end;
-                  TCS_FUNC.Battle.proceed();
                 end;
                 if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1
                   and TTHCS_GLOBAL.checkCombatCreature(TCS_FUNC.Talent.Arantir.sidCreature) == nil then
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Arantir.move");
                   TTHCS_THREAD.castGlobalSpell4Mana(sidHero, SPELL_ABILITY_AVATAR_OF_DEATH, TCS_ENUM.Switch.Yes);
                   TCS_FUNC.Talent.Arantir.sidCreature = GetCreatures(iSide)[length(GetCreatures(iSide)) - 1];
-                  TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.immediate);
-                  TCS_FUNC.Battle.proceed();
+                  TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.immediate);
                 end;
               end;
             end;
@@ -3947,10 +3285,8 @@ print("TTH_CombatCore loading...");
             if strHero == TCS_FUNC.Talent.Nemor.strHero then
               if itemUnitLast["Side"] == iSide
                 and TTHCS_GLOBAL.checkCreatureType(itemUnitLast, CREATURE_WIGHT) then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Nemor.after");
                 TTHCS_THREAD.castGlobalSpell5Mana(itemUnitLast["UnitName"], SPELL_ABILITY_DEATH_WAIL, TCS_ENUM.Switch.Yes);
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -3964,16 +3300,14 @@ print("TTH_CombatCore loading...");
               if itemUnitLast ~= nil and itemUnitLast["Side"] == iSide and itemUnitLast["UnitCategory"] == TTH_ENUM.CombatCreature
                 and length(listCreatureNumberDecrease[iOppositeSide]) > 1
                 and TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Nemor.trigger");
                 for i, sidCreatureTarget in listCreatureNumberDecrease[iOppositeSide] do
                   TTHCS_THREAD.cast.aimed.impl(sidHero, SPELL_SORROW, sidCreatureTarget, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No);
                 end;
                 if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
-                  TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.max);
+                  TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.max);
                 end;
                 ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -4003,11 +3337,9 @@ print("TTH_CombatCore loading...");
             local strHero = GetHeroName(sidHero);
             if itemHeroMana[iSide] < 0
               and TCS_FUNC.Talent.Sandro.check(strHero, SPELL_RESURRECT) then
-              TCS_FUNC.Battle.pause();
               TTHCS_GLOBAL.print("TCS_FUNC.Talent.Sandro.trigger.Resurrect");
               local iManaPoint = 2;
               TTHCS_GLOBAL.recoveryHeroMana(sidHero, iManaPoint);
-              TCS_FUNC.Battle.proceed();
             end;
           end;
         end;
@@ -4017,14 +3349,12 @@ print("TTH_CombatCore loading...");
           if sidHero ~= nil then
             local strHero = GetHeroName(sidHero);
             if TCS_FUNC.Talent.Sandro.check(strHero, SPELL_HOLY_WORD) then
-              TCS_FUNC.Battle.pause(1);
               TTHCS_GLOBAL.print("TCS_FUNC.Talent.Sandro.trigger.HolyWord");
               local itemHero = TTHCS_GLOBAL.geneUnitInfo(sidHero);
               local iCurrentMana = itemHero["CurrentMana"];
               local iRecoveryMana = TTHCS_COMMON.ceil(iCurrentMana * 0.2);
               TTHCS_GLOBAL.setHeroMana(sidHero, iCurrentMana + iRecoveryMana);
               ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-              TCS_FUNC.Battle.proceed();
             end;
           end;
         end;
@@ -4039,14 +3369,12 @@ print("TTH_CombatCore loading...");
                 and TCS_FUNC.Talent.Sandro.check(strHero, SPELL_HYPNOTIZE) then
                 if TCS_FUNC.Talent.Sandro.flag.hypnotize == TCS_ENUM.Switch.No then
                   TCS_FUNC.Talent.Sandro.flag.hypnotize = TCS_ENUM.Switch.Yes;
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Sandro.trigger.Hypnotize");
                   local arrCreatureTarget = GetCreatures(iOppositeSide);
                   local iRandomIndex = TTHCS_COMMON.getRandom(length(arrCreatureTarget));
                   local strCreatureTarget = arrCreatureTarget[iRandomIndex];
                   TTHCS_THREAD.cast.aimed.impl(sidHero, SPELL_HYPNOTIZE, strCreatureTarget, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No);
                   ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-                  TCS_FUNC.Battle.proceed();
                 end;
               end;
             end;
@@ -4060,12 +3388,10 @@ print("TTH_CombatCore loading...");
             if itemUnitLast ~= nil and itemUnitLast["Side"] == iSide and itemUnitLast["UnitCategory"] == TTH_ENUM.CombatCreature
               and TCS_FUNC.Talent.Sandro.check(strHero, SPELL_VAMPIRISM)
               and length(listCreatureStatusDeath[iOppositeSide]) > 0 then
-              TCS_FUNC.Battle.pause();
               TTHCS_GLOBAL.print("TCS_FUNC.Talent.Sandro.trigger.Vampirism");
               TTHCS_THREAD.cast.aimed.impl(sidHero, SPELL_VAMPIRISM, itemUnitLast["UnitName"], TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No);
-              TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.max);
+              TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.max);
               ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-              TCS_FUNC.Battle.proceed();
             end;
           end;
         end;
@@ -4079,12 +3405,10 @@ print("TTH_CombatCore loading...");
                 and TCS_FUNC.Talent.Sandro.check(strHero, SPELL_CONJURE_PHOENIX) then
                 if TCS_FUNC.Talent.Sandro.flag.conjurePhoenix == TCS_ENUM.Switch.No then
                   TCS_FUNC.Talent.Sandro.flag.conjurePhoenix = TCS_ENUM.Switch.Yes;
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Sandro.trigger.ConjurePhoenix");
                   TTHCS_THREAD.castGlobalSpell4Mana(sidHero, SPELL_CONJURE_PHOENIX, TCS_ENUM.Switch.No);
-                  TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.immediate);
+                  TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.immediate);
                   ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-                  TCS_FUNC.Battle.proceed();
                 end;
               end;
             end;
@@ -4100,7 +3424,7 @@ print("TTH_CombatCore loading...");
               and TCS_FUNC.Talent.Sandro.check(strHero, SPELL_ARMAGEDDON)
               and length(listCreatureNumberDecrease[iOppositeSide]) > 0 then
               TTHCS_GLOBAL.print("TCS_FUNC.Talent.Sandro.trigger.Armageddon");
-              TCS_FUNC.Continuous.increase(sidHero, 8, itemUnitLast["UnitName"]);
+              -- TCS_FUNC.Continuous.increase(sidHero, 8, itemUnitLast["UnitName"]);
               ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
             end;
           end;
@@ -4114,7 +3438,6 @@ print("TTH_CombatCore loading...");
               and itemHeroMana[iSide] < 0
               and TCS_FUNC.Talent.Sandro.check(strHero, SPELL_DEEP_FREEZE)
               and length(listCreatureNumberDecrease[iOppositeSide]) > 0 then
-              TCS_FUNC.Battle.pause();
               TTHCS_GLOBAL.print("TCS_FUNC.Talent.Sandro.trigger.DeepFreeze");
               local iRandomIndex = TTHCS_COMMON.getRandom(length(listCreatureNumberDecrease[iOppositeSide]));
               local sidCreatureTarget = listCreatureNumberDecrease[iOppositeSide][iRandomIndex];
@@ -4131,7 +3454,6 @@ print("TTH_CombatCore loading...");
                 TTHCS_THREAD.cast.aimed.impl(sidHero, iFinalSpellId, sidCreatureTarget, TCS_ENUM.Switch.Yes, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No);
               end;
               ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-              TCS_FUNC.Battle.proceed();
             end;
           end;
         end;
@@ -4147,7 +3469,6 @@ print("TTH_CombatCore loading...");
             if strHero == TCS_FUNC.Talent.Thant.strHero then
               if itemUnitLast ~= nil and itemUnitLast["Side"] == iSide and itemUnitLast["UnitType"] == CREATURE_MUMMY
                 and length(listCreatureManaDecrease[iSide]) > 0 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Thant.trigger");
                 local iRecoveryMana = 2;
                 for i, sidCreature in listCreatureManaDecrease[iSide] do
@@ -4157,7 +3478,6 @@ print("TTH_CombatCore loading...");
                   end;
                 end;
                 ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -4173,7 +3493,6 @@ print("TTH_CombatCore loading...");
             local strHero = GetHeroName(sidHero);
             if strHero == TCS_FUNC.Talent.Vidomina.strHero then
               if length(listCreatureStatusDeath[iOppositeSide]) > 0 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Vidomina.trigger");
                 for i, sidCreatureTarget in listCreatureStatusDeath[iOppositeSide] do
                   local iCurrentMana = GetUnitManaPoints(sidHero);
@@ -4190,17 +3509,17 @@ print("TTH_CombatCore loading...");
                     if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 0 then
                       sidCreatureRevive = TTHCS_THREAD.summonCreature(iSide, itemCreatureBefore["UnitType"], iCreatureNumber, itemCreatureBefore["PosX"], itemCreatureBefore["PosY"]);
                     else
+                      iCreatureNumber = 1;
                       sidCreatureRevive = TTHCS_THREAD.addCreature(iSide, itemCreatureBefore["UnitType"], iCreatureNumber, itemCreatureBefore["PosX"], itemCreatureBefore["PosY"]);
                     end
                     if sidCreatureRevive ~= nil then
                       if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-                        TCS_FUNC.Atb.record(sidCreatureRevive, TCS_ENUM.Atb.max);
+                        TCS_BATTLE.atb.record(sidCreatureRevive, TCS_ENUM.Atb.max);
                       end;
                       ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidCreatureRevive, 5);
                     end;
                   end;
                 end;
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -4234,7 +3553,6 @@ print("TTH_CombatCore loading...");
                   end;
                 end
                 if length(listCreatureDeath) > 0 then
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Calh.trigger");
                   for i, itemCreatureDeath in listCreatureDeath do
                     local iLenBefore = length(GetCreatures(iSide));
@@ -4256,12 +3574,11 @@ print("TTH_CombatCore loading...");
                         end;
                       end;
                       if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
-                        TCS_FUNC.Atb.record(sidCreatureSummon, TCS_ENUM.Atb.max);
+                        TCS_BATTLE.atb.record(sidCreatureSummon, TCS_ENUM.Atb.max);
                       end;
                     end;
                   end;
                   ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-                  TCS_FUNC.Battle.proceed();
                 end;
               end;
             end;
@@ -4290,7 +3607,6 @@ print("TTH_CombatCore loading...");
                 end;
                 listCreatureCaster = TTHCS_COMMON.desc8key(listCreatureCaster, "UnitNumber");
                 if length(listCreatureCaster) > 0 then
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Calid.trigger");
                   if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 0 then
                     listCreatureCaster = { [0] = listCreatureCaster[0] };
@@ -4306,11 +3622,10 @@ print("TTH_CombatCore loading...");
                       end;
                     end;
                     if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-                      TCS_FUNC.Atb.record(itemCreatureCaster["UnitName"], TCS_ENUM.Atb.max);
+                      TCS_BATTLE.atb.record(itemCreatureCaster["UnitName"], TCS_ENUM.Atb.max);
                     end;
                   end;
                   ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-                  TCS_FUNC.Battle.proceed();
                 end;
               end;
             end;
@@ -4335,16 +3650,14 @@ print("TTH_CombatCore loading...");
                   for i, sidWarMachine in arrWarMachine do
                     local itemWarMachine = TTHCS_GLOBAL.geneUnitInfo(sidWarMachine);
                     if itemWarMachine["UnitType"] == TTH_ENUM.WarmachineBallista then
-                      TCS_FUNC.Battle.pause();
                       TTHCS_GLOBAL.print("TCS_FUNC.Talent.Deleb.trigger");
                       for j, sidCreatureTarget in listCreatureNumberDecrease[iOppositeSide] do
                         TTHCS_THREAD.shoot(sidWarMachine, sidCreatureTarget);
                         if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
-                          TCS_FUNC.Atb.record(sidWarMachine, TCS_ENUM.Atb.max);
+                          TCS_BATTLE.atb.record(sidWarMachine, TCS_ENUM.Atb.max);
                         end;
                       end;
                       ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-                      TCS_FUNC.Battle.proceed();
                     end;
                   end;
                 end;
@@ -4365,7 +3678,6 @@ print("TTH_CombatCore loading...");
               if itemUnitLast ~= nil and itemUnitLast["UnitName"] == sidHero
                 and itemHeroMana[iSide] == 0
                 and length(listCreatureNumberDecrease[iOppositeSide]) > 0 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Orlando2.trigger");
                 local iCreatureId = CREATURE_INFERNO_TOOL_Orlando2_AbilityUpgradeMastery;
                 if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
@@ -4373,10 +3685,9 @@ print("TTH_CombatCore loading...");
                 end;
                 for i, sidCreatureTarget in listCreatureNumberDecrease[iOppositeSide] do
                   TTHCS_THREAD.debuff.trigger(iSide, iCreatureId, 1, sidCreatureTarget);
-                  TCS_FUNC.Atb.record(sidCreatureTarget, TCS_ENUM.Atb.min);
+                  TCS_BATTLE.atb.record(sidCreatureTarget, TCS_ENUM.Atb.min);
                 end;
                 ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -4394,7 +3705,6 @@ print("TTH_CombatCore loading...");
               if itemUnitLast ~= nil and itemUnitLast["UnitName"] == sidHero
                 and itemHeroMana[iSide] == 0
                 and length(listCreatureNumberDecrease[iOppositeSide]) > 0 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Efion.trigger");
                 for i, sidCreatureTarget in listCreatureNumberDecrease[iOppositeSide] do
                   if bDemonicRetaliation then
@@ -4445,10 +3755,10 @@ print("TTH_CombatCore loading...");
                   end;
                   if iSuccessCount > 0 then
                     if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-                      TCS_FUNC.Atb.record(itemCreatureCaster["UnitName"], TCS_ENUM.Atb.max);
+                      TCS_BATTLE.atb.record(itemCreatureCaster["UnitName"], TCS_ENUM.Atb.max);
                     end;
                     if bDemonicRetaliation ~= nil then
-                      TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.max);
+                      TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.max);
                     end;
                   else
                     if TCS_FUNC.Skill.DemonicRetaliation.flag[strHero] == TCS_ENUM.Switch.No then
@@ -4457,7 +3767,6 @@ print("TTH_CombatCore loading...");
                   end;
                 end;
                 ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -4475,7 +3784,6 @@ print("TTH_CombatCore loading...");
               if itemUnitLast ~= nil and itemUnitLast["UnitName"] == sidHero
                 and itemHeroMana[iSide] < 0
                 and length(listCreaturePositionMove[iSide]) == 1 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Grok.trigger");
                 local sidCreatureMove = listCreaturePositionMove[iSide][0];
                 local itemCreatureMove = TTHCS_GLOBAL.geneUnitInfo(sidCreatureMove);
@@ -4484,7 +3792,6 @@ print("TTH_CombatCore loading...");
                   TTHCS_THREAD.castAreaSpell8Tool4Body(iSide, itemCreatureMove["UnitType"], itemCreatureMove["UnitNumber"], SPELL_ABILITY_GATING, itemCreatureBefore["PosX"], itemCreatureBefore["PosY"], TCS_ENUM.Switch.No);
                   ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
                 end;
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -4496,22 +3803,20 @@ print("TTH_CombatCore loading...");
             local strHero = GetHeroName(sidHero);
             if strHero == TCS_FUNC.Talent.Grok.strHero then
               if length(listCreatureStatusGating[iSide]) > 0 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Grok.gating");
                 for i, sidCreatureSummon in listCreatureStatusGating[iSide] do
                   local itemCreatureSummon = TTHCS_GLOBAL.geneUnitInfo(sidCreatureSummon);
                   if TTH_TABLE.Creature[itemCreatureSummon["UnitType"]]["Race"] == TOWN_INFERNO then
                     if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
                       if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 0 then
-                        TCS_FUNC.Atb.record(sidCreatureSummon, TCS_ENUM.Atb.mid);
+                        TCS_BATTLE.atb.record(sidCreatureSummon, TCS_ENUM.Atb.mid);
                       else
-                        TCS_FUNC.Atb.record(sidCreatureSummon, TCS_ENUM.Atb.max);
+                        TCS_BATTLE.atb.record(sidCreatureSummon, TCS_ENUM.Atb.max);
                       end;
                       ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidCreatureSummon, 5);
                     end;
                   end;
                 end;
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -4528,7 +3833,6 @@ print("TTH_CombatCore loading...");
             if strHero == TCS_FUNC.Talent.Malustar.strHero then
               if length(listCreatureStatusGating) > 0
                 and TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Malustar.gating");
                 for i, sidSummon in listCreatureStatusGating[iSide] do
                   local itemSummon = TTHCS_GLOBAL.geneUnitInfo(sidSummon);
@@ -4546,7 +3850,6 @@ print("TTH_CombatCore loading...");
                     ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidSummon, 5);
                   end;
                 end;
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -4574,7 +3877,6 @@ print("TTH_CombatCore loading...");
                 end;
                 listCreatureCaster = TTHCS_COMMON.desc8key(listCreatureCaster, "UnitNumber");
                 if length(listCreatureCaster) > 0 then
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Oddrema.trigger");
                   if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 0 then
                     listCreatureCaster = { [0] = listCreatureCaster[0] };
@@ -4583,12 +3885,11 @@ print("TTH_CombatCore loading...");
                     for j, sidCreatureTarget in listCreatureNumberDecrease[iOppositeSide] do
                       TTHCS_THREAD.shoot(itemCreatureCaster["UnitName"], sidCreatureTarget);
                       if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-                        TCS_FUNC.Atb.record(itemCreatureCaster["UnitName"], TCS_ENUM.Atb.max);
+                        TCS_BATTLE.atb.record(itemCreatureCaster["UnitName"], TCS_ENUM.Atb.max);
                       end;
                     end;
                   end;
                   ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-                  TCS_FUNC.Battle.proceed();
                 end;
               end;
             end;
@@ -4606,20 +3907,18 @@ print("TTH_CombatCore loading...");
             if strHero == TCS_FUNC.Talent.Ash.strHero then
               if itemUnitLast ~= nil and itemUnitLast["Side"] == iOppositeSide
                 and length(listCreatureStatusDeath[iSide]) > 0 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Ash.trigger");
                 local itemUnitLastCurrent = TTHCS_GLOBAL.geneUnitInfo(itemUnitLast["UnitName"]);
                 if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 0 then
                   TTHCS_THREAD.cast.area.impl(sidHero, SPELL_FIREBALL, itemUnitLastCurrent["PosX"], itemUnitLastCurrent["PosY"], TCS_ENUM.Switch.Yes, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No);
                 else
                   TTHCS_THREAD.cast.area.impl(sidHero, SPELL_FIREBALL, itemUnitLastCurrent["PosX"], itemUnitLastCurrent["PosY"], TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No);
-                  TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.max);
+                  TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.max);
                 end;
                 if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-                  TCS_FUNC.Atb.record(itemUnitLastCurrent["UnitName"], TCS_ENUM.Atb.min);
+                  TCS_BATTLE.atb.record(itemUnitLastCurrent["UnitName"], TCS_ENUM.Atb.min);
                 end;
                 ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -4670,7 +3969,6 @@ print("TTH_CombatCore loading...");
                 and length(listCreatureNumberDecrease[iOppositeSide]) > 0 then
                 TCS_FUNC.Talent.Biara.checkExist();
                 if length(TCS_FUNC.Talent.Biara.arrSidSignCreature) > 0 then
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Biara.trigger");
                   if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 0 then
                     local iRandomCreatureIndex = TTHCS_COMMON.getRandom(length(TCS_FUNC.Talent.Biara.arrSidSignCreature));
@@ -4687,7 +3985,6 @@ print("TTH_CombatCore loading...");
                       end;
                     end;
                   end;
-                  TCS_FUNC.Battle.proceed();
                 end;
               end;
             end;
@@ -4706,7 +4003,6 @@ print("TTH_CombatCore loading...");
             if strHero == TCS_FUNC.Talent.Bersy.strHero then
               if itemUnitLast ~= nil and itemUnitLast["Side"] == iSide
                 and length(listCreaturePositionMove[iOppositeSide]) > 0 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Bersy.trigger");
                 for i, sidCreatureTarget in listCreaturePositionMove[iOppositeSide] do
                   local itemCreatureTarget = TTHCS_GLOBAL.geneUnitInfo(sidCreatureTarget);
@@ -4716,13 +4012,12 @@ print("TTH_CombatCore loading...");
                     for j, sidCreatureNearBy in arrCreatureNearBy do
                       TTHCS_THREAD.attack(sidCreatureNearBy, sidCreatureTarget);
                       if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
-                        TCS_FUNC.Atb.record(sidCreatureNearBy, TCS_ENUM.Atb.max);
+                        TCS_BATTLE.atb.record(sidCreatureNearBy, TCS_ENUM.Atb.max);
                       end;
                     end;
                   end;
                   ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidCreatureTarget, 5);
                 end;
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -4745,7 +4040,6 @@ print("TTH_CombatCore loading...");
                   or length(listCreatureStatusDeath[iOppositeSide]) > 0
                 )
                 and TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Maximus.trigger");
                 local arrCreatureDecrease = {};
                 for i, sidCreature in listCreatureNumberDecrease[iOppositeSide] do
@@ -4759,7 +4053,6 @@ print("TTH_CombatCore loading...");
                   end;
                 end;
                 TCS_FUNC.Talent.Maximus.deal(iSide, itemUnitLast, arrCreatureDecrease);
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -4835,8 +4128,7 @@ print("TTH_CombatCore loading...");
                 end;
                 listCreatureCaster = TTHCS_COMMON.desc8key(listCreatureCaster, "UnitNumber");
                 if length(listCreatureCaster) > 0 then
-                  TCS_FUNC.Battle.pause();
-                  TTHCS_GLOBAL.print("TCS_FUNC.Talent.Calid.trigger");
+                  TTHCS_GLOBAL.print("TCS_FUNC.Talent.Skeggy.trigger");
                   if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 0 then
                     listCreatureCaster = { [0] = listCreatureCaster[0] };
                   end;
@@ -4844,12 +4136,11 @@ print("TTH_CombatCore loading...");
                     for j, sidCreatureTarget in listCreatureNumberDecrease[iOppositeSide] do
                       TTHCS_THREAD.shoot(itemCreatureCaster["UnitName"], sidCreatureTarget);
                       if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-                        TCS_FUNC.Atb.record(itemCreatureCaster["UnitName"], TCS_ENUM.Atb.max);
+                        TCS_BATTLE.atb.record(itemCreatureCaster["UnitName"], TCS_ENUM.Atb.max);
                       end;
                       ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], itemCreatureCaster["UnitName"], 5);
                     end;
                   end;
-                  TCS_FUNC.Battle.proceed();
                 end;
               end;
             end;
@@ -4865,7 +4156,6 @@ print("TTH_CombatCore loading...");
             local strHero = GetHeroName(sidHero);
             if strHero == TCS_FUNC.Talent.Tazar.strHero
               and TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-              TCS_FUNC.Battle.pause(1);
               TTHCS_GLOBAL.print("TCS_FUNC.Talent.Tazar.start");
               local arrCreature = GetCreatures(iSide);
               local iHeroLevel = TCS_VARI.Info.HeroLevel[strHero];
@@ -4878,7 +4168,6 @@ print("TTH_CombatCore loading...");
                 TTHCS_THREAD.castAimedSpell8Tool(iSide, iCreatureType, iHeroLevel, SPELL_CELESTIAL_SHIELD, sidCreature, TCS_ENUM.Switch.No);
               end;
               ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-              TCS_FUNC.Battle.proceed();
             end;
           end;
         end;
@@ -4897,9 +4186,9 @@ print("TTH_CombatCore loading...");
                 and TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Vilma.trigger");
                 local iContinuousNumber = 8;
-                TCS_FUNC.Continuous.increase(itemUnitLast["UnitName"], iContinuousNumber, itemUnitLast["UnitName"]);
+                -- TCS_FUNC.Continuous.increase(itemUnitLast["UnitName"], iContinuousNumber, itemUnitLast["UnitName"]);
                 if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
-                  TCS_FUNC.Continuous.increase(sidHero, iContinuousNumber, itemUnitLast["UnitName"]);
+                  -- TCS_FUNC.Continuous.increase(sidHero, iContinuousNumber, itemUnitLast["UnitName"]);
                 end;
               end;
             end;
@@ -4918,15 +4207,13 @@ print("TTH_CombatCore loading...");
             if strHero == TCS_FUNC.Talent.Bart.strHero then
               if itemUnit ~= nil and itemUnit["UnitName"] == sidHero
                 and length(TCS_FUNC.Talent.Bart.arrSignCreature) > 0 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Bart.move");
                 for i, sidCreatureTarget in TCS_FUNC.Talent.Bart.arrSignCreature do
                   TTHCS_THREAD.cast.aimed.impl(sidHero, SPELL_ABILITY_REFRESH_RUNE, sidCreatureTarget, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No);
                 end;
                 TCS_FUNC.Talent.Bart.arrSignCreature = {};
                 ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-                TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.immediate);
-                TCS_FUNC.Battle.proceed();
+                TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.immediate);
               end;
             end;
           end;
@@ -4954,11 +4241,9 @@ print("TTH_CombatCore loading...");
                       iMaxLen = 4;
                     end;
                     if length(TCS_FUNC.Talent.Bart.arrSignCreature) < iMaxLen then
-                      TCS_FUNC.Battle.pause();
                       TTHCS_GLOBAL.print("TCS_FUNC.Talent.Bart.charge");
                       push(TCS_FUNC.Talent.Bart.arrSignCreature, itemUnitLast["UnitName"]);
                       ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], itemUnitLast["UnitName"], 5);
-                      TCS_FUNC.Battle.proceed();
                     end;
                 end;
               end;
@@ -4979,7 +4264,6 @@ print("TTH_CombatCore loading...");
                 and TTHCS_GLOBAL.checkCreatureType(itemUnitLast, CREATURE_RUNE_MAGE)
                 and length(listCreatureNumberDecrease[iOppositeSide]) > 0
                 and TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Egil.trigger");
                 for i, sidCreatureTarget in listCreatureNumberDecrease[iOppositeSide] do
                   local itemCreatureTarget = TTHCS_GLOBAL.geneUnitInfo(sidCreatureTarget);
@@ -4993,7 +4277,6 @@ print("TTH_CombatCore loading...");
                   TTHCS_GLOBAL.setHeroMana(itemUnitLast["UnitName"], 0);
                 end;
                 ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], itemUnitLast["UnitName"], 5);
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -5009,7 +4292,6 @@ print("TTH_CombatCore loading...");
                   local itemHeroBefore = TCS_VARI.Snapshot.before[TTH_ENUM.CombatHero][iSide];
                   local itemHeroLast = TCS_VARI.Snapshot.last[TTH_ENUM.CombatHero][iSide];
                   local iDiffMana = itemHeroLast["CurrentMana"] - itemHeroBefore["CurrentMana"];
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Egil.charge");
                   local arrCreature = GetCreatures(iSide);
                   for i, sidCreature in arrCreature do
@@ -5019,7 +4301,6 @@ print("TTH_CombatCore loading...");
                       ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidCreature, 5);
                     end;
                   end;
-                  TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -5127,7 +4408,6 @@ print("TTH_CombatCore loading...");
           if sidHero ~= nil then
             local strHero = GetHeroName(sidHero);
             if strHero == TCS_FUNC.Talent.Hangvul2.strHero then
-              TCS_FUNC.Battle.pause(1);
               TTHCS_GLOBAL.print("TCS_FUNC.Talent.Hangvul2.start");
               local iBattleFieldSize = TTHCS_GLOBAL.getBattleFieldSize();
               local listPosition = TCS_FUNC.Talent.Hangvul2.mapPosition[iBattleFieldSize][iSide];
@@ -5143,7 +4423,6 @@ print("TTH_CombatCore loading...");
                 TTHCS_THREAD.castAreaSpell8Tool(iSide, iCreatureType, iHeroLevel, SPELL_FIREWALL, itemPosition["PosX"], itemPosition["PosY"], TCS_ENUM.Switch.No);
               end;
               ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-              TCS_FUNC.Battle.proceed();
             end;
           end;
         end;
@@ -5157,7 +4436,6 @@ print("TTH_CombatCore loading...");
           if sidHero ~= nil then
             local strHero = GetHeroName(sidHero);
             if strHero == TCS_FUNC.Talent.Vegeyr.strHero then
-              TCS_FUNC.Battle.pause(1);
               TTHCS_GLOBAL.print("TCS_FUNC.Talent.Vegeyr.start");
               local arrCreature = GetCreatures(iOppositeSide);
               local iHeroLevel = TCS_VARI.Info.HeroLevel[strHero];
@@ -5166,7 +4444,6 @@ print("TTH_CombatCore loading...");
                 TTHCS_THREAD.castAimedSpell8Tool(iSide, CREATURE_FORTRESS_TOOL_Vegeyr, iCreatureNumber, SPELL_ABILITY_STORMBOLT, sidCreature, TCS_ENUM.Switch.No);
               end;
               ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-              TCS_FUNC.Battle.proceed();
             end;
           end;
         end;
@@ -5179,7 +4456,6 @@ print("TTH_CombatCore loading...");
               if itemUnitLast ~= nil and itemUnitLast["Side"] == iSide and itemUnitLast["UnitCategory"] == TTH_ENUM.CombatCreature
                 and length(listCreatureNumberDecrease[iOppositeSide]) + length(listCreatureStatusDeath[iOppositeSide]) > 1
                 and TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Vegeyr.trigger");
                 local iHeroLevel = TCS_VARI.Info.HeroLevel[strHero];
                 local iCreatureNumber = iHeroLevel;
@@ -5190,8 +4466,7 @@ print("TTH_CombatCore loading...");
                   TTHCS_THREAD.castAimedSpell8Tool(iSide, CREATURE_FORTRESS_TOOL_Vegeyr, iCreatureNumber, SPELL_ABILITY_STORMBOLT, sidCreature, TCS_ENUM.Switch.No);
                 end;
                 ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-                TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.max);
-                TCS_FUNC.Battle.proceed();
+                TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.max);
               end;
             end;
           end;
@@ -5214,7 +4489,7 @@ print("TTH_CombatCore loading...");
                 if length(arrCreature) == 0 then
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Hero9.trigger");
                   local iContinuousNumber = itemUnitLastCurrent["RageLevel"] * 10;
-                  TCS_FUNC.Continuous.increase(itemUnitLast["UnitName"], iContinuousNumber, itemUnitLast["UnitName"]);
+                  -- TCS_FUNC.Continuous.increase(itemUnitLast["UnitName"], iContinuousNumber, itemUnitLast["UnitName"]);
                   ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], itemUnitLast["UnitName"], 5);
                 end;
               end;
@@ -5249,7 +4524,6 @@ print("TTH_CombatCore loading...");
                   end;
                 end;
                 if length(arrCreatureRepel) > 0 then
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Hero7.trigger");
                   for i, sidCreatureRepel in arrCreatureRepel do
                     TTHCS_THREAD.repel(itemUnitLast["UnitName"], sidCreatureRepel);
@@ -5258,7 +4532,6 @@ print("TTH_CombatCore loading...");
                     end;
                     ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], itemUnitLast["UnitName"], 5);
                   end;
-                  TCS_FUNC.Battle.proceed();
                 end;
               end;
             end;
@@ -5268,70 +4541,138 @@ print("TTH_CombatCore loading...");
       -- Hero8 137 坦尔塞克
         TCS_FUNC.Talent.Hero8 = {};
         TCS_FUNC.Talent.Hero8.strHero = "Hero8";
-        TCS_FUNC.Talent.Hero8.count = 3;
-        TCS_FUNC.Talent.Hero8.trigger = function(iSide, itemUnit, itemUnitLast)
+        TCS_FUNC.Talent.Hero8.flag = 0;
+        TCS_FUNC.Talent.Hero8.trigger = function(iSide, itemUnit, itemUnitLast, listCreaturePositionMove, listCreatureManaDecrease, listCreatureNumberDecrease, listCreatureStatusDeath)
           local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
           local sidHero = GetHero(iSide);
           if sidHero ~= nil then
             local strHero = GetHeroName(sidHero);
             if strHero == TCS_FUNC.Talent.Hero8.strHero then
-              if itemUnitLast ~= nil and itemUnitLast["Side"] == iOppositeSide
-                and TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-                local itemUnitLastCurrent = TTHCS_GLOBAL.geneUnitInfo(itemUnitLast["UnitName"]);
-                local arrCreature = TTHCS_GLOBAL.listUnitInArea(itemUnitLastCurrent, 1, iSide, TCS_ENUM.Switch.No);
-                local arrCreatureCaster = {};
-                for i, sidCreatureCaster in arrCreature do
-                  local itemCreatureCaster = TTHCS_GLOBAL.geneUnitInfo(sidCreatureCaster);
-                  if TTHCS_GLOBAL.checkCreatureType(itemCreatureCaster, CREATURE_ORC_WARRIOR) then
-                    push(arrCreatureCaster, sidCreatureCaster);
+              if 1 == 1
+                and itemUnitLast ~= nil
+                and itemUnitLast["Side"] == iOppositeSide
+                and itemUnitLast["UnitCategory"] == TTH_ENUM.CombatCreature
+                and (
+                  1 ~= 1
+                  or contains(listCreaturePositionMove[iOppositeSide], itemUnitLast["UnitName"]) ~= nil
+                  or contains(listCreatureManaDecrease[iOppositeSide], itemUnitLast["UnitName"]) ~= nil
+                  or length(listCreatureNumberDecrease[iSide]) > 0
+                  or length(listCreatureStatusDeath[iSide]) > 0
+                )
+              then
+                local itemCreatureMain = TCS_FUNC.Talent.Hero8.getCreatureMain(iSide);
+                if itemCreatureMain ~= nil then
+                  if TTHCS_GLOBAL.getDistance4Creature(itemCreatureMain["UnitName"], itemUnitLast["UnitName"]) >= 25 then
+                    TTHCS_GLOBAL.print("TCS_FUNC.Talent.Hero8.trigger");
+                    TCS_FUNC.Talent.Hero8.taunt(itemCreatureMain["UnitName"], itemUnitLast["UnitName"], iSide);
+                    ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], itemUnitLast["UnitName"], 5);
+                    repeat
+                      sleep(1);
+                    until TCS_FUNC.Talent.Hero8.flag == 1;
+                    TCS_FUNC.Talent.Hero8.flag = 0;
+                    if 1 == 1
+                      and TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1
+                      and TTHCS_GLOBAL.getDistance4Creature(itemCreatureMain["UnitName"], itemUnitLast["UnitName"]) <= 25
+                    then
+                      TCS_BATTLE.atb.record(itemCreatureMain["UnitName"], TCS_ENUM.Atb.immediate);
+                      ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Creature"], itemCreatureMain["UnitName"], 5);
+                    end;
                   end;
-                end;
-                if length(arrCreatureCaster) > 0 then
-                  TCS_FUNC.Battle.pause();
-                  TTHCS_GLOBAL.print("TCS_FUNC.Talent.Hero8.trigger");
-                  for i, sidCreatureCaster in arrCreatureCaster do
-                    TTHCS_THREAD.attack(sidCreatureCaster, itemUnitLast["UnitName"]);
-                  end;
-                  ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], itemUnitLast["UnitName"], 5);
-                  TCS_FUNC.Battle.proceed();
                 end;
               end;
             end;
           end;
         end;
-        TCS_FUNC.Talent.Hero8.revive = function(iSide, itemUnit, itemUnitLast, listCreatureNumberDecrease)
-          local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
+        TCS_FUNC.Talent.Hero8.getCreatureMain = function(iSide)
+          local listCreature = {};
+          local itemCreatureMain = nil;
+          local arrCreature = GetCreatures(iSide);
+          for i, sidCreature in arrCreature do
+            local itemCreature = TTHCS_GLOBAL.geneUnitInfo(sidCreature);
+            if TTHCS_GLOBAL.checkCreatureType(itemCreature, CREATURE_ORC_WARRIOR) then
+              push(listCreature, itemCreature);
+            end;
+          end;
+          listCreature = TTHCS_COMMON.desc8key(listCreature, "UnitNumber");
+          if length(listCreature) > 0 then
+            itemCreatureMain = listCreature[0];
+          end;
+          return itemCreatureMain;
+        end;
+        TCS_FUNC.Talent.Hero8.iSide = 0;
+        TCS_FUNC.Talent.Hero8.sidCreatureBeTaunted = "";
+        TCS_FUNC.Talent.Hero8.arrSign = {};
+        TCS_FUNC.Talent.Hero8.taunt = function(sidCreatureCaster, sidCreatureTarget, iSide)
+          TTHCS_GLOBAL.print("TCS_FUNC.Talent.Hero8.taunt");
+          TCS_FUNC.Talent.Hero8.iSide = iSide;
+          TCS_FUNC.Talent.Hero8.sidCreatureBeTaunted = sidCreatureTarget;
+          if TCS_FUNC.Talent.Hero8.arrSign[iSide] == nil then
+            TCS_FUNC.Talent.Hero8.arrSign[iSide] = {};
+          end;
+          local itemCreatureCaster = TTHCS_GLOBAL.geneUnitInfo(sidCreatureCaster);
+          local itemCreatureTarget = TTHCS_GLOBAL.geneUnitInfo(sidCreatureTarget);
+          local iCombatSizeTarget = TTH_TABLE.Creature[itemCreatureTarget["UnitType"]]["CombatSize"];
+          local iDiffX = TTHCS_GLOBAL.matchCreaturePosition(sidCreatureCaster, sidCreatureTarget, "PosX");
+          local iDiffY = TTHCS_GLOBAL.matchCreaturePosition(sidCreatureCaster, sidCreatureTarget, "PosY");
+          local iFinalX = itemCreatureTarget["PosX"] - iDiffX * iCombatSizeTarget;
+          local iFinalY = itemCreatureTarget["PosY"] - iDiffY * iCombatSizeTarget;
+          startThread(TCS_FUNC.Talent.Hero8.move, sidCreatureTarget, iFinalX, iFinalY);
+          print(sidCreatureCaster.." taunt "..sidCreatureTarget.." to "..iFinalX.."-"..iFinalY);
+        end;
+        TCS_FUNC.Talent.Hero8.move = function(sidCreature, iPosX, iPosY)
+          TTHCS_GLOBAL.print("TCS_FUNC.Talent.Hero8.move");
+          errorHook(TCS_FUNC.Talent.Hero8.errorHook);
+          commandMove(sidCreature, iPosX, iPosY);
+          local itemCreature = {};
+          repeat
+            sleep(10);
+            itemCreature = TTHCS_GLOBAL.geneUnitInfo(sidCreature);
+          until itemCreature["PosX"] == iPosX and itemCreature["PosY"] == iPosY;
+          TCS_FUNC.Talent.Hero8.flag = 1;
+        end;
+        TCS_FUNC.Talent.Hero8.errorHook = function()
+          TTHCS_GLOBAL.print("TCS_FUNC.Talent.Hero8.errorHook");
+          TCS_FUNC.Talent.Hero8.flag = 1;
+          local iSide = TCS_FUNC.Talent.Hero8.iSide;
+          local sidCreatureTarget = TCS_FUNC.Talent.Hero8.sidCreatureBeTaunted;
           local sidHero = GetHero(iSide);
           if sidHero ~= nil then
             local strHero = GetHeroName(sidHero);
-            if strHero == TCS_FUNC.Talent.Hero8.strHero then
-              if itemUnitLast ~= nil
-                and length(listCreatureNumberDecrease[iSide]) > 0 then
-                local arrCreatureRevive = {};
-                for i, sidCreatureDecrease in listCreatureNumberDecrease[iSide] do
-                  local itemCreatureDecrease = TTHCS_GLOBAL.geneUnitInfo(sidCreatureDecrease);
-                  if TTHCS_GLOBAL.checkCreatureType(itemCreatureDecrease, CREATURE_ORC_WARRIOR) then
-                    push(arrCreatureRevive, sidCreatureDecrease);
+            if 1 == 1
+              and strHero == TCS_FUNC.Talent.Hero8.strHero
+              and TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1
+              and contains(TCS_FUNC.Talent.Hero8.arrSign[iSide], sidCreatureTarget) == nil
+            then
+              push(TCS_FUNC.Talent.Hero8.arrSign[iSide], sidCreatureTarget);
+            end;
+          end;
+        end;
+        TCS_FUNC.Talent.Hero8.active = function(iSide, itemUnit)
+          local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
+          if TCS_FUNC.Talent.Hero8.arrSign[iSide] == nil then
+            TCS_FUNC.Talent.Hero8.arrSign[iSide] = {};
+          end;
+          local sidHero = GetHero(iSide);
+          if sidHero ~= nil then
+            local strHero = GetHeroName(sidHero);
+            if 1 == 1
+              and strHero == TCS_FUNC.Talent.Hero8.strHero
+              and TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1
+              and length(TCS_FUNC.Talent.Hero8.arrSign[iSide]) > 0 then
+              TTHCS_GLOBAL.print("TCS_FUNC.Talent.Hero8.active");
+              local itemCreatureMain = TCS_FUNC.Talent.Hero8.getCreatureMain(iSide);
+              for i, sidCreatureTarget in TCS_FUNC.Talent.Hero8.arrSign[iSide] do
+                local itemCreatureTarget = TTHCS_GLOBAL.geneUnitInfo(sidCreatureTarget);
+                local iCombatSizeTarget = TTH_TABLE.Creature[itemCreatureTarget["UnitType"]]["CombatSize"];
+                if iCombatSizeTarget == 1 then
+                  if itemCreatureMain ~= nil then
+                    TTHCS_THREAD.cast.aimed.impl(sidHero, SPELL_WARCRY_CALL_OF_BLOOD, itemCreatureMain["UnitName"], TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.Yes);
                   end;
-                end;
-                if length(arrCreatureRevive) > 0 and TCS_FUNC.Talent.Hero8.count > 0 then
-                  TCS_FUNC.Battle.pause();
-                  TTHCS_GLOBAL.print("TCS_FUNC.Talent.Hero8.revive");
-                  local iCreatureNumber = 1;
-                  if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
-                    local iHeroLevel = TCS_VARI.Info.HeroLevel[strHero];
-                    iCreatureNumber = TTHCS_COMMON.ceil(iHeroLevel / 5);
-                  end;
-                  for i, sidCreatureRevive in arrCreatureRevive do
-                    if TCS_FUNC.Talent.Hero8.count > 0 then
-                      TCS_FUNC.Talent.Hero8.count = TCS_FUNC.Talent.Hero8.count - 1;
-                      TTHCS_THREAD.castAimedSpell8Tool(iSide, CREATURE_STRONGHOLD_TOOL, iCreatureNumber, SPELL_ABILITY_RESURRECT_ALLIES, sidCreatureRevive, TCS_ENUM.Switch.No);
-                      ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Revive"], sidCreatureRevive, 5);
-                    end;
-                  end;
-                  TCS_FUNC.Battle.proceed();
+                elseif iCombatSizeTarget == 2 then
+                  TTHCS_THREAD.cast.aimed.impl(sidHero, SPELL_WARCRY_FEAR_MY_ROAR, sidCreatureTarget, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.Yes);
                 end;
               end;
+              TCS_FUNC.Talent.Hero8.arrSign[iSide] = {};
             end;
           end;
         end;
@@ -5357,7 +4698,6 @@ print("TTH_CombatCore loading...");
                 end;
                 local listCreatureCasterSort8Number = TTHCS_COMMON.desc8key(listCreatureCaster, "UnitNumber");
                 if length(listCreatureCasterSort8Number) > 0 then
-                  TCS_FUNC.Battle.pause(1);
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Azar.start");
                   local itemCreatureCaster = listCreatureCasterSort8Number[0];
                   local iHeroLevel = TCS_VARI.Info.HeroLevel[strHero];
@@ -5366,7 +4706,6 @@ print("TTH_CombatCore loading...");
                   local iUnitType = CREATURE_WOLF;
                   local sidCreatureTarget = TTHCS_THREAD.summonCreature(iSide, iUnitType, iUnitNumber, itemCreatureCaster["PosX"], itemCreatureCaster["PosY"]);
                   ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidCreatureTarget, 5);
-                  TCS_FUNC.Battle.proceed();
                 end;
               end;
             end;
@@ -5379,16 +4718,15 @@ print("TTH_CombatCore loading...");
             local strHero = GetHeroName(sidHero);
             if strHero == TCS_FUNC.Talent.Azar.strHero then
               if itemUnit["Side"] == iSide
-                and itemUnit["UnitType"] == CREATURE_WOLF then
+                and itemUnit["UnitType"] == CREATURE_WOLF
+                and TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
                 if TCS_FUNC.Talent.Azar.flag[itemUnit["UnitName"]] == nil then
                   TCS_FUNC.Talent.Azar.flag[itemUnit["UnitName"]] = TCS_ENUM.Switch.Yes;
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Azar.first");
                   local sidCreatureAdd = TTHCS_THREAD.addCreature(iSide, CREATURE_STRONGHOLD_TOOL, 1, itemUnit["PosX"], itemUnit["PosY"]);
                   TTHCS_THREAD.attack(itemUnit["UnitName"], sidCreatureAdd);
                   TTHCS_THREAD.removeCreature(sidCreatureAdd);
-                  TCS_FUNC.Atb.record(itemUnit["UnitName"], TCS_ENUM.Atb.immediate);
-                  TCS_FUNC.Battle.proceed();
+                  TCS_BATTLE.atb.record(itemUnit["UnitName"], TCS_ENUM.Atb.immediate);
                 end;
               end;
             end;
@@ -5404,7 +4742,6 @@ print("TTH_CombatCore loading...");
           if sidHero ~= nil then
             local strHero = GetHeroName(sidHero);
             if strHero == TCS_FUNC.Talent.Hero4.strHero then
-              TCS_FUNC.Battle.pause(1);
               TTHCS_GLOBAL.print("TCS_FUNC.Talent.Hero4.start");
               local arrCreatureTarget = GetCreatures(iSide);
               local listCreatureTarget = {};
@@ -5438,7 +4775,6 @@ print("TTH_CombatCore loading...");
                   ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], itemCreatureRandom["UnitName"], 5);
                 end;
               end;
-              TCS_FUNC.Battle.proceed();
             end;
           end;
         end;
@@ -5456,16 +4792,14 @@ print("TTH_CombatCore loading...");
                 and TTHCS_GLOBAL.checkCreatureType(itemUnitLast, CREATURE_WYVERN)
                 and TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1
                 and length(listCreatureStatusDeath[iOppositeSide]) > 0 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Hero6.trigger");
                 local iHeroLevel = TCS_VARI.Info.HeroLevel[strHero];
                 local iCreatureNumber = iHeroLevel;
                 TTHCS_THREAD.castAimedSpell8Tool(iSide, CREATURE_STRONGHOLD_TOOL, iCreatureNumber, SPELL_REGENERATION, itemUnitLast["UnitName"], TCS_ENUM.Switch.No);
                 if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
-                  TCS_FUNC.Atb.record(itemUnitLast["UnitName"], TCS_ENUM.Atb.max);
+                  TCS_BATTLE.atb.record(itemUnitLast["UnitName"], TCS_ENUM.Atb.max);
                 end;
                 ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -5474,26 +4808,52 @@ print("TTH_CombatCore loading...");
       -- Crag 141 肯洛-哈格
         TCS_FUNC.Talent.Crag = {};
         TCS_FUNC.Talent.Crag.strHero = "Crag";
-        TCS_FUNC.Talent.Crag.trigger = function(iSide, itemUnit, itemUnitLast, listCreaturePositionMove)
+        TCS_FUNC.Talent.Crag.arrFlag = {};
+        TCS_FUNC.Talent.Crag.start = function(iSide)
           local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
           local sidHero = GetHero(iSide);
           if sidHero ~= nil then
             local strHero = GetHeroName(sidHero);
             if strHero == TCS_FUNC.Talent.Crag.strHero then
-              if itemUnitLast ~= nil and itemUnitLast["Side"] == iSide and itemUnitLast["UnitCategory"] == TTH_ENUM.CombatCreature
-                and TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1
-                and length(listCreaturePositionMove[iSide]) > 0 then
-                local itemUnitLastCurrent = TTHCS_GLOBAL.geneUnitInfo(itemUnitLast["UnitName"]);
-                if (iSide == TCS_ENUM.Side.Attacker and itemUnitLastCurrent["PosX"] > itemUnitLast["PosX"])
-                  or (iSide == TCS_ENUM.Side.Defender and itemUnitLastCurrent["PosX"] < itemUnitLast["PosX"]) then
-                  TTHCS_GLOBAL.print("TCS_FUNC.Talent.Crag.trigger");
-                  local iHeroLevel = TCS_VARI.Info.HeroLevel[strHero];
-                  local iContinuousNumber = TTHCS_COMMON.ceil(iHeroLevel / 3);
-                  TCS_FUNC.Continuous.increase(itemUnitLast["UnitName"], iContinuousNumber, itemUnitLast["UnitName"]);
-                end;
+              TTHCS_GLOBAL.print("TCS_FUNC.Talent.Crag.start");
+              local arrArtifact = {};
+              if TCS_VARI.Info.HeroArtifact[strHero][ARTIFACT_DRUM_OF_CHARGE] == 0 then
+                push(arrArtifact, ARTIFACT_DRUM_OF_CHARGE);
+              end;
+              if TCS_VARI.Info.HeroArtifact[strHero][ARTIFACT_HORN_OF_CHARGE] == 0 then
+                push(arrArtifact, ARTIFACT_HORN_OF_CHARGE);
+              end;
+              if TCS_VARI.Info.HeroArtifact[strHero][ARTIFACT_FLAG_OF_CHARGE] == 0 then
+                push(arrArtifact, ARTIFACT_FLAG_OF_CHARGE);
+              end;
+              if length(arrArtifact) > 0 then
+                TTHCS_GLOBAL.print("TCS_FUNC.Talent.Crag.start");
+                local iRandomIndex = TTHCS_COMMON.getRandom(length(arrArtifact));
+                local iArtifactId = arrArtifact[iRandomIndex];
+                TCS_VARI.Info.HeroArtifact[strHero][iArtifactId] = 1;
+                ShowFlyingSign(TTHCS_PATH["Artifact"][iArtifactId]["Effect"], sidHero, 10);
+                TCS_VARI.Info.HeroArtifactSet[strHero][ARTIFACTSET_CHARGE] = TCS_VARI.Info.HeroArtifactSet[strHero][ARTIFACTSET_CHARGE] + 1;
               end;
             end;
           end;
+        end;
+        TCS_FUNC.Talent.Crag.signArtifact = function(iSide, strArtifact)
+          local bCheck = nil;
+          local sidHero = GetHero(iSide);
+          if sidHero ~= nil then
+            local strHero = GetHeroName(sidHero);
+            if 1 == 1
+              and strHero == TCS_FUNC.Talent.Crag.strHero
+              and TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1
+            then
+              if TCS_FUNC.Talent.Crag.arrFlag[strArtifact] == nil then
+                TTHCS_GLOBAL.print("TCS_FUNC.Talent.Crag.signArtifact for "..strArtifact);
+                TCS_FUNC.Talent.Crag.arrFlag[strArtifact] = 1;
+                bCheck = not nil;
+              end;
+            end;
+          end;
+          return bCheck;
         end;
 
       -- Gottai 142 高泰
@@ -5508,11 +4868,9 @@ print("TTH_CombatCore loading...");
               if itemUnit ~= nil and itemUnit["UnitName"] == sidHero then
                 if TCS_FUNC.Talent.Gottai.flag == TCS_ENUM.Switch.No then
                   TCS_FUNC.Talent.Gottai.flag = TCS_ENUM.Switch.Yes;
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Gottai.first");
                   TTHCS_THREAD.castGlobalSpell4Mana(sidHero, SPELL_WARCRY_RALLING_CRY, TCS_ENUM.Switch.Yes);
-                  TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.immediate);
-                  TCS_FUNC.Battle.proceed();
+                  TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.immediate);
                 end;
               end;
             end;
@@ -5529,11 +4887,9 @@ print("TTH_CombatCore loading...");
                   (TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 and length(listCreatureStatusDeath[iOppositeSide]) > 0)
                   or (TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 and length(listCreatureStatusDeath[iSide]) > 0)
                 ) then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Gottai.trigger");
                 TTHCS_THREAD.castGlobalSpell4Mana(sidHero, SPELL_WARCRY_RALLING_CRY, TCS_ENUM.Switch.Yes);
-                TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.max);
-                TCS_FUNC.Battle.proceed();
+                TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.max);
               end;
             end;
           end;
@@ -5556,13 +4912,11 @@ print("TTH_CombatCore loading...");
                   TCS_FUNC.Talent.Hero1.sidSignCreature = "";
                 end;
                 if TCS_FUNC.Talent.Hero1.sidSignCreature == "" then
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Hero1.sign");
                   local itemCreatureTarget = TTHCS_GLOBAL.geneUnitInfo(listCreatureNumberDecrease[iOppositeSide][0]);
                   TCS_FUNC.Talent.Hero1.sidSignCreature = itemCreatureTarget["UnitName"];
-                  TCS_FUNC.Atb.record(itemCreatureTarget["UnitName"], TCS_ENUM.Atb.min);
+                  TCS_BATTLE.atb.record(itemCreatureTarget["UnitName"], TCS_ENUM.Atb.min);
                   ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-                  TCS_FUNC.Battle.proceed();
                 end;
               end;
             end;
@@ -5577,15 +4931,13 @@ print("TTH_CombatCore loading...");
               if itemUnitLast ~= nil
                 and itemUnitLast["UnitName"] == TCS_FUNC.Talent.Hero1.sidSignCreature
                 and TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Hero1.trigger");
-                TCS_FUNC.Atb.record(itemUnitLast["UnitName"], TCS_ENUM.Atb.min);
+                TCS_BATTLE.atb.record(itemUnitLast["UnitName"], TCS_ENUM.Atb.min);
                 ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], itemUnitLast["UnitName"], 5);
                 if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
-                  TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.max);
+                  TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.max);
                   ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
                 end;
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -5603,7 +4955,6 @@ print("TTH_CombatCore loading...");
               if itemUnitLast ~= nil and itemUnitLast["Side"] == iSide
                 and length(listCreatureStatusDeath[iOppositeSide]) > 0
                 and TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Hero3.trigger");
                 local iHeroLevel = TCS_VARI.Info.HeroLevel[strHero];
                 local iCreatureNumber = iHeroLevel;
@@ -5614,8 +4965,7 @@ print("TTH_CombatCore loading...");
                   TTHCS_THREAD.castAimedSpell8Tool(iSide, CREATURE_STRONGHOLD_TOOL, iCreatureNumber, SPELL_DEFLECT_ARROWS, itemUnitLast["UnitName"], TCS_ENUM.Switch.No);
                 end;
                 ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], itemUnitLast["UnitName"], 5);
-                TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.max);
-                TCS_FUNC.Battle.proceed();
+                TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.max);
               end;
             end;
           end;
@@ -5627,32 +4977,45 @@ print("TTH_CombatCore loading...");
         TCS_FUNC.Talent.Kraal.trigger = function(iSide, itemUnit, itemUnitLast)
           local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
           local sidHero = GetHero(iSide);
-          if sidHero ~= nil then
-            local strHero = GetHeroName(sidHero);
-            if strHero == TCS_FUNC.Talent.Kraal.strHero then
-              if itemUnitLast ~= nil and itemUnitLast["Side"] == iOppositeSide
-                and TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-                local itemUnitLastCurrent = TTHCS_GLOBAL.geneUnitInfo(itemUnitLast["UnitName"]);
-                local arrCreature = TTHCS_GLOBAL.listUnitInArea(itemUnitLastCurrent, 1, iSide, TCS_ENUM.Switch.No);
-                if length(arrCreature) == 0 then
-                  local arrWarMachine = GetWarMachines(iSide);
-                  if length(arrWarMachine) > 0 then
-                    for i, sidWarMachine in arrWarMachine do
-                      local itemWarMachine = TTHCS_GLOBAL.geneUnitInfo(sidWarMachine);
-                      if itemWarMachine["UnitType"] == TTH_ENUM.WarmachineBallista then
-                        TCS_FUNC.Battle.pause();
-                        TTHCS_GLOBAL.print("TCS_FUNC.Talent.Kraal.trigger");
-                        TTHCS_THREAD.shoot(sidWarMachine, itemUnitLast["UnitName"]);
-                        if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
-                          TCS_FUNC.Atb.record(sidWarMachine, TCS_ENUM.Atb.max);
-                        end;
-                        ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidWarMachine, 5);
-                        TCS_FUNC.Battle.proceed();
-                      end;
-                    end;
-                  end;
+          local strHero = TCS_FUNC.Talent.Kraal.strHero;
+          if 1 == 1
+            and sidHero ~= nil
+            and GetHeroName(sidHero) == strHero
+            and itemUnitLast ~= nil
+            and itemUnitLast["Side"] == iOppositeSide
+            and TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1
+          then
+            local itemUnitLastCurrent = TTHCS_GLOBAL.geneUnitInfo(itemUnitLast["UnitName"]);
+            local arrCreatureFriendly = TTHCS_GLOBAL.listUnitInArea(itemUnitLastCurrent, 1, iSide, TCS_ENUM.Switch.No);
+            local arrCreatureEnemy = TTHCS_GLOBAL.listUnitInArea(itemUnitLastCurrent, 1, iOppositeSide, TCS_ENUM.Switch.No);
+            if 1 == 1
+              and length(arrCreatureEnemy) == 1
+              and arrCreatureEnemy[0] == itemUnitLastCurrent["UnitName"]
+            then
+              arrCreatureEnemy = {};
+            end;
+            local arrWarMachine = GetWarMachines(iSide);
+            local sidBallista = nil;
+            if length(arrWarMachine) > 0 then
+              for i, sidWarMachine in arrWarMachine do
+                local itemWarMachine = TTHCS_GLOBAL.geneUnitInfo(sidWarMachine);
+                if itemWarMachine["UnitType"] == TTH_ENUM.WarmachineBallista then
+                  sidBallista = sidWarMachine;
+                  break;
                 end;
               end;
+            end;
+            if 1 == 1
+              and sidBallista ~= nil
+              and length(arrCreatureFriendly) == 0
+              and length(arrCreatureEnemy) == 0
+            then
+              TTHCS_GLOBAL.print("TCS_FUNC.Talent.Kraal.trigger");
+              TTHCS_THREAD.shoot(sidBallista, itemUnitLast["UnitName"]);
+              if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
+                TTHCS_GLOBAL.moveImmediate(sidBallista);
+              end;
+              ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidBallista, 5);
             end;
           end;
         end;
@@ -5696,11 +5059,9 @@ print("TTH_CombatCore loading...");
               if itemUnit ~= nil and itemUnit["UnitName"] == sidHero then
                 if TCS_FUNC.Talent.Matewa.flag == TCS_ENUM.Switch.No then
                   TCS_FUNC.Talent.Matewa.flag = TCS_ENUM.Switch.Yes;
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Matewa.first");
                   TTHCS_THREAD.castGlobalSpell4Mana(sidHero, SPELL_WARCRY_BATTLECRY, TCS_ENUM.Switch.Yes);
-                  TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.immediate);
-                  TCS_FUNC.Battle.proceed();
+                  TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.immediate);
                 end;
               end;
             end;
@@ -5717,11 +5078,9 @@ print("TTH_CombatCore loading...");
                   (TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 and length(listCreatureStatusDeath[iOppositeSide]) > 0)
                   or (TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 and length(listCreatureStatusDeath[iSide]) > 0)
                 ) then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Matewa.trigger");
                 TTHCS_THREAD.castGlobalSpell4Mana(sidHero, SPELL_WARCRY_BATTLECRY, TCS_ENUM.Switch.Yes);
-                TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.max);
-                TCS_FUNC.Battle.proceed();
+                TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.max);
               end;
             end;
           end;
@@ -5739,17 +5098,14 @@ print("TTH_CombatCore loading...");
               if itemUnitLast["Side"] == iSide then
                 if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1
                   and TTHCS_GLOBAL.checkCreatureType(itemUnitLast, CREATURE_SHAMAN) then
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Quroq.trigger");
                   local sidCreatureAdd = TTHCS_THREAD.summonCreature(iSide, CREATURE_STRONGHOLD_TOOL, 1, itemUnitLast["PosX"], itemUnitLast["PosY"]);
                   TTHCS_THREAD.cast.aimed.impl(itemUnitLast["UnitName"], SPELL_ABILITY_SACRIFICE_GOBLIN, sidCreatureAdd, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No);
                   TTHCS_THREAD.removeCreature(sidCreatureAdd);
                   TTHCS_GLOBAL.setHeroMana(itemUnitLast["UnitName"], itemUnitLast["CurrentMana"] + 6)
                   ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], itemUnitLast["UnitName"], 5);
-                  TCS_FUNC.Battle.proceed();
                 end;
                 if TTHCS_GLOBAL.checkCreatureType(itemUnitLast, CREATURE_CYCLOP) then
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Quroq.trigger");
                   local itemUnitCurrent = TTHCS_GLOBAL.geneUnitInfo(itemUnitLast["UnitName"]);
                   local sidCreatureSummon = TTHCS_THREAD.summonCreature(iSide, CREATURE_STRONGHOLD_TOOL, 1, itemUnitCurrent["PosX"], itemUnitCurrent["PosY"]);
@@ -5775,7 +5131,6 @@ print("TTH_CombatCore loading...");
                     end;
                   end;
                   ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], itemUnitLast["UnitName"], 5);
-                  TCS_FUNC.Battle.proceed();
                 end;
               end;
             end;
@@ -5800,9 +5155,9 @@ print("TTH_CombatCore loading...");
                   if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
                     iContinuousNumber = iContinuousNumber * 2;
                   end;
-                  TCS_FUNC.Continuous.increase(sidCreatureTarget, iContinuousNumber);
+                  -- TCS_FUNC.Continuous.increase(sidCreatureTarget, iContinuousNumber);
                   if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-                    TCS_FUNC.Continuous.increase(sidHero, iContinuousNumber);
+                    -- TCS_FUNC.Continuous.increase(sidHero, iContinuousNumber);
                   end;
                 end;
               end;
@@ -5824,9 +5179,9 @@ print("TTH_CombatCore loading...");
                   if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
                     iContinuousNumber = iContinuousNumber * 2;
                   end;
-                  TCS_FUNC.Continuous.increase(sidCreatureTarget, iContinuousNumber, itemUnitLast["UnitName"]);
+                  -- TCS_FUNC.Continuous.increase(sidCreatureTarget, iContinuousNumber, itemUnitLast["UnitName"]);
                   if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-                    TCS_FUNC.Continuous.increase(sidHero, iContinuousNumber, itemUnitLast["UnitName"]);
+                    -- TCS_FUNC.Continuous.increase(sidHero, iContinuousNumber, itemUnitLast["UnitName"]);
                   end;
                 end;
               end;
@@ -5846,7 +5201,6 @@ print("TTH_CombatCore loading...");
               if itemUnitLast ~= nil
                 and length(listCreatureRageLevelDecrease[iSide]) > 0
                 and TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Zouleika.trigger");
                 for i, sidCreatureTarget in listCreatureRageLevelDecrease[iSide] do
                   TTHCS_THREAD.cast.aimed.impl(sidHero, SPELL_WARCRY_CALL_OF_BLOOD, sidCreatureTarget, TCS_ENUM.Switch.Yes, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No);
@@ -5855,7 +5209,6 @@ print("TTH_CombatCore loading...");
                   end;
                   ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
                 end;
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -5874,7 +5227,6 @@ print("TTH_CombatCore loading...");
               if itemUnitLast ~= nil and itemUnitLast["UnitName"] == sidHeroOpposite
                 and itemHeroMana[iOppositeSide] < 0
                 and TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Erika.trigger");
                 local itemUnitLastCurrent = TTHCS_GLOBAL.geneUnitInfo(sidHeroOpposite);
                 local iManaPoint = itemUnitLastCurrent["CurrentMana"] * 2 - itemUnitLast["CurrentMana"];
@@ -5883,10 +5235,9 @@ print("TTH_CombatCore loading...");
                 end;
                 TTHCS_GLOBAL.setHeroMana(sidHeroOpposite, iManaPoint);
                 if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
-                  TCS_FUNC.Atb.record(sidHeroOpposite, TCS_ENUM.Atb.clear);
+                  TCS_BATTLE.atb.record(sidHeroOpposite, TCS_ENUM.Atb.clear);
                 end;
                 ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -5906,15 +5257,13 @@ print("TTH_CombatCore loading...");
               if itemUnit ~= nil and itemUnit["UnitName"] == sidHero then
                 if TCS_FUNC.Talent.Mokka.flag == TCS_ENUM.Switch.No then
                   TCS_FUNC.Talent.Mokka.flag = TCS_ENUM.Switch.Yes;
-                  TCS_FUNC.Battle.pause();
                   TTHCS_GLOBAL.print("TCS_FUNC.Talent.Mokka.first");
                   local arrCreatureTarget = GetCreatures(iOppositeSide);
                   local iRandomId = TTHCS_COMMON.getRandom(length(arrCreatureTarget));
                   local sidCreatureTarget = arrCreatureTarget[iRandomId];
                   TTHCS_THREAD.cast.aimed.impl(sidHero, SPELL_WARCRY_FEAR_MY_ROAR, sidCreatureTarget, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No);
-                  TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.immediate);
+                  TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.immediate);
                   ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-                  TCS_FUNC.Battle.proceed();
                 end;
               end;
             end;
@@ -5944,7 +5293,6 @@ print("TTH_CombatCore loading...");
                 if length(arrCreatureMatch) > 0 then
                   if TCS_FUNC.Talent.Mokka.flagCharge == TCS_ENUM.Switch.Yes then
                     TCS_FUNC.Talent.Mokka.flagCharge = TCS_ENUM.Switch.No;
-                    TCS_FUNC.Battle.pause();
                     TTHCS_GLOBAL.print("TCS_FUNC.Talent.Mokka.move");
                     local iRandomId = TTHCS_COMMON.getRandom(length(arrCreatureMatch));
                     local sidCreatureMatch = arrCreatureMatch[iRandomId];
@@ -5952,9 +5300,8 @@ print("TTH_CombatCore loading...");
                     if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
                       TTHCS_THREAD.cast.aimed.impl(sidHero, SPELL_WARCRY_SHOUT_OF_MANY, sidCreatureMatch, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No);
                     end;
-                    TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.immediate);
+                    TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.immediate);
                     ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
-                    TCS_FUNC.Battle.proceed();
                   end;
                 end;
               end;
@@ -5969,10 +5316,8 @@ print("TTH_CombatCore loading...");
             if strHero == TCS_FUNC.Talent.Mokka.strHero then
               if itemUnitLast ~= nil and itemUnitLast["UnitName"] == sidHero
                 and itemHeroMana[iSide] < 0 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Talent.Mokka.charge");
                 TCS_FUNC.Talent.Mokka.flagCharge = TCS_ENUM.Switch.Yes;
-                TCS_FUNC.Battle.proceed();
               end;
             end;
           end;
@@ -5998,13 +5343,11 @@ print("TTH_CombatCore loading...");
               end;
             end;
             if length(listWarMachineRepair) > 0 then
-              TCS_FUNC.Battle.pause();
               TTHCS_GLOBAL.print("TCS_FUNC.Skill.RepairMachines.move");
               for i, itemWarMachineRepair in listWarMachineRepair do
                 TTHCS_THREAD.castAimedSpell8Tool(iSide, CREATURE_ACADEMY_TOOL, 1, SPELL_ABILITY_REPAIR, itemWarMachineRepair["UnitName"], TCS_ENUM.Switch.No);
                 ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_REPAIR_MACHINES]["Effect"], itemWarMachineRepair["UnitName"], 5);
               end;
-              TCS_FUNC.Battle.proceed();
             end;
           end;
         end;
@@ -6033,14 +5376,12 @@ print("TTH_CombatCore loading...");
             ) then
             if TCS_FUNC.Skill.MagicBalance.flag[strHero] == nil then
               TCS_FUNC.Skill.MagicBalance.flag[strHero] = TCS_ENUM.Switch.No;
-              TCS_FUNC.Battle.pause();
               TTHCS_GLOBAL.print("TCS_FUNC.Skill.MagicBalance.trigger");
               TTHCS_THREAD.castGlobalSpell8Tool(iSide, CREATURE_ACADEMY_TOOL, 100000, SPELL_ABILITY_POWER_FEED, TCS_ENUM.Switch.No);
               local iSpellPower = TCS_VARI.Info.HeroAttribute[strHero][STAT_SPELL_POWER];
               local iManaPoint = TTHCS_COMMON.floor(iSpellPower * 7.5);
               TTHCS_GLOBAL.setHeroMana(sidHero, iManaPoint);
               ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_MAGIC_BALANCE]["Effect"], sidHero, 5);
-              TCS_FUNC.Battle.proceed();
             end;
           end;
         end;
@@ -6132,14 +5473,12 @@ print("TTH_CombatCore loading...");
         if sidHero ~= nil then
           local strHero = GetHeroName(sidHero);
           if TCS_VARI.Info.HeroSkill[strHero][HERO_SKILL_CASTER_CERTIFICATE] == 1 then
-            TCS_FUNC.Battle.pause(1);
             TTHCS_GLOBAL.print("TCS_FUNC.Skill.CasterCertificate.start");
             local itemHero = TTHCS_GLOBAL.geneUnitInfo(sidHero);
             local iCurrentMana = itemHero["CurrentMana"];
             local iRecoveryMana = TTHCS_COMMON.ceil(iCurrentMana * 0.2);
             TTHCS_GLOBAL.setHeroMana(sidHero, iCurrentMana + iRecoveryMana);
             ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_CASTER_CERTIFICATE]["Effect"], sidHero, 5);
-            TCS_FUNC.Battle.proceed();
           end;
         end;
       end;
@@ -6154,7 +5493,6 @@ print("TTH_CombatCore loading...");
           local strHero = GetHeroName(sidHero);
           local iCreatureId = TCS_VARI.Info.HeroSkill[strHero][HERO_SKILL_PARIAH];
           if iCreatureId > 0 then
-            TCS_FUNC.Battle.pause(1);
             TTHCS_GLOBAL.print("TCS_FUNC.Skill.Pariah.start");
             local iHeroLevel = TCS_VARI.Info.HeroLevel[strHero];
             local iCreatureNumber = TTHCS_COMMON.ceil(iHeroLevel / 10);
@@ -6170,7 +5508,7 @@ print("TTH_CombatCore loading...");
             local sidCreatureSummon = TTHCS_THREAD.summonCreature(iSide, iCreatureId, iCreatureNumber, iPosX, iPosY);
             TCS_FUNC.Summon.trigger(iSide, sidCreatureSummon);
             push(TCS_FUNC.Skill.Pariah.arrCreature[iSide], sidCreatureSummon);
-            TCS_FUNC.Atb.record(sidCreatureSummon, TCS_ENUM.Atb.clear);
+            TCS_BATTLE.atb.record(sidCreatureSummon, TCS_ENUM.Atb.clear);
             ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_PARIAH]["Effect"], sidCreatureSummon, 5);
             local sidOppositeHero = GetHero(iOppositeSide);
             if sidOppositeHero ~= nil then
@@ -6180,18 +5518,17 @@ print("TTH_CombatCore loading...");
                 local sidCreatureBalance = TTHCS_THREAD.summonCreature(iOppositeSide, iCreatureId, iCreatureNumber, iOppositePosX, iOppositePosY);
                 TCS_FUNC.Summon.trigger(iOppositeSide, sidCreatureBalance);
                 push(TCS_FUNC.Skill.Pariah.arrCreature[iOppositeSide], sidCreatureBalance);
-                TCS_FUNC.Atb.record(sidCreatureBalance, TCS_ENUM.Atb.clear);
+                TCS_BATTLE.atb.record(sidCreatureBalance, TCS_ENUM.Atb.clear);
                 ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_ELEMENTAL_BALANCE]["Effect"], sidCreatureBalance, 5);
               end;
             end;
-            TCS_FUNC.Battle.proceed();
           end;
         end;
       end;
       TCS_FUNC.Skill.Pariah.first = function(iSide)
         if length(TCS_FUNC.Skill.Pariah.arrCreature[iSide]) > 0 then
           for i, sidCreature in TCS_FUNC.Skill.Pariah.arrCreature[iSide] do
-            TCS_FUNC.Atb.record(sidCreature, TCS_ENUM.Atb.mid);
+            TCS_BATTLE.atb.record(sidCreature, TCS_ENUM.Atb.mid);
           end
         end;
       end;
@@ -6213,13 +5550,13 @@ print("TTH_CombatCore loading...");
             and (
               TCS_VARI.Info.HeroSkill[strHero][HERO_SKILL_EXPLODING_CORPSES] == 1
               or (strHero == "Biara" and TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1)
+              or strHero == "Raelag_10WAI"
             ) then
             if TCS_FUNC.Skill.ExplodingCorpses.flag[strHero] == nil then
               TCS_FUNC.Skill.ExplodingCorpses.flag[strHero] = 2;
             end;
             if TCS_FUNC.Skill.ExplodingCorpses.flag[strHero] >= 2 then
               TCS_FUNC.Skill.ExplodingCorpses.flag[strHero] = 0;
-              TCS_FUNC.Battle.pause();
               TTHCS_GLOBAL.print("TCS_FUNC.Skill.ExplodingCorpses.trigger");
               local sidCreatureTarget = "";
               if length(listCreatureNumberDecrease[iOppositeSide]) > 0 then
@@ -6233,8 +5570,7 @@ print("TTH_CombatCore loading...");
                 TTHCS_THREAD.castAimedSpell5Mana(sidHero, SPELL_LIGHTNING_BOLT, sidUnitTarget, TCS_ENUM.Switch.No);
               end;
               ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_EXPLODING_CORPSES]["Effect"], itemUnitLast["UnitName"], 5);
-              TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.max);
-              TCS_FUNC.Battle.proceed();
+              TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.max);
             end;
           end;
         end;
@@ -6248,6 +5584,7 @@ print("TTH_CombatCore loading...");
             and (
               TCS_VARI.Info.HeroSkill[strHero][HERO_SKILL_EXPLODING_CORPSES] == 1
               or (strHero == "Biara" and TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1)
+              or strHero == "Raelag_10WAI"
             )
             and itemHeroMana[iSide] < 0 then
             TTHCS_GLOBAL.print("TCS_FUNC.Skill.ExplodingCorpses.charge");
@@ -6284,7 +5621,6 @@ print("TTH_CombatCore loading...");
           local strHero = GetHeroName(sidHero);
           if TCS_VARI.Info.HeroSkill[strHero][HERO_SKILL_ELEMENTAL_OVERKILL] == 1
             and length(listCreatureStatusDeath[iOppositeSide]) > 0 then
-            TCS_FUNC.Battle.pause();
             TTHCS_GLOBAL.print("TCS_FUNC.Skill.ElementalOverkill.death");
             local listSnapshotBefore = TTHCS_GLOBAL.geneSnapshot(TCS_ENUM.Switch.No); -- 记录触发前战场快照
             for i, sidCreatureDeath in listCreatureStatusDeath[iOppositeSide] do
@@ -6320,9 +5656,8 @@ print("TTH_CombatCore loading...");
                 end;
               end;
             end;
-            TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.max);
+            TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.max);
             ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_ELEMENTAL_OVERKILL]["Effect"], sidHero, 5);
-            TCS_FUNC.Battle.proceed();
           end;
         end;
       end;
@@ -6338,7 +5673,6 @@ print("TTH_CombatCore loading...");
           local iCreatureNumber = iHeroLevel;
           if TCS_VARI.Info.HeroSkill[strHero][HERO_SKILL_CONSUME_CORPSE] == 1 then
             if length(listCreatureStatusConsume[iSide]) > 0 then
-              TCS_FUNC.Battle.pause();
               TTHCS_GLOBAL.print("TCS_FUNC.Skill.ConsumeCorpse.consume");
               local iCreatureId = CREATURE_INFERNO_TOOL_ConsumeCorpse;
               if strHero == "Zydar" then
@@ -6356,12 +5690,10 @@ print("TTH_CombatCore loading...");
                   end;
                 end;
               end;
-              TCS_FUNC.Battle.proceed();
             end;
             -- Zydar 泽达
               if length(listCreatureStatusConsume[iOppositeSide]) > 0
                 and strHero == "Zydar" and TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Skill.ConsumeCorpse.consume.Zydar");
                 local iCreatureId = CREATURE_INFERNO_TOOL_ConsumeCorpse_Zydar;
                 for i, sidCreatureConsume in listCreatureStatusConsume[iOppositeSide] do
@@ -6376,7 +5708,6 @@ print("TTH_CombatCore loading...");
                     end;
                   end;
                 end;
-                TCS_FUNC.Battle.proceed();
               end;
           end;
         end;
@@ -6397,11 +5728,9 @@ print("TTH_CombatCore loading...");
               TCS_VARI.Info.HeroSkill[strHero][HERO_SKILL_WEAKENING_STRIKE] == 1
               or TCS_VARI.Info.HeroSkill[strHero][HERO_SKILL_BARBARIAN_WEAKENING_STRIKE] == 1
             ) then
-            TCS_FUNC.Battle.pause();
             TTHCS_GLOBAL.print("TCS_FUNC.Skill.WeakeningStrike.trigger");
             local iManaPoint = 2;
             TTHCS_GLOBAL.recoveryHeroMana(sidHero, iManaPoint);
-            TCS_FUNC.Battle.proceed();
           end;
         end;
       end;
@@ -6450,7 +5779,6 @@ print("TTH_CombatCore loading...");
               end;
             -- 执行触发
               if length(arrSummonCreature4Phantom) > 0 then
-                TCS_FUNC.Battle.pause();
                 TTHCS_GLOBAL.print("TCS_FUNC.Skill.FireAffinity.trigger");
                 -- 移除原元素召唤生物
                   if TCS_FUNC.Skill.FireAffinity.sidCreature[iSide] ~= "" then
@@ -6469,7 +5797,6 @@ print("TTH_CombatCore loading...");
                     TCS_FUNC.Summon.trigger(iSide, sidAppointedSummon);
                   end;
 
-                TCS_FUNC.Battle.proceed();
               end;
           end;
         end;
@@ -6484,22 +5811,20 @@ print("TTH_CombatCore loading...");
           local strHero = GetHeroName(sidHero);
           if TCS_VARI.Info.HeroSkill[strHero][HERO_SKILL_DEATH_TREAD] == 1
             and length(listBuildingStatusDeath[iOppositeSide]) > 0 then
-            TCS_FUNC.Battle.pause();
             TTHCS_GLOBAL.print("TCS_FUNC.Skill.DeathTread.trigger");
-            TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.max);
+            TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.max);
             local arrCreatureTarget = GetCreatures(iSide);
             for i, sidCreatureTarget in arrCreatureTarget do
-              TCS_FUNC.Atb.record(sidCreatureTarget, TCS_ENUM.Atb.max);
+              TCS_BATTLE.atb.record(sidCreatureTarget, TCS_ENUM.Atb.max);
             end;
             local arrWarMachineTarget = GetWarMachines(iSide);
             for i, sidWarMachineTarget in arrWarMachineTarget do
               local itemWarMachineTarget = TTHCS_GLOBAL.geneUnitInfo(sidWarMachineTarget);
               if itemWarMachineTarget["UnitType"] ~= TTH_ENUM.WarmachineCatapult then
-                TCS_FUNC.Atb.record(sidWarMachineTarget, TCS_ENUM.Atb.max);
+                TCS_BATTLE.atb.record(sidWarMachineTarget, TCS_ENUM.Atb.max);
               end;
             end;
             ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEATH_TREAD]["Effect"], sidHero, 5);
-            TCS_FUNC.Battle.proceed();
           end;
         end;
       end;
@@ -6530,7 +5855,6 @@ print("TTH_CombatCore loading...");
             end;
             if TCS_FUNC.Skill.DeadLuck.flag[strHero] == TCS_ENUM.Switch.Yes then
               TCS_FUNC.Skill.DeadLuck.flag[strHero] = TCS_ENUM.Switch.No;
-              TCS_FUNC.Battle.pause();
               TTHCS_GLOBAL.print("TCS_FUNC.Skill.DeadLuck.move");
               local iTimes = 1;
               if TCS_VARI.Info.HeroSkill[strHero][HERO_SKILL_DEAD_LUCK] == 1
@@ -6562,10 +5886,9 @@ print("TTH_CombatCore loading...");
                   TTHCS_THREAD.cast.aimed.impl(sidHero, SPELL_CURSE, strCreatureTarget, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No);
                 end;
                 ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_DEAD_LUCK]["Effect"], strCreatureTarget, 5);
-                TCS_FUNC.Atb.record(strCreatureTarget, TCS_ENUM.Atb.min);
+                TCS_BATTLE.atb.record(strCreatureTarget, TCS_ENUM.Atb.min);
               end;
-              TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.immediate);
-              TCS_FUNC.Battle.proceed();
+              TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.immediate);
             end;
           end;
         end;
@@ -6597,7 +5920,6 @@ print("TTH_CombatCore loading...");
           local strHero = GetHeroName(sidHero);
           local iCreatureId = TCS_VARI.Info.HeroSkill[strHero][HERO_SKILL_TWILIGHT];
           if iCreatureId > 0 then
-            TCS_FUNC.Battle.pause(1);
             TTHCS_GLOBAL.print("TCS_FUNC.Skill.Twilight.start");
             local iHeroLevel = TCS_VARI.Info.HeroLevel[strHero];
             local iCreatureNumber = TTHCS_COMMON.ceil(iHeroLevel / 10);
@@ -6612,7 +5934,7 @@ print("TTH_CombatCore loading...");
             local iPosX, iPosY = TTHCS_GLOBAL.getGodPosition(iSide);
             local sidCreatureSummon = TTHCS_THREAD.summonCreature(iSide, iCreatureId, iCreatureNumber, iPosX, iPosY);
             push(TCS_FUNC.Skill.Twilight.arrCreature[iSide], sidCreatureSummon);
-            TCS_FUNC.Atb.record(sidCreatureSummon, TCS_ENUM.Atb.clear);
+            TCS_BATTLE.atb.record(sidCreatureSummon, TCS_ENUM.Atb.clear);
             TCS_FUNC.Summon.trigger(iSide, sidCreatureSummon);
             ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_TWILIGHT]["Effect"], sidCreatureSummon, 5);
             local sidOppositeHero = GetHero(iOppositeSide);
@@ -6623,18 +5945,17 @@ print("TTH_CombatCore loading...");
                 local sidCreatureBalance = TTHCS_THREAD.summonCreature(iOppositeSide, iCreatureId, iCreatureNumber, iOppositePosX, iOppositePosY);
                 TCS_FUNC.Summon.trigger(iOppositeSide, sidCreatureBalance);
                 push(TCS_FUNC.Skill.Twilight.arrCreature[iOppositeSide], sidCreatureBalance);
-                TCS_FUNC.Atb.record(sidCreatureBalance, TCS_ENUM.Atb.clear);
+                TCS_BATTLE.atb.record(sidCreatureBalance, TCS_ENUM.Atb.clear);
                 ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_ELEMENTAL_BALANCE]["Effect"], sidCreatureBalance, 5);
               end;
             end;
-            TCS_FUNC.Battle.proceed();
           end;
         end;
       end;
       TCS_FUNC.Skill.Twilight.first = function(iSide)
         if length(TCS_FUNC.Skill.Twilight.arrCreature[iSide]) > 0 then
           for i, sidCreature in TCS_FUNC.Skill.Twilight.arrCreature[iSide] do
-            TCS_FUNC.Atb.record(sidCreature, TCS_ENUM.Atb.mid);
+            TCS_BATTLE.atb.record(sidCreature, TCS_ENUM.Atb.mid);
           end
         end;
       end;
@@ -6647,23 +5968,21 @@ print("TTH_CombatCore loading...");
         if sidHero ~= nil then
           local strHero = GetHeroName(sidHero);
           if TCS_VARI.Info.HeroSkill[strHero][HERO_SKILL_FOREST_GUARD_EMBLEM] == 1 then
-            TCS_FUNC.Battle.pause(1);
             TTHCS_GLOBAL.print("TCS_FUNC.Skill.ForestGuardEmblem.start");
-            local arrCreature = GetCreatures(iSide);
-            local iRandomIndex = TTHCS_COMMON.getRandom(length(arrCreature));
-            local strCreature = arrCreature[iRandomIndex];
-            local itemCreature = TTHCS_GLOBAL.geneUnitInfo(strCreature);
-            local iCreatureNumber = 1;
-            if TCS_VARI.Info.HeroSkill[strHero][HERO_SKILL_LAST_STAND] == 1 then
-              iCreatureNumber = iCreatureNumber * 2;
+            local arrRandomCreature = TTHCS_GLOBAL.getRandomCreature(iSide);
+            for i, sidRandomCreature in arrRandomCreature do
+              local itemRandomCreature = TTHCS_GLOBAL.geneUnitInfo(sidRandomCreature);
+              local iCreatureNumber = 1;
+              if TCS_VARI.Info.HeroSkill[strHero][HERO_SKILL_LAST_STAND] == 1 then
+                iCreatureNumber = iCreatureNumber * 2;
+              end;
+              if TCS_VARI.Info.HeroArtifact[strHero][ARTIFACT_CROWN_OF_LEADER] == 1 then
+                iCreatureNumber = iCreatureNumber * 2;
+              end;
+              local sidCreatureAdd = TTHCS_THREAD.addCreature(iSide, itemRandomCreature["UnitType"], iCreatureNumber, itemRandomCreature["PosX"], itemRandomCreature["PosY"]);
+              TCS_VARI.Snapshot.init[TTH_ENUM.CombatCreature][iSide][sidCreatureAdd] = TTHCS_GLOBAL.geneUnitInfo(sidCreatureAdd);
+              ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_FOREST_GUARD_EMBLEM]["Effect"], sidCreatureAdd, 5);
             end;
-            if TCS_VARI.Info.HeroArtifact[strHero][ARTIFACT_CROWN_OF_LEADER] == 1 then
-              iCreatureNumber = iCreatureNumber * 2;
-            end;
-            local sidCreatureAdd = TTHCS_THREAD.addCreature(iSide, itemCreature["UnitType"], iCreatureNumber, itemCreature["PosX"], itemCreature["PosY"]);
-            TCS_VARI.Snapshot.init[TTH_ENUM.CombatCreature][iSide][sidCreatureAdd] = TTHCS_GLOBAL.geneUnitInfo(sidCreatureAdd);
-            ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_FOREST_GUARD_EMBLEM]["Effect"], sidCreatureAdd, 5);
-            TCS_FUNC.Battle.proceed();
           end;
         end;
       end;
@@ -6686,7 +6005,6 @@ print("TTH_CombatCore loading...");
             end;
             if TCS_FUNC.Skill.EchoOfSylanna.flag[strHero] == TCS_ENUM.Switch.Yes then
               TCS_FUNC.Skill.EchoOfSylanna.flag[strHero] = TCS_ENUM.Switch.No;
-              TCS_FUNC.Battle.pause();
               TTHCS_GLOBAL.print("TCS_FUNC.Skill.EchoOfSylanna.move");
               local iMaxCountHive = 3;
               local iTimes = 1;
@@ -6721,13 +6039,12 @@ print("TTH_CombatCore loading...");
                   local itemCreatureSign = TTHCS_GLOBAL.geneUnitInfo(sidCreatureSign);
                   TTHCS_THREAD.removeCreature(sidCreatureSign);
                   TTHCS_THREAD.cast.area.impl(sidHero, SPELL_SUMMON_HIVE, itemCreatureSign["PosX"], itemCreatureSign["PosY"], TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No);
-                  TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.immediate);
+                  TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.immediate);
                 else
                   TTHCS_GLOBAL.recoveryHeroMana(sidHero, iRecoveryMana);
                 end;
               end;
               ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_ECHO_OF_SYLANNA]["Effect"], sidHero, 5);
-              TCS_FUNC.Battle.proceed();
             end;
           end;
         end;
@@ -6742,7 +6059,6 @@ print("TTH_CombatCore loading...");
               or TCS_FUNC.Talent.Sandro.check(strHero, SPELL_SUMMON_HIVE)
             )
             and length(listSpellSpawnStatusDeath[iSide]) > 0 then
-            TCS_FUNC.Battle.pause();
             TTHCS_GLOBAL.print("TCS_FUNC.Skill.EchoOfSylanna.destroy");
             local iHeroLevel = TCS_VARI.Info.HeroLevel[strHero];
             local iRecoveryMana = TTHCS_COMMON.ceil(iHeroLevel / 6);
@@ -6759,7 +6075,6 @@ print("TTH_CombatCore loading...");
               TTHCS_GLOBAL.recoveryHeroMana(sidHero, iRecoveryMana * iCountHiveDestroy);
               ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_ECHO_OF_SYLANNA]["Effect"], sidHero, 5);
             end;
-            TCS_FUNC.Battle.proceed();
           end;
         end;
       end;
@@ -6774,15 +6089,13 @@ print("TTH_CombatCore loading...");
               or TCS_FUNC.Talent.Sandro.check(strHero, SPELL_SUMMON_HIVE)
             )
             and itemHeroMana[iSide] < 0 then
-            TCS_FUNC.Battle.pause();
             TTHCS_GLOBAL.print("TCS_FUNC.Skill.EchoOfSylanna.charge");
             TCS_FUNC.Skill.EchoOfSylanna.flag[strHero] = TCS_ENUM.Switch.Yes;
-            TCS_FUNC.Battle.proceed();
           end;
         end;
       end;
 
-    -- HERO_SKILL_ENCHANT_MACHINES 126 附魔机械
+    -- HERO_SKILL_ENCHANT_MACHINES 316 附魔机械
       TCS_FUNC.Skill.EnchantMachines = {};
       TCS_FUNC.Skill.EnchantMachines.flag = {
         [1] = 1
@@ -6882,7 +6195,6 @@ print("TTH_CombatCore loading...");
                       push(arrCreatureTarget, arrCreatureNearBy[iRandomIndex]);
                     end;
                     if length(arrCreatureTarget) > 0 then
-                      TCS_FUNC.Battle.pause();
                       TTHCS_GLOBAL.print("TCS_FUNC.Skill.EnchantMachines."..itemWarMachine["UnitType"]);
                       local iSpellId = TCS_FUNC.Skill.EnchantMachines.mapSpellId[itemWarMachine["UnitType"]];
                       for i, sidCreatureTarget in arrCreatureTarget do
@@ -6893,8 +6205,7 @@ print("TTH_CombatCore loading...");
                           TTHCS_THREAD.cast.aimed.impl(sidHero, iSpellId, sidCreatureTarget, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.Yes);
                         end;
                       end;
-                      TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.immediate);
-                      TCS_FUNC.Battle.proceed();
+                      TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.immediate);
                     end;
                   end;
                 end;
@@ -6919,13 +6230,11 @@ print("TTH_CombatCore loading...");
               or itemUnitLast["UnitType"] == TCS_FUNC.Skill.EnchantMachines.mapCreatureId[strHero][1]
               or itemUnitLast["UnitType"] == TCS_FUNC.Skill.EnchantMachines.mapCreatureId[strHero][2]
             ) then
-            TCS_FUNC.Battle.pause();
             TTHCS_GLOBAL.print("TCS_FUNC.Skill.EnchantMachines.chargeCreature: "..itemUnitLast["UnitType"]);
             TCS_FUNC.Skill.EnchantMachines.flag[TTH_ENUM.WarmachineBallista] = TCS_ENUM.Switch.Yes;
             TCS_FUNC.Skill.EnchantMachines.flag[TTH_ENUM.WarmachineCatapult] = TCS_ENUM.Switch.Yes;
             TCS_FUNC.Skill.EnchantMachines.flag[TTH_ENUM.WarmachineFirstAidTent] = TCS_ENUM.Switch.Yes;
             ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_ENCHANT_MACHINES]["EffectAll"], itemUnitLast["UnitName"], 5);
-            TCS_FUNC.Battle.proceed();
           end;
         end;
       end;
@@ -6939,11 +6248,9 @@ print("TTH_CombatCore loading...");
             and (
               strHero ~= "Minasli" or TCS_VARI.Info.HeroUpgradeMastery[strHero] ~= 1
             ) then
-            TCS_FUNC.Battle.pause();
             TTHCS_GLOBAL.print("TCS_FUNC.Skill.EnchantMachines.chargeWarMachine: "..itemUnitLast["UnitType"]);
             TCS_FUNC.Skill.EnchantMachines.flag[itemUnitLast["UnitType"]] = TCS_ENUM.Switch.Yes;
             ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_ENCHANT_MACHINES]["Effect"..itemUnitLast["UnitType"]], itemUnitLast["UnitName"], 5);
-            TCS_FUNC.Battle.proceed();
           end;
         end;
       end;
@@ -6960,7 +6267,6 @@ print("TTH_CombatCore loading...");
             and TCS_VARI.Info.HeroSkill[strHero][HERO_SKILL_SEAL_OF_PROTECTION] == 1 then
             local arrBuilding = GetBuildings(iSide);
             if length(arrBuilding) > 0 then
-              TCS_FUNC.Battle.pause();
               TTHCS_GLOBAL.print("TCS_FUNC.Skill.SealOfProtection.trigger");
               for i, strCreatureTarget in listCreatureNumberDecrease[iOppositeSide] do
                 for j, strBuildingCaster in arrBuilding do
@@ -6980,7 +6286,6 @@ print("TTH_CombatCore loading...");
                   ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_SEAL_OF_PROTECTION]["Effect"], strBuildingCaster, 5);
                 end;
               end;
-              TCS_FUNC.Battle.proceed();
             end;
           end;
         end;
@@ -6990,7 +6295,7 @@ print("TTH_CombatCore loading...");
       TCS_FUNC.Skill.GuardianAngel = {};
       TCS_FUNC.Skill.GuardianAngel.flag = {};
       TCS_FUNC.Skill.GuardianAngel.arrSpellId = { [0] = 23, [1] = 24, [2] = 25, [3] = 26, [4] = 280, [5] = 28, [6] = 29 };
-      TCS_FUNC.Skill.GuardianAngel.move = function(iSide, itemUnit, itemUnitLast)
+      TCS_FUNC.Skill.GuardianAngel.move = function(iSide, itemUnit)
         local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
         local sidHero = GetHero(iSide);
         if sidHero ~= nil then
@@ -7008,7 +6313,6 @@ print("TTH_CombatCore loading...");
             end;
             if TCS_FUNC.Skill.GuardianAngel.flag[strHero] == TCS_ENUM.Switch.Yes then
               TCS_FUNC.Skill.GuardianAngel.flag[strHero] = TCS_ENUM.Switch.No;
-              TCS_FUNC.Battle.pause();
               TTHCS_GLOBAL.print("TCS_FUNC.Skill.GuardianAngel.move");
               local iTimes = 1;
               if strHero == "Alaric" and TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
@@ -7038,12 +6342,11 @@ print("TTH_CombatCore loading...");
                   ) then
                   local iHeroLevel = TCS_VARI.Info.HeroLevel[strHero];
                   local iContinuousNumber = TTHCS_COMMON.ceil(iHeroLevel / 2);
-                  TCS_FUNC.Continuous.increase(sidCreatureTarget, iContinuousNumber);
+                  -- TCS_FUNC.Continuous.increase(sidCreatureTarget, iContinuousNumber);
                 end;
                 ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_GUARDIAN_ANGEL]["Effect"], sidCreatureTarget, 5);
               end;
-              TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.immediate);
-              TCS_FUNC.Battle.proceed();
+              TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.immediate);
             end;
           end;
         end;
@@ -7056,87 +6359,28 @@ print("TTH_CombatCore loading...");
           if itemUnitLast ~= nil and itemUnitLast["UnitName"] == sidHero
             and TCS_VARI.Info.HeroSkill[strHero][HERO_SKILL_GUARDIAN_ANGEL] == 1
             and itemHeroMana[iSide] < 0 then
-            TCS_FUNC.Battle.pause();
             TTHCS_GLOBAL.print("TCS_FUNC.Skill.GuardianAngel.charge");
             TCS_FUNC.Skill.GuardianAngel.flag[strHero] = TCS_ENUM.Switch.Yes;
-            TCS_FUNC.Battle.proceed();
           end;
         end;
       end;
 
-    -- HERO_SKILL_SHARP_STRIKE 320 锐利一击
-      TCS_FUNC.Skill.SharpStrike = {};
-      TCS_FUNC.Skill.SharpStrike.flag = {};
-      TCS_FUNC.Skill.SharpStrike.arrCreature = {};
-      TCS_FUNC.Skill.SharpStrike.move = function(iSide, itemUnit)
+    -- HERO_SKILL_ELVEN_LUCK 116 精灵的幸运
+      TCS_FUNC.Skill.ElvenLuck = {};
+      TCS_FUNC.Skill.ElvenLuck.move = function(iSide, itemUnit)
         local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
         local sidHero = GetHero(iSide);
-        if sidHero ~= nil then
-          local strHero = GetHeroName(sidHero);
-          local arrCreatureTarget = GetCreatures(iSide);
-          if itemUnit["UnitName"] == sidHero and length(arrCreatureTarget) > 0
-            and TCS_VARI.Info.HeroSkill[strHero][HERO_SKILL_SHARP_STRIKE] == 1 then
-            if TCS_FUNC.Skill.SharpStrike.flag[strHero] == nil then
-              TCS_FUNC.Skill.SharpStrike.flag[strHero] = TCS_ENUM.Switch.Yes;
-            end;
-            if TCS_FUNC.Skill.SharpStrike.flag[strHero] == TCS_ENUM.Switch.Yes then
-              TCS_FUNC.Skill.SharpStrike.flag[strHero] = TCS_ENUM.Switch.No;
-              TCS_FUNC.Battle.pause();
-              TTHCS_GLOBAL.print("TCS_FUNC.Skill.SharpStrike.move");
-              local iTimes = 1;
-              if strHero == "Heam" then
-                if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-                  iTimes = iTimes + 1;
-                end;
-                if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
-                  iTimes = iTimes + 1;
-                end;
-              end;
-              for i = 1, iTimes do
-                local iRandomCreatureIndex = TTHCS_COMMON.getRandom(length(arrCreatureTarget));
-                local sidCreatureTarget = arrCreatureTarget[iRandomCreatureIndex];
-                local itemCreatureTarget = TTHCS_GLOBAL.geneUnitInfo(sidCreatureTarget);
-                TTHCS_THREAD.castAimedSpell8Tool(iSide, CREATURE_PRESERVE_TOOL, 1, SPELL_ABILITY_LUCK_GAMBLER, sidCreatureTarget, TCS_ENUM.Switch.No);
-                push(TCS_FUNC.Skill.SharpStrike.arrCreature, sidCreatureTarget);
-                TCS_FUNC.Atb.record(sidCreatureTarget, TCS_ENUM.Atb.max);
-                ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_SHARP_STRIKE]["Effect"], sidCreatureTarget, 5);
-              end;
-              TCS_FUNC.Battle.proceed();
-            end;
-          end;
-        end;
-      end;
-      TCS_FUNC.Skill.SharpStrike.trigger = function(iSide, itemUnit, itemUnitLast, listCreatureNumberDecrease)
-        local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
-        local sidHero = GetHero(iSide);
-        if sidHero ~= nil then
-          local strHero = GetHeroName(sidHero);
-          if itemUnitLast ~= nil
-            and TCS_VARI.Info.HeroSkill[strHero][HERO_SKILL_SHARP_STRIKE] == 1
-            and contains(TCS_FUNC.Skill.SharpStrike.arrCreature, itemUnitLast["UnitName"]) ~= nil
-            and length(listCreatureNumberDecrease[iOppositeSide]) > 0 then
-            TCS_FUNC.Battle.pause();
-            TTHCS_GLOBAL.print("TCS_FUNC.Skill.SharpStrike.trigger");
-            TCS_FUNC.Skill.SharpStrike.arrCreature = pop(TCS_FUNC.Skill.SharpStrike.arrCreature, index(TCS_FUNC.Skill.SharpStrike.arrCreature, itemUnitLast["UnitName"]));
-            for i, sidCreatureDecrease in listCreatureNumberDecrease[iOppositeSide] do
-              TTHCS_THREAD.castAimedSpell8Tool(iSide, CREATURE_PRESERVE_TOOL, 1, SPELL_ABILITY_LUCK_GAMBLER, sidCreatureDecrease, TCS_ENUM.Switch.No);
-            end;
-            TCS_FUNC.Battle.proceed();
-          end;
-        end;
-      end;
-      TCS_FUNC.Skill.SharpStrike.charge = function(iSide, itemUnit, itemUnitLast, itemHeroMana)
-        local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
-        local sidHero = GetHero(iSide);
-        if sidHero ~= nil then
-          local strHero = GetHeroName(sidHero);
-          if itemUnitLast ~= nil and itemUnitLast["UnitName"] == sidHero
-            and TCS_VARI.Info.HeroSkill[strHero][HERO_SKILL_SHARP_STRIKE] == 1
-            and itemHeroMana[iSide] < 0 then
-            TCS_FUNC.Battle.pause();
-            TTHCS_GLOBAL.print("TCS_FUNC.Skill.SharpStrike.charge");
-            TCS_FUNC.Skill.SharpStrike.flag[strHero] = TCS_ENUM.Switch.Yes;
-            TCS_FUNC.Battle.proceed();
+        if 1 == 1
+          and sidHero == itemUnit["UnitName"]
+          and TCS_VARI.Info.HeroSkill[GetHeroName(sidHero)][HERO_SKILL_ELVEN_LUCK] == 1
+          and itemUnit["Side"] == iSide
+        then
+          TTHCS_GLOBAL.print("TCS_FUNC.Skill.ElvenLuck.move");
+          local arrRandomCreature = TTHCS_GLOBAL.getRandomCreature(iSide);
+          for i, sidRandomCreature in arrRandomCreature do
+            TTHCS_THREAD.castAimedSpell8Tool(iSide, CREATURE_PRESERVE_TOOL, 1, SPELL_ABILITY_LUCK_GAMBLER, sidRandomCreature, TCS_ENUM.Switch.No);
+            TTHCS_GLOBAL.moveImmediate(sidRandomCreature);
+            ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_ELVEN_LUCK]["Effect"], sidRandomCreature, 5);
           end;
         end;
       end;
@@ -7150,11 +6394,9 @@ print("TTH_CombatCore loading...");
           local strHero = GetHeroName(sidHero);
           if itemHeroMana[iSide] < 0
             and TCS_VARI.Info.HeroSkill[strHero][HERO_SKILL_PAYBACK] == 1 then
-            TCS_FUNC.Battle.pause();
             TTHCS_GLOBAL.print("TCS_FUNC.Skill.Payback.trigger");
             local iManaPoint = 2;
             TTHCS_GLOBAL.recoveryHeroMana(sidHero, iManaPoint);
-            TCS_FUNC.Battle.proceed();
           end;
         end;
       end;
@@ -7178,7 +6420,6 @@ print("TTH_CombatCore loading...");
               TCS_VARI.Info.HeroSkill[strHero][HERO_SKILL_ELITE_CASTERS] == 1
               or TCS_VARI.Info.HeroSkill[strHero][HERO_SKILL_BARBARIAN_ELITE_CASTERS] == 1
             ) then
-            TCS_FUNC.Battle.pause();
             TTHCS_GLOBAL.print("TCS_FUNC.Skill.EliteCasters.trigger");
             local iRecoveryMana = length(listCreatureNumberDecrease[iOppositeSide]) + length(listCreatureStatusDeath[iOppositeSide]);
             TTHCS_GLOBAL.recoveryHeroMana(itemUnitLast["UnitName"], iRecoveryMana);
@@ -7201,7 +6442,6 @@ print("TTH_CombatCore loading...");
                 end;
               end;
             end;
-            TCS_FUNC.Battle.proceed();
           end;
         end;
       end;
@@ -7243,11 +6483,41 @@ print("TTH_CombatCore loading...");
               if length(arrWarMachineCaster) > 0 then
                 TTHCS_GLOBAL.print("TCS_FUNC.Skill.RunicMachines.trigger");
                 for i, sidWarMachine in arrWarMachineCaster do
-                  TCS_FUNC.Continuous.increase(sidWarMachine, 8, itemUnitLast["UnitName"]);
+                  -- TCS_FUNC.Continuous.increase(sidWarMachine, 8, itemUnitLast["UnitName"]);
                   ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidWarMachine, 5);
                 end;
               end;
             end;
+          end;
+        end;
+      end;
+
+    -- HERO_SKILL_SAFETY_STEP 311 步步为营
+      TCS_FUNC.Skill.SafetyStep = {};
+      TCS_FUNC.Skill.SafetyStep.trigger = function(iSide, itemUnit, itemUnitLast, listCreaturePositionMove, listCreatureNumberDecrease, listCreatureStatusDeath)
+        local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
+        local sidHero = GetHero(iSide);
+        if sidHero ~= nil then
+          local strHero = GetHeroName(sidHero);
+          if 1 == 1
+            and TCS_VARI.Info.HeroSkill[strHero][HERO_SKILL_SAFETY_STEP] == 1
+            and itemUnitLast ~= nil and itemUnitLast["Side"] == iSide
+            and itemUnitLast["UnitCategory"] == TTH_ENUM.CombatCreature
+            and contains(listCreaturePositionMove[iSide], itemUnitLast["UnitName"]) ~= nil
+            and (
+              (
+                length(listCreatureNumberDecrease[iOppositeSide]) == 0
+                and length(listCreatureStatusDeath[iOppositeSide]) == 0
+              )
+              or (
+                strHero == "Mephala"
+                and TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1
+              )
+            )
+            then
+            TTHCS_GLOBAL.print("TCS_FUNC.Skill.SafetyStep.trigger");
+            TTHCS_THREAD.defend(itemUnitLast["UnitName"]);
+            ShowFlyingSign(TTHCS_PATH["Perk"][HERO_SKILL_SAFETY_STEP]["Effect"], itemUnitLast["UnitName"], 5);
           end;
         end;
       end;
@@ -7282,11 +6552,9 @@ print("TTH_CombatCore loading...");
           local strHero = GetHeroName(sidHero);
           if itemHeroMana[iSide] < 0
             and TCS_VARI.Info.HeroArtifact[strHero][ARTIFACT_MOONBLADE] == 1 then
-            TCS_FUNC.Battle.pause();
             TTHCS_GLOBAL.print("TCS_FUNC.Artifact.Moonblade.trigger");
             local iManaPoint = 2;
             TTHCS_GLOBAL.recoveryHeroMana(sidHero, iManaPoint);
-            TCS_FUNC.Battle.proceed();
           end;
         end;
       end;
@@ -7310,16 +6578,14 @@ print("TTH_CombatCore loading...");
             end;
             if TCS_FUNC.Artifact.PendantOfBlind.flag[strHero] == nil then
               TCS_FUNC.Artifact.PendantOfBlind.flag[strHero] = TCS_ENUM.Switch.Yes;
-              TCS_FUNC.Battle.pause();
               TTHCS_GLOBAL.print("TCS_FUNC.Artifact.PendantOfBlind.first");
               local arrCreatureTarget = GetCreatures(iOppositeSide);
               if arrCreatureTarget ~= nil and length(arrCreatureTarget) > 0 then
                 local iRandomIndex = TTHCS_COMMON.getRandom(length(arrCreatureTarget));
                 local strCreatureTarget = arrCreatureTarget[iRandomIndex];
                 TTHCS_THREAD.cast.aimed.impl(sidHero, SPELL_BLIND, strCreatureTarget, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.Yes);
-                TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.immediate);
+                TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.immediate);
               end;
-              TCS_FUNC.Battle.proceed();
             end;
           end;
         end;
@@ -7344,12 +6610,10 @@ print("TTH_CombatCore loading...");
             end;
             if TCS_FUNC.Artifact.Codex.flag[strHero] == nil then
               TCS_FUNC.Artifact.Codex.flag[strHero] = TCS_ENUM.Switch.Yes;
-              TCS_FUNC.Battle.pause();
               TTHCS_GLOBAL.print("TCS_FUNC.Artifact.Codex.first");
               local sidCreature = TTHCS_THREAD.castGlobalSpell4Mana4Creature(iSide, sidHero, SPELL_CONJURE_PHOENIX, TCS_ENUM.Switch.Yes);
               TCS_FUNC.Summon.trigger(iSide, sidCreature);
-              TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.immediate);
-              TCS_FUNC.Battle.proceed();
+              TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.immediate);
             end;
           end;
         end;
@@ -7373,7 +6637,7 @@ print("TTH_CombatCore loading...");
               TCS_FUNC.Artifact.Eightfold.iLoseMana = 0;
               local iRecoveryMana = 20;
               TTHCS_GLOBAL.recoveryHeroMana(sidHero, iRecoveryMana);
-              TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.immediate);
+              TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.immediate);
               ShowFlyingSign(TTHCS_PATH["Artifact"][ARTIFACT_EIGHTFOLD]["Effect"], sidHero, 5);
             end;
           end;
@@ -7392,7 +6656,6 @@ print("TTH_CombatCore loading...");
             and itemHeroMana[iSide] < 0
             and length(listCreatureNumberDecrease[iOppositeSide]) > 0
             and iSpellId > 0 then
-            TCS_FUNC.Battle.pause();
             TTHCS_GLOBAL.print("TCS_FUNC.Artifact.BookOfMalassa.trigger");
             local iFinalSpellId = iSpellId;
             local bCheckEmpowered = TCS_FUNC.Append.checkEmpowered(sidHero);
@@ -7423,7 +6686,6 @@ print("TTH_CombatCore loading...");
                 TTHCS_THREAD.cast.area.impl(sidHero, iFinalSpellId, itemCreatureTarget["PosX"], itemCreatureTarget["PosY"], bCost, TCS_ENUM.Switch.Yes, TCS_ENUM.Switch.Yes);
               end;
             end;
-            TCS_FUNC.Battle.proceed();
           end;
         end;
       end;
@@ -7436,7 +6698,6 @@ print("TTH_CombatCore loading...");
         if sidHero ~= nil then
           local strHero = GetHeroName(sidHero);
           if TCS_VARI.Info.HeroArtifact[strHero][ARTIFACT_ANGELIC_ALLIANCE] == 1 then
-            TCS_FUNC.Battle.pause(1);
             TTHCS_GLOBAL.print("TCS_FUNC.Artifact.AngelicAlliance.start");
             local iHeroLevel = TCS_VARI.Info.HeroLevel[strHero];
             local iCreatureNumber = 1;
@@ -7453,7 +6714,6 @@ print("TTH_CombatCore loading...");
               TTHCS_THREAD.castGlobalSpell4Mana(sidHero, SPELL_MASS_HASTE, TCS_ENUM.Switch.Yes);
               setATB(sidHero, TCS_ENUM.Atb.immediate);
             end;
-            TCS_FUNC.Battle.proceed();
           end;
         end;
       end;
@@ -7466,14 +6726,12 @@ print("TTH_CombatCore loading...");
         if sidHero ~= nil then
           local strHero = GetHeroName(sidHero);
           if TCS_VARI.Info.HeroArtifact[strHero][ARTIFACT_SENTINEL] == 1 then
-            TCS_FUNC.Battle.pause(1);
             TTHCS_GLOBAL.print("TCS_FUNC.Artifact.Sentinel.start");
             local iHeroLevel = TCS_VARI.Info.HeroLevel[strHero];
             local iCreatureNumber = 1;
             local arrSpellId = { SPELL_MASS_BLOODLUST, SPELL_MASS_STONESKIN };
             local bRemove = TCS_ENUM.Switch.Yes;
             TTHCS_THREAD.castGlobalSpell4God(iSide, CREATURE_CHERUBIN, iCreatureNumber, arrSpellId, ARTIFACT_SENTINEL, bRemove);
-            TCS_FUNC.Battle.proceed();
           end;
         end;
       end;
@@ -7486,7 +6744,6 @@ print("TTH_CombatCore loading...");
         if sidHero ~= nil then
           local strHero = GetHeroName(sidHero);
           if TCS_VARI.Info.HeroArtifact[strHero][ARTIFACT_CURSE_SHOULDER] == 1 then
-            TCS_FUNC.Battle.pause(1);
             TTHCS_GLOBAL.print("TCS_FUNC.Artifact.CurseShoulder.start");
             local iHeroLevel = TCS_VARI.Info.HeroLevel[strHero];
             local iCreatureNumber = 1;
@@ -7509,7 +6766,6 @@ print("TTH_CombatCore loading...");
               TTHCS_THREAD.castGlobalSpell4Mana(sidHero, SPELL_MASS_CURSE, TCS_ENUM.Switch.Yes);
               setATB(sidHero, TCS_ENUM.Atb.immediate);
             end;
-            TCS_FUNC.Battle.proceed();
           end;
         end;
       end;
@@ -7523,7 +6779,6 @@ print("TTH_CombatCore loading...");
         if sidHero ~= nil then
           local strHero = GetHeroName(sidHero);
           if TCS_VARI.Info.HeroArtifact[strHero][ARTIFACT_BAND_OF_CONJURER] == 1 then
-            TCS_FUNC.Battle.pause(1);
             TTHCS_GLOBAL.print("TCS_FUNC.Artifact.BandOfConjurer.start");
             local iHeroLevel = TCS_VARI.Info.HeroLevel[strHero];
             local iCreatureNumber = iHeroLevel;
@@ -7538,7 +6793,6 @@ print("TTH_CombatCore loading...");
             local strCreatureSummon = TTHCS_THREAD.summonCreature(iSide, iCreatureId, iCreatureNumber, iPosX, iPosY);
             TCS_FUNC.Summon.trigger(iSide, strCreatureSummon);
             ShowFlyingSign(TTHCS_PATH["Artifact"][ARTIFACT_BAND_OF_CONJURER]["Effect"], strCreatureSummon, 5);
-            TCS_FUNC.Battle.proceed();
           end;
         end;
       end;
@@ -7552,7 +6806,6 @@ print("TTH_CombatCore loading...");
           local strHero = GetHeroName(sidHero);
           local iValue = TCS_VARI.Info.HeroArtifact[strHero][ARTIFACT_GEM_OF_PHANTOM];
           if iValue > 0 then
-            TCS_FUNC.Battle.pause(1);
             TTHCS_GLOBAL.print("TCS_FUNC.Artifact.GemOfPhantom.start");
             local iCreatureNumber = TTHCS_COMMON.floor(iValue / 1000);
             local iCreatureId = iValue - iCreatureNumber * 1000;
@@ -7560,7 +6813,6 @@ print("TTH_CombatCore loading...");
             local strCreatureSummon = TTHCS_THREAD.summonCreature(iSide, iCreatureId, iCreatureNumber, iPosX, iPosY);
             TCS_FUNC.Summon.trigger(iSide, strCreatureSummon);
             ShowFlyingSign(TTHCS_PATH["Artifact"][ARTIFACT_GEM_OF_PHANTOM]["Effect"], strCreatureSummon, 5);
-            TCS_FUNC.Battle.proceed();
           end;
         end;
       end;
@@ -7573,14 +6825,43 @@ print("TTH_CombatCore loading...");
         if sidHero ~= nil then
           local strHero = GetHeroName(sidHero);
           if TCS_VARI.Info.HeroArtifact[strHero][ARTIFACT_DRUM_OF_CHARGE] == 1 then
-            TCS_FUNC.Battle.pause(1);
             TTHCS_GLOBAL.print("TCS_FUNC.Artifact.DrumOfCharge.start");
+            local arrRandomCreature = TTHCS_GLOBAL.getRandomCreature(iSide);
+            for i, sidRandomCreature in arrRandomCreature do
+              setATB(sidRandomCreature, TCS_ENUM.Atb.immediate);
+              TTHCS_GLOBAL.print(sidRandomCreature.." move immediate");
+              ShowFlyingSign(TTHCS_PATH["Artifact"][ARTIFACT_DRUM_OF_CHARGE]["Effect"], sidRandomCreature, 5);
+            end;
+            if 1 == 1
+              and strHero == TCS_FUNC.Talent.Crag.strHero
+              and TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1
+            then
+              setATB(sidHero, TCS_ENUM.Atb.immediate);
+            end;
+            local arrUnEffectCreature = {};
             local arrCreature = GetCreatures(iSide);
-            local iRandomIndex = TTHCS_COMMON.getRandom(length(arrCreature));
-            local sidCreature = arrCreature[iRandomIndex];
-            setATB(sidCreature, 1.25);
-            ShowFlyingSign(TTHCS_PATH["Artifact"][ARTIFACT_DRUM_OF_CHARGE]["Effect"], sidCreature, 5);
-            TCS_FUNC.Battle.proceed();
+            for i, sidCreature in arrCreature do
+              local bCheck = not nil;
+              for j, sidRandomCreature in arrRandomCreature do
+                if sidCreature == sidRandomCreature then
+                  bCheck = nil;
+                end;
+              end;
+              if bCheck then
+                push(arrUnEffectCreature, sidCreature);
+              end;
+            end;
+            if 1 == 1
+              and strHero == TCS_FUNC.Talent.Crag.strHero
+              and TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1
+              and length(arrUnEffectCreature) > 1
+            then
+              local iRandomIndex = TTHCS_COMMON.getRandom(length(arrUnEffectCreature));
+              local sidCreatureCrag = arrUnEffectCreature[iRandomIndex];
+              setATB(sidCreatureCrag, TCS_ENUM.Atb.immediate);
+              ShowFlyingSign(TTHCS_PATH["Artifact"][ARTIFACT_DRUM_OF_CHARGE]["Effect"], sidCreatureCrag, 5);
+              TTHCS_GLOBAL.print(sidCreatureCrag.." move immediate");
+            end;
           end;
         end;
       end;
@@ -7600,10 +6881,21 @@ print("TTH_CombatCore loading...");
             and contains(listCreatureNumberDecrease[iOppositeSide], itemUnitLast["UnitName"]) == nil
             and contains(listCreatureStatusDeath[iOppositeSide], itemUnitLast["UnitName"]) == nil then
             TTHCS_GLOBAL.print("TCS_FUNC.Artifact.HornOfCharge.trigger");
-            TCS_FUNC.Artifact.HornOfCharge.flag = 1;
-            TCS_FUNC.Atb.record(itemUnitLast["UnitName"], TCS_ENUM.Atb.max);
+            TCS_FUNC.Artifact.HornOfCharge.sign(iSide);
+            TCS_BATTLE.atb.record(itemUnitLast["UnitName"], TCS_ENUM.Atb.immediate);
+            if 1 == 1
+              and strHero == TCS_FUNC.Talent.Crag.strHero
+              and TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1
+            then
+              TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.immediate);
+            end;
             ShowFlyingSign(TTHCS_PATH["Artifact"][ARTIFACT_HORN_OF_CHARGE]["Effect"], itemUnitLast["UnitName"], 5);
           end;
+        end;
+      end;
+      TCS_FUNC.Artifact.HornOfCharge.sign = function(iSide)
+        if TCS_FUNC.Talent.Crag.signArtifact(iSide, "Artifact-"..ARTIFACT_HORN_OF_CHARGE) == nil then
+          TCS_FUNC.Artifact.HornOfCharge.flag = 1;
         end;
       end;
 
@@ -7620,7 +6912,7 @@ print("TTH_CombatCore loading...");
             and TCS_FUNC.Artifact.FlagOfCharge.flag == 0 then
             if length(TCS_VARI.Unit.trigger) > 1 then
               local itemUnitLastFriendly = nil;
-              for i = length(TCS_VARI.Unit.trigger) - 1, 0, -1 do
+              for i = length(TCS_VARI.Unit.trigger) - 2, 0, -1 do
                 local itemCreature = TCS_VARI.Unit.trigger[i];
                 if itemCreature["Side"] == iSide
                   and itemCreature["UnitCategory"] ~= TTH_ENUM.CombatHero
@@ -7631,12 +6923,23 @@ print("TTH_CombatCore loading...");
               end;
               if itemUnitLastFriendly ~= nil then
                 TTHCS_GLOBAL.print("TCS_FUNC.Artifact.FlagOfCharge.trigger");
-                TCS_FUNC.Artifact.FlagOfCharge.flag = 1;
-                TCS_FUNC.Atb.record(itemUnitLastFriendly["UnitName"], TCS_ENUM.Atb.max);
-                ShowFlyingSign(TTHCS_PATH["Artifact"][ARTIFACT_HORN_OF_CHARGE]["Effect"], itemUnitLastFriendly["UnitName"], 5);
+                TCS_FUNC.Artifact.FlagOfCharge.sign(iSide);
+                TCS_BATTLE.atb.record(itemUnitLastFriendly["UnitName"], TCS_ENUM.Atb.immediate);
+                if 1 == 1
+                  and strHero == TCS_FUNC.Talent.Crag.strHero
+                  and TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1
+                then
+                  TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.immediate);
+                end;
+                ShowFlyingSign(TTHCS_PATH["Artifact"][ARTIFACT_FLAG_OF_CHARGE]["Effect"], itemUnitLastFriendly["UnitName"], 5);
               end;
             end;
           end;
+        end;
+      end;
+      TCS_FUNC.Artifact.FlagOfCharge.sign = function(iSide)
+        if TCS_FUNC.Talent.Crag.signArtifact(iSide, "Artifact-"..ARTIFACT_FLAG_OF_CHARGE) == nil then
+          TCS_FUNC.Artifact.FlagOfCharge.flag = 1;
         end;
       end;
 
@@ -7654,12 +6957,10 @@ print("TTH_CombatCore loading...");
             and TCS_VARI.Info.HeroArtifactSet[strHero][ARTIFACTSET_NECROMANCERS] >= 4
             and TTH_TABLE.Hero[strHero]["Race"] ~= TOWN_STRONGHOLD
             and length(listCreatureStatusDeath[iOppositeSide]) > 0 then
-            TCS_FUNC.Battle.pause();
             TTHCS_GLOBAL.print("TCS_FUNC.ArtifactSet.Necromancers.trigger");
             TTHCS_THREAD.cast.aimed.impl(sidHero, SPELL_VAMPIRISM, itemUnitLast["UnitName"], TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No);
-            TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.max);
+            TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.max);
             ShowFlyingSign(TTHCS_PATH["ArtifactSet"][ARTIFACTSET_NECROMANCERS.."_"..4]["Effect"], itemUnitLast["UnitName"], 5);
-            TCS_FUNC.Battle.proceed();
           end;
         end;
       end;
@@ -7677,7 +6978,6 @@ print("TTH_CombatCore loading...");
             and itemHeroMana[iSide] == 0
             and length(listCreatureNumberDecrease[iOppositeSide]) > 0
             and length(TCS_FUNC.ArtifactSet.Hunters.arrSignCreature) == 0 then
-            TCS_FUNC.Battle.pause();
             TTHCS_GLOBAL.print("TCS_FUNC.ArtifactSet.Hunters.first");
             local iComponentCount = TCS_VARI.Info.HeroArtifactSet[strHero][ARTIFACTSET_HUNTERS];
             local iTimes = TTHCS_COMMON.ceil(iComponentCount / 3);
@@ -7689,7 +6989,6 @@ print("TTH_CombatCore loading...");
               end;
             end;
             ShowFlyingSign(TTHCS_PATH["ArtifactSet"][ARTIFACTSET_HUNTERS.."_"..3]["EffectCaster"], sidHero, 5);
-            TCS_FUNC.Battle.proceed();
           end;
         end;
       end;
@@ -7705,13 +7004,11 @@ print("TTH_CombatCore loading...");
               length(listCreatureNumberDecrease[iOppositeSide]) > 0
               or length(listCreatureStatusDeath[iOppositeSide]) > 0
             ) then
-            TCS_FUNC.Battle.pause();
             TTHCS_GLOBAL.print("TCS_FUNC.ArtifactSet.Hunters.trigger");
             for i, sidCreatureTarget in TCS_FUNC.ArtifactSet.Hunters.arrSignCreature do
               TTHCS_THREAD.shoot(itemUnitLast["UnitName"], sidCreatureTarget);
               ShowFlyingSign(TTHCS_PATH["ArtifactSet"][ARTIFACTSET_HUNTERS.."_"..3]["EffectCaster"], itemUnitLast["UnitName"], 5);
             end;
-            TCS_FUNC.Battle.proceed();
           end;
         end;
       end;
@@ -7740,7 +7037,6 @@ print("TTH_CombatCore loading...");
               end;
             end;
             if length(arrCreatureStronghold) > 0 then
-              TCS_FUNC.Battle.pause();
               TTHCS_GLOBAL.print("TCS_FUNC.ArtifactSet.Ogres.trigger");
               local iComponentCount = TCS_VARI.Info.HeroArtifactSet[strHero][ARTIFACTSET_OGRES];
               local iTimes = TTHCS_COMMON.ceil(iComponentCount / 2);
@@ -7749,8 +7045,7 @@ print("TTH_CombatCore loading...");
                 local sidCreatureStronghold = arrCreatureStronghold[iRandomIndex];
                 TTHCS_THREAD.cast.aimed.impl(sidHero, SPELL_WARCRY_CALL_OF_BLOOD, sidCreatureStronghold, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.Yes);
               end;
-              TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.min + 0.3);
-              TCS_FUNC.Battle.proceed();
+              TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.min + 0.3);
             end;
           end;
         end;
@@ -7767,7 +7062,6 @@ print("TTH_CombatCore loading...");
             and itemHeroMana[iSide] < 0
             and TCS_VARI.Info.HeroArtifactSet[strHero][ARTIFACTSET_ELEMENT_AIR] >= 2
             and length(listCreatureNumberDecrease[iOppositeSide]) > 0 then
-            TCS_FUNC.Battle.pause();
             TTHCS_GLOBAL.print("TCS_FUNC.ArtifactSet.ElementAir.trigger");
             local iRandomIndex = TTHCS_COMMON.getRandom(length(listCreatureNumberDecrease[iOppositeSide]));
             local sidCreatureTarget = listCreatureNumberDecrease[iOppositeSide][iRandomIndex];
@@ -7784,7 +7078,6 @@ print("TTH_CombatCore loading...");
               TTHCS_THREAD.cast.aimed.impl(sidHero, iFinalSpellId, sidCreatureTarget, TCS_ENUM.Switch.Yes, TCS_ENUM.Switch.Yes, TCS_ENUM.Switch.No);
             end;
             ShowFlyingSign(TTHCS_PATH["ArtifactSet"][ARTIFACTSET_ELEMENT_AIR.."_"..2]["Effect"], sidHero, 5);
-            TCS_FUNC.Battle.proceed();
           end;
         end;
       end;
@@ -7800,7 +7093,6 @@ print("TTH_CombatCore loading...");
             and itemHeroMana[iSide] < 0
             and TCS_VARI.Info.HeroArtifactSet[strHero][ARTIFACTSET_ELEMENT_EARTH] >= 2
             and length(listCreatureNumberDecrease[iOppositeSide]) > 0 then
-            TCS_FUNC.Battle.pause();
             TTHCS_GLOBAL.print("TCS_FUNC.ArtifactSet.ElementEarth.trigger");
             local iRandomIndex = TTHCS_COMMON.getRandom(length(listCreatureNumberDecrease[iOppositeSide]));
             local sidCreatureTarget = listCreatureNumberDecrease[iOppositeSide][iRandomIndex];
@@ -7817,7 +7109,6 @@ print("TTH_CombatCore loading...");
               TTHCS_THREAD.cast.aimed.impl(sidHero, iFinalSpellId, sidCreatureTarget, TCS_ENUM.Switch.Yes, TCS_ENUM.Switch.Yes, TCS_ENUM.Switch.No);
             end;
             ShowFlyingSign(TTHCS_PATH["ArtifactSet"][ARTIFACTSET_ELEMENT_EARTH.."_"..2]["Effect"], sidHero, 5);
-            TCS_FUNC.Battle.proceed();
           end;
         end;
       end;
@@ -7833,13 +7124,11 @@ print("TTH_CombatCore loading...");
             and itemHeroMana[iSide] < 0
             and TCS_VARI.Info.HeroArtifactSet[strHero][ARTIFACTSET_ELEMENT_FIRE] >= 2
             and length(listCreatureNumberDecrease[iOppositeSide]) > 0 then
-            TCS_FUNC.Battle.pause();
             TTHCS_GLOBAL.print("TCS_FUNC.ArtifactSet.ElementFire.trigger");
             local iRandomIndex = TTHCS_COMMON.getRandom(length(listCreatureNumberDecrease[iOppositeSide]));
             local sidCreatureTarget = listCreatureNumberDecrease[iOppositeSide][iRandomIndex];
             TTHCS_THREAD.castAimedSpell8Tool(iSide, CREATURE_FORTRESS_TOOL, 1, SPELL_ABILITY_FLAMESTRIKE, sidCreatureTarget, TCS_ENUM.Switch.No);
             ShowFlyingSign(TTHCS_PATH["ArtifactSet"][ARTIFACTSET_ELEMENT_FIRE.."_"..2]["Effect"], sidHero, 5);
-            TCS_FUNC.Battle.proceed();
           end;
         end;
       end;
@@ -7853,12 +7142,10 @@ print("TTH_CombatCore loading...");
           local strHero = GetHeroName(sidHero);
           if itemHeroMana[iSide] < 0
             and TCS_VARI.Info.HeroArtifactSet[strHero][ARTIFACTSET_ELEMENT_WATER] >= 2 then
-            TCS_FUNC.Battle.pause();
             TTHCS_GLOBAL.print("TCS_FUNC.ArtifactSet.ElementWater.trigger");
             local iManaPoint = 3;
             TTHCS_GLOBAL.recoveryHeroMana(sidHero, iManaPoint);
             ShowFlyingSign(TTHCS_PATH["ArtifactSet"][ARTIFACTSET_ELEMENT_WATER.."_"..2]["Effect"], sidHero, 5);
-            TCS_FUNC.Battle.proceed();
           end;
         end;
       end;
@@ -7871,18 +7158,32 @@ print("TTH_CombatCore loading...");
         local sidHero = GetHero(iSide);
         if sidHero ~= nil then
           local strHero = GetHeroName(sidHero);
-          if itemUnitLast ~= nil and itemUnitLast["Side"] == iSide
+          if 1 == 1
+            and itemUnitLast ~= nil and itemUnitLast["Side"] == iSide
+            and itemUnitLast["UnitCategory"] == TTH_ENUM.CombatCreature
             and TCS_VARI.Info.HeroArtifactSet[strHero][ARTIFACTSET_CHARGE] >= 3
-            and TCS_FUNC.Artifact.HornOfCharge.flag == 0
+            and TCS_FUNC.ArtifactSet.Charge.flag == 0
             and (
-              contains(listCreatureNumberDecrease[iOppositeSide], itemUnitLast["UnitName"]) ~= nil
-              and contains(listCreatureStatusDeath[iOppositeSide], itemUnitLast["UnitName"]) ~= nil
-            ) then
+              length(listCreatureNumberDecrease[iOppositeSide]) > 0
+              or length(listCreatureStatusDeath[iOppositeSide]) > 0
+            )
+          then
             TTHCS_GLOBAL.print("TCS_FUNC.ArtifactSet.Charge.trigger");
-            TCS_FUNC.Artifact.HornOfCharge.flag = 1;
-            TCS_FUNC.Atb.record(itemUnitLast["UnitName"], TCS_ENUM.Atb.max);
-            ShowFlyingSign(TTHCS_PATH["Artifact"][ARTIFACT_HORN_OF_CHARGE]["Effect"], sidHero, 5);
+            TCS_FUNC.ArtifactSet.Charge.sign(iSide);
+            TCS_BATTLE.atb.record(itemUnitLast["UnitName"], TCS_ENUM.Atb.max);
+            if 1 == 1
+              and strHero == TCS_FUNC.Talent.Crag.strHero
+              and TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1
+            then
+              TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.immediate);
+            end;
+            ShowFlyingSign(TTHCS_PATH["ArtifactSet"][ARTIFACTSET_CHARGE.."_"..3]["Effect"], itemUnitLast["UnitName"], 5);
           end;
+        end;
+      end;
+      TCS_FUNC.ArtifactSet.Charge.sign = function(iSide)
+        if TCS_FUNC.Talent.Crag.signArtifact(iSide, "ArtifactSet-"..ARTIFACTSET_CHARGE) == nil then
+          TCS_FUNC.ArtifactSet.Charge.flag = 1;
         end;
       end;
 
@@ -7891,26 +7192,56 @@ print("TTH_CombatCore loading...");
 
     -- CREATURE_DEATH_KNIGHT 090 死亡骑士
       TCS_FUNC.Creature.DeathKnight = {};
-      TCS_FUNC.Creature.DeathKnight.after = function(iSide, itemUnit, itemUnitLast)
+      TCS_FUNC.Creature.DeathKnight.strHero = "LordHaart";
+      TCS_FUNC.Creature.DeathKnight.trigger = function(iSide, itemUnit, itemUnitLast, listCreatureNumberDecrease)
         local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
-        if itemUnitLast["Side"] == iSide
-          and itemUnitLast["UnitType"] == CREATURE_DEATH_KNIGHT then
-          TTHCS_GLOBAL.print("TCS_FUNC.Creature.DeathKnight.after");
-          local iContinuousNumber = 12.5;
-          local sidHero = GetHero(iSide);
-          if sidHero ~= nil then
-            local strHero = GetHeroName(sidHero);
-            if strHero == "LordHaart" then
-              iContinuousNumber = 25;
-              if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
-                iContinuousNumber = 37.5;
-              end;
-              if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
-                iContinuousNumber = 50;
-              end;
+        if 1 == 1
+          and GetHero(iSide) ~= nil
+          and GetHeroName(GetHero(iSide)) == TCS_FUNC.Creature.DeathKnight.strHero
+          and itemUnitLast ~= nil
+          and itemUnitLast["Side"] == iSide
+          and itemUnitLast["UnitType"] == CREATURE_DEATH_KNIGHT
+          and length(listCreatureNumberDecrease[iOppositeSide]) > 0
+        then
+          TTHCS_GLOBAL.print("TCS_FUNC.Creature.DeathKnight.trigger");
+          itemUnitLast = TTHCS_GLOBAL.geneUnitInfo(itemUnitLast["UnitName"]);
+          local arrCreatureNearBy = TTHCS_GLOBAL.listUnitInArea(itemUnitLast, 1, iOppositeSide, TCS_ENUM.Switch.No);
+          for i, sidCreatureDecrease in listCreatureNumberDecrease[iOppositeSide] do
+            if contains(arrCreatureNearBy, sidCreatureDecrease) ~= nil then
+              local itemCreatureDecrease = TTHCS_GLOBAL.geneUnitInfo(sidCreatureDecrease);
+              TTHCS_THREAD.attack8Tool(iSide, CREATURE_NECROMANCY_TOOL_LORDHAART, 1, itemCreatureDecrease["PosX"], itemCreatureDecrease["PosY"], sidCreatureDecrease, 1);
             end;
           end;
-          TCS_FUNC.Continuous.increase(itemUnitLast["UnitName"], iContinuousNumber, itemUnitLast["UnitName"]);
+          ShowFlyingSign(TTHCS_PATH["Creature"][CREATURE_DEATH_KNIGHT]["Effect"], itemUnitLast["UnitName"], 5);
+        end;
+      end;
+      TCS_FUNC.Creature.DeathKnight.aure = function(iSide, itemUnit, itemUnitLast)
+        local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
+        if 1 == 1
+          and GetHero(iSide) ~= nil
+          and GetHeroName(GetHero(iSide)) == TCS_FUNC.Creature.DeathKnight.strHero
+          and TCS_VARI.Info.HeroUpgradeShantiri[TCS_FUNC.Creature.DeathKnight.strHero] == 1
+          and itemUnitLast ~= nil
+          and itemUnitLast["Side"] == iOppositeSide
+        then
+          local listCreatureMain = {};
+          local arrCreature = GetCreatures(iSide);
+          for i, sidCreature in arrCreature do
+            local itemCreature = TTHCS_GLOBAL.geneUnitInfo(sidCreature);
+            if itemCreature["UnitType"] == CREATURE_DEATH_KNIGHT then
+              push(listCreatureMain, itemCreature);
+            end;
+          end;
+          if length(listCreatureMain) > 0 then
+            listCreatureMain = TTHCS_COMMON.desc8key(listCreatureMain, "UnitNumber");
+            local itemCreatureMain = listCreatureMain[0];
+            local arrCreatureNearBy = TTHCS_GLOBAL.listUnitInArea(itemCreatureMain, 1, iOppositeSide, TCS_ENUM.Switch.No);
+            if contains(arrCreatureNearBy, itemUnitLast["UnitName"]) ~= nil then
+              TTHCS_GLOBAL.print("TCS_FUNC.Creature.DeathKnight.aure");
+              TTHCS_THREAD.attack8Tool(iSide, CREATURE_NECROMANCY_TOOL_LORDHAART, 1, itemUnitLast["PosX"], itemUnitLast["PosY"], itemUnitLast["UnitName"], 1);
+              ShowFlyingSign(TTHCS_PATH["Creature"][CREATURE_DEATH_KNIGHT]["EffectAure"], itemUnitLast["UnitName"], 5);
+            end;
+          end;
         end;
       end;
 
@@ -7922,7 +7253,6 @@ print("TTH_CombatCore loading...");
         local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
         if itemUnitLast["Side"] == iSide
           and itemUnitLast["UnitType"] == CREATURE_CHERUBIN then
-          TCS_FUNC.Battle.pause();
           TTHCS_GLOBAL.print("TCS_FUNC.Creature.Cherubin.after");
           local iSpellId = TCS_FUNC.Creature.Cherubin.arrSpellId[TCS_FUNC.Creature.Cherubin.iSpellIndex];
           TTHCS_THREAD.castGlobalSpell8Tool(iSide, CREATURE_CHERUBIN, itemUnitLast["UnitNumber"], iSpellId, TCS_ENUM.Switch.No);
@@ -7930,7 +7260,6 @@ print("TTH_CombatCore loading...");
           if TCS_FUNC.Creature.Cherubin.iSpellIndex >= length(TCS_FUNC.Creature.Cherubin.arrSpellId) then
             TCS_FUNC.Creature.Cherubin.iSpellIndex = 0;
           end;
-          TCS_FUNC.Battle.proceed();
         end;
       end;
 
@@ -7942,7 +7271,6 @@ print("TTH_CombatCore loading...");
         local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
         if itemUnitLast["Side"] == iSide
           and itemUnitLast["UnitType"] == CREATURE_DRAGON_KNIGHT then
-          TCS_FUNC.Battle.pause();
           TTHCS_GLOBAL.print("TCS_FUNC.Creature.DragonKnight.after");
           local iSpellId = TCS_FUNC.Creature.DragonKnight.arrSpellId[TCS_FUNC.Creature.DragonKnight.iSpellIndex];
           TTHCS_THREAD.castGlobalSpell8Tool(iSide, CREATURE_DRAGON_KNIGHT, itemUnitLast["UnitNumber"], iSpellId, TCS_ENUM.Switch.No);
@@ -7950,7 +7278,6 @@ print("TTH_CombatCore loading...");
           if TCS_FUNC.Creature.DragonKnight.iSpellIndex >= length(TCS_FUNC.Creature.DragonKnight.arrSpellId) then
             TCS_FUNC.Creature.DragonKnight.iSpellIndex = 0;
           end;
-          TCS_FUNC.Battle.proceed();
         end;
       end;
 
@@ -7963,7 +7290,6 @@ print("TTH_CombatCore loading...");
         local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
         if itemUnitLast["Side"] == iSide
           and contains(TCS_FUNC.Creature.Enchanter.arrCreatureType, itemUnitLast["UnitType"]) ~= nil then
-          TCS_FUNC.Battle.pause();
           TTHCS_GLOBAL.print("TCS_FUNC.Creature.Enchanter.after");
           local iTimes = 1;
           local sidHero = GetHero(iSide);
@@ -7986,7 +7312,6 @@ print("TTH_CombatCore loading...");
             TTHCS_THREAD.castAimedSpell8Tool(iSide, CREATURE_ENCHANTER_CASTER, itemUnitLast["UnitNumber"], SPELL_ABILITY_RANDOM_CAST_DARK_LIGHT, strCreatureTarget, TCS_ENUM.Switch.No);
             TCS_FUNC.Creature.Enchanter.iSide = 1 - TCS_FUNC.Creature.Enchanter.iSide;
           end;
-          TCS_FUNC.Battle.proceed();
         end;
       end;
 
@@ -8005,13 +7330,11 @@ print("TTH_CombatCore loading...");
               end;
             end;
             if length(arrCreatureCaster) > 0 then
-              TCS_FUNC.Battle.pause();
               TTHCS_GLOBAL.print("TCS_FUNC.Creature.Justicar.trigger");
               for i, strCreatureCaster in arrCreatureCaster do
                 TTHCS_THREAD.castGlobalSpell4Mana(strCreatureCaster, SPELL_HOLY_WORD, TCS_ENUM.Switch.Yes);
-                TCS_FUNC.Atb.record(strCreatureCaster, TCS_ENUM.Atb.max);
+                TCS_BATTLE.atb.record(strCreatureCaster, TCS_ENUM.Atb.max);
               end;
-              TCS_FUNC.Battle.proceed();
             end;
           end;
         end;
@@ -8022,13 +7345,11 @@ print("TTH_CombatCore loading...");
       TCS_FUNC.Creature.Legate.trigger = function(iSide, itemUnit, itemUnitLast)
         local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
         if itemUnitLast ~= nil and itemUnitLast["Side"] == iSide and itemUnitLast["UnitType"] == CREATURE_LEGATE then
-          TCS_FUNC.Battle.pause();
           TTHCS_GLOBAL.print("TCS_FUNC.Creature.Legate.trigger");
           ShowFlyingSign(TTHCS_PATH["Creature"][CREATURE_LEGATE]["Effect"], itemUnitLast["UnitName"], 5);
           local itemCreatureCurrent = TTHCS_GLOBAL.geneUnitInfo(itemUnitLast["UnitName"]);
           TTHCS_THREAD.attack8Tool(iOppositeSide, CREATURE_LEGATE_SHADOW, 1, itemCreatureCurrent["PosX"], itemCreatureCurrent["PosY"], itemCreatureCurrent["UnitName"], 1);
           TCS_FUNC.Talent.Sanguinius.move(iSide, itemUnit);
-          TCS_FUNC.Battle.proceed();
         end;
       end;
 
@@ -8045,7 +7366,6 @@ print("TTH_CombatCore loading...");
         end;
         if itemUnitLast ~= nil and itemUnitLast["Side"] == iSide and itemUnitLast["UnitType"] == CREATURE_SIREN
           and length(listCreatureNumberDecrease[iOppositeSide]) > 0 then
-          TCS_FUNC.Battle.pause();
           TTHCS_GLOBAL.print("TCS_FUNC.Creature.Siren.trigger");
           for i, sidTargetDecrease in listCreatureNumberDecrease[iOppositeSide] do
             local itemCreatureTarget = TTHCS_GLOBAL.geneUnitInfo(sidTargetDecrease);
@@ -8063,13 +7383,12 @@ print("TTH_CombatCore loading...");
                 if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
                   TTHCS_THREAD.cast.aimed.impl(sidHero, SPELL_DEEP_FREEZE, sidTargetDecrease, TCS_ENUM.Switch.Yes, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No);
                 end;
-                TCS_FUNC.Atb.record(sidHero, TCS_ENUM.Atb.max);
+                TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.max);
                 ShowFlyingSign(TTHCS_PATH["Talent"][strHero]["Effect"], sidHero, 5);
               end;
             end;
           end;
           ShowFlyingSign(TTH_TABLE.Spell[SPELL_ICE_BOLT]["Text"], itemUnitLast["UnitName"], 5);
-          TCS_FUNC.Battle.proceed();
         end;
       end;
       TCS_FUNC.Creature.Siren.charge = function(iSide, itemUnit, itemUnitLast)
@@ -8084,6 +7403,426 @@ print("TTH_CombatCore loading...");
                 TCS_FUNC.Creature.Siren.flag[strHero] = 2;
               end;
               TCS_FUNC.Creature.Siren.flag[strHero] = TCS_FUNC.Creature.Siren.flag[strHero] + 1;
+            end;
+          end;
+        end;
+      end;
+
+    -- CREATURE_FATE_WEAVER_SPIDER 204 织命蛛后（蜘蛛形态）
+    -- CREATURE_FATE_WEAVER_HUMAN 205 织命蛛后（人形态）
+      TCS_FUNC.Creature.FateWeaver = {};
+      TCS_FUNC.Creature.FateWeaver.strHero = "Anastasya";
+      TCS_FUNC.Creature.FateWeaver.arrKeyHero = {
+        [0] = "FateWeaver_strHero_0"
+        , [1] = "FateWeaver_strHero_1"
+      };
+      TCS_FUNC.Creature.FateWeaver.arrKeyCount = {
+        [0] = "FateWeaver_iCount_0"
+        , [1] = "FateWeaver_iCount_1"
+      };
+      TCS_FUNC.Creature.FateWeaver.arrKeyDead = {
+        [0] = "FateWeaver_iDead_0"
+        , [1] = "FateWeaver_iDead_1"
+      };
+      TCS_FUNC.Creature.FateWeaver.record = function()
+        for iSide = TTHCS_ENUM.SideAttacker, TTHCS_ENUM.SideDefender do
+          local iNumberInit = 0;
+          local arrCreatureInit = TCS_VARI.Snapshot.init[TTH_ENUM.CombatCreature][iSide];
+          for i, itemCreatureInit in arrCreatureInit do
+            if 1 ~= 1
+              or itemCreatureInit["UnitType"] == CREATURE_FATE_WEAVER_SPIDER
+              or itemCreatureInit["UnitType"] == CREATURE_FATE_WEAVER_HUMAN
+            then
+              iNumberInit = iNumberInit + itemCreatureInit["UnitNumber"];
+            end;
+          end;
+          if iNumberInit > 0 then
+            local iNumberCurrent = 0;
+            local arrCreatureCurrent = GetCreatures(iSide);
+            for i, sidCreatureCurrent in arrCreatureCurrent do
+              local itemCreatureCurrent = TTHCS_GLOBAL.geneUnitInfo(sidCreatureCurrent);
+              if 1 ~= 1
+                or itemCreatureCurrent["UnitType"] == CREATURE_FATE_WEAVER_SPIDER
+                or itemCreatureCurrent["UnitType"] == CREATURE_FATE_WEAVER_HUMAN
+              then
+                iNumberCurrent = iNumberCurrent + itemCreatureCurrent["UnitNumber"];
+              end;
+            end;
+            local sidHero = GetHero(iSide);
+            local strHero = nil;
+            if sidHero ~= nil then
+              strHero = GetHeroName(sidHero);
+            end;
+            if strHero then
+              SetGameVar(TCS_FUNC.Creature.FateWeaver.arrKeyHero[iSide], strHero);
+              SetGameVar(TCS_FUNC.Creature.FateWeaver.arrKeyCount[iSide], iNumberCurrent);
+              SetGameVar(TCS_FUNC.Creature.FateWeaver.arrKeyDead[iSide], iNumberInit - iNumberCurrent);
+            end;
+          end;
+        end;
+      end;
+      TCS_FUNC.Creature.FateWeaver.check = function(iSide, sidCreature)
+        local bCheck = nil;
+
+        local itemCreatureCurrent = TTHCS_GLOBAL.geneUnitInfo(sidCreature);
+        local itemCreatureFull = TCS_VARI.Snapshot.init[TTH_ENUM.CombatCreature][iSide][sidCreature];
+        if itemCreatureFull["UnitNumber"] == itemCreatureCurrent["UnitNumber"] then
+          bCheck = not nil;
+        end;
+
+        return bCheck;
+      end;
+      TCS_FUNC.Creature.FateWeaver.set = function(iSide, sidCreaturePre, sidCreaturePost)
+        local bCheck = nil;
+
+        local itemCreaturePost = TTHCS_GLOBAL.geneUnitInfo(sidCreaturePost);
+        local itemCreaturePre = TCS_VARI.Snapshot.init[TTH_ENUM.CombatCreature][iSide][sidCreaturePre];
+        TCS_VARI.Snapshot.init[TTH_ENUM.CombatCreature][iSide][sidCreaturePre] = nil;
+        itemCreaturePre["UnitName"] = itemCreaturePost["UnitName"];
+        itemCreaturePre["UnitType"] = itemCreaturePost["UnitType"];
+        TCS_VARI.Snapshot.init[TTH_ENUM.CombatCreature][iSide][sidCreaturePost] = itemCreaturePre;
+        local arrCreatureInit = TCS_VARI.Snapshot.init[TTH_ENUM.CombatCreature][iSide];
+        TCS_VARI.Snapshot.init[TTH_ENUM.CombatCreature][iSide] = {};
+        for sidCreature, itemCreatureInit in arrCreatureInit do
+          if itemCreatureInit ~= nil then
+            TCS_VARI.Snapshot.init[TTH_ENUM.CombatCreature][iSide][sidCreature] = itemCreatureInit;
+          end;
+        end;
+      end;
+      TCS_FUNC.Creature.FateWeaver.isMain = function(iSide, sidCreatureTarget)
+        local bCheck = nil;
+        local listCreatureCaster = {};
+        local arrCreature = GetCreatures(iSide);
+        for i, sidCreature in arrCreature do
+          local itemCreature = TTHCS_GLOBAL.geneUnitInfo(sidCreature);
+          if 1 ~= 1
+            or itemCreature["UnitType"] == CREATURE_FATE_WEAVER_SPIDER
+            or itemCreature["UnitType"] == CREATURE_FATE_WEAVER_HUMAN
+          then
+            push(listCreatureCaster, itemCreature);
+          end;
+        end;
+        listCreatureCaster = TTHCS_COMMON.desc8key(listCreatureCaster, "UnitNumber");
+        if 1 == 1
+          and length(listCreatureCaster) > 0
+          and listCreatureCaster[0]["UnitName"] == sidCreatureTarget
+        then
+          bCheck = not nil;
+        end;
+
+        return bCheck;
+      end;
+      TCS_FUNC.Creature.FateWeaver.triggerSpider = function(iSide, itemUnit)
+        TCS_FUNC.Creature.FateWeaver.record();
+        local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
+        local sidHero = GetHero(iSide);
+        local strHero = "";
+        if sidHero ~= nil then
+          strHero = GetHeroName(sidHero);
+        end;
+        local arrCreature = GetCreatures(iSide);
+        for i, sidCreature in arrCreature do
+          local itemCreature = TTHCS_GLOBAL.geneUnitInfo(sidCreature);
+          if itemCreature["UnitType"] == CREATURE_FATE_WEAVER_SPIDER then
+            local arrCreatureNearBy = TTHCS_GLOBAL.listUnitInArea(itemCreature, 1, iOppositeSide, TCS_ENUM.Switch.No);
+            if 1 == 1
+              and length(arrCreatureNearBy) == 0
+              and TCS_FUNC.Creature.FateWeaver.check(iSide, sidCreature)
+            then
+              TTHCS_GLOBAL.print("TCS_FUNC.Creature.FateWeaver.triggerSpider "..sidCreature);
+              TCS_VARI.isAutoFinish = 0;
+              EnableAutoFinish(nil);
+              TTHCS_THREAD.removeCreature(sidCreature);
+              local sidCreatureCast = TTHCS_THREAD.addCreature(iSide, CREATURE_FATE_WEAVER_HUMAN, itemCreature["UnitNumber"], itemCreature["PosX"], itemCreature["PosY"]);
+              ShowFlyingSign(TTHCS_PATH["Creature"][CREATURE_FATE_WEAVER_HUMAN]["Effect"], sidCreatureCast, 5);
+              TTHCS_GLOBAL.resetMana(sidCreatureCast, itemCreature["CurrentMana"]);
+              local itemCreatureCast = TTHCS_GLOBAL.geneUnitInfo(sidCreatureCast);
+              TCS_FUNC.Creature.FateWeaver.set(iSide, sidCreature, sidCreatureCast);
+              if strHero == TCS_FUNC.Creature.FateWeaver.strHero then
+                local arrCreatureTarget = GetCreatures(iOppositeSide);
+                local listSortDistance = {};
+                for i, sidCreatureTarget in arrCreatureTarget do
+                  local itemCreatureTarget = TTHCS_GLOBAL.geneUnitInfo(sidCreatureTarget);
+                  local iDistanceX = itemCreatureCast["PosX"] - itemCreatureTarget["PosX"];
+                  local iDistanceY = itemCreatureCast["PosY"] - itemCreatureTarget["PosY"];
+                  itemCreatureTarget["Distance"] = iDistanceX * iDistanceX +  iDistanceY * iDistanceY;
+                  push(listSortDistance, itemCreatureTarget);
+                end;
+                if length(listSortDistance) > 0 then
+                  listSortDistance = TTHCS_COMMON.asc8key(listSortDistance, "Distance");
+                  local itemCreatureNearest = listSortDistance[0];
+                  if TCS_VARI.Info.HeroUpgradeShantiri[strHero] ~= 1 then
+                    TTHCS_THREAD.castAimedSpell8Tool(iSide, CREATURE_SIREN_TOOL, itemCreatureCast["UnitNumber"], SPELL_SORROW, itemCreatureNearest["UnitName"], TCS_ENUM.Switch.No);
+                  else
+                    TTHCS_THREAD.cast.aimed.impl(sidHero, SPELL_SORROW, itemCreatureNearest["UnitName"], TCS_ENUM.Switch.No, TCS_ENUM.Switch.No, TCS_ENUM.Switch.No);
+                  end;
+                end;
+                if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
+                  TCS_BATTLE.atb.record(sidCreatureCast, TCS_ENUM.Atb.max);
+                end;
+                if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
+                  if TCS_FUNC.Creature.FateWeaver.isMain(iSide, sidCreatureCast) then
+                    TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.max);
+                  end;
+                end;
+              end;
+            end;
+          end;
+        end;
+      end;
+      TCS_FUNC.Creature.FateWeaver.triggerHuman = function(iSide, itemUnit)
+        TCS_FUNC.Creature.FateWeaver.record();
+        local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
+        local sidHero = GetHero(iSide);
+        local strHero = "";
+        if sidHero ~= nil then
+          strHero = GetHeroName(sidHero);
+        end;
+        local arrCreature = GetCreatures(iSide);
+        for i, sidCreature in arrCreature do
+          local itemCreature = TTHCS_GLOBAL.geneUnitInfo(sidCreature);
+          if itemCreature["UnitType"] == CREATURE_FATE_WEAVER_HUMAN then
+            local arrCreatureNearBy = TTHCS_GLOBAL.listUnitInArea(itemCreature, 1, iOppositeSide, TCS_ENUM.Switch.No);
+            if 1 == 1
+              and length(arrCreatureNearBy) > 0
+              and TCS_FUNC.Creature.FateWeaver.check(iSide, sidCreature)
+            then
+              TTHCS_GLOBAL.print("TCS_FUNC.Creature.FateWeaver.triggerHuman "..sidCreature);
+              TCS_VARI.isAutoFinish = 0;
+              EnableAutoFinish(nil);
+              TTHCS_THREAD.removeCreature(sidCreature);
+              local sidCreatureCast = TTHCS_THREAD.addCreature(iSide, CREATURE_FATE_WEAVER_SPIDER, itemCreature["UnitNumber"], itemCreature["PosX"], itemCreature["PosY"]);
+              ShowFlyingSign(TTHCS_PATH["Creature"][CREATURE_FATE_WEAVER_SPIDER]["Effect"], sidCreatureCast, 5);
+              TTHCS_GLOBAL.resetMana(sidCreatureCast, itemCreature["CurrentMana"]);
+              local itemCreatureCast = TTHCS_GLOBAL.geneUnitInfo(sidCreatureCast);
+              TCS_FUNC.Creature.FateWeaver.set(iSide, sidCreature, sidCreatureCast);
+              if strHero == TCS_FUNC.Creature.FateWeaver.strHero then
+                TTHCS_THREAD.castGlobalSpell5Mana(sidCreatureCast, SPELL_ABILITY_DEATH_WAIL, TCS_ENUM.Switch.Yes);
+                if TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1 then
+                  TCS_BATTLE.atb.record(sidCreatureCast, TCS_ENUM.Atb.max);
+                end;
+                if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
+                  if TCS_FUNC.Creature.FateWeaver.isMain(iSide, sidCreatureCast) then
+                    TCS_BATTLE.atb.record(sidHero, TCS_ENUM.Atb.max);
+                  end;
+                end;
+              end;
+            end;
+          end;
+        end;
+      end;
+
+    -- CREATURE_FEARLESS_LORD_MELEE 204 无畏领主（冲锋形态）
+    -- CREATURE_FEARLESS_LORD_SHOT 205 无畏领主（重炮形态）
+      TCS_FUNC.Creature.FearlessLord = {};
+      TCS_FUNC.Creature.FearlessLord.strHero = "DavianThule";
+      TCS_FUNC.Creature.FearlessLord.arrKeyHero = {
+        [0] = "FearlessLord_strHero_0"
+        , [1] = "FearlessLord_strHero_1"
+      };
+      TCS_FUNC.Creature.FearlessLord.arrKeyCount = {
+        [0] = "FearlessLord_iCount_0"
+        , [1] = "FearlessLord_iCount_1"
+      };
+      TCS_FUNC.Creature.FearlessLord.arrKeyDead = {
+        [0] = "FearlessLord_iDead_0"
+        , [1] = "FearlessLord_iDead_1"
+      };
+      TCS_FUNC.Creature.FearlessLord.record = function()
+        for iSide = TTHCS_ENUM.SideAttacker, TTHCS_ENUM.SideDefender do
+          local iNumberInit = 0;
+          local arrCreatureInit = TCS_VARI.Snapshot.init[TTH_ENUM.CombatCreature][iSide];
+          for i, itemCreatureInit in arrCreatureInit do
+            if 1 ~= 1
+              or itemCreatureInit["UnitType"] == CREATURE_FEARLESS_LORD_MELEE
+              or itemCreatureInit["UnitType"] == CREATURE_FEARLESS_LORD_SHOT
+            then
+              iNumberInit = iNumberInit + itemCreatureInit["UnitNumber"];
+            end;
+          end;
+          if iNumberInit > 0 then
+            local iNumberCurrent = 0;
+            local arrCreatureCurrent = GetCreatures(iSide);
+            for i, sidCreatureCurrent in arrCreatureCurrent do
+              local itemCreatureCurrent = TTHCS_GLOBAL.geneUnitInfo(sidCreatureCurrent);
+              if 1 ~= 1
+                or itemCreatureCurrent["UnitType"] == CREATURE_FEARLESS_LORD_MELEE
+                or itemCreatureCurrent["UnitType"] == CREATURE_FEARLESS_LORD_SHOT
+              then
+                iNumberCurrent = iNumberCurrent + itemCreatureCurrent["UnitNumber"];
+              end;
+            end;
+            local sidHero = GetHero(iSide);
+            local strHero = nil;
+            if sidHero ~= nil then
+              strHero = GetHeroName(sidHero);
+            end;
+            if strHero then
+              SetGameVar(TCS_FUNC.Creature.FearlessLord.arrKeyHero[iSide], strHero);
+              SetGameVar(TCS_FUNC.Creature.FearlessLord.arrKeyCount[iSide], iNumberCurrent);
+              SetGameVar(TCS_FUNC.Creature.FearlessLord.arrKeyDead[iSide], iNumberInit - iNumberCurrent);
+            end;
+          end;
+        end;
+      end;
+      TCS_FUNC.Creature.FearlessLord.checkNumber = function(iSide, sidCreature)
+        local bCheck = nil;
+
+        local itemCreatureCurrent = TTHCS_GLOBAL.geneUnitInfo(sidCreature);
+        local itemCreatureFull = TCS_VARI.Snapshot.init[TTH_ENUM.CombatCreature][iSide][sidCreature];
+        if itemCreatureFull["UnitNumber"] == itemCreatureCurrent["UnitNumber"] then
+          bCheck = not nil;
+        end;
+
+        return bCheck;
+      end;
+      TCS_FUNC.Creature.FearlessLord.set = function(iSide, sidCreaturePre, sidCreaturePost)
+        local bCheck = nil;
+
+        local itemCreaturePost = TTHCS_GLOBAL.geneUnitInfo(sidCreaturePost);
+        local itemCreaturePre = TCS_VARI.Snapshot.init[TTH_ENUM.CombatCreature][iSide][sidCreaturePre];
+        TCS_VARI.Snapshot.init[TTH_ENUM.CombatCreature][iSide][sidCreaturePre] = nil;
+        itemCreaturePre["UnitName"] = itemCreaturePost["UnitName"];
+        itemCreaturePre["UnitType"] = itemCreaturePost["UnitType"];
+        TCS_VARI.Snapshot.init[TTH_ENUM.CombatCreature][iSide][sidCreaturePost] = itemCreaturePre;
+        local arrCreatureInit = TCS_VARI.Snapshot.init[TTH_ENUM.CombatCreature][iSide];
+        TCS_VARI.Snapshot.init[TTH_ENUM.CombatCreature][iSide] = {};
+        for sidCreature, itemCreatureInit in arrCreatureInit do
+          if itemCreatureInit ~= nil then
+            TCS_VARI.Snapshot.init[TTH_ENUM.CombatCreature][iSide][sidCreature] = itemCreatureInit;
+          end;
+        end;
+      end;
+      TCS_FUNC.Creature.FearlessLord.statRepair = {};
+      TCS_FUNC.Creature.FearlessLord.startRepair = function(iSide, sidCreature)
+        print("debug-startRepair");
+        if 1 ~= 1
+          or TCS_FUNC.Creature.FearlessLord.statRepair[sidCreature] == nil
+          or TCS_FUNC.Creature.FearlessLord.statRepair[sidCreature] == 0
+        then
+          TCS_FUNC.Creature.FearlessLord.statRepair[sidCreature] = 1;
+          local itemCreature = TTHCS_GLOBAL.geneUnitInfo(sidCreature);
+          local arrCreatureNearBy = TTHCS_GLOBAL.listUnitInArea(itemCreature, 1, iSide, TCS_ENUM.Switch.No);
+          if length(arrCreatureNearBy) > 0 then
+            for i, sidCreatureNearBy in arrCreatureNearBy do
+              TTHCS_THREAD.castAimedSpell8Tool(iSide, CREATURE_FORTRESS_TOOL_Tazar_AbilityUpgradeMastery, itemCreature["UnitNumber"], SPELL_CELESTIAL_SHIELD, sidCreatureNearBy, TCS_ENUM.Switch.No);
+            end;
+          end;
+        end;
+      end;
+      TCS_FUNC.Creature.FearlessLord.endRepair = function(sidCreature)
+        TCS_FUNC.Creature.FearlessLord.statRepair[sidCreature] = 0;
+      end;
+      TCS_FUNC.Creature.FearlessLord.checkRepair = function(iSide)
+        local bCheck = nil;
+        local arrCreature = GetCreatures(iSide);
+        for i, sidCreature in arrCreature do
+          local itemCreature = TTHCS_GLOBAL.geneUnitInfo(sidCreature);
+          if TCS_FUNC.Creature.FearlessLord.statRepair[sidCreature] == 1 then
+            bCheck = not nil;
+          end;
+        end;
+        return bCheck;
+      end;
+      TCS_FUNC.Creature.FearlessLord.triggerRepair = function(iSide, itemUnit)
+        local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
+        if 1 == 1
+          and TCS_FUNC.Creature.FearlessLord.checkRepair(iSide)
+        then
+          TTHCS_GLOBAL.print("TCS_FUNC.Creature.FearlessLord.triggerRepair");
+          local arrCreatureRepair = GetCreatures(iSide);
+          for i, sidCreatureRepair in arrCreatureRepair do
+            if TCS_FUNC.Creature.FearlessLord.statRepair[sidCreatureRepair] == 1 then
+              -- local itemCreatureFull = TCS_VARI.Snapshot.init[TTH_ENUM.CombatCreature][iSide][sidCreatureRepair];
+              local itemCreatureRepair = TTHCS_GLOBAL.geneUnitInfo(sidCreatureRepair);
+              TTHCS_THREAD.castAimedSpell8Tool(iSide, CREATURE_ACADEMY_TOOL, itemCreatureRepair["UnitNumber"], SPELL_ABILITY_REPAIR, itemCreatureRepair["UnitName"], TCS_ENUM.Switch.No);
+              local sidHero = GetHero(iSide);
+              if sidHero ~= nil then
+                local strHero = GetHeroName(sidHero);
+                if strHero == TCS_FUNC.Creature.FearlessLord.strHero then
+                  TTHCS_THREAD.defend(sidCreatureRepair);
+                end;
+              end;
+              ShowFlyingSign(TTHCS_PATH["Creature"][CREATURE_FEARLESS_LORD_SHOT]["EffectRepair"], itemCreatureRepair["UnitName"], 5);
+              sleep(500);
+              if TCS_FUNC.Creature.FearlessLord.checkNumber(iSide, itemCreatureRepair["UnitName"]) then
+                TCS_FUNC.Creature.FearlessLord.cast(iSide, itemCreatureRepair["UnitName"]);
+                TCS_FUNC.Creature.FearlessLord.endRepair(itemCreatureRepair["UnitName"]);
+              else
+                TCS_BATTLE.atb.record(itemCreatureRepair["UnitName"], TCS_ENUM.Atb.min);
+              end;
+            end;
+          end;
+          TCS_FUNC.Creature.FearlessLord.record();
+        end;
+      end;
+      TCS_FUNC.Creature.FearlessLord.cast = function(iSide, sidCreature)
+        TCS_VARI.isAutoFinish = 0;
+        EnableAutoFinish(nil);
+        local itemCreature = TTHCS_GLOBAL.geneUnitInfo(sidCreature);
+        local iUnitType = CREATURE_FEARLESS_LORD_MELEE;
+        if itemCreature["UnitType"] == CREATURE_FEARLESS_LORD_MELEE then
+          iUnitType = CREATURE_FEARLESS_LORD_SHOT;
+        elseif itemCreature["UnitType"] == CREATURE_FEARLESS_LORD_SHOT then
+          iUnitType = CREATURE_FEARLESS_LORD_MELEE;
+        end;
+        TTHCS_THREAD.removeCreature(itemCreature["UnitName"]);
+        local sidCreatureCast = TTHCS_THREAD.addCreature(iSide, iUnitType, itemCreature["UnitNumber"], itemCreature["PosX"], itemCreature["PosY"]);
+        ShowFlyingSign(TTHCS_PATH["Creature"][iUnitType]["Effect"], sidCreatureCast, 5);
+        local itemCreatureCast = TTHCS_GLOBAL.geneUnitInfo(sidCreatureCast);
+        TCS_FUNC.Creature.FearlessLord.set(iSide, sidCreature, sidCreatureCast);
+        local sidHero = GetHero(iSide);
+        if sidHero ~= nil then
+          local strHero = GetHeroName(sidHero);
+          if 1 == 1
+            and strHero == TCS_FUNC.Creature.FearlessLord.strHero
+            and TCS_VARI.Info.HeroUpgradeMastery[strHero] == 1
+          then
+            if TCS_VARI.Info.HeroUpgradeShantiri[strHero] == 1 then
+              TTHCS_THREAD.castGlobalSpell4Mana(sidCreatureCast, SPELL_RUNE_OF_DRAGONFORM, TCS_ENUM.Switch.No);
+            end;
+            if IsHuman(iSide) then
+              TCS_BATTLE.atb.record(sidCreatureCast, TCS_ENUM.Atb.max);
+            else
+              TCS_BATTLE.atb.record(sidCreatureCast, TCS_ENUM.Atb.immediate);
+            end;
+          end;
+        end;
+      end;
+      TCS_FUNC.Creature.FearlessLord.castShot = function(iSide, itemUnit)
+        TCS_FUNC.Creature.FearlessLord.record();
+        local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
+        local arrCreature = GetCreatures(iSide);
+        for i, sidCreature in arrCreature do
+          local itemCreature = TTHCS_GLOBAL.geneUnitInfo(sidCreature);
+          if itemCreature["UnitType"] == CREATURE_FEARLESS_LORD_MELEE then
+            local arrCreatureNearBy = TTHCS_GLOBAL.listUnitInArea(itemCreature, 1, iOppositeSide, TCS_ENUM.Switch.No);
+            if length(arrCreatureNearBy) == 0 then
+              if TCS_FUNC.Creature.FearlessLord.checkNumber(iSide, itemCreature["UnitName"]) then
+                TTHCS_GLOBAL.print("TCS_FUNC.Creature.FearlessLord.castShot "..itemCreature["UnitName"]);
+                TCS_FUNC.Creature.FearlessLord.cast(iSide, itemCreature["UnitName"]);
+              else
+                TCS_FUNC.Creature.FearlessLord.startRepair(iSide, itemCreature["UnitName"]);
+              end;
+            end;
+          end;
+        end;
+      end;
+      TCS_FUNC.Creature.FearlessLord.castMelee = function(iSide, itemUnit)
+        TCS_FUNC.Creature.FearlessLord.record();
+        local iOppositeSide = TTHCS_GLOBAL.getOppositeSide(iSide);
+        local arrCreature = GetCreatures(iSide);
+        for i, sidCreature in arrCreature do
+          local itemCreature = TTHCS_GLOBAL.geneUnitInfo(sidCreature);
+          if itemCreature["UnitType"] == CREATURE_FEARLESS_LORD_SHOT then
+            local arrCreatureNearBy = TTHCS_GLOBAL.listUnitInArea(itemCreature, 1, iOppositeSide, TCS_ENUM.Switch.No);
+            if length(arrCreatureNearBy) > 0 then
+              if TCS_FUNC.Creature.FearlessLord.checkNumber(iSide, itemCreature["UnitName"]) then
+                TTHCS_GLOBAL.print("TCS_FUNC.Creature.FearlessLord.castMelee "..itemCreature["UnitName"]);
+                TCS_FUNC.Creature.FearlessLord.cast(iSide, itemCreature["UnitName"]);
+              else
+                TCS_FUNC.Creature.FearlessLord.startRepair(iSide, itemCreature["UnitName"]);
+              end;
             end;
           end;
         end;
@@ -8152,6 +7891,121 @@ print("TTH_CombatCore loading...");
       return bCheck;
     end;
 
+-- 战场
+  TCS_BATTLE = {};
+
+  -- 记录快照
+    TCS_BATTLE.snapshot = {};
+    TCS_BATTLE.snapshot.record = function()
+      if TCS_VARI.Snapshot.last ~= nil then
+        TCS_VARI.Snapshot.before = TCS_VARI.Snapshot.last;
+      else
+        TCS_VARI.Snapshot.before = TCS_VARI.Snapshot.init;
+      end;
+      TCS_VARI.Snapshot.last = TTHCS_GLOBAL.geneSnapshot(TCS_ENUM.Switch.No);
+    end;
+
+  -- 战斗结束校验
+    TCS_BATTLE.finish = {};
+    TCS_BATTLE.finish.check = function(iSide)
+      local bCheck = nil;
+      local arrCreatureCurrent = GetCreatures(iSide);
+      if 1 == 1
+        and arrCreatureCurrent ~= nil
+        and length(arrCreatureCurrent) > 0
+      then
+        local bInit = 0;
+        for i, sidCreatureCurrent in arrCreatureCurrent do
+          if TCS_VARI.Snapshot.init[TTH_ENUM.CombatCreature][iSide][sidCreatureCurrent] ~= nil then
+            bInit = bInit + 1;
+          end;
+        end;
+        if bInit > 0 then
+          bCheck = not nil;
+        end;
+      end;
+      local arrCreatureInit = TCS_VARI.Snapshot.init[TTH_ENUM.CombatCreature][iSide];
+      for i, itemCreatureInit in arrCreatureInit do
+        if 1 == 1
+          and IsCombatUnit(itemCreatureInit["UnitName"])
+          and GetCreatureNumber(itemCreatureInit["UnitName"]) > 0
+          and GetUnitSide(itemCreatureInit["UnitName"]) == itemCreatureInit["Side"]
+        then
+          bCheck = not nil;
+        end;
+      end;
+      if bCheck == nil then
+        TCS_VARI.isAutoFinish = 1;
+        EnableAutoFinish(not nil);
+      end;
+    end;
+
+  -- 解决人类玩家重复执行
+    TCS_BATTLE.duplicate = {};
+    TCS_BATTLE.duplicate.value = 0;
+    TCS_BATTLE.duplicate.arrSidUnit = {};
+    TCS_BATTLE.duplicate.checkHuman = function(itemUnit)
+      local bCheck = nil;
+      if IsHuman(itemUnit["Side"]) then
+        bCheck = not nil;
+        TCS_BATTLE.duplicate.arrSidUnit = {};
+      else
+        push(TCS_BATTLE.duplicate.arrSidUnit, itemUnit["UnitName"]);
+        if length(TCS_BATTLE.duplicate.arrSidUnit) == 2 then
+          if TCS_BATTLE.duplicate.arrSidUnit[0] == TCS_BATTLE.duplicate.arrSidUnit[1] then
+            bCheck = not nil;
+          end;
+          TCS_BATTLE.duplicate.arrSidUnit = {};
+        end;
+      end;
+      return bCheck;
+    end;
+    TCS_BATTLE.duplicate.clear = function()
+      TCS_BATTLE.duplicate.value = 0;
+    end;
+    TCS_BATTLE.duplicate.pause = function(itemUnit)
+      if TCS_BATTLE.duplicate.checkHuman(itemUnit) then
+        TCS_BATTLE.duplicate.value = 1;
+      end;
+    end;
+    TCS_BATTLE.duplicate.isPause = function()
+      local bCheck = nil;
+      if TCS_BATTLE.duplicate.value == 1 then
+        bCheck = not nil;
+      end;
+      return bCheck;
+    end;
+
+  -- 游戏运行状态控制
+    TCS_BATTLE.status = {};
+    TCS_BATTLE.status.pause = function()
+      print("combatSetPause");
+      combatSetPause(1);
+      local sidHero = GetHero(TCS_ENUM.Side.Attacker);
+      TTHCS_GLOBAL.setHeroMana(sidHero, GetUnitManaPoints(sidHero));
+    end;
+    TCS_BATTLE.status.continue = function()
+      print("combatSetContinue");
+      combatSetPause(nil);
+    end;
+
+  -- ATB相关
+    TCS_BATTLE.atb = {};
+    TCS_BATTLE.atb.record = function(sidUnit, iAtb)
+      local itemAtb = {};
+      itemAtb["UnitName"] = sidUnit;
+      itemAtb["ATB"] = iAtb;
+      push(TCS_VARI.Unit.setAtb, itemAtb);
+    end;
+    TCS_BATTLE.atb.deal = function()
+      for i, itemAtb in TCS_VARI.Unit.setAtb do
+        if IsCombatUnit(itemAtb["UnitName"]) ~= nil then
+          setATB(itemAtb["UnitName"], itemAtb["ATB"]);
+        end;
+      end;
+      TCS_VARI.Unit.setAtb = {};
+    end;
+
 -- 生命周期
   -- 布阵阶段
     function Events_Tactics()
@@ -8161,6 +8015,7 @@ print("TTH_CombatCore loading...");
         TCS_FUNC.Talent.KujinMP.tactics(iSide);
       end;
       combatSetPause(nil);
+      -- EnableAutoFinish(nil);
       print("Events_Tactics end");
     end;
 
@@ -8182,45 +8037,301 @@ print("TTH_CombatCore loading...");
           sleep(1);
         end;
 
-      TCS_FUNC.Init.Snapshot();
-      TCS_FUNC.Init.HeroLevel();
-      TCS_FUNC.Init.HeroAttribute();
-      TCS_FUNC.Init.HeroTalent();
-      TCS_FUNC.Init.HeroUpgradeMastery();
-      TCS_FUNC.Init.HeroUpgradeShantiri();
-      TCS_FUNC.Init.HeroSkill();
-      TCS_FUNC.Init.HeroArtifact();
-      TCS_FUNC.Init.HeroArtifactSet();
-      TCS_FUNC.Init.TownBattle();
-      TCS_FUNC.Init.TthMap10W();
+      TCS_INIT.Snapshot();
+      TCS_INIT.HeroLevel();
+      TCS_INIT.HeroAttribute();
+      TCS_INIT.HeroTalent();
+      TCS_INIT.HeroUpgradeMastery();
+      TCS_INIT.HeroUpgradeShantiri();
+      TCS_INIT.HeroSkill();
+      TCS_INIT.HeroArtifact();
+      TCS_INIT.HeroArtifactSet();
+      TCS_INIT.TownBattle();
+      TCS_INIT.TthMap10W();
       if TTHCS_GLOBAL.countSpecialHero() == 0 then
-        TCS_FUNC.Battle.start();
+        TCS_BATTLE.start();
       end;
 
       combatSetPause(nil);
       print("Events_Start end");
     end;
 
+  -- 监听: 战斗开始触发接口
+    TCS_BATTLE.hasDealStart = TCS_ENUM.Switch.No;
+    TCS_BATTLE.start = function()
+      print("start");
+      TCS_BATTLE.hasDealStart = TCS_ENUM.Switch.Yes;
+      for iSide = TCS_ENUM.Side.Attacker, TCS_ENUM.Side.Defender do
+        -- 特长
+          -- Haven
+            -- Ving 004 艾莲娜
+              TCS_FUNC.Talent.Ving.start(iSide);
+
+            -- Sarge 005 克劳斯
+              TCS_FUNC.Talent.Sarge.start(iSide);
+
+            -- Tarkus 158 塔库斯
+              TCS_FUNC.Talent.Tarkus.start(iSide);
+
+          -- Sylvan
+            -- Ildar 037 娜瑞莎
+              TCS_FUNC.Talent.Ildar.start(iSide);
+
+            -- Vaniel 038 蒂耶鲁
+              TCS_FUNC.Talent.Vaniel.start(iSide);
+
+          -- Academy
+            -- Solmyr 058 索姆拉
+              TCS_FUNC.Talent.Solmyr.start(iSide);
+
+          -- Dungeon
+            -- Shadwyn 068 伊拉娅
+              TCS_FUNC.Talent.Shadwyn.start(iSide);
+
+            -- Kastore 073 卡斯托雷
+              TCS_FUNC.Talent.Kastore.masterOfIce.start(iSide);
+              TCS_FUNC.Talent.Kastore.masterOfFire.start(iSide);
+              TCS_FUNC.Talent.Kastore.masterOfLightnings.start(iSide);
+
+          -- Necropolis
+            -- LordHaart 077 罗德哈特
+              TCS_FUNC.Talent.LordHaart.start(iSide);
+
+            -- Sandro 095 山德鲁
+              TCS_FUNC.Talent.Sandro.trigger.HolyWord(iSide);
+
+          -- Inferno
+
+          -- Fortress
+            -- Tazar 120 泰泽
+              TCS_FUNC.Talent.Tazar.start(iSide);
+
+            -- Hangvul2 127 尤兰德
+              TCS_FUNC.Talent.Hangvul2.start(iSide);
+
+            -- Vegeyr 129 斯威
+              TCS_FUNC.Talent.Vegeyr.start(iSide);
+
+          -- Stronghold
+            -- Azar 138 艾扎-埃克
+              TCS_FUNC.Talent.Azar.start(iSide);
+
+            -- Hero4 139 哥沙克
+              TCS_FUNC.Talent.Hero4.start(iSide);
+
+            -- Crag 141 肯洛-哈格
+              TCS_FUNC.Talent.Crag.start(iSide);
+
+            -- KujinMP 147 库金
+              TCS_FUNC.Talent.KujinMP.start(iSide);
+
+            -- Shiva 151 希娃
+              TCS_FUNC.Talent.Shiva.start(iSide);
+
+        -- 技能
+          -- HERO_SKILL_CASTER_CERTIFICATE 081 神秘精髓
+            TCS_FUNC.Skill.CasterCertificate.start(iSide);
+
+          -- HERO_SKILL_FOREST_GUARD_EMBLEM 115 战地支援
+            TCS_FUNC.Skill.ForestGuardEmblem.start(iSide);
+
+          -- HERO_SKILL_PARIAH 083 堕落骑士
+            TCS_FUNC.Skill.Pariah.start(iSide);
+
+          -- HERO_SKILL_TWILIGHT 109 微光黎明
+            TCS_FUNC.Skill.Twilight.start(iSide);
+
+        -- 宝物
+          -- ARTIFACT_BAND_OF_CONJURER 060 元素腕带
+            TCS_FUNC.Artifact.BandOfConjurer.start(iSide);
+
+          -- ARTIFACT_GEM_OF_PHANTOM 102 幻影宝石
+            TCS_FUNC.Artifact.GemOfPhantom.start(iSide);
+
+          -- ARTIFACT_DRUM_OF_CHARGE 106 冲锋战鼓
+            TCS_FUNC.Artifact.DrumOfCharge.start(iSide);
+
+          -- ARTIFACT_ANGELIC_ALLIANCE 068 天使联盟
+            TCS_FUNC.Artifact.AngelicAlliance.start(iSide);
+
+          -- ARTIFACT_CURSE_SHOULDER 114 诅咒斗篷
+            TCS_FUNC.Artifact.CurseShoulder.start(iSide);
+
+          -- ARTIFACT_SENTINEL 124 哨兵之盾
+            TCS_FUNC.Artifact.Sentinel.start(iSide);
+
+        -- 组合宝物
+
+        -- 生物
+      end;
+    end;
+
   -- 监听: 单位行动触发接口
-    TCS_FUNC.Battle.move = function(sidUnit)
+    TCS_BATTLE.move = function(sidUnit)
       print("===begin===");
       print("move: ", sidUnit);
-      local itemUnit = TTHCS_GLOBAL.geneUnitInfo(sidUnit);
-      if itemUnit == nil then
-        print("not exist");
-        return nil;
-      end;
 
-      -- 上回合结算并暂停过
-        if TCS_FUNC.Pasted.isPause() then
-          print("last turn is paused");
+      -- 结束战斗校验
+        if TCS_VARI.isAutoFinish == 0 then
+          for iSideCheckFinish = TCS_ENUM.Side.Attacker, TCS_ENUM.Side.Defender do
+            TCS_BATTLE.finish.check(iSideCheckFinish);
+          end;
+        end;
+
+      local iSide = GetUnitSide(sidUnit);
+      local itemUnit = TTHCS_GLOBAL.geneUnitInfo(sidUnit);
+
+      -- 当前单位不存在
+        if itemUnit == nil then
+          print("itemUnit not exist");
           print("====end====");
-          TCS_FUNC.Pasted.clear();
           return nil;
         end;
 
+      -- 人类玩家跳过重复执行
+        if TCS_BATTLE.duplicate.isPause() then
+          TCS_BATTLE.duplicate.clear();
+          print("human repeat");
+          print("====end====");
+          return nil;
+        end;
+        TCS_BATTLE.duplicate.pause(itemUnit);
+
+      -- 暂停游戏，以执行脚本
+        TCS_BATTLE.status.pause();
+
+      -- 记录当前行动单位
+        push(TCS_VARI.Unit.trigger, itemUnit);
+
+      -- 行动前特效触发入口
+        for iSide = TCS_ENUM.Side.Attacker, TCS_ENUM.Side.Defender do
+          -- 特长
+            -- Haven
+              -- GodricMP 012 哥德里克
+                TCS_FUNC.Talent.GodricMP.first(iSide, itemUnit);
+
+              -- Maeve 016 玫芙
+                TCS_FUNC.Talent.Maeve.first(iSide, itemUnit);
+
+              -- RedHeavenHero03 019 维拉利亚
+                TCS_FUNC.Talent.RedHeavenHero03.first(iSide, itemUnit);
+
+              -- Orlando 020 奥兰多
+                TCS_FUNC.Talent.Orlando.first(iSide, itemUnit);
+
+              -- Sanguinius 156 圣吉列斯
+                TCS_FUNC.Talent.Sanguinius.move(iSide, itemUnit);
+
+            -- Sylvan
+              -- Gelu 027 格鲁
+                TCS_FUNC.Talent.Gelu.first(iSide, itemUnit);
+                TCS_FUNC.Talent.Gelu.encourage.move(iSide, itemUnit);
+
+              -- Gem 035 珍尼
+                TCS_FUNC.Talent.Gem.move(iSide, itemUnit);
+
+              -- Ildar 037 娜瑞莎
+                TCS_FUNC.Talent.Ildar.move(iSide, itemUnit);
+
+            -- Academy
+              -- Davius 044 戴维斯
+                TCS_FUNC.Talent.Davius.first(iSide, itemUnit);
+
+              -- Tan 052 加利布
+                TCS_FUNC.Talent.Tan.move(iSide, itemUnit);
+
+              -- Nur 054 纳西尔
+                TCS_FUNC.Talent.Nur.move(iSide, itemUnit);
+
+              -- Faiz 057 法伊兹
+                TCS_FUNC.Talent.Faiz.move(iSide, itemUnit);
+
+            -- Dungeon
+              -- Urunir 059 宇尔沃娜
+                TCS_FUNC.Talent.Urunir.move(iSide, itemUnit);
+
+              -- Kastore 073 卡斯托雷
+                TCS_FUNC.Talent.Kastore.masterOfQuakes.first(iSide, itemUnit);
+                TCS_FUNC.Talent.Kastore.fireAffinity.first(iSide, itemUnit);
+
+            -- Necropolis
+              -- Gles 079 卡斯帕
+                TCS_FUNC.Talent.Gles.move(iSide, itemUnit);
+
+              -- Giovanni 087 乔瓦尼
+                TCS_FUNC.Talent.Giovanni.move(iSide, itemUnit);
+
+              -- OrnellaNecro 088 欧尼拉
+                TCS_FUNC.Talent.OrnellaNecro.move(iSide, itemUnit);
+
+              -- Arantir 092 阿兰蒂尔
+                TCS_FUNC.Talent.Arantir.move(iSide, itemUnit);
+
+              -- Sandro 095 山德鲁
+                TCS_FUNC.Talent.Sandro.trigger.Hypnotize(iSide, itemUnit);
+                TCS_FUNC.Talent.Sandro.trigger.ConjurePhoenix(iSide, itemUnit);
+
+            -- Inferno
+
+            -- Fortress
+              -- Bart 122 巴特
+                TCS_FUNC.Talent.Bart.move(iSide, itemUnit);
+
+            -- Stronghold
+              -- Hero8 137 坦尔塞克
+                TCS_FUNC.Talent.Hero8.active(iSide, itemUnit);
+
+              -- Azar 138 艾扎-埃克
+                TCS_FUNC.Talent.Azar.first(iSide, itemUnit);
+
+              -- Gottai 142 高泰
+                TCS_FUNC.Talent.Gottai.first(iSide, itemUnit);
+
+              -- Matewa 149 马特瓦
+                TCS_FUNC.Talent.Matewa.first(iSide, itemUnit);
+
+              -- Mokka 154 摩卡
+                TCS_FUNC.Talent.Mokka.first(iSide, itemUnit);
+                TCS_FUNC.Talent.Mokka.move(iSide, itemUnit);
+
+          -- 技能
+            -- HERO_SKILL_REPAIR_MACHINES 317 战地修理
+              TCS_FUNC.Skill.RepairMachines.move(iSide, itemUnit);
+
+            -- HERO_SKILL_DEAD_LUCK 103 恶灵诅咒
+              TCS_FUNC.Skill.DeadLuck.move(iSide, itemUnit);
+
+            -- HERO_SKILL_ELVEN_LUCK 116 精灵的幸运
+              TCS_FUNC.Skill.ElvenLuck.move(iSide, itemUnit);
+
+            -- HERO_SKILL_ECHO_OF_SYLANNA 315 西莱纳的回响
+              TCS_FUNC.Skill.EchoOfSylanna.move(iSide, itemUnit);
+
+            -- HERO_SKILL_ENCHANT_MACHINES 316 附魔机械
+              TCS_FUNC.Skill.EnchantMachines.move(iSide, itemUnit);
+
+            -- HERO_SKILL_GUARDIAN_ANGEL 139 光明指引
+              TCS_FUNC.Skill.GuardianAngel.move(iSide, itemUnit);
+
+          -- 宝物
+            -- ARTIFACT_PENDANT_OF_BLIND 101 闪耀权冠
+              TCS_FUNC.Artifact.PendantOfBlind.first(iSide, itemUnit);
+
+            -- ARTIFACT_CODEX 126 大法师之典
+              TCS_FUNC.Artifact.Codex.first(iSide, itemUnit);
+
+          -- 组合宝物
+
+          -- 生物
+            -- CREATURE_FEARLESS_LORD_MELEE 204 无畏领主（冲锋形态）
+            -- CREATURE_FEARLESS_LORD_SHOT 205 无畏领主（重炮形态）
+              TCS_FUNC.Creature.FearlessLord.castShot(iSide, itemUnit);
+              TCS_FUNC.Creature.FearlessLord.castMelee(iSide, itemUnit);
+              TCS_FUNC.Creature.FearlessLord.triggerRepair(iSide, itemUnit);
+        end;
+
       -- 记录快照
-        TCS_FUNC.Battle.snapshot();
+        TCS_BATTLE.snapshot.record();
 
       -- 快照差异解析
         local listSnapshotDiff = TTHCS_GLOBAL.diffSnapshot(TCS_VARI.Snapshot.init, TCS_VARI.Snapshot.before, TCS_VARI.Snapshot.last);
@@ -8368,160 +8479,18 @@ print("TTH_CombatCore loading...");
           end;
         end;
 
-      -- 重复执行
-        if TCS_FUNC.Pasted.check(itemUnit) then
-          -- 快照是否有差异
-            if bIsEffect == TCS_ENUM.Switch.Yes then
-              print("snapshot has different")
-              TCS_FUNC.Pasted.reset();
-            else
-              print("repeat deal");
-              print("====end====");
-              return nil;
-            end;
-        end;
-
-      -- 正常执行
-        print("normal");
-        if TCS_FUNC.Battle.hasDealStart == TCS_ENUM.Switch.Yes then
-          TCS_FUNC.Pasted.set(itemUnit);
-        end;
-        push(TCS_VARI.Unit.trigger, itemUnit);
-
       -- 获取上个行动单位
         local itemUnitLast = nil;
         if length(TCS_VARI.Unit.trigger) > 1 then
           itemUnitLast = TCS_VARI.Unit.trigger[length(TCS_VARI.Unit.trigger) - 2];
-          print("itemUnitLast: ", itemUnitLast["UnitName"]);
+          print("last-move: ", itemUnitLast["UnitName"]);
         end;
 
       -- 有开场生效的英雄特长 沙漏大师/粉碎者
-        if TCS_FUNC.Battle.hasDealStart == TCS_ENUM.Switch.No then
+        if TCS_BATTLE.hasDealStart == TCS_ENUM.Switch.No then
           if length(TCS_VARI.Unit.trigger) > TTHCS_GLOBAL.countSpecialHero() then
-            TCS_FUNC.Battle.start();
+            TCS_BATTLE.start();
           end;
-        end;
-
-      -- 行动前特效触发入口
-        for iSide = TCS_ENUM.Side.Attacker, TCS_ENUM.Side.Defender do
-          -- 特长
-            -- Haven
-              -- GodricMP 012 哥德里克
-                TCS_FUNC.Talent.GodricMP.first(iSide, itemUnit);
-
-              -- Maeve 016 玫芙
-                TCS_FUNC.Talent.Maeve.first(iSide, itemUnit);
-
-              -- RedHeavenHero03 019 维拉利亚
-                TCS_FUNC.Talent.RedHeavenHero03.first(iSide, itemUnit);
-
-              -- Orlando 020 奥兰多
-                TCS_FUNC.Talent.Orlando.first(iSide, itemUnit);
-
-              -- Sanguinius 156 圣吉列斯
-                TCS_FUNC.Talent.Sanguinius.move(iSide, itemUnit, itemUnitLast);
-
-              -- Avitus 157 阿维图斯
-                TCS_FUNC.Talent.Avitus.artificialGlory.move(iSide, itemUnit, itemUnitLast);
-
-            -- Sylvan
-              -- Gelu 027 格鲁
-                TCS_FUNC.Talent.Gelu.first(iSide, itemUnit);
-                TCS_FUNC.Talent.Gelu.encourage.move(iSide, itemUnit, itemUnitLast);
-
-              -- Gem 035 珍尼
-                TCS_FUNC.Talent.Gem.move(iSide, itemUnit);
-
-              -- Ildar 037 娜瑞莎
-                TCS_FUNC.Talent.Ildar.move(iSide, itemUnit);
-
-            -- Academy
-              -- Davius 044 戴维斯
-                TCS_FUNC.Talent.Davius.first(iSide, itemUnit);
-
-              -- Tan 052 加利布
-                TCS_FUNC.Talent.Tan.move(iSide, itemUnit);
-
-              -- Nur 054 纳西尔
-                TCS_FUNC.Talent.Nur.move(iSide, itemUnit);
-
-              -- Faiz 057 法伊兹
-                TCS_FUNC.Talent.Faiz.move(iSide, itemUnit);
-
-            -- Dungeon
-              -- Urunir 059 宇尔沃娜
-                TCS_FUNC.Talent.Urunir.move(iSide, itemUnit);
-
-              -- Kastore 073 卡斯托雷
-                TCS_FUNC.Talent.Kastore.masterOfQuakes.first(iSide, itemUnit);
-                TCS_FUNC.Talent.Kastore.fireAffinity.first(iSide, itemUnit);
-
-            -- Necropolis
-              -- Gles 079 卡斯帕
-                TCS_FUNC.Talent.Gles.move(iSide, itemUnit);
-
-              -- Giovanni 087 乔瓦尼
-                TCS_FUNC.Talent.Giovanni.move(iSide, itemUnit);
-
-              -- OrnellaNecro 088 欧尼拉
-                TCS_FUNC.Talent.OrnellaNecro.move(iSide, itemUnit);
-
-              -- Arantir 092 阿兰蒂尔
-                TCS_FUNC.Talent.Arantir.move(iSide, itemUnit);
-
-              -- Sandro 095 山德鲁
-                TCS_FUNC.Talent.Sandro.trigger.Hypnotize(iSide, itemUnit);
-                TCS_FUNC.Talent.Sandro.trigger.ConjurePhoenix(iSide, itemUnit);
-
-            -- Inferno
-
-            -- Fortress
-              -- Bart 122 巴特
-                TCS_FUNC.Talent.Bart.move(iSide, itemUnit);
-
-            -- Stronghold
-              -- Azar 138 艾扎-埃克
-                TCS_FUNC.Talent.Azar.first(iSide, itemUnit);
-
-              -- Gottai 142 高泰
-                TCS_FUNC.Talent.Gottai.first(iSide, itemUnit);
-
-              -- Matewa 149 马特瓦
-                TCS_FUNC.Talent.Matewa.first(iSide, itemUnit);
-
-              -- Mokka 154 摩卡
-                TCS_FUNC.Talent.Mokka.first(iSide, itemUnit);
-                TCS_FUNC.Talent.Mokka.move(iSide, itemUnit);
-
-          -- 技能
-            -- HERO_SKILL_REPAIR_MACHINES 317 战地修理
-              TCS_FUNC.Skill.RepairMachines.move(iSide, itemUnit);
-
-            -- HERO_SKILL_DEAD_LUCK 103 恶灵诅咒
-              TCS_FUNC.Skill.DeadLuck.move(iSide, itemUnit);
-
-            -- HERO_SKILL_SHARP_STRIKE 320 锐利一击
-              TCS_FUNC.Skill.SharpStrike.move(iSide, itemUnit);
-
-            -- HERO_SKILL_ECHO_OF_SYLANNA 315 西莱纳的回响
-              TCS_FUNC.Skill.EchoOfSylanna.move(iSide, itemUnit);
-
-            -- HERO_SKILL_ENCHANT_MACHINES 126 附魔机械
-              TCS_FUNC.Skill.EnchantMachines.move(iSide, itemUnit);
-
-            -- HERO_SKILL_GUARDIAN_ANGEL 139 光明指引
-              TCS_FUNC.Skill.GuardianAngel.move(iSide, itemUnit, itemUnitLast);
-
-          -- 宝物
-            -- ARTIFACT_PENDANT_OF_BLIND 101 闪耀权冠
-              TCS_FUNC.Artifact.PendantOfBlind.first(iSide, itemUnit);
-
-            -- ARTIFACT_CODEX 126 大法师之典
-              TCS_FUNC.Artifact.Codex.first(iSide, itemUnit);
-
-          -- 组合宝物
-
-          -- 生物
         end;
 
       -- 跳过结算-首个单位行动
@@ -8538,7 +8507,7 @@ print("TTH_CombatCore loading...");
         end;
 
       -- 行动后特效触发入口
-        if bIsEffect == TCS_ENUM.Switch.Yes and itemUnitLast ~= nil then
+        if itemUnitLast ~= nil then
           for iSide = TCS_ENUM.Side.Attacker, TCS_ENUM.Side.Defender do
             -- 特长
               -- Haven
@@ -8546,14 +8515,13 @@ print("TTH_CombatCore loading...");
                   TCS_FUNC.Talent.Orrin.trigger(iSide, itemUnit, itemUnitLast, itemHeroMana, listCreatureNumberDecrease);
 
                 -- Mardigo 003 拉兹罗
-                  TCS_FUNC.Talent.Mardigo.decrease(iSide, itemUnit, itemUnitLast, listCreatureNumberDecrease);
-                  TCS_FUNC.Talent.Mardigo.death(iSide, itemUnit, itemUnitLast, listCreatureStatusDeath);
+                  TCS_FUNC.Talent.Mardigo.trigger(iSide, itemUnit, itemUnitLast, listCreatureNumberDecrease, listCreatureStatusDeath);
 
                 -- Ving 004 艾莲娜
                   TCS_FUNC.Talent.Ving.trigger(iSide, itemUnit, itemUnitLast, listCreatureNumberDecrease);
 
                 -- Christian 007 维托利奥
-                  TCS_FUNC.Talent.Christian.trigger(iSide, itemUnit, itemUnitLast);
+                  TCS_FUNC.Talent.Christian.trigger(iSide, itemUnit, itemUnitLast, listCreatureNumberDecrease);
 
                 -- RedHeavenHero05 009 伯权德
                   TCS_FUNC.Talent.RedHeavenHero05.trigger(iSide, itemUnit, itemUnitLast, itemHeroMana, listCreatureNumberDecrease, listCreatureStatusDeath);
@@ -8576,16 +8544,6 @@ print("TTH_CombatCore loading...");
                 -- Sanguinius 156 圣吉列斯
                   TCS_FUNC.Talent.Sanguinius.charge(iSide, itemUnit, itemUnitLast, itemHeroMana);
 
-                -- Avitus 157 阿维图斯
-                  TCS_FUNC.Talent.Avitus.firstAid.trigger(iSide, itemUnit, itemUnitLast, listCreatureNumberDecrease);
-                  TCS_FUNC.Talent.Avitus.catapult.trigger(iSide, itemUnit, itemUnitLast, listCreatureNumberDecrease);
-                  TCS_FUNC.Talent.Avitus.ballista.trigger(iSide, itemUnit, itemUnitLast, listCreatureNumberDecrease);
-                  TCS_FUNC.Talent.Avitus.ancientSmithy.trigger(iSide, itemUnit, itemUnitLast, listCreatureNumberDecrease);
-                  TCS_FUNC.Talent.Avitus.chillingSteel.trigger(iSide, itemUnit, itemUnitLast, listCreatureNumberDecrease);
-                  TCS_FUNC.Talent.Avitus.wildfire.trigger(iSide, itemUnit, itemUnitLast, listCreatureNumberDecrease);
-                  TCS_FUNC.Talent.Avitus.artificialGlory.charge(iSide, itemUnit, itemUnitLast, itemHeroMana);
-                  TCS_FUNC.Talent.Avitus.stunningBlow.trigger(iSide, itemUnit, itemUnitLast, itemHeroMana, listCreatureNumberDecrease);
-
                 -- Tarkus 158 塔库斯
                   TCS_FUNC.Talent.Tarkus.trigger(iSide, itemUnit);
 
@@ -8602,9 +8560,6 @@ print("TTH_CombatCore loading...");
 
                 -- Itil 031 于尔辛
                   TCS_FUNC.Talent.Itil.trigger(iSide, itemUnit, listCreatureStatusRevive, listCreatureNumberIncrease);
-
-                -- Mephala 034 孟斐拉
-                  TCS_FUNC.Talent.Mephala.trigger(iSide, itemUnit, itemUnitLast, listCreatureNumberDecrease);
 
                 -- Gem 035 珍尼
                   TCS_FUNC.Talent.Gem.trigger(iSide, itemUnit, itemUnitLast, listCreatureNumberIncrease, listCreatureNumberDecrease);
@@ -8653,7 +8608,8 @@ print("TTH_CombatCore loading...");
                   TCS_FUNC.Talent.Menel.trigger(iSide, itemUnit, itemUnitLast, listCreatureStatusDeath);
 
                 -- Ferigl 061 索戈尔
-                  TCS_FUNC.Talent.Ferigl.trigger(iSide, itemUnit, itemUnitLast, itemHeroMana, listCreatureStatusDeath);
+                  TCS_FUNC.Talent.Ferigl.trigger(iSide, itemUnit, itemUnitLast, listCreatureNumberDecrease, listCreatureStatusDeath);
+                  TCS_FUNC.Talent.Ferigl.cast(iSide, itemUnit, itemUnitLast, itemHeroMana);
 
                 -- Ohtarig 064 维尚
                   TCS_FUNC.Talent.Ohtarig.trigger(iSide, itemUnit, itemUnitLast, listCreatureNumberDecrease);
@@ -8792,14 +8748,10 @@ print("TTH_CombatCore loading...");
                   TCS_FUNC.Talent.Hero7.trigger(iSide, itemUnit, itemUnitLast, listCreatureNumberDecrease);
 
                 -- Hero8 137 坦尔塞克
-                  TCS_FUNC.Talent.Hero8.trigger(iSide, itemUnit, itemUnitLast);
-                  TCS_FUNC.Talent.Hero8.revive(iSide, itemUnit, itemUnitLast, listCreatureNumberDecrease);
+                  TCS_FUNC.Talent.Hero8.trigger(iSide, itemUnit, itemUnitLast, listCreaturePositionMove, listCreatureManaDecrease, listCreatureNumberDecrease, listCreatureStatusDeath);
 
                 -- Hero6 140 沙-库如汉特
                   TCS_FUNC.Talent.Hero6.trigger(iSide, itemUnit, itemUnitLast, listCreatureStatusDeath);
-
-                -- Crag 141 肯洛-哈格
-                  TCS_FUNC.Talent.Crag.trigger(iSide, itemUnit, itemUnitLast, listCreaturePositionMove);
 
                 -- Gottai 142 高泰
                   TCS_FUNC.Talent.Gottai.trigger(iSide, itemUnit, itemUnitLast, listCreatureStatusDeath);
@@ -8863,15 +8815,11 @@ print("TTH_CombatCore loading...");
               -- HERO_SKILL_DEAD_LUCK 103 恶灵诅咒
                 TCS_FUNC.Skill.DeadLuck.charge(iSide, itemUnit, itemUnitLast, itemHeroMana);
 
-              -- HERO_SKILL_SHARP_STRIKE 320 锐利一击
-                TCS_FUNC.Skill.SharpStrike.trigger(iSide, itemUnit, itemUnitLast, listCreatureNumberDecrease);
-                TCS_FUNC.Skill.SharpStrike.charge(iSide, itemUnit, itemUnitLast, itemHeroMana);
-
               -- HERO_SKILL_ECHO_OF_SYLANNA 315 西莱纳的回响
                 TCS_FUNC.Skill.EchoOfSylanna.destroy(iSide, itemUnit, itemUnitLast, listSpellSpawnStatusDeath);
                 TCS_FUNC.Skill.EchoOfSylanna.charge(iSide, itemUnit, itemUnitLast, itemHeroMana);
 
-              -- HERO_SKILL_ENCHANT_MACHINES 126 附魔机械
+              -- HERO_SKILL_ENCHANT_MACHINES 316 附魔机械
                 TCS_FUNC.Skill.EnchantMachines.chargeCreature(iSide, itemUnit, itemUnitLast);
                 TCS_FUNC.Skill.EnchantMachines.chargeWarMachine(iSide, itemUnit, itemUnitLast);
 
@@ -8890,6 +8838,9 @@ print("TTH_CombatCore loading...");
 
               -- HERO_SKILL_RUNIC_MACHINES 156 符文机械
                 TCS_FUNC.Skill.RunicMachines.trigger(iSide, itemUnit, itemUnitLast, itemHeroMana);
+
+              -- HERO_SKILL_SAFETY_STEP 311 步步为营
+                TCS_FUNC.Skill.SafetyStep.trigger(iSide, itemUnit, itemUnitLast, listCreaturePositionMove, listCreatureNumberDecrease, listCreatureStatusDeath);
 
             -- 宝物
               -- ARTIFACT_WAYFARER_BOOTS 026 储能长靴
@@ -8938,7 +8889,8 @@ print("TTH_CombatCore loading...");
 
             -- 生物
               -- CREATURE_DEATH_KNIGHT 090 死亡骑士
-                TCS_FUNC.Creature.DeathKnight.after(iSide, itemUnit, itemUnitLast);
+                TCS_FUNC.Creature.DeathKnight.trigger(iSide, itemUnit, itemUnitLast, listCreatureNumberDecrease);
+                TCS_FUNC.Creature.DeathKnight.aure(iSide, itemUnit, itemUnitLast);
 
               -- CREATURE_CHERUBIN 181 神圣守护者
                 TCS_FUNC.Creature.Cherubin.after(iSide, itemUnit, itemUnitLast);
@@ -8959,21 +8911,37 @@ print("TTH_CombatCore loading...");
               -- CREATURE_SIREN 195 女妖
                 TCS_FUNC.Creature.Siren.trigger(iSide, itemUnit, itemUnitLast, listCreatureNumberDecrease);
                 TCS_FUNC.Creature.Siren.charge(iSide, itemUnit, itemUnitLast);
+
+              -- CREATURE_FATE_WEAVER_SPIDER 204 织命蛛后（蜘蛛形态）
+              -- CREATURE_FATE_WEAVER_HUMAN 205 织命蛛后（人形态）
+                TCS_FUNC.Creature.FateWeaver.triggerSpider(iSide, itemUnit);
+                TCS_FUNC.Creature.FateWeaver.triggerHuman(iSide, itemUnit);
           end;
         end;
 
-      -- 校验单位连动
-        TCS_FUNC.Continuous.deal(itemUnit, itemUnitLast);
-
       -- 设置单位的ATB
-        TCS_FUNC.Atb.deal();
+        TCS_BATTLE.atb.deal();
+
+      -- 脚本执行结束，恢复游戏
+        TCS_BATTLE.status.continue();
 
       print("====end====");
     end;
 
   -- 监听: 单位死亡触发接口
-    TCS_FUNC.Battle.death = function(sidUnit)
+    TCS_BATTLE.death = function(sidUnit)
+      print("===begin===");
       print("death: ", sidUnit);
+
+      if TCS_VARI.isAutoFinish == 0 then
+        repeat
+          sleep(10);
+        until 1 ~= 1
+          or IsCombatUnit(sidUnit) == nil
+          or GetCreatureNumber(sidUnit) == 0;
+        local iSide = GetUnitSide(sidUnit);
+        TCS_BATTLE.finish.check(iSide);
+      end;
 
       -- 特长
         -- Haven
@@ -8999,56 +8967,58 @@ print("TTH_CombatCore loading...");
       -- 组合宝物
 
       -- 生物
+
+      print("====end====");
     end;
 
 -- 系统接口
   function AttackerHeroMove(sidUnit)
-    TCS_FUNC.Battle.move(sidUnit);
+    TCS_BATTLE.move(sidUnit);
   end;
   function DefenderHeroMove(sidUnit)
-    TCS_FUNC.Battle.move(sidUnit);
+    TCS_BATTLE.move(sidUnit);
   end;
   function AttackerCreatureMove(sidUnit)
-    TCS_FUNC.Battle.move(sidUnit);
+    TCS_BATTLE.move(sidUnit);
   end;
   function DefenderCreatureMove(sidUnit)
-    TCS_FUNC.Battle.move(sidUnit);
+    TCS_BATTLE.move(sidUnit);
   end;
   function AttackerWarMachineMove(sidUnit)
-    TCS_FUNC.Battle.move(sidUnit);
+    TCS_BATTLE.move(sidUnit);
   end;
   function DefenderWarMachineMove(sidUnit)
-    TCS_FUNC.Battle.move(sidUnit);
+    TCS_BATTLE.move(sidUnit);
   end;
   function DefenderBuildingMove(sidUnit)
-    TCS_FUNC.Battle.move(sidUnit);
+    TCS_BATTLE.move(sidUnit);
   end;
   function AttackerHeroDeath(sidUnit)
-    TCS_FUNC.Battle.death(sidUnit);
+    TCS_BATTLE.death(sidUnit);
   end;
   function DefenderHeroDeath(sidUnit)
-    TCS_FUNC.Battle.death(sidUnit);
+    TCS_BATTLE.death(sidUnit);
   end;
   function AttackerCreatureDeath(sidUnit)
-    TCS_FUNC.Battle.death(sidUnit);
+    TCS_BATTLE.death(sidUnit);
   end;
   function DefenderCreatureDeath(sidUnit)
-    TCS_FUNC.Battle.death(sidUnit);
+    TCS_BATTLE.death(sidUnit);
   end;
   function AttackerWarMachineDeath(sidUnit)
-    TCS_FUNC.Battle.death(sidUnit);
+    TCS_BATTLE.death(sidUnit);
   end;
   function DefenderWarMachineDeath(sidUnit)
-    TCS_FUNC.Battle.death(sidUnit);
+    TCS_BATTLE.death(sidUnit);
   end;
   function DefenderBuildingDeath(sidUnit)
-    TCS_FUNC.Battle.death(sidUnit);
+    TCS_BATTLE.death(sidUnit);
   end;
   function AttackerSpellSpawnDeath(sidUnit)
-    TCS_FUNC.Battle.death(sidUnit);
+    TCS_BATTLE.death(sidUnit);
   end;
   function DefenderSpellSpawnDeath(sidUnit)
-    TCS_FUNC.Battle.death(sidUnit);
+    TCS_BATTLE.death(sidUnit);
   end;
 
 print("TTH_CombatCore loaded.");

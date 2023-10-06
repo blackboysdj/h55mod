@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <BackgroundSimpleScallingTexture ObjectRecordID="1000037">
 	<ClassTypeID>285694784</ClassTypeID>
-	<Texture href="/Textures/HeroScreen/Skills/MagicBalance.xdb#xpointer(/Texture)"/>
+	<Texture href="/Textures/TTH/Skills/Artificier/314-MagicBalance/314-MagicBalance.(Texture).xdb#xpointer(/Texture)"/>
 	<Color>-1</Color>
 	<Size>
 		<x>128</x>

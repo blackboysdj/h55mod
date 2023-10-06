@@ -469,8 +469,8 @@ doFile("/scripts/TTH_Library.lua")
     HERO_SKILL_EMPTY_SLOT087 = 307
     HERO_SKILL_EMPTY_SLOT088 = 308
     HERO_SKILL_EMPTY_SLOT089 = 309
-    HERO_SKILL_EMPTY_SLOT090 = 310
-    HERO_SKILL_EMPTY_SLOT091 = 311
+    HERO_SKILL_EVIL_EXPEDITION = 310
+    HERO_SKILL_SAFETY_STEP = 311
     HERO_SKILL_RAGE_RUSH = 312
     HERO_SKILL_ANTI_MAGIC = 313
     HERO_SKILL_MAGIC_BALANCE = 314
@@ -905,9 +905,7 @@ doFile("/scripts/TTH_Library.lua")
     CREATURE_192 = 192
     CREATURE_WING_UNICORN = 192;
     CREATURE_193 = 193
-    CREATURE_CROSSBOW = 193;
     CREATURE_194 = 194
-    CREATURE_CROSSBOW_TOOL = 194;
     CREATURE_195 = 195
     CREATURE_SIREN = 195;
     CREATURE_196 = 196
@@ -920,12 +918,21 @@ doFile("/scripts/TTH_Library.lua")
     CREATURE_SKELETON_WARRIOR_KARISSA_2 = 199;
     CREATURE_200 = 200
     CREATURE_201 = 201
+    CREATURE_CROSSBOW_AVITUS_0 = 201
     CREATURE_202 = 202
+    CREATURE_CROSSBOW_AVITUS_1 = 202
     CREATURE_203 = 203
+    CREATURE_CROSSBOW_AVITUS_2 = 203
     CREATURE_204 = 204
+    CREATURE_FATE_WEAVER_SPIDER = 204
     CREATURE_205 = 205
+    CREATURE_FATE_WEAVER_HUMAN = 205
+    CREATURE_FATE_WEAVER = 205
     CREATURE_206 = 206
+    CREATURE_FEARLESS_LORD_MELEE = 206
     CREATURE_207 = 207
+    CREATURE_FEARLESS_LORD_SHOT = 207
+    CREATURE_FEARLESS_LORD = 207
     CREATURE_208 = 208
     CREATURE_209 = 209
     CREATURE_210 = 210
@@ -1222,6 +1229,7 @@ doFile("/scripts/TTH_Library.lua")
     CREATURE_501 = 501
     CREATURE_HEAVEN_TOOL = 501
     CREATURE_502 = 502
+    CREATURE_HEAVEN_MARDIGO_TOOL = 502
     CREATURE_503 = 503
     CREATURE_504 = 504
     CREATURE_505 = 505
@@ -1255,7 +1263,9 @@ doFile("/scripts/TTH_Library.lua")
     CREATURE_531 = 531
     CREATURE_DUNGEON_TOOL = 531
     CREATURE_532 = 532
+    CREATURE_DUNGEON_TOOL_FERIGL1 = 532
     CREATURE_533 = 533
+    CREATURE_DUNGEON_TOOL_FERIGL2 = 533
     CREATURE_534 = 534
     CREATURE_535 = 535
     CREATURE_536 = 536
@@ -1267,6 +1277,7 @@ doFile("/scripts/TTH_Library.lua")
     CREATURE_541 = 541
     CREATURE_NECROMANCY_TOOL = 541
     CREATURE_542 = 542
+    CREATURE_NECROMANCY_TOOL_LORDHAART = 542
     CREATURE_543 = 543
     CREATURE_544 = 544
     CREATURE_545 = 545
@@ -2441,7 +2452,7 @@ doFile("/scripts/TTH_Library.lua")
               , ["Building"] = TOWN_BUILDING_DWELLING_2
               , ["Specialty"] = {
                 [1] = {
-                  ["CreatureId"] = CREATURE_CROSSBOW
+                  ["CreatureId"] = CREATURE_ARCHER
                   , ["Stat"] = STAT_KNOWLEDGE
                   , ["ArtifactId"] = ARTIFACT_LEGION_ADVANCED
                 }
@@ -2679,6 +2690,13 @@ doFile("/scripts/TTH_Library.lua")
               , ["Mastery"] = HERO_SKILL_AVENGER
               , ["Group"] = TTH_ENUM.GroupMagic
               , ["Building"] = TOWN_BUILDING_DWELLING_4
+              , ["Specialty"] = {
+                [1] = {
+                  ["CreatureId"] = CREATURE_DRUID
+                  , ["Stat"] = STAT_KNOWLEDGE
+                  , ["ArtifactId"] = ARTIFACT_LEGION_ADVANCED
+                }
+              }
             }
             , ["Vinrael"] = {
               ["Id"] = 39
@@ -3076,6 +3094,14 @@ doFile("/scripts/TTH_Library.lua")
               , ["Mastery"] = HERO_SKILL_INVOCATION
               , ["Group"] = TTH_ENUM.GroupMagic
             }
+            , ["Raelag_10WAI"] = {
+              ["Id"] = 159
+              , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Raelag_10WAI/name.txt"
+              , ["Race"] = TOWN_DUNGEON
+              , ["Class"] = TTH_ENUM.Warlock
+              , ["Mastery"] = HERO_SKILL_INVOCATION
+              , ["Group"] = TTH_ENUM.GroupMagic
+            }
             , ["Ranleth"] = {
               ["Id"] = 75
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Ranleth/name.txt"
@@ -3240,6 +3266,21 @@ doFile("/scripts/TTH_Library.lua")
               , ["Class"] = TTH_ENUM.Reaver
               , ["Mastery"] = HERO_SKILL_NECROMANCY
               , ["Group"] = TTH_ENUM.GroupBalanceNec
+            }
+            , ["Anastasya"] = {
+              ["Id"] = 160
+              , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Anastasya/name.txt"
+              , ["Race"] = TOWN_NECROMANCY
+              , ["Class"] = TTH_ENUM.Reaver
+              , ["Mastery"] = HERO_SKILL_NECROMANCY
+              , ["Group"] = TTH_ENUM.GroupBalanceNec
+              , ["Specialty"] = {
+                [1] = {
+                  ["CreatureId"] = CREATURE_FATE_WEAVER
+                  , ["Stat"] = STAT_KNOWLEDGE
+                  , ["ArtifactId"] = ARTIFACT_LEGION_EXPERT
+                }
+              }
             }
           -- Necromancer
             , ["Muscip"] = {
@@ -3660,6 +3701,22 @@ doFile("/scripts/TTH_Library.lua")
               , ["Group"] = TTH_ENUM.GroupBalanceNotNec
               , ["Building"] = TOWN_BUILDING_DWELLING_6
             }
+            , ["DavianThule"] = {
+              ["Id"] = 161
+              , ["Text"] = "/Text/Game/Heroes/TTH_ALL/DavianThule/name.txt"
+              , ["Race"] = TOWN_FORTRESS
+              , ["Class"] = TTH_ENUM.Runemage
+              , ["Mastery"] = HERO_SKILL_RUNELORE
+              , ["Group"] = TTH_ENUM.GroupBalanceNotNec
+              , ["Building"] = TOWN_BUILDING_DWELLING_4
+              , ["Specialty"] = {
+                [1] = {
+                  ["CreatureId"] = CREATURE_FEARLESS_LORD
+                  , ["Stat"] = STAT_KNOWLEDGE
+                  , ["ArtifactId"] = ARTIFACT_LEGION_EXPERT
+                }
+              }
+            }
           -- Flamekeepera
             , ["Hangvul"] = {
               ["Id"] = 130
@@ -3814,10 +3871,6 @@ doFile("/scripts/TTH_Library.lua")
               , ["Class"] = TTH_ENUM.Barbarian
               , ["Mastery"] = HERO_SKILL_DEMONIC_RAGE
               , ["Group"] = TTH_ENUM.GroupBarbarian
-              , ["Attribute"] = {
-                ["Step"] = 3
-                , ["Type"] = STAT_ATTACK
-              }
             }
             , ["Gottai"] = {
               ["Id"] = 142
@@ -3947,11 +4000,11 @@ doFile("/scripts/TTH_Library.lua")
         , [TOWN_DUNGEON] = {
           [TTH_ENUM.BeastMaster] = {"Urunir","Menel","Ferigl","Sylsai","Welygg"}
           , [TTH_ENUM.Seer] = {"Ohtarig","Eruina","Dalom","Kelodin","Shadwyn","Thralsai"}
-          , [TTH_ENUM.Warlock] = {"Agbeth","Almegir","Inagost","Kastore","Raelag","Ranleth","Sephinroth"}
+          , [TTH_ENUM.Warlock] = {"Agbeth","Almegir","Inagost","Kastore","Raelag","Raelag_10WAI","Ranleth","Sephinroth"}
         }
         , [TOWN_NECROMANCY] = {
           [TTH_ENUM.DeathKnight] = {"LordHaart","Berein","Gles","Nikolay","Straker","Tamika","Xerxon","Karissa"}
-          , [TTH_ENUM.Reaver] = {"Aislinn","Effig","Giovanni","OrnellaNecro","Aberrar","Nimbus"}
+          , [TTH_ENUM.Reaver] = {"Aislinn","Effig","Giovanni","OrnellaNecro","Aberrar","Nimbus","Anastasya"}
           , [TTH_ENUM.Necromancer] = {"Muscip","Arantir","Nemor","Pelt","Sandro","Thant", "Adelaide","Vidomina"}
         }
         , [TOWN_INFERNO] = {
@@ -3961,7 +4014,7 @@ doFile("/scripts/TTH_Library.lua")
         }
         , [TOWN_FORTRESS] = {
           [TTH_ENUM.Engineer] = {"Bersy","Maximus","Skeggy","Tazar","Vilma"}
-          , [TTH_ENUM.Runemage] = {"Bart","Brand","Egil","KingTolghar","Ottar","Hangvul2","Una","Vegeyr"}
+          , [TTH_ENUM.Runemage] = {"Bart","Brand","Egil","KingTolghar","Ottar","Hangvul2","Una","Vegeyr","DavianThule"}
           , [TTH_ENUM.Flamekeepera] = {"Hangvul","Ingvar","Rolf","Ufretin","Wulfstan"}
         }
         , [TOWN_STRONGHOLD] = {
@@ -4000,16 +4053,20 @@ doFile("/scripts/TTH_Library.lua")
                 ["Id"] = HERO_SKILL_PATHFINDING
                 , ["Text"] = "/Text/TTH/Skills/Logistics/019-Pathfinding/Name.txt"
               }
-              -- , [129] = { -- 战争掠劫
-              --   ["Id"] = HERO_SKILL_SPOILS_OF_WAR
-              --   , ["Text"] = "/Text/TTH/Skills/Logistics/129-SpoilsOfWar/Name.txt"
-              -- }
               , [177] = { -- 战争之路
                 ["Id"] = HERO_SKILL_PATH_OF_WAR
                 , ["Text"] = "/Text/TTH/Skills/Logistics/177-PathOfWar/Name.txt"
                 , ["DependType"] = TTH_ENUM.SkillSimple
                 , ["Depend"] = {
                   [1] = HERO_SKILL_PATHFINDING
+                }
+              }
+              , [129] = { -- 战争掠劫
+                ["Id"] = HERO_SKILL_SPOILS_OF_WAR
+                , ["Text"] = "/Text/TTH/Skills/Logistics/129-SpoilsOfWar/Name.txt"
+                , ["DependType"] = TTH_ENUM.SkillSimple
+                , ["Depend"] = {
+                  [1] = HERO_SKILL_PATH_OF_WAR
                 }
               }
               , [168] = { -- 攫取
@@ -4165,14 +4222,6 @@ doFile("/scripts/TTH_Library.lua")
                   [1] = HERO_SKILL_LUCKY_STRIKE
                 }
               }
-              -- , [116] = { -- 幸运一击
-              --   ["Id"] = HERO_SKILL_ELVEN_LUCK
-              --   , ["Text"] = "/Text/TTH/Skills/Luck/116-ElvenLuck/Name.txt"
-              --   , ["DependType"] = TTH_ENUM.SkillSimple
-              --   , ["Depend"] = {
-              --     [1] = HERO_SKILL_LUCKY_STRIKE
-              --   }
-              -- }
               , [179] = { -- 勇士之幸
                 ["Id"] = HERO_SKILL_LUCK_OF_THE_BARBARIAN
                 , ["Text"] = "/Text/TTH/Skills/Luck/179-LuckOfTheBarbarian/Name.txt"
@@ -4275,14 +4324,6 @@ doFile("/scripts/TTH_Library.lua")
                 ["Id"] = HERO_SKILL_PROTECTION
                 , ["Text"] = "/Text/TTH/Skills/Defence/037-Protection/Name.txt"
               }
-              -- , [106] = { -- 骸骨防护
-              --   ["Id"] = HERO_SKILL_SPELLPROOF_BONES
-              --   , ["Text"] = "/Text/TTH/Skills/Defence/106-SpellproofBones/Name.txt"
-              --   , ["DependType"] = TTH_ENUM.SkillSimple
-              --   , ["Depend"] = {
-              --     [1] = HERO_SKILL_PROTECTION
-              --   }
-              -- }
               , [133] = { -- 魔力转化
                 ["Id"] = HERO_SKILL_MAGIC_CUSHION
                 , ["Text"] = "/Text/TTH/Skills/Defence/133-MagicCushion/Name.txt"
@@ -4323,6 +4364,14 @@ doFile("/scripts/TTH_Library.lua")
                   [1] = HERO_SKILL_TOUGHNESS
                 }
               }
+              , [171] = { -- 准备
+                ["Id"] = HERO_SKILL_PREPARATION
+                , ["Text"] = "/Text/TTH/Skills/Defence/171-Preparation/Name.txt"
+                , ["DependType"] = TTH_ENUM.SkillSimple
+                , ["Depend"] = {
+                  [1] = HERO_SKILL_HOLD_GROUND
+                }
+              }
               , [144] = { -- 耐力持久
                 ["Id"] = HERO_SKILL_POWER_OF_STONE
                 , ["Text"] = "/Text/TTH/Skills/Defence/144-PowerOfStone/Name.txt"
@@ -4331,12 +4380,12 @@ doFile("/scripts/TTH_Library.lua")
                   [1] = HERO_SKILL_TOUGHNESS
                 }
               }
-              , [171] = { -- 准备
-                ["Id"] = HERO_SKILL_PREPARATION
-                , ["Text"] = "/Text/TTH/Skills/Defence/171-Preparation/Name.txt"
+              , [311] = { -- 步步为营
+                ["Id"] = HERO_SKILL_SAFETY_STEP
+                , ["Text"] = "/Text/TTH/Skills/Defence/311-SafetyStep/Name.txt"
                 , ["DependType"] = TTH_ENUM.SkillSimple
                 , ["Depend"] = {
-                  [1] = HERO_SKILL_HOLD_GROUND
+                  [1] = HERO_SKILL_POWER_OF_STONE
                 }
               }
             }
@@ -4483,14 +4532,14 @@ doFile("/scripts/TTH_Library.lua")
                   [1] = HERO_SKILL_MULTISHOT
                 }
               }
-              , [320] = { -- 锐利一击（终极）
-                ["Id"] = HERO_SKILL_SHARP_STRIKE
-                , ["Text"] = "/Text/TTH/Skills/Avenger/320-SharpStrike/Name.txt"
-                , ["IsAbsolute"] = 1
-              }
               , [124] = { -- 自然之幸（终极）
                 ["Id"] = HERO_SKILL_ABSOLUTE_LUCK
                 , ["Text"] = "/Text/TTH/Skills/Avenger/124-AbsoluteLuck/Name.txt"
+                , ["IsAbsolute"] = 1
+              }
+              , [116] = { -- 精灵的幸运（终极）
+                ["Id"] = HERO_SKILL_ELVEN_LUCK
+                , ["Text"] = "/Text/TTH/Skills/Avenger/116-ElvenLuck/Name.txt"
                 , ["IsAbsolute"] = 1
               }
               , [120] = { -- 西莱纳的回响（终极）
@@ -4663,8 +4712,8 @@ doFile("/scripts/TTH_Library.lua")
                 }
               }
               , [73] = { -- 邪恶远征（终极）
-                ["Id"] = HERO_SKILL_ROAD_HOME
-                , ["Text"] = "/Text/TTH/Skills/Necromancy/073-RoadHome/Name.txt"
+                ["Id"] = HERO_SKILL_EVIL_EXPEDITION
+                , ["Text"] = "/Text/TTH/Skills/Necromancy/310-EvilExpedition/Name.txt"
                 , ["IsAbsolute"] = 1
               }
               , [111] = { -- 惊魂嚎叫（终极）
@@ -6479,27 +6528,26 @@ doFile("/scripts/TTH_Library.lua")
         , [6] = {
           [0] = ARTIFACT_LEGION_EXPERT
           , [1] = ARTIFACT_PENDANT_OF_BLIND
-          , [2] = ARTIFACT_GEM_OF_PHANTOM
-          , [3] = ARTIFACT_UNICORN_HORN_BOW
-          , [4] = ARTIFACT_STAFF_OF_VEXINGS
-          , [5] = ARTIFACT_SHACKLES_OF_WAR
-          , [6] = ARTIFACT_PLATE_MAIL_OF_STABILITY
-          , [7] = ARTIFACT_PEDANT_OF_MASTERY
-          , [8] = ARTIFACT_RING_OF_HASTE
-          , [9] = ARTIFACT_CLOAK_OF_MOURNING
-          , [10] = ARTIFACT_STAFF_OF_MAGI
-          , [11] = ARTIFACT_RING_OF_MAGI
-          , [12] = ARTIFACT_TWISTING_NEITHER
-          , [13] = ARTIFACT_SHAWL_OF_GREAT_LICH
-          , [14] = ARTIFACT_NECROMANCER_PENDANT
-          , [15] = ARTIFACT_TOME_OF_DESTRUCTION
-          , [16] = ARTIFACT_TOME_OF_LIGHT_MAGIC
-          , [17] = ARTIFACT_TOME_OF_DARK_MAGIC
-          , [18] = ARTIFACT_TOME_OF_SUMMONING_MAGIC
-          , [19] = ARTIFACT_RING_OF_MACHINE_AFFINITY
-          , [20] = ARTIFACT_PENDANT_OF_STARDUST
-          , [21] = ARTIFACT_RING_OF_HOLY_GRIFFIN
-          , [22] = ARTIFACT_INHERITANCE
+          , [2] = ARTIFACT_UNICORN_HORN_BOW
+          , [3] = ARTIFACT_STAFF_OF_VEXINGS
+          , [4] = ARTIFACT_SHACKLES_OF_WAR
+          , [5] = ARTIFACT_PLATE_MAIL_OF_STABILITY
+          , [6] = ARTIFACT_PEDANT_OF_MASTERY
+          , [7] = ARTIFACT_RING_OF_HASTE
+          , [8] = ARTIFACT_CLOAK_OF_MOURNING
+          , [9] = ARTIFACT_STAFF_OF_MAGI
+          , [10] = ARTIFACT_RING_OF_MAGI
+          , [11] = ARTIFACT_TWISTING_NEITHER
+          , [12] = ARTIFACT_SHAWL_OF_GREAT_LICH
+          , [13] = ARTIFACT_NECROMANCER_PENDANT
+          , [14] = ARTIFACT_TOME_OF_DESTRUCTION
+          , [15] = ARTIFACT_TOME_OF_LIGHT_MAGIC
+          , [16] = ARTIFACT_TOME_OF_DARK_MAGIC
+          , [17] = ARTIFACT_TOME_OF_SUMMONING_MAGIC
+          , [18] = ARTIFACT_RING_OF_MACHINE_AFFINITY
+          , [19] = ARTIFACT_PENDANT_OF_STARDUST
+          , [20] = ARTIFACT_RING_OF_HOLY_GRIFFIN
+          , [21] = ARTIFACT_INHERITANCE
         }
         , [7] = {
           [0] = ARTIFACT_ANGELIC_ALLIANCE
@@ -6514,6 +6562,7 @@ doFile("/scripts/TTH_Library.lua")
           , [9] = ARTIFACT_CODEX
           , [10] = ARTIFACT_HELMET_OF_HEAVENLY_ENLIGHTENMENT
           , [11] = ARTIFACT_BOOK_OF_MALASSA
+          , [12] = ARTIFACT_GEM_OF_PHANTOM
         }
       };
 
@@ -6595,6 +6644,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 2
             , [2] = 106
           }
+          , ["Transform"] = CREATURE_SKELETON
         }
         , [2] = {
           ["ID"] = CREATURE_MILITIAMAN
@@ -6606,6 +6656,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 0
           , ["Pair"] = 106
+          , ["Transform"] = CREATURE_SKELETON
         }
         , [3] = {
           ["ID"] = CREATURE_ARCHER
@@ -6620,6 +6671,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 4
             , [2] = 107
           }
+          , ["Transform"] = CREATURE_SKELETON_ARCHER
         }
         , [4] = {
           ["ID"] = CREATURE_MARKSMAN
@@ -6631,6 +6683,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 1
           , ["Pair"] = 107
+          , ["Transform"] = CREATURE_SKELETON_ARCHER
         }
         , [5] = {
           ["ID"] = CREATURE_FOOTMAN
@@ -6645,6 +6698,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 6
             , [2] = 108
           }
+          , ["Transform"] = CREATURE_ZOMBIE
         }
         , [6] = {
           ["ID"] = CREATURE_SWORDSMAN
@@ -6656,6 +6710,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 0
           , ["Pair"] = 108
+          , ["Transform"] = CREATURE_ZOMBIE
         }
         , [7] = {
           ["ID"] = CREATURE_GRIFFIN
@@ -6670,6 +6725,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 8
             , [2] = 109
           }
+          , ["Transform"] = CREATURE_MANES
         }
         , [8] = {
           ["ID"] = CREATURE_ROYAL_GRIFFIN
@@ -6681,6 +6737,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 2
           , ["Range"] = 0
           , ["Pair"] = 109
+          , ["Transform"] = CREATURE_GHOST
         }
         , [9] = {
           ["ID"] = CREATURE_PRIEST
@@ -6695,6 +6752,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 10
             , [2] = 110
           }
+          , ["Transform"] = CREATURE_LICH
         }
         , [10] = {
           ["ID"] = CREATURE_CLERIC
@@ -6706,6 +6764,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 1
           , ["Pair"] = 110
+          , ["Transform"] = CREATURE_DEMILICH
         }
         , [11] = {
           ["ID"] = CREATURE_CAVALIER
@@ -6720,6 +6779,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 12
             , [2] = 111
           }
+          , ["Transform"] = CREATURE_VAMPIRE_LORD
         }
         , [12] = {
           ["ID"] = CREATURE_PALADIN
@@ -6731,6 +6791,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 2
           , ["Range"] = 0
           , ["Pair"] = 111
+          , ["Transform"] = CREATURE_VAMPIRE_LORD
         }
         , [13] = {
           ["ID"] = CREATURE_ANGEL
@@ -6770,6 +6831,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 16
             , [2] = 131
           }
+          , ["Transform"] = CREATURE_SKELETON
         }
         , [16] = {
           ["ID"] = CREATURE_IMP
@@ -6781,6 +6843,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 0
           , ["Pair"] = 131
+          , ["Transform"] = CREATURE_SKELETON
         }
         , [17] = {
           ["ID"] = CREATURE_DEMON
@@ -6795,6 +6858,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 18
             , [2] = 132
           }
+          , ["Transform"] = CREATURE_WALKING_DEAD
         }
         , [18] = {
           ["ID"] = CREATURE_HORNED_DEMON
@@ -6806,6 +6870,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 0
           , ["Pair"] = 132
+          , ["Transform"] = CREATURE_ZOMBIE
         }
         , [19] = {
           ["ID"] = CREATURE_HELL_HOUND
@@ -6820,6 +6885,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 20
             , [2] = 133
           }
+          , ["Transform"] = CREATURE_MANES
         }
         , [20] = {
           ["ID"] = CREATURE_CERBERI
@@ -6831,6 +6897,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 0
           , ["Pair"] = 133
+          , ["Transform"] = CREATURE_GHOST
         }
         , [21] = {
           ["ID"] = CREATURE_SUCCUBUS
@@ -6845,6 +6912,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 22
             , [2] = 134
           }
+          , ["Transform"] = CREATURE_VAMPIRE
         }
         , [22] = {
           ["ID"] = CREATURE_INFERNAL_SUCCUBUS
@@ -6856,6 +6924,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 1
           , ["Pair"] = 134
+          , ["Transform"] = CREATURE_VAMPIRE_LORD
         }
         , [23] = {
           ["ID"] = CREATURE_NIGHTMARE
@@ -6870,6 +6939,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 24
             , [2] = 135
           }
+          , ["Transform"] = CREATURE_GHOST
         }
         , [24] = {
           ["ID"] = CREATURE_FRIGHTFUL_NIGHTMARE
@@ -6881,6 +6951,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 2
           , ["Range"] = 0
           , ["Pair"] = 135
+          , ["Transform"] = CREATURE_GHOST
         }
         , [25] = {
           ["ID"] = CREATURE_PIT_FIEND
@@ -6895,6 +6966,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 26
             , [2] = 136
           }
+          , ["Transform"] = CREATURE_WIGHT
         }
         , [26] = {
           ["ID"] = CREATURE_BALOR
@@ -6906,6 +6978,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 2
           , ["Range"] = 0
           , ["Pair"] = 136
+          , ["Transform"] = CREATURE_WRAITH
         }
         , [27] = {
           ["ID"] = CREATURE_DEVIL
@@ -6920,6 +6993,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 28
             , [2] = 137
           }
+          , ["Transform"] = CREATURE_WRAITH
         }
         , [28] = {
           ["ID"] = CREATURE_ARCHDEVIL
@@ -6931,6 +7005,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 2
           , ["Range"] = 0
           , ["Pair"] = 137
+          , ["Transform"] = CREATURE_WRAITH
         }
         , [29] = {
           ["ID"] = CREATURE_SKELETON
@@ -7120,6 +7195,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 44
             , [2] = 145
           }
+          , ["Transform"] = CREATURE_MANES
         }
         , [44] = {
           ["ID"] = CREATURE_SPRITE
@@ -7131,6 +7207,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 0
           , ["Pair"] = 145
+          , ["Transform"] = CREATURE_GHOST
         }
         , [45] = {
           ["ID"] = CREATURE_BLADE_JUGGLER
@@ -7145,6 +7222,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 46
             , [2] = 146
           }
+          , ["Transform"] = CREATURE_SKELETON
         }
         , [46] = {
           ["ID"] = CREATURE_WAR_DANCER
@@ -7156,6 +7234,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 0
           , ["Pair"] = 146
+          , ["Transform"] = CREATURE_SKELETON
         }
         , [47] = {
           ["ID"] = CREATURE_WOOD_ELF
@@ -7170,6 +7249,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 48
             , [2] = 147
           }
+          , ["Transform"] = CREATURE_SKELETON_ARCHER
         }
         , [48] = {
           ["ID"] = CREATURE_GRAND_ELF
@@ -7181,6 +7261,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 1
           , ["Pair"] = 147
+          , ["Transform"] = CREATURE_SKELETON_ARCHER
         }
         , [49] = {
           ["ID"] = CREATURE_DRUID
@@ -7195,6 +7276,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 50
             , [2] = 148
           }
+          , ["Transform"] = CREATURE_LICH
         }
         , [50] = {
           ["ID"] = CREATURE_DRUID_ELDER
@@ -7206,6 +7288,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 1
           , ["Pair"] = 148
+          , ["Transform"] = CREATURE_DEMILICH
         }
         , [51] = {
           ["ID"] = CREATURE_UNICORN
@@ -7245,6 +7328,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 54
             , [2] = 150
           }
+          , ["Transform"] = CREATURE_WIGHT
         }
         , [54] = {
           ["ID"] = CREATURE_TREANT_GUARDIAN
@@ -7256,6 +7340,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 2
           , ["Range"] = 0
           , ["Pair"] = 150
+          , ["Transform"] = CREATURE_WRAITH
         }
         , [55] = {
           ["ID"] = CREATURE_GREEN_DRAGON
@@ -7270,6 +7355,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 55
             , [2] = 151
           }
+          , ["Transform"] = CREATURE_BONE_DRAGON
         }
         , [56] = {
           ["ID"] = CREATURE_GOLD_DRAGON
@@ -7281,6 +7367,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 2
           , ["Range"] = 0
           , ["Pair"] = 151
+          , ["Transform"] = CREATURE_SHADOW_DRAGON
         }
         , [57] = {
           ["ID"] = CREATURE_GREMLIN
@@ -7295,6 +7382,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 58
             , [2] = 159
           }
+          , ["Transform"] = CREATURE_SKELETON_ARCHER
         }
         , [58] = {
           ["ID"] = CREATURE_MASTER_GREMLIN
@@ -7306,6 +7394,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 1
           , ["Pair"] = 159
+          , ["Transform"] = CREATURE_SKELETON_ARCHER
         }
         , [59] = {
           ["ID"] = CREATURE_STONE_GARGOYLE
@@ -7370,6 +7459,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 64
             , [2] = 162
           }
+          , ["Transform"] = CREATURE_LICH
         }
         , [64] = {
           ["ID"] = CREATURE_ARCH_MAGI
@@ -7381,6 +7471,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 1
           , ["Pair"] = 162
+          , ["Transform"] = CREATURE_DEMILICH
         }
         , [65] = {
           ["ID"] = CREATURE_GENIE
@@ -7395,6 +7486,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 66
             , [2] = 163
           }
+          , ["Transform"] = CREATURE_WIGHT
         }
         , [66] = {
           ["ID"] = CREATURE_MASTER_GENIE
@@ -7406,6 +7498,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 2
           , ["Range"] = 0
           , ["Pair"] = 163
+          , ["Transform"] = CREATURE_WIGHT
         }
         , [67] = {
           ["ID"] = CREATURE_RAKSHASA
@@ -7420,6 +7513,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 68
             , [2] = 164
           }
+          , ["Transform"] = CREATURE_WRAITH
         }
         , [68] = {
           ["ID"] = CREATURE_RAKSHASA_RUKH
@@ -7431,6 +7525,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 2
           , ["Range"] = 0
           , ["Pair"] = 164
+          , ["Transform"] = CREATURE_WRAITH
         }
         , [69] = {
           ["ID"] = CREATURE_GIANT
@@ -7445,6 +7540,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 70
             , [2] = 165
           }
+          , ["Transform"] = CREATURE_WRAITH
         }
         , [70] = {
           ["ID"] = CREATURE_TITAN
@@ -7456,6 +7552,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 2
           , ["Range"] = 1
           , ["Pair"] = 165
+          , ["Transform"] = CREATURE_WRAITH
         }
         , [71] = {
           ["ID"] = CREATURE_SCOUT
@@ -7470,6 +7567,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 72
             , [2] = 138
           }
+          , ["Transform"] = CREATURE_SKELETON_ARCHER
         }
         , [72] = {
           ["ID"] = CREATURE_ASSASSIN
@@ -7481,6 +7579,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 1
           , ["Pair"] = 138
+          , ["Transform"] = CREATURE_SKELETON_ARCHER
         }
         , [73] = {
           ["ID"] = CREATURE_WITCH
@@ -7495,6 +7594,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 74
             , [2] = 139
           }
+          , ["Transform"] = CREATURE_SKELETON
         }
         , [74] = {
           ["ID"] = CREATURE_BLOOD_WITCH
@@ -7506,6 +7606,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 0
           , ["Pair"] = 139
+          , ["Transform"] = CREATURE_SKELETON
         }
         , [75] = {
           ["ID"] = CREATURE_MINOTAUR
@@ -7520,6 +7621,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 76
             , [2] = 140
           }
+          , ["Transform"] = CREATURE_WALKING_DEAD
         }
         , [76] = {
           ["ID"] = CREATURE_MINOTAUR_KING
@@ -7531,6 +7633,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 0
           , ["Pair"] = 140
+          , ["Transform"] = CREATURE_ZOMBIE
         }
         , [77] = {
           ["ID"] = CREATURE_RIDER
@@ -7545,6 +7648,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 78
             , [2] = 141
           }
+          , ["Transform"] = CREATURE_VAMPIRE
         }
         , [78] = {
           ["ID"] = CREATURE_RAVAGER
@@ -7556,6 +7660,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 2
           , ["Range"] = 0
           , ["Pair"] = 141
+          , ["Transform"] = CREATURE_VAMPIRE
         }
         , [79] = {
           ["ID"] = CREATURE_HYDRA
@@ -7570,6 +7675,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 80
             , [2] = 142
           }
+          , ["Transform"] = CREATURE_MANES
         }
         , [80] = {
           ["ID"] = CREATURE_CHAOS_HYDRA
@@ -7581,6 +7687,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 2
           , ["Range"] = 0
           , ["Pair"] = 142
+          , ["Transform"] = CREATURE_GHOST
         }
         , [81] = {
           ["ID"] = CREATURE_MATRON
@@ -7595,6 +7702,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 82
             , [2] = 143
           }
+          , ["Transform"] = CREATURE_DEMILICH
         }
         , [82] = {
           ["ID"] = CREATURE_MATRIARCH
@@ -7606,6 +7714,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 1
           , ["Pair"] = 143
+          , ["Transform"] = CREATURE_DEMILICH
         }
         , [83] = {
           ["ID"] = CREATURE_DEEP_DRAGON
@@ -7620,6 +7729,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 84
             , [2] = 144
           }
+          , ["Transform"] = CREATURE_BONE_DRAGON
         }
         , [84] = {
           ["ID"] = CREATURE_BLACK_DRAGON
@@ -7631,6 +7741,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 2
           , ["Range"] = 0
           , ["Pair"] = 144
+          , ["Transform"] = CREATURE_SHADOW_DRAGON
         }
         , [85] = {
           ["ID"] = CREATURE_FIRE_ELEMENTAL
@@ -7686,7 +7797,7 @@ doFile("/scripts/TTH_Library.lua")
         , [90] = {
           ["ID"] = CREATURE_DEATH_KNIGHT
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_90/Name.txt"
-          , ["Race"] = TOWN_NEUTRAL
+          , ["Race"] = TOWN_NECROMANCY
           , ["GROWTH"] = 2
           , ["TIER"] = 6
           , ["POWER"] = 2560
@@ -7716,6 +7827,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 93
             , [2] = 166
           }
+          , ["Transform"] = CREATURE_ZOMBIE
         }
         , [93] = {
           ["ID"] = CREATURE_STOUT_DEFENDER
@@ -7727,6 +7839,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 0
           , ["Pair"] = 166
+          , ["Transform"] = CREATURE_ZOMBIE
         }
         , [94] = {
           ["ID"] = CREATURE_AXE_FIGHTER
@@ -7741,6 +7854,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 95
             , [2] = 167
           }
+          , ["Transform"] = CREATURE_SKELETON_ARCHER
         }
         , [95] = {
           ["ID"] = CREATURE_AXE_THROWER
@@ -7752,6 +7866,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 1
           , ["Pair"] = 167
+          , ["Transform"] = CREATURE_SKELETON_ARCHER
         }
         , [96] = {
           ["ID"] = CREATURE_BEAR_RIDER
@@ -7766,6 +7881,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 97
             , [2] = 168
           }
+          , ["Transform"] = CREATURE_MANES
         }
         , [97] = {
           ["ID"] = CREATURE_BLACKBEAR_RIDER
@@ -7777,6 +7893,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 2
           , ["Range"] = 0
           , ["Pair"] = 168
+          , ["Transform"] = CREATURE_GHOST
         }
         , [98] = {
           ["ID"] = CREATURE_BROWLER
@@ -7791,6 +7908,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 99
             , [2] = 169
           }
+          , ["Transform"] = CREATURE_VAMPIRE
         }
         , [99] = {
           ["ID"] = CREATURE_BERSERKER
@@ -7802,6 +7920,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 0
           , ["Pair"] = 169
+          , ["Transform"] = CREATURE_VAMPIRE_LORD
         }
         , [100] = {
           ["ID"] = CREATURE_RUNE_MAGE
@@ -7816,6 +7935,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 101
             , [2] = 170
           }
+          , ["Transform"] = CREATURE_DEMILICH
         }
         , [101] = {
           ["ID"] = CREATURE_FLAME_MAGE
@@ -7827,6 +7947,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 1
           , ["Pair"] = 170
+          , ["Transform"] = CREATURE_DEMILICH
         }
         , [102] = {
           ["ID"] = CREATURE_THANE
@@ -7841,6 +7962,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 103
             , [2] = 171
           }
+          , ["Transform"] = CREATURE_WRAITH
         }
         , [103] = {
           ["ID"] = CREATURE_WARLORD
@@ -7852,6 +7974,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 2
           , ["Range"] = 0
           , ["Pair"] = 171
+          , ["Transform"] = CREATURE_WRAITH
         }
         , [104] = {
           ["ID"] = CREATURE_FIRE_DRAGON
@@ -7888,6 +8011,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 0
           , ["Pair"] = 2
+          , ["Transform"] = CREATURE_SKELETON
         }
         , [107] = {
           ["ID"] = CREATURE_LONGBOWMAN
@@ -7899,6 +8023,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 1
           , ["Pair"] = 4
+          , ["Transform"] = CREATURE_SKELETON_ARCHER
         }
         , [108] = {
           ["ID"] = CREATURE_VINDICATOR
@@ -7910,6 +8035,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 0
           , ["Pair"] = 6
+          , ["Transform"] = CREATURE_WALKING_DEAD
         }
         , [109] = {
           ["ID"] = CREATURE_BATTLE_GRIFFIN
@@ -7921,6 +8047,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 2
           , ["Range"] = 0
           , ["Pair"] = 8
+          , ["Transform"] = CREATURE_GHOST
         }
         , [110] = {
           ["ID"] = CREATURE_ZEALOT
@@ -7932,6 +8059,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 1
           , ["Pair"] = 10
+          , ["Transform"] = CREATURE_DEMILICH
         }
         , [111] = {
           ["ID"] = CREATURE_CHAMPION
@@ -7943,6 +8071,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 2
           , ["Range"] = 0
           , ["Pair"] = 12
+          , ["Transform"] = CREATURE_VAMPIRE_LORD
         }
         , [112] = {
           ["ID"] = CREATURE_SERAPH
@@ -7965,6 +8094,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 0
           , ["DemonRage"] = 1
+          , ["Transform"] = CREATURE_GHOST
         }
         , [114] = {
           ["ID"] = CREATURE_SNOW_APE
@@ -7985,6 +8115,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["POWER"] = 2523
           , ["CombatSize"] = 2
           , ["Range"] = 0
+          , ["Transform"] = CREATURE_BONE_DRAGON
         }
         , [116] = {
           ["ID"] = CREATURE_MUMMY
@@ -8010,6 +8141,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 118
             , [2] = 173
           }
+          , ["Transform"] = CREATURE_SKELETON
         }
         , [118] = {
           ["ID"] = CREATURE_GOBLIN_TRAPPER
@@ -8022,6 +8154,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["Range"] = 0
           , ["DemonRage"] = 1
           , ["Pair"] = 173
+          , ["Transform"] = CREATURE_SKELETON
         }
         , [119] = {
           ["ID"] = CREATURE_CENTAUR
@@ -8037,6 +8170,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 120
             , [2] = 174
           }
+          , ["Transform"] = CREATURE_MANES
         }
         , [120] = {
           ["ID"] = CREATURE_CENTAUR_NOMAD
@@ -8049,6 +8183,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["Range"] = 1
           , ["DemonRage"] = 1
           , ["Pair"] = 174
+          , ["Transform"] = CREATURE_GHOST
         }
         , [121] = {
           ["ID"] = CREATURE_ORC_WARRIOR
@@ -8064,6 +8199,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 122
             , [2] = 175
           }
+          , ["Transform"] = CREATURE_ZOMBIE
         }
         , [122] = {
           ["ID"] = CREATURE_ORC_SLAYER
@@ -8076,6 +8212,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["Range"] = 0
           , ["DemonRage"] = 1
           , ["Pair"] = 175
+          , ["Transform"] = CREATURE_ZOMBIE
         }
         , [123] = {
           ["ID"] = CREATURE_SHAMAN
@@ -8091,6 +8228,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 124
             , [2] = 176
           }
+          , ["Transform"] = CREATURE_LICH
         }
         , [124] = {
           ["ID"] = CREATURE_SHAMAN_WITCH
@@ -8103,6 +8241,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["Range"] = 0
           , ["DemonRage"] = 1
           , ["Pair"] = 176
+          , ["Transform"] = CREATURE_DEMILICH
         }
         , [125] = {
           ["ID"] = CREATURE_ORCCHIEF_BUTCHER
@@ -8118,6 +8257,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 126
             , [2] = 177
           }
+          , ["Transform"] = CREATURE_VAMPIRE_LORD
         }
         , [126] = {
           ["ID"] = CREATURE_ORCCHIEF_EXECUTIONER
@@ -8130,6 +8270,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["Range"] = 0
           , ["DemonRage"] = 1
           , ["Pair"] = 177
+          , ["Transform"] = CREATURE_VAMPIRE_LORD
         }
         , [127] = {
           ["ID"] = CREATURE_WYVERN
@@ -8144,6 +8285,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 128
             , [2] = 178
           }
+          , ["Transform"] = CREATURE_WIGHT
         }
         , [128] = {
           ["ID"] = CREATURE_WYVERN_POISONOUS
@@ -8155,6 +8297,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 2
           , ["Range"] = 0
           , ["Pair"] = 178
+          , ["Transform"] = CREATURE_WRAITH
         }
         , [129] = {
           ["ID"] = CREATURE_CYCLOP
@@ -8170,6 +8313,7 @@ doFile("/scripts/TTH_Library.lua")
             [1] = 130
             , [2] = 179
           }
+          , ["Transform"] = CREATURE_WRAITH
         }
         , [130] = {
           ["ID"] = CREATURE_CYCLOP_UNTAMED
@@ -8182,6 +8326,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["Range"] = 0
           , ["DemonRage"] = 1
           , ["Pair"] = 179
+          , ["Transform"] = CREATURE_WRAITH
         }
         , [131] = {
           ["ID"] = CREATURE_QUASIT
@@ -8193,6 +8338,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 0
           , ["Pair"] = 16
+          , ["Transform"] = CREATURE_SKELETON
         }
         , [132] = {
           ["ID"] = CREATURE_HORNED_LEAPER
@@ -8204,6 +8350,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 0
           , ["Pair"] = 18
+          , ["Transform"] = CREATURE_ZOMBIE
         }
         , [133] = {
           ["ID"] = CREATURE_FIREBREATHER_HOUND
@@ -8215,6 +8362,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 0
           , ["Pair"] = 20
+          , ["Transform"] = CREATURE_GHOST
         }
         , [134] = {
           ["ID"] = CREATURE_SUCCUBUS_SEDUCER
@@ -8226,6 +8374,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 1
           , ["Pair"] = 22
+          , ["Transform"] = CREATURE_VAMPIRE_LORD
         }
         , [135] = {
           ["ID"] = CREATURE_HELLMARE
@@ -8237,6 +8386,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 2
           , ["Range"] = 0
           , ["Pair"] = 24
+          , ["Transform"] = CREATURE_GHOST
         }
         , [136] = {
           ["ID"] = CREATURE_PIT_SPAWN
@@ -8248,6 +8398,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 2
           , ["Range"] = 0
           , ["Pair"] = 26
+          , ["Transform"] = CREATURE_WRAITH
         }
         , [137] = {
           ["ID"] = CREATURE_ARCH_DEMON
@@ -8259,6 +8410,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 2
           , ["Range"] = 0
           , ["Pair"] = 28
+          , ["Transform"] = CREATURE_WRAITH
         }
         , [138] = {
           ["ID"] = CREATURE_STALKER
@@ -8270,6 +8422,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 0
           , ["Pair"] = 72
+          , ["Transform"] = CREATURE_SKELETON_ARCHER
         }
         , [139] = {
           ["ID"] = CREATURE_BLOOD_WITCH_2
@@ -8281,6 +8434,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 0
           , ["Pair"] = 74
+          , ["Transform"] = CREATURE_SKELETON
         }
         , [140] = {
           ["ID"] = CREATURE_MINOTAUR_CAPTAIN
@@ -8292,6 +8446,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 0
           , ["Pair"] = 76
+          , ["Transform"] = CREATURE_ZOMBIE
         }
         , [141] = {
           ["ID"] = CREATURE_BLACK_RIDER
@@ -8303,6 +8458,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 2
           , ["Range"] = 0
           , ["Pair"] = 78
+          , ["Transform"] = CREATURE_VAMPIRE
         }
         , [142] = {
           ["ID"] = CREATURE_ACIDIC_HYDRA
@@ -8314,6 +8470,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 2
           , ["Range"] = 0
           , ["Pair"] = 80
+          , ["Transform"] = CREATURE_GHOST
         }
         , [143] = {
           ["ID"] = CREATURE_SHADOW_MISTRESS
@@ -8325,6 +8482,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 0
           , ["Pair"] = 82
+          , ["Transform"] = CREATURE_DEMILICH
         }
         , [144] = {
           ["ID"] = CREATURE_RED_DRAGON
@@ -8336,6 +8494,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 2
           , ["Range"] = 0
           , ["Pair"] = 84
+          , ["Transform"] = CREATURE_SHADOW_DRAGON
         }
         , [145] = {
           ["ID"] = CREATURE_DRYAD
@@ -8347,6 +8506,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 0
           , ["Pair"] = 44
+          , ["Transform"] = CREATURE_GHOST
         }
         , [146] = {
           ["ID"] = CREATURE_BLADE_SINGER
@@ -8358,6 +8518,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 0
           , ["Pair"] = 46
+          , ["Transform"] = CREATURE_SKELETON
         }
         , [147] = {
           ["ID"] = CREATURE_SHARP_SHOOTER
@@ -8369,6 +8530,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 1
           , ["Pair"] = 48
+          , ["Transform"] = CREATURE_SKELETON_ARCHER
         }
         , [148] = {
           ["ID"] = CREATURE_HIGH_DRUID
@@ -8380,6 +8542,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 1
           , ["Pair"] = 50
+          , ["Transform"] = CREATURE_DEMILICH
         }
         , [149] = {
           ["ID"] = CREATURE_WHITE_UNICORN
@@ -8402,6 +8565,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 2
           , ["Range"] = 0
           , ["Pair"] = 54
+          , ["Transform"] = CREATURE_WRAITH
         }
         , [151] = {
           ["ID"] = CREATURE_RAINBOW_DRAGON
@@ -8413,6 +8577,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 2
           , ["Range"] = 0
           , ["Pair"] = 56
+          , ["Transform"] = CREATURE_SHADOW_DRAGON
         }
         , [152] = {
           ["ID"] = CREATURE_SKELETON_WARRIOR
@@ -8501,6 +8666,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 1
           , ["Pair"] = 58
+          , ["Transform"] = CREATURE_SKELETON_ARCHER
         }
         , [160] = {
           ["ID"] = CREATURE_MARBLE_GARGOYLE
@@ -8534,6 +8700,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 1
           , ["Pair"] = 64
+          , ["Transform"] = CREATURE_DEMILICH
         }
         , [163] = {
           ["ID"] = CREATURE_DJINN_VIZIER
@@ -8545,6 +8712,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 2
           , ["Range"] = 0
           , ["Pair"] = 66
+          , ["Transform"] = CREATURE_WIGHT
         }
         , [164] = {
           ["ID"] = CREATURE_RAKSHASA_KSHATRI
@@ -8556,6 +8724,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 2
           , ["Range"] = 0
           , ["Pair"] = 68
+          , ["Transform"] = CREATURE_WRAITH
         }
         , [165] = {
           ["ID"] = CREATURE_STORM_LORD
@@ -8567,6 +8736,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 2
           , ["Range"] = 1
           , ["Pair"] = 70
+          , ["Transform"] = CREATURE_WRAITH
         }
         , [166] = {
           ["ID"] = CREATURE_STONE_DEFENDER
@@ -8578,6 +8748,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 0
           , ["Pair"] = 93
+          , ["Transform"] = CREATURE_WALKING_DEAD
         }
         , [167] = {
           ["ID"] = CREATURE_HARPOONER
@@ -8589,6 +8760,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 1
           , ["Pair"] = 95
+          , ["Transform"] = CREATURE_SKELETON_ARCHER
         }
         , [168] = {
           ["ID"] = CREATURE_WHITE_BEAR_RIDER
@@ -8600,6 +8772,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 2
           , ["Range"] = 0
           , ["Pair"] = 97
+          , ["Transform"] = CREATURE_MANES
         }
         , [169] = {
           ["ID"] = CREATURE_BATTLE_RAGER
@@ -8611,6 +8784,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 0
           , ["Pair"] = 99
+          , ["Transform"] = CREATURE_VAMPIRE_LORD
         }
         , [170] = {
           ["ID"] = CREATURE_FLAME_KEEPER
@@ -8622,6 +8796,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 1
           , ["Range"] = 1
           , ["Pair"] = 101
+          , ["Transform"] = CREATURE_DEMILICH
         }
         , [171] = {
           ["ID"] = CREATURE_THUNDER_THANE
@@ -8633,6 +8808,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 2
           , ["Range"] = 0
           , ["Pair"] = 103
+          , ["Transform"] = CREATURE_WRAITH
         }
         , [172] = {
           ["ID"] = CREATURE_LAVA_DRAGON
@@ -8656,6 +8832,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["Range"] = 0
           , ["DemonRage"] = 1
           , ["Pair"] = 118
+          , ["Transform"] = CREATURE_SKELETON
         }
         , [174] = {
           ["ID"] = CREATURE_CENTAUR_MARADEUR
@@ -8668,6 +8845,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["Range"] = 1
           , ["DemonRage"] = 1
           , ["Pair"] = 120
+          , ["Transform"] = CREATURE_GHOST
         }
         , [175] = {
           ["ID"] = CREATURE_ORC_WARMONGER
@@ -8680,6 +8858,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["Range"] = 0
           , ["DemonRage"] = 1
           , ["Pair"] = 122
+          , ["Transform"] = CREATURE_ZOMBIE
         }
         , [176] = {
           ["ID"] = CREATURE_SHAMAN_HAG
@@ -8692,6 +8871,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["Range"] = 0
           , ["DemonRage"] = 1
           , ["Pair"] = 124
+          , ["Transform"] = CREATURE_DEMILICH
         }
         , [177] = {
           ["ID"] = CREATURE_ORCCHIEF_CHIEFTAIN
@@ -8704,6 +8884,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["Range"] = 0
           , ["DemonRage"] = 1
           , ["Pair"] = 126
+          , ["Transform"] = CREATURE_VAMPIRE_LORD
         }
         , [178] = {
           ["ID"] = CREATURE_WYVERN_PAOKAI
@@ -8715,6 +8896,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["CombatSize"] = 2
           , ["Range"] = 0
           , ["Pair"] = 128
+          , ["Transform"] = CREATURE_WRAITH
         }
         , [179] = {
           ["ID"] = CREATURE_CYCLOP_BLOODEYED
@@ -8727,6 +8909,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["Range"] = 0
           , ["DemonRage"] = 1
           , ["Pair"] = 130
+          , ["Transform"] = CREATURE_WIGHT
         }
         , [180] = {
           ["ID"] = CREATURE_180
@@ -8787,6 +8970,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["POWER"] = 1798
           , ["CombatSize"] = 1
           , ["Range"] = 1
+          , ["Transform"] = CREATURE_DEMILICH
         }
         , [186] = {
           ["ID"] = CREATURE_ENCHANTER_NEUTRAL
@@ -8797,6 +8981,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["POWER"] = 1798
           , ["CombatSize"] = 1
           , ["Range"] = 1
+          , ["Transform"] = CREATURE_DEMILICH
         }
         , [187] = {
           ["ID"] = CREATURE_ENCHANTER_CASTER
@@ -8817,6 +9002,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["POWER"] = 2235
           , ["CombatSize"] = 1
           , ["Range"] = 0
+          , ["Transform"] = CREATURE_DEMILICH
         }
         , [189] = {
           ["ID"] = CREATURE_189
@@ -8837,6 +9023,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["POWER"] = 2520
           , ["CombatSize"] = 2
           , ["Range"] = 0
+          , ["Transform"] = CREATURE_WRAITH
         }
         , [191] = {
           ["ID"] = CREATURE_LEGATE_SHADOW
@@ -8852,31 +9039,31 @@ doFile("/scripts/TTH_Library.lua")
           ["ID"] = CREATURE_192
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_192/Name.txt"
           , ["Race"] = TOWN_PRESERVE
+          , ["GROWTH"] = 3
+          , ["TIER"] = 5
+          , ["POWER"] = 1661
+          , ["CombatSize"] = 2
+          , ["Range"] = 0
+        }
+        , [193] = {
+          ["ID"] = CREATURE_193
+          , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_193/Name.txt"
+          , ["Race"] = TOWN_NEUTRAL
           , ["GROWTH"] = 1
           , ["TIER"] = 1
           , ["POWER"] = 0
           , ["CombatSize"] = 1
           , ["Range"] = 0
         }
-        , [193] = {
-          ["ID"] = CREATURE_193
-          , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_193/Name.txt"
-          , ["Race"] = TOWN_HEAVEN
-          , ["GROWTH"] = 5
-          , ["TIER"] = 4
-          , ["POWER"] = 524
-          , ["CombatSize"] = 1
-          , ["Range"] = 1
-        }
         , [194] = {
           ["ID"] = CREATURE_194
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_194/Name.txt"
-          , ["Race"] = TOWN_HEAVEN
-          , ["GROWTH"] = 5
-          , ["TIER"] = 4
-          , ["POWER"] = 524
+          , ["Race"] = TOWN_NEUTRAL
+          , ["GROWTH"] = 1
+          , ["TIER"] = 1
+          , ["POWER"] = 0
           , ["CombatSize"] = 1
-          , ["Range"] = 1
+          , ["Range"] = 0
         }
         , [195] = {
           ["ID"] = CREATURE_195
@@ -8939,77 +9126,80 @@ doFile("/scripts/TTH_Library.lua")
           , ["Range"] = 0
         }
         , [201] = {
-          ["ID"] = CREATURE_201
+          ["ID"] = CREATURE_CROSSBOW_AVITUS_0
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_201/Name.txt"
-          , ["Race"] = TOWN_NEUTRAL
-          , ["GROWTH"] = 1
-          , ["TIER"] = 1
-          , ["POWER"] = 0
+          , ["Race"] = TOWN_HEAVEN
+          , ["GROWTH"] = 12
+          , ["TIER"] = 2
+          , ["POWER"] = 524
           , ["CombatSize"] = 1
-          , ["Range"] = 0
+          , ["Range"] = 1
+          , ["Transform"] = CREATURE_SKELETON_ARCHER
         }
         , [202] = {
-          ["ID"] = CREATURE_202
+          ["ID"] = CREATURE_CROSSBOW_AVITUS_1
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_202/Name.txt"
-          , ["Race"] = TOWN_NEUTRAL
-          , ["GROWTH"] = 1
-          , ["TIER"] = 1
-          , ["POWER"] = 0
+          , ["Race"] = TOWN_HEAVEN
+          , ["GROWTH"] = 12
+          , ["TIER"] = 2
+          , ["POWER"] = 564
           , ["CombatSize"] = 1
-          , ["Range"] = 0
+          , ["Range"] = 1
+          , ["Transform"] = CREATURE_SKELETON_ARCHER
         }
         , [203] = {
-          ["ID"] = CREATURE_203
+          ["ID"] = CREATURE_CROSSBOW_AVITUS_2
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_203/Name.txt"
-          , ["Race"] = TOWN_NEUTRAL
-          , ["GROWTH"] = 1
-          , ["TIER"] = 1
-          , ["POWER"] = 0
+          , ["Race"] = TOWN_HEAVEN
+          , ["GROWTH"] = 12
+          , ["TIER"] = 2
+          , ["POWER"] = 618
           , ["CombatSize"] = 1
-          , ["Range"] = 0
+          , ["Range"] = 1
+          , ["Transform"] = CREATURE_SKELETON_ARCHER
         }
         , [204] = {
-          ["ID"] = CREATURE_204
+          ["ID"] = CREATURE_FATE_WEAVER_SPIDER
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_204/Name.txt"
-          , ["Race"] = TOWN_NEUTRAL
-          , ["GROWTH"] = 1
-          , ["TIER"] = 1
-          , ["POWER"] = 0
-          , ["CombatSize"] = 1
+          , ["Race"] = TOWN_NECROMANCY
+          , ["GROWTH"] = 2
+          , ["TIER"] = 6
+          , ["POWER"] = 2800
+          , ["CombatSize"] = 2
           , ["Range"] = 0
         }
         , [205] = {
-          ["ID"] = CREATURE_205
+          ["ID"] = CREATURE_FATE_WEAVER_HUMAN
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_205/Name.txt"
-          , ["Race"] = TOWN_NEUTRAL
-          , ["GROWTH"] = 1
-          , ["TIER"] = 1
-          , ["POWER"] = 0
-          , ["CombatSize"] = 1
-          , ["Range"] = 0
+          , ["Race"] = TOWN_NECROMANCY
+          , ["GROWTH"] = 2
+          , ["TIER"] = 6
+          , ["POWER"] = 2800
+          , ["CombatSize"] = 2
+          , ["Range"] = 1
         }
         , [206] = {
-          ["ID"] = CREATURE_206
+          ["ID"] = CREATURE_FEARLESS_LORD_MELEE
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_206/Name.txt"
-          , ["Race"] = TOWN_NEUTRAL
-          , ["GROWTH"] = 1
-          , ["TIER"] = 1
-          , ["POWER"] = 0
-          , ["CombatSize"] = 1
+          , ["Race"] = TOWN_FORTRESS
+          , ["GROWTH"] = 2
+          , ["TIER"] = 6
+          , ["POWER"] = 2800
+          , ["CombatSize"] = 2
           , ["Range"] = 0
         }
         , [207] = {
-          ["ID"] = CREATURE_207
+          ["ID"] = CREATURE_FEARLESS_LORD_SHOT
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_207/Name.txt"
-          , ["Race"] = TOWN_NEUTRAL
-          , ["GROWTH"] = 1
-          , ["TIER"] = 1
-          , ["POWER"] = 0
-          , ["CombatSize"] = 1
+          , ["Race"] = TOWN_FORTRESS
+          , ["GROWTH"] = 2
+          , ["TIER"] = 6
+          , ["POWER"] = 2800
+          , ["CombatSize"] = 2
           , ["Range"] = 0
         }
         , [208] = {
-          ["ID"] = CREATURE_208
+          ["ID"] = 208
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_208/Name.txt"
           , ["Race"] = TOWN_NEUTRAL
           , ["GROWTH"] = 1
@@ -9019,7 +9209,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["Range"] = 0
         }
         , [209] = {
-          ["ID"] = CREATURE_209
+          ["ID"] = 209
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_209/Name.txt"
           , ["Race"] = TOWN_NEUTRAL
           , ["GROWTH"] = 1
@@ -17836,6 +18026,148 @@ doFile("/scripts/TTH_Library.lua")
         , [4] = {
           ["ID"] = TTH_ENUM.WarmachineAmmoCart
           , ["CombatSize"] = 1
+        }
+      };
+
+    -- 英雄职业属性成长几率
+      TTH_TABLE.AttributeProb = {
+        [TTH_ENUM.Knight] = {
+          [STAT_ATTACK] = 30
+          , [STAT_DEFENCE] = 45
+          , [STAT_SPELL_POWER] = 10
+          , [STAT_KNOWLEDGE] = 15
+        }
+        , [TTH_ENUM.Paladin] = {
+          [STAT_ATTACK] = 20
+          , [STAT_DEFENCE] = 45
+          , [STAT_SPELL_POWER] = 10
+          , [STAT_KNOWLEDGE] = 25
+        }
+        , [TTH_ENUM.Retribution] = {
+          [STAT_ATTACK] = 30
+          , [STAT_DEFENCE] = 35
+          , [STAT_SPELL_POWER] = 15
+          , [STAT_KNOWLEDGE] = 20
+        }
+        , [TTH_ENUM.Heretic] = {
+          [STAT_ATTACK] = 30
+          , [STAT_DEFENCE] = 35
+          , [STAT_SPELL_POWER] = 20
+          , [STAT_KNOWLEDGE] = 15
+        }
+        , [TTH_ENUM.Ranger] = {
+          [STAT_ATTACK] = 25
+          , [STAT_DEFENCE] = 40
+          , [STAT_SPELL_POWER] = 10
+          , [STAT_KNOWLEDGE] = 25
+        }
+        , [TTH_ENUM.Warden] = {
+          [STAT_ATTACK] = 15
+          , [STAT_DEFENCE] = 45
+          , [STAT_SPELL_POWER] = 10
+          , [STAT_KNOWLEDGE] = 30
+        }
+        , [TTH_ENUM.Enchanter] = {
+          [STAT_ATTACK] = 10
+          , [STAT_DEFENCE] = 35
+          , [STAT_SPELL_POWER] = 20
+          , [STAT_KNOWLEDGE] = 35
+        }
+        , [TTH_ENUM.GuildMaster] = {
+          [STAT_ATTACK] = 20
+          , [STAT_DEFENCE] = 25
+          , [STAT_SPELL_POWER] = 20
+          , [STAT_KNOWLEDGE] = 35
+        }
+        , [TTH_ENUM.Wizard] = {
+          [STAT_ATTACK] = 10
+          , [STAT_DEFENCE] = 15
+          , [STAT_SPELL_POWER] = 30
+          , [STAT_KNOWLEDGE] = 45
+        }
+        , [TTH_ENUM.ElementAlist] = {
+          [STAT_ATTACK] = 10
+          , [STAT_DEFENCE] = 10
+          , [STAT_SPELL_POWER] = 40
+          , [STAT_KNOWLEDGE] = 40
+        }
+        , [TTH_ENUM.BeastMaster] = {
+          [STAT_ATTACK] = 35
+          , [STAT_DEFENCE] = 20
+          , [STAT_SPELL_POWER] = 35
+          , [STAT_KNOWLEDGE] = 10
+        }
+        , [TTH_ENUM.Seer] = {
+          [STAT_ATTACK] = 40
+          , [STAT_DEFENCE] = 10
+          , [STAT_SPELL_POWER] = 40
+          , [STAT_KNOWLEDGE] = 10
+        }
+        , [TTH_ENUM.Warlock] = {
+          [STAT_ATTACK] = 30
+          , [STAT_DEFENCE] = 10
+          , [STAT_SPELL_POWER] = 45
+          , [STAT_KNOWLEDGE] = 15
+        }
+        , [TTH_ENUM.DeathKnight] = {
+          [STAT_ATTACK] = 20
+          , [STAT_DEFENCE] = 35
+          , [STAT_SPELL_POWER] = 35
+          , [STAT_KNOWLEDGE] = 10
+        }
+        , [TTH_ENUM.Reaver] = {
+          [STAT_ATTACK] = 20
+          , [STAT_DEFENCE] = 25
+          , [STAT_SPELL_POWER] = 35
+          , [STAT_KNOWLEDGE] = 20
+        }
+        , [TTH_ENUM.Necromancer] = {
+          [STAT_ATTACK] = 10
+          , [STAT_DEFENCE] = 30
+          , [STAT_SPELL_POWER] = 45
+          , [STAT_KNOWLEDGE] = 15
+        }
+        , [TTH_ENUM.GateKeeper] = {
+          [STAT_ATTACK] = 45
+          , [STAT_DEFENCE] = 10
+          , [STAT_SPELL_POWER] = 15
+          , [STAT_KNOWLEDGE] = 30
+        }
+        , [TTH_ENUM.DemonLord] = {
+          [STAT_ATTACK] = 40
+          , [STAT_DEFENCE] = 15
+          , [STAT_SPELL_POWER] = 15
+          , [STAT_KNOWLEDGE] = 30
+        }
+        , [TTH_ENUM.Sorcerer] = {
+          [STAT_ATTACK] = 35
+          , [STAT_DEFENCE] = 10
+          , [STAT_SPELL_POWER] = 20
+          , [STAT_KNOWLEDGE] = 35
+        }
+        , [TTH_ENUM.Engineer] = {
+          [STAT_ATTACK] = 30
+          , [STAT_DEFENCE] = 30
+          , [STAT_SPELL_POWER] = 20
+          , [STAT_KNOWLEDGE] = 20
+        }
+        , [TTH_ENUM.Runemage] = {
+          [STAT_ATTACK] = 20
+          , [STAT_DEFENCE] = 30
+          , [STAT_SPELL_POWER] = 30
+          , [STAT_KNOWLEDGE] = 20
+        }
+        , [TTH_ENUM.Flamekeepera] = {
+          [STAT_ATTACK] = 25
+          , [STAT_DEFENCE] = 40
+          , [STAT_SPELL_POWER] = 20
+          , [STAT_KNOWLEDGE] = 15
+        }
+        , [TTH_ENUM.Barbarian] = {
+          [STAT_ATTACK] = 45
+          , [STAT_DEFENCE] = 35
+          , [STAT_SPELL_POWER] = 5
+          , [STAT_KNOWLEDGE] = 15
         }
       };
 

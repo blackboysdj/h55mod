@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BasicSkelAnim>
+	<SrcName href="/H5A2/Creatures/AlternativeUpgrades/Dwarves/T6_ThunderThane/T6_Dwarf_Skin.mb"/>
+	<uid>061AB565-0B55-4504-8091-4B25AD991C55</uid>
+	<ExpSrcClip href="/H5A2/Creatures/AlternativeUpgrades/Dwarves/T6_ThunderThane/Animations/Clip/WarLord.moveStart.ma"/>
+	<ExpRootTransform>Global</ExpRootTransform>
+	<ExpFrameFirst>0</ExpFrameFirst>
+	<ExpFrameLast>0</ExpFrameLast>
+	<ExpSettingsFile href=""/>
+	<MovementSpeed>0</MovementSpeed>
+	<SpeedFactor>1</SpeedFactor>
+	<Sound href="/Sounds/_(Sound)/Creatures/Dwarves/T6_Dwarf/ThunderThane/moveStart.xdb#xpointer(/Sound)"/>
+	<Effect href="/Effects/_(Effect)/Characters/Creatures/Dwarves/AlternativeUpgrade/T6_ThunderThane/MoveStart.(Effect).xdb#xpointer(/Effect)"/>
+	<SpeedLineFallTime>250</SpeedLineFallTime>
+	<SpeedLineMaterial/>
+</BasicSkelAnim>

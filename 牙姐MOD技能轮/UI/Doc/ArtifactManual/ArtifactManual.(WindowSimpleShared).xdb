@@ -184,7 +184,7 @@
 		<Item href="Level/006/Detail/PerkPage19.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<Item href="Level/006/Detail/PerkPage20.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<Item href="Level/006/Detail/PerkPage21.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="Level/006/Detail/PerkPage22.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Level/006/Detail/PerkPage22.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
 		<!-- <Item href="Level/006/Detail/PerkPage23.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
 		<!-- <Item href="Level/006/Detail/PerkPage24.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
 		<!-- <Item href="Level/006/Detail/PerkPage25.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
@@ -209,7 +209,7 @@
 		<Item href="Level/007/Detail/PerkPage12.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<Item href="Level/007/Detail/PerkPage13.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<Item href="Level/007/Detail/PerkPage14.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<!-- <Item href="Level/007/Detail/PerkPage15.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<Item href="Level/007/Detail/PerkPage15.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<!-- <Item href="Level/007/Detail/PerkPage16.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
 		<!-- <Item href="Level/007/Detail/PerkPage17.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
 		<!-- <Item href="Level/007/Detail/PerkPage18.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
@@ -346,7 +346,7 @@
 		<Item href="Combine/010/Detail/PerkPage04.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<Item href="Combine/010/Detail/PerkPage05.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<Item href="Combine/010/Detail/PerkPage06.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
-		<Item href="Combine/010/Detail/PerkPage07.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Combine/010/Detail/PerkPage07.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
 
 		<Item href="Combine/011/Page.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
 		<Item href="Combine/011/Detail/PerkPage01.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
@@ -499,6 +499,15 @@
 		<!-- <Item href="Combine/103/Detail/PerkPage28.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
 		<!-- <Item href="Combine/103/Detail/PerkPage29.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
 		<!-- <Item href="Combine/103/Detail/PerkPage30.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+
+		<Item href="Combine/017/Page.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Combine/017/Detail/PerkPage01.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Combine/017/Detail/PerkPage02.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Combine/017/Detail/PerkPage03.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Combine/017/Detail/PerkPage04.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<Item href="Combine/017/Detail/PerkPage05.(WindowSimple).xdb#xpointer(/WindowSimple)"/>
+		<!-- <Item href="Combine/017/Detail/PerkPage06.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
+		<!-- <Item href="Combine/017/Detail/PerkPage07.(WindowSimple).xdb#xpointer(/WindowSimple)"/> -->
 	</Children>
 	<Background/>
 	<Foreground/>

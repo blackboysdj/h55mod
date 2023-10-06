@@ -12,7 +12,7 @@
 	<KnownSpells>
 		<Item>
 			<Spell>SPELL_CELESTIAL_SHIELD</Spell>
-			<Mastery>MASTERY_NONE</Mastery>
+			<Mastery>MASTERY_ADVANCED</Mastery>
 		</Item>
 		<Item>
 			<Spell>SPELL_FIREWALL</Spell>

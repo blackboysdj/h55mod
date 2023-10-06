@@ -3241,8 +3241,8 @@
 				<Item>HERO_SKILL_EMPTY_SLOT087</Item>
 				<Item>HERO_SKILL_EMPTY_SLOT088</Item>
 				<Item>HERO_SKILL_EMPTY_SLOT089</Item>
-				<Item>HERO_SKILL_EMPTY_SLOT090</Item>
-				<Item>HERO_SKILL_EMPTY_SLOT091</Item>
+				<Item>HERO_SKILL_EVIL_EXPEDITION</Item>
+				<Item>HERO_SKILL_SAFETY_STEP</Item>
 				<Item>HERO_SKILL_RAGE_RUSH</Item>
 				<Item>HERO_SKILL_ANTI_MAGIC</Item>
 				<Item>HERO_SKILL_MAGIC_BALANCE</Item>
@@ -68228,11 +68228,11 @@
 					<Value>309</Value>
 				</Item>
 				<Item>
-					<Name>HERO_SKILL_EMPTY_SLOT090</Name>
+					<Name>HERO_SKILL_EVIL_EXPEDITION</Name>
 					<Value>310</Value>
 				</Item>
 				<Item>
-					<Name>HERO_SKILL_EMPTY_SLOT091</Name>
+					<Name>HERO_SKILL_SAFETY_STEP</Name>
 					<Value>311</Value>
 				</Item>
 				<Item>

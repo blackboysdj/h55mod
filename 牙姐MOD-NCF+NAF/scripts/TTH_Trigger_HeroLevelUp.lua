@@ -232,6 +232,9 @@ end;
 function TTH_TRIGGER.heroLevelUpRaelag()
 	TTH_TRIGGER.heroLevelUp("Raelag");
 end;
+function TTH_TRIGGER.heroLevelUpRaelag_10WAI()
+	TTH_TRIGGER.heroLevelUp("Raelag_10WAI");
+end;
 function TTH_TRIGGER.heroLevelUpRanleth()
 	TTH_TRIGGER.heroLevelUp("Ranleth");
 end;
@@ -279,6 +282,9 @@ function TTH_TRIGGER.heroLevelUpAberrar()
 end;
 function TTH_TRIGGER.heroLevelUpNimbus()
 	TTH_TRIGGER.heroLevelUp("Nimbus");
+end;
+function TTH_TRIGGER.heroLevelUpAnastasya()
+	TTH_TRIGGER.heroLevelUp("Anastasya");
 end;
 function TTH_TRIGGER.heroLevelUpMuscip()
 	TTH_TRIGGER.heroLevelUp("Muscip");
@@ -399,6 +405,9 @@ function TTH_TRIGGER.heroLevelUpUna()
 end;
 function TTH_TRIGGER.heroLevelUpVegeyr()
 	TTH_TRIGGER.heroLevelUp("Vegeyr");
+end;
+function TTH_TRIGGER.heroLevelUpDavianThule()
+	TTH_TRIGGER.heroLevelUp("DavianThule");
 end;
 function TTH_TRIGGER.heroLevelUpHangvul()
 	TTH_TRIGGER.heroLevelUp("Hangvul");

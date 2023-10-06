@@ -64,13 +64,16 @@
         , [40] = HERO_SKILL_SHAKE_GROUND
         , [41] = HERO_SKILL_MASTER_OF_BLESSING
         , [42] = HERO_SKILL_UNSUMMON
-        , [43] = HERO_SKILL_SHARP_STRIKE
+        , [43] = HERO_SKILL_ELVEN_LUCK
         , [44] = HERO_SKILL_ELEMENTAL_BALANCE
         , [45] = HERO_SKILL_INTELLIGENCE
         , [46] = HERO_SKILL_CONSUME_CORPSE
         , [47] = HERO_SKILL_CHILLING_BONES
         , [48] = HERO_SKILL_REPAIR_MACHINES
         , [49] = HERO_SKILL_ENCHANT_MACHINES
+        , [50] = HERO_SKILL_SAFETY_STEP
+        , [51] = HERO_SKILL_FAST_AND_FURIOUS
+        , [52] = HERO_SKILL_ABSOLUTE_CHARGE
       };
 
     -- 宝物
@@ -101,6 +104,7 @@
         , [23] = ARTIFACT_RING_OF_CELERITY
         , [24] = ARTIFACT_RING_OF_HASTE
         , [25] = ARTIFACT_HORN_OF_CHARGE
+        , [26] = ARTIFACT_BOOTS_OF_SWIFTNESS
       };
 
     -- 组合宝物
@@ -576,7 +580,7 @@
 
       , 'LordHaart', 'Berein', 'Gles', 'Nikolay', 'Straker', 'Tamika', 'Xerxon', 'Karissa'
       , 'Aislinn', 'Effig', 'Giovanni', 'OrnellaNecro', 'Aberrar', 'Muscip'
-      , 'Arantir', 'Nemor', 'Nimbus', 'Pelt', 'Sandro', 'Thant', 'Adelaide', 'Vidomina'
+      , 'Arantir', 'Nemor', 'Nimbus', 'Anastasya', 'Pelt', 'Sandro', 'Thant', 'Adelaide', 'Vidomina'
 
       , 'Hero1', 'Hero2', 'Hero3', 'Hero4', 'Hero6', 'Hero8', 'Hero9'
       , 'Gottai', 'Crag', 'KujinMP', 'Hero7', 'Azar', 'Kraal', 'Kunyak'
@@ -1981,10 +1985,12 @@
             iRecoveryMana = iRecoveryMana * 2;
           end;
         end;
-        local iResultMana = GetUnitManaPoints(sidUnit) + iRecoveryMana;
-        SetUnitManaPoints(sidUnit, iResultMana);
-        print(sidUnit.." recovery "..iRecoveryMana.." mana");
-        repeat sleep(1); until GetUnitManaPoints(sidUnit) == iResultMana;
+        if itemUnit["MaxMana"] > 0 then
+          local iResultMana = GetUnitManaPoints(sidUnit) + iRecoveryMana;
+          SetUnitManaPoints(sidUnit, iResultMana);
+          print(sidUnit.." recovery "..iRecoveryMana.." mana");
+          repeat sleep(1); until GetUnitManaPoints(sidUnit) == iResultMana;
+        end;
       end;
 
     -- 设置英雄魔法值
@@ -3073,20 +3079,20 @@
         local iPosXCaster = itemCreatureCaster["PosX"];
         local iPosYCaster = itemCreatureCaster["PosY"];
         if infoCreatureCaster["CombatSize"] == 2 then
-          if iDiffX == 1 then
+          if iDiffX == -1 then
             iPosXCaster = iPosXCaster - 1;
           end;
-          if iDiffY == 1 then
+          if iDiffY == -1 then
             iPosYCaster = iPosYCaster - 1;
           end;
         end;
         local iPosXTarget = itemCreatureTarget["PosX"];
         local iPosYTarget = itemCreatureTarget["PosY"];
         if infoCreatureTarget["CombatSize"] == 2 then
-          if iDiffX == -1 then
+          if iDiffX == 1 then
             iPosXTarget = iPosXTarget - 1;
           end;
-          if iDiffY == -1 then
+          if iDiffY == 1 then
             iPosYTarget = iPosYTarget - 1;
           end;
         end;
@@ -3226,26 +3232,86 @@
         return itemPosition;
       end;
 
+    -- 获取主力生物
+      TTHCS_GLOBAL.getCreatureMain = function(iSide, iCreatureType)
+        local itemCreatureMain = nil;
+        local listCreature = {};
+        local arrCreature = GetCreatures(iSide);
+        for i, sidCreature in arrCreature do
+          local itemCreature = TTHCS_GLOBAL.geneUnitInfo(sidCreature);
+          if TTHCS_GLOBAL.checkCreatureType(itemCreature, iCreatureType) then
+            push(listCreature, itemCreature);
+          end;
+        end;
+        listCreature = TTHCS_COMMON.desc8key(listCreature, "UnitNumber");
+        if length(listCreature) > 0 then
+          itemCreatureMain = listCreature[0];
+        end;
+        return itemCreatureMain;
+      end;
+
+    -- 立刻行动
+      TTHCS_GLOBAL.moveImmediate = function(sidUnit)
+        local objUnit = TTHCS_GLOBAL.geneUnitInfo(sidUnit);
+        if IsHuman(objUnit["Side"]) then
+          TCS_BATTLE.atb.record(sidUnit, TCS_ENUM.Atb.max);
+        else
+          TCS_BATTLE.atb.record(sidUnit, TCS_ENUM.Atb.immediate);
+        end;
+      end;
+
+    -- 获取随机生物
+      TTHCS_GLOBAL.getRandomCreature = function(iSide)
+        local arrRandomCreature = {};
+        local arrCreature = GetCreatures(iSide);
+        local iIndexRandomCreature = TTHCS_COMMON.getRandom(length(arrCreature));
+        local sidRandomCreature = arrCreature[iIndexRandomCreature];
+        push(arrRandomCreature, sidRandomCreature);
+        local sidHero = GetHero(iSide);
+        if 1 == 1
+          and sidHero ~= nil
+          and GetHeroName(sidHero) == TCS_FUNC.Talent.Nadaur.strHero
+          and TCS_VARI.Info.HeroUpgradeMastery[GetHeroName(sidHero)] == 1
+        then
+          local objCreatureMainBladeJuggler = TTHCS_GLOBAL.getCreatureMain(iSide, CREATURE_BLADE_JUGGLER);
+          if objCreatureMainBladeJuggler ~= nil then
+            push(arrRandomCreature, objCreatureMainBladeJuggler["UnitName"]);
+          end;
+          local objCreatureMainWoodElf = TTHCS_GLOBAL.getCreatureMain(iSide, CREATURE_WOOD_ELF);
+          if objCreatureMainWoodElf ~= nil then
+            push(arrRandomCreature, objCreatureMainWoodElf["UnitName"]);
+          end;
+          local objCreatureMainDruid = TTHCS_GLOBAL.getCreatureMain(iSide, CREATURE_DRUID);
+          if objCreatureMainDruid ~= nil then
+            push(arrRandomCreature, objCreatureMainDruid["UnitName"]);
+          end;
+        end;
+        return arrRandomCreature;
+      end;
+
   TTHCS_PATH = {};
     TTHCS_PATH["Talent"] = {};
       -- Orrin 002 杜戈尔
         TTHCS_PATH["Talent"]["Orrin"] = {};
         TTHCS_PATH["Talent"]["Orrin"]["Effect"] = "/Text/TTH/Heroes/Specializations/Heaven/002-Orrin/Combat/Effect.txt";
+      -- Mardigo 003 拉兹罗
+        TTHCS_PATH["Talent"]["Mardigo"] = {};
+        TTHCS_PATH["Talent"]["Mardigo"]["Effect"] = "/Text/TTH/Heroes/Specializations/Heaven/003-Mardigo/Combat/Effect.txt";
       -- Ving 004 艾莲娜
         TTHCS_PATH["Talent"]["Ving"] = {};
         TTHCS_PATH["Talent"]["Ving"]["Effect"] = "/Text/TTH/Heroes/Specializations/Heaven/004-Ving/Combat/Effect.txt";
       -- Sarge 005 克劳斯
         TTHCS_PATH["Talent"]["Sarge"] = {};
         TTHCS_PATH["Talent"]["Sarge"]["Effect"] = "/Text/TTH/Heroes/Specializations/Heaven/005-Sarge/Combat/Effect.txt";
+      -- Christian 007 维托利奥
+        TTHCS_PATH["Talent"]["Christian"] = {};
+        TTHCS_PATH["Talent"]["Christian"]["Effect"] = "/Text/TTH/Heroes/Specializations/Heaven/007-Christian/Combat/Effect.txt";
       -- RedHeavenHero05 009 伯权德
         TTHCS_PATH["Talent"]["RedHeavenHero05"] = {};
         TTHCS_PATH["Talent"]["RedHeavenHero05"]["Effect"] = "/Text/TTH/Heroes/Specializations/Heaven/009-RedHeavenHero05/Combat/Effect.txt";
       -- Nicolai 011 尼克莱
         TTHCS_PATH["Talent"]["Nicolai"] = {};
         TTHCS_PATH["Talent"]["Nicolai"]["Effect"] = "/Text/TTH/Heroes/Specializations/Heaven/011-Nicolai/Combat/Effect.txt";
-      -- Avitus 157 阿维图斯
-        TTHCS_PATH["Talent"]["Avitus"] = {};
-        TTHCS_PATH["Talent"]["Avitus"]["Effect"] = "/Text/TTH/Heroes/Specializations/Heaven/157-Avitus/Combat/Effect.txt";
       -- Tarkus 158 塔库斯
         TTHCS_PATH["Talent"]["Tarkus"] = {};
         TTHCS_PATH["Talent"]["Tarkus"]["Effect"] = "/Text/TTH/Heroes/Specializations/Heaven/158-Tarkus/Combat/Effect.txt";
@@ -3303,7 +3369,9 @@
         TTHCS_PATH["Talent"]["Menel"]["Effect"] = "/Text/TTH/Heroes/Specializations/Dungeon/060-Menel/Combat/Effect.txt";
       -- Ferigl 061 索戈尔
         TTHCS_PATH["Talent"]["Ferigl"] = {};
-        TTHCS_PATH["Talent"]["Ferigl"]["Effect"] = "/Text/TTH/Heroes/Specializations/Dungeon/061-Ferigl/Combat/Effect.txt";
+        TTHCS_PATH["Talent"]["Ferigl"]["EffectBasic"] = "/Text/TTH/Heroes/Specializations/Dungeon/061-Ferigl/Combat/EffectBasic.txt";
+        TTHCS_PATH["Talent"]["Ferigl"]["EffectAdvanced"] = "/Text/TTH/Heroes/Specializations/Dungeon/061-Ferigl/Combat/EffectAdvanced.txt";
+        TTHCS_PATH["Talent"]["Ferigl"]["EffectExpert"] = "/Text/TTH/Heroes/Specializations/Dungeon/061-Ferigl/Combat/EffectExpert.txt";
       -- Ohtarig 064 维尚
         TTHCS_PATH["Talent"]["Ohtarig"] = {};
         TTHCS_PATH["Talent"]["Ohtarig"]["Effect"] = "/Text/TTH/Heroes/Specializations/Dungeon/064-Ohtarig/Combat/Effect.txt";
@@ -3331,6 +3399,9 @@
       -- Sephinroth 076 萨费罗斯
         TTHCS_PATH["Talent"]["Sephinroth"] = {};
         TTHCS_PATH["Talent"]["Sephinroth"]["Effect"] = "/Text/TTH/Heroes/Specializations/Dungeon/076-Sephinroth/Combat/Effect.txt";
+      -- LordHaart 077 罗德·哈特
+        TTHCS_PATH["Talent"]["LordHaart"] = {};
+        TTHCS_PATH["Talent"]["LordHaart"]["Effect"] = "/Text/TTH/Heroes/Specializations/Necromancy/077-LordHaart/Combat/Effect.txt";
       -- Gles 079 卡斯帕
         TTHCS_PATH["Talent"]["Gles"] = {};
         TTHCS_PATH["Talent"]["Gles"]["Effect"] = "/Text/TTH/Heroes/Specializations/Necromancy/079-Gles/Combat/Effect.txt";
@@ -3446,7 +3517,8 @@
       -- Hero8 137 坦尔塞克
         TTHCS_PATH["Talent"]["Hero8"] = {};
         TTHCS_PATH["Talent"]["Hero8"]["Effect"] = "/Text/TTH/Heroes/Specializations/Stronghold/137-Hero8/Combat/Effect.txt";
-        TTHCS_PATH["Talent"]["Hero8"]["Revive"] = "/Text/TTH/Heroes/Specializations/Stronghold/137-Hero8/Combat/Revive.txt";
+        TTHCS_PATH["Talent"]["Hero8"]["Creature"] = "/Text/TTH/Heroes/Specializations/Stronghold/137-Hero8/Combat/Creature.txt";
+        TTHCS_PATH["Talent"]["Hero8"]["Hero"] = "/Text/TTH/Heroes/Specializations/Stronghold/137-Hero8/Combat/Hero.txt";
       -- Azar 138 艾扎-埃克
         TTHCS_PATH["Talent"]["Azar"] = {};
         TTHCS_PATH["Talent"]["Azar"]["Effect"] = "/Text/TTH/Heroes/Specializations/Stronghold/138-Azar/Combat/Effect.txt";
@@ -3534,19 +3606,19 @@
       -- HERO_SKILL_FOREST_GUARD_EMBLEM 115 战地支援
         TTHCS_PATH["Perk"][HERO_SKILL_FOREST_GUARD_EMBLEM] = {};
         TTHCS_PATH["Perk"][HERO_SKILL_FOREST_GUARD_EMBLEM]["Effect"] = "/Text/TTH/Skills/Leadership/115-ForestGuardEmblem/Combat/Effect.txt";
-      -- HERO_SKILL_SHARP_STRIKE 320 锐利一击
-        TTHCS_PATH["Perk"][HERO_SKILL_SHARP_STRIKE] = {};
-        TTHCS_PATH["Perk"][HERO_SKILL_SHARP_STRIKE]["Effect"] = "/Text/TTH/Skills/Avenger/320-SharpStrike/Combat/Effect.txt";
+      -- HERO_SKILL_ELVEN_LUCK 116 精灵的幸运
+        TTHCS_PATH["Perk"][HERO_SKILL_ELVEN_LUCK] = {};
+        TTHCS_PATH["Perk"][HERO_SKILL_ELVEN_LUCK]["Effect"] = "/Text/TTH/Skills/Avenger/116-ElvenLuck/Combat/Effect.txt";
       -- HERO_SKILL_ECHO_OF_SYLANNA 315 西莱纳的回响
         TTHCS_PATH["Perk"][HERO_SKILL_ECHO_OF_SYLANNA] = {};
         TTHCS_PATH["Perk"][HERO_SKILL_ECHO_OF_SYLANNA]["Effect"] = "/Text/TTH/Skills/Avenger/315-EchoOfSylanna/Combat/Effect.txt";
-      -- HERO_SKILL_REMOTE_CONTROL 126 附魔机械
-        TTHCS_PATH["Perk"][HERO_SKILL_REMOTE_CONTROL] = {};
-        TTHCS_PATH["Perk"][HERO_SKILL_REMOTE_CONTROL]["Effect"] = "/Text/TTH/Skills/Artificier/126-RemoteControl/Combat/Effect.txt";
-        TTHCS_PATH["Perk"][HERO_SKILL_REMOTE_CONTROL]["EffectAll"] = "/Text/TTH/Skills/Artificier/126-RemoteControl/Combat/EffectAll.txt";
-        TTHCS_PATH["Perk"][HERO_SKILL_REMOTE_CONTROL]["Effect1"] = "/Text/TTH/Skills/Artificier/126-RemoteControl/Combat/Effect1.txt";
-        TTHCS_PATH["Perk"][HERO_SKILL_REMOTE_CONTROL]["Effect2"] = "/Text/TTH/Skills/Artificier/126-RemoteControl/Combat/Effect2.txt";
-        TTHCS_PATH["Perk"][HERO_SKILL_REMOTE_CONTROL]["Effect3"] = "/Text/TTH/Skills/Artificier/126-RemoteControl/Combat/Effect3.txt";
+      -- HERO_SKILL_ENCHANT_MACHINES 316 附魔机械
+        TTHCS_PATH["Perk"][HERO_SKILL_ENCHANT_MACHINES] = {};
+        TTHCS_PATH["Perk"][HERO_SKILL_ENCHANT_MACHINES]["Effect"] = "/Text/TTH/Skills/Artificier/316-EnchantMachines/Combat/Effect.txt";
+        TTHCS_PATH["Perk"][HERO_SKILL_ENCHANT_MACHINES]["EffectAll"] = "/Text/TTH/Skills/Artificier/316-EnchantMachines/Combat/EffectAll.txt";
+        TTHCS_PATH["Perk"][HERO_SKILL_ENCHANT_MACHINES]["Effect1"] = "/Text/TTH/Skills/Artificier/316-EnchantMachines/Combat/Effect1.txt";
+        TTHCS_PATH["Perk"][HERO_SKILL_ENCHANT_MACHINES]["Effect2"] = "/Text/TTH/Skills/Artificier/316-EnchantMachines/Combat/Effect2.txt";
+        TTHCS_PATH["Perk"][HERO_SKILL_ENCHANT_MACHINES]["Effect3"] = "/Text/TTH/Skills/Artificier/316-EnchantMachines/Combat/Effect3.txt";
       -- HERO_SKILL_SEAL_OF_PROTECTION 131 众志成城
         TTHCS_PATH["Perk"][HERO_SKILL_SEAL_OF_PROTECTION] = {};
         TTHCS_PATH["Perk"][HERO_SKILL_SEAL_OF_PROTECTION]["Effect"] = "/Text/TTH/Skills/Training/131-SealOfProtection/Combat/Effect.txt";
@@ -3569,6 +3641,9 @@
       -- HERO_SKILL_REPAIR_MACHINES 317 战地修理
         TTHCS_PATH["Perk"][HERO_SKILL_REPAIR_MACHINES] = {};
         TTHCS_PATH["Perk"][HERO_SKILL_REPAIR_MACHINES]["Effect"] = "/Text/TTH/Skills/WarMachines/317-RepairMachines/Combat/Effect.txt";
+      -- HERO_SKILL_SAFETY_STEP 311 步步为营
+        TTHCS_PATH["Perk"][HERO_SKILL_SAFETY_STEP] = {};
+        TTHCS_PATH["Perk"][HERO_SKILL_SAFETY_STEP]["Effect"] = "/Text/TTH/Skills/Defence/311-SafetyStep/Combat/Effect.txt";
 
     TTHCS_PATH["Mastery"] = {};
       -- HERO_SKILL_WAR_MACHINES 002 战争机械
@@ -3647,11 +3722,27 @@
       TTHCS_PATH["Creature"]["Enchanter"]["Effect2"] = "/Text/TTH/Creature/Enchanter/Combat/Effect2.txt";
       TTHCS_PATH["Creature"]["Enchanter"]["Effect3"] = "/Text/TTH/Creature/Enchanter/Combat/Effect3.txt";
       TTHCS_PATH["Creature"]["Enchanter"]["EffectConsume"] = "/Text/TTH/Creature/Enchanter/Combat/EffectConsume.txt";
-
+    -- CREATURE_JUSTICAR 188 阿斯塔特修士
       TTHCS_PATH["Creature"][CREATURE_JUSTICAR] = {};
       TTHCS_PATH["Creature"][CREATURE_JUSTICAR]["EffectLayHands"] = "/Text/TTH/Creature/188-Justicar/Combat/EffectLayHands.txt";
       TTHCS_PATH["Creature"][CREATURE_JUSTICAR]["EffectHolyWord"] = "/Text/TTH/Creature/188-Justicar/Combat/EffectHolyWord.txt";
-
+    -- CREATURE_FATE_WEAVER_SPIDER 204 织命蛛后（蜘蛛形态）
+      TTHCS_PATH["Creature"][CREATURE_FATE_WEAVER_SPIDER] = {};
+      TTHCS_PATH["Creature"][CREATURE_FATE_WEAVER_SPIDER]["Effect"] = "/Text/TTH/Creature/204-FateWeaverSpider/Combat/Effect.txt";
+    -- CREATURE_FATE_WEAVER_HUMAN 205 织命蛛后（人形态）
+      TTHCS_PATH["Creature"][CREATURE_FATE_WEAVER_HUMAN] = {};
+      TTHCS_PATH["Creature"][CREATURE_FATE_WEAVER_HUMAN]["Effect"] = "/Text/TTH/Creature/205-FateWeaverHuman/Combat/Effect.txt";
+    -- CREATURE_DEATH_KNIGHT 090 死亡骑士
+      TTHCS_PATH["Creature"][CREATURE_DEATH_KNIGHT] = {};
+      TTHCS_PATH["Creature"][CREATURE_DEATH_KNIGHT]["Effect"] = "/Text/TTH/Creature/090-DeathKnight/Combat/Effect.txt";
+      TTHCS_PATH["Creature"][CREATURE_DEATH_KNIGHT]["EffectAure"] = "/Text/TTH/Creature/090-DeathKnight/Combat/EffectAure.txt";
+    -- CREATURE_FEARLESS_LORD_MELEE 206 无畏领主（冲锋形态）
+      TTHCS_PATH["Creature"][CREATURE_FEARLESS_LORD_MELEE] = {};
+      TTHCS_PATH["Creature"][CREATURE_FEARLESS_LORD_MELEE]["Effect"] = "/Text/TTH/Creature/206-FearlessLordMelee/Combat/Effect.txt";
+    -- CREATURE_FEARLESS_LORD_SHOT 207 无畏领主（重炮形态）
+      TTHCS_PATH["Creature"][CREATURE_FEARLESS_LORD_SHOT] = {};
+      TTHCS_PATH["Creature"][CREATURE_FEARLESS_LORD_SHOT]["Effect"] = "/Text/TTH/Creature/207-FearlessLordShot/Combat/Effect.txt";
+      TTHCS_PATH["Creature"][CREATURE_FEARLESS_LORD_SHOT]["EffectRepair"] = "/Text/TTH/Creature/207-FearlessLordShot/Combat/EffectRepair.txt";
 
     TTHCS_PATH["Continuous"] = {};
       TTHCS_PATH["Continuous"]["Effect"] = "/Text/TTH/Combat/Continuous/Effect.txt";

@@ -3430,6 +3430,7 @@
 					<Item href="/MapObjects/Dungeon/Inagost.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 					<Item href="/MapObjects/Dungeon/Kelodin.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 					<Item href="/MapObjects/Dungeon/Raelag.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+					<Item href="/MapObjects/Dungeon/Raelag_10WAI.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 					<Item href="/MapObjects/Dungeon/Shadwyn.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 					<Item href="/MapObjects/Dungeon/Sephinroth.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 					<Item href="/MapObjects/Dungeon/Kastore.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
@@ -4147,6 +4148,7 @@
 					<Item href="/MapObjects/Necropolis/Aislinn.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 					<Item href="/MapObjects/Necropolis/Giovanni.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 					<Item href="/MapObjects/Necropolis/Nimbus.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+					<Item href="/MapObjects/Necropolis/Anastasya.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 					<Item href="/MapObjects/Necropolis/LordHaart.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 					<Item href="/MapObjects/Necropolis/Aberrar.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 					<Item href="/MapObjects/Necropolis/Effig.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
@@ -5561,6 +5563,7 @@
 					<Item href="/MapObjects/Dwarves/Brand.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 					<Item href="/MapObjects/Dwarves/Egil.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 					<Item href="/MapObjects/Dwarves/Vegeyr.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+					<Item href="/MapObjects/Dwarves/DavianThule.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 					<Item href="/MapObjects/Dwarves/Hangvul.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 					<Item href="/MapObjects/Dwarves/Bart.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 					<Item href="/MapObjects/Dwarves/Vilma.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>

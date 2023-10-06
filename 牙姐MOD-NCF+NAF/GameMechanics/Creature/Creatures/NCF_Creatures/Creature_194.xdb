@@ -1,47 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Creature ObjectRecordID="6">
-	<AttackSkill>4</AttackSkill>
-	<DefenceSkill>8</DefenceSkill>
-	<Shots>12</Shots>
-	<MinDamage>5</MinDamage>
-	<MaxDamage>7</MaxDamage>
+<Creature>
+	<AttackSkill>1</AttackSkill>
+	<DefenceSkill>1</DefenceSkill>
+	<Shots>0</Shots>
+	<MinDamage>1</MinDamage>
+	<MaxDamage>1</MaxDamage>
 	<Speed>1</Speed>
-	<Initiative>12</Initiative>
+	<Initiative>1</Initiative>
 	<Flying>false</Flying>
-	<Health>9999</Health>
-	<KnownSpells>
-		<Item>
-			<Spell>SPELL_ABILITY_SCATTER_SHOT</Spell>
-			<Mastery>MASTERY_EXPERT</Mastery>
-		</Item>
-		<Item>
-			<Spell>SPELL_FROST_RING</Spell>
-			<Mastery>MASTERY_ADVANCED</Mastery>
-		</Item>
-		<Item>
-			<Spell>SPELL_FIREBALL</Spell>
-			<Mastery>MASTERY_ADVANCED</Mastery>
-		</Item>
-		<Item>
-			<Spell>SPELL_FIREWALL</Spell>
-			<Mastery>MASTERY_ADVANCED</Mastery>
-		</Item>
-	</KnownSpells>
-	<SpellPoints>9999</SpellPoints>
+	<Health>1</Health>
+	<KnownSpells/>
+	<SpellPoints>0</SpellPoints>
 	<SpellPoints1>0</SpellPoints1>
 	<SpellPoints2>0</SpellPoints2>
-	<Exp>38</Exp>
-	<Power>524</Power>
+	<Exp>1</Exp>
+	<Power>1</Power>
 	<TimeToCommand>10</TimeToCommand>
-	<CreatureTier>4</CreatureTier>
-	<Upgrade>true</Upgrade>
+	<CreatureTier>1</CreatureTier>
+	<Upgrade>false</Upgrade>
 	<PairCreature>CREATURE_UNKNOWN</PairCreature>
-	<CreatureTown>TOWN_HEAVEN</CreatureTown>
+	<CreatureTown>TOWN_NO_TYPE</CreatureTown>
 	<MagicElement>
-		<First>ELEMENT_FIRE</First>
-		<Second>ELEMENT_AIR</Second>
+		<First>ELEMENT_NONE</First>
+		<Second>ELEMENT_NONE</Second>
 	</MagicElement>
-	<WeeklyGrowth>5</WeeklyGrowth>
+	<WeeklyGrowth>0</WeeklyGrowth>
 	<Cost>
 		<Wood>0</Wood>
 		<Ore>0</Ore>
@@ -49,23 +32,16 @@
 		<Crystal>0</Crystal>
 		<Sulfur>0</Sulfur>
 		<Gem>0</Gem>
-		<Gold>255</Gold>
+		<Gold>0</Gold>
 	</Cost>
 	<SubjectOfRandomGeneration>true</SubjectOfRandomGeneration>
-	<MonsterShared href="/new_creatures/Haven/Crossbow/creature.(AdvMapMonsterShared).xdb#xpointer(/AdvMapMonsterShared)"/>
+	<MonsterShared/>
 	<CombatSize>1</CombatSize>
-	<PatternAttack href="/GameMechanics/Creature/Creatures/Fortress/CrossAttack.xdb#xpointer(/PatternAttack)"/>
+	<PatternAttack/>
 	<flybySequence/>
-	<Visual href="/new_creatures/Haven/Crossbow/creature.(CreatureVisual).xdb#xpointer(/CreatureVisual)"/>
-	<Range>-2</Range>
-	<BaseCreature>CREATURE_ARCHER</BaseCreature>
+	<Visual href="/GameMechanics/CreatureVisual/Creatures/Neutrals/SnowApe.xdb#xpointer(/CreatureVisual)"/>
+	<Range>0</Range>
+	<BaseCreature>CREATURE_UNKNOWN</BaseCreature>
 	<Upgrades/>
-	<Abilities>
-		<Item>ABILITY_IMMUNITY_TO_MAGIC</Item>
-		<Item>ABILITY_SCATTER_SHOT</Item>
-		<Item>ABILITY_CROSS_ATTACK</Item>
-		<Item>ABILITY_PREPARED_POSITION</Item>
-		<Item>ABILITY_IMMUNITY_TO_MAGIC</Item>
-		<Item>ABILITY_UNDEAD</Item>
-	</Abilities>
+	<Abilities/>
 </Creature>

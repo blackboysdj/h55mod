@@ -160,9 +160,9 @@
 				<Type>ARTF_CLASS_RELIC</Type>
 				<Slot>NECK</Slot>
 				<Icon href="/Textures/HeroScreen/Artifacts/ResMercury.xdb#xpointer(/Texture)"/>
-				<CostOfGold>36000</CostOfGold>
-				<AIValue>12000</AIValue>
-				<CanBeGeneratedToSell>true</CanBeGeneratedToSell>
+				<CostOfGold>120000</CostOfGold>
+				<AIValue>40000</AIValue>
+				<CanBeGeneratedToSell>false</CanBeGeneratedToSell>
 				<HeroStatsModif>
 					<Attack>0</Attack>
 					<Defence>0</Defence>

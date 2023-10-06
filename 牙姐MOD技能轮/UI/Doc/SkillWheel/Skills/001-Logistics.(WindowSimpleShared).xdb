@@ -12,6 +12,7 @@
 		<Item href="001-Logistics/Detail/PerkButton8.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="001-Logistics/Detail/PerkButton9.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="001-Logistics/Detail/PerkButtonX.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="001-Logistics/Detail/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 	</Children>
 	<Background/>
 	<Foreground/>

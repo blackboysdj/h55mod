@@ -1,47 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Creature>
-	<AttackSkill>1</AttackSkill>
-	<DefenceSkill>1</DefenceSkill>
+	<AttackSkill>19</AttackSkill>
+	<DefenceSkill>24</DefenceSkill>
 	<Shots>0</Shots>
-	<MinDamage>1</MinDamage>
-	<MaxDamage>1</MaxDamage>
-	<Speed>1</Speed>
-	<Initiative>1</Initiative>
-	<Flying>false</Flying>
-	<Health>1</Health>
+	<MinDamage>20</MinDamage>
+	<MaxDamage>25</MaxDamage>
+	<Speed>5</Speed>
+	<Initiative>15</Initiative>
+	<Flying>true</Flying>
+	<Health>110</Health>
 	<KnownSpells/>
 	<SpellPoints>0</SpellPoints>
-	<SpellPoints1>0</SpellPoints1>
+	<SpellPoints1>1</SpellPoints1>
 	<SpellPoints2>0</SpellPoints2>
-	<Exp>1</Exp>
-	<Power>1</Power>
+	<Exp>150</Exp>
+	<Power>2800</Power>
 	<TimeToCommand>10</TimeToCommand>
-	<CreatureTier>1</CreatureTier>
+	<CreatureTier>6</CreatureTier>
 	<Upgrade>false</Upgrade>
 	<PairCreature>CREATURE_UNKNOWN</PairCreature>
-	<CreatureTown>TOWN_NO_TYPE</CreatureTown>
+	<CreatureTown>TOWN_FORTRESS</CreatureTown>
 	<MagicElement>
-		<First>ELEMENT_NONE</First>
+		<First>ELEMENT_AIR</First>
 		<Second>ELEMENT_NONE</Second>
 	</MagicElement>
-	<WeeklyGrowth>0</WeeklyGrowth>
+	<WeeklyGrowth>2</WeeklyGrowth>
 	<Cost>
 		<Wood>0</Wood>
 		<Ore>0</Ore>
-		<Mercury>0</Mercury>
+		<Mercury>1</Mercury>
 		<Crystal>0</Crystal>
 		<Sulfur>0</Sulfur>
 		<Gem>0</Gem>
-		<Gold>0</Gold>
+		<Gold>2050</Gold>
 	</Cost>
+	<PresetPrice>0</PresetPrice>
 	<SubjectOfRandomGeneration>true</SubjectOfRandomGeneration>
-	<MonsterShared/>
-	<CombatSize>1</CombatSize>
+	<MonsterShared href="/MapObjects/Dwarf/Tunder_Thane.(AdvMapMonsterShared).xdb#xpointer(/AdvMapMonsterShared)"/>
+	<CombatSize>2</CombatSize>
 	<PatternAttack/>
 	<flybySequence/>
-	<Visual href="/GameMechanics/CreatureVisual/Creatures/Neutrals/SnowApe.xdb#xpointer(/CreatureVisual)"/>
+	<Visual href="/GameMechanics/CreatureVisual/Creatures/Dwarf/FearlessLordShot.(CreatureVisual).xdb#xpointer(/CreatureVisual)"/>
 	<Range>0</Range>
-	<BaseCreature>CREATURE_UNKNOWN</BaseCreature>
+	<BaseCreature>CREATURE_BEAR_RIDER</BaseCreature>
 	<Upgrades/>
-	<Abilities/>
+	<Abilities>
+		<Item>ABILITY_MECHANICAL</Item>
+		<Item>ABILITY_ARMORED</Item>
+		<Item>ABILITY_STORMSTRIKE</Item>
+		<Item>ABILITY_STORMBOLT</Item>
+		<Item>ABILITY_FLAMESTRIKE</Item>
+	</Abilities>
 </Creature>

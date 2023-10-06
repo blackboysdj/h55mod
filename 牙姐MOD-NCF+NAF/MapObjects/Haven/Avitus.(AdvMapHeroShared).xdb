@@ -61,7 +61,7 @@
 		</skills>
 		<perkIDs/>
 		<spellIDs>
-			<Item>SPELL_STONE_SPIKES</Item>
+			<Item>SPELL_BLOODLUST</Item>
 		</spellIDs>
 		<Ballista>false</Ballista>
 		<FirstAidTent>false</FirstAidTent>

@@ -2,19 +2,19 @@
 <Camera>
 	<Name/>
 	<Pos>
-		<x>-2.91306</x>
-		<y>-15.2688</y>
-		<z>1.88227</z>
+		<x>3.10000</x>
+		<y>-5.70000</y>
+		<z>2.15000</z>
 	</Pos>
 	<Rot>
-		<x>-6.34191</x>
-		<y>-1.2952</y>
+		<x>-8.74000</x>
+		<y>41.0000</y>
 		<z>0</z>
 	</Rot>
-	<Rod>14.6206</Rod>
-	<FOV>54.4316</FOV>
+	<Rod>3.18000</Rod>
+	<FOV>54.43000</FOV>
 	<ClipDistanceMin>1</ClipDistanceMin>
 	<ClipDistanceMax>500</ClipDistanceMax>
-	<SrcName>Cameras\Interface\HireCreatures.mb</SrcName>
-	<RootJoint>camera_hire_screen</RootJoint>
+	<SrcName/>
+	<RootJoint/>
 </Camera>

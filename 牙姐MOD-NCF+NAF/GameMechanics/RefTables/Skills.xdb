@@ -1562,8 +1562,8 @@
 						<Class>HERO_CLASS_RETRIBUTION</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_DEMONIC_STRIKE</Item>
-							<Item>HERO_SKILL_ARCANE_TRAINING</Item>
-							<Item>HERO_SKILL_ACADEMY_AWARD</Item>
+							<Item>HERO_SKILL_ENCOURAGE</Item>
+							<Item>HERO_SKILL_STUDENT_AWARD</Item>
 						</dependenciesIDs>
 					</Item>
 				</SkillPrerequisites>
@@ -5351,21 +5351,9 @@
 				<CommonDescriptionFileRef href=""/>
 				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
 				<HeroClass>HERO_CLASS_NONE</HeroClass>
-				<spellBuffs>
-					<Item>SPELL_EFFECT_BATTLE_RAGE</Item>
-					<Item>SPELL_EFFECT_BATTLE_RAGE</Item>
-				</spellBuffs>
+				<spellBuffs/>
 				<BasicSkillID>HERO_SKILL_NECROMANCY</BasicSkillID>
-				<SkillPrerequisites>
-					<Item>
-						<Class>HERO_CLASS_DEATHKNIGHT</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_LORD_OF_UNDEAD</Item>
-							<Item>HERO_SKILL_WEAKENING_STRIKE</Item>
-							<Item>HERO_SKILL_SOIL_BURN</Item>
-						</dependenciesIDs>
-					</Item>
-				</SkillPrerequisites>
+				<SkillPrerequisites/>
 				<AIRacesValues>
 					<Haven>
 						<CommanderValue>0</CommanderValue>
@@ -5704,18 +5692,6 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
-						<Class>HERO_CLASS_NECROMANCER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_DIPLOMACY</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_REAVER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_DIPLOMACY</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
 						<Class>HERO_CLASS_WARLOCK</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_DIPLOMACY</Item>
@@ -5753,12 +5729,6 @@
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_DEMON_LORD</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_DIPLOMACY</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_DEATHKNIGHT</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_DIPLOMACY</Item>
 						</dependenciesIDs>
@@ -5909,18 +5879,6 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
-						<Class>HERO_CLASS_NECROMANCER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_FRENZY</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_REAVER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_FRENZY</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
 						<Class>HERO_CLASS_WARLOCK</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_FRENZY</Item>
@@ -5958,12 +5916,6 @@
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_DEMON_LORD</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_FRENZY</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_DEATHKNIGHT</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_FRENZY</Item>
 						</dependenciesIDs>
@@ -11702,18 +11654,27 @@
 				</Texture>
 				<CommonTexture/>
 				<NameFileRef>
-					<Item href="/Text/TTH/Skills/Luck/116-ElvenLuck/Name.txt"/>
+					<Item href="/Text/TTH/Skills/Avenger/116-ElvenLuck/Name.txt"/>
 				</NameFileRef>
 				<CommonNameFileRef href=""/>
 				<DescriptionFileRef>
-					<Item href="/Text/TTH/Skills/Luck/116-ElvenLuck/Description.txt"/>
+					<Item href="/Text/TTH/Skills/Avenger/116-ElvenLuck/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
 				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
 				<HeroClass>HERO_CLASS_NONE</HeroClass>
 				<spellBuffs/>
-				<BasicSkillID>HERO_SKILL_LUCK</BasicSkillID>
-				<SkillPrerequisites/>
+				<BasicSkillID>HERO_SKILL_AVENGER</BasicSkillID>
+				<SkillPrerequisites>
+					<Item>
+						<Class>HERO_CLASS_WARDEN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_FOREST_RAGE</Item>
+							<Item>HERO_SKILL_FOREST_GUARD_EMBLEM</Item>
+							<Item>HERO_SKILL_LUCKY_STRIKE</Item>
+						</dependenciesIDs>
+					</Item>
+				</SkillPrerequisites>
 				<AIRacesValues>
 					<Haven>
 						<CommanderValue>3000</CommanderValue>
@@ -12933,11 +12894,11 @@
 				<BasicSkillID>HERO_SKILL_AVENGER</BasicSkillID>
 				<SkillPrerequisites>
 					<Item>
-						<Class>HERO_CLASS_WARDEN</Class>
+						<Class>HERO_CLASS_RANGER</Class>
 						<dependenciesIDs>
-							<Item>HERO_SKILL_FOREST_RAGE</Item>
-							<Item>HERO_SKILL_FOREST_GUARD_EMBLEM</Item>
-							<Item>HERO_SKILL_DEFENSIVE_FORMATION</Item>
+							<Item>HERO_SKILL_CUNNING_OF_THE_WOODS</Item>
+							<Item>HERO_SKILL_CHILLING_STEEL</Item>
+							<Item>HERO_SKILL_EAGLE_EYE</Item>
 						</dependenciesIDs>
 					</Item>
 				</SkillPrerequisites>
@@ -13424,18 +13385,6 @@
 						</dependenciesIDs>
 					</Item>
 					<Item>
-						<Class>HERO_CLASS_NECROMANCER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_DIPLOMACY</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_REAVER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_DIPLOMACY</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
 						<Class>HERO_CLASS_WARLOCK</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_DIPLOMACY</Item>
@@ -13473,12 +13422,6 @@
 					</Item>
 					<Item>
 						<Class>HERO_CLASS_DEMON_LORD</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_DIPLOMACY</Item>
-						</dependenciesIDs>
-					</Item>
-					<Item>
-						<Class>HERO_CLASS_DEATHKNIGHT</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_DIPLOMACY</Item>
 						</dependenciesIDs>
@@ -13561,7 +13504,146 @@
 				<HeroClass>HERO_CLASS_NONE</HeroClass>
 				<spellBuffs/>
 				<BasicSkillID>HERO_SKILL_LOGISTICS</BasicSkillID>
-				<SkillPrerequisites/>
+				<SkillPrerequisites>
+					<Item>
+						<Class>HERO_CLASS_KNIGHT</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_PATH_OF_WAR</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_PALADIN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_PATH_OF_WAR</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_PATH_OF_WAR</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_HERETIC</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_PATH_OF_WAR</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RANGER</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_PATH_OF_WAR</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_WARDEN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_PATH_OF_WAR</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_ENCHANTER</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_PATH_OF_WAR</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_SORCERER</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_PATH_OF_WAR</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_GATE_KEEPER</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_PATH_OF_WAR</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_FLAMEKEEPERA</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_PATH_OF_WAR</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_ENGINEER</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_PATH_OF_WAR</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_NECROMANCER</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_PATH_OF_WAR</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_REAVER</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_PATH_OF_WAR</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_WARLOCK</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_PATH_OF_WAR</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_BEASTMASTER</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_PATH_OF_WAR</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_GUILDMASTER</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_PATH_OF_WAR</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_SEER</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_PATH_OF_WAR</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_WIZARD</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_PATH_OF_WAR</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_ELEMENTALIST</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_PATH_OF_WAR</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_DEMON_LORD</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_PATH_OF_WAR</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_DEATHKNIGHT</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_PATH_OF_WAR</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RUNEMAGE</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_PATH_OF_WAR</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_BARBARIAN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_PATH_OF_WAR</Item>
+						</dependenciesIDs>
+					</Item>
+				</SkillPrerequisites>
 				<AIRacesValues>
 					<Haven>
 						<CommanderValue>1000</CommanderValue>
@@ -30527,26 +30609,38 @@
 			</obj>
 		</Item>
 		<Item>
-			<ID>HERO_SKILL_EMPTY_SLOT090</ID>
+			<ID>HERO_SKILL_EVIL_EXPEDITION</ID>
 			<obj>
 				<Texture>
-					<Item href="/Textures/HeroScreen/Feats/Knight/WarMachines_FastBallista_grey.xdb#xpointer(/Texture)"/>
-					<Item href="/Textures/HeroScreen/Feats/Knight/WarMachines_FastBallista.xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/TTH/Skills/Necromancy/310-EvilExpedition/310-EvilExpedition.(Texture).xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/TTH/Skills/Necromancy/310-EvilExpedition/310-EvilExpedition.(Texture).xdb#xpointer(/Texture)"/>
 				</Texture>
 				<CommonTexture/>
 				<NameFileRef>
-					<Item href="/Text/TTH/Skills/Z-EmptySlot/090/Name.txt"/>
+					<Item href="/Text/TTH/Skills/Necromancy/310-EvilExpedition/Name.txt"/>
 				</NameFileRef>
 				<CommonNameFileRef href=""/>
 				<DescriptionFileRef>
-					<Item href="/Text/TTH/Skills/Z-EmptySlot/090/Description.txt"/>
+					<Item href="/Text/TTH/Skills/Necromancy/310-EvilExpedition/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
 				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
 				<HeroClass>HERO_CLASS_NONE</HeroClass>
-				<spellBuffs/>
-				<BasicSkillID>HERO_SKILL_WAR_MACHINES</BasicSkillID>
-				<SkillPrerequisites/>
+				<spellBuffs>
+					<Item>SPELL_EFFECT_BATTLE_RAGE</Item>
+					<Item>SPELL_EFFECT_BATTLE_RAGE</Item>
+				</spellBuffs>
+				<BasicSkillID>HERO_SKILL_NECROMANCY</BasicSkillID>
+				<SkillPrerequisites>
+					<Item>
+						<Class>HERO_CLASS_DEATHKNIGHT</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_LORD_OF_UNDEAD</Item>
+							<Item>HERO_SKILL_FRENZY</Item>
+							<Item>HERO_SKILL_SOIL_BURN</Item>
+						</dependenciesIDs>
+					</Item>
+				</SkillPrerequisites>
 				<AIRacesValues>
 					<Haven>
 						<CommanderValue>3000</CommanderValue>
@@ -30593,26 +30687,165 @@
 			</obj>
 		</Item>
 		<Item>
-			<ID>HERO_SKILL_EMPTY_SLOT091</ID>
+			<ID>HERO_SKILL_SAFETY_STEP</ID>
 			<obj>
 				<Texture>
-					<Item href="/Textures/HeroScreen/Feats/Knight/WarMachines_FastBallista_grey.xdb#xpointer(/Texture)"/>
-					<Item href="/Textures/HeroScreen/Feats/Knight/WarMachines_FastBallista.xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/TTH/Skills/Defence/311-SafetyStep/311-SafetyStep.(Texture).xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/TTH/Skills/Defence/311-SafetyStep/311-SafetyStep.(Texture).xdb#xpointer(/Texture)"/>
 				</Texture>
 				<CommonTexture/>
 				<NameFileRef>
-					<Item href="/Text/TTH/Skills/Z-EmptySlot/091/Name.txt"/>
+					<Item href="/Text/TTH/Skills/Defence/311-SafetyStep/Name.txt"/>
 				</NameFileRef>
 				<CommonNameFileRef href=""/>
 				<DescriptionFileRef>
-					<Item href="/Text/TTH/Skills/Z-EmptySlot/091/Description.txt"/>
+					<Item href="/Text/TTH/Skills/Defence/311-SafetyStep/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
 				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
 				<HeroClass>HERO_CLASS_NONE</HeroClass>
 				<spellBuffs/>
-				<BasicSkillID>HERO_SKILL_WAR_MACHINES</BasicSkillID>
-				<SkillPrerequisites/>
+				<BasicSkillID>HERO_SKILL_DEFENCE</BasicSkillID>
+				<SkillPrerequisites>
+					<Item>
+						<Class>HERO_CLASS_KNIGHT</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_POWER_OF_STONE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_PALADIN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_POWER_OF_STONE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_POWER_OF_STONE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_HERETIC</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_POWER_OF_STONE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RANGER</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_POWER_OF_STONE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_WARDEN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_POWER_OF_STONE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_ENCHANTER</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_POWER_OF_STONE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_SORCERER</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_POWER_OF_STONE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_GATE_KEEPER</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_POWER_OF_STONE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_FLAMEKEEPERA</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_POWER_OF_STONE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_ENGINEER</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_POWER_OF_STONE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_NECROMANCER</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_POWER_OF_STONE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_REAVER</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_POWER_OF_STONE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_WARLOCK</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_POWER_OF_STONE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_BEASTMASTER</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_POWER_OF_STONE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_GUILDMASTER</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_POWER_OF_STONE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_SEER</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_POWER_OF_STONE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_WIZARD</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_POWER_OF_STONE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_ELEMENTALIST</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_POWER_OF_STONE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_DEMON_LORD</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_POWER_OF_STONE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_DEATHKNIGHT</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_POWER_OF_STONE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RUNEMAGE</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_POWER_OF_STONE</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_BARBARIAN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_POWER_OF_STONE</Item>
+						</dependenciesIDs>
+					</Item>
+				</SkillPrerequisites>
 				<AIRacesValues>
 					<Haven>
 						<CommanderValue>3000</CommanderValue>
@@ -31532,16 +31765,7 @@
 				<HeroClass>HERO_CLASS_NONE</HeroClass>
 				<spellBuffs/>
 				<BasicSkillID>HERO_SKILL_AVENGER</BasicSkillID>
-				<SkillPrerequisites>
-					<Item>
-						<Class>HERO_CLASS_RANGER</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_CUNNING_OF_THE_WOODS</Item>
-							<Item>HERO_SKILL_CHILLING_STEEL</Item>
-							<Item>HERO_SKILL_EAGLE_EYE</Item>
-						</dependenciesIDs>
-					</Item>
-				</SkillPrerequisites>
+				<SkillPrerequisites/>
 				<AIRacesValues>
 					<Haven>
 						<CommanderValue>3000</CommanderValue>

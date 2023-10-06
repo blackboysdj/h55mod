@@ -41,6 +41,7 @@
 		<Item href="Combine/101/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="Combine/102/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="Combine/103/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Combine/017/Button.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 
 		<Item href="Combine/001/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="Combine/002/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
@@ -61,6 +62,7 @@
 		<Item href="Combine/101/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="Combine/102/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="Combine/103/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="Combine/017/Selected.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 	</Children>
 	<Background href="Background.(BackgroundSimpleScallingTexture).xdb#xpointer(/BackgroundSimpleScallingTexture)"/>
 	<Foreground/>

@@ -1,30 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Creature>
-	<AttackSkill>1</AttackSkill>
-	<DefenceSkill>1</DefenceSkill>
-	<Shots>0</Shots>
-	<MinDamage>1</MinDamage>
-	<MaxDamage>1</MaxDamage>
-	<Speed>1</Speed>
-	<Initiative>1</Initiative>
+<Creature ObjectRecordID="6">
+	<AttackSkill>5</AttackSkill>
+	<DefenceSkill>5</DefenceSkill>
+	<Shots>12</Shots>
+	<MinDamage>3</MinDamage>
+	<MaxDamage>9</MaxDamage>
+	<Speed>2</Speed>
+	<Initiative>10</Initiative>
 	<Flying>false</Flying>
-	<Health>1</Health>
-	<KnownSpells/>
+	<Health>12</Health>
+	<KnownSpells>
+		<Item>
+			<Spell>SPELL_ABILITY_SCATTER_SHOT</Spell>
+			<Mastery>MASTERY_ADVANCED</Mastery>
+		</Item>
+	</KnownSpells>
 	<SpellPoints>0</SpellPoints>
 	<SpellPoints1>0</SpellPoints1>
 	<SpellPoints2>0</SpellPoints2>
-	<Exp>1</Exp>
-	<Power>1</Power>
+	<Exp>42</Exp>
+	<Power>564</Power>
 	<TimeToCommand>10</TimeToCommand>
-	<CreatureTier>1</CreatureTier>
-	<Upgrade>false</Upgrade>
+	<CreatureTier>4</CreatureTier>
+	<Upgrade>true</Upgrade>
 	<PairCreature>CREATURE_UNKNOWN</PairCreature>
-	<CreatureTown>TOWN_NO_TYPE</CreatureTown>
+	<CreatureTown>TOWN_HEAVEN</CreatureTown>
 	<MagicElement>
-		<First>ELEMENT_NONE</First>
-		<Second>ELEMENT_NONE</Second>
+		<First>ELEMENT_FIRE</First>
+		<Second>ELEMENT_AIR</Second>
 	</MagicElement>
-	<WeeklyGrowth>0</WeeklyGrowth>
+	<WeeklyGrowth>12</WeeklyGrowth>
 	<Cost>
 		<Wood>0</Wood>
 		<Ore>0</Ore>
@@ -32,16 +37,19 @@
 		<Crystal>0</Crystal>
 		<Sulfur>0</Sulfur>
 		<Gem>0</Gem>
-		<Gold>0</Gold>
+		<Gold>255</Gold>
 	</Cost>
 	<SubjectOfRandomGeneration>true</SubjectOfRandomGeneration>
-	<MonsterShared/>
+	<MonsterShared href="/new_creatures/Haven/Crossbow/creature.(AdvMapMonsterShared).xdb#xpointer(/AdvMapMonsterShared)"/>
 	<CombatSize>1</CombatSize>
 	<PatternAttack/>
 	<flybySequence/>
-	<Visual href="/GameMechanics/CreatureVisual/Creatures/Neutrals/SnowApe.xdb#xpointer(/CreatureVisual)"/>
-	<Range>0</Range>
-	<BaseCreature>CREATURE_UNKNOWN</BaseCreature>
+	<Visual href="/new_creatures/Haven/Crossbow/creature_1.(CreatureVisual).xdb#xpointer(/CreatureVisual)"/>
+	<Range>-1</Range>
+	<BaseCreature>CREATURE_ARCHER</BaseCreature>
 	<Upgrades/>
-	<Abilities/>
+	<Abilities>
+		<Item>ABILITY_SCATTER_SHOT</Item>
+		<Item>ABILITY_NO_RANGE_PENALTY</Item>
+	</Abilities>
 </Creature>

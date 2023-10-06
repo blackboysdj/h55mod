@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BackgroundSimpleScallingTexture ObjectRecordID="1001613">
+	<ClassTypeID>285694785</ClassTypeID>
+	<Texture href="Background1.xdb#xpointer(/Texture)"/>
+	<Color>-1</Color>
+	<Size>
+		<x>1024</x>
+		<y>768</y>
+	</Size>
+</BackgroundSimpleScallingTexture>

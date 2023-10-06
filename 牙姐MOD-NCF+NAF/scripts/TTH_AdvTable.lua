@@ -139,380 +139,45 @@
 
 -- 根据英雄技能赠送魔法相关
   TTH_TABLE_GIVE_MAGIC_BY_SKILL = {
-    -- 高级光明 + 愤怒大师 = 正当之力
-    {
-      ["MAGIC"] = TTH_TABLE.Spell[SPELL_BLOODLUST]
-      , ["SKILL_MASTERY"] = {
-        {
-          ["MASTERY"] = SKILL_LIGHT_MAGIC
-          , ["LEVEL"] = 2
+    -- 高级复仇者 + 西莱纳的回响 = 召唤蜂窝
+      {
+        ["MAGIC"] = TTH_TABLE.Spell[SPELL_SUMMON_HIVE]
+        , ["SKILL_MASTERY"] = {
+          {
+            ["MASTERY"] = HERO_SKILL_AVENGER
+            , ["LEVEL"] = 2
+          }
+        }
+        , ["SKILL_PERK"] = {
+          HERO_SKILL_ECHO_OF_SYLANNA
         }
       }
-      , ["SKILL_PERK"] = {
-        PERK_MASTER_OF_WRATH
-      }
-    }
-    -- 高级光明 + 佑福大师 = 非凡神力
-    , {
-      ["MAGIC"] = TTH_TABLE.Spell[SPELL_BLESS]
-      , ["SKILL_MASTERY"] = {
-        {
-          ["MASTERY"] = SKILL_LIGHT_MAGIC
-          , ["LEVEL"] = 2
+    -- 专家制宝术 + 附魔机械 = 幻象军团
+      , {
+        ["MAGIC"] = TTH_TABLE.Spell[SPELL_PHANTOM]
+        , ["SKILL_MASTERY"] = {
+          {
+            ["MASTERY"] = HERO_SKILL_ARTIFICIER
+            , ["LEVEL"] = 3
+          }
+        }
+        , ["SKILL_PERK"] = {
+          HERO_SKILL_ENCHANT_MACHINES
         }
       }
-      , ["SKILL_PERK"] = {
-        PERK_MASTER_OF_BLESSING
-      }
-    }
-    -- 高级光明 + 防护大师 = 偏转飞弹
-    , {
-      ["MAGIC"] = TTH_TABLE.Spell[SPELL_DEFLECT_ARROWS]
-      , ["SKILL_MASTERY"] = {
-        {
-          ["MASTERY"] = SKILL_LIGHT_MAGIC
-          , ["LEVEL"] = 2
-        }
-      }
-      , ["SKILL_PERK"] = {
-        PERK_MASTER_OF_ABJURATION
-      }
-    }
-    -- 高级黑暗 + 心智大师 = 延迟大法
-    , {
-      ["MAGIC"] = TTH_TABLE.Spell[SPELL_SLOW]
-      , ["SKILL_MASTERY"] = {
-        {
-          ["MASTERY"] = SKILL_DARK_MAGIC
-          , ["LEVEL"] = 2
-        }
-      }
-      , ["SKILL_PERK"] = {
-        PERK_MASTER_OF_MIND
-      }
-    }
-    -- 高级黑暗 + 诅咒大师 = 虚弱诅咒
-    , {
-      ["MAGIC"] = TTH_TABLE.Spell[SPELL_CURSE]
-      , ["SKILL_MASTERY"] = {
-        {
-          ["MASTERY"] = SKILL_DARK_MAGIC
-          , ["LEVEL"] = 2
-        }
-      }
-      , ["SKILL_PERK"] = {
-        PERK_MASTER_OF_CURSES
-      }
-    }
-    -- 高级黑暗 + 折磨大师 = 破甲弱化
-    , {
-      ["MAGIC"] = TTH_TABLE.Spell[SPELL_DISRUPTING_RAY]
-      , ["SKILL_MASTERY"] = {
-        {
-          ["MASTERY"] = SKILL_DARK_MAGIC
-          , ["LEVEL"] = 2
-        }
-      }
-      , ["SKILL_PERK"] = {
-        PERK_MASTER_OF_SICKNESS
-      }
-    }
-    -- 高级召唤 + 地血大师 = 火焰陷阱
-    , {
-      ["MAGIC"] = TTH_TABLE.Spell[SPELL_LAND_MINE]
-      , ["SKILL_MASTERY"] = {
-        {
-          ["MASTERY"] = SKILL_SUMMONING_MAGIC
-          , ["LEVEL"] = 2
-        }
-      }
-      , ["SKILL_PERK"] = {
-        PERK_MASTER_OF_QUAKES
-      }
-    }
-    -- 高级召唤 + 西莱纳的回响 = 召唤蜂窝
-    , {
-      ["MAGIC"] = TTH_TABLE.Spell[SPELL_SUMMON_HIVE]
-      , ["SKILL_MASTERY"] = {
-        {
-          ["MASTERY"] = SKILL_SUMMONING_MAGIC
-          , ["LEVEL"] = 2
-        }
-      }
-      , ["SKILL_PERK"] = {
-        HERO_SKILL_ECHO_OF_SYLANNA
-      }
-    }
-    -- 专家召唤 + 西莱纳的回响 + 符咒大师 = 召唤凤凰
-    , {
-      ["MAGIC"] = TTH_TABLE.Spell[SPELL_CONJURE_PHOENIX]
-      , ["SKILL_MASTERY"] = {
-        {
-          ["MASTERY"] = SKILL_SUMMONING_MAGIC
-          , ["LEVEL"] = 2
-        }
-      }
-      , ["SKILL_PERK"] = {
-        HERO_SKILL_ECHO_OF_SYLANNA
-        , PERK_MASTER_OF_CREATURES
-      }
-    }
-    -- 专家召唤 + 符咒大师 = 召唤元素
-    , {
-      ["MAGIC"] = TTH_TABLE.Spell[SPELL_SUMMON_ELEMENTALS]
-      , ["SKILL_MASTERY"] = {
-        {
-          ["MASTERY"] = SKILL_SUMMONING_MAGIC
-          , ["LEVEL"] = 3
-        }
-      }
-      , ["SKILL_PERK"] = {
-        PERK_MASTER_OF_CREATURES
-      }
-    }
-    -- 高级召唤 + 生命大师 = 亡灵复生
-    , {
-      ["MAGIC"] = TTH_TABLE.Spell[SPELL_ANIMATE_DEAD]
-      , ["SKILL_MASTERY"] = {
-        {
-          ["MASTERY"] = SKILL_SUMMONING_MAGIC
-          , ["LEVEL"] = 2
-        }
-      }
-      , ["SKILL_PERK"] = {
-        PERK_MASTER_OF_ANIMATION
-      }
-    }
-    -- 高级破坏 + 寒冰大师 = 寒冰激射
-    , {
-      ["MAGIC"] = TTH_TABLE.Spell[SPELL_ICE_BOLT]
-      , ["SKILL_MASTERY"] = {
-        {
-          ["MASTERY"] = SKILL_DESTRUCTIVE_MAGIC
-          , ["LEVEL"] = 2
-        }
-      }
-      , ["SKILL_PERK"] = {
-        PERK_MASTER_OF_ICE
-      }
-    }
-    -- 高级破坏 + 烈火大师 = 连珠火球
-    , {
-      ["MAGIC"] = TTH_TABLE.Spell[SPELL_FIREBALL]
-      , ["SKILL_MASTERY"] = {
-        {
-          ["MASTERY"] = SKILL_DESTRUCTIVE_MAGIC
-          , ["LEVEL"] = 2
-        }
-      }
-      , ["SKILL_PERK"] = {
-        PERK_MASTER_OF_FIRE
-      }
-    }
-    -- 初级破坏 + 风暴大师 = 霹雳闪电
-    , {
-      ["MAGIC"] = TTH_TABLE.Spell[SPELL_LIGHTNING_BOLT]
-      , ["SKILL_MASTERY"] = {
-        {
-          ["MASTERY"] = SKILL_DESTRUCTIVE_MAGIC
-          , ["LEVEL"] = 1
-        }
-      }
-      , ["SKILL_PERK"] = {
-        PERK_MASTER_OF_LIGHTNINGS
-      }
-    }
-    -- 专家破坏 + 致命深寒 = 严冬冰环
-    , {
-      ["MAGIC"] = TTH_TABLE.Spell[SPELL_FROST_RING]
-      , ["SKILL_MASTERY"] = {
-        {
-          ["MASTERY"] = SKILL_DESTRUCTIVE_MAGIC
-          , ["LEVEL"] = 3
-        }
-      }
-      , ["SKILL_PERK"] = {
-        NECROMANCER_FEAT_DEADLY_COLD
-      }
-    }
-    -- 专家光明 + 高级召唤 + 生命大师 = 活力再生
-    , {
-      ["MAGIC"] = TTH_TABLE.Spell[SPELL_REGENERATION]
-      , ["SKILL_MASTERY"] = {
-        {
-          ["MASTERY"] = SKILL_LIGHT_MAGIC
-          , ["LEVEL"] = 3
-        }
-        , {
-          ["MASTERY"] = SKILL_SUMMONING_MAGIC
-          , ["LEVEL"] = 2
-        }
-      }
-      , ["SKILL_PERK"] = {
-        PERK_MASTER_OF_ANIMATION
-      }
-    }
-    -- 初级黑暗 + 心智大师 + 高级召唤 + 迷雾之墙 = 迷惑心智
-    , {
-      ["MAGIC"] = TTH_TABLE.Spell[SPELL_FORGETFULNESS]
-      , ["SKILL_MASTERY"] = {
-        {
-          ["MASTERY"] = SKILL_DARK_MAGIC
-          , ["LEVEL"] = 1
-        }
-        , {
-          ["MASTERY"] = SKILL_SUMMONING_MAGIC
-          , ["LEVEL"] = 2
-        }
-      }
-      , ["SKILL_PERK"] = {
-        PERK_MASTER_OF_MIND
-        , RANGER_FEAT_FOG_VEIL
-      }
-    }
-    -- 高级召唤 + 迷雾之墙 + 高级破坏 + 点燃 = 火墙阻隔
-    , {
-      ["MAGIC"] = TTH_TABLE.Spell[SPELL_FIREWALL]
-      , ["SKILL_MASTERY"] = {
-        {
-          ["MASTERY"] = SKILL_SUMMONING_MAGIC
-          , ["LEVEL"] = 2
-        }
-        , {
-          ["MASTERY"] = SKILL_DESTRUCTIVE_MAGIC
-          , ["LEVEL"] = 2
-        }
-      }
-      , ["SKILL_PERK"] = {
-        HERO_SKILL_SET_AFIRE
-        , RANGER_FEAT_FOG_VEIL
-      }
-    }
-    -- 高级破坏 + 风暴大师 + 高级光明 + 暴风来袭 = 连锁闪电
-    , {
-      ["MAGIC"] = TTH_TABLE.Spell[SPELL_CHAIN_LIGHTNING]
-      , ["SKILL_MASTERY"] = {
-        {
-          ["MASTERY"] = SKILL_DESTRUCTIVE_MAGIC
-          , ["LEVEL"] = 2
-        }
-        , {
-          ["MASTERY"] = SKILL_LIGHT_MAGIC
-          , ["LEVEL"] = 2
-        }
-      }
-      , ["SKILL_PERK"] = {
-        PERK_MASTER_OF_LIGHTNINGS
-        , RANGER_FEAT_STORM_WIND
-      }
-    }
-    -- 专家制宝 + 附魔机械 + 高级召唤 + 生命大师 = 幻象军团
-    , {
-      ["MAGIC"] = TTH_TABLE.Spell[SPELL_PHANTOM]
-      , ["SKILL_MASTERY"] = {
-        {
-          ["MASTERY"] = HERO_SKILL_ARTIFICIER
-          , ["LEVEL"] = 3
-        }
-        , {
-          ["MASTERY"] = SKILL_SUMMONING_MAGIC
-          , ["LEVEL"] = 2
-        }
-      }
-      , ["SKILL_PERK"] = {
-        HERO_SKILL_ENCHANT_MACHINES
-        , HERO_SKILL_MASTER_OF_ANIMATION
-      }
-    }
     -- 专家异界传送 + 混乱风暴 = 流星火雨
-    , {
-      ["MAGIC"] = TTH_TABLE.Spell[SPELL_METEOR_SHOWER]
-      , ["SKILL_MASTERY"] = {
-        {
-          ["MASTERY"] = HERO_SKILL_GATING
-          , ["LEVEL"] = 3
+        , {
+          ["MAGIC"] = TTH_TABLE.Spell[SPELL_METEOR_SHOWER]
+          , ["SKILL_MASTERY"] = {
+            {
+              ["MASTERY"] = HERO_SKILL_GATING
+              , ["LEVEL"] = 3
+            }
+          }
+          , ["SKILL_PERK"] = {
+            HERO_SKILL_ELEMENTAL_OVERKILL
+          }
         }
-      }
-      , ["SKILL_PERK"] = {
-        HERO_SKILL_ELEMENTAL_OVERKILL
-      }
-    }
-  };
-
--- 非墓园生物-转化为对应墓园生物
-  List_Nec_AllCreatures = {
-      {
-          {CREATURE_PEASANT, CREATURE_FAMILIAR, CREATURE_PIXIE, CREATURE_GREMLIN, CREATURE_SCOUT, CREATURE_DEFENDER, CREATURE_GOBLIN, CREATURE_SKELETON}, CREATURE_SKELETON, 2
-      },
-      {
-          {CREATURE_MILITIAMAN, CREATURE_IMP, CREATURE_SPRITE, CREATURE_MASTER_GREMLIN, CREATURE_ASSASSIN, CREATURE_STOUT_DEFENDER, CREATURE_GOBLIN_TRAPPER, CREATURE_SKELETON_ARCHER}, CREATURE_SKELETON_ARCHER, 2
-      },
-      {
-          {CREATURE_LANDLORD, CREATURE_QUASIT, CREATURE_STALKER, CREATURE_DRYAD, CREATURE_GREMLIN_SABOTEUR, CREATURE_STONE_DEFENDER, CREATURE_GOBLIN_DEFILER, CREATURE_SKELETON_WARRIOR}, CREATURE_SKELETON_WARRIOR, 2
-      },
-      {
-          {CREATURE_ARCHER, CREATURE_DEMON, CREATURE_BLADE_JUGGLER, CREATURE_WITCH, CREATURE_AXE_FIGHTER, CREATURE_CENTAUR, CREATURE_STONE_GARGOYLE, CREATURE_WALKING_DEAD}, CREATURE_WALKING_DEAD, 3
-      },
-      {
-          {CREATURE_MARKSMAN, CREATURE_HORNED_DEMON, CREATURE_WAR_DANCER, CREATURE_BLOOD_WITCH, CREATURE_AXE_THROWER, CREATURE_CENTAUR_NOMAD, CREATURE_OBSIDIAN_GARGOYLE, CREATURE_ZOMBIE}, CREATURE_ZOMBIE, 3
-      },
-      {
-          {CREATURE_LONGBOWMAN, CREATURE_HORNED_LEAPER, CREATURE_BLADE_SINGER, CREATURE_BLOOD_WITCH_2, CREATURE_HARPOONER, CREATURE_CENTAUR_MARADEUR, CREATURE_MARBLE_GARGOYLE, CREATURE_DISEASE_ZOMBIE}, CREATURE_DISEASE_ZOMBIE, 3
-      },
-      {
-          {CREATURE_FOOTMAN, CREATURE_HELL_HOUND, CREATURE_WOOD_ELF, CREATURE_MINOTAUR, CREATURE_BEAR_RIDER, CREATURE_ORC_WARRIOR, CREATURE_IRON_GOLEM, CREATURE_MANES}, CREATURE_MANES, 5
-      },
-      {
-          {CREATURE_SWORDSMAN, CREATURE_CERBERI, CREATURE_GRAND_ELF, CREATURE_MINOTAUR_KING, CREATURE_BLACKBEAR_RIDER, CREATURE_ORC_SLAYER, CREATURE_STEEL_GOLEM, CREATURE_GHOST}, CREATURE_GHOST, 5
-      },
-      {
-          {CREATURE_VINDICATOR, CREATURE_FIREBREATHER_HOUND, CREATURE_MINOTAUR_CAPTAIN, CREATURE_SHARP_SHOOTER, CREATURE_WHITE_BEAR_RIDER, CREATURE_ORC_WARMONGER, CREATURE_OBSIDIAN_GOLEM, CREATURE_POLTERGEIST}, CREATURE_POLTERGEIST, 5
-      },
-      {
-          {CREATURE_GRIFFIN, CREATURE_SUCCUBUS, CREATURE_DRUID, CREATURE_MAGI, CREATURE_RIDER, CREATURE_BROWLER, CREATURE_SHAMAN, CREATURE_VAMPIRE}, CREATURE_VAMPIRE, 8
-      },
-      {
-          {CREATURE_ROYAL_GRIFFIN, CREATURE_INFERNAL_SUCCUBUS, CREATURE_DRUID_ELDER, CREATURE_ARCH_MAGI, CREATURE_RAVAGER, CREATURE_BERSERKER, CREATURE_SHAMAN_WITCH, CREATURE_VAMPIRE_LORD}, CREATURE_VAMPIRE_LORD, 8
-      },
-      {
-          {CREATURE_BATTLE_GRIFFIN, CREATURE_SUCCUBUS_SEDUCER, CREATURE_BLACK_RIDER, CREATURE_HIGH_DRUID, CREATURE_COMBAT_MAGE, CREATURE_BATTLE_RAGER, CREATURE_SHAMAN_HAG, CREATURE_NOSFERATU}, CREATURE_NOSFERATU, 8
-      },
-      {
-          {CREATURE_PRIEST, CREATURE_NIGHTMARE, CREATURE_UNICORN, CREATURE_GENIE, CREATURE_HYDRA, CREATURE_RUNE_MAGE, CREATURE_ORCCHIEF_BUTCHER, CREATURE_LICH}, CREATURE_LICH, 13
-      },
-      {
-          {CREATURE_CLERIC, CREATURE_FRIGHTFUL_NIGHTMARE, CREATURE_WAR_UNICORN, CREATURE_MASTER_GENIE, CREATURE_CHAOS_HYDRA, CREATURE_FLAME_MAGE, CREATURE_ORCCHIEF_EXECUTIONER, CREATURE_DEMILICH}, CREATURE_DEMILICH, 13
-      },
-      {
-          {CREATURE_ZEALOT, CREATURE_HELLMARE, CREATURE_ACIDIC_HYDRA, CREATURE_WHITE_UNICORN, CREATURE_DJINN_VIZIER, CREATURE_FLAME_KEEPER, CREATURE_ORCCHIEF_CHIEFTAIN, CREATURE_LICH_MASTER}, CREATURE_LICH_MASTER, 13
-      },
-      {
-          {CREATURE_CAVALIER, CREATURE_PIT_FIEND, CREATURE_TREANT, CREATURE_RAKSHASA, CREATURE_MATRON, CREATURE_THANE, CREATURE_WYVERN, CREATURE_WIGHT}, CREATURE_WIGHT, 21
-      },
-      {
-          {CREATURE_PALADIN, CREATURE_BALOR, CREATURE_TREANT_GUARDIAN, CREATURE_RAKSHASA_RUKH, CREATURE_MATRIARCH, CREATURE_WARLORD, CREATURE_WYVERN_POISONOUS, CREATURE_WRAITH}, CREATURE_WRAITH, 21
-      },
-      {
-          {CREATURE_CHAMPION, CREATURE_PIT_SPAWN, CREATURE_SHADOW_MISTRESS, CREATURE_ANGER_TREANT, CREATURE_RAKSHASA_KSHATRI, CREATURE_THUNDER_THANE, CREATURE_WYVERN_PAOKAI, CREATURE_BANSHEE}, CREATURE_BANSHEE, 21
-      },
-      {
-          {CREATURE_ANGEL, CREATURE_DEVIL, CREATURE_GREEN_DRAGON, CREATURE_GIANT, CREATURE_DEEP_DRAGON, CREATURE_CYCLOP, CREATURE_FIRE_DRAGON, CREATURE_BONE_DRAGON}, CREATURE_BONE_DRAGON, 34
-      },
-      {
-          {CREATURE_ARCHANGEL, CREATURE_ARCHDEVIL, CREATURE_GOLD_DRAGON, CREATURE_TITAN, CREATURE_BLACK_DRAGON, CREATURE_CYCLOP_UNTAMED, CREATURE_MAGMA_DRAGON, CREATURE_SHADOW_DRAGON}, CREATURE_SHADOW_DRAGON, 34
-      },
-      {
-          {CREATURE_SERAPH, CREATURE_ARCH_DEMON, CREATURE_RED_DRAGON, CREATURE_RAINBOW_DRAGON, CREATURE_STORM_LORD, CREATURE_CYCLOP_BLOODEYED, CREATURE_LAVA_DRAGON, CREATURE_HORROR_DRAGON}, CREATURE_HORROR_DRAGON, 34
-      },
-      {
-          {CREATURE_WOLF, CREATURE_FIRE_ELEMENTAL, CREATURE_EARTH_ELEMENTAL, CREATURE_WATER_ELEMENTAL, CREATURE_AIR_ELEMENTAL}, CREATURE_VAMPIRE, 8
-      },
-      {
-          {CREATURE_SNOW_APE, CREATURE_MUMMY}, CREATURE_MUMMY, 13
-      },
-      {
-          {CREATURE_MANTICORE, CREATURE_DEATH_KNIGHT, CREATURE_PHOENIX}, CREATURE_DEATH_KNIGHT, 21
-      }
   };
 
 -- TTH环境
@@ -560,6 +225,7 @@
       TTH_ENUM.Training = 2;
       TTH_ENUM.Guide = 3;
       TTH_ENUM.Reproduce = 4;
+      TTH_ENUM.Arm = 5;
 
     -- 新增生物的提示类型
       TTH_ENUM.AddCreature = 1;
@@ -630,11 +296,12 @@
     -- 宝屋奖励
       TTH_ENUM.BankRewardResource = 1;
       TTH_ENUM.BankRewardStat = 2;
-      TTH_ENUM.BankRewardSpell = 3;
-      TTH_ENUM.BankRewardArtifact = 4;
-      TTH_ENUM.BankRewardCreature = 5;
-      TTH_ENUM.BankRewardExp = 6;
-      TTH_ENUM.BankRewardHidden = 7;
+      TTH_ENUM.BankRewardRecordPoint = 3;
+      TTH_ENUM.BankRewardSpell = 4;
+      TTH_ENUM.BankRewardArtifact = 5;
+      TTH_ENUM.BankRewardCreature = 6;
+      TTH_ENUM.BankRewardExp = 7;
+      TTH_ENUM.BankRewardHidden = 8;
 
   -- 文本路径
     TTH_PATH = {};
@@ -663,6 +330,7 @@
       , [TTH_ENUM.Training] = "/Text/Game/Scripts/TTH_Path/CastCreatureType/Training.txt"
       , [TTH_ENUM.Guide] = "/Text/Game/Scripts/TTH_Path/CastCreatureType/Guide.txt"
       , [TTH_ENUM.Reproduce] = "/Text/Game/Scripts/TTH_Path/CastCreatureType/Reproduce.txt"
+      , [TTH_ENUM.Arm] = "/Text/Game/Scripts/TTH_Path/CastCreatureType/Arm.txt"
     };
 
     TTH_PATH.Stat = {};
@@ -742,6 +410,25 @@
       , [8] = "/Text/Game/Scripts/TTH_Path/Mine/Level/8.txt"
       , [9] = "/Text/Game/Scripts/TTH_Path/Mine/Level/9.txt"
       , [10] = "/Text/Game/Scripts/TTH_Path/Mine/Level/10.txt"
+    };
+
+    TTH_PATH.NobilityLevel = {
+      [0] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/Level/Level0.txt"
+      , [1] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/Level/Level1.txt"
+      , [2] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/Level/Level2.txt"
+      , [3] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/Level/Level3.txt"
+      , [4] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/Level/Level4.txt"
+      , [5] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/Level/Level5.txt"
+      , [6] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/Level/Level6.txt"
+      , [7] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/Level/Level7.txt"
+      , [8] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/Level/Level8.txt"
+      , [9] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/Level/Level9.txt"
+      , [10] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/Level/Level10.txt"
+      , [11] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/Level/Level11.txt"
+      , [12] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/Level/Level12.txt"
+      , [13] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/Level/Level13.txt"
+      , [14] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/Level/Level14.txt"
+      , [15] = "/Text/Game/Scripts/TTH_KingManage/ExchangeRecord/Level/Level15.txt"
     };
 
     TTH_PATH.Visit = {};
@@ -893,10 +580,18 @@
           TTH_PATH.Visit["Bank"]["RestDay"][5] = TTH_PATH.Visit["Bank"]["RestDay"]["Pre"].."Day_5.txt";
           TTH_PATH.Visit["Bank"]["RestDay"][6] = TTH_PATH.Visit["Bank"]["RestDay"]["Pre"].."Day_6.txt";
           TTH_PATH.Visit["Bank"]["RestDay"][7] = TTH_PATH.Visit["Bank"]["RestDay"]["Pre"].."Day_7.txt";
+          TTH_PATH.Visit["Bank"]["RestDay"][8] = TTH_PATH.Visit["Bank"]["RestDay"]["Pre"].."Day_8.txt";
+          TTH_PATH.Visit["Bank"]["RestDay"][9] = TTH_PATH.Visit["Bank"]["RestDay"]["Pre"].."Day_9.txt";
+          TTH_PATH.Visit["Bank"]["RestDay"][10] = TTH_PATH.Visit["Bank"]["RestDay"]["Pre"].."Day_10.txt";
+          TTH_PATH.Visit["Bank"]["RestDay"][11] = TTH_PATH.Visit["Bank"]["RestDay"]["Pre"].."Day_11.txt";
+          TTH_PATH.Visit["Bank"]["RestDay"][12] = TTH_PATH.Visit["Bank"]["RestDay"]["Pre"].."Day_12.txt";
+          TTH_PATH.Visit["Bank"]["RestDay"][13] = TTH_PATH.Visit["Bank"]["RestDay"]["Pre"].."Day_13.txt";
+          TTH_PATH.Visit["Bank"]["RestDay"][14] = TTH_PATH.Visit["Bank"]["RestDay"]["Pre"].."Day_14.txt";
         TTH_PATH.Visit["Bank"]["Reward"] = {};
           TTH_PATH.Visit["Bank"]["Reward"]["Pre"] = TTH_PATH.Visit["Bank"]["Pre"].."Reward/";
           TTH_PATH.Visit["Bank"]["Reward"][TTH_ENUM.BankRewardResource] = TTH_PATH.Visit["Bank"]["Reward"]["Pre"].."RewardResource.txt";
           TTH_PATH.Visit["Bank"]["Reward"][TTH_ENUM.BankRewardStat] = TTH_PATH.Visit["Bank"]["Reward"]["Pre"].."RewardStat.txt";
+          TTH_PATH.Visit["Bank"]["Reward"][TTH_ENUM.BankRewardRecordPoint] = TTH_PATH.Visit["Bank"]["Reward"]["Pre"].."RewardRecordPoint.txt";
           TTH_PATH.Visit["Bank"]["Reward"][TTH_ENUM.BankRewardSpell] = TTH_PATH.Visit["Bank"]["Reward"]["Pre"].."RewardSpell.txt";
           TTH_PATH.Visit["Bank"]["Reward"][TTH_ENUM.BankRewardArtifact] = TTH_PATH.Visit["Bank"]["Reward"]["Pre"].."RewardArtifact.txt";
           TTH_PATH.Visit["Bank"]["Reward"][TTH_ENUM.BankRewardCreature] = TTH_PATH.Visit["Bank"]["Reward"]["Pre"].."RewardCreature.txt";
@@ -1012,6 +707,7 @@
       TTH_PATH.FlyingSign["CastCreature2Hero"] = "/Text/Game/Scripts/TTH_Path/FlyingSign/CastCreature2Hero.txt";
       TTH_PATH.FlyingSign["ReviveCreature2Hero"] = "/Text/Game/Scripts/TTH_Path/FlyingSign/ReviveCreature2Hero.txt";
       TTH_PATH.FlyingSign["ReleaseCreature2Hero"] = "/Text/Game/Scripts/TTH_Path/FlyingSign/ReleaseCreature2Hero.txt";
+      TTH_PATH.FlyingSign["ArmCreature2Hero"] = "/Text/Game/Scripts/TTH_Path/FlyingSign/ArmCreature2Hero.txt";
       TTH_PATH.FlyingSign["RecoveryMaxMove2Hero"] = "/Text/Game/Scripts/TTH_Path/FlyingSign/RecoveryMaxMove2Hero.txt";
       TTH_PATH.FlyingSign["RecoveryMaxMana2Hero"] = "/Text/Game/Scripts/TTH_Path/FlyingSign/RecoveryMaxMana2Hero.txt";
       TTH_PATH.FlyingSign["TeachHeroSpell"] = "/Text/Game/Scripts/TTH_Path/FlyingSign/TeachHeroSpell.txt";
@@ -1036,13 +732,14 @@
         TTH_PATH.Talent["Cast"]["Hero"]["Pre"] = TTH_PATH.Talent["Cast"]["Pre"].."Hero/";
         TTH_PATH.Talent["Cast"]["Hero"]["OrtanCassius"] = TTH_PATH.Talent["Cast"]["Hero"]["Pre"].."OrtanCassius.txt";
         TTH_PATH.Talent["Cast"]["Hero"]["Sanguinius"] = TTH_PATH.Talent["Cast"]["Hero"]["Pre"].."Sanguinius.txt";
-        TTH_PATH.Talent["Cast"]["Hero"]["Avitus"] = TTH_PATH.Talent["Cast"]["Hero"]["Pre"].."Avitus.txt";
         TTH_PATH.Talent["Cast"]["Hero"]["Gelu"] = TTH_PATH.Talent["Cast"]["Hero"]["Pre"].."Gelu.txt";
         TTH_PATH.Talent["Cast"]["Hero"]["Itil"] = TTH_PATH.Talent["Cast"]["Hero"]["Pre"].."Itil.txt";
         TTH_PATH.Talent["Cast"]["Hero"]["Dracon"] = TTH_PATH.Talent["Cast"]["Hero"]["Pre"].."Dracon.txt";
         TTH_PATH.Talent["Cast"]["Hero"]["Adelaide"] = TTH_PATH.Talent["Cast"]["Hero"]["Pre"].."Adelaide.txt";
         TTH_PATH.Talent["Cast"]["Hero"]["Thant"] = TTH_PATH.Talent["Cast"]["Hero"]["Pre"].."Thant.txt";
+        TTH_PATH.Talent["Cast"]["Hero"]["Anastasya"] = TTH_PATH.Talent["Cast"]["Hero"]["Pre"].."Anastasya.txt";
         TTH_PATH.Talent["Cast"]["Hero"]["LordHaart"] = TTH_PATH.Talent["Cast"]["Hero"]["Pre"].."LordHaart.txt";
+        TTH_PATH.Talent["Cast"]["Hero"]["DavianThule"] = TTH_PATH.Talent["Cast"]["Hero"]["Pre"].."DavianThule.txt";
         TTH_PATH.Talent["Cast"]["Hero"]["Azar"] = TTH_PATH.Talent["Cast"]["Hero"]["Pre"].."Azar.txt";
       -- Nathaniel 001 埃兰妮
         TTH_PATH.Talent["Nathaniel"] = {};
@@ -1059,6 +756,7 @@
         TTH_PATH.Talent["Isabell"]["Option100"] = TTH_PATH.Talent["Isabell"]["Pre"].."Option100.txt";
         TTH_PATH.Talent["Isabell"]["Option1000"] = TTH_PATH.Talent["Isabell"]["Pre"].."Option1000.txt";
         TTH_PATH.Talent["Isabell"]["Option10000"] = TTH_PATH.Talent["Isabell"]["Pre"].."Option10000.txt";
+        TTH_PATH.Talent["Isabell"]["Option-1"] = TTH_PATH.Talent["Isabell"]["Pre"].."Option-1.txt";
         TTH_PATH.Talent["Isabell"]["NotEnoughGold"] = TTH_PATH.Talent["Isabell"]["Pre"].."NotEnoughGold.txt";
         TTH_PATH.Talent["Isabell"]["Confirm"] = TTH_PATH.Talent["Isabell"]["Pre"].."Confirm.txt";
       -- Brem 010 拉特格
@@ -1089,23 +787,8 @@
         TTH_PATH.Talent["Avitus"] = {};
         TTH_PATH.Talent["Avitus"]["Pre"] = TTH_PATH.Talent["Pre"].."157-Avitus/";
         TTH_PATH.Talent["Avitus"]["Text"] = TTH_PATH.Talent["Avitus"]["Pre"].."Text.txt";
-        TTH_PATH.Talent["Avitus"]["OptionAnalysisSkill"] = TTH_PATH.Talent["Avitus"]["Pre"].."OptionAnalysisSkill.txt";
-        TTH_PATH.Talent["Avitus"]["OptionAppointEffect"] = TTH_PATH.Talent["Avitus"]["Pre"].."OptionAppointEffect.txt";
-        TTH_PATH.Talent["Avitus"]["Unload"] = TTH_PATH.Talent["Avitus"]["Pre"].."Unload.txt";
-        TTH_PATH.Talent["Avitus"]["AnalysisSkill"] = {};
-        TTH_PATH.Talent["Avitus"]["AnalysisSkill"]["Pre"] = TTH_PATH.Talent["Avitus"]["Pre"].."AnalysisSkill/";
-        TTH_PATH.Talent["Avitus"]["AnalysisSkill"]["Text"] = TTH_PATH.Talent["Avitus"]["AnalysisSkill"]["Pre"].."Text.txt";
-        TTH_PATH.Talent["Avitus"]["AnalysisSkill"]["NoOption"] = TTH_PATH.Talent["Avitus"]["AnalysisSkill"]["Pre"].."NoOption.txt";
-        TTH_PATH.Talent["Avitus"]["AnalysisSkill"]["NoSuitableSkill"] = TTH_PATH.Talent["Avitus"]["AnalysisSkill"]["Pre"].."NoSuitableSkill.txt";
-        TTH_PATH.Talent["Avitus"]["AnalysisSkill"]["Success"] = TTH_PATH.Talent["Avitus"]["AnalysisSkill"]["Pre"].."Success.txt";
-        TTH_PATH.Talent["Avitus"]["AppointEffect"] = {};
-        TTH_PATH.Talent["Avitus"]["AppointEffect"]["Pre"] = TTH_PATH.Talent["Avitus"]["Pre"].."AppointEffect/";
-        TTH_PATH.Talent["Avitus"]["AppointEffect"]["Text"] = TTH_PATH.Talent["Avitus"]["AppointEffect"]["Pre"].."Text.txt";
-        TTH_PATH.Talent["Avitus"]["AppointEffect"]["Unload"] = TTH_PATH.Talent["Avitus"]["AppointEffect"]["Pre"].."Unload.txt";
-        TTH_PATH.Talent["Avitus"]["AppointEffect"]["Blocked"] = TTH_PATH.Talent["Avitus"]["AppointEffect"]["Pre"].."Blocked.txt";
-        TTH_PATH.Talent["Avitus"]["AppointEffect"]["NoOption"] = TTH_PATH.Talent["Avitus"]["AppointEffect"]["Pre"].."NoOption.txt";
-        TTH_PATH.Talent["Avitus"]["AppointEffect"]["Cancel"] = TTH_PATH.Talent["Avitus"]["AppointEffect"]["Pre"].."Cancel.txt";
-        TTH_PATH.Talent["Avitus"]["AppointEffect"]["Success"] = TTH_PATH.Talent["Avitus"]["AppointEffect"]["Pre"].."Success.txt";
+        TTH_PATH.Talent["Avitus"]["NoSuitableCreature"] = TTH_PATH.Talent["Avitus"]["Pre"].."NoSuitableCreature.txt";
+        TTH_PATH.Talent["Avitus"]["Success"] = TTH_PATH.Talent["Avitus"]["Pre"].."Success.txt";
       -- Metlirn 022 安文
         TTH_PATH.Talent["Metlirn"] = {};
         TTH_PATH.Talent["Metlirn"]["Pre"] = TTH_PATH.Talent["Pre"].."022-Metlirn/";
@@ -1323,6 +1006,14 @@
         TTH_PATH.Talent["Sandro"]["AppointEffect"]["NoOption"] = TTH_PATH.Talent["Sandro"]["AppointEffect"]["Pre"].."NoOption.txt";
         TTH_PATH.Talent["Sandro"]["AppointEffect"]["Cancel"] = TTH_PATH.Talent["Sandro"]["AppointEffect"]["Pre"].."Cancel.txt";
         TTH_PATH.Talent["Sandro"]["AppointEffect"]["Success"] = TTH_PATH.Talent["Sandro"]["AppointEffect"]["Pre"].."Success.txt";
+      -- Anastasya 160 安娜斯塔西娅
+        TTH_PATH.Talent["Anastasya"] = {};
+        TTH_PATH.Talent["Anastasya"]["Pre"] = TTH_PATH.Talent["Pre"].."160-Anastasya/";
+        TTH_PATH.Talent["Anastasya"]["Text"] = TTH_PATH.Talent["Anastasya"]["Pre"].."Text.txt";
+        TTH_PATH.Talent["Anastasya"]["OptionCastHuman"] = TTH_PATH.Talent["Anastasya"]["Pre"].."OptionCastHuman.txt";
+        TTH_PATH.Talent["Anastasya"]["OptionCastSpider"] = TTH_PATH.Talent["Anastasya"]["Pre"].."OptionCastSpider.txt";
+        TTH_PATH.Talent["Anastasya"]["NoSuitableCreature"] = TTH_PATH.Talent["Anastasya"]["Pre"].."NoSuitableCreature.txt";
+        TTH_PATH.Talent["Anastasya"]["Success"] = TTH_PATH.Talent["Anastasya"]["Pre"].."Success.txt";
       -- Marder 103 马巴斯
         TTH_PATH.Talent["Marder"] = {};
         TTH_PATH.Talent["Marder"]["Pre"] = TTH_PATH.Talent["Pre"].."103-Marder/";
@@ -1421,6 +1112,14 @@
         TTH_PATH.Talent["Wulfstan"]["TitleCapture"] = TTH_PATH.Talent["Wulfstan"]["Pre"].."TitleCapture.txt";
         TTH_PATH.Talent["Wulfstan"]["Desc"] = TTH_PATH.Talent["Wulfstan"]["Pre"].."Desc.txt";
         TTH_PATH.Talent["Wulfstan"]["DescCapture"] = TTH_PATH.Talent["Wulfstan"]["Pre"].."DescCapture.txt";
+      -- DavianThule 161 戴维恩·苏勒
+        TTH_PATH.Talent["DavianThule"] = {};
+        TTH_PATH.Talent["DavianThule"]["Pre"] = TTH_PATH.Talent["Pre"].."161-DavianThule/";
+        TTH_PATH.Talent["DavianThule"]["Text"] = TTH_PATH.Talent["DavianThule"]["Pre"].."Text.txt";
+        TTH_PATH.Talent["DavianThule"]["OptionCastMelee"] = TTH_PATH.Talent["DavianThule"]["Pre"].."OptionCastMelee.txt";
+        TTH_PATH.Talent["DavianThule"]["OptionCastShot"] = TTH_PATH.Talent["DavianThule"]["Pre"].."OptionCastShot.txt";
+        TTH_PATH.Talent["DavianThule"]["NoSuitableCreature"] = TTH_PATH.Talent["DavianThule"]["Pre"].."NoSuitableCreature.txt";
+        TTH_PATH.Talent["DavianThule"]["Success"] = TTH_PATH.Talent["DavianThule"]["Pre"].."Success.txt";
 
     TTH_PATH.Artifact = {};
     TTH_PATH.Artifact["Pre"] = TTH_PATH.FuncPre.."Artifact/";
@@ -1489,6 +1188,7 @@
         TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_ENERGY]["Pre"] = TTH_PATH.Artifact["Potion"]["Pre"].."138-PotionEnergy/";
         TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_ENERGY]["Text"] = TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_ENERGY]["Pre"].."Text.txt";
         TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_ENERGY]["Confirm"] = TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_ENERGY]["Pre"].."Confirm.txt";
+        TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_ENERGY]["TooCloseEnemyHero"] = TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_ENERGY]["Pre"].."TooCloseEnemyHero.txt";
         TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_ENERGY]["Success"] = TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_ENERGY]["Pre"].."Success.txt";
         TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_REVIVE] = {};
         TTH_PATH.Artifact["Potion"][ARTIFACT_POTION_REVIVE]["Pre"] = TTH_PATH.Artifact["Potion"]["Pre"].."139-PotionRevive/";
@@ -1618,7 +1318,7 @@
         TTH_PATH.Perk[HERO_SKILL_RECRUITMENT]["Confirm"] = TTH_PATH.Perk[HERO_SKILL_RECRUITMENT]["Pre"].."Confirm.txt";
       -- HERO_SKILL_DIPLOMACY 030 外交术
         TTH_PATH.Perk[HERO_SKILL_DIPLOMACY] = {};
-        TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Pre"] = TTH_PATH.Perk["Pre"] .."030/";
+        TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Pre"] = TTH_PATH.Perk["Pre"] .."030-Diplomacy/";
         TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Text"] = TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Pre"].."Text.txt";
         TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["NotEnoughTimes"] = TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Pre"].."NotEnoughTimes.txt";
         TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["NoSuitableCreature"] = TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Pre"].."NoSuitableCreature.txt";
@@ -1626,6 +1326,10 @@
         TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["RadioTips"] = TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Pre"].."RadioTips.txt";
         TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["OptionTemplate"] = TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Pre"].."OptionTemplate.txt";
         TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["TemplateCreature"] = TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Pre"].."TemplateCreature.txt";
+        TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Berein"] = {};
+        TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Berein"]["Pre"] = TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Pre"] .."Berein/";
+        TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Berein"]["Combat"] = TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Berein"]["Pre"].."Combat.txt";
+        TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Berein"]["Confirm"] = TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Berein"]["Pre"].."Confirm.txt";
       -- HERO_SKILL_FORTUNATE_ADVENTURER 033 资源富饶
         TTH_PATH.Perk[HERO_SKILL_FORTUNATE_ADVENTURER] = {};
         TTH_PATH.Perk[HERO_SKILL_FORTUNATE_ADVENTURER]["Pre"] = TTH_PATH.Perk["Pre"] .."033/";
@@ -1784,9 +1488,6 @@
             , ["Sanguinius"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.initCastCreature"
             }
-            , ["Avitus"] = {
-              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initCastCreature"
-            }
             , ["Gelu"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.initCastCreature"
             }
@@ -1802,10 +1503,16 @@
             , ["Thant"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.initCastCreature"
             }
+            , ["Anastasya"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initCastCreature"
+            }
             , ["LordHaart"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.initCastCreature"
             }
             , ["Azar"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.initCastCreature"
+            }
+            , ["DavianThule"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.initCastCreature"
             }
           -- 内扩
@@ -1922,11 +1629,6 @@
               , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeCastCreature"
               , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeCastCreature"
             }
-            -- , ["Avitus"] = {
-            --   ["Text"] = TTH_PATH.Talent["Cast"]["Hero"]["Avitus"]
-            --   , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeCastCreature"
-            --   , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeCastCreature"
-            -- }
             , ["Gelu"] = {
               ["Text"] = TTH_PATH.Talent["Cast"]["Hero"]["Gelu"]
               , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeCastCreature"
@@ -2092,11 +1794,6 @@
               , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeSandro"
               , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeSandro"
             }
-            , ["Avitus"] = {
-              ["Text"] = TTH_PATH.Talent["Avitus"]["Text"]
-              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeAvitus"
-              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeAvitus"
-            }
             , ["Kastore"] = {
               ["Text"] = TTH_PATH.Talent["Kastore"]["Text"]
               , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeKastore"
@@ -2117,6 +1814,21 @@
               , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.Karissa.active.enter"
               , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.Karissa.active.enter"
             }
+            , ["Avitus"] = {
+              ["Text"] = TTH_PATH.Talent["Avitus"]["Text"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.Avitus.active.enter"
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.Avitus.active.enter"
+            }
+            , ["Anastasya"] = {
+              ["Text"] = TTH_PATH.Talent["Anastasya"]["Text"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.Anastasya.func.active"
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.Anastasya.func.active"
+            }
+            , ["DavianThule"] = {
+              ["Text"] = TTH_PATH.Talent["DavianThule"]["Text"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.DavianThule.func.active"
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.DavianThule.func.active"
+            }
         }
         , [TTH_ENUM.FuncLevelUp] = {
           -- 其他
@@ -2127,9 +1839,6 @@
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultCastCreature"
             }
             , ["Sanguinius"] = {
-              [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultCastCreature"
-            }
-            , ["Avitus"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultCastCreature"
             }
             , ["Gelu"] = {
@@ -2147,10 +1856,16 @@
             , ["Thant"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultCastCreature"
             }
+            , ["Anastasya"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultCastCreature"
+            }
             , ["LordHaart"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultCastCreature"
             }
             , ["Azar"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultCastCreature"
+            }
+            , ["DavianThule"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultCastCreature"
             }
           -- 其他
@@ -2168,9 +1883,6 @@
             }
             , ["Metlirn"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultMetlirn"
-            }
-            , ["Sylsai"] = {
-              [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultSylsai"
             }
             , ["Nikolay"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultNikolay"
@@ -2291,9 +2003,6 @@
             , ["Sanguinius"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailyCastCreature"
             }
-            , ["Avitus"] = {
-              [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailyCastCreature"
-            }
             , ["Gelu"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailyCastCreature"
             }
@@ -2309,10 +2018,16 @@
             , ["Thant"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailyCastCreature"
             }
+            , ["Anastasya"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailyCastCreature"
+            }
             , ["LordHaart"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailyCastCreature"
             }
             , ["Azar"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailyCastCreature"
+            }
+            , ["DavianThule"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailyCastCreature"
             }
           -- 其他
@@ -2515,8 +2230,8 @@
           }
           , [HERO_SKILL_DIPLOMACY] = {
             ["Text"] = TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Text"]
-            , [TTH_ENUM.FuncAtGate] = "TTH_PERK.active030"
-            , [TTH_ENUM.FuncNotAtGate] = "TTH_PERK.active030"
+            , [TTH_ENUM.FuncAtGate] = "TTH_PERK.diplomacy.active"
+            , [TTH_ENUM.FuncNotAtGate] = "TTH_PERK.diplomacy.active"
           }
           , [HERO_SKILL_FORTUNATE_ADVENTURER] = {
             ["Text"] = TTH_PATH.Perk[HERO_SKILL_FORTUNATE_ADVENTURER]["Text"]
@@ -2627,7 +2342,7 @@
             [TTH_ENUM.FuncAlways] = "TTH_PERK.resetWeekly028"
           }
           , [HERO_SKILL_DIPLOMACY] = {
-            [TTH_ENUM.FuncAlways] = "TTH_PERK.resetWeekly030"
+            [TTH_ENUM.FuncAlways] = "TTH_PERK.diplomacy.resetWeekly"
           }
           , [HERO_SKILL_FORTUNATE_ADVENTURER] = {
             [TTH_ENUM.FuncAlways] = "TTH_PERK.resetWeekly033"
@@ -2694,7 +2409,7 @@
             [TTH_ENUM.FuncAlways] = "TTH_PERK.resetDaily168"
           }
           , [HERO_SKILL_DIPLOMACY] = {
-            [TTH_ENUM.FuncAlways] = "TTH_PERK.resetDaily030"
+            [TTH_ENUM.FuncAlways] = "TTH_PERK.diplomacy.resetDaily"
           }
         }
       };
@@ -3398,6 +3113,7 @@
                 , [GEM] = 0
                 , [GOLD] = 10000
               }
+              , ["NobilityLevel"] = 4
             }
             , [32] = {
               ["Id"] = TOWN_BUILDING_DWELLING_7
@@ -3436,6 +3152,26 @@
                 , [GEM] = 10
                 , [GOLD] = 12000
               }
+            }
+            , [34] = {
+              ["Id"] = TOWN_BUILDING_GRAIL
+              , ["Level"] = 1
+              , ["TownLevel"] = 15
+              , ["Text"] = "/Text/Game/Scripts/TTH_Path/Buildings/Heaven/TOWN_GRAIL.txt"
+              , ["Base"] = {
+                ["Id"] = TTH_ENUM.TownBuildingNoBase
+                , ["Level"] = 1
+              }
+              , ["Resource"] = {
+                [WOOD] = 20
+                , [ORE] = 20
+                , [MERCURY] = 20
+                , [CRYSTAL] = 20
+                , [SULFUR] = 20
+                , [GEM] = 20
+                , [GOLD] = 100000
+              }
+              , ["NobilityLevel"] = 7
             }
         }
         , [TOWN_PRESERVE] = {
@@ -4052,6 +3788,7 @@
                 , [GEM] = 0
                 , [GOLD] = 10000
               }
+              , ["NobilityLevel"] = 4
             }
             , [32] = {
               ["Id"] = TOWN_BUILDING_FORT
@@ -4128,6 +3865,26 @@
                 , [GEM] = 0
                 , [GOLD] = 3000
               }
+            }
+            , [36] = {
+              ["Id"] = TOWN_BUILDING_GRAIL
+              , ["Level"] = 1
+              , ["TownLevel"] = 15
+              , ["Text"] = "/Text/Game/Scripts/TTH_Path/Buildings/Preserve/TOWN_GRAIL.txt"
+              , ["Base"] = {
+                ["Id"] = TTH_ENUM.TownBuildingNoBase
+                , ["Level"] = 1
+              }
+              , ["Resource"] = {
+                [WOOD] = 20
+                , [ORE] = 20
+                , [MERCURY] = 20
+                , [CRYSTAL] = 20
+                , [SULFUR] = 20
+                , [GEM] = 20
+                , [GOLD] = 100000
+              }
+              , ["NobilityLevel"] = 7
             }
         }
         , [TOWN_ACADEMY] = {
@@ -4725,6 +4482,7 @@
                 , [GEM] = 0
                 , [GOLD] = 10000
               }
+              , ["NobilityLevel"] = 4
             }
             , [31] = {
               ["Id"] = TOWN_BUILDING_FORT
@@ -4782,6 +4540,26 @@
                 , [GEM] = 10
                 , [GOLD] = 12000
               }
+            }
+            , [34] = {
+              ["Id"] = TOWN_BUILDING_GRAIL
+              , ["Level"] = 1
+              , ["TownLevel"] = 15
+              , ["Text"] = "/Text/Game/Scripts/TTH_Path/Buildings/Academy/TOWN_GRAIL.txt"
+              , ["Base"] = {
+                ["Id"] = TTH_ENUM.TownBuildingNoBase
+                , ["Level"] = 1
+              }
+              , ["Resource"] = {
+                [WOOD] = 20
+                , [ORE] = 20
+                , [MERCURY] = 20
+                , [CRYSTAL] = 20
+                , [SULFUR] = 20
+                , [GEM] = 20
+                , [GOLD] = 100000
+              }
+              , ["NobilityLevel"] = 7
             }
         }
         , [TOWN_DUNGEON] = {
@@ -5417,6 +5195,7 @@
                 , [GEM] = 0
                 , [GOLD] = 10000
               }
+              , ["NobilityLevel"] = 4
             }
             , [33] = {
               ["Id"] = TOWN_BUILDING_DWELLING_7
@@ -5455,6 +5234,26 @@
                 , [GEM] = 0
                 , [GOLD] = 15000
               }
+            }
+            , [35] = {
+              ["Id"] = TOWN_BUILDING_GRAIL
+              , ["Level"] = 1
+              , ["TownLevel"] = 15
+              , ["Text"] = "/Text/Game/Scripts/TTH_Path/Buildings/Dungeon/TOWN_GRAIL.txt"
+              , ["Base"] = {
+                ["Id"] = TTH_ENUM.TownBuildingNoBase
+                , ["Level"] = 1
+              }
+              , ["Resource"] = {
+                [WOOD] = 20
+                , [ORE] = 20
+                , [MERCURY] = 20
+                , [CRYSTAL] = 20
+                , [SULFUR] = 20
+                , [GEM] = 20
+                , [GOLD] = 100000
+              }
+              , ["NobilityLevel"] = 7
             }
         }
         , [TOWN_NECROMANCY] = {
@@ -6052,6 +5851,7 @@
                 , [GEM] = 0
                 , [GOLD] = 10000
               }
+              , ["NobilityLevel"] = 4
             }
             , [32] = {
               ["Id"] = TOWN_BUILDING_DWELLING_7
@@ -6109,6 +5909,26 @@
                 , [GEM] = 0
                 , [GOLD] = 3000
               }
+            }
+            , [35] = {
+              ["Id"] = TOWN_BUILDING_GRAIL
+              , ["Level"] = 1
+              , ["TownLevel"] = 15
+              , ["Text"] = "/Text/Game/Scripts/TTH_Path/Buildings/Necromancy/TOWN_GRAIL.txt"
+              , ["Base"] = {
+                ["Id"] = TTH_ENUM.TownBuildingNoBase
+                , ["Level"] = 1
+              }
+              , ["Resource"] = {
+                [WOOD] = 20
+                , [ORE] = 20
+                , [MERCURY] = 20
+                , [CRYSTAL] = 20
+                , [SULFUR] = 20
+                , [GEM] = 20
+                , [GOLD] = 100000
+              }
+              , ["NobilityLevel"] = 7
             }
         }
         , [TOWN_INFERNO] = {
@@ -6687,6 +6507,7 @@
                 , [GEM] = 0
                 , [GOLD] = 10000
               }
+              , ["NobilityLevel"] = 4
             }
             , [30] = {
               ["Id"] = TOWN_BUILDING_FORT
@@ -6763,6 +6584,26 @@
                 , [GEM] = 0
                 , [GOLD] = 10000
               }
+            }
+            , [34] = {
+              ["Id"] = TOWN_BUILDING_GRAIL
+              , ["Level"] = 1
+              , ["TownLevel"] = 15
+              , ["Text"] = "/Text/Game/Scripts/TTH_Path/Buildings/Inferno/TOWN_GRAIL.txt"
+              , ["Base"] = {
+                ["Id"] = TTH_ENUM.TownBuildingNoBase
+                , ["Level"] = 1
+              }
+              , ["Resource"] = {
+                [WOOD] = 20
+                , [ORE] = 20
+                , [MERCURY] = 20
+                , [CRYSTAL] = 20
+                , [SULFUR] = 20
+                , [GEM] = 20
+                , [GOLD] = 100000
+              }
+              , ["NobilityLevel"] = 7
             }
         }
         , [TOWN_FORTRESS] = {
@@ -7417,6 +7258,7 @@
                 , [GEM] = 0
                 , [GOLD] = 10000
               }
+              , ["NobilityLevel"] = 4
             }
             , [37] = {
               ["Id"] = TOWN_BUILDING_FORT
@@ -7474,6 +7316,26 @@
                 , [GEM] = 0
                 , [GOLD] = 10000
               }
+            }
+            , [40] = {
+              ["Id"] = TOWN_BUILDING_GRAIL
+              , ["Level"] = 1
+              , ["TownLevel"] = 15
+              , ["Text"] = "/Text/Game/Scripts/TTH_Path/Buildings/Fortress/TOWN_GRAIL.txt"
+              , ["Base"] = {
+                ["Id"] = TTH_ENUM.TownBuildingNoBase
+                , ["Level"] = 1
+              }
+              , ["Resource"] = {
+                [WOOD] = 20
+                , [ORE] = 20
+                , [MERCURY] = 20
+                , [CRYSTAL] = 20
+                , [SULFUR] = 20
+                , [GEM] = 20
+                , [GOLD] = 100000
+              }
+              , ["NobilityLevel"] = 7
             }
         }
         , [TOWN_STRONGHOLD] = {
@@ -8033,6 +7895,7 @@
                 , [GEM] = 0
                 , [GOLD] = 10000
               }
+              , ["NobilityLevel"] = 4
             }
             , [29] = {
               ["Id"] = TOWN_BUILDING_FORT
@@ -8090,6 +7953,26 @@
                 , [GEM] = 0
                 , [GOLD] = 11000
               }
+            }
+            , [32] = {
+              ["Id"] = TOWN_BUILDING_GRAIL
+              , ["Level"] = 1
+              , ["TownLevel"] = 15
+              , ["Text"] = "/Text/Game/Scripts/TTH_Path/Buildings/Stronghold/TOWN_GRAIL.txt"
+              , ["Base"] = {
+                ["Id"] = TTH_ENUM.TownBuildingNoBase
+                , ["Level"] = 1
+              }
+              , ["Resource"] = {
+                [WOOD] = 20
+                , [ORE] = 20
+                , [MERCURY] = 20
+                , [CRYSTAL] = 20
+                , [SULFUR] = 20
+                , [GEM] = 20
+                , [GOLD] = 100000
+              }
+              , ["NobilityLevel"] = 7
             }
         }
       }
@@ -8501,9 +8384,11 @@
           , ARTIFACT_RING_OF_LIGHTING_PROTECTION
           , ARTIFACT_SPIRIT_OF_OPPRESSION
         }
-        , [ARTIFACT_RING_OF_FORGOTTEN] = {
+        , [ARTIFACT_GEM_OF_PHANTOM] = {
           ARTIFACT_BEGINNER_MAGIC_STICK
           , ARTIFACT_RIGID_MANTLE
+          , ARTIFACT_RING_OF_FORGOTTEN
+          , ARTIFACT_SHAWL_OF_GREAT_LICH
         }
         , [ARTIFACT_GUARDIAN_01] = {
           ARTIFACT_SWORD_OF_RUINS
@@ -8598,7 +8483,6 @@
           , ARTIFACT_BONESTUDDED_LEATHER
           , ARTIFACT_RING_OF_THE_SHADOWBRAND
           , ARTIFACT_BOOK_OF_POWER
-          , ARTIFACT_RING_OF_FORGOTTEN
           , ARTIFACT_SKULL_OF_MARKAL
         }
         , [ARTIFACT_BOOTS_OF_THE_WALKING_DEAD] = {
@@ -8908,52 +8792,6 @@
                 , [SULFUR] = 0
                 , [GEM] = 0
                 , [GOLD] = 1100
-              }
-            }
-          }
-        }
-        , ["Avitus"] = {
-          ["CastType"] = TTH_ENUM.Training
-          , ["MaxGcd"] = 4
-          , ["HeroStep"] = 4
-          , ["PreCreature"] = {
-            [CREATURE_ARCHER] = {
-              ["Scale"] = 1
-              , ["PostCreatureId"] = CREATURE_CROSSBOW
-              , ["Res"] = {
-                [WOOD] = 0
-                , [ORE] = 1
-                , [MERCURY] = 0
-                , [CRYSTAL] = 0
-                , [SULFUR] = 0
-                , [GEM] = 0
-                , [GOLD] = 400
-              }
-            }
-            , [CREATURE_MARKSMAN] = {
-              ["Scale"] = 1
-              , ["PostCreatureId"] = CREATURE_CROSSBOW
-              , ["Res"] = {
-                [WOOD] = 0
-                , [ORE] = 1
-                , [MERCURY] = 0
-                , [CRYSTAL] = 0
-                , [SULFUR] = 0
-                , [GEM] = 0
-                , [GOLD] = 400
-              }
-            }
-            , [CREATURE_LONGBOWMAN] = {
-              ["Scale"] = 1
-              , ["PostCreatureId"] = CREATURE_CROSSBOW
-              , ["Res"] = {
-                [WOOD] = 0
-                , [ORE] = 1
-                , [MERCURY] = 0
-                , [CRYSTAL] = 0
-                , [SULFUR] = 0
-                , [GEM] = 0
-                , [GOLD] = 400
               }
             }
           }
@@ -9853,6 +9691,287 @@
             }
           }
         }
+        , ["Anastasya"] = {
+          ["CastType"] = TTH_ENUM.Cast
+          , ["MaxGcd"] = 6
+          , ["HeroStep"] = 6
+          , ["PostCreatureId"] = CREATURE_FATE_WEAVER
+          , ["PreCreature"] = {
+            [CREATURE_SKELETON] = {
+              ["Scale"] = 6
+              , ["PostCreatureId"] = CREATURE_FATE_WEAVER
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 0
+                , [CRYSTAL] = 1
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 2400
+              }
+            }
+            , [CREATURE_SKELETON_ARCHER] = {
+              ["Scale"] = 6
+              , ["PostCreatureId"] = CREATURE_FATE_WEAVER
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 0
+                , [CRYSTAL] = 1
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 2400
+              }
+            }
+            , [CREATURE_SKELETON_WARRIOR] = {
+              ["Scale"] = 6
+              , ["PostCreatureId"] = CREATURE_FATE_WEAVER
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 0
+                , [CRYSTAL] = 1
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 2400
+              }
+            }
+            , [CREATURE_WALKING_DEAD] = {
+              ["Scale"] = 5
+              , ["PostCreatureId"] = CREATURE_FATE_WEAVER
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 0
+                , [CRYSTAL] = 1
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1700
+              }
+            }
+            , [CREATURE_ZOMBIE] = {
+              ["Scale"] = 5
+              , ["PostCreatureId"] = CREATURE_FATE_WEAVER
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 0
+                , [CRYSTAL] = 1
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1700
+              }
+            }
+            , [CREATURE_DISEASE_ZOMBIE] = {
+              ["Scale"] = 5
+              , ["PostCreatureId"] = CREATURE_FATE_WEAVER
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 0
+                , [CRYSTAL] = 1
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1700
+              }
+            }
+            , [CREATURE_MANES] = {
+              ["Scale"] = 4
+              , ["PostCreatureId"] = CREATURE_FATE_WEAVER
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 0
+                , [CRYSTAL] = 1
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1100
+              }
+            }
+            , [CREATURE_GHOST] = {
+              ["Scale"] = 4
+              , ["PostCreatureId"] = CREATURE_FATE_WEAVER
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 0
+                , [CRYSTAL] = 1
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1100
+              }
+            }
+            , [CREATURE_POLTERGEIST] = {
+              ["Scale"] = 4
+              , ["PostCreatureId"] = CREATURE_FATE_WEAVER
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 0
+                , [CRYSTAL] = 1
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 1100
+              }
+            }
+            , [CREATURE_VAMPIRE] = {
+              ["Scale"] = 3
+              , ["PostCreatureId"] = CREATURE_FATE_WEAVER
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 0
+                , [CRYSTAL] = 1
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 600
+              }
+            }
+            , [CREATURE_VAMPIRE_LORD] = {
+              ["Scale"] = 3
+              , ["PostCreatureId"] = CREATURE_FATE_WEAVER
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 0
+                , [CRYSTAL] = 1
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 600
+              }
+            }
+            , [CREATURE_NOSFERATU] = {
+              ["Scale"] = 3
+              , ["PostCreatureId"] = CREATURE_FATE_WEAVER
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 0
+                , [CRYSTAL] = 1
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 600
+              }
+            }
+            , [CREATURE_LICH] = {
+              ["Scale"] = 2
+              , ["PostCreatureId"] = CREATURE_FATE_WEAVER
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 0
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 600
+              }
+            }
+            , [CREATURE_DEMILICH] = {
+              ["Scale"] = 2
+              , ["PostCreatureId"] = CREATURE_FATE_WEAVER
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 0
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 600
+              }
+            }
+            , [CREATURE_LICH_MASTER] = {
+              ["Scale"] = 2
+              , ["PostCreatureId"] = CREATURE_FATE_WEAVER
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 0
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 600
+              }
+            }
+            , [CREATURE_WIGHT] = {
+              ["Scale"] = 1
+              , ["PostCreatureId"] = CREATURE_FATE_WEAVER
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 0
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 300
+              }
+            }
+            , [CREATURE_WRAITH] = {
+              ["Scale"] = 1
+              , ["PostCreatureId"] = CREATURE_FATE_WEAVER
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 0
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 300
+              }
+            }
+            , [CREATURE_BANSHEE] = {
+              ["Scale"] = 1
+              , ["PostCreatureId"] = CREATURE_FATE_WEAVER
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 0
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 300
+              }
+            }
+            , [CREATURE_BONE_DRAGON] = {
+              ["Scale"] = 1
+              , ["PostCreatureId"] = CREATURE_FATE_WEAVER
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 0
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 100
+              }
+            }
+            , [CREATURE_SHADOW_DRAGON] = {
+              ["Scale"] = 1
+              , ["PostCreatureId"] = CREATURE_FATE_WEAVER
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 0
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 100
+              }
+            }
+            , [CREATURE_HORROR_DRAGON] = {
+              ["Scale"] = 1
+              , ["PostCreatureId"] = CREATURE_FATE_WEAVER
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 0
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 100
+              }
+            }
+          }
+        }
         , ["LordHaart"] = {
           ["CastType"] = TTH_ENUM.Cast
           , ["MaxGcd"] = 6
@@ -9867,9 +9986,9 @@
                 , [ORE] = 0
                 , [MERCURY] = 1
                 , [CRYSTAL] = 0
-                , [SULFUR] = 1
+                , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 2000
+                , [GOLD] = 1700
               }
             }
             , [CREATURE_SKELETON_ARCHER] = {
@@ -9880,9 +9999,9 @@
                 , [ORE] = 0
                 , [MERCURY] = 1
                 , [CRYSTAL] = 0
-                , [SULFUR] = 1
+                , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 2000
+                , [GOLD] = 1700
               }
             }
             , [CREATURE_SKELETON_WARRIOR] = {
@@ -9893,9 +10012,9 @@
                 , [ORE] = 0
                 , [MERCURY] = 1
                 , [CRYSTAL] = 0
-                , [SULFUR] = 1
+                , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 2000
+                , [GOLD] = 1700
               }
             }
             , [CREATURE_WALKING_DEAD] = {
@@ -9906,9 +10025,9 @@
                 , [ORE] = 0
                 , [MERCURY] = 1
                 , [CRYSTAL] = 0
-                , [SULFUR] = 1
+                , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 1300
+                , [GOLD] = 1100
               }
             }
             , [CREATURE_ZOMBIE] = {
@@ -9919,9 +10038,9 @@
                 , [ORE] = 0
                 , [MERCURY] = 1
                 , [CRYSTAL] = 0
-                , [SULFUR] = 1
+                , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 1300
+                , [GOLD] = 1100
               }
             }
             , [CREATURE_DISEASE_ZOMBIE] = {
@@ -9932,9 +10051,9 @@
                 , [ORE] = 0
                 , [MERCURY] = 1
                 , [CRYSTAL] = 0
-                , [SULFUR] = 1
+                , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 1300
+                , [GOLD] = 1100
               }
             }
             , [CREATURE_MANES] = {
@@ -9943,11 +10062,11 @@
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
-                , [MERCURY] = 0
+                , [MERCURY] = 1
                 , [CRYSTAL] = 0
-                , [SULFUR] = 1
+                , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 1100
+                , [GOLD] = 600
               }
             }
             , [CREATURE_GHOST] = {
@@ -9956,11 +10075,11 @@
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
-                , [MERCURY] = 0
+                , [MERCURY] = 1
                 , [CRYSTAL] = 0
-                , [SULFUR] = 1
+                , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 1100
+                , [GOLD] = 600
               }
             }
             , [CREATURE_POLTERGEIST] = {
@@ -9969,11 +10088,11 @@
               , ["Res"] = {
                 [WOOD] = 0
                 , [ORE] = 0
-                , [MERCURY] = 0
+                , [MERCURY] = 1
                 , [CRYSTAL] = 0
-                , [SULFUR] = 1
+                , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 1100
+                , [GOLD] = 600
               }
             }
             , [CREATURE_VAMPIRE] = {
@@ -9984,7 +10103,7 @@
                 , [ORE] = 0
                 , [MERCURY] = 0
                 , [CRYSTAL] = 0
-                , [SULFUR] = 1
+                , [SULFUR] = 0
                 , [GEM] = 0
                 , [GOLD] = 600
               }
@@ -9997,7 +10116,7 @@
                 , [ORE] = 0
                 , [MERCURY] = 0
                 , [CRYSTAL] = 0
-                , [SULFUR] = 1
+                , [SULFUR] = 0
                 , [GEM] = 0
                 , [GOLD] = 600
               }
@@ -10010,7 +10129,7 @@
                 , [ORE] = 0
                 , [MERCURY] = 0
                 , [CRYSTAL] = 0
-                , [SULFUR] = 1
+                , [SULFUR] = 0
                 , [GEM] = 0
                 , [GOLD] = 600
               }
@@ -10023,9 +10142,9 @@
                 , [ORE] = 0
                 , [MERCURY] = 0
                 , [CRYSTAL] = 0
-                , [SULFUR] = 1
+                , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 200
+                , [GOLD] = 300
               }
             }
             , [CREATURE_DEMILICH] = {
@@ -10036,9 +10155,9 @@
                 , [ORE] = 0
                 , [MERCURY] = 0
                 , [CRYSTAL] = 0
-                , [SULFUR] = 1
+                , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 200
+                , [GOLD] = 300
               }
             }
             , [CREATURE_LICH_MASTER] = {
@@ -10049,9 +10168,9 @@
                 , [ORE] = 0
                 , [MERCURY] = 0
                 , [CRYSTAL] = 0
-                , [SULFUR] = 1
+                , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 200
+                , [GOLD] = 300
               }
             }
             , [CREATURE_WIGHT] = {
@@ -10062,9 +10181,9 @@
                 , [ORE] = 0
                 , [MERCURY] = 0
                 , [CRYSTAL] = 0
-                , [SULFUR] = 1
+                , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 0
+                , [GOLD] = 100
               }
             }
             , [CREATURE_WRAITH] = {
@@ -10075,9 +10194,9 @@
                 , [ORE] = 0
                 , [MERCURY] = 0
                 , [CRYSTAL] = 0
-                , [SULFUR] = 1
+                , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 0
+                , [GOLD] = 100
               }
             }
             , [CREATURE_BANSHEE] = {
@@ -10088,9 +10207,9 @@
                 , [ORE] = 0
                 , [MERCURY] = 0
                 , [CRYSTAL] = 0
-                , [SULFUR] = 1
+                , [SULFUR] = 0
                 , [GEM] = 0
-                , [GOLD] = 0
+                , [GOLD] = 100
               }
             }
             , [CREATURE_BONE_DRAGON] = {
@@ -10130,6 +10249,53 @@
                 , [SULFUR] = 0
                 , [GEM] = 0
                 , [GOLD] = 0
+              }
+            }
+          }
+        }
+        , ["DavianThule"] = {
+          ["CastType"] = TTH_ENUM.Arm
+          , ["MaxGcd"] = 6
+          , ["HeroStep"] = 6
+          , ["PostCreatureId"] = CREATURE_FEARLESS_LORD
+          , ["PreCreature"] = {
+            [CREATURE_BROWLER] = {
+              ["Scale"] = 1
+              , ["PostCreatureId"] = CREATURE_FEARLESS_LORD
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 1
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 600
+              }
+            }
+            , [CREATURE_BERSERKER] = {
+              ["Scale"] = 1
+              , ["PostCreatureId"] = CREATURE_FEARLESS_LORD
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 1
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 600
+              }
+            }
+            , [CREATURE_BATTLE_RAGER] = {
+              ["Scale"] = 1
+              , ["PostCreatureId"] = CREATURE_FEARLESS_LORD
+              , ["Res"] = {
+                [WOOD] = 0
+                , [ORE] = 0
+                , [MERCURY] = 1
+                , [CRYSTAL] = 0
+                , [SULFUR] = 0
+                , [GEM] = 0
+                , [GOLD] = 600
               }
             }
           }
@@ -10556,6 +10722,7 @@
         , "Timerkhan"
         , "Dalom"
         , "Raelag"
+        , "Raelag_10WAI"
         , "Ranleth"
         , "Aberrar"
         , "Agrael"
@@ -10563,6 +10730,7 @@
         , "KingTolghar"
         , "Una"
         , "KujinMP"
+        , "Mephala"
       };
       TTH_TABLE.HeroShantiriTalent = {
         "RedHeavenHero02"
@@ -10573,6 +10741,7 @@
         , "Timerkhan"
         , "Dalom"
         , "Raelag"
+        , "Raelag_10WAI"
         , "Ranleth"
         , "Aberrar"
         , "Agrael"

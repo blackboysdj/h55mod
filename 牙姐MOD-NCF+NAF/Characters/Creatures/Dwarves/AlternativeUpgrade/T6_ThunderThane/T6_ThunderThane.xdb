@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Model>
+	<Materials>
+		<Item href="T6_ThunderThane-Nemetall.(Material).xdb#xpointer(/Material)"/>
+		<Item href="T6_ThunderThane-Metall.(Material).xdb#xpointer(/Material)"/>
+	</Materials>
+	<Skeleton href="T6_ThunderThane-skel.xdb#xpointer(/Skeleton)"/>
+	<Geometry href="T6_ThunderThane-geom.xdb#xpointer(/Geometry)"/>
+	<Animations/>
+	<WindPower>1</WindPower>
+</Model>

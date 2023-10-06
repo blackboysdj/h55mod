@@ -8,7 +8,7 @@
 		<Item href="010/Detail/PerkButton04.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="010/Detail/PerkButton05.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="010/Detail/PerkButton06.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<Item href="010/Detail/PerkButton07.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<!-- <Item href="010/Detail/PerkButton07.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
 	</Children>
 	<Background/>
 	<Foreground/>

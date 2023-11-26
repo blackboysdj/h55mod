@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Geometry>
+	<SrcName href="/Titan/Chest.mb"/>
+	<uid>14573D74-252C-42C5-82EE-26D4F5BEBD2A</uid>
+	<RootMesh/>
+	<RootJoint>Chest</RootJoint>
+	<Size>
+		<x>0.586491</x>
+		<y>0.486209</y>
+		<z>0.518738</z>
+	</Size>
+	<Center>
+		<x>-0.0030105</x>
+		<y>-0.0238185</y>
+		<z>-0.077374</z>
+	</Center>
+	<BestFitPoint>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+	</BestFitPoint>
+	<Dir>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+		<w>0</w>
+	</Dir>
+	<AIGeometry/>
+	<NumMeshes>1</NumMeshes>
+	<MaterialQuantities>
+		<Item>1</Item>
+	</MaterialQuantities>
+	<MeshNames>
+		<Item>ChestShape</Item>
+	</MeshNames>
+	<MeshAnimated/>
+	<MeshWindAffected/>
+</Geometry>

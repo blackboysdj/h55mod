@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Camera ObjectRecordID="979">
+	<Name/>
+	<Pos>
+		<x>1.40323</x>
+		<y>-4.91867</y>
+		<z>1.2667</z>
+	</Pos>
+	<Rot>
+		<x>0.257861</x>
+		<y>28.3048</y>
+		<z>0</z>
+	</Rot>
+	<Rod>4.82388</Rod>
+	<FOV>54.4316</FOV>
+	<ClipDistanceMin>1</ClipDistanceMin>
+	<ClipDistanceMax>500</ClipDistanceMax>
+	<SrcName>Cameras\Interface\HireCreatures_EarthElemental.mb</SrcName>
+	<RootJoint>camera_hire_screen</RootJoint>
+</Camera>

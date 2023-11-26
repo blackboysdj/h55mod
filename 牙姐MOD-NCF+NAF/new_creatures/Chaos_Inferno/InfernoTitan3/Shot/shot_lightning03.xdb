@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Model>
+	<Materials>
+		<Item href="shot_lightning.(Material).xdb#xpointer(/Material)"/>
+	</Materials>
+	<Skeleton href="/_(Model)/Effects/Characters/Titan/shot_lightning03-skel.xdb#xpointer(/Skeleton)"/>
+	<Geometry href="/_(Model)/Effects/Characters/Titan/shot_lightning03-geom.xdb#xpointer(/Geometry)"/>
+	<Animations/>
+	<WindPower>1</WindPower>
+</Model>

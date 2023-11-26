@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BasicSkelAnim>
+	<SrcName href="/H5A2/Creatures/AlternativeUpgrades/Academy/T7_Storm_Lord/Storm_Lord.mb"/>
+	<uid>D77942E3-59C9-4D61-AE90-00E816E1DA2D</uid>
+	<ExpSrcClip href="/H5A2/Creatures/AlternativeUpgrades/Academy/T7_Storm_Lord/Animations/Clip/Giant.move.ma"/>
+	<ExpRootTransform>Global</ExpRootTransform>
+	<ExpFrameFirst>0</ExpFrameFirst>
+	<ExpFrameLast>0</ExpFrameLast>
+	<ExpSettingsFile href=""/>
+	<MovementSpeed>1.86999</MovementSpeed>
+	<SpeedFactor>1</SpeedFactor>
+	<Sound href="/Sounds/_(Sound)/Creatures/Academy/Titan/Move.xdb#xpointer(/Sound)"/>
+	<Effect href="Effects/Idle00.(Effect) (2).xdb#xpointer(/Effect)"/>
+	<SpeedLineFallTime>250</SpeedLineFallTime>
+	<SpeedLineMaterial/>
+</BasicSkelAnim>

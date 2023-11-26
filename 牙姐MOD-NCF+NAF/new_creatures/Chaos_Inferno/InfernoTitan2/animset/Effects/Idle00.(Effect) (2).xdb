@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Effect>
+	<Instances>
+		<Item/>
+	</Instances>
+	<Lights/>
+	<Models>
+		<Item href="LArm.(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item href="RHand.(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item href="Head.(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item href="Neck.(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item href="ShoulderR.(ModelInstance) (2).xdb#xpointer(/ModelInstance)"/>
+		<Item href="ShoulderL.(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item href="LegL.(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item href="LegR.(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item href="ArmorR.(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item href="ArmorL.(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item href="Hip.(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item href="FootL.(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item href="FootR.(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item href="Spine.(ModelInstance).xdb#xpointer(/ModelInstance)"/>
+		<Item/>
+		<Item/>
+	</Models>
+	<WindAffected>false</WindAffected>
+	<WindPower>1</WindPower>
+	<Duration>2.5</Duration>
+</Effect>

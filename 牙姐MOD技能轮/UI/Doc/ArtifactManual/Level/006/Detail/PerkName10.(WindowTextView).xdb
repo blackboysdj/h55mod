@@ -52,7 +52,7 @@
 	<Flags>
 		<SuperActive>false</SuperActive>
 	</Flags>
-	<TextFileRef href="/Text/TTH/Artifact/033-CloakOfMourning/Text.txt"/>
+	<TextFileRef href="/Text/TTH/Artifact/067-TwistingNeither/Text.txt"/>
 	<ResizeOnTextSet>false</ResizeOnTextSet>
 	<ResizeWidthOnTextSet>false</ResizeWidthOnTextSet>
 	<TextFormat href="/UI/Doc/ArtifactManual/Common/Name.(TextFormat).xdb#xpointer(/TextFormat)"/>

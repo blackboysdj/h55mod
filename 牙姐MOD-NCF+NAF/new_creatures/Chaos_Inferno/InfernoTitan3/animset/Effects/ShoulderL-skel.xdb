@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Skeleton>
+	<SrcName href="/Titan/Neck.mb"/>
+	<RootJoint>LShoulder</RootJoint>
+	<MSRFormat>true</MSRFormat>
+	<Animations/>
+	<uid>F24328F7-256A-45BE-8EA6-B4F7D077D885</uid>
+</Skeleton>

@@ -3240,7 +3240,7 @@
 				<Item>HERO_SKILL_EMPTY_SLOT086</Item>
 				<Item>HERO_SKILL_EMPTY_SLOT087</Item>
 				<Item>HERO_SKILL_EMPTY_SLOT088</Item>
-				<Item>HERO_SKILL_EMPTY_SLOT089</Item>
+				<Item>HERO_SKILL_BEHIND_ENEMY</Item>
 				<Item>HERO_SKILL_EVIL_EXPEDITION</Item>
 				<Item>HERO_SKILL_SAFETY_STEP</Item>
 				<Item>HERO_SKILL_RAGE_RUSH</Item>
@@ -68224,7 +68224,7 @@
 					<Value>308</Value>
 				</Item>
 				<Item>
-					<Name>HERO_SKILL_EMPTY_SLOT089</Name>
+					<Name>HERO_SKILL_BEHIND_ENEMY</Name>
 					<Value>309</Value>
 				</Item>
 				<Item>

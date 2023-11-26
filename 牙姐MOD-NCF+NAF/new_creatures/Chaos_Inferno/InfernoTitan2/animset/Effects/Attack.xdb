@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Model>
+	<Materials>
+		<Item/>
+	</Materials>
+	<Skeleton href="Attack-skel.xdb#xpointer(/Skeleton)"/>
+	<Geometry href="Attack-geom.xdb#xpointer(/Geometry)"/>
+	<Animations/>
+	<WindPower>1</WindPower>
+</Model>

@@ -40,11 +40,11 @@
 		<Gold>2500</Gold>
 	</Cost>
 	<SubjectOfRandomGeneration>true</SubjectOfRandomGeneration>
-	<MonsterShared href="/new_creatures/Necropolis/Namtaru/creature.(AdvMapMonsterShared).xdb#xpointer(/AdvMapMonsterShared)"/>
+	<MonsterShared href="/new_creatures/Necropolis/Spitting/creature.(AdvMapMonsterShared).xdb#xpointer(/AdvMapMonsterShared)"/>
 	<CombatSize>2</CombatSize>
 	<PatternAttack href="/GameMechanics/Creature/Creatures/Dungeon/HalfCircleLargeAttack.xdb#xpointer(/PatternAttack)"/>
 	<flybySequence/>
-	<Visual href="/new_creatures/Necropolis/Namtaru/creatureSpider.(CreatureVisual).xdb#xpointer(/CreatureVisual)"/>
+	<Visual href="/new_creatures/Necropolis/Spitting/creature.(CreatureVisual).xdb#xpointer(/CreatureVisual)"/>
 	<Range>0</Range>
 	<BaseCreature>CREATURE_WALKING_DEAD</BaseCreature>
 	<Upgrades/>

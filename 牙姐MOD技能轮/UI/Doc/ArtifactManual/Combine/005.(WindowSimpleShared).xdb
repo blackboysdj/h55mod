@@ -5,8 +5,8 @@
 		<Item href="005/Detail/PerkButton01.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="005/Detail/PerkButton02.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="005/Detail/PerkButton03.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<!-- <Item href="005/Detail/PerkButton04.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="005/Detail/PerkButton05.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
+		<Item href="005/Detail/PerkButton04.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="005/Detail/PerkButton05.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<!-- <Item href="005/Detail/PerkButton06.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
 		<!-- <Item href="005/Detail/PerkButton07.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
 	</Children>

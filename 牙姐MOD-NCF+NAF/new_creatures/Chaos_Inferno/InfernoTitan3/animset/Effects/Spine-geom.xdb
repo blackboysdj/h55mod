@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Geometry>
+	<SrcName href="/Titan/Spine.mb"/>
+	<uid>2E7C1C1E-D674-4DD0-A9D4-74EF2B8EE79B</uid>
+	<RootMesh/>
+	<RootJoint>Spine</RootJoint>
+	<Size>
+		<x>0.399409</x>
+		<y>0.345632</y>
+		<z>0.440318</z>
+	</Size>
+	<Center>
+		<x>-0.00114921</x>
+		<y>-0.0155762</y>
+		<z>0.105612</z>
+	</Center>
+	<BestFitPoint>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+	</BestFitPoint>
+	<Dir>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+		<w>0</w>
+	</Dir>
+	<AIGeometry/>
+	<NumMeshes>1</NumMeshes>
+	<MaterialQuantities>
+		<Item>1</Item>
+	</MaterialQuantities>
+	<MeshNames>
+		<Item>SpineShape</Item>
+	</MeshNames>
+	<MeshAnimated/>
+	<MeshWindAffected/>
+</Geometry>

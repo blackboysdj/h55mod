@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Geometry>
+	<SrcName href="/Titan/Shoulder.mb"/>
+	<uid>EE8FE954-F0E7-4139-A10E-273997A97501</uid>
+	<RootMesh/>
+	<RootJoint>LShoulder</RootJoint>
+	<Size>
+		<x>0.171437</x>
+		<y>0.19471</y>
+		<z>0.18457</z>
+	</Size>
+	<Center>
+		<x>0.0812014</x>
+		<y>-0.000385236</y>
+		<z>0.00545716</z>
+	</Center>
+	<BestFitPoint>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+	</BestFitPoint>
+	<Dir>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+		<w>0</w>
+	</Dir>
+	<AIGeometry/>
+	<NumMeshes>1</NumMeshes>
+	<MaterialQuantities>
+		<Item>1</Item>
+	</MaterialQuantities>
+	<MeshNames>
+		<Item>LShoulderShape</Item>
+	</MeshNames>
+	<MeshAnimated/>
+	<MeshWindAffected/>
+</Geometry>

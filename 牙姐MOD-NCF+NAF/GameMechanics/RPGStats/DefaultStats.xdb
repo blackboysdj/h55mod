@@ -544,7 +544,7 @@
 									<FloatParam>0</FloatParam>
 									<Spells/>
 									<Abilities>
-										<Item>ABILITY_PAW_STRIKE</Item>
+										<Item>ABILITY_STRIKE_AND_RETURN</Item>
 									</Abilities>
 								</Item>
 							</Bonus2>
@@ -555,7 +555,7 @@
 									<FloatParam>0</FloatParam>
 									<Spells/>
 									<Abilities>
-										<Item>ABILITY_PAW_STRIKE</Item>
+										<Item>ABILITY_STRIKE_AND_RETURN</Item>
 										<Item>ABILITY_LIFE_DRAIN</Item>
 									</Abilities>
 								</Item>

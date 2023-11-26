@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <BackgroundSimpleScallingTexture ObjectRecordID="1000077">
 	<ClassTypeID>285694784</ClassTypeID>
-	<Texture href="/Textures/HeroScreen/Artifacts/140-BootsOfTheWalkingDead.xdb#xpointer(/Texture)"/>
+	<Texture href="/Textures/HeroScreen/Artifacts/Sentinel.xdb#xpointer(/Texture)"/>
 	<Color>-1</Color>
 	<Size>
-		<x>128</x>
-		<y>128</y>
+		<x>64</x>
+		<y>64</y>
 	</Size>
 </BackgroundSimpleScallingTexture>

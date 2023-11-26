@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <BackgroundSimpleScallingTexture ObjectRecordID="1000037">
 	<ClassTypeID>285694784</ClassTypeID>
-	<Texture href="/Textures/Icons/Artifacts/Earth_Sliders.(Texture).xdb#xpointer(/Texture)"/>
+	<Texture href="/Textures/HeroScreen/Artifacts/Chain_Mail_of_Enlightenment.xdb#xpointer(/Texture)"/>
 	<Color>-1</Color>
 	<Size>
 		<x>64</x>

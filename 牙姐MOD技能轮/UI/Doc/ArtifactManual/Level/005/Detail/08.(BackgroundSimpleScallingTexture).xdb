@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <BackgroundSimpleScallingTexture ObjectRecordID="1000057">
 	<ClassTypeID>285694784</ClassTypeID>
-	<Texture href="/Textures/HeroScreen/Artifacts/Dragon_Eye_Ring.xdb#xpointer(/Texture)"/>
+	<Texture href="/Textures/HeroScreen/Artifacts/Dragon_Flame_Tongue.xdb#xpointer(/Texture)"/>
 	<Color>-1</Color>
 	<Size>
 		<x>64</x>

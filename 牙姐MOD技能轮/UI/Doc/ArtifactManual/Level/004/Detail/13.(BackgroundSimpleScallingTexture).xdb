@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <BackgroundSimpleScallingTexture ObjectRecordID="1000047">
 	<ClassTypeID>285694784</ClassTypeID>
-	<Texture href="/Textures/HeroScreen/Artifacts/Ring_of_Celerity.xdb#xpointer(/Texture)"/>
+	<Texture href="/UI/H5A1/Icons/Artefacts/128x128/Runic_War_Harness.(Texture).xdb#xpointer(/Texture)"/>
 	<Color>-1</Color>
 	<Size>
 		<x>64</x>

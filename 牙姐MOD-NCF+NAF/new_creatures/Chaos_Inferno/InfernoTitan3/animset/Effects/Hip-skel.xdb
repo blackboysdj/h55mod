@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Skeleton>
+	<SrcName href="/Titan/Hip.mb"/>
+	<RootJoint>Hip</RootJoint>
+	<MSRFormat>true</MSRFormat>
+	<Animations/>
+	<uid>999E07A9-AFF0-4D0F-87C9-03F06E0FBFD5</uid>
+</Skeleton>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Geometry>
+	<SrcName href="/Titan/Shoulder.mb"/>
+	<uid>FC16A77D-90F8-48E1-A8B5-7C377D9FB7D0</uid>
+	<RootMesh/>
+	<RootJoint>RShoulder</RootJoint>
+	<Size>
+		<x>0.568478</x>
+		<y>0.615527</y>
+		<z>0.520276</z>
+	</Size>
+	<Center>
+		<x>-0.000341728</x>
+		<y>-0.0356106</y>
+		<z>0.0887368</z>
+	</Center>
+	<BestFitPoint>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+	</BestFitPoint>
+	<Dir>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+		<w>0</w>
+	</Dir>
+	<AIGeometry/>
+	<NumMeshes>1</NumMeshes>
+	<MaterialQuantities>
+		<Item>1</Item>
+	</MaterialQuantities>
+	<MeshNames>
+		<Item>RShoulderShape</Item>
+	</MeshNames>
+	<MeshAnimated/>
+	<MeshWindAffected/>
+</Geometry>

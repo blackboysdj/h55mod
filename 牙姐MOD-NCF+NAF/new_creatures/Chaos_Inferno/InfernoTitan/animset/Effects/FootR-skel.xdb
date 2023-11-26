@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Skeleton>
+	<SrcName href="/Titan/MightHeroLeg_Forearm.mb"/>
+	<RootJoint>RFoot</RootJoint>
+	<MSRFormat>true</MSRFormat>
+	<Animations/>
+	<uid>D42849B8-CDC8-46BE-9AAA-71A937FC92C0</uid>
+</Skeleton>

@@ -52,7 +52,7 @@
 	<Flags>
 		<SuperActive>false</SuperActive>
 	</Flags>
-	<TextFileRef href="/Text/TTH/Artifact/053-Graal/Text.txt"/>
+	<TextFileRef href="/Text/TTH/Artifact/092-HornOfPlenty/Text.txt"/>
 	<ResizeOnTextSet>false</ResizeOnTextSet>
 	<ResizeWidthOnTextSet>false</ResizeWidthOnTextSet>
 	<TextFormat href="/UI/Doc/ArtifactManual/Common/Name.(TextFormat).xdb#xpointer(/TextFormat)"/>

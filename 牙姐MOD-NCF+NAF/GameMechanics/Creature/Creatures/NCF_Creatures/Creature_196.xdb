@@ -52,11 +52,11 @@
 		<Gold>440</Gold>
 	</Cost>
 	<SubjectOfRandomGeneration>true</SubjectOfRandomGeneration>
-	<MonsterShared href="/MapObjects/Preserve/Sprite.(AdvMapMonsterShared).xdb#xpointer(/AdvMapMonsterShared)"/>
+	<MonsterShared href="/new_creatures/Necropolis/Ghost/creature.(AdvMapMonsterShared).xdb#xpointer(/AdvMapMonsterShared)"/>
 	<CombatSize>1</CombatSize>
 	<PatternAttack/>
 	<flybySequence/>
-	<Visual href="/GameMechanics/Creature/Creatures/NCF_Creatures/Creature_Siren_CreatureVisual.xdb#xpointer(/CreatureVisual)"/>
+	<Visual href="/new_creatures/Necropolis/Ghost/creature.(CreatureVisual).xdb#xpointer(/CreatureVisual)"/>
 	<Range>-2</Range>
 	<BaseCreature>CREATURE_WALKING_DEAD</BaseCreature>
 	<Upgrades/>

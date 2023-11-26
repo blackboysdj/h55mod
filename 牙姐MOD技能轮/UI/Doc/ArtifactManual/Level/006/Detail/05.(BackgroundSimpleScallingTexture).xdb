@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <BackgroundSimpleScallingTexture ObjectRecordID="1000067">
 	<ClassTypeID>285694784</ClassTypeID>
-	<Texture href="/Textures/HeroScreen/Artifacts/Staff_of_Vexings.xdb#xpointer(/Texture)"/>
+	<Texture href="/Textures/HeroScreen/Artifacts/Plate_Mail_of_Stability.xdb#xpointer(/Texture)"/>
 	<Color>-1</Color>
 	<Size>
 		<x>64</x>

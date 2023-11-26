@@ -52,7 +52,7 @@
 	<Flags>
 		<SuperActive>false</SuperActive>
 	</Flags>
-	<TextFileRef href="/Text/TTH/Artifact/064-BonestuddedLeather/Text.txt"/>
+	<TextFileRef href="/Text/TTH/Artifact/094-BookOfPower/Text.txt"/>
 	<ResizeOnTextSet>false</ResizeOnTextSet>
 	<ResizeWidthOnTextSet>false</ResizeWidthOnTextSet>
 	<TextFormat href="/UI/Doc/ArtifactManual/Common/Name.(TextFormat).xdb#xpointer(/TextFormat)"/>

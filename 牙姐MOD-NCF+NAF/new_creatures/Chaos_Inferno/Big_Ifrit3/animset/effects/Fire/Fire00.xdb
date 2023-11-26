@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Texture ObjectRecordID="587">
+	<SrcName href="/Ifrit/fire/Fire00.tga"/>
+	<DestName href="Fire00.dds"/>
+	<Type>REGULAR</Type>
+	<ConversionType>CONVERT_TRANSPARENT_ADD</ConversionType>
+	<AddrType>WRAP</AddrType>
+	<Format>TF_8888</Format>
+	<Width>64</Width>
+	<Height>64</Height>
+	<MappingSize>0</MappingSize>
+	<NMips>0</NMips>
+	<Gain>0</Gain>
+	<AverageColor>-12248810</AverageColor>
+	<InstantLoad>true</InstantLoad>
+	<IsDXT>false</IsDXT>
+	<FlipY>true</FlipY>
+	<StandardExport>true</StandardExport>
+	<UseS3TC>false</UseS3TC>
+</Texture>

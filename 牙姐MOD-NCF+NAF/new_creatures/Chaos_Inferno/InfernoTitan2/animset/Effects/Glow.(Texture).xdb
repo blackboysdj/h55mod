@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Texture>
+	<SrcName href="/RTF/SparkBlack.tga"/>
+	<DestName href="Glow.(Texture).dds"/>
+	<Type>REGULAR</Type>
+	<ConversionType>CONVERT_TRANSPARENT_ADD</ConversionType>
+	<AddrType>WRAP</AddrType>
+	<Format>TF_8888</Format>
+	<Width>32</Width>
+	<Height>32</Height>
+	<MappingSize>0</MappingSize>
+	<NMips>0</NMips>
+	<Gain>0</Gain>
+	<AverageColor>501803240</AverageColor>
+	<InstantLoad>true</InstantLoad>
+	<IsDXT>false</IsDXT>
+	<FlipY>true</FlipY>
+	<StandardExport>true</StandardExport>
+	<UseS3TC>false</UseS3TC>
+</Texture>

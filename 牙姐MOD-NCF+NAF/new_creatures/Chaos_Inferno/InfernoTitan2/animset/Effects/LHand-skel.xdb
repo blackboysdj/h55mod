@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Skeleton>
+	<SrcName href="/Titan/Armor.mb"/>
+	<RootJoint>LArm</RootJoint>
+	<MSRFormat>true</MSRFormat>
+	<Animations/>
+	<uid>A8BC1432-79C1-45A4-A0B1-3CBC30AF5B66</uid>
+</Skeleton>

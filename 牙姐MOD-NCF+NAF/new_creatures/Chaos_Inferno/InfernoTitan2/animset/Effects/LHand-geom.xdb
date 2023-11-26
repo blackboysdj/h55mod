@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Geometry>
+	<SrcName href="/Titan/LForearm.mb"/>
+	<uid>06A214CD-83F1-40B2-B71C-5793729FE595</uid>
+	<RootMesh/>
+	<RootJoint>LForearm</RootJoint>
+	<Size>
+		<x>0.352853</x>
+		<y>0.213836</y>
+		<z>0.263728</z>
+	</Size>
+	<Center>
+		<x>0.164097</x>
+		<y>-0.000779312</y>
+		<z>0.00111094</z>
+	</Center>
+	<BestFitPoint>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+	</BestFitPoint>
+	<Dir>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+		<w>0</w>
+	</Dir>
+	<AIGeometry/>
+	<NumMeshes>1</NumMeshes>
+	<MaterialQuantities>
+		<Item>1</Item>
+	</MaterialQuantities>
+	<MeshNames>
+		<Item>LForearmShape</Item>
+	</MeshNames>
+	<MeshAnimated/>
+	<MeshWindAffected/>
+</Geometry>

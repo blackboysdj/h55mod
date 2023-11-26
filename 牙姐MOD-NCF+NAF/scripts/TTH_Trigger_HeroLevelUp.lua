@@ -286,6 +286,9 @@ end;
 function TTH_TRIGGER.heroLevelUpAnastasya()
 	TTH_TRIGGER.heroLevelUp("Anastasya");
 end;
+function TTH_TRIGGER.heroLevelUpMortarion()
+	TTH_TRIGGER.heroLevelUp("Mortarion");
+end;
 function TTH_TRIGGER.heroLevelUpMuscip()
 	TTH_TRIGGER.heroLevelUp("Muscip");
 end;

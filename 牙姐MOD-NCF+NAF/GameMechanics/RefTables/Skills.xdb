@@ -30543,66 +30543,205 @@
 			</obj>
 		</Item>
 		<Item>
-			<ID>HERO_SKILL_EMPTY_SLOT089</ID>
+			<ID>HERO_SKILL_BEHIND_ENEMY</ID>
 			<obj>
 				<Texture>
-					<Item href="/Textures/HeroScreen/Feats/Knight/WarMachines_FastBallista_grey.xdb#xpointer(/Texture)"/>
-					<Item href="/Textures/HeroScreen/Feats/Knight/WarMachines_FastBallista.xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/TTH/Skills/Offence/309-BehindEnemy/309-BehindEnemy.(Texture).xdb#xpointer(/Texture)"/>
+					<Item href="/Textures/TTH/Skills/Offence/309-BehindEnemy/309-BehindEnemy.(Texture).xdb#xpointer(/Texture)"/>
 				</Texture>
 				<CommonTexture/>
 				<NameFileRef>
-					<Item href="/Text/TTH/Skills/Z-EmptySlot/089/Name.txt"/>
+					<Item href="/Text/TTH/Skills/Offence/309-BehindEnemy/Name.txt"/>
 				</NameFileRef>
 				<CommonNameFileRef href=""/>
 				<DescriptionFileRef>
-					<Item href="/Text/TTH/Skills/Z-EmptySlot/089/Description.txt"/>
+					<Item href="/Text/TTH/Skills/Offence/309-BehindEnemy/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
 				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
 				<HeroClass>HERO_CLASS_NONE</HeroClass>
 				<spellBuffs/>
-				<BasicSkillID>HERO_SKILL_WAR_MACHINES</BasicSkillID>
-				<SkillPrerequisites/>
+				<BasicSkillID>HERO_SKILL_OFFENCE</BasicSkillID>
+				<SkillPrerequisites>
+					<Item>
+						<Class>HERO_CLASS_KNIGHT</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_OFFENSIVE_FORMATION</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_PALADIN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_OFFENSIVE_FORMATION</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_OFFENSIVE_FORMATION</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_HERETIC</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_OFFENSIVE_FORMATION</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RANGER</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_OFFENSIVE_FORMATION</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_WARDEN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_OFFENSIVE_FORMATION</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_ENCHANTER</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_OFFENSIVE_FORMATION</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_SORCERER</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_OFFENSIVE_FORMATION</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_GATE_KEEPER</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_OFFENSIVE_FORMATION</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_FLAMEKEEPERA</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_OFFENSIVE_FORMATION</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_ENGINEER</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_OFFENSIVE_FORMATION</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_NECROMANCER</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_OFFENSIVE_FORMATION</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_REAVER</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_OFFENSIVE_FORMATION</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_WARLOCK</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_OFFENSIVE_FORMATION</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_BEASTMASTER</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_OFFENSIVE_FORMATION</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_GUILDMASTER</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_OFFENSIVE_FORMATION</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_SEER</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_OFFENSIVE_FORMATION</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_WIZARD</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_OFFENSIVE_FORMATION</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_ELEMENTALIST</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_OFFENSIVE_FORMATION</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_DEMON_LORD</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_OFFENSIVE_FORMATION</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_DEATHKNIGHT</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_OFFENSIVE_FORMATION</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_RUNEMAGE</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_OFFENSIVE_FORMATION</Item>
+						</dependenciesIDs>
+					</Item>
+					<Item>
+						<Class>HERO_CLASS_BARBARIAN</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_OFFENSIVE_FORMATION</Item>
+						</dependenciesIDs>
+					</Item>
+				</SkillPrerequisites>
 				<AIRacesValues>
 					<Haven>
-						<CommanderValue>3000</CommanderValue>
-						<CollectorSupplierValue>1000</CollectorSupplierValue>
-						<FreelancerValue>3000</FreelancerValue>
+						<CommanderValue>1000</CommanderValue>
+						<CollectorSupplierValue>100</CollectorSupplierValue>
+						<FreelancerValue>1000</FreelancerValue>
 					</Haven>
 					<Sylvan>
-						<CommanderValue>3000</CommanderValue>
-						<CollectorSupplierValue>1000</CollectorSupplierValue>
-						<FreelancerValue>3000</FreelancerValue>
+						<CommanderValue>1000</CommanderValue>
+						<CollectorSupplierValue>100</CollectorSupplierValue>
+						<FreelancerValue>1000</FreelancerValue>
 					</Sylvan>
 					<Academy>
-						<CommanderValue>3000</CommanderValue>
-						<CollectorSupplierValue>1000</CollectorSupplierValue>
-						<FreelancerValue>3000</FreelancerValue>
+						<CommanderValue>1000</CommanderValue>
+						<CollectorSupplierValue>100</CollectorSupplierValue>
+						<FreelancerValue>1000</FreelancerValue>
 					</Academy>
 					<Dungeon>
-						<CommanderValue>3000</CommanderValue>
-						<CollectorSupplierValue>1000</CollectorSupplierValue>
-						<FreelancerValue>3000</FreelancerValue>
+						<CommanderValue>1000</CommanderValue>
+						<CollectorSupplierValue>100</CollectorSupplierValue>
+						<FreelancerValue>1000</FreelancerValue>
 					</Dungeon>
 					<Necropolis>
-						<CommanderValue>3000</CommanderValue>
-						<CollectorSupplierValue>1000</CollectorSupplierValue>
-						<FreelancerValue>3000</FreelancerValue>
+						<CommanderValue>1000</CommanderValue>
+						<CollectorSupplierValue>100</CollectorSupplierValue>
+						<FreelancerValue>1000</FreelancerValue>
 					</Necropolis>
 					<Inferno>
-						<CommanderValue>3000</CommanderValue>
-						<CollectorSupplierValue>1000</CollectorSupplierValue>
-						<FreelancerValue>3000</FreelancerValue>
+						<CommanderValue>1000</CommanderValue>
+						<CollectorSupplierValue>100</CollectorSupplierValue>
+						<FreelancerValue>1000</FreelancerValue>
 					</Inferno>
 					<Fortress>
-						<CommanderValue>3000</CommanderValue>
-						<CollectorSupplierValue>1000</CollectorSupplierValue>
-						<FreelancerValue>3000</FreelancerValue>
+						<CommanderValue>1000</CommanderValue>
+						<CollectorSupplierValue>100</CollectorSupplierValue>
+						<FreelancerValue>1000</FreelancerValue>
 					</Fortress>
 					<Stronghold>
-						<CommanderValue>3000</CommanderValue>
-						<CollectorSupplierValue>1000</CollectorSupplierValue>
-						<FreelancerValue>3000</FreelancerValue>
+						<CommanderValue>1000</CommanderValue>
+						<CollectorSupplierValue>100</CollectorSupplierValue>
+						<FreelancerValue>1000</FreelancerValue>
 					</Stronghold>
 				</AIRacesValues>
 				<PresetPrice>0</PresetPrice>

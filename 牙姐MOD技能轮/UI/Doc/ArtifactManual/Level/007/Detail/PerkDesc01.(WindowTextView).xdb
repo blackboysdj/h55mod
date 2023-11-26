@@ -52,7 +52,7 @@
 	<Flags>
 		<SuperActive>false</SuperActive>
 	</Flags>
-	<TextFileRef href="/Text/TTH/Artifact/163-Shantiri05/Description.txt"/>
+	<TextFileRef href="/Text/TTH/Artifact/030-AngelWings/Description.txt"/>
 	<ResizeOnTextSet>true</ResizeOnTextSet>
 	<ResizeWidthOnTextSet>false</ResizeWidthOnTextSet>
 	<TextFormat href="/UI/Doc/ArtifactManual/Common/Description.(TextFormat).xdb#xpointer(/TextFormat)"/>

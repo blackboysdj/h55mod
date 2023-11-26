@@ -29,9 +29,15 @@
 		<Item href="005/Detail/PerkButton25.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="005/Detail/PerkButton26.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="005/Detail/PerkButton27.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<!-- <Item href="005/Detail/PerkButton28.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="005/Detail/PerkButton29.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
-		<!-- <Item href="005/Detail/PerkButton30.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
+		<Item href="005/Detail/PerkButton28.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="005/Detail/PerkButton29.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="005/Detail/PerkButton30.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="005/Detail/PerkButton31.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="005/Detail/PerkButton32.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="005/Detail/PerkButton33.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="005/Detail/PerkButton34.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="005/Detail/PerkButton35.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
+		<Item href="005/Detail/PerkButton36.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 	</Children>
 	<Background/>
 	<Foreground/>

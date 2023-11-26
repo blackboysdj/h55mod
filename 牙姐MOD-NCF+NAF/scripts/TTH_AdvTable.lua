@@ -713,6 +713,41 @@
       TTH_PATH.FlyingSign["TeachHeroSpell"] = "/Text/Game/Scripts/TTH_Path/FlyingSign/TeachHeroSpell.txt";
       TTH_PATH.FlyingSign["GiveHeroArtifact"] = "/Text/Game/Scripts/TTH_Path/FlyingSign/GiveHeroArtifact.txt";
 
+    -- 胜利条件
+      TTH_PATH.Winner = {};
+      TTH_PATH.Winner["Pre"] = "/Text/TTH/Scripts/Winner/";
+      TTH_PATH.Winner["Confirm"] = TTH_PATH.Winner["Pre"].."Confirm.txt";
+      TTH_PATH.Winner["Grail"] = TTH_PATH.Winner["Pre"].."Grail.txt";
+      TTH_PATH.Winner["GrailDetail"] = TTH_PATH.Winner["Pre"].."GrailDetail.txt";
+      TTH_PATH.Winner["Nobility"] = TTH_PATH.Winner["Pre"].."Nobility.txt";
+      TTH_PATH.Winner["NobilityDetail"] = TTH_PATH.Winner["Pre"].."NobilityDetail.txt";
+      TTH_PATH.Winner["Wealth"] = TTH_PATH.Winner["Pre"].."Wealth.txt";
+      TTH_PATH.Winner["WealthDetail"] = TTH_PATH.Winner["Pre"].."WealthDetail.txt";
+      TTH_PATH.Winner["Town"] = TTH_PATH.Winner["Pre"].."Town.txt";
+      TTH_PATH.Winner["TownDetail"] = TTH_PATH.Winner["Pre"].."TownDetail.txt";
+
+    -- 选择初始奖励
+      TTH_PATH.Start = {};
+      TTH_PATH.Start["Pre"] = "/Text/TTH/Scripts/Start/";
+      TTH_PATH.Start["Choice"] = {};
+      TTH_PATH.Start["Choice"]["Pre"] = TTH_PATH.Start["Pre"].."Choice/";
+      TTH_PATH.Start["Choice"]["Skill"] = {};
+      TTH_PATH.Start["Choice"]["Skill"]["Pre"] = TTH_PATH.Start["Choice"]["Pre"].."Skill/";
+      TTH_PATH.Start["Choice"]["Skill"]["Text"] = TTH_PATH.Start["Choice"]["Skill"]["Pre"].."Text.txt";
+      TTH_PATH.Start["Choice"]["Skill"]["Confirm"] = TTH_PATH.Start["Choice"]["Skill"]["Pre"].."Confirm.txt";
+      TTH_PATH.Start["Choice"]["Skill"]["Success"] = TTH_PATH.Start["Choice"]["Skill"]["Pre"].."Success.txt";
+      TTH_PATH.Start["Choice"]["Skill"]["Failure"] = TTH_PATH.Start["Choice"]["Skill"]["Pre"].."Failure.txt";
+      TTH_PATH.Start["Choice"]["Creature"] = {};
+      TTH_PATH.Start["Choice"]["Creature"]["Pre"] = TTH_PATH.Start["Choice"]["Pre"].."Creature/";
+      TTH_PATH.Start["Choice"]["Creature"]["Text"] = TTH_PATH.Start["Choice"]["Creature"]["Pre"].."Text.txt";
+      TTH_PATH.Start["Choice"]["Creature"]["RadioTips"] = TTH_PATH.Start["Choice"]["Creature"]["Pre"].."RadioTips.txt";
+      TTH_PATH.Start["Choice"]["Artifact"] = {};
+      TTH_PATH.Start["Choice"]["Artifact"]["Pre"] = TTH_PATH.Start["Choice"]["Pre"].."Artifact/";
+      TTH_PATH.Start["Choice"]["Artifact"]["Text"] = TTH_PATH.Start["Choice"]["Artifact"]["Pre"].."Text.txt";
+      TTH_PATH.Start["Choice"]["Artifact"]["TemplateLevel"] = TTH_PATH.Start["Choice"]["Artifact"]["Pre"].."TemplateLevel.txt";
+      TTH_PATH.Start["Choice"]["Artifact"]["RadioLevelTips"] = TTH_PATH.Start["Choice"]["Artifact"]["Pre"].."RadioLevelTips.txt";
+      TTH_PATH.Start["Choice"]["Artifact"]["RadioArtifactTips"] = TTH_PATH.Start["Choice"]["Artifact"]["Pre"].."RadioArtifactTips.txt";
+
     TTH_PATH.FuncPre = "/Text/Game/Scripts/TTH_Func/";
 
     TTH_PATH.Talent = {};
@@ -783,6 +818,8 @@
         TTH_PATH.Talent["RedHeavenHero06"]["ReachMaxLevel"] = TTH_PATH.Talent["RedHeavenHero06"]["Pre"].."ReachMaxLevel.txt";
         TTH_PATH.Talent["RedHeavenHero06"]["Confirm"] = TTH_PATH.Talent["RedHeavenHero06"]["Pre"].."Confirm.txt";
         TTH_PATH.Talent["RedHeavenHero06"]["Success"] = TTH_PATH.Talent["RedHeavenHero06"]["Pre"].."Success.txt";
+        TTH_PATH.Talent["RedHeavenHero06"]["Batch"] = TTH_PATH.Talent["RedHeavenHero06"]["Pre"].."Batch.txt";
+        TTH_PATH.Talent["RedHeavenHero06"]["MaxLevel"] = TTH_PATH.Talent["RedHeavenHero06"]["Pre"].."MaxLevel.txt";
       -- Avitus 157 阿维图斯
         TTH_PATH.Talent["Avitus"] = {};
         TTH_PATH.Talent["Avitus"]["Pre"] = TTH_PATH.Talent["Pre"].."157-Avitus/";
@@ -799,6 +836,8 @@
         TTH_PATH.Talent["Metlirn"]["OptionGrowthTemplate"] = TTH_PATH.Talent["Metlirn"]["Pre"].."OptionGrowthTemplate.txt";
         TTH_PATH.Talent["Metlirn"]["RadioTipsGrowth"] = TTH_PATH.Talent["Metlirn"]["Pre"].."RadioTipsGrowth.txt";
         TTH_PATH.Talent["Metlirn"]["Confirm"] = TTH_PATH.Talent["Metlirn"]["Pre"].."Confirm.txt";
+        TTH_PATH.Talent["Metlirn"]["Again"] = TTH_PATH.Talent["Metlirn"]["Pre"].."Again.txt";
+        TTH_PATH.Talent["Metlirn"]["Batch"] = TTH_PATH.Talent["Metlirn"]["Pre"].."Batch.txt";
         TTH_PATH.Talent["Metlirn"]["Success"] = TTH_PATH.Talent["Metlirn"]["Pre"].."Success.txt";
         TTH_PATH.Talent["Metlirn"]["CombatLink"] = "/Arenas/CombatArena/FinalCombat/Bank_Elf.(AdvMapTownCombat).xdb#xpointer(/AdvMapTownCombat)";
       -- Kyrre 029 凯琳
@@ -825,6 +864,7 @@
         TTH_PATH.Talent["Melodia"]["Text"] = TTH_PATH.Talent["Melodia"]["Pre"].."Text.txt";
         TTH_PATH.Talent["Melodia"]["NotEnoughTimes"] = TTH_PATH.Talent["Melodia"]["Pre"].."NotEnoughTimes.txt";
         TTH_PATH.Talent["Melodia"]["Success"] = TTH_PATH.Talent["Melodia"]["Pre"].."Success.txt";
+        TTH_PATH.Talent["Melodia"]["Batch"] = TTH_PATH.Talent["Melodia"]["Pre"].."Batch.txt";
       -- Elleshar 036 温利尔
         TTH_PATH.Talent["Elleshar"] = {};
         TTH_PATH.Talent["Elleshar"]["Pre"] = TTH_PATH.Talent["Pre"].."036-Elleshar/";
@@ -846,6 +886,7 @@
         TTH_PATH.Talent["Rissa"]["Text"] = TTH_PATH.Talent["Rissa"]["Pre"].."Text.txt";
         TTH_PATH.Talent["Rissa"]["NotEnoughTimes"] = TTH_PATH.Talent["Rissa"]["Pre"].."NotEnoughTimes.txt";
         TTH_PATH.Talent["Rissa"]["Success"] = TTH_PATH.Talent["Rissa"]["Pre"].."Success.txt";
+        TTH_PATH.Talent["Rissa"]["Batch"] = TTH_PATH.Talent["Rissa"]["Pre"].."Batch.txt";
       -- Razzak 047 纳克西斯
         TTH_PATH.Talent["Razzak"] = {};
         TTH_PATH.Talent["Razzak"]["Pre"] = TTH_PATH.Talent["Pre"].."047-Razzak/";
@@ -936,6 +977,7 @@
         TTH_PATH.Talent["Almegir"]["NotEnoughTimes"] = TTH_PATH.Talent["Almegir"]["Pre"].."NotEnoughTimes.txt";
         TTH_PATH.Talent["Almegir"]["NotEnoughMana"] = TTH_PATH.Talent["Almegir"]["Pre"].."NotEnoughMana.txt";
         TTH_PATH.Talent["Almegir"]["Success"] = TTH_PATH.Talent["Almegir"]["Pre"].."Success.txt";
+        TTH_PATH.Talent["Almegir"]["Batch"] = TTH_PATH.Talent["Almegir"]["Pre"].."Batch.txt";
       -- Inagost 072 塞纳特
         TTH_PATH.Talent["Inagost"] = {};
         TTH_PATH.Talent["Inagost"]["Pre"] = TTH_PATH.Talent["Pre"].."072-Inagost/";
@@ -1014,12 +1056,21 @@
         TTH_PATH.Talent["Anastasya"]["OptionCastSpider"] = TTH_PATH.Talent["Anastasya"]["Pre"].."OptionCastSpider.txt";
         TTH_PATH.Talent["Anastasya"]["NoSuitableCreature"] = TTH_PATH.Talent["Anastasya"]["Pre"].."NoSuitableCreature.txt";
         TTH_PATH.Talent["Anastasya"]["Success"] = TTH_PATH.Talent["Anastasya"]["Pre"].."Success.txt";
+      -- Mortarion 162 莫塔里安
+        TTH_PATH.Talent["Mortarion"] = {};
+        TTH_PATH.Talent["Mortarion"]["Pre"] = TTH_PATH.Talent["Pre"].."162-Mortarion/";
+        TTH_PATH.Talent["Mortarion"]["Text"] = TTH_PATH.Talent["Mortarion"]["Pre"].."Text.txt";
+        TTH_PATH.Talent["Mortarion"]["OptionCastHuman"] = TTH_PATH.Talent["Mortarion"]["Pre"].."OptionCastHuman.txt";
+        TTH_PATH.Talent["Mortarion"]["OptionCastSpider"] = TTH_PATH.Talent["Mortarion"]["Pre"].."OptionCastSpider.txt";
+        TTH_PATH.Talent["Mortarion"]["NoSuitableCreature"] = TTH_PATH.Talent["Mortarion"]["Pre"].."NoSuitableCreature.txt";
+        TTH_PATH.Talent["Mortarion"]["Success"] = TTH_PATH.Talent["Mortarion"]["Pre"].."Success.txt";
       -- Marder 103 马巴斯
         TTH_PATH.Talent["Marder"] = {};
         TTH_PATH.Talent["Marder"]["Pre"] = TTH_PATH.Talent["Pre"].."103-Marder/";
         TTH_PATH.Talent["Marder"]["Text"] = TTH_PATH.Talent["Marder"]["Pre"].."Text.txt";
         TTH_PATH.Talent["Marder"]["NotEnoughTimes"] = TTH_PATH.Talent["Marder"]["Pre"].."NotEnoughTimes.txt";
         TTH_PATH.Talent["Marder"]["Success"] = TTH_PATH.Talent["Marder"]["Pre"].."Success.txt";
+        TTH_PATH.Talent["Marder"]["Batch"] = TTH_PATH.Talent["Marder"]["Pre"].."Batch.txt";
       -- Nymus 108 耐莫斯
         TTH_PATH.Talent["Nymus"] = {};
         TTH_PATH.Talent["Nymus"]["Pre"] = TTH_PATH.Talent["Pre"].."108-Nymus/";
@@ -1041,6 +1092,7 @@
         TTH_PATH.Talent["Calid2"]["NotEnoughTimes"] = TTH_PATH.Talent["Calid2"]["Pre"].."NotEnoughTimes.txt";
         TTH_PATH.Talent["Calid2"]["NotSuitableHero"] = TTH_PATH.Talent["Calid2"]["Pre"].."NotSuitableHero.txt";
         TTH_PATH.Talent["Calid2"]["Success"] = TTH_PATH.Talent["Calid2"]["Pre"].."Success.txt";
+        TTH_PATH.Talent["Calid2"]["Batch"] = TTH_PATH.Talent["Calid2"]["Pre"].."Batch.txt";
       -- Una 128 英伽
         TTH_PATH.Talent["Una"] = {};
         TTH_PATH.Talent["Una"]["Pre"] = TTH_PATH.Talent["Pre"] .."128-Una/";
@@ -1085,6 +1137,7 @@
         TTH_PATH.Talent["Ingvar"]["Text"] = TTH_PATH.Talent["Ingvar"]["Pre"].."Text.txt";
         TTH_PATH.Talent["Ingvar"]["NotEnoughTimes"] = TTH_PATH.Talent["Ingvar"]["Pre"].."NotEnoughTimes.txt";
         TTH_PATH.Talent["Ingvar"]["Success"] = TTH_PATH.Talent["Ingvar"]["Pre"].."Success.txt";
+        TTH_PATH.Talent["Ingvar"]["Batch"] = TTH_PATH.Talent["Ingvar"]["Pre"].."Batch.txt";
       -- Rolf 132 洛尔夫
         TTH_PATH.Talent["Rolf"] = {};
         TTH_PATH.Talent["Rolf"]["Pre"] = TTH_PATH.Talent["Pre"] .."132-Rolf/";
@@ -1308,6 +1361,7 @@
         TTH_PATH.Perk[HERO_SKILL_SCOUTING]["Text"] = TTH_PATH.Perk[HERO_SKILL_SCOUTING]["Pre"].."Text.txt";
         TTH_PATH.Perk[HERO_SKILL_SCOUTING]["NotEnoughTimes"] = TTH_PATH.Perk[HERO_SKILL_SCOUTING]["Pre"].."NotEnoughTimes.txt";
         TTH_PATH.Perk[HERO_SKILL_SCOUTING]["Success"] = TTH_PATH.Perk[HERO_SKILL_SCOUTING]["Pre"].."Success.txt";
+        TTH_PATH.Perk[HERO_SKILL_SCOUTING]["Batch"] = TTH_PATH.Perk[HERO_SKILL_SCOUTING]["Pre"].."Batch.txt";
       -- HERO_SKILL_RECRUITMENT 028 募兵术
         TTH_PATH.Perk[HERO_SKILL_RECRUITMENT] = {};
         TTH_PATH.Perk[HERO_SKILL_RECRUITMENT]["Pre"] = TTH_PATH.Perk["Pre"] .."028/";
@@ -1316,6 +1370,7 @@
         TTH_PATH.Perk[HERO_SKILL_RECRUITMENT]["NoDwelling"] = TTH_PATH.Perk[HERO_SKILL_RECRUITMENT]["Pre"].."NoDwelling.txt";
         TTH_PATH.Perk[HERO_SKILL_RECRUITMENT]["NotEnoughTimes"] = TTH_PATH.Perk[HERO_SKILL_RECRUITMENT]["Pre"].."NotEnoughTimes.txt";
         TTH_PATH.Perk[HERO_SKILL_RECRUITMENT]["Confirm"] = TTH_PATH.Perk[HERO_SKILL_RECRUITMENT]["Pre"].."Confirm.txt";
+        TTH_PATH.Perk[HERO_SKILL_RECRUITMENT]["Batch"] = TTH_PATH.Perk[HERO_SKILL_RECRUITMENT]["Pre"].."Batch.txt";
       -- HERO_SKILL_DIPLOMACY 030 外交术
         TTH_PATH.Perk[HERO_SKILL_DIPLOMACY] = {};
         TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Pre"] = TTH_PATH.Perk["Pre"] .."030-Diplomacy/";
@@ -1337,6 +1392,7 @@
         TTH_PATH.Perk[HERO_SKILL_FORTUNATE_ADVENTURER]["NotEnoughTimes"] = TTH_PATH.Perk[HERO_SKILL_FORTUNATE_ADVENTURER]["Pre"].."NotEnoughTimes.txt";
         TTH_PATH.Perk[HERO_SKILL_FORTUNATE_ADVENTURER]["Confirm"] = TTH_PATH.Perk[HERO_SKILL_FORTUNATE_ADVENTURER]["Pre"].."Confirm.txt";
         TTH_PATH.Perk[HERO_SKILL_FORTUNATE_ADVENTURER]["Success"] = TTH_PATH.Perk[HERO_SKILL_FORTUNATE_ADVENTURER]["Pre"].."Success.txt";
+        TTH_PATH.Perk[HERO_SKILL_FORTUNATE_ADVENTURER]["Batch"] = TTH_PATH.Perk[HERO_SKILL_FORTUNATE_ADVENTURER]["Pre"].."Batch.txt";
       -- HERO_SKILL_POWER_OF_HASTE 143 速度能量
         TTH_PATH.Perk[HERO_SKILL_POWER_OF_HASTE] = {};
         TTH_PATH.Perk[HERO_SKILL_POWER_OF_HASTE]["Pre"] = TTH_PATH.Perk["Pre"] .."143-PowerOfHaste/";
@@ -1446,6 +1502,7 @@
         TTH_PATH.Perk[HERO_SKILL_SNATCH]["NotEnoughTimes"] = TTH_PATH.Perk[HERO_SKILL_SNATCH]["Pre"].."NotEnoughTimes.txt";
         TTH_PATH.Perk[HERO_SKILL_SNATCH]["Confirm"] = TTH_PATH.Perk[HERO_SKILL_SNATCH]["Pre"].."Confirm.txt";
         TTH_PATH.Perk[HERO_SKILL_SNATCH]["Success"] = TTH_PATH.Perk[HERO_SKILL_SNATCH]["Pre"].."Success.txt";
+        TTH_PATH.Perk[HERO_SKILL_SNATCH]["Batch"] = TTH_PATH.Perk[HERO_SKILL_SNATCH]["Pre"].."Batch.txt";
       -- HERO_SKILL_DEFEND_US_ALL 181 全体保卫
         TTH_PATH.Perk[HERO_SKILL_DEFEND_US_ALL] = {};
         TTH_PATH.Perk[HERO_SKILL_DEFEND_US_ALL]["Pre"] = TTH_PATH.Perk["Pre"] .."181-DefendUsAll/";
@@ -1705,11 +1762,6 @@
               ["Text"] = TTH_PATH.Talent["Nathaniel"]["Text"]
               , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeNathaniel"
               , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeNathaniel"
-            }
-            , ["Isabell"] = {
-              ["Text"] = TTH_PATH.Talent["Isabell"]["Text"]
-              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.activeIsabell"
-              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.activeIsabell"
             }
             , ["RedHeavenHero06"] = {
               ["Text"] = TTH_PATH.Talent["RedHeavenHero06"]["Text"]
@@ -5518,10 +5570,10 @@
               , ["Resource"] = {
                 [WOOD] = 5
                 , [ORE] = 5
-                , [MERCURY] = 4
-                , [CRYSTAL] = 4
-                , [SULFUR] = 4
-                , [GEM] = 4
+                , [MERCURY] = 3
+                , [CRYSTAL] = 3
+                , [SULFUR] = 3
+                , [GEM] = 3
                 , [GOLD] = 1000
               }
             }
@@ -5537,10 +5589,10 @@
               , ["Resource"] = {
                 [WOOD] = 5
                 , [ORE] = 5
-                , [MERCURY] = 6
-                , [CRYSTAL] = 6
-                , [SULFUR] = 6
-                , [GEM] = 6
+                , [MERCURY] = 5
+                , [CRYSTAL] = 5
+                , [SULFUR] = 5
+                , [GEM] = 5
                 , [GOLD] = 1000
               }
             }
@@ -10731,6 +10783,7 @@
         , "Una"
         , "KujinMP"
         , "Mephala"
+        , "Heam"
       };
       TTH_TABLE.HeroShantiriTalent = {
         "RedHeavenHero02"
@@ -10750,6 +10803,7 @@
         , "Una"
         , "Hero2"
         , "KujinMP"
+        , "Heam"
       };
 
     -- 野蛮人终极分类

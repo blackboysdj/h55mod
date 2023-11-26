@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModelInstance>
+	<Model href="/_(Model)/Effects/Characters/Dwarves/WarLord/CastWave.xdb#xpointer(/Model)"/>
+	<SkelAnim href="/_(BasicSkelAnim)/Effects/Characters/Dwarves/WarLord/CastWave.(BasicSkelAnim).xdb#xpointer(/BasicSkelAnim)"/>
+	<Position>
+		<x>0.4</x>
+		<y>-1</y>
+		<z>0</z>
+	</Position>
+	<Rotation>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+		<w>1</w>
+	</Rotation>
+	<Scale>1</Scale>
+	<Offset>1.5</Offset>
+	<CycleLength>0</CycleLength>
+	<CycleCount>1</CycleCount>
+	<GlueToBone>0</GlueToBone>
+	<GlueToNamedBone/>
+</ModelInstance>

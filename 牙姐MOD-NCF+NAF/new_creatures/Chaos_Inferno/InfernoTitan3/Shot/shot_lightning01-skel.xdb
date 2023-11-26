@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Skeleton>
+	<SrcName href="/Titan/Head.mb"/>
+	<RootJoint>Head3</RootJoint>
+	<MSRFormat>true</MSRFormat>
+	<Animations/>
+	<uid>BE7C30B1-4A60-4066-9F5B-B85D1F5699C8</uid>
+</Skeleton>

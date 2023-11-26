@@ -52,7 +52,7 @@
 	<Flags>
 		<SuperActive>false</SuperActive>
 	</Flags>
-	<TextFileRef href="/Text/TTH/Artifact/075-OgreShield/Text.txt"/>
+	<TextFileRef href="/Text/TTH/Artifact/063-RingOfTheShadowbrand/Text.txt"/>
 	<ResizeOnTextSet>false</ResizeOnTextSet>
 	<ResizeWidthOnTextSet>false</ResizeWidthOnTextSet>
 	<TextFormat href="/UI/Doc/ArtifactManual/Common/Name.(TextFormat).xdb#xpointer(/TextFormat)"/>

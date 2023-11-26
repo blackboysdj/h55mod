@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Skeleton>
+	<SrcName href="/Titan/Spine.mb"/>
+	<RootJoint>cross_grey</RootJoint>
+	<MSRFormat>true</MSRFormat>
+	<Animations/>
+	<uid>73B38051-2BE7-47B9-A603-7CD981EB03D3</uid>
+</Skeleton>

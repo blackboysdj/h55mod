@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Geometry>
+	<SrcName href="/Titan/MightHeroLeg_Forearm.mb"/>
+	<uid>DC247A89-7E87-41A9-BDDB-A83461E79319</uid>
+	<RootMesh/>
+	<RootJoint>LLeg</RootJoint>
+	<Size>
+		<x>0.398756</x>
+		<y>0.646268</y>
+		<z>1.18478</z>
+	</Size>
+	<Center>
+		<x>0.0178139</x>
+		<y>-0.010336</y>
+		<z>-0.0908284</z>
+	</Center>
+	<BestFitPoint>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+	</BestFitPoint>
+	<Dir>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+		<w>0</w>
+	</Dir>
+	<AIGeometry/>
+	<NumMeshes>1</NumMeshes>
+	<MaterialQuantities>
+		<Item>1</Item>
+	</MaterialQuantities>
+	<MeshNames>
+		<Item>LLegShape</Item>
+	</MeshNames>
+	<MeshAnimated/>
+	<MeshWindAffected/>
+</Geometry>

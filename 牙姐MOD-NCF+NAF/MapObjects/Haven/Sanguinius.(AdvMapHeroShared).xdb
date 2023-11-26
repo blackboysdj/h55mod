@@ -56,11 +56,11 @@
 		<skills>
 			<Item>
 				<Mastery>MASTERY_BASIC</Mastery>
-				<SkillID>HERO_SKILL_TRAINING</SkillID>
+				<SkillID>HERO_SKILL_LIGHT_MAGIC</SkillID>
 			</Item>
 		</skills>
 		<perkIDs>
-			<Item>HERO_SKILL_HOLY_CHARGE</Item>
+			<Item>HERO_SKILL_ETERNAL_LIGHT</Item>
 		</perkIDs>
 		<spellIDs>
 			<Item>SPELL_BLESS</Item>

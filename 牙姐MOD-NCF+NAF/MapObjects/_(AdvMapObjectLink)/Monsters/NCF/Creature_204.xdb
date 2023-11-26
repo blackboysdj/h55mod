@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AdvMapObjectLink>
-	<Link href="/new_creatures/Necropolis/Namtaru/creature.(AdvMapMonsterShared).xdb#xpointer(/AdvMapMonsterShared)"/>
+	<Link href="/new_creatures/Necropolis/Spider/creature.(AdvMapMonsterShared).xdb#xpointer(/AdvMapMonsterShared)"/>
 	<RndGroup/>
 	<IconFile>Icons\Creature_692.dds</IconFile>
 	<HideInEditor>false</HideInEditor>

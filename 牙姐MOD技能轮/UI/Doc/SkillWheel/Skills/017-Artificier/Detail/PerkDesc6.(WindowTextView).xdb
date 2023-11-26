@@ -52,8 +52,7 @@
 	<Flags>
 		<SuperActive>false</SuperActive>
 	</Flags>
-	<TextFileRef href="
-	<TextFileRef href="/Text/TTH/Skills/Artificier/061-RaiseArchers/Description.txt"/>Description.txt"/>
+	<TextFileRef href="/Text/TTH/Skills/Artificier/126-RemoteControl/Description.txt"/>
 	<ResizeOnTextSet>true</ResizeOnTextSet>
 	<ResizeWidthOnTextSet>false</ResizeWidthOnTextSet>
 	<TextFormat href="/UI/Doc/SkillWheel/Common/Description.(TextFormat).xdb#xpointer(/TextFormat)"/>

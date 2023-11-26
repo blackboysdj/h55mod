@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Geometry>
+	<SrcName href="/H5A2/Creatures/AlternativeUpgrades/Academy/T7_Storm_Lord/Storm_Lord.mb"/>
+	<uid>128C67F1-7280-474A-8E17-D2351892D307</uid>
+	<RootMesh/>
+	<RootJoint>Global</RootJoint>
+	<Size>
+		<x>2.3043</x>
+		<y>1.82692</y>
+		<z>4.63071</z>
+	</Size>
+	<Center>
+		<x>-0.0524213</x>
+		<y>-0.129227</y>
+		<z>2.31426</z>
+	</Center>
+	<BestFitPoint>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+	</BestFitPoint>
+	<Dir>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+		<w>0</w>
+	</Dir>
+	<AIGeometry href="T7_Storm_Lord-geom-AI.xdb#xpointer(/AIGeometry)"/>
+	<NumMeshes>1</NumMeshes>
+	<MaterialQuantities>
+		<Item>1</Item>
+	</MaterialQuantities>
+	<MeshNames>
+		<Item>Body_meshShape</Item>
+	</MeshNames>
+	<MeshAnimated/>
+	<MeshWindAffected/>
+</Geometry>

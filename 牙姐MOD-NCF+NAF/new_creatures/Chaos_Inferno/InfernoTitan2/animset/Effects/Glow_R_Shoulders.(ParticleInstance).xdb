@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ParticleInstance>
+	<SrcName/>
+	<Light>L_NORMAL</Light>
+	<Particle href="/Effects/_(Particle)/Artefacts/_GeneralFX.xdb#xpointer(/Particle)"/>
+	<Position>
+		<x>0</x>
+		<y>-0.035</y>
+		<z>-0.22</z>
+	</Position>
+	<Rotation>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+		<w>1</w>
+	</Rotation>
+	<Scale>0.15</Scale>
+	<Speed>1</Speed>
+	<Offset>-1</Offset>
+	<EndCycle>3.1</EndCycle>
+	<CycleCount>0</CycleCount>
+	<Pivot>
+		<x>0</x>
+		<y>0</y>
+	</Pivot>
+	<Textures>
+		<Item/>
+		<Item/>
+		<Item/>
+		<Item/>
+		<Item/>
+		<Item/>
+		<Item/>
+		<Item/>
+		<Item/>
+		<Item/>
+		<Item/>
+		<Item href="/Textures/Effects/Artefacts/RaysGold02.xdb#xpointer(/Texture)"/>
+		<Item/>
+	</Textures>
+	<IsCrown>false</IsCrown>
+	<Static>P_STATIC</Static>
+	<DoesCastShadow>false</DoesCastShadow>
+	<GlueToBone>0</GlueToBone>
+	<GlueToNamedBone>Bip_bone22</GlueToNamedBone>
+	<LeaveParticlesWhereStarted>false</LeaveParticlesWhereStarted>
+	<Priority>0</Priority>
+</ParticleInstance>

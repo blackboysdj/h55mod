@@ -14,7 +14,7 @@
 		<Item href="006-Offence/Detail/PerkButtonX.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="006-Offence/Detail/PerkButtonX1.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 		<Item href="006-Offence/Detail/PerkButtonX2.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
-		<!-- <Item href="006-Offence/Detail/PerkButtonX3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/> -->
+		<Item href="006-Offence/Detail/PerkButtonX3.(WindowMSButton).xdb#xpointer(/WindowMSButton)"/>
 	</Children>
 	<Background/>
 	<Foreground/>

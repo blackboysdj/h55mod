@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Camera>
+<Camera ObjectRecordID="1003">
 	<Name/>
 	<Pos>
-		<x>3.10000</x>
-		<y>-5.70000</y>
-		<z>2.15000</z>
+		<x>3.0000</x>
+		<y>-5.3000</y>
+		<z>1.8000</z>
 	</Pos>
 	<Rot>
-		<x>-8.74000</x>
+		<x>-8.74182</x>
 		<y>41.0000</y>
 		<z>0</z>
 	</Rot>
-	<Rod>3.18000</Rod>
-	<FOV>54.43000</FOV>
+	<Rod>3.18301</Rod>
+	<FOV>54.4316</FOV>
 	<ClipDistanceMin>1</ClipDistanceMin>
 	<ClipDistanceMax>500</ClipDistanceMax>
-	<SrcName/>
-	<RootJoint/>
+	<SrcName>Cameras\Interface\HireCreatures_170_01.mb</SrcName>
+	<RootJoint>camera_hire_screen</RootJoint>
 </Camera>

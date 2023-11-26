@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BasicSkelAnim>
+	<SrcName href="/H5A2/Creatures/AlternativeUpgrades/Academy/T7_Storm_Lord/Storm_Lord.mb"/>
+	<uid>ACD10FAA-E8FA-45CF-B164-64AD76906A88</uid>
+	<ExpSrcClip href="/H5A2/Creatures/AlternativeUpgrades/Academy/T7_Storm_Lord/Animations/Clip/Giant.rangeattack.ma"/>
+	<ExpRootTransform>Global</ExpRootTransform>
+	<ExpFrameFirst>0</ExpFrameFirst>
+	<ExpFrameLast>0</ExpFrameLast>
+	<ExpSettingsFile href=""/>
+	<MovementSpeed>0</MovementSpeed>
+	<SpeedFactor>1</SpeedFactor>
+	<Sound href="/Sounds/_(Sound)/Creatures/Academy/Giant/RangeAttack.xdb#xpointer(/Sound)"/>
+	<Effect href="Effects/Idle00.(Effect) (2) (2).xdb#xpointer(/Effect)"/>
+	<SpeedLineFallTime>250</SpeedLineFallTime>
+	<SpeedLineMaterial/>
+</BasicSkelAnim>

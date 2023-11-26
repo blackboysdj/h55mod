@@ -52,7 +52,7 @@
 	<Flags>
 		<SuperActive>false</SuperActive>
 	</Flags>
-	<TextFileRef href="/Text/TTH/Artifact/085-DwarvenSmithyHummer/Description.txt"/>
+	<TextFileRef href="/Text/TTH/Artifact/174-PendantOfInterference/Description.txt"/>
 	<ResizeOnTextSet>true</ResizeOnTextSet>
 	<ResizeWidthOnTextSet>false</ResizeWidthOnTextSet>
 	<TextFormat href="/UI/Doc/ArtifactManual/Common/Description.(TextFormat).xdb#xpointer(/TextFormat)"/>

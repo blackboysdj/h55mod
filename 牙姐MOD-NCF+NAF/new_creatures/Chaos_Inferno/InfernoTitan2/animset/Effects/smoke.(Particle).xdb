@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Particle>
+	<SrcName href="/Effects/Spells/AnimateDead.mb"/>
+	<ExportPrefix>AnimateDead</ExportPrefix>
+	<WrapSize>
+		<x>0</x>
+		<y>0</y>
+	</WrapSize>
+	<Bound>90ac073e804d9f3ca0d5563e62472e419e0cd840ad5ee24007889940</Bound>
+	<PerParticleFog>false</PerParticleFog>
+	<uid>D90AAF01-5155-401C-9611-F8ED44FE1A80</uid>
+</Particle>

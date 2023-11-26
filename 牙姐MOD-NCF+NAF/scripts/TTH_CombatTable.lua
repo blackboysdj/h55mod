@@ -74,6 +74,7 @@
         , [50] = HERO_SKILL_SAFETY_STEP
         , [51] = HERO_SKILL_FAST_AND_FURIOUS
         , [52] = HERO_SKILL_ABSOLUTE_CHARGE
+        , [53] = HERO_SKILL_BEHIND_ENEMY
       };
 
     -- 宝物
@@ -580,7 +581,7 @@
 
       , 'LordHaart', 'Berein', 'Gles', 'Nikolay', 'Straker', 'Tamika', 'Xerxon', 'Karissa'
       , 'Aislinn', 'Effig', 'Giovanni', 'OrnellaNecro', 'Aberrar', 'Muscip'
-      , 'Arantir', 'Nemor', 'Nimbus', 'Anastasya', 'Pelt', 'Sandro', 'Thant', 'Adelaide', 'Vidomina'
+      , 'Arantir', 'Nemor', 'Nimbus', 'Anastasya', 'Mortarion', 'Pelt', 'Sandro', 'Thant', 'Adelaide', 'Vidomina'
 
       , 'Hero1', 'Hero2', 'Hero3', 'Hero4', 'Hero6', 'Hero8', 'Hero9'
       , 'Gottai', 'Crag', 'KujinMP', 'Hero7', 'Azar', 'Kraal', 'Kunyak'
@@ -3072,31 +3073,79 @@
           or itemCreatureTarget == nil then
           return iDistance;
         end;
-        local infoCreatureCaster = TTH_TABLE.Creature[itemCreatureCaster["UnitType"]];
-        local infoCreatureTarget = TTH_TABLE.Creature[itemCreatureTarget["UnitType"]];
-        local iDiffX = TTHCS_GLOBAL.matchCreaturePosition(sidCreatureCaster, sidCreatureTarget, "PosX");
-        local iDiffY = TTHCS_GLOBAL.matchCreaturePosition(sidCreatureCaster, sidCreatureTarget, "PosY");
-        local iPosXCaster = itemCreatureCaster["PosX"];
-        local iPosYCaster = itemCreatureCaster["PosY"];
-        if infoCreatureCaster["CombatSize"] == 2 then
-          if iDiffX == -1 then
-            iPosXCaster = iPosXCaster - 1;
-          end;
-          if iDiffY == -1 then
-            iPosYCaster = iPosYCaster - 1;
+        local iCombatSizeCaster = 1;
+        if itemCreatureCaster["UnitCategory"] == TTH_ENUM.CombatCreature then
+          iCombatSizeCaster = TTH_TABLE.Creature[itemCreatureCaster["UnitType"]]["CombatSize"];
+        end;
+        local iCombatSizeTarget = 1;
+        if itemCreatureTarget["UnitCategory"] == TTH_ENUM.CombatCreature then
+          iCombatSizeTarget = TTH_TABLE.Creature[itemCreatureTarget["UnitType"]]["CombatSize"];
+        end;
+        local listPositionCaster = {};
+        if iCombatSizeCaster == 1 then
+          local objPosition = {};
+          objPosition["PosX"] = itemCreatureCaster["PosX"];
+          objPosition["PosY"] = itemCreatureCaster["PosY"];
+          push(listPositionCaster, objPosition);
+        end;
+        if iCombatSizeCaster == 2 then
+          local objPosition = {};
+          objPosition["PosX"] = itemCreatureCaster["PosX"];
+          objPosition["PosY"] = itemCreatureCaster["PosY"];
+          push(listPositionCaster, objPosition);
+          local objPosition1 = {};
+          objPosition1["PosX"] = itemCreatureCaster["PosX"] - 1;
+          objPosition1["PosY"] = itemCreatureCaster["PosY"];
+          push(listPositionCaster, objPosition1);
+          local objPosition2 = {};
+          objPosition2["PosX"] = itemCreatureCaster["PosX"];
+          objPosition2["PosY"] = itemCreatureCaster["PosY"] - 1;
+          push(listPositionCaster, objPosition2);
+          local objPosition3 = {};
+          objPosition3["PosX"] = itemCreatureCaster["PosX"] - 1;
+          objPosition3["PosY"] = itemCreatureCaster["PosY"] - 1;
+          push(listPositionCaster, objPosition3);
+        end;
+        local listPositionTarget = {};
+        if iCombatSizeTarget == 1 then
+          local objPosition = {};
+          objPosition["PosX"] = itemCreatureTarget["PosX"];
+          objPosition["PosY"] = itemCreatureTarget["PosY"];
+          push(listPositionTarget, objPosition);
+        end;
+        if iCombatSizeTarget == 2 then
+          local objPosition = {};
+          objPosition["PosX"] = itemCreatureTarget["PosX"];
+          objPosition["PosY"] = itemCreatureTarget["PosY"];
+          push(listPositionTarget, objPosition);
+          local objPosition1 = {};
+          objPosition1["PosX"] = itemCreatureTarget["PosX"] - 1;
+          objPosition1["PosY"] = itemCreatureTarget["PosY"];
+          push(listPositionTarget, objPosition1);
+          local objPosition2 = {};
+          objPosition2["PosX"] = itemCreatureTarget["PosX"];
+          objPosition2["PosY"] = itemCreatureTarget["PosY"] - 1;
+          push(listPositionTarget, objPosition2);
+          local objPosition3 = {};
+          objPosition3["PosX"] = itemCreatureTarget["PosX"] - 1;
+          objPosition3["PosY"] = itemCreatureTarget["PosY"] - 1;
+          push(listPositionTarget, objPosition3);
+        end;
+
+        local listDistance = {};
+        for i, objPositionCaster in listPositionCaster do
+          for j, objPositionTarget in listPositionTarget do
+            local iDiffX = objPositionCaster["PosX"] - objPositionTarget["PosX"];
+            local iDiffY = objPositionCaster["PosY"] - objPositionTarget["PosY"];
+            local objDistance = {};
+            objDistance["Distance"] = iDiffX * iDiffX + iDiffY * iDiffY;
+            push(listDistance, objDistance);
           end;
         end;
-        local iPosXTarget = itemCreatureTarget["PosX"];
-        local iPosYTarget = itemCreatureTarget["PosY"];
-        if infoCreatureTarget["CombatSize"] == 2 then
-          if iDiffX == 1 then
-            iPosXTarget = iPosXTarget - 1;
-          end;
-          if iDiffY == 1 then
-            iPosYTarget = iPosYTarget - 1;
-          end;
+        listDistance = TTHCS_COMMON.asc8key(listDistance, "Distance");
+        if length(listDistance) > 0 then
+          iDistance = listDistance[0]["Distance"];
         end;
-        iDistance = (iPosXCaster - iPosXTarget) * (iPosXCaster - iPosXTarget) + (iPosYCaster - iPosYTarget) * (iPosYCaster - iPosYTarget);
         return iDistance;
       end;
 
@@ -3106,9 +3155,19 @@
       function TTHCS_GLOBAL.matchCreaturePosition(sidCreatureCaster, sidCreatureTarget, strAxis)
         local bMatch = nil;
         local itemCreatureCaster = TTHCS_GLOBAL.geneUnitInfo(sidCreatureCaster);
-        local iCombatSizeCaster = TTH_TABLE.Creature[itemCreatureCaster["UnitType"]]["CombatSize"];
+        local iCombatSizeCaster = 1;
+        if itemCreatureCaster["UnitCategory"] == TTH_ENUM.CombatCreature then
+          iCombatSizeCaster = TTH_TABLE.Creature[itemCreatureCaster["UnitType"]]["CombatSize"];
+        elseif itemCreatureCaster["UnitCategory"] == TTH_ENUM.CombatHero then
+          iCombatSizeCaster = 1;
+        end;
         local itemCreatureTarget = TTHCS_GLOBAL.geneUnitInfo(sidCreatureTarget);
-        local iCombatSizeTarget = TTH_TABLE.Creature[itemCreatureCaster["UnitType"]]["CombatSize"];
+        local iCombatSizeTarget = 1;
+        if itemCreatureTarget["UnitCategory"] == TTH_ENUM.CombatCreature then
+          iCombatSizeTarget = TTH_TABLE.Creature[itemCreatureTarget["UnitType"]]["CombatSize"];
+        elseif itemCreatureTarget["UnitCategory"] == TTH_ENUM.CombatHero then
+          iCombatSizeTarget = 1;
+        end;
         if iCombatSizeCaster == iCombatSizeTarget then
           if itemCreatureCaster[strAxis] - itemCreatureTarget[strAxis] >= 1 then
             bMatch = -1;
@@ -3188,9 +3247,16 @@
       function TTHCS_GLOBAL.checkCreatureType(itemCreature, iCreatureId)
         local bCheck = nil;
         local infoCreature = TTH_TABLE.Creature[iCreatureId];
-        if itemCreature["UnitType"] == iCreatureId
-          or itemCreature["UnitType"] == infoCreature["Upgrade"][1]
-          or itemCreature["UnitType"] == infoCreature["Upgrade"][2] then
+        if 1 ~= 1
+          or itemCreature["UnitType"] == iCreatureId
+          or (
+            infoCreature["Upgrade"] ~= nil
+            and (
+              itemCreature["UnitType"] == infoCreature["Upgrade"][1]
+              or itemCreature["UnitType"] == infoCreature["Upgrade"][2]
+            )
+          )
+        then
           bCheck = not nil;
         end;
         return bCheck;
@@ -3426,6 +3492,14 @@
       -- Nimbus 090 尼姆巴斯
         TTHCS_PATH["Talent"]["Nimbus"] = {};
         TTHCS_PATH["Talent"]["Nimbus"]["Effect"] = "/Text/TTH/Heroes/Specializations/Necromancy/090-Nimbus/Combat/Effect.txt";
+      -- Mortarion 162 莫塔里安
+        TTHCS_PATH["Talent"]["Mortarion"] = {};
+        TTHCS_PATH["Talent"]["Mortarion"]["EffectSummon"] = "/Text/TTH/Heroes/Specializations/Necromancy/162-Mortarion/Combat/EffectSummon.txt";
+        TTHCS_PATH["Talent"]["Mortarion"]["EffectGuard"] = "/Text/TTH/Heroes/Specializations/Necromancy/162-Mortarion/Combat/EffectGuard.txt";
+        TTHCS_PATH["Talent"]["Mortarion"]["EffectPlague"] = "/Text/TTH/Heroes/Specializations/Necromancy/162-Mortarion/Combat/EffectPlague.txt";
+        TTHCS_PATH["Talent"]["Mortarion"]["EffectDeter"] = "/Text/TTH/Heroes/Specializations/Necromancy/162-Mortarion/Combat/EffectDeter.txt";
+        TTHCS_PATH["Talent"]["Mortarion"]["EffectWither"] = "/Text/TTH/Heroes/Specializations/Necromancy/162-Mortarion/Combat/EffectWither.txt";
+        TTHCS_PATH["Talent"]["Mortarion"]["EffectSpread"] = "/Text/TTH/Heroes/Specializations/Necromancy/162-Mortarion/Combat/EffectSpread.txt";
       -- Muscip 091 纳蒂尔
         TTHCS_PATH["Talent"]["Muscip"] = {};
         TTHCS_PATH["Talent"]["Muscip"]["Effect"] = "/Text/TTH/Heroes/Specializations/Necromancy/091-Muscip/Combat/Effect.txt";
@@ -3644,6 +3718,9 @@
       -- HERO_SKILL_SAFETY_STEP 311 步步为营
         TTHCS_PATH["Perk"][HERO_SKILL_SAFETY_STEP] = {};
         TTHCS_PATH["Perk"][HERO_SKILL_SAFETY_STEP]["Effect"] = "/Text/TTH/Skills/Defence/311-SafetyStep/Combat/Effect.txt";
+      -- HERO_SKILL_BEHIND_ENEMY 309 深入敌后
+        TTHCS_PATH["Perk"][HERO_SKILL_BEHIND_ENEMY] = {};
+        TTHCS_PATH["Perk"][HERO_SKILL_BEHIND_ENEMY]["Effect"] = "/Text/TTH/Skills/Offence/309-BehindEnemy/Combat/Effect.txt";
 
     TTHCS_PATH["Mastery"] = {};
       -- HERO_SKILL_WAR_MACHINES 002 战争机械

@@ -52,7 +52,7 @@
 	<Flags>
 		<SuperActive>false</SuperActive>
 	</Flags>
-	<TextFileRef href="/Text/TTH/Artifact/119-Monk04/Description.txt"/>
+	<TextFileRef href="/Text/TTH/Artifact/131-PirateBoots/Description.txt"/>
 	<ResizeOnTextSet>true</ResizeOnTextSet>
 	<ResizeWidthOnTextSet>false</ResizeWidthOnTextSet>
 	<TextFormat href="/UI/Doc/ArtifactManual/Common/Description.(TextFormat).xdb#xpointer(/TextFormat)"/>

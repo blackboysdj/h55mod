@@ -52,7 +52,7 @@
 	<Flags>
 		<SuperActive>false</SuperActive>
 	</Flags>
-	<TextFileRef href="/Text/TTH/Artifact/014-BreastplateOfPetrifiedWood/Text.txt"/>
+	<TextFileRef href="/Text/TTH/Artifact/069-ShawlOfGreatLich/Text.txt"/>
 	<ResizeOnTextSet>false</ResizeOnTextSet>
 	<ResizeWidthOnTextSet>false</ResizeWidthOnTextSet>
 	<TextFormat href="/UI/Doc/ArtifactManual/Common/Name.(TextFormat).xdb#xpointer(/TextFormat)"/>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Geometry>
+	<SrcName href="/Titan/Head.mb"/>
+	<uid>4FAB9FEB-2F94-42EE-9503-3487FD666798</uid>
+	<RootMesh/>
+	<RootJoint>Head3</RootJoint>
+	<Size>
+		<x>0.583374</x>
+		<y>0.525144</y>
+		<z>1.16602</z>
+	</Size>
+	<Center>
+		<x>0</x>
+		<y>0.015564</y>
+		<z>0.282605</z>
+	</Center>
+	<BestFitPoint>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+	</BestFitPoint>
+	<Dir>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+		<w>0</w>
+	</Dir>
+	<AIGeometry/>
+	<NumMeshes>1</NumMeshes>
+	<MaterialQuantities>
+		<Item>1</Item>
+	</MaterialQuantities>
+	<MeshNames>
+		<Item>Head3Shape</Item>
+	</MeshNames>
+	<MeshAnimated/>
+	<MeshWindAffected/>
+</Geometry>

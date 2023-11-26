@@ -36,11 +36,11 @@
 	</Cost>
 	<PresetPrice>0</PresetPrice>
 	<SubjectOfRandomGeneration>true</SubjectOfRandomGeneration>
-	<MonsterShared href="/MapObjects/Dwarf/Tunder_Thane.(AdvMapMonsterShared).xdb#xpointer(/AdvMapMonsterShared)"/>
+	<MonsterShared href="/new_creatures/Chaos_Inferno/InfernoTitan3/creature.(AdvMapMonsterShared).xdb#xpointer(/AdvMapMonsterShared)"/>
 	<CombatSize>2</CombatSize>
 	<PatternAttack/>
 	<flybySequence/>
-	<Visual href="/GameMechanics/CreatureVisual/Creatures/Dwarf/FearlessLordShot.(CreatureVisual).xdb#xpointer(/CreatureVisual)"/>
+	<Visual href="/new_creatures/Chaos_Inferno/InfernoTitan3/creature.(CreatureVisual).xdb#xpointer(/CreatureVisual)"/>
 	<Range>0</Range>
 	<BaseCreature>CREATURE_BEAR_RIDER</BaseCreature>
 	<Upgrades/>

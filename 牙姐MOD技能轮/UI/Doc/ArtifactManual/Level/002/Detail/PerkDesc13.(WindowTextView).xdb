@@ -52,7 +52,7 @@
 	<Flags>
 		<SuperActive>false</SuperActive>
 	</Flags>
-	<TextFileRef href="/Text/TTH/Artifact/175-SpiritOfOppression/Description.txt"/>
+	<TextFileRef href="/Text/TTH/Artifact/087-TarotDeck/Description.txt"/>
 	<ResizeOnTextSet>true</ResizeOnTextSet>
 	<ResizeWidthOnTextSet>false</ResizeWidthOnTextSet>
 	<TextFormat href="/UI/Doc/ArtifactManual/Common/Description.(TextFormat).xdb#xpointer(/TextFormat)"/>

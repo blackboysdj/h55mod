@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModelInstance>
+	<Model href="/_(Model)/Effects/Characters/DemonSovereign/buff_hand.xdb#xpointer(/Model)"/>
+	<SkelAnim href="/_(BasicSkelAnim)/Effects/Characters/DemonSovereign/buff_hand.(BasicSkelAnim).xdb#xpointer(/BasicSkelAnim)"/>
+	<Position>
+		<x>-1.6</x>
+		<y>-4.35</y>
+		<z>-10</z>
+	</Position>
+	<Rotation>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+		<w>1</w>
+	</Rotation>
+	<Scale>2</Scale>
+	<Offset>-2</Offset>
+	<CycleLength>0</CycleLength>
+	<CycleCount>1</CycleCount>
+	<GlueToBone>0</GlueToBone>
+	<GlueToNamedBone/>
+</ModelInstance>

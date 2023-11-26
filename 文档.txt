@@ -8,6 +8,8 @@
 星界军
 
 
+
+
 英雄无敌5神力之遗（牙姐）MOD
 进Q群下载主播同款游戏和MOD：463626603
 UP 已稳定更新 7 年
@@ -19,12 +21,12 @@ UP 已稳定更新 7 年
 宝物套装数量从 10 套扩展到 19 套
 技能数量从 221 个扩展到 321 个
 所有英雄宝物栏位（除戒指）都有专属神器（天使联盟※诅咒斗篷等）
-英雄从 64 位扩展到 159 位（格鲁※德肯※罗德哈特※肯洛哈格※山德鲁等）
+英雄从 64 位扩展到 161 位（格鲁※德肯※罗德哈特※肯洛哈格※山德鲁等）
 生物从 179 种扩展到 999 种（幻影射手※神圣守护者※暗黑龙骑士等）
 基础数据与原版 3.1 完全一样，完全不涉及游戏机制的改动，可直接上手
 
 
-板子: 1V7+AI18倍增兵+送AI（眼泪+哨兵之盾+天使联盟+诅咒斗篷+龙神胸甲+天启头盔+终极+15技能点）
+板子: 1V7+AI3倍增兵+送AI（眼泪+哨兵之盾+天使联盟+诅咒斗篷+龙神胸甲+天启头盔+终极+15技能点）
 板子: 1V7+AI18倍增兵+送AI（眼泪+全套神器+终极+15技能点）
 板子: 1V7+AI3倍增兵+送AI（定制神器+定制技能+终极）
 板子: 1V7, 送玩家（跑鞋+天启头盔）, 送AI（18倍增兵+眼泪+除凤凰书外的全套神器）
@@ -81,6 +83,34 @@ custom_ability 348~351 015c~015f 5C01 5F01
 技能轮固定13轮，地牢无反击，其它无穿透，每个种族会有3个技能是额外自动学的，只要学满3个子技能
 其他的技能通用且固定的
 
+10w现在问题
+宝物档位 宝物核对 对战时精灵的幸运死循环
+
+职业3合一，只留原版8职业
+终极都可学，具体如何保留职业特色再详细看
+增加大量技能，技能多学不过来，解决女巫小屋问题
+内政官属性移除，改为技能形式
+
+内政官+X属性，4种属性，4个技能
+内政援军
+矿直接获取
+自动刷银行
+政绩
+经验
+  内政官7代
+    城主：在该英雄管理的城镇的控制范围内的野外核心兵种建筑产量+25%。
+    城主：该英雄管理的城镇的区域控制内，本方英雄移动力消耗减少10%。
+    城主：在英雄管理的城镇的区域控制范围内，所有本方英雄战斗时士气增加20点。
+    城主：所有本方英雄在该英雄管理的城镇的区域控制范围内战斗时天命加20点。
+    城主：英雄管理的城镇的区域控制范围内本方英雄获得的经验增加20%。
+    城主：英雄管理的城镇的控制区域范围内的木矿和石矿日产量加1。
+    城主：英雄管理的城镇的建造时资源消耗减少10%。
+    城主：英雄管理的城镇可以每回合建设两次。
+    城主：英雄管理的城镇的招募兵种的时金币需求减少15%。
+
+MakeHeroReturnToTavernAfterDeath 让英雄就算战败也会在酒馆出现，可用于转职
+
+
 我把每个技能的名字上加一个隶属的主技能，应该会好很多
 隐身 切形态
 学院T6终极卡死
@@ -96,7 +126,34 @@ custom_ability 348~351 015c~015f 5C01 5F01
   堡垒生物吃符文时会重新触发 单位行动（TCS_FUNC.Battle.move） 有行动前触发的脚本必须幂等
   有导致 单位行动（TCS_FUNC.Battle.move）脚本重复触发的行为而未暂停时 AI远程单位会多次执行（执行次数取决于未暂停的耗时）
   卡里攻击 快照问题
+-- 造型MOD
+  阿莱斯特普攻动作异常（已反馈）
+  马特瓦移速过快（已反馈）
+  库恩亚克（紫色）
 -- 新版本调整
+  ARTIFACT_MASK_OF_DOPPELGANGER
+  ARTIFACT_ENDLESS_SACK_OF_GOLD
+  ARTIFACT_ENDLESS_BAG_OF_GOLD
+  ARTIFACT_HORN_OF_PLENTY
+  对面伊拉娅，开场幻象我无畏领主先动，被我反击打死了就卡住了
+  地牢希尔赛那个外交站
+  无畏领主精通
+  卡里精通
+  批量
+  行动后召唤物施法，单位被击杀
+  奥兰多
+  加布里埃尔
+  安文
+  地精
+  特殊生物增兵过高
+  7队外交
+  索姆拉
+  信息查询中，当前城镇
+  安文批量
+  德肯卡死
+  鹰眼 传送门
+  血怒列表显示BUG
+  战地支援飘过
   眼泪城，募兵和内政官增产
   军团宝携带生效，使用效果，城镇增产
   智慧试炼 亡灵没有领导
@@ -108,7 +165,6 @@ custom_ability 348~351 015c~015f 5C01 5F01
   战役中职业错乱
   黑暗再生
   军团宝物信息查询可见收益
-  6：配置文件中支持 ai天赋提升
   AI离T6过近，又送了龙神和天启，有可能会送掉，AI开场自动占领最近的同族T6
   宝物标题
   生物名称，兰龙
@@ -136,8 +192,6 @@ custom_ability 348~351 015c~015f 5C01 5F01
   泰坦施放雷云造成多队战损时，索姆拉会对所有处于雷云影响下的其它敌方生物分别追加霹雳闪电
   转化生物 转化比/资源 提醒
   山德鲁文案
-  城镇被占领后若有内政官，则再占领回来后，提示有内政官
-  城镇有内政官，但内政官解雇了，提示有内政官
   力量武器的套装效果只对据点生物生效
   逻辑是，如果使用技能的时候，是内政官，且技能是内替的，会额外询问一次是不是用完
   艾思瑞亡灵复生   召唤出的生物如果出现就踩到陷阱死亡    游戏卡死
@@ -160,9 +214,9 @@ custom_ability 348~351 015c~015f 5C01 5F01
       2.10.反召唤魔法 敌方英雄通过天赋召唤的生物数量-20%/40%/60%
       2.11.10W增加要塞放点转换生物进去
       2.13.再动机制逐渐移除
-        拉兹罗
         尼克莱
-        奥尔坦·卡西乌斯
+        奥尔坦-卡西乌斯
+        伊沃
         莎蒂娅
         塞尔克松
         尼姆巴斯
@@ -170,6 +224,8 @@ custom_ability 348~351 015c~015f 5C01 5F01
         威尔玛
         科尔汉
         希娃
+        光明指引
+        符文机械
       2.15.蛮子的速度能量和坚韧不屈
     3.优化
       3.1.宝物商店第六格空位问题，宝物等级优化
@@ -305,9 +361,17 @@ custom_ability 348~351 015c~015f 5C01 5F01
     <body_bright>2.升级小精怪
     <body_bright>3.转换升级形态
 
-  -- 初始奖励
-    <left><body_bright>初始奖励：
-    <body_bright>所有英雄<color=yellow>【首次招募时】<body_bright>获得随机一项<color=0099FF>主技能<body_bright>等级+ <color=yellow>1<body_bright> 的提升
+  -- 宝物位置
+    PRIMARY 主手
+    SECONDARY 副手
+    HEAD 头盔
+    NECK 项链
+    CHEST 盔甲
+    FEET 靴子
+    SHOULDERS 披风
+    FINGER 指环
+    MISCSLOT1 口袋
+    INVENTORY 包裹
 
 -- 建筑
   BUILDING_MEMORY_MENTOR
@@ -527,16 +591,6 @@ custom_ability 348~351 015c~015f 5C01 5F01
 ========================================
 
 临时记录
-  内政官7代
-    城主：在该英雄管理的城镇的控制范围内的野外核心兵种建筑产量+25%。
-    城主：该英雄管理的城镇的区域控制内，本方英雄移动力消耗减少10%。
-    城主：在英雄管理的城镇的区域控制范围内，所有本方英雄战斗时士气增加20点。
-    城主：所有本方英雄在该英雄管理的城镇的区域控制范围内战斗时天命加20点。
-    城主：英雄管理的城镇的区域控制范围内本方英雄获得的经验增加20%。
-    城主：英雄管理的城镇的控制区域范围内的木矿和石矿日产量加1。
-    城主：英雄管理的城镇的建造时资源消耗减少10%。
-    城主：英雄管理的城镇可以每回合建设两次。
-    城主：英雄管理的城镇的招募兵种的时金币需求减少15%。
 
     3rd Upgrades
     SetObjectOwner
@@ -600,6 +654,8 @@ custom_ability 348~351 015c~015f 5C01 5F01
     CreateMonster( monsterName, creatureID, creatureCount, x,y,floorID, moodID=1, courageID=2, rotation=0, doesNotGrow=0)
     -Now you can set whether the monster should grow.
 
+    GetObjectArmySlotCreature( objName, slotIndex ) - returns type and number of creatures in the given slot slotIndex of object objName
+
 -- ffmpeg
   ffmpeg -f concat -safe 0 -i filelist.txt -c copy 斯威-8.mp4
   ffmpeg -i "1.mkv" -vcodec copy -acodec copy "1.mp4"
@@ -607,12 +663,14 @@ custom_ability 348~351 015c~015f 5C01 5F01
   ffmpeg -ss 00:00:00 -t 12 -i 赛勒斯-10级技能-剪辑前2.mp4 -codec copy 赛勒斯-决战技能-剪辑后2.mp4
   ffmpeg -ss 01:29:20 -to 01:30:34 -i 马卡尔-5.mp4 -codec copy 342.mp4
 
-  ffmpeg -ss 00:00:00 -to 00:48:28 -i 2023-08-21_20-58-40.mp4 -codec copy 霍拉-3.mp4
-  ffmpeg -ss 01:00:00 -to 02:00:00 -i 2023-07-10_13-55-01.mp4 -codec copy 斯威-8.mp4
-  ffmpeg -ss 02:00:00 -to 03:00:00 -i 2023-07-10_13-55-01.mp4 -codec copy 斯威-9.mp4
-  ffmpeg -ss 03:00:00 -to 04:00:00 -i 2023-07-10_13-55-01.mp4 -codec copy 斯威-10.mp4
-  ffmpeg -ss 04:00:00 -to 05:00:00 -i 2023-07-10_13-55-01.mp4 -codec copy 斯威-11.mp4
-  ffmpeg -ss 05:00:00 -to 06:00:00 -i 2023-07-10_13-55-01.mp4 -codec copy 斯威-12.mp4
+  ffmpeg -ss 00:57:14 -to 02:55:10 -i 2023-10-25_22-09-35.mp4 -codec copy 10W对决vs大河马20231025.mp4
+
+  ffmpeg -ss 00:00:00 -to 01:46:04 -i 2023-11-02_20-04-31.mp4 -codec copy 禁宝物-5.mp4
+  ffmpeg -ss 01:46:04 -to 03:32:19 -i 2023-11-02_20-04-31.mp4 -codec copy 禁宝物-6.mp4
+  ffmpeg -ss 03:32:19 -to 05:23:29 -i 2023-11-02_20-04-31.mp4 -codec copy 禁宝物-7.mp4
+  ffmpeg -ss 05:23:29 -to 07:06:40 -i 2023-11-02_20-04-31.mp4 -codec copy 禁宝物-8.mp4
+
+
 
 -- 10W
   <AvailableHeroes>
@@ -805,24 +863,21 @@ custom_ability 348~351 015c~015f 5C01 5F01
     <Item>ARTIFACT_TAROT_DECK</Item>
     <Item>WEREWOLF_CLAW_NECKLACE</Item>
     <Item>ARTIFACT_SPIRIT_OF_OPPRESSION</Item>
+    <Item>ARTIFACT_PIRATE_HAT</Item>
+    <Item>ARTIFACT_PIRATE_VEST</Item>
+    <Item>ARTIFACT_PIRATE_RING</Item>
+    <Item>ARTIFACT_PIRATE_HOOK</Item>
+    <Item>ARTIFACT_PIRATE_BOOTS</Item>
+    <Item>ARTIFACT_PIRATE_CHARM</Item>
     <Item>NECKLACE_OF_BRAVERY</Item>
     <Item>LION_HIDE_CAPE</Item>
     <Item>ARTIFACT_RING_OF_DEATH</Item>
     <Item>ARTIFACT_RUNIC_WAR_AXE</Item>
     <Item>ARTIFACT_RUNIC_WAR_HARNESS</Item>
     <Item>ARTIFACT_TREEBORN_QUIVER</Item>
-    <Item>ARTIFACT_MONK_02</Item>
-    <Item>ARTIFACT_MONK_04</Item>
-    <Item>ARTIFACT_PIRATE_HAT</Item>
-    <Item>ARTIFACT_PIRATE_VEST</Item>
-    <Item>ARTIFACT_PIRATE_RING</Item>
-    <Item>ARTIFACT_PIRATE_HOOK</Item>
-    <Item>ARTIFACT_PIRATE_BOOTS</Item>
-    <Item>ARTIFACT_DRUM_OF_CHARGE</Item>
-    <Item>ARTIFACT_WAYFARER_BOOTS</Item>
+    <Item>WAYFARER_BOOTS</Item>
     <Item>ARTIFACT_MOONBLADE</Item>
     <Item>ARTIFACT_BOOTS_OF_SWIFTNESS</Item>
-    <Item>ARTIFACT_INHERITANCE</Item>
     <Item>GREAT_AXE_OF_GIANT_SLAYING</Item>
     <Item>ICEBERG_SHIELD</Item>
     <Item>NECKLACE_OF_POWER</Item>
@@ -840,10 +895,7 @@ custom_ability 348~351 015c~015f 5C01 5F01
     <Item>ARTIFACT_RING_OF_FORGOTTEN</Item>
     <Item>ARTIFACT_PENDANT_OF_INTERFERENCE</Item>
     <Item>ARTIFACT_BADGE_OF_SUN_CROSS</Item>
-    <Item>ARTIFACT_FLAG_OF_CHARGE</Item>
-    <Item>ARTIFACT_HORN_OF_CHARGE</Item>
     <Item>ARTIFACT_CROWN_OF_LEADER</Item>
-    <Item>CROWN_OF_COURAGE</Item>
     <Item>DRAGON_SCALE_ARMOR</Item>
     <Item>DRAGON_SCALE_SHIELD</Item>
     <Item>DRAGON_BONE_GRAVES</Item>
@@ -854,34 +906,25 @@ custom_ability 348~351 015c~015f 5C01 5F01
     <Item>DRAGON_FLAME_TONGUE</Item>
     <Item>ROBE_OF_MAGI</Item>
     <Item>CROWN_OF_MAGI</Item>
-    <Item>DWARVEN_MITHRAL_CUIRASS</Item>
-    <Item>DWARVEN_MITHRAL_GREAVES</Item>
-    <Item>DWARVEN_MITHRAL_HELMET</Item>
-    <Item>DWARVEN_MITHRAL_SHIELD</Item>
     <Item>ARTIFACT_OGRE_CLUB</Item>
     <Item>ARTIFACT_OGRE_SHIELD</Item>
     <Item>ARTIFACT_SKULL_OF_MARKAL</Item>
-    <Item>ARTIFACT_GUARDIAN_01</Item>
-    <Item>ARTIFACT_GUARDIAN_02</Item>
-    <Item>ARTIFACT_GUARDIAN_03</Item>
     <Item>ARTIFACT_ORB_AIR</Item>
     <Item>ARTIFACT_ORB_EARTH</Item>
     <Item>ARTIFACT_ORB_FIRE</Item>
     <Item>ARTIFACT_ORB_WATER</Item>
+    <Item>ARTIFACT_RING_OF_MACHINE_AFFINITY</Item>
     <Item>ARTIFACT_PENDANT_OF_BLIND</Item>
     <Item>UNICORN_HORN_BOW</Item>
-    <Item>PLATE_MAIL_OF_STABILITY</Item>
-    <Item>PEDANT_OF_MASTERY</Item>
-    <Item>CLOAK_OF_MOURNING</Item>
-    <Item>STAFF_OF_MAGI</Item>
     <Item>RING_OF_MAGI</Item>
-    <Item>ARTIFACT_SHAWL_OF_GREAT_LICH</Item>
     <Item>ARTIFACT_TOME_OF_DESTRUCTION</Item>
     <Item>ARTIFACT_TOME_OF_LIGHT_MAGIC</Item>
     <Item>ARTIFACT_TOME_OF_DARK_MAGIC</Item>
     <Item>ARTIFACT_TOME_OF_SUMMONING_MAGIC</Item>
-    <Item>ARTIFACT_RING_OF_MACHINE_AFFINITY</Item>
     <Item>ARTIFACT_RING_OF_HOLY_GRIFFIN</Item>
+    <Item>ARTIFACT_INHERITANCE</Item>
+    <Item>ARTIFACT_GEM_OF_PHANTOM</Item>
+    <Item>ARTIFACT_NECROMANCER_PENDANT</Item>
   </artifactIDs>
 
 -- 地形

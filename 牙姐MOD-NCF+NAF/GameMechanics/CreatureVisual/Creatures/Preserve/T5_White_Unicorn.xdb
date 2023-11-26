@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CreatureVisual ObjectRecordID="1001201">
+<CreatureVisual>
 	<CreatureNameFileRef href="/Text/Game/Creatures/Preserve/T5_White_Unicorn.txt"/>
 	<CreatureAbilitiesFileRef href="/Text/Game/Creatures/Preserve/T5_White_Unicorn_Abilities.txt"/>
 	<DescriptionFileRef href="/Text/Game/Creatures/Preserve/T5_White_Unicorn_desc.txt"/>
-	<Icon href="/Textures/Interface/CombatArena/Faces/Preseve/ico_Battleunicorn.xdb#xpointer(/Texture)"/>
-	<Icon32 href="/Textures/Interface/CombatArena/Faces/Preseve/ico_Battleunicorn_32.xdb#xpointer(/Texture)"/>
-	<Icon64 href="/Textures/Interface/CombatArena/Faces/Preseve/ico_Battleunicorn_64.xdb#xpointer(/Texture)"/>
-	<Icon128 href="/Textures/Interface/CombatArena/Faces/Preseve/ico_Battleunicorn_128.xdb#xpointer(/Texture)"/>
+	<Icon href="/Textures/Interface/CombatArena/Faces/Preseve/Holy winged Unicorn_256.xdb#xpointer(/Texture)"/>
+	<Icon32 href="/Textures/Interface/CombatArena/Faces/Preseve/Holy winged Unicorn_32.xdb#xpointer(/Texture)"/>
+	<Icon64 href="/Textures/Interface/CombatArena/Faces/Preseve/Holy winged Unicorn_64.xdb#xpointer(/Texture)"/>
+	<Icon128 href="/Textures/Interface/CombatArena/Faces/Preseve/Holy winged Unicorn_128.xdb#xpointer(/Texture)"/>
 	<AnimCharacter href="/Characters/Creatures/Preserve/T5_White_Unicorn.(Character).xdb#xpointer(/Character)"/>
 	<DeadCharacter/>
 	<AnimShot/>

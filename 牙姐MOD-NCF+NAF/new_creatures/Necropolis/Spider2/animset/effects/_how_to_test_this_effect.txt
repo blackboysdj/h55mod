@@ -1,0 +1,6 @@
+If you want to test this effect example.
+Open your idle00.(BasicSkelAnim).xdb located in the previous folder,
+and chage line
+	<Effect/>
+to line
+	<Effect href="effects/idle00.(Effect).xdb#xpointer(/Effect)"/>

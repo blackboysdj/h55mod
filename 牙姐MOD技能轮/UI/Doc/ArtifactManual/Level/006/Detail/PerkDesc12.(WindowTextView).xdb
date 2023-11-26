@@ -52,7 +52,7 @@
 	<Flags>
 		<SuperActive>false</SuperActive>
 	</Flags>
-	<TextFileRef href="/Text/TTH/Artifact/047-RingOfMagi/Description.txt"/>
+	<TextFileRef href="/Text/TTH/Artifact/071-NecromancerPendant/Description.txt"/>
 	<ResizeOnTextSet>true</ResizeOnTextSet>
 	<ResizeWidthOnTextSet>false</ResizeWidthOnTextSet>
 	<TextFormat href="/UI/Doc/ArtifactManual/Common/Description.(TextFormat).xdb#xpointer(/TextFormat)"/>

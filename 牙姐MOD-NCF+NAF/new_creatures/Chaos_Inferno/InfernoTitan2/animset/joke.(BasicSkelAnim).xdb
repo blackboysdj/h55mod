@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BasicSkelAnim ObjectRecordID="449">
+	<SrcName href="/models/Creatures/Castle/Peasant.mb"/>
+	<uid>76B6AE50-CF0A-479B-865D-CE6C460C8A0C</uid>
+	<ExpSrcClip href="/Animations/Creatures/Peasant/Clip/Peasant.happy.ma"/>
+	<ExpRootTransform>Global</ExpRootTransform>
+	<ExpFrameFirst>0</ExpFrameFirst>
+	<ExpFrameLast>0</ExpFrameLast>
+	<ExpSettingsFile href="/H:/Tools/MayaExportSettings/settings_character_anim.ges"/>
+	<MovementSpeed>0</MovementSpeed>
+	<SpeedFactor>0.8</SpeedFactor>
+	<Sound href="/Sounds/_(Sound)/Creatures/Academy/IronGolem/Idle01.xdb#xpointer(/Sound)"/>
+	<Effect href="Effects/Idle00.(Effect).xdb#xpointer(/Effect)"/>
+	<SpeedLineFallTime>250</SpeedLineFallTime>
+	<SpeedLineMaterial/>
+</BasicSkelAnim>

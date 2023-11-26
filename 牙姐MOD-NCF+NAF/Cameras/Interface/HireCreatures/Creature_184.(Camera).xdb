@@ -2,19 +2,19 @@
 <Camera>
 	<Name/>
 	<Pos>
-		<x>-2.91306</x>
-		<y>-15.2688</y>
-		<z>1.88227</z>
+		<x>4.80466</x>
+		<y>-11.11134</y>
+		<z>1.71662</z>
 	</Pos>
 	<Rot>
-		<x>-6.34191</x>
-		<y>-1.2952</y>
+		<x>3.25776</x>
+		<y>36.7048</y>
 		<z>0</z>
 	</Rot>
-	<Rod>14.6206</Rod>
+	<Rod>9.10831</Rod>
 	<FOV>54.4316</FOV>
 	<ClipDistanceMin>1</ClipDistanceMin>
 	<ClipDistanceMax>500</ClipDistanceMax>
-	<SrcName>Cameras\Interface\HireCreatures.mb</SrcName>
+	<SrcName>Cameras\Interface\HireCreatures_Titan.mb</SrcName>
 	<RootJoint>camera_hire_screen</RootJoint>
 </Camera>

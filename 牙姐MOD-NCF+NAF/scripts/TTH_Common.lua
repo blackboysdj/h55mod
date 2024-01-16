@@ -3419,22 +3419,6 @@ doFile("/scripts/TTH_Library.lua")
               , ["Mastery"] = HERO_SKILL_GATING
               , ["Group"] = TTH_ENUM.GroupMight
             }
-            , ["Efion"] = {
-              ["Id"] = 105
-              , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Efion/name.txt"
-              , ["Race"] = TOWN_INFERNO
-              , ["Class"] = TTH_ENUM.GateKeeper
-              , ["Mastery"] = HERO_SKILL_GATING
-              , ["Group"] = TTH_ENUM.GroupMight
-              , ["Building"] = TOWN_BUILDING_DWELLING_2
-              , ["Specialty"] = {
-                [1] = {
-                  ["CreatureId"] = CREATURE_DEMON
-                  , ["Stat"] = STAT_KNOWLEDGE
-                  , ["ArtifactId"] = ARTIFACT_LEGION_BASIC
-                }
-              }
-            }
             , ["Oddrema"] = {
               ["Id"] = 109
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Oddrema/name.txt"
@@ -3452,6 +3436,22 @@ doFile("/scripts/TTH_Library.lua")
               }
             }
           -- DemonLord
+            , ["Efion"] = {
+              ["Id"] = 105
+              , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Efion/name.txt"
+              , ["Race"] = TOWN_INFERNO
+              , ["Class"] = TTH_ENUM.DemonLord
+              , ["Mastery"] = HERO_SKILL_GATING
+              , ["Group"] = TTH_ENUM.GroupBalanceNotNec
+              , ["Building"] = TOWN_BUILDING_DWELLING_2
+              , ["Specialty"] = {
+                [1] = {
+                  ["CreatureId"] = CREATURE_DEMON
+                  , ["Stat"] = STAT_KNOWLEDGE
+                  , ["ArtifactId"] = ARTIFACT_LEGION_BASIC
+                }
+              }
+            }
             , ["Jazaz"] = {
               ["Id"] = 102
               , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Jazaz/name.txt"
@@ -4069,7 +4069,7 @@ doFile("/scripts/TTH_Library.lua")
                   [1] = HERO_SKILL_SCOUTING
                 }
               }
-              , [019] = { -- 探路术
+              , [19] = { -- 探路术
                 ["Id"] = HERO_SKILL_PATHFINDING
                 , ["Text"] = "/Text/TTH/Skills/Logistics/019-Pathfinding/Name.txt"
               }
@@ -4570,7 +4570,7 @@ doFile("/scripts/TTH_Library.lua")
                 , ["Text"] = "/Text/TTH/Skills/Avenger/116-ElvenLuck/Name.txt"
                 , ["IsAbsolute"] = 1
               }
-              , [120] = { -- 西莱纳的回响（终极）
+              , [315] = { -- 西莱纳的回响（终极）
                 ["Id"] = HERO_SKILL_ECHO_OF_SYLANNA
                 , ["Text"] = "/Text/TTH/Skills/Avenger/315-EchoOfSylanna/Name.txt"
                 , ["IsAbsolute"] = 1
@@ -4739,7 +4739,7 @@ doFile("/scripts/TTH_Library.lua")
                   [1] = HERO_SKILL_NO_REST_FOR_THE_WICKED
                 }
               }
-              , [73] = { -- 邪恶远征（终极）
+              , [310] = { -- 邪恶远征（终极）
                 ["Id"] = HERO_SKILL_EVIL_EXPEDITION
                 , ["Text"] = "/Text/TTH/Skills/Necromancy/310-EvilExpedition/Name.txt"
                 , ["IsAbsolute"] = 1

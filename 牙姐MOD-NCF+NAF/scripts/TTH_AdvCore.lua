@@ -398,6 +398,7 @@ doFile("/scripts/TTH_Setting.lua");
 				TTH_VARI.strPathRadioDefaultTips = "/Text/Game/Scripts/TTH_QB_Radio/DefaultTips.txt";
 				TTH_VARI.strPathRadioOptionPre = "/Text/Game/Scripts/TTH_QB_Radio/Option";
 				TTH_VARI.strPathRadioOptionPost = ".txt";
+				TTH_VARI.strPathRadioTextTemplate = "/Text/Game/Scripts/TTH_QB_Radio/TextTemplate.txt";
 				function TTH_COMMON.optionRadio(iPlayer, strHero, arrOption, strTips, bIsLoop)
 					if bIsLoop == nil then
 						bIsLoop = TTH_ENUM.No;
@@ -428,7 +429,16 @@ doFile("/scripts/TTH_Setting.lua");
 					local arrText = {};
 					for i = 1, 21 do
 						if TTH_VARI.arrOption[i] ~= nil then
-							arrText[i] = TTH_VARI.arrOption[i]["Text"];
+							-- arrText[i] = TTH_VARI.arrOption[i]["Text"];
+							local strOrder = TTH_COMMON.toString(i);
+							if i < 10 then
+								strOrder = "0"..strOrder;
+							end;
+							arrText[i] = {
+								TTH_VARI.strPathRadioTextTemplate
+								;strOrder=strOrder
+								,strText=TTH_VARI.arrOption[i]["Text"]
+							};
 						else
 							arrText[i] = "";
 						end;
@@ -661,8 +671,8 @@ doFile("/scripts/TTH_Setting.lua");
 						if fCoef < 1 then
 							fCoef = 1;
 						end;
-						if fCoef > 20 then
-							fCoef = 20;
+						if fCoef > 100 then
+							fCoef = 100;
 						end;
 						return fCoef;
 					end;
@@ -671,7 +681,15 @@ doFile("/scripts/TTH_Setting.lua");
 					function TTH_AI.cheatAiWeekly(iPlayer)
 						TTH_MAIN.debug("TTH_AI.cheatAiWeekly", iPlayer, nil);
 
-						if TTH_SETTING.ai.army.coef > 1 then
+						if TTH_AI.getCoef8Setting() > 1 then
+							local arrHero = GetPlayerHeroes(iPlayer);
+							local strMainHero = nil;
+							if 1 == 1
+								and arrHero
+								and length(arrHero) > 0
+							then
+								strMainHero = arrHero[0];
+							end;
 							local fCoef8Setting = TTH_AI.getCoef8Setting();
 							local fCoef8TownCount = 0.5 + 0.5 * length(TTH_GLOBAL.listTown8Player(iPlayer));
 							local iCheatGold = TTH_COMMON.round(fCoef8Setting * fCoef8TownCount * 20000);
@@ -686,14 +704,41 @@ doFile("/scripts/TTH_Setting.lua");
 									for i = 1, 7 do
 										local iDwellingLevel = GetTownBuildingLevel(strTown, TOWN_BUILDING_DWELLING_1 + i - 1);
 										if iDwellingLevel >= 1 then
-											local iCreatureId = TTH_TABLE.Creature8RaceAndLevel[iTownRace][i][1];
-											local iCanRecruitCount = GetObjectDwellingCreatures(strTown, iCreatureId);
-											local iGrowth = TTH_TABLE.Creature[iCreatureId]["GROWTH"];
-											iGrowth = TTH_COMMON.round(fCoef8Setting * TTH_TABLE.Creature[iCreatureId]["GROWTH"]);
-											SetObjectDwellingCreatures(strTown
-												, iCreatureId
-												, iCanRecruitCount + iGrowth
-											);
+											if 1 == 1
+												and strMainHero
+												and TTH_MANAGE.autoRecruit.bFlag == 1
+											then
+												local iCreatureId = TTH_TABLE.Creature8RaceAndLevel[iTownRace][i][1];
+												local iGrowth = TTH_TABLE.Creature[iCreatureId]["GROWTH"];
+												local iScaleGrowth = TTH_COMMON.round(fCoef8Setting * iGrowth);
+												local arrCreature4Hero = TTH_GLOBAL.getHeroCreatureInfo(strMainHero);
+												local bExist = nil;
+												for k = 0, 6 do
+													if bExist then
+														break;
+													end;
+													for j = 1, 3 do
+														if arrCreature4Hero[k]["Id"] == TTH_TABLE.Creature8RaceAndLevel[iTownRace][i][j] then
+															AddHeroCreatures(strMainHero, arrCreature4Hero[k]["Id"], iScaleGrowth);
+															bExist = not nil;
+															sleep(1);
+														end;
+													end;
+												end;
+												if bExist == nil then
+													AddHeroCreatures(strMainHero, TTH_TABLE.Creature8RaceAndLevel[iTownRace][i][2], iScaleGrowth);
+													sleep(1);
+												end;
+											else
+												local iCreatureId = TTH_TABLE.Creature8RaceAndLevel[iTownRace][i][1];
+												local iCanRecruitCount = GetObjectDwellingCreatures(strTown, iCreatureId);
+												local iGrowth = TTH_TABLE.Creature[iCreatureId]["GROWTH"];
+												local iScaleGrowth = TTH_COMMON.round(fCoef8Setting * iGrowth);
+												SetObjectDwellingCreatures(strTown
+													, iCreatureId
+													, iCanRecruitCount + iScaleGrowth
+												);
+											end;
 										end;
 									end
 								end;
@@ -1701,7 +1746,7 @@ doFile("/scripts/TTH_Setting.lua");
 						end;
 						local iPlayer = TTH_GLOBAL.GetObjectOwner(strHero);
 						if TTH_GLOBAL.isAi(iPlayer) then
-							iWeeklyNumber = iWeeklyNumber * TTH_AI.getTrialCoef8GameDifficulty() * TTH_SETTING.ai.army.coef; -- AI按倍数增兵
+							iWeeklyNumber = iWeeklyNumber * TTH_AI.getTrialCoef8GameDifficulty() * TTH_AI.getCoef8Setting(); -- AI按倍数增兵
 						end;
 
 						if objCreature["Upgrade"] ~= nil then
@@ -3781,6 +3826,11 @@ doFile("/scripts/TTH_Setting.lua");
 					}
 					TTH_GLOBAL.sign(strHero, strText);
 					TTH_START.choice.skill.flag.bonus[iPlayer] = 1;
+					if TTH_MAP10W.init then
+						TTH_START.choice.skill.flag.bonus[iPlayer] = 1;
+						TTH_START.choice.creature.flag.bonus[iPlayer] = 1;
+						TTH_START.choice.artifact.flag.bonus[iPlayer] = 1;
+					end;
 				else
 					local strText =	TTH_PATH.Start["Choice"]["Skill"]["Failure"];
 					TTH_GLOBAL.sign(strHero, strText);
@@ -3845,29 +3895,49 @@ doFile("/scripts/TTH_Setting.lua");
 						if iInitNumber < 1 then
 							iInitNumber = 1;
 						end;
-						TTH_GLOBAL.addCreature4Hero8Sign(strHero, iCreatureId, iInitNumber, TTH_ENUM.AddCreature);
-						if iCreatureTier <= 4 then
-							for i, strTown in TTH_VARI.arrTown do
-								if iPlayer == GetObjectOwner(strTown) then
-									UpgradeTownBuilding(strTown, iCreatureTier + TOWN_BUILDING_DWELLING_1 - 1, 1);
+						if TTH_MAP10W.init then
+							iInitNumber = iInitNumber * 3;
+							local strSubTown = TTH_TABLE.BuildingName410W["SubTown"][iPlayer];
+							AddObjectCreatures(strSubTown, iCreatureId, iInitNumber);
+						else
+							TTH_GLOBAL.addCreature4Hero8Sign(strHero, iCreatureId, iInitNumber, TTH_ENUM.AddCreature);
+							if iCreatureTier <= 4 then
+								for i, strTown in TTH_VARI.arrTown do
+									if iPlayer == GetObjectOwner(strTown) then
+										UpgradeTownBuilding(strTown, iCreatureTier + TOWN_BUILDING_DWELLING_1 - 1, 1);
+									end;
 								end;
 							end;
 						end;
 					end;
 				else
 					local iHeroRace = TTH_GLOBAL.getRace8Hero(strHero);
-					local iCreatureId = TTH_TABLE.Creature8RaceAndLevel[iHeroRace][iTier][1];
-					local iGrowth = TTH_TABLE.Creature[iCreatureId]["GROWTH"];
-					TTH_GLOBAL.addCreature4Hero8Sign(strHero, iCreatureId, iGrowth, TTH_ENUM.AddCreature);
-					if iTier <= 4 then
-						for i, strTown in TTH_VARI.arrTown do
-							if iPlayer == GetObjectOwner(strTown) then
-								UpgradeTownBuilding(strTown, iTier + TOWN_BUILDING_DWELLING_1 - 1, 1);
+					if TTH_MAP10W.init then
+						for iTier10W = 1, 7 do
+							local iCreatureId = TTH_TABLE.Creature8RaceAndLevel[iHeroRace][iTier10W][1];
+							local iGrowth = TTH_TABLE.Creature[iCreatureId]["GROWTH"];
+							local strSubTown = TTH_TABLE.BuildingName410W["SubTown"][iPlayer];
+							AddObjectCreatures(strSubTown, iCreatureId, iGrowth);
+						end;
+					else
+						local iCreatureId = TTH_TABLE.Creature8RaceAndLevel[iHeroRace][iTier][1];
+						local iGrowth = TTH_TABLE.Creature[iCreatureId]["GROWTH"];
+						TTH_GLOBAL.addCreature4Hero8Sign(strHero, iCreatureId, iGrowth, TTH_ENUM.AddCreature);
+						if iTier <= 4 then
+							for i, strTown in TTH_VARI.arrTown do
+								if iPlayer == GetObjectOwner(strTown) then
+									UpgradeTownBuilding(strTown, iTier + TOWN_BUILDING_DWELLING_1 - 1, 1);
+								end;
 							end;
 						end;
 					end;
 				end;
 				TTH_START.choice.creature.flag.bonus[iPlayer] = 1;
+				if TTH_MAP10W.init then
+					TTH_START.choice.skill.flag.bonus[iPlayer] = 1;
+					TTH_START.choice.creature.flag.bonus[iPlayer] = 1;
+					TTH_START.choice.artifact.flag.bonus[iPlayer] = 1;
+				end;
 			end;
 
 		-- 开局选择宝物
@@ -3924,6 +3994,11 @@ doFile("/scripts/TTH_Setting.lua");
 			TTH_START.choice.artifact.impl = function(iPlayer, strHero, iArtifactId)
 				GiveArtefact(strHero, iArtifactId);
 				TTH_START.choice.artifact.flag.bonus[iPlayer] = 1;
+				if TTH_MAP10W.init then
+					TTH_START.choice.skill.flag.bonus[iPlayer] = 1;
+					TTH_START.choice.creature.flag.bonus[iPlayer] = 1;
+					TTH_START.choice.artifact.flag.bonus[iPlayer] = 1;
+				end;
 			end;
 
 	-- 配置文件 实现
@@ -9783,6 +9858,7 @@ doFile("/scripts/TTH_Setting.lua");
 		TTH_ENUM.HireHero = 1; -- 招募指定英雄
 		TTH_ENUM.VisitMemoryMentor = 2; -- 访问记忆导师
 		TTH_ENUM.MixedMonster = 3; -- 野怪混入特殊生物
+		TTH_ENUM.AutoRecruit = 4; -- AI是否自动招募
 
 		TTH_TABLE.KingManagePath = {
 			["Widget"] = {
@@ -10150,9 +10226,19 @@ doFile("/scripts/TTH_Setting.lua");
 					};
 					i = i + 1;
 				end;
-				if 1 == 1
-					and TTH_START.choice.arrType[iPlayer] == TTH_START.enumType.skill
-					and TTH_START.choice.skill.flag.bonus[iPlayer] ~= 1
+				if 1 ~= 1
+					or (
+						1 == 1
+						and TTH_MAP10W.init
+						and TTH_START.choice.skill.flag.bonus[iPlayer] ~= 1
+						and TTH_START.choice.creature.flag.bonus[iPlayer] ~= 1
+						and TTH_START.choice.artifact.flag.bonus[iPlayer] ~= 1
+					)
+					or (
+						1 == 1
+						and TTH_START.choice.arrType[iPlayer] == TTH_START.enumType.skill
+						and TTH_START.choice.skill.flag.bonus[iPlayer] ~= 1
+					)
 				then
 					arrOption[i] = {
 						["Id"] = TTH_ENUM.BonusStartSkill
@@ -10161,9 +10247,19 @@ doFile("/scripts/TTH_Setting.lua");
 					};
 					i = i + 1;
 				end;
-				if 1 == 1
-					and TTH_START.choice.arrType[iPlayer] == TTH_START.enumType.creature
-					and TTH_START.choice.creature.flag.bonus[iPlayer] ~= 1
+				if 1 ~= 1
+					or (
+						1 == 1
+						and TTH_MAP10W.init
+						and TTH_START.choice.skill.flag.bonus[iPlayer] ~= 1
+						and TTH_START.choice.creature.flag.bonus[iPlayer] ~= 1
+						and TTH_START.choice.artifact.flag.bonus[iPlayer] ~= 1
+					)
+					or (
+						1 == 1
+						and TTH_START.choice.arrType[iPlayer] == TTH_START.enumType.creature
+						and TTH_START.choice.creature.flag.bonus[iPlayer] ~= 1
+					)
 				then
 					arrOption[i] = {
 						["Id"] = TTH_ENUM.BonusStartCreature
@@ -10172,9 +10268,19 @@ doFile("/scripts/TTH_Setting.lua");
 					};
 					i = i + 1;
 				end;
-				if 1 == 1
-					and TTH_START.choice.arrType[iPlayer] == TTH_START.enumType.artifact
-					and TTH_START.choice.artifact.flag.bonus[iPlayer] ~= 1
+				if 1 ~= 1
+					or (
+						1 == 1
+						and TTH_MAP10W.init
+						and TTH_START.choice.skill.flag.bonus[iPlayer] ~= 1
+						and TTH_START.choice.creature.flag.bonus[iPlayer] ~= 1
+						and TTH_START.choice.artifact.flag.bonus[iPlayer] ~= 1
+					)
+					or (
+						1 == 1
+						and TTH_START.choice.arrType[iPlayer] == TTH_START.enumType.artifact
+						and TTH_START.choice.artifact.flag.bonus[iPlayer] ~= 1
+					)
 				then
 					arrOption[i] = {
 						["Id"] = TTH_ENUM.BonusStartArtifact
@@ -11870,6 +11976,15 @@ doFile("/scripts/TTH_Setting.lua");
 						["Text"] = "/Text/Game/Scripts/TTH_Cheat/MixedMonster/Success.txt"
 					}
 				}
+				, ["AutoRecruit"] = {
+					["Text"] = "/Text/Game/Scripts/TTH_Cheat/AutoRecruit.txt"
+					, ["Enable"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_Cheat/AutoRecruit/Enable.txt"
+					}
+					, ["Unable"] = {
+						["Text"] = "/Text/Game/Scripts/TTH_Cheat/AutoRecruit/Unable.txt"
+					}
+				}
 			};
 			TTH_MANAGE.cheat.option = {
 				[1] = {
@@ -11887,12 +12002,18 @@ doFile("/scripts/TTH_Setting.lua");
 					, ["Text"] = TTH_MANAGE.cheat.path["MixedMonster"]["Text"]
 					, ["Callback"] = "TTH_MANAGE.mixedMonster.func.impl"
 				}
+				, [4] = {
+					["Id"] = TTH_ENUM.AutoRecruit
+					, ["Text"] = TTH_MANAGE.cheat.path["AutoRecruit"]["Text"]
+					, ["Callback"] = "TTH_MANAGE.autoRecruit.func.impl"
+				}
 			};
 
 			TTH_MANAGE.cheat.deal = function(strHero)
 				TTH_COMMON.initNavi(TTH_MANAGE.cheat.path["Text"]);
 
 				local iPlayer = GetObjectOwner(strHero);
+				TTH_MANAGE.cheat.option[4]["Text"] = TTH_MANAGE.autoRecruit.func.getText();
 				TTH_COMMON.optionRadio(iPlayer, strHero, TTH_MANAGE.cheat.option);
 			end;
 
@@ -12204,6 +12325,31 @@ doFile("/scripts/TTH_Setting.lua");
 						end;
 						UnblockGame();
 						local strText = TTH_MANAGE.cheat.path["MixedMonster"]["Success"]["Text"];
+						TTH_GLOBAL.sign(strHero, strText);
+					end;
+				end;
+
+			-- AI自动招募
+				TTH_MANAGE.autoRecruit = {};
+				TTH_MANAGE.autoRecruit.bFlag = 0;
+				TTH_MANAGE.autoRecruit.func = {};
+				TTH_MANAGE.autoRecruit.func.getText = function()
+					local strText = "";
+					if TTH_MANAGE.autoRecruit.bFlag == 0 then
+						strText = TTH_MANAGE.cheat.path["AutoRecruit"]["Unable"]["Text"];
+					else
+						strText = TTH_MANAGE.cheat.path["AutoRecruit"]["Enable"]["Text"];
+					end;
+					return strText;
+				end;
+				TTH_MANAGE.autoRecruit.func.impl = function(iPlayer, strHero)
+					if TTH_MANAGE.autoRecruit.bFlag == 0 then
+						TTH_MANAGE.autoRecruit.bFlag = 1;
+						local strText = TTH_MANAGE.cheat.path["AutoRecruit"]["Enable"]["Text"];
+						TTH_GLOBAL.sign(strHero, strText);
+					else
+						TTH_MANAGE.autoRecruit.bFlag = 0;
+						local strText = TTH_MANAGE.cheat.path["AutoRecruit"]["Unable"]["Text"];
 						TTH_GLOBAL.sign(strHero, strText);
 					end;
 				end;

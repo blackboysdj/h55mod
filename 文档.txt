@@ -7,8 +7,11 @@
 主线我记不住了 记得是13章
 星界军
 
+大家有什么想看的可以在评论区留言
+喜欢的话可以点个免费的赞，细牙们的支持是牙姐最大的动力
 
 
+[英雄无敌5神力之遗]3刀锁链牛牛刀刀烈火-
 英雄无敌5神力之遗※渣哥冇良心又黎稳我笨
 
 英雄无敌5神力之遗（牙姐）MOD
@@ -110,7 +113,8 @@ custom_ability 348~351 015c~015f 5C01 5F01
     城主：英雄管理的城镇的招募兵种的时金币需求减少15%。
 
 MakeHeroReturnToTavernAfterDeath 让英雄就算战败也会在酒馆出现，可用于转职
-
+神殿 Shrine ShrineOfMagic BUILDING_SHRINE_OF_MAGIC BUILDING_MAGMA_SHRINE
+BUILDING_MAGIC_WELL
 
 我把每个技能的名字上加一个隶属的主技能，应该会好很多
 隐身 切形态
@@ -131,26 +135,99 @@ MakeHeroReturnToTavernAfterDeath 让英雄就算战败也会在酒馆出现，�
   阿莱斯特普攻动作异常（已反馈）
   马特瓦移速过快（已反馈）
   库恩亚克（紫色）
+  活力再生 调用神秘护甲light
 -- 内政改版
+  优化管理
+  扩张
+  加强管理
+  提升产量
+  繁荣
+  费用减缩
+
+  军团宝物: 改为内政宝物, 增加英雄管辖的城镇生物产量（直加）
+    军团之证
+    军团斗篷
+    军团之盾
+    军团金像: 管辖城镇黄金收益+20%
   管理学
-    基础: 可用内政操作次数替换英雄主动特长使用次数, 内政操作次数: 1, 管辖城镇数: 1
-    高级: 内政操作次数: 2, 管辖城镇数: 2
-    专家: 内政操作次数: 3, 管辖城镇数: 3
-    终极: 
+    基础:
+      1.管辖城镇时, 每城每日获得100点政绩, 500点经验
+      2.可消耗内政操作次数建造建筑
+      3.可用内政操作次数替换英雄主动特长使用次数
+      4.英雄离开最近的管辖城镇 68 范围后, 失去所有技能效果, 且每日税收20%
+      4.每周内政操作次数: 1, 可管辖城镇数: 1
+    高级: 每周内政操作次数: 2, 管辖城镇数: 2
+    专家: 每周内政操作次数: 3, 管辖城镇数: 3
+    终极:
+    合理赋税: 管辖城镇黄金收益+20%
+      特殊技能: 每城每日获得的政绩及经验+20%
+        特殊技能: 
+      特殊技能: 管辖城镇生物产量+20%
+        特殊技能: 增产类内政宝物产量+1
+
+    标准技能: 通过内政建造建筑时黄金及资源消耗-20%
+      特殊技能: 转换城镇时黄金及资源消耗-20%
+        旧瓶新酒: 转换城镇时额外获得2个随机建筑
+      特殊技能: 转换野外招募点时黄金及资源消耗-20%
+        临时驿站: 转换野外招募点后可在附近立即执行一次回城令
+
+    标准技能: 当前英雄内政范围+20%
+      守卫XX: 内政范围内出现敌方英雄时, 获得所辖城镇的建筑属性加成
+        特殊技能: 指定内政范围内的一处宝屋, 每周可收取奖励（内替）
+      捷足先登: 占领内政范围内的一处无主资源矿（内替）
+        特殊技能: 指定内政范围内的一处资源矿, 立即获得3天+层级的该资源（内替）
   种族特色
-    圣堂: 励精图治-政绩获取+30%
-    森林: 内政操作次数
-    学院: 空中堡垒-内政范围+30%
-    地牢: 管辖城镇数
-    墓园: 城镇范围内的每次战斗可令转城费用-10%
-    地狱: 按当前等级获得百分比内政经验
-    堡垒: 每周会有1种资源矿层级+1
-    据点: 每招募1单位生物会有1单位地精加入
+    圣堂:
+      励精图治: 不再获得经验, 获得政绩+40%
+        厉兵秣马: 马厩升级骑士
+        卸甲归田: 管辖城镇中的农民缴税效果*2
+    森林:
+      内政操作次数+X（X=英雄已管辖城镇数）
+        循环利用: 每建造一座消耗木材的建筑返还2点木材
+        树精守卫: 内政范围内, 战斗开始时召唤一队树精（数量=英雄等级）
+    学院:
+      空中堡垒: 内政范围+30%
+        传送法阵: 己方英雄定点回城英雄管辖城镇时不再消耗移动力及魔法值
+        宝物学者
+          被动特效:
+          1.英雄咒力/知识各+1
+          主动特效:（唯一）
+          1.英雄可花费黄金复刻非神器宝物（花费为: 花费为: 宝物价格的1/3）
+    地牢:
+      管辖城镇数+X（X=英雄等级/15, 向上取整）
+        可在元素祭坛领取元素灵球（游戏唯一）
+        地下商人: 刷新当前城镇宝物商店（内替）
+    墓园:
+      XX亡域: 城镇范围内的每次战斗可令转城费用-10%
+      幽魂矿井:
+        被动特效:
+        1.占领资源矿后会有 X*5 单位幽灵加入该资源矿的守卫部队（X=当前周数/2, 向上取整, X不大于25）
+        主动特效:（耗1/周回1/内替/附近）
+        1.英雄可消耗 5 单位幽灵占领资源矿
+      鬼气森森:
+        内政范围内, 宝屋胜利时额外获得一次生物奖励
+    地狱:
+      管辖城镇生物产量+20%
+      按当前等级获得百分比内政经验
+      烈狱幻境: 管辖城镇定点回城的条件改为烈狱幻境+2级魔法塔
+    堡垒:
+      矮人工会: 管辖城镇黄金收益+30%
+        就地取材: 每周首次通过内政建造建筑时黄金及资源消耗-30%
+        坚壁清野: 进入内政范围内的英雄，每日开始时失去10%魔法值
+    据点:
+      地精扈从: 每招募1单位生物会有1单位地精加入
+      地精支援:
+        被动特效:
+        1.英雄若携带弹药车则每天会有 1 单位地精加入
+        主动特效:（主动/唯一/所辖领地/设立建筑5000）
+        1.英雄可建造 1 座地精支援站
 -- 转职改版
   基础机制
-    1.同时只能就职一种职业, 但可累积就职多种职业, 最后转职的为当前职业
-    2.在当前职业升4级获得职业专长, 每升8级会提升职业专长, 最多提升2次, 刚就职职业时不会获得任何奖励
-    3.
+    1.英雄在5/10/15/20/25/30/35/40级时可获得转职次数（转职次数不可储存）
+    2.八种族原始职业为基础职业, 英雄默认会解锁该种族的三种种族专属职业, 作用为属性调整（例如2P转2A）（其中一种属性不调整, 即同基础职业）, 最高可升至Lv.8
+    3.英雄可通过战斗行为/内政操作/属性变化等方式解锁隐藏职业, 隐藏职业最高可升至Lv.3
+    4.种族专属职业Lv.2+两种隐藏职业Lv.2, 可解锁种族特殊职业
+    5.种族特殊职业不可升级
   种族特色
     圣堂:
     森林:
@@ -202,7 +279,7 @@ MakeHeroReturnToTavernAfterDeath 让英雄就算战败也会在酒馆出现，�
     特效: 习得战斗呼啸
   神秘学者
     种族:
-    解锁: 
+    解锁:
     特效: 失去魔法值后回复2点魔法值
   资源
     种族:
@@ -227,10 +304,20 @@ MakeHeroReturnToTavernAfterDeath 让英雄就算战败也会在酒馆出现，�
   就职方式
   就职上限
 -- 新版本调整
+  CreateTreasure 资源矿层级产出合并
+  复制了个熔岩巨力，暗黑龙一贴近复制体就卡住了
+  轮回之戒 增加功能将一队升级生物提升为第三种升级形态
+  女巫小屋 启蒙的BUG 蛮子没办法学到第八个新技能
+  拉特格 战争机械
+  群主我提个建议，能不能在信息查询面板显示当前英雄是哪个城的内政官，或者某个城的内政官是谁
+  战争掠夺移除
+  军团宝物使用
+  理财 每周
   ARTIFACT_MASK_OF_DOPPELGANGER
   ARTIFACT_ENDLESS_SACK_OF_GOLD
   ARTIFACT_ENDLESS_BAG_OF_GOLD
   ARTIFACT_HORN_OF_PLENTY
+  拉扎克，上回合受到伤害的总次数结算治疗
   对面伊拉娅，开场幻象我无畏领主先动，被我反击打死了就卡住了
   地牢希尔赛那个外交站
   无畏领主精通
@@ -368,7 +455,6 @@ MakeHeroReturnToTavernAfterDeath 让英雄就算战败也会在酒馆出现，�
 
   霍拉 内政
   连动追加
-
 -- 通用文案
   -- 自带
     <h3_header><color=FFFFE049><middle><center>
@@ -456,23 +542,29 @@ MakeHeroReturnToTavernAfterDeath 让英雄就算战败也会在酒馆出现，�
     <body_bright>1.招募黑曜石像怪/元素石像怪
     <body_bright>2.升级小精怪
     <body_bright>3.转换升级形态
-
-  -- 宝物位置
-    PRIMARY 主手
-    SECONDARY 副手
-    HEAD 头盔
-    NECK 项链
-    CHEST 盔甲
-    FEET 靴子
-    SHOULDERS 披风
-    FINGER 指环
-    MISCSLOT1 口袋
-    INVENTORY 包裹
-
+-- 宝物位置
+  PRIMARY 主手
+  SECONDARY 副手
+  HEAD 头盔
+  NECK 项链
+  CHEST 盔甲
+  FEET 靴子
+  SHOULDERS 披风
+  FINGER 指环
+  MISCSLOT1 口袋
+  INVENTORY 包裹
+-- 职业和种族技能
+  HERO_CLASS_KNIGHT HERO_SKILL_TRAINING
+  HERO_CLASS_RANGER HERO_SKILL_AVENGER 游侠 初级复仇者
+  HERO_CLASS_WIZARD HERO_SKILL_ARTIFICIER 魔法师 初级制宝术
+  HERO_CLASS_WARLOCK HERO_SKILL_INVOCATION 术士 初级穿透魔抗
+  HERO_CLASS_NECROMANCER HERO_SKILL_NECROMANCY 亡灵巫师 初级亡灵巫术
+  HERO_CLASS_DEMON_LORD HERO_SKILL_GATING 门禁卫士 初级异界传送
+  HERO_CLASS_RUNEMAGE HERO_SKILL_RUNELORE 符文祭祀 初级符文学
+  HERO_CLASS_BARBARIAN
 -- 建筑
   BUILDING_MEMORY_MENTOR
   BUILDING_SIRENS
-
 -- 英雄主动技能标记
   - &m55_encourage           0.2 神圣指引 1
   - &m55_prayer             0.15 佑福仪式 1
@@ -486,7 +578,6 @@ MakeHeroReturnToTavernAfterDeath 让英雄就算战败也会在酒馆出现，�
   - &m55_mark_of_the_sorc   0.5 法师印记 0.5
   - &m55_chain_attack       0.5 强力打击 0.5
   注魔弩0.25回合
-
 -- 视频相关
   英雄无敌5神力之遗MOD
   本局板子：7AI结盟+10倍增兵+眼泪
@@ -505,25 +596,25 @@ MakeHeroReturnToTavernAfterDeath 让英雄就算战败也会在酒馆出现，�
 
   付费50元后发支付截图@群主，拉入主群，下载游戏本体及神力之遗MOD
 
-英雄无敌5神力之遗（牙姐）MOD
-  进Q群下载主播同款游戏和MOD：463626603
-  UP 已稳定更新 7 年
-  快速过夜（320*320的超大地图，8玩家，每家过夜5秒，大后期10秒）
-  主技能从 6 个扩展到 8 个
-  子技能从 3 个扩展到 4 个
-  终极技能从 8 种扩展到 23 种
-  宝物数量从 96 件扩展到 195 件
-  套装数量从 10 套扩展到 19 套
-  所有英雄宝物栏位（除戒指）都有专属神器
-  英雄从 64 位扩展到 158 位
-  生物从 179 种扩展到 999 种
-  基础数据与原版 3.1 完全一样，完全不涉及游戏机制的改动，原版玩家可直接上手
-新增功能
-  可转换城镇和野外生物巢穴
-  增加类似 7 代的城主功能
-  增加类似 3 代的回城功能
-  格鲁、德肯、肯洛·哈格、泰泽 等经典英雄复刻
-  天使联盟、诅咒斗篷 等经典宝物复刻
+  英雄无敌5神力之遗（牙姐）MOD
+    进Q群下载主播同款游戏和MOD：463626603
+    UP 已稳定更新 7 年
+    快速过夜（320*320的超大地图，8玩家，每家过夜5秒，大后期10秒）
+    主技能从 6 个扩展到 8 个
+    子技能从 3 个扩展到 4 个
+    终极技能从 8 种扩展到 23 种
+    宝物数量从 96 件扩展到 195 件
+    套装数量从 10 套扩展到 19 套
+    所有英雄宝物栏位（除戒指）都有专属神器
+    英雄从 64 位扩展到 158 位
+    生物从 179 种扩展到 999 种
+    基础数据与原版 3.1 完全一样，完全不涉及游戏机制的改动，原版玩家可直接上手
+  新增功能
+    可转换城镇和野外生物巢穴
+    增加类似 7 代的城主功能
+    增加类似 3 代的回城功能
+    格鲁、德肯、肯洛·哈格、泰泽 等经典英雄复刻
+    天使联盟、诅咒斗篷 等经典宝物复刻
 
   #游戏集锦 单机游戏 英雄无敌5 神力之遗 策略游戏 战棋游戏 自制MOD 牙姐
 
@@ -559,7 +650,6 @@ MakeHeroReturnToTavernAfterDeath 让英雄就算战败也会在酒馆出现，�
   ※幻影射手※魔幻法师※神圣守护者※暗黑龙骑士※圣血剑士※帝国重弩※
   ※格鲁※孟斐拉※德肯※萨费罗斯※罗德哈特※尼姆巴斯※艾德里德※泰泽※肯洛·哈格※希娃※
   ※天使联盟※哨兵之盾※诅咒斗篷※恶灵长靴※天启头盔※龙神胸甲※亚莎之八重杖※玛拉萨之书※大法师之典※龙神之证※
-
 -- 宝物exe修改
   # - Added artifact ID 166 to increase HP by 2
   # - Added artifact ID 124 to increase HP by 6
@@ -575,7 +665,6 @@ MakeHeroReturnToTavernAfterDeath 让英雄就算战败也会在酒馆出现，�
   # - 魔抗战靴15%
   # - 173 10%
   # - 174 5%
-
 -- 战场障碍物
   <Obstacles>
     <MinSmallObstacles>2</MinSmallObstacles>
@@ -587,7 +676,6 @@ MakeHeroReturnToTavernAfterDeath 让英雄就算战败也会在酒馆出现，�
     <ObstaclesMaxArea>32</ObstaclesMaxArea>
     <FreeLines>6</FreeLines>
   </Obstacles>
-
 -- 未实装的技能
   HERO_SKILL_BARBARIAN_WEAKENING_STRIKE 反黑→虚弱打击
     , [209] = { -- 虚弱攻击
@@ -615,7 +703,7 @@ MakeHeroReturnToTavernAfterDeath 让英雄就算战败也会在酒馆出现，�
     <Item>SPELL_DEMON_RAGE_LEVEL_3</Item>
   </spellBuffs>
   <Item>ABILITY_DEMON_RAGED</Item>
-
+  ABILITY_DOUBLE_SHOT
 -- 战场城墙
   defender-townbuilding-0-WALL
   defender-townbuilding-1-WALL
@@ -626,7 +714,6 @@ MakeHeroReturnToTavernAfterDeath 让英雄就算战败也会在酒馆出现，�
   defender-townbuilding-6-GATE
   defender-townbuilding-7-BIG_TOWER
   defender-townbuilding-8-MOAT
-
 -- 按钮位置
   EPA_LOW_END
   ERA_CENTER
@@ -634,10 +721,8 @@ MakeHeroReturnToTavernAfterDeath 让英雄就算战败也会在酒馆出现，�
   EPA_HIGH_END
   ERA_LOW_END
   EPA_CENTER
-
 -- 宝物槽
   INVENTORY-背包
-
 -- 颜色
   默认亮 <body_bright>
   黄 <color=yellow>
@@ -656,32 +741,533 @@ MakeHeroReturnToTavernAfterDeath 让英雄就算战败也会在酒馆出现，�
   <color=0099FF>玩家 6
   <color=7F38EC>玩家 7
   <color=8B4513>玩家 8
-
 -- 技能类型
   SKILLTYPE_SKILL
   SKILLTYPE_STANDART_PERK
   SKILLTYPE_CLASS_PERK
   SKILLTYPE_SPECIAL_PERK
   SKILLTYPE_UINQUE_PERK
-
+  SKILLTYPE_DISABLED
 -- 宝物类型
   ARTF_CLASS_MINOR
   ARTF_CLASS_MAJOR
   ARTF_CLASS_RELIC
   ARTF_CLASS_GRAIL
-
 -- 主技能等级
   MASTERY_NONE
   MASTERY_BASIC
   MASTERY_ADVANCED
   MASTERY_EXPERT
   MASTERY_EXTRA_EXPERT
-
 -- 地图角度
   <Rot>0</Rot>
   <Rot>1.5708</Rot>
   <Rot>3.14159</Rot>
   <Rot>4.71239</Rot>
+-- 控制台作弊命令
+  Commands:
+  ATBAction_AddRemove_Time
+  ATBAction_Blind_Blink_Max
+  ATBAction_Blind_Blink_Min
+  ATBAction_Blink_Period
+  ATBAction_Blood_Rage_Blink_Max
+  ATBAction_Blood_Rage_Blink_Min
+  ATBAction_Blood_Rage_Blink_Period
+  ATBAction_FadeOut_Time
+  ATBAction_Move_Time
+  ATBAction_Summon_Blink_Max
+  ATBAction_Summon_Blink_Min
+  ATBBar_Icon_Height
+  ATBBar_Icon_Width
+  ATBBar_MaxMoveStep
+  ATBBar_MaxScrollStep
+  ATBBar_ScrollSpeed
+  CombatReplay_ShowStacksInfo
+  MOD.Desc
+  MOD.FullPath
+  MOD.Name
+  MOD.RelativePath
+  Options.Tooltips.HoverTimeout
+  Options.Tooltips.RightClickEnabled
+  Options.Tutorial.Msg.MsgBox_HeroHasBattleElation
+  Options.Tutorial.Msg.MsgBox_HeroHasMemoryOfOurBlood
+  Options.Tutorial.Msg.a2c1m1_1
+  PuzzleMapFadeOutTime
+  Stats
+  aai_step_limit
+  adapter_to_use
+  add_all_spells
+  add_army
+  add_energy
+  add_exp
+  add_gold
+  add_money
+  add_resource_path
+  add_skill
+  adv_camera_mode
+  adv_camera_mode_changed
+  advance_time
+  adventure_ai_timing
+  adventure_anim_blend
+  adventure_max_scroll_speed
+  adventure_quick_combat
+  adventure_scroll_speed
+  adventure_scroll_speed_zoom_factor
+  adventure_speed_ai
+  adventure_speed_human
+  adventure_speed_max_time_factor
+  advmap
+  ai_time_limit
+  alias
+  alt_highlight_adventure_objects
+  app_always_active
+  arena_override
+  autodetect
+  autosave
+  bind
+  bind_update
+  bindconfigure
+  bindsection
+  break_simultaneous_turns
+  builded_selection
+  camera_cinematic
+  capture_active
+  capture_end_frame
+  capture_framerate
+  capture_start_frame
+  caravan
+  change_tb_fade
+  change_text_fade
+  chat_in_game_blink_duration
+  chat_in_game_fade_duration
+  chat_in_game_non_fade_duration
+  cheats
+  check_duplicate_children
+  check_ui_textures_instant_load
+  clear_money
+  combat_ai_lookahead
+  combat_ai_retreat_value
+  combat_ai_use_magic_for_human
+  combat_anim_blend
+  combat_camera_antirepeater
+  combat_camera_arrow_brake_distance
+  combat_camera_arrow_stop_distance
+  combat_camera_log
+  combat_camera_random_track
+  combat_casuality_sign_duration
+  combat_dynamic_mode
+  combat_event_sign_duration
+  combat_force_average_arena
+  combat_highlighting
+  combat_log_length
+  combat_max_scroll_speed
+  combat_new_autoplacing
+  combat_placement_size_param
+  combat_scroll_speed
+  combat_scroll_speed_zoom_factor
+  combat_show_grid
+  combat_show_movement_shade
+  combat_show_target_shade
+  combat_starting_delay_time
+  combat_stir_animation_period
+  combat_time_factor
+  combat_transparent_walls
+  combat_turn_speed
+  combat_tutorial_autoexit
+  combat_tutorial_autostart
+  combat_tutorial_enabled
+  combat_tutorial_enter_delay
+  combat_wall_fade
+  combat_wall_fade_in_speed
+  combat_wall_fade_out_speed
+  combat_wall_neighbours_fade
+  conquest_camera_limits
+  conquest_camera_softlimits
+  console_size
+  cool_path
+  copy_version
+  credits
+  credits_fade_zone
+  credits_move_speed
+  current_attached_mod
+  custom_game_show_mp_maps
+  custom_game_show_rmg_maps
+  cutscene
+  cutscene_altmusic
+  debug_debug_trace_socket_errors_enable
+  debug_disable_broadcast_acknowledge_receiving
+  dev_console_password
+  dialog_anim_blend
+  disable_3dtown
+  disable_auto_aigeom
+  disable_ban_gfx_low
+  disable_change_tnl_mode
+  disable_map_decor
+  dm_connection_timeout
+  duel_realtime_default
+  duel_triple_heroes_default
+  duel_turnspeed_default
+  dungeon_sacrifice_fx_in_duration
+  dungeon_sacrifice_fx_out_duration
+  editor_agressive_selection
+  editor_camera_move_speed
+  editor_camera_rotate_speed
+  enable_cheats
+  eot
+  equip_artif_fade
+  exec
+  exit
+  ft_effect_duration
+  ft_quads_group1_max_alpha
+  ft_quads_group1_max_z
+  ft_quads_group1_min_alpha
+  ft_quads_group1_min_z
+  ft_quads_group1_num
+  ft_quads_group2_max_alpha
+  ft_quads_group2_max_z
+  ft_quads_group2_min_alpha
+  ft_quads_group2_min_z
+  ft_quads_group2_num
+  ft_transition_length
+  ft_zoom
+  game_camera_accelerate_time
+  game_camerasensitivity
+  game_camerasensitivity_mouse
+  game_invertscrollx
+  game_invertscrollx_mouse
+  game_invertscrolly
+  game_invertscrolly_mouse
+  game_invertturnx
+  game_invertturnx_mouse
+  game_invertturny
+  game_invertturny_mouse
+  game_scrollsensitivity
+  game_scrollsensitivity_mouse
+  game_speed
+  game_writelog
+  generatemap
+  get_relearn_skills
+  get_unlearn_skills
+  gfx_16bit_mode
+  gfx_16bit_textures
+  gfx_anisotropic_filter
+  gfx_autodetect
+  gfx_availible_resolutions
+  gfx_ban_lags
+  gfx_beg_a
+  gfx_beg_b
+  gfx_beg_g
+  gfx_beg_r
+  gfx_depth_tex_resolution
+  gfx_dot_b
+  gfx_dot_g
+  gfx_dot_r
+  gfx_draw_mip
+  gfx_dynamic_lights
+  gfx_editor_mode
+  gfx_effect_alpha_treshold
+  gfx_end_a
+  gfx_end_b
+  gfx_end_g
+  gfx_end_r
+  gfx_fade_priority_boost
+  gfx_fill_2d
+  gfx_fill_transp
+  gfx_fix_ban_np2
+  gfx_fix_nv_np2_hack
+  gfx_frame_transition
+  gfx_fsaa
+  gfx_fullscreen
+  gfx_gamma
+  gfx_glow_b
+  gfx_glow_g
+  gfx_glow_r
+  gfx_glow_selection
+  gfx_hiding_faders
+  gfx_hqshot_mag
+  gfx_hsr
+  gfx_lag
+  gfx_lm_calc
+  gfx_lm_chess
+  gfx_lm_quality
+  gfx_lod_switch_distance
+  gfx_low_ram
+  gfx_mapshot
+  gfx_nonclipped_water
+  gfx_nopixelshaders
+  gfx_noshadows
+  gfx_notexture
+  gfx_particles
+  gfx_pc_high
+  gfx_pc_low
+  gfx_present
+  gfx_quality
+  gfx_recreate
+  gfx_register_resolution
+  gfx_resolution
+  gfx_shadows_quality
+  gfx_show_bounds
+  gfx_showcache_2d
+  gfx_showcache_linear
+  gfx_showcache_transp
+  gfx_showcache_transplm
+  gfx_static_nooverwrite
+  gfx_stats
+  gfx_texture_mip
+  gfx_tnl_mode
+  gfx_transp_buffer_auto_grow
+  gfx_transp_buffer_size_x
+  gfx_transp_buffer_size_y
+  gfx_true_water_reflection
+  gfx_twilight
+  gfx_update
+  gfx_validate
+  gfx_vsync
+  gfx_water_amplitude
+  gfx_water_frequence
+  gfx_water_length
+  gfx_water_reflection
+  gfx_window_size
+  ghost_dismiss
+  ghost_upgrade
+  h5_simple_render
+  help
+  hero_trace
+  hero_trace_power_1
+  hero_trace_power_2
+  hero_trace_power_3
+  hire_screen_creature_no_place_fade
+  hire_screen_creature_zero_fade
+  icon_alpha
+  icon_fade
+  ignore_scenario_line
+  init_text_on_placement
+  invert_camera
+  lan_last_login
+  last_kingdom_overview_page
+  last_login
+  lobbies_update_time
+  log_random_calls
+  main_loop_on_exit_command
+  mainmenu
+  max_heroes_per_ai
+  maya_pitch_direction
+  me_camera_pos_fclipdistmax
+  me_camera_pos_fclipdistmin
+  me_camera_pos_ffov
+  me_camera_pos_fpitch
+  me_camera_pos_frod
+  me_camera_pos_froll
+  me_camera_pos_fyaw
+  me_camera_pos_ptanchor_x
+  me_camera_pos_ptanchor_y
+  me_camera_pos_ptanchor_z
+  minimize_on_deactivate
+  mission_camera_attenuation
+  mission_camera_classic_like_limits
+  mission_camera_classic_like_softlimits
+  mission_camera_def_pos
+  mission_camera_limits
+  mission_camera_minheight
+  mission_camera_pitch_speed
+  mission_camera_proj_center_x
+  mission_camera_proj_center_y
+  mission_camera_scroll_acceleration
+  mission_camera_scroll_speed
+  mission_camera_softattenuation
+  mission_camera_softlimits
+  mission_camera_vertical_fixed_limits
+  mission_camera_vertical_fixed_softlimits
+  mission_camera_yaw_acceleration
+  mission_camera_yaw_speed
+  mission_camera_zoom_acceleration
+  mission_camera_zoom_speed
+  mission_mini_dialog_camera_limits
+  mission_mini_dialog_camera_softlimits
+  ml_force_split_words
+  ml_text_default_font_name
+  movement_reminder
+  mp_check_crc
+  mp_check_object_crc
+  mp_observer_mode_for_player2
+  my_profile
+  necro_energy_text_fade_enable
+  necro_energy_text_fade_time
+  net_batched_segments
+  net_game_port
+  net_lan_match_maker_port
+  net_load_timeout
+  net_multiplayer_init_timeout
+  net_timeout
+  net_ubi_cdkey_port
+  net_ubicom_init_timeout
+  on_exit_game_attempt
+  on_exit_game_attempt_in_progress
+  on_exit_game_esc_menu
+  options_apply_changes
+  options_preview_changed
+  options_restore_default
+  partial_fade_dark_value
+  partial_fade_duration
+  pause_game
+  play_dialog_scene
+  player_name_max_ui_size
+  player_name_min_ui_size
+  prefer_special_hero_trail
+  profile
+  profile_name
+  pwl_press_any_key_enabled
+  pwl_press_any_key_fade
+  pwl_press_any_key_period
+  quick_combat_show_progress
+  quick_combat_step_limit
+  relearn_skill
+  reload_text
+  report-enabled
+  report-save-enabled
+  report-send-enabled
+  report-url
+  report-use-compression
+  report_not_fitted_mltext
+  report_not_fitted_mltext_nonstandard
+  rmg
+  save_before_combat
+  save_ok_time
+  select_campaign_mission_difficulty
+  set_hero_luck_morale
+  set_players_stats_field
+  setvar
+  shadow_on_trees
+  show_adventure_cell
+  show_ai_fog
+  show_hero_mp
+  show_heroes_exp_coef
+  show_heroes_mana
+  show_overlay
+  show_ping
+  show_player_money
+  show_splash_screen
+  show_version
+  showbind
+  sign_na
+  sign_nb
+  skip_adventure_flyby
+  sound_3d_minmax_distance
+  sound_3d_rolloff_factor
+  sound_ambient_enable
+  sound_ambient_fade_duration
+  sound_group_ambient_volume
+  sound_group_general_volume
+  sound_log
+  sound_mixing_buffer
+  sound_mode
+  sound_musicvolume
+  sound_sfx3Dvolume
+  sound_sfxvolume
+  sound_stream_buffer
+  sound_test
+  sound_update
+  special_win_x_pos
+  spell_book_dir_x
+  spell_book_dir_y
+  spell_book_dir_z
+  spell_book_dist
+  spell_book_fov_x
+  spell_book_shift_x
+  spell_book_shift_y
+  spell_book_shift_z
+  strategicai_version_notify
+  terra_quality
+  test_dm_customize
+  test_screen
+  text_size_report
+  town_ai_log
+  town_camera_pitch_speed
+  town_camera_rise_speed
+  town_camera_rotate_speed
+  town_camera_zoom_speed
+  town_camerainvert_pitch
+  town_camerainvert_rotation
+  town_enable_flyby
+  triple_heroes_dead_fade_value
+  triple_heroes_fade_value
+  tutorial_blink
+  tutorial_hint_set_trigger
+  tutorial_message
+  tutorial_reset
+  tutorial_show
+  ubi_activation_id
+  ubi_cdkey
+  ubi_tracking_tool_enabled
+  ui_adventure_hilight_radius
+  ui_alt_hilight_duration
+  ui_announcement_duration
+  ui_announcement_team_duration
+  ui_combat_hilight_radius
+  ui_common_show_warnings
+  ui_flying_signs_speed
+  ui_map_coords_diplay_shift_x
+  ui_map_coords_diplay_shift_y
+  ui_open_atb_bar
+  ui_open_chat_in_game
+  ui_open_hero_town_list
+  ui_open_minimap
+  ui_open_res_bar
+  ui_scroll_border_size
+  ui_sign_duration
+  ui_use_hwcursor
+  ui_voiceover_pause
+  unbind
+  unbindall
+  unlearn_skill
+  update_cursor_rect
+  upgrade_creatures_fade_value
+  video_intro
+  video_outro
+  view_state
+  window_x_pos
+  window_y_pos
+  Total:461
+-- 工具生物常用技能
+  <Item>ABILITY_UNDEAD</Item>
+  <Item>ABILITY_NO_ENEMY_RETALIATION</Item>
+  <Item>ABILITY_ENCHANTED_OBSIDIAN</Item>
+-- 文件分析
+  -- MapObject/Haven/Ving.(AdvMapHeroShared).xdb
+    HeroCharacterArena 英雄界面及战场模型
+    HeroCharacterArenaMelee 英雄战场普攻动作模型
+    HeroCharacterAdventure 英雄大地图模型
+    HeroIndividualCamera 英雄界面摄像头
+-- 山丘堡垒
+  不可升级
+    /MapObjects/Hill_Fort.(AdvMapBuildingShared).xdb#xpointer(/AdvMapBuildingShared)
+  可升级
+    /MapObjects/Hill_Fort.(AdvMapHillFortShared).xdb#xpointer(/AdvMapHillFortShared)
+  A2\UI\FortHill\Texts\NO_REGRADES.txt 本地图中禁止兵种的再次升级。
+
+  <Item href="#n:inline(AdvMapHillFort)" id="item_1888804743">
+    <AdvMapHillFort>
+      <Pos>
+        <x>223</x>
+        <y>94</y>
+        <z>0</z>
+      </Pos>
+      <Rot>4.71239</Rot>
+      <Floor>0</Floor>
+      <Name />
+      <CombatScript />
+      <pointLights />
+      <Shared href="/MapObjects/Hill_Fort.(AdvMapHillFortShared).xdb#xpointer(/AdvMapHillFortShared)" />
+      <PlayerID>PLAYER_NONE</PlayerID>
+      <CaptureTrigger>
+        <Action>
+          <FunctionName />
+        </Action>
+      </CaptureTrigger>
+      <GroupID>0</GroupID>
+      <showCameras />
+    </AdvMapHillFort>
+  </Item>
 
 ----------------------------------------
 ========================================
@@ -753,19 +1339,35 @@ MakeHeroReturnToTavernAfterDeath 让英雄就算战败也会在酒馆出现，�
     GetObjectArmySlotCreature( objName, slotIndex ) - returns type and number of creatures in the given slot slotIndex of object objName
 
 -- ffmpeg
-  ffmpeg -f concat -safe 0 -i filelist.txt -c copy 圣血+修士-5.mp4
+  ffmpeg -f concat -safe 0 -i filelist.txt -c copy 哥德里克-10.mp4
   ffmpeg -i "2023-12-26_15-01-51.mkv" -vcodec copy -acodec copy "2023-12-26_15-01-51.mp4"
   ffmpeg -ss 00:00:00 -to 01:00:00 -i 2022-07-06_21-55-34.mp4 -codec copy 圣吉列斯-1.mp4
   ffmpeg -ss 00:00:00 -t 12 -i 赛勒斯-10级技能-剪辑前2.mp4 -codec copy 赛勒斯-决战技能-剪辑后2.mp4
   ffmpeg -ss 01:29:20 -to 01:30:34 -i 马卡尔-5.mp4 -codec copy 342.mp4
 
-  ffmpeg -ss 00:57:14 -to 02:55:10 -i 2023-10-25_22-09-35.mp4 -codec copy 10W对决vs大河马20231025.mp4
+  ffmpeg -ss 00:00:00 -to 03:02:47 -i 2024-02-28_21-25-29.mp4 -codec copy 莱托兹-2.mp4
+  ffmpeg -ss 01:40:43 -to 03:05:35 -i 2024-02-12_21-44-22.mp4 -codec copy 哥德里克-2.mp4
 
-  ffmpeg -ss 00:21:05 -to 00:32:06 -i 2023-12-14_01-05-27.mp4 -codec copy temp-3.mp4
+  ffmpeg -ss 00:00:00 -to 01:52:11 -i 2024-02-13_19-45-36.mp4 -codec copy 哥德里克-3.mp4
+  ffmpeg -ss 01:52:11 -to 03:58:04 -i 2024-02-13_19-45-36.mp4 -codec copy 哥德里克-4.mp4
+
+  ffmpeg -ss 00:00:00 -to 02:04:12 -i 2024-02-14_19-54-08.mp4 -codec copy 哥德里克-5.mp4
+  ffmpeg -ss 02:04:12 -to 04:15:38 -i 2024-02-14_19-54-08.mp4 -codec copy 哥德里克-6.mp4
+
+  ffmpeg -ss 00:00:00 -to 01:31:22 -i 2024-02-15_20-51-35.mp4 -codec copy 哥德里克-7.mp4
+  ffmpeg -ss 01:31:22 -to 03:14:52 -i 2024-02-15_20-51-35.mp4 -codec copy 哥德里克-8.mp4
+
+  ffmpeg -ss 00:00:00 -to 01:52:48 -i 2024-02-16_19-38-46.mp4 -codec copy 哥德里克-9.mp4
+
+  ffmpeg -ss 02:30:40 -to 02:31:16 -i 2024-02-16_19-38-46.mp4 -codec copy 哥德里克-10-1.mp4
+  ffmpeg -ss 02:36:03 -to 03:21:32 -i 2024-02-16_19-38-46.mp4 -codec copy 哥德里克-10-2.mp4
+  ffmpeg -ss 02:36:21 -to 03:21:32 -i 2024-02-16_19-38-46.mp4 -codec copy 哥德里克-10-3.mp4
+  ffmpeg -f concat -safe 0 -i filelist.txt -c copy 哥德里克-10.mp4
+
+
+  ffmpeg -ss 00:00:00 -to 01:35:57 -i 2024-01-31_23-07-24.mp4 -codec copy 埃莉娜.mp4
   ffmpeg -i input -c:v copy -c:a copy -movflags faststart 2023-12-13_22-59-49.mp4
   ffmpeg -ss 01:53:58 -to 03:47:45 -i 2023-12-11_20-51-13.mp4 -codec copy 圣堂砍王-11.mp4
-
-
 
 -- 10W
   <AvailableHeroes>
@@ -1143,7 +1745,6 @@ MakeHeroReturnToTavernAfterDeath 让英雄就算战败也会在酒馆出现，�
   102-ARTIFACT_DWARVEN
   103-ARTIFACT_TOME
 
-
 -- 随机图模板
   -- square
     区域
@@ -1177,3 +1778,24 @@ MakeHeroReturnToTavernAfterDeath 让英雄就算战败也会在酒馆出现，�
       16 ↔ 17 ↔ 18 ↔ 19 ↔ 20
        ↕    ↕    ↕    ↕    ↕
       21 ↔ 22 ↔ 23 ↔ 24 ↔ 25
+
+-- 模型常用路径
+  恐怖独眼 901 蝎尾飞狮 115 TerribleCyclop CREATURE_TERRIBLE_CYCLOP
+  虚无死神 902 死亡骑士 90 DeathWraith CREATURE_DEATH_WRAITH
+  仙女龙 903 雪猿 114 FairyDragon CREATURE_FAIRY_DRAGON
+  暗黑龙骑士 904 黑暗骑士 89 BlackDragonKnight CREATURE_BLACK_DRAGON_KNIGHT
+  圣龙 905 凤凰 91 AzureDragon CREATURE_AZURE_DRAGON
+  194 296
+  /Effects/_(Effect)/Characters/Creatures/Necropolis/Wraith/Idle00
+  /Characters/Creatures/Necropolis/Wight.(CharacterView).xdb
+  /Textures/Creatures/Neutrals/AzureDragon/
+  /Characters/Creatures/Neutrals/AzureDragon/
+  /Characters/Creatures/Neutrals/AzureDragon/Effects/
+  /Characters/Creatures/Neutrals/AzureDragon/AzureDragon.(Model).xdb
+  /_(BasicSkelAnim)/Effects/Characters/Dragon_Knight-rider
+  /_(BasicSkelAnim)/Creatures/Necropolis/BlackKnight
+  /Characters/Creatures/Neutrals/AzureDragon/Rider
+  /Characters/Creatures/Neutrals/AzureDragon/Knight
+
+-- 字幕样式
+  Style: ForXmlExportStyle,阿里妈妈东方大楷,72,&H00FFBA25,&H000000FF,&H0F141414,&H870A0A0A,0,0,0,0,100.0,100.0,0.0,0.0,1,2.3983738,2.0325203,2,200,200,110,1

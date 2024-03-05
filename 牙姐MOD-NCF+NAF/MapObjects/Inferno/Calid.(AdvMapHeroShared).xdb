@@ -29,11 +29,11 @@
 	<RazedStatic href="/MapObjects/RazedTowns/RazedInferno.xdb#xpointer(/AdvMapStaticShared)"/>
 	<Icon128/>
 	<InternalName>Calid</InternalName>
-	<Class>HERO_CLASS_GATE_KEEPER</Class>
+	<Class>HERO_CLASS_DEMON_LORD</Class>
 	<Specialization>HERO_SPEC_HOUNDS</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_OFFENCE</SkillID>
+		<SkillID>HERO_SKILL_GATING</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Inferno/100-Calid/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Inferno/100-Calid/Description.txt"/>
@@ -56,7 +56,7 @@
 		<skills>
 			<Item>
 				<Mastery>MASTERY_BASIC</Mastery>
-				<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
+				<SkillID>HERO_SKILL_OFFENCE</SkillID>
 			</Item>
 		</skills>
 		<perkIDs>

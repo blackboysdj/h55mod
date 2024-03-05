@@ -29,11 +29,11 @@
 	<RazedStatic/>
 	<Icon128/>
 	<InternalName>Diraya</InternalName>
-	<Class>HERO_CLASS_ENCHANTER</Class>
+	<Class>HERO_CLASS_RANGER</Class>
 	<Specialization>HERO_SPEC_CALL_OF_THE_WASP</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_LEARNING</SkillID>
+		<SkillID>HERO_SKILL_AVENGER</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Preserve/040-Diraya/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Preserve/040-Diraya/Description.txt"/>

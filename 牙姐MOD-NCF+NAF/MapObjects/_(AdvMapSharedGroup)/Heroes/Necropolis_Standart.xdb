@@ -25,5 +25,6 @@
 		<Item href="/MapObjects/Necropolis/Sandro.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 		<Item href="/MapObjects/Necropolis/Vidomina.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 		<Item href="/MapObjects/Necropolis/Karissa.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+		<Item href="/MapObjects/Necropolis/Arthas.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 	</links>
 </AdvMapSharedGroup>

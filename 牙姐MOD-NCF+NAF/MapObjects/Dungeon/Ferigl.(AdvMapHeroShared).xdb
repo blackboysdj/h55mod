@@ -29,11 +29,11 @@
 	<RazedStatic/>
 	<Icon128/>
 	<InternalName>Ferigl</InternalName>
-	<Class>HERO_CLASS_BEASTMASTER</Class>
+	<Class>HERO_CLASS_WARLOCK</Class>
 	<Specialization>HERO_SPEC_RIDERS</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
+		<SkillID>HERO_SKILL_INVOCATION</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Dungeon/061-Ferigl/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Dungeon/061-Ferigl/Description.txt"/>

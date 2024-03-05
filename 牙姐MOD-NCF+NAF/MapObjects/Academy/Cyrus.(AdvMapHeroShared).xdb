@@ -29,11 +29,11 @@
 	<RazedStatic/>
 	<Icon128 href="/Textures/Icons/Heroes/Academy/Academy_Cyrus_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<InternalName>Cyrus</InternalName>
-	<Class>HERO_CLASS_GUILDMASTER</Class>
+	<Class>HERO_CLASS_WIZARD</Class>
 	<Specialization/>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_WAR_MACHINES</SkillID>
+		<SkillID>HERO_SKILL_ARTIFICIER</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Academy/049-Cyrus/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Academy/049-Cyrus/Description.txt"/>
@@ -56,7 +56,7 @@
 		<skills>
 			<Item>
 				<Mastery>MASTERY_BASIC</Mastery>
-				<SkillID>HERO_SKILL_ARTIFICIER</SkillID>
+				<SkillID>HERO_SKILL_WAR_MACHINES</SkillID>
 			</Item>
 		</skills>
 		<perkIDs>

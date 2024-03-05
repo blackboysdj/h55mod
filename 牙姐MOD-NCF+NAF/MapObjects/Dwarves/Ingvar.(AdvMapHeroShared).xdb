@@ -29,11 +29,11 @@
 	<RazedStatic/>
 	<Icon128/>
 	<InternalName>Ingvar</InternalName>
-	<Class>HERO_CLASS_FLAMEKEEPERA</Class>
+	<Class>HERO_CLASS_RUNEMAGE</Class>
 	<Specialization>HERO_SPEC_DEFENDER</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
+		<SkillID>HERO_SKILL_RUNELORE</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Fortress/131-Ingvar/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Fortress/131-Ingvar/Description.txt"/>

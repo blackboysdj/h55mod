@@ -22,5 +22,6 @@
 		<Item href="/MapObjects/Stronghold/Hero3.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 		<Item href="/MapObjects/Stronghold/Zouleika.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 		<Item href="/MapObjects/Stronghold/Erika.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+		<Item href="/MapObjects/Stronghold/Yog.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 	</links>
 </AdvMapSharedGroup>

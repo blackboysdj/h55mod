@@ -31,11 +31,11 @@
 	<RazedStatic/>
 	<Icon128 href="/Textures/Icons/Heroes/Inferno/Inferno_Biara_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<InternalName>Biara</InternalName>
-	<Class>HERO_CLASS_SORCERER</Class>
+	<Class>HERO_CLASS_DEMON_LORD</Class>
 	<Specialization>HERO_SPEC_STORMCALLER</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_SORCERY</SkillID>
+		<SkillID>HERO_SKILL_GATING</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Inferno/114-Biara/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Inferno/114-Biara/Description.txt"/>

@@ -29,11 +29,11 @@
 	<RazedStatic/>
 	<Icon128 href="/Textures/Icons/Heroes/Dungeon/Dungeon_Shadya_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<InternalName>Kelodin</InternalName>
-	<Class>HERO_CLASS_SEER</Class>
+	<Class>HERO_CLASS_WARLOCK</Class>
 	<Specialization>HERO_SPEC_EVASIVE</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_LOGISTICS</SkillID>
+		<SkillID>HERO_SKILL_INVOCATION</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Dungeon/067-Kelodin/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Dungeon/067-Kelodin/Description.txt"/>

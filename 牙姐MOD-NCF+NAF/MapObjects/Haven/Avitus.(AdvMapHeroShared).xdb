@@ -29,11 +29,11 @@
 	<RazedStatic/>
 	<Icon128/>
 	<InternalName>Avitus</InternalName>
-	<Class>HERO_CLASS_RETRIBUTION</Class>
+	<Class>HERO_CLASS_KNIGHT</Class>
 	<Specialization>HERO_SPEC_ARCHERS</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
+		<SkillID>HERO_SKILL_TRAINING</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Heaven/157-Avitus/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Heaven/157-Avitus/Description.txt"/>

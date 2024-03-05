@@ -29,11 +29,11 @@
 	<RazedStatic/>
 	<Icon128/>
 	<InternalName>Ohtarig</InternalName>
-	<Class>HERO_CLASS_SEER</Class>
+	<Class>HERO_CLASS_WARLOCK</Class>
 	<Specialization>HERO_SPEC_SAVAGE</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_LOGISTICS</SkillID>
+		<SkillID>HERO_SKILL_INVOCATION</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Dungeon/064-Ohtarig/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Dungeon/064-Ohtarig/Description.txt"/>
@@ -56,7 +56,7 @@
 		<skills>
 			<Item>
 				<Mastery>MASTERY_BASIC</Mastery>
-				<SkillID>HERO_SKILL_DARK_MAGIC</SkillID>
+				<SkillID>HERO_SKILL_LOGISTICS</SkillID>
 			</Item>
 		</skills>
 		<perkIDs>

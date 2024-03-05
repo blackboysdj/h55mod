@@ -29,11 +29,11 @@
 	<RazedStatic/>
 	<Icon128/>
 	<InternalName>Calid2</InternalName>
-	<Class>HERO_CLASS_SORCERER</Class>
+	<Class>HERO_CLASS_DEMON_LORD</Class>
 	<Specialization/>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_SORCERY</SkillID>
+		<SkillID>HERO_SKILL_GATING</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Inferno/115-Calid2/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Inferno/115-Calid2/Description.txt"/>

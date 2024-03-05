@@ -29,11 +29,11 @@
 	<RazedStatic/>
 	<Icon128/>
 	<InternalName>Skeggy</InternalName>
-	<Class>HERO_CLASS_ENGINEER</Class>
+	<Class>HERO_CLASS_RUNEMAGE</Class>
 	<Specialization>HERO_SPEC_AXE_MASTER</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_WAR_MACHINES</SkillID>
+		<SkillID>HERO_SKILL_RUNELORE</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Fortress/119-Skeggy/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Fortress/119-Skeggy/Description.txt"/>

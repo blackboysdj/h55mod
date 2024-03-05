@@ -29,11 +29,11 @@
 	<RazedStatic/>
 	<Icon128/>
 	<InternalName>Brem</InternalName>
-	<Class>HERO_CLASS_PALADIN</Class>
+	<Class>HERO_CLASS_KNIGHT</Class>
 	<Specialization>HERO_SPEC_RASH</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_LIGHT_MAGIC</SkillID>
+		<SkillID>HERO_SKILL_TRAINING</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Heaven/010-Brem/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Heaven/010-Brem/Description.txt"/>
@@ -64,7 +64,7 @@
 		</perkIDs>
 		<spellIDs/>
 		<Ballista>false</Ballista>
-		<FirstAidTent>false</FirstAidTent>
+		<FirstAidTent>true</FirstAidTent>
 		<AmmoCart>false</AmmoCart>
 		<FavoriteEnemies/>
 		<TalismanLevel>0</TalismanLevel>

@@ -29,11 +29,11 @@
 	<RazedStatic/>
 	<Icon128/>
 	<InternalName>Ash</InternalName>
-	<Class>HERO_CLASS_SORCERER</Class>
+	<Class>HERO_CLASS_DEMON_LORD</Class>
 	<Specialization>HERO_SPEC_WEILDER_OF_FIRE</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_SORCERY</SkillID>
+		<SkillID>HERO_SKILL_GATING</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Inferno/113-Ash/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Inferno/113-Ash/Description.txt"/>

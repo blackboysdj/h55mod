@@ -29,11 +29,11 @@
 	<RazedStatic/>
 	<Icon128 href="/UI/H5A1/Icons/Heroes/Portrets128x128/RedHaven_Valeria.(Texture).xdb#xpointer(/Texture)"/>
 	<InternalName>RedHeavenHero03</InternalName>
-	<Class>HERO_CLASS_HERETIC</Class>
+	<Class>HERO_CLASS_KNIGHT</Class>
 	<Specialization>HERO_SPEC_DISRUPTER</Specialization>
 	<PrimarySkill>
-		<Mastery>MASTERY_ADVANCED</Mastery>
-		<SkillID>HERO_SKILL_DARK_MAGIC</SkillID>
+		<Mastery>MASTERY_BASIC</Mastery>
+		<SkillID>HERO_SKILL_TRAINING</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Heaven/019-RedHeavenHero03/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Heaven/019-RedHeavenHero03/Description.txt"/>
@@ -53,7 +53,12 @@
 		<Defence>0</Defence>
 		<Spellpower>1</Spellpower>
 		<Knowledge>2</Knowledge>
-		<skills/>
+		<skills>
+			<Item>
+				<Mastery>MASTERY_BASIC</Mastery>
+				<SkillID>HERO_SKILL_DARK_MAGIC</SkillID>
+			</Item>
+		</skills>
 		<perkIDs>
 			<Item>HERO_SKILL_MASTER_OF_SICKNESS</Item>
 		</perkIDs>

@@ -29,11 +29,11 @@
 	<RazedStatic/>
 	<Icon128/>
 	<InternalName>Davius</InternalName>
-	<Class>HERO_CLASS_GUILDMASTER</Class>
+	<Class>HERO_CLASS_WIZARD</Class>
 	<Specialization/>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_WAR_MACHINES</SkillID>
+		<SkillID>HERO_SKILL_ARTIFICIER</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Academy/044-Davius/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Academy/044-Davius/Description.txt"/>

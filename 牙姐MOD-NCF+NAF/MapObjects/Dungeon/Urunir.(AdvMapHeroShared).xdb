@@ -29,11 +29,11 @@
 	<RazedStatic/>
 	<Icon128/>
 	<InternalName>Urunir</InternalName>
-	<Class>HERO_CLASS_BEASTMASTER</Class>
+	<Class>HERO_CLASS_WARLOCK</Class>
 	<Specialization>HERO_SPEC_WITCHES</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
+		<SkillID>HERO_SKILL_INVOCATION</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Dungeon/059-Urunir/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Dungeon/059-Urunir/Description.txt"/>

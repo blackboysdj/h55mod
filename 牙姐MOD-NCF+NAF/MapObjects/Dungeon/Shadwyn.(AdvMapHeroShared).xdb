@@ -29,11 +29,11 @@
 	<RazedStatic/>
 	<Icon128 href="/UI/H5A1/Icons/Heroes/Portrets128x128/Shadwyn.(Texture).xdb#xpointer(/Texture)"/>
 	<InternalName>Shadwyn</InternalName>
-	<Class>HERO_CLASS_SEER</Class>
+	<Class>HERO_CLASS_WARLOCK</Class>
 	<Specialization/>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_LOGISTICS</SkillID>
+		<SkillID>HERO_SKILL_INVOCATION</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Dungeon/068-Shadwyn/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Dungeon/068-Shadwyn/Description.txt"/>

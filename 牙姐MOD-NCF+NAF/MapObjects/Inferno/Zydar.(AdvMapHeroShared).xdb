@@ -29,11 +29,11 @@
 	<RazedStatic/>
 	<Icon128/>
 	<InternalName>Zydar</InternalName>
-	<Class>HERO_CLASS_SORCERER</Class>
+	<Class>HERO_CLASS_DEMON_LORD</Class>
 	<Specialization/>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_SORCERY</SkillID>
+		<SkillID>HERO_SKILL_GATING</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Inferno/112-Zydar/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Inferno/112-Zydar/Description.txt"/>
@@ -56,7 +56,7 @@
 		<skills>
 			<Item>
 				<Mastery>MASTERY_BASIC</Mastery>
-				<SkillID>HERO_SKILL_GATING</SkillID>
+				<SkillID>HERO_SKILL_SORCERY</SkillID>
 			</Item>
 		</skills>
 		<perkIDs>

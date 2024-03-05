@@ -952,20 +952,35 @@ doFile("/scripts/TTH_Library.lua")
     CREATURE_217 = 217
     CREATURE_DEATHSHROUD_MORTARION_7 = 217
     CREATURE_218 = 218
+    CREATURE_Yog_Maggrash_0 = 218
     CREATURE_219 = 219
+    CREATURE_Yog_Maggrash_1_1 = 219
     CREATURE_220 = 220
+    CREATURE_Yog_Maggrash_1_2 = 220
     CREATURE_221 = 221
+    CREATURE_Yog_Maggrash_1_3 = 221
     CREATURE_222 = 222
+    CREATURE_Yog_Maggrash_1_4 = 222
     CREATURE_223 = 223
+    CREATURE_Yog_Maggrash_1_5 = 223
     CREATURE_224 = 224
+    CREATURE_Yog_Maggrash_1_6 = 224
     CREATURE_225 = 225
+    CREATURE_Yog_Maggrash_1_7 = 225
     CREATURE_226 = 226
+    CREATURE_Yog_Maggrash_2_1 = 226
     CREATURE_227 = 227
+    CREATURE_Yog_Maggrash_2_2 = 227
     CREATURE_228 = 228
+    CREATURE_Yog_Maggrash_2_3 = 228
     CREATURE_229 = 229
+    CREATURE_Yog_Maggrash_2_4 = 229
     CREATURE_230 = 230
+    CREATURE_Yog_Maggrash_2_5 = 230
     CREATURE_231 = 231
+    CREATURE_Yog_Maggrash_2_6 = 231
     CREATURE_232 = 232
+    CREATURE_Yog_Maggrash_2_7 = 232
     CREATURE_233 = 233
     CREATURE_234 = 234
     CREATURE_235 = 235
@@ -1275,7 +1290,9 @@ doFile("/scripts/TTH_Library.lua")
     CREATURE_533 = 533
     CREATURE_DUNGEON_TOOL_FERIGL2 = 533
     CREATURE_534 = 534
+    CREATURE_DUNGEON_TOOL_Dalom1 = 534
     CREATURE_535 = 535
+    CREATURE_DUNGEON_TOOL_Dalom2 = 535
     CREATURE_536 = 536
     CREATURE_537 = 537
     CREATURE_538 = 538
@@ -1663,10 +1680,15 @@ doFile("/scripts/TTH_Library.lua")
     CREATURE_899 = 899
     CREATURE_900 = 900
     CREATURE_901 = 901
+    CREATURE_TERRIBLE_CYCLOP = 901
     CREATURE_902 = 902
+    CREATURE_DEATH_WRAITH = 902
     CREATURE_903 = 903
+    CREATURE_FAIRY_DRAGON = 903
     CREATURE_904 = 904
+    CREATURE_BLACK_DRAGON_KNIGHT = 904
     CREATURE_905 = 905
+    CREATURE_AZURE_DRAGON = 905
     CREATURE_906 = 906
     CREATURE_907 = 907
     CREATURE_908 = 908
@@ -3229,6 +3251,23 @@ doFile("/scripts/TTH_Library.lua")
                 }
               }
             }
+            , ["Arthas"] = {
+              ["Id"] = 163
+              , ["Text"] = "/Text/Game/Heroes/TTH_ALL/Arthas/name.txt"
+              , ["Race"] = TOWN_NECROMANCY
+              , ["Class"] = TTH_ENUM.DeathKnight
+              , ["Mastery"] = HERO_SKILL_NECROMANCY
+              , ["Group"] = TTH_ENUM.GroupMight
+            }
+            , ["ArthasPlus"] = {
+              ["Id"] = 164
+              , ["Text"] = "/Text/Game/Heroes/TTH_ALL/ArthasPlus/name.txt"
+              , ["Race"] = TOWN_NECROMANCY
+              , ["Class"] = TTH_ENUM.DeathKnight
+              , ["Mastery"] = HERO_SKILL_NECROMANCY
+              , ["Group"] = TTH_ENUM.GroupMight
+              , ["Building"] = TOWN_BUILDING_SPECIAL_2
+            }
           -- Reaver
             , ["Aislinn"] = {
               ["Id"] = 85
@@ -3997,6 +4036,14 @@ doFile("/scripts/TTH_Library.lua")
               , ["Mastery"] = HERO_SKILL_DEMONIC_RAGE
               , ["Group"] = TTH_ENUM.GroupBarbarian
             }
+            , ["Yog"] = {
+              ["Id"] = 165
+              , ["Text"] = "/Text/TTH/Heroes/Specializations/Stronghold/165-Yog/Name.txt"
+              , ["Race"] = TOWN_STRONGHOLD
+              , ["Class"] = TTH_ENUM.Barbarian
+              , ["Mastery"] = HERO_SKILL_DEMONIC_RAGE
+              , ["Group"] = TTH_ENUM.GroupBarbarian
+            }
       };
 
     -- 英雄表 维度：种族 & 职业
@@ -4023,7 +4070,7 @@ doFile("/scripts/TTH_Library.lua")
           , [TTH_ENUM.Warlock] = {"Agbeth","Almegir","Inagost","Kastore","Raelag","Raelag_10WAI","Ranleth","Sephinroth"}
         }
         , [TOWN_NECROMANCY] = {
-          [TTH_ENUM.DeathKnight] = {"LordHaart","Berein","Gles","Nikolay","Straker","Tamika","Xerxon","Karissa"}
+          [TTH_ENUM.DeathKnight] = {"LordHaart","Berein","Gles","Nikolay","Straker","Tamika","Xerxon","Karissa","Arthas","ArthasPlus"}
           , [TTH_ENUM.Reaver] = {"Aislinn","Effig","Giovanni","OrnellaNecro","Aberrar","Nimbus","Anastasya","Mortarion"}
           , [TTH_ENUM.Necromancer] = {"Muscip","Arantir","Nemor","Pelt","Sandro","Thant", "Adelaide","Vidomina"}
         }
@@ -4038,7 +4085,7 @@ doFile("/scripts/TTH_Library.lua")
           , [TTH_ENUM.Flamekeepera] = {"Hangvul","Ingvar","Rolf","Ufretin","Wulfstan"}
         }
         , [TOWN_STRONGHOLD] = {
-          [TTH_ENUM.Barbarian] = {"Hero9","Hero7","Hero8","Azar","Hero4","Hero6","Crag","Gottai","Hero1","Hero2","Hero3","Kraal","KujinMP","Kunyak","Matewa","Quroq","Shiva","Zouleika","Erika","Mokka"}
+          [TTH_ENUM.Barbarian] = {"Hero9","Hero7","Hero8","Azar","Hero4","Hero6","Crag","Gottai","Hero1","Hero2","Hero3","Kraal","KujinMP","Kunyak","Matewa","Quroq","Shiva","Zouleika","Erika","Mokka","Yog"}
         }
       };
 
@@ -4653,24 +4700,14 @@ doFile("/scripts/TTH_Library.lua")
               [70] = { -- 法术强效
                 ["Id"] = HERO_SKILL_EMPOWERED_SPELLS
                 , ["Text"] = "/Text/TTH/Skills/Invocation/070-EmpoweredSpells/Name.txt"
+                , ["DependType"] = TTH_ENUM.SkillSimple
+                , ["Depend"] = {
+                  [1] = HERO_SKILL_ELEMENTAL_VISION
+                }
               }
               , [72] = { -- 元素视觉
                 ["Id"] = HERO_SKILL_ELEMENTAL_VISION
                 , ["Text"] = "/Text/TTH/Skills/Invocation/072-ElementalVision/Name.txt"
-                , ["DependType"] = TTH_ENUM.SkillComplicated
-                , ["Include"] = {
-                  [1] = {
-                    ["Class"] = {
-                      TTH_ENUM.Warlock
-                    }
-                    , ["Depend"] = {
-                      [1] = HERO_SKILL_EMPOWERED_SPELLS
-                    }
-                  }
-                }
-                , ["Depend"] = {
-                  [1] = HERO_SKILL_ELEMENTAL_VISION
-                }
               }
               , [71] = { -- 黑暗仪式
                 ["Id"] = HERO_SKILL_DARK_RITUAL
@@ -8966,7 +9003,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_182/Name.txt"
           , ["Race"] = TOWN_NEUTRAL
           , ["GROWTH"] = 1
-          , ["TIER"] = 8
+          , ["TIER"] = 7
           , ["POWER"] = 20000
           , ["CombatSize"] = 2
           , ["Range"] = 0
@@ -8986,7 +9023,7 @@ doFile("/scripts/TTH_Library.lua")
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_184/Name.txt"
           , ["Race"] = TOWN_NEUTRAL
           , ["GROWTH"] = 1
-          , ["TIER"] = 8
+          , ["TIER"] = 7
           , ["POWER"] = 20000
           , ["CombatSize"] = 2
           , ["Range"] = 0
@@ -9331,151 +9368,151 @@ doFile("/scripts/TTH_Library.lua")
         , [218] = {
           ["ID"] = CREATURE_218
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_218/Name.txt"
-          , ["Race"] = TOWN_NEUTRAL
+          , ["Race"] = TOWN_STRONGHOLD
           , ["GROWTH"] = 1
-          , ["TIER"] = 1
-          , ["POWER"] = 0
-          , ["CombatSize"] = 1
+          , ["TIER"] = 8
+          , ["POWER"] = 700
+          , ["CombatSize"] = 2
           , ["Range"] = 0
         }
         , [219] = {
           ["ID"] = CREATURE_219
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_219/Name.txt"
-          , ["Race"] = TOWN_NEUTRAL
+          , ["Race"] = TOWN_STRONGHOLD
           , ["GROWTH"] = 1
-          , ["TIER"] = 1
-          , ["POWER"] = 0
-          , ["CombatSize"] = 1
+          , ["TIER"] = 8
+          , ["POWER"] = 1400
+          , ["CombatSize"] = 2
           , ["Range"] = 0
         }
         , [220] = {
           ["ID"] = CREATURE_220
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_220/Name.txt"
-          , ["Race"] = TOWN_NEUTRAL
+          , ["Race"] = TOWN_STRONGHOLD
           , ["GROWTH"] = 1
-          , ["TIER"] = 1
-          , ["POWER"] = 0
-          , ["CombatSize"] = 1
+          , ["TIER"] = 8
+          , ["POWER"] = 1400
+          , ["CombatSize"] = 2
           , ["Range"] = 0
         }
         , [221] = {
           ["ID"] = CREATURE_221
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_221/Name.txt"
-          , ["Race"] = TOWN_NEUTRAL
+          , ["Race"] = TOWN_STRONGHOLD
           , ["GROWTH"] = 1
-          , ["TIER"] = 1
-          , ["POWER"] = 0
-          , ["CombatSize"] = 1
+          , ["TIER"] = 8
+          , ["POWER"] = 2100
+          , ["CombatSize"] = 2
           , ["Range"] = 0
         }
         , [222] = {
           ["ID"] = CREATURE_222
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_222/Name.txt"
-          , ["Race"] = TOWN_NEUTRAL
+          , ["Race"] = TOWN_STRONGHOLD
           , ["GROWTH"] = 1
-          , ["TIER"] = 1
-          , ["POWER"] = 0
-          , ["CombatSize"] = 1
+          , ["TIER"] = 8
+          , ["POWER"] = 2100
+          , ["CombatSize"] = 2
           , ["Range"] = 0
         }
         , [223] = {
           ["ID"] = CREATURE_223
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_223/Name.txt"
-          , ["Race"] = TOWN_NEUTRAL
+          , ["Race"] = TOWN_STRONGHOLD
           , ["GROWTH"] = 1
-          , ["TIER"] = 1
-          , ["POWER"] = 0
-          , ["CombatSize"] = 1
+          , ["TIER"] = 8
+          , ["POWER"] = 2800
+          , ["CombatSize"] = 2
           , ["Range"] = 0
         }
         , [224] = {
           ["ID"] = CREATURE_224
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_224/Name.txt"
-          , ["Race"] = TOWN_NEUTRAL
+          , ["Race"] = TOWN_STRONGHOLD
           , ["GROWTH"] = 1
-          , ["TIER"] = 1
-          , ["POWER"] = 0
-          , ["CombatSize"] = 1
+          , ["TIER"] = 8
+          , ["POWER"] = 2800
+          , ["CombatSize"] = 2
           , ["Range"] = 0
         }
         , [225] = {
           ["ID"] = CREATURE_225
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_225/Name.txt"
-          , ["Race"] = TOWN_NEUTRAL
+          , ["Race"] = TOWN_STRONGHOLD
           , ["GROWTH"] = 1
-          , ["TIER"] = 1
-          , ["POWER"] = 0
-          , ["CombatSize"] = 1
+          , ["TIER"] = 8
+          , ["POWER"] = 3500
+          , ["CombatSize"] = 2
           , ["Range"] = 0
         }
         , [226] = {
           ["ID"] = CREATURE_226
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_226/Name.txt"
-          , ["Race"] = TOWN_NEUTRAL
+          , ["Race"] = TOWN_STRONGHOLD
           , ["GROWTH"] = 1
-          , ["TIER"] = 1
-          , ["POWER"] = 0
-          , ["CombatSize"] = 1
+          , ["TIER"] = 8
+          , ["POWER"] = 3500
+          , ["CombatSize"] = 2
           , ["Range"] = 0
         }
         , [227] = {
           ["ID"] = CREATURE_227
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_227/Name.txt"
-          , ["Race"] = TOWN_NEUTRAL
+          , ["Race"] = TOWN_STRONGHOLD
           , ["GROWTH"] = 1
-          , ["TIER"] = 1
-          , ["POWER"] = 0
-          , ["CombatSize"] = 1
+          , ["TIER"] = 8
+          , ["POWER"] = 4200
+          , ["CombatSize"] = 2
           , ["Range"] = 0
         }
         , [228] = {
           ["ID"] = CREATURE_228
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_228/Name.txt"
-          , ["Race"] = TOWN_NEUTRAL
+          , ["Race"] = TOWN_STRONGHOLD
           , ["GROWTH"] = 1
-          , ["TIER"] = 1
-          , ["POWER"] = 0
-          , ["CombatSize"] = 1
+          , ["TIER"] = 8
+          , ["POWER"] = 4200
+          , ["CombatSize"] = 2
           , ["Range"] = 0
         }
         , [229] = {
           ["ID"] = CREATURE_229
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_229/Name.txt"
-          , ["Race"] = TOWN_NEUTRAL
+          , ["Race"] = TOWN_STRONGHOLD
           , ["GROWTH"] = 1
-          , ["TIER"] = 1
-          , ["POWER"] = 0
-          , ["CombatSize"] = 1
+          , ["TIER"] = 8
+          , ["POWER"] = 4900
+          , ["CombatSize"] = 2
           , ["Range"] = 0
         }
         , [230] = {
           ["ID"] = CREATURE_230
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_230/Name.txt"
-          , ["Race"] = TOWN_NEUTRAL
+          , ["Race"] = TOWN_STRONGHOLD
           , ["GROWTH"] = 1
-          , ["TIER"] = 1
-          , ["POWER"] = 0
-          , ["CombatSize"] = 1
+          , ["TIER"] = 8
+          , ["POWER"] = 4900
+          , ["CombatSize"] = 2
           , ["Range"] = 0
         }
         , [231] = {
           ["ID"] = CREATURE_231
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_231/Name.txt"
-          , ["Race"] = TOWN_NEUTRAL
+          , ["Race"] = TOWN_STRONGHOLD
           , ["GROWTH"] = 1
-          , ["TIER"] = 1
-          , ["POWER"] = 0
-          , ["CombatSize"] = 1
+          , ["TIER"] = 8
+          , ["POWER"] = 5600
+          , ["CombatSize"] = 2
           , ["Range"] = 0
         }
         , [232] = {
           ["ID"] = CREATURE_232
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_232/Name.txt"
-          , ["Race"] = TOWN_NEUTRAL
+          , ["Race"] = TOWN_STRONGHOLD
           , ["GROWTH"] = 1
-          , ["TIER"] = 1
-          , ["POWER"] = 0
-          , ["CombatSize"] = 1
+          , ["TIER"] = 8
+          , ["POWER"] = 5600
+          , ["CombatSize"] = 2
           , ["Range"] = 0
         }
         , [233] = {
@@ -16159,53 +16196,53 @@ doFile("/scripts/TTH_Library.lua")
           , ["Range"] = 0
         }
         , [901] = {
-          ["ID"] = CREATURE_901
+          ["ID"] = CREATURE_TERRIBLE_CYCLOP
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_901/Name.txt"
           , ["Race"] = TOWN_NEUTRAL
           , ["GROWTH"] = 1
-          , ["TIER"] = 1
-          , ["POWER"] = 0
-          , ["CombatSize"] = 1
-          , ["Range"] = 0
+          , ["TIER"] = 8
+          , ["POWER"] = 18000
+          , ["CombatSize"] = 2
+          , ["Range"] = 1
         }
         , [902] = {
-          ["ID"] = CREATURE_902
+          ["ID"] = CREATURE_DEATH_WRAITH
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_902/Name.txt"
           , ["Race"] = TOWN_NEUTRAL
           , ["GROWTH"] = 1
-          , ["TIER"] = 1
-          , ["POWER"] = 0
-          , ["CombatSize"] = 1
+          , ["TIER"] = 8
+          , ["POWER"] = 18000
+          , ["CombatSize"] = 2
           , ["Range"] = 0
         }
         , [903] = {
-          ["ID"] = CREATURE_903
+          ["ID"] = CREATURE_FAIRY_DRAGON
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_903/Name.txt"
           , ["Race"] = TOWN_NEUTRAL
           , ["GROWTH"] = 1
-          , ["TIER"] = 1
-          , ["POWER"] = 0
-          , ["CombatSize"] = 1
+          , ["TIER"] = 8
+          , ["POWER"] = 18000
+          , ["CombatSize"] = 2
           , ["Range"] = 0
         }
         , [904] = {
-          ["ID"] = CREATURE_904
+          ["ID"] = CREATURE_BLACK_DRAGON_KNIGHT
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_904/Name.txt"
           , ["Race"] = TOWN_NEUTRAL
           , ["GROWTH"] = 1
-          , ["TIER"] = 1
-          , ["POWER"] = 0
-          , ["CombatSize"] = 1
+          , ["TIER"] = 8
+          , ["POWER"] = 18000
+          , ["CombatSize"] = 2
           , ["Range"] = 0
         }
         , [905] = {
-          ["ID"] = CREATURE_905
+          ["ID"] = CREATURE_AZURE_DRAGON
           , ["NAME"] = "/Text/Game/Creatures/TTH_NCF_ALL/CREATURE_905/Name.txt"
           , ["Race"] = TOWN_NEUTRAL
           , ["GROWTH"] = 1
-          , ["TIER"] = 1
-          , ["POWER"] = 0
-          , ["CombatSize"] = 1
+          , ["TIER"] = 8
+          , ["POWER"] = 18000
+          , ["CombatSize"] = 2
           , ["Range"] = 0
         }
         , [906] = {

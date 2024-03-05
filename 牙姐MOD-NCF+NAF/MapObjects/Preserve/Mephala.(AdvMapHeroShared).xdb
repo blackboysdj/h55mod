@@ -29,11 +29,11 @@
 	<RazedStatic/>
 	<Icon128/>
 	<InternalName>Mephala</InternalName>
-	<Class>HERO_CLASS_WARDEN</Class>
+	<Class>HERO_CLASS_RANGER</Class>
 	<Specialization/>
 	<PrimarySkill>
-		<Mastery>MASTERY_ADVANCED</Mastery>
-		<SkillID>HERO_SKILL_DEFENCE</SkillID>
+		<Mastery>MASTERY_BASIC</Mastery>
+		<SkillID>HERO_SKILL_AVENGER</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Preserve/034-Mephala/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Preserve/034-Mephala/Description.txt"/>
@@ -53,7 +53,12 @@
 		<Defence>2</Defence>
 		<Spellpower>1</Spellpower>
 		<Knowledge>2</Knowledge>
-		<skills/>
+		<skills>
+			<Item>
+				<Mastery>MASTERY_BASIC</Mastery>
+				<SkillID>HERO_SKILL_DEFENCE</SkillID>
+			</Item>
+		</skills>
 		<perkIDs>
 			<Item>HERO_SKILL_SAFETY_STEP</Item>
 		</perkIDs>

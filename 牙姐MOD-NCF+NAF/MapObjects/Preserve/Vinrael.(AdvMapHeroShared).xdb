@@ -29,11 +29,11 @@
 	<RazedStatic/>
 	<Icon128/>
 	<InternalName>Vinrael</InternalName>
-	<Class>HERO_CLASS_ENCHANTER</Class>
+	<Class>HERO_CLASS_RANGER</Class>
 	<Specialization/>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_LEARNING</SkillID>
+		<SkillID>HERO_SKILL_AVENGER</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Preserve/039-Vinrael/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Preserve/039-Vinrael/Description.txt"/>
@@ -56,7 +56,7 @@
 		<skills>
 			<Item>
 				<Mastery>MASTERY_BASIC</Mastery>
-				<SkillID>HERO_SKILL_DESTRUCTIVE_MAGIC</SkillID>
+				<SkillID>HERO_SKILL_LEARNING</SkillID>
 			</Item>
 		</skills>
 		<perkIDs>

@@ -29,11 +29,11 @@
 	<RazedStatic/>
 	<Icon128 href="/Textures/Icons/Heroes/Academy/Academy_Zehir_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<InternalName>Zehir</InternalName>
-	<Class>HERO_CLASS_ELEMENTALIST</Class>
+	<Class>HERO_CLASS_WIZARD</Class>
 	<Specialization>HERO_SPEC_MASTER_OF_ELEMENTS</Specialization>
 	<PrimarySkill>
-		<Mastery>MASTERY_ADVANCED</Mastery>
-		<SkillID>HERO_SKILL_SUMMONING_MAGIC</SkillID>
+		<Mastery>MASTERY_BASIC</Mastery>
+		<SkillID>HERO_SKILL_ARTIFICIER</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Academy/056-Zehir/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Academy/056-Zehir/Description.txt"/>
@@ -53,7 +53,12 @@
 		<Defence>0</Defence>
 		<Spellpower>3</Spellpower>
 		<Knowledge>2</Knowledge>
-		<skills/>
+		<skills>
+			<Item>
+				<Mastery>MASTERY_BASIC</Mastery>
+				<SkillID>HERO_SKILL_SUMMONING_MAGIC</SkillID>
+			</Item>
+		</skills>
 		<perkIDs>
 			<Item>HERO_SKILL_MASTER_OF_CREATURES</Item>
 		</perkIDs>

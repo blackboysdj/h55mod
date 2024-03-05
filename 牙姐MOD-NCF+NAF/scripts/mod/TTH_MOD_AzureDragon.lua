@@ -1,0 +1,1 @@
+TTH_MOD.AzureDragon.bLoad = nil;

@@ -29,11 +29,11 @@
 	<RazedStatic/>
 	<Icon128 href="/Textures/Icons/Heroes/Heaven/Heaven_Nicolai_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<InternalName>Nicolai</InternalName>
-	<Class>HERO_CLASS_PALADIN</Class>
+	<Class>HERO_CLASS_KNIGHT</Class>
 	<Specialization>HERO_SPEC_EVASIVE</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_LIGHT_MAGIC</SkillID>
+		<SkillID>HERO_SKILL_TRAINING</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Heaven/011-Nicolai/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Heaven/011-Nicolai/Description.txt"/>

@@ -1,30 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Creature>
-	<AttackSkill>1</AttackSkill>
-	<DefenceSkill>1</DefenceSkill>
+<Creature ObjectRecordID="73">
+	<AttackSkill>85</AttackSkill>
+	<DefenceSkill>50</DefenceSkill>
 	<Shots>0</Shots>
-	<MinDamage>1</MinDamage>
-	<MaxDamage>1</MaxDamage>
-	<Speed>1</Speed>
-	<Initiative>1</Initiative>
+	<MinDamage>183</MinDamage>
+	<MaxDamage>366</MaxDamage>
+	<Speed>6</Speed>
+	<Initiative>17</Initiative>
 	<Flying>false</Flying>
-	<Health>1</Health>
-	<KnownSpells/>
-	<SpellPoints>0</SpellPoints>
+	<Health>760</Health>
+	<KnownSpells>
+		<Item>
+			<Spell>SPELL_WARCRY_RALLING_CRY</Spell>
+			<Mastery>MASTERY_EXPERT</Mastery>
+		</Item>
+		<Item>
+			<Spell>SPELL_WARCRY_CALL_OF_BLOOD</Spell>
+			<Mastery>MASTERY_EXPERT</Mastery>
+		</Item>
+		<Item>
+			<Spell>SPELL_WARCRY_FEAR_MY_ROAR</Spell>
+			<Mastery>MASTERY_EXPERT</Mastery>
+		</Item>
+		<Item>
+			<Spell>SPELL_WARCRY_BATTLECRY</Spell>
+			<Mastery>MASTERY_EXPERT</Mastery>
+		</Item>
+	</KnownSpells>
+	<SpellPoints>1</SpellPoints>
 	<SpellPoints1>0</SpellPoints1>
 	<SpellPoints2>0</SpellPoints2>
-	<Exp>1</Exp>
-	<Power>1</Power>
+	<Exp>560</Exp>
+	<Power>5600</Power>
 	<TimeToCommand>10</TimeToCommand>
-	<CreatureTier>1</CreatureTier>
-	<Upgrade>false</Upgrade>
+	<CreatureTier>8</CreatureTier>
+	<Upgrade>true</Upgrade>
 	<PairCreature>CREATURE_UNKNOWN</PairCreature>
-	<CreatureTown>TOWN_NO_TYPE</CreatureTown>
+	<CreatureTown>TOWN_STRONGHOLD</CreatureTown>
 	<MagicElement>
-		<First>ELEMENT_NONE</First>
-		<Second>ELEMENT_NONE</Second>
+		<First>ELEMENT_WATER</First>
+		<Second>ELEMENT_FIRE</Second>
 	</MagicElement>
-	<WeeklyGrowth>0</WeeklyGrowth>
+	<WeeklyGrowth>1</WeeklyGrowth>
 	<Cost>
 		<Wood>0</Wood>
 		<Ore>0</Ore>
@@ -35,13 +52,20 @@
 		<Gold>0</Gold>
 	</Cost>
 	<SubjectOfRandomGeneration>true</SubjectOfRandomGeneration>
-	<MonsterShared/>
-	<CombatSize>1</CombatSize>
-	<PatternAttack/>
+	<MonsterShared href="/TTH_NewCreatures/Creature_218/Model/creature.(AdvMapMonsterShared).xdb#xpointer(/AdvMapMonsterShared)"/>
+	<CombatSize>2</CombatSize>
+	<PatternAttack href="/TTH_NewCreatures/Creature_218/Model/creature-PatternAttack.xdb#xpointer(/PatternAttack)"/>
 	<flybySequence/>
-	<Visual href="/GameMechanics/CreatureVisual/Creatures/Neutrals/SnowApe.xdb#xpointer(/CreatureVisual)"/>
+	<Visual href="/TTH_NewCreatures/Creature_218/Model/creature_232.(CreatureVisual).xdb#xpointer(/CreatureVisual)"/>
 	<Range>0</Range>
 	<BaseCreature>CREATURE_UNKNOWN</BaseCreature>
 	<Upgrades/>
-	<Abilities/>
+	<Abilities>
+		<Item>ABILITY_DEMON_RAGED</Item>
+		<Item>ABILITY_IMMUNITY_TO_BLIND</Item>
+		<Item>ABILITY_CRUSHING_BLOW</Item>
+		<Item>ABILITY_CLEAVE</Item>
+		<Item>ABILITY_FRIGHT_AURA</Item>
+		<Item>ABILITY_AXE_OF_SLAUGHTER</Item>
+	</Abilities>
 </Creature>

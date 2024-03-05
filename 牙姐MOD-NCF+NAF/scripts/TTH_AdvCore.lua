@@ -22,6 +22,10 @@ doFile("/scripts/TTH_Setting.lua");
 				TTH_SUPPORT.twx.increaseDwelling = function(strTown)
 				end;
 
+	-- MOD
+		TTH_MOD = {};
+		TTH_MOD.AzureDragon = {};
+
 	-- 变量
 		TTH_VARI = {};
 
@@ -2207,6 +2211,8 @@ doFile("/scripts/TTH_Setting.lua");
 	        , [24] = ARTIFACT_RING_OF_HASTE
 	        , [25] = ARTIFACT_HORN_OF_CHARGE
 	        , [26] = ARTIFACT_BOOTS_OF_SWIFTNESS
+	        , [27] = ARTIFACT_EARTHSLIDERS
+	        , [28] = ARTIFACT_ORB_EARTH
 				};
 				function TTH_GLOBAL.setGameVar4HeroArtifact(iPlayer, strHero)
 					TTH_MAIN.debug("TTH_GLOBAL.setGameVar4HeroArtifact", iPlayer, strHero);
@@ -2340,6 +2346,8 @@ doFile("/scripts/TTH_Setting.lua");
 					, [44] = HERO_SKILL_FAST_AND_FURIOUS
 					, [45] = HERO_SKILL_ABSOLUTE_CHARGE
 					, [46] = HERO_SKILL_BEHIND_ENEMY
+					, [47] = HERO_SKILL_PARIAH
+					, [48] = HERO_SKILL_TWILIGHT
 				};
 				TTH_TABLE.CombatSkill2Special = {
 					[0] = HERO_SKILL_PARIAH
@@ -2351,6 +2359,7 @@ doFile("/scripts/TTH_Setting.lua");
 					[0] = HERO_SKILL_WAR_MACHINES
 					, [1] = HERO_SKILL_SORCERY
 					, [2] = HERO_SKILL_VOICE
+					, [3] = HERO_SKILL_DARK_MAGIC
 				};
 				function TTH_GLOBAL.setGameVar4HeroSkill(strHero)
 					for iIndexSkill, objSkill in TTH_TABLE.CombatSkill do
@@ -2364,7 +2373,7 @@ doFile("/scripts/TTH_Setting.lua");
 				end;
 				function TTH_GLOBAL.setGameVar4HeroSkill2Special(strHero)
 					for iIndexSkill, objSkill in TTH_TABLE.CombatSkill2Special do
-						local strKey = TTH_GAMEVAR.Skill..strHero..'_'..objSkill;
+						local strKey = TTH_GAMEVAR.Skill..strHero..'_S'..objSkill;
 						if HasHeroSkill(strHero, objSkill) == nil then
 							TTH_COMMON.consoleSetGameVar(strKey, 0);
 						end;
@@ -4356,9 +4365,9 @@ doFile("/scripts/TTH_Setting.lua");
 				GiveHeroSkill(strHero, HERO_SKILL_LUCK);
 				GiveHeroSkill(strHero, HERO_SKILL_LUCK);
 				sleep(1);
-				GiveHeroSkill(strHero, HERO_SKILL_EMPOWERED_SPELLS);
-				sleep(1);
 				GiveHeroSkill(strHero, HERO_SKILL_ELEMENTAL_VISION);
+				sleep(1);
+				GiveHeroSkill(strHero, HERO_SKILL_EMPOWERED_SPELLS);
 				sleep(1);
 				GiveHeroSkill(strHero, HERO_SKILL_MASTER_OF_ICE);
 				sleep(1);
@@ -6503,6 +6512,10 @@ doFile("/scripts/TTH_Setting.lua");
 						if arrCreature4Hero[i]["Id"] == CREATURE_GOBLIN then
 							arrCreature4Hero[i]["Id"] = CREATURE_GOBLIN_TRAPPER;
 						end;
+						if TTH_TALENT.Yog.func.isMaggrash(arrCreature4Hero[i]["Id"]) == not nil then
+							arrCreature4Hero[i]["Id"] = CREATURE_CYCLOP_UNTAMED;
+							arrCreature4Hero[i]["Count"] = arrCreature4Hero[i]["Count"] * 3;
+						end;
 					end;
 					local strEnemyHero = nil;
 					local iCoef = TTH_AI.getTrialCoef8GameDifficulty();
@@ -7629,7 +7642,11 @@ doFile("/scripts/TTH_Setting.lua");
 							local arrOption = {};
 							local i = 1;
 							for iSlot = 0, 6 do
-								if arrCreature4Hero[iSlot]["Id"] > 0 then
+								local iCreatureId = arrCreature4Hero[iSlot]["Id"];
+								if 1 == 1
+									and iCreatureId > 0
+									and TTH_TALENT.Yog.func.isMaggrash(iCreatureId) == nil
+								then
 									arrOption[i] = {
 										["Id"] = arrCreature4Hero[iSlot]["Id"]
 										, ["Text"] = TTH_TABLE.Creature[arrCreature4Hero[iSlot]["Id"]]["NAME"]
@@ -7637,6 +7654,9 @@ doFile("/scripts/TTH_Setting.lua");
 									};
 									i = i + 1;
 								end;
+							end;
+							if TTH_MOD.AzureDragon.bLoad then
+								arrOption = TTH_MOD.AzureDragon.rewardBankCreature(arrOption);
 							end;
 							TTH_COMMON.optionRadio(iPlayer, strHero, arrOption, nil, TTH_ENUM.Yes);
 						end;
@@ -7924,6 +7944,9 @@ doFile("/scripts/TTH_Setting.lua");
 								};
 								i = i + 1;
 							end;
+						end;
+						if TTH_MOD.AzureDragon.bLoad then
+							arrOption = TTH_MOD.AzureDragon.rewardBankCreature(arrOption);
 						end;
 						local iCreatureId = arrOption[random(length(arrOption)) + 1]["Id"];
 						TTH_VISIT.implBankCreature(iPlayer, strHero, iCreatureId);
@@ -15167,8 +15190,11 @@ doFile("/scripts/TTH_Setting.lua");
 						if arrCreature4Hero[iSlot]["Count"] > 0 then
 							local iCreatureId = arrCreature4Hero[iSlot]["Id"];
 							local infoCreature = TTH_TABLE.Creature[iCreatureId];
-							if infoCreature["Race"] ~= TOWN_DUNGEON
-								and infoCreature["Race"] ~= TOWN_NECROMANCY then
+							if 1 == 1
+								and infoCreature["Race"] ~= TOWN_DUNGEON
+								and infoCreature["Race"] ~= TOWN_NECROMANCY
+								and TTH_TALENT.Yog.func.isMaggrash(iCreatureId) == nil
+							then
 								arrOption[i] = {
 									["Id"] = iSlot
 									, ["Text"] = infoCreature["NAME"]
@@ -16378,6 +16404,476 @@ doFile("/scripts/TTH_Setting.lua");
 					};
 					TTH_GLOBAL.sign(strHero, strText);
 				end;
+
+			-- Arthas 163 阿尔萨斯
+				TTH_TALENT.Arthas = {};
+				TTH_TALENT.Arthas.temp = {};
+				TTH_TALENT.Arthas.temp.iSlotId = nil;
+				TTH_TALENT.Arthas.data = {};
+				TTH_TALENT.Arthas.data.iCurrentCreatureId = nil;
+				TTH_TALENT.Arthas.data.arrSlot = {};
+				TTH_TALENT.Arthas.data.arrStandby = {};
+				TTH_TALENT.Arthas.func = {};
+				TTH_TALENT.Arthas.func.getLenSlot = function(iPlayer, strHero)
+					local iLenSlot = 1;
+					if TTH_VARI.record4UpgradeMastery[strHero] == TTH_ENUM.Yes then
+						iLenSlot = 3;
+					end;
+					if TTH_VARI.record4UpgradeShantiri[strHero] == TTH_ENUM.Yes then
+						iLenSlot = 5;
+					end;
+					return iLenSlot;
+				end;
+				TTH_TALENT.Arthas.func.combatResult = function(iPlayer, strHero, iCombatIndex)
+					TTH_MAIN.debug("TTH_TALENT.Arthas.func.combatResult", iPlayer, strHero, iCombatIndex);
+
+					TTH_TALENT.Arthas.data.arrStandby = {};
+					local iCountStacksLoser = GetSavedCombatArmyCreaturesCount(iCombatIndex, 0);
+					for i = 0, iCountStacksLoser - 1 do
+					  local iCreatureId, iCountCreature, iCountCreatureDeath = GetSavedCombatArmyCreatureInfo(iCombatIndex, 0, i);
+					  TTH_TALENT.Arthas.data.arrStandby[i] = iCreatureId;
+					end;
+				end;
+				TTH_TALENT.Arthas.func.active = function(iPlayer, strHero)
+					TTH_COMMON.nextNavi(TTH_PATH.Talent[strHero]["Text"]);
+
+					local arrOption = {};
+					local i = 1;
+					local strCreatureName = TTH_PATH.Talent[strHero]["Empty"];
+					local iCreatureId = TTH_TALENT.Arthas.data.iCurrentCreatureId;
+					if 1 == 1
+						and iCreatureId ~= nil
+						and iCreatureId > 0
+					then
+						strCreatureName = TTH_TABLE.Creature[iCreatureId]["NAME"]
+					end;
+					local strOptionSummon = {
+						TTH_PATH.Talent[strHero]["SummonTemplate"]
+						;strCreatureName=strCreatureName
+					};
+					arrOption[i] = {
+						["Id"] = i
+						, ["Text"] = strOptionSummon
+						, ["Callback"] = "TTH_TALENT.Arthas.func.summon"
+					};
+					i = i + 1;
+					arrOption[i] = {
+						["Id"] = i
+						, ["Text"] = TTH_PATH.Talent[strHero]["Imprison"]
+						, ["Callback"] = "TTH_TALENT.Arthas.func.imprison"
+					};
+
+					TTH_COMMON.optionRadio(iPlayer, strHero, arrOption);
+				end;
+				TTH_TALENT.Arthas.func.summon = function(iPlayer, strHero)
+					TTH_COMMON.nextNavi(TTH_PATH.Talent[strHero]["Summon"]);
+
+					local arrOption = {};
+					local i = 1;
+					for iIndex, iCreatureId in TTH_TALENT.Arthas.data.arrSlot do
+						if 1 == 1
+							and iCreatureId ~= nil
+							and iCreatureId > 0
+						then
+							arrOption[i] = {
+								["Id"] = iCreatureId
+								, ["Text"] = TTH_TABLE.Creature[iCreatureId]["NAME"]
+								, ["Callback"] = "TTH_TALENT.Arthas.func.successSummon"
+							};
+							i = i + 1;
+						end;
+					end;
+
+					if 1 ~= 1
+						or arrOption == nil
+						or length(arrOption) == 0
+					then
+						local strText = TTH_PATH.Talent[strHero]["EmptyImprisonCreature"]
+						TTH_GLOBAL.sign(strHero, strText);
+						return nil;
+					end;
+
+					TTH_COMMON.optionRadio(iPlayer, strHero, arrOption);
+				end;
+				TTH_TALENT.Arthas.func.successSummon = function(iPlayer, strHero, iCreatureId)
+					TTH_TALENT.Arthas.data.iCurrentCreatureId = iCreatureId;
+					local strKey = TTH_GAMEVAR.Talent..strHero;
+					TTH_COMMON.consoleSetGameVar(strKey, iCreatureId);
+
+					local strText = {
+						TTH_PATH.Talent[strHero]["SuccessSummon"]
+						;strCreatureName=TTH_TABLE.Creature[iCreatureId]["NAME"]
+					};
+					TTH_GLOBAL.sign(strHero, strText);
+				end;
+				TTH_TALENT.Arthas.func.imprison = function(iPlayer, strHero)
+					TTH_COMMON.nextNavi(TTH_PATH.Talent[strHero]["Imprison"]);
+
+					local iLenSlot = TTH_TALENT.Arthas.func.getLenSlot(iPlayer, strHero);
+					local arrOption = {};
+					local i = 1;
+					for iSlotId = 1, 5 do
+						local strText = "";
+						local strCallback = "";
+						if iSlotId > iLenSlot then
+							strText = TTH_PATH.Talent[strHero]["Lock"];
+							strCallback = "TTH_TALENT.Arthas.func.signLock";
+						else
+							local iCreatureId = TTH_TALENT.Arthas.data.arrSlot[iSlotId];
+							if 1 == 1
+								and iCreatureId ~= nil
+								and iCreatureId > 0
+							then
+								strText = TTH_TABLE.Creature[iCreatureId]["NAME"];
+								strCallback = "TTH_TALENT.Arthas.func.replaceImprison";
+							else
+								strText = TTH_PATH.Talent[strHero]["UnImprison"];
+								strCallback = "TTH_TALENT.Arthas.func.chooseStandby";
+							end;
+						end;
+						arrOption[i] = {
+							["Id"] = iSlotId
+							, ["Text"] = {
+								TTH_PATH.Talent[strHero]["SlotTemplate"]
+								;iSlotId=iSlotId
+								,strText=strText
+							}
+							, ["Callback"] = strCallback
+						};
+						i = i + 1;
+					end;
+
+					TTH_COMMON.optionRadio(iPlayer, strHero, arrOption);
+				end;
+				TTH_TALENT.Arthas.func.signLock = function(iPlayer, strHero, iSlotId)
+					local strText = {
+						TTH_PATH.Talent[strHero]["SignLock"]
+						;iSlotId=iSlotId
+					};
+					TTH_GLOBAL.sign(strHero, strText);
+				end;
+				TTH_TALENT.Arthas.func.replaceImprison = function(iPlayer, strHero, iSlotId)
+					TTH_COMMON.nextNavi(TTH_PATH.Talent[strHero]["ReplaceImprison"]);
+
+					TTH_TALENT.Arthas.temp.iSlotId = iSlotId;
+					local arrOption = {};
+					local i = 1;
+					for iIndex, iCreatureId in TTH_TALENT.Arthas.data.arrStandby do
+						if 1 == 1
+							and iCreatureId ~= nil
+							and iCreatureId > 0
+						then
+							arrOption[i] = {
+								["Id"] = iCreatureId
+								, ["Text"] = TTH_TABLE.Creature[iCreatureId]["NAME"]
+								, ["Callback"] = "TTH_TALENT.Arthas.func.confirmImprison"
+							};
+							i = i + 1;
+						end;
+					end;
+
+					if 1 ~= 1
+						or arrOption == nil
+						or length(arrOption) == 0
+					then
+						local strText = TTH_PATH.Talent[strHero]["EmptyStandbyCreature"];
+						TTH_GLOBAL.sign(strHero, strText);
+						return nil;
+					end;
+
+					TTH_COMMON.optionRadio(iPlayer, strHero, arrOption);
+				end;
+				TTH_TALENT.Arthas.func.confirmImprison = function(iPlayer, strHero, iCreatureId)
+					local iSlotId = TTH_TALENT.Arthas.temp.iSlotId;
+					local iPreCreatureId = TTH_TALENT.Arthas.data.arrSlot[iSlotId];
+
+					local strText = {
+						TTH_PATH.Talent[strHero]["ConfirmImprison"]
+						;iSlotId=iSlotId
+						,strPreCreatureName=TTH_TABLE.Creature[iPreCreatureId]["NAME"]
+						,strPostCreatureName=TTH_TABLE.Creature[iCreatureId]["NAME"]
+					};
+					local strCallbackOk = "TTH_TALENT.Arthas.func.successImprison("..iPlayer..","..TTH_COMMON.psp(strHero)..","..iCreatureId..")";
+					local strCallbackCancel = "TTH_COMMON.cancelOption()";
+					TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strText, strCallbackOk, strCallbackCancel);
+				end;
+				TTH_TALENT.Arthas.func.chooseStandby = function(iPlayer, strHero, iSlotId)
+					TTH_COMMON.nextNavi(TTH_PATH.Talent[strHero]["ChooseStandby"]);
+
+					TTH_TALENT.Arthas.temp.iSlotId = iSlotId;
+
+					local arrOption = {};
+					local i = 1;
+					for iIndex, iCreatureId in TTH_TALENT.Arthas.data.arrStandby do
+						if 1 == 1
+							and iCreatureId ~= nil
+							and iCreatureId > 0
+						then
+							arrOption[i] = {
+								["Id"] = iCreatureId
+								, ["Text"] = TTH_TABLE.Creature[iCreatureId]["NAME"]
+								, ["Callback"] = "TTH_TALENT.Arthas.func.successImprison"
+							};
+							i = i + 1;
+						end;
+					end;
+
+					if 1 ~= 1
+						or arrOption == nil
+						or length(arrOption) == 0
+					then
+						local strText = TTH_PATH.Talent[strHero]["EmptyStandbyCreature"];
+						TTH_GLOBAL.sign(strHero, strText);
+						return nil;
+					end;
+
+					TTH_COMMON.optionRadio(iPlayer, strHero, arrOption);
+				end;
+				TTH_TALENT.Arthas.func.successImprison = function(iPlayer, strHero, iCreatureId)
+					local iSlotId = TTH_TALENT.Arthas.temp.iSlotId;
+					TTH_TALENT.Arthas.data.arrSlot[iSlotId] = iCreatureId;
+					local strText = {
+						TTH_PATH.Talent[strHero]["SuccessImprison"]
+						;iSlotId=iSlotId
+						,strCreatureName=TTH_TABLE.Creature[iCreatureId]["NAME"]
+					};
+					TTH_GLOBAL.sign(strHero, strText);
+				end;
+
+			-- ArthasPlus 164 阿尔萨斯
+        TTH_TALENT.ArthasPlus = {};
+        TTH_TALENT.ArthasPlus.temp = {};
+        TTH_TALENT.ArthasPlus.temp.iSlotId = nil;
+        TTH_TALENT.ArthasPlus.data = {};
+        TTH_TALENT.ArthasPlus.data.iCurrentCreatureId = nil;
+        TTH_TALENT.ArthasPlus.data.arrSlot = {};
+        TTH_TALENT.ArthasPlus.data.arrStandby = {};
+        TTH_TALENT.ArthasPlus.func = {};
+        TTH_TALENT.ArthasPlus.func.getLenSlot = function(iPlayer, strHero)
+          local iLenSlot = 1;
+          if TTH_VARI.record4UpgradeMastery[strHero] == TTH_ENUM.Yes then
+            iLenSlot = 3;
+          end;
+          if TTH_VARI.record4UpgradeShantiri[strHero] == TTH_ENUM.Yes then
+            iLenSlot = 5;
+          end;
+          return iLenSlot;
+        end;
+        TTH_TALENT.ArthasPlus.func.combatResult = function(iPlayer, strHero, iCombatIndex)
+          TTH_MAIN.debug("TTH_TALENT.ArthasPlus.func.combatResult", iPlayer, strHero, iCombatIndex);
+
+          TTH_TALENT.ArthasPlus.data.arrStandby = {};
+          local iCountStacksLoser = GetSavedCombatArmyCreaturesCount(iCombatIndex, 0);
+          for i = 0, iCountStacksLoser - 1 do
+            local iCreatureId, iCountCreature, iCountCreatureDeath = GetSavedCombatArmyCreatureInfo(iCombatIndex, 0, i);
+            TTH_TALENT.ArthasPlus.data.arrStandby[i] = iCreatureId;
+          end;
+        end;
+        TTH_TALENT.ArthasPlus.func.active = function(iPlayer, strHero)
+          TTH_COMMON.nextNavi(TTH_PATH.Talent[strHero]["Text"]);
+
+          local arrOption = {};
+          local i = 1;
+          local strCreatureName = TTH_PATH.Talent[strHero]["Empty"];
+          local iCreatureId = TTH_TALENT.ArthasPlus.data.iCurrentCreatureId;
+          if 1 == 1
+            and iCreatureId ~= nil
+            and iCreatureId > 0
+          then
+            strCreatureName = TTH_TABLE.Creature[iCreatureId]["NAME"]
+          end;
+          local strOptionSummon = {
+            TTH_PATH.Talent[strHero]["SummonTemplate"]
+            ;strCreatureName=strCreatureName
+          };
+          arrOption[i] = {
+            ["Id"] = i
+            , ["Text"] = strOptionSummon
+            , ["Callback"] = "TTH_TALENT.ArthasPlus.func.summon"
+          };
+          i = i + 1;
+          arrOption[i] = {
+            ["Id"] = i
+            , ["Text"] = TTH_PATH.Talent[strHero]["Imprison"]
+            , ["Callback"] = "TTH_TALENT.ArthasPlus.func.imprison"
+          };
+
+          TTH_COMMON.optionRadio(iPlayer, strHero, arrOption);
+        end;
+        TTH_TALENT.ArthasPlus.func.summon = function(iPlayer, strHero)
+          TTH_COMMON.nextNavi(TTH_PATH.Talent[strHero]["Summon"]);
+
+          local arrOption = {};
+          local i = 1;
+          for iIndex, iCreatureId in TTH_TALENT.ArthasPlus.data.arrSlot do
+            if 1 == 1
+              and iCreatureId ~= nil
+              and iCreatureId > 0
+            then
+              arrOption[i] = {
+                ["Id"] = iCreatureId
+                , ["Text"] = TTH_TABLE.Creature[iCreatureId]["NAME"]
+                , ["Callback"] = "TTH_TALENT.ArthasPlus.func.successSummon"
+              };
+              i = i + 1;
+            end;
+          end;
+
+          if 1 ~= 1
+            or arrOption == nil
+            or length(arrOption) == 0
+          then
+            local strText = TTH_PATH.Talent[strHero]["EmptyImprisonCreature"]
+            TTH_GLOBAL.sign(strHero, strText);
+            return nil;
+          end;
+
+          TTH_COMMON.optionRadio(iPlayer, strHero, arrOption);
+        end;
+        TTH_TALENT.ArthasPlus.func.successSummon = function(iPlayer, strHero, iCreatureId)
+          TTH_TALENT.ArthasPlus.data.iCurrentCreatureId = iCreatureId;
+          local strKey = TTH_GAMEVAR.Talent..strHero;
+          TTH_COMMON.consoleSetGameVar(strKey, iCreatureId);
+
+          local strText = {
+            TTH_PATH.Talent[strHero]["SuccessSummon"]
+            ;strCreatureName=TTH_TABLE.Creature[iCreatureId]["NAME"]
+          };
+          TTH_GLOBAL.sign(strHero, strText);
+        end;
+        TTH_TALENT.ArthasPlus.func.imprison = function(iPlayer, strHero)
+          TTH_COMMON.nextNavi(TTH_PATH.Talent[strHero]["Imprison"]);
+
+          local iLenSlot = TTH_TALENT.ArthasPlus.func.getLenSlot(iPlayer, strHero);
+          local arrOption = {};
+          local i = 1;
+          for iSlotId = 1, 5 do
+            local strText = "";
+            local strCallback = "";
+            if iSlotId > iLenSlot then
+              strText = TTH_PATH.Talent[strHero]["Lock"];
+              strCallback = "TTH_TALENT.ArthasPlus.func.signLock";
+            else
+              local iCreatureId = TTH_TALENT.ArthasPlus.data.arrSlot[iSlotId];
+              if 1 == 1
+                and iCreatureId ~= nil
+                and iCreatureId > 0
+              then
+                strText = TTH_TABLE.Creature[iCreatureId]["NAME"];
+                strCallback = "TTH_TALENT.ArthasPlus.func.replaceImprison";
+              else
+                strText = TTH_PATH.Talent[strHero]["UnImprison"];
+                strCallback = "TTH_TALENT.ArthasPlus.func.chooseStandby";
+              end;
+            end;
+            arrOption[i] = {
+              ["Id"] = iSlotId
+              , ["Text"] = {
+                TTH_PATH.Talent[strHero]["SlotTemplate"]
+                ;iSlotId=iSlotId
+                ,strText=strText
+              }
+              , ["Callback"] = strCallback
+            };
+            i = i + 1;
+          end;
+
+          TTH_COMMON.optionRadio(iPlayer, strHero, arrOption);
+        end;
+        TTH_TALENT.ArthasPlus.func.signLock = function(iPlayer, strHero, iSlotId)
+          local strText = {
+            TTH_PATH.Talent[strHero]["SignLock"]
+            ;iSlotId=iSlotId
+          };
+          TTH_GLOBAL.sign(strHero, strText);
+        end;
+        TTH_TALENT.ArthasPlus.func.replaceImprison = function(iPlayer, strHero, iSlotId)
+          TTH_COMMON.nextNavi(TTH_PATH.Talent[strHero]["ReplaceImprison"]);
+
+          TTH_TALENT.ArthasPlus.temp.iSlotId = iSlotId;
+          local arrOption = {};
+          local i = 1;
+          for iIndex, iCreatureId in TTH_TALENT.ArthasPlus.data.arrStandby do
+            if 1 == 1
+              and iCreatureId ~= nil
+              and iCreatureId > 0
+            then
+              arrOption[i] = {
+                ["Id"] = iCreatureId
+                , ["Text"] = TTH_TABLE.Creature[iCreatureId]["NAME"]
+                , ["Callback"] = "TTH_TALENT.ArthasPlus.func.confirmImprison"
+              };
+              i = i + 1;
+            end;
+          end;
+
+          if 1 ~= 1
+            or arrOption == nil
+            or length(arrOption) == 0
+          then
+            local strText = TTH_PATH.Talent[strHero]["EmptyStandbyCreature"];
+            TTH_GLOBAL.sign(strHero, strText);
+            return nil;
+          end;
+
+          TTH_COMMON.optionRadio(iPlayer, strHero, arrOption);
+        end;
+        TTH_TALENT.ArthasPlus.func.confirmImprison = function(iPlayer, strHero, iCreatureId)
+          local iSlotId = TTH_TALENT.ArthasPlus.temp.iSlotId;
+          local iPreCreatureId = TTH_TALENT.ArthasPlus.data.arrSlot[iSlotId];
+
+          local strText = {
+            TTH_PATH.Talent[strHero]["ConfirmImprison"]
+            ;iSlotId=iSlotId
+            ,strPreCreatureName=TTH_TABLE.Creature[iPreCreatureId]["NAME"]
+            ,strPostCreatureName=TTH_TABLE.Creature[iCreatureId]["NAME"]
+          };
+          local strCallbackOk = "TTH_TALENT.ArthasPlus.func.successImprison("..iPlayer..","..TTH_COMMON.psp(strHero)..","..iCreatureId..")";
+          local strCallbackCancel = "TTH_COMMON.cancelOption()";
+          TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strText, strCallbackOk, strCallbackCancel);
+        end;
+        TTH_TALENT.ArthasPlus.func.chooseStandby = function(iPlayer, strHero, iSlotId)
+          TTH_COMMON.nextNavi(TTH_PATH.Talent[strHero]["ChooseStandby"]);
+
+          TTH_TALENT.ArthasPlus.temp.iSlotId = iSlotId;
+
+          local arrOption = {};
+          local i = 1;
+          for iIndex, iCreatureId in TTH_TALENT.ArthasPlus.data.arrStandby do
+            if 1 == 1
+              and iCreatureId ~= nil
+              and iCreatureId > 0
+            then
+              arrOption[i] = {
+                ["Id"] = iCreatureId
+                , ["Text"] = TTH_TABLE.Creature[iCreatureId]["NAME"]
+                , ["Callback"] = "TTH_TALENT.ArthasPlus.func.successImprison"
+              };
+              i = i + 1;
+            end;
+          end;
+
+          if 1 ~= 1
+            or arrOption == nil
+            or length(arrOption) == 0
+          then
+            local strText = TTH_PATH.Talent[strHero]["EmptyStandbyCreature"];
+            TTH_GLOBAL.sign(strHero, strText);
+            return nil;
+          end;
+
+          TTH_COMMON.optionRadio(iPlayer, strHero, arrOption);
+        end;
+        TTH_TALENT.ArthasPlus.func.successImprison = function(iPlayer, strHero, iCreatureId)
+          local iSlotId = TTH_TALENT.ArthasPlus.temp.iSlotId;
+          TTH_TALENT.ArthasPlus.data.arrSlot[iSlotId] = iCreatureId;
+          local strText = {
+            TTH_PATH.Talent[strHero]["SuccessImprison"]
+            ;iSlotId=iSlotId
+            ,strCreatureName=TTH_TABLE.Creature[iCreatureId]["NAME"]
+          };
+          TTH_GLOBAL.sign(strHero, strText);
+        end;
 
 		-- Inferno
 			-- Marder 103 马巴斯
@@ -17945,6 +18441,192 @@ doFile("/scripts/TTH_Setting.lua");
 					end;
 				end;
 
+			-- Yog 165 约格
+				TTH_TALENT.Yog = {};
+				TTH_TALENT.Yog.data = {};
+				TTH_TALENT.Yog.data.bIsTired = nil;
+				TTH_TALENT.Yog.data.enumCurrentOrder = 0;
+				TTH_TALENT.Yog.data.iCurrentTalentLevel = 0;
+				TTH_TALENT.Yog.data.arrCreatureId = {
+					[0] = {
+						[0] = 218, [1] = 220, [2] = 222, [3] = 224, [4] = 226, [5] = 228, [6] = 230, [7] = 232
+					},
+					[1] = {
+						[0] = 218, [1] = 219, [2] = 221, [3] = 223, [4] = 225, [5] = 227, [6] = 229, [7] = 231
+					},
+				}
+				TTH_TALENT.Yog.func = {};
+				TTH_TALENT.Yog.func.isMaggrash = function(iCreatureId)
+					local bIsMaggrash = nil;
+					for i = 0, 1 do
+						for j = 0, 7 do
+							if iCreatureId == TTH_TALENT.Yog.data.arrCreatureId[i][j] then
+								bIsMaggrash = not nil;
+								break;
+							end;
+						end;
+					end;
+					return bIsMaggrash;
+				end;
+				TTH_TALENT.Yog.func.stronger = function(iPlayer, strHero)
+					TTH_TALENT.Yog.func.levelUp(strHero);
+				end;
+				TTH_TALENT.Yog.func.levelUp = function(strHero)
+					local iPlayer = GetObjectOwner(strHero);
+					TTH_TALENT.Yog.func.checkMaggrash(iPlayer, strHero);
+
+			   	local iHeroLevel = GetHeroLevel(strHero);
+					local iLevelBonus = TTH_COMMON.floor(iHeroLevel / 7);
+					local iMasteryBonus = 0;
+					if TTH_VARI.record4UpgradeMastery[strHero] == TTH_ENUM.Yes then
+						iMasteryBonus = 1;
+					end;
+					local iShantiriBonus = 0;
+					if TTH_VARI.record4UpgradeShantiri[strHero] == TTH_ENUM.Yes then
+						iShantiriBonus = 1;
+					end;
+					local iCurrentTalentLevel = iLevelBonus + iMasteryBonus + iShantiriBonus;
+					if iCurrentTalentLevel > TTH_TALENT.Yog.data.iCurrentTalentLevel then
+						local iPreCreatureId = TTH_TALENT.Yog.data.arrCreatureId[TTH_TALENT.Yog.data.enumCurrentOrder][TTH_TALENT.Yog.data.iCurrentTalentLevel];
+						TTH_TALENT.Yog.data.iCurrentTalentLevel = iCurrentTalentLevel;
+						local iPostCreatureId = TTH_TALENT.Yog.data.arrCreatureId[TTH_TALENT.Yog.data.enumCurrentOrder][TTH_TALENT.Yog.data.iCurrentTalentLevel];
+						TTH_GLOBAL.replaceCreature4Hero(strHero, iPreCreatureId, TTH_FINAL.NUM_MAX, iPostCreatureId, 1);
+						local strText = TTH_PATH.Talent[strHero]["StrongerMaggrash"];
+						TTH_GLOBAL.sign(strHero, strText);
+					end;
+				end;
+				TTH_TALENT.Yog.func.active = function(iPlayer, strHero)
+					TTH_COMMON.nextNavi(TTH_PATH.Talent[strHero]["Text"]);
+
+					local arrOption = {};
+					local i = 1;
+					arrOption[i] = {
+						["Id"] = i
+						, ["Text"] = TTH_PATH.Talent[strHero]["CallMaggrash"]
+						, ["Callback"] = "TTH_TALENT.Yog.func.callMaggrash"
+					};
+					i = i + 1;
+					local strText = TTH_PATH.Talent[strHero]["SwitchDefenseOrder"];
+					if TTH_TALENT.Yog.data.enumCurrentOrder == 1 then
+						strText = TTH_PATH.Talent[strHero]["SwitchAttackOrder"];
+					end;
+					arrOption[i] = {
+						["Id"] = i
+						, ["Text"] = strText
+						, ["Callback"] = "TTH_TALENT.Yog.func.switchOrder"
+					};
+
+					TTH_COMMON.optionRadio(iPlayer, strHero, arrOption);
+				end;
+				TTH_TALENT.Yog.func.checkMaggrash = function(iPlayer, strHero)
+					local arrHero = GetPlayerHeroes(iPlayer);
+					for iIndex, strOtherHero in arrHero do
+						if strOtherHero ~= strHero then
+							local arrCreature4Hero = TTH_GLOBAL.getHeroCreatureInfo(strOtherHero);
+							local iLenSlot = 7;
+							for i = 0, length(arrCreature4Hero) - 1 do
+								if arrCreature4Hero[i]["Id"] == 0 then
+									iLenSlot = i;
+									break;
+								end;
+							end;
+							for iSlot = 0, 6 do
+								for i = 0, 1 do
+									for j = 0, 7 do
+										local iCreatureId = TTH_TALENT.Yog.data.arrCreatureId[i][j];
+										if arrCreature4Hero[iSlot]["Id"] == iCreatureId then
+											if iLenSlot == 1 then
+												TTH_GLOBAL.replaceCreature4Hero(strOtherHero, iCreatureId, TTH_FINAL.NUM_MAX, CREATURE_GOBLIN, 1);
+											else
+												RemoveHeroCreatures(strOtherHero, iCreatureId, TTH_FINAL.NUM_MAX);
+											end;
+										end;
+									end;
+								end;
+							end;
+						end;
+					end;
+					local arrTown = TTH_GLOBAL.listTown8Player(iPlayer);
+					for iIndex, strTown in arrTown do
+						local arrCreature4Town = TTH_GLOBAL.getObjectCreatureInfo(strTown);
+						for iSlot = 0, 6 do
+							for i = 0, 1 do
+								for j = 0, 7 do
+									local iCreatureId = TTH_TALENT.Yog.data.arrCreatureId[i][j];
+									if arrCreature4Town[iSlot]["Id"] == iCreatureId then
+										RemoveObjectCreatures(strTown, iCreatureId, TTH_FINAL.NUM_MAX);
+									end;
+								end;
+							end;
+						end;
+					end;
+
+					local iMaggrashId = TTH_TALENT.Yog.data.arrCreatureId[TTH_TALENT.Yog.data.enumCurrentOrder][TTH_TALENT.Yog.data.iCurrentTalentLevel];
+					return iMaggrashId;
+				end;
+				TTH_TALENT.Yog.func.callMaggrash = function(iPlayer, strHero, iOptionIndex)
+					local iMaggrashId = TTH_TALENT.Yog.func.checkMaggrash(iPlayer, strHero);
+
+					if 1 == 1
+						and iOptionIndex ~= nil
+						and TTH_TALENT.Yog.data.bIsTired == not nil
+					then
+						local strText = TTH_PATH.Talent[strHero]["MaggrashTired"]
+						TTH_GLOBAL.sign(strHero, strText);
+						return nil;
+					end;
+
+					local bHasLeadMaggrash = nil;
+					local arrCreature4Hero = TTH_GLOBAL.getHeroCreatureInfo(strHero);
+					for iSlot = 0, 6 do
+						for i = 0, 1 do
+							for j = 0, 7 do
+								local iCreatureId = TTH_TALENT.Yog.data.arrCreatureId[i][j];
+								if arrCreature4Hero[iSlot]["Id"] == iCreatureId then
+									bHasLeadMaggrash = not nil;
+									break;
+								end;
+							end;
+						end;
+					end;
+					if bHasLeadMaggrash then
+						local strText = TTH_PATH.Talent[strHero]["HasLeaderMaggrash"]
+						TTH_GLOBAL.sign(strHero, strText);
+						return nil;
+					end;
+
+					TTH_TALENT.Yog.data.bIsTired = not nil;
+					local strText = TTH_PATH.Talent[strHero]["CallMaggrashDaily"]
+					TTH_GLOBAL.sign(strHero, strText);
+
+					sleep(1);
+					AddHeroCreatures(strHero, iMaggrashId, 1);
+
+					-- local strText = TTH_PATH.Talent[strHero]["SuccessCallMaggrash"];
+					-- TTH_GLOBAL.sign(strHero, strText);
+				end;
+				TTH_TALENT.Yog.func.switchOrder = function(iPlayer, strHero)
+					local strText = TTH_PATH.Talent[strHero]["SuccessSwitchDefenseOrder"];
+					if TTH_TALENT.Yog.data.enumCurrentOrder == 1 then
+						strText = TTH_PATH.Talent[strHero]["SuccessSwitchAttackOrder"];
+					end;
+
+					TTH_TALENT.Yog.func.checkMaggrash(iPlayer, strHero);
+
+					local iPreCreatureId = TTH_TALENT.Yog.data.arrCreatureId[TTH_TALENT.Yog.data.enumCurrentOrder][TTH_TALENT.Yog.data.iCurrentTalentLevel];
+					TTH_TALENT.Yog.data.enumCurrentOrder = 1 - TTH_TALENT.Yog.data.enumCurrentOrder;
+					local iPostCreatureId = TTH_TALENT.Yog.data.arrCreatureId[TTH_TALENT.Yog.data.enumCurrentOrder][TTH_TALENT.Yog.data.iCurrentTalentLevel];
+
+					TTH_GLOBAL.replaceCreature4Hero(strHero, iPreCreatureId, 1, iPostCreatureId, 1);
+					TTH_GLOBAL.sign(strHero, strText);
+				end;
+				TTH_TALENT.Yog.func.dealDaily = function(iPlayer, strHero)
+					TTH_TALENT.Yog.func.callMaggrash(iPlayer, strHero);
+				end;
+				TTH_TALENT.Yog.func.resetDaily = function(iPlayer, strHero)
+					TTH_TALENT.Yog.data.bIsTired = nil;
+				end;
+
 	-- 宝物
 		TTH_ARTI = {};
 
@@ -18361,6 +19043,7 @@ doFile("/scripts/TTH_Setting.lua");
 					  	and iCreatureId ~= CREATURE_FATE_WEAVER_HUMAN
 					  	and iCreatureId ~= CREATURE_FEARLESS_LORD_MELEE
 					  	and iCreatureId ~= CREATURE_FEARLESS_LORD_SHOT
+					  	and TTH_TALENT.Yog.func.isMaggrash(iCreatureId) == nil
 				  	then
 						  local iCountCreatureRevive = TTH_COMMON.ceil(iCoef * iCountCreatureDeath);
 						  if iCountCreatureRevive > 0 then
@@ -18967,6 +19650,23 @@ doFile("/scripts/TTH_Setting.lua");
 			function TTH_ARTI.bonus015(iPlayer, strHero)
 				TTH_VARI.record4UpgradeMastery[strHero] = TTH_ENUM.Yes;
 				TTH_COMMON.consoleSetGameVar(TTH_GAMEVAR.Mastery..strHero, TTH_ENUM.Yes);
+
+				for iKey, objItem in TTH_TABLE.FuncTalent[TTH_ENUM.FuncDealMastery] do
+					if iKey == strHero then
+						TTH_COMMON.parse(objItem[TTH_ENUM.FuncAlways], iPlayer, strHero);
+					end;
+				end;
+				for iKey, objItem in TTH_TABLE.FuncArtifact[TTH_ENUM.FuncDealMastery] do
+					if HasArtefact(strHero, iKey, objItem["NeedWear"]) then
+						TTH_COMMON.parse(objItem[TTH_ENUM.FuncAlways], iPlayer, strHero);
+					end;
+				end;
+				for iKey, objItem in TTH_TABLE.FuncPerk[TTH_ENUM.FuncDealMastery] do
+					if HasHeroSkill(strHero, iKey) then
+						TTH_COMMON.parse(objItem[TTH_ENUM.FuncAlways], iPlayer, strHero);
+					end;
+				end;
+
 				if contains(TTH_TABLE.HeroMasteryTalent, strHero) then
 					TTH_GLOBAL.signChangeHeroStat(strHero, STAT_ATTACK, 2);
 					TTH_GLOBAL.signChangeHeroStat(strHero, STAT_DEFENCE, 2);
@@ -19022,6 +19722,23 @@ doFile("/scripts/TTH_Setting.lua");
 			function TTH_ARTI.bonus163(iPlayer, strHero)
 				TTH_VARI.record4UpgradeShantiri[strHero] = TTH_ENUM.Yes;
 				TTH_COMMON.consoleSetGameVar(TTH_GAMEVAR.Shantiri..strHero, TTH_ENUM.Yes);
+
+				for iKey, objItem in TTH_TABLE.FuncTalent[TTH_ENUM.FuncDealShantiri] do
+					if iKey == strHero then
+						TTH_COMMON.parse(objItem[TTH_ENUM.FuncAlways], iPlayer, strHero);
+					end;
+				end;
+				for iKey, objItem in TTH_TABLE.FuncArtifact[TTH_ENUM.FuncDealShantiri] do
+					if HasArtefact(strHero, iKey, objItem["NeedWear"]) then
+						TTH_COMMON.parse(objItem[TTH_ENUM.FuncAlways], iPlayer, strHero);
+					end;
+				end;
+				for iKey, objItem in TTH_TABLE.FuncPerk[TTH_ENUM.FuncDealShantiri] do
+					if HasHeroSkill(strHero, iKey) then
+						TTH_COMMON.parse(objItem[TTH_ENUM.FuncAlways], iPlayer, strHero);
+					end;
+				end;
+
 				if contains(TTH_TABLE.HeroShantiriTalent, strHero) then
 					TTH_GLOBAL.signChangeHeroStat(strHero, STAT_ATTACK, 5);
 					TTH_GLOBAL.signChangeHeroStat(strHero, STAT_DEFENCE, 5);
@@ -19133,12 +19850,18 @@ doFile("/scripts/TTH_Setting.lua");
 					local arrOption = {};
 					local i = 1;
 					for iSlot = 0, 6 do
-						arrOption[i] = {
-							["Id"] = iSlot
-							, ["Text"] = TTH_TABLE.Creature[arrCreature4Hero[iSlot]["Id"]]["NAME"]
-							, ["Callback"] = "TTH_ARTI.confirmActive102Englobe"
-						};
-						i = i + 1;
+						local iCreatureId = arrCreature4Hero[iSlot]["Id"];
+						if 1 == 1
+							and iCreatureId > 0
+							and TTH_TALENT.Yog.func.isMaggrash(iCreatureId) == nil
+						then
+							arrOption[i] = {
+								["Id"] = iSlot
+								, ["Text"] = TTH_TABLE.Creature[iCreatureId]["NAME"]
+								, ["Callback"] = "TTH_ARTI.confirmActive102Englobe"
+							};
+							i = i + 1;
+						end;
 					end;
 					TTH_COMMON.optionRadio(iPlayer, strHero, arrOption);
 				end;
@@ -20149,6 +20872,7 @@ doFile("/scripts/TTH_Setting.lua");
 			TTH_PERK.diplomacy.enumSpecialHero.strWelygg = "Welygg";
 			TTH_PERK.diplomacy.enumSpecialHero.strSylsai = "Sylsai";
 			TTH_PERK.diplomacy.enumSpecialHero.strBerein = "Berein";
+			TTH_PERK.diplomacy.enumSpecialHero.strArthasPlus = "ArthasPlus";
 			TTH_PERK.diplomacy.enumSpecialHero.strRolf = "Rolf";
 			TTH_PERK.diplomacy.init = function(iPlayer, strHero)
 				if TTH_PERK.diplomacy.ds[strHero] == nil then
@@ -20199,7 +20923,11 @@ doFile("/scripts/TTH_Setting.lua");
 			TTH_PERK.diplomacy.checkTimes = function(iPlayer, strHero, strCreatureStack)
 				local arrCreatureSlot = TTH_GLOBAL.getObjectCreatureInfo(strCreatureStack);
 				if 1 == 1
-					and strHero == TTH_PERK.diplomacy.enumSpecialHero.strBerein
+					and (
+						1 ~= 1
+						or strHero == TTH_PERK.diplomacy.enumSpecialHero.strBerein
+						or strHero == TTH_PERK.diplomacy.enumSpecialHero.strArthasPlus
+					)
 					and TTH_TABLE.Creature[arrCreatureSlot[0]["Id"]]["Race"] == TOWN_NECROMANCY
 				then
 		  		TTH_PERK.diplomacy.confirm(iPlayer, strHero, strCreatureStack);
@@ -20233,7 +20961,11 @@ doFile("/scripts/TTH_Setting.lua");
 					iCount = TTH_COMMON.round(2 * iCoef);
 				end;
 				if 1 == 1
-					and strHero == TTH_PERK.diplomacy.enumSpecialHero.strBerein
+					and (
+						1 ~= 1
+						or strHero == TTH_PERK.diplomacy.enumSpecialHero.strBerein
+						or strHero == TTH_PERK.diplomacy.enumSpecialHero.strArthasPlus
+					)
 					and TTH_TABLE.Creature[arrCreatureSlot[0]["Id"]]["Race"] == TOWN_NECROMANCY
 				then
 					iCount = TTH_COMMON.round(2 * iCoef);
@@ -20241,7 +20973,10 @@ doFile("/scripts/TTH_Setting.lua");
 				for iSlot = 0, 6 do
 					if arrCreatureSlot[iSlot]["Id"] > 0 then
 						local iCreatureId = arrCreatureSlot[iSlot]["Id"];
-						if strHero == TTH_PERK.diplomacy.enumSpecialHero.strBerein then
+						if 1 ~= 1
+							or strHero == TTH_PERK.diplomacy.enumSpecialHero.strBerein
+							or strHero == TTH_PERK.diplomacy.enumSpecialHero.strArthasPlus
+						then
 							local objCreature = TTH_TABLE.Creature[iCreatureId];
 							local iTier = objCreature["TIER"];
 							local iRace = objCreature["Race"];
@@ -20285,7 +21020,11 @@ doFile("/scripts/TTH_Setting.lua");
 			TTH_PERK.diplomacy.impl = function(iPlayer, strHero, strCreatureStack)
 				local arrCreatureSlot = TTH_GLOBAL.getObjectCreatureInfo(strCreatureStack);
 				if 1 == 1
-					and strHero == TTH_PERK.diplomacy.enumSpecialHero.strBerein
+					and (
+						1 ~= 1
+						or strHero == TTH_PERK.diplomacy.enumSpecialHero.strBerein
+						or strHero == TTH_PERK.diplomacy.enumSpecialHero.strArthasPlus
+					)
 					and TTH_TABLE.Creature[arrCreatureSlot[0]["Id"]]["Race"] == TOWN_NECROMANCY
 				then
 				else
@@ -20304,7 +21043,11 @@ doFile("/scripts/TTH_Setting.lua");
 					iCount = TTH_COMMON.round(2 * iCoef);
 				end;
 				if 1 == 1
-					and strHero == TTH_PERK.diplomacy.enumSpecialHero.strBerein
+					and (
+						1 ~= 1
+						or strHero == TTH_PERK.diplomacy.enumSpecialHero.strBerein
+						or strHero == TTH_PERK.diplomacy.enumSpecialHero.strArthasPlus
+					)
 					and TTH_TABLE.Creature[arrCreatureSlot[0]["Id"]]["Race"] == TOWN_NECROMANCY
 				then
 					iCount = TTH_COMMON.round(2 * iCoef);
@@ -20317,7 +21060,10 @@ doFile("/scripts/TTH_Setting.lua");
 						end;
 						local iCreatureId = arrCreatureSlot[iSlot]["Id"];
 						RemoveObjectCreatures(strCreatureStack, iCreatureId, iSlotCount);
-						if strHero == TTH_PERK.diplomacy.enumSpecialHero.strBerein then
+						if 1 ~= 1
+							or strHero == TTH_PERK.diplomacy.enumSpecialHero.strBerein
+							or strHero == TTH_PERK.diplomacy.enumSpecialHero.strArthasPlus
+						then
 							local objCreature = TTH_TABLE.Creature[iCreatureId];
 							local iTier = objCreature["TIER"];
 							local iRace = objCreature["Race"];
@@ -20339,14 +21085,18 @@ doFile("/scripts/TTH_Setting.lua");
 					end;
 				end;
 				if 1 == 1
-					and strHero == TTH_PERK.diplomacy.enumSpecialHero.strBerein
+					and (
+						1 ~= 1
+						or strHero == TTH_PERK.diplomacy.enumSpecialHero.strBerein
+						or strHero == TTH_PERK.diplomacy.enumSpecialHero.strArthasPlus
+					)
 					and TTH_TABLE.Creature[arrCreatureSlot[0]["Id"]]["Race"] == TOWN_NECROMANCY
 					and TTH_MANAGE.isMayor(strHero) == TTH_ENUM.Yes
 				then
 					if TTH_PERK.diplomacy.berein.checkTimes(iPlayer, strHero, strCreatureStack) then
 						TTH_PERK.diplomacy.berein.confirm(iPlayer, strHero, strCreatureStack);
 					else
-						local strText = TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Berein"]["Combat"];
+						local strText = TTH_PATH.Perk[HERO_SKILL_DIPLOMACY][strHero]["Combat"];
 						TTH_GLOBAL.sign(strHero, strText);
 						sleep(5);
 						TTH_PERK.diplomacy.berein.combat(iPlayer, strHero, strCreatureStack);
@@ -20358,6 +21108,7 @@ doFile("/scripts/TTH_Setting.lua");
 							strHero == TTH_PERK.diplomacy.enumSpecialHero.strMarkal
 							or strHero == TTH_PERK.diplomacy.enumSpecialHero.strWelygg
 							or strHero == TTH_PERK.diplomacy.enumSpecialHero.strBerein
+							or strHero == TTH_PERK.diplomacy.enumSpecialHero.strArthasPlus
 							or strHero == TTH_PERK.diplomacy.enumSpecialHero.strRolf
 						) then
 						enumMood = MONSTER_MOOD_FRIENDLY;
@@ -20383,7 +21134,7 @@ doFile("/scripts/TTH_Setting.lua");
 				return bCheck;
 			end;
 			TTH_PERK.diplomacy.berein.confirm = function(iPlayer, strHero, strCreatureStack)
-				local strText = TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Berein"]["Confirm"];
+				local strText = TTH_PATH.Perk[HERO_SKILL_DIPLOMACY][strHero]["Confirm"];
 				local strCallbackOk = "TTH_PERK.diplomacy.berein.cancel("..iPlayer..","..TTH_COMMON.psp(strHero)..")";
 				local strCallbackCancel = "TTH_PERK.diplomacy.berein.combat("..iPlayer..","..TTH_COMMON.psp(strHero)..","..TTH_COMMON.psp(strCreatureStack)..")";
 				TTH_GLOBAL.showDialog8Frame(iPlayer, strHero, TTH_ENUM.QuestionBox, strText, strCallbackOk, strCallbackCancel);
@@ -20412,6 +21163,7 @@ doFile("/scripts/TTH_Setting.lua");
 						strHero == "Markal"
 						or strHero == "Welygg"
 						or strHero == "Berein"
+						or strHero == "ArthasPlus"
 						or strHero == "Rolf"
 					) then
 					TTH_PERK.diplomacy.init(iPlayer, strHero);
@@ -21025,13 +21777,13 @@ doFile("/scripts/TTH_Setting.lua");
 			end;
 			function TTH_PERK.enableActive083(iPlayer, strHero, iCreatureId)
 				TTH_VARI.recordPariah[strHero]["Status"] = TTH_ENUM.Yes;
-				local strKey = TTH_GAMEVAR.Skill..strHero..'_'..HERO_SKILL_PARIAH;
+				local strKey = TTH_GAMEVAR.Skill..strHero..'_S'..HERO_SKILL_PARIAH;
 				TTH_COMMON.consoleSetGameVar(strKey, iCreatureId);
 			end;
 			function TTH_PERK.disableActive083(iPlayer, strHero)
 				if TTH_VARI.recordPariah[strHero]["Status"] == TTH_ENUM.Yes then
 					TTH_VARI.recordPariah[strHero]["Status"] = TTH_ENUM.No;
-					local strKey = TTH_GAMEVAR.Skill..strHero..'_'..HERO_SKILL_PARIAH;
+					local strKey = TTH_GAMEVAR.Skill..strHero..'_S'..HERO_SKILL_PARIAH;
 					TTH_COMMON.consoleSetGameVar(strKey, 0);
 				end;
 			end;
@@ -21120,13 +21872,13 @@ doFile("/scripts/TTH_Setting.lua");
 			end;
 			function TTH_PERK.enableActive109(iPlayer, strHero, iCreatureId)
 				TTH_VARI.recordTwilight[strHero]["Status"] = TTH_ENUM.Yes;
-				local strKey = TTH_GAMEVAR.Skill..strHero..'_'..HERO_SKILL_TWILIGHT;
+				local strKey = TTH_GAMEVAR.Skill..strHero..'_S'..HERO_SKILL_TWILIGHT;
 				TTH_COMMON.consoleSetGameVar(strKey, iCreatureId);
 			end;
 			function TTH_PERK.disableActive109(iPlayer, strHero)
 				if TTH_VARI.recordTwilight[strHero]["Status"] == TTH_ENUM.Yes then
 					TTH_VARI.recordTwilight[strHero]["Status"] = TTH_ENUM.No;
-					local strKey = TTH_GAMEVAR.Skill..strHero..'_'..HERO_SKILL_TWILIGHT;
+					local strKey = TTH_GAMEVAR.Skill..strHero..'_S'..HERO_SKILL_TWILIGHT;
 					TTH_COMMON.consoleSetGameVar(strKey, 0);
 				end;
 			end;
@@ -21182,13 +21934,13 @@ doFile("/scripts/TTH_Setting.lua");
 			end;
 			function TTH_PERK.enableActive115(iPlayer, strHero)
 				TTH_VARI.recordForestGuardEmblem[strHero]["Status"] = TTH_ENUM.Yes;
-				local strKey = TTH_GAMEVAR.Skill..strHero..'_'..HERO_SKILL_FOREST_GUARD_EMBLEM;
+				local strKey = TTH_GAMEVAR.Skill..strHero..'_S'..HERO_SKILL_FOREST_GUARD_EMBLEM;
 				TTH_COMMON.consoleSetGameVar(strKey, 1);
 			end;
 			function TTH_PERK.disableActive115(iPlayer, strHero)
 				if TTH_VARI.recordForestGuardEmblem[strHero]["Status"] == TTH_ENUM.Yes then
 					TTH_VARI.recordForestGuardEmblem[strHero]["Status"] = TTH_ENUM.No;
-					local strKey = TTH_GAMEVAR.Skill..strHero..'_'..HERO_SKILL_FOREST_GUARD_EMBLEM;
+					local strKey = TTH_GAMEVAR.Skill..strHero..'_S'..HERO_SKILL_FOREST_GUARD_EMBLEM;
 					TTH_COMMON.consoleSetGameVar(strKey, 0);
 				end;
 			end;
@@ -21318,7 +22070,7 @@ doFile("/scripts/TTH_Setting.lua");
 			function TTH_PERK.implActive097(iPlayer, strHero, iCreatureId)
 				TTH_VARI.recordFireAffinity[strHero] = iCreatureId;
 				local strCreatureName = TTH_TABLE.Creature[iCreatureId]["NAME"];
-    		local strKey = TTH_GAMEVAR.Skill..strHero..'_'..HERO_SKILL_FIRE_AFFINITY;
+    		local strKey = TTH_GAMEVAR.Skill..strHero..'_S'..HERO_SKILL_FIRE_AFFINITY;
     		TTH_COMMON.consoleSetGameVar(strKey, iCreatureId);
   			local strText = {
   				TTH_PATH.Perk[HERO_SKILL_FIRE_AFFINITY]["Success"]
@@ -22725,6 +23477,20 @@ doFile("/scripts/TTH_Setting.lua");
 			local objHero = GetSavedCombatArmyHero(iCombatIndex, 1);
 			print(objHero)
 		end;
+		function TTH_TEST.test5(iPlayer)
+			local strHero = GetPlayerHeroes(iPlayer)[0];
+			AddHeroCreatures(strHero, 901, 1);
+			AddHeroCreatures(strHero, 902, 1);
+			AddHeroCreatures(strHero, 903, 1);
+			AddHeroCreatures(strHero, 904, 1);
+			AddHeroCreatures(strHero, 905, 1);
+			CreateMonster("", 901, 1, 194, 296, 0, MONSTER_MOOD_WILD, MONSTER_COURAGE_ALWAYS_FIGHT, 0);
+			CreateMonster("", 902, 1, 196, 298, 0, MONSTER_MOOD_WILD, MONSTER_COURAGE_ALWAYS_FIGHT, 0);
+			CreateMonster("", 903, 1, 198, 300, 0, MONSTER_MOOD_WILD, MONSTER_COURAGE_ALWAYS_FIGHT, 0);
+			CreateMonster("", 904, 1, 200, 302, 0, MONSTER_MOOD_WILD, MONSTER_COURAGE_ALWAYS_FIGHT, 0);
+			CreateMonster("", 905, 1, 202, 304, 0, MONSTER_MOOD_WILD, MONSTER_COURAGE_ALWAYS_FIGHT, 0);
+			TTH.see();
+		end;
 
 -- 主程
 	TTH_MAIN = {};
@@ -23211,5 +23977,6 @@ doFile("/scripts/TTH_Setting.lua");
 -- 模块加载
 	doFile("/scripts/mod/TTH_MOD_CombatResults4LoseCreature.lua");
 	doFile("/scripts/mod/TTH_MOD_CombatResults4ReviveCreature.lua");
+	doFile("/scripts/mod/TTH_MOD_AzureDragon.lua");
 	doFile("/scripts/support/hanqing-core.lua");
 	doFile("/scripts/support/twx-core.lua");

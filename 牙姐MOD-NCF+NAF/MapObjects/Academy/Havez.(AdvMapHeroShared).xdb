@@ -29,11 +29,11 @@
 	<RazedStatic/>
 	<Icon128/>
 	<InternalName>Havez</InternalName>
-	<Class>HERO_CLASS_GUILDMASTER</Class>
+	<Class>HERO_CLASS_WIZARD</Class>
 	<Specialization>HERO_SPEC_GREMLINS</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_WAR_MACHINES</SkillID>
+		<SkillID>HERO_SKILL_ARTIFICIER</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Academy/041-Havez/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Academy/041-Havez/Description.txt"/>
@@ -55,13 +55,11 @@
 		<Knowledge>2</Knowledge>
 		<skills>
 			<Item>
-				<Mastery>MASTERY_BASIC</Mastery>
-				<SkillID>HERO_SKILL_OFFENCE</SkillID>
+				<Mastery>MASTERY_ADVANCED</Mastery>
+				<SkillID>HERO_SKILL_WAR_MACHINES</SkillID>
 			</Item>
 		</skills>
-		<perkIDs>
-			<Item>HERO_SKILL_FRENZY</Item>
-		</perkIDs>
+		<perkIDs/>
 		<spellIDs>
 			<Item>SPELL_BLESS</Item>
 		</spellIDs>

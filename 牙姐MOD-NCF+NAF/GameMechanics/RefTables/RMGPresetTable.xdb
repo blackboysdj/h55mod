@@ -4157,6 +4157,8 @@
 					<Item href="/MapObjects/Necropolis/Thant.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 					<Item href="/MapObjects/Necropolis/Sandro.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 					<Item href="/MapObjects/Necropolis/Vidomina.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+					<Item href="/MapObjects/Necropolis/Arthas.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+					<Item href="/MapObjects/Necropolis/ArthasPlus.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 				</HeroPool>
 				<Dwellings>
 					<Item href="/MapObjects/Necropolis/Graveyard.(AdvMapDwellingShared).xdb#xpointer(/AdvMapDwellingShared)"/>
@@ -6230,6 +6232,7 @@
 					<Item href="/MapObjects/Stronghold/Hero3.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 					<Item href="/MapObjects/Stronghold/Zouleika.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 					<Item href="/MapObjects/Stronghold/Erika.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
+					<Item href="/MapObjects/Stronghold/Yog.(AdvMapHeroShared).xdb#xpointer(/AdvMapHeroShared)"/>
 				</HeroPool>
 				<Dwellings>
 					<Item href="/MapObjects/Orcs/OrcishDwelling01.(AdvMapDwellingShared).xdb#xpointer(/AdvMapDwellingShared)"/>

@@ -29,11 +29,11 @@
 	<RazedStatic/>
 	<Icon128 href="/UI/H5A1/Icons/Heroes/Portrets128x128/Wulfstan.(Texture).xdb#xpointer(/Texture)"/>
 	<InternalName>Wulfstan</InternalName>
-	<Class>HERO_CLASS_FLAMEKEEPERA</Class>
+	<Class>HERO_CLASS_RUNEMAGE</Class>
 	<Specialization>HERO_SPEC_BORDERGUARD</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
+		<SkillID>HERO_SKILL_RUNELORE</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Fortress/134-Wulfstan/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Fortress/134-Wulfstan/Description.txt"/>

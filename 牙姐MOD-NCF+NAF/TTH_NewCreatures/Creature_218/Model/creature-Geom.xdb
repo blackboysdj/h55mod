@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Geometry>
+	<SrcName href="/Cyclop.mb"/>
+	<uid>7E0E3E65-3543-4A74-BD3C-DA0DD8142135</uid>
+	<RootMesh/>
+	<RootJoint>Global</RootJoint>
+	<Size>
+		<x>5.99435</x>
+		<y>1.85483</y>
+		<z>5.42167</z>
+	</Size>
+	<Center>
+		<x>-0.894979</x>
+		<y>-0.135734</y>
+		<z>2.68717</z>
+	</Center>
+	<BestFitPoint>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+	</BestFitPoint>
+	<Dir>
+		<x>0</x>
+		<y>0</y>
+		<z>0</z>
+		<w>0</w>
+	</Dir>
+	<AIGeometry/>
+	<NumMeshes>1</NumMeshes>
+	<MaterialQuantities>
+		<Item>1</Item>
+	</MaterialQuantities>
+	<MeshNames>
+		<Item>polySurfaceShape1</Item>
+	</MeshNames>
+	<MeshAnimated/>
+	<MeshWindAffected/>
+</Geometry>

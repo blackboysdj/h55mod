@@ -29,11 +29,11 @@
 	<RazedStatic/>
 	<Icon128/>
 	<InternalName>Sanguinius</InternalName>
-	<Class>HERO_CLASS_RETRIBUTION</Class>
+	<Class>HERO_CLASS_KNIGHT</Class>
 	<Specialization>HERO_SPEC_FOOTMEN</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_LEADERSHIP</SkillID>
+		<SkillID>HERO_SKILL_TRAINING</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Heaven/156-Sanguinius/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Heaven/156-Sanguinius/Description.txt"/>

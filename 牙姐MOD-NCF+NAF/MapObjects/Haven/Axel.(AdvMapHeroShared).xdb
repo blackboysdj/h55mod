@@ -29,11 +29,11 @@
 	<RazedStatic/>
 	<Icon128 href="/Textures/Icons/Heroes/Heaven/Heaven_Freyda_128x128.(Texture).xdb#xpointer(/Texture)"/>
 	<InternalName>Axel</InternalName>
-	<Class>HERO_CLASS_PALADIN</Class>
+	<Class>HERO_CLASS_KNIGHT</Class>
 	<Specialization>HERO_SPEC_VESSEL_OF_ELRATH</Specialization>
 	<PrimarySkill>
-		<Mastery>MASTERY_ADVANCED</Mastery>
-		<SkillID>HERO_SKILL_LIGHT_MAGIC</SkillID>
+		<Mastery>MASTERY_BASIC</Mastery>
+		<SkillID>HERO_SKILL_TRAINING</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Heaven/014-Axel/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Heaven/014-Axel/Description.txt"/>
@@ -53,7 +53,12 @@
 		<Defence>2</Defence>
 		<Spellpower>1</Spellpower>
 		<Knowledge>2</Knowledge>
-		<skills/>
+		<skills>
+			<Item>
+				<Mastery>MASTERY_BASIC</Mastery>
+				<SkillID>HERO_SKILL_LIGHT_MAGIC</SkillID>
+			</Item>
+		</skills>
 		<perkIDs>
 			<Item>HERO_SKILL_MASTER_OF_ABJURATION</Item>
 		</perkIDs>

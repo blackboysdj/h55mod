@@ -75,6 +75,11 @@
         , [51] = HERO_SKILL_FAST_AND_FURIOUS
         , [52] = HERO_SKILL_ABSOLUTE_CHARGE
         , [53] = HERO_SKILL_BEHIND_ENEMY
+        , [54] = HERO_SKILL_DARK_MAGIC
+        , [55] = "S83" -- HERO_SKILL_PARIAH
+        , [56] = "S109" -- HERO_SKILL_TWILIGHT
+        , [57] = "S115" -- HERO_SKILL_FOREST_GUARD_EMBLEM
+        , [58] = "S97" -- HERO_SKILL_FIRE_AFFINITY
       };
 
     -- 宝物
@@ -106,6 +111,8 @@
         , [24] = ARTIFACT_RING_OF_HASTE
         , [25] = ARTIFACT_HORN_OF_CHARGE
         , [26] = ARTIFACT_BOOTS_OF_SWIFTNESS
+        , [27] = ARTIFACT_EARTHSLIDERS
+        , [28] = ARTIFACT_ORB_EARTH
       };
 
     -- 组合宝物
@@ -579,13 +586,13 @@
       , 'Efion', 'Grok', 'Malustar', 'Nymus', 'Oddrema', 'Sovereign', 'Agrael', 'Jeddite'
       , 'Ash', 'Biara', 'Calid2', 'Sheltem', 'Zydar'
 
-      , 'LordHaart', 'Berein', 'Gles', 'Nikolay', 'Straker', 'Tamika', 'Xerxon', 'Karissa'
+      , 'LordHaart', 'Berein', 'Gles', 'Nikolay', 'Straker', 'Tamika', 'Xerxon', 'Karissa', 'Arthas', 'ArthasPlus'
       , 'Aislinn', 'Effig', 'Giovanni', 'OrnellaNecro', 'Aberrar', 'Muscip'
       , 'Arantir', 'Nemor', 'Nimbus', 'Anastasya', 'Mortarion', 'Pelt', 'Sandro', 'Thant', 'Adelaide', 'Vidomina'
 
       , 'Hero1', 'Hero2', 'Hero3', 'Hero4', 'Hero6', 'Hero8', 'Hero9'
       , 'Gottai', 'Crag', 'KujinMP', 'Hero7', 'Azar', 'Kraal', 'Kunyak'
-      , 'Matewa', 'Quroq', 'Shiva', 'Mokka', 'Erika', 'Zouleika'
+      , 'Matewa', 'Quroq', 'Shiva', 'Mokka', 'Erika', 'Zouleika', 'Yog'
     };
     TTHCS_TABLE.JusticarTargetCreature = {
         CREATURE_FAMILIAR, CREATURE_IMP, CREATURE_QUASIT
@@ -613,7 +620,11 @@
         , CREATURE_WYVERN, CREATURE_WYVERN_POISONOUS, CREATURE_WYVERN_PAOKAI
         , CREATURE_CYCLOP, CREATURE_CYCLOP_UNTAMED, CREATURE_CYCLOP_BLOODEYED
         , CREATURE_WOLF
-    };
+
+        , CREATURE_Yog_Maggrash_0, CREATURE_Yog_Maggrash_1_1, CREATURE_Yog_Maggrash_1_2, CREATURE_Yog_Maggrash_1_3, CREATURE_Yog_Maggrash_1_4
+        , CREATURE_Yog_Maggrash_1_5, CREATURE_Yog_Maggrash_1_6, CREATURE_Yog_Maggrash_1_7, CREATURE_Yog_Maggrash_2_1, CREATURE_Yog_Maggrash_2_2
+        , CREATURE_Yog_Maggrash_2_3, CREATURE_Yog_Maggrash_2_4, CREATURE_Yog_Maggrash_2_5, CREATURE_Yog_Maggrash_2_6, CREATURE_Yog_Maggrash_2_7
+      };
 
     -- 恶灵诅咒关联魔法
       TTHCS_TABLE.ReaverCurseSpell = {
@@ -3327,29 +3338,30 @@
       end;
 
     -- 获取随机生物
-      TTHCS_GLOBAL.getRandomCreature = function(iSide)
+      TTHCS_GLOBAL.getRandomCreature = function(iSide, arrCreature)
         local arrRandomCreature = {};
-        local arrCreature = GetCreatures(iSide);
-        local iIndexRandomCreature = TTHCS_COMMON.getRandom(length(arrCreature));
-        local sidRandomCreature = arrCreature[iIndexRandomCreature];
-        push(arrRandomCreature, sidRandomCreature);
-        local sidHero = GetHero(iSide);
-        if 1 == 1
-          and sidHero ~= nil
-          and GetHeroName(sidHero) == TCS_FUNC.Talent.Nadaur.strHero
-          and TCS_VARI.Info.HeroUpgradeMastery[GetHeroName(sidHero)] == 1
-        then
-          local objCreatureMainBladeJuggler = TTHCS_GLOBAL.getCreatureMain(iSide, CREATURE_BLADE_JUGGLER);
-          if objCreatureMainBladeJuggler ~= nil then
-            push(arrRandomCreature, objCreatureMainBladeJuggler["UnitName"]);
-          end;
-          local objCreatureMainWoodElf = TTHCS_GLOBAL.getCreatureMain(iSide, CREATURE_WOOD_ELF);
-          if objCreatureMainWoodElf ~= nil then
-            push(arrRandomCreature, objCreatureMainWoodElf["UnitName"]);
-          end;
-          local objCreatureMainDruid = TTHCS_GLOBAL.getCreatureMain(iSide, CREATURE_DRUID);
-          if objCreatureMainDruid ~= nil then
-            push(arrRandomCreature, objCreatureMainDruid["UnitName"]);
+        if length(arrCreature) > 0 then
+          local iIndexRandomCreature = TTHCS_COMMON.getRandom(length(arrCreature));
+          local sidRandomCreature = arrCreature[iIndexRandomCreature];
+          push(arrRandomCreature, sidRandomCreature);
+          local sidHero = GetHero(iSide);
+          if 1 == 1
+            and sidHero ~= nil
+            and GetHeroName(sidHero) == TCS_FUNC.Talent.Nadaur.strHero
+            and TCS_VARI.Info.HeroUpgradeMastery[GetHeroName(sidHero)] == 1
+          then
+            local objCreatureMainBladeJuggler = TTHCS_GLOBAL.getCreatureMain(iSide, CREATURE_BLADE_JUGGLER);
+            if objCreatureMainBladeJuggler ~= nil then
+              push(arrRandomCreature, objCreatureMainBladeJuggler["UnitName"]);
+            end;
+            local objCreatureMainWoodElf = TTHCS_GLOBAL.getCreatureMain(iSide, CREATURE_WOOD_ELF);
+            if objCreatureMainWoodElf ~= nil then
+              push(arrRandomCreature, objCreatureMainWoodElf["UnitName"]);
+            end;
+            local objCreatureMainDruid = TTHCS_GLOBAL.getCreatureMain(iSide, CREATURE_DRUID);
+            if objCreatureMainDruid ~= nil then
+              push(arrRandomCreature, objCreatureMainDruid["UnitName"]);
+            end;
           end;
         end;
         return arrRandomCreature;
@@ -3444,6 +3456,9 @@
       -- Eruina 065 埃莉娜
         TTHCS_PATH["Talent"]["Eruina"] = {};
         TTHCS_PATH["Talent"]["Eruina"]["Effect"] = "/Text/TTH/Heroes/Specializations/Dungeon/065-Eruina/Combat/Effect.txt";
+      -- Dalom 066 莱托兹
+        TTHCS_PATH["Talent"]["Dalom"] = {};
+        TTHCS_PATH["Talent"]["Dalom"]["Effect"] = "/Text/TTH/Heroes/Specializations/Dungeon/066-Dalom/Combat/Effect.txt";
       -- Kelodin 067 莎蒂娅
         TTHCS_PATH["Talent"]["Kelodin"] = {};
         TTHCS_PATH["Talent"]["Kelodin"]["Effect"] = "/Text/TTH/Heroes/Specializations/Dungeon/067-Kelodin/Combat/Effect.txt";
@@ -3480,6 +3495,15 @@
       -- Xerxon 083 塞尔克松
         TTHCS_PATH["Talent"]["Xerxon"] = {};
         TTHCS_PATH["Talent"]["Xerxon"]["Effect"] = "/Text/TTH/Heroes/Specializations/Necromancy/083-Xerxon/Combat/Effect.txt";
+      -- Arthas 163 阿尔萨斯
+        TTHCS_PATH["Talent"]["Arthas"] = {};
+        TTHCS_PATH["Talent"]["Arthas"]["Effect"] = "/Text/TTH/Heroes/Specializations/Necromancy/163-Arthas/Combat/Effect.txt";
+      -- ArthasPlus 164 阿尔萨斯
+        TTHCS_PATH["Talent"]["ArthasPlus"] = {};
+        TTHCS_PATH["Talent"]["ArthasPlus"]["Effect"] = "/Text/TTH/Heroes/Specializations/Necromancy/164-ArthasPlus/Combat/Effect.txt";
+      -- ArthasPlus 164 阿尔萨斯加强版
+        TTHCS_PATH["Talent"]["ArthasPlus"] = {};
+        TTHCS_PATH["Talent"]["ArthasPlus"]["Effect"] = "/Text/TTH/Heroes/Specializations/Necromancy/164-ArthasPlus/Combat/Effect.txt";
       -- Aislinn 085 艾斯瑞
         TTHCS_PATH["Talent"]["Aislinn"] = {};
         TTHCS_PATH["Talent"]["Aislinn"]["Effect"] = "/Text/TTH/Heroes/Specializations/Necromancy/085-Aislinn/Combat/Effect.txt";
@@ -3644,6 +3668,16 @@
       -- Mokka 154 摩卡
         TTHCS_PATH["Talent"]["Mokka"] = {};
         TTHCS_PATH["Talent"]["Mokka"]["Effect"] = "/Text/TTH/Heroes/Specializations/Stronghold/154-Mokka/Combat/Effect.txt";
+      -- Yog 165 约格
+        TTHCS_PATH["Talent"]["Yog"] = {};
+        TTHCS_PATH["Talent"]["Yog"]["EffectMaggrashLeave"] = "/Text/TTH/Heroes/Specializations/Stronghold/165-Yog/Combat/EffectMaggrashLeave.txt";
+        TTHCS_PATH["Talent"]["Yog"]["EffectMaggrashDefend"] = "/Text/TTH/Heroes/Specializations/Stronghold/165-Yog/Combat/EffectMaggrashDefend.txt";
+        TTHCS_PATH["Talent"]["Yog"]["EffectMaggrashOrder"] = {};
+        TTHCS_PATH["Talent"]["Yog"]["EffectMaggrashOrder"][0] = "/Text/TTH/Heroes/Specializations/Stronghold/165-Yog/Combat/EffectMaggrashOrder0.txt";
+        TTHCS_PATH["Talent"]["Yog"]["EffectMaggrashOrder"][1] = "/Text/TTH/Heroes/Specializations/Stronghold/165-Yog/Combat/EffectMaggrashOrder1.txt";
+        TTHCS_PATH["Talent"]["Yog"]["EffectMaggrashResummon"] = "/Text/TTH/Heroes/Specializations/Stronghold/165-Yog/Combat/EffectMaggrashResummon.txt";
+        TTHCS_PATH["Talent"]["Yog"]["EffectMaggrashRecovery"] = "/Text/TTH/Heroes/Specializations/Stronghold/165-Yog/Combat/EffectMaggrashRecovery.txt";
+        TTHCS_PATH["Talent"]["Yog"]["EffectCoordinate"] = "/Text/TTH/Heroes/Specializations/Stronghold/165-Yog/Combat/EffectCoordinate.txt";
 
 
     TTHCS_PATH["Perk"] = {};

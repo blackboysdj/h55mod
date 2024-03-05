@@ -29,11 +29,11 @@
 	<RazedStatic/>
 	<Icon128/>
 	<InternalName>Astral</InternalName>
-	<Class>HERO_CLASS_ELEMENTALIST</Class>
+	<Class>HERO_CLASS_WIZARD</Class>
 	<Specialization>HERO_SPEC_INEXHAUSTIBLE</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_DESTRUCTIVE_MAGIC</SkillID>
+		<SkillID>HERO_SKILL_ARTIFICIER</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Academy/055-Astral/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Academy/055-Astral/Description.txt"/>

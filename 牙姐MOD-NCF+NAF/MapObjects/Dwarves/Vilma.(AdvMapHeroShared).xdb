@@ -29,11 +29,11 @@
 	<RazedStatic/>
 	<Icon128/>
 	<InternalName>Vilma</InternalName>
-	<Class>HERO_CLASS_ENGINEER</Class>
+	<Class>HERO_CLASS_RUNEMAGE</Class>
 	<Specialization>HERO_SPEC_EVASIVE</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_WAR_MACHINES</SkillID>
+		<SkillID>HERO_SKILL_RUNELORE</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Fortress/121-Vilma/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Fortress/121-Vilma/Description.txt"/>

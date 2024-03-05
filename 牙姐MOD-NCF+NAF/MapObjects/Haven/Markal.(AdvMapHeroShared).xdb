@@ -31,11 +31,11 @@
 	<RazedStatic/>
 	<Icon128/>
 	<InternalName>Markal</InternalName>
-	<Class>HERO_CLASS_HERETIC</Class>
+	<Class>HERO_CLASS_KNIGHT</Class>
 	<Specialization>HERO_SPEC_COURTIER</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_DARK_MAGIC</SkillID>
+		<SkillID>HERO_SKILL_TRAINING</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Heaven/021-Markal/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Heaven/021-Markal/Description.txt"/>

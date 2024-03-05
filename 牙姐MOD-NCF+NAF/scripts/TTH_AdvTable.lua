@@ -251,6 +251,8 @@
       TTH_ENUM.FuncResetWeekly = 6;
       TTH_ENUM.FuncDealDaily = 7;
       TTH_ENUM.FuncResetDaily = 8;
+      TTH_ENUM.FuncDealMastery = 9;
+      TTH_ENUM.FuncDealShantiri = 10;
 
       TTH_ENUM.FuncAlways = 1;
       TTH_ENUM.FuncNotAtGate = 2;
@@ -1056,14 +1058,44 @@
         TTH_PATH.Talent["Anastasya"]["OptionCastSpider"] = TTH_PATH.Talent["Anastasya"]["Pre"].."OptionCastSpider.txt";
         TTH_PATH.Talent["Anastasya"]["NoSuitableCreature"] = TTH_PATH.Talent["Anastasya"]["Pre"].."NoSuitableCreature.txt";
         TTH_PATH.Talent["Anastasya"]["Success"] = TTH_PATH.Talent["Anastasya"]["Pre"].."Success.txt";
-      -- Mortarion 162 莫塔里安
-        TTH_PATH.Talent["Mortarion"] = {};
-        TTH_PATH.Talent["Mortarion"]["Pre"] = TTH_PATH.Talent["Pre"].."162-Mortarion/";
-        TTH_PATH.Talent["Mortarion"]["Text"] = TTH_PATH.Talent["Mortarion"]["Pre"].."Text.txt";
-        TTH_PATH.Talent["Mortarion"]["OptionCastHuman"] = TTH_PATH.Talent["Mortarion"]["Pre"].."OptionCastHuman.txt";
-        TTH_PATH.Talent["Mortarion"]["OptionCastSpider"] = TTH_PATH.Talent["Mortarion"]["Pre"].."OptionCastSpider.txt";
-        TTH_PATH.Talent["Mortarion"]["NoSuitableCreature"] = TTH_PATH.Talent["Mortarion"]["Pre"].."NoSuitableCreature.txt";
-        TTH_PATH.Talent["Mortarion"]["Success"] = TTH_PATH.Talent["Mortarion"]["Pre"].."Success.txt";
+      -- Arthas 163 阿尔萨斯
+        TTH_PATH.Talent["Arthas"] = {};
+        TTH_PATH.Talent["Arthas"]["Pre"] = TTH_PATH.Talent["Pre"].."163-Arthas/";
+        TTH_PATH.Talent["Arthas"]["Text"] = TTH_PATH.Talent["Arthas"]["Pre"].."Text.txt";
+        TTH_PATH.Talent["Arthas"]["Empty"] = TTH_PATH.Talent["Arthas"]["Pre"].."Empty.txt";
+        TTH_PATH.Talent["Arthas"]["SummonTemplate"] = TTH_PATH.Talent["Arthas"]["Pre"].."SummonTemplate.txt";
+        TTH_PATH.Talent["Arthas"]["Summon"] = TTH_PATH.Talent["Arthas"]["Pre"].."Summon.txt";
+        TTH_PATH.Talent["Arthas"]["EmptyImprisonCreature"] = TTH_PATH.Talent["Arthas"]["Pre"].."EmptyImprisonCreature.txt";
+        TTH_PATH.Talent["Arthas"]["SuccessSummon"] = TTH_PATH.Talent["Arthas"]["Pre"].."SuccessSummon.txt";
+        TTH_PATH.Talent["Arthas"]["Imprison"] = TTH_PATH.Talent["Arthas"]["Pre"].."Imprison.txt";
+        TTH_PATH.Talent["Arthas"]["Lock"] = TTH_PATH.Talent["Arthas"]["Pre"].."Lock.txt";
+        TTH_PATH.Talent["Arthas"]["UnImprison"] = TTH_PATH.Talent["Arthas"]["Pre"].."UnImprison.txt";
+        TTH_PATH.Talent["Arthas"]["SlotTemplate"] = TTH_PATH.Talent["Arthas"]["Pre"].."SlotTemplate.txt";
+        TTH_PATH.Talent["Arthas"]["SignLock"] = TTH_PATH.Talent["Arthas"]["Pre"].."SignLock.txt";
+        TTH_PATH.Talent["Arthas"]["ReplaceImprison"] = TTH_PATH.Talent["Arthas"]["Pre"].."ReplaceImprison.txt";
+        TTH_PATH.Talent["Arthas"]["ConfirmImprison"] = TTH_PATH.Talent["Arthas"]["Pre"].."ConfirmImprison.txt";
+        TTH_PATH.Talent["Arthas"]["ChooseStandby"] = TTH_PATH.Talent["Arthas"]["Pre"].."ChooseStandby.txt";
+        TTH_PATH.Talent["Arthas"]["EmptyStandbyCreature"] = TTH_PATH.Talent["Arthas"]["Pre"].."EmptyStandbyCreature.txt";
+        TTH_PATH.Talent["Arthas"]["SuccessImprison"] = TTH_PATH.Talent["Arthas"]["Pre"].."SuccessImprison.txt";
+      -- ArthasPlus 164 阿尔萨斯
+        TTH_PATH.Talent["ArthasPlus"] = {};
+        TTH_PATH.Talent["ArthasPlus"]["Pre"] = TTH_PATH.Talent["Pre"].."164-ArthasPlus/";
+        TTH_PATH.Talent["ArthasPlus"]["Text"] = TTH_PATH.Talent["ArthasPlus"]["Pre"].."Text.txt";
+        TTH_PATH.Talent["ArthasPlus"]["Empty"] = TTH_PATH.Talent["ArthasPlus"]["Pre"].."Empty.txt";
+        TTH_PATH.Talent["ArthasPlus"]["SummonTemplate"] = TTH_PATH.Talent["ArthasPlus"]["Pre"].."SummonTemplate.txt";
+        TTH_PATH.Talent["ArthasPlus"]["Summon"] = TTH_PATH.Talent["ArthasPlus"]["Pre"].."Summon.txt";
+        TTH_PATH.Talent["ArthasPlus"]["EmptyImprisonCreature"] = TTH_PATH.Talent["ArthasPlus"]["Pre"].."EmptyImprisonCreature.txt";
+        TTH_PATH.Talent["ArthasPlus"]["SuccessSummon"] = TTH_PATH.Talent["ArthasPlus"]["Pre"].."SuccessSummon.txt";
+        TTH_PATH.Talent["ArthasPlus"]["Imprison"] = TTH_PATH.Talent["ArthasPlus"]["Pre"].."Imprison.txt";
+        TTH_PATH.Talent["ArthasPlus"]["Lock"] = TTH_PATH.Talent["ArthasPlus"]["Pre"].."Lock.txt";
+        TTH_PATH.Talent["ArthasPlus"]["UnImprison"] = TTH_PATH.Talent["ArthasPlus"]["Pre"].."UnImprison.txt";
+        TTH_PATH.Talent["ArthasPlus"]["SlotTemplate"] = TTH_PATH.Talent["ArthasPlus"]["Pre"].."SlotTemplate.txt";
+        TTH_PATH.Talent["ArthasPlus"]["SignLock"] = TTH_PATH.Talent["ArthasPlus"]["Pre"].."SignLock.txt";
+        TTH_PATH.Talent["ArthasPlus"]["ReplaceImprison"] = TTH_PATH.Talent["ArthasPlus"]["Pre"].."ReplaceImprison.txt";
+        TTH_PATH.Talent["ArthasPlus"]["ConfirmImprison"] = TTH_PATH.Talent["ArthasPlus"]["Pre"].."ConfirmImprison.txt";
+        TTH_PATH.Talent["ArthasPlus"]["ChooseStandby"] = TTH_PATH.Talent["ArthasPlus"]["Pre"].."ChooseStandby.txt";
+        TTH_PATH.Talent["ArthasPlus"]["EmptyStandbyCreature"] = TTH_PATH.Talent["ArthasPlus"]["Pre"].."EmptyStandbyCreature.txt";
+        TTH_PATH.Talent["ArthasPlus"]["SuccessImprison"] = TTH_PATH.Talent["ArthasPlus"]["Pre"].."SuccessImprison.txt";
       -- Marder 103 马巴斯
         TTH_PATH.Talent["Marder"] = {};
         TTH_PATH.Talent["Marder"]["Pre"] = TTH_PATH.Talent["Pre"].."103-Marder/";
@@ -1173,6 +1205,20 @@
         TTH_PATH.Talent["DavianThule"]["OptionCastShot"] = TTH_PATH.Talent["DavianThule"]["Pre"].."OptionCastShot.txt";
         TTH_PATH.Talent["DavianThule"]["NoSuitableCreature"] = TTH_PATH.Talent["DavianThule"]["Pre"].."NoSuitableCreature.txt";
         TTH_PATH.Talent["DavianThule"]["Success"] = TTH_PATH.Talent["DavianThule"]["Pre"].."Success.txt";
+      -- Yog 165 约格
+        TTH_PATH.Talent["Yog"] = {};
+        TTH_PATH.Talent["Yog"]["Pre"] = TTH_PATH.Talent["Pre"].."165-Yog/";
+        TTH_PATH.Talent["Yog"]["Text"] = TTH_PATH.Talent["Yog"]["Pre"].."Text.txt";
+        TTH_PATH.Talent["Yog"]["StrongerMaggrash"] = TTH_PATH.Talent["Yog"]["Pre"].."StrongerMaggrash.txt";
+        TTH_PATH.Talent["Yog"]["CallMaggrash"] = TTH_PATH.Talent["Yog"]["Pre"].."CallMaggrash.txt";
+        TTH_PATH.Talent["Yog"]["MaggrashTired"] = TTH_PATH.Talent["Yog"]["Pre"].."MaggrashTired.txt";
+        TTH_PATH.Talent["Yog"]["CallMaggrashDaily"] = TTH_PATH.Talent["Yog"]["Pre"].."CallMaggrashDaily.txt";
+        TTH_PATH.Talent["Yog"]["HasLeaderMaggrash"] = TTH_PATH.Talent["Yog"]["Pre"].."HasLeadMaggrash.txt";
+        TTH_PATH.Talent["Yog"]["SuccessCallMaggrash"] = TTH_PATH.Talent["Yog"]["Pre"].."SuccessCallMaggrash.txt";
+        TTH_PATH.Talent["Yog"]["SwitchAttackOrder"] = TTH_PATH.Talent["Yog"]["Pre"].."SwitchAttackOrder.txt";
+        TTH_PATH.Talent["Yog"]["SuccessSwitchAttackOrder"] = TTH_PATH.Talent["Yog"]["Pre"].."SuccessSwitchAttackOrder.txt";
+        TTH_PATH.Talent["Yog"]["SwitchDefenseOrder"] = TTH_PATH.Talent["Yog"]["Pre"].."SwitchDefenseOrder.txt";
+        TTH_PATH.Talent["Yog"]["SuccessSwitchDefenseOrder"] = TTH_PATH.Talent["Yog"]["Pre"].."SuccessSwitchDefenseOrder.txt";
 
     TTH_PATH.Artifact = {};
     TTH_PATH.Artifact["Pre"] = TTH_PATH.FuncPre.."Artifact/";
@@ -1385,6 +1431,10 @@
         TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Berein"]["Pre"] = TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Pre"] .."Berein/";
         TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Berein"]["Combat"] = TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Berein"]["Pre"].."Combat.txt";
         TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Berein"]["Confirm"] = TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Berein"]["Pre"].."Confirm.txt";
+        TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["ArthasPlus"] = {};
+        TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["ArthasPlus"]["Pre"] = TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["Pre"] .."ArthasPlus/";
+        TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["ArthasPlus"]["Combat"] = TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["ArthasPlus"]["Pre"].."Combat.txt";
+        TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["ArthasPlus"]["Confirm"] = TTH_PATH.Perk[HERO_SKILL_DIPLOMACY]["ArthasPlus"]["Pre"].."Confirm.txt";
       -- HERO_SKILL_FORTUNATE_ADVENTURER 033 资源富饶
         TTH_PATH.Perk[HERO_SKILL_FORTUNATE_ADVENTURER] = {};
         TTH_PATH.Perk[HERO_SKILL_FORTUNATE_ADVENTURER]["Pre"] = TTH_PATH.Perk["Pre"] .."033/";
@@ -1881,9 +1931,27 @@
               , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.DavianThule.func.active"
               , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.DavianThule.func.active"
             }
+            , ["Arthas"] = {
+              ["Text"] = TTH_PATH.Talent["Arthas"]["Text"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.Arthas.func.active"
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.Arthas.func.active"
+            }
+            , ["ArthasPlus"] = {
+              ["Text"] = TTH_PATH.Talent["ArthasPlus"]["Text"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.ArthasPlus.func.active"
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.ArthasPlus.func.active"
+            }
+            , ["Yog"] = {
+              ["Text"] = TTH_PATH.Talent["Yog"]["Text"]
+              , [TTH_ENUM.FuncAtGate] = "TTH_TALENT.Yog.func.active"
+              , [TTH_ENUM.FuncNotAtGate] = "TTH_TALENT.Yog.func.active"
+            }
         }
         , [TTH_ENUM.FuncLevelUp] = {
           -- 其他
+            ["Yog"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.Yog.func.levelUp"
+            }
         }
         , [TTH_ENUM.FuncCombatResult] = {
           -- 转化
@@ -1938,6 +2006,12 @@
             }
             , ["Nikolay"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.combatResultNikolay"
+            }
+            , ["Arthas"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.Arthas.func.combatResult"
+            }
+            , ["ArthasPlus"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.ArthasPlus.func.combatResult"
             }
         }
         , [TTH_ENUM.FuncDealWeekly] = {
@@ -2046,6 +2120,9 @@
             , ["Quroq"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.dealDailyQuroq"
             }
+            , ["Yog"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.Yog.func.dealDaily"
+            }
         }
         , [TTH_ENUM.FuncResetDaily] = {
           -- 转化
@@ -2121,6 +2198,21 @@
             }
             , ["Rolf"] = {
               [TTH_ENUM.FuncAlways] = "TTH_TALENT.resetDailyRolf"
+            }
+            , ["Yog"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.Yog.func.resetDaily"
+            }
+        }
+        , [TTH_ENUM.FuncDealMastery] = {
+          -- 其他
+            ["Yog"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.Yog.func.stronger"
+            }
+        }
+        , [TTH_ENUM.FuncDealShantiri] = {
+          -- 其他
+            ["Yog"] = {
+              [TTH_ENUM.FuncAlways] = "TTH_TALENT.Yog.func.stronger"
             }
         }
       };
@@ -2261,6 +2353,8 @@
         }
         , [TTH_ENUM.FuncResetDaily] = {
         }
+        , [TTH_ENUM.FuncDealMastery] = {}
+        , [TTH_ENUM.FuncDealShantiri] = {}
       };
 
       TTH_TABLE.FuncPerk = {
@@ -2464,6 +2558,8 @@
             [TTH_ENUM.FuncAlways] = "TTH_PERK.diplomacy.resetDaily"
           }
         }
+        , [TTH_ENUM.FuncDealMastery] = {}
+        , [TTH_ENUM.FuncDealShantiri] = {}
       };
 
       TTH_TABLE.FuncBuilding = {
@@ -10772,7 +10868,6 @@
         , "Linaas"
         , "Sufi"
         , "Timerkhan"
-        , "Dalom"
         , "Raelag"
         , "Raelag_10WAI"
         , "Ranleth"
@@ -10792,7 +10887,6 @@
         , "Linaas"
         , "Sufi"
         , "Timerkhan"
-        , "Dalom"
         , "Raelag"
         , "Raelag_10WAI"
         , "Ranleth"
@@ -10823,6 +10917,7 @@
         , "Hero3"
         , "KujinMP"
         , "Kunyak"
+        , "Yog"
       };
       TTH_TABLE.StrongholdAbsolute3 = {
         "Kraal"

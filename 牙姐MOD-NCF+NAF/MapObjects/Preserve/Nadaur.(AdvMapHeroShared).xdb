@@ -29,11 +29,11 @@
 	<RazedStatic/>
 	<Icon128/>
 	<InternalName>Nadaur</InternalName>
-	<Class>HERO_CLASS_WARDEN</Class>
+	<Class>HERO_CLASS_RANGER</Class>
 	<Specialization>HERO_SPEC_ELVEN_FURY</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_DEFENCE</SkillID>
+		<SkillID>HERO_SKILL_AVENGER</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Preserve/024-Nadaur/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Preserve/024-Nadaur/Description.txt"/>

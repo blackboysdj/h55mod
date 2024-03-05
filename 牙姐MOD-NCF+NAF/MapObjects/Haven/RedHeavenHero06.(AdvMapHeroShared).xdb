@@ -29,11 +29,11 @@
 	<RazedStatic/>
 	<Icon128 href="/UI/H5A2/Icons/Heroes/Portrets128x128/RedHeaven_Gabrielle.(Texture).xdb#xpointer(/Texture)"/>
 	<InternalName>RedHeavenHero06</InternalName>
-	<Class>HERO_CLASS_PALADIN</Class>
+	<Class>HERO_CLASS_KNIGHT</Class>
 	<Specialization>HERO_SPEC_SUZERAIN</Specialization>
 	<PrimarySkill>
 		<Mastery>MASTERY_BASIC</Mastery>
-		<SkillID>HERO_SKILL_LIGHT_MAGIC</SkillID>
+		<SkillID>HERO_SKILL_TRAINING</SkillID>
 	</PrimarySkill>
 	<SpecializationNameFileRef href="/Text/TTH/Heroes/Specializations/Heaven/017-RedHeavenHero06/Text.txt"/>
 	<SpecializationDescFileRef href="/Text/TTH/Heroes/Specializations/Heaven/017-RedHeavenHero06/Description.txt"/>

@@ -265,6 +265,12 @@ end;
 function TTH_TRIGGER.heroLevelUpKarissa()
 	TTH_TRIGGER.heroLevelUp("Karissa");
 end;
+function TTH_TRIGGER.heroLevelUpArthas()
+	TTH_TRIGGER.heroLevelUp("Arthas");
+end;
+function TTH_TRIGGER.heroLevelUpArthasPlus()
+	TTH_TRIGGER.heroLevelUp("ArthasPlus");
+end;
 function TTH_TRIGGER.heroLevelUpAislinn()
 	TTH_TRIGGER.heroLevelUp("Aislinn");
 end;
@@ -486,4 +492,7 @@ function TTH_TRIGGER.heroLevelUpErika()
 end;
 function TTH_TRIGGER.heroLevelUpMokka()
 	TTH_TRIGGER.heroLevelUp("Mokka");
+end;
+function TTH_TRIGGER.heroLevelUpYog()
+	TTH_TRIGGER.heroLevelUp("Yog");
 end;

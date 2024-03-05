@@ -1549,8 +1549,8 @@
 					<Item href="/Text/TTH/Skills/Training/021-Navigation/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
-				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
-				<HeroClass>HERO_CLASS_NONE</HeroClass>
+				<SkillType>SKILLTYPE_UINQUE_PERK</SkillType>
+				<HeroClass>HERO_CLASS_KNIGHT</HeroClass>
 				<spellBuffs>
 					<Item>SPELL_DEMON_RAGE_LEVEL_1</Item>
 					<Item>SPELL_DEMON_RAGE_LEVEL_1</Item>
@@ -1559,7 +1559,7 @@
 				<BasicSkillID>HERO_SKILL_TRAINING</BasicSkillID>
 				<SkillPrerequisites>
 					<Item>
-						<Class>HERO_CLASS_RETRIBUTION</Class>
+						<Class>HERO_CLASS_KNIGHT</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_DEMONIC_STRIKE</Item>
 							<Item>HERO_SKILL_ENCOURAGE</Item>
@@ -4170,8 +4170,8 @@
 					<Item href="/Text/TTH/Skills/Training/056-Prayer/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
-				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
-				<HeroClass>HERO_CLASS_NONE</HeroClass>
+				<SkillType>SKILLTYPE_UINQUE_PERK</SkillType>
+				<HeroClass>HERO_CLASS_KNIGHT</HeroClass>
 				<spellBuffs/>
 				<BasicSkillID>HERO_SKILL_TRAINING</BasicSkillID>
 				<SkillPrerequisites>
@@ -5143,11 +5143,18 @@
 					<Item href="/Text/TTH/Skills/Invocation/070-EmpoweredSpells/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
-				<SkillType>SKILLTYPE_STANDART_PERK</SkillType>
+				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
 				<HeroClass>HERO_CLASS_NONE</HeroClass>
 				<spellBuffs/>
 				<BasicSkillID>HERO_SKILL_INVOCATION</BasicSkillID>
-				<SkillPrerequisites/>
+				<SkillPrerequisites>
+					<Item>
+						<Class>HERO_CLASS_WARLOCK</Class>
+						<dependenciesIDs>
+							<Item>HERO_SKILL_ELEMENTAL_VISION</Item>
+						</dependenciesIDs>
+					</Item>
+				</SkillPrerequisites>
 				<AIRacesValues>
 					<Haven>
 						<CommanderValue>4000</CommanderValue>
@@ -5275,18 +5282,11 @@
 					<Item href="/Text/TTH/Skills/Invocation/072-ElementalVision/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
-				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
+				<SkillType>SKILLTYPE_STANDART_PERK</SkillType>
 				<HeroClass>HERO_CLASS_NONE</HeroClass>
 				<spellBuffs/>
 				<BasicSkillID>HERO_SKILL_INVOCATION</BasicSkillID>
-				<SkillPrerequisites>
-					<Item>
-						<Class>HERO_CLASS_WARLOCK</Class>
-						<dependenciesIDs>
-							<Item>HERO_SKILL_EMPOWERED_SPELLS</Item>
-						</dependenciesIDs>
-					</Item>
-				</SkillPrerequisites>
+				<SkillPrerequisites/>
 				<AIRacesValues>
 					<Haven>
 						<CommanderValue>0</CommanderValue>
@@ -6199,13 +6199,13 @@
 				  <Item href="/Text/TTH/Skills/Training/078-GuardianAngel/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
-				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
-				<HeroClass>HERO_CLASS_NONE</HeroClass>
+				<SkillType>SKILLTYPE_UINQUE_PERK</SkillType>
+				<HeroClass>HERO_CLASS_KNIGHT</HeroClass>
 				<spellBuffs/>
 				<BasicSkillID>HERO_SKILL_TRAINING</BasicSkillID>
 				<SkillPrerequisites>
 					<Item>
-						<Class>HERO_CLASS_PALADIN</Class>
+						<Class>HERO_CLASS_KNIGHT</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_SEAL_OF_PROTECTION</Item>
 							<Item>HERO_SKILL_SUPRESS_DARK</Item>
@@ -7971,8 +7971,8 @@
 				  <Item href="/Text/TTH/Skills/Invocation/088-TripleCatapult/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
-				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
-				<HeroClass>HERO_CLASS_NONE</HeroClass>
+				<SkillType>SKILLTYPE_UINQUE_PERK</SkillType>
+				<HeroClass>HERO_CLASS_WARLOCK</HeroClass>
 				<spellBuffs>
 					<Item>SPELL_RUNE_OF_BERSERKING</Item>
 					<Item>SPELL_RUNE_OF_BERSERKING</Item>
@@ -7981,7 +7981,7 @@
 				<BasicSkillID>HERO_SKILL_INVOCATION</BasicSkillID>
 				<SkillPrerequisites>
 					<Item>
-						<Class>HERO_CLASS_BEASTMASTER</Class>
+						<Class>HERO_CLASS_WARLOCK</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_DARK_RITUAL</Item>
 							<Item>HERO_SKILL_FRENZY</Item>
@@ -8406,13 +8406,13 @@
 					<Item href="/Text/TTH/Skills/Gating/092-DemonicRetaliation/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
-				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
-				<HeroClass>HERO_CLASS_NONE</HeroClass>
+				<SkillType>SKILLTYPE_UINQUE_PERK</SkillType>
+				<HeroClass>HERO_CLASS_DEMON_LORD</HeroClass>
 				<spellBuffs/>
 				<BasicSkillID>HERO_SKILL_GATING</BasicSkillID>
 				<SkillPrerequisites>
 					<Item>
-						<Class>HERO_CLASS_GATE_KEEPER</Class>
+						<Class>HERO_CLASS_DEMON_LORD</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_DEMONIC_FLAME</Item>
 							<Item>HERO_SKILL_QUICKNESS_OF_MIND</Item>
@@ -8481,13 +8481,13 @@
 					<Item href="/Text/TTH/Skills/Invocation/093-ExplodingCorpses/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
-				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
-				<HeroClass>HERO_CLASS_NONE</HeroClass>
+				<SkillType>SKILLTYPE_UINQUE_PERK</SkillType>
+				<HeroClass>HERO_CLASS_WARLOCK</HeroClass>
 				<spellBuffs/>
 				<BasicSkillID>HERO_SKILL_INVOCATION</BasicSkillID>
 				<SkillPrerequisites>
 					<Item>
-						<Class>HERO_CLASS_SEER</Class>
+						<Class>HERO_CLASS_WARLOCK</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_SECRETS_OF_DESTRUCTION</Item>
 							<Item>HERO_SKILL_TELEPORT_ASSAULT</Item>
@@ -9240,8 +9240,8 @@
 					<Item href="/Text/TTH/Skills/Gating/098-AbsoluteGating/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
-				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
-				<HeroClass>HERO_CLASS_NONE</HeroClass>
+				<SkillType>SKILLTYPE_UINQUE_PERK</SkillType>
+				<HeroClass>HERO_CLASS_DEMON_LORD</HeroClass>
 				<spellBuffs/>
 				<BasicSkillID>HERO_SKILL_GATING</BasicSkillID>
 				<SkillPrerequisites>
@@ -9876,13 +9876,13 @@
 					<Item href="/Text/TTH/Skills/Necromancy/103-DeadLuck/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
-				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
-				<HeroClass>HERO_CLASS_NONE</HeroClass>
+				<SkillType>SKILLTYPE_UINQUE_PERK</SkillType>
+				<HeroClass>HERO_CLASS_NECROMANCER</HeroClass>
 				<spellBuffs/>
 				<BasicSkillID>HERO_SKILL_NECROMANCY</BasicSkillID>
 				<SkillPrerequisites>
 					<Item>
-						<Class>HERO_CLASS_REAVER</Class>
+						<Class>HERO_CLASS_NECROMANCER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_MASTER_OF_CURSES</Item>
 							<Item>HERO_SKILL_NO_REST_FOR_THE_WICKED</Item>
@@ -10365,8 +10365,8 @@
 				  <Item href="/Text/TTH/Skills/Training/106-SpellproofBones/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
-				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
-				<HeroClass>HERO_CLASS_NONE</HeroClass>
+				<SkillType>SKILLTYPE_UINQUE_PERK</SkillType>
+				<HeroClass>HERO_CLASS_KNIGHT</HeroClass>
 				<spellBuffs>
 					<Item>SPELL_VAMPIRISM</Item>
 					<Item>SPELL_VAMPIRISM</Item>
@@ -10375,7 +10375,7 @@
 				<BasicSkillID>HERO_SKILL_TRAINING</BasicSkillID>
 				<SkillPrerequisites>
 					<Item>
-						<Class>HERO_CLASS_HERETIC</Class>
+						<Class>HERO_CLASS_KNIGHT</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_WEAKENING_STRIKE</Item>
 							<Item>HERO_SKILL_PARIAH</Item>
@@ -11012,8 +11012,8 @@
 					<Item href="/Text/TTH/Skills/Necromancy/111-AbsoluteFear/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
-				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
-				<HeroClass>HERO_CLASS_NONE</HeroClass>
+				<SkillType>SKILLTYPE_UINQUE_PERK</SkillType>
+				<HeroClass>HERO_CLASS_NECROMANCER</HeroClass>
 				<spellBuffs/>
 				<BasicSkillID>HERO_SKILL_NECROMANCY</BasicSkillID>
 				<SkillPrerequisites>
@@ -11661,13 +11661,13 @@
 					<Item href="/Text/TTH/Skills/Avenger/116-ElvenLuck/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
-				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
-				<HeroClass>HERO_CLASS_NONE</HeroClass>
+				<SkillType>SKILLTYPE_UINQUE_PERK</SkillType>
+				<HeroClass>HERO_CLASS_RANGER</HeroClass>
 				<spellBuffs/>
 				<BasicSkillID>HERO_SKILL_AVENGER</BasicSkillID>
 				<SkillPrerequisites>
 					<Item>
-						<Class>HERO_CLASS_WARDEN</Class>
+						<Class>HERO_CLASS_RANGER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_FOREST_RAGE</Item>
 							<Item>HERO_SKILL_FOREST_GUARD_EMBLEM</Item>
@@ -12888,8 +12888,8 @@
 					<Item href="/Text/TTH/Skills/Avenger/124-AbsoluteLuck/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
-				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
-				<HeroClass>HERO_CLASS_NONE</HeroClass>
+				<SkillType>SKILLTYPE_UINQUE_PERK</SkillType>
+				<HeroClass>HERO_CLASS_RANGER</HeroClass>
 				<spellBuffs/>
 				<BasicSkillID>HERO_SKILL_AVENGER</BasicSkillID>
 				<SkillPrerequisites>
@@ -15140,8 +15140,8 @@
 					<Item href="/Text/TTH/Skills/Artificier/137-AbsoluteWizardy/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
-				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
-				<HeroClass>HERO_CLASS_NONE</HeroClass>
+				<SkillType>SKILLTYPE_UINQUE_PERK</SkillType>
+				<HeroClass>HERO_CLASS_WIZARD</HeroClass>
 				<spellBuffs/>
 				<BasicSkillID>HERO_SKILL_ARTIFICIER</BasicSkillID>
 				<SkillPrerequisites>
@@ -17169,13 +17169,13 @@
 					<Item href="/Text/TTH/Skills/Gating/149-ElementalOverkill/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
-				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
-				<HeroClass>HERO_CLASS_NONE</HeroClass>
+				<SkillType>SKILLTYPE_UINQUE_PERK</SkillType>
+				<HeroClass>HERO_CLASS_DEMON_LORD</HeroClass>
 				<spellBuffs/>
 				<BasicSkillID>HERO_SKILL_GATING</BasicSkillID>
 				<SkillPrerequisites>
 					<Item>
-						<Class>HERO_CLASS_SORCERER</Class>
+						<Class>HERO_CLASS_DEMON_LORD</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_CRITICAL_GATING</Item>
 							<Item>HERO_SKILL_INSIGHTS</Item>
@@ -17244,8 +17244,8 @@
 					<Item href="/Text/TTH/Skills/Invocation/150-AbsoluteChains/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
-				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
-				<HeroClass>HERO_CLASS_NONE</HeroClass>
+				<SkillType>SKILLTYPE_UINQUE_PERK</SkillType>
+				<HeroClass>HERO_CLASS_WARLOCK</HeroClass>
 				<spellBuffs/>
 				<BasicSkillID>HERO_SKILL_INVOCATION</BasicSkillID>
 				<SkillPrerequisites>
@@ -17818,13 +17818,13 @@
 					<Item href="/Text/TTH/Skills/Runelore/156-RunicMachines/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
-				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
-				<HeroClass>HERO_CLASS_NONE</HeroClass>
+				<SkillType>SKILLTYPE_UINQUE_PERK</SkillType>
+				<HeroClass>HERO_CLASS_RUNEMAGE</HeroClass>
 				<spellBuffs/>
 				<BasicSkillID>HERO_SKILL_RUNELORE</BasicSkillID>
 				<SkillPrerequisites>
 					<Item>
-						<Class>HERO_CLASS_ENGINEER</Class>
+						<Class>HERO_CLASS_RUNEMAGE</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_TAP_RUNES</Item>
 							<Item>HERO_SKILL_BALLISTA</Item>
@@ -18044,15 +18044,15 @@
 					<Item href="/Text/TTH/Skills/Runelore/159-DwarvenLuck/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
-				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
-				<HeroClass>HERO_CLASS_NONE</HeroClass>
+				<SkillType>SKILLTYPE_UINQUE_PERK</SkillType>
+				<HeroClass>HERO_CLASS_RUNEMAGE</HeroClass>
 				<spellBuffs>
 					<Item>SPELL_SKILL_DWARVEN_LUCK</Item>
 				</spellBuffs>
 				<BasicSkillID>HERO_SKILL_RUNELORE</BasicSkillID>
 				<SkillPrerequisites>
 					<Item>
-						<Class>HERO_CLASS_FLAMEKEEPERA</Class>
+						<Class>HERO_CLASS_RUNEMAGE</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_STRONG_RUNE</Item>
 							<Item>HERO_SKILL_ESTATES</Item>
@@ -19530,8 +19530,8 @@
 					<Item href="/Text/TTH/Skills/Runelore/167-AbsoluteProtection/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
-				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
-				<HeroClass>HERO_CLASS_NONE</HeroClass>
+				<SkillType>SKILLTYPE_UINQUE_PERK</SkillType>
+				<HeroClass>HERO_CLASS_RUNEMAGE</HeroClass>
 				<spellBuffs>
 					<Item>SPELL_SKILL_ABSOLUTE_PROTECTION</Item>
 				</spellBuffs>
@@ -20555,8 +20555,8 @@
 					<Item href="/Text/TTH/Skills/DemonicRage/176-AbsoluteRage/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
-				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
-				<HeroClass>HERO_CLASS_NONE</HeroClass>
+				<SkillType>SKILLTYPE_UINQUE_PERK</SkillType>
+				<HeroClass>HERO_CLASS_BARBARIAN</HeroClass>
 				<spellBuffs/>
 				<BasicSkillID>HERO_SKILL_DEMONIC_RAGE</BasicSkillID>
 				<SkillPrerequisites>
@@ -30763,8 +30763,8 @@
 					<Item href="/Text/TTH/Skills/Necromancy/310-EvilExpedition/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
-				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
-				<HeroClass>HERO_CLASS_NONE</HeroClass>
+				<SkillType>SKILLTYPE_UINQUE_PERK</SkillType>
+				<HeroClass>HERO_CLASS_NECROMANCER</HeroClass>
 				<spellBuffs>
 					<Item>SPELL_EFFECT_BATTLE_RAGE</Item>
 					<Item>SPELL_EFFECT_BATTLE_RAGE</Item>
@@ -30772,7 +30772,7 @@
 				<BasicSkillID>HERO_SKILL_NECROMANCY</BasicSkillID>
 				<SkillPrerequisites>
 					<Item>
-						<Class>HERO_CLASS_DEATHKNIGHT</Class>
+						<Class>HERO_CLASS_NECROMANCER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_LORD_OF_UNDEAD</Item>
 							<Item>HERO_SKILL_FRENZY</Item>
@@ -31046,7 +31046,8 @@
 					<Item href="/Text/TTH/Skills/DemonicRage/312-RageRush/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
-				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
+				<SkillType>SKILLTYPE_UINQUE_PERK</SkillType>
+				<HeroClass>HERO_CLASS_BARBARIAN</HeroClass>
 				<spellBuffs>
 					<Item>SPELL_HASTE</Item>
 				</spellBuffs>
@@ -31122,8 +31123,8 @@
 					<Item href="/Text/TTH/Skills/DemonicRage/313-AntiMagic/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
-				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
-				<HeroClass>HERO_CLASS_NONE</HeroClass>
+				<SkillType>SKILLTYPE_UINQUE_PERK</SkillType>
+				<HeroClass>HERO_CLASS_BARBARIAN</HeroClass>
 				<spellBuffs>
 					<Item>SPELL_ANTI_MAGIC</Item>
 				</spellBuffs>
@@ -31199,13 +31200,13 @@
 					<Item href="/Text/TTH/Skills/Artificier/314-MagicBalance/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
-				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
-				<HeroClass>HERO_CLASS_NONE</HeroClass>
+				<SkillType>SKILLTYPE_UINQUE_PERK</SkillType>
+				<HeroClass>HERO_CLASS_WIZARD</HeroClass>
 				<spellBuffs/>
 				<BasicSkillID>HERO_SKILL_ARTIFICIER</BasicSkillID>
 		    <SkillPrerequisites>
 		      <Item>
-		        <Class>HERO_CLASS_ELEMENTALIST</Class>
+		        <Class>HERO_CLASS_WIZARD</Class>
 		        <dependenciesIDs>
 		          <Item>HERO_SKILL_MAGIC_MIRROR</Item>
 		          <Item>HERO_SKILL_MASTER_OF_LIGHTNINGS</Item>
@@ -31274,13 +31275,13 @@
 					<Item href="/Text/TTH/Skills/Avenger/315-EchoOfSylanna/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
-				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
-				<HeroClass>HERO_CLASS_NONE</HeroClass>
+				<SkillType>SKILLTYPE_UINQUE_PERK</SkillType>
+				<HeroClass>HERO_CLASS_RANGER</HeroClass>
 				<spellBuffs/>
 				<BasicSkillID>HERO_SKILL_AVENGER</BasicSkillID>
 				<SkillPrerequisites>
 					<Item>
-						<Class>HERO_CLASS_ENCHANTER</Class>
+						<Class>HERO_CLASS_RANGER</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_IMBUE_ARROW</Item>
 							<Item>HERO_SKILL_DISGUISE_AND_RECKON</Item>
@@ -31349,13 +31350,13 @@
 					<Item href="/Text/TTH/Skills/Artificier/316-EnchantMachines/Description.txt"/>
 				</DescriptionFileRef>
 				<CommonDescriptionFileRef href=""/>
-				<SkillType>SKILLTYPE_SPECIAL_PERK</SkillType>
-				<HeroClass>HERO_CLASS_NONE</HeroClass>
+				<SkillType>SKILLTYPE_UINQUE_PERK</SkillType>
+				<HeroClass>HERO_CLASS_WIZARD</HeroClass>
 				<spellBuffs/>
 				<BasicSkillID>HERO_SKILL_ARTIFICIER</BasicSkillID>
 				<SkillPrerequisites>
 					<Item>
-						<Class>HERO_CLASS_GUILDMASTER</Class>
+						<Class>HERO_CLASS_WIZARD</Class>
 						<dependenciesIDs>
 							<Item>HERO_SKILL_MARCH_OF_THE_MACHINES</Item>
 							<Item>HERO_SKILL_REPAIR_MACHINES</Item>
